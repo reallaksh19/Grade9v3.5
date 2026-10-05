@@ -1,0 +1,1574 @@
+{
+  "schema_version": "grade9v3-owner-supplied-bank-v1",
+  "bank_id": "iss52-polynomial-stress-v1",
+  "intake_digest": "sha256:46058f7ade3862a6f5707fa0f49c5e284d74b6de56100312d6f1a840d65392b9",
+  "questions": [
+    {
+      "id": "ISS52-Q1",
+      "original_identifier": "Q1",
+      "stem": "Exact data give $p(0)=1$, $p(1)=2$, $p(2)=5$ and $p(3)=10$. First assume $p$ is a real polynomial of degree at most three: determine it and justify uniqueness. Then remove the degree bound and characterise every real polynomial consistent with the same four data points. State precisely which inference depended on the bound.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "For degree at most 3, p(x)=x^2+1; uniqueness follows because the difference of two such polynomials has four distinct zeros but degree at most 3. Without the bound, p=x^2+1+x(x-1)(x-2)(x-3)q for arbitrary real polynomial q. The degree bound is exactly what forces q=0.",
+        "reasoning": [
+          "Separate what the bounded and unbounded parts are asking. Two inference problems with different admissible classes.",
+          "Compare p with x^2+1 and form their difference. A difference polynomial with four named roots.",
+          "Use the degree bound to decide whether that difference can be nonzero. The bounded candidate is forced and unique.",
+          "Remove the degree bound by factoring every difference that vanishes at all four nodes. The complete unrestricted family and the exact inference that used the bound."
+        ],
+        "reasoning_route": [
+          {
+            "id": "ISS52-Q1-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Separate what the bounded and unbounded parts are asking.",
+            "why_valid": "The same four data have different identification force depending on the allowed degree.",
+            "inputs": [
+              "four exact values",
+              "degree condition"
+            ],
+            "output": "Two inference problems with different admissible classes."
+          },
+          {
+            "id": "ISS52-Q1-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Compare p with x^2+1 and form their difference.",
+            "why_valid": "x^2+1 matches all four values, so the difference vanishes at 0,1,2,3.",
+            "inputs": [
+              "data values"
+            ],
+            "output": "A difference polynomial with four named roots."
+          },
+          {
+            "id": "ISS52-Q1-MOVE-3",
+            "kind": "CONNECT",
+            "action": "Use the degree bound to decide whether that difference can be nonzero.",
+            "why_valid": "A nonzero polynomial of degree at most 3 cannot have four distinct real roots.",
+            "inputs": [
+              "four roots",
+              "degree at most 3"
+            ],
+            "output": "The bounded candidate is forced and unique."
+          },
+          {
+            "id": "ISS52-Q1-MOVE-4",
+            "kind": "TRANSFORM",
+            "action": "Remove the degree bound by factoring every difference that vanishes at all four nodes.",
+            "why_valid": "Repeated use of the factor theorem gives the product x(x-1)(x-2)(x-3) times an arbitrary real polynomial.",
+            "inputs": [
+              "four roots"
+            ],
+            "output": "The complete unrestricted family and the exact inference that used the bound."
+          }
+        ],
+        "crux_move_ref": "ISS52-Q1-MOVE-3",
+        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-FINITE-DATA-IDENTITY",
+      "family_ref": "FAM-ISS52-Q1",
+      "conditions": [
+        "p(0)=1, p(1)=2, p(2)=5, p(3)=10 are exact.",
+        "First part: p is real with degree at most 3.",
+        "Second part: the degree bound is removed."
+      ],
+      "figure_refs": [],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "scaffolds": [
+        {
+          "prompt": "Support 1: what should you make explicit next?",
+          "text": "Identify what four exact observations do and do not determine. Keep every stated qualifier visible.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS52-Q1-MOVE-1"
+        },
+        {
+          "prompt": "Support 2: what should you make explicit next?",
+          "text": "Connect the task to factor theorem plus the root-count bound; check its conditions before using it.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS52-Q1-MOVE-2"
+        },
+        {
+          "prompt": "Support 3: what should you make explicit next?",
+          "text": "Order the dependencies needed to separate bounded uniqueness from the unrestricted vanishing-factor family, stopping before the decisive conclusion.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS52-Q1-MOVE-3"
+        },
+        {
+          "prompt": "Support 4: what should you make explicit next?",
+          "text": "Set up the move toward separate bounded uniqueness from the unrestricted vanishing-factor family, but leave the degree-bound warrant that forces the difference to vanish unresolved.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "ISS52-Q1-MOVE-4"
+        },
+        {
+          "prompt": "Support 5: what should you make explicit next?",
+          "text": "Plan an independent boundary, substitution or counterexample check, while leaving the degree-bound warrant that forces the difference to vanish to you.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS52-Q1-MOVE-4"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS52-Q1",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:e02e5c653b6dcfb9d18d947aa1822cc7b2283c9d2eaf506212c9b42ad0308ba7"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+          },
+          "expected_time_seconds": 300,
+          "common_wrong_route": "Four matching values are treated as if they determined every polynomial even after the degree bound is removed.",
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
+        },
+        "grade9v3:qrt": {
+          "primary_demand": "JUSTIFY",
+          "secondary_demands": [
+            "SYNTHESIZE",
+            "APPLY"
+          ],
+          "template_ref": "QRT-JUSTIFY-D3",
+          "targets": {
+            "X": "what four exact observations do and do not determine",
+            "Y": "factor theorem plus the root-count bound",
+            "Z": "separate bounded uniqueness from the unrestricted vanishing-factor family",
+            "W": "the degree-bound warrant that forces the difference to vanish"
+          }
+        }
+      }
+    },
+    {
+      "id": "ISS52-Q2",
+      "original_identifier": "Q2",
+      "stem": "A nonzero real polynomial has degree at most four and zeros at $-2$, $0$ and $2$. It changes sign across each of $-2$ and $2$, but has the same nonzero sign on the two sides sufficiently close to $0$. Also $p(1)=-3$. Construct the polynomial, justify the multiplicity information you use, and establish whether these conditions determine it uniquely. These are exact benchmark conditions, not measurements from a graph.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Sign changes at -2 and 2 force odd multiplicities; same nonzero sign across 0 forces an even multiplicity. The degree budget forces multiplicities 1,2,1. Thus p=k(x+2)x^2(x-2), and p(1)=-3 gives k=1; unique.",
+        "reasoning": [
+          "Translate each local sign statement into multiplicity parity. Odd parity at -2,2 and even parity at 0.",
+          "Use the total degree budget to determine the only possible positive multiplicities. Multiplicities 1,2,1.",
+          "Write the factorized polynomial and use p(1)=-3 to determine its scale. A single candidate polynomial.",
+          "Check the value and local sign behaviour directly from the factorization. All supplied conditions verified and uniqueness closed."
+        ],
+        "reasoning_route": [
+          {
+            "id": "ISS52-Q2-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Translate each local sign statement into multiplicity parity.",
+            "why_valid": "Odd multiplicity changes sign; even multiplicity preserves local sign.",
+            "inputs": [
+              "sign data at three zeros"
+            ],
+            "output": "Odd parity at -2,2 and even parity at 0."
+          },
+          {
+            "id": "ISS52-Q2-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Use the total degree budget to determine the only possible positive multiplicities.",
+            "why_valid": "The least positive odd/even multiplicities already sum to four, the maximum allowed degree.",
+            "inputs": [
+              "parities",
+              "degree at most 4"
+            ],
+            "output": "Multiplicities 1,2,1."
+          },
+          {
+            "id": "ISS52-Q2-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Write the factorized polynomial and use p(1)=-3 to determine its scale.",
+            "why_valid": "The factor theorem supplies one factor per multiplicity; the remaining freedom is one nonzero scalar.",
+            "inputs": [
+              "multiplicities",
+              "p(1)=-3"
+            ],
+            "output": "A single candidate polynomial."
+          },
+          {
+            "id": "ISS52-Q2-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Check the value and local sign behaviour directly from the factorization.",
+            "why_valid": "The simple factors flip sign and x^2 does not; substitution checks the scale.",
+            "inputs": [
+              "candidate"
+            ],
+            "output": "All supplied conditions verified and uniqueness closed."
+          }
+        ],
+        "crux_move_ref": "ISS52-Q2-MOVE-2",
+        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-MULTIPLICITY-SIGN",
+      "family_ref": "FAM-ISS52-Q2",
+      "conditions": [
+        "p is nonzero, real, degree at most 4.",
+        "Zeros are -2, 0 and 2.",
+        "The sign changes at -2 and 2 but not across 0 locally.",
+        "p(1)=-3."
+      ],
+      "figure_refs": [],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "scaffolds": [
+        {
+          "prompt": "Support 1: what should you make explicit next?",
+          "text": "Identify what local sign behaviour says about root multiplicity. Keep every stated qualifier visible.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS52-Q2-MOVE-1"
+        },
+        {
+          "prompt": "Support 2: what should you make explicit next?",
+          "text": "Connect the task to odd/even multiplicity sign rules and the degree budget; check its conditions before using it.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS52-Q2-MOVE-2"
+        },
+        {
+          "prompt": "Support 3: what should you make explicit next?",
+          "text": "Order the dependencies needed to coordinate parity, degree and scale, stopping before the decisive conclusion.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS52-Q2-MOVE-3"
+        },
+        {
+          "prompt": "Support 4: what should you make explicit next?",
+          "text": "Set up the move toward coordinate parity, degree and scale, but leave the multiplicity allocation before scale unresolved.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "ISS52-Q2-MOVE-4"
+        },
+        {
+          "prompt": "Support 5: what should you make explicit next?",
+          "text": "Plan an independent boundary, substitution or counterexample check, while leaving the multiplicity allocation before scale to you.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS52-Q2-MOVE-4"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS52-Q2",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:39d0b46d0a99c1abf2bc23dd3341168a57f3266a80708505ae6157f365bf8db3"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 7,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 0,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+          },
+          "expected_time_seconds": 300,
+          "common_wrong_route": "Every listed zero is assumed simple, ignoring that local sign behaviour determines parity of multiplicity.",
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
+        },
+        "grade9v3:qrt": {
+          "primary_demand": "SYNTHESIZE",
+          "secondary_demands": [
+            "JUSTIFY",
+            "APPLY"
+          ],
+          "template_ref": "QRT-SYNTHESIZE-D3",
+          "targets": {
+            "X": "what local sign behaviour says about root multiplicity",
+            "Y": "odd/even multiplicity sign rules and the degree budget",
+            "Z": "coordinate parity, degree and scale",
+            "W": "the multiplicity allocation before scale"
+          }
+        }
+      }
+    },
+    {
+      "id": "ISS52-Q3",
+      "original_identifier": "Q3",
+      "stem": "Find the least possible degree of a real polynomial whose distinct real zeros are exactly $-1$ and $1$, and which satisfies $p(0)=p(2)=1$. Exhibit one such polynomial, verify that it has no other real zeros, and prove that every smaller degree is impossible. You may use continuity of real polynomial functions and the factor theorem. This is an advanced competition extension.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Write p=(x^2-1)g, so g(0)=-1 and g(2)=1/3. Degree 2 is impossible; degree 3 forces a linear g with extra zero 3/2; degree 4 forces a quadratic g that changes sign on (0,2), hence has a real zero there and cannot avoid an extra distinct zero. Degree 5 works: p=(1/3)(x+1)(x-1)^2(x^2-3x+3); the quadratic discriminant is -3.",
+        "reasoning": [
+          "Factor out the two required real zeros and translate the two value conditions to the remaining factor. Constraints g(0)=-1 and g(2)=1/3.",
+          "Eliminate total degrees 2 and 3. Degrees 2 and 3 are impossible.",
+          "Eliminate total degree 4 using the sign change of g between 0 and 2. Degree 4 is impossible without an extra distinct real zero.",
+          "Construct a degree-5 example with a repeated allowed root and a quadratic having no real roots. A verified degree-5 witness, proving minimality."
+        ],
+        "reasoning_route": [
+          {
+            "id": "ISS52-Q3-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Factor out the two required real zeros and translate the two value conditions to the remaining factor.",
+            "why_valid": "The factor theorem gives p=(x^2-1)g and the values determine g(0),g(2).",
+            "inputs": [
+              "zeros ±1",
+              "p(0)=p(2)=1"
+            ],
+            "output": "Constraints g(0)=-1 and g(2)=1/3."
+          },
+          {
+            "id": "ISS52-Q3-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Eliminate total degrees 2 and 3.",
+            "why_valid": "A constant g cannot take both required values; a linear g is forced and its real zero creates an extra zero of p.",
+            "inputs": [
+              "g values"
+            ],
+            "output": "Degrees 2 and 3 are impossible."
+          },
+          {
+            "id": "ISS52-Q3-MOVE-3",
+            "kind": "CONNECT",
+            "action": "Eliminate total degree 4 using the sign change of g between 0 and 2.",
+            "why_valid": "Continuity forces a real zero of the quadratic g in (0,2); a quadratic cannot have only a sign-changing double root at 1, and a simple root at 1 forces another real root.",
+            "inputs": [
+              "g(0)<0",
+              "g(2)>0"
+            ],
+            "output": "Degree 4 is impossible without an extra distinct real zero."
+          },
+          {
+            "id": "ISS52-Q3-MOVE-4",
+            "kind": "TRANSFORM",
+            "action": "Construct a degree-5 example with a repeated allowed root and a quadratic having no real roots.",
+            "why_valid": "A negative quadratic discriminant prevents extra real zeros while the value constraints can be met exactly.",
+            "inputs": [
+              "degree at least 5"
+            ],
+            "output": "A verified degree-5 witness, proving minimality."
+          }
+        ],
+        "crux_move_ref": "ISS52-Q3-MOVE-3",
+        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-MINIMUM-DEGREE",
+      "family_ref": "FAM-ISS52-Q3",
+      "conditions": [
+        "The distinct real zeros must be exactly -1 and 1.",
+        "p(0)=p(2)=1.",
+        "Continuity and the factor theorem may be used."
+      ],
+      "figure_refs": [],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "scaffolds": [
+        {
+          "prompt": "Support 1: what should you make explicit next?",
+          "text": "Identify why exact values and an exact zero set impose a lower bound. Keep every stated qualifier visible.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS52-Q3-MOVE-1"
+        },
+        {
+          "prompt": "Support 2: what should you make explicit next?",
+          "text": "Connect the task to factor theorem, continuity and quadratic discriminant; check its conditions before using it.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS52-Q3-MOVE-2"
+        },
+        {
+          "prompt": "Support 3: what should you make explicit next?",
+          "text": "Order the dependencies needed to eliminate degrees 2,3,4 then construct degree5, stopping before the decisive conclusion.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS52-Q3-MOVE-3"
+        },
+        {
+          "prompt": "Support 4: what should you make explicit next?",
+          "text": "Set up the move toward eliminate degrees 2,3,4 then construct degree5, but leave the degree-4 impossibility argument unresolved.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "ISS52-Q3-MOVE-4"
+        },
+        {
+          "prompt": "Support 5: what should you make explicit next?",
+          "text": "Plan an independent boundary, substitution or counterexample check, while leaving the degree-4 impossibility argument to you.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS52-Q3-MOVE-4"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS52-Q3",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:dc8957c7bdb5e6011083beee02230b04220fac10a7a4160f7569a9fbf6922fe3"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 0,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 2,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+          },
+          "expected_time_seconds": 480,
+          "common_wrong_route": "Finding one degree-5 example is mistaken for proving degree 5 is least.",
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
+        },
+        "grade9v3:qrt": {
+          "primary_demand": "JUSTIFY",
+          "secondary_demands": [
+            "SYNTHESIZE",
+            "MODEL"
+          ],
+          "template_ref": "QRT-JUSTIFY-D4",
+          "targets": {
+            "X": "why exact values and an exact zero set impose a lower bound",
+            "Y": "factor theorem, continuity and quadratic discriminant",
+            "Z": "eliminate degrees 2,3,4 then construct degree5",
+            "W": "the degree-4 impossibility argument"
+          }
+        }
+      }
+    },
+    {
+      "id": "ISS52-Q4",
+      "original_identifier": "Q4",
+      "stem": "For real $a$, consider $F_a(x)=(a-1)x^4+2(a-1)x^3+(a+2)x^2+2(a+2)x$. Develop a complete classification of its degree and number of distinct real zeros as $a$ varies. Identify all exceptional parameter values where the degree drops or zeros coincide, and account for multiplicities at those values. Justify that your cases are exhaustive.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "F_a=x(x+2)((a-1)x^2+(a+2)). Degree is 2 at a=1 and 4 otherwise. Extra real roots occur exactly for -2<a<1. Exceptional values are a=-2 (0 has multiplicity 3), a=2/5 (the negative extra root collides with -2, making it double), and a=1 (degree drop). Therefore: a<-2: 2 distinct simple zeros; a=-2: 2 distinct; -2<a<1 except 2/5: 4 distinct simple; a=2/5: 3 distinct; a=1: 2 distinct simple degree2; a>1: 2 distinct simple.",
+        "reasoning": [
+          "Factor F_a so fixed roots and the parameter-dependent quadratic are visible. F_a=x(x+2)((a-1)x^2+(a+2)).",
+          "Derive the complete event list before choosing sample parameter values. Three event equations: degree drop, existence boundary and collision.",
+          "Solve the event equations, order the critical parameter values and classify each open interval plus each event point. An exhaustive parameter partition with degree and distinct-root counts.",
+          "At each exceptional parameter, refactor to read multiplicities and check no event was omitted. Complete case table with multiplicities at exceptions."
+        ],
+        "reasoning_route": [
+          {
+            "id": "ISS52-Q4-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Factor F_a so fixed roots and the parameter-dependent quadratic are visible.",
+            "why_valid": "Factoring preserves the polynomial while isolating all ways its root structure can change.",
+            "inputs": [
+              "given F_a"
+            ],
+            "output": "F_a=x(x+2)((a-1)x^2+(a+2))."
+          },
+          {
+            "id": "ISS52-Q4-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Derive the complete event list before choosing sample parameter values.",
+            "why_valid": "The classification can change only if the leading coefficient vanishes, the quadratic switches between no/two real roots, or an extra root collides with a fixed root.",
+            "inputs": [
+              "factorized form"
+            ],
+            "output": "Three event equations: degree drop, existence boundary and collision."
+          },
+          {
+            "id": "ISS52-Q4-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Solve the event equations, order the critical parameter values and classify each open interval plus each event point.",
+            "why_valid": "Between critical values none of the defining sign/equality conditions changes, so the root pattern is stable.",
+            "inputs": [
+              "event equations"
+            ],
+            "output": "An exhaustive parameter partition with degree and distinct-root counts."
+          },
+          {
+            "id": "ISS52-Q4-MOVE-4",
+            "kind": "VERIFY",
+            "action": "At each exceptional parameter, refactor to read multiplicities and check no event was omitted.",
+            "why_valid": "Direct factorization at event values verifies collisions/degree drop; the event derivation proves exhaustiveness.",
+            "inputs": [
+              "critical values"
+            ],
+            "output": "Complete case table with multiplicities at exceptions."
+          }
+        ],
+        "crux_move_ref": "ISS52-Q4-MOVE-2",
+        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-PARAMETER-CLASSIFICATION",
+      "family_ref": "FAM-ISS52-Q4",
+      "conditions": [
+        "a is real.",
+        "F_a(x)=(a-1)x^4+2(a-1)x^3+(a+2)x^2+2(a+2)x.",
+        "Classify degree, distinct real zeros, exceptional values and multiplicities for all a."
+      ],
+      "figure_refs": [],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "scaffolds": [
+        {
+          "prompt": "Support 1: what should you make explicit next?",
+          "text": "Identify which parameter events change degree, root existence or coincidence. Keep every stated qualifier visible.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS52-Q4-MOVE-1"
+        },
+        {
+          "prompt": "Support 2: what should you make explicit next?",
+          "text": "Connect the task to factorization plus sign conditions; check its conditions before using it.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS52-Q4-MOVE-2"
+        },
+        {
+          "prompt": "Support 3: what should you make explicit next?",
+          "text": "Order the dependencies needed to derive every critical value then partition parameter space, stopping before the decisive conclusion.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS52-Q4-MOVE-3"
+        },
+        {
+          "prompt": "Support 4: what should you make explicit next?",
+          "text": "Set up the move toward derive every critical value then partition parameter space, but leave the exhaustive event set and interval/collision split unresolved.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "ISS52-Q4-MOVE-4"
+        },
+        {
+          "prompt": "Support 5: what should you make explicit next?",
+          "text": "Plan an independent boundary, substitution or counterexample check, while leaving the exhaustive event set and interval/collision split to you.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS52-Q4-MOVE-4"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS52-Q4",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:d28d5a24aa86299fc4568717767bd5410f1ba0dd963a758e835322005d644e0b"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 9,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 2,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+          },
+          "expected_time_seconds": 540,
+          "common_wrong_route": "Generic roots are computed for one parameter range but degree-drop and collision values are not derived, so the classification is not exhaustive.",
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
+        },
+        "grade9v3:qrt": {
+          "primary_demand": "SYNTHESIZE",
+          "secondary_demands": [
+            "JUSTIFY",
+            "MODEL"
+          ],
+          "template_ref": "QRT-SYNTHESIZE-D4",
+          "targets": {
+            "X": "which parameter events change degree, root existence or coincidence",
+            "Y": "factorization plus sign conditions",
+            "Z": "derive every critical value then partition parameter space",
+            "W": "the exhaustive event set and interval/collision split"
+          }
+        }
+      }
+    },
+    {
+      "id": "ISS52-Q5",
+      "original_identifier": "Q5",
+      "stem": "An open box is formed by cutting squares of side $x$ cm from the corners of a $10$ cm square sheet and folding the sides up, ignoring thickness. An exact calculation table gives volumes $0$, $64$ and $72$ cubic centimetres at $x=0,1,2$ respectively; $x=0$ denotes the flat limiting configuration. An analyst fits $Q(x)=-28x^2+92x$ to these three entries and treats it as the volume model. Derive the model from the geometry, state the domain for a non-degenerate box, assess the fitted model over that domain, and choose an additional admissible input that discriminates between the two accounts. Explain why matching the recorded entries is insufficient.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Geometry gives V=x(10-2x)^2 on 0<x<5. The fitted Q=-28x^2+92x matches the three recorded rows but Q-V=-4x(x-1)(x-2). At admissible x=4, V=16 while Q=-80. Finite agreement is not a geometric model or an unrestricted identity proof.",
+        "reasoning": [
+          "Derive the box volume from its dimensions after the cuts. V=x(10-2x)^2 with the physical dimensions visible.",
+          "State the non-degenerate domain and decide which account is a model versus an interpolant. A physical model/domain and a separate empirical interpolant.",
+          "Compare the two formulas algebraically and choose a new admissible input. A discriminating exact calculation.",
+          "Check that the new input lies in the physical domain and that volume remains nonnegative. A domain-consistent rejection of the fitted quadratic as the volume model."
+        ],
+        "reasoning_route": [
+          {
+            "id": "ISS52-Q5-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Derive the box volume from its dimensions after the cuts.",
+            "why_valid": "Base-area times height is the governing geometry, not an arbitrary curve fit.",
+            "inputs": [
+              "10 cm sheet",
+              "cut x"
+            ],
+            "output": "V=x(10-2x)^2 with the physical dimensions visible."
+          },
+          {
+            "id": "ISS52-Q5-MOVE-2",
+            "kind": "DECIDE",
+            "action": "State the non-degenerate domain and decide which account is a model versus an interpolant.",
+            "why_valid": "Positive height and base side constrain x; matching three rows alone does not encode the construction.",
+            "inputs": [
+              "box geometry",
+              "three-row table",
+              "Q"
+            ],
+            "output": "A physical model/domain and a separate empirical interpolant."
+          },
+          {
+            "id": "ISS52-Q5-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Compare the two formulas algebraically and choose a new admissible input.",
+            "why_valid": "Their difference exposes the recorded interpolation nodes; a new point tests whether the accounts agree away from them.",
+            "inputs": [
+              "V",
+              "Q"
+            ],
+            "output": "A discriminating exact calculation."
+          },
+          {
+            "id": "ISS52-Q5-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Check that the new input lies in the physical domain and that volume remains nonnegative.",
+            "why_valid": "A geometric volume cannot become negative on a valid box domain.",
+            "inputs": [
+              "chosen input"
+            ],
+            "output": "A domain-consistent rejection of the fitted quadratic as the volume model."
+          }
+        ],
+        "crux_move_ref": "ISS52-Q5-MOVE-2",
+        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-MODEL-VS-INTERPOLATION",
+      "family_ref": "FAM-ISS52-Q5",
+      "conditions": [
+        "The sheet is a 10 cm square and corner cuts have side x cm.",
+        "x=0 is a flat limiting configuration; a non-degenerate box requires positive dimensions.",
+        "The table values at x=0,1,2 are exact.",
+        "The competing fit is Q(x)=-28x^2+92x."
+      ],
+      "figure_refs": [],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "scaffolds": [
+        {
+          "prompt": "Support 1: what should you make explicit next?",
+          "text": "Identify which account is a geometric model and which only interpolates. Keep every stated qualifier visible.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS52-Q5-MOVE-1"
+        },
+        {
+          "prompt": "Support 2: what should you make explicit next?",
+          "text": "Connect the task to volume geometry and physical domain; check its conditions before using it.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS52-Q5-MOVE-2"
+        },
+        {
+          "prompt": "Support 3: what should you make explicit next?",
+          "text": "Order the dependencies needed to derive V, compare Q-V, then test a changed input, stopping before the decisive conclusion.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS52-Q5-MOVE-3"
+        },
+        {
+          "prompt": "Support 4: what should you make explicit next?",
+          "text": "Set up the move toward derive V, compare Q-V, then test a changed input, but leave the inference that three rows do not identify the model unresolved.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "ISS52-Q5-MOVE-4"
+        },
+        {
+          "prompt": "Support 5: what should you make explicit next?",
+          "text": "Plan an independent boundary, substitution or counterexample check, while leaving the inference that three rows do not identify the model to you.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS52-Q5-MOVE-4"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS52-Q5",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:9524918a2550cfdbd9ac49e0667b45e5b4428c9ab629c35fb92f9e16b8b4ec77"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 7,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+          },
+          "expected_time_seconds": 360,
+          "common_wrong_route": "The interpolating quadratic is accepted because it matches all recorded rows, without checking the geometry or physical domain.",
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
+        },
+        "grade9v3:qrt": {
+          "primary_demand": "MODEL",
+          "secondary_demands": [
+            "JUSTIFY",
+            "REPRESENT"
+          ],
+          "template_ref": "QRT-MODEL-D3",
+          "targets": {
+            "X": "which account is a geometric model and which only interpolates",
+            "Y": "volume geometry and physical domain",
+            "Z": "derive V, compare Q-V, then test a changed input",
+            "W": "the inference that three rows do not identify the model"
+          }
+        }
+      }
+    },
+    {
+      "id": "ISS52-Q6",
+      "original_identifier": "Q6",
+      "stem": "For real $a$, let $R_a(x)=[x^2-(a+1)x+a]/(x-a)$ with its original domain $x\\neq a$. A student cancels a factor and says that every $R_a$ is the same polynomial function on all real numbers, with zero $1$. Determine which parts of that statement hold on the original domains, classify the real zeros as $a$ varies, and describe the polynomial extension separately. Explain why extending a function and preserving its original domain are different operations.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The numerator is (x-a)(x-1), so R_a=x-1 only on x!=a. If a!=1, x=1 is an allowed zero; if a=1 it is excluded and there are no zeros. The polynomial extension x-1 is defined on all reals and always has zero 1; filling the hole changes the function domain.",
+        "reasoning": [
+          "Factor the numerator and cancel only under the original restriction x!=a. The simplified rule x-1 on R\\{a}.",
+          "Classify whether x=1 is an allowed zero as a varies. One zero when a!=1; no zeros when a=1.",
+          "Describe the polynomial extension separately from the original function. The all-real polynomial x-1, distinguished from every R_a."
+        ],
+        "reasoning_route": [
+          {
+            "id": "ISS52-Q6-MOVE-1",
+            "kind": "TRANSFORM",
+            "action": "Factor the numerator and cancel only under the original restriction x!=a.",
+            "why_valid": "Division by x-a is valid only where that factor is nonzero.",
+            "inputs": [
+              "numerator",
+              "original domain"
+            ],
+            "output": "The simplified rule x-1 on R\\{a}."
+          },
+          {
+            "id": "ISS52-Q6-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Classify whether x=1 is an allowed zero as a varies.",
+            "why_valid": "A zero must both make the rule zero and belong to the function's domain.",
+            "inputs": [
+              "simplified rule",
+              "excluded input a"
+            ],
+            "output": "One zero when a!=1; no zeros when a=1."
+          },
+          {
+            "id": "ISS52-Q6-MOVE-3",
+            "kind": "CONNECT",
+            "action": "Describe the polynomial extension separately from the original function.",
+            "why_valid": "Extension intentionally assigns a value at the hole; simplification alone does not alter the original domain.",
+            "inputs": [
+              "original-domain function"
+            ],
+            "output": "The all-real polynomial x-1, distinguished from every R_a."
+          }
+        ],
+        "crux_move_ref": "ISS52-Q6-MOVE-2",
+        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-DOMAIN-EXTENSION",
+      "family_ref": "FAM-ISS52-Q6",
+      "conditions": [
+        "R_a is defined by the given quotient on its original domain x!=a.",
+        "a is real.",
+        "Polynomial extension and original-domain function must be discussed separately."
+      ],
+      "figure_refs": [],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "scaffolds": [
+        {
+          "prompt": "Support 1: what should you make explicit next?",
+          "text": "Identify expression equality versus function domain. Keep every stated qualifier visible.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS52-Q6-MOVE-1"
+        },
+        {
+          "prompt": "Support 2: what should you make explicit next?",
+          "text": "Connect the task to conditional cancellation; check its conditions before using it.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS52-Q6-MOVE-2"
+        },
+        {
+          "prompt": "Support 3: what should you make explicit next?",
+          "text": "Plan an independent boundary, substitution or counterexample check, while leaving preserving the excluded point to you.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "ISS52-Q6-MOVE-3"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS52-Q6",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:419740a92840120d38694742de086b1252a859def86f8210b661e7628c576bf8"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "Cancellation is treated as permission to restore the excluded input and thereby change the function.",
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
+        },
+        "grade9v3:qrt": {
+          "primary_demand": "EXPLAIN",
+          "secondary_demands": [
+            "JUSTIFY",
+            "APPLY"
+          ],
+          "template_ref": "QRT-EXPLAIN-D2",
+          "targets": {
+            "X": "expression equality versus function domain",
+            "Y": "conditional cancellation",
+            "Z": "cancel on the original domain then classify extension",
+            "W": "preserving the excluded point"
+          }
+        }
+      }
+    },
+    {
+      "id": "ISS52-Q7",
+      "original_identifier": "Q7",
+      "stem": "A real polynomial $p$ has degree at most four, satisfies $p(-x)=p(x)$ for every real $x$, and has $p(1)=p(2)=0$ and $p(0)=4$. Classify the following claims as necessary, possible but not necessary, or impossible under these conditions: its degree is two; it has exactly four distinct real zeros; it also has zero $3$; its leading coefficient is $1$; the data determine a unique polynomial. Justify each verdict. Reassess the claims when the degree bound is removed, while all other conditions are retained.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "With degree at most 4, evenness forces roots ±1,±2 and p(0)=4 gives p=(x^2-1)(x^2-4). Thus degree2 impossible, exactly four distinct real zeros necessary, zero3 impossible, leading coefficient1 necessary, and uniqueness necessary. Without the degree bound, p=(x^2-1)(x^2-4)h with even h and h(0)=1; only degree2 remains impossible, while the other bounded conclusions become possible-but-not-necessary or uniqueness becomes false.",
+        "reasoning": [
+          "Use evenness to reflect the given positive zeros and factor the four forced roots. Forced factors (x^2-1)(x^2-4).",
+          "Use degree at most 4 and p(0)=4 to close the bounded case. One bounded polynomial.",
+          "Classify every claim from that bounded polynomial. Five bounded verdicts.",
+          "Remove the degree bound by parameterizing every even multiplier that preserves p(0)=4. Complete unbounded family and revised claim statuses."
+        ],
+        "reasoning_route": [
+          {
+            "id": "ISS52-Q7-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Use evenness to reflect the given positive zeros and factor the four forced roots.",
+            "why_valid": "For an even polynomial p(r)=0 implies p(-r)=0.",
+            "inputs": [
+              "evenness",
+              "zeros 1,2"
+            ],
+            "output": "Forced factors (x^2-1)(x^2-4)."
+          },
+          {
+            "id": "ISS52-Q7-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Use degree at most 4 and p(0)=4 to close the bounded case.",
+            "why_valid": "Four distinct forced roots consume the entire allowed degree; the value fixes the scalar.",
+            "inputs": [
+              "forced factors",
+              "degree bound",
+              "p(0)"
+            ],
+            "output": "One bounded polynomial."
+          },
+          {
+            "id": "ISS52-Q7-MOVE-3",
+            "kind": "DECIDE",
+            "action": "Classify every claim from that bounded polynomial.",
+            "why_valid": "Necessary/impossible status follows directly from its degree, zero set and leading coefficient.",
+            "inputs": [
+              "bounded polynomial"
+            ],
+            "output": "Five bounded verdicts."
+          },
+          {
+            "id": "ISS52-Q7-MOVE-4",
+            "kind": "TRANSFORM",
+            "action": "Remove the degree bound by parameterizing every even multiplier that preserves p(0)=4.",
+            "why_valid": "Multiplying by an even h with h(0)=1 preserves the stated zeros/values while allowing additional structure.",
+            "inputs": [
+              "forced factor"
+            ],
+            "output": "Complete unbounded family and revised claim statuses."
+          }
+        ],
+        "crux_move_ref": "ISS52-Q7-MOVE-4",
+        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-BOUNDED-UNBOUNDED-IDENTIFICATION",
+      "family_ref": "FAM-ISS52-Q7",
+      "conditions": [
+        "p is a real even polynomial.",
+        "Initially degree at most 4.",
+        "p(1)=p(2)=0 and p(0)=4.",
+        "Then reassess after removing only the degree bound."
+      ],
+      "figure_refs": [],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "scaffolds": [
+        {
+          "prompt": "Support 1: what should you make explicit next?",
+          "text": "Identify which consequences require the degree bound. Keep every stated qualifier visible.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS52-Q7-MOVE-1"
+        },
+        {
+          "prompt": "Support 2: what should you make explicit next?",
+          "text": "Connect the task to even-polynomial root symmetry and divisibility; check its conditions before using it.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS52-Q7-MOVE-2"
+        },
+        {
+          "prompt": "Support 3: what should you make explicit next?",
+          "text": "Order the dependencies needed to solve bounded then parameterize unbounded, stopping before the decisive conclusion.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS52-Q7-MOVE-3"
+        },
+        {
+          "prompt": "Support 4: what should you make explicit next?",
+          "text": "Set up the move toward solve bounded then parameterize unbounded, but leave separating necessary from possible claims unresolved.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "ISS52-Q7-MOVE-4"
+        },
+        {
+          "prompt": "Support 5: what should you make explicit next?",
+          "text": "Plan an independent boundary, substitution or counterexample check, while leaving separating necessary from possible claims to you.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS52-Q7-MOVE-4"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS52-Q7",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:7179b2bb8a15301a553bd1f99c95c924a49f9debf9b9e5ecf0c4fb303fa9094a"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 7,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 0,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+          },
+          "expected_time_seconds": 420,
+          "common_wrong_route": "Conclusions forced only by degree at most 4 are carried unchanged into the unbounded case.",
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
+        },
+        "grade9v3:qrt": {
+          "primary_demand": "SYNTHESIZE",
+          "secondary_demands": [
+            "JUSTIFY"
+          ],
+          "template_ref": "QRT-SYNTHESIZE-D3",
+          "targets": {
+            "X": "which consequences require the degree bound",
+            "Y": "even-polynomial root symmetry and divisibility",
+            "Z": "solve bounded then parameterize unbounded",
+            "W": "separating necessary from possible claims"
+          }
+        }
+      }
+    },
+    {
+      "id": "ISS52-Q8",
+      "original_identifier": "Q8",
+      "stem": "Real polynomials $p$ and $q$ each have degree at most three. They agree at $x=-1,0,1$, but $p(2)-q(2)=12$. Characterise every possible difference polynomial, determine $p(3)-q(3)$, and decide whether the evidence identifies either polynomial individually. Use explicit examples to separate uniqueness of a difference from uniqueness of its two components.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "d=p-q has degree at most 3 and roots -1,0,1, so d=kx(x^2-1). d(2)=12 gives k=2 and d(3)=48. p and q are not individually identified: choose any cubic-or-less r and set q=r, p=r+d.",
+        "reasoning": [
+          "Form d=p-q and encode the three agreement inputs as roots of d. d=kx(x^2-1).",
+          "Use d(2)=12 to determine k, then evaluate d(3). The unique difference polynomial and d(3).",
+          "Test whether unique d forces unique p and q by constructing two decompositions. Explicit nonuniqueness of the individual polynomials."
+        ],
+        "reasoning_route": [
+          {
+            "id": "ISS52-Q8-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Form d=p-q and encode the three agreement inputs as roots of d.",
+            "why_valid": "Subtracting equal values gives zeros; the degree bound is inherited by the difference.",
+            "inputs": [
+              "agreement at -1,0,1"
+            ],
+            "output": "d=kx(x^2-1)."
+          },
+          {
+            "id": "ISS52-Q8-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Use d(2)=12 to determine k, then evaluate d(3).",
+            "why_valid": "The factorization leaves only one scalar degree of freedom.",
+            "inputs": [
+              "d(2)=12"
+            ],
+            "output": "The unique difference polynomial and d(3)."
+          },
+          {
+            "id": "ISS52-Q8-MOVE-3",
+            "kind": "DECIDE",
+            "action": "Test whether unique d forces unique p and q by constructing two decompositions.",
+            "why_valid": "Adding the same cubic-or-less r to both components preserves their difference.",
+            "inputs": [
+              "unique d"
+            ],
+            "output": "Explicit nonuniqueness of the individual polynomials."
+          }
+        ],
+        "crux_move_ref": "ISS52-Q8-MOVE-3",
+        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-DIFFERENCE-IDENTIFICATION",
+      "family_ref": "FAM-ISS52-Q8",
+      "conditions": [
+        "p and q are real, each degree at most 3.",
+        "They agree at x=-1,0,1.",
+        "p(2)-q(2)=12."
+      ],
+      "figure_refs": [],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "scaffolds": [
+        {
+          "prompt": "Support 1: what should you make explicit next?",
+          "text": "Identify what is identifiable about p-q. Keep every stated qualifier visible.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS52-Q8-MOVE-1"
+        },
+        {
+          "prompt": "Support 2: what should you make explicit next?",
+          "text": "Connect the task to factor theorem and degree-3 bound; check its conditions before using it.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS52-Q8-MOVE-2"
+        },
+        {
+          "prompt": "Support 3: what should you make explicit next?",
+          "text": "Plan an independent boundary, substitution or counterexample check, while leaving uniqueness of difference versus components to you.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "ISS52-Q8-MOVE-3"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS52-Q8",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:0618c1769d3974b8366495cfdb2d55b9f40098922efe4d6bd6cf608ce501a500"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "Agreement of p and q at three inputs is mistaken for individual identification of both polynomials.",
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
+        },
+        "grade9v3:qrt": {
+          "primary_demand": "SYNTHESIZE",
+          "secondary_demands": [
+            "APPLY",
+            "JUSTIFY"
+          ],
+          "template_ref": "QRT-SYNTHESIZE-D2",
+          "targets": {
+            "X": "what is identifiable about p-q",
+            "Y": "factor theorem and degree-3 bound",
+            "Z": "factor the difference then construct distinct decompositions",
+            "W": "uniqueness of difference versus components"
+          }
+        }
+      }
+    },
+    {
+      "id": "ISS52-Q9",
+      "original_identifier": "Q9",
+      "stem": "Characterise all monic real polynomials of degree at most four whose distinct real zeros are exactly $-1$ and $1$ and whose value at zero is $1$. Explain how repeated factors and any remaining quadratic factor affect completeness of your list. Prove both that every item in your list works and that no allowed polynomial has been omitted.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Let multiplicities at 1 and -1 be m,n>=1. With no leftover factor, p(0)=(-1)^m=1, so m is even; degree at most 4 gives (m,n)=(2,1) or (2,2). A leftover monic quadratic can only occur with m=n=1; p(0)=1 then forces constant -1, giving discriminant b^2+4>0 and unwanted real roots. Hence exactly (x-1)^2(x+1) and (x-1)^2(x+1)^2.",
+        "reasoning": [
+          "Write the required factors with positive multiplicities and isolate any remaining monic factor. A finite multiplicity/remainder case structure.",
+          "Enumerate multiplicity choices allowed by degree and p(0)=1 when no remainder remains. Two direct candidate multiplicity patterns.",
+          "Eliminate the only possible quadratic remainder case. Any such remainder creates forbidden real zeros.",
+          "Check monicity, degree, p(0) and exact distinct real zero set for each surviving polynomial. A complete two-polynomial classification."
+        ],
+        "reasoning_route": [
+          {
+            "id": "ISS52-Q9-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Write the required factors with positive multiplicities and isolate any remaining monic factor.",
+            "why_valid": "Every allowed polynomial contains powers of x-1 and x+1; degree at most 4 limits the remainder.",
+            "inputs": [
+              "exact real zero set",
+              "monic",
+              "degree bound"
+            ],
+            "output": "A finite multiplicity/remainder case structure."
+          },
+          {
+            "id": "ISS52-Q9-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Enumerate multiplicity choices allowed by degree and p(0)=1 when no remainder remains.",
+            "why_valid": "At x=0 the sign depends on the multiplicity of x-1.",
+            "inputs": [
+              "multiplicity form",
+              "p(0)=1"
+            ],
+            "output": "Two direct candidate multiplicity patterns."
+          },
+          {
+            "id": "ISS52-Q9-MOVE-3",
+            "kind": "CONNECT",
+            "action": "Eliminate the only possible quadratic remainder case.",
+            "why_valid": "With one copy of each linear factor, p(0)=1 forces the monic quadratic constant to -1, whose discriminant is positive for every real linear coefficient.",
+            "inputs": [
+              "quadratic remainder",
+              "p(0)=1"
+            ],
+            "output": "Any such remainder creates forbidden real zeros."
+          },
+          {
+            "id": "ISS52-Q9-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Check monicity, degree, p(0) and exact distinct real zero set for each surviving polynomial.",
+            "why_valid": "Each criterion is explicit and the case split exhausted all degree allocations.",
+            "inputs": [
+              "surviving list"
+            ],
+            "output": "A complete two-polynomial classification."
+          }
+        ],
+        "crux_move_ref": "ISS52-Q9-MOVE-3",
+        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-EXACT-REAL-ZERO-SET",
+      "family_ref": "FAM-ISS52-Q9",
+      "conditions": [
+        "p is monic, real, degree at most 4.",
+        "Its distinct real zeros are exactly -1 and 1.",
+        "p(0)=1."
+      ],
+      "figure_refs": [],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "scaffolds": [
+        {
+          "prompt": "Support 1: what should you make explicit next?",
+          "text": "Identify how multiplicities and leftover factors interact with all constraints. Keep every stated qualifier visible.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS52-Q9-MOVE-1"
+        },
+        {
+          "prompt": "Support 2: what should you make explicit next?",
+          "text": "Connect the task to factor theorem and quadratic real-root test; check its conditions before using it.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS52-Q9-MOVE-2"
+        },
+        {
+          "prompt": "Support 3: what should you make explicit next?",
+          "text": "Order the dependencies needed to enumerate cases and eliminate the quadratic remainder, stopping before the decisive conclusion.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS52-Q9-MOVE-3"
+        },
+        {
+          "prompt": "Support 4: what should you make explicit next?",
+          "text": "Set up the move toward enumerate cases and eliminate the quadratic remainder, but leave the completeness proof unresolved.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "ISS52-Q9-MOVE-4"
+        },
+        {
+          "prompt": "Support 5: what should you make explicit next?",
+          "text": "Plan an independent boundary, substitution or counterexample check, while leaving the completeness proof to you.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS52-Q9-MOVE-4"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS52-Q9",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:6217d10f7b4a7a1bc454f160878027bbd35060f1b4c580eedda5400d7c6354f2"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 0,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 2,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+          },
+          "expected_time_seconds": 480,
+          "common_wrong_route": "Examples with the right two visible roots are listed without proving that no residual factor can introduce another real zero.",
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
+        },
+        "grade9v3:qrt": {
+          "primary_demand": "JUSTIFY",
+          "secondary_demands": [
+            "SYNTHESIZE"
+          ],
+          "template_ref": "QRT-JUSTIFY-D4",
+          "targets": {
+            "X": "how multiplicities and leftover factors interact with all constraints",
+            "Y": "factor theorem and quadratic real-root test",
+            "Z": "enumerate cases and eliminate the quadratic remainder",
+            "W": "the completeness proof"
+          }
+        }
+      }
+    },
+    {
+      "id": "ISS52-Q10",
+      "original_identifier": "Q10",
+      "stem": "A solver uses four rules: cancellation makes a rational expression a polynomial on all real numbers; the largest printed exponent is always the degree; a degree-$n$ polynomial has exactly $n$ distinct real zeros; agreement at three inputs proves an identity. Develop a qualified decision procedure and apply it to: $A_t(x)=(t-1)x^3+x^2-1$ with real $t$; $B(x)=(x^2-1)/(x-1)$ on its original domain; $C(x)=(x-2)^2(x^2+1)$; and the pair $D(x)=x^2+1$, $E(x)=x^2+1+x(x-1)(x-2)$ compared at $x=0,1,2$. State the relevant conditions and valid conclusions in each case, then create one fresh counterexample to an unqualified rule. Preserve the difference between expressions, functions, identities and finite observations.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Cancellation preserves equality only on the original domain; degree is read after simplification and parameter leading-coefficient checks; a nonzero degree-n polynomial has at most n distinct real zeros; finite agreement proves identity only with a suitable degree bound on the difference. A_t has degree3 except t=1, when degree2; B equals x+1 only for x!=1; C has degree4 but one distinct real zero 2 of multiplicity2; D and E agree at 0,1,2 but differ, e.g. by 6 at x=3. Fresh counterexample: (x-3)^2/(x-3) on x!=3.",
+        "reasoning": [
+          "Replace each slogan by a conditional rule before touching the examples. Four qualified rules.",
+          "For A_t, B, C and D-E, expose the structural feature relevant to the matching qualified rule. A condition-to-example mapping.",
+          "Apply each qualified rule to obtain the requested conclusions without overextending it. Correct degree/domain/root/identity conclusions.",
+          "Give a fresh counterexample and state exactly which omitted condition it violates. A new independently checkable failure case."
+        ],
+        "reasoning_route": [
+          {
+            "id": "ISS52-Q10-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Replace each slogan by a conditional rule before touching the examples.",
+            "why_valid": "Each shortcut suppresses a necessary hypothesis about domain, simplification, root count or degree-bounded identity.",
+            "inputs": [
+              "four slogans"
+            ],
+            "output": "Four qualified rules."
+          },
+          {
+            "id": "ISS52-Q10-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "For A_t, B, C and D-E, expose the structural feature relevant to the matching qualified rule.",
+            "why_valid": "Leading coefficient, excluded input, repeated/irreducible factors and a difference polynomial respectively control the conclusions.",
+            "inputs": [
+              "four applications"
+            ],
+            "output": "A condition-to-example mapping."
+          },
+          {
+            "id": "ISS52-Q10-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Apply each qualified rule to obtain the requested conclusions without overextending it.",
+            "why_valid": "The conclusions now follow under explicit hypotheses instead of slogans.",
+            "inputs": [
+              "qualified rules",
+              "mapped examples"
+            ],
+            "output": "Correct degree/domain/root/identity conclusions."
+          },
+          {
+            "id": "ISS52-Q10-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Give a fresh counterexample and state exactly which omitted condition it violates.",
+            "why_valid": "A counterexample demonstrates why the unqualified rule is false without changing the valid qualified form.",
+            "inputs": [
+              "one unqualified rule"
+            ],
+            "output": "A new independently checkable failure case."
+          }
+        ],
+        "crux_move_ref": "ISS52-Q10-MOVE-1",
+        "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-QUALIFIED-RULES",
+      "family_ref": "FAM-ISS52-Q10",
+      "conditions": [
+        "All parameters/domains printed in A_t, B, C, D and E are part of the task.",
+        "B must retain its original domain.",
+        "The four slogans must be replaced by qualified rules before application."
+      ],
+      "figure_refs": [],
+      "response": {
+        "type": "free_response",
+        "paper_ok": true
+      },
+      "scaffolds": [
+        {
+          "prompt": "Support 1: what should you make explicit next?",
+          "text": "Identify the hidden condition omitted by each shortcut. Keep every stated qualifier visible.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "ISS52-Q10-MOVE-1"
+        },
+        {
+          "prompt": "Support 2: what should you make explicit next?",
+          "text": "Connect the task to domain, simplified degree, root-count and identity bounds; check its conditions before using it.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "ISS52-Q10-MOVE-2"
+        },
+        {
+          "prompt": "Support 3: what should you make explicit next?",
+          "text": "Order the dependencies needed to qualify each rule then apply it, stopping before the decisive conclusion.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "ISS52-Q10-MOVE-3"
+        },
+        {
+          "prompt": "Support 4: what should you make explicit next?",
+          "text": "Set up the move toward qualify each rule then apply it, but leave choosing the qualification before algebra unresolved.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "ISS52-Q10-MOVE-4"
+        },
+        {
+          "prompt": "Support 5: what should you make explicit next?",
+          "text": "Plan an independent boundary, substitution or counterexample check, while leaving choosing the qualification before algebra to you.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "ISS52-Q10-MOVE-4"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS52-Q10",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:c8e877db99b662cb2ca901cb9ff6acde0ad99db5b2bc06900347d1c7d6671831"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+          },
+          "expected_time_seconds": 540,
+          "common_wrong_route": "Each shortcut is applied as an unconditional slogan, so domain, cancellation, parameter and degree-bound exceptions are missed.",
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
+        },
+        "grade9v3:qrt": {
+          "primary_demand": "SYNTHESIZE",
+          "secondary_demands": [
+            "JUSTIFY",
+            "EXPLAIN"
+          ],
+          "template_ref": "QRT-SYNTHESIZE-D4",
+          "targets": {
+            "X": "the hidden condition omitted by each shortcut",
+            "Y": "domain, simplified degree, root-count and identity bounds",
+            "Z": "qualify each rule then apply it",
+            "W": "choosing the qualification before algebra"
+          }
+        }
+      }
+    }
+  ]
+}
