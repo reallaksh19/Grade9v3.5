@@ -1552,7 +1552,7 @@
       "teaching_path": [
         {
           "id": "MIC-MATH-ISS52-DIFFERENCE-STEP-1",
-          "role": "REPRESENT",
+          "role": "DECLARE",
           "action": "Define the difference polynomial and convert every agreement input into one of its zeros.",
           "why_valid": "Subtracting equal values gives zero while preserving the degree ceiling.",
           "inputs": [],
@@ -1676,7 +1676,7 @@
       "teaching_path": [
         {
           "id": "MIC-MATH-ISS52-EXACT-ZERO-SET-STEP-1",
-          "role": "REPRESENT",
+          "role": "DECLARE",
           "action": "Write positive multiplicities for every required real zero and reserve the remaining degree, if any, for a monic residual factor.",
           "why_valid": "The factor theorem accounts for all named zeros while the degree ceiling makes the remaining cases finite.",
           "inputs": [],
@@ -1692,7 +1692,7 @@
         },
         {
           "id": "MIC-MATH-ISS52-EXACT-ZERO-SET-STEP-3",
-          "role": "CONNECT",
+          "role": "TRANSFORM",
           "action": "For each residual linear or quadratic case, decide whether the residual factor must create a forbidden real zero.",
           "why_valid": "A real linear factor always has a real zero; a quadratic's constant/discriminant constraints can force real roots.",
           "inputs": [],
@@ -2757,7 +2757,9 @@
       "answer": {
         "kind": "MODEL_RESPONSE",
         "summary": "With degree at most four, evenness forces roots ±1 and ±3, so r=(x²-1)(x²-9). Without the degree bound, r=(x²-1)(x²-9)h(x), where h is any even real polynomial with h(0)=1.",
-        "reasoning": "Evenness supplies the negative partners. Four distinct roots consume the bounded degree, and r(0)=9 fixes the scalar. After removing the bound, an even multiplier with value 1 at zero preserves evenness, the named roots and r(0).",
+        "reasoning": [
+          "Evenness supplies the negative partners. Four distinct roots consume the bounded degree, and r(0)=9 fixes the scalar. After removing the bound, an even multiplier with value 1 at zero preserves evenness, the named roots and r(0)."
+        ],
         "check": "Test h=1+x² and h=1-x²/16 to see that some bounded conclusions cease to be necessary.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
@@ -2815,7 +2817,9 @@
       "answer": {
         "kind": "MODEL_RESPONSE",
         "summary": "d=u-v has roots 0 and 2, so d=kx(x-2). Since d(1)=3, k=-3; thus d=-3x(x-2). The components are not unique because any degree-at-most-two r gives v=r and u=r+d.",
-        "reasoning": "The agreement points become roots of d, and the degree bound leaves only a scalar. Adding the same allowed r to both components preserves the difference.",
+        "reasoning": [
+          "The agreement points become roots of d, and the degree bound leaves only a scalar. Adding the same allowed r to both components preserves the difference."
+        ],
         "check": "Compare (u,v)=(d,0) and (d+1,1).",
         "acceptable_alternatives": [],
         "subpart_answers": [],
@@ -2873,7 +2877,9 @@
       "answer": {
         "kind": "MODEL_RESPONSE",
         "summary": "The only polynomial is (x-2)²(x+2)².",
-        "reasoning": "Write positive multiplicities at ±2 and budget any residual factor. The value at zero rules out total-degree-three multiplicity patterns. A residual linear factor is forced to have a real zero, and a residual monic quadratic with the required constant term has positive discriminant, so either creates a forbidden real zero. The degree-four multiplicities (2,2) work and give p(0)=16.",
+        "reasoning": [
+          "Write positive multiplicities at ±2 and budget any residual factor. The value at zero rules out total-degree-three multiplicity patterns. A residual linear factor is forced to have a real zero, and a residual monic quadratic with the required constant term has positive discriminant, so either creates a forbidden real zero. The degree-four multiplicities (2,2) work and give p(0)=16."
+        ],
         "check": "Expand neither factor unless needed: monicity is immediate, p(0)=16, and the only real zeros are ±2.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
