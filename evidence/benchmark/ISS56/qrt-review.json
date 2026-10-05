@@ -1,0 +1,859 @@
+{
+  "schema": "iss56-qrt-review/v1",
+  "version": "1.0",
+  "status": "CANDIDATE",
+  "repository": "reallaksh19/Grade9v3.5",
+  "issue": 56,
+  "evaluator": "Agent B (Independent Academic Expert \u2014 Set B Matched Run)",
+  "evaluation_date": "2026-10-05T17:15:00Z",
+  "basis_head": "91719ad8df2bfc06c6a481590d2e24c510c24835",
+  "branch": "agent/iss56-polynomial-stress-v1",
+  "subject": "Mathematics",
+  "grade": 9,
+  "topic": "Polynomials in One Variable with Real Coefficients",
+  "source_status": "OWNER_SUPPLIED_RAW_INPUT",
+  "owner_prompt_sha256": "46058f7ade3862a6f5707fa0f49c5e284d74b6de56100312d6f1a840d65392b9",
+  "hardest_target_brief": {
+    "question_id": "OWN-ISSUE56-POLY-03",
+    "original_identifier": "Q3",
+    "title": "Root Multiplicity Parity & Minimal Degree 5 Proof",
+    "demand": "JUSTIFY",
+    "difficulty": "D4",
+    "difficulty_score": 9,
+    "difficulty_components": {
+      "concept_model_selection": 2,
+      "representation_translation": 2,
+      "reasoning_chain_length": 2,
+      "algebra_computational_load": 1,
+      "trap_exception_sensitivity": 2
+    },
+    "crux": "Coordinate IVT sign trapping at x = 1 with constant-sign quadratic discriminant Delta < 0 to prove degrees 1-4 impossible, then construct explicit minimal degree 5 polynomial (1/12)(x-1)^2(x+1)(3x^2-10x+12).",
+    "why_hardest": "Demands coordinating three distinct advanced algebraic/topological theorems: (1) sign preservation across isolated zeros forcing even multiplicity >= 2; (2) irreducible quadratic sign constancy; (3) systematic degree-by-degree exhaustion with explicit specimen construction."
+  },
+  "audit_dimensions": {
+    "H1_CLARIFY_X": "Clarifies what the learner is likely to misread or what the problem turns on.",
+    "H2_CONNECT_TO_Y": "Connects the difficulty to an entry assumption or demonstrated foundation.",
+    "H3_OPEN_Z_PRESERVE_W": "Guides the crux move Z while strictly preserving the learner-owned synthesis W.",
+    "S1_VISUALIZE_X": "Visualizes the situation or problem boundary without preempting the answer.",
+    "S2_REPRESENT_Y": "Binds demonstrated foundational relationships into the representation.",
+    "S3_CONSTRUCT_TOWARD_Z": "Shows structured progress toward the crux move without leaking W.",
+    "P1_PANEL_PROTECTION": "Pre-attempt panels, hints, and scaffolds keep decisive calculation inert pre-commitment.",
+    "P2_CONCEPT_LANDING": "Navigation and conceptual references land directly on the relevant microtopic.",
+    "P3_VALIDITY_EXPLANATION": "Every reasoning move carries an explicit mathematical validity explanation.",
+    "M1_REPRESENT_WRONG_IDEA": "Faithfully captures authentic student errors and heuristics.",
+    "M2_DIAGNOSTIC_DISCRIMINATION": "Discriminates authentic conceptual misconceptions from execution slips.",
+    "M3_REPAIR_ACTION": "Provides refutation with counterexample and sound replacement rule."
+  },
+  "questions": [
+    {
+      "question_id": "OWN-ISSUE56-POLY-01",
+      "order": 1,
+      "original_identifier": "Q1",
+      "demand": {
+        "primary": "JUSTIFY",
+        "secondary": [
+          "SYNTHESIZE",
+          "EXPLAIN"
+        ]
+      },
+      "difficulty": {
+        "band": "D4",
+        "score": 8,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        }
+      },
+      "template_id": "QRT-JUSTIFY-D4",
+      "X": "Assuming 4 data points force polynomial uniqueness without enforcing the degree bound deg(p) <= 3.",
+      "Y": "Demonstrated evaluation and polynomial identity theorem for degree <= 3.",
+      "Z": "Form difference d(x) = p(x) - (x^2+1); degree <= 3 forces d(x) = 0 identically, while removing bound produces affine coset x^2+1 + x(x-1)(x-2)(x-3)q(x).",
+      "W": "Articulate the exact algebraic coset and explain why uniqueness fails without the degree bound.",
+      "audit_checks": {
+        "H1_CLARIFY_X": {
+          "verdict": "YES",
+          "evidence": "Scaffold 1 asks learner to identify values of p(0)..p(3) and test if quadratic pattern holds."
+        },
+        "H2_CONNECT_TO_Y": {
+          "verdict": "YES",
+          "evidence": "Scaffold 2 guides forming the difference polynomial d(x) = p(x) - (x^2+1) and counting its roots."
+        },
+        "H3_OPEN_Z_PRESERVE_W": {
+          "verdict": "YES",
+          "evidence": "Scaffolds 3-4 prompt application of degree bound and removal of degree bound without writing the coset formula."
+        },
+        "S1_VISUALIZE_X": {
+          "verdict": "YES",
+          "evidence": "Figure REP-MATH-POLY-INTERPOLATION-COSET stage INTERP-1 plots exact points (0,1), (1,2), (2,5), (3,10)."
+        },
+        "S2_REPRESENT_Y": {
+          "verdict": "YES",
+          "evidence": "Stage INTERP-2 overlays unique parabola p(x) = x^2 + 1 matching all 4 points."
+        },
+        "S3_CONSTRUCT_TOWARD_Z": {
+          "verdict": "YES",
+          "evidence": "Stages INTERP-3 and INTERP-4 depict vanishing product and higher-degree coset oscillations without leaking q(x)."
+        },
+        "P1_PANEL_PROTECTION": {
+          "verdict": "YES",
+          "evidence": "HTML render-receipt confirms inert-template-until-commitment with zero pre-commitment leakage."
+        },
+        "P2_CONCEPT_LANDING": {
+          "verdict": "YES",
+          "evidence": "Binds to MIC-MATH-POLY-INTERPOLATION in package.v1.json."
+        },
+        "P3_VALIDITY_EXPLANATION": {
+          "verdict": "YES",
+          "evidence": "All 4 reasoning moves provide complete why_valid mathematical justifications."
+        },
+        "M1_REPRESENT_WRONG_IDEA": {
+          "verdict": "YES",
+          "evidence": "Captures common fallacy: A polynomial matching 4 points is always unique without degree bounds."
+        },
+        "M2_DIAGNOSTIC_DISCRIMINATION": {
+          "verdict": "YES",
+          "evidence": "Diagnostic asks if p(x) fits 4 data points, must it be quadratic or cubic."
+        },
+        "M3_REPAIR_ACTION": {
+          "verdict": "YES",
+          "evidence": "Provides explicit repair: Uniqueness requires deg(p) <= n-1; unconstrained solutions form infinite coset."
+        }
+      },
+      "independent_check": "At x in {0,1,2,3}, x(x-1)(x-2)(x-3) = 0, leaving p(x) = x^2+1. At x=4 with q(x)=1, p(4) = 17 + 24 = 41 != 17.",
+      "w_leak_check": "PASS",
+      "notes": "Exemplary D4 justify problem. Demonstrates distinction between bounded algebraic interpolation and infinite coset modulo vanishing product."
+    },
+    {
+      "question_id": "OWN-ISSUE56-POLY-02",
+      "order": 2,
+      "original_identifier": "Q2",
+      "demand": {
+        "primary": "SYNTHESIZE",
+        "secondary": [
+          "JUSTIFY",
+          "MODEL"
+        ]
+      },
+      "difficulty": {
+        "band": "D4",
+        "score": 8,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 2,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        }
+      },
+      "template_id": "QRT-SYNTHESIZE-D4",
+      "X": "Assuming tangency without sign crossing can occur at an odd multiplicity zero, or missing that degree <= 4 is saturated.",
+      "Y": "Demonstrated multiplicity parity theorem: odd multiplicity flips sign, even multiplicity preserves sign.",
+      "Z": "Zeros at +/-2 flip sign => mult >= 1; zero at 0 preserves negative sign => mult >= 2 (even). Total degree >= 1+1+2=4. Deg <= 4 forces mults 1, 1, 2 and fixes p(x) = x^2(x^2-4) = x^4 - 4x^2.",
+      "W": "Coordinate multiplicity inequalities to prove p(x) is uniquely x^4 - 4x^2.",
+      "audit_checks": {
+        "H1_CLARIFY_X": {
+          "verdict": "YES",
+          "evidence": "Scaffold 1 identifies sign changes across zeros to isolate crossing vs tangency."
+        },
+        "H2_CONNECT_TO_Y": {
+          "verdict": "YES",
+          "evidence": "Scaffold 2 connects sign flip to odd multiplicity and sign preservation to even multiplicity."
+        },
+        "H3_OPEN_Z_PRESERVE_W": {
+          "verdict": "YES",
+          "evidence": "Scaffold 3 guides summing minimum multiplicities without stating the resulting degree or polynomial."
+        },
+        "S1_VISUALIZE_X": {
+          "verdict": "YES",
+          "evidence": "Figure REP-MATH-POLY-SIGN-PARITY stage PARITY-1 shows odd crossing vs PARITY-2 even tangency."
+        },
+        "S2_REPRESENT_Y": {
+          "verdict": "YES",
+          "evidence": "Stage PARITY-3 plots quartic benchmark with roots labeled at -2, 0, 2."
+        },
+        "S3_CONSTRUCT_TOWARD_Z": {
+          "verdict": "YES",
+          "evidence": "Stage PARITY-4 synthesizes multiplicity sum 1+1+2=4 without pre-empting student derivation."
+        },
+        "P1_PANEL_PROTECTION": {
+          "verdict": "YES",
+          "evidence": "Commitment gate active; answer revealed only upon user action."
+        },
+        "P2_CONCEPT_LANDING": {
+          "verdict": "YES",
+          "evidence": "Binds to MIC-MATH-POLY-ROOT-SIGN-PARITY."
+        },
+        "P3_VALIDITY_EXPLANATION": {
+          "verdict": "YES",
+          "evidence": "Reasoning moves justify parity theorem via factored local power behavior."
+        },
+        "M1_REPRESENT_WRONG_IDEA": {
+          "verdict": "YES",
+          "evidence": "Captures assumption that every polynomial zero must be simple (mult 1)."
+        },
+        "M2_DIAGNOSTIC_DISCRIMINATION": {
+          "verdict": "YES",
+          "evidence": "Diagnostic asks if polynomial can touch axis and turn around without crossing."
+        },
+        "M3_REPAIR_ACTION": {
+          "verdict": "YES",
+          "evidence": "Explains that tangency without crossing requires even multiplicity at least 2."
+        }
+      },
+      "independent_check": "p(1) = 1-4 = -3 < 0, p(-1) = -3 < 0; p(3) = 81-36 = 45 > 0; p(-3) = 45 > 0. Zeros strictly -2, 0, 2.",
+      "w_leak_check": "PASS",
+      "notes": "Rigorously bridges topological sign variation with algebraic degree bounds."
+    },
+    {
+      "question_id": "OWN-ISSUE56-POLY-03",
+      "order": 3,
+      "original_identifier": "Q3",
+      "demand": {
+        "primary": "JUSTIFY",
+        "secondary": [
+          "SYNTHESIZE",
+          "EXPLAIN"
+        ]
+      },
+      "difficulty": {
+        "band": "D4",
+        "score": 9,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 2,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        }
+      },
+      "template_id": "QRT-JUSTIFY-D4",
+      "X": "Believing degree 3 or 4 can fit the data by standard polynomial interpolation without checking real root count or quadratic factor sign constancy.",
+      "Y": "Intermediate Value Theorem for real polynomials and discriminant criterion for irreducible quadratics.",
+      "Z": "IVT traps mult(1) >= 2 (eliminating deg <= 3); irreducible quadratic sign constancy forces p(0) and p(2) to have opposite signs under deg 4 (eliminating deg 4); construct minimal deg 5 specimen (1/12)(x-1)^2(x+1)(3x^2-10x+12).",
+      "W": "Systematically refute degrees 1-4 and construct/verify explicit degree 5 specimen.",
+      "audit_checks": {
+        "H1_CLARIFY_X": {
+          "verdict": "YES",
+          "evidence": "Scaffold 1 directs attention to sign of p(0)=1 and p(2)=1 on either side of zero x=1."
+        },
+        "H2_CONNECT_TO_Y": {
+          "verdict": "YES",
+          "evidence": "Scaffold 2 applies IVT to show simple root at 1 would force another zero in (0, 2)."
+        },
+        "H3_OPEN_Z_PRESERVE_W": {
+          "verdict": "YES",
+          "evidence": "Scaffolds 3-4 examine quadratic factor sign without writing out the degree 5 polynomial."
+        },
+        "S1_VISUALIZE_X": {
+          "verdict": "YES",
+          "evidence": "Figure REP-MATH-POLY-SIGN-PARITY illustrates sign preservation across even root."
+        },
+        "S2_REPRESENT_Y": {
+          "verdict": "YES",
+          "evidence": "Visualizes constant sign of quadratic factor with Delta < 0."
+        },
+        "S3_CONSTRUCT_TOWARD_Z": {
+          "verdict": "YES",
+          "evidence": "Guides step-by-step degree elimination without disclosing final formula."
+        },
+        "P1_PANEL_PROTECTION": {
+          "verdict": "YES",
+          "evidence": "Zero leakage; formula (1/12)(x-1)^2(x+1)(3x^2-10x+12) is protected until commitment."
+        },
+        "P2_CONCEPT_LANDING": {
+          "verdict": "YES",
+          "evidence": "Directly anchored to crux CU-MATH-POLY-ROOT-SIGN-PARITY."
+        },
+        "P3_VALIDITY_EXPLANATION": {
+          "verdict": "YES",
+          "evidence": "Move 3 explicitly verifies Delta = (-10)^2 - 4(3)(12) = 100 - 144 = -44 < 0."
+        },
+        "M1_REPRESENT_WRONG_IDEA": {
+          "verdict": "YES",
+          "evidence": "Captures belief that 4 data points can always be fitted by degree 3 or 4 polynomial with prescribed zeros."
+        },
+        "M2_DIAGNOSTIC_DISCRIMINATION": {
+          "verdict": "YES",
+          "evidence": "Diagnostic asks if an irreducible quadratic can change sign between 0 and 2."
+        },
+        "M3_REPAIR_ACTION": {
+          "verdict": "YES",
+          "evidence": "Proves that constant sign of quadratic forces sign conflict with (x^2-1), eliminating degree 4."
+        }
+      },
+      "independent_check": "p(0) = (1/12)(1)(1)(12) = 1. p(2) = (1/12)(1)(3)(12 - 20 + 12) = (1/12)(3)(4) = 1. p(1) = 0, p(-1) = 0. Delta = -44 < 0 => no extra zeros.",
+      "w_leak_check": "PASS",
+      "notes": "Cohort hardest target. Exceptional mathematical depth requiring coordination of IVT, factor sign analysis, and explicit algebraic construction."
+    },
+    {
+      "question_id": "OWN-ISSUE56-POLY-04",
+      "order": 4,
+      "original_identifier": "Q4",
+      "demand": {
+        "primary": "EXPLAIN",
+        "secondary": [
+          "JUSTIFY",
+          "APPLY"
+        ]
+      },
+      "difficulty": {
+        "band": "D4",
+        "score": 8,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 2,
+          "trap_exception_sensitivity": 2
+        }
+      },
+      "template_id": "QRT-EXPLAIN-D4",
+      "X": "Overlooking that leading coefficient vanishing drops the degree or missing root coincidences where variable roots merge with fixed roots.",
+      "Y": "Factoring polynomial into fixed and parameter-dependent factors: x(x+2)[(a-1)x^2 + (a+2)].",
+      "Z": "Identify degree drop to 2 at a=1; root coincidence at x=0 for a=-2 (triple root); root coincidence at x=-2 for a=2/5 (double root).",
+      "W": "Complete parameter bifurcation classification with exact root multiplicities.",
+      "audit_checks": {
+        "H1_CLARIFY_X": {
+          "verdict": "YES",
+          "evidence": "Scaffold 1 prompts factoring F_a(x) completely into linear and quadratic parts."
+        },
+        "H2_CONNECT_TO_Y": {
+          "verdict": "YES",
+          "evidence": "Scaffold 2 asks what happens to the highest power when a = 1."
+        },
+        "H3_OPEN_Z_PRESERVE_W": {
+          "verdict": "YES",
+          "evidence": "Scaffolds 3-4 prompt testing when quadratic roots equal 0 or -2 without solving the equations."
+        },
+        "S1_VISUALIZE_X": {
+          "verdict": "YES",
+          "evidence": "Figure REP-MATH-POLY-PARAM-BIFURCATION stage PARAM-1 displays real parameter line with marked critical values."
+        },
+        "S2_REPRESENT_Y": {
+          "verdict": "YES",
+          "evidence": "Stages PARAM-2 and PARAM-3 depict degree drop at a=1 and triple root at a=-2."
+        },
+        "S3_CONSTRUCT_TOWARD_Z": {
+          "verdict": "YES",
+          "evidence": "Stage PARAM-4 illustrates double root collision at a=2/5."
+        },
+        "P1_PANEL_PROTECTION": {
+          "verdict": "YES",
+          "evidence": "Interactive stages orient learner without computing problem answers."
+        },
+        "P2_CONCEPT_LANDING": {
+          "verdict": "YES",
+          "evidence": "Binds to MIC-MATH-POLY-PARAM-REPRESENTATION."
+        },
+        "P3_VALIDITY_EXPLANATION": {
+          "verdict": "YES",
+          "evidence": "Move 3 explicitly solves (a-1)(-2)^2 + (a+2) = 4a - 4 + a + 2 = 5a - 2 = 0 => a = 2/5."
+        },
+        "M1_REPRESENT_WRONG_IDEA": {
+          "verdict": "YES",
+          "evidence": "Captures assumption that printed exponent 4 guarantees degree 4 for all parameter values."
+        },
+        "M2_DIAGNOSTIC_DISCRIMINATION": {
+          "verdict": "YES",
+          "evidence": "Diagnostic asks for degree of (a-1)x^4 + 3x^2 when a = 1."
+        },
+        "M3_REPAIR_ACTION": {
+          "verdict": "YES",
+          "evidence": "Explains that degree is highest exponent with non-zero coefficient; vanishing coefficient causes degree drop."
+        }
+      },
+      "independent_check": "At a=1: F_1(x) = 3x^2 + 6x = 3x(x+2) (deg 2). At a=-2: F_-2(x) = -3x^4 - 6x^3 = -3x^3(x+2) (triple root at 0). At a=2/5: quadratic is -(3/5)x^2 + 12/5 = -(3/5)(x^2 - 4) = -(3/5)(x-2)(x+2), giving double root at -2.",
+      "w_leak_check": "PASS",
+      "notes": "Subtle algebraic bifurcation analysis requiring careful sensitivity to coefficient vanishing and root collisions."
+    },
+    {
+      "question_id": "OWN-ISSUE56-POLY-05",
+      "order": 5,
+      "original_identifier": "Q5",
+      "demand": {
+        "primary": "MODEL",
+        "secondary": [
+          "EXPLAIN",
+          "JUSTIFY"
+        ]
+      },
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        }
+      },
+      "template_id": "QRT-MODEL-D3",
+      "X": "Confusing empirical sample point fitting with physical geometric validity.",
+      "Y": "Volume of rectangular box: height x, base (10-2x) by (10-2x), domain (0, 5).",
+      "Z": "Derive V(x) = 4x^3 - 40x^2 + 100x; verify Q(x) matches at 0, 1, 2 due to 3 degrees of freedom; expose Q(x) zero at x=23/7 and divergence at x=3 (V(3)=48 vs Q(3)=24).",
+      "W": "Identify discriminating admissible test input and critique why 3-point fit fails physical validity.",
+      "audit_checks": {
+        "H1_CLARIFY_X": {
+          "verdict": "YES",
+          "evidence": "Scaffold 1 asks for expressions for base dimensions and height in terms of x."
+        },
+        "H2_CONNECT_TO_Y": {
+          "verdict": "YES",
+          "evidence": "Scaffold 2 guides finding values of x that keep dimensions strictly positive."
+        },
+        "H3_OPEN_Z_PRESERVE_W": {
+          "verdict": "YES",
+          "evidence": "Scaffolds 3-4 prompt testing Q(x) across (0, 5) and comparing at an admissible input without naming x=3."
+        },
+        "S1_VISUALIZE_X": {
+          "verdict": "YES",
+          "evidence": "Figure REP-MATH-POLY-BOX-VOLUME stage BOX-1 illustrates sheet cut diagram and base dimensions."
+        },
+        "S2_REPRESENT_Y": {
+          "verdict": "YES",
+          "evidence": "Stages BOX-2 and BOX-3 plot physical cubic volume curve vs analyst quadratic fit."
+        },
+        "S3_CONSTRUCT_TOWARD_Z": {
+          "verdict": "YES",
+          "evidence": "Stage BOX-4 highlights divergence at discriminating input x=3."
+        },
+        "P1_PANEL_PROTECTION": {
+          "verdict": "YES",
+          "evidence": "Inert pre-commitment; student must choose test input independently."
+        },
+        "P2_CONCEPT_LANDING": {
+          "verdict": "YES",
+          "evidence": "Anchored to MIC-MATH-POLY-PARAM-REPRESENTATION."
+        },
+        "P3_VALIDITY_EXPLANATION": {
+          "verdict": "YES",
+          "evidence": "Move 3 explicitly solves -28x^2 + 92x = 0 => x = 92/28 = 23/7 cm ~ 3.29 cm."
+        },
+        "M1_REPRESENT_WRONG_IDEA": {
+          "verdict": "YES",
+          "evidence": "Captures belief that matching 3 data points validates model correctness."
+        },
+        "M2_DIAGNOSTIC_DISCRIMINATION": {
+          "verdict": "YES",
+          "evidence": "Diagnostic asks if fitting 3 points guarantees quadratic matches physical reality."
+        },
+        "M3_REPAIR_ACTION": {
+          "verdict": "YES",
+          "evidence": "Explains that 3 points fix any quadratic algebraically; physical validity requires checking governing geometry and domain bounds."
+        }
+      },
+      "independent_check": "V(0)=0, V(1)=64, V(2)=72, V(3)=48, V(4)=16. Q(0)=0, Q(1)=64, Q(2)=72, Q(3)=24, Q(4)=-80. Discrepancy at x=3 is 24 cm^3; impossible negative volume at x=4.",
+      "w_leak_check": "PASS",
+      "notes": "Connects algebraic polynomial interpolation to real-world physical and geometric modeling constraints."
+    },
+    {
+      "question_id": "OWN-ISSUE56-POLY-06",
+      "order": 6,
+      "original_identifier": "Q6",
+      "demand": {
+        "primary": "EXPLAIN",
+        "secondary": [
+          "JUSTIFY",
+          "APPLY"
+        ]
+      },
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        }
+      },
+      "template_id": "QRT-EXPLAIN-D3",
+      "X": "Assuming algebraic cancellation (x-a)/(x-a) = 1 removes the domain restriction x != a.",
+      "Y": "Numerator factorization (x-a)(x-1) and definition of rational function domain.",
+      "Z": "R_a has domain R \\ {a}; for a != 1, zero 1 is valid; for a = 1, 1 is excluded from domain so R_1 has no zeros; extension R_tilde(x) = x-1 is valid on R.",
+      "W": "Preserve original domain restriction and contrast with continuous extension.",
+      "audit_checks": {
+        "H1_CLARIFY_X": {
+          "verdict": "YES",
+          "evidence": "Scaffold 1 prompts factoring the numerator to expose common factor (x-a)."
+        },
+        "H2_CONNECT_TO_Y": {
+          "verdict": "YES",
+          "evidence": "Scaffold 2 asks under what condition cancellation (x-a)/(x-a) = 1 is algebraically valid."
+        },
+        "H3_OPEN_Z_PRESERVE_W": {
+          "verdict": "YES",
+          "evidence": "Scaffold 4 guides testing whether 1 is in the domain of R_1 without answering whether zero 1 holds."
+        },
+        "S1_VISUALIZE_X": {
+          "verdict": "YES",
+          "evidence": "Figure REP-MATH-POLY-PARAM-BIFURCATION visualizes parameter variation effects."
+        },
+        "S2_REPRESENT_Y": {
+          "verdict": "YES",
+          "evidence": "Represents parameter critical points on real line."
+        },
+        "S3_CONSTRUCT_TOWARD_Z": {
+          "verdict": "YES",
+          "evidence": "Supports reasoning about domain singularity without disclosing answer text."
+        },
+        "P1_PANEL_PROTECTION": {
+          "verdict": "YES",
+          "evidence": "Student commitment required before revealing domain status of R_1."
+        },
+        "P2_CONCEPT_LANDING": {
+          "verdict": "YES",
+          "evidence": "Binds to MIC-MATH-POLY-PARAM-REPRESENTATION."
+        },
+        "P3_VALIDITY_EXPLANATION": {
+          "verdict": "YES",
+          "evidence": "Move 3 explicitly notes that a zero must belong to domain; since 1 not in domain(R_1), R_1 has no zeros."
+        },
+        "M1_REPRESENT_WRONG_IDEA": {
+          "verdict": "YES",
+          "evidence": "Captures cancellation fallacy: equating rational expression to simplified polynomial on all reals."
+        },
+        "M2_DIAGNOSTIC_DISCRIMINATION": {
+          "verdict": "YES",
+          "evidence": "Diagnostic asks if (x^2-1)/(x-1) is defined at x=1."
+        },
+        "M3_REPAIR_ACTION": {
+          "verdict": "YES",
+          "evidence": "Explains that cancellation is valid only on domain where denominator != 0; removable singularity requires explicit extension."
+        }
+      },
+      "independent_check": "At a=1: R_1(x) = (x-1)^2 / (x-1). At x=1, denominator is 0, so undefined. A zero must satisfy f(r)=0 with r in domain. Thus R_1 has no zeros on its domain.",
+      "w_leak_check": "PASS",
+      "notes": "Fundamental lesson in mathematical precision: expressions vs functions and domain invariance under algebraic simplification."
+    },
+    {
+      "question_id": "OWN-ISSUE56-POLY-07",
+      "order": 7,
+      "original_identifier": "Q7",
+      "demand": {
+        "primary": "JUSTIFY",
+        "secondary": [
+          "SYNTHESIZE",
+          "EXPLAIN"
+        ]
+      },
+      "difficulty": {
+        "band": "D4",
+        "score": 8,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        }
+      },
+      "template_id": "QRT-JUSTIFY-D4",
+      "X": "Failing to reflect zeros across the y-axis, or confusing modal categories (necessary vs possible) when degree bound is removed.",
+      "Y": "Even function symmetry: p(-x) = p(x) implies p(-r) = p(r) = 0.",
+      "Z": "Even symmetry implies 4 distinct zeros: +/-1, +/-2 => deg >= 4. Under deg <= 4, p(x) = x^4 - 5x^2 + 4 uniquely; evaluate 5 claims under bound and without bound.",
+      "W": "Classify all 5 claims in both bounded and unbounded contexts.",
+      "audit_checks": {
+        "H1_CLARIFY_X": {
+          "verdict": "YES",
+          "evidence": "Scaffold 1 prompts applying even symmetry to find zeros at negative inputs."
+        },
+        "H2_CONNECT_TO_Y": {
+          "verdict": "YES",
+          "evidence": "Scaffold 2 asks for total distinct zeros and resulting minimum degree."
+        },
+        "H3_OPEN_Z_PRESERVE_W": {
+          "verdict": "YES",
+          "evidence": "Scaffold 3 guides factoring p(x) and evaluating at 0 without classifying the 5 modal claims."
+        },
+        "S1_VISUALIZE_X": {
+          "verdict": "YES",
+          "evidence": "Figure REP-MATH-POLY-SIGN-PARITY illustrates symmetric root placement."
+        },
+        "S2_REPRESENT_Y": {
+          "verdict": "YES",
+          "evidence": "Depicts even symmetry reflection across y-axis."
+        },
+        "S3_CONSTRUCT_TOWARD_Z": {
+          "verdict": "YES",
+          "evidence": "Visualizes quartic polynomial shape without disclosing modal classifications."
+        },
+        "P1_PANEL_PROTECTION": {
+          "verdict": "YES",
+          "evidence": "Five modal classifications remain completely protected pre-commitment."
+        },
+        "P2_CONCEPT_LANDING": {
+          "verdict": "YES",
+          "evidence": "Binds to MIC-MATH-POLY-PARAM-REPRESENTATION."
+        },
+        "P3_VALIDITY_EXPLANATION": {
+          "verdict": "YES",
+          "evidence": "Move 3 checks p(0) = c(-1)(-4) = 4c = 4 => c = 1 uniquely."
+        },
+        "M1_REPRESENT_WRONG_IDEA": {
+          "verdict": "YES",
+          "evidence": "Captures error that degree could be 2 or that uniqueness persists without degree bound."
+        },
+        "M2_DIAGNOSTIC_DISCRIMINATION": {
+          "verdict": "YES",
+          "evidence": "Diagnostic asks if an even polynomial can have odd number of non-zero roots."
+        },
+        "M3_REPAIR_ACTION": {
+          "verdict": "YES",
+          "evidence": "Explains that non-zero roots of even polynomials must occur in pairs +/-r, forcing at least 4 zeros."
+        }
+      },
+      "independent_check": "Under deg <= 4: p(x) = x^4 - 5x^2 + 4. p(3) = 81 - 45 + 4 = 40 != 0. Without bound: p(x) = (x^2-1)(x^2-4)(1 - x^2/9) has zero at 3.",
+      "w_leak_check": "PASS",
+      "notes": "Sophisticated modal epistemology distinguishing necessary truths under hypothesis from contingent possibilities upon hypothesis relaxation."
+    },
+    {
+      "question_id": "OWN-ISSUE56-POLY-08",
+      "order": 8,
+      "original_identifier": "Q8",
+      "demand": {
+        "primary": "APPLY",
+        "secondary": [
+          "REPRESENT",
+          "JUSTIFY"
+        ]
+      },
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        }
+      },
+      "template_id": "QRT-APPLY-D3",
+      "X": "Trying to solve for individual polynomials p and q, or assuming uniqueness of difference implies uniqueness of components.",
+      "Y": "Difference polynomial d(x) = p(x) - q(x) and Factor Theorem for roots -1, 0, 1.",
+      "Z": "deg(d) <= 3 and roots at -1, 0, 1 => d(x) = c x(x^2-1); d(2) = 6c = 12 => c = 2, so d(x) = 2x^3 - 2x; d(3) = 48; construct explicit offset examples.",
+      "W": "Compute d(3) = 48 and exhibit explicit pairs demonstrating indeterminacy of components.",
+      "audit_checks": {
+        "H1_CLARIFY_X": {
+          "verdict": "YES",
+          "evidence": "Scaffold 1 defines difference d(x) = p(x) - q(x) and asks for its degree bound."
+        },
+        "H2_CONNECT_TO_Y": {
+          "verdict": "YES",
+          "evidence": "Scaffold 2 prompts writing algebraic form of d(x) up to scaling multiplier c."
+        },
+        "H3_OPEN_Z_PRESERVE_W": {
+          "verdict": "YES",
+          "evidence": "Scaffold 3 guides solving for c from d(2)=12 without computing d(3)."
+        },
+        "S1_VISUALIZE_X": {
+          "verdict": "YES",
+          "evidence": "Figure REP-MATH-POLY-INTERPOLATION-COSET illustrates agreement points and difference curve."
+        },
+        "S2_REPRESENT_Y": {
+          "verdict": "YES",
+          "evidence": "Depicts vanishing product generating the difference."
+        },
+        "S3_CONSTRUCT_TOWARD_Z": {
+          "verdict": "YES",
+          "evidence": "Shows family of parallel offset polynomials without calculating d(3)."
+        },
+        "P1_PANEL_PROTECTION": {
+          "verdict": "YES",
+          "evidence": "Calculation d(3) = 48 is protected until user submits work."
+        },
+        "P2_CONCEPT_LANDING": {
+          "verdict": "YES",
+          "evidence": "Binds to MIC-MATH-POLY-INTERPOLATION."
+        },
+        "P3_VALIDITY_EXPLANATION": {
+          "verdict": "YES",
+          "evidence": "Move 2 verifies d(2) = c(2)(3) = 6c = 12 => c = 2."
+        },
+        "M1_REPRESENT_WRONG_IDEA": {
+          "verdict": "YES",
+          "evidence": "Captures attempt to find p and q individually or concluding problem is impossible because components are unknown."
+        },
+        "M2_DIAGNOSTIC_DISCRIMINATION": {
+          "verdict": "YES",
+          "evidence": "Diagnostic asks if knowing f(x) - g(x) requires knowing f(x)."
+        },
+        "M3_REPAIR_ACTION": {
+          "verdict": "YES",
+          "evidence": "Explains that difference operator isolates relative values while leaving absolute baseline free."
+        }
+      },
+      "independent_check": "d(x) = 2x^3 - 2x. d(-1)=0, d(0)=0, d(1)=0, d(2)=12. d(3) = 2(27) - 2(3) = 54 - 6 = 48. Valid pairs: (2x^3-2x, 0), (2x^3-x, x), (2x^3+x^2-2x, x^2).",
+      "w_leak_check": "PASS",
+      "notes": "Teaches algebraic abstraction: solving for the difference as an autonomous mathematical entity without needing components."
+    },
+    {
+      "question_id": "OWN-ISSUE56-POLY-09",
+      "order": 9,
+      "original_identifier": "Q9",
+      "demand": {
+        "primary": "SYNTHESIZE",
+        "secondary": [
+          "JUSTIFY",
+          "EXPLAIN"
+        ]
+      },
+      "difficulty": {
+        "band": "D4",
+        "score": 8,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        }
+      },
+      "template_id": "QRT-SYNTHESIZE-D4",
+      "X": "Overlooking degree 3 polynomial (x-1)^2(x+1) or falsely assuming an irreducible quadratic factor could exist.",
+      "Y": "Real factorization into linear and irreducible quadratic factors, with discriminant Delta < 0 for irreducibility.",
+      "Z": "p(0)=1 forces any quadratic factor to have c=-1, making Delta = b^2+4 > 0 (always real roots), so no quadratic factors can exist; linear powers (x-1)^a(x+1)^b with p(0)=(-1)^a=1 force a even, giving exactly two polynomials: (x-1)^2(x+1) and (x^2-1)^2.",
+      "W": "Prove exclusion of quadratic factors and enumerate both polynomials with proof of completeness.",
+      "audit_checks": {
+        "H1_CLARIFY_X": {
+          "verdict": "YES",
+          "evidence": "Scaffold 1 prompts writing general real factorization of monic polynomial with roots +/-1."
+        },
+        "H2_CONNECT_TO_Y": {
+          "verdict": "YES",
+          "evidence": "Scaffold 2 asks what constant term c must be if quadratic factor (x^2+bx+c) is present."
+        },
+        "H3_OPEN_Z_PRESERVE_W": {
+          "verdict": "YES",
+          "evidence": "Scaffold 3 guides computing discriminant Delta without stating the resulting polynomials."
+        },
+        "S1_VISUALIZE_X": {
+          "verdict": "YES",
+          "evidence": "Figure REP-MATH-POLY-SIGN-PARITY illustrates multiplicity parity at -1 and 1."
+        },
+        "S2_REPRESENT_Y": {
+          "verdict": "YES",
+          "evidence": "Depicts sign behavior at x=0 between roots."
+        },
+        "S3_CONSTRUCT_TOWARD_Z": {
+          "verdict": "YES",
+          "evidence": "Visualizes degree 3 and degree 4 curves without disclosing formulas."
+        },
+        "P1_PANEL_PROTECTION": {
+          "verdict": "YES",
+          "evidence": "Both polynomial identities remain inert until commitment."
+        },
+        "P2_CONCEPT_LANDING": {
+          "verdict": "YES",
+          "evidence": "Binds to MIC-MATH-POLY-ROOT-SIGN-PARITY."
+        },
+        "P3_VALIDITY_EXPLANATION": {
+          "verdict": "YES",
+          "evidence": "Move 3 proves Delta = b^2 - 4(1)(-1) = b^2 + 4 >= 4 > 0, ensuring quadratic always factors."
+        },
+        "M1_REPRESENT_WRONG_IDEA": {
+          "verdict": "YES",
+          "evidence": "Captures omission of degree 3 solution or belief that quadratic factor is possible."
+        },
+        "M2_DIAGNOSTIC_DISCRIMINATION": {
+          "verdict": "YES",
+          "evidence": "Diagnostic asks if x^2 + bx - 1 can ever have no real roots."
+        },
+        "M3_REPAIR_ACTION": {
+          "verdict": "YES",
+          "evidence": "Shows that c=-1 forces Delta > 0, completely ruling out irreducible quadratic factors."
+        }
+      },
+      "independent_check": "Test p1(x) = (x-1)^2(x+1): monic, deg 3 <= 4, roots exactly 1 and -1, p1(0) = (-1)^2(1) = 1. Test p2(x) = (x-1)^2(x+1)^2: monic, deg 4 <= 4, roots exactly 1 and -1, p2(0) = 1. If deg 2: (x-1)(x+1) gives p(0)=-1 != 1. If a=1: p(0)=-1 != 1. Only two exist.",
+      "w_leak_check": "PASS",
+      "notes": "Beautifully rigorous synthesis problem combining discriminant theory with integer partition of polynomial degree."
+    },
+    {
+      "question_id": "OWN-ISSUE56-POLY-10",
+      "order": 10,
+      "original_identifier": "Q10",
+      "demand": {
+        "primary": "JUSTIFY",
+        "secondary": [
+          "SYNTHESIZE",
+          "EXPLAIN"
+        ]
+      },
+      "difficulty": {
+        "band": "D4",
+        "score": 8,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        }
+      },
+      "template_id": "QRT-JUSTIFY-D4",
+      "X": "Conflating syntactic expressions with semantic functions or treating finite point agreement as polynomial identity.",
+      "Y": "Rigorous hypotheses of Division Algorithm, FTA, and Polynomial Identity Theorem.",
+      "Z": "Refute 4 heuristic rules with qualified decision procedures; apply across 4 cases (degree drop at t=1, domain hole at x=1, complex root pair in C, non-identity of D and E); construct fresh counterexample f(x)=0, g(x)=x(x^2-1); articulate epistemic distinctions.",
+      "W": "State qualified decision procedures, resolve all 4 cases, provide fresh counterexample, and articulate epistemic boundaries.",
+      "audit_checks": {
+        "H1_CLARIFY_X": {
+          "verdict": "YES",
+          "evidence": "Scaffold 1 asks for exact mathematical conditions under which each heuristic rule holds."
+        },
+        "H2_CONNECT_TO_Y": {
+          "verdict": "YES",
+          "evidence": "Scaffold 2 guides evaluating A_t at t=1 and B at x=1."
+        },
+        "H3_OPEN_Z_PRESERVE_W": {
+          "verdict": "YES",
+          "evidence": "Scaffolds 3-4 prompt testing C and comparing D and E without stating counterexample f and g."
+        },
+        "S1_VISUALIZE_X": {
+          "verdict": "YES",
+          "evidence": "Figure REP-MATH-POLY-INTERPOLATION-COSET shows agreement at 3 points with divergence elsewhere."
+        },
+        "S2_REPRESENT_Y": {
+          "verdict": "YES",
+          "evidence": "Depicts difference polynomial vanishing on sample set."
+        },
+        "S3_CONSTRUCT_TOWARD_Z": {
+          "verdict": "YES",
+          "evidence": "Illustrates epistemic difference between finite sample points and global identity."
+        },
+        "P1_PANEL_PROTECTION": {
+          "verdict": "YES",
+          "evidence": "Fresh counterexample and philosophical distinctions remain inert pre-commitment."
+        },
+        "P2_CONCEPT_LANDING": {
+          "verdict": "YES",
+          "evidence": "Binds to MIC-MATH-POLY-INTERPOLATION."
+        },
+        "P3_VALIDITY_EXPLANATION": {
+          "verdict": "YES",
+          "evidence": "Move 4 articulates formal definitions of expression, function, identity, and empirical observation."
+        },
+        "M1_REPRESENT_WRONG_IDEA": {
+          "verdict": "YES",
+          "evidence": "Captures common student belief that 3 sample points always prove identity."
+        },
+        "M2_DIAGNOSTIC_DISCRIMINATION": {
+          "verdict": "YES",
+          "evidence": "Diagnostic asks if two degree-3 polynomials can agree at 3 distinct values without being identical."
+        },
+        "M3_REPAIR_ACTION": {
+          "verdict": "YES",
+          "evidence": "Refutes rule with counterexample x(x-1)(x-2) != 0, showing identity requires deg < number of points."
+        }
+      },
+      "independent_check": "A_1(x) = x^2-1 (deg 2, not 3). B(1) is undefined (hole at (1,2)). C(x) = (x-2)^2(x^2+1) has only 1 real root (x=2), not 4. D(0)=E(0)=1, D(1)=E(1)=2, D(2)=E(2)=5, but D(3)=10 != E(3)=16. Fresh: f(x)=0, g(x)=x(x^2-1) agree at -1, 0, 1, but g(2)=6 != 0.",
+      "w_leak_check": "PASS",
+      "notes": "Epistemically elevated capstone. Directly tests foundational scientific literacy and mathematical maturity."
+    }
+  ]
+}

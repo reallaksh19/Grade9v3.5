@@ -1,0 +1,1396 @@
+{
+  "schema_version": "grade9v3-owner-supplied-bank-v1",
+  "bank_id": "issue56-poly",
+  "intake_digest": "issue56-owner-prompt-2026-10-05",
+  "questions": [
+    {
+      "id": "OWN-ISSUE56-POLY-01",
+      "original_identifier": "Q1",
+      "stem": "Exact data give $p(0)=1$, $p(1)=2$, $p(2)=5$ and $p(3)=10$. First assume $p$ is a real polynomial of degree at most three: determine it and justify uniqueness. Then remove the degree bound and characterise every real polynomial consistent with the same four data points. State precisely which inference depended on the bound.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Under deg(p) <= 3, the difference d(x) = p(x) - (x^2 + 1) has 4 distinct roots (0, 1, 2, 3) while having degree at most 3, forcing d(x) = 0 identically by the Polynomial Identity Theorem, so p(x) = x^2 + 1 uniquely. When the degree bound is removed, any polynomial matching the four data points satisfies p(x) = x^2 + 1 + x(x-1)(x-2)(x-3)q(x) for an arbitrary polynomial q(x) in R[x]. The inference that d(x) must be identically zero (and thus that p is unique) depended strictly on the degree bound <= 3.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE56-POLY-01-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Inspect the data points (0,1), (1,2), (2,5), (3,10) and observe the quadratic pattern p(k) = k^2 + 1.",
+            "why_valid": "Evaluation shows 0^2+1=1, 1^2+1=2, 2^2+1=5, 3^2+1=10, identifying a degree-2 candidate.",
+            "inputs": [
+              "stated data points"
+            ],
+            "output": "candidate polynomial x^2 + 1"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-01-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Form the difference polynomial d(x) = p(x) - (x^2 + 1) and count its zeros.",
+            "why_valid": "d(x) vanishes at all four given inputs: x = 0, 1, 2, 3.",
+            "inputs": [
+              "candidate polynomial",
+              "stated data points"
+            ],
+            "output": "d(x) has 4 distinct real zeros"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-01-MOVE-3",
+            "kind": "DECIDE",
+            "action": "Apply the degree bound deg(p) <= 3 to establish uniqueness of p(x) = x^2 + 1.",
+            "why_valid": "Since deg(d) <= 3 and d has 4 roots, d(x) must be identically zero by the Fundamental Theorem of Algebra / Polynomial Identity Theorem.",
+            "inputs": [
+              "deg(p) <= 3",
+              "4 distinct zeros"
+            ],
+            "output": "p(x) = x^2 + 1 uniquely"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-01-MOVE-4",
+            "kind": "TRANSFORM",
+            "action": "Remove the degree bound and characterize all solutions as an affine coset modulo the degree-4 vanishing product.",
+            "why_valid": "By the Factor Theorem, any polynomial vanishing at 0, 1, 2, 3 is a multiple of x(x-1)(x-2)(x-3).",
+            "inputs": [
+              "unbounded degree"
+            ],
+            "output": "p(x) = x^2 + 1 + x(x-1)(x-2)(x-3)q(x)"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE56-POLY-01-MOVE-3",
+        "check": "Verify at x = 0, 1, 2, 3: x(x-1)(x-2)(x-3) vanishes, leaving x^2 + 1 = 1, 2, 5, 10 for every q(x). At x = 4 with q(x) = 1, p(4) = 17 + 24 = 41 != 17, confirming non-uniqueness without bound.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-INTERPOLATION-COSET",
+      "family_ref": "FAM-MATH-POLYNOMIAL-STRESS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q1",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:e02e5c653b6dcfb9d18d947aa1822cc7b2283c9d2eaf506212c9b42ad0308ba7"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Requires distinguishing bounded interpolation uniqueness from infinite coset modulo degree-4 vanishing product."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "Asserting that p(x) = x^2 + 1 is universally unique without recognizing dependence on degree bound <= 3.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "SYNTHESIZE",
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "Recognize that 4 sample points force uniqueness only under deg <= 3; removing the bound yields an infinite coset modulo the degree-4 vanishing product."
+        }
+      },
+      "conditions": [
+        "Coefficients are real.",
+        "Initial degree bound is deg(p) <= 3."
+      ],
+      "figure_refs": [
+        "REP-MATH-POLY-INTERPOLATION-COSET"
+      ],
+      "scaffolds": [
+        {
+          "text": "Identify the values of p(0), p(1), p(2), p(3) and test whether a simple quadratic fits them.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE56-POLY-01-MOVE-1"
+        },
+        {
+          "text": "Construct the difference d(x) = p(x) - (x^2 + 1) and count how many zeros it has on the real line.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE56-POLY-01-MOVE-2"
+        },
+        {
+          "text": "Apply the theorem that a polynomial of degree at most n with > n roots must be identically zero.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE56-POLY-01-MOVE-2"
+        },
+        {
+          "text": "Conclude uniqueness under deg <= 3, and identify which deduction fails when deg is unbounded.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE56-POLY-01-MOVE-3"
+        },
+        {
+          "text": "Express the general solution without degree bound as x^2 + 1 plus the degree-4 vanishing product times an arbitrary polynomial.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE56-POLY-01-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE56-POLY-02",
+      "original_identifier": "Q2",
+      "stem": "A nonzero real polynomial has degree at most four and zeros at $-2$, $0$ and $2$. It changes sign across each of $-2$ and $2$, but has the same nonzero sign on the two sides sufficiently close to $0$. Also $p(1)=-3$. Construct the polynomial, justify the multiplicity information you use, and establish whether these conditions determine it uniquely. These are exact benchmark conditions, not measurements from a graph.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Sign changes across -2 and 2 require odd multiplicities (at least 1 each). Constant non-zero sign on both sides of 0 requires an even multiplicity (at least 2). Since deg(p) <= 4, the sum of multiplicities 1 + 1 + 2 = 4 completely saturates the degree bound, forcing mult(-2) = 1, mult(2) = 1, and mult(0) = 2 with no other factors. Thus p(x) = c x^2 (x^2 - 4). The value p(1) = -3 gives c(1)(-3) = -3, so c = 1. The polynomial is uniquely determined as p(x) = x^4 - 4x^2.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE56-POLY-02-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Translate sign behavior across zeros into multiplicity parity constraints: sign change implies odd multiplicity; sign preservation implies even multiplicity.",
+            "why_valid": "Near a zero of multiplicity m, p(x) ~ k(x - r)^m, which changes sign iff m is odd.",
+            "inputs": [
+              "sign changes across +/-2",
+              "sign preservation near 0"
+            ],
+            "output": "mult(-2) >= 1 (odd), mult(2) >= 1 (odd), mult(0) >= 2 (even)"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-02-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Compare sum of minimum multiplicities with degree bound deg(p) <= 4.",
+            "why_valid": "1 + 1 + 2 = 4 <= deg(p) <= 4 forces deg(p) = 4 and exact multiplicities mult(-2)=1, mult(2)=1, mult(0)=2.",
+            "inputs": [
+              "multiplicity inequalities",
+              "deg(p) <= 4"
+            ],
+            "output": "exact multiplicities fixed, deg(p) = 4"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-02-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Construct polynomial form p(x) = c x^2 (x + 2)(x - 2) = c x^2 (x^2 - 4).",
+            "why_valid": "By the Factor Theorem, all factors of degree 4 are accounted for, up to a real constant c.",
+            "inputs": [
+              "exact roots and multiplicities"
+            ],
+            "output": "p(x) = c x^2 (x^2 - 4)"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-02-MOVE-4",
+            "kind": "TRANSFORM",
+            "action": "Determine scaling constant c using p(1) = -3 and verify uniqueness and sign conditions.",
+            "why_valid": "p(1) = c(1)(1 - 4) = -3c = -3 implies c = 1 uniquely. Near 0, p(x) = x^2(x^2 - 4) < 0 on both sides.",
+            "inputs": [
+              "p(1) = -3"
+            ],
+            "output": "p(x) = x^4 - 4x^2 uniquely"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE56-POLY-02-MOVE-3",
+        "check": "Check zeros: p(-2) = 0, p(0) = 0, p(2) = 0. Check signs: for x in (-2, 0), p(x) < 0; for x in (0, 2), p(x) < 0 (same sign across 0); for x > 2, p(x) > 0 (sign change); for x < -2, p(x) > 0 (sign change). p(1) = 1 - 4 = -3. All exact conditions verified.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-ROOT-SIGN-PARITY",
+      "family_ref": "FAM-MATH-POLYNOMIAL-STRESS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q2",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:39d0b46d0a99c1abf2bc23dd3341168a57f3266a80708505ae6157f365bf8db3"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Translating sign parity into multiplicity constraints and saturating the degree bound 1+1+2=4."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "Assigning multiplicity 1 to 0 or missing that degree 4 is fully saturated.",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "REPRESENT",
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "Deduce that sign preservation near 0 forces mult(0) >= 2, which with odd mults at +/-2 saturates the degree bound <= 4, fixing the factor form up to a constant."
+        }
+      },
+      "conditions": [
+        "Nonzero real polynomial.",
+        "deg(p) <= 4.",
+        "Exact sign changes across -2, 2; sign preservation near 0."
+      ],
+      "figure_refs": [
+        "REP-MATH-POLY-SIGN-PARITY"
+      ],
+      "scaffolds": [
+        {
+          "text": "Recall what sign changes and sign preservation across a root tell you about root multiplicity.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE56-POLY-02-MOVE-1"
+        },
+        {
+          "text": "Write down the minimum integer multiplicities for the three zeros: -2, 0, and 2.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE56-POLY-02-MOVE-1"
+        },
+        {
+          "text": "Sum the minimum multiplicities and compare with the degree bound deg(p) <= 4.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE56-POLY-02-MOVE-2"
+        },
+        {
+          "text": "Write the polynomial as p(x) = c x^2 (x^2 - 4) and use p(1) = -3 to find c.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE56-POLY-02-MOVE-3"
+        },
+        {
+          "text": "Verify that all sign conditions and the evaluation point are uniquely and consistently met.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE56-POLY-02-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE56-POLY-03",
+      "original_identifier": "Q3",
+      "stem": "Find the least possible degree of a real polynomial whose distinct real zeros are exactly $-1$ and $1$, and which satisfies $p(0)=p(2)=1$. Exhibit one such polynomial, verify that it has no other real zeros, and prove that every smaller degree is impossible. You may use continuity of real polynomial functions and the factor theorem. This is an advanced competition extension.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The least possible degree is 5. Degrees 0 and 1 cannot have two distinct zeros. Degree 2 gives p(x) = c(x^2-1) with p(0)=1 => c=-1 => p(2)=-3 != 1. Degree 3: since p(0)=1>0 and p(2)=1>0 while p(1)=0, if mult(1)=1, p would change sign across 1, requiring an additional real zero in (1,2) by the Intermediate Value Theorem; thus mult(1) >= 2, mult(-1) >= 1, giving p(x) = c(x-1)^2(x+1), but p(0)=1 => c=1 => p(2)=3 != 1. Degree 4: if mult(1)=2, mult(-1)=1 requires a linear factor introducing a third real zero; if mult(1)=mult(-1)=2, c(x^2-1)^2 gives p(2)/p(0)=9 != 1; and an irreducible quadratic factor q(x) has constant sign on R, forcing p(0) and p(2) to have opposite signs when multiplied by x^2-1, contradicting p(0)=p(2)=1. For degree 5, p(x) = (1/12)(x-1)^2(x+1)(3x^2 - 10x + 12) satisfies p(0)=1, p(2)=1, real zeros exactly +/-1, and discriminant Delta = 100 - 144 = -44 < 0 guarantees no other real zeros.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE56-POLY-03-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Eliminate degrees <= 2: degree 0 and 1 lack two distinct roots; degree 2 gives p(x) = -(x^2-1) which evaluates to p(2) = -3 != 1.",
+            "why_valid": "A quadratic with roots +/-1 is c(x^2-1); p(0)=1 fixes c=-1, yielding p(2) = -3.",
+            "inputs": [
+              "roots +/-1",
+              "p(0)=1",
+              "p(2)=1"
+            ],
+            "output": "degrees 0, 1, 2 impossible"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-03-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Apply IVT to eliminate degree 3: p(0)=1>0 and p(2)=1>0 with zero at 1 forces mult(1) >= 2, leaving only c(x-1)^2(x+1) which gives p(2)=3 != 1.",
+            "why_valid": "If mult(1) were 1, p(x) would change sign across 1, and by IVT would have a zero in (1,2), contradicting that roots are only +/-1.",
+            "inputs": [
+              "IVT",
+              "p(0)=p(2)=1",
+              "roots strictly +/-1"
+            ],
+            "output": "degree 3 impossible"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-03-MOVE-3",
+            "kind": "DECIDE",
+            "action": "Eliminate degree 4: all-real-roots cases give p(2)/p(0) in {9, -3, -27} != 1; while an irreducible quadratic factor has constant sign, forcing p(0) and p(2) to have opposite signs.",
+            "why_valid": "With quadratic factor q(x), p(x) = c(x^2-1)q(x). At x=0, x^2-1=-1; at x=2, x^2-1=3. If q has constant sign, p(0) and p(2) have opposite signs, contradicting p(0)=1 and p(2)=1.",
+            "inputs": [
+              "quadratic constant sign",
+              "sign of x^2-1 at 0 and 2"
+            ],
+            "output": "degree 4 impossible"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-03-MOVE-4",
+            "kind": "TRANSFORM",
+            "action": "Construct degree 5 polynomial p(x) = k(x-1)^2(x+1)(x^2 + bx + c), solve for parameters, and verify discriminant is negative.",
+            "why_valid": "Setting k=1/4, c=4, b=-10/3 yields p(x) = (1/12)(x-1)^2(x+1)(3x^2 - 10x + 12). Discriminant Delta = 100 - 144 = -44 < 0 proves no other real zeros.",
+            "inputs": [
+              "mult(1)=2, mult(-1)=1, irreducible quadratic"
+            ],
+            "output": "explicit degree 5 solution verified"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE56-POLY-03-MOVE-3",
+        "check": "Check p(0) = (1/12)(1)(1)(12) = 1. Check p(2) = (1/12)(1)(3)(3*4 - 20 + 12) = (1/12)(3)(4) = 1. Check zeros: x = 1 (mult 2), x = -1 (mult 1). 3x^2 - 10x + 12 = 3(x - 5/3)^2 + 11/3 > 0 for all real x. Degree is 2 + 1 + 2 = 5.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-ROOT-SIGN-PARITY",
+      "family_ref": "FAM-MATH-POLYNOMIAL-STRESS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q3",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:dc8957c7bdb5e6011083beee02230b04220fac10a7a4160f7569a9fbf6922fe3"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 9,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Proving degrees 1-4 impossible via IVT sign trapping and quadratic discriminant constraints, then constructing degree 5 specimen."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "Claiming degree 3 or 4 by interpolation without verifying IVT sign change across 1 or constant sign of irreducible quadratics.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "SYNTHESIZE",
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "Show that p(0)=1>0 and p(2)=1>0 with p(1)=0 prevents a simple zero at 1 without extra roots, while in degree 4 any irreducible quadratic maintains constant sign forcing contradictory values at 0 and 2."
+        }
+      },
+      "conditions": [
+        "Real polynomial.",
+        "Distinct real zeros are strictly and exactly -1 and 1.",
+        "p(0) = 1 and p(2) = 1."
+      ],
+      "figure_refs": [
+        "REP-MATH-POLY-SIGN-PARITY"
+      ],
+      "scaffolds": [
+        {
+          "text": "Test degrees 0, 1, and 2 directly using the Factor Theorem and evaluate at x = 0 and x = 2.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE56-POLY-03-MOVE-1"
+        },
+        {
+          "text": "For degree 3, use continuity and IVT: if p changes sign across 1, what must happen between 1 and 2?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE56-POLY-03-MOVE-2"
+        },
+        {
+          "text": "For degree 4, analyze the sign of an irreducible quadratic factor q(x) and its product with (x^2 - 1).",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE56-POLY-03-MOVE-3"
+        },
+        {
+          "text": "Deduce that degree 4 is impossible because (x^2-1) has opposite signs at 0 and 2 while q(x) cannot change sign.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE56-POLY-03-MOVE-3"
+        },
+        {
+          "text": "Construct a degree 5 candidate with mult(1)=2, mult(-1)=1, and a quadratic factor with negative discriminant.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE56-POLY-03-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE56-POLY-04",
+      "original_identifier": "Q4",
+      "stem": "For real $a$, consider $F_a(x)=(a-1)x^4+2(a-1)x^3+(a+2)x^2+2(a+2)x$. Develop a complete classification of its degree and number of distinct real zeros as $a$ varies. Identify all exceptional parameter values where the degree drops or zeros coincide, and account for multiplicities at those values. Justify that your cases are exhaustive.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "F_a(x) factors as x(x+2)[(a-1)x^2 + (a+2)]. At a = 1, leading coefficient vanishes, degree drops from 4 to 2, and F_1(x) = 3x(x+2) with 2 distinct real zeros (0, -2, mult 1 each). For a != 1, degree is 4. The quadratic factor gives x^2 = (a+2)/(1-a). For a in (-inf, -2) U (1, inf), (a+2)/(1-a) < 0, giving 2 distinct real zeros (0, -2, mult 1 each). At a = -2, (a+2)/(1-a) = 0, giving 2 distinct real zeros: 0 (mult 3) and -2 (mult 1). For a in (-2, 1), (a+2)/(1-a) > 0. At exceptional value a = 2/5, x^2 = 4 so roots are +/-2; the root -2 coincides with existing root, giving 3 distinct real zeros: 0 (mult 1), 2 (mult 1), -2 (mult 2). For a in (-2, 1) \\ {2/5}, all 4 roots (0, -2, +/-sqrt((a+2)/(1-a))) are distinct (4 zeros, mult 1 each). Cases are exhaustive by sign and boundary analysis of (a-1) and (a+2)/(1-a).",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE56-POLY-04-MOVE-1",
+            "kind": "TRANSFORM",
+            "action": "Group and factor F_a(x) into x(x+2)[(a-1)x^2 + (a+2)].",
+            "why_valid": "(a-1)x^3(x+2) + (a+2)x(x+2) = x(x+2)[(a-1)x^2 + (a+2)].",
+            "inputs": [
+              "algebraic expression F_a(x)"
+            ],
+            "output": "factorized form with fixed roots 0, -2"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-04-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Identify degree drop at leading coefficient zero: a = 1.",
+            "why_valid": "When a = 1, the x^4 and x^3 terms vanish; F_1(x) = 3x^2 + 6x has degree 2 with roots 0 and -2.",
+            "inputs": [
+              "a = 1"
+            ],
+            "output": "degree drops to 2, 2 distinct zeros"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-04-MOVE-3",
+            "kind": "DECIDE",
+            "action": "Analyze roots of quadratic factor x^2 = (a+2)/(1-a) for a != 1.",
+            "why_valid": "Sign of (a+2)/(1-a) determines whether new real roots exist: < 0 on (-inf, -2) U (1, inf); = 0 at a = -2; > 0 on (-2, 1).",
+            "inputs": [
+              "sign of (a+2)/(1-a)"
+            ],
+            "output": "intervals for 0 vs 2 additional real roots"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-04-MOVE-4",
+            "kind": "TRANSFORM",
+            "action": "Check for root coincidences where +/-sqrt((a+2)/(1-a)) equals 0 or -2.",
+            "why_valid": "Coincides with 0 at a = -2 (giving triple zero at 0). Coincides with -2 when (a+2)/(1-a) = 4 => a = 2/5 (giving double zero at -2).",
+            "inputs": [
+              "root coincidence equations"
+            ],
+            "output": "exceptional points a = -2 and a = 2/5 identified with multiplicities"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE56-POLY-04-MOVE-3",
+        "check": "Verify exceptional points: at a = 1, F_1(x) = 3x(x+2) (deg 2, zeros 0, -2). At a = -2, F_-2(x) = -3x^3(x+2) (deg 4, zeros 0 mult 3, -2 mult 1). At a = 2/5, F_0.4(x) = -0.6 x(x+2)(x^2 - 4) = -0.6 x(x+2)^2(x-2) (deg 4, zeros 0 mult 1, 2 mult 1, -2 mult 2). All cases exhaustive.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-PARAMETER-BIFURCATIONS",
+      "family_ref": "FAM-MATH-POLYNOMIAL-STRESS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q4",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:d28d5a24aa86299fc4568717767bd5410f1ba0dd963a758e835322005d644e0b"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Complete parameter classification uncovering degree drop at a=1 and root coincidences at a=-2 and a=2/5."
+          },
+          "expected_time_seconds": 210,
+          "common_wrong_route": "Overlooking degree drop at a = 1 or missing the root coincidence at a = 2/5.",
+          "cognitive_demand": {
+            "primary": "EXPLAIN",
+            "secondary": [
+              "SYNTHESIZE",
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Factor F_a(x) into x(x+2)[(a-1)x^2 + (a+2)] and track parameter boundaries where leading coefficient vanishes or quadratic roots coincide with existing roots 0 and -2."
+        }
+      },
+      "conditions": [
+        "Parameter a is real.",
+        "F_a(x) is polynomial in x."
+      ],
+      "figure_refs": [
+        "REP-MATH-POLY-PARAM-BIFURCATION"
+      ],
+      "scaffolds": [
+        {
+          "text": "Factor F_a(x) by grouping terms with (a-1) and (a+2).",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE56-POLY-04-MOVE-1"
+        },
+        {
+          "text": "What happens to the degree of F_a(x) when the leading coefficient (a - 1) is zero?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE56-POLY-04-MOVE-2"
+        },
+        {
+          "text": "For a != 1, write the condition for the quadratic factor (a-1)x^2 + (a+2) to have real roots.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE56-POLY-04-MOVE-3"
+        },
+        {
+          "text": "Determine the sign of (a+2)/(1-a) across real intervals and find where the roots coincide with 0 or -2.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE56-POLY-04-MOVE-3"
+        },
+        {
+          "text": "Summarize the complete, exhaustive classification of degree and distinct real zeros for all real a.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE56-POLY-04-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE56-POLY-05",
+      "original_identifier": "Q5",
+      "stem": "An open box is formed by cutting squares of side $x$ cm from the corners of a $10$ cm square sheet and folding the sides up, ignoring thickness. An exact calculation table gives volumes $0$, $64$ and $72$ cubic centimetres at $x=0,1,2$ respectively; $x=0$ denotes the flat limiting configuration. An analyst fits $Q(x)=-28x^2+92x$ to these three entries and treats it as the volume model. Derive the model from the geometry, state the domain for a non-degenerate box, assess the fitted model over that domain, and choose an additional admissible input that discriminates between the two accounts. Explain why matching the recorded entries is insufficient.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Geometry yields base dimensions (10 - 2x) by (10 - 2x) and height x, giving cubic volume V(x) = x(10 - 2x)^2 = 4x^3 - 40x^2 + 100x cm^3. Non-degenerate physical box requires strictly positive dimensions (x > 0 and 10 - 2x > 0), giving domain (0, 5) cm. The analyst fitted model Q(x) = -28x^2 + 92x matches entries at x = 0, 1, 2 purely because 3 points uniquely determine a quadratic algebraically. However, Q(x) drops to zero at x = 23/7 ~ 3.29 cm and predicts impossible negative volume for x in (23/7, 5). At discriminating input x = 3 cm, physical V(3) = 3(4)^2 = 48 cm^3 while fitted Q(3) = -28(9) + 92(3) = 24 cm^3 (factor of 2 discrepancy). Matching 3 entries is insufficient because a lower-degree polynomial can fit sample points exactly without matching the cubic geometry.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE56-POLY-05-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Derive geometric volume model: base is (10 - 2x) by (10 - 2x) and height is x, so V(x) = x(10 - 2x)^2 = 4x^3 - 40x^2 + 100x.",
+            "why_valid": "Cutting corner squares of side x reduces each side of 10 cm square by 2x.",
+            "inputs": [
+              "10 cm square sheet",
+              "corner cut x"
+            ],
+            "output": "V(x) = 4x^3 - 40x^2 + 100x"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-05-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Determine non-degenerate domain: height x > 0 and base 10 - 2x > 0 => x in (0, 5) cm.",
+            "why_valid": "A non-degenerate box requires strictly positive physical length, width, and height.",
+            "inputs": [
+              "physical dimensions"
+            ],
+            "output": "domain (0, 5) cm"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-05-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Assess fitted model Q(x) = -28x^2 + 92x: verify it matches at 0, 1, 2, but identify spurious zero at x = 23/7 ~ 3.29 cm and negative volume beyond it.",
+            "why_valid": "Q(0)=0, Q(1)=64, Q(2)=72. But Q(x) = 0 at x = 92/28 = 23/7 cm, giving Q(x) < 0 on (23/7, 5).",
+            "inputs": [
+              "Q(x) formula",
+              "domain (0, 5)"
+            ],
+            "output": "Q(x) produces unphysical negative volumes"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-05-MOVE-4",
+            "kind": "TRANSFORM",
+            "action": "Choose discriminating admissible input x = 3 cm, compute both models, and explain why 3 points cannot prove model validity.",
+            "why_valid": "x = 3 is in (0, 5). V(3) = 3(4)^2 = 48 cm^3, Q(3) = -252 + 276 = 24 cm^3. Three data points have 3 degrees of freedom, uniquely fixing any quadratic regardless of physics.",
+            "inputs": [
+              "x = 3 cm"
+            ],
+            "output": "V(3)=48 != Q(3)=24; degrees of freedom explanation"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE56-POLY-05-MOVE-3",
+        "check": "Check V(0)=0, V(1)=64, V(2)=72. Check Q(0)=0, Q(1)=64, Q(2)=72. At x=3: V(3)=48, Q(3)=24. At x=4: V(4)=4(2)^2=16 > 0, while Q(4)=-28(16)+368=-448+368=-80 < 0 (impossible for physical box).",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-PARAMETER-BIFURCATIONS",
+      "family_ref": "FAM-MATH-POLYNOMIAL-STRESS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q5",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:9524918a2550cfdbd9ac49e0667b45e5b4428c9ab629c35fb92f9e16b8b4ec77"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 7,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Geometric cubic modeling on (0, 5) and exposing the physical failure of empirical quadratic overfitting."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "Assuming matching 3 data points validates Q(x) as the physical model without checking geometry or testing additional points.",
+          "cognitive_demand": {
+            "primary": "MODEL",
+            "secondary": [
+              "EXPLAIN",
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Derive physical cubic model from dimensions and discriminate against the 3-point quadratic fit by evaluating at an admissible input such as x = 3 where V(3)=48 != Q(3)=24."
+        }
+      },
+      "conditions": [
+        "10 cm square sheet, thickness ignored.",
+        "Corner cut of side x cm.",
+        "Non-degenerate box."
+      ],
+      "figure_refs": [
+        "REP-MATH-POLY-BOX-VOLUME"
+      ],
+      "scaffolds": [
+        {
+          "text": "Express the base dimensions and height of the folded box in terms of x.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE56-POLY-05-MOVE-1"
+        },
+        {
+          "text": "Determine what values of x keep the height and base lengths strictly positive.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE56-POLY-05-MOVE-2"
+        },
+        {
+          "text": "Evaluate the analyst quadratic Q(x) across the domain (0, 5) and find where it predicts zero or negative volume.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE56-POLY-05-MOVE-3"
+        },
+        {
+          "text": "Select an admissible test value (such as x = 3) and calculate both V(x) and Q(x).",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE56-POLY-05-MOVE-4"
+        },
+        {
+          "text": "Explain why matching 3 data points is algebraically guaranteed for any quadratic and does not prove the model is correct.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE56-POLY-05-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE56-POLY-06",
+      "original_identifier": "Q6",
+      "stem": "For real $a$, let $R_a(x)=[x^2-(a+1)x+a]/(x-a)$ with its original domain $x\\neq a$. A student cancels a factor and says that every $R_a$ is the same polynomial function on all real numbers, with zero $1$. Determine which parts of that statement hold on the original domains, classify the real zeros as $a$ varies, and describe the polynomial extension separately. Explain why extending a function and preserving its original domain are different operations.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Numerator factors as (x - a)(x - 1). On original domain D_a = R \\ {a}, R_a(x) = x - 1 for x != a. The student statement fails: R_a is not defined on all R, and for distinct a values the functions have different domains, so they are not the same function. Regarding zeros: for a != 1, 1 is in D_a and R_a(1) = 0 (zero 1 holds); but for a = 1, 1 is excluded from D_1, so R_1(1) is undefined and R_1 has NO real zeros on its domain. The continuous polynomial extension is R_tilde(x) = x - 1 on all R, which is identical for all a. Extending a function enlarges its domain to remove a removable singularity, whereas preserving original domain enforces strict division-by-zero domain constraints.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE56-POLY-06-MOVE-1",
+            "kind": "TRANSFORM",
+            "action": "Factor the numerator: x^2 - (a+1)x + a = (x - a)(x - 1).",
+            "why_valid": "(x - a)(x - 1) = x^2 - ax - x + a = x^2 - (a+1)x + a.",
+            "inputs": [
+              "numerator quadratic"
+            ],
+            "output": "R_a(x) = [(x - a)(x - 1)] / (x - a)"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-06-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Evaluate the function on original domain D_a = R \\ {a}: R_a(x) = x - 1 for x != a.",
+            "why_valid": "Cancellation (x - a)/(x - a) = 1 is valid only for x != a; at x = a, R_a(a) is undefined.",
+            "inputs": [
+              "domain D_a = R \\ {a}"
+            ],
+            "output": "R_a is not defined on all R; domains differ for different a"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-06-MOVE-3",
+            "kind": "DECIDE",
+            "action": "Classify real zeros of R_a as a varies: test whether 1 is in the domain D_a.",
+            "why_valid": "For a != 1, 1 in D_a and R_a(1) = 0. For a = 1, 1 not in D_1 so R_1(1) is undefined; R_1 has no zeros on its domain.",
+            "inputs": [
+              "a != 1 vs a = 1"
+            ],
+            "output": "zero 1 exists iff a != 1; for a = 1, no zeros"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-06-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Define polynomial extension R_tilde(x) = x - 1 on R and contrast domain preservation with function extension.",
+            "why_valid": "Extending modifies the domain by adding the removable singularity point via lim_{x->a} R_a(x) = a - 1; preserving the domain respects algebraic definition limits.",
+            "inputs": [
+              "removable singularity limit"
+            ],
+            "output": "extension R_tilde(x) = x - 1 on R; domain distinction articulated"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE56-POLY-06-MOVE-3",
+        "check": "Verify at a = 1: R_1(x) = (x-1)^2 / (x-1) is undefined at x = 1. A zero must belong to the domain and map to 0. Since 1 is not in domain(R_1), R_1 has no zeros on its domain. Continuous limit lim_{x->1} R_1(x) = 0 defines extension value, but does not alter original domain.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-PARAMETER-BIFURCATIONS",
+      "family_ref": "FAM-MATH-POLYNOMIAL-STRESS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q6",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:419740a92840120d38694742de086b1252a859def86f8210b661e7628c576bf8"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 7,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Refuting the cancellation fallacy: domain restriction x != a is invariant under factoring; at a = 1, zero 1 fails on original domain."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "Equating the rational expression R_a(x) with the polynomial x - 1 on all real numbers and assuming 1 is always a zero.",
+          "cognitive_demand": {
+            "primary": "EXPLAIN",
+            "secondary": [
+              "JUSTIFY",
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "Separate formal algebraic cancellation from function equality: R_a is defined only on R \\ {a}, and for a = 1 the value at 1 is undefined, so zero 1 fails."
+        }
+      },
+      "conditions": [
+        "Real parameter a.",
+        "Original domain of R_a is x != a."
+      ],
+      "figure_refs": [
+        "REP-MATH-POLY-PARAM-BIFURCATION"
+      ],
+      "scaffolds": [
+        {
+          "text": "Factor the numerator of R_a(x) completely and observe the common factor (x - a).",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE56-POLY-06-MOVE-1"
+        },
+        {
+          "text": "Under what condition is algebraic cancellation (x - a)/(x - a) = 1 valid?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE56-POLY-06-MOVE-2"
+        },
+        {
+          "text": "Check whether R_a and R_b have the same domain when a != b.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE56-POLY-06-MOVE-2"
+        },
+        {
+          "text": "Evaluate R_a at x = 1 specifically for the case a = 1. Is 1 in the domain of R_1?",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE56-POLY-06-MOVE-3"
+        },
+        {
+          "text": "Define the continuous polynomial extension R_tilde and explain why extending a function differs from preserving its original domain.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE56-POLY-06-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE56-POLY-07",
+      "original_identifier": "Q7",
+      "stem": "A real polynomial $p$ has degree at most four, satisfies $p(-x)=p(x)$ for every real $x$, and has $p(1)=p(2)=0$ and $p(0)=4$. Classify the following claims as necessary, possible but not necessary, or impossible under these conditions: its degree is two; it has exactly four distinct real zeros; it also has zero $3$; its leading coefficient is $1$; the data determine a unique polynomial. Justify each verdict. Reassess the claims when the degree bound is removed, while all other conditions are retained.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Even symmetry p(-x) = p(x) implies p(-1) = p(1) = 0 and p(-2) = p(2) = 0, giving 4 distinct real zeros: +/-1, +/-2. Under deg(p) <= 4, the degree must be at least 4, forcing deg(p) = 4 and p(x) = c(x^2 - 1)(x^2 - 4). Then p(0) = 4c = 4 gives c = 1 uniquely, so p(x) = x^4 - 5x^2 + 4. Under deg <= 4: (1) deg is 2: IMPOSSIBLE (has 4 distinct zeros); (2) exactly 4 zeros: NECESSARY (deg 4 has <= 4 zeros); (3) has zero 3: IMPOSSIBLE (p(3) = 40 != 0); (4) leading coefficient is 1: NECESSARY (c = 1 uniquely); (5) unique polynomial: NECESSARY. Without degree bound, p(x) = (x^2 - 1)(x^2 - 4) g(x^2) with g(0) = 1: (1) still IMPOSSIBLE (still has 4 zeros); (2) POSSIBLE BUT NOT NECESSARY (could have 4 or more zeros depending on g); (3) POSSIBLE BUT NOT NECESSARY (can choose g with g(9) = 0, e.g. 1 - x^2/9); (4) POSSIBLE BUT NOT NECESSARY (leading coefficient can be varied); (5) IMPOSSIBLE (infinitely many polynomials exist).",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE56-POLY-07-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Use even symmetry p(-x) = p(x) to reflect zeros: p(-1) = p(1) = 0 and p(-2) = p(2) = 0.",
+            "why_valid": "Even symmetry forces roots to occur in symmetric pairs +/-r.",
+            "inputs": [
+              "p(-x) = p(x)",
+              "p(1)=0",
+              "p(2)=0"
+            ],
+            "output": "4 distinct real zeros: 1, -1, 2, -2"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-07-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Apply degree bound deg(p) <= 4: 4 distinct zeros force deg(p) = 4 and p(x) = c(x^2 - 1)(x^2 - 4).",
+            "why_valid": "A nonzero polynomial has at least as many degrees as distinct roots; deg <= 4 forces deg = 4.",
+            "inputs": [
+              "4 distinct zeros",
+              "deg(p) <= 4"
+            ],
+            "output": "p(x) = c(x^2 - 1)(x^2 - 4)"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-07-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Use p(0) = 4 to find c = 1 and classify all 5 claims under deg(p) <= 4.",
+            "why_valid": "p(0) = c(-1)(-4) = 4c = 4 => c = 1 uniquely. Thus p(x) = x^4 - 5x^2 + 4 uniquely.",
+            "inputs": [
+              "p(0) = 4"
+            ],
+            "output": "claims classified: IMPOSSIBLE, NECESSARY, IMPOSSIBLE, NECESSARY, NECESSARY"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-07-MOVE-4",
+            "kind": "TRANSFORM",
+            "action": "Reassess all 5 claims when the degree bound is removed.",
+            "why_valid": "Removing degree bound admits p(x) = (x^2-1)(x^2-4)g(x^2) with g(0)=1, introducing infinite degrees and extra roots.",
+            "inputs": [
+              "unbounded degree"
+            ],
+            "output": "reassessed claims: IMPOSSIBLE, POSSIBLE, POSSIBLE, POSSIBLE, IMPOSSIBLE"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE56-POLY-07-MOVE-3",
+        "check": "Verify unique polynomial: p(x) = x^4 - 5x^2 + 4. p(-x) = (-x)^4 - 5(-x)^2 + 4 = p(x) (even). p(1) = 1 - 5 + 4 = 0. p(2) = 16 - 20 + 4 = 0. p(0) = 4. Degree is 4. Zeros are exactly +/-1, +/-2. p(3) = 81 - 45 + 4 = 40 != 0.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-PARAMETER-BIFURCATIONS",
+      "family_ref": "FAM-MATH-POLYNOMIAL-STRESS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q7",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:7179b2bb8a15301a553bd1f99c95c924a49f9debf9b9e5ecf0c4fb303fa9094a"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Modal claim classification under degree bound <= 4 and comparison when degree bound is removed."
+          },
+          "expected_time_seconds": 210,
+          "common_wrong_route": "Believing degree could be 2 or failing to reflect roots across y-axis.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "SYNTHESIZE",
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "Use even symmetry to reflect zeros to +/-1 and +/-2, which forces deg(p) >= 4; combined with deg <= 4 and p(0)=4, this completely fixes p(x) = (x^2-1)(x^2-4)."
+        }
+      },
+      "conditions": [
+        "Real polynomial.",
+        "Even symmetry p(-x) = p(x).",
+        "Initial degree bound deg(p) <= 4."
+      ],
+      "figure_refs": [
+        "REP-MATH-POLY-SIGN-PARITY"
+      ],
+      "scaffolds": [
+        {
+          "text": "Apply even symmetry to find the zeros of p at negative inputs.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE56-POLY-07-MOVE-1"
+        },
+        {
+          "text": "Count the total number of distinct zeros and determine the minimum possible degree of p.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE56-POLY-07-MOVE-2"
+        },
+        {
+          "text": "Under deg(p) <= 4, write the factored form of p(x) and evaluate at x = 0 to find the leading coefficient.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE56-POLY-07-MOVE-3"
+        },
+        {
+          "text": "Classify each of the 5 claims as necessary, possible but not necessary, or impossible under deg <= 4.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE56-POLY-07-MOVE-3"
+        },
+        {
+          "text": "Reassess each claim when the degree bound is removed, testing whether higher-degree even polynomials can alter the verdicts.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE56-POLY-07-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE56-POLY-08",
+      "original_identifier": "Q8",
+      "stem": "Real polynomials $p$ and $q$ each have degree at most three. They agree at $x=-1,0,1$, but $p(2)-q(2)=12$. Characterise every possible difference polynomial, determine $p(3)-q(3)$, and decide whether the evidence identifies either polynomial individually. Use explicit examples to separate uniqueness of a difference from uniqueness of its two components.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The difference d(x) = p(x) - q(x) has deg(d) <= 3 and vanishes at -1, 0, 1, so by the Factor Theorem d(x) = c x(x - 1)(x + 1) = c x(x^2 - 1). Given p(2) - q(2) = 12, we evaluate d(2) = c(2)(3) = 6c = 12, forcing c = 2 uniquely. Thus the difference polynomial is uniquely characterised as d(x) = 2x^3 - 2x. At x = 3, p(3) - q(3) = d(3) = 2(3)(8) = 48. The evidence does not identify either polynomial individually: for any polynomial q(x) of degree <= 3, setting p(x) = q(x) + 2x^3 - 2x satisfies all conditions. Explicit examples: Example 1: q_1(x) = 0, p_1(x) = 2x^3 - 2x. Example 2: q_2(x) = x, p_2(x) = 2x^3 - x. Example 3: q_3(x) = x^2, p_3(x) = 2x^3 + x^2 - 2x. In all examples, p_k - q_k = 2x^3 - 2x identically, proving uniqueness of a difference does not identify its components.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE56-POLY-08-MOVE-1",
+            "kind": "TRANSFORM",
+            "action": "Define difference polynomial d(x) = p(x) - q(x) and determine its zeros and maximum degree.",
+            "why_valid": "deg(d) <= max(deg(p), deg(q)) <= 3; agreement at -1, 0, 1 implies d(-1) = d(0) = d(1) = 0.",
+            "inputs": [
+              "p(-1)=q(-1)",
+              "p(0)=q(0)",
+              "p(1)=q(1)"
+            ],
+            "output": "d(x) = c x(x^2 - 1) with deg <= 3"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-08-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Determine scaling constant c from d(2) = p(2) - q(2) = 12.",
+            "why_valid": "d(2) = c(2)(4 - 1) = 6c = 12 implies c = 2 uniquely.",
+            "inputs": [
+              "p(2) - q(2) = 12"
+            ],
+            "output": "d(x) = 2x^3 - 2x uniquely"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-08-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Compute p(3) - q(3) = d(3) = 2(3)(3^2 - 1) = 48.",
+            "why_valid": "d(3) is uniquely determined by the formula d(x) = 2x(x^2 - 1).",
+            "inputs": [
+              "d(x) = 2x^3 - 2x",
+              "x = 3"
+            ],
+            "output": "p(3) - q(3) = 48"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-08-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Demonstrate that individual polynomials p and q are underdetermined by constructing explicit pairs.",
+            "why_valid": "Choosing q(x) = 0, x, or x^2 produces valid pairs with identical difference 2x^3 - 2x.",
+            "inputs": [
+              "arbitrary q(x) of degree <= 3"
+            ],
+            "output": "uniqueness of difference separated from indeterminacy of components"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE56-POLY-08-MOVE-3",
+        "check": "Check difference at all points: d(-1) = 2(-1)(0) = 0; d(0) = 0; d(1) = 2(1)(0) = 0; d(2) = 2(2)(3) = 12; d(3) = 2(3)(8) = 48. Check component indeterminacy: for q(x) = 5x^3, p(x) = 7x^3 - 2x satisfies deg <= 3 and p(x) - q(x) = 2x^3 - 2x.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-INTERPOLATION-COSET",
+      "family_ref": "FAM-MATH-POLYNOMIAL-STRESS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q8",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:0618c1769d3974b8366495cfdb2d55b9f40098922efe4d6bd6cf608ce501a500"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 7,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Difference polynomial d(x) has zeros at -1, 0, 1 with deg <= 3, fixing d(x) = 2x^3 - 2x and d(3) = 48 while p and q remain individually indeterminate."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "Attempting to solve for p and q individually or asserting that uniqueness of the difference implies uniqueness of the components.",
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "REPRESENT",
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Formulate difference polynomial d(x) = c x(x^2 - 1), determine c = 2 from d(2) = 12, and provide explicit offset examples showing p and q are underdetermined."
+        }
+      },
+      "conditions": [
+        "Real polynomials p, q of degree at most 3.",
+        "Agree at x = -1, 0, 1.",
+        "p(2) - q(2) = 12."
+      ],
+      "figure_refs": [
+        "REP-MATH-POLY-INTERPOLATION-COSET"
+      ],
+      "scaffolds": [
+        {
+          "text": "Define the difference d(x) = p(x) - q(x) and state its degree bound.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE56-POLY-08-MOVE-1"
+        },
+        {
+          "text": "What are the zeros of d(x)? Write its algebraic form up to a constant multiplier c.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE56-POLY-08-MOVE-1"
+        },
+        {
+          "text": "Substitute x = 2 into d(x) and equate to 12 to solve for c.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE56-POLY-08-MOVE-2"
+        },
+        {
+          "text": "Compute p(3) - q(3) using the determined difference polynomial d(3).",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE56-POLY-08-MOVE-3"
+        },
+        {
+          "text": "Construct two different pairs (p, q) that produce this same difference to demonstrate why components cannot be individually identified.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE56-POLY-08-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE56-POLY-09",
+      "original_identifier": "Q9",
+      "stem": "Characterise all monic real polynomials of degree at most four whose distinct real zeros are exactly $-1$ and $1$ and whose value at zero is $1$. Explain how repeated factors and any remaining quadratic factor affect completeness of your list. Prove both that every item in your list works and that no allowed polynomial has been omitted.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Any allowed monic polynomial factors over R into linear terms (x-1)^a (x+1)^b and irreducible quadratics q(x). If deg(q) = 2, then p(x) = (x^2 - 1)(x^2 + bx + c). The condition p(0) = 1 gives (0 - 1)(c) = -c = 1 => c = -1. But then the quadratic is x^2 + bx - 1, which has discriminant Delta = b^2 - 4(1)(-1) = b^2 + 4 > 0 for all real b. Thus x^2 + bx - 1 always has two distinct real roots; unless b = 0 (which returns roots +/-1, yielding (x^2-1)^2), it introduces extra real zeros outside {+/-1}. Therefore no irreducible quadratic factor can be present. For purely linear factors, p(x) = (x-1)^a (x+1)^b with a >= 1, b >= 1, and a + b <= 4. Then p(0) = (-1)^a (1)^b = (-1)^a = 1 requires a to be even, so a = 2. Then b can be 1 (deg 3) or 2 (deg 4). Exactly two polynomials satisfy the conditions: p_1(x) = (x-1)^2(x+1) = x^3 - x^2 - x + 1, and p_2(x) = (x-1)^2(x+1)^2 = x^4 - 2x^2 + 1. Both work, and completeness is proven by the discriminant contradiction on quadratic factors and parity constraint on a.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE56-POLY-09-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Set up general factorization over R: monic polynomial p(x) has linear factors (x-1)^a (x+1)^b and possible monic quadratic factors q(x).",
+            "why_valid": "Every real polynomial factors into real linear factors and irreducible quadratic factors; real roots are strictly +/-1.",
+            "inputs": [
+              "monic",
+              "deg <= 4",
+              "real roots strictly +/-1"
+            ],
+            "output": "general factorized form"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-09-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Investigate quadratic factors: p(x) = (x^2 - 1)(x^2 + bx + c) with p(0) = 1 implies c = -1.",
+            "why_valid": "p(0) = (0 - 1)(c) = -c = 1 => c = -1.",
+            "inputs": [
+              "p(0) = 1"
+            ],
+            "output": "quadratic must be x^2 + bx - 1"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-09-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Prove that x^2 + bx - 1 is never irreducible: discriminant Delta = b^2 + 4 > 0 for all real b.",
+            "why_valid": "Delta > 0 forces real roots; unless b = 0 (giving roots +/-1), it introduces forbidden extra real zeros.",
+            "inputs": [
+              "Delta = b^2 + 4"
+            ],
+            "output": "no irreducible quadratic factors allowed"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-09-MOVE-4",
+            "kind": "TRANSFORM",
+            "action": "Evaluate linear-only form p(x) = (x-1)^a (x+1)^b: p(0) = (-1)^a = 1 forces a = 2, yielding b in {1, 2}.",
+            "why_valid": "a >= 1, b >= 1, a + b <= 4 with a even forces a = 2; b can be 1 or 2.",
+            "inputs": [
+              "p(0) = (-1)^a = 1"
+            ],
+            "output": "exactly two solutions: (x-1)^2(x+1) and (x^2-1)^2"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE56-POLY-09-MOVE-3",
+        "check": "Verify item 1: p_1(x) = (x-1)^2(x+1) = x^3 - x^2 - x + 1. Monic: yes. Deg 3 <= 4: yes. Real zeros: 1 (mult 2), -1 (mult 1), exactly {+/-1}. p_1(0) = 1. Verify item 2: p_2(x) = (x^2-1)^2 = x^4 - 2x^2 + 1. Monic: yes. Deg 4 <= 4: yes. Real zeros: exactly {+/-1}. p_2(0) = 1. Both work, completeness proven.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-ROOT-SIGN-PARITY",
+      "family_ref": "FAM-MATH-POLYNOMIAL-STRESS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q9",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:6217d10f7b4a7a1bc454f160878027bbd35060f1b4c580eedda5400d7c6354f2"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Proving that only two polynomials exist by refuting irreducible quadratic factors via Delta = b^2 + 4 > 0 and solving multiplicity parity."
+          },
+          "expected_time_seconds": 210,
+          "common_wrong_route": "Overlooking degree 3 polynomial (x-1)^2(x+1) or falsely assuming an irreducible quadratic factor x^2+bx+c could exist.",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "JUSTIFY",
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "Prove that any candidate quadratic factor must have constant term c = -1 to satisfy p(0)=1, which forces discriminant b^2 + 4 > 0, so no irreducible quadratic factor can exist."
+        }
+      },
+      "conditions": [
+        "Monic real polynomial.",
+        "Degree at most 4.",
+        "Distinct real zeros are strictly and exactly -1 and 1.",
+        "p(0) = 1."
+      ],
+      "figure_refs": [
+        "REP-MATH-POLY-SIGN-PARITY"
+      ],
+      "scaffolds": [
+        {
+          "text": "Write the real factorization of a monic polynomial of degree <= 4 with only roots +/-1 and possible quadratic factors.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE56-POLY-09-MOVE-1"
+        },
+        {
+          "text": "Suppose a quadratic factor (x^2 + bx + c) is present. What value must c take to satisfy p(0) = 1?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE56-POLY-09-MOVE-2"
+        },
+        {
+          "text": "Compute the discriminant Delta of x^2 + bx - 1. Can this quadratic ever be irreducible over the reals?",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE56-POLY-09-MOVE-3"
+        },
+        {
+          "text": "Deduce that no irreducible quadratic factor can exist, leaving only linear factors (x-1)^a (x+1)^b.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE56-POLY-09-MOVE-3"
+        },
+        {
+          "text": "Evaluate p(0) = (-1)^a = 1 to determine allowed values for a and b, listing every valid polynomial and proving completeness.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE56-POLY-09-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISSUE56-POLY-10",
+      "original_identifier": "Q10",
+      "stem": "A solver uses four rules: cancellation makes a rational expression a polynomial on all real numbers; the largest printed exponent is always the degree; a degree-$n$ polynomial has exactly $n$ distinct real zeros; agreement at three inputs proves an identity. Develop a qualified decision procedure and apply it to: $A_t(x)=(t-1)x^3+x^2-1$ with real $t$; $B(x)=(x^2-1)/(x-1)$ on its original domain; $C(x)=(x-2)^2(x^2+1)$; and the pair $D(x)=x^2+1$, $E(x)=x^2+1+x(x-1)(x-2)$ compared at $x=0,1,2$. State the relevant conditions and valid conclusions in each case, then create one fresh counterexample to an unqualified rule. Preserve the difference between expressions, functions, identities and finite observations.",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Qualified procedure: Rule 1 requires domain preservation (cancellation is valid only on D where denominator != 0; extending to R requires defining values at removable singularities); Rule 2 requires non-zero coefficient for highest power (degree drops if leading coefficient vanishes); Rule 3 holds over C with multiplicity (real zeros <= n, reduced by multiplicity or complex conjugate pairs); Rule 4 requires degree <= 2 for 3 points to prove identity. Case applications: (1) A_t(x): deg is 3 if t != 1, but drops to 2 if t = 1 (Rule 2 fails at t = 1); (2) B(x): domain is R \\ {1}, so B is a punctured line with hole at (1, 2), not a polynomial on all R (Rule 1 fails); (3) C(x) = (x-2)^2(x^2+1): deg is 4, but has only 1 distinct real zero at x = 2 with mult 2 (x^2+1 > 0 has no real roots) (Rule 3 fails); (4) D(x)=x^2+1, E(x)=x^2+1+x(x-1)(x-2): agree at x = 0, 1, 2, but E(x) - D(x) = x(x-1)(x-2) != 0, so D != E identically (Rule 4 fails). Fresh counterexample to Rule 4: f(x) = 0 and g(x) = x(x^2 - 1) agree at -1, 0, 1, but g(2) = 6 != 0. Epistemic distinctions: an expression is a syntactic string of symbols; a function binds a domain, codomain, and mapping; an identity holds across the entire domain; finite observations do not constrain unobserved inputs unless bounded by degree.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE56-POLY-10-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Develop qualified decision criteria for each heuristic rule: domain restrictions for cancellation, non-zero coefficient for degree, multiplicity and complex pairs for roots, and degree bounds for interpolation identity.",
+            "why_valid": "Each mathematical theorem has precise domain and coefficient hypotheses.",
+            "inputs": [
+              "4 heuristic rules"
+            ],
+            "output": "qualified decision procedures"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-10-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Apply procedure to A_t(x) and B(x): identify degree drop at t = 1, and domain hole at x = 1 for B(x).",
+            "why_valid": "At t = 1, A_1(x) = x^2 - 1 has degree 2. B(x) = x + 1 is undefined at x = 1.",
+            "inputs": [
+              "A_t(x)",
+              "B(x)"
+            ],
+            "output": "Rule 2 fails at t = 1; Rule 1 fails on original domain"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-10-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Apply procedure to C(x) and pair (D, E): C has deg 4 with 1 real root; D and E agree at 0, 1, 2 but differ at all other inputs.",
+            "why_valid": "x^2 + 1 has no real roots so C has only root 2. E(x) - D(x) = x(x-1)(x-2) vanishes at 0, 1, 2 but is non-zero elsewhere.",
+            "inputs": [
+              "C(x)",
+              "D(x), E(x)"
+            ],
+            "output": "Rule 3 fails on C; Rule 4 fails on (D, E)"
+          },
+          {
+            "id": "OWN-ISSUE56-POLY-10-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Construct fresh counterexample and articulate epistemic differences between expressions, functions, identities, and finite observations.",
+            "why_valid": "f(x) = 0 and g(x) = x(x^2 - 1) agree at -1, 0, 1 but differ elsewhere. Differentiates syntactic expression from semantic function and empirical data from identity.",
+            "inputs": [
+              "fresh counterexample",
+              "epistemic definitions"
+            ],
+            "output": "counterexample and philosophical boundary distinctions"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE56-POLY-10-MOVE-3",
+        "check": "Verify all 4 applications: A_1(x) = x^2 - 1 (deg 2). B(1) is undefined (domain restriction). C(2) = 0, C(x) > 0 for all x != 2 (1 distinct real zero). D(0)=E(0)=1, D(1)=E(1)=2, D(2)=E(2)=5, but D(3)=10 != E(3)=16. Fresh counterexample: f(0)=g(0)=0, f(1)=g(1)=0, f(-1)=g(-1)=0, but f(2)=0 != g(2)=6.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-INTERPOLATION-COSET",
+      "family_ref": "FAM-MATH-POLYNOMIAL-STRESS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q10",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:c8e877db99b662cb2ca901cb9ff6acde0ad99db5b2bc06900347d1c7d6671831"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Developing qualified decision procedures to refute 4 heuristic rules, applying across 4 cases, constructing fresh counterexample, preserving epistemic boundaries."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "Conflating formal expressions with functions or conflating finite point agreement with polynomial identity.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "SYNTHESIZE",
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "Formulate rigorous mathematical qualifications for cancellation, leading coefficient, real zero count, and degree-bounded interpolation, applying each to the designated expressions."
+        }
+      },
+      "conditions": [
+        "Real polynomial expressions.",
+        "Preserve distinction between expressions, functions, identities, and finite observations."
+      ],
+      "figure_refs": [
+        "REP-MATH-POLY-INTERPOLATION-COSET"
+      ],
+      "scaffolds": [
+        {
+          "text": "State the exact mathematical conditions under which each of the four heuristic rules holds.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE56-POLY-10-MOVE-1"
+        },
+        {
+          "text": "Evaluate A_t(x) at t = 1 and B(x) at x = 1 to test Rules 2 and 1.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE56-POLY-10-MOVE-2"
+        },
+        {
+          "text": "Find all real zeros of C(x) = (x-2)^2(x^2+1) and compare with its degree.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE56-POLY-10-MOVE-3"
+        },
+        {
+          "text": "Compare D(x) and E(x) at x = 0, 1, 2 and at x = 3 to test Rule 4.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISSUE56-POLY-10-MOVE-3"
+        },
+        {
+          "text": "Create a fresh counterexample to one rule and explain why an expression, a function, an identity, and finite observations are distinct.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE56-POLY-10-MOVE-4"
+        }
+      ]
+    }
+  ]
+}

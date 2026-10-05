@@ -1,0 +1,144 @@
+{
+  "schema": "source-cards/v1",
+  "subject": "Mathematics",
+  "topic": "Polynomials",
+  "subtopic": "Polynomials in One Variable with Real Coefficients (Advanced Competition Extension)",
+  "benchmark_issue": 56,
+  "agent": "Independent Agent B",
+  "cards": [
+    {
+      "card_id": "EV-MATH-POLY-DEF-001",
+      "kind": "CANONICAL_DEFINITION",
+      "claim": "A polynomial in one variable x with real coefficients is an algebraic expression of the form a_n x^n + a_{n-1} x^{n-1} + ... + a_1 x + a_0, where every exponent n is a non-negative integer and each coefficient a_i is a real number. If a power of x does not appear, its coefficient is 0.",
+      "quote": "An algebraic expression p(x) = a_n x^n + a_{n-1} x^{n-1} + ... + a_1 x + a_0, where a_0, a_1, ..., a_n are real numbers and all the exponents of x are whole numbers, is called a polynomial in x.",
+      "source": "NCERT Class IX Mathematics (Chapter 2: Polynomials), Section 2.1",
+      "authority": "NCERT / CBSE Curriculum Grade 9",
+      "verified_questions": [
+        "Q1",
+        "Q2",
+        "Q4",
+        "Q10"
+      ]
+    },
+    {
+      "card_id": "EV-MATH-POLY-DEG-002",
+      "kind": "CANONICAL_DEFINITION",
+      "claim": "The degree of a non-zero polynomial in one variable is the highest exponent of the variable with a non-zero coefficient. If the leading coefficient vanishes under parameter variation, the degree drops to the highest power with a non-zero coefficient.",
+      "quote": "The highest power of the variable in a polynomial is called the degree of the polynomial.",
+      "source": "NCERT Class IX Mathematics (Chapter 2: Polynomials), Section 2.1",
+      "authority": "NCERT / CBSE Curriculum Grade 9",
+      "verified_questions": [
+        "Q1",
+        "Q4",
+        "Q7",
+        "Q8",
+        "Q10"
+      ]
+    },
+    {
+      "card_id": "EV-MATH-FACTOR-THM-003",
+      "kind": "CANONICAL_THEOREM",
+      "claim": "Let p(x) be a polynomial of degree n >= 1 and r be any real number. (x - r) is a factor of p(x) if and only if p(r) = 0. If (x - r)^m divides p(x) but (x - r)^{m+1} does not, r is a zero of multiplicity m.",
+      "quote": "If p(x) is a polynomial of degree n >= 1 and a is any real number, then (i) x - a is a factor of p(x), if p(a) = 0, and (ii) p(a) = 0, if x - a is a factor of p(x).",
+      "source": "NCERT Class IX Mathematics (Chapter 2: Polynomials), Section 2.4",
+      "authority": "NCERT / CBSE Curriculum Grade 9",
+      "verified_questions": [
+        "Q1",
+        "Q2",
+        "Q3",
+        "Q4",
+        "Q7",
+        "Q8",
+        "Q9"
+      ]
+    },
+    {
+      "card_id": "EV-MATH-POLY-ID-004",
+      "kind": "CANONICAL_THEOREM",
+      "claim": "A non-zero polynomial of degree at most n with real coefficients has at most n real zeros, counted with multiplicity. If two polynomials of degree at most n agree at n + 1 distinct points, their difference is identically the zero polynomial. Without a degree bound, polynomials agreeing at n + 1 points form an infinite coset modulo the vanishing product.",
+      "quote": "A polynomial of degree n has at most n roots. If two polynomials of degree <= n agree at n + 1 distinct values, they are identical.",
+      "source": "Artin, Algebra (Chapter 10: Rings and Polynomials); Hall & Knight, Higher Algebra",
+      "authority": "Classical Polynomial Algebra",
+      "verified_questions": [
+        "Q1",
+        "Q5",
+        "Q7",
+        "Q8",
+        "Q10"
+      ]
+    },
+    {
+      "card_id": "EV-MATH-ROOT-PARITY-005",
+      "kind": "TOPOLOGICAL_THEOREM",
+      "claim": "A real polynomial p(x) changes sign across an isolated real zero r if and only if r has odd multiplicity. If r has even multiplicity, p(x) maintains the same non-zero sign in a punctured neighborhood of r.",
+      "quote": "Near an isolated root r of multiplicity m, p(x) = (x - r)^m g(x) where g(r) != 0. Thus sign(p(x)) = sign(g(r)) * sign((x - r)^m), changing sign across r iff m is odd.",
+      "source": "Apostol, Calculus Vol 1 (Chapter 3: Continuous Functions); Courant, Differential and Integral Calculus",
+      "authority": "Real Analysis / Polynomial Topology",
+      "verified_questions": [
+        "Q2",
+        "Q3",
+        "Q9"
+      ]
+    },
+    {
+      "card_id": "EV-MATH-IVT-POLY-006",
+      "kind": "CONTINUITY_THEOREM",
+      "claim": "Polynomial functions are continuous on R. By the Intermediate Value Theorem, if a real polynomial satisfies p(a) > 0 and p(b) < 0 with a < b, there exists at least one c in (a, b) with p(c) = 0. Therefore, if p(0) > 0 and p(2) > 0 while p(1) = 0, p cannot change sign across 1 without having an additional real zero in (0, 1) or (1, 2).",
+      "quote": "If f is continuous on [a, b] and f(a) and f(b) have opposite signs, then there is at least one root of f(x) = 0 in the open interval (a, b).",
+      "source": "Apostol, Calculus Vol 1, Theorem 3.8 (Intermediate Value Theorem)",
+      "authority": "Real Analysis",
+      "verified_questions": [
+        "Q3",
+        "Q9"
+      ]
+    },
+    {
+      "card_id": "EV-MATH-QUAD-DISCRIM-007",
+      "kind": "CANONICAL_THEOREM",
+      "claim": "A real quadratic ax^2 + bx + c (a != 0) has real roots if and only if discriminant Delta = b^2 - 4ac >= 0. If Delta < 0, it has no real roots and maintains the constant sign of a for all real x. In particular, x^2 + bx - 1 has discriminant b^2 + 4 > 0, always possessing two distinct real roots for every real b.",
+      "quote": "The roots of ax^2 + bx + c = 0 are real and distinct if b^2 - 4ac > 0, real and equal if b^2 - 4ac = 0, and not real if b^2 - 4ac < 0.",
+      "source": "NCERT Class X Mathematics (Chapter 4: Quadratic Equations), Section 4.4",
+      "authority": "NCERT / CBSE Curriculum Grade 10",
+      "verified_questions": [
+        "Q3",
+        "Q4",
+        "Q9",
+        "Q10"
+      ]
+    },
+    {
+      "card_id": "EV-MATH-RATIONAL-DOMAIN-008",
+      "kind": "CANONICAL_DEFINITION",
+      "claim": "A rational function R(x) = P(x)/Q(x) has natural domain D = {x in R : Q(x) != 0}. Cancelling common factors (x - a) yields an algebraic identity valid only on D. Extending the function to R by removing the singularity creates a new function with a strictly larger domain.",
+      "quote": "Two functions f and g are equal if and only if domain(f) = domain(g) and f(x) = g(x) for all x in the common domain.",
+      "source": "Spivak, Calculus (Chapter 3: Functions); NCERT Class XI Mathematics (Chapter 2: Relations and Functions)",
+      "authority": "Foundations of Analysis",
+      "verified_questions": [
+        "Q6",
+        "Q10"
+      ]
+    },
+    {
+      "card_id": "EV-MATH-BOX-GEOM-009",
+      "kind": "GEOMETRIC_MODEL",
+      "claim": "An open box formed by cutting corner squares of side x from a square sheet of side L has height x and base dimensions L - 2x by L - 2x. Physical volume is V(x) = x(L - 2x)^2. Non-degenerate physical box requires x > 0 and L - 2x > 0, giving domain (0, L/2). Overfitting fewer data points with a lower-degree model fails to capture geometric physics.",
+      "quote": "Volume of a cuboid is length * breadth * height. For an open box folded from a sheet of side L after cutting corners of side x, V = x(L - 2x)^2.",
+      "source": "NCERT Class IX Mathematics (Chapter 13: Surface Areas and Volumes); Standard Applied Geometry",
+      "authority": "Physical-Geometric Modeling",
+      "verified_questions": [
+        "Q5"
+      ]
+    },
+    {
+      "card_id": "EV-MATH-EVEN-POLY-010",
+      "kind": "SYMMETRY_THEOREM",
+      "claim": "An even polynomial satisfies p(-x) = p(x) for all x in R. This requires all coefficients of odd powers to be zero, so p(x) is a polynomial in x^2. If r is a root, -r is also a root with identical multiplicity. Degree at most 4 with 4 non-zero symmetric roots uniquely determines the polynomial up to scaling.",
+      "quote": "A polynomial function f is even if f(-x) = f(x) for all x in the domain. The graph of an even function is symmetric with respect to the y-axis.",
+      "source": "Stewart, Precalculus: Mathematics for Calculus; Artin, Algebra",
+      "authority": "Polynomial Symmetry and Invariant Theory",
+      "verified_questions": [
+        "Q7"
+      ]
+    }
+  ]
+}
