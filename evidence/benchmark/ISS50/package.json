@@ -663,6 +663,14 @@
           "why_valid": "A reverse or boundary check detects lost signs, areas, points or domain restrictions.",
           "inputs": [],
           "output": "The translation is checked independently."
+        },
+        {
+          "id": "RD-4",
+          "role": "DECLARE",
+          "action": "Carry the original excluded input into the final function comparison and test that boundary explicitly.",
+          "why_valid": "Algebraic simplification preserves values only on the original domain; function equality also requires the domains to agree.",
+          "inputs": [],
+          "output": "The final comparison states both the simplified rule and the original domain boundary."
         }
       ],
       "relation_refs": [],
@@ -709,7 +717,8 @@
           "step_refs": [
             "RD-1",
             "RD-2",
-            "RD-3"
+            "RD-3",
+            "RD-4"
           ],
           "crux_step_ref": "RD-2",
           "crux_question_refs": [
@@ -719,7 +728,8 @@
           "reveal_stage_refs": [
             "domain-1",
             "domain-2",
-            "domain-3"
+            "domain-3",
+            "domain-4"
           ],
           "misconception_indexes": [
             0
@@ -916,14 +926,16 @@
         "original expression",
         "domain ledger",
         "conditional simplification",
-        "function comparison"
+        "function comparison",
+        "boundary check"
       ],
       "relation_refs": [],
       "read_order": [
         "original expression",
         "domain ledger",
         "conditional simplification",
-        "function comparison"
+        "function comparison",
+        "boundary check"
       ],
       "instance_constraints": [
         "Use only supplied givens or the explicitly authored changed teaching case; do not imply geometric scale.",
@@ -972,6 +984,17 @@
             "domain ledger",
             "conditional simplification",
             "function comparison"
+          ]
+        },
+        {
+          "id": "domain-4",
+          "label": "Test the boundary",
+          "purpose": "Inspect the excluded input explicitly after simplification.",
+          "visible_elements": [
+            "domain ledger",
+            "conditional simplification",
+            "function comparison",
+            "boundary check"
           ]
         }
       ]
