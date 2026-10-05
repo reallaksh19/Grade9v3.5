@@ -15,8 +15,8 @@
     "U1": "COMPLETE",
     "U2": "COMPLETE",
     "U3": "COMPLETE",
-    "U4": "IN_PROGRESS",
-    "U5": "NOT_STARTED",
+    "U4": "COMPLETE",
+    "U5": "IN_PROGRESS",
     "U6": "NOT_STARTED",
     "U7": "NOT_STARTED",
     "U8": "NOT_STARTED"
@@ -25,7 +25,26 @@
     "local_repo": "UNAVAILABLE",
     "local_reason": "container cannot resolve external GitHub",
     "provider_continuity_script": "NOT_RUN",
-    "candidate_render": "NOT_RUN"
+    "candidate_render": "NOT_RUN",
+    "first_ci_observation": {
+      "workflow": "question-bank-platform",
+      "run_id": 37326066755,
+      "contract_tests": "PASS",
+      "generated_platform_check": "FAIL_BEFORE_EVIDENCE_LANE_MOVE",
+      "resolution": "Moved benchmark inputs out of canonical Question Bank publication lanes; rerun pending."
+    }
   },
-  "question_count": 10
+  "question_count": 10,
+  "pull_request": {
+    "number": 60,
+    "url": "https://github.com/reallaksh19/Grade9v3.5/pull/60",
+    "base_branch": "benchmark-base/iss52-91719ad8",
+    "base_sha": "91719ad8df2bfc06c6a481590d2e24c510c24835",
+    "head_sha": "d873256a18fc7f1adf37774bf7411cf27cfd0091"
+  },
+  "inputs": {
+    "owner_bank": "evidence/benchmark/ISS52/inputs/owner.bank.json",
+    "package": "evidence/benchmark/ISS52/inputs/package.v1.json",
+    "manifest": "evidence/benchmark/ISS52/inputs/product.manifest.json"
+  }
 }
