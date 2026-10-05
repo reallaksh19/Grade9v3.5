@@ -1698,7 +1698,7 @@
       "stem": "A solver uses four rules: cancellation makes a rational expression a polynomial on all real numbers; the largest printed exponent is always the degree; a degree-$n$ polynomial has exactly $n$ distinct real zeros; agreement at three inputs proves an identity. Develop a qualified decision procedure and apply it to: $A_t(x)=(t-1)x^3+x^2-1$ with real $t$; $B(x)=(x^2-1)/(x-1)$ on its original domain; $C(x)=(x-2)^2(x^2+1)$; and the pair $D(x)=x^2+1$, $E(x)=x^2+1+x(x-1)(x-2)$ compared at $x=0,1,2$. State the relevant conditions and valid conclusions in each case, then create one fresh counterexample to an unqualified rule. Preserve the difference between expressions, functions, identities and finite observations.",
       "answer": {
         "kind": "MODEL_RESPONSE",
-        "summary": "Qualified rules: cancellation preserves equality only on the original domain; degree is read after simplification and leading-coefficient parameter checks; a nonzero degree-n polynomial has at most n distinct real zeros; finite agreement proves identity only when the difference has a degree bound smaller than the number of distinct agreement points. Applications: A_t has degree 3 for t≠1 and degree 1 at t=1; B equals x+1 only for x≠1 and its extension fills the hole; C has degree 4 but one distinct real zero x=2 (multiplicity 2); D and E agree at 0,1,2 but differ elsewhere, e.g. E(3)-D(3)=6. Fresh counterexample: (x-3)^2/(x-3), x≠3, cancels to x-3 but the original function has no value/zero at 3.",
+        "summary": "Qualified rules: cancellation preserves equality only on the original domain; degree is read after simplification and leading-coefficient parameter checks; a nonzero degree-n polynomial has at most n distinct real zeros; finite agreement proves identity only when the difference has a degree bound smaller than the number of distinct agreement points. Applications: A_t has degree 3 for t≠1 and degree 2 at t=1; B equals x+1 only for x≠1 and its extension fills the hole; C has degree 4 but one distinct real zero x=2 (multiplicity 2); D and E agree at 0,1,2 but differ elsewhere, e.g. E(3)-D(3)=6. Fresh counterexample: (x-3)^2/(x-3), x≠3, cancels to x-3 but the original function has no value/zero at 3.",
         "reasoning": [
           "Replace each slogan by a conditional rule before touching the examples. Four qualified rules.",
           "For A_t, B, C and D-E, expose the structural feature relevant to the matching qualified rule. A condition-to-example mapping.",
@@ -1749,7 +1749,7 @@
           }
         ],
         "crux_move_ref": "ISS52-Q10-MOVE-1",
-        "check": "Check each application against its repaired rule: at t=1, A_t=x+1 has degree 1; B remains undefined at x=1 before extension; C=(x-2)^2(x^2+1) has one distinct real zero; and E(3)-D(3)=6 despite agreement at 0,1,2.",
+        "check": "Check each application against its repaired rule: at t=1, A_t=x^2-1 has degree 2; B remains undefined at x=1 before extension; C=(x-2)^2(x^2+1) has one distinct real zero; and E(3)-D(3)=6 despite agreement at 0,1,2.",
         "acceptable_alternatives": [],
         "subpart_answers": [],
         "verification_status": "CHECKED_BY_AUTHOR"
@@ -1869,7 +1869,7 @@
           "connect": "Connect that to domain, simplified degree, root-count and identity bounds.",
           "way": "Build toward qualify each rule then apply it without skipping its conditions.",
           "rule": "Before using a familiar polynomial or rational-expression rule, state its domain/nonzero/degree hypothesis explicitly; the unqualified slogan is not the rule.",
-          "check": "Check each application against its repaired rule: at t=1, A_t=x+1 has degree 1; B remains undefined at x=1 before extension; C=(x-2)^2(x^2+1) has one distinct real zero; and E(3)-D(3)=6 despite agreement at 0,1,2.",
+          "check": "Check each application against its repaired rule: at t=1, A_t=x^2-1 has degree 2; B remains undefined at x=1 before extension; C=(x-2)^2(x^2+1) has one distinct real zero; and E(3)-D(3)=6 despite agreement at 0,1,2.",
           "probe": "Take one unconditional shortcut rule and state a changed example where its missing hypothesis fails.",
           "pattern": "The counterexample must fail exactly the omitted domain/degree/nonzero/identity-bound condition while leaving the qualified rule valid.",
           "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
