@@ -312,7 +312,7 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
                    f'{esc("; ".join(labels[s] for s in shown if labels.get(s)))}</figcaption>')
     else:
         caption = (f'<figcaption data-g9-block="representation_bridge" data-g9-caption="purpose">'
-                   f'{esc(rep.get("purpose", ""))}</figcaption>')
+                   f'{esc(case["scene"]["caption"] if case else rep.get("purpose", ""))}</figcaption>')
     if source_resource:
         caption = f'<figcaption data-g9-source-caption>{esc(source_resource.get("caption", ""))}</figcaption>'
     if withheld:

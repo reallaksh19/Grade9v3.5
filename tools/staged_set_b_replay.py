@@ -66,13 +66,21 @@ def context(adopted=True):
             q, rep = copy.deepcopy(case["question"]), copy.deepcopy(case["representation"])
         questions.append(q)
         representations.append(rep)
+    authority_paths = [FIXTURE, Path(__file__), render_core.PACKAGE_SCHEMA, render_core.BANK_SCHEMA,
+                       Path(render_core.__file__), Path(core2_v2.__file__), render_core.BLUEPRINTS,
+                       render_core.TABLET_CSS, REPO / "public/css/modern-learner.css",
+                       REPO / "public/js/display-controls.js", REPO / "public/js/site-header.js"]
+    authority_paths.extend(REPO / ref for rep in representations for ref in rep["rendered_asset_refs"])
+    authority_paths.extend(REPO / scene["asset_ref"] for rep in representations for scene in rep.get("scene_instances", []))
     return render_core.Ctx(
         manifest={"product_id": "ISS29-STAGED-SET-B-REPLAY", "subject": "Mathematics",
                   "title": "Polynomial questions · staged repair replay", "home_href": "../../../../public/index.html",
                   "question_bank_href": "../../../../public/Mathematics/question-bank/index.html", "output_roles": ["CORE2"]},
         packages=[{"representations": representations, "data": data}], bank=questions,
         selection_rows={"core2": questions, "microtopics": [], "core2a": [], "core2b": []},
-        blueprints=render_core.load_json(render_core.BLUEPRINTS))
+        blueprints=render_core.load_json(render_core.BLUEPRINTS),
+        authority_hashes=[(path.relative_to(REPO).as_posix(), hashlib.sha256(path.read_bytes()).hexdigest())
+                          for path in authority_paths])
 
 
 def main(argv=None):
@@ -88,7 +96,7 @@ def main(argv=None):
         path = args.out / name
         path.write_text(output, encoding="utf-8")
         report["pages"].append({"path": name, "sha256": "sha256:" + hashlib.sha256(path.read_bytes()).hexdigest(),
-                                "render_gaps": ctx.gaps, "advisories": ctx.advisories})
+                                "authority_hashes": ctx.authority_hashes, "render_gaps": ctx.gaps, "advisories": ctx.advisories})
     for case in cases():
         q, rep, datum = adopt(case)
         report["cases"].append({"issue": case["issue"], "head_sha": case["head_sha"], "question_ref": q["id"],

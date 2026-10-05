@@ -22,6 +22,35 @@ def validator(path, definition):
 
 
 class StagedSupportRepair(unittest.TestCase):
+    def test_corrected_quadratic_curve_matches_the_three_conditions_between_endpoints(self):
+        # Verify the graphic's geometry, not its label. Parse the authored Bézier segment.
+        svg = (REPO / "tests/fixtures/staged_set_b/ISS54-case.svg").read_text(encoding="utf-8")
+        values = re.search(r'M(\d+) (\d+) Q(\d+) (\d+) (\d+) (\d+)', svg).groups()
+        x0, y0, xc, yc, x1, y1 = map(float, values)
+        for index in range(11):
+            t = index / 10
+            px = (1-t)**2*x0 + 2*(1-t)*t*xc + t*t*x1
+            py = (1-t)**2*y0 + 2*(1-t)*t*yc + t*t*y1
+            x, y = (px-280)/60, (150-py)/22
+            self.assertAlmostEqual(y, x*x-x-6, places=10)
+
+    def test_competitive_bank_allows_the_optional_binding_without_a_second_definition(self):
+        schema = json.loads(render_core.BANK_SCHEMA.read_text(encoding="utf-8"))
+        extensions = schema["$defs"]["exam_bank_question"]["properties"]["extensions"]
+        self.assertIn(core2_v2.SUPPORT_PLAN_KEY, extensions["properties"])
+        # The bank's existing base-question validator owns the complete canonical shape.
+        from Shared.tools import competitive_exam_bank
+        q, _, _ = replay.adopt(replay.cases()[0])
+        findings = competitive_exam_bank._package_record_findings(q, "question", "case")
+        self.assertFalse(any(core2_v2.SUPPORT_PLAN_KEY in f["where"] for f in findings), findings)
+
+    def test_replay_receipts_include_the_selected_case_asset_bytes(self):
+        ctx = replay.context()
+        hashes = dict(ctx.authority_hashes)
+        for rep in ctx.packages[0]["representations"]:
+            asset = rep["scene_instances"][0]["asset_ref"]
+            self.assertIn(asset, hashes)
+
     def test_optional_structures_validate_against_canonical_definitions(self):
         for case in replay.cases():
             q, rep, datum = replay.adopt(case)
