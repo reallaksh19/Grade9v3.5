@@ -1,3 +1,5 @@
+Current continuation: [R4 academic repair and final measured evidence](closure-r4-20261005/README.md). Earlier observations below retain their original execution scope; they are not current browser/PDF/full-suite verdicts.
+
 # Current R3 amendment — 5 October 2026
 
 [Final implementation, cumulative rule checkpoints, exact-page measurements and remaining acceptance work](closure-20261005/README.md) supersede the older technical status below. Production basis: 6dd20aa33c65f48315175e8ff360c339b204da16. Continuous Core1A teaching now keeps premises, warranted worked moves and adjacent representations visible; fresh response/solution disclosure remains protected. Shared navigation, single-file closure, scope-probe eligibility/neutral prose, clinics, font/target/focus/zoom behavior and PDF-link verification are fixed.

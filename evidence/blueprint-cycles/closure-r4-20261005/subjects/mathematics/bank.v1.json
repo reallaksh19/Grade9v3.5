@@ -1,0 +1,2271 @@
+{
+  "schema_version": "review-bank/v1",
+  "questions": [
+    {
+      "id": "Q-MAT-LEQ-01-EXEMPLAR8-Q6",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-8-UNIT2",
+        "SRC-NCERT-8-LINEQ-ONE",
+        "SRC-NCERT-EXEMPLAR-8-ANSWERS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-01-007",
+        "EV-MAT-09-LEQ-01-002",
+        "EV-MAT-09-LEQ-01-003",
+        "EV-MAT-09-LEQ-01-008"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-01",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-MAT-09-LEQ-01-007"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-01-002",
+            "EV-MAT-09-LEQ-01-003"
+          ],
+          "answer": [
+            "EV-MAT-09-LEQ-01-008"
+          ],
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure": "AUTHORED_PEDAGOGICAL",
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 1
+          },
+          "question_type": "single_choice",
+          "expected_time_seconds": 120,
+          "topic_label": "Linear Equations in One Variable",
+          "topic_ref": "TOPIC-MATHEMATICS-LINEAR-EQUATIONS",
+          "subject_ref": "SUBJECT-MATHEMATICS",
+          "exam": "NCERT Exemplar",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics"
+        },
+        "grade9v3:source_custody": {
+          "exam": "NCERT Exemplar",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics",
+          "question_number": "Q6",
+          "source_status": "NCERT_AUTHENTIC",
+          "authority_class": "CURRICULAR_STANDARD",
+          "wording_custody": "FAITHFUL_NCERT",
+          "provenance_class": "NCERT_PRACTICE_RECORD",
+          "last_checked": "2026-10-02",
+          "continuation_verification": "NOT_RUN"
+        },
+        "grade9v3:legacy_claim_quarantine": {
+          "id": "Q-MAT-LEQ-01-EXEMPLAR8-Q6",
+          "status": "PUBLISHED",
+          "verification_status": "VERIFIED_CANONICAL"
+        },
+        "grade9v3:provenance_class": "SOURCE_UNVERIFIED",
+        "grade9v3:analysis": {
+          "learner_question_type": "single_correct_mcq",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Equality must first become an equation; test four candidates, keeping both sides distinct."
+          },
+          "exam_source_badge": "Legacy textbook/exemplar wording; verification pending",
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Rewrite 'the expressions become equal' as the equation 3x − 4 = 2x + 1."
+        },
+        "grade9v3:classification_status": "AUTHOR_ESTIMATE_REQUIRES_REVIEW",
+        "grade9v3:unavailable_authored_visuals": {
+          "original_representation_roles": {
+            "initial_ref": "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+            "safe_ref": null,
+            "bound_ref": "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+            "stage_refs": [
+              "VIS-MAT-LEQ-01-T0"
+            ]
+          },
+          "reason": "Legacy authored SVG assets are absent. The source supplies no figure; text/scaffolds remain complete. No decorative substitute or source-figure claim."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-8-UNIT2",
+      "original_identifier": "NCERT Exemplar Problems, Class VIII Mathematics / Unit 'Linear Equations in One Variable', Exercise / Q6",
+      "stem": "The value of x for which the expressions 3x – 4 and 2x + 1 become equal is",
+      "subparts": [],
+      "options": [
+        "(a) –3",
+        "(b) 0",
+        "(c) 5",
+        "(d) 1"
+      ],
+      "conditions": [
+        "x is one variable; the expressions are equal at x when they take the same value there.",
+        "Exactly one option is correct."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(c) 5",
+        "reasoning": [
+          "'Become equal' means 3x − 4 = 2x + 1.",
+          "Test each option in both expressions: −3 gives −13 and −5; 0 gives −4 and 1; 5 gives 11 and 11; 1 gives −1 and 3.",
+          "Only x = 5 makes the two values equal, so the answer is (c), matching the official key."
+        ],
+        "check": "At x = 5: 3(5) − 4 = 11 and 2(5) + 1 = 11.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "NOT_RUN",
+        "reasoning_route": [
+          {
+            "id": "Q6-REP",
+            "kind": "REPRESENT",
+            "action": "Rewrite 'the expressions become equal' as the equation 3x − 4 = 2x + 1.",
+            "why_valid": "Equal expressions at a value of x is exactly an equation whose solution is that value.",
+            "inputs": [
+              "3x − 4",
+              "2x + 1"
+            ],
+            "output": "3x − 4 = 2x + 1"
+          },
+          {
+            "id": "Q6-DEC",
+            "kind": "DECIDE",
+            "action": "Test the four options by substitution rather than by moving terms.",
+            "why_valid": "The options are candidates, and substitution decides each candidate directly.",
+            "inputs": [
+              "options −3, 0, 5, 1"
+            ],
+            "output": "a four-row table of side values"
+          },
+          {
+            "id": "Q6-EVAL",
+            "kind": "TRANSFORM",
+            "action": "Evaluate both expressions at each option.",
+            "why_valid": "Each expression has one value per value of x.",
+            "inputs": [],
+            "output": "(−13, −5), (−4, 1), (11, 11), (−1, 3)"
+          },
+          {
+            "id": "Q6-CHK",
+            "kind": "VERIFY",
+            "action": "Select the only row with equal values and confirm it.",
+            "why_valid": "The sides are equal only at a solution.",
+            "inputs": [],
+            "output": "x = 5, option (c)"
+          }
+        ],
+        "crux_move_ref": "Q6-REP"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-01-SUBSTITUTION",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "What must be true of the two expressions at the value you are looking for? Write it with an equality sign.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q6-REP"
+        },
+        {
+          "text": "Put the options in a table with one column for 3x − 4 and one for 2x + 1.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q6-DEC"
+        },
+        {
+          "text": "Start with option (a): 3(−3) − 4 and 2(−3) + 1. Are these equal? Continue down the list.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q6-EVAL"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {},
+      "failure_signal": "You chose (a) –3: that comes from moving –4 across without changing its sign (x = 1 – 4). At x = –3 the expressions are –13 and –5, which are not equal.",
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-01-SUBSTITUTION",
+        "closure": "Established: 'the expressions become equal' is the equation 3x − 4 = 2x + 1, and an option is accepted only when both expressions give the same number at it. The next item removes the options, so candidates must be generated."
+      },
+      "repair_ref": "LEQ1-3"
+    },
+    {
+      "id": "Q-MAT-LEQ-01-EXEMPLAR8-Q17",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-8-UNIT2",
+        "SRC-NCERT-8-LINEQ-ONE",
+        "SRC-NCERT-EXEMPLAR-8-ANSWERS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-01-009",
+        "EV-MAT-09-LEQ-01-002",
+        "EV-MAT-09-LEQ-01-003",
+        "EV-MAT-09-LEQ-01-010"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-01",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-MAT-09-LEQ-01-009"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-01-002",
+            "EV-MAT-09-LEQ-01-003"
+          ],
+          "answer": [
+            "EV-MAT-09-LEQ-01-010"
+          ],
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure": "AUTHORED_PEDAGOGICAL",
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 2
+          },
+          "question_type": "constructed_response",
+          "expected_time_seconds": 120,
+          "topic_label": "Linear Equations in One Variable",
+          "topic_ref": "TOPIC-MATHEMATICS-LINEAR-EQUATIONS",
+          "subject_ref": "SUBJECT-MATHEMATICS",
+          "exam": "NCERT Exemplar",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics"
+        },
+        "grade9v3:source_custody": {
+          "exam": "NCERT Exemplar",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics",
+          "question_number": "Q17",
+          "source_status": "NCERT_AUTHENTIC",
+          "authority_class": "CURRICULAR_STANDARD",
+          "wording_custody": "FAITHFUL_NCERT",
+          "provenance_class": "NCERT_PRACTICE_RECORD",
+          "last_checked": "2026-10-02",
+          "continuation_verification": "NOT_RUN"
+        },
+        "grade9v3:legacy_claim_quarantine": {
+          "id": "Q-MAT-LEQ-01-EXEMPLAR8-Q17",
+          "status": "PUBLISHED",
+          "verification_status": "VERIFIED_CANONICAL"
+        },
+        "grade9v3:provenance_class": "SOURCE_UNVERIFIED",
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Generate a candidate from opposite side changes, then check both sides."
+          },
+          "exam_source_badge": "Legacy textbook/exemplar wording; verification pending",
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Set up a table of LHS and RHS values for trial values of x."
+        },
+        "grade9v3:classification_status": "AUTHOR_ESTIMATE_REQUIRES_REVIEW",
+        "grade9v3:unavailable_authored_visuals": {
+          "original_representation_roles": {
+            "initial_ref": "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+            "safe_ref": null,
+            "bound_ref": "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+            "stage_refs": [
+              "VIS-MAT-LEQ-01-T0"
+            ]
+          },
+          "reason": "Legacy authored SVG assets are absent. The source supplies no figure; text/scaffolds remain complete. No decorative substitute or source-figure claim."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-8-UNIT2",
+      "original_identifier": "NCERT Exemplar Problems, Class VIII Mathematics / Unit 'Linear Equations in One Variable', Exercise / Q17",
+      "stem": "The solution of the equation 3x – 4 = 1 – 2x is _________.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The equation is linear in the one variable x.",
+        "A solution makes the LHS and RHS equal."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "x = 1",
+        "reasoning": [
+          "Tabulate both sides for small whole numbers: x = 0 gives −4 and 1; x = 1 gives −1 and −1; x = 2 gives 2 and −3.",
+          "As x grows by 1 the LHS rises by 3 and the RHS falls by 2, so the sides meet once.",
+          "They are equal at x = 1, which matches the official key."
+        ],
+        "check": "Substitute x = 1: 3(1) − 4 = −1 and 1 − 2(1) = −1.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "NOT_RUN",
+        "reasoning_route": [
+          {
+            "id": "Q17-REP",
+            "kind": "REPRESENT",
+            "action": "Set up a table of LHS and RHS values for trial values of x.",
+            "why_valid": "With no options given, candidates must be produced and each judged by equal side values.",
+            "inputs": [],
+            "output": "table with columns x, 3x − 4, 1 − 2x"
+          },
+          {
+            "id": "Q17-DEC",
+            "kind": "DECIDE",
+            "action": "Use the direction of change (LHS up by 3, RHS down by 2 per step) to steer trials toward the crossing.",
+            "why_valid": "A rising side and a falling side can be equal at most once, and the gap closes by 5 per step.",
+            "inputs": [
+              "x = 0 row: −4 and 1"
+            ],
+            "output": "the gap at x = 0 is 5, so one step reaches equality"
+          },
+          {
+            "id": "Q17-CHK",
+            "kind": "VERIFY",
+            "action": "Confirm the crossing value by substitution into the original equation.",
+            "why_valid": "Equal side values define a solution.",
+            "inputs": [],
+            "output": "x = 1 gives −1 = −1"
+          }
+        ],
+        "crux_move_ref": "Q17-DEC"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-01-SUBSTITUTION",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "There are no options this time. What would a value of x have to do to the two sides to be the solution?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q17-REP"
+        },
+        {
+          "text": "Make a table for x = 0, 1, 2 with one column for 3x – 4 and one for 1 – 2x.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q17-REP"
+        },
+        {
+          "text": "At x = 0 the LHS is 5 below the RHS. By how much does that gap shrink each time x goes up by 1?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q17-DEC"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {},
+      "failure_signal": "You wrote 5: that treats –2x as if it were +2x when collecting terms. At x = 5 the LHS is 11 but the RHS is 1 – 10 = –9.",
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-01-SUBSTITUTION",
+        "closure": "Established: without options, a solution is found by producing candidates and judging each by equal side values; here the sides cross once, at x = 1. The transfer item fixes x and hides a constant instead."
+      },
+      "repair_ref": "LEQ1-2"
+    },
+    {
+      "id": "Q-MAT-LEQ-01-EXEMPLAR8-Q20",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-8-UNIT2",
+        "SRC-NCERT-8-LINEQ-ONE",
+        "SRC-NCERT-EXEMPLAR-8-ANSWERS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-01-011",
+        "EV-MAT-09-LEQ-01-002",
+        "EV-MAT-09-LEQ-01-012"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-01",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-MAT-09-LEQ-01-011"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-01-002"
+          ],
+          "answer": [
+            "EV-MAT-09-LEQ-01-012"
+          ],
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure": "AUTHORED_PEDAGOGICAL",
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer": "AUTHORED_PEDAGOGICAL"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 2
+          },
+          "question_type": "constructed_response",
+          "expected_time_seconds": 120,
+          "topic_label": "Linear Equations in One Variable",
+          "topic_ref": "TOPIC-MATHEMATICS-LINEAR-EQUATIONS",
+          "subject_ref": "SUBJECT-MATHEMATICS",
+          "exam": "NCERT Exemplar",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics"
+        },
+        "grade9v3:source_custody": {
+          "exam": "NCERT Exemplar",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics",
+          "question_number": "Q20",
+          "source_status": "NCERT_AUTHENTIC",
+          "authority_class": "CURRICULAR_STANDARD",
+          "wording_custody": "FAITHFUL_NCERT",
+          "provenance_class": "NCERT_PRACTICE_RECORD",
+          "last_checked": "2026-10-02",
+          "continuation_verification": "NOT_RUN"
+        },
+        "grade9v3:legacy_claim_quarantine": {
+          "id": "Q-MAT-LEQ-01-EXEMPLAR8-Q20",
+          "status": "PUBLISHED",
+          "verification_status": "VERIFIED_CANONICAL"
+        },
+        "grade9v3:provenance_class": "SOURCE_UNVERIFIED",
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "Translate the missing slot into an unknown and substitute the given negative solution."
+          },
+          "exam_source_badge": "Legacy textbook/exemplar wording; verification pending",
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Name the blank as an unknown constant k."
+        },
+        "grade9v3:classification_status": "AUTHOR_ESTIMATE_REQUIRES_REVIEW",
+        "grade9v3:unavailable_authored_visuals": {
+          "original_representation_roles": {
+            "initial_ref": null,
+            "safe_ref": "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+            "bound_ref": "REP-MAT-LEQ-01-SIDE-BY-SIDE-TABLE",
+            "stage_refs": [
+              "VIS-MAT-LEQ-01-T0"
+            ]
+          },
+          "reason": "Legacy authored SVG assets are absent. The source supplies no figure; text/scaffolds remain complete. No decorative substitute or source-figure claim."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-8-UNIT2",
+      "original_identifier": "NCERT Exemplar Problems, Class VIII Mathematics / Unit 'Linear Equations in One Variable', Exercise / Q20",
+      "stem": "9x – _________ = –21 has the solution (–2)",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "The blank holds one number.",
+        "x = –2 must make the two sides equal."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "3",
+        "reasoning": [
+          "Call the missing number k, so the equation is 9x − k = −21.",
+          "Since −2 is the solution, substitute x = −2: 9(−2) − k = −21, that is −18 − k = −21.",
+          "So k = −18 + 21 = 3, matching the official key."
+        ],
+        "check": "With k = 3: 9(−2) − 3 = −18 − 3 = −21, which is the RHS.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "NOT_RUN",
+        "reasoning_route": [
+          {
+            "id": "Q20-REP",
+            "kind": "REPRESENT",
+            "action": "Name the blank as an unknown constant k.",
+            "why_valid": "The blank is a number, so it can be carried as a symbol.",
+            "inputs": [],
+            "output": "9x − k = −21"
+          },
+          {
+            "id": "Q20-DEC",
+            "kind": "DECIDE",
+            "action": "Substitute the given solution x = −2 before solving anything, making k the only unknown.",
+            "why_valid": "A stated solution guarantees equal sides at that value, which gives an equation in k.",
+            "inputs": [
+              "x = −2"
+            ],
+            "output": "−18 − k = −21"
+          },
+          {
+            "id": "Q20-SOLVE",
+            "kind": "TRANSFORM",
+            "action": "Solve −18 − k = −21 for k.",
+            "why_valid": "k is the number that, taken from −18, leaves −21.",
+            "inputs": [],
+            "output": "k = 3"
+          },
+          {
+            "id": "Q20-CHK",
+            "kind": "VERIFY",
+            "action": "Substitute x = −2 and k = 3 back into 9x − k.",
+            "why_valid": "The completed equation must be true at its stated solution.",
+            "inputs": [],
+            "output": "−21 = −21"
+          }
+        ],
+        "crux_move_ref": "Q20-DEC"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-01-SUBSTITUTION",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Give the blank a name, such as k, and rewrite the equation with it.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q20-REP"
+        },
+        {
+          "text": "Your rewritten equation has two letters, x and k. For each one, say whether the question tells you its value or asks you to find it.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q20-REP"
+        },
+        {
+          "text": "Name the relation that the words ‘has the solution (–2)’ promise: what must be true of the two sides of the equation at a solution?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q20-CHK"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {},
+      "failure_signal": "You wrote 39 (from 9 × (–2) = +18) or –3 (dropping the minus in front of the blank). With 3, 9(–2) – 3 = –21 exactly.",
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-01-SUBSTITUTION",
+        "closure": "Established: a stated solution can be substituted to create an equation for a missing constant, and the same side-equality test confirms the completed equation."
+      },
+      "repair_ref": "LEQ1-3",
+      "transfer": {
+        "dimension": "novelty",
+        "statement": "Novelty: the solution is given and a constant is missing, so substitution now builds an equation for the constant instead of testing a candidate for x. The decision to substitute before solving is new because in the earlier items x was the unknown.",
+        "builds_on": [
+          "Q-MAT-LEQ-01-EXEMPLAR8-Q6",
+          "Q-MAT-LEQ-01-EXEMPLAR8-Q17"
+        ],
+        "protected_move_ref": "Q20-DEC",
+        "invariant": "A number is a solution exactly when it makes the LHS and RHS equal; that test still decides the answer, now with x = –2 fixed and the constant free."
+      },
+      "independent_check": {
+        "statement": "Check with a second value of the blank: k = 2 gives 9(–2) – 2 = –20, not –21, so only k = 3 works.",
+        "check_type": "SPECIAL_CASE"
+      }
+    },
+    {
+      "id": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q1",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-8-LINEQ-ONE",
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-NCERT-8-ANSWERS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-02-007",
+        "EV-MAT-09-LEQ-02-004",
+        "EV-MAT-09-LEQ-02-001",
+        "EV-MAT-09-LEQ-02-008"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-02",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-MAT-09-LEQ-02-007"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-02-004",
+            "EV-MAT-09-LEQ-02-001"
+          ],
+          "answer": [
+            "EV-MAT-09-LEQ-02-008"
+          ],
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure": "AUTHORED_PEDAGOGICAL",
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 2
+          },
+          "question_type": "constructed_response",
+          "expected_time_seconds": 120,
+          "topic_label": "Linear Equations in One Variable",
+          "topic_ref": "TOPIC-MATHEMATICS-LINEAR-EQUATIONS",
+          "subject_ref": "SUBJECT-MATHEMATICS",
+          "exam": "NCERT Textbook",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics"
+        },
+        "grade9v3:source_custody": {
+          "exam": "NCERT Textbook",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics",
+          "question_number": "Q1",
+          "source_status": "NCERT_AUTHENTIC",
+          "authority_class": "CURRICULAR_STANDARD",
+          "wording_custody": "FAITHFUL_NCERT",
+          "provenance_class": "NCERT_PRACTICE_RECORD",
+          "last_checked": "2026-10-02",
+          "continuation_verification": "NOT_RUN"
+        },
+        "grade9v3:legacy_claim_quarantine": {
+          "id": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q1",
+          "status": "PUBLISHED",
+          "verification_status": "VERIFIED_CANONICAL"
+        },
+        "grade9v3:provenance_class": "SOURCE_UNVERIFIED",
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D1",
+            "score": 1,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "One same-operation cancellation leaves the stated integer."
+          },
+          "exam_source_badge": "Legacy textbook/exemplar wording; verification pending",
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Remove 2x from the RHS by subtracting 2x from both sides."
+        },
+        "grade9v3:classification_status": "AUTHOR_ESTIMATE_REQUIRES_REVIEW",
+        "grade9v3:unavailable_authored_visuals": {
+          "original_representation_roles": {
+            "initial_ref": "REP-MAT-LEQ-02-BALANCE",
+            "safe_ref": null,
+            "bound_ref": "REP-MAT-LEQ-02-BALANCE",
+            "stage_refs": [
+              "VIS-MAT-LEQ-02-B0"
+            ]
+          },
+          "reason": "Legacy authored SVG assets are absent. The source supplies no figure; text/scaffolds remain complete. No decorative substitute or source-figure claim."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-8-LINEQ-ONE",
+      "original_identifier": "NCERT Class VIII Mathematics textbook exercises / Chapter 2 Linear Equations in One Variable, Exercise 2.1 (Reprint 2024-25) / Q1",
+      "stem": "Solve the following equation and check your result: 3x = 2x + 18",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Solve the equation and check the result, as the exercise asks.",
+        "Adding or subtracting the same number on both sides, or multiplying or dividing both sides by the same non-zero number, does not change the solution."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "x = 18",
+        "reasoning": [
+          "Subtract 2x from both sides: 3x − 2x = 18.",
+          "So x = 18, matching the official answer."
+        ],
+        "check": "3(18) = 54 and 2(18) + 18 = 54.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "NOT_RUN",
+        "reasoning_route": [
+          {
+            "id": "Q1-DEC",
+            "kind": "DECIDE",
+            "action": "Remove 2x from the RHS by subtracting 2x from both sides.",
+            "why_valid": "Only the variable term stands between this equation and x alone; subtracting it from both sides keeps the balance.",
+            "inputs": [
+              "3x = 2x + 18"
+            ],
+            "output": "3x − 2x = 18"
+          },
+          {
+            "id": "Q1-SIM",
+            "kind": "TRANSFORM",
+            "action": "Combine 3x − 2x.",
+            "why_valid": "Like terms combine by their coefficients.",
+            "inputs": [],
+            "output": "x = 18"
+          },
+          {
+            "id": "Q1-CHK",
+            "kind": "VERIFY",
+            "action": "Substitute x = 18 in 3x = 2x + 18.",
+            "why_valid": "The exercise asks for a check in the equation given.",
+            "inputs": [],
+            "output": "54 = 54"
+          }
+        ],
+        "crux_move_ref": "Q1-DEC"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-02-BOTH-SIDES",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Picture the equation as a balance: what is on each pan?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q1-DEC"
+        },
+        {
+          "text": "Which x-tiles could you take off both pans at once?",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q1-DEC"
+        },
+        {
+          "text": "After taking 2x off both pans, what is left on the left, and what on the right?",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q1-SIM"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {},
+      "failure_signal": "You wrote x = 18/5: moving 2x to the left without changing its sign gives 5x = 18. Check: 3(18/5) = 54/5, but 2(18/5) + 18 = 126/5.",
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-02-BOTH-SIDES",
+        "closure": "Established: one balanced subtraction of the variable term isolates x when the coefficients differ by 1, and the check uses the given equation."
+      },
+      "repair_ref": "LEQ2-3"
+    },
+    {
+      "id": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q2",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-8-LINEQ-ONE",
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-NCERT-8-ANSWERS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-02-009",
+        "EV-MAT-09-LEQ-02-004",
+        "EV-MAT-09-LEQ-02-001",
+        "EV-MAT-09-LEQ-02-010"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-02",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-MAT-09-LEQ-02-009"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-02-004",
+            "EV-MAT-09-LEQ-02-001"
+          ],
+          "answer": [
+            "EV-MAT-09-LEQ-02-010"
+          ],
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure": "AUTHORED_PEDAGOGICAL",
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 2
+          },
+          "question_type": "constructed_response",
+          "expected_time_seconds": 120,
+          "topic_label": "Linear Equations in One Variable",
+          "topic_ref": "TOPIC-MATHEMATICS-LINEAR-EQUATIONS",
+          "subject_ref": "SUBJECT-MATHEMATICS",
+          "exam": "NCERT Textbook",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics"
+        },
+        "grade9v3:source_custody": {
+          "exam": "NCERT Textbook",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics",
+          "question_number": "Q2",
+          "source_status": "NCERT_AUTHENTIC",
+          "authority_class": "CURRICULAR_STANDARD",
+          "wording_custody": "FAITHFUL_NCERT",
+          "provenance_class": "NCERT_PRACTICE_RECORD",
+          "last_checked": "2026-10-02",
+          "continuation_verification": "NOT_RUN"
+        },
+        "grade9v3:legacy_claim_quarantine": {
+          "id": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q2",
+          "status": "PUBLISHED",
+          "verification_status": "VERIFIED_CANONICAL"
+        },
+        "grade9v3:provenance_class": "SOURCE_UNVERIFIED",
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Collect variable terms and constants; preserve negative signs through the exact check."
+          },
+          "exam_source_badge": "Legacy textbook/exemplar wording; verification pending",
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Collect t-terms on the LHS by subtracting 3t from both sides."
+        },
+        "grade9v3:classification_status": "AUTHOR_ESTIMATE_REQUIRES_REVIEW",
+        "grade9v3:unavailable_authored_visuals": {
+          "original_representation_roles": {
+            "initial_ref": "REP-MAT-LEQ-02-BALANCE",
+            "safe_ref": null,
+            "bound_ref": "REP-MAT-LEQ-02-BALANCE",
+            "stage_refs": [
+              "VIS-MAT-LEQ-02-B0"
+            ]
+          },
+          "reason": "Legacy authored SVG assets are absent. The source supplies no figure; text/scaffolds remain complete. No decorative substitute or source-figure claim."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-8-LINEQ-ONE",
+      "original_identifier": "NCERT Class VIII Mathematics textbook exercises / Chapter 2 Linear Equations in One Variable, Exercise 2.1 (Reprint 2024-25) / Q2",
+      "stem": "Solve the following equation and check your result: 5t – 3 = 3t – 5",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Solve the equation and check the result, as the exercise asks.",
+        "Adding or subtracting the same number on both sides, or multiplying or dividing both sides by the same non-zero number, does not change the solution."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "t = −1",
+        "reasoning": [
+          "Subtract 3t from both sides: 2t − 3 = −5.",
+          "Add 3 to both sides: 2t = −2.",
+          "Divide both sides by 2: t = −1, matching the official answer."
+        ],
+        "check": "5(−1) − 3 = −8 and 3(−1) − 5 = −8.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "NOT_RUN",
+        "reasoning_route": [
+          {
+            "id": "Q2-DEC",
+            "kind": "DECIDE",
+            "action": "Collect t-terms on the LHS by subtracting 3t from both sides.",
+            "why_valid": "The LHS has the larger t-coefficient, so collecting there keeps a positive coefficient.",
+            "inputs": [
+              "5t − 3 = 3t − 5"
+            ],
+            "output": "2t − 3 = −5"
+          },
+          {
+            "id": "Q2-NUM",
+            "kind": "TRANSFORM",
+            "action": "Add 3 to both sides.",
+            "why_valid": "The same number added to both sides keeps the balance.",
+            "inputs": [],
+            "output": "2t = −2"
+          },
+          {
+            "id": "Q2-DIV",
+            "kind": "TRANSFORM",
+            "action": "Divide both sides by 2.",
+            "why_valid": "2 is non-zero, so the solution is unchanged.",
+            "inputs": [],
+            "output": "t = −1"
+          },
+          {
+            "id": "Q2-CHK",
+            "kind": "VERIFY",
+            "action": "Substitute t = −1 into the original equation.",
+            "why_valid": "Confirms the value in the equation given.",
+            "inputs": [],
+            "output": "−8 = −8"
+          }
+        ],
+        "crux_move_ref": "Q2-DEC"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-02-BOTH-SIDES",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Both sides have t-terms and both have negative numbers. Which side will you gather the t-terms on?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q2-DEC"
+        },
+        {
+          "text": "Write the result of subtracting 3t from both whole sides before touching the numbers.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q2-DEC"
+        },
+        {
+          "text": "From 2t − 3 = −5, what do you add to both sides so only 2t is left on the left?",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q2-NUM"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {},
+      "failure_signal": "You wrote t = 1: after subtracting 3t you wrote 2t = 5 − 3 instead of −5 + 3. Check t = 1: the LHS is 2 but the RHS is −2.",
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-02-BOTH-SIDES",
+        "closure": "Established: negative constants on both sides move by the same balanced additions, and a negative solution is checked like any other."
+      },
+      "repair_ref": "LEQ2-2"
+    },
+    {
+      "id": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q3",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-8-LINEQ-ONE",
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-NCERT-8-ANSWERS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-02-011",
+        "EV-MAT-09-LEQ-02-004",
+        "EV-MAT-09-LEQ-02-001",
+        "EV-MAT-09-LEQ-02-012"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-02",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-MAT-09-LEQ-02-011"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-02-004",
+            "EV-MAT-09-LEQ-02-001"
+          ],
+          "answer": [
+            "EV-MAT-09-LEQ-02-012"
+          ],
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure": "AUTHORED_PEDAGOGICAL",
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 2
+          },
+          "question_type": "constructed_response",
+          "expected_time_seconds": 120,
+          "topic_label": "Linear Equations in One Variable",
+          "topic_ref": "TOPIC-MATHEMATICS-LINEAR-EQUATIONS",
+          "subject_ref": "SUBJECT-MATHEMATICS",
+          "exam": "NCERT Textbook",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics"
+        },
+        "grade9v3:source_custody": {
+          "exam": "NCERT Textbook",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics",
+          "question_number": "Q3",
+          "source_status": "NCERT_AUTHENTIC",
+          "authority_class": "CURRICULAR_STANDARD",
+          "wording_custody": "FAITHFUL_NCERT",
+          "provenance_class": "NCERT_PRACTICE_RECORD",
+          "last_checked": "2026-10-02",
+          "continuation_verification": "NOT_RUN"
+        },
+        "grade9v3:legacy_claim_quarantine": {
+          "id": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q3",
+          "status": "PUBLISHED",
+          "verification_status": "VERIFIED_CANONICAL"
+        },
+        "grade9v3:provenance_class": "SOURCE_UNVERIFIED",
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Collect the two variable occurrences, undo the constant and verify the negative solution."
+          },
+          "exam_source_badge": "Legacy textbook/exemplar wording; verification pending",
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Remove 3x from the RHS by subtracting 3x from both sides, even though it is written after the number."
+        },
+        "grade9v3:classification_status": "AUTHOR_ESTIMATE_REQUIRES_REVIEW",
+        "grade9v3:unavailable_authored_visuals": {
+          "original_representation_roles": {
+            "initial_ref": "REP-MAT-LEQ-02-BALANCE",
+            "safe_ref": null,
+            "bound_ref": "REP-MAT-LEQ-02-BALANCE",
+            "stage_refs": [
+              "VIS-MAT-LEQ-02-B0"
+            ]
+          },
+          "reason": "Legacy authored SVG assets are absent. The source supplies no figure; text/scaffolds remain complete. No decorative substitute or source-figure claim."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-8-LINEQ-ONE",
+      "original_identifier": "NCERT Class VIII Mathematics textbook exercises / Chapter 2 Linear Equations in One Variable, Exercise 2.1 (Reprint 2024-25) / Q3",
+      "stem": "Solve the following equation and check your result: 5x + 9 = 5 + 3x",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Solve the equation and check the result, as the exercise asks.",
+        "Adding or subtracting the same number on both sides, or multiplying or dividing both sides by the same non-zero number, does not change the solution."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "x = −2",
+        "reasoning": [
+          "Subtract 3x from both sides: 2x + 9 = 5.",
+          "Subtract 9 from both sides: 2x = −4.",
+          "Divide both sides by 2: x = −2, matching the official answer."
+        ],
+        "check": "5(−2) + 9 = −1 and 5 + 3(−2) = −1.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "NOT_RUN",
+        "reasoning_route": [
+          {
+            "id": "Q3-DEC",
+            "kind": "DECIDE",
+            "action": "Remove 3x from the RHS by subtracting 3x from both sides, even though it is written after the number.",
+            "why_valid": "Position in the expression does not matter; the variable term is removed by the same subtraction on both sides.",
+            "inputs": [
+              "5x + 9 = 5 + 3x"
+            ],
+            "output": "2x + 9 = 5"
+          },
+          {
+            "id": "Q3-NUM",
+            "kind": "TRANSFORM",
+            "action": "Subtract 9 from both sides.",
+            "why_valid": "The same number removed from both sides keeps the balance.",
+            "inputs": [],
+            "output": "2x = −4"
+          },
+          {
+            "id": "Q3-DIV",
+            "kind": "TRANSFORM",
+            "action": "Share both sides equally between the 2 x-tiles, that is, divide both sides by 2.",
+            "why_valid": "2 is non-zero.",
+            "inputs": [],
+            "output": "x = −2"
+          },
+          {
+            "id": "Q3-CHK",
+            "kind": "VERIFY",
+            "action": "Substitute x = −2 into the original equation.",
+            "why_valid": "A negative answer is easy to mis-sign, so it is tested where no step could have altered it.",
+            "inputs": [],
+            "output": "−1 = −1"
+          }
+        ],
+        "crux_move_ref": "Q3-DEC"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-02-BOTH-SIDES",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Which terms contain x, and on which sides are they?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q3-DEC"
+        },
+        {
+          "text": "Draw the pans: 5 x-tiles and 9 units on the left; 5 units and 3 x-tiles on the right.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q3-DEC"
+        },
+        {
+          "text": "After removing 3 x-tiles from both pans, what must you remove from both to leave only x-tiles on the left?",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q3-NUM"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {},
+      "failure_signal": "You wrote x = 7: moving 9 to the right as +9 gives 2x = 14. Check x = 7: the LHS is 44 but the RHS is 26.",
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-02-BOTH-SIDES",
+        "closure": "Established: the variable term is removed by a balanced subtraction wherever it sits, and a number crossing the equality sign changes sign, which here makes the solution negative."
+      },
+      "repair_ref": "LEQ2-3"
+    },
+    {
+      "id": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q5",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-8-LINEQ-ONE",
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-NCERT-8-ANSWERS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-02-013",
+        "EV-MAT-09-LEQ-02-004",
+        "EV-MAT-09-LEQ-02-001",
+        "EV-MAT-09-LEQ-02-014"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-02",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-MAT-09-LEQ-02-013"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-02-004",
+            "EV-MAT-09-LEQ-02-001"
+          ],
+          "answer": [
+            "EV-MAT-09-LEQ-02-014"
+          ],
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure": "AUTHORED_PEDAGOGICAL",
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL",
+          "transfer": "AUTHORED_PEDAGOGICAL"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 2
+          },
+          "question_type": "constructed_response",
+          "expected_time_seconds": 120,
+          "topic_label": "Linear Equations in One Variable",
+          "topic_ref": "TOPIC-MATHEMATICS-LINEAR-EQUATIONS",
+          "subject_ref": "SUBJECT-MATHEMATICS",
+          "exam": "NCERT Textbook",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics"
+        },
+        "grade9v3:source_custody": {
+          "exam": "NCERT Textbook",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics",
+          "question_number": "Q5",
+          "source_status": "NCERT_AUTHENTIC",
+          "authority_class": "CURRICULAR_STANDARD",
+          "wording_custody": "FAITHFUL_NCERT",
+          "provenance_class": "NCERT_PRACTICE_RECORD",
+          "last_checked": "2026-10-02",
+          "continuation_verification": "NOT_RUN"
+        },
+        "grade9v3:legacy_claim_quarantine": {
+          "id": "Q-MAT-LEQ-02-NCERT8-EX2-1-Q5",
+          "status": "PUBLISHED",
+          "verification_status": "VERIFIED_CANONICAL"
+        },
+        "grade9v3:provenance_class": "SOURCE_UNVERIFIED",
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Variable occurrences are on opposite sides, including a negative coefficient."
+          },
+          "exam_source_badge": "Legacy textbook/exemplar wording; verification pending",
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Read the RHS variable term with its sign: it is −x, not x."
+        },
+        "grade9v3:classification_status": "AUTHOR_ESTIMATE_REQUIRES_REVIEW",
+        "grade9v3:unavailable_authored_visuals": {
+          "original_representation_roles": {
+            "initial_ref": null,
+            "safe_ref": "REP-MAT-LEQ-02-BALANCE",
+            "bound_ref": "REP-MAT-LEQ-02-BALANCE",
+            "stage_refs": [
+              "VIS-MAT-LEQ-02-B0"
+            ]
+          },
+          "reason": "Legacy authored SVG assets are absent. The source supplies no figure; text/scaffolds remain complete. No decorative substitute or source-figure claim."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-8-LINEQ-ONE",
+      "original_identifier": "NCERT Class VIII Mathematics textbook exercises / Chapter 2 Linear Equations in One Variable, Exercise 2.1 (Reprint 2024-25) / Q5",
+      "stem": "Solve the following equation and check your result: 2x – 1 = 14 – x",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Solve the equation and check the result, as the exercise asks.",
+        "Adding or subtracting the same number on both sides, or multiplying or dividing both sides by the same non-zero number, does not change the solution."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "x = 5",
+        "reasoning": [
+          "The x-term on the RHS is −x, so add x to both sides: 3x − 1 = 14.",
+          "Add 1 to both sides: 3x = 15.",
+          "Divide both sides by 3: x = 5, matching the official answer."
+        ],
+        "check": "2(5) − 1 = 9 and 14 − 5 = 9.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "NOT_RUN",
+        "reasoning_route": [
+          {
+            "id": "Q5-REP",
+            "kind": "REPRESENT",
+            "action": "Read the RHS variable term with its sign: it is −x, not x.",
+            "why_valid": "The sign is part of the term, and it decides which operation removes it.",
+            "inputs": [],
+            "output": "RHS = 14 + (−x)"
+          },
+          {
+            "id": "Q5-DEC",
+            "kind": "DECIDE",
+            "action": "Remove −x by adding x to both sides, not by subtracting x.",
+            "why_valid": "Adding x to both sides cancels −x on the right and keeps the balance.",
+            "inputs": [
+              "RHS term −x"
+            ],
+            "output": "3x − 1 = 14"
+          },
+          {
+            "id": "Q5-NUM",
+            "kind": "TRANSFORM",
+            "action": "Add 1 to both sides, then divide both sides by 3.",
+            "why_valid": "Balanced operations; 3 is non-zero.",
+            "inputs": [],
+            "output": "x = 5"
+          },
+          {
+            "id": "Q5-CHK",
+            "kind": "VERIFY",
+            "action": "Substitute x = 5 into the original equation.",
+            "why_valid": "Confirms the value in the given equation.",
+            "inputs": [],
+            "output": "9 = 9"
+          }
+        ],
+        "crux_move_ref": "Q5-DEC"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-02-BOTH-SIDES",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2B",
+          "role": "NEW_TRANSFER",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Rewrite the right-hand side so each term shows its own sign.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q5-REP"
+        },
+        {
+          "text": "On the balance, the right pan holds 14 units and one negative x-tile.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q5-REP"
+        },
+        {
+          "text": "Name the relation you will test at the end: for your value of x, which two expressions in the equation must come out equal?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q5-CHK"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {},
+      "failure_signal": "You wrote x = 15: subtracting x (instead of adding it) gives 2x − x = 14 + 1. Check x = 15: the LHS is 29 but the RHS is −1.",
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-02-BOTH-SIDES",
+        "closure": "Established: the operation that removes a variable term is fixed by that term's sign; a negative term is removed by adding it to both sides."
+      },
+      "repair_ref": "LEQ2-3",
+      "transfer": {
+        "dimension": "novelty",
+        "statement": "Novelty: in the earlier items the right-hand variable term was positive (2x, 3x) and was removed by subtracting it; here it is −x, so the balanced operation that collects it is adding x to both sides. The decision is new because the familiar move, subtract the RHS term, now doubles the error instead of removing the term.",
+        "builds_on": [
+          "Q-MAT-LEQ-02-NCERT8-EX2-1-Q1",
+          "Q-MAT-LEQ-02-NCERT8-EX2-1-Q3"
+        ],
+        "protected_move_ref": "Q5-DEC",
+        "invariant": "The same operation on both sides keeps the solution, and a term crossing the equality sign changes sign; only which operation removes the RHS variable term changes."
+      },
+      "independent_check": {
+        "statement": "Collect on the right instead: subtracting 2x and 14 from both sides gives −15 = −3x, so x = 5 again.",
+        "check_type": "ALTERNATE_METHOD"
+      }
+    },
+    {
+      "id": "Q-MAT-LEQ-02-EXEMPLAR9-4-1-Q16",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-NCERT-EXEMPLAR-9-ANSWERS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-02-015",
+        "EV-MAT-09-LEQ-02-004",
+        "EV-MAT-09-LEQ-02-016"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-02",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-MAT-09-LEQ-02-015"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-02-004"
+          ],
+          "answer": [
+            "EV-MAT-09-LEQ-02-016"
+          ],
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure": "AUTHORED_PEDAGOGICAL",
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 1
+          },
+          "question_type": "single_choice",
+          "expected_time_seconds": 120,
+          "topic_label": "Linear Equations in One Variable",
+          "topic_ref": "TOPIC-MATHEMATICS-LINEAR-EQUATIONS",
+          "subject_ref": "SUBJECT-MATHEMATICS",
+          "exam": "NCERT Exemplar",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics"
+        },
+        "grade9v3:source_custody": {
+          "exam": "NCERT Exemplar",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics",
+          "question_number": "Q16",
+          "source_status": "NCERT_AUTHENTIC",
+          "authority_class": "CURRICULAR_STANDARD",
+          "wording_custody": "FAITHFUL_NCERT",
+          "provenance_class": "NCERT_PRACTICE_RECORD",
+          "last_checked": "2026-10-02",
+          "continuation_verification": "NOT_RUN"
+        },
+        "grade9v3:legacy_claim_quarantine": {
+          "id": "Q-MAT-LEQ-02-EXEMPLAR9-4-1-Q16",
+          "status": "PUBLISHED",
+          "verification_status": "VERIFIED_CANONICAL"
+        },
+        "grade9v3:provenance_class": "SOURCE_UNVERIFIED",
+        "grade9v3:analysis": {
+          "learner_question_type": "single_correct_mcq",
+          "difficulty": {
+            "band": "D1",
+            "score": 1,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 0,
+              "reasoning_chain_length": 0,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Classify the preserved solution under the explicitly nonzero multiplier condition."
+          },
+          "exam_source_badge": "Legacy textbook/exemplar wording; verification pending",
+          "cognitive_demand": {
+            "primary": "RETRIEVE",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Pick a concrete equation with a known solution, such as 2x = 10."
+        },
+        "grade9v3:classification_status": "AUTHOR_ESTIMATE_REQUIRES_REVIEW",
+        "grade9v3:unavailable_authored_visuals": {
+          "original_representation_roles": {
+            "initial_ref": "REP-MAT-LEQ-02-BALANCE",
+            "safe_ref": null,
+            "bound_ref": "REP-MAT-LEQ-02-BALANCE",
+            "stage_refs": [
+              "VIS-MAT-LEQ-02-B0"
+            ]
+          },
+          "reason": "Legacy authored SVG assets are absent. The source supplies no figure; text/scaffolds remain complete. No decorative substitute or source-figure claim."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+      "original_identifier": "NCERT Exemplar Problems, Class IX Mathematics / Chapter 4 Linear Equations in Two Variables, Exercise 4.1 / Q16",
+      "stem": "If we multiply or divide both sides of a linear equation with a non-zero number, then the solution of the linear equation :",
+      "subparts": [],
+      "options": [
+        "(A) Changes",
+        "(B) Remains the same",
+        "(C) Changes in case of multiplication only",
+        "(D) Changes in case of division only"
+      ],
+      "conditions": [
+        "The multiplier or divisor is the same non-zero number on both sides."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(B) Remains the same",
+        "reasoning": [
+          "Multiplying or dividing both sides by the same non-zero number keeps the two sides equal for exactly the same values.",
+          "Test: 2x = 10 has x = 5; multiplying both sides by 3 gives 6x = 30, still x = 5; dividing both sides by 2 gives x = 5.",
+          "So the solution remains the same, option (B), matching the official key."
+        ],
+        "check": "Every value that makes 2x = 10 true makes 6x = 30 true and conversely, because dividing by 3 undoes the multiplication.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "NOT_RUN",
+        "reasoning_route": [
+          {
+            "id": "Q16-REP",
+            "kind": "REPRESENT",
+            "action": "Pick a concrete equation with a known solution, such as 2x = 10.",
+            "why_valid": "A general claim about operations can be tested on one example before trusting recall.",
+            "inputs": [],
+            "output": "2x = 10, x = 5"
+          },
+          {
+            "id": "Q16-DEC",
+            "kind": "DECIDE",
+            "action": "Apply multiplication and division by non-zero numbers to both sides and compare solutions.",
+            "why_valid": "Options (C) and (D) separate the two operations, so both must be tested.",
+            "inputs": [],
+            "output": "6x = 30 and x = 5 both give x = 5"
+          },
+          {
+            "id": "Q16-CHK",
+            "kind": "VERIFY",
+            "action": "Confirm that each step can be undone by a non-zero inverse operation.",
+            "why_valid": "An undoable step cannot add or lose solutions.",
+            "inputs": [],
+            "output": "option (B)"
+          }
+        ],
+        "crux_move_ref": "Q16-DEC"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-02-BOTH-SIDES",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Think of a simple equation whose solution you already know.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q16-REP"
+        },
+        {
+          "text": "On a balance, what does multiplying both pans by 3 do to whether it is level?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q16-DEC"
+        },
+        {
+          "text": "Solve your equation after multiplying both sides by 3, and again after dividing both sides by 2.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q16-DEC"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {},
+      "failure_signal": "You chose (C) or (D), treating one operation as changing the numbers and so the answer. Multiply 2x = 10 by 3: 6x = 30 still gives x = 5; divide by 2: x = 5 again.",
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-02-BOTH-SIDES",
+        "closure": "Established: multiplication and division by the same non-zero number, like addition and subtraction of the same number, preserve the solution, which is what licenses the final division step in every item of this family."
+      },
+      "repair_ref": "LEQ2-4"
+    },
+    {
+      "id": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q7",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-8-LINEQ-ONE",
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-NCERT-8-ANSWERS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-03-008",
+        "EV-MAT-09-LEQ-03-002",
+        "EV-MAT-09-LEQ-02-004",
+        "EV-MAT-09-LEQ-03-009"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-03",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-MAT-09-LEQ-03-008"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-03-002",
+            "EV-MAT-09-LEQ-02-004"
+          ],
+          "answer": [
+            "EV-MAT-09-LEQ-03-009"
+          ],
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure": "AUTHORED_PEDAGOGICAL",
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 2
+          },
+          "question_type": "constructed_response",
+          "expected_time_seconds": 120,
+          "topic_label": "Linear Equations in One Variable",
+          "topic_ref": "TOPIC-MATHEMATICS-LINEAR-EQUATIONS",
+          "subject_ref": "SUBJECT-MATHEMATICS",
+          "exam": "NCERT Textbook",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics"
+        },
+        "grade9v3:source_custody": {
+          "exam": "NCERT Textbook",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics",
+          "question_number": "Q7",
+          "source_status": "NCERT_AUTHENTIC",
+          "authority_class": "CURRICULAR_STANDARD",
+          "wording_custody": "FAITHFUL_NCERT",
+          "provenance_class": "NCERT_PRACTICE_RECORD",
+          "last_checked": "2026-10-02",
+          "continuation_verification": "NOT_RUN"
+        },
+        "grade9v3:legacy_claim_quarantine": {
+          "id": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q7",
+          "status": "PUBLISHED",
+          "verification_status": "VERIFIED_CANONICAL"
+        },
+        "grade9v3:provenance_class": "SOURCE_UNVERIFIED",
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Distribute on both sides, collect terms and check the negative result."
+          },
+          "exam_source_badge": "Legacy textbook/exemplar wording; verification pending",
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Expand each bracket, multiplying both inside terms by the factor."
+        },
+        "grade9v3:classification_status": "AUTHOR_ESTIMATE_REQUIRES_REVIEW",
+        "grade9v3:unavailable_authored_visuals": {
+          "original_representation_roles": {
+            "initial_ref": "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+            "safe_ref": null,
+            "bound_ref": "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+            "stage_refs": [
+              "VIS-MAT-LEQ-03-A0"
+            ]
+          },
+          "reason": "Legacy authored SVG assets are absent. The source supplies no figure; text/scaffolds remain complete. No decorative substitute or source-figure claim."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-8-LINEQ-ONE",
+      "original_identifier": "NCERT Class VIII Mathematics textbook exercises / Chapter 2 Linear Equations in One Variable, Exercise 2.2 (Reprint 2024-25) / Q7",
+      "stem": "Simplify and solve the following linear equation: 3(t – 3) = 5(2t + 1)",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Open every bracket and combine like terms on each side before collecting terms across the equality sign.",
+        "The same operation on both whole sides (multiplying or dividing only by a non-zero number) keeps the solution."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "t = −2",
+        "reasoning": [
+          "Open both brackets: 3t − 9 = 10t + 5.",
+          "Subtract 3t and 5 from both sides: −14 = 7t.",
+          "Divide both sides by 7: t = −2, matching the official answer."
+        ],
+        "check": "3(−2 − 3) = −15 and 5(−4 + 1) = −15.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "NOT_RUN",
+        "reasoning_route": [
+          {
+            "id": "Q7-REP",
+            "kind": "REPRESENT",
+            "action": "Expand each bracket, multiplying both inside terms by the factor.",
+            "why_valid": "Opening a bracket gives an equal expression.",
+            "inputs": [],
+            "output": "3t − 9 = 10t + 5"
+          },
+          {
+            "id": "Q7-DEC",
+            "kind": "DECIDE",
+            "action": "Collect t-terms on the right, where the coefficient is larger.",
+            "why_valid": "Either side is valid; the right keeps the coefficient positive.",
+            "inputs": [],
+            "output": "−14 = 7t"
+          },
+          {
+            "id": "Q7-SOL",
+            "kind": "TRANSFORM",
+            "action": "Divide both sides by 7.",
+            "why_valid": "7 is non-zero.",
+            "inputs": [],
+            "output": "t = −2"
+          },
+          {
+            "id": "Q7-CHK",
+            "kind": "VERIFY",
+            "action": "Substitute t = −2 into both original brackets.",
+            "why_valid": "Confirms the reduction and the solve together.",
+            "inputs": [],
+            "output": "−15 = −15"
+          }
+        ],
+        "crux_move_ref": "Q7-REP"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-03-REDUCTION",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "What must happen to the brackets before any t-term can move?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q7-REP"
+        },
+        {
+          "text": "Draw the area cells for 5(2t + 1): how many cells, and what is in each?",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q7-REP"
+        },
+        {
+          "text": "After expanding, which side has more t? Collect there.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q7-DEC"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {},
+      "failure_signal": "You got t = −10/7: the 1 inside 5(2t + 1) was not multiplied by 5. Expanding fully gives 10t + 5, and t = −2 makes both sides −15.",
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-03-REDUCTION",
+        "closure": "Established: opening both brackets completely turns the equation into a both-sides equation already solved in the previous family."
+      },
+      "repair_ref": "LEQ3-2"
+    },
+    {
+      "id": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q9",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-8-LINEQ-ONE",
+        "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
+        "SRC-NCERT-8-ANSWERS",
+        "SRC-AUTHOR-MAT-09-LEQ-STAGING"
+      ],
+      "evidence_refs": [
+        "EV-MAT-09-LEQ-03-010",
+        "EV-MAT-09-LEQ-03-002",
+        "EV-MAT-09-LEQ-02-004",
+        "EV-MAT-09-LEQ-03-011"
+      ],
+      "extensions": {
+        "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-03",
+        "grade9v3:authored_by": "agent-author-math-1",
+        "grade9v3:citations": {
+          "stem": [
+            "EV-MAT-09-LEQ-03-010"
+          ],
+          "conditions": [
+            "EV-MAT-09-LEQ-03-002",
+            "EV-MAT-09-LEQ-02-004"
+          ],
+          "answer": [
+            "EV-MAT-09-LEQ-03-011"
+          ],
+          "scaffolds": "AUTHORED_PEDAGOGICAL",
+          "hint_ladder": "AUTHORED_PEDAGOGICAL",
+          "failure_signal": "AUTHORED_PEDAGOGICAL",
+          "family_exposure": "AUTHORED_PEDAGOGICAL",
+          "answer.reasoning_route": "AUTHORED_PEDAGOGICAL"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 2
+          },
+          "question_type": "constructed_response",
+          "expected_time_seconds": 120,
+          "topic_label": "Linear Equations in One Variable",
+          "topic_ref": "TOPIC-MATHEMATICS-LINEAR-EQUATIONS",
+          "subject_ref": "SUBJECT-MATHEMATICS",
+          "exam": "NCERT Textbook",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics"
+        },
+        "grade9v3:source_custody": {
+          "exam": "NCERT Textbook",
+          "year": 2024,
+          "paper": "Class 8/9 Mathematics",
+          "question_number": "Q9",
+          "source_status": "NCERT_AUTHENTIC",
+          "authority_class": "CURRICULAR_STANDARD",
+          "wording_custody": "FAITHFUL_NCERT",
+          "provenance_class": "NCERT_PRACTICE_RECORD",
+          "last_checked": "2026-10-02",
+          "continuation_verification": "NOT_RUN"
+        },
+        "grade9v3:legacy_claim_quarantine": {
+          "id": "Q-MAT-LEQ-03-NCERT8-EX2-2-Q9",
+          "status": "PUBLISHED",
+          "verification_status": "VERIFIED_CANONICAL"
+        },
+        "grade9v3:provenance_class": "SOURCE_UNVERIFIED",
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 2,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Translate four bracketed groups into signed terms, coordinate collection and exact division, then check both original sides."
+          },
+          "exam_source_badge": "Legacy textbook/exemplar wording; verification pending",
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Expand the three brackets, keeping each factor's sign."
+        },
+        "grade9v3:classification_status": "AUTHOR_ESTIMATE_REQUIRES_REVIEW",
+        "grade9v3:unavailable_authored_visuals": {
+          "original_representation_roles": {
+            "initial_ref": "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+            "safe_ref": null,
+            "bound_ref": "REP-MAT-LEQ-03-BRACKET-AREA-MODEL",
+            "stage_refs": [
+              "VIS-MAT-LEQ-03-A0"
+            ]
+          },
+          "reason": "Legacy authored SVG assets are absent. The source supplies no figure; text/scaffolds remain complete. No decorative substitute or source-figure claim."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-NCERT-8-LINEQ-ONE",
+      "original_identifier": "NCERT Class VIII Mathematics textbook exercises / Chapter 2 Linear Equations in One Variable, Exercise 2.2 (Reprint 2024-25) / Q9",
+      "stem": "Simplify and solve the following linear equation: 3(5z – 7) – 2(9z – 11) = 4(8z – 13) – 17",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Open every bracket and combine like terms on each side before collecting terms across the equality sign.",
+        "The same operation on both whole sides (multiplying or dividing only by a non-zero number) keeps the solution."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "z = 2",
+        "reasoning": [
+          "Open the brackets: 15z − 21 − 18z + 22 = 32z − 52 − 17.",
+          "Combine on each side: −3z + 1 = 32z − 69.",
+          "Add 3z and 69 to both sides: 70 = 35z, so z = 2, matching the official answer."
+        ],
+        "check": "LHS: 3(3) − 2(7) = −5. RHS: 4(3) − 17 = −5.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "NOT_RUN",
+        "reasoning_route": [
+          {
+            "id": "Q9-REP",
+            "kind": "REPRESENT",
+            "action": "Expand the three brackets, keeping each factor's sign.",
+            "why_valid": "Opening brackets gives equal expressions.",
+            "inputs": [],
+            "output": "15z − 21 − 18z + 22 = 32z − 52 − 17"
+          },
+          {
+            "id": "Q9-DEC",
+            "kind": "DECIDE",
+            "action": "Treat the subtracted bracket as the factor −2, so its −11 becomes +22.",
+            "why_valid": "The minus sign belongs to the factor and multiplies every term inside.",
+            "inputs": [],
+            "output": "(−2)(9z) = −18z and (−2)(−11) = +22"
+          },
+          {
+            "id": "Q9-COM",
+            "kind": "TRANSFORM",
+            "action": "Combine like terms on each side, then collect.",
+            "why_valid": "Combining within a side keeps its value.",
+            "inputs": [],
+            "output": "−3z + 1 = 32z − 69, so 70 = 35z"
+          },
+          {
+            "id": "Q9-CHK",
+            "kind": "VERIFY",
+            "action": "Substitute z = 2 into the original.",
+            "why_valid": "Three brackets give three chances of slips; only the original tests them all.",
+            "inputs": [],
+            "output": "−5 = −5"
+          }
+        ],
+        "crux_move_ref": "Q9-DEC"
+      },
+      "primary_capability_ref": "CAP-MAT-LEQ-03-REDUCE-TO-SIMPLER-FORM",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-LEQ-03-REDUCTION",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Which bracket is being subtracted, and what is its factor with the sign attached?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q9-DEC"
+        },
+        {
+          "text": "Fill the two cells of −2(9z − 11) with their signed products.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q9-DEC"
+        },
+        {
+          "text": "After expanding, combine the z-terms and the numbers on the left before looking at the right.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q9-COM"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "REPRESENT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "FIRST_RELATION",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {},
+      "failure_signal": "You got z = 26/35: −2(9z − 11) was opened as −18z − 22. The second cell is (−2)(−11) = +22, and z = 2 makes both sides −5.",
+      "family_exposure": {
+        "family_ref": "FAM-MAT-LEQ-03-REDUCTION",
+        "closure": "Established: a subtracted bracket is a bracket with a negative factor, and its sign reaches every term; after that, the equation is a routine both-sides solve."
+      },
+      "repair_ref": "LEQ3-2"
+    }
+  ]
+}

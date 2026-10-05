@@ -1,0 +1,83 @@
+{
+  "schema": "product-manifest/v1",
+  "product_id": "PRODUCT-PHY-NLM-FRICTION",
+  "subject": "Physics",
+  "home_href": "index.html",
+  "question_bank_href": "index.html",
+  "package_refs": [
+    "evidence/blueprint-cycles/closure-r4-20261005/subjects/physics/package.v1.json"
+  ],
+  "bank_refs": [
+    "Physics/library/exam-bank/competitive-exam-question-bank.v2.json"
+  ],
+  "output_roles": [
+    "CORE1A",
+    "CORE2"
+  ],
+  "selection": {
+    "microtopics": [
+      "MIC-PHY-NLM-FRICTION",
+      "MIC-PHY-NLM-FRICTION-QUANT",
+      "MIC-ISS29-PHY-MODEL-SCOPE"
+    ],
+    "core2": [
+      "PYQ-PHY-IITJEE-2007-P1-Q10",
+      "PYQ-PHY-IITJEE-2008-P2-Q33",
+      "PYQ-PHY-IITJEE-2011-P1-Q41",
+      "PYQ-PHY-JEEADV-2014-P2-Q19",
+      "PYQ-PHY-JEEADV-2020-P1-Q13",
+      "PYQ-PHY-JEEMAIN-2026-06APR-S2-Q46",
+      "PYQ-PHY-INJSO-2011-Q22",
+      "PYQ-PHY-INJSO-2016-Q32A",
+      "PYQ-PHY-INJSO-2018-Q12",
+      "PYQ-PHY-INJSO-2023-Q24"
+    ],
+    "core2a": [],
+    "core2b": []
+  },
+  "coverage": {
+    "omitted": {
+      "PYQ-PHY-IITJEE-2007-P1-Q03": "The bank record is a non-friction Newton-II item; this product is scoped to the two friction capabilities.",
+      "PYQ-PHY-IITJEE-2011-P2-Q34": "Friction appears, but the decisive model is spring potential energy and work-energy bookkeeping rather than the Grade-9 friction contact-state construction.",
+      "PYQ-PHY-JEEADV-2014-P1-Q08": "The ladder item requires rigid-body torque equilibrium as a central solving tool, beyond the Grade-9 friction scope used for this product.",
+      "PYQ-PHY-NEET-2020-E1-Q160": "The bank record is a non-friction Newton-laws item; it belongs to the wider NLM product rather than this friction-scoped product.",
+      "PYQ-PHY-IITJEE-2009-P1-Q49": "The bank record is not owned by either selected friction capability, so it remains in the wider NLM product.",
+      "PYQ-PHY-IITJEE-2009-P2-Q40": "The bank record turns on accelerated-frame/pseudo-force modelling rather than a friction contact decision.",
+      "PYQ-PHY-IITJEE-2009-P2-Q55": "The bank record turns on ideal-string/connected-body constraints rather than a friction contact decision."
+    },
+    "sources": [
+      {
+        "source": "NCERT Class 9 Science — Force and Laws of Motion textbook/scope",
+        "kind": "official curriculum/textbook",
+        "questions": 0,
+        "ingested": 0,
+        "status": "EXCLUDED",
+        "reason": "Used as Grade-9 scope authority; no friction question from the current official textbook surface was source-custodied strongly enough for Core 2 in this pass."
+      },
+      {
+        "source": "NCERT Class IX Science Exemplar — Unit 9 Force and Laws of Motion",
+        "kind": "official exemplar",
+        "questions": 2,
+        "ingested": 0,
+        "status": "NOT_INGESTED",
+        "reason": "Two friction-bearing exemplar items were located, but the official PDF fetch timed out during verification; both stay out rather than inheriting wording from a secondary mirror."
+      },
+      {
+        "source": "HBCSE INJSO 2009–2023 official past-paper archive",
+        "kind": "official past papers",
+        "questions": 6,
+        "ingested": 4,
+        "status": "PARTLY_INGESTED",
+        "reason": "Four directly test the selected dry-friction/contact moves; the rolling-friction and work-energy-primary occurrences remain denominator exclusions."
+      },
+      {
+        "source": "JEE Main / JEE (Advanced) official organizer archives",
+        "kind": "official past papers",
+        "questions": 10,
+        "ingested": 8,
+        "status": "PARTLY_INGESTED",
+        "reason": "Eight source-verified dry-friction bank records are represented in the denominator. Two additional official JEE Advanced friction occurrences found in 2021 and 2023 are rolling/rigid-body rotation questions and stay out because that machinery is beyond this Grade-9 friction product."
+      }
+    ]
+  }
+}

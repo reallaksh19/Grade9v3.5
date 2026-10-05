@@ -81,6 +81,13 @@ focused = read(OUT / 'committed-contract-tests.json')
 if focused['exit_code'] != 0: failures.append('final wording-delta focused tests')
 frozen = read(OUT / 'frozen-submission-heads.json')
 if any(r['status'] != 'UNCHANGED' for r in frozen['results']): failures.append('frozen submission drift')
+academic_path=OUT/'academic-review.json'
+academic=read(academic_path) if academic_path.exists() else None
+if academic:
+    for row in academic['rows']:
+        folder=BASE/f'ISS{row["issue"]}'
+        for name,expected in row['hashes'].items():
+            if sha(folder/name)!=expected:failures.append('stale academic binding: '+row['question_ref']+' '+name)
 report = {
     'schema': 'issue29-final-assurance/v1',
     'production_basis': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
@@ -98,7 +105,10 @@ report = {
                    'seed_basis': seed['basis_head'], 'seed_summary': seed['tests_summary'],
                    'introduced_failure_ids': added,
                    'seed_failure_ids_absent': sorted(set(seed['failures']) - set(full['failures'])),
-                   'note': 'The full suite covers d8262dc. The subsequent afdb585 repair-link placement and its regression are separately checked by the focused run and all-80 click-through browser observations. Review/report helpers added afterward confer no academic acceptance. Absent failure IDs include reconciled contract/version expectations and are not all independent bug fixes.'},
+                   'note': 'The clean-checkout full suite covers '+full['basis_head']+'. Focused tests and hash-bound browser reports separately name their exact bases. Evidence/report helpers confer no academic acceptance. Absent failure IDs include reconciled contract/version expectations and are not all independent bug fixes.'},
+    'author_academic_review': {'instance_bindings': len(academic['rows']) if academic else 0,
+                               'distinct_answer_judgements': academic['distinct_answer_judgements'] if academic else 0,
+                               'independent_facets_accepted': 0},
     'final_focused': {'basis': focused['basis_head'], 'summary': focused['tests_summary'], 'exit_code': focused['exit_code']},
     'frozen_submissions': 'ALL_EIGHT_UNCHANGED',
     'academic_verdict': 'REQUIRES_INDEPENDENT_REVIEW',
