@@ -7,10 +7,10 @@
     "construction_ref": "CU-CHEM-G11-DOMAINS-SHAPE-Q1",
     "repair_anchor": "repair-ISS34-Q1",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "ebf7648dfad0c32590e20490ce33f549094b6ec9cc9ac35198f7467d5e365c8a",
-      "inputs/package.v1.json": "f1a4d3a4c7d8142a6cd73f2d8cfcb9303d720e16182a094b5c5107166932af50",
-      "rendered/core1a.html": "ea7c744db3ab06d577fc026e0ada1740508920859825aa24a7e3ceb4d0e66ddc",
-      "rendered/core2.html": "ff9eb612ae37eb952c55a7bfce2fe9f0bea2ba250b5c6891fa24632d74fdddce"
+      "inputs/owner.bank.json": "51808f5cef8f88b469cfc73a4813a1dfa9a97fd1c9b6316e96ff1390200b5638",
+      "inputs/package.v1.json": "4fdc9599952f546802e5d27b569a9cbd0be76425fba10e8ef1c1b3c97ad79c1b",
+      "rendered/core1a.html": "27c60a865145ff260556c2e0f60027f795598283c5e7caca0319b5951d75c841",
+      "rendered/core2.html": "ddddf98eb6ad62921c92e7fea2a93a165d93a3fd61a613f8effaa37952dcc097"
     },
     "facets": {
       "H1": {
@@ -22,7 +22,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q1",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q1-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -35,7 +37,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q1",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q1-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -57,7 +61,96 @@
         "review_question": "Does stage 1 show the situation and help this learner see the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement, without disclosing the causal or linking statement that completes the explanation?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS34-Q1",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [
+                "SRC-AUTHOR-NLM"
+              ],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS34-Q1"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Track bonded neighbours and central lone pairs in separate columns.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-NLM-STATIC-FRICTION-BOUND",
+                "REL-NLM-KINETIC-FRICTION"
+              ],
+              "read_order": [
+                "Supplied three-bond comparison",
+                "Track bonded neighbours and central lone pairs in separate columns."
+              ],
+              "instance_constraints": [
+                "Normal reaction follows the actual perpendicular force equation; do not assume N = mg.",
+                "Before sliding, static friction equals the required no-slip value only while its magnitude is within mu_s N.",
+                "The equality |f_s| = mu_s N is shown only at impending slip.",
+                "Kinetic friction is shown only after relative sliding is established and opposes that sliding."
+              ],
+              "accessibility": [
+                "Contact state is stated in text as static feasible, impending slip or sliding; colour alone is insufficient.",
+                "Force arrows require labels and text alternatives describing direction.",
+                "The friction-demand/limit comparison is readable as text or symbols in addition to any graphical meter."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS34/assets/question-1-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "Supplied three-bond comparison"
+                }
+              ],
+              "interactive_resource_refs": [
+                "ACT-NLM-FRICTION-THRESHOLD"
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q1-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "Supplied three-bond comparison",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q1-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Track bonded neighbours and central lone pairs in separate columns.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ],
+              "support_stage_map": [
+                {
+                  "support_level": "low",
+                  "visual_stage_ref": "stage-domains"
+                },
+                {
+                  "support_level": "medium",
+                  "visual_stage_ref": "stage-sigma"
+                },
+                {
+                  "support_level": "high",
+                  "visual_stage_ref": "stage-p-orbitals"
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-TETRAHEDRAL-LONE-PAIRS",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -184,6 +277,18 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS34-Q1",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS34-Q1"
+            ],
+            "replaces_authored_figure_refs": [
+              "REP-CHEM-TETRAHEDRAL-LONE-PAIRS"
+            ],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "CONDITIONS": "No extra conditions beyond the verbatim stem; duplicating the stem would add no constraint."
           }
@@ -195,35 +300,30 @@
         "review_question": "Does a stage show a demonstrated mechanism or principle that can account for it in this question's context? Visual job: show causal states, dependencies, or before/after relations without writing the conclusion.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-TETRAHEDRAL-LONE-PAIRS",
-          "stages": [
-            {
-              "id": "stage-ch4",
-              "label": "CH4",
-              "purpose": "CH4 tetrahedral (0 LP)",
-              "visible_elements": [
-                "physical situation"
-              ]
-            },
-            {
-              "id": "stage-nh3",
-              "label": "NH3",
-              "purpose": "NH3 trigonal pyramidal (1 LP)",
-              "visible_elements": [
-                "physical situation",
-                "chosen body"
-              ]
-            },
-            {
-              "id": "stage-h2o",
-              "label": "H2O",
-              "purpose": "H2O bent (2 LP)",
-              "visible_elements": [
-                "physical situation",
-                "chosen body",
-                "coordinate axes"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS34-Q1",
+            "REP-ACADEMIC-ISS34-Q1",
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS34-Q1-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "Supplied three-bond comparison",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS34-Q1-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Track bonded neighbours and central lone pairs in separate columns.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -233,7 +333,8 @@
         "review_question": "Does a later stage show the way toward build the explanatory chain from principle to outcome while leaving the causal or linking statement that completes the explanation to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "stage-ch4",
             "stage-nh3",
             "stage-h2o"
@@ -263,14 +364,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "m1"
+              "supports_move_ref": "m1",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q1",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q1-GIVENS"
             },
             {
               "text": "A central lone pair adds a domain even though it adds no bonded nucleus.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "m2"
+              "supports_move_ref": "m2",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q1",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q1-BRIDGE"
             },
             {
               "text": "Make two columns: bonded neighbours and central lone pairs; connect totals to geometry yourself.",
@@ -281,7 +386,7 @@
             }
           ],
           "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -427,10 +532,10 @@
     "construction_ref": "CU-CHEM-G11-CO2-SYNTHESIS-Q2",
     "repair_anchor": "repair-ISS34-Q2",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "ebf7648dfad0c32590e20490ce33f549094b6ec9cc9ac35198f7467d5e365c8a",
-      "inputs/package.v1.json": "f1a4d3a4c7d8142a6cd73f2d8cfcb9303d720e16182a094b5c5107166932af50",
-      "rendered/core1a.html": "ea7c744db3ab06d577fc026e0ada1740508920859825aa24a7e3ceb4d0e66ddc",
-      "rendered/core2.html": "ff9eb612ae37eb952c55a7bfce2fe9f0bea2ba250b5c6891fa24632d74fdddce"
+      "inputs/owner.bank.json": "51808f5cef8f88b469cfc73a4813a1dfa9a97fd1c9b6316e96ff1390200b5638",
+      "inputs/package.v1.json": "4fdc9599952f546802e5d27b569a9cbd0be76425fba10e8ef1c1b3c97ad79c1b",
+      "rendered/core1a.html": "27c60a865145ff260556c2e0f60027f795598283c5e7caca0319b5951d75c841",
+      "rendered/core2.html": "ddddf98eb6ad62921c92e7fea2a93a165d93a3fd61a613f8effaa37952dcc097"
     },
     "facets": {
       "H1": {
@@ -442,7 +547,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q2",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q2-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -455,7 +562,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q2",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q2-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -477,7 +586,96 @@
         "review_question": "Does stage 1 show the situation and help this learner see the givens and conditions that determine whether the known procedure or relation is valid here, without disclosing the decisive substitution, transformation, or execution step that yields the requested result?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS34-Q2",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [
+                "SRC-AUTHOR-NLM"
+              ],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS34-Q2"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Allocate the same carbon valence basis to the requested sigma and pi jobs.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-NLM-STATIC-FRICTION-BOUND",
+                "REL-NLM-KINETIC-FRICTION"
+              ],
+              "read_order": [
+                "H2C=O connectivity",
+                "Allocate the same carbon valence basis to the requested sigma and pi jobs."
+              ],
+              "instance_constraints": [
+                "Normal reaction follows the actual perpendicular force equation; do not assume N = mg.",
+                "Before sliding, static friction equals the required no-slip value only while its magnitude is within mu_s N.",
+                "The equality |f_s| = mu_s N is shown only at impending slip.",
+                "Kinetic friction is shown only after relative sliding is established and opposes that sliding."
+              ],
+              "accessibility": [
+                "Contact state is stated in text as static feasible, impending slip or sliding; colour alone is insufficient.",
+                "Force arrows require labels and text alternatives describing direction.",
+                "The friction-demand/limit comparison is readable as text or symbols in addition to any graphical meter."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS34/assets/question-2-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "H2C=O connectivity"
+                }
+              ],
+              "interactive_resource_refs": [
+                "ACT-NLM-FRICTION-THRESHOLD"
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q2-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "H2C=O connectivity",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q2-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Allocate the same carbon valence basis to the requested sigma and pi jobs.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ],
+              "support_stage_map": [
+                {
+                  "support_level": "low",
+                  "visual_stage_ref": "stage-domains"
+                },
+                {
+                  "support_level": "medium",
+                  "visual_stage_ref": "stage-sigma"
+                },
+                {
+                  "support_level": "high",
+                  "visual_stage_ref": "stage-p-orbitals"
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-CO2-PI-ORTHOGONAL",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -615,6 +813,16 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS34-Q2",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS34-Q2"
+            ],
+            "replaces_authored_figure_refs": [],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "CONDITIONS": "No extra conditions beyond the verbatim stem; duplicating the stem would add no constraint.",
             "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
@@ -627,46 +835,30 @@
         "review_question": "Does a stage show a demonstrated procedure or relation together with its applicability conditions in this question's context? Visual job: align givens with procedure variables or steps without carrying out the protected computation.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-CO2-PI-ORTHOGONAL",
-          "stages": [
-            {
-              "id": "stage-domains",
-              "label": "Domains",
-              "purpose": "Lewis domain count",
-              "visible_elements": [
-                "physical situation"
-              ]
-            },
-            {
-              "id": "stage-sigma",
-              "label": "Sigma",
-              "purpose": "Linear sp sigma framework",
-              "visible_elements": [
-                "physical situation",
-                "chosen body"
-              ]
-            },
-            {
-              "id": "stage-p-orbitals",
-              "label": "P orbitals",
-              "purpose": "Two orthogonal unhybridised 2p orbitals",
-              "visible_elements": [
-                "physical situation",
-                "chosen body",
-                "coordinate axes"
-              ]
-            },
-            {
-              "id": "stage-pi-overlap",
-              "label": "Pi overlap",
-              "purpose": "Two mutually perpendicular pi bonds",
-              "visible_elements": [
-                "physical situation",
-                "chosen body",
-                "coordinate axes",
-                "applied-force arrow"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS34-Q2",
+            "REP-ACADEMIC-ISS34-Q2",
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS34-Q2-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "H2C=O connectivity",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS34-Q2-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Allocate the same carbon valence basis to the requested sigma and pi jobs.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -676,7 +868,8 @@
         "review_question": "Does a later stage show the way toward instantiate and execute the known procedure correctly while leaving the decisive substitution, transformation, or execution step that yields the requested result to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "stage-domains",
             "stage-sigma",
             "stage-p-orbitals",
@@ -707,14 +900,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "m1"
+              "supports_move_ref": "m1",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q2",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q2-GIVENS"
             },
             {
               "text": "Three sigma directions do not consume the remaining perpendicular p orbital.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "m2"
+              "supports_move_ref": "m2",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q2",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q2-BRIDGE"
             },
             {
               "text": "Assign each carbon valence orbital once: hybrids to sigma, residual p to pi.",
@@ -725,7 +922,7 @@
             }
           ],
           "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -872,10 +1069,10 @@
     "construction_ref": "CU-CHEM-G11-CO2-SYNTHESIS-Q3",
     "repair_anchor": "repair-ISS34-Q3",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "ebf7648dfad0c32590e20490ce33f549094b6ec9cc9ac35198f7467d5e365c8a",
-      "inputs/package.v1.json": "f1a4d3a4c7d8142a6cd73f2d8cfcb9303d720e16182a094b5c5107166932af50",
-      "rendered/core1a.html": "ea7c744db3ab06d577fc026e0ada1740508920859825aa24a7e3ceb4d0e66ddc",
-      "rendered/core2.html": "ff9eb612ae37eb952c55a7bfce2fe9f0bea2ba250b5c6891fa24632d74fdddce"
+      "inputs/owner.bank.json": "51808f5cef8f88b469cfc73a4813a1dfa9a97fd1c9b6316e96ff1390200b5638",
+      "inputs/package.v1.json": "4fdc9599952f546802e5d27b569a9cbd0be76425fba10e8ef1c1b3c97ad79c1b",
+      "rendered/core1a.html": "27c60a865145ff260556c2e0f60027f795598283c5e7caca0319b5951d75c841",
+      "rendered/core2.html": "ddddf98eb6ad62921c92e7fea2a93a165d93a3fd61a613f8effaa37952dcc097"
     },
     "facets": {
       "H1": {
@@ -887,7 +1084,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q3",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q3-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -900,7 +1099,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q3",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q3-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -922,7 +1123,96 @@
         "review_question": "Does stage 1 show the situation and help this learner see what must remain invariant while moving between the source and target representations, without disclosing the decisive correspondence or translation that fixes the target representation?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS34-Q3",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [
+                "SRC-AUTHOR-NLM"
+              ],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS34-Q3"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Declare the molecular-plane reference before translating into orbital directions.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-NLM-STATIC-FRICTION-BOUND",
+                "REL-NLM-KINETIC-FRICTION"
+              ],
+              "read_order": [
+                "Ethene Lewis connectivity",
+                "Declare the molecular-plane reference before translating into orbital directions."
+              ],
+              "instance_constraints": [
+                "Normal reaction follows the actual perpendicular force equation; do not assume N = mg.",
+                "Before sliding, static friction equals the required no-slip value only while its magnitude is within mu_s N.",
+                "The equality |f_s| = mu_s N is shown only at impending slip.",
+                "Kinetic friction is shown only after relative sliding is established and opposes that sliding."
+              ],
+              "accessibility": [
+                "Contact state is stated in text as static feasible, impending slip or sliding; colour alone is insufficient.",
+                "Force arrows require labels and text alternatives describing direction.",
+                "The friction-demand/limit comparison is readable as text or symbols in addition to any graphical meter."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS34/assets/question-3-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "Ethene Lewis connectivity"
+                }
+              ],
+              "interactive_resource_refs": [
+                "ACT-NLM-FRICTION-THRESHOLD"
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q3-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "Ethene Lewis connectivity",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q3-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Declare the molecular-plane reference before translating into orbital directions.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ],
+              "support_stage_map": [
+                {
+                  "support_level": "low",
+                  "visual_stage_ref": "stage-domains"
+                },
+                {
+                  "support_level": "medium",
+                  "visual_stage_ref": "stage-sigma"
+                },
+                {
+                  "support_level": "high",
+                  "visual_stage_ref": "stage-p-orbitals"
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-ETHENE-OVERLAP",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -1035,6 +1325,18 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS34-Q3",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS34-Q3"
+            ],
+            "replaces_authored_figure_refs": [
+              "REP-CHEM-ETHENE-OVERLAP"
+            ],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "CONDITIONS": "No extra conditions beyond the verbatim stem; duplicating the stem would add no constraint."
           }
@@ -1046,25 +1348,30 @@
         "review_question": "Does a stage show a demonstrated meaning or relationship already understood in one representation in this question's context? Visual job: show source-to-target correspondences progressively while preserving the invariant without completing the final mapping.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-ETHENE-OVERLAP",
-          "stages": [
-            {
-              "id": "stage-sigma",
-              "label": "Sigma framework",
-              "purpose": "In-plane sp2 sigma framework",
-              "visible_elements": [
-                "physical situation"
-              ]
-            },
-            {
-              "id": "stage-pi",
-              "label": "Pi overlap",
-              "purpose": "Perpendicular 2pz lateral overlap",
-              "visible_elements": [
-                "physical situation",
-                "chosen body"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS34-Q3",
+            "REP-ACADEMIC-ISS34-Q3",
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS34-Q3-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "Ethene Lewis connectivity",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS34-Q3-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Declare the molecular-plane reference before translating into orbital directions.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -1074,7 +1381,8 @@
         "review_question": "Does a later stage show the way toward construct the target representation while preserving that meaning while leaving the decisive correspondence or translation that fixes the target representation to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "stage-sigma",
             "stage-pi"
           ],
@@ -1103,14 +1411,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "m1"
+              "supports_move_ref": "m1",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q3",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q3-GIVENS"
             },
             {
               "text": "Three sigma directions lie in each sp2 carbon plane; residual p is perpendicular to that plane.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "m2"
+              "supports_move_ref": "m2",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q3",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q3-BRIDGE"
             },
             {
               "text": "Draw both carbon frames, then align the residual p directions for possible lateral overlap.",
@@ -1121,7 +1433,7 @@
             }
           ],
           "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -1266,10 +1578,10 @@
     "construction_ref": "CU-CHEM-G11-CO2-SYNTHESIS",
     "repair_anchor": "repair-ISS34-Q4",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "ebf7648dfad0c32590e20490ce33f549094b6ec9cc9ac35198f7467d5e365c8a",
-      "inputs/package.v1.json": "f1a4d3a4c7d8142a6cd73f2d8cfcb9303d720e16182a094b5c5107166932af50",
-      "rendered/core1a.html": "ea7c744db3ab06d577fc026e0ada1740508920859825aa24a7e3ceb4d0e66ddc",
-      "rendered/core2.html": "ff9eb612ae37eb952c55a7bfce2fe9f0bea2ba250b5c6891fa24632d74fdddce"
+      "inputs/owner.bank.json": "51808f5cef8f88b469cfc73a4813a1dfa9a97fd1c9b6316e96ff1390200b5638",
+      "inputs/package.v1.json": "4fdc9599952f546802e5d27b569a9cbd0be76425fba10e8ef1c1b3c97ad79c1b",
+      "rendered/core1a.html": "27c60a865145ff260556c2e0f60027f795598283c5e7caca0319b5951d75c841",
+      "rendered/core2.html": "ddddf98eb6ad62921c92e7fea2a93a165d93a3fd61a613f8effaa37952dcc097"
     },
     "facets": {
       "H1": {
@@ -1281,7 +1593,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q4",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q4-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -1294,7 +1608,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q4",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q4-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -1316,7 +1632,96 @@
         "review_question": "Does stage 1 show the situation and help this learner see the dependency between subproblems or ideas that makes their order or coordination matter, without disclosing the bridge or ordering decision that unlocks the multi-step route?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS34-Q4",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [
+                "SRC-AUTHOR-NLM"
+              ],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS34-Q4"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Keep local domains, bond components and available basis functions as separate inventories.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-NLM-STATIC-FRICTION-BOUND",
+                "REL-NLM-KINETIC-FRICTION"
+              ],
+              "read_order": [
+                "CO2 Lewis connectivity",
+                "Keep local domains, bond components and available basis functions as separate inventories."
+              ],
+              "instance_constraints": [
+                "Normal reaction follows the actual perpendicular force equation; do not assume N = mg.",
+                "Before sliding, static friction equals the required no-slip value only while its magnitude is within mu_s N.",
+                "The equality |f_s| = mu_s N is shown only at impending slip.",
+                "Kinetic friction is shown only after relative sliding is established and opposes that sliding."
+              ],
+              "accessibility": [
+                "Contact state is stated in text as static feasible, impending slip or sliding; colour alone is insufficient.",
+                "Force arrows require labels and text alternatives describing direction.",
+                "The friction-demand/limit comparison is readable as text or symbols in addition to any graphical meter."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS34/assets/question-4-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "CO2 Lewis connectivity"
+                }
+              ],
+              "interactive_resource_refs": [
+                "ACT-NLM-FRICTION-THRESHOLD"
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q4-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "CO2 Lewis connectivity",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q4-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Keep local domains, bond components and available basis functions as separate inventories.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ],
+              "support_stage_map": [
+                {
+                  "support_level": "low",
+                  "visual_stage_ref": "stage-domains"
+                },
+                {
+                  "support_level": "medium",
+                  "visual_stage_ref": "stage-sigma"
+                },
+                {
+                  "support_level": "high",
+                  "visual_stage_ref": "stage-p-orbitals"
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-CO2-PI-ORTHOGONAL",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -1454,6 +1859,18 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS34-Q4",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS34-Q4"
+            ],
+            "replaces_authored_figure_refs": [
+              "REP-CHEM-CO2-PI-ORTHOGONAL"
+            ],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "CONDITIONS": "No extra conditions beyond the verbatim stem; duplicating the stem would add no constraint."
           }
@@ -1465,46 +1882,30 @@
         "review_question": "Does a stage show a demonstrated component idea that can anchor the first valid bridge in this question's context? Visual job: make dependencies, shared conditions, or state transitions visible without completing the route.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-CO2-PI-ORTHOGONAL",
-          "stages": [
-            {
-              "id": "stage-domains",
-              "label": "Domains",
-              "purpose": "Lewis domain count",
-              "visible_elements": [
-                "physical situation"
-              ]
-            },
-            {
-              "id": "stage-sigma",
-              "label": "Sigma",
-              "purpose": "Linear sp sigma framework",
-              "visible_elements": [
-                "physical situation",
-                "chosen body"
-              ]
-            },
-            {
-              "id": "stage-p-orbitals",
-              "label": "P orbitals",
-              "purpose": "Two orthogonal unhybridised 2p orbitals",
-              "visible_elements": [
-                "physical situation",
-                "chosen body",
-                "coordinate axes"
-              ]
-            },
-            {
-              "id": "stage-pi-overlap",
-              "label": "Pi overlap",
-              "purpose": "Two mutually perpendicular pi bonds",
-              "visible_elements": [
-                "physical situation",
-                "chosen body",
-                "coordinate axes",
-                "applied-force arrow"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS34-Q4",
+            "REP-ACADEMIC-ISS34-Q4",
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS34-Q4-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "CO2 Lewis connectivity",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS34-Q4-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Keep local domains, bond components and available basis functions as separate inventories.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -1514,7 +1915,8 @@
         "review_question": "Does a later stage show the way toward coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "stage-domains",
             "stage-sigma",
             "stage-p-orbitals",
@@ -1545,14 +1947,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "m1"
+              "supports_move_ref": "m1",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q4",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q4-GIVENS"
             },
             {
               "text": "sp accounting leaves two mutually perpendicular p directions.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "m2"
+              "supports_move_ref": "m2",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q4",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q4-BRIDGE"
             },
             {
               "text": "Allocate carbon basis functions and bond components in separate ledgers; keep the localized drawing explicitly a model.",
@@ -1563,7 +1969,7 @@
             }
           ],
           "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -1674,8 +2080,8 @@
         "review_question": "Is this likely wrong idea represented: pieces are solved independently or chained in a convenient but invalid order?",
         "objective": "The likely conceptual wrong route is explicitly represented.",
         "authored_evidence": {
-          "wrong_idea": "A localized CO2 drawing uniquely measures the terminal oxygen basis.",
-          "probe": "Give carbon orbital inventory for CO2 and HCN. Does a localized drawing uniquely measure the oxygen orbital basis?"
+          "wrong_idea": "Each multiple-bond component needs an extra carbon orbital beyond the available valence basis.",
+          "probe": "Allocate the carbon basis in CO2 and HCN. For each, count axial hybrid functions and residual p functions. Does bond multiplicity create extra carbon basis functions?"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -1684,8 +2090,8 @@
         "review_question": "Would a learner who holds 'pieces are solved independently or chained in a convenient but invalid order' answer the diagnostic differently from a learner who merely slipped?",
         "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
         "authored_evidence": {
-          "probe": "Give carbon orbital inventory for CO2 and HCN. Does a localized drawing uniquely measure the oxygen orbital basis?",
-          "pattern": "Both carbon inventories close at four. No unique O basis follows from the drawing alone. Repeated uniqueness claims expose model/observation conflation."
+          "probe": "Allocate the carbon basis in CO2 and HCN. For each, count axial hybrid functions and residual p functions. Does bond multiplicity create extra carbon basis functions?",
+          "pattern": "Both local carbon ledgers have two sp hybrids plus two residual p functions, total four. Repeated larger totals or a third residual p function identify a double-counting rule rather than one addition slip."
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -1696,7 +2102,7 @@
         "authored_evidence": {
           "rule": "CO2 carbon: two domains/sp, two sigma components and two pi components. A localized VB drawing is useful accounting, not a unique experimentally compulsory terminal-O orbital-plane picture.",
           "check": "Changed check: HCN carbon also has two sigma directions and two residual p directions although its neighbours differ.",
-          "transfer": "State what CO2 geometry supports and what it cannot uniquely prove."
+          "transfer": "Check the carbon orbital allocation in ethyne while retaining one 2s and three 2p inputs."
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       }
@@ -1710,10 +2116,10 @@
     "construction_ref": "CU-CHEM-G11-DOMAINS-SHAPE-Q5",
     "repair_anchor": "repair-ISS34-Q5",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "ebf7648dfad0c32590e20490ce33f549094b6ec9cc9ac35198f7467d5e365c8a",
-      "inputs/package.v1.json": "f1a4d3a4c7d8142a6cd73f2d8cfcb9303d720e16182a094b5c5107166932af50",
-      "rendered/core1a.html": "ea7c744db3ab06d577fc026e0ada1740508920859825aa24a7e3ceb4d0e66ddc",
-      "rendered/core2.html": "ff9eb612ae37eb952c55a7bfce2fe9f0bea2ba250b5c6891fa24632d74fdddce"
+      "inputs/owner.bank.json": "51808f5cef8f88b469cfc73a4813a1dfa9a97fd1c9b6316e96ff1390200b5638",
+      "inputs/package.v1.json": "4fdc9599952f546802e5d27b569a9cbd0be76425fba10e8ef1c1b3c97ad79c1b",
+      "rendered/core1a.html": "27c60a865145ff260556c2e0f60027f795598283c5e7caca0319b5951d75c841",
+      "rendered/core2.html": "ddddf98eb6ad62921c92e7fea2a93a165d93a3fd61a613f8effaa37952dcc097"
     },
     "facets": {
       "H1": {
@@ -1725,7 +2131,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q5",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q5-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -1738,7 +2146,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q5",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q5-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -1760,7 +2170,96 @@
         "review_question": "Does stage 1 show the situation and help this learner see the claim to establish and the evidence or conditions that may legitimately support it, without disclosing the decisive warrant, inference, or proof step that establishes the claim?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS34-Q5",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [
+                "SRC-AUTHOR-NLM"
+              ],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS34-Q5"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Test the claimed sufficient condition without replacing the supplied observations.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-NLM-STATIC-FRICTION-BOUND",
+                "REL-NLM-KINETIC-FRICTION"
+              ],
+              "read_order": [
+                "Supplied BF3 and NH3 counterexample candidates",
+                "Test the claimed sufficient condition without replacing the supplied observations."
+              ],
+              "instance_constraints": [
+                "Normal reaction follows the actual perpendicular force equation; do not assume N = mg.",
+                "Before sliding, static friction equals the required no-slip value only while its magnitude is within mu_s N.",
+                "The equality |f_s| = mu_s N is shown only at impending slip.",
+                "Kinetic friction is shown only after relative sliding is established and opposes that sliding."
+              ],
+              "accessibility": [
+                "Contact state is stated in text as static feasible, impending slip or sliding; colour alone is insufficient.",
+                "Force arrows require labels and text alternatives describing direction.",
+                "The friction-demand/limit comparison is readable as text or symbols in addition to any graphical meter."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS34/assets/question-5-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "Supplied BF3 and NH3 counterexample candidates"
+                }
+              ],
+              "interactive_resource_refs": [
+                "ACT-NLM-FRICTION-THRESHOLD"
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q5-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "Supplied BF3 and NH3 counterexample candidates",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q5-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Test the claimed sufficient condition without replacing the supplied observations.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ],
+              "support_stage_map": [
+                {
+                  "support_level": "low",
+                  "visual_stage_ref": "stage-domains"
+                },
+                {
+                  "support_level": "medium",
+                  "visual_stage_ref": "stage-sigma"
+                },
+                {
+                  "support_level": "high",
+                  "visual_stage_ref": "stage-p-orbitals"
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-TETRAHEDRAL-LONE-PAIRS",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -1887,6 +2386,16 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS34-Q5",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS34-Q5"
+            ],
+            "replaces_authored_figure_refs": [],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "CONDITIONS": "No extra conditions beyond the verbatim stem; duplicating the stem would add no constraint.",
             "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
@@ -1899,35 +2408,30 @@
         "review_question": "Does a stage show a demonstrated theorem, principle, data rule, or warrant in this question's context? Visual job: show givens, evidence, and construction relationships without marking the conclusion as established.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-TETRAHEDRAL-LONE-PAIRS",
-          "stages": [
-            {
-              "id": "stage-ch4",
-              "label": "CH4",
-              "purpose": "CH4 tetrahedral (0 LP)",
-              "visible_elements": [
-                "physical situation"
-              ]
-            },
-            {
-              "id": "stage-nh3",
-              "label": "NH3",
-              "purpose": "NH3 trigonal pyramidal (1 LP)",
-              "visible_elements": [
-                "physical situation",
-                "chosen body"
-              ]
-            },
-            {
-              "id": "stage-h2o",
-              "label": "H2O",
-              "purpose": "H2O bent (2 LP)",
-              "visible_elements": [
-                "physical situation",
-                "chosen body",
-                "coordinate axes"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS34-Q5",
+            "REP-ACADEMIC-ISS34-Q5",
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS34-Q5-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "Supplied BF3 and NH3 counterexample candidates",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS34-Q5-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Test the claimed sufficient condition without replacing the supplied observations.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -1937,7 +2441,8 @@
         "review_question": "Does a later stage show the way toward construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "stage-ch4",
             "stage-nh3",
             "stage-h2o"
@@ -1967,14 +2472,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "m1"
+              "supports_move_ref": "m1",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q5",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q5-GIVENS"
             },
             {
               "text": "A counterexample must hold the claimed condition while changing an omitted relevant condition.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "m2"
+              "supports_move_ref": "m2",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q5",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q5-BRIDGE"
             },
             {
               "text": "Choose a centre with three bonds and a central lone pair; test the claim rather than naming a familiar molecule only.",
@@ -1985,7 +2494,7 @@
             }
           ],
           "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -2131,10 +2640,10 @@
     "construction_ref": "CU-CHEM-G11-DOMAINS-SHAPE-Q6",
     "repair_anchor": "repair-ISS34-Q6",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "ebf7648dfad0c32590e20490ce33f549094b6ec9cc9ac35198f7467d5e365c8a",
-      "inputs/package.v1.json": "f1a4d3a4c7d8142a6cd73f2d8cfcb9303d720e16182a094b5c5107166932af50",
-      "rendered/core1a.html": "ea7c744db3ab06d577fc026e0ada1740508920859825aa24a7e3ceb4d0e66ddc",
-      "rendered/core2.html": "ff9eb612ae37eb952c55a7bfce2fe9f0bea2ba250b5c6891fa24632d74fdddce"
+      "inputs/owner.bank.json": "51808f5cef8f88b469cfc73a4813a1dfa9a97fd1c9b6316e96ff1390200b5638",
+      "inputs/package.v1.json": "4fdc9599952f546802e5d27b569a9cbd0be76425fba10e8ef1c1b3c97ad79c1b",
+      "rendered/core1a.html": "27c60a865145ff260556c2e0f60027f795598283c5e7caca0319b5951d75c841",
+      "rendered/core2.html": "ddddf98eb6ad62921c92e7fea2a93a165d93a3fd61a613f8effaa37952dcc097"
     },
     "facets": {
       "H1": {
@@ -2146,7 +2655,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q6",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q6-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -2159,7 +2670,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q6",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q6-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -2181,7 +2694,96 @@
         "review_question": "Does stage 1 show the situation and help this learner see the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement, without disclosing the causal or linking statement that completes the explanation?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS34-Q6",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [
+                "SRC-AUTHOR-NLM"
+              ],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS34-Q6"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Substituent identity and the number of neighbour directions are different quantities.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-NLM-STATIC-FRICTION-BOUND",
+                "REL-NLM-KINETIC-FRICTION"
+              ],
+              "read_order": [
+                "CH3F and CH4 connectivity",
+                "Substituent identity and the number of neighbour directions are different quantities."
+              ],
+              "instance_constraints": [
+                "Normal reaction follows the actual perpendicular force equation; do not assume N = mg.",
+                "Before sliding, static friction equals the required no-slip value only while its magnitude is within mu_s N.",
+                "The equality |f_s| = mu_s N is shown only at impending slip.",
+                "Kinetic friction is shown only after relative sliding is established and opposes that sliding."
+              ],
+              "accessibility": [
+                "Contact state is stated in text as static feasible, impending slip or sliding; colour alone is insufficient.",
+                "Force arrows require labels and text alternatives describing direction.",
+                "The friction-demand/limit comparison is readable as text or symbols in addition to any graphical meter."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS34/assets/question-6-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "CH3F and CH4 connectivity"
+                }
+              ],
+              "interactive_resource_refs": [
+                "ACT-NLM-FRICTION-THRESHOLD"
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q6-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "CH3F and CH4 connectivity",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q6-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Substituent identity and the number of neighbour directions are different quantities.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ],
+              "support_stage_map": [
+                {
+                  "support_level": "low",
+                  "visual_stage_ref": "stage-domains"
+                },
+                {
+                  "support_level": "medium",
+                  "visual_stage_ref": "stage-sigma"
+                },
+                {
+                  "support_level": "high",
+                  "visual_stage_ref": "stage-p-orbitals"
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-TETRAHEDRAL-LONE-PAIRS",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -2308,6 +2910,16 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS34-Q6",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS34-Q6"
+            ],
+            "replaces_authored_figure_refs": [],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "CONDITIONS": "No extra conditions beyond the verbatim stem; duplicating the stem would add no constraint.",
             "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
@@ -2320,35 +2932,30 @@
         "review_question": "Does a stage show a demonstrated mechanism or principle that can account for it in this question's context? Visual job: show causal states, dependencies, or before/after relations without writing the conclusion.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-TETRAHEDRAL-LONE-PAIRS",
-          "stages": [
-            {
-              "id": "stage-ch4",
-              "label": "CH4",
-              "purpose": "CH4 tetrahedral (0 LP)",
-              "visible_elements": [
-                "physical situation"
-              ]
-            },
-            {
-              "id": "stage-nh3",
-              "label": "NH3",
-              "purpose": "NH3 trigonal pyramidal (1 LP)",
-              "visible_elements": [
-                "physical situation",
-                "chosen body"
-              ]
-            },
-            {
-              "id": "stage-h2o",
-              "label": "H2O",
-              "purpose": "H2O bent (2 LP)",
-              "visible_elements": [
-                "physical situation",
-                "chosen body",
-                "coordinate axes"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS34-Q6",
+            "REP-ACADEMIC-ISS34-Q6",
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS34-Q6-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "CH3F and CH4 connectivity",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS34-Q6-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Substituent identity and the number of neighbour directions are different quantities.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -2358,7 +2965,8 @@
         "review_question": "Does a later stage show the way toward build the explanatory chain from principle to outcome while leaving the causal or linking statement that completes the explanation to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "stage-ch4",
             "stage-nh3",
             "stage-h2o"
@@ -2388,14 +2996,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "m1"
+              "supports_move_ref": "m1",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q6",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q6-GIVENS"
             },
             {
               "text": "Replacing a substituent changes chemical environment without automatically changing connectivity count.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "m2"
+              "supports_move_ref": "m2",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q6",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q6-BRIDGE"
             },
             {
               "text": "Recount neighbours before considering any unprovided property differences.",
@@ -2406,7 +3018,7 @@
             }
           ],
           "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -2552,10 +3164,10 @@
     "construction_ref": "CU-CHEM-G11-CO2-SYNTHESIS-Q7",
     "repair_anchor": "repair-ISS34-Q7",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "ebf7648dfad0c32590e20490ce33f549094b6ec9cc9ac35198f7467d5e365c8a",
-      "inputs/package.v1.json": "f1a4d3a4c7d8142a6cd73f2d8cfcb9303d720e16182a094b5c5107166932af50",
-      "rendered/core1a.html": "ea7c744db3ab06d577fc026e0ada1740508920859825aa24a7e3ceb4d0e66ddc",
-      "rendered/core2.html": "ff9eb612ae37eb952c55a7bfce2fe9f0bea2ba250b5c6891fa24632d74fdddce"
+      "inputs/owner.bank.json": "51808f5cef8f88b469cfc73a4813a1dfa9a97fd1c9b6316e96ff1390200b5638",
+      "inputs/package.v1.json": "4fdc9599952f546802e5d27b569a9cbd0be76425fba10e8ef1c1b3c97ad79c1b",
+      "rendered/core1a.html": "27c60a865145ff260556c2e0f60027f795598283c5e7caca0319b5951d75c841",
+      "rendered/core2.html": "ddddf98eb6ad62921c92e7fea2a93a165d93a3fd61a613f8effaa37952dcc097"
     },
     "facets": {
       "H1": {
@@ -2567,7 +3179,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q7",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q7-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -2580,7 +3194,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q7",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q7-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -2602,7 +3218,96 @@
         "review_question": "Does stage 1 show the situation and help this learner see the givens and conditions that determine whether the known procedure or relation is valid here, without disclosing the decisive substitution, transformation, or execution step that yields the requested result?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS34-Q7",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [
+                "SRC-AUTHOR-NLM"
+              ],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS34-Q7"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Make separate local inventories at C and N; bond multiplicity is a separate ledger.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-NLM-STATIC-FRICTION-BOUND",
+                "REL-NLM-KINETIC-FRICTION"
+              ],
+              "read_order": [
+                "Supplied HCN Lewis connectivity",
+                "Make separate local inventories at C and N; bond multiplicity is a separate ledger."
+              ],
+              "instance_constraints": [
+                "Normal reaction follows the actual perpendicular force equation; do not assume N = mg.",
+                "Before sliding, static friction equals the required no-slip value only while its magnitude is within mu_s N.",
+                "The equality |f_s| = mu_s N is shown only at impending slip.",
+                "Kinetic friction is shown only after relative sliding is established and opposes that sliding."
+              ],
+              "accessibility": [
+                "Contact state is stated in text as static feasible, impending slip or sliding; colour alone is insufficient.",
+                "Force arrows require labels and text alternatives describing direction.",
+                "The friction-demand/limit comparison is readable as text or symbols in addition to any graphical meter."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS34/assets/question-7-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "Supplied HCN Lewis connectivity"
+                }
+              ],
+              "interactive_resource_refs": [
+                "ACT-NLM-FRICTION-THRESHOLD"
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q7-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "Supplied HCN Lewis connectivity",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q7-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Make separate local inventories at C and N; bond multiplicity is a separate ledger.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ],
+              "support_stage_map": [
+                {
+                  "support_level": "low",
+                  "visual_stage_ref": "stage-domains"
+                },
+                {
+                  "support_level": "medium",
+                  "visual_stage_ref": "stage-sigma"
+                },
+                {
+                  "support_level": "high",
+                  "visual_stage_ref": "stage-p-orbitals"
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-CO2-PI-ORTHOGONAL",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -2740,6 +3445,16 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS34-Q7",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS34-Q7"
+            ],
+            "replaces_authored_figure_refs": [],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "CONDITIONS": "No extra conditions beyond the verbatim stem; duplicating the stem would add no constraint.",
             "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
@@ -2752,46 +3467,30 @@
         "review_question": "Does a stage show a demonstrated procedure or relation together with its applicability conditions in this question's context? Visual job: align givens with procedure variables or steps without carrying out the protected computation.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-CO2-PI-ORTHOGONAL",
-          "stages": [
-            {
-              "id": "stage-domains",
-              "label": "Domains",
-              "purpose": "Lewis domain count",
-              "visible_elements": [
-                "physical situation"
-              ]
-            },
-            {
-              "id": "stage-sigma",
-              "label": "Sigma",
-              "purpose": "Linear sp sigma framework",
-              "visible_elements": [
-                "physical situation",
-                "chosen body"
-              ]
-            },
-            {
-              "id": "stage-p-orbitals",
-              "label": "P orbitals",
-              "purpose": "Two orthogonal unhybridised 2p orbitals",
-              "visible_elements": [
-                "physical situation",
-                "chosen body",
-                "coordinate axes"
-              ]
-            },
-            {
-              "id": "stage-pi-overlap",
-              "label": "Pi overlap",
-              "purpose": "Two mutually perpendicular pi bonds",
-              "visible_elements": [
-                "physical situation",
-                "chosen body",
-                "coordinate axes",
-                "applied-force arrow"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS34-Q7",
+            "REP-ACADEMIC-ISS34-Q7",
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS34-Q7-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "Supplied HCN Lewis connectivity",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS34-Q7-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Make separate local inventories at C and N; bond multiplicity is a separate ledger.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -2801,7 +3500,8 @@
         "review_question": "Does a later stage show the way toward instantiate and execute the known procedure correctly while leaving the decisive substitution, transformation, or execution step that yields the requested result to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "stage-domains",
             "stage-sigma",
             "stage-p-orbitals",
@@ -2832,14 +3532,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "m1"
+              "supports_move_ref": "m1",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q7",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q7-GIVENS"
             },
             {
               "text": "One bonded neighbour supplies one direction even when three bond components are present.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "m2"
+              "supports_move_ref": "m2",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q7",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q7-BRIDGE"
             },
             {
               "text": "At C and N count local sigma directions/lone pairs, then tally one sigma plus residual pi components.",
@@ -2850,7 +3554,7 @@
             }
           ],
           "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -2997,10 +3701,10 @@
     "construction_ref": "CU-CHEM-G11-DOMAINS-SHAPE-Q8",
     "repair_anchor": "repair-ISS34-Q8",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "ebf7648dfad0c32590e20490ce33f549094b6ec9cc9ac35198f7467d5e365c8a",
-      "inputs/package.v1.json": "f1a4d3a4c7d8142a6cd73f2d8cfcb9303d720e16182a094b5c5107166932af50",
-      "rendered/core1a.html": "ea7c744db3ab06d577fc026e0ada1740508920859825aa24a7e3ceb4d0e66ddc",
-      "rendered/core2.html": "ff9eb612ae37eb952c55a7bfce2fe9f0bea2ba250b5c6891fa24632d74fdddce"
+      "inputs/owner.bank.json": "51808f5cef8f88b469cfc73a4813a1dfa9a97fd1c9b6316e96ff1390200b5638",
+      "inputs/package.v1.json": "4fdc9599952f546802e5d27b569a9cbd0be76425fba10e8ef1c1b3c97ad79c1b",
+      "rendered/core1a.html": "27c60a865145ff260556c2e0f60027f795598283c5e7caca0319b5951d75c841",
+      "rendered/core2.html": "ddddf98eb6ad62921c92e7fea2a93a165d93a3fd61a613f8effaa37952dcc097"
     },
     "facets": {
       "H1": {
@@ -3012,7 +3716,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q8",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q8-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -3025,7 +3731,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q8",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q8-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -3047,7 +3755,96 @@
         "review_question": "Does stage 1 show the situation and help this learner see the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement, without disclosing the causal or linking statement that completes the explanation?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS34-Q8",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [
+                "SRC-AUTHOR-NLM"
+              ],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS34-Q8"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Select one centre at a time before comparing bonded-atom arrangements.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-NLM-STATIC-FRICTION-BOUND",
+                "REL-NLM-KINETIC-FRICTION"
+              ],
+              "read_order": [
+                "Supplied methylamine connectivity",
+                "Select one centre at a time before comparing bonded-atom arrangements."
+              ],
+              "instance_constraints": [
+                "Normal reaction follows the actual perpendicular force equation; do not assume N = mg.",
+                "Before sliding, static friction equals the required no-slip value only while its magnitude is within mu_s N.",
+                "The equality |f_s| = mu_s N is shown only at impending slip.",
+                "Kinetic friction is shown only after relative sliding is established and opposes that sliding."
+              ],
+              "accessibility": [
+                "Contact state is stated in text as static feasible, impending slip or sliding; colour alone is insufficient.",
+                "Force arrows require labels and text alternatives describing direction.",
+                "The friction-demand/limit comparison is readable as text or symbols in addition to any graphical meter."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS34/assets/question-8-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "Supplied methylamine connectivity"
+                }
+              ],
+              "interactive_resource_refs": [
+                "ACT-NLM-FRICTION-THRESHOLD"
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q8-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "Supplied methylamine connectivity",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q8-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Select one centre at a time before comparing bonded-atom arrangements.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ],
+              "support_stage_map": [
+                {
+                  "support_level": "low",
+                  "visual_stage_ref": "stage-domains"
+                },
+                {
+                  "support_level": "medium",
+                  "visual_stage_ref": "stage-sigma"
+                },
+                {
+                  "support_level": "high",
+                  "visual_stage_ref": "stage-p-orbitals"
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-TETRAHEDRAL-LONE-PAIRS",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -3174,6 +3971,18 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS34-Q8",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS34-Q8"
+            ],
+            "replaces_authored_figure_refs": [
+              "REP-CHEM-TETRAHEDRAL-LONE-PAIRS"
+            ],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "CONDITIONS": "No extra conditions beyond the verbatim stem; duplicating the stem would add no constraint."
           }
@@ -3185,35 +3994,30 @@
         "review_question": "Does a stage show a demonstrated mechanism or principle that can account for it in this question's context? Visual job: show causal states, dependencies, or before/after relations without writing the conclusion.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-TETRAHEDRAL-LONE-PAIRS",
-          "stages": [
-            {
-              "id": "stage-ch4",
-              "label": "CH4",
-              "purpose": "CH4 tetrahedral (0 LP)",
-              "visible_elements": [
-                "physical situation"
-              ]
-            },
-            {
-              "id": "stage-nh3",
-              "label": "NH3",
-              "purpose": "NH3 trigonal pyramidal (1 LP)",
-              "visible_elements": [
-                "physical situation",
-                "chosen body"
-              ]
-            },
-            {
-              "id": "stage-h2o",
-              "label": "H2O",
-              "purpose": "H2O bent (2 LP)",
-              "visible_elements": [
-                "physical situation",
-                "chosen body",
-                "coordinate axes"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS34-Q8",
+            "REP-ACADEMIC-ISS34-Q8",
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS34-Q8-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "Supplied methylamine connectivity",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS34-Q8-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Select one centre at a time before comparing bonded-atom arrangements.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -3223,7 +4027,8 @@
         "review_question": "Does a later stage show the way toward build the explanatory chain from principle to outcome while leaving the causal or linking statement that completes the explanation to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "stage-ch4",
             "stage-nh3",
             "stage-h2o"
@@ -3253,14 +4058,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "m1"
+              "supports_move_ref": "m1",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q8",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q8-GIVENS"
             },
             {
               "text": "A lone pair contributes to electron-domain geometry but is excluded from molecular-shape naming.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "m2"
+              "supports_move_ref": "m2",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q8",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q8-BRIDGE"
             },
             {
               "text": "Use separate C and N inventories; do not carry a whole-molecule label from one atom to the other.",
@@ -3271,7 +4080,7 @@
             }
           ],
           "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -3417,10 +4226,10 @@
     "construction_ref": "CU-CHEM-G11-CO2-SYNTHESIS-Q9",
     "repair_anchor": "repair-ISS34-Q9",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "ebf7648dfad0c32590e20490ce33f549094b6ec9cc9ac35198f7467d5e365c8a",
-      "inputs/package.v1.json": "f1a4d3a4c7d8142a6cd73f2d8cfcb9303d720e16182a094b5c5107166932af50",
-      "rendered/core1a.html": "ea7c744db3ab06d577fc026e0ada1740508920859825aa24a7e3ceb4d0e66ddc",
-      "rendered/core2.html": "ff9eb612ae37eb952c55a7bfce2fe9f0bea2ba250b5c6891fa24632d74fdddce"
+      "inputs/owner.bank.json": "51808f5cef8f88b469cfc73a4813a1dfa9a97fd1c9b6316e96ff1390200b5638",
+      "inputs/package.v1.json": "4fdc9599952f546802e5d27b569a9cbd0be76425fba10e8ef1c1b3c97ad79c1b",
+      "rendered/core1a.html": "27c60a865145ff260556c2e0f60027f795598283c5e7caca0319b5951d75c841",
+      "rendered/core2.html": "ddddf98eb6ad62921c92e7fea2a93a165d93a3fd61a613f8effaa37952dcc097"
     },
     "facets": {
       "H1": {
@@ -3432,7 +4241,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q9",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q9-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -3445,7 +4256,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q9",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q9-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -3467,7 +4280,96 @@
         "review_question": "Does stage 1 show the situation and help this learner see what must remain invariant while moving between the source and target representations, without disclosing the decisive correspondence or translation that fixes the target representation?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS34-Q9",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [
+                "SRC-AUTHOR-NLM"
+              ],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS34-Q9"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Allocate each basis function once. The completed orbital arrangement is your response.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-NLM-STATIC-FRICTION-BOUND",
+                "REL-NLM-KINETIC-FRICTION"
+              ],
+              "read_order": [
+                "Supplied local carbon jobs",
+                "Allocate each basis function once. The completed orbital arrangement is your response."
+              ],
+              "instance_constraints": [
+                "Normal reaction follows the actual perpendicular force equation; do not assume N = mg.",
+                "Before sliding, static friction equals the required no-slip value only while its magnitude is within mu_s N.",
+                "The equality |f_s| = mu_s N is shown only at impending slip.",
+                "Kinetic friction is shown only after relative sliding is established and opposes that sliding."
+              ],
+              "accessibility": [
+                "Contact state is stated in text as static feasible, impending slip or sliding; colour alone is insufficient.",
+                "Force arrows require labels and text alternatives describing direction.",
+                "The friction-demand/limit comparison is readable as text or symbols in addition to any graphical meter."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS34/assets/question-9-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "Supplied local carbon jobs"
+                }
+              ],
+              "interactive_resource_refs": [
+                "ACT-NLM-FRICTION-THRESHOLD"
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q9-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "Supplied local carbon jobs",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q9-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Allocate each basis function once. The completed orbital arrangement is your response.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ],
+              "support_stage_map": [
+                {
+                  "support_level": "low",
+                  "visual_stage_ref": "stage-domains"
+                },
+                {
+                  "support_level": "medium",
+                  "visual_stage_ref": "stage-sigma"
+                },
+                {
+                  "support_level": "high",
+                  "visual_stage_ref": "stage-p-orbitals"
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-CO2-PI-ORTHOGONAL",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -3605,6 +4507,16 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS34-Q9",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS34-Q9"
+            ],
+            "replaces_authored_figure_refs": [],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "CONDITIONS": "No extra conditions beyond the verbatim stem; duplicating the stem would add no constraint.",
             "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
@@ -3617,46 +4529,30 @@
         "review_question": "Does a stage show a demonstrated meaning or relationship already understood in one representation in this question's context? Visual job: show source-to-target correspondences progressively while preserving the invariant without completing the final mapping.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-CO2-PI-ORTHOGONAL",
-          "stages": [
-            {
-              "id": "stage-domains",
-              "label": "Domains",
-              "purpose": "Lewis domain count",
-              "visible_elements": [
-                "physical situation"
-              ]
-            },
-            {
-              "id": "stage-sigma",
-              "label": "Sigma",
-              "purpose": "Linear sp sigma framework",
-              "visible_elements": [
-                "physical situation",
-                "chosen body"
-              ]
-            },
-            {
-              "id": "stage-p-orbitals",
-              "label": "P orbitals",
-              "purpose": "Two orthogonal unhybridised 2p orbitals",
-              "visible_elements": [
-                "physical situation",
-                "chosen body",
-                "coordinate axes"
-              ]
-            },
-            {
-              "id": "stage-pi-overlap",
-              "label": "Pi overlap",
-              "purpose": "Two mutually perpendicular pi bonds",
-              "visible_elements": [
-                "physical situation",
-                "chosen body",
-                "coordinate axes",
-                "applied-force arrow"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS34-Q9",
+            "REP-ACADEMIC-ISS34-Q9",
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS34-Q9-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "Supplied local carbon jobs",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS34-Q9-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Allocate each basis function once. The completed orbital arrangement is your response.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -3666,7 +4562,8 @@
         "review_question": "Does a later stage show the way toward construct the target representation while preserving that meaning while leaving the decisive correspondence or translation that fixes the target representation to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "stage-domains",
             "stage-sigma",
             "stage-p-orbitals",
@@ -3697,14 +4594,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "m1"
+              "supports_move_ref": "m1",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q9",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q9-GIVENS"
             },
             {
               "text": "For second-period carbon, one 2s and three 2p functions form a four-dimensional valence basis.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "m2"
+              "supports_move_ref": "m2",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q9",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q9-BRIDGE"
             },
             {
               "text": "Assign three hybrid sigma directions and reserve only unused functions for the pi job.",
@@ -3715,7 +4616,7 @@
             }
           ],
           "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -3862,10 +4763,10 @@
     "construction_ref": "CU-CHEM-G11-DOMAINS-SHAPE",
     "repair_anchor": "repair-ISS34-Q10",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "ebf7648dfad0c32590e20490ce33f549094b6ec9cc9ac35198f7467d5e365c8a",
-      "inputs/package.v1.json": "f1a4d3a4c7d8142a6cd73f2d8cfcb9303d720e16182a094b5c5107166932af50",
-      "rendered/core1a.html": "ea7c744db3ab06d577fc026e0ada1740508920859825aa24a7e3ceb4d0e66ddc",
-      "rendered/core2.html": "ff9eb612ae37eb952c55a7bfce2fe9f0bea2ba250b5c6891fa24632d74fdddce"
+      "inputs/owner.bank.json": "51808f5cef8f88b469cfc73a4813a1dfa9a97fd1c9b6316e96ff1390200b5638",
+      "inputs/package.v1.json": "4fdc9599952f546802e5d27b569a9cbd0be76425fba10e8ef1c1b3c97ad79c1b",
+      "rendered/core1a.html": "27c60a865145ff260556c2e0f60027f795598283c5e7caca0319b5951d75c841",
+      "rendered/core2.html": "ddddf98eb6ad62921c92e7fea2a93a165d93a3fd61a613f8effaa37952dcc097"
     },
     "facets": {
       "H1": {
@@ -3877,7 +4778,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q10",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q10-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -3890,7 +4793,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q10",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q10-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -3912,7 +4817,96 @@
         "review_question": "Does stage 1 show the situation and help this learner see the claim to establish and the evidence or conditions that may legitimately support it, without disclosing the decisive warrant, inference, or proof step that establishes the claim?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS34-Q10",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [
+                "SRC-AUTHOR-NLM"
+              ],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS34-Q10"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Separate all domain slots from the positions occupied by bonded nuclei.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-NLM-STATIC-FRICTION-BOUND",
+                "REL-NLM-KINETIC-FRICTION"
+              ],
+              "read_order": [
+                "Supplied four-domain comparisons",
+                "Separate all domain slots from the positions occupied by bonded nuclei."
+              ],
+              "instance_constraints": [
+                "Normal reaction follows the actual perpendicular force equation; do not assume N = mg.",
+                "Before sliding, static friction equals the required no-slip value only while its magnitude is within mu_s N.",
+                "The equality |f_s| = mu_s N is shown only at impending slip.",
+                "Kinetic friction is shown only after relative sliding is established and opposes that sliding."
+              ],
+              "accessibility": [
+                "Contact state is stated in text as static feasible, impending slip or sliding; colour alone is insufficient.",
+                "Force arrows require labels and text alternatives describing direction.",
+                "The friction-demand/limit comparison is readable as text or symbols in addition to any graphical meter."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS34/assets/question-10-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "Supplied four-domain comparisons"
+                }
+              ],
+              "interactive_resource_refs": [
+                "ACT-NLM-FRICTION-THRESHOLD"
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q10-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "Supplied four-domain comparisons",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS34-Q10-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Separate all domain slots from the positions occupied by bonded nuclei.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ],
+              "support_stage_map": [
+                {
+                  "support_level": "low",
+                  "visual_stage_ref": "stage-domains"
+                },
+                {
+                  "support_level": "medium",
+                  "visual_stage_ref": "stage-sigma"
+                },
+                {
+                  "support_level": "high",
+                  "visual_stage_ref": "stage-p-orbitals"
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-TETRAHEDRAL-LONE-PAIRS",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -4039,6 +5033,18 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS34-Q10",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS34-Q10"
+            ],
+            "replaces_authored_figure_refs": [
+              "REP-CHEM-TETRAHEDRAL-LONE-PAIRS"
+            ],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "CONDITIONS": "No extra conditions beyond the verbatim stem; duplicating the stem would add no constraint."
           }
@@ -4050,35 +5056,30 @@
         "review_question": "Does a stage show a demonstrated theorem, principle, data rule, or warrant in this question's context? Visual job: show givens, evidence, and construction relationships without marking the conclusion as established.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-TETRAHEDRAL-LONE-PAIRS",
-          "stages": [
-            {
-              "id": "stage-ch4",
-              "label": "CH4",
-              "purpose": "CH4 tetrahedral (0 LP)",
-              "visible_elements": [
-                "physical situation"
-              ]
-            },
-            {
-              "id": "stage-nh3",
-              "label": "NH3",
-              "purpose": "NH3 trigonal pyramidal (1 LP)",
-              "visible_elements": [
-                "physical situation",
-                "chosen body"
-              ]
-            },
-            {
-              "id": "stage-h2o",
-              "label": "H2O",
-              "purpose": "H2O bent (2 LP)",
-              "visible_elements": [
-                "physical situation",
-                "chosen body",
-                "coordinate axes"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS34-Q10",
+            "REP-ACADEMIC-ISS34-Q10",
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS34-Q10-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "Supplied four-domain comparisons",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS34-Q10-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Separate all domain slots from the positions occupied by bonded nuclei.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -4088,7 +5089,8 @@
         "review_question": "Does a later stage show the way toward construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "stage-ch4",
             "stage-nh3",
             "stage-h2o"
@@ -4118,14 +5120,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "m1"
+              "supports_move_ref": "m1",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q10",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q10-GIVENS"
             },
             {
               "text": "A lone-pair domain has no bonded nucleus to include in molecular-shape naming.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "m2"
+              "supports_move_ref": "m2",
+              "visual_ref": "REP-ACADEMIC-ISS34-Q10",
+              "visual_stage_ref": "REP-ACADEMIC-ISS34-Q10-BRIDGE"
             },
             {
               "text": "Hold four domains fixed and vary how many slots are bonded atoms.",
@@ -4136,7 +5142,7 @@
             }
           ],
           "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },

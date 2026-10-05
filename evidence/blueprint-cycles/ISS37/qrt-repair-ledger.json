@@ -7,10 +7,10 @@
     "construction_ref": "CU-ISS37-MODEL-SCOPE-Q1",
     "repair_anchor": "repair-ISS37-D4-R1-Q01",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "710fa2323de8904cf0a771add768eb82df73bbec9d2420751e71a9c80c13a34c",
-      "inputs/package.v1.json": "d718cde203017dacf89424391576e53553b0a46cfb98d5efb4e5f3e9e96bcfc0",
-      "rendered/core1a.html": "fcab7d2a6429b97b2b6790dcf9e8dba74f9a81eb530c6ede07d9375fe64373a3",
-      "rendered/core2.html": "bd552cb971c271c30c939e98341f7554c9899cf77187e43056b377ab1efe9223"
+      "inputs/owner.bank.json": "b43aca64018e04be15d14db03d7944f76b0f445e981ff51b2d943d1dd420b1ac",
+      "inputs/package.v1.json": "fc2661c9e2c4ffb2f0215ddc80fb371496b92dbd8a9c5f903aff226ac7201245",
+      "rendered/core1a.html": "cc2de1f4294e284793ac4f1a9987d0e0ba45c4e86c57ca42a171e954af12806d",
+      "rendered/core2.html": "3cc8e0c13ba166f8ff192edf8b9f53388ae2de21dbbf4e6a652129b22d67ba4a"
     },
     "facets": {
       "H1": {
@@ -22,7 +22,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "ISS37-D4-R1-Q01-MOVE-1"
+          "supports_move_ref": "ISS37-D4-R1-Q01-MOVE-1",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q1",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q1-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -35,7 +37,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "ISS37-D4-R1-Q01-MOVE-2"
+          "supports_move_ref": "ISS37-D4-R1-Q01-MOVE-2",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q1",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q1-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -57,7 +61,73 @@
         "review_question": "Does stage 1 show the situation and help this learner see the claim to establish and the evidence or conditions that may legitimately support it, without disclosing the decisive warrant, inference, or proof step that establishes the claim?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS37-Q1",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS37-D4-R1-Q01"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Separate local counting from the supplied donation/alignment conditions.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-CHEM-ISS37-MODEL-SCOPE"
+              ],
+              "read_order": [
+                "Supplied formamide connectivity",
+                "Separate local counting from the supplied donation/alignment conditions."
+              ],
+              "instance_constraints": [
+                "The first stage must not reveal the Q9 protected conclusion.",
+                "No visual element may imply measured donation strength or a total-energy curve."
+              ],
+              "accessibility": [
+                "SVG has title, description and text equivalents for orientation changes.",
+                "No meaning is encoded by colour alone."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS37/assets/question-1-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "Supplied formamide connectivity"
+                }
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q1-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "Supplied formamide connectivity",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q1-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Separate local counting from the supplied donation/alignment conditions.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-ISS37-TORSION-OVERLAP",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -149,6 +219,16 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS37-D4-R1-Q01",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS37-Q1"
+            ],
+            "replaces_authored_figure_refs": [],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
           }
@@ -160,48 +240,32 @@
         "review_question": "Does a stage show a demonstrated theorem, principle, data rule, or warrant in this question's context? Visual job: show givens, evidence, and construction relationships without marking the conclusion as established.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-ISS37-TORSION-OVERLAP",
-          "stages": [
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
-              "label": "Connectivity",
-              "purpose": "Connectivity in the declared qualitative direction model.",
-              "visible_elements": [
-                "Connectivity"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
-              "label": "Axis/reference",
-              "purpose": "Axis/reference in the declared qualitative direction model.",
-              "visible_elements": [
-                "Axis/reference"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
-              "label": "Directions",
-              "purpose": "Directions in the declared qualitative direction model.",
-              "visible_elements": [
-                "Directions"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-4",
-              "label": "Changed arrangement",
-              "purpose": "Changed arrangement in the declared qualitative direction model.",
-              "visible_elements": [
-                "Changed arrangement"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-5",
-              "label": "Inventory/model check",
-              "purpose": "Inventory/model check in the declared qualitative direction model.",
-              "visible_elements": [
-                "Inventory/model check"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS37-Q1",
+            "REP-ACADEMIC-ISS37-Q1",
+            null,
+            null,
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS37-Q1-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "Supplied formamide connectivity",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS37-Q1-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Separate local counting from the supplied donation/alignment conditions.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -211,7 +275,8 @@
         "review_question": "Does a later stage show the way toward construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
@@ -248,14 +313,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "ISS37-D4-R1-Q01-MOVE-1"
+              "supports_move_ref": "ISS37-D4-R1-Q01-MOVE-1",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q1",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q1-GIVENS"
             },
             {
               "text": "A hybrid label describes a chosen basis; it does not independently cause donation.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "ISS37-D4-R1-Q01-MOVE-2"
+              "supports_move_ref": "ISS37-D4-R1-Q01-MOVE-2",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q1",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q1-BRIDGE"
             },
             {
               "text": "Account for sigma framework, donor orientation and adjacent pi acceptor before qualifying the label.",
@@ -280,7 +349,7 @@
             }
           ],
           "protected_work": "Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -428,10 +497,10 @@
     "construction_ref": "CU-ISS37-MODEL-SCOPE-Q2",
     "repair_anchor": "repair-ISS37-D4-R1-Q02",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "710fa2323de8904cf0a771add768eb82df73bbec9d2420751e71a9c80c13a34c",
-      "inputs/package.v1.json": "d718cde203017dacf89424391576e53553b0a46cfb98d5efb4e5f3e9e96bcfc0",
-      "rendered/core1a.html": "fcab7d2a6429b97b2b6790dcf9e8dba74f9a81eb530c6ede07d9375fe64373a3",
-      "rendered/core2.html": "bd552cb971c271c30c939e98341f7554c9899cf77187e43056b377ab1efe9223"
+      "inputs/owner.bank.json": "b43aca64018e04be15d14db03d7944f76b0f445e981ff51b2d943d1dd420b1ac",
+      "inputs/package.v1.json": "fc2661c9e2c4ffb2f0215ddc80fb371496b92dbd8a9c5f903aff226ac7201245",
+      "rendered/core1a.html": "cc2de1f4294e284793ac4f1a9987d0e0ba45c4e86c57ca42a171e954af12806d",
+      "rendered/core2.html": "3cc8e0c13ba166f8ff192edf8b9f53388ae2de21dbbf4e6a652129b22d67ba4a"
     },
     "facets": {
       "H1": {
@@ -443,7 +512,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "ISS37-D4-R1-Q02-MOVE-1"
+          "supports_move_ref": "ISS37-D4-R1-Q02-MOVE-1",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q2",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q2-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -456,7 +527,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "ISS37-D4-R1-Q02-MOVE-2"
+          "supports_move_ref": "ISS37-D4-R1-Q02-MOVE-2",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q2",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q2-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -478,7 +551,73 @@
         "review_question": "Does stage 1 show the situation and help this learner see what must remain invariant while moving between the source and target representations, without disclosing the decisive correspondence or translation that fixes the target representation?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS37-Q2",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS37-D4-R1-Q02"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Declare the C-N viewing axis. Preserve inventories while changing relative orientation.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-CHEM-ISS37-MODEL-SCOPE"
+              ],
+              "read_order": [
+                "Fixed connectivity for two arrangements",
+                "Declare the C-N viewing axis. Preserve inventories while changing relative orientation."
+              ],
+              "instance_constraints": [
+                "The first stage must not reveal the Q9 protected conclusion.",
+                "No visual element may imply measured donation strength or a total-energy curve."
+              ],
+              "accessibility": [
+                "SVG has title, description and text equivalents for orientation changes.",
+                "No meaning is encoded by colour alone."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS37/assets/question-2-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "Fixed connectivity for two arrangements"
+                }
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q2-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "Fixed connectivity for two arrangements",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q2-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Declare the C-N viewing axis. Preserve inventories while changing relative orientation.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-ISS37-TORSION-OVERLAP",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -570,6 +709,18 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS37-D4-R1-Q02",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS37-Q2"
+            ],
+            "replaces_authored_figure_refs": [
+              "REP-CHEM-ISS37-TORSION-OVERLAP"
+            ],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {}
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -579,48 +730,32 @@
         "review_question": "Does a stage show a demonstrated meaning or relationship already understood in one representation in this question's context? Visual job: show source-to-target correspondences progressively while preserving the invariant without completing the final mapping.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-ISS37-TORSION-OVERLAP",
-          "stages": [
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
-              "label": "Connectivity",
-              "purpose": "Connectivity in the declared qualitative direction model.",
-              "visible_elements": [
-                "Connectivity"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
-              "label": "Axis/reference",
-              "purpose": "Axis/reference in the declared qualitative direction model.",
-              "visible_elements": [
-                "Axis/reference"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
-              "label": "Directions",
-              "purpose": "Directions in the declared qualitative direction model.",
-              "visible_elements": [
-                "Directions"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-4",
-              "label": "Changed arrangement",
-              "purpose": "Changed arrangement in the declared qualitative direction model.",
-              "visible_elements": [
-                "Changed arrangement"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-5",
-              "label": "Inventory/model check",
-              "purpose": "Inventory/model check in the declared qualitative direction model.",
-              "visible_elements": [
-                "Inventory/model check"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS37-Q2",
+            "REP-ACADEMIC-ISS37-Q2",
+            null,
+            null,
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS37-Q2-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "Fixed connectivity for two arrangements",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS37-Q2-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Declare the C-N viewing axis. Preserve inventories while changing relative orientation.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -630,7 +765,8 @@
         "review_question": "Does a later stage show the way toward construct the target representation while preserving that meaning while leaving the decisive correspondence or translation that fixes the target representation to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
@@ -668,14 +804,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "ISS37-D4-R1-Q02-MOVE-1"
+              "supports_move_ref": "ISS37-D4-R1-Q02-MOVE-1",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q2",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q2-GIVENS"
             },
             {
               "text": "Torsion changes relative orientation, not the number of atoms or formal electrons.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "ISS37-D4-R1-Q02-MOVE-2"
+              "supports_move_ref": "ISS37-D4-R1-Q02-MOVE-2",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q2",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q2-BRIDGE"
             },
             {
               "text": "Draw a fixed carbonyl reference and an N donor direction rotated about the declared C-N axis.",
@@ -700,7 +840,7 @@
             }
           ],
           "protected_work": "Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -848,10 +988,10 @@
     "construction_ref": "CU-ISS37-MODEL-SCOPE-Q3",
     "repair_anchor": "repair-ISS37-D4-R1-Q03",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "710fa2323de8904cf0a771add768eb82df73bbec9d2420751e71a9c80c13a34c",
-      "inputs/package.v1.json": "d718cde203017dacf89424391576e53553b0a46cfb98d5efb4e5f3e9e96bcfc0",
-      "rendered/core1a.html": "fcab7d2a6429b97b2b6790dcf9e8dba74f9a81eb530c6ede07d9375fe64373a3",
-      "rendered/core2.html": "bd552cb971c271c30c939e98341f7554c9899cf77187e43056b377ab1efe9223"
+      "inputs/owner.bank.json": "b43aca64018e04be15d14db03d7944f76b0f445e981ff51b2d943d1dd420b1ac",
+      "inputs/package.v1.json": "fc2661c9e2c4ffb2f0215ddc80fb371496b92dbd8a9c5f903aff226ac7201245",
+      "rendered/core1a.html": "cc2de1f4294e284793ac4f1a9987d0e0ba45c4e86c57ca42a171e954af12806d",
+      "rendered/core2.html": "3cc8e0c13ba166f8ff192edf8b9f53388ae2de21dbbf4e6a652129b22d67ba4a"
     },
     "facets": {
       "H1": {
@@ -863,7 +1003,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "ISS37-D4-R1-Q03-MOVE-1"
+          "supports_move_ref": "ISS37-D4-R1-Q03-MOVE-1",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q3",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q3-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -876,7 +1018,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "ISS37-D4-R1-Q03-MOVE-2"
+          "supports_move_ref": "ISS37-D4-R1-Q03-MOVE-2",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q3",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q3-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -898,7 +1042,73 @@
         "review_question": "Does stage 1 show the situation and help this learner see the claim to establish and the evidence or conditions that may legitimately support it, without disclosing the decisive warrant, inference, or proof step that establishes the claim?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS37-Q3",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS37-D4-R1-Q03"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Connect the supplied trend to a bounded mechanism; tag assumptions and observations.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-CHEM-ISS37-MODEL-SCOPE"
+              ],
+              "read_order": [
+                "Supplied qualitative twist result",
+                "Connect the supplied trend to a bounded mechanism; tag assumptions and observations."
+              ],
+              "instance_constraints": [
+                "The first stage must not reveal the Q9 protected conclusion.",
+                "No visual element may imply measured donation strength or a total-energy curve."
+              ],
+              "accessibility": [
+                "SVG has title, description and text equivalents for orientation changes.",
+                "No meaning is encoded by colour alone."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS37/assets/question-3-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "Supplied qualitative twist result"
+                }
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q3-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "Supplied qualitative twist result",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q3-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Connect the supplied trend to a bounded mechanism; tag assumptions and observations.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-ISS37-TORSION-OVERLAP",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -990,6 +1200,18 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS37-D4-R1-Q03",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS37-Q3"
+            ],
+            "replaces_authored_figure_refs": [
+              "REP-CHEM-ISS37-TORSION-OVERLAP"
+            ],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {}
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -999,48 +1221,32 @@
         "review_question": "Does a stage show a demonstrated theorem, principle, data rule, or warrant in this question's context? Visual job: show givens, evidence, and construction relationships without marking the conclusion as established.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-ISS37-TORSION-OVERLAP",
-          "stages": [
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
-              "label": "Connectivity",
-              "purpose": "Connectivity in the declared qualitative direction model.",
-              "visible_elements": [
-                "Connectivity"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
-              "label": "Axis/reference",
-              "purpose": "Axis/reference in the declared qualitative direction model.",
-              "visible_elements": [
-                "Axis/reference"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
-              "label": "Directions",
-              "purpose": "Directions in the declared qualitative direction model.",
-              "visible_elements": [
-                "Directions"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-4",
-              "label": "Changed arrangement",
-              "purpose": "Changed arrangement in the declared qualitative direction model.",
-              "visible_elements": [
-                "Changed arrangement"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-5",
-              "label": "Inventory/model check",
-              "purpose": "Inventory/model check in the declared qualitative direction model.",
-              "visible_elements": [
-                "Inventory/model check"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS37-Q3",
+            "REP-ACADEMIC-ISS37-Q3",
+            null,
+            null,
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS37-Q3-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "Supplied qualitative twist result",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS37-Q3-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Connect the supplied trend to a bounded mechanism; tag assumptions and observations.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -1050,7 +1256,8 @@
         "review_question": "Does a later stage show the way toward construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
@@ -1086,14 +1293,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "ISS37-D4-R1-Q03-MOVE-1"
+              "supports_move_ref": "ISS37-D4-R1-Q03-MOVE-1",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q3",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q3-GIVENS"
             },
             {
               "text": "Relative donor/acceptor alignment is a model variable; donation magnitude needs additional physics.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "ISS37-D4-R1-Q03-MOVE-2"
+              "supports_move_ref": "ISS37-D4-R1-Q03-MOVE-2",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q3",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q3-BRIDGE"
             },
             {
               "text": "Connect changed geometry to overlap, then tag each statement as given, model or observation.",
@@ -1118,7 +1329,7 @@
             }
           ],
           "protected_work": "Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -1266,10 +1477,10 @@
     "construction_ref": "CU-ISS37-MODEL-SCOPE-Q4",
     "repair_anchor": "repair-ISS37-D4-R1-Q04",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "710fa2323de8904cf0a771add768eb82df73bbec9d2420751e71a9c80c13a34c",
-      "inputs/package.v1.json": "d718cde203017dacf89424391576e53553b0a46cfb98d5efb4e5f3e9e96bcfc0",
-      "rendered/core1a.html": "fcab7d2a6429b97b2b6790dcf9e8dba74f9a81eb530c6ede07d9375fe64373a3",
-      "rendered/core2.html": "bd552cb971c271c30c939e98341f7554c9899cf77187e43056b377ab1efe9223"
+      "inputs/owner.bank.json": "b43aca64018e04be15d14db03d7944f76b0f445e981ff51b2d943d1dd420b1ac",
+      "inputs/package.v1.json": "fc2661c9e2c4ffb2f0215ddc80fb371496b92dbd8a9c5f903aff226ac7201245",
+      "rendered/core1a.html": "cc2de1f4294e284793ac4f1a9987d0e0ba45c4e86c57ca42a171e954af12806d",
+      "rendered/core2.html": "3cc8e0c13ba166f8ff192edf8b9f53388ae2de21dbbf4e6a652129b22d67ba4a"
     },
     "facets": {
       "H1": {
@@ -1281,7 +1492,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "ISS37-D4-R1-Q04-MOVE-1"
+          "supports_move_ref": "ISS37-D4-R1-Q04-MOVE-1",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q4",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q4-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -1294,7 +1507,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "ISS37-D4-R1-Q04-MOVE-2"
+          "supports_move_ref": "ISS37-D4-R1-Q04-MOVE-2",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q4",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q4-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -1316,7 +1531,73 @@
         "review_question": "Does stage 1 show the situation and help this learner see the dependency between subproblems or ideas that makes their order or coordination matter, without disclosing the bridge or ordering decision that unlocks the multi-step route?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS37-Q4",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS37-D4-R1-Q04"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Test local count, orbital availability, adjacency and alignment separately.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-CHEM-ISS37-MODEL-SCOPE"
+              ],
+              "read_order": [
+                "Supplied direct/spacer comparison",
+                "Test local count, orbital availability, adjacency and alignment separately."
+              ],
+              "instance_constraints": [
+                "The first stage must not reveal the Q9 protected conclusion.",
+                "No visual element may imply measured donation strength or a total-energy curve."
+              ],
+              "accessibility": [
+                "SVG has title, description and text equivalents for orientation changes.",
+                "No meaning is encoded by colour alone."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS37/assets/question-4-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "Supplied direct/spacer comparison"
+                }
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q4-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "Supplied direct/spacer comparison",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q4-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Test local count, orbital availability, adjacency and alignment separately.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-ISS37-TORSION-OVERLAP",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -1408,6 +1689,16 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS37-D4-R1-Q04",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS37-Q4"
+            ],
+            "replaces_authored_figure_refs": [],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
           }
@@ -1419,48 +1710,32 @@
         "review_question": "Does a stage show a demonstrated component idea that can anchor the first valid bridge in this question's context? Visual job: make dependencies, shared conditions, or state transitions visible without completing the route.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-ISS37-TORSION-OVERLAP",
-          "stages": [
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
-              "label": "Connectivity",
-              "purpose": "Connectivity in the declared qualitative direction model.",
-              "visible_elements": [
-                "Connectivity"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
-              "label": "Axis/reference",
-              "purpose": "Axis/reference in the declared qualitative direction model.",
-              "visible_elements": [
-                "Axis/reference"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
-              "label": "Directions",
-              "purpose": "Directions in the declared qualitative direction model.",
-              "visible_elements": [
-                "Directions"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-4",
-              "label": "Changed arrangement",
-              "purpose": "Changed arrangement in the declared qualitative direction model.",
-              "visible_elements": [
-                "Changed arrangement"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-5",
-              "label": "Inventory/model check",
-              "purpose": "Inventory/model check in the declared qualitative direction model.",
-              "visible_elements": [
-                "Inventory/model check"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS37-Q4",
+            "REP-ACADEMIC-ISS37-Q4",
+            null,
+            null,
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS37-Q4-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "Supplied direct/spacer comparison",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS37-Q4-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Test local count, orbital availability, adjacency and alignment separately.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -1470,7 +1745,8 @@
         "review_question": "Does a later stage show the way toward coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
@@ -1507,14 +1783,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "ISS37-D4-R1-Q04-MOVE-1"
+              "supports_move_ref": "ISS37-D4-R1-Q04-MOVE-1",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q4",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q4-GIVENS"
             },
             {
               "text": "Local count and a continuous aligned pathway are independent checks.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "ISS37-D4-R1-Q04-MOVE-2"
+              "supports_move_ref": "ISS37-D4-R1-Q04-MOVE-2",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q4",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q4-BRIDGE"
             },
             {
               "text": "Test locality, adjacency, alignment and stated model conditions; invent a structural counterfactual yourself.",
@@ -1539,7 +1819,7 @@
             }
           ],
           "protected_work": "Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -1687,10 +1967,10 @@
     "construction_ref": "CU-ISS37-MODEL-SCOPE-Q5",
     "repair_anchor": "repair-ISS37-D4-R1-Q05",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "710fa2323de8904cf0a771add768eb82df73bbec9d2420751e71a9c80c13a34c",
-      "inputs/package.v1.json": "d718cde203017dacf89424391576e53553b0a46cfb98d5efb4e5f3e9e96bcfc0",
-      "rendered/core1a.html": "fcab7d2a6429b97b2b6790dcf9e8dba74f9a81eb530c6ede07d9375fe64373a3",
-      "rendered/core2.html": "bd552cb971c271c30c939e98341f7554c9899cf77187e43056b377ab1efe9223"
+      "inputs/owner.bank.json": "b43aca64018e04be15d14db03d7944f76b0f445e981ff51b2d943d1dd420b1ac",
+      "inputs/package.v1.json": "fc2661c9e2c4ffb2f0215ddc80fb371496b92dbd8a9c5f903aff226ac7201245",
+      "rendered/core1a.html": "cc2de1f4294e284793ac4f1a9987d0e0ba45c4e86c57ca42a171e954af12806d",
+      "rendered/core2.html": "3cc8e0c13ba166f8ff192edf8b9f53388ae2de21dbbf4e6a652129b22d67ba4a"
     },
     "facets": {
       "H1": {
@@ -1702,7 +1982,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "ISS37-D4-R1-Q05-MOVE-1"
+          "supports_move_ref": "ISS37-D4-R1-Q05-MOVE-1",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q5",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q5-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -1715,7 +1997,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "ISS37-D4-R1-Q05-MOVE-2"
+          "supports_move_ref": "ISS37-D4-R1-Q05-MOVE-2",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q5",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q5-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -1737,7 +2021,73 @@
         "review_question": "Does stage 1 show the situation and help this learner see the claim to establish and the evidence or conditions that may legitimately support it, without disclosing the decisive warrant, inference, or proof step that establishes the claim?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS37-Q5",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS37-D4-R1-Q05"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Test the uniqueness claim against the supplied data, then state a qualified replacement.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-CHEM-ISS37-MODEL-SCOPE"
+              ],
+              "read_order": [
+                "Supplied counterexample observations",
+                "Test the uniqueness claim against the supplied data, then state a qualified replacement."
+              ],
+              "instance_constraints": [
+                "The first stage must not reveal the Q9 protected conclusion.",
+                "No visual element may imply measured donation strength or a total-energy curve."
+              ],
+              "accessibility": [
+                "SVG has title, description and text equivalents for orientation changes.",
+                "No meaning is encoded by colour alone."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS37/assets/question-5-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "Supplied counterexample observations"
+                }
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q5-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "Supplied counterexample observations",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q5-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Test the uniqueness claim against the supplied data, then state a qualified replacement.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-ISS37-TORSION-OVERLAP",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -1829,6 +2179,16 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS37-D4-R1-Q05",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS37-Q5"
+            ],
+            "replaces_authored_figure_refs": [],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
           }
@@ -1840,48 +2200,32 @@
         "review_question": "Does a stage show a demonstrated theorem, principle, data rule, or warrant in this question's context? Visual job: show givens, evidence, and construction relationships without marking the conclusion as established.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-ISS37-TORSION-OVERLAP",
-          "stages": [
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
-              "label": "Connectivity",
-              "purpose": "Connectivity in the declared qualitative direction model.",
-              "visible_elements": [
-                "Connectivity"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
-              "label": "Axis/reference",
-              "purpose": "Axis/reference in the declared qualitative direction model.",
-              "visible_elements": [
-                "Axis/reference"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
-              "label": "Directions",
-              "purpose": "Directions in the declared qualitative direction model.",
-              "visible_elements": [
-                "Directions"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-4",
-              "label": "Changed arrangement",
-              "purpose": "Changed arrangement in the declared qualitative direction model.",
-              "visible_elements": [
-                "Changed arrangement"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-5",
-              "label": "Inventory/model check",
-              "purpose": "Inventory/model check in the declared qualitative direction model.",
-              "visible_elements": [
-                "Inventory/model check"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS37-Q5",
+            "REP-ACADEMIC-ISS37-Q5",
+            null,
+            null,
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS37-Q5-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "Supplied counterexample observations",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS37-Q5-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Test the uniqueness claim against the supplied data, then state a qualified replacement.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -1891,7 +2235,8 @@
         "review_question": "Does a later stage show the way toward construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
@@ -1928,14 +2273,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "ISS37-D4-R1-Q05-MOVE-1"
+              "supports_move_ref": "ISS37-D4-R1-Q05-MOVE-1",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q5",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q5-GIVENS"
             },
             {
               "text": "Several shapes/angles can share an introductory four-domain classification.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "ISS37-D4-R1-Q05-MOVE-2"
+              "supports_move_ref": "ISS37-D4-R1-Q05-MOVE-2",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q5",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q5-BRIDGE"
             },
             {
               "text": "Use supplied counterexamples and the amide boundary to qualify both predictive scope and evidence.",
@@ -1960,7 +2309,7 @@
             }
           ],
           "protected_work": "Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -2108,10 +2457,10 @@
     "construction_ref": "CU-ISS37-MODEL-SCOPE-Q6",
     "repair_anchor": "repair-ISS37-D4-R1-Q06",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "710fa2323de8904cf0a771add768eb82df73bbec9d2420751e71a9c80c13a34c",
-      "inputs/package.v1.json": "d718cde203017dacf89424391576e53553b0a46cfb98d5efb4e5f3e9e96bcfc0",
-      "rendered/core1a.html": "fcab7d2a6429b97b2b6790dcf9e8dba74f9a81eb530c6ede07d9375fe64373a3",
-      "rendered/core2.html": "bd552cb971c271c30c939e98341f7554c9899cf77187e43056b377ab1efe9223"
+      "inputs/owner.bank.json": "b43aca64018e04be15d14db03d7944f76b0f445e981ff51b2d943d1dd420b1ac",
+      "inputs/package.v1.json": "fc2661c9e2c4ffb2f0215ddc80fb371496b92dbd8a9c5f903aff226ac7201245",
+      "rendered/core1a.html": "cc2de1f4294e284793ac4f1a9987d0e0ba45c4e86c57ca42a171e954af12806d",
+      "rendered/core2.html": "3cc8e0c13ba166f8ff192edf8b9f53388ae2de21dbbf4e6a652129b22d67ba4a"
     },
     "facets": {
       "H1": {
@@ -2123,7 +2472,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "ISS37-D4-R1-Q06-MOVE-1"
+          "supports_move_ref": "ISS37-D4-R1-Q06-MOVE-1",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q6",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q6-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -2136,7 +2487,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "ISS37-D4-R1-Q06-MOVE-2"
+          "supports_move_ref": "ISS37-D4-R1-Q06-MOVE-2",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q6",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q6-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -2158,7 +2511,73 @@
         "review_question": "Does stage 1 show the situation and help this learner see the claim to establish and the evidence or conditions that may legitimately support it, without disclosing the decisive warrant, inference, or proof step that establishes the claim?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS37-Q6",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS37-D4-R1-Q06"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Recall the local rule, then separately decide whether its conditions hold.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-CHEM-ISS37-MODEL-SCOPE"
+              ],
+              "read_order": [
+                "The two supplied nitrogen sites",
+                "Recall the local rule, then separately decide whether its conditions hold."
+              ],
+              "instance_constraints": [
+                "The first stage must not reveal the Q9 protected conclusion.",
+                "No visual element may imply measured donation strength or a total-energy curve."
+              ],
+              "accessibility": [
+                "SVG has title, description and text equivalents for orientation changes.",
+                "No meaning is encoded by colour alone."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS37/assets/question-6-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "The two supplied nitrogen sites"
+                }
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q6-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "The two supplied nitrogen sites",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q6-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Recall the local rule, then separately decide whether its conditions hold.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-ISS37-TORSION-OVERLAP",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -2250,6 +2669,16 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS37-D4-R1-Q06",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS37-Q6"
+            ],
+            "replaces_authored_figure_refs": [],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
           }
@@ -2261,48 +2690,32 @@
         "review_question": "Does a stage show a demonstrated theorem, principle, data rule, or warrant in this question's context? Visual job: show givens, evidence, and construction relationships without marking the conclusion as established.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-ISS37-TORSION-OVERLAP",
-          "stages": [
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
-              "label": "Connectivity",
-              "purpose": "Connectivity in the declared qualitative direction model.",
-              "visible_elements": [
-                "Connectivity"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
-              "label": "Axis/reference",
-              "purpose": "Axis/reference in the declared qualitative direction model.",
-              "visible_elements": [
-                "Axis/reference"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
-              "label": "Directions",
-              "purpose": "Directions in the declared qualitative direction model.",
-              "visible_elements": [
-                "Directions"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-4",
-              "label": "Changed arrangement",
-              "purpose": "Changed arrangement in the declared qualitative direction model.",
-              "visible_elements": [
-                "Changed arrangement"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-5",
-              "label": "Inventory/model check",
-              "purpose": "Inventory/model check in the declared qualitative direction model.",
-              "visible_elements": [
-                "Inventory/model check"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS37-Q6",
+            "REP-ACADEMIC-ISS37-Q6",
+            null,
+            null,
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS37-Q6-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "The two supplied nitrogen sites",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS37-Q6-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Recall the local rule, then separately decide whether its conditions hold.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -2312,7 +2725,8 @@
         "review_question": "Does a later stage show the way toward construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
@@ -2347,14 +2761,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "ISS37-D4-R1-Q06-MOVE-1"
+              "supports_move_ref": "ISS37-D4-R1-Q06-MOVE-1",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q6",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q6-GIVENS"
             },
             {
               "text": "Local counting assumes the localized/domain model is useful for the asked task.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "ISS37-D4-R1-Q06-MOVE-2"
+              "supports_move_ref": "ISS37-D4-R1-Q06-MOVE-2",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q6",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q6-BRIDGE"
             },
             {
               "text": "List the conditions and look for supplied delocalisation or unusual occupancy evidence before applying the shortcut.",
@@ -2379,7 +2797,7 @@
             }
           ],
           "protected_work": "Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -2527,10 +2945,10 @@
     "construction_ref": "CU-ISS37-MODEL-SCOPE-Q7",
     "repair_anchor": "repair-ISS37-D4-R1-Q07",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "710fa2323de8904cf0a771add768eb82df73bbec9d2420751e71a9c80c13a34c",
-      "inputs/package.v1.json": "d718cde203017dacf89424391576e53553b0a46cfb98d5efb4e5f3e9e96bcfc0",
-      "rendered/core1a.html": "fcab7d2a6429b97b2b6790dcf9e8dba74f9a81eb530c6ede07d9375fe64373a3",
-      "rendered/core2.html": "bd552cb971c271c30c939e98341f7554c9899cf77187e43056b377ab1efe9223"
+      "inputs/owner.bank.json": "b43aca64018e04be15d14db03d7944f76b0f445e981ff51b2d943d1dd420b1ac",
+      "inputs/package.v1.json": "fc2661c9e2c4ffb2f0215ddc80fb371496b92dbd8a9c5f903aff226ac7201245",
+      "rendered/core1a.html": "cc2de1f4294e284793ac4f1a9987d0e0ba45c4e86c57ca42a171e954af12806d",
+      "rendered/core2.html": "3cc8e0c13ba166f8ff192edf8b9f53388ae2de21dbbf4e6a652129b22d67ba4a"
     },
     "facets": {
       "H1": {
@@ -2542,7 +2960,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "ISS37-D4-R1-Q07-MOVE-1"
+          "supports_move_ref": "ISS37-D4-R1-Q07-MOVE-1",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q7",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q7-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -2555,7 +2975,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "ISS37-D4-R1-Q07-MOVE-2"
+          "supports_move_ref": "ISS37-D4-R1-Q07-MOVE-2",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q7",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q7-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -2577,7 +2999,73 @@
         "review_question": "Does stage 1 show the situation and help this learner see what must remain invariant while moving between the source and target representations, without disclosing the decisive correspondence or translation that fixes the target representation?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS37-Q7",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS37-D4-R1-Q07"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Translate occupancy as well as orientation. The empty-orbital generalisation remains your judgement.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-CHEM-ISS37-MODEL-SCOPE"
+              ],
+              "read_order": [
+                "Supplied methyl-radical model",
+                "Translate occupancy as well as orientation. The empty-orbital generalisation remains your judgement."
+              ],
+              "instance_constraints": [
+                "The first stage must not reveal the Q9 protected conclusion.",
+                "No visual element may imply measured donation strength or a total-energy curve."
+              ],
+              "accessibility": [
+                "SVG has title, description and text equivalents for orientation changes.",
+                "No meaning is encoded by colour alone."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS37/assets/question-7-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "Supplied methyl-radical model"
+                }
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q7-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "Supplied methyl-radical model",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q7-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Translate occupancy as well as orientation. The empty-orbital generalisation remains your judgement.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-ISS37-TORSION-OVERLAP",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -2669,6 +3157,16 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS37-D4-R1-Q07",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS37-Q7"
+            ],
+            "replaces_authored_figure_refs": [],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
           }
@@ -2680,48 +3178,32 @@
         "review_question": "Does a stage show a demonstrated meaning or relationship already understood in one representation in this question's context? Visual job: show source-to-target correspondences progressively while preserving the invariant without completing the final mapping.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-ISS37-TORSION-OVERLAP",
-          "stages": [
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
-              "label": "Connectivity",
-              "purpose": "Connectivity in the declared qualitative direction model.",
-              "visible_elements": [
-                "Connectivity"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
-              "label": "Axis/reference",
-              "purpose": "Axis/reference in the declared qualitative direction model.",
-              "visible_elements": [
-                "Axis/reference"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
-              "label": "Directions",
-              "purpose": "Directions in the declared qualitative direction model.",
-              "visible_elements": [
-                "Directions"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-4",
-              "label": "Changed arrangement",
-              "purpose": "Changed arrangement in the declared qualitative direction model.",
-              "visible_elements": [
-                "Changed arrangement"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-5",
-              "label": "Inventory/model check",
-              "purpose": "Inventory/model check in the declared qualitative direction model.",
-              "visible_elements": [
-                "Inventory/model check"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS37-Q7",
+            "REP-ACADEMIC-ISS37-Q7",
+            null,
+            null,
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS37-Q7-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "Supplied methyl-radical model",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS37-Q7-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Translate occupancy as well as orientation. The empty-orbital generalisation remains your judgement.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -2731,7 +3213,8 @@
         "review_question": "Does a later stage show the way toward construct the target representation while preserving that meaning while leaving the decisive correspondence or translation that fixes the target representation to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
@@ -2767,14 +3250,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "ISS37-D4-R1-Q07-MOVE-1"
+              "supports_move_ref": "ISS37-D4-R1-Q07-MOVE-1",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q7",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q7-GIVENS"
             },
             {
               "text": "A singly occupied orbital is not an empty orbital or a lone pair.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "ISS37-D4-R1-Q07-MOVE-2"
+              "supports_move_ref": "ISS37-D4-R1-Q07-MOVE-2",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q7",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q7-BRIDGE"
             },
             {
               "text": "Inventory the sigma electrons and remaining electron before drawing the p-like direction.",
@@ -2799,7 +3286,7 @@
             }
           ],
           "protected_work": "Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -2947,10 +3434,10 @@
     "construction_ref": "CU-ISS37-MODEL-SCOPE-Q8",
     "repair_anchor": "repair-ISS37-D4-R1-Q08",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "710fa2323de8904cf0a771add768eb82df73bbec9d2420751e71a9c80c13a34c",
-      "inputs/package.v1.json": "d718cde203017dacf89424391576e53553b0a46cfb98d5efb4e5f3e9e96bcfc0",
-      "rendered/core1a.html": "fcab7d2a6429b97b2b6790dcf9e8dba74f9a81eb530c6ede07d9375fe64373a3",
-      "rendered/core2.html": "bd552cb971c271c30c939e98341f7554c9899cf77187e43056b377ab1efe9223"
+      "inputs/owner.bank.json": "b43aca64018e04be15d14db03d7944f76b0f445e981ff51b2d943d1dd420b1ac",
+      "inputs/package.v1.json": "fc2661c9e2c4ffb2f0215ddc80fb371496b92dbd8a9c5f903aff226ac7201245",
+      "rendered/core1a.html": "cc2de1f4294e284793ac4f1a9987d0e0ba45c4e86c57ca42a171e954af12806d",
+      "rendered/core2.html": "3cc8e0c13ba166f8ff192edf8b9f53388ae2de21dbbf4e6a652129b22d67ba4a"
     },
     "facets": {
       "H1": {
@@ -2962,7 +3449,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "ISS37-D4-R1-Q08-MOVE-1"
+          "supports_move_ref": "ISS37-D4-R1-Q08-MOVE-1",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q8",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q8-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -2975,7 +3464,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "ISS37-D4-R1-Q08-MOVE-2"
+          "supports_move_ref": "ISS37-D4-R1-Q08-MOVE-2",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q8",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q8-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -2997,7 +3488,73 @@
         "review_question": "Does stage 1 show the situation and help this learner see the claim to establish and the evidence or conditions that may legitimately support it, without disclosing the decisive warrant, inference, or proof step that establishes the claim?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS37-Q8",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS37-D4-R1-Q08"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "For each proposed observation state competing predictions and an inference limit.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-CHEM-ISS37-MODEL-SCOPE"
+              ],
+              "read_order": [
+                "Two descriptions to discriminate",
+                "For each proposed observation state competing predictions and an inference limit."
+              ],
+              "instance_constraints": [
+                "The first stage must not reveal the Q9 protected conclusion.",
+                "No visual element may imply measured donation strength or a total-energy curve."
+              ],
+              "accessibility": [
+                "SVG has title, description and text equivalents for orientation changes.",
+                "No meaning is encoded by colour alone."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS37/assets/question-8-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "Two descriptions to discriminate"
+                }
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q8-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "Two descriptions to discriminate",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q8-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "For each proposed observation state competing predictions and an inference limit.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-ISS37-TORSION-OVERLAP",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -3089,6 +3646,16 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS37-D4-R1-Q08",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS37-Q8"
+            ],
+            "replaces_authored_figure_refs": [],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
           }
@@ -3100,48 +3667,32 @@
         "review_question": "Does a stage show a demonstrated theorem, principle, data rule, or warrant in this question's context? Visual job: show givens, evidence, and construction relationships without marking the conclusion as established.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-ISS37-TORSION-OVERLAP",
-          "stages": [
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
-              "label": "Connectivity",
-              "purpose": "Connectivity in the declared qualitative direction model.",
-              "visible_elements": [
-                "Connectivity"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
-              "label": "Axis/reference",
-              "purpose": "Axis/reference in the declared qualitative direction model.",
-              "visible_elements": [
-                "Axis/reference"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
-              "label": "Directions",
-              "purpose": "Directions in the declared qualitative direction model.",
-              "visible_elements": [
-                "Directions"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-4",
-              "label": "Changed arrangement",
-              "purpose": "Changed arrangement in the declared qualitative direction model.",
-              "visible_elements": [
-                "Changed arrangement"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-5",
-              "label": "Inventory/model check",
-              "purpose": "Inventory/model check in the declared qualitative direction model.",
-              "visible_elements": [
-                "Inventory/model check"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS37-Q8",
+            "REP-ACADEMIC-ISS37-Q8",
+            null,
+            null,
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS37-Q8-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "Two descriptions to discriminate",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS37-Q8-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "For each proposed observation state competing predictions and an inference limit.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -3151,7 +3702,8 @@
         "review_question": "Does a later stage show the way toward construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
@@ -3186,14 +3738,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "ISS37-D4-R1-Q08-MOVE-1"
+              "supports_move_ref": "ISS37-D4-R1-Q08-MOVE-1",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q8",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q8-GIVENS"
             },
             {
               "text": "A measurement can constrain multiple models without uniquely selecting an orbital decomposition.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "ISS37-D4-R1-Q08-MOVE-2"
+              "supports_move_ref": "ISS37-D4-R1-Q08-MOVE-2",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q8",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q8-BRIDGE"
             },
             {
               "text": "For each proposed observation write prediction, alternatives, conditions and inference limit.",
@@ -3218,7 +3774,7 @@
             }
           ],
           "protected_work": "Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -3366,10 +3922,10 @@
     "construction_ref": "CU-ISS37-MODEL-SCOPE",
     "repair_anchor": "repair-ISS37-D4-R1-Q09",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "710fa2323de8904cf0a771add768eb82df73bbec9d2420751e71a9c80c13a34c",
-      "inputs/package.v1.json": "d718cde203017dacf89424391576e53553b0a46cfb98d5efb4e5f3e9e96bcfc0",
-      "rendered/core1a.html": "fcab7d2a6429b97b2b6790dcf9e8dba74f9a81eb530c6ede07d9375fe64373a3",
-      "rendered/core2.html": "bd552cb971c271c30c939e98341f7554c9899cf77187e43056b377ab1efe9223"
+      "inputs/owner.bank.json": "b43aca64018e04be15d14db03d7944f76b0f445e981ff51b2d943d1dd420b1ac",
+      "inputs/package.v1.json": "fc2661c9e2c4ffb2f0215ddc80fb371496b92dbd8a9c5f903aff226ac7201245",
+      "rendered/core1a.html": "cc2de1f4294e284793ac4f1a9987d0e0ba45c4e86c57ca42a171e954af12806d",
+      "rendered/core2.html": "3cc8e0c13ba166f8ff192edf8b9f53388ae2de21dbbf4e6a652129b22d67ba4a"
     },
     "facets": {
       "H1": {
@@ -3381,7 +3937,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "ISS37-D4-R1-Q09-MOVE-1"
+          "supports_move_ref": "ISS37-D4-R1-Q09-MOVE-1",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q9",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q9-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -3394,7 +3952,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "ISS37-D4-R1-Q09-MOVE-2"
+          "supports_move_ref": "ISS37-D4-R1-Q09-MOVE-2",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q9",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q9-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -3416,7 +3976,73 @@
         "review_question": "Does stage 1 show the situation and help this learner see the claim to establish and the evidence or conditions that may legitimately support it, without disclosing the decisive warrant, inference, or proof step that establishes the claim?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS37-Q9",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS37-D4-R1-Q09"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Keep the supplied factor and an energy model as distinct variables.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-CHEM-ISS37-MODEL-SCOPE"
+              ],
+              "read_order": [
+                "Supplied cosine-factor model",
+                "Keep the supplied factor and an energy model as distinct variables."
+              ],
+              "instance_constraints": [
+                "The first stage must not reveal the Q9 protected conclusion.",
+                "No visual element may imply measured donation strength or a total-energy curve."
+              ],
+              "accessibility": [
+                "SVG has title, description and text equivalents for orientation changes.",
+                "No meaning is encoded by colour alone."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS37/assets/question-9-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "Supplied cosine-factor model"
+                }
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q9-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "Supplied cosine-factor model",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q9-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Keep the supplied factor and an energy model as distinct variables.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-ISS37-TORSION-OVERLAP",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -3508,6 +4134,18 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS37-D4-R1-Q09",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS37-Q9"
+            ],
+            "replaces_authored_figure_refs": [
+              "REP-CHEM-ISS37-TORSION-OVERLAP"
+            ],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {}
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -3517,48 +4155,32 @@
         "review_question": "Does a stage show a demonstrated theorem, principle, data rule, or warrant in this question's context? Visual job: show givens, evidence, and construction relationships without marking the conclusion as established.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-ISS37-TORSION-OVERLAP",
-          "stages": [
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
-              "label": "Connectivity",
-              "purpose": "Connectivity in the declared qualitative direction model.",
-              "visible_elements": [
-                "Connectivity"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
-              "label": "Axis/reference",
-              "purpose": "Axis/reference in the declared qualitative direction model.",
-              "visible_elements": [
-                "Axis/reference"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
-              "label": "Directions",
-              "purpose": "Directions in the declared qualitative direction model.",
-              "visible_elements": [
-                "Directions"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-4",
-              "label": "Changed arrangement",
-              "purpose": "Changed arrangement in the declared qualitative direction model.",
-              "visible_elements": [
-                "Changed arrangement"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-5",
-              "label": "Inventory/model check",
-              "purpose": "Inventory/model check in the declared qualitative direction model.",
-              "visible_elements": [
-                "Inventory/model check"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS37-Q9",
+            "REP-ACADEMIC-ISS37-Q9",
+            null,
+            null,
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS37-Q9-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "Supplied cosine-factor model",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS37-Q9-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Keep the supplied factor and an energy model as distinct variables.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -3568,7 +4190,8 @@
         "review_question": "Does a later stage show the way toward construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
@@ -3605,14 +4228,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "ISS37-D4-R1-Q09-MOVE-1"
+              "supports_move_ref": "ISS37-D4-R1-Q09-MOVE-1",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q9",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q9-GIVENS"
             },
             {
               "text": "An overlap factor is not an energy Hamiltonian or the whole energy budget.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "ISS37-D4-R1-Q09-MOVE-2"
+              "supports_move_ref": "ISS37-D4-R1-Q09-MOVE-2",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q9",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q9-BRIDGE"
             },
             {
               "text": "Compute the three factors, then identify an independent energy term that the input does not constrain.",
@@ -3637,7 +4264,7 @@
             }
           ],
           "protected_work": "Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -3785,10 +4412,10 @@
     "construction_ref": "CU-ISS37-MODEL-SCOPE-Q10",
     "repair_anchor": "repair-ISS37-D4-R1-Q10",
     "exact_artifact_sha256": {
-      "inputs/owner.bank.json": "710fa2323de8904cf0a771add768eb82df73bbec9d2420751e71a9c80c13a34c",
-      "inputs/package.v1.json": "d718cde203017dacf89424391576e53553b0a46cfb98d5efb4e5f3e9e96bcfc0",
-      "rendered/core1a.html": "fcab7d2a6429b97b2b6790dcf9e8dba74f9a81eb530c6ede07d9375fe64373a3",
-      "rendered/core2.html": "bd552cb971c271c30c939e98341f7554c9899cf77187e43056b377ab1efe9223"
+      "inputs/owner.bank.json": "b43aca64018e04be15d14db03d7944f76b0f445e981ff51b2d943d1dd420b1ac",
+      "inputs/package.v1.json": "fc2661c9e2c4ffb2f0215ddc80fb371496b92dbd8a9c5f903aff226ac7201245",
+      "rendered/core1a.html": "cc2de1f4294e284793ac4f1a9987d0e0ba45c4e86c57ca42a171e954af12806d",
+      "rendered/core2.html": "3cc8e0c13ba166f8ff192edf8b9f53388ae2de21dbbf4e6a652129b22d67ba4a"
     },
     "facets": {
       "H1": {
@@ -3800,7 +4427,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "ISS37-D4-R1-Q10-MOVE-1"
+          "supports_move_ref": "ISS37-D4-R1-Q10-MOVE-1",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q10",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q10-GIVENS"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -3813,7 +4442,9 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "ISS37-D4-R1-Q10-MOVE-2"
+          "supports_move_ref": "ISS37-D4-R1-Q10-MOVE-2",
+          "visual_ref": "REP-ACADEMIC-ISS37-Q10",
+          "visual_stage_ref": "REP-ACADEMIC-ISS37-Q10-BRIDGE"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
@@ -3835,7 +4466,73 @@
         "review_question": "Does stage 1 show the situation and help this learner see the dependency between subproblems or ideas that makes their order or coordination matter, without disclosing the bridge or ordering decision that unlocks the multi-step route?",
         "objective": "The first visual stage makes the situation and crux legible without answering it.",
         "authored_evidence": {
-          "representation": {
+          "question_representations": [
+            {
+              "id": "REP-ACADEMIC-ISS37-Q10",
+              "version": "0.1.0",
+              "status": "CANDIDATE",
+              "source_refs": [],
+              "evidence_refs": [],
+              "extensions": {
+                "grade9v3:stage_mode": "REPLACE",
+                "grade9v3:authored_question_ref": "ISS37-D4-R1-Q10"
+              },
+              "kind": "STRUCTURAL_FORMULA",
+              "purpose": "Use the different cases to test distinct boundaries; do not replace one universal slogan with another.",
+              "required_elements": [
+                "Supplied situation",
+                "Question-local bridge"
+              ],
+              "relation_refs": [
+                "REL-CHEM-ISS37-MODEL-SCOPE"
+              ],
+              "read_order": [
+                "Supplied universal-rule audit cases",
+                "Use the different cases to test distinct boundaries; do not replace one universal slogan with another."
+              ],
+              "instance_constraints": [
+                "The first stage must not reveal the Q9 protected conclusion.",
+                "No visual element may imply measured donation strength or a total-energy curve."
+              ],
+              "accessibility": [
+                "SVG has title, description and text equivalents for orientation changes.",
+                "No meaning is encoded by colour alone."
+              ],
+              "misleading_alternatives": [
+                "Using a different species or printing the requested final decision before commitment."
+              ],
+              "rendered_asset_refs": [
+                "evidence/blueprint-cycles/ISS37/assets/question-10-givens.svg"
+              ],
+              "scene_instances": [],
+              "correspondence": [
+                {
+                  "element": "labels and connectivity",
+                  "symbol": "given situation",
+                  "in_words": "Supplied universal-rule audit cases"
+                }
+              ],
+              "reveal_stages": [
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q10-GIVENS",
+                  "label": "Supplied situation",
+                  "purpose": "Supplied universal-rule audit cases",
+                  "visible_elements": [
+                    "Supplied situation"
+                  ]
+                },
+                {
+                  "id": "REP-ACADEMIC-ISS37-Q10-BRIDGE",
+                  "label": "Question-local bridge",
+                  "purpose": "Use the different cases to test distinct boundaries; do not replace one universal slogan with another.",
+                  "visible_elements": [
+                    "Question-local bridge"
+                  ]
+                }
+              ]
+            }
+          ],
+          "teaching_representation": {
             "id": "REP-CHEM-ISS37-TORSION-OVERLAP",
             "version": "0.1.0",
             "status": "CANDIDATE",
@@ -3927,6 +4624,16 @@
               }
             ]
           },
+          "visual_review": {
+            "question_ref": "ISS37-D4-R1-Q10",
+            "authored_figure_refs": [
+              "REP-ACADEMIC-ISS37-Q10"
+            ],
+            "replaces_authored_figure_refs": [],
+            "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+            "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+            "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+          },
           "waivers": {
             "REPRESENTATION": "A pre-attempt picture would repeat the supplied situation or expose the protected decision; the linked construction and post-attempt repair provide the useful representation."
           }
@@ -3938,48 +4645,32 @@
         "review_question": "Does a stage show a demonstrated component idea that can anchor the first valid bridge in this question's context? Visual job: make dependencies, shared conditions, or state transitions visible without completing the route.",
         "objective": "A visual stage connects the learner's held idea to this question.",
         "authored_evidence": {
-          "representation_ref": "REP-CHEM-ISS37-TORSION-OVERLAP",
-          "stages": [
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
-              "label": "Connectivity",
-              "purpose": "Connectivity in the declared qualitative direction model.",
-              "visible_elements": [
-                "Connectivity"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
-              "label": "Axis/reference",
-              "purpose": "Axis/reference in the declared qualitative direction model.",
-              "visible_elements": [
-                "Axis/reference"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
-              "label": "Directions",
-              "purpose": "Directions in the declared qualitative direction model.",
-              "visible_elements": [
-                "Directions"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-4",
-              "label": "Changed arrangement",
-              "purpose": "Changed arrangement in the declared qualitative direction model.",
-              "visible_elements": [
-                "Changed arrangement"
-              ]
-            },
-            {
-              "id": "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-5",
-              "label": "Inventory/model check",
-              "purpose": "Inventory/model check in the declared qualitative direction model.",
-              "visible_elements": [
-                "Inventory/model check"
-              ]
-            }
+          "scaffold_visual_refs": [
+            "REP-ACADEMIC-ISS37-Q10",
+            "REP-ACADEMIC-ISS37-Q10",
+            null,
+            null,
+            null
+          ],
+          "question_stages": [
+            [
+              {
+                "id": "REP-ACADEMIC-ISS37-Q10-GIVENS",
+                "label": "Supplied situation",
+                "purpose": "Supplied universal-rule audit cases",
+                "visible_elements": [
+                  "Supplied situation"
+                ]
+              },
+              {
+                "id": "REP-ACADEMIC-ISS37-Q10-BRIDGE",
+                "label": "Question-local bridge",
+                "purpose": "Use the different cases to test distinct boundaries; do not replace one universal slogan with another.",
+                "visible_elements": [
+                  "Question-local bridge"
+                ]
+              }
+            ]
           ]
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
@@ -3989,7 +4680,8 @@
         "review_question": "Does a later stage show the way toward coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner?",
         "objective": "A later visual stage supports construction toward the crux without completing it.",
         "authored_evidence": {
-          "reveal_stage_refs": [
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "teaching_reveal_stage_refs": [
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-1",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-2",
             "ISS37-REPAIRED-REP-CHEM-ISS37-TORSION-OVERLAP-3",
@@ -4024,14 +4716,18 @@
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "KEY_CONCEPT",
-              "supports_move_ref": "ISS37-D4-R1-Q10-MOVE-1"
+              "supports_move_ref": "ISS37-D4-R1-Q10-MOVE-1",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q10",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q10-GIVENS"
             },
             {
               "text": "Counts, orbital roles, geometry and physical evidence are distinct layers.",
               "support_kind": "CONNECT",
               "reveals": "CONCEPT",
               "learner_stage": "REPRESENTATION",
-              "supports_move_ref": "ISS37-D4-R1-Q10-MOVE-2"
+              "supports_move_ref": "ISS37-D4-R1-Q10-MOVE-2",
+              "visual_ref": "REP-ACADEMIC-ISS37-Q10",
+              "visual_stage_ref": "REP-ACADEMIC-ISS37-Q10-BRIDGE"
             },
             {
               "text": "Use NH3, allene, amide and separated amine as tests; retain a conditional framework rather than another universal slogan.",
@@ -4056,7 +4752,7 @@
             }
           ],
           "protected_work": "Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
-          "browser_report": "../closure-20261005/interaction-closure.json"
+          "browser_report": "../closure-r4-20261005/interaction-closure.json"
         },
         "mechanical_render_binding": "SEE_FINAL_ASSURANCE_NOT_A_SEMANTIC_VERDICT"
       },
