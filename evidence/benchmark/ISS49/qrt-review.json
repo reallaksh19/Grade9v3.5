@@ -1,0 +1,1637 @@
+[
+  {
+    "question_ref": "OWN-ISS49-POLY-D1-01",
+    "label": "Q1",
+    "template_id": "QRT-RETRIEVE-D1",
+    "band": "D1",
+    "primary_demand": "RETRIEVE",
+    "secondary_demands": [
+      "REPRESENT",
+      "EXPLAIN"
+    ],
+    "construction_ref": "CU-MAT-POLY-STRUCTURE",
+    "review_independence": "IMPLEMENTATION_COUPLED_NOT_INDEPENDENT",
+    "facets": {
+      "H1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 1 help this learner clarify the exact property, category, or condition being requested, including the qualifier that separates near-neighbours?",
+        "objective": "The learner can state what the question turns on before choosing a route.",
+        "authored_evidence": "Write the power slots 3, 2, 1, 0 before reading coefficients."
+      },
+      "H2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 2 help this learner correlate the exact property, category, or condition being requested, including the qualifier that separates near-neighbours with a demonstrated anchor that lets the learner reconstruct the fact instead of guessing, and see why that bridge applies here?",
+        "objective": "The learner connects the crux to knowledge already held.",
+        "authored_evidence": "A missing power keeps its place and has coefficient 0."
+      },
+      "H3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 3 open the way to retrieve or classify using the defining criterion while leaving the final retrieval or classification decision to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "objective": "The learner can start the crux without being handed the protected work.",
+        "authored_evidence": "Fill coefficient slots first; then read degree, leading coefficient and constant term."
+      },
+      "S1": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does stage 1 show the situation and help this learner see the exact property, category, or condition being requested, including the qualifier that separates near-neighbours, without disclosing the final retrieval or classification decision?",
+        "objective": "The first visual stage makes the situation and crux legible without answering it.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "S2": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does a stage show a demonstrated anchor that lets the learner reconstruct the fact instead of guessing in this question's context? Visual job: make discriminating features visible when representation helps; otherwise prefer a justified waiver to decoration.",
+        "objective": "A visual stage connects the learner's held idea to this question.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "S3": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does a later stage show the way toward retrieve or classify using the defining criterion while leaving the final retrieval or classification decision to the learner?",
+        "objective": "A later visual stage supports construction toward the crux without completing it.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "P1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Do all pre-attempt panels leave the final retrieval or classification decision to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+        "authored_evidence": {
+          "scaffolds": [
+            {
+              "text": "Write the power slots 3, 2, 1, 0 before reading coefficients.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-01-MOVE-1"
+            },
+            {
+              "text": "A missing power keeps its place and has coefficient 0.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-01-MOVE-2"
+            },
+            {
+              "text": "Fill coefficient slots first; then read degree, leading coefficient and constant term.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "FIRST_MOVE",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-01-MOVE-3"
+            }
+          ],
+          "protected_work": "Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        }
+      },
+      "P2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the concept link land where the bridge from the exact property, category, or condition being requested, including the qualifier that separates near-neighbours to a demonstrated anchor that lets the learner reconstruct the fact instead of guessing is actually taught or repaired?",
+        "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+        "authored_evidence": "CU-MAT-POLY-STRUCTURE"
+      },
+      "P3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does each solution move explain why it holds here, and does the check verify against the definition, unit, category boundary, or a counterexample?",
+        "objective": "Post-attempt reasoning explains validity and verifies independently.",
+        "authored_evidence": {
+          "reasoning_route": [
+            {
+              "id": "OWN-ISS49-POLY-D1-01-MOVE-1",
+              "kind": "REPRESENT",
+              "action": "List powers 3, 2, 1, 0 in order.",
+              "why_valid": "Coefficient positions are indexed by powers, including unwritten powers.",
+              "inputs": [
+                "Degree 3; leading coefficient 4; constant term 7; coefficient of x^2 is 0. The missing x^2 term is recorded as 0x^2, or as a zero in the x^2 coefficient slot."
+              ],
+              "output": "power slots 3, 2, 1, 0"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-01-MOVE-2",
+              "kind": "CONNECT",
+              "action": "Place 0 in the x^2 slot.",
+              "why_valid": "No written x^2 term means 0 times x^2; later coefficients do not shift.",
+              "inputs": [
+                "power slots 3, 2, 1, 0"
+              ],
+              "output": "coefficient row 4, 0, -2, 7"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-01-MOVE-3",
+              "kind": "VERIFY",
+              "action": "Read the requested features from the completed slots.",
+              "why_valid": "Degree is the greatest power with non-zero coefficient; x^0 supplies the constant.",
+              "inputs": [
+                "coefficient row 4, 0, -2, 7"
+              ],
+              "output": "degree 3, leading coefficient 4, constant 7, x^2 coefficient 0"
+            }
+          ],
+          "check": "Reconstructing 4x^3 + 0x^2 - 2x + 7 gives the supplied polynomial."
+        }
+      },
+      "M1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Is this likely wrong idea represented: a nearby fact or category is recalled because its surface wording looks familiar?",
+        "objective": "The likely conceptual wrong route is explicitly represented.",
+        "authored_evidence": {
+          "wrong_idea": "A missing term can simply be skipped when positions matter.",
+          "probe": "For 3x^4+x-6, write coefficient slots for powers 4,3,2,1,0 before naming the degree."
+        }
+      },
+      "M2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Would a learner who holds 'a nearby fact or category is recalled because its surface wording looks familiar' answer the diagnostic differently from a learner who merely slipped?",
+        "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+        "authored_evidence": {
+          "probe": "For 3x^4+x-6, write coefficient slots for powers 4,3,2,1,0 before naming the degree.",
+          "pattern": "3,0,0,1,-6; degree 4. Repeated shifting after a missing term indicates a place-value misconception."
+        }
+      },
+      "M3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the repair show why 'a nearby fact or category is recalled because its surface wording looks familiar' fails and establish this replacement rule: use the defining criterion or boundary condition, not familiarity alone?",
+        "objective": "The repair makes the failure visible and establishes a replacement rule.",
+        "authored_evidence": {
+          "rule": "An absent x^k term has coefficient 0; degree still comes from the highest non-zero coefficient.",
+          "check": "For 3x^4+x-6, the x^3 and x^2 coefficients are both 0.",
+          "transfer": "Build the coefficient row for 7x^5-4x^2+1."
+        }
+      }
+    }
+  },
+  {
+    "question_ref": "OWN-ISS49-POLY-D1-02",
+    "label": "Q2",
+    "template_id": "QRT-RETRIEVE-D1",
+    "band": "D1",
+    "primary_demand": "RETRIEVE",
+    "secondary_demands": [
+      "JUSTIFY"
+    ],
+    "construction_ref": "CU-MAT-POLY-STRUCTURE",
+    "review_independence": "IMPLEMENTATION_COUPLED_NOT_INDEPENDENT",
+    "facets": {
+      "H1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 1 help this learner clarify the exact property, category, or condition being requested, including the qualifier that separates near-neighbours?",
+        "objective": "The learner can state what the question turns on before choosing a route.",
+        "authored_evidence": "Rewrite 1/x and sqrt(x) as powers of x."
+      },
+      "H2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 2 help this learner correlate the exact property, category, or condition being requested, including the qualifier that separates near-neighbours with a demonstrated anchor that lets the learner reconstruct the fact instead of guessing, and see why that bridge applies here?",
+        "objective": "The learner connects the crux to knowledge already held.",
+        "authored_evidence": "Check whether every exponent of x is a non-negative integer."
+      },
+      "H3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 3 open the way to retrieve or classify using the defining criterion while leaving the final retrieval or classification decision to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "objective": "The learner can start the crux without being handed the protected work.",
+        "authored_evidence": "Remember that a non-zero constant can be written as c x^0."
+      },
+      "S1": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does stage 1 show the situation and help this learner see the exact property, category, or condition being requested, including the qualifier that separates near-neighbours, without disclosing the final retrieval or classification decision?",
+        "objective": "The first visual stage makes the situation and crux legible without answering it.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "S2": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does a stage show a demonstrated anchor that lets the learner reconstruct the fact instead of guessing in this question's context? Visual job: make discriminating features visible when representation helps; otherwise prefer a justified waiver to decoration.",
+        "objective": "A visual stage connects the learner's held idea to this question.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "S3": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does a later stage show the way toward retrieve or classify using the defining criterion while leaving the final retrieval or classification decision to the learner?",
+        "objective": "A later visual stage supports construction toward the crux without completing it.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "P1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Do all pre-attempt panels leave the final retrieval or classification decision to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+        "authored_evidence": {
+          "scaffolds": [
+            {
+              "text": "Rewrite 1/x and sqrt(x) as powers of x.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-02-MOVE-1"
+            },
+            {
+              "text": "Check whether every exponent of x is a non-negative integer.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-02-MOVE-2"
+            },
+            {
+              "text": "Remember that a non-zero constant can be written as c x^0.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "FIRST_MOVE",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-02-MOVE-3"
+            }
+          ],
+          "protected_work": "Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        }
+      },
+      "P2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the concept link land where the bridge from the exact property, category, or condition being requested, including the qualifier that separates near-neighbours to a demonstrated anchor that lets the learner reconstruct the fact instead of guessing is actually taught or repaired?",
+        "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+        "authored_evidence": "CU-MAT-POLY-STRUCTURE"
+      },
+      "P3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does each solution move explain why it holds here, and does the check verify against the definition, unit, category boundary, or a counterexample?",
+        "objective": "Post-attempt reasoning explains validity and verifies independently.",
+        "authored_evidence": {
+          "reasoning_route": [
+            {
+              "id": "OWN-ISS49-POLY-D1-02-MOVE-1",
+              "kind": "DECIDE",
+              "action": "Rewrite variable-dependent parts as powers of x.",
+              "why_valid": "The defining exponent condition is easiest to inspect in power notation.",
+              "inputs": [
+                "3x^2-2x+1 is a polynomial of degree 2, and -5 is a constant polynomial of degree 0. 1/x+3 is not a polynomial because it contains x^-1; sqrt(x)+1 is not a polynomial because it contains x^(1/2). Polynomial exponents on x must be non-negative integers."
+              ],
+              "output": "x^2, x^-1, x^(1/2), and no variable term"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-02-MOVE-2",
+              "kind": "CONNECT",
+              "action": "Apply the non-negative-integer exponent criterion to each expression.",
+              "why_valid": "A real-coefficient polynomial is a finite sum of a_k x^k with k a non-negative integer.",
+              "inputs": [
+                "x^2, x^-1, x^(1/2), and no variable term"
+              ],
+              "output": "first and fourth accepted; reciprocal and square-root expressions rejected"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-02-MOVE-3",
+              "kind": "VERIFY",
+              "action": "Treat the non-zero constant as a degree-0 polynomial.",
+              "why_valid": "-5=-5x^0 and x^0=1, so its greatest non-zero exponent is 0.",
+              "inputs": [
+                "first and fourth accepted; reciprocal and square-root expressions rejected"
+              ],
+              "output": "accepted degrees 2 and 0"
+            }
+          ],
+          "check": "The rejected expressions fail structurally because their exponents are -1 and 1/2."
+        }
+      },
+      "M1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Is this likely wrong idea represented: a nearby fact or category is recalled because its surface wording looks familiar?",
+        "objective": "The likely conceptual wrong route is explicitly represented.",
+        "authored_evidence": {
+          "wrong_idea": "Anything written with x using ordinary arithmetic is automatically a polynomial.",
+          "probe": "Classify (1/2)x^3+2, x^-2+1, and 9, and state the decisive exponent in each case."
+        }
+      },
+      "M2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Would a learner who holds 'a nearby fact or category is recalled because its surface wording looks familiar' answer the diagnostic differently from a learner who merely slipped?",
+        "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+        "authored_evidence": {
+          "probe": "Classify (1/2)x^3+2, x^-2+1, and 9, and state the decisive exponent in each case.",
+          "pattern": "Accepted: degree 3 and degree 0; rejected: exponent -2. Repeated acceptance of negative or fractional exponents indicates the boundary is not secure."
+        }
+      },
+      "M3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the repair show why 'a nearby fact or category is recalled because its surface wording looks familiar' fails and establish this replacement rule: use the defining criterion or boundary condition, not familiarity alone?",
+        "objective": "The repair makes the failure visible and establishes a replacement rule.",
+        "authored_evidence": {
+          "rule": "A polynomial in x is a finite sum of real multiples of x^k with k a non-negative integer; a non-zero constant has degree 0.",
+          "check": "(1/2)x^3+2 is a polynomial; x^-2+1 is not.",
+          "transfer": "Classify x^(3/2)+x and 4x^5-1 without numerical testing."
+        }
+      }
+    }
+  },
+  {
+    "question_ref": "OWN-ISS49-POLY-D1-03",
+    "label": "Q3",
+    "template_id": "QRT-APPLY-D1",
+    "band": "D1",
+    "primary_demand": "APPLY",
+    "secondary_demands": [],
+    "construction_ref": "CU-MAT-POLY-OPERATE",
+    "review_independence": "IMPLEMENTATION_COUPLED_NOT_INDEPENDENT",
+    "facets": {
+      "H1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 1 help this learner clarify the givens and conditions that determine whether the known procedure or relation is valid here?",
+        "objective": "The learner can state what the question turns on before choosing a route.",
+        "authored_evidence": "Replace every x by (2) before doing arithmetic."
+      },
+      "H2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 2 help this learner correlate the givens and conditions that determine whether the known procedure or relation is valid here with a demonstrated procedure or relation together with its applicability conditions, and see why that bridge applies here?",
+        "objective": "The learner connects the crux to knowledge already held.",
+        "authored_evidence": "Keep the substituted value inside brackets while evaluating powers and products."
+      },
+      "H3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 3 open the way to instantiate and execute the known procedure correctly while leaving the decisive substitution, transformation, or execution step that yields the requested result to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "objective": "The learner can start the crux without being handed the protected work.",
+        "authored_evidence": "Now simplify 2^2 and 3·2, then combine signed terms."
+      },
+      "S1": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does stage 1 show the situation and help this learner see the givens and conditions that determine whether the known procedure or relation is valid here, without disclosing the decisive substitution, transformation, or execution step that yields the requested result?",
+        "objective": "The first visual stage makes the situation and crux legible without answering it.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "S2": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does a stage show a demonstrated procedure or relation together with its applicability conditions in this question's context? Visual job: align givens with procedure variables or steps without carrying out the protected computation.",
+        "objective": "A visual stage connects the learner's held idea to this question.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "S3": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does a later stage show the way toward instantiate and execute the known procedure correctly while leaving the decisive substitution, transformation, or execution step that yields the requested result to the learner?",
+        "objective": "A later visual stage supports construction toward the crux without completing it.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "P1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Do all pre-attempt panels leave the decisive substitution, transformation, or execution step that yields the requested result to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+        "authored_evidence": {
+          "scaffolds": [
+            {
+              "text": "Replace every x by (2) before doing arithmetic.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-03-MOVE-1"
+            },
+            {
+              "text": "Keep the substituted value inside brackets while evaluating powers and products.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-03-MOVE-1"
+            },
+            {
+              "text": "Now simplify 2^2 and 3·2, then combine signed terms.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "FIRST_MOVE",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-03-MOVE-3"
+            }
+          ],
+          "protected_work": "Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        }
+      },
+      "P2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the concept link land where the bridge from the givens and conditions that determine whether the known procedure or relation is valid here to a demonstrated procedure or relation together with its applicability conditions is actually taught or repaired?",
+        "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+        "authored_evidence": "CU-MAT-POLY-OPERATE"
+      },
+      "P3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does each solution move explain why it holds here, and does the check verify by units, substitution-back, a special value, inverse operation, or an alternate computation?",
+        "objective": "Post-attempt reasoning explains validity and verifies independently.",
+        "authored_evidence": {
+          "reasoning_route": [
+            {
+              "id": "OWN-ISS49-POLY-D1-03-MOVE-1",
+              "kind": "REPRESENT",
+              "action": "Substitute x=2 with brackets in every occurrence of x.",
+              "why_valid": "Brackets preserve which value is powered or multiplied.",
+              "inputs": [
+                "p(2) = (2)^2 - 3(2) + 4 = 4 - 6 + 4 = 2."
+              ],
+              "output": "(2)^2 - 3(2) + 4"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-03-MOVE-2",
+              "kind": "TRANSFORM",
+              "action": "Evaluate powers and products before combining.",
+              "why_valid": "Standard order of operations applies after substitution.",
+              "inputs": [
+                "(2)^2 - 3(2) + 4"
+              ],
+              "output": "4 - 6 + 4"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-03-MOVE-3",
+              "kind": "VERIFY",
+              "action": "Combine signed numbers and confirm every x was replaced.",
+              "why_valid": "4-6+4=2 and the substitution was made everywhere.",
+              "inputs": [
+                "4 - 6 + 4"
+              ],
+              "output": "p(2)=2"
+            }
+          ],
+          "check": "Direct recomputation gives 4-6+4=2."
+        }
+      },
+      "M1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Is this likely wrong idea represented: a familiar formula or procedure is executed without checking its conditions or mapping variables correctly?",
+        "objective": "The likely conceptual wrong route is explicitly represented.",
+        "authored_evidence": {
+          "wrong_idea": "A substituted negative or multiplied value can be written without preserving grouping.",
+          "probe": "Evaluate r(-2) for r(x)=x^2+x, writing the bracketed substitution before simplifying."
+        }
+      },
+      "M2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Would a learner who holds 'a familiar formula or procedure is executed without checking its conditions or mapping variables correctly' answer the diagnostic differently from a learner who merely slipped?",
+        "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+        "authored_evidence": {
+          "probe": "Evaluate r(-2) for r(x)=x^2+x, writing the bracketed substitution before simplifying.",
+          "pattern": "(-2)^2+(-2)=4-2=2. A sign error only on negative inputs often comes from removing brackets too soon."
+        }
+      },
+      "M3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the repair show why 'a familiar formula or procedure is executed without checking its conditions or mapping variables correctly' fails and establish this replacement rule: verify applicability, map each given to the procedure, then execute?",
+        "objective": "The repair makes the failure visible and establishes a replacement rule.",
+        "authored_evidence": {
+          "rule": "To evaluate p(c), replace every x by (c), then simplify using ordinary order of operations.",
+          "check": "For r(x)=x^2+x, r(-2)=(-2)^2+(-2)=2.",
+          "transfer": "Evaluate 2x^2-5x+1 at x=-1 with the same bracket-first method."
+        }
+      }
+    }
+  },
+  {
+    "question_ref": "OWN-ISS49-POLY-D1-04",
+    "label": "Q4",
+    "template_id": "QRT-APPLY-D1",
+    "band": "D1",
+    "primary_demand": "APPLY",
+    "secondary_demands": [
+      "REPRESENT"
+    ],
+    "construction_ref": "CU-MAT-POLY-OPERATE",
+    "review_independence": "IMPLEMENTATION_COUPLED_NOT_INDEPENDENT",
+    "facets": {
+      "H1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 1 help this learner clarify the givens and conditions that determine whether the known procedure or relation is valid here?",
+        "objective": "The learner can state what the question turns on before choosing a route.",
+        "authored_evidence": "Line up x^2, x, and constant terms."
+      },
+      "H2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 2 help this learner correlate the givens and conditions that determine whether the known procedure or relation is valid here with a demonstrated procedure or relation together with its applicability conditions, and see why that bridge applies here?",
+        "objective": "The learner connects the crux to knowledge already held.",
+        "authored_evidence": "Only terms with the same power of x are like terms."
+      },
+      "H3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 3 open the way to instantiate and execute the known procedure correctly while leaving the decisive substitution, transformation, or execution step that yields the requested result to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "objective": "The learner can start the crux without being handed the protected work.",
+        "authored_evidence": "Add coefficients separately, then write powers in descending order."
+      },
+      "S1": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does stage 1 show the situation and help this learner see the givens and conditions that determine whether the known procedure or relation is valid here, without disclosing the decisive substitution, transformation, or execution step that yields the requested result?",
+        "objective": "The first visual stage makes the situation and crux legible without answering it.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "S2": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does a stage show a demonstrated procedure or relation together with its applicability conditions in this question's context? Visual job: align givens with procedure variables or steps without carrying out the protected computation.",
+        "objective": "A visual stage connects the learner's held idea to this question.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "S3": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does a later stage show the way toward instantiate and execute the known procedure correctly while leaving the decisive substitution, transformation, or execution step that yields the requested result to the learner?",
+        "objective": "A later visual stage supports construction toward the crux without completing it.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "P1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Do all pre-attempt panels leave the decisive substitution, transformation, or execution step that yields the requested result to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+        "authored_evidence": {
+          "scaffolds": [
+            {
+              "text": "Line up x^2, x, and constant terms.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-04-MOVE-1"
+            },
+            {
+              "text": "Only terms with the same power of x are like terms.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-04-MOVE-1"
+            },
+            {
+              "text": "Add coefficients separately, then write powers in descending order.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "FIRST_MOVE",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-04-MOVE-3"
+            }
+          ],
+          "protected_work": "Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        }
+      },
+      "P2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the concept link land where the bridge from the givens and conditions that determine whether the known procedure or relation is valid here to a demonstrated procedure or relation together with its applicability conditions is actually taught or repaired?",
+        "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+        "authored_evidence": "CU-MAT-POLY-OPERATE"
+      },
+      "P3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does each solution move explain why it holds here, and does the check verify by units, substitution-back, a special value, inverse operation, or an alternate computation?",
+        "objective": "Post-attempt reasoning explains validity and verifies independently.",
+        "authored_evidence": {
+          "reasoning_route": [
+            {
+              "id": "OWN-ISS49-POLY-D1-04-MOVE-1",
+              "kind": "REPRESENT",
+              "action": "Align terms by equal powers of x.",
+              "why_valid": "Like terms have the same variable part and exponent, so only coefficients combine.",
+              "inputs": [
+                "p(x)+q(x)=x^2+7x-3. Combine x^2 terms with x^2 terms, x terms with x terms, and constants with constants."
+              ],
+              "output": "(2x^2-x^2)+(3x+4x)+(-5+2)"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-04-MOVE-2",
+              "kind": "TRANSFORM",
+              "action": "Add coefficients within each like-term group.",
+              "why_valid": "Coefficient addition preserves the common variable power.",
+              "inputs": [
+                "(2x^2-x^2)+(3x+4x)+(-5+2)"
+              ],
+              "output": "x^2+7x-3"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-04-MOVE-3",
+              "kind": "VERIFY",
+              "action": "Check at x=1 using originals and the sum.",
+              "why_valid": "p(1)=0 and q(1)=5; the result gives 1+7-3=5.",
+              "inputs": [
+                "x^2+7x-3"
+              ],
+              "output": "both routes give 5"
+            }
+          ],
+          "check": "At x=1 the originals total 5 and x^2+7x-3 also gives 5."
+        }
+      },
+      "M1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Is this likely wrong idea represented: a familiar formula or procedure is executed without checking its conditions or mapping variables correctly?",
+        "objective": "The likely conceptual wrong route is explicitly represented.",
+        "authored_evidence": {
+          "wrong_idea": "Terms can be combined merely because they are adjacent or both contain x.",
+          "probe": "Add 3x^2-x+4 and 2x^2+5x-1 by first naming the three like-term columns."
+        }
+      },
+      "M2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Would a learner who holds 'a familiar formula or procedure is executed without checking its conditions or mapping variables correctly' answer the diagnostic differently from a learner who merely slipped?",
+        "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+        "authored_evidence": {
+          "probe": "Add 3x^2-x+4 and 2x^2+5x-1 by first naming the three like-term columns.",
+          "pattern": "5x^2+4x+3. Mixing powers indicates grouping by proximity rather than algebraic type."
+        }
+      },
+      "M3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the repair show why 'a familiar formula or procedure is executed without checking its conditions or mapping variables correctly' fails and establish this replacement rule: verify applicability, map each given to the procedure, then execute?",
+        "objective": "The repair makes the failure visible and establishes a replacement rule.",
+        "authored_evidence": {
+          "rule": "When adding polynomials, combine only terms with identical variable powers and keep that power unchanged.",
+          "check": "(3x^2-x+4)+(2x^2+5x-1)=5x^2+4x+3.",
+          "transfer": "Add 4x^3+x-2 and -x^3+6x+9 in descending powers."
+        }
+      }
+    }
+  },
+  {
+    "question_ref": "OWN-ISS49-POLY-D1-05",
+    "label": "Q5",
+    "template_id": "QRT-REPRESENT-D2",
+    "band": "D2",
+    "primary_demand": "REPRESENT",
+    "secondary_demands": [
+      "EXPLAIN"
+    ],
+    "construction_ref": "CU-MAT-POLY-STRUCTURE",
+    "review_independence": "IMPLEMENTATION_COUPLED_NOT_INDEPENDENT",
+    "facets": {
+      "H1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 1 help this learner clarify what must remain invariant while moving between the source and target representations?",
+        "objective": "The learner can state what the question turns on before choosing a route.",
+        "authored_evidence": "The invariant is that each coefficient stays attached to its exponent."
+      },
+      "H2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 2 help this learner correlate what must remain invariant while moving between the source and target representations with a demonstrated meaning or relationship already understood in one representation, and see why that bridge applies here?",
+        "objective": "The learner connects the crux to knowledge already held.",
+        "authored_evidence": "Make all four columns 3,2,1,0 before placing values."
+      },
+      "H3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 3 open the way to construct the target representation while preserving that meaning while leaving the decisive correspondence or translation that fixes the target representation to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "objective": "The learner can start the crux without being handed the protected work.",
+        "authored_evidence": "After filling the row, translate it back to verify the missing power stayed in place."
+      },
+      "S1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does stage 1 show the situation and help this learner see what must remain invariant while moving between the source and target representations, without disclosing the decisive correspondence or translation that fixes the target representation?",
+        "objective": "The first visual stage makes the situation and crux legible without answering it.",
+        "authored_evidence": {
+          "representation_ref": "REP-MATH-ISS49-Q5",
+          "stage_ids": [
+            "REP-MATH-ISS49-Q5-S1",
+            "REP-MATH-ISS49-Q5-S2",
+            "REP-MATH-ISS49-Q5-S3"
+          ]
+        }
+      },
+      "S2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does a stage show a demonstrated meaning or relationship already understood in one representation in this question's context? Visual job: show source-to-target correspondences progressively while preserving the invariant without completing the final mapping.",
+        "objective": "A visual stage connects the learner's held idea to this question.",
+        "authored_evidence": {
+          "representation_ref": "REP-MATH-ISS49-Q5",
+          "stage_ids": [
+            "REP-MATH-ISS49-Q5-S1",
+            "REP-MATH-ISS49-Q5-S2",
+            "REP-MATH-ISS49-Q5-S3"
+          ]
+        }
+      },
+      "S3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does a later stage show the way toward construct the target representation while preserving that meaning while leaving the decisive correspondence or translation that fixes the target representation to the learner?",
+        "objective": "A later visual stage supports construction toward the crux without completing it.",
+        "authored_evidence": {
+          "representation_ref": "REP-MATH-ISS49-Q5",
+          "stage_ids": [
+            "REP-MATH-ISS49-Q5-S1",
+            "REP-MATH-ISS49-Q5-S2",
+            "REP-MATH-ISS49-Q5-S3"
+          ]
+        }
+      },
+      "P1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Do all pre-attempt panels leave the decisive correspondence or translation that fixes the target representation to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+        "authored_evidence": {
+          "scaffolds": [
+            {
+              "text": "The invariant is that each coefficient stays attached to its exponent.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-05-MOVE-1"
+            },
+            {
+              "text": "Make all four columns 3,2,1,0 before placing values.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-05-MOVE-2"
+            },
+            {
+              "text": "After filling the row, translate it back to verify the missing power stayed in place.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "FIRST_MOVE",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-05-MOVE-3"
+            }
+          ],
+          "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        }
+      },
+      "P2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the concept link land where the bridge from what must remain invariant while moving between the source and target representations to a demonstrated meaning or relationship already understood in one representation is actually taught or repaired?",
+        "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+        "authored_evidence": "CU-MAT-POLY-STRUCTURE"
+      },
+      "P3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does each solution move explain why it holds here, and does the check translate back or compare an invariant or value in both representations?",
+        "objective": "Post-attempt reasoning explains validity and verifies independently.",
+        "authored_evidence": {
+          "reasoning_route": [
+            {
+              "id": "OWN-ISS49-POLY-D1-05-MOVE-1",
+              "kind": "REPRESENT",
+              "action": "Create one table slot for each power 3,2,1,0.",
+              "why_valid": "The target representation is positional: every power needs its own column.",
+              "inputs": [
+                "For powers 3,2,1,0 the coefficients are 5,0,-2,7. The table reconstructs 5x^3+0x^2-2x+7=5x^3-2x+7. A zero entry means that power has no contribution, not that later coefficients move left."
+              ],
+              "output": "columns 3,2,1,0"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-05-MOVE-2",
+              "kind": "CONNECT",
+              "action": "Map each source term to its matching power and place 0 at power 2.",
+              "why_valid": "Translation must preserve the coefficient attached to each exponent.",
+              "inputs": [
+                "columns 3,2,1,0"
+              ],
+              "output": "row 5,0,-2,7"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-05-MOVE-3",
+              "kind": "VERIFY",
+              "action": "Translate the row back into a polynomial.",
+              "why_valid": "Reconstruction checks that the positional invariant was preserved.",
+              "inputs": [
+                "row 5,0,-2,7"
+              ],
+              "output": "5x^3+0x^2-2x+7"
+            }
+          ],
+          "check": "Reading the table backward reproduces the original polynomial exactly."
+        }
+      },
+      "M1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Is this likely wrong idea represented: surface features are copied while meaning, scale, sign, entity, or invariant is changed?",
+        "objective": "The likely conceptual wrong route is explicitly represented.",
+        "authored_evidence": {
+          "wrong_idea": "Omitted terms should also be omitted from a positional coefficient representation.",
+          "probe": "Build the coefficient row for 2x^4+3x-1 using every power from 4 down to 0, then reconstruct it."
+        }
+      },
+      "M2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Would a learner who holds 'surface features are copied while meaning, scale, sign, entity, or invariant is changed' answer the diagnostic differently from a learner who merely slipped?",
+        "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+        "authored_evidence": {
+          "probe": "Build the coefficient row for 2x^4+3x-1 using every power from 4 down to 0, then reconstruct it.",
+          "pattern": "2,0,0,3,-1 and the reconstruction is unchanged. Repeated shifting after zero slots signals a representation error."
+        }
+      },
+      "M3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the repair show why 'surface features are copied while meaning, scale, sign, entity, or invariant is changed' fails and establish this replacement rule: state the invariant first, then map each relevant element across representations?",
+        "objective": "The repair makes the failure visible and establishes a replacement rule.",
+        "authored_evidence": {
+          "rule": "Polynomial-to-table translation preserves exponent-to-coefficient correspondence, including explicit zeros for missing powers.",
+          "check": "For 2x^4+3x-1, powers 4,3,2,1,0 have coefficients 2,0,0,3,-1.",
+          "transfer": "Translate -x^5+4x^2+6 into a six-slot coefficient row and back."
+        }
+      }
+    }
+  },
+  {
+    "question_ref": "OWN-ISS49-POLY-D1-06",
+    "label": "Q6",
+    "template_id": "QRT-EXPLAIN-D2",
+    "band": "D2",
+    "primary_demand": "EXPLAIN",
+    "secondary_demands": [
+      "APPLY"
+    ],
+    "construction_ref": "CU-MAT-POLY-OPERATE",
+    "review_independence": "IMPLEMENTATION_COUPLED_NOT_INDEPENDENT",
+    "facets": {
+      "H1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 1 help this learner clarify the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement?",
+        "objective": "The learner can state what the question turns on before choosing a route.",
+        "authored_evidence": "Replace the square by two identical factors."
+      },
+      "H2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 2 help this learner correlate the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement with a demonstrated mechanism or principle that can account for it, and see why that bridge applies here?",
+        "objective": "The learner connects the crux to knowledge already held.",
+        "authored_evidence": "Distribute x and 3 from the first factor across both terms of the second."
+      },
+      "H3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 3 open the way to build the explanatory chain from principle to outcome while leaving the causal or linking statement that completes the explanation to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "objective": "The learner can start the crux without being handed the protected work.",
+        "authored_evidence": "Keep all four products visible before collecting the two middle terms."
+      },
+      "S1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does stage 1 show the situation and help this learner see the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement, without disclosing the causal or linking statement that completes the explanation?",
+        "objective": "The first visual stage makes the situation and crux legible without answering it.",
+        "authored_evidence": {
+          "representation_ref": "REP-MATH-ISS49-Q6",
+          "stage_ids": [
+            "REP-MATH-ISS49-Q6-S1",
+            "REP-MATH-ISS49-Q6-S2",
+            "REP-MATH-ISS49-Q6-S3"
+          ]
+        }
+      },
+      "S2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does a stage show a demonstrated mechanism or principle that can account for it in this question's context? Visual job: show causal states, dependencies, or before/after relations without writing the conclusion.",
+        "objective": "A visual stage connects the learner's held idea to this question.",
+        "authored_evidence": {
+          "representation_ref": "REP-MATH-ISS49-Q6",
+          "stage_ids": [
+            "REP-MATH-ISS49-Q6-S1",
+            "REP-MATH-ISS49-Q6-S2",
+            "REP-MATH-ISS49-Q6-S3"
+          ]
+        }
+      },
+      "S3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does a later stage show the way toward build the explanatory chain from principle to outcome while leaving the causal or linking statement that completes the explanation to the learner?",
+        "objective": "A later visual stage supports construction toward the crux without completing it.",
+        "authored_evidence": {
+          "representation_ref": "REP-MATH-ISS49-Q6",
+          "stage_ids": [
+            "REP-MATH-ISS49-Q6-S1",
+            "REP-MATH-ISS49-Q6-S2",
+            "REP-MATH-ISS49-Q6-S3"
+          ]
+        }
+      },
+      "P1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Do all pre-attempt panels leave the causal or linking statement that completes the explanation to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+        "authored_evidence": {
+          "scaffolds": [
+            {
+              "text": "Replace the square by two identical factors.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-06-MOVE-1"
+            },
+            {
+              "text": "Distribute x and 3 from the first factor across both terms of the second.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-06-MOVE-2"
+            },
+            {
+              "text": "Keep all four products visible before collecting the two middle terms.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "FIRST_MOVE",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-06-MOVE-3"
+            }
+          ],
+          "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        }
+      },
+      "P2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the concept link land where the bridge from the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement to a demonstrated mechanism or principle that can account for it is actually taught or repaired?",
+        "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+        "authored_evidence": "CU-MAT-POLY-OPERATE"
+      },
+      "P3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does each solution move explain why it holds here, and does the check test the explanation against a changed condition, counterexample, or predicted consequence?",
+        "objective": "Post-attempt reasoning explains validity and verifies independently.",
+        "authored_evidence": {
+          "reasoning_route": [
+            {
+              "id": "OWN-ISS49-POLY-D1-06-MOVE-1",
+              "kind": "REPRESENT",
+              "action": "Rewrite the square as the product (x+3)(x+3).",
+              "why_valid": "Squaring a binomial means multiplying the whole binomial by itself.",
+              "inputs": [
+                "(x+3)^2=(x+3)(x+3)=x^2+3x+3x+9=x^2+6x+9. The incorrect expansion omits the two cross-products, which combine to 6x."
+              ],
+              "output": "(x+3)(x+3)"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-06-MOVE-2",
+              "kind": "CONNECT",
+              "action": "Distribute each term in the first factor across the second.",
+              "why_valid": "The distributive law creates four products, including two cross-products.",
+              "inputs": [
+                "(x+3)(x+3)"
+              ],
+              "output": "x^2+3x+3x+9"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-06-MOVE-3",
+              "kind": "VERIFY",
+              "action": "Collect the middle terms and test a simple value.",
+              "why_valid": "3x+3x=6x; at x=1 both (1+3)^2 and 1+6+9 equal 16.",
+              "inputs": [
+                "x^2+3x+3x+9"
+              ],
+              "output": "x^2+6x+9"
+            }
+          ],
+          "check": "At x=1, both the product and corrected expansion equal 16; x^2+9 gives 10."
+        }
+      },
+      "M1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Is this likely wrong idea represented: the outcome is restated, labelled, or accompanied by a formula without explaining why it follows?",
+        "objective": "The likely conceptual wrong route is explicitly represented.",
+        "authored_evidence": {
+          "wrong_idea": "A sum can be squared by squaring each addend and adding the results.",
+          "probe": "Expand (x+2)^2 from the product and compare it with the tempting x^2+4."
+        }
+      },
+      "M2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Would a learner who holds 'the outcome is restated, labelled, or accompanied by a formula without explaining why it follows' answer the diagnostic differently from a learner who merely slipped?",
+        "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+        "authored_evidence": {
+          "probe": "Expand (x+2)^2 from the product and compare it with the tempting x^2+4.",
+          "pattern": "The correct middle term is 4x. Repeated omission indicates termwise squaring of a sum."
+        }
+      },
+      "M3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the repair show why 'the outcome is restated, labelled, or accompanied by a formula without explaining why it follows' fails and establish this replacement rule: name the mechanism or principle and connect it to the outcome through warranted links?",
+        "objective": "The repair makes the failure visible and establishes a replacement rule.",
+        "authored_evidence": {
+          "rule": "(a+b)^2=a^2+2ab+b^2 because ab and ba both occur in the product.",
+          "check": "(x+2)^2=x^2+4x+4, and x=1 gives 9 on both sides.",
+          "transfer": "Expand (2x+1)^2 without copying a memorized final line."
+        }
+      }
+    }
+  },
+  {
+    "question_ref": "OWN-ISS49-POLY-D1-07",
+    "label": "Q7",
+    "template_id": "QRT-MODEL-D2",
+    "band": "D2",
+    "primary_demand": "MODEL",
+    "secondary_demands": [
+      "APPLY",
+      "REPRESENT"
+    ],
+    "construction_ref": "CU-MAT-POLY-MODEL",
+    "review_independence": "IMPLEMENTATION_COUPLED_NOT_INDEPENDENT",
+    "facets": {
+      "H1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 1 help this learner clarify which features of the situation determine the model, law, or strategy and which features are irrelevant?",
+        "objective": "The learner can state what the question turns on before choosing a route.",
+        "authored_evidence": "Identify what operation converts two side lengths into area."
+      },
+      "H2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 2 help this learner correlate which features of the situation determine the model, law, or strategy and which features are irrelevant with a demonstrated model's assumptions, invariants, or selection cues, and see why that bridge applies here?",
+        "objective": "The learner connects the crux to knowledge already held.",
+        "authored_evidence": "Keep the product form until the geometric meaning is fixed."
+      },
+      "H3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 3 open the way to choose or formulate the governing model and map the situation into it while leaving the final model, law, or strategy choice or formulation to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "objective": "The learner can start the crux without being handed the protected work.",
+        "authored_evidence": "Expand after choosing the model, then use cm×cm to determine the output unit."
+      },
+      "S1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does stage 1 show the situation and help this learner see which features of the situation determine the model, law, or strategy and which features are irrelevant, without disclosing the final model, law, or strategy choice or formulation?",
+        "objective": "The first visual stage makes the situation and crux legible without answering it.",
+        "authored_evidence": {
+          "representation_ref": "REP-MATH-ISS49-Q7",
+          "stage_ids": [
+            "REP-MATH-ISS49-Q7-S1",
+            "REP-MATH-ISS49-Q7-S2",
+            "REP-MATH-ISS49-Q7-S3"
+          ]
+        }
+      },
+      "S2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does a stage show a demonstrated model's assumptions, invariants, or selection cues in this question's context? Visual job: surface features that discriminate between candidate models without naming the winning model.",
+        "objective": "A visual stage connects the learner's held idea to this question.",
+        "authored_evidence": {
+          "representation_ref": "REP-MATH-ISS49-Q7",
+          "stage_ids": [
+            "REP-MATH-ISS49-Q7-S1",
+            "REP-MATH-ISS49-Q7-S2",
+            "REP-MATH-ISS49-Q7-S3"
+          ]
+        }
+      },
+      "S3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does a later stage show the way toward choose or formulate the governing model and map the situation into it while leaving the final model, law, or strategy choice or formulation to the learner?",
+        "objective": "A later visual stage supports construction toward the crux without completing it.",
+        "authored_evidence": {
+          "representation_ref": "REP-MATH-ISS49-Q7",
+          "stage_ids": [
+            "REP-MATH-ISS49-Q7-S1",
+            "REP-MATH-ISS49-Q7-S2",
+            "REP-MATH-ISS49-Q7-S3"
+          ]
+        }
+      },
+      "P1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Do all pre-attempt panels leave the final model, law, or strategy choice or formulation to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+        "authored_evidence": {
+          "scaffolds": [
+            {
+              "text": "Identify what operation converts two side lengths into area.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-07-MOVE-1"
+            },
+            {
+              "text": "Keep the product form until the geometric meaning is fixed.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-07-MOVE-1"
+            },
+            {
+              "text": "Expand after choosing the model, then use cm×cm to determine the output unit.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "FIRST_MOVE",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-07-MOVE-3"
+            }
+          ],
+          "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        }
+      },
+      "P2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the concept link land where the bridge from which features of the situation determine the model, law, or strategy and which features are irrelevant to a demonstrated model's assumptions, invariants, or selection cues is actually taught or repaired?",
+        "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+        "authored_evidence": "CU-MAT-POLY-MODEL"
+      },
+      "P3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does each solution move explain why it holds here, and does the check test the chosen model against its assumptions, dimensions, limiting cases, or a plausible alternative model?",
+        "objective": "Post-attempt reasoning explains validity and verifies independently.",
+        "authored_evidence": {
+          "reasoning_route": [
+            {
+              "id": "OWN-ISS49-POLY-D1-07-MOVE-1",
+              "kind": "DECIDE",
+              "action": "Choose the rectangle area model A=length×width.",
+              "why_valid": "The given quantities are perpendicular side lengths, so their product is the requested measure.",
+              "inputs": [
+                "Area=(x+3)(x+1)=x^2+4x+3 cm^2. The expression represents the rectangle's area; square centimetres are required because area is two-dimensional."
+              ],
+              "output": "A=(x+3)(x+1)"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-07-MOVE-2",
+              "kind": "TRANSFORM",
+              "action": "Expand the product using distribution.",
+              "why_valid": "The requested polynomial form is obtained without changing the represented area.",
+              "inputs": [
+                "A=(x+3)(x+1)"
+              ],
+              "output": "A=x^2+4x+3"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-07-MOVE-3",
+              "kind": "VERIFY",
+              "action": "Attach square units and check x=0.",
+              "why_valid": "Multiplying centimetres by centimetres gives cm^2; at x=0 the sides are 3 cm and 1 cm.",
+              "inputs": [
+                "A=x^2+4x+3"
+              ],
+              "output": "x^2+4x+3 cm^2 represents area"
+            }
+          ],
+          "check": "At x=0 the polynomial gives 3, matching 3 cm × 1 cm."
+        }
+      },
+      "M1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Is this likely wrong idea represented: the most familiar model is selected from keywords instead of checking assumptions?",
+        "objective": "The likely conceptual wrong route is explicitly represented.",
+        "authored_evidence": {
+          "wrong_idea": "Any expression built from the side lengths represents area, and the unit stays cm.",
+          "probe": "A rectangle has sides x+4 cm and x+2 cm for x≥0. Model its area, expand it, and name the unit."
+        }
+      },
+      "M2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Would a learner who holds 'the most familiar model is selected from keywords instead of checking assumptions' answer the diagnostic differently from a learner who merely slipped?",
+        "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+        "authored_evidence": {
+          "probe": "A rectangle has sides x+4 cm and x+2 cm for x≥0. Model its area, expand it, and name the unit.",
+          "pattern": "(x+4)(x+2)=x^2+6x+8 cm^2. Adding sides or using cm reveals confusion between length and area."
+        }
+      },
+      "M3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the repair show why 'the most familiar model is selected from keywords instead of checking assumptions' fails and establish this replacement rule: compare candidate models against the stated conditions and choose the one whose assumptions fit?",
+        "objective": "The repair makes the failure visible and establishes a replacement rule.",
+        "authored_evidence": {
+          "rule": "If lengths are in cm, rectangle area is length×width and is measured in cm^2; expansion changes form, not meaning.",
+          "check": "At x=0, (x+4)(x+2) gives 8 cm^2, matching 4×2.",
+          "transfer": "Model the area of a rectangle with sides 2x+1 cm and x+5 cm."
+        }
+      }
+    }
+  },
+  {
+    "question_ref": "OWN-ISS49-POLY-D1-08",
+    "label": "Q8",
+    "template_id": "QRT-APPLY-D1",
+    "band": "D1",
+    "primary_demand": "APPLY",
+    "secondary_demands": [
+      "JUSTIFY"
+    ],
+    "construction_ref": "CU-MAT-POLY-OPERATE",
+    "review_independence": "IMPLEMENTATION_COUPLED_NOT_INDEPENDENT",
+    "facets": {
+      "H1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 1 help this learner clarify the givens and conditions that determine whether the known procedure or relation is valid here?",
+        "objective": "The learner can state what the question turns on before choosing a route.",
+        "authored_evidence": "Rewrite 9 as a square."
+      },
+      "H2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 2 help this learner correlate the givens and conditions that determine whether the known procedure or relation is valid here with a demonstrated procedure or relation together with its applicability conditions, and see why that bridge applies here?",
+        "objective": "The learner connects the crux to knowledge already held.",
+        "authored_evidence": "Match the expression to a^2-b^2."
+      },
+      "H3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 3 open the way to instantiate and execute the known procedure correctly while leaving the decisive substitution, transformation, or execution step that yields the requested result to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "objective": "The learner can start the crux without being handed the protected work.",
+        "authored_evidence": "Form conjugate factors, then multiply them back as the check."
+      },
+      "S1": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does stage 1 show the situation and help this learner see the givens and conditions that determine whether the known procedure or relation is valid here, without disclosing the decisive substitution, transformation, or execution step that yields the requested result?",
+        "objective": "The first visual stage makes the situation and crux legible without answering it.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "S2": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does a stage show a demonstrated procedure or relation together with its applicability conditions in this question's context? Visual job: align givens with procedure variables or steps without carrying out the protected computation.",
+        "objective": "A visual stage connects the learner's held idea to this question.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "S3": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does a later stage show the way toward instantiate and execute the known procedure correctly while leaving the decisive substitution, transformation, or execution step that yields the requested result to the learner?",
+        "objective": "A later visual stage supports construction toward the crux without completing it.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "P1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Do all pre-attempt panels leave the decisive substitution, transformation, or execution step that yields the requested result to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+        "authored_evidence": {
+          "scaffolds": [
+            {
+              "text": "Rewrite 9 as a square.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-08-MOVE-1"
+            },
+            {
+              "text": "Match the expression to a^2-b^2.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-08-MOVE-1"
+            },
+            {
+              "text": "Form conjugate factors, then multiply them back as the check.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "FIRST_MOVE",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-08-MOVE-3"
+            }
+          ],
+          "protected_work": "Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        }
+      },
+      "P2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the concept link land where the bridge from the givens and conditions that determine whether the known procedure or relation is valid here to a demonstrated procedure or relation together with its applicability conditions is actually taught or repaired?",
+        "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+        "authored_evidence": "CU-MAT-POLY-OPERATE"
+      },
+      "P3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does each solution move explain why it holds here, and does the check verify by units, substitution-back, a special value, inverse operation, or an alternate computation?",
+        "objective": "Post-attempt reasoning explains validity and verifies independently.",
+        "authored_evidence": {
+          "reasoning_route": [
+            {
+              "id": "OWN-ISS49-POLY-D1-08-MOVE-1",
+              "kind": "DECIDE",
+              "action": "Recognize x^2-9 as a difference of two squares.",
+              "why_valid": "9=3^2, so a^2-b^2=(a-b)(a+b) applies.",
+              "inputs": [
+                "x^2-9=x^2-3^2=(x-3)(x+3). Multiplying gives x^2+3x-3x-9=x^2-9."
+              ],
+              "output": "x^2-3^2"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-08-MOVE-2",
+              "kind": "TRANSFORM",
+              "action": "Apply the difference-of-squares factorisation.",
+              "why_valid": "Substitute a=x and b=3 into the identity.",
+              "inputs": [
+                "x^2-3^2"
+              ],
+              "output": "(x-3)(x+3)"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-08-MOVE-3",
+              "kind": "VERIFY",
+              "action": "Multiply the factors.",
+              "why_valid": "The middle terms +3x and -3x cancel, recovering the original expression.",
+              "inputs": [
+                "(x-3)(x+3)"
+              ],
+              "output": "x^2-9"
+            }
+          ],
+          "check": "Expansion of (x-3)(x+3) reproduces x^2-9."
+        }
+      },
+      "M1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Is this likely wrong idea represented: a familiar formula or procedure is executed without checking its conditions or mapping variables correctly?",
+        "objective": "The likely conceptual wrong route is explicitly represented.",
+        "authored_evidence": {
+          "wrong_idea": "A difference of squares factors as a squared binomial with the same sign pattern.",
+          "probe": "Factor x^2-16 and verify by multiplication."
+        }
+      },
+      "M2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Would a learner who holds 'a familiar formula or procedure is executed without checking its conditions or mapping variables correctly' answer the diagnostic differently from a learner who merely slipped?",
+        "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+        "authored_evidence": {
+          "probe": "Factor x^2-16 and verify by multiplication.",
+          "pattern": "(x-4)(x+4), with middle terms cancelling. Repeated use of (x-4)^2 indicates identity confusion."
+        }
+      },
+      "M3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the repair show why 'a familiar formula or procedure is executed without checking its conditions or mapping variables correctly' fails and establish this replacement rule: verify applicability, map each given to the procedure, then execute?",
+        "objective": "The repair makes the failure visible and establishes a replacement rule.",
+        "authored_evidence": {
+          "rule": "a^2-b^2=(a-b)(a+b); opposite factor signs make the cross terms cancel.",
+          "check": "(x-4)(x+4)=x^2-16.",
+          "transfer": "Factor 9x^2-25 and verify the result."
+        }
+      }
+    }
+  },
+  {
+    "question_ref": "OWN-ISS49-POLY-D1-09",
+    "label": "Q9",
+    "template_id": "QRT-JUSTIFY-D2",
+    "band": "D2",
+    "primary_demand": "JUSTIFY",
+    "secondary_demands": [
+      "APPLY"
+    ],
+    "construction_ref": "CU-MAT-POLY-MODEL",
+    "review_independence": "IMPLEMENTATION_COUPLED_NOT_INDEPENDENT",
+    "facets": {
+      "H1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 1 help this learner clarify the claim to establish and the evidence or conditions that may legitimately support it?",
+        "objective": "The learner can state what the question turns on before choosing a route.",
+        "authored_evidence": "The words 'for every real x' require a general reason."
+      },
+      "H2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 2 help this learner correlate the claim to establish and the evidence or conditions that may legitimately support it with a demonstrated theorem, principle, data rule, or warrant, and see why that bridge applies here?",
+        "objective": "The learner connects the crux to knowledge already held.",
+        "authored_evidence": "Use a law valid for arbitrary x instead of testing a few values."
+      },
+      "H3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 3 open the way to construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "objective": "The learner can start the crux without being handed the protected work.",
+        "authored_evidence": "Distribute x across both terms and compare the resulting expression symbolically."
+      },
+      "S1": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does stage 1 show the situation and help this learner see the claim to establish and the evidence or conditions that may legitimately support it, without disclosing the decisive warrant, inference, or proof step that establishes the claim?",
+        "objective": "The first visual stage makes the situation and crux legible without answering it.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "S2": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does a stage show a demonstrated theorem, principle, data rule, or warrant in this question's context? Visual job: show givens, evidence, and construction relationships without marking the conclusion as established.",
+        "objective": "A visual stage connects the learner's held idea to this question.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "S3": {
+        "status": "WAIVED_WITH_REASON",
+        "review_question": "Does a later stage show the way toward construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner?",
+        "objective": "A later visual stage supports construction toward the crux without completing it.",
+        "authored_evidence": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+      },
+      "P1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Do all pre-attempt panels leave the decisive warrant, inference, or proof step that establishes the claim to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+        "authored_evidence": {
+          "scaffolds": [
+            {
+              "text": "The words 'for every real x' require a general reason.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-09-MOVE-1"
+            },
+            {
+              "text": "Use a law valid for arbitrary x instead of testing a few values.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-09-MOVE-2"
+            },
+            {
+              "text": "Distribute x across both terms and compare the resulting expression symbolically.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "FIRST_MOVE",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-09-MOVE-3"
+            }
+          ],
+          "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        }
+      },
+      "P2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the concept link land where the bridge from the claim to establish and the evidence or conditions that may legitimately support it to a demonstrated theorem, principle, data rule, or warrant is actually taught or repaired?",
+        "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+        "authored_evidence": "CU-MAT-POLY-MODEL"
+      },
+      "P3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does each solution move explain why it holds here, and does the check challenge the argument with a counterexample, converse, boundary case, independent derivation, or evidence-consistency test?",
+        "objective": "Post-attempt reasoning explains validity and verifies independently.",
+        "authored_evidence": {
+          "reasoning_route": [
+            {
+              "id": "OWN-ISS49-POLY-D1-09-MOVE-1",
+              "kind": "DECIDE",
+              "action": "Treat the statement as a universal identity claim, not a numerical test.",
+              "why_valid": "The question asks for every real x, so finitely many examples cannot establish it.",
+              "inputs": [
+                "Yes. For every real x, the distributive law gives x(x+1)=x·x+x·1=x^2+x, so the two expressions are algebraically identical rather than merely equal at sampled values."
+              ],
+              "output": "a general algebraic warrant is required"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-09-MOVE-2",
+              "kind": "CONNECT",
+              "action": "Apply the distributive law symbolically to x(x+1).",
+              "why_valid": "Distribution is valid for every real x and transforms the expression without choosing a sample.",
+              "inputs": [
+                "a general algebraic warrant is required"
+              ],
+              "output": "x^2+x"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-09-MOVE-3",
+              "kind": "VERIFY",
+              "action": "Compare the transformed expression with the other side.",
+              "why_valid": "They are the same symbolic expression, so equality holds throughout the stated domain.",
+              "inputs": [
+                "x^2+x"
+              ],
+              "output": "identity established"
+            }
+          ],
+          "check": "Factoring x^2+x back to x(x+1) recovers the original form without restricting x."
+        }
+      },
+      "M1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Is this likely wrong idea represented: an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof?",
+        "objective": "The likely conceptual wrong route is explicitly represented.",
+        "authored_evidence": {
+          "wrong_idea": "Agreement at a few chosen values proves two expressions equal for every real input.",
+          "probe": "Are (x+2)(x-2) and x^2-4 equal for every real x? Give a universal reason, not a sample."
+        }
+      },
+      "M2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Would a learner who holds 'an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof' answer the diagnostic differently from a learner who merely slipped?",
+        "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+        "authored_evidence": {
+          "probe": "Are (x+2)(x-2) and x^2-4 equal for every real x? Give a universal reason, not a sample.",
+          "pattern": "Yes, because distribution gives x^2-2x+2x-4=x^2-4. Numerical spot checks alone do not establish the identity."
+        }
+      },
+      "M3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the repair show why 'an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof' fails and establish this replacement rule: state the warrant explicitly and show why its conditions license this conclusion?",
+        "objective": "The repair makes the failure visible and establishes a replacement rule.",
+        "authored_evidence": {
+          "rule": "To establish an identity for all real x, use transformations valid throughout the domain; finite sampled agreement alone is not proof.",
+          "check": "(x+2)(x-2)=x^2-4 by distribution and cancellation.",
+          "transfer": "Decide whether (x+1)^2 and x^2+1 are identical, using algebra rather than examples."
+        }
+      }
+    }
+  },
+  {
+    "question_ref": "OWN-ISS49-POLY-D1-10",
+    "label": "Q10",
+    "template_id": "QRT-SYNTHESIZE-D2",
+    "band": "D2",
+    "primary_demand": "SYNTHESIZE",
+    "secondary_demands": [
+      "MODEL",
+      "JUSTIFY"
+    ],
+    "construction_ref": "CU-MAT-POLY-CONSTRAINT",
+    "review_independence": "IMPLEMENTATION_COUPLED_NOT_INDEPENDENT",
+    "facets": {
+      "H1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 1 help this learner clarify the dependency between subproblems or ideas that makes their order or coordination matter?",
+        "objective": "The learner can state what the question turns on before choosing a route.",
+        "authored_evidence": "Start with the family ax+2 rather than guessing a whole polynomial."
+      },
+      "H2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 2 help this learner correlate the dependency between subproblems or ideas that makes their order or coordination matter with a demonstrated component idea that can anchor the first valid bridge, and see why that bridge applies here?",
+        "objective": "The learner connects the crux to knowledge already held.",
+        "authored_evidence": "A zero at 1 means the polynomial value at x=1 must be 0."
+      },
+      "H3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Can hint 3 open the way to coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "objective": "The learner can start the crux without being handed the protected work.",
+        "authored_evidence": "Use that equation to determine the remaining coefficient, then check whether any freedom remains."
+      },
+      "S1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does stage 1 show the situation and help this learner see the dependency between subproblems or ideas that makes their order or coordination matter, without disclosing the bridge or ordering decision that unlocks the multi-step route?",
+        "objective": "The first visual stage makes the situation and crux legible without answering it.",
+        "authored_evidence": {
+          "representation_ref": "REP-MATH-ISS49-Q10",
+          "stage_ids": [
+            "REP-MATH-ISS49-Q10-S1",
+            "REP-MATH-ISS49-Q10-S2",
+            "REP-MATH-ISS49-Q10-S3"
+          ]
+        }
+      },
+      "S2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does a stage show a demonstrated component idea that can anchor the first valid bridge in this question's context? Visual job: make dependencies, shared conditions, or state transitions visible without completing the route.",
+        "objective": "A visual stage connects the learner's held idea to this question.",
+        "authored_evidence": {
+          "representation_ref": "REP-MATH-ISS49-Q10",
+          "stage_ids": [
+            "REP-MATH-ISS49-Q10-S1",
+            "REP-MATH-ISS49-Q10-S2",
+            "REP-MATH-ISS49-Q10-S3"
+          ]
+        }
+      },
+      "S3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does a later stage show the way toward coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner?",
+        "objective": "A later visual stage supports construction toward the crux without completing it.",
+        "authored_evidence": {
+          "representation_ref": "REP-MATH-ISS49-Q10",
+          "stage_ids": [
+            "REP-MATH-ISS49-Q10-S1",
+            "REP-MATH-ISS49-Q10-S2",
+            "REP-MATH-ISS49-Q10-S3"
+          ]
+        }
+      },
+      "P1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Do all pre-attempt panels leave the bridge or ordering decision that unlocks the multi-step route to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+        "authored_evidence": {
+          "scaffolds": [
+            {
+              "text": "Start with the family ax+2 rather than guessing a whole polynomial.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-10-MOVE-1"
+            },
+            {
+              "text": "A zero at 1 means the polynomial value at x=1 must be 0.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-10-MOVE-2"
+            },
+            {
+              "text": "Use that equation to determine the remaining coefficient, then check whether any freedom remains.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "FIRST_MOVE",
+              "supports_move_ref": "OWN-ISS49-POLY-D1-10-MOVE-3"
+            }
+          ],
+          "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        }
+      },
+      "P2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the concept link land where the bridge from the dependency between subproblems or ideas that makes their order or coordination matter to a demonstrated component idea that can anchor the first valid bridge is actually taught or repaired?",
+        "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+        "authored_evidence": "CU-MAT-POLY-CONSTRAINT"
+      },
+      "P3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does each solution move explain why it holds here, and does the check verify through an independent invariant, alternate route, limiting case, or consistency relation?",
+        "objective": "Post-attempt reasoning explains validity and verifies independently.",
+        "authored_evidence": {
+          "reasoning_route": [
+            {
+              "id": "OWN-ISS49-POLY-D1-10-MOVE-1",
+              "kind": "REPRESENT",
+              "action": "Write the family of linear polynomials with constant term 2 as p(x)=ax+2, with a≠0.",
+              "why_valid": "Fixing the constant leaves the x-coefficient as the only free parameter.",
+              "inputs": [
+                "Let p(x)=ax+2 with a≠0. Since the zero is 1, p(1)=a+2=0, so a=-2. Thus p(x)=-2x+2. Its constant term is 2 and p(1)=0. The coefficient a is forced, so exactly one linear polynomial satisfies both conditions."
+              ],
+              "output": "p(x)=ax+2"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-10-MOVE-2",
+              "kind": "CONNECT",
+              "action": "Translate 'zero is 1' into p(1)=0 and solve for a.",
+              "why_valid": "A number r is a zero exactly when p(r)=0; combining this with the fixed constant links the constraints.",
+              "inputs": [
+                "p(x)=ax+2"
+              ],
+              "output": "a+2=0, so a=-2"
+            },
+            {
+              "id": "OWN-ISS49-POLY-D1-10-MOVE-3",
+              "kind": "VERIFY",
+              "action": "Check both conditions and use the forced parameter to establish uniqueness.",
+              "why_valid": "The result has constant 2 and p(1)=0; a+2=0 has only one real solution.",
+              "inputs": [
+                "a+2=0, so a=-2"
+              ],
+              "output": "p(x)=-2x+2, uniquely"
+            }
+          ],
+          "check": "The constant term is 2 and -2(1)+2=0; no other a satisfies a+2=0."
+        }
+      },
+      "M1": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Is this likely wrong idea represented: pieces are solved independently or chained in a convenient but invalid order?",
+        "objective": "The likely conceptual wrong route is explicitly represented.",
+        "authored_evidence": {
+          "wrong_idea": "Once one condition is satisfied, an arbitrary scaling or coefficient choice can satisfy the second without changing the constant term.",
+          "probe": "Construct a linear polynomial with constant term 6 and zero 3. Before comparing, state whether the coefficient of x is still free after both conditions are imposed."
+        }
+      },
+      "M2": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Would a learner who holds 'pieces are solved independently or chained in a convenient but invalid order' answer the diagnostic differently from a learner who merely slipped?",
+        "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+        "authored_evidence": {
+          "probe": "Construct a linear polynomial with constant term 6 and zero 3. Before comparing, state whether the coefficient of x is still free after both conditions are imposed.",
+          "pattern": "p(x)=ax+6, p(3)=0 gives 3a+6=0, so a=-2; the coefficient is no longer free and the polynomial is unique."
+        }
+      },
+      "M3": {
+        "status": "AUTHOR_REVIEW_PASS",
+        "review_question": "Does the repair show why 'pieces are solved independently or chained in a convenient but invalid order' fails and establish this replacement rule: identify dependencies, establish the bridge quantity or condition, then propagate it through the chain?",
+        "objective": "The repair makes the failure visible and establishes a replacement rule.",
+        "authored_evidence": {
+          "rule": "For p(x)=ax+b with fixed non-zero b and specified non-zero zero r, ar+b=0 determines a uniquely; both conditions must be rechecked.",
+          "check": "With b=6 and r=3, 3a+6=0 gives a=-2 and p(x)=-2x+6.",
+          "transfer": "Construct a linear polynomial with constant term -4 and zero 2, and justify uniqueness."
+        }
+      }
+    }
+  }
+]
