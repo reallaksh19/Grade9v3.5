@@ -278,7 +278,24 @@
               ]
             }
           }
-        }
+        },
+        "grade9v3:question_repairs": [
+          {
+            "label": "Q10 · zero-polynomial parameter boundary",
+            "clarify": "Separate ordinary parameter values from the value that makes every coefficient vanish before assigning a degree or invoking a zero bound.",
+            "connect": "Use coefficient checking in a factored parameter family: one common scalar can switch the whole polynomial off.",
+            "way": "Factor the common coefficient, branch on whether it is zero, and only then apply degree and root facts to the nonzero branch.",
+            "rule": "Degree and the usual finite zero bound apply to a nonzero polynomial. Under this task's convention the zero polynomial has no defined degree and vanishes at every real input.",
+            "check": "Use a changed family whose scalar factor can also vanish and verify both branches separately.",
+            "probe": "For h_b(x)=b(x-2)^2, predict the degree and real zero set when b=0 and when b=5. Explain which branch is covered by the degree-two zero bound.",
+            "pattern": "For b=5 the polynomial has degree 2 and zero x=2 (multiplicity 2); for b=0 it is the zero polynomial, has no defined degree under the stated convention, and every real number is a zero.",
+            "transfer": "For j_c(x)=(c+4)(x^3-1), branch on c=-4 versus c≠-4 before naming a degree or using a root-count bound.",
+            "wrong_idea": "Reading x^2 and declaring degree 2 for every a, then treating the zero polynomial's infinitely many zeros as a contradiction of the nonzero-polynomial degree bound.",
+            "construction_ref": "CU-MATH-POLY-EXCEPTION",
+            "question_ref": "ISS50-Q10",
+            "crux_move_ref": "Q10-M2"
+          }
+        ]
       },
       "title": "Parameter Cancellation, Degree and the Zero-Polynomial Boundary",
       "bucket_id": "BUCKET-MATH-G9-POLYNOMIALS",
@@ -626,7 +643,24 @@
               ]
             }
           }
-        }
+        },
+        "grade9v3:question_repairs": [
+          {
+            "label": "Q6 · cancellation with original domain",
+            "clarify": "Track the original domain before any algebraic cancellation.",
+            "connect": "Use the familiar factorisation x^2-1=(x-1)(x+1), but keep the condition that made the original denominator legal.",
+            "way": "Compare the simplified rule with the original function only on inputs admitted by the original expression.",
+            "rule": "Cancelling a nonzero factor preserves values on the original domain; it does not add an input at which the original denominator was zero.",
+            "check": "Evaluate the simplified rule at the excluded input and compare that with whether the original expression is defined there.",
+            "probe": "For h(x)=(x^2-4)/(x-2), compare h with x+2. State the domain first, then decide whether the two are the same function on all real numbers.",
+            "pattern": "h(x)=x+2 only for x≠2; h is undefined at 2 while x+2 equals 4 there.",
+            "transfer": "Apply the same domain ledger to (x^2-9)/(x-3) before cancelling.",
+            "wrong_idea": "Cancelling x-1 and then restoring x=1, concluding the original rational expression and x+1 are identical functions on all real numbers.",
+            "construction_ref": "CU-MATH-POLY-DOMAIN",
+            "question_ref": "ISS50-Q6",
+            "crux_move_ref": "Q6-M2"
+          }
+        ]
       },
       "title": "Modelling, Tables/Graphs and Domain-Preserving Simplification",
       "bucket_id": "BUCKET-MATH-G9-POLYNOMIALS",
