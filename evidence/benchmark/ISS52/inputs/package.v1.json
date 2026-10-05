@@ -1462,6 +1462,52 @@
         }
       ],
       "support_stage_map": []
+    },
+    {
+      "id": "REP-ISS52-Q5-CUT-SHEET",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS52-OWNER"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_CONSTRUCTION",
+      "purpose": "Translate the stated 10 cm square and x-by-x corner cuts into a spatial net without supplying the derived base dimension or the volume formula.",
+      "required_elements": [
+        "10 cm outer square",
+        "four equal corner cut squares",
+        "x side labels",
+        "fold lines"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "Read the full sheet dimension.",
+        "Locate the four equal corner cuts.",
+        "Use the x labels to infer what each cut removes from adjacent sides.",
+        "Treat dashed lines only as fold locations; derive all algebra yourself."
+      ],
+      "instance_constraints": [
+        "Show only quantities explicitly given in Q5.",
+        "Do not label the remaining base side as 10-2x.",
+        "Do not print the volume formula or a discriminating input."
+      ],
+      "accessibility": [
+        "SVG title and description state all visible geometry.",
+        "Labels use text as well as line position; no color-only meaning.",
+        "The diagram remains meaningful in monochrome and at enlarged text."
+      ],
+      "misleading_alternatives": [
+        "A pre-labelled 10-2x base would reveal a learner-owned translation step.",
+        "A graph of either candidate polynomial would shift the task from deriving the model to reading an answer."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS52/assets/q5-cut-sheet-givens.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "reveal_stages": [],
+      "support_stage_map": []
     }
   ],
   "question_families": [
