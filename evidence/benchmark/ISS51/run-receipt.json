@@ -1,0 +1,30 @@
+{
+  "schema": "iss51-run-receipt/v1",
+  "issue": 51,
+  "run_id": "ISS51-D3-R1",
+  "round": "POLYNOMIAL-STRESS-V1",
+  "status": "SOURCE_AUTHORED_AWAITING_COLD_RENDER",
+  "launch_commit": "91719ad8df2bfc06c6a481590d2e24c510c24835",
+  "branch": "agent/iss51-polynomial-stress-v1-d3",
+  "code_authority_commit": "91719ad8df2bfc06c6a481590d2e24c510c24835",
+  "renderer": "Shared/tools/render_core.py",
+  "render_mode": "PAGES",
+  "requested_roles": [
+    "CORE1A",
+    "CORE2"
+  ],
+  "dependencies": {
+    "python": "3.11",
+    "jsonschema": "workflow-installed",
+    "pypdf": "workflow-installed",
+    "node": "22",
+    "playwright": "1.56.1"
+  },
+  "cold_start_commands": [
+    "PYTHONPATH=. python3 evidence/benchmark/ISS51/build_candidate.py",
+    "python3 Shared/tools/owner_bank.py check evidence/benchmark/ISS51/generated/owner.bank.json --intake evidence/benchmark/ISS51/generated/intake.json",
+    "python3 Shared/tools/render_core.py build --manifest evidence/benchmark/ISS51/generated/product.manifest.json --out <site>/products/mathematics/iss51-polynomials --mode PAGES",
+    "node tools/site-audit/core-page-audit.mjs <product-dir> --profile tablet-12.7 --http-root <site> --json <report>"
+  ],
+  "distinction_note": "Code authority commit, authored source commit, exact render digests and frozen handoff commit are tracked separately."
+}
