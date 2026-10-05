@@ -83,3 +83,14 @@ This avoids a polynomial-specific widget and converts one hard-coded subject mod
 QRT facet statuses are implementation-coupled author review, not independent semantic acceptance. This candidate does not self-certify golden promotion, learner publication, merge, or independent review.
 
 Generated machine evidence is preserved deterministically by the Issue #49 workflow. After the preservation commit, the same workflow must rerun on that exact material head before PR handoff.
+
+
+## Audit packaging and repository-wide handoff classification
+
+The issue-required audit surfaces are packaged under `evidence/benchmark/ISS49/`: chronological audit, question ledger, source cards, custody receipt, run receipt, validation record and candidate review, alongside canonical inputs, rendered pages and runtime evidence.
+
+The official NCERT Grade 9 Part I Chapter 2.1 PDF was directly inspected during closeout; it supports the candidate's general polynomial terminology but is not treated as benchmark provenance or an answer/difficulty source.
+
+Repository-wide PR checks remain non-green. The exact base/head regression-delta comparison reports `new 0; fixed 0; still failing (not new) 99`, so no new exact failing test IDs are attributable to this candidate in that comparison. PR-event V3.1 Relay binding separately reports that issue #49 has no Task Snapshot under `relay/GENERATED/tasks`; this is retained as a coordination/read-model handoff gap. Neither fact converts the repository to green.
+
+Final audit-only packaging changes do not alter generated learner bytes. A fresh Issue #49 exact-head workflow is required after the last audit commit; its run/head are recorded in the terminal TASK_RESULT and PR body rather than predicted here.
