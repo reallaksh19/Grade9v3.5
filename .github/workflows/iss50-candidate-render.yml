@@ -89,7 +89,7 @@ jobs:
           from pathlib import Path
           manifest=json.loads(Path("evidence/benchmark/ISS50/manifest.json").read_text())
           text=Path("/tmp/iss50-out/core2.html").read_text()
-          actual=re.findall(r'<article\\b[^>]*data-g9-unit="([^"]+)"[^>]*data-g9-kind="QUESTION"',text)
+          actual=re.findall(r'<article\b[^>]*data-g9-unit="([^"]+)"[^>]*data-g9-kind="QUESTION"',text)
           expected=manifest["selection"]["core2"]
           print("Core2 denominator/order",len(actual),"/",len(expected))
           if actual != expected: raise SystemExit(f"order mismatch {actual}")
