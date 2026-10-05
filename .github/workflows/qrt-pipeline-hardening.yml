@@ -1,0 +1,67 @@
+name: qrt-pipeline-hardening
+
+on:
+  pull_request:
+    paths:
+      - "Shared/quality/qrt-pipeline-run.schema.json"
+      - "Shared/tools/authoring_intake.py"
+      - "Shared/tools/qrt_pipeline_guard.py"
+      - "Shared/tools/qrt_pipeline_precheck.py"
+      - "Shared/tools/qrt_content_self_audit.py"
+      - "Shared/tools/qrt_pipeline_gate.py"
+      - "tools/site-audit/interactive-page-audit.mjs"
+      - "tests/fixtures/qrt/interactive-smoke.html"
+      - "tests/test_authoring_intake.py"
+      - "tests/test_qrt_pipeline_guard.py"
+      - "tests/test_qrt_content_self_audit.py"
+      - "docs/method/QRT-MINIMAL-PROMPT-PIPELINE.md"
+      - ".github/workflows/qrt-pipeline-hardening.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  focused-regressions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Intake policy
+        run: python Shared/tools/authoring_intake.py check
+
+      - name: Focused QRT hardening regressions
+        run: |
+          python -m unittest \
+            tests.test_authoring_intake \
+            tests.test_qrt_pipeline_guard \
+            tests.test_qrt_content_self_audit
+
+      - name: Chromium audit script syntax
+        run: node --check tools/site-audit/interactive-page-audit.mjs
+
+      - name: Install pinned Chromium harness
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Run mandatory interactive Chromium smoke audit
+        run: |
+          node tools/site-audit/interactive-page-audit.mjs \
+            tests/fixtures/qrt/interactive-smoke.html \
+            --profile tablet-12.7 \
+            --head "$GITHUB_SHA" \
+            --json /tmp/qrt-interactive-audit.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('/tmp/qrt-interactive-audit.json').read_text(encoding='utf-8'))
+          assert report['schema'] == 'interactive-page-audit/v1'
+          assert report['engine'] == 'playwright.chromium'
+          assert report['profile'] == 'tablet-12.7'
+          assert report['status'] == 'PASS', json.dumps(report, indent=2)
+          assert len(report['viewports']) == 4
+          PY

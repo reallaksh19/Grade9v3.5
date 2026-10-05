@@ -1,0 +1,737 @@
+{
+  "schema": "issue29-matrix-calibration/v1",
+  "original_denominator": "80 owner instances / 40 distinct questions / 20 primary cells unchanged",
+  "supplement_count": 8,
+  "claim": "All 28 primary cells now have candidate specimen identities when combined with the original twenty. Independent classification, source/learner and full facet acceptance are not claimed.",
+  "specimens": [
+    {
+      "id": "CAL-ISS29-RETRIEVE-D2",
+      "primary": "RETRIEVE",
+      "secondary": [
+        "APPLY",
+        "REPRESENT"
+      ],
+      "band": "D2",
+      "qrt_id": "QRT-RETRIEVE-D2",
+      "qrt_sha256": "bbe2117348396196a577d4a2528f06845b45cdfb4cc6d0cf421af780c63f04ed",
+      "classification_rationale": "The requested act is category selection. Translating two expressions into Ax=B, keeping signs, and connecting the reduced coefficients to the category require connected reasoning; finding the numerical root is not requested.",
+      "five_components": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 0,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "The requested act is category selection. Translating two expressions into Ax=B, keeping signs, and connecting the reduced coefficients to the category require connected reasoning; finding the numerical root is not requested."
+      },
+      "protected_work": "Classify after putting the equation in standard form",
+      "solution_moves": [
+        {
+          "id": "CAL-ISS29-RETRIEVE-D2-MOVE-1",
+          "kind": "TRANSFORM",
+          "action": "Collect the variable terms.",
+          "why_valid": "Adding 2x to both complete sides preserves equality.",
+          "inputs": [
+            "Over the rationals, classify 3x − 4 = 1 − 2x as having no solution, one solution, or every rational as a solution. Use the criterion Ax = B: A nonzero gives one rational solution, A = B = 0 gives every rational, and A = 0 with B nonzero gives none. Do not report the value of x."
+          ],
+          "output": "5x − 4 = 1"
+        },
+        {
+          "id": "CAL-ISS29-RETRIEVE-D2-MOVE-2",
+          "kind": "TRANSFORM",
+          "action": "Remove the constant.",
+          "why_valid": "Adding 4 to both sides is reversible.",
+          "inputs": [
+            "5x − 4 = 1"
+          ],
+          "output": "5x = 5"
+        },
+        {
+          "id": "CAL-ISS29-RETRIEVE-D2-MOVE-3",
+          "kind": "TRANSFORM",
+          "action": "Select the category.",
+          "why_valid": "The coefficient 5 is nonzero, so exactly one rational can satisfy the equation.",
+          "inputs": [
+            "5x = 5"
+          ],
+          "output": "One solution."
+        },
+        {
+          "id": "CAL-ISS29-RETRIEVE-D2-MOVE-4",
+          "kind": "VERIFY",
+          "action": "Challenge an all-solutions claim.",
+          "why_valid": "One counterexample suffices to refute that every rational works.",
+          "inputs": [
+            "One solution."
+          ],
+          "output": "x=0 gives −4 and 1, which differ."
+        }
+      ],
+      "check": "At x=0 the two sides differ, so the category is not every rational. The nonzero coefficient rules out none.",
+      "diagnostic": {
+        "wrong_idea": "Any linear-looking equation has every rational as a solution.",
+        "probe": "Classify 4x+1=4x+1 and 4x+1=4x+2. Do not solve by dividing by the cancelled coefficient.",
+        "repair": "The first has every rational; the second has none. The reduced constant comparison matters when the coefficient is zero.",
+        "interpretation": "A repeated wrong rule across changed cases is evidence to investigate a held idea; one response is not a mastery verdict."
+      },
+      "facets": {
+        "H1": "Keep the question about the size of the solution set, rather than a numerical root.",
+        "H2": "Collect the two variable terms and the constants on separate sides; preserve each sign.",
+        "H3": "Identify A and B in your reduced line and compare with the supplied criteria; choose the category yourself.",
+        "S1": "Givens and requested output, no answer.",
+        "S2": "Boundary reminder retains domains; no computed or selected result.",
+        "S3": "No third visual is needed: additional staging would repeat the same constraints.",
+        "P1": "Hints and both visual stages preserve the requested decision.",
+        "P2": "The repair link lands on CU- plus the exact specimen ID, whose teaching path includes the decisive warranted move. Familiar practice follows the worked exposure; the changed diagnostic/exit is a separate case.",
+        "P3": "At x=0 the two sides differ, so the category is not every rational. The nonzero coefficient rules out none.",
+        "M1": "Any linear-looking equation has every rational as a solution.",
+        "M2": "Classify 4x+1=4x+1 and 4x+1=4x+2. Do not solve by dividing by the cancelled coefficient.",
+        "M3": "The first has every rational; the second has none. The reduced constant comparison matters when the coefficient is zero."
+      },
+      "review_status": "AUTHOR_SELF_CHECK_REQUIRES_EXACT_RENDER_AND_INDEPENDENT_CALIBRATION"
+    },
+    {
+      "id": "CAL-ISS29-RETRIEVE-D3",
+      "primary": "RETRIEVE",
+      "secondary": [
+        "APPLY",
+        "SYNTHESIZE",
+        "JUSTIFY"
+      ],
+      "band": "D3",
+      "qrt_id": "QRT-RETRIEVE-D3",
+      "qrt_sha256": "a8d4e5f8fc405dabd6037a645c8084d95a8681da2abf8d7a53ece91e2a4ddb67",
+      "classification_rationale": "Category reconstruction stays primary. Bracket reduction and the parameter-dependent coefficient must be coordinated; k=−6 and k=2 control different exceptions. Representation 1, chain 2, algebra 1 and exception sensitivity 2 total 6.",
+      "five_components": {
+        "band": "D3",
+        "score": 6,
+        "components": {
+          "concept_model_selection": 0,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "Category reconstruction stays primary. Bracket reduction and the parameter-dependent coefficient must be coordinated; k=−6 and k=2 control different exceptions. Representation 1, chain 2, algebra 1 and exception sensitivity 2 total 6."
+      },
+      "protected_work": "Classify linked parameter exceptions",
+      "solution_moves": [
+        {
+          "id": "CAL-ISS29-RETRIEVE-D3-MOVE-1",
+          "kind": "TRANSFORM",
+          "action": "Expand E1 and cancel 2x.",
+          "why_valid": "Distribution and subtracting the same term from both sides preserve the solution set.",
+          "inputs": [
+            "Let k be rational and x rational. For each k, classify each of these equations as having none, one, or every rational solution: E1: 2(x−3)=2x+k; E2: (k−2)x=4−2k. Use the Ax=B criteria; a numerical solution is not requested."
+          ],
+          "output": "E1 becomes −6=k."
+        },
+        {
+          "id": "CAL-ISS29-RETRIEVE-D3-MOVE-2",
+          "kind": "TRANSFORM",
+          "action": "Classify E1.",
+          "why_valid": "The reduced statement has no x, so it holds for all x or for none.",
+          "inputs": [
+            "E1 becomes −6=k."
+          ],
+          "output": "Every rational if k=−6; none otherwise."
+        },
+        {
+          "id": "CAL-ISS29-RETRIEVE-D3-MOVE-3",
+          "kind": "TRANSFORM",
+          "action": "Factor the E2 constant.",
+          "why_valid": "4−2k=−2(k−2).",
+          "inputs": [
+            "Every rational if k=−6; none otherwise."
+          ],
+          "output": "(k−2)x=−2(k−2)."
+        },
+        {
+          "id": "CAL-ISS29-RETRIEVE-D3-MOVE-4",
+          "kind": "TRANSFORM",
+          "action": "Separate k=2 before division.",
+          "why_valid": "At k=2 both sides vanish; division by k−2 would lose this case.",
+          "inputs": [
+            "(k−2)x=−2(k−2)."
+          ],
+          "output": "E2 has every rational if k=2."
+        },
+        {
+          "id": "CAL-ISS29-RETRIEVE-D3-MOVE-5",
+          "kind": "TRANSFORM",
+          "action": "Classify the remaining k.",
+          "why_valid": "A nonzero rational coefficient has a unique rational quotient.",
+          "inputs": [
+            "E2 has every rational if k=2."
+          ],
+          "output": "E2 has one rational solution for k≠2."
+        },
+        {
+          "id": "CAL-ISS29-RETRIEVE-D3-MOVE-6",
+          "kind": "VERIFY",
+          "action": "Cross-check the exceptional parameters.",
+          "why_valid": "Each category must be evaluated in the original pair.",
+          "inputs": [
+            "E2 has one rational solution for k≠2."
+          ],
+          "output": "At k=−6: E1 every, E2 one. At k=2: E1 none, E2 every."
+        }
+      ],
+      "check": "Substitute k=−6 and k=2 in both originals. Neither equation has a hidden division step at its exceptional parameter.",
+      "diagnostic": {
+        "wrong_idea": "Cancelling a parameter factor is valid even where the factor is zero.",
+        "probe": "Classify (t−3)y=2(t−3) at t=3 and t=4, keeping the exceptional case.",
+        "repair": "At t=3 every rational works; at t=4 exactly one works. Split a zero divisor before cancelling.",
+        "interpretation": "A repeated wrong rule across changed cases is evidence to investigate a held idea; one response is not a mastery verdict."
+      },
+      "facets": {
+        "H1": "Keep the two equations separate; k is a fixed parameter when you classify solutions in x.",
+        "H2": "Put each equation in Ax=B form, without dividing by any expression that could vanish.",
+        "H3": "Partition k only where your reduced coefficient or constant changes the classification. Decide the categories yourself.",
+        "S1": "Givens and requested output, no answer.",
+        "S2": "Boundary reminder retains domains; no computed or selected result.",
+        "S3": "No third visual is needed: additional staging would repeat the same constraints.",
+        "P1": "Hints and both visual stages preserve the requested decision.",
+        "P2": "The repair link lands on CU- plus the exact specimen ID, whose teaching path includes the decisive warranted move. Familiar practice follows the worked exposure; the changed diagnostic/exit is a separate case.",
+        "P3": "Substitute k=−6 and k=2 in both originals. Neither equation has a hidden division step at its exceptional parameter.",
+        "M1": "Cancelling a parameter factor is valid even where the factor is zero.",
+        "M2": "Classify (t−3)y=2(t−3) at t=3 and t=4, keeping the exceptional case.",
+        "M3": "At t=3 every rational works; at t=4 exactly one works. Split a zero divisor before cancelling."
+      },
+      "review_status": "AUTHOR_SELF_CHECK_REQUIRES_EXACT_RENDER_AND_INDEPENDENT_CALIBRATION"
+    },
+    {
+      "id": "CAL-ISS29-RETRIEVE-D4",
+      "primary": "RETRIEVE",
+      "secondary": [
+        "SYNTHESIZE",
+        "JUSTIFY",
+        "APPLY",
+        "MODEL"
+      ],
+      "band": "D4",
+      "qrt_id": "QRT-RETRIEVE-D4",
+      "qrt_sha256": "bf52ace01b31982321480d2eb4a9d96c15b0437d8264d02f5fdf32f69a9b268f",
+      "classification_rationale": "The final act is classification against explicit category boundaries. Real parameter versus rational unknown, a coupled rational expression, zero-factor exceptions, and compatibility of two independently reduced constraints require all five components at 2 (10). This advanced category specimen has secondary synthesis and justification and is provisional; it is not routine recall relabelled D4.",
+      "five_components": {
+        "band": "D4",
+        "score": 10,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 2,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 2,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "The final act is classification against explicit category boundaries. Real parameter versus rational unknown, a coupled rational expression, zero-factor exceptions, and compatibility of two independently reduced constraints require all five components at 2 (10). This advanced category specimen has secondary synthesis and justification and is provisional; it is not routine recall relabelled D4."
+      },
+      "protected_work": "Classify with a coupled domain boundary",
+      "solution_moves": [
+        {
+          "id": "CAL-ISS29-RETRIEVE-D4-MOVE-1",
+          "kind": "TRANSFORM",
+          "action": "Exclude the parameter making the second equation undefined.",
+          "why_valid": "Its right denominator k−2 must be nonzero.",
+          "inputs": [
+            "Extension beyond routine linear equations. k is real, x must be rational. Classify the simultaneous system by k as INVALID PARAMETER, NO RATIONAL SOLUTION, ONE RATIONAL SOLUTION, or EVERY RATIONAL SOLUTION: (k−1)(k−2)x=k−1 and (x+1)/(x−1)=k/(k−2). An equation with a zero denominator is invalid; a solution must satisfy both original equations and x≠1. Report categories and the parameter cases, not a general numerical solution method."
+          ],
+          "output": "k=2 is INVALID PARAMETER."
+        },
+        {
+          "id": "CAL-ISS29-RETRIEVE-D4-MOVE-2",
+          "kind": "TRANSFORM",
+          "action": "Isolate the zero-factor case k=1.",
+          "why_valid": "The first equation then reads 0=0, while the second remains defined.",
+          "inputs": [
+            "k=2 is INVALID PARAMETER."
+          ],
+          "output": "The second becomes (x+1)/(x−1)=−1, giving x=0; it is rational and allowed."
+        },
+        {
+          "id": "CAL-ISS29-RETRIEVE-D4-MOVE-3",
+          "kind": "TRANSFORM",
+          "action": "Reduce the first equation for k outside {1,2}.",
+          "why_valid": "Only in this branch is cancellation of k−1 followed by division by k−2 valid.",
+          "inputs": [
+            "The second becomes (x+1)/(x−1)=−1, giving x=0; it is rational and allowed."
+          ],
+          "output": "x=1/(k−2)."
+        },
+        {
+          "id": "CAL-ISS29-RETRIEVE-D4-MOVE-4",
+          "kind": "TRANSFORM",
+          "action": "Reduce the second equation with both denominator conditions retained.",
+          "why_valid": "Cross-multiplication is reversible when x≠1 and k≠2.",
+          "inputs": [
+            "x=1/(k−2)."
+          ],
+          "output": "(k−2)(x+1)=k(x−1), hence x=k−1."
+        },
+        {
+          "id": "CAL-ISS29-RETRIEVE-D4-MOVE-5",
+          "kind": "TRANSFORM",
+          "action": "Require the two candidates to coincide.",
+          "why_valid": "Both original equations must hold for the same x.",
+          "inputs": [
+            "(k−2)(x+1)=k(x−1), hence x=k−1."
+          ],
+          "output": "(k−1)(k−2)=1, hence k²−3k+1=0."
+        },
+        {
+          "id": "CAL-ISS29-RETRIEVE-D4-MOVE-6",
+          "kind": "TRANSFORM",
+          "action": "Use the rational-domain restriction.",
+          "why_valid": "The only compatibility parameters (3±√5)/2 are irrational; x=k−1 is then irrational and excluded.",
+          "inputs": [
+            "(k−1)(k−2)=1, hence k²−3k+1=0."
+          ],
+          "output": "No rational solution for every k outside {1,2}."
+        },
+        {
+          "id": "CAL-ISS29-RETRIEVE-D4-MOVE-7",
+          "kind": "VERIFY",
+          "action": "Verify the exceptional allowed branch in the originals.",
+          "why_valid": "A reduced-line result is insufficient when divisions were used in other branches.",
+          "inputs": [
+            "No rational solution for every k outside {1,2}."
+          ],
+          "output": "k=1,x=0 gives 0=0 and 1/(−1)=1/(−1). ONE at k=1; INVALID at k=2; NONE otherwise; never EVERY."
+        }
+      ],
+      "check": "At k=1, x=0 satisfies both originals. At k=2 a denominator is zero. At the two real compatibility roots, x is irrational, so a real solution does not meet the rational-domain request.",
+      "diagnostic": {
+        "wrong_idea": "A real solution found after cancelling is automatically an allowed rational solution.",
+        "probe": "Let y be rational and a real. Classify (a−2)y=1 at a=2, a=3 and a=2+√2. Keep undefined operations separate from empty solution sets.",
+        "repair": "At a=2 the equation is defined but inconsistent (no solution); at a=3 exactly one rational works; at a=2+√2 the sole real candidate 1/√2 is irrational, so no rational works. Domain checks come after valid branch reduction.",
+        "interpretation": "A repeated wrong rule across changed cases is evidence to investigate a held idea; one response is not a mastery verdict."
+      },
+      "facets": {
+        "H1": "Distinguish an undefined equation from an equation that is defined but has no rational solution.",
+        "H2": "The parameter and unknown have different declared domains. Keep both original equations as requirements.",
+        "H3": "Keep excluded denominators and zero factors explicit before any cancellation. The compatibility and classification decisions remain yours.",
+        "S1": "Givens and requested output, no answer.",
+        "S2": "Boundary reminder retains domains; no computed or selected result.",
+        "S3": "No third visual is needed: additional staging would repeat the same constraints.",
+        "P1": "Hints and both visual stages preserve the requested decision.",
+        "P2": "The repair link lands on CU- plus the exact specimen ID, whose teaching path includes the decisive warranted move. Familiar practice follows the worked exposure; the changed diagnostic/exit is a separate case.",
+        "P3": "At k=1, x=0 satisfies both originals. At k=2 a denominator is zero. At the two real compatibility roots, x is irrational, so a real solution does not meet the rational-domain request.",
+        "M1": "A real solution found after cancelling is automatically an allowed rational solution.",
+        "M2": "Let y be rational and a real. Classify (a−2)y=1 at a=2, a=3 and a=2+√2. Keep undefined operations separate from empty solution sets.",
+        "M3": "At a=2 the equation is defined but inconsistent (no solution); at a=3 exactly one rational works; at a=2+√2 the sole real candidate 1/√2 is irrational, so no rational works. Domain checks come after valid branch reduction."
+      },
+      "review_status": "AUTHOR_SELF_CHECK_REQUIRES_EXACT_RENDER_AND_INDEPENDENT_CALIBRATION"
+    },
+    {
+      "id": "CAL-ISS29-APPLY-D3",
+      "primary": "APPLY",
+      "secondary": [
+        "REPRESENT",
+        "SYNTHESIZE"
+      ],
+      "band": "D3",
+      "qrt_id": "QRT-APPLY-D3",
+      "qrt_sha256": "720a8eb35dd4bd2b55b3ddf46b57c4f4d6ca5f08364a5233de19d6224a875616",
+      "classification_rationale": "The governing procedure and inverse order are supplied, so execution is primary. The millimetre table must become a centimetre reading, the graph aliases must be tracked backward, and three dependent operations checked; representation 2, chain 2, algebra 1, unit/undo sensitivity 1 total 6.",
+      "five_components": {
+        "band": "D3",
+        "score": 6,
+        "components": {
+          "concept_model_selection": 0,
+          "representation_translation": 2,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "The governing procedure and inverse order are supplied, so execution is primary. The millimetre table must become a centimetre reading, the graph aliases must be tracked backward, and three dependent operations checked; representation 2, chain 2, algebra 1, unit/undo sensitivity 1 total 6."
+      },
+      "protected_work": "Execute an inverse chain across a table and a process graph",
+      "solution_moves": [
+        {
+          "id": "CAL-ISS29-APPLY-D3-MOVE-1",
+          "kind": "TRANSFORM",
+          "action": "Convert the exact observation.",
+          "why_valid": "Ten millimetres are one centimetre.",
+          "inputs": [
+            "A measuring program uses numerical readings in centimetres: X → A=(X−1)/2 → B=3A+4 → C=(B+2)/5. The observation table gives C=22 millimetres. The inverse procedure is prescribed: convert the observation to centimetres, undo the C operation, then B, then A. Execute it to recover X and verify every forward stage. Treat the displayed readings as exact."
+          ],
+          "output": "C=22/10=11/5 centimetres."
+        },
+        {
+          "id": "CAL-ISS29-APPLY-D3-MOVE-2",
+          "kind": "TRANSFORM",
+          "action": "Undo C=(B+2)/5.",
+          "why_valid": "Multiplication by nonzero 5 and subtraction of 2 reverse this stage.",
+          "inputs": [
+            "C=22/10=11/5 centimetres."
+          ],
+          "output": "B=5C−2=9."
+        },
+        {
+          "id": "CAL-ISS29-APPLY-D3-MOVE-3",
+          "kind": "TRANSFORM",
+          "action": "Undo B=3A+4.",
+          "why_valid": "Subtract 4, then divide by nonzero 3.",
+          "inputs": [
+            "B=5C−2=9."
+          ],
+          "output": "A=(9−4)/3=5/3."
+        },
+        {
+          "id": "CAL-ISS29-APPLY-D3-MOVE-4",
+          "kind": "TRANSFORM",
+          "action": "Undo A=(X−1)/2.",
+          "why_valid": "Multiply by nonzero 2, then add 1.",
+          "inputs": [
+            "A=(9−4)/3=5/3."
+          ],
+          "output": "X=2(5/3)+1=13/3 centimetres."
+        },
+        {
+          "id": "CAL-ISS29-APPLY-D3-MOVE-5",
+          "kind": "VERIFY",
+          "action": "Run the entire forward chain.",
+          "why_valid": "A correct recovered input must reproduce the original observation after every named operation.",
+          "inputs": [
+            "X=2(5/3)+1=13/3 centimetres."
+          ],
+          "output": "13/3 → 5/3 → 9 → 11/5 centimetres = 22 millimetres."
+        }
+      ],
+      "check": "The forward chain gives A=5/3, B=9, C=11/5 cm =22 mm, so neither a unit mistake nor a reversed-step mistake survives the check.",
+      "diagnostic": {
+        "wrong_idea": "The table number can be substituted directly although the program uses a different unit.",
+        "probe": "Run the same inverse program with C=20 millimetres, and separately with C=2 centimetres. Should X differ?",
+        "repair": "These are the same observation. Both give B=8, A=4/3 and X=11/3 cm. Different results reveal a unit mapping error.",
+        "interpretation": "A repeated wrong rule across changed cases is evidence to investigate a held idea; one response is not a mastery verdict."
+      },
+      "facets": {
+        "H1": "Keep the observation unit separate from the program unit.",
+        "H2": "Map each graph letter to its defining operation before substituting a number.",
+        "H3": "Start with the prescribed unit conversion, then apply the inverse steps in the given order. Leave the arithmetic and final reading to your attempt.",
+        "S1": "Givens and requested output, no answer.",
+        "S2": "Boundary reminder retains domains; no computed or selected result.",
+        "S3": "No third visual is needed: additional staging would repeat the same constraints.",
+        "P1": "Hints and both visual stages preserve the requested decision.",
+        "P2": "The repair link lands on CU- plus the exact specimen ID, whose teaching path includes the decisive warranted move. Familiar practice follows the worked exposure; the changed diagnostic/exit is a separate case.",
+        "P3": "The forward chain gives A=5/3, B=9, C=11/5 cm =22 mm, so neither a unit mistake nor a reversed-step mistake survives the check.",
+        "M1": "The table number can be substituted directly although the program uses a different unit.",
+        "M2": "Run the same inverse program with C=20 millimetres, and separately with C=2 centimetres. Should X differ?",
+        "M3": "These are the same observation. Both give B=8, A=4/3 and X=11/3 cm. Different results reveal a unit mapping error."
+      },
+      "review_status": "AUTHOR_SELF_CHECK_REQUIRES_EXACT_RENDER_AND_INDEPENDENT_CALIBRATION"
+    },
+    {
+      "id": "CAL-ISS29-MODEL-D1",
+      "primary": "MODEL",
+      "secondary": [
+        "RETRIEVE"
+      ],
+      "band": "D1",
+      "qrt_id": "QRT-MODEL-D1",
+      "qrt_sha256": "063d0e36ac15a93eb22d141740fd330fe93b7d6f89929dc6994d64ee0d033b75",
+      "classification_rationale": "One explicit model/strategy choice and one zero-coefficient boundary trap total 2. The output is the governing rule, not a recalled category or computed root.",
+      "five_components": {
+        "band": "D1",
+        "score": 2,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 0,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "One explicit model/strategy choice and one zero-coefficient boundary trap total 2. The output is the governing rule, not a recalled category or computed root."
+      },
+      "protected_work": "Choose the governing equation from its conditions",
+      "solution_moves": [
+        {
+          "id": "CAL-ISS29-MODEL-D1-MOVE-1",
+          "kind": "TRANSFORM",
+          "action": "Read the coefficient condition.",
+          "why_valid": "The problem explicitly excludes A=0.",
+          "inputs": [
+            "A linear calibration is stated as Ax=B with rational A and B, and A is known to be nonzero. Choose the governing rule for recovering x: R1, x=B/A; R2, infer every rational is a solution from 0=0. Only choose the applicable rule; do not compute a value."
+          ],
+          "output": "A is nonzero."
+        },
+        {
+          "id": "CAL-ISS29-MODEL-D1-MOVE-2",
+          "kind": "TRANSFORM",
+          "action": "Select R1.",
+          "why_valid": "Division by the fixed nonzero rational A is defined and reversible.",
+          "inputs": [
+            "A is nonzero."
+          ],
+          "output": "Use x=B/A."
+        },
+        {
+          "id": "CAL-ISS29-MODEL-D1-MOVE-3",
+          "kind": "VERIFY",
+          "action": "Check the alternative boundary.",
+          "why_valid": "The all-solutions rule needs A=B=0 and therefore conflicts with the given A≠0.",
+          "inputs": [
+            "Use x=B/A."
+          ],
+          "output": "R2 does not apply."
+        }
+      ],
+      "check": "The boundary A=B=0 would admit R2, showing why the stated nonzero condition determines this choice.",
+      "diagnostic": {
+        "wrong_idea": "Use the all-solutions rule for every linear calibration.",
+        "probe": "Choose the rule when A=0,B=0, and when A=0,B=1.",
+        "repair": "The first admits every rational, the second none. A rule is selected by both coefficients, not the word linear.",
+        "interpretation": "A repeated wrong rule across changed cases is evidence to investigate a held idea; one response is not a mastery verdict."
+      },
+      "facets": {
+        "H1": "Identify the condition on the coefficient before choosing a rule.",
+        "H2": "Compare each candidate rule with its coefficient assumption.",
+        "H3": "Choose the rule whose assumption matches the stated coefficient; the winning rule remains yours.",
+        "S1": "Givens and requested output, no answer.",
+        "S2": "Boundary reminder retains domains; no computed or selected result.",
+        "S3": "No third visual is needed: additional staging would repeat the same constraints.",
+        "P1": "Hints and both visual stages preserve the requested decision.",
+        "P2": "The repair link lands on CU- plus the exact specimen ID, whose teaching path includes the decisive warranted move. Familiar practice follows the worked exposure; the changed diagnostic/exit is a separate case.",
+        "P3": "The boundary A=B=0 would admit R2, showing why the stated nonzero condition determines this choice.",
+        "M1": "Use the all-solutions rule for every linear calibration.",
+        "M2": "Choose the rule when A=0,B=0, and when A=0,B=1.",
+        "M3": "The first admits every rational, the second none. A rule is selected by both coefficients, not the word linear."
+      },
+      "review_status": "AUTHOR_SELF_CHECK_REQUIRES_EXACT_RENDER_AND_INDEPENDENT_CALIBRATION"
+    },
+    {
+      "id": "CAL-ISS29-REPRESENT-D1",
+      "primary": "REPRESENT",
+      "secondary": [],
+      "band": "D1",
+      "qrt_id": "QRT-REPRESENT-D1",
+      "qrt_sha256": "77ed578f8bf5a70f915671acda6a6c285382fc5f73c00bdd62a44048e3c5e5c0",
+      "classification_rationale": "One direct representation translation preserves the two coordinate roles; no model choice, chain or algebra is needed (1).",
+      "five_components": {
+        "band": "D1",
+        "score": 1,
+        "components": {
+          "concept_model_selection": 0,
+          "representation_translation": 1,
+          "reasoning_chain_length": 0,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "One direct representation translation preserves the two coordinate roles; no model choice, chain or algebra is needed (1)."
+      },
+      "protected_work": "Translate an ordered pair without changing meaning",
+      "solution_moves": [
+        {
+          "id": "CAL-ISS29-REPRESENT-D1-MOVE-1",
+          "kind": "TRANSFORM",
+          "action": "Map the table headings to coordinate slots.",
+          "why_valid": "The convention gives the first slot to x and the second to y.",
+          "inputs": [
+            "The ordered-pair table has columns x and y and one row x=2, y=3. Write that row as a point in Cartesian ordered-pair notation. The coordinate convention is horizontal x first and vertical y second; no equation solving is requested."
+          ],
+          "output": "Slots are (x,y)."
+        },
+        {
+          "id": "CAL-ISS29-REPRESENT-D1-MOVE-2",
+          "kind": "TRANSFORM",
+          "action": "Insert the two labelled values.",
+          "why_valid": "The row assigns x=2 and y=3.",
+          "inputs": [
+            "Slots are (x,y)."
+          ],
+          "output": "(2,3)."
+        },
+        {
+          "id": "CAL-ISS29-REPRESENT-D1-MOVE-3",
+          "kind": "VERIFY",
+          "action": "Check a swapped pair.",
+          "why_valid": "Its first coordinate would claim x=3, contrary to the row.",
+          "inputs": [
+            "(2,3)."
+          ],
+          "output": "(3,2) represents a different point."
+        }
+      ],
+      "check": "Reading the pair back gives x=2,y=3, preserving both table headings.",
+      "diagnostic": {
+        "wrong_idea": "An ordered pair may swap its two coordinates without changing the point.",
+        "probe": "Translate rows x=4,y=1 and x=1,y=4. Are their points identical?",
+        "repair": "They give (4,1) and (1,4), distinct points. Coordinate roles are part of the meaning.",
+        "interpretation": "A repeated wrong rule across changed cases is evidence to investigate a held idea; one response is not a mastery verdict."
+      },
+      "facets": {
+        "H1": "Keep each value attached to its column heading.",
+        "H2": "The first coordinate names the horizontal axis.",
+        "H3": "Use the supplied order while filling the pair yourself.",
+        "S1": "Givens and requested output, no answer.",
+        "S2": "Boundary reminder retains domains; no computed or selected result.",
+        "S3": "No third visual is needed: additional staging would repeat the same constraints.",
+        "P1": "Hints and both visual stages preserve the requested decision.",
+        "P2": "The repair link lands on CU- plus the exact specimen ID, whose teaching path includes the decisive warranted move. Familiar practice follows the worked exposure; the changed diagnostic/exit is a separate case.",
+        "P3": "Reading the pair back gives x=2,y=3, preserving both table headings.",
+        "M1": "An ordered pair may swap its two coordinates without changing the point.",
+        "M2": "Translate rows x=4,y=1 and x=1,y=4. Are their points identical?",
+        "M3": "They give (4,1) and (1,4), distinct points. Coordinate roles are part of the meaning."
+      },
+      "review_status": "AUTHOR_SELF_CHECK_REQUIRES_EXACT_RENDER_AND_INDEPENDENT_CALIBRATION"
+    },
+    {
+      "id": "CAL-ISS29-SYNTHESIZE-D1",
+      "primary": "SYNTHESIZE",
+      "secondary": [
+        "APPLY"
+      ],
+      "band": "D1",
+      "qrt_id": "QRT-SYNTHESIZE-D1",
+      "qrt_sha256": "42021764bfdbda06765072d72b0e30629112a884e6c9cf6233a426ee997c39d9",
+      "classification_rationale": "The decisive act is ordering two dependent known components. One short dependency and one order trap total 2; neither model selection nor numerical execution is asked.",
+      "five_components": {
+        "band": "D1",
+        "score": 2,
+        "components": {
+          "concept_model_selection": 0,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "The decisive act is ordering two dependent known components. One short dependency and one order trap total 2; neither model selection nor numerical execution is asked."
+      },
+      "protected_work": "Order two dependent inverse steps",
+      "solution_moves": [
+        {
+          "id": "CAL-ISS29-SYNTHESIZE-D1-MOVE-1",
+          "kind": "TRANSFORM",
+          "action": "Read the forward dependency.",
+          "why_valid": "The doubled quantity already includes the added 3.",
+          "inputs": [
+            "A starting number is first increased by 3 and then doubled, producing 14. You know the inverse components: subtract 3, and halve. Coordinate them into the correct reverse order. State which component must come first and why; do not calculate the starting number."
+          ],
+          "output": "Start → add 3 → double → output."
+        },
+        {
+          "id": "CAL-ISS29-SYNTHESIZE-D1-MOVE-2",
+          "kind": "TRANSFORM",
+          "action": "Reverse the outer operation first.",
+          "why_valid": "Halving recovers the quantity before doubling, which still contains the added 3.",
+          "inputs": [
+            "Start → add 3 → double → output."
+          ],
+          "output": "Halve first, then subtract 3."
+        },
+        {
+          "id": "CAL-ISS29-SYNTHESIZE-D1-MOVE-3",
+          "kind": "VERIFY",
+          "action": "Check the competing order on a changed start.",
+          "why_valid": "An independent forward/reverse check tests the dependency rather than memorising a rule.",
+          "inputs": [
+            "Halve first, then subtract 3."
+          ],
+          "output": "Start 2 gives output 10; halve then subtract gives 2, subtract then halve gives 3.5."
+        }
+      ],
+      "check": "For a changed start 2, the forward output is 10; the selected inverse returns 2 while the competing order returns 3.5.",
+      "diagnostic": {
+        "wrong_idea": "Inverse components can be performed in any order.",
+        "probe": "For forward double then add 3, which inverse comes first? Compare with forward add 3 then double.",
+        "repair": "The first needs subtract 3 then halve; the second halve then subtract 3. The component list is unchanged, but the dependency changes.",
+        "interpretation": "A repeated wrong rule across changed cases is evidence to investigate a held idea; one response is not a mastery verdict."
+      },
+      "facets": {
+        "H1": "The final output comes from the last forward operation.",
+        "H2": "Each inverse must receive the output of the operation it undoes.",
+        "H3": "Trace the dependency backward and choose the first inverse yourself.",
+        "S1": "Givens and requested output, no answer.",
+        "S2": "Boundary reminder retains domains; no computed or selected result.",
+        "S3": "No third visual is needed: additional staging would repeat the same constraints.",
+        "P1": "Hints and both visual stages preserve the requested decision.",
+        "P2": "The repair link lands on CU- plus the exact specimen ID, whose teaching path includes the decisive warranted move. Familiar practice follows the worked exposure; the changed diagnostic/exit is a separate case.",
+        "P3": "For a changed start 2, the forward output is 10; the selected inverse returns 2 while the competing order returns 3.5.",
+        "M1": "Inverse components can be performed in any order.",
+        "M2": "For forward double then add 3, which inverse comes first? Compare with forward add 3 then double.",
+        "M3": "The first needs subtract 3 then halve; the second halve then subtract 3. The component list is unchanged, but the dependency changes."
+      },
+      "review_status": "AUTHOR_SELF_CHECK_REQUIRES_EXACT_RENDER_AND_INDEPENDENT_CALIBRATION"
+    },
+    {
+      "id": "CAL-ISS29-JUSTIFY-D1",
+      "primary": "JUSTIFY",
+      "secondary": [
+        "RETRIEVE"
+      ],
+      "band": "D1",
+      "qrt_id": "QRT-JUSTIFY-D1",
+      "qrt_sha256": "5cb2e0549a1f1bb98ff260d570e6b92d05cbdf26a46ab189ded0e39622679db8",
+      "classification_rationale": "One explicit nonzero-divisor warrant establishes the conclusion, with one boundary trap (2). The answer is a validity argument, not the numerical calculation already supplied.",
+      "five_components": {
+        "band": "D1",
+        "score": 2,
+        "components": {
+          "concept_model_selection": 0,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "One explicit nonzero-divisor warrant establishes the conclusion, with one boundary trap (2). The answer is a validity argument, not the numerical calculation already supplied."
+      },
+      "protected_work": "Give the warrant for a reversible division",
+      "solution_moves": [
+        {
+          "id": "CAL-ISS29-JUSTIFY-D1-MOVE-1",
+          "kind": "TRANSFORM",
+          "action": "State the divisor property.",
+          "why_valid": "The given divisor 2 is nonzero.",
+          "inputs": [
+            "Over the reals, an author concludes x=4 from 2x=8 by dividing both sides by 2. Supply one warrant explaining why the conclusion follows and why the same justification would fail for division by zero. No further equation solving is requested."
+          ],
+          "output": "Division by 2 is defined."
+        },
+        {
+          "id": "CAL-ISS29-JUSTIFY-D1-MOVE-2",
+          "kind": "TRANSFORM",
+          "action": "Connect the operation to its inverse.",
+          "why_valid": "Multiplying both sides back by 2 restores the same equality.",
+          "inputs": [
+            "Division by 2 is defined."
+          ],
+          "output": "The step is reversible and preserves the solution set, establishing x=4."
+        },
+        {
+          "id": "CAL-ISS29-JUSTIFY-D1-MOVE-3",
+          "kind": "VERIFY",
+          "action": "Challenge the zero-divisor boundary.",
+          "why_valid": "Division by zero is undefined, so it has no reversible operation of this kind.",
+          "inputs": [
+            "The step is reversible and preserves the solution set, establishing x=4."
+          ],
+          "output": "The warrant cannot license division by zero."
+        }
+      ],
+      "check": "Multiplication by 2 takes x=4 back to 2x=8. The zero-divisor case lacks this reversible division.",
+      "diagnostic": {
+        "wrong_idea": "Doing any identical operation on both sides automatically preserves the solution set.",
+        "probe": "From x=1 multiply both sides by zero. Does the resulting equation have exactly the original solution?",
+        "repair": "It becomes 0=0 and admits every real, so the non-reversible step enlarged the solution set. Identical operations need the relevant reversibility condition.",
+        "interpretation": "A repeated wrong rule across changed cases is evidence to investigate a held idea; one response is not a mastery verdict."
+      },
+      "facets": {
+        "H1": "The result is already stated; the question asks what licenses the step.",
+        "H2": "Think about whether the operation is defined and can be undone.",
+        "H3": "State the relevant property of the divisor and connect it to preserved equality yourself.",
+        "S1": "Givens and requested output, no answer.",
+        "S2": "Boundary reminder retains domains; no computed or selected result.",
+        "S3": "No third visual is needed: additional staging would repeat the same constraints.",
+        "P1": "Hints and both visual stages preserve the requested decision.",
+        "P2": "The repair link lands on CU- plus the exact specimen ID, whose teaching path includes the decisive warranted move. Familiar practice follows the worked exposure; the changed diagnostic/exit is a separate case.",
+        "P3": "Multiplication by 2 takes x=4 back to 2x=8. The zero-divisor case lacks this reversible division.",
+        "M1": "Doing any identical operation on both sides automatically preserves the solution set.",
+        "M2": "From x=1 multiply both sides by zero. Does the resulting equation have exactly the original solution?",
+        "M3": "It becomes 0=0 and admits every real, so the non-reversible step enlarged the solution set. Identical operations need the relevant reversibility condition."
+      },
+      "review_status": "AUTHOR_SELF_CHECK_REQUIRES_EXACT_RENDER_AND_INDEPENDENT_CALIBRATION"
+    }
+  ]
+}

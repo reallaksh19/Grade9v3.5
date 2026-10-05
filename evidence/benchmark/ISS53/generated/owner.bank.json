@@ -1,0 +1,1210 @@
+{
+  "schema_version": "grade9v3-owner-supplied-bank-v1",
+  "bank_id": "own-issue53-poly",
+  "questions": [
+    {
+      "id": "OWN-ISSUE53-POLY-01",
+      "original_identifier": "Q1",
+      "stem": "For $p(x)=4x^3-2x+7$, state its degree, leading coefficient, constant term and coefficient of $x^2$. Explain how the missing $x^2$ term is recorded.",
+      "conditions": [
+        "Polynomials in one variable with real coefficients; no calculus or complex numbers assumed; preserve stated domains and degree bounds."
+      ],
+      "family_ref": "FAM-MATH-POLY-TERMS",
+      "figure_refs": [
+        "REP-MATH-POLY-COEFF-TABLE"
+      ],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Degree: 3; Leading coefficient: 4; Constant term: 7; Coefficient of $x^2$: 0. The missing $x^2$ term is recorded with coefficient 0 because $0x^2 = 0$, contributing nothing to the polynomial sum while preserving positional power sequencing.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE53-POLY-01-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Identify degree from highest power",
+            "why_valid": "The degree of a polynomial is the highest power of the variable with a non-zero coefficient. In 4x^3 - 2x + 7, the highest power is 3.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Degree = 3"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-01-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Extract leading coefficient and constant term",
+            "why_valid": "The leading coefficient is the coefficient of the highest power term (4 for x^3), and the constant term is the term independent of x (7).",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Leading coeff = 4, Constant term = 7"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-01-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Evaluate missing x^2 term coefficient",
+            "why_valid": "The power x^2 does not appear explicitly in the polynomial. Its coefficient is recorded as 0 because 0 * x^2 = 0 contributes nothing to the sum.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Coefficient of x^2 = 0"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-01-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Confirm complete power sequence",
+            "why_valid": "Writing p(x) = 4x^3 + 0x^2 - 2x + 7 shows all integer powers 3, 2, 1, 0 are accounted for.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Verified complete representation"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE53-POLY-01-MOVE-3",
+        "check": "Reconstruct: $4x^3 + 0x^2 - 2x + 7 = 4x^3 - 2x + 7$; highest power is 3 with coeff 4, constant is 7.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "scaffolds": [
+        {
+          "text": "Identify the highest power of $x$ present with a non-zero coefficient to find the degree.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE53-POLY-01-MOVE-1"
+        },
+        {
+          "text": "The leading coefficient is the coefficient of the highest power term, and the constant term is the term without $x$ (the $x^0$ term).",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE53-POLY-01-MOVE-2"
+        },
+        {
+          "text": "When a power of $x$ between 0 and the degree does not appear, consider what number multiplied by $x^2$ leaves the polynomial value unchanged.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE53-POLY-01-MOVE-3"
+        }
+      ],
+      "primary_capability_ref": "CAP-MATH-POLY-TERMS-COEFFS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q1",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:9e842562b093ff0429469a60898d6cbd598fa265aea599b50c0e0987678dd771"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D1",
+            "score": 2,
+            "components": {
+              "concept_model_selection": 1,
+              "trap_exception_sensitivity": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 0,
+              "algebra_computational_load": 0
+            },
+            "basis": "Polynomial $p(x)=4x^3-2x+7$ with an omitted $x^2$ power. Decisive move: State degree 3, leading coefficient 4, constant 7, and explain that missing power $x^2$ has coefficient 0.. Total score 2 -> D1."
+          },
+          "common_wrong_route": "Learner states coefficient of $x^2$ does not exist or is undefined because the term is omitted.",
+          "expected_time_seconds": 90,
+          "cognitive_demand": "EXPLAIN",
+          "stable_crux_move": "State degree 3, leading coefficient 4, constant 7, and explain that missing power $x^2$ has coefficient 0."
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:component_waivers": {
+          "TRAP": "The decisive misconception (Learner states coefficient of $x^2$ does not exist or is undefined because the term is omitted.) is taught directly in the concept unit and addressed in hint 1 and the solution.",
+          "CONDITIONS": "The question specifies all boundary conditions within the stem.",
+          "CHECK": "Independent check is integrated: Reconstruct: $4x^3 + 0x^2 - 2x + 7 = 4x^3 - 2x + 7$; highest power is 3 with coeff 4, constant is 7."
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE53-POLY-02",
+      "original_identifier": "Q2",
+      "stem": "Which of $3x^2-2x+1$, $1/x+3$, $\\sqrt{x}+1$ and $-5$ are polynomials in $x$ with real coefficients? For each accepted expression state its degree; for each rejected expression identify the defining condition it fails.",
+      "conditions": [
+        "Polynomials in one variable with real coefficients; no calculus or complex numbers assumed; preserve stated domains and degree bounds."
+      ],
+      "family_ref": "FAM-MATH-POLY-DEFINITIONS",
+      "figure_refs": [
+        "REP-MATH-POLY-EXPONENT-CLASSIFICATION"
+      ],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Accepted: $3x^2-2x+1$ (degree 2) and $-5$ (degree 0). Rejected: $1/x+3$ (fails condition because exponent of $x$ is $-1$, a negative integer) and $\\sqrt{x}+1$ (fails condition because exponent of $x$ is $1/2$, a fraction/non-integer).",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE53-POLY-02-MOVE-1",
+            "kind": "DECIDE",
+            "action": "State polynomial defining criteria",
+            "why_valid": "A polynomial in x with real coefficients requires all exponents of x to be non-negative integers (whole numbers W = {0, 1, 2, ...}) and all coefficients to be real numbers.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Defining condition: exponents in W, coefficients in R"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-02-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Express each candidate expression in index power form",
+            "why_valid": "Rewrite: 3x^2 - 2x + 1 has powers 2, 1, 0; 1/x + 3 = x^-1 + 3 has power -1; sqrt(x) + 1 = x^(1/2) + 1 has power 1/2; -5 = -5x^0 has power 0.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Index forms: x^2, x^-1, x^(1/2), x^0"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-02-MOVE-3",
+            "kind": "CONNECT",
+            "action": "Classify accepted polynomials and state degrees",
+            "why_valid": "3x^2 - 2x + 1 is a polynomial of degree 2 (highest power 2); -5 is a constant polynomial of degree 0 (power 0 in W).",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Accepted: 3x^2-2x+1 (deg 2), -5 (deg 0)"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-02-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Identify defining condition failures for rejected expressions",
+            "why_valid": "1/x + 3 fails because exponent -1 is negative (-1 not in W); sqrt(x) + 1 fails because exponent 1/2 is a fraction (1/2 not in W).",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Rejected: 1/x+3 (negative exponent -1), sqrt(x)+1 (fractional exponent 1/2)"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE53-POLY-02-MOVE-3",
+        "check": "Check exponent sets: $\\{2,1,0\\} \\subset \\mathbb{W}$ (valid); $\\{-1,0\\} \\not\\subset \\mathbb{W}$ (invalid); $\\{1/2,0\\} \\not\\subset \\mathbb{W}$ (invalid); $\\{0\\} \\subset \\mathbb{W}$ (valid).",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "scaffolds": [
+        {
+          "text": "Recall the definition: a polynomial in $x$ must have all exponents of $x$ as non-negative integers (whole numbers $0, 1, 2, \\dots$).",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE53-POLY-02-MOVE-1"
+        },
+        {
+          "text": "Rewrite reciprocal and radical terms in index form: $1/x = x^{-1}$ and $\\sqrt{x} = x^{1/2}$.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE53-POLY-02-MOVE-2"
+        },
+        {
+          "text": "For a constant like $-5$, express it with $x^0$ and check whether $0$ is a non-negative integer.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE53-POLY-02-MOVE-3"
+        }
+      ],
+      "primary_capability_ref": "CAP-MATH-POLY-DEFINITION-CLASSIFICATION",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q2",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:7acb03399356d472d1c0ca510c00974c9b6490b9f49a1823f9b2e95ff986f8f7"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 1,
+              "trap_exception_sensitivity": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0
+            },
+            "basis": "Four algebraic expressions: $3x^2-2x+1$, $1/x+3$, $\\sqrt{x}+1$, $-5$. Decisive move: Rewrite terms in exponential form ($x^{-1}$, $x^{1/2}$, $x^0$), evaluate each against non-negative integer condition, and determine degrees for accepted expressions.. Total score 4 -> D2."
+          },
+          "common_wrong_route": "Learner believes $-5$ is not a polynomial because no variable $x$ is visible, or believes $1/x$ is a polynomial because power of $x$ in denominator is 1.",
+          "expected_time_seconds": 150,
+          "cognitive_demand": "JUSTIFY",
+          "stable_crux_move": "Rewrite terms in exponential form ($x^{-1}$, $x^{1/2}$, $x^0$), evaluate each against non-negative integer condition, and determine degrees for accepted expressions."
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:component_waivers": {
+          "TRAP": "The decisive misconception (Learner believes $-5$ is not a polynomial because no variable $x$ is visible, or believes $1/x$ is a polynomial because power of $x$ in denominator is 1.) is taught directly in the concept unit and addressed in hint 1 and the solution.",
+          "CONDITIONS": "The question specifies all boundary conditions within the stem.",
+          "CHECK": "Independent check is integrated: Check exponent sets: $\\{2,1,0\\} \\subset \\mathbb{W}$ (valid); $\\{-1,0\\} \\not\\subset \\mathbb{W}$ (invalid); $\\{1/2,0\\} \\not\\subset \\mathbb{W}$ (invalid); $\\{0\\} \\subset \\mathbb{W}$ (valid)."
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE53-POLY-03",
+      "original_identifier": "Q3",
+      "stem": "For $p(x)=x^2-3x+4$, calculate $p(2)$. Show the substitution with brackets before simplifying.",
+      "conditions": [
+        "Polynomials in one variable with real coefficients; no calculus or complex numbers assumed; preserve stated domains and degree bounds."
+      ],
+      "family_ref": "FAM-MATH-POLY-DEFINITIONS",
+      "figure_refs": [
+        "REP-MATH-POLY-EXPONENT-CLASSIFICATION"
+      ],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "$p(2) = (2)^2 - 3(2) + 4 = 4 - 6 + 4 = 2$.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE53-POLY-03-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Substitute input point with explicit brackets",
+            "why_valid": "Replace every occurrence of x with (2) enclosed in brackets: p(2) = (2)^2 - 3(2) + 4.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "p(2) = (2)^2 - 3(2) + 4"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-03-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Evaluate powers and products according to operator precedence",
+            "why_valid": "Compute square (2)^2 = 4 and product 3(2) = 6 before addition/subtraction.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "p(2) = 4 - 6 + 4"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-03-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Combine terms from left to right",
+            "why_valid": "Perform addition and subtraction: 4 - 6 = -2, then -2 + 4 = 2.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "p(2) = 2"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-03-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Check via factored grouping",
+            "why_valid": "Rewrite p(x) = x(x-3) + 4; at x=2, p(2) = 2(2-3) + 4 = 2(-1) + 4 = -2 + 4 = 2.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Verified value p(2) = 2"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE53-POLY-03-MOVE-2",
+        "check": "Factored form check: $p(x) = x(x-3) + 4 \\implies p(2) = 2(2-3) + 4 = 2(-1) + 4 = -2 + 4 = 2$.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "scaffolds": [
+        {
+          "text": "Replace every occurrence of the variable $x$ with the number $(2)$ enclosed in brackets.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE53-POLY-03-MOVE-1"
+        },
+        {
+          "text": "Follow arithmetic order of operations: compute $(2)^2$ and $3(2)$ before adding and subtracting.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE53-POLY-03-MOVE-2"
+        },
+        {
+          "text": "Combine the resulting terms from left to right: $4 - 6 + 4$.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE53-POLY-03-MOVE-3"
+        }
+      ],
+      "primary_capability_ref": "CAP-MATH-POLY-DEFINITION-CLASSIFICATION",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q3",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:2e5dbbe0a0790220b7625164c20a772f4ba592fd999efe0791241c503f5682e1"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D1",
+            "score": 2,
+            "components": {
+              "concept_model_selection": 0,
+              "trap_exception_sensitivity": 0,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0
+            },
+            "basis": "Polynomial $p(x)=x^2-3x+4$ and input point $x=2$. Decisive move: Enclose $x=2$ in brackets at each occurrence: $(2)^2 - 3(2) + 4$, evaluate square and product, then combine terms.. Total score 2 -> D1."
+          },
+          "common_wrong_route": "Learner writes $2^2 - 32 + 4$ concatenating digits instead of multiplying $3 \\times 2$, or subtracts before multiplying.",
+          "expected_time_seconds": 90,
+          "cognitive_demand": "APPLY",
+          "stable_crux_move": "Enclose $x=2$ in brackets at each occurrence: $(2)^2 - 3(2) + 4$, evaluate square and product, then combine terms."
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:component_waivers": {
+          "TRAP": "The decisive misconception (Learner writes $2^2 - 32 + 4$ concatenating digits instead of multiplying $3 \\times 2$, or subtracts before multiplying.) is taught directly in the concept unit and addressed in hint 1 and the solution.",
+          "CONDITIONS": "The question specifies all boundary conditions within the stem.",
+          "CHECK": "Independent check is integrated: Factored form check: $p(x) = x(x-3) + 4 \\implies p(2) = 2(2-3) + 4 = 2(-1) + 4 = -2 + 4 = 2$."
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE53-POLY-04",
+      "original_identifier": "Q4",
+      "stem": "Add $p(x)=2x^2+3x-5$ and $q(x)=-x^2+4x+2$. Write the result in descending powers and identify which terms can be combined.",
+      "conditions": [
+        "Polynomials in one variable with real coefficients; no calculus or complex numbers assumed; preserve stated domains and degree bounds."
+      ],
+      "family_ref": "FAM-MATH-POLY-TERMS",
+      "figure_refs": [
+        "REP-MATH-POLY-COEFF-TABLE"
+      ],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Combinable like terms: $2x^2$ and $-x^2$ (quadratic), $3x$ and $4x$ (linear), $-5$ and $2$ (constant). Result in descending powers: $x^2 + 7x - 3$.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE53-POLY-04-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Identify like terms across both polynomials",
+            "why_valid": "Like terms have the identical power of x: quadratic terms are 2x^2 and -x^2; linear terms are 3x and 4x; constant terms are -5 and 2.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Like terms identified by power"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-04-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Group like terms using distributive property",
+            "why_valid": "Group by common power: (2x^2 - x^2) + (3x + 4x) + (-5 + 2) = (2 - 1)x^2 + (3 + 4)x + (-5 + 2).",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Grouped expression by powers"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-04-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Combine numerical coefficients in each group",
+            "why_valid": "Add coefficients: (2-1)x^2 = 1x^2, (3+4)x = 7x, (-5+2) = -3.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "x^2 + 7x - 3"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-04-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Verify descending order and numerical evaluation",
+            "why_valid": "Powers are in descending order (2, 1, 0). At x=1, p(1)=0, q(1)=5, sum=5; (1)^2+7(1)-3 = 5.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Verified sum x^2 + 7x - 3"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE53-POLY-04-MOVE-3",
+        "check": "Evaluate at $x=1$: $p(1) = 2+3-5 = 0$; $q(1) = -1+4+2 = 5$; $p(1)+q(1) = 5$. Sum polynomial at $x=1$: $1^2+7(1)-3 = 1+7-3 = 5$. Matches!",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "scaffolds": [
+        {
+          "text": "Group terms that have the exact same power of $x$ (quadratic with quadratic, linear with linear, constant with constant).",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE53-POLY-04-MOVE-1"
+        },
+        {
+          "text": "Use the distributive property to add the coefficients of each group: $(2 - 1)x^2$, $(3 + 4)x$, and $(-5 + 2)$.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE53-POLY-04-MOVE-2"
+        },
+        {
+          "text": "Write the final simplified terms in descending order of exponents: $x^2$, then $x$, then the constant.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE53-POLY-04-MOVE-3"
+        }
+      ],
+      "primary_capability_ref": "CAP-MATH-POLY-TERMS-COEFFS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q4",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:b74dadfa25655d1292386b7e46ad648139fb1340c5676baffe1eab1c02cf6fc1"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D1",
+            "score": 2,
+            "components": {
+              "concept_model_selection": 0,
+              "trap_exception_sensitivity": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0
+            },
+            "basis": "Two quadratic polynomials $p(x)=2x^2+3x-5$ and $q(x)=-x^2+4x+2$. Decisive move: Group like terms together: $(2x^2 - x^2) + (3x + 4x) + (-5 + 2)$, add their coefficients, and write in descending power order.. Total score 2 -> D1."
+          },
+          "common_wrong_route": "Learner adds coefficients across different powers (e.g. $2x^2 + 3x = 5x^3$) or mishandles negative signs like $-5 + 2 = -7$.",
+          "expected_time_seconds": 90,
+          "cognitive_demand": "APPLY",
+          "stable_crux_move": "Group like terms together: $(2x^2 - x^2) + (3x + 4x) + (-5 + 2)$, add their coefficients, and write in descending power order."
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:component_waivers": {
+          "TRAP": "The decisive misconception (Learner adds coefficients across different powers (e.g. $2x^2 + 3x = 5x^3$) or mishandles negative signs like $-5 + 2 = -7$.) is taught directly in the concept unit and addressed in hint 1 and the solution.",
+          "CONDITIONS": "The question specifies all boundary conditions within the stem.",
+          "CHECK": "Independent check is integrated: Evaluate at $x=1$: $p(1) = 2+3-5 = 0$; $q(1) = -1+4+2 = 5$; $p(1)+q(1) = 5$. Sum polynomial at $x=1$: $1^2+7(1)-3 = 1+7-3 = 5$. Matches!"
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE53-POLY-05",
+      "original_identifier": "Q5",
+      "stem": "Translate $p(x)=5x^3-2x+7$ into a coefficient table with one row for each power $3,2,1,0$. Reconstruct the polynomial from your table and explain what a zero entry means.",
+      "conditions": [
+        "Polynomials in one variable with real coefficients; no calculus or complex numbers assumed; preserve stated domains and degree bounds."
+      ],
+      "family_ref": "FAM-MATH-POLY-TERMS",
+      "figure_refs": [
+        "REP-MATH-POLY-COEFF-TABLE"
+      ],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Table with power rows 3, 2, 1, 0 has coefficients 5, 0, -2, 7. Reconstructed polynomial: $5x^3 + 0x^2 - 2x + 7 = 5x^3 - 2x + 7$. A zero entry means the power $x^2$ is not present in the simplified expression ($0 \\cdot x^2 = 0$), acting as an explicit zero entry to maintain positional alignment.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE53-POLY-05-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Decompose polynomial into power-indexed table rows",
+            "why_valid": "Create rows for powers 3, 2, 1, 0: power 3 term is 5x^3 (coeff 5), power 2 term is missing (coeff 0), power 1 term is -2x (coeff -2), power 0 term is 7 (coeff 7).",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Table rows for 3, 2, 1, 0 with coefficients 5, 0, -2, 7"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-05-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Reconstruct polynomial from table entries",
+            "why_valid": "Sum the product of each power and coefficient: 5x^3 + 0x^2 + (-2)x + 7 = 5x^3 - 2x + 7.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Reconstructed 5x^3 - 2x + 7"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-05-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Explain meaning and necessity of zero entry",
+            "why_valid": "A zero entry means the term contributes 0 to the sum (0 * x^2 = 0), serving as a crucial zero entry to preserve index and column alignment in positional operations.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Zero entry has null contribution (0 * x^2 = 0)"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-05-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Confirm exact algebraic agreement",
+            "why_valid": "Original p(x) and reconstructed polynomial agree identically for all values of x.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Verified identity agreement"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE53-POLY-05-MOVE-3",
+        "check": "Reconstruction check: $5 \\cdot x^3 + 0 \\cdot x^2 + (-2) \\cdot x^1 + 7 \\cdot x^0 = 5x^3 + 0 - 2x + 7 = 5x^3 - 2x + 7$.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "scaffolds": [
+        {
+          "text": "Set up four rows corresponding to exponents $3, 2, 1, 0$.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE53-POLY-05-MOVE-1"
+        },
+        {
+          "text": "For each power, write its coefficient; if a power is missing in the polynomial, write $0$ as its coefficient.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE53-POLY-05-MOVE-2"
+        },
+        {
+          "text": "Reconstruct by multiplying each power by its coefficient and summing: $a_3 x^3 + a_2 x^2 + a_1 x + a_0$.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE53-POLY-05-MOVE-3"
+        }
+      ],
+      "primary_capability_ref": "CAP-MATH-POLY-TERMS-COEFFS",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q5",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:620542ba3a36947e3ad7b60e1354487b86f2b59b9f4bd76ff64ef9d78277ab8e"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 1,
+              "trap_exception_sensitivity": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0
+            },
+            "basis": "Polynomial $p(x)=5x^3-2x+7$ to translate into a power-indexed table. Decisive move: Create rows for powers 3, 2, 1, 0, insert coefficients $a_3=5, a_2=0, a_1=-2, a_0=7$, reconstruct $\\sum a_k x^k$, and explain 0 as null-value positional entry.. Total score 4 -> D2."
+          },
+          "common_wrong_route": "Learner skips the row for power 2 or records 'none'/'blank' instead of numerical 0.",
+          "expected_time_seconds": 150,
+          "cognitive_demand": "REPRESENT",
+          "stable_crux_move": "Create rows for powers 3, 2, 1, 0, insert coefficients $a_3=5, a_2=0, a_1=-2, a_0=7$, reconstruct $\\sum a_k x^k$, and explain 0 as null-value positional entry."
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:component_waivers": {
+          "TRAP": "The decisive misconception (Learner skips the row for power 2 or records 'none'/'blank' instead of numerical 0.) is taught directly in the concept unit and addressed in hint 1 and the solution.",
+          "CONDITIONS": "The question specifies all boundary conditions within the stem.",
+          "CHECK": "Independent check is integrated: Reconstruction check: $5 \\cdot x^3 + 0 \\cdot x^2 + (-2) \\cdot x^1 + 7 \\cdot x^0 = 5x^3 + 0 - 2x + 7 = 5x^3 - 2x + 7$."
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE53-POLY-06",
+      "original_identifier": "Q6",
+      "stem": "A student writes $(x+3)^2=x^2+9$. Use the product $(x+3)(x+3)$ to locate the error and give the corrected expansion.",
+      "conditions": [
+        "Polynomials in one variable with real coefficients; no calculus or complex numbers assumed; preserve stated domains and degree bounds."
+      ],
+      "family_ref": "FAM-MATH-POLY-IDENTITIES",
+      "figure_refs": [
+        "REP-MATH-POLY-AREA-MODEL"
+      ],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "The student incorrectly squared terms individually and omitted the middle cross-terms. Expanding $(x+3)(x+3) = x(x+3) + 3(x+3) = x^2 + 3x + 3x + 9 = x^2 + 6x + 9$. The error is the missing $+6x$ term. Corrected expansion is $x^2 + 6x + 9$.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE53-POLY-06-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Express binomial square as product of two identical binomials",
+            "why_valid": "By definition of squaring, (x+3)^2 = (x+3)(x+3).",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "(x+3)(x+3)"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-06-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Expand product term-by-term via distributive property",
+            "why_valid": "Apply distributivity: x(x+3) + 3(x+3) = x*x + x*3 + 3*x + 3*3 = x^2 + 3x + 3x + 9.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "x^2 + 3x + 3x + 9"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-06-MOVE-3",
+            "kind": "CONNECT",
+            "action": "Locate student error and combine middle cross-terms",
+            "why_valid": "The student squared each term separately (x^2 + 9) and omitted the two middle rectangles 3x + 3x = +6x.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Error: missing middle cross-term +6x"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-06-MOVE-4",
+            "kind": "VERIFY",
+            "action": "State corrected expansion and verify with numerical counterexample",
+            "why_valid": "Corrected expansion is x^2 + 6x + 9. At x=1, student claims (4)^2 = 1^2+9=10 (false), while 1+6+9 = 16 (true).",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Corrected: x^2 + 6x + 9"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE53-POLY-06-MOVE-3",
+        "check": "Counterexample check: At $x=2$, $(2+3)^2 = 25$, while $2^2+9 = 13 \\ne 25$. Corrected: $2^2 + 6(2) + 9 = 4 + 12 + 9 = 25$. Verified!",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "scaffolds": [
+        {
+          "text": "Write $(x+3)^2$ as the product of two binomials: $(x+3)(x+3)$.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE53-POLY-06-MOVE-1"
+        },
+        {
+          "text": "Apply the distributive property: multiply every term in the first bracket by every term in the second bracket.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE53-POLY-06-MOVE-2"
+        },
+        {
+          "text": "Compare the resulting four terms with $x^2 + 9$ to see which terms were left out.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE53-POLY-06-MOVE-3"
+        }
+      ],
+      "primary_capability_ref": "CAP-MATH-POLY-IDENTITIES-AND-CONSTRUCTION",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q6",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:f60dbd29652861c328be9e843d5e5e469c4bb1a2f43227f333b4b45230851b59"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 1,
+              "trap_exception_sensitivity": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0
+            },
+            "basis": "Erroneous identity claim $(x+3)^2 = x^2 + 9$. Decisive move: Multiply $(x+3)(x+3)$ term-by-term using distributivity, locate the omitted middle terms $3x + 3x = 6x$, and provide corrected expansion $x^2 + 6x + 9$.. Total score 3 -> D2."
+          },
+          "common_wrong_route": "Learner believes exponents distribute over addition: $(a+b)^2 = a^2 + b^2$.",
+          "expected_time_seconds": 150,
+          "cognitive_demand": "JUSTIFY",
+          "stable_crux_move": "Multiply $(x+3)(x+3)$ term-by-term using distributivity, locate the omitted middle terms $3x + 3x = 6x$, and provide corrected expansion $x^2 + 6x + 9$."
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:component_waivers": {
+          "TRAP": "The decisive misconception (Learner believes exponents distribute over addition: $(a+b)^2 = a^2 + b^2$.) is taught directly in the concept unit and addressed in hint 1 and the solution.",
+          "CONDITIONS": "The question specifies all boundary conditions within the stem.",
+          "CHECK": "Independent check is integrated: Counterexample check: At $x=2$, $(2+3)^2 = 25$, while $2^2+9 = 13 \\ne 25$. Corrected: $2^2 + 6(2) + 9 = 4 + 12 + 9 = 25$. Verified!"
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE53-POLY-07",
+      "original_identifier": "Q7",
+      "stem": "A rectangle has length $(x+3)$ cm and width $(x+1)$ cm, where $x\\geq0$. Write a polynomial for its area, identify the output unit and state which feature of the rectangle your expression represents.",
+      "conditions": [
+        "Polynomials in one variable with real coefficients; no calculus or complex numbers assumed; preserve stated domains and degree bounds."
+      ],
+      "family_ref": "FAM-MATH-POLY-IDENTITIES",
+      "figure_refs": [
+        "REP-MATH-POLY-AREA-MODEL"
+      ],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Polynomial for area: $(x+3)(x+1) = x^2 + 4x + 3$. Output unit: $\\text{cm}^2$ (square centimetres). Represented feature: the total two-dimensional surface area enclosed by the rectangle as a function of $x \\ge 0$.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE53-POLY-07-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Model area as product of length and width",
+            "why_valid": "For a rectangle, Area = length * width = (x+3) * (x+1) cm * cm.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Area(x) = (x+3)(x+1)"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-07-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Expand binomial product and combine like terms",
+            "why_valid": "Multiply: x(x+1) + 3(x+1) = x^2 + x + 3x + 3 = x^2 + 4x + 3.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "x^2 + 4x + 3"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-07-MOVE-3",
+            "kind": "CONNECT",
+            "action": "Identify output physical units",
+            "why_valid": "Multiplying dimensions in cm by cm yields square centimetres (cm^2).",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Unit: cm^2"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-07-MOVE-4",
+            "kind": "VERIFY",
+            "action": "State represented physical feature and domain",
+            "why_valid": "The polynomial represents the total two-dimensional surface area enclosed by the rectangle for any valid parameter x >= 0.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Total enclosed 2D surface area (x >= 0)"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE53-POLY-07-MOVE-2",
+        "check": "At $x=2$: length = 5 cm, width = 3 cm $\\implies \\text{Area} = 5 \\times 3 = 15\\text{ cm}^2$. Formula: $2^2 + 4(2) + 3 = 4 + 8 + 3 = 15\\text{ cm}^2$. Matches!",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "scaffolds": [
+        {
+          "text": "Use the formula for the area of a rectangle: $\\text{Area} = \\text{length} \\times \\text{width}$.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE53-POLY-07-MOVE-1"
+        },
+        {
+          "text": "Multiply the two binomials $(x+3)$ and $(x+1)$ using the distributive property and combine like terms.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE53-POLY-07-MOVE-2"
+        },
+        {
+          "text": "Remember that multiplying length in cm by width in cm produces area in square centimetres ($\\text{cm}^2$).",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE53-POLY-07-MOVE-3"
+        }
+      ],
+      "primary_capability_ref": "CAP-MATH-POLY-IDENTITIES-AND-CONSTRUCTION",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q7",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:ce4ac438784f208cb8adb25e9941b5677aa2a42c6233a5ed2caaa6932eacdb0c"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 1,
+              "trap_exception_sensitivity": 0,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0
+            },
+            "basis": "Rectangle with length $(x+3)$ cm and width $(x+1)$ cm, parameter $x \\ge 0$. Decisive move: Multiply linear dimensions $(x+3)(x+1)$, expand to $x^2+4x+3$, attach unit $\\text{cm}^2$, and identify the physical feature as enclosed 2D region area.. Total score 3 -> D2."
+          },
+          "common_wrong_route": "Learner computes perimeter $2(\\text{length} + \\text{width})$ instead of area, or gives unit as $\\text{cm}$ instead of $\\text{cm}^2$.",
+          "expected_time_seconds": 150,
+          "cognitive_demand": "MODEL",
+          "stable_crux_move": "Multiply linear dimensions $(x+3)(x+1)$, expand to $x^2+4x+3$, attach unit $\\text{cm}^2$, and identify the physical feature as enclosed 2D region area."
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:component_waivers": {
+          "TRAP": "The decisive misconception (Learner computes perimeter $2(\\text{length} + \\text{width})$ instead of area, or gives unit as $\\text{cm}$ instead of $\\text{cm}^2$.) is taught directly in the concept unit and addressed in hint 1 and the solution.",
+          "CONDITIONS": "The question specifies all boundary conditions within the stem.",
+          "CHECK": "Independent check is integrated: At $x=2$: length = 5 cm, width = 3 cm $\\implies \\text{Area} = 5 \\times 3 = 15\\text{ cm}^2$. Formula: $2^2 + 4(2) + 3 = 4 + 8 + 3 = 15\\text{ cm}^2$. Matches!"
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE53-POLY-08",
+      "original_identifier": "Q8",
+      "stem": "Factorise $x^2-9$ using a familiar algebraic identity. Check your factorisation by multiplying the factors.",
+      "conditions": [
+        "Polynomials in one variable with real coefficients; no calculus or complex numbers assumed; preserve stated domains and degree bounds."
+      ],
+      "family_ref": "FAM-MATH-POLY-IDENTITIES",
+      "figure_refs": [
+        "REP-MATH-POLY-AREA-MODEL"
+      ],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Factorisation: $x^2 - 9 = x^2 - 3^2 = (x - 3)(x + 3)$ using the difference of squares identity $a^2 - b^2 = (a - b)(a + b)$. Check: $(x - 3)(x + 3) = x(x + 3) - 3(x + 3) = x^2 + 3x - 3x - 9 = x^2 - 9$.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE53-POLY-08-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Pattern match to difference of two squares identity",
+            "why_valid": "Recognize that x^2 is the square of x and 9 is the square of 3 (3^2 = 9), matching a^2 - b^2.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Matches a^2 - b^2 with a=x, b=3"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-08-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Apply identity a^2 - b^2 = (a-b)(a+b)",
+            "why_valid": "Substitute a=x and b=3: x^2 - 9 = (x - 3)(x + 3).",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Factors: (x - 3)(x + 3)"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-08-MOVE-3",
+            "kind": "CONNECT",
+            "action": "Check factorisation by multiplying factors",
+            "why_valid": "Expand (x-3)(x+3) = x(x+3) - 3(x+3) = x^2 + 3x - 3x - 9.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "x^2 + 3x - 3x - 9"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-08-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Confirm cross-term cancellation restores original binomial",
+            "why_valid": "The middle terms +3x and -3x cancel out (+3x - 3x = 0), leaving x^2 - 9. Check verified.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Verified restoration of x^2 - 9"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE53-POLY-08-MOVE-2",
+        "check": "Multiply factors: $(x-3)(x+3) = x^2 + 3x - 3x - 9 = x^2 - 9$. Numerical check at $x=5$: $5^2 - 9 = 16$; $(5-3)(5+3) = 2 \\times 8 = 16$. Verified!",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "scaffolds": [
+        {
+          "text": "Notice that $x^2$ is the square of $x$ and $9$ is the square of $3$ ($3^2 = 9$).",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE53-POLY-08-MOVE-1"
+        },
+        {
+          "text": "Recall the algebraic identity for difference of two squares: $a^2 - b^2 = (a - b)(a + b)$.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE53-POLY-08-MOVE-2"
+        },
+        {
+          "text": "To check, expand $(x - 3)(x + 3)$ and observe how the middle terms cancel out.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE53-POLY-08-MOVE-3"
+        }
+      ],
+      "primary_capability_ref": "CAP-MATH-POLY-IDENTITIES-AND-CONSTRUCTION",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q8",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:d41dd0d41dd259bf4e62f666ad5767a189952c58e8dcfd409b48d694f56c8059"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 1,
+              "trap_exception_sensitivity": 0,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1
+            },
+            "basis": "Binomial expression $x^2 - 9$. Decisive move: Recognize $9 = 3^2$, apply difference of squares with $a=x, b=3$ to obtain $(x-3)(x+3)$, and multiply factors to verify middle terms cancel.. Total score 3 -> D2."
+          },
+          "common_wrong_route": "Learner writes $(x-3)^2$ or $(x-9)(x+1)$ confusing difference of squares with square of a binomial.",
+          "expected_time_seconds": 150,
+          "cognitive_demand": "APPLY",
+          "stable_crux_move": "Recognize $9 = 3^2$, apply difference of squares with $a=x, b=3$ to obtain $(x-3)(x+3)$, and multiply factors to verify middle terms cancel."
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:component_waivers": {
+          "TRAP": "The decisive misconception (Learner writes $(x-3)^2$ or $(x-9)(x+1)$ confusing difference of squares with square of a binomial.) is taught directly in the concept unit and addressed in hint 1 and the solution.",
+          "CONDITIONS": "The question specifies all boundary conditions within the stem.",
+          "CHECK": "Independent check is integrated: Multiply factors: $(x-3)(x+3) = x^2 + 3x - 3x - 9 = x^2 - 9$. Numerical check at $x=5$: $5^2 - 9 = 16$; $(5-3)(5+3) = 2 \\times 8 = 16$. Verified!"
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE53-POLY-09",
+      "original_identifier": "Q9",
+      "stem": "Are $x(x+1)$ and $x^2+x$ equal for every real $x$? Give a reason that applies to every value, rather than relying on one numerical substitution.",
+      "conditions": [
+        "Polynomials in one variable with real coefficients; no calculus or complex numbers assumed; preserve stated domains and degree bounds."
+      ],
+      "family_ref": "FAM-MATH-POLY-IDENTITIES",
+      "figure_refs": [
+        "REP-MATH-POLY-AREA-MODEL"
+      ],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Yes, $x(x+1)$ and $x^2+x$ are equal for every real $x$. Reason: by the distributive law of multiplication over addition in the real number system ($a(b+c) = ab + ac$), multiplying $x$ across $(x+1)$ yields $x \\cdot x + x \\cdot 1 = x^2 + x$. Because this equality is derived from the fundamental field axioms of real arithmetic and laws of exponents, it constitutes an algebraic identity holding for all $x \\in \\mathbb{R}$, not merely an empirical coincidence at tested values.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE53-POLY-09-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Formulate requirement for universal algebraic proof",
+            "why_valid": "An equality between expressions holding for all real x is an identity; empirical numerical substitutions check specific instances but cannot prove universal truth across infinite R.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Universal proof required via field axioms"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-09-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Invoke distributive axiom of multiplication over addition in R",
+            "why_valid": "For any real numbers a, b, c, the distributive property states a*(b+c) = a*b + a*c.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Distributive law: a(b+c) = ab + ac in R"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-09-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Instantiate distributive axiom for x(x+1)",
+            "why_valid": "Setting a=x, b=x, c=1 gives x*(x+1) = x*x + x*1 = x^2 + x by definition of powers and multiplicative identity.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "x(x+1) = x^2 + x"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-09-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Confirm identity across entire real domain R",
+            "why_valid": "Because the equality is deduced directly from real field axioms, it holds universally for every real number x without exception.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Equal for every real x (algebraic identity)"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE53-POLY-09-MOVE-3",
+        "check": "Axiomatic expansion: $x(x+1) = x \\cdot x + x \\cdot 1 = x^2 + x$. Difference polynomial: $x(x+1) - (x^2+x) = x^2+x-(x^2+x) = 0$ is the zero polynomial, identically 0 for all $x \\in \\mathbb{R}$.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "scaffolds": [
+        {
+          "text": "Consider what property of real numbers allows you to expand a single factor multiplying a sum in brackets.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE53-POLY-09-MOVE-1"
+        },
+        {
+          "text": "Apply the distributive law $a(b + c) = ab + ac$ with $a = x$, $b = x$, and $c = 1$.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE53-POLY-09-MOVE-2"
+        },
+        {
+          "text": "Explain why an equality proved from universal properties of arithmetic must hold for all real numbers, unlike testing a few specific numbers.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE53-POLY-09-MOVE-3"
+        }
+      ],
+      "primary_capability_ref": "CAP-MATH-POLY-IDENTITIES-AND-CONSTRUCTION",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q9",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:00874621d3ba34d51316ce473dd2e1c3bc4685026446f56aa93cff7f10d86eac"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 2,
+              "trap_exception_sensitivity": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1
+            },
+            "basis": "Two expressions $x(x+1)$ and $x^2+x$ across the real domain $\\mathbb{R}$. Decisive move: Apply the distributive property generally: $x(x+1) = x \\cdot x + x \\cdot 1 = x^2 + x$; explain that field axioms hold universally for all real numbers without exception.. Total score 5 -> D2."
+          },
+          "common_wrong_route": "Learner tests $x=1$ and $x=2$ and claims they are equal only because those sample numbers gave matching results, without citing the distributive law.",
+          "expected_time_seconds": 150,
+          "cognitive_demand": "JUSTIFY",
+          "stable_crux_move": "Apply the distributive property generally: $x(x+1) = x \\cdot x + x \\cdot 1 = x^2 + x$; explain that field axioms hold universally for all real numbers without exception."
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:component_waivers": {
+          "TRAP": "The decisive misconception (Learner tests $x=1$ and $x=2$ and claims they are equal only because those sample numbers gave matching results, without citing the distributive law.) is taught directly in the concept unit and addressed in hint 1 and the solution.",
+          "CONDITIONS": "The question specifies all boundary conditions within the stem.",
+          "CHECK": "Independent check is integrated: Axiomatic expansion: $x(x+1) = x \\cdot x + x \\cdot 1 = x^2 + x$. Difference polynomial: $x(x+1) - (x^2+x) = x^2+x-(x^2+x) = 0$ is the zero polynomial, identically 0 for all $x \\in \\mathbb{R}$."
+        }
+      }
+    },
+    {
+      "id": "OWN-ISSUE53-POLY-10",
+      "original_identifier": "Q10",
+      "stem": "Construct a linear polynomial whose constant term is $2$ and whose zero is $1$. Check both conditions and state whether more than one linear polynomial can satisfy them.",
+      "conditions": [
+        "Polynomials in one variable with real coefficients; no calculus or complex numbers assumed; preserve stated domains and degree bounds."
+      ],
+      "family_ref": "FAM-MATH-POLY-LINEAR",
+      "figure_refs": [
+        "REP-MATH-POLY-LINEAR-ZERO"
+      ],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "The constructed linear polynomial is $p(x) = -2x + 2$. Verification: (1) Constant term is $p(0) = -2(0) + 2 = 2$; (2) Zero is $p(1) = -2(1) + 2 = 0$; (3) Degree is 1 ($a = -2 \\ne 0$). Exactly one linear polynomial satisfies these conditions: any linear polynomial has form $ax+b$ ($a \\ne 0$); condition $p(0)=2$ forces $b=2$, and condition $p(1)=0$ forces $a(1)+2=0 \\implies a=-2$. Since the linear system for coefficients has a unique solution, no other linear polynomial can satisfy them.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISSUE53-POLY-10-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Formulate general linear polynomial",
+            "why_valid": "A linear polynomial in one variable has the general form p(x) = ax + b, where a, b in R and leading coefficient a != 0.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "p(x) = ax + b, a != 0"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-10-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Apply constant term condition to determine b",
+            "why_valid": "The constant term is p(0) = a(0) + b = b. Given constant term is 2, so b = 2.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "b = 2"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-10-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Apply zero condition",
+            "why_valid": "A zero at x=1 means p(1) = 0. Substituting x=1 and b=2 gives a(1) + 2 = 0.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "a(1) + 2 = 0"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-10-MOVE-4",
+            "kind": "TRANSFORM",
+            "action": "Solve for leading coefficient a",
+            "why_valid": "Solving the linear equation a + 2 = 0 yields a = -2, which is non-zero (degree 1 holds).",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "a = -2 (non-zero)"
+          },
+          {
+            "id": "OWN-ISSUE53-POLY-10-MOVE-5",
+            "kind": "VERIFY",
+            "action": "Verify both conditions and prove uniqueness",
+            "why_valid": "Check: p(0) = -2(0) + 2 = 2; p(1) = -2(1) + 2 = 0; deg = 1. Uniqueness: a+2=0 has a unique solution in R, so exactly ONE linear polynomial satisfies both conditions.",
+            "inputs": [
+              "stated givens and prior move"
+            ],
+            "output": "Constructed p(x) = -2x + 2; unique linear polynomial"
+          }
+        ],
+        "crux_move_ref": "OWN-ISSUE53-POLY-10-MOVE-3",
+        "check": "Check $p(0) = -2(0) + 2 = 2$ (constant term holds); $p(1) = -2(1) + 2 = 0$ (zero holds); $\\deg(p) = 1$ (linear holds). Uniqueness: $b=2$ is fixed by constant term; $a(1)+2=0 \\iff a=-2$, unique root in $\\mathbb{R}$.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "scaffolds": [
+        {
+          "text": "Write the general form of any linear polynomial in one variable: p(x) = ax + b, where a != 0.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISSUE53-POLY-10-MOVE-1"
+        },
+        {
+          "text": "Use the constant term condition: the constant term is p(0) = b, so set b = 2.",
+          "support_kind": "REPRESENT",
+          "reveals": "METHOD",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISSUE53-POLY-10-MOVE-2"
+        },
+        {
+          "text": "Use the zero condition: a zero at x = 1 means p(1) = 0. Substitute x = 1 and b = 2 into ax + b = 0.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISSUE53-POLY-10-MOVE-3"
+        },
+        {
+          "text": "Solve the resulting linear equation a(1) + 2 = 0 for leading coefficient a.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISSUE53-POLY-10-MOVE-4"
+        },
+        {
+          "text": "Check both conditions with your polynomial, and prove that the solution for coefficients (a, b) is unique in R.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISSUE53-POLY-10-MOVE-5"
+        }
+      ],
+      "primary_capability_ref": "CAP-MATH-POLY-IDENTITIES-AND-CONSTRUCTION",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q10",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:03d41d47abf7a54c8f87660ef2ca5c1fa3d2419f4939b6bcbe5f0614510eeb73"
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 1,
+              "trap_exception_sensitivity": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1
+            },
+            "basis": "Two algebraic conditions for a linear polynomial: constant term 2, zero 1. Decisive move: Set $b = 2$, set $a(1) + 2 = 0$ to solve $a = -2$; verify both conditions; prove uniqueness from the uniqueness of the solution to the linear equation $a + 2 = 0$.. Total score 6 -> D3."
+          },
+          "common_wrong_route": "Learner constructs a quadratic like $2(x-1)^2$ ignoring the linearity condition, or claims multiple linear polynomials exist because of an arbitrary scaling constant.",
+          "expected_time_seconds": 240,
+          "cognitive_demand": "SYNTHESIZE",
+          "stable_crux_move": "Set $b = 2$, set $a(1) + 2 = 0$ to solve $a = -2$; verify both conditions; prove uniqueness from the uniqueness of the solution to the linear equation $a + 2 = 0$."
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:component_waivers": {
+          "TRAP": "The decisive misconception (Learner constructs a quadratic like $2(x-1)^2$ ignoring the linearity condition, or claims multiple linear polynomials exist because of an arbitrary scaling constant.) is taught directly in the concept unit and addressed in hint 1 and the solution.",
+          "CONDITIONS": "The question specifies all boundary conditions within the stem.",
+          "CHECK": "Independent check is integrated: Check $p(0) = -2(0) + 2 = 2$ (constant term holds); $p(1) = -2(1) + 2 = 0$ (zero holds); $\\deg(p) = 1$ (linear holds). Uniqueness: $b=2$ is fixed by constant term; $a(1)+2=0 \\iff a=-2$, unique root in $\\mathbb{R}$."
+        }
+      }
+    }
+  ]
+}

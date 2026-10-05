@@ -34,13 +34,13 @@ import subprocess
 from functools import lru_cache
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, urljoin
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import core2_v2, learner_metadata, owner_bank, product_coverage, product_manifest, toughest_concept  # noqa: E402
+from Shared.tools import core2_v2, learner_metadata, owner_bank, product_coverage, product_manifest, toughest_concept, learning_repair  # noqa: E402
 from Shared.tools import web_blueprint_contract as blueprints_api  # noqa: E402
 
 BLUEPRINTS = REPO / "Shared/web/interactive-page-blueprints.v1.json"
@@ -311,11 +311,20 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
             svg = svg[:head.start()] + clean + svg[head.end():]
         name = "; ".join(labels[s] for s in shown if labels.get(s)) or rep.get("purpose", "")
         svg = re.sub(r"<svg\b", f'<svg role="img" aria-label="{esc(name)}"', svg, count=1)
-    sequence_attr = ' data-g9-stage-sequence="true"' if len(stage_ids) > 1 else ""
+    stage_mode = str((rep.get("extensions") or {}).get("grade9v3:stage_mode") or "CUMULATIVE").upper()
+    if stage_mode not in {"CUMULATIVE", "REPLACE"}:
+        ctx.gap("AUTHOR_STAGE_MODE", rep_id,
+                f"unsupported grade9v3:stage_mode {stage_mode!r}; use CUMULATIVE or REPLACE",
+                role, component="STAGED_VISUAL" if role == "CORE1A" else "REPRESENTATION")
+        stage_mode = "CUMULATIVE"
+    mode_attr = f' data-g9-stage-mode="{stage_mode.lower()}"' if len(stage_ids) > 1 else ""
+    bp = blueprint_of(ctx, role) or {}
+    text_floor = ((bp.get('responsive_policy') or {}).get('tablet_12_7') or {}).get('figure_min_text_css_px',
+                  ((ctx.blueprints.get('shell') or {}).get('typography_policy') or {}).get('minimum_learner_text_css_px',14))
     return (f'<figure data-g9-figure data-g9-fig="{esc(record)}-{esc(rep_id)}" data-g9-stage="{stage}" '
-            f'data-g9-representation="{esc(rep_id)}" data-g9-kind="{esc(kind)}" data-reveal-stages="{max(len(shown), 1)}" '
-            f'data-g9-stages-total="{max(len(stage_ids), 1)}" data-g9-stages="{esc(" ".join(shown))}"{sequence_attr}>'
-            f'{svg}{controls}{caption}</figure>')
+            f'data-g9-representation="{esc(rep_id)}" data-g9-kind="{esc(kind)}" data-g9-min-figure-text="{esc(text_floor)}" data-reveal-stages="{max(len(shown), 1)}" '
+            f'data-g9-stages-total="{max(len(stage_ids), 1)}" data-g9-stages="{esc(" ".join(shown))}"{mode_attr}>'
+            f'<div class="g9-diagram-scroll" tabindex="0" role="region" aria-label="Diagram; scroll horizontally when enlarged">{svg}</div>{controls}{caption}</figure>')
 
 
 def _without_stages(svg: str, withheld: set[str]) -> str:
@@ -360,6 +369,14 @@ def block(name: str, body: str, tag: str = "div", title: str | None = None) -> s
 
 def para(text) -> str:
     return f"<p>{esc(text)}</p>" if text else ""
+
+
+def secondary_disclosure(summary: str, body: str, kind: str) -> str:
+    """Progressive disclosure for useful-but-secondary learner material; closed by default."""
+    if not body:
+        return ""
+    return (f'<details class="g9-secondary-disclosure" data-g9-secondary="{esc(kind)}">'
+            f'<summary>{esc(summary)}</summary><div class="g9-secondary-body">{body}</div></details>')
 
 
 @lru_cache(maxsize=1024)
@@ -768,6 +785,68 @@ def _coverage_findings(ctx: Ctx, roles: list[str]) -> None:
             ctx.advise(policy["component"], finding["record"], finding["detail"], finding["core"])
 
 
+PURPOSE_DELIVERY_KEY = "grade9v3:purpose_delivery"
+
+
+def _purpose_delivery_spec(ctx: Ctx) -> tuple[str, list[dict]]:
+    """Return the manifest-selected purpose and authored delivery specs from package extensions."""
+    purpose = str(ctx.manifest.get("purpose") or "").upper()
+    if purpose not in {"REVISION", "COMPETITION"}:
+        return purpose, []
+    specs: list[dict] = []
+    for package in ctx.packages:
+        delivery = ((package.get("extensions") or {}).get(PURPOSE_DELIVERY_KEY) or {})
+        spec = delivery.get(purpose)
+        if isinstance(spec, dict):
+            specs.append(spec)
+    return purpose, specs
+
+
+def _purpose_extension(ctx: Ctx, role: str, record_id: str) -> str:
+    """Project a purpose-specific challenge beside the exact concept/question it extends."""
+    purpose, specs = _purpose_delivery_spec(ctx)
+    if not specs:
+        return ""
+    ref_key = "concept_refs" if role == "CORE1A" else "question_refs" if role == "CORE2" else None
+    if ref_key is None:
+        return ""
+    rendered: list[str] = []
+    for spec in specs:
+        section_title = str(spec.get("section_title") or ("Next-level revision" if purpose == "REVISION" else "Competition transfer"))
+        for item in spec.get("items") or []:
+            if not isinstance(item, dict) or role not in (item.get("roles") or []):
+                continue
+            if record_id not in (item.get(ref_key) or []):
+                continue
+            item_id = str(item.get("id") or "")
+            prompt = str(item.get("prompt") or "")
+            if not item_id or not prompt:
+                continue
+            source_kind = str(item.get("source_kind") or "")
+            source_label = str(item.get("source_label") or "")
+            if source_kind == "AUTHOR_CREATED_COMPETITION_STYLE":
+                provenance = source_label or "Original competition-style transfer; not a past-paper claim."
+            elif source_kind == "VERIFIED_COMPETITIVE_SOURCE":
+                provenance = source_label or "Verified competitive source"
+            else:
+                provenance = source_label or "Authored transfer"
+            answer = item.get("answer") or {}
+            answer_body = para(answer.get("summary")) + items(answer.get("reasoning"), True)
+            response = item.get("response") if isinstance(item.get("response"), dict) else {"type": "free_response", "paper_ok": True}
+            rendered.append(
+                f'<section class="g9-purpose-extension" data-g9-purpose-delivery="{esc(purpose)}" '
+                f'data-g9-purpose-item="{esc(item_id)}" data-g9-purpose-role="{esc(role)}">'
+                f'<div class="g9-eyebrow">{esc(section_title)}</div>'
+                f'<h3>{esc(item.get("title") or section_title)}</h3>'
+                f'<p class="g9-purpose-source">{esc(provenance)}</p>'
+                f'<div class="g9-purpose-prompt">{para(prompt)}</div>'
+                + attempt_box("Your attempt", response, record=item_id)
+                + reveal("Check your reasoning", answer_body, ref=f"PURPOSE-{item_id}-{role}")
+                + '</section>'
+            )
+    return "".join(rendered)
+
+
 # ------------------------------------------------------------------ roles
 
 def _relations(ctx: Ctx, m: dict) -> list[dict]:
@@ -930,7 +1009,7 @@ def _core1a_bucket_orientation(ctx: Ctx) -> str:
             f'<div class="g9-bucket-orientation-grid"><div>{primary}</div><aside>{companion}</aside></div>'
             f'</section>'
         )
-    return "".join(rendered)
+    return secondary_disclosure("Contents and concept route", "".join(rendered), "core1a-contents")
 
 
 def _core1a_section_route(m: dict) -> str:
@@ -1038,7 +1117,8 @@ def _core1a_practice_navigation(ctx: Ctx, m: dict) -> str:
 def _core1a_interactive_bridge(ctx: Ctx, m: dict) -> str:
     """Conditionally render contextual interactive bridge if an eligible explorer is registered for this concept."""
     concept_id = m.get("id")
-    if not concept_id:
+    portal_root = _portal_root(ctx.manifest, "PAGES")
+    if not concept_id or not portal_root:
         return ""
     try:
         from Shared.tools.resolve_concept_bundle import resolve_bundle
@@ -1055,7 +1135,7 @@ def _core1a_interactive_bridge(ctx: Ctx, m: dict) -> str:
         for it in interactives:
             ep = it.get("entrypoint", "")
             title = it.get("title", "Interactive Explorer")
-            rel_href = f"../../../{ep}"
+            rel_href = urljoin(portal_root, ep)
             cards.append(
                 f'<aside class="g9-interactive-bridge" data-g9-interactive-bridge>'
                 f'<span class="g9-pill g9-pill-interactive">Try Visually</span>'
@@ -1073,7 +1153,8 @@ def _core1a_interactive_bridge(ctx: Ctx, m: dict) -> str:
 def _core1a_learning_transitions(ctx: Ctx, m: dict) -> str:
     """Render derived transitions connecting Learn to Practice, Interactive, and Question Bank."""
     concept_id = m.get("id")
-    if not concept_id:
+    portal_root = _portal_root(ctx.manifest, "PAGES")
+    if not concept_id or not portal_root:
         return ""
     chips = []
     if "CORE2" in product_manifest.selected_output_roles(ctx.manifest):
@@ -1120,14 +1201,25 @@ def _core1a_worked_anchor(question: dict, ctx: Ctx | None = None, owner: bool = 
     if route:
         steps = "".join(
             f'<li data-g9-watch-step data-g9-move-ref="{esc(row.get("id", index))}">'
-            f'<strong>{esc(row.get("action", ""))}</strong>'
+            f'<div class="g9-worked-step-body"><strong>{esc(row.get("action", ""))}</strong>'
             f'{para("Why valid: " + row["why_valid"]) if row.get("why_valid") else ""}'
-            f'{para("Result: " + row["output"]) if row.get("output") else ""}</li>'
+            f'{para("Result: " + row["output"]) if row.get("output") else ""}</div></li>'
             for index, row in enumerate(route, 1)
         )
-        working = f'<ol class="g9-watch-steps">{steps}</ol>'
+        working = ('<p class="g9-worked-instruction">Follow the operation, its justification and its result.</p>'
+                   f'<ol class="g9-watch-steps">{steps}</ol>')
     else:
-        working = items(answer.get("reasoning"), True)
+        legacy = [str(step) for step in answer.get("reasoning") or [] if str(step).strip()]
+        if legacy:
+            steps = "".join(
+                f'<li data-g9-watch-step>'
+                f'<div class="g9-worked-step-body">{para(step)}</div></li>'
+                for index, step in enumerate(legacy, 1)
+            )
+            working = ('<p class="g9-worked-instruction">Follow the operation, its justification and its result.</p>'
+                       f'<ol class="g9-watch-steps">{steps}</ol>')
+        else:
+            working = ""
     stem = question.get("stem")
     head = (f'<p class="g9-prov" data-g9-anchor-source>{esc(_identity(question))} · {esc(_custody(question))}</p>'
             if owner else "")
@@ -1258,19 +1350,20 @@ def core1a(ctx: Ctx, m: dict) -> str:
 
     identity = component_body(ctx, "CORE1A", {
         "CONCEPT_HEADER": part("CONCEPT_HEADER", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1A", m)),
-        "SECTION_ROUTE": part("SECTION_ROUTE", block("section_route", _core1a_section_route(m), title="Sections")),
+        "SECTION_ROUTE": part("SECTION_ROUTE", secondary_disclosure("Sections", _core1a_section_route(m), "core1a-section-route")),
     }, "identity")
 
     def opening() -> dict[str, str]:
-        """What opens the construction, once per concept: the key step, then what the learner must already hold."""
+        """Current conditions precede construction; its key insight follows the visual."""
         return {
             "KEY_STEP": part("KEY_STEP", block("inferential_jump", para(m["inferential_jump"]), title="The key step")),
-            "MODEL_CONTRACT": part("MODEL_CONTRACT", block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m),
-                                                           title="You need")),
+            "MODEL_CONTRACT": part("MODEL_CONTRACT",
+                block("entry_assumptions", items(m.get("entry_assumptions")), title="Conditions for this construction")
+                + secondary_disclosure("Prerequisite reference", _prereqs(ctx, m), "core1a-prerequisites")),
         }
     closure = component_body(ctx, "CORE1A", {
         "EXIT_RECALL": part("EXIT_RECALL", (
-            block("exit_task", para(exit_task.get("prompt")), title="Try it with less support")
+            block("exit_task", para(exit_task.get("prompt")), title="Now you do one")
             + attempt_box("Your answer", record=m["id"])
             + reveal("Model answer",
                      block("exit_answer",
@@ -1289,10 +1382,10 @@ def core1a(ctx: Ctx, m: dict) -> str:
             _toughest_unit_gaps(ctx, m, units, toughest)
         primary, support = _core1a_path_bridge(ctx, m, steps)
         opened = opening()
-        return head + compose(ctx, "CORE1A", {
+        return (head + compose(ctx, "CORE1A", {
             "construction": opened["KEY_STEP"] + opened["MODEL_CONTRACT"] + primary,
             "repair_closure": support + closure,
-        })
+        }) + _purpose_extension(ctx, "CORE1A", m["id"]))
 
     rows = ""
     bank_questions = [q for q in ctx.bank if isinstance(q, dict) and q.get("id")]
@@ -1315,8 +1408,14 @@ def core1a(ctx: Ctx, m: dict) -> str:
             f'<br><em>Result:</em> {esc(step["output"])}</li>'
             for step in step_items
         )
+        novel_anchor = ((m.get("extensions") or {}).get("grade9v3:lesson_anchors") or {}).get(u["id"])
         bank_ref = u.get("bank_anchor_ref")
-        if bank_ref:
+        if novel_anchor is not None:
+            errors = learning_repair.anchor_problems(novel_anchor, bank_by_id, u['id'])
+            for error in errors:
+                ctx.gap('AUTHOR_WORKED_ANCHOR', u['id'], error, 'CORE1A', component='WORKED_EXAMPLE')
+            anchor_html = _core1a_worked_anchor(novel_anchor) if not errors else ''
+        elif bank_ref:
             anchor_q = bank_by_id.get(bank_ref)
             if not anchor_q:
                 ctx.gap("AUTHOR_WORKED_ANCHOR", u["id"], f"bank_anchor_ref {bank_ref} is not a question of this product's bank "
@@ -1357,16 +1456,40 @@ def core1a(ctx: Ctx, m: dict) -> str:
             return component(ctx, "CORE1A", cid, body, u["id"], items=items, unit=u["id"], band=band, waivers=waivers)
 
         figure_html = figure(ctx, u.get("representation_ref"), "TEACHING", "CORE1A", u["id"])
-        # The unit card holds the unit's own components in blueprint order; the key step precedes the first card.
+        probes = [r for r in (m.get('extensions') or {}).get('grade9v3:question_repairs', [])
+                  if r.get('construction_ref') == u['id'] and r.get('interaction') == 'MODEL_SCOPE_PROBE']
+        primary_probe = ''
+        if probes:
+            row = next((r for r in probes if novel_anchor and r['question_ref'] == novel_anchor.get('target_question_ref')), probes[0])
+            question = bank_by_id.get(row.get('question_ref')) or (
+                questions.get(row.get('question_ref'))
+                if u.get('worked_anchor_ref') == row.get('question_ref') else None)
+            valid = question and row == (question.get('extensions') or {}).get(learning_repair.KEY) and not learning_repair.problems(question, {u['id']})
+            if valid:
+                primary_probe = learning_repair.alignment_probe('construction-' + u['id'])
+            else:
+                ctx.gap('AUTHOR_LEARNING_REPAIR', u['id'], 'construction probe does not bind this question and crux', 'CORE1A')
+
+        # Construction, its adjacent visual and then the insight follow the active blueprint order.
         card_parts = {
             "UNIT_HEADER": unit_part("UNIT_HEADER", unit_head),
             **(opening() if n == 0 else {}),
-            "QUESTION_BRIDGE": unit_part("QUESTION_BRIDGE", _core1a_question_bridge(ctx, u, crux_questions, ctx.toughest())),
+            "QUESTION_BRIDGE": unit_part("QUESTION_BRIDGE", secondary_disclosure(
+                "Why this section matters for the question set",
+                _core1a_question_bridge(ctx, u, crux_questions, ctx.toughest()),
+                "core1a-question-bridge",
+            )),
             "CONSTRUCTION_STEPS": unit_part("CONSTRUCTION_STEPS",
                                             block("construction", f"<ol>{step_html}</ol>" if step_html else ""),
                                             items=len(step_items), band=unit_band),
-            "EQUATIONS": unit_part("EQUATIONS", block("equation_matrix", relation_matrix, title="Equations and validity")),
-            "WORKED_EXAMPLE": unit_part("WORKED_EXAMPLE", block("worked_anchor", anchor_html, title="Watch one")),
+            "EQUATIONS": unit_part("EQUATIONS", secondary_disclosure(
+                "Formula reference · meaning and conditions",
+                block("equation_matrix", relation_matrix, title="Equations and validity"),
+                "core1a-equations",
+            )),
+            "STAGED_VISUAL": unit_part("STAGED_VISUAL", figure_html, items=_stages_of(figure_html), band=unit_band),
+            "MODEL_SCOPE_PROBE": unit_part("MODEL_SCOPE_PROBE", primary_probe),
+            "WORKED_EXAMPLE": unit_part("WORKED_EXAMPLE", block("worked_anchor", anchor_html, title="Worked explanation")),
         }
         card = component_body(ctx, "CORE1A", card_parts, "construction")
         construction = f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">{card}</section>'
@@ -1378,23 +1501,32 @@ def core1a(ctx: Ctx, m: dict) -> str:
             f'<section class="g9-cu-support" data-g9-support-for="{esc(u["id"])}">'
             f"<h3>{esc(support_label)}</h3>"
             + component_body(ctx, "CORE1A", {
-                "TRAP_REPAIR": unit_part("TRAP_REPAIR", trap, items=len(wrong)),
+                "TRAP_REPAIR": unit_part("TRAP_REPAIR", secondary_disclosure(
+                    "Mistake clinic · diagnose and repair",
+                    trap,
+                    "core1a-trap-repair",
+                ), items=len(wrong)),
                 "QUICK_CHECK": unit_part("QUICK_CHECK", _quick_check(check_rows), items=len(checks)),
             }, "repair_closure")
             + "</section>"
         )
-        # Each unit is its own row: its construction on the primary side, its picture and repair on the support side.
+        # Each complete construction is followed by its requestable repair and independent check.
         rows += compose(ctx, "CORE1A", {
             "construction": construction,
-            "representation": component_body(ctx, "CORE1A", {
-                "STAGED_VISUAL": unit_part("STAGED_VISUAL", figure_html, items=_stages_of(figure_html), band=unit_band),
-            }, "representation"),
             "repair_closure": support,
         })
 
     if toughest and m["id"] == toughest["microtopic_ref"]:
         _toughest_unit_gaps(ctx, m, units, toughest)
-    return head + rows + closing
+    repair_rows = (m.get("extensions") or {}).get("grade9v3:question_repairs") or []
+    return_hrefs = {}
+    for repair_row in repair_rows:
+        ref = repair_row['question_ref']
+        href = next((_unit_href(ctx, role, ref) for role in ('CORE2', 'CORE2A', 'CORE2B')
+                     if _unit_href(ctx, role, ref)), None)
+        return_hrefs[ref] = href or ('#' + repair_row['construction_ref'])
+    clinics = secondary_disclosure("Question-specific diagnosis and repair", learning_repair.clinic(repair_rows, return_hrefs), "core1a-question-repair") if repair_rows else ""
+    return head + rows + clinics + _purpose_extension(ctx, "CORE1A", m["id"]) + closing
 
 
 def _toughest_unit_gaps(ctx: Ctx, m: dict, units: list[dict], toughest: dict) -> None:
@@ -1415,7 +1547,10 @@ def _toughest_unit_gaps(ctx: Ctx, m: dict, units: list[dict], toughest: dict) ->
                 + f"and set that unit's bank_anchor_ref to {ref}", "CORE1A", component="QUESTION_BRIDGE")
         return
     for u in builders:
-        if u.get("bank_anchor_ref") != ref:
+        novel = ((m.get("extensions") or {}).get("grade9v3:lesson_anchors") or {}).get(u["id"])
+        bank_by_id = {q['id']: q for q in ctx.bank if isinstance(q, dict) and q.get('id')}
+        valid = not learning_repair.anchor_problems(novel, bank_by_id, u['id'], ref) if novel is not None else u.get('bank_anchor_ref') == ref
+        if not valid:
             ctx.gap("AUTHOR_TOUGHEST_CONCEPT", u["id"],
                     f"{why}; this unit builds toward it but its worked example is not {label}: set bank_anchor_ref to {ref} so the "
                     "unit walks through the question itself", "CORE1A", component="WORKED_EXAMPLE")
@@ -1471,7 +1606,9 @@ def _custody(q: dict) -> str:
     cust = (q.get("extensions") or {}).get("grade9v3:source_custody") or {}
     if cust.get("authority_class") == "OWNER_SUPPLIED_RAW_INPUT":
         # CORE2.md: a question the owner supplied is custody in its own right and is shown as supplied, with no exam identity.
-        return "Owner-supplied question" + (", verbatim" if cust.get("wording_custody") == "VERBATIM" else "")
+        line = "Owner-supplied question" + (", verbatim" if cust.get("wording_custody") == "VERBATIM" else "")
+        authorship = (q.get("extensions") or {}).get("grade9v3:authorship") or {}
+        return line + (" · coordinator/AI-drafted benchmark" if authorship.get("kind") == "COORDINATOR_AI_DRAFTED" else "")
     if (cust.get("authority_class") != "OFFICIAL_EXAM_ORGANIZER_ARCHIVE"
             or cust.get("source_status") != "PYQ_VERIFIED_PARENT"
             or not cust.get("paper_url")):
@@ -1506,6 +1643,12 @@ def _core2_concept_navigation(ctx: Ctx, q: dict) -> str:
     if not ids:
         return ""
     microtopics = {m["id"]: m for m in ctx.selection_rows.get("microtopics", [])}
+    repair = (q.get("extensions") or {}).get(learning_repair.KEY) or {}
+    target = repair.get("construction_ref")
+    unit_ids = {u["id"] for m in microtopics.values() for u in m.get("construction_units", [])}
+    if target and target not in unit_ids:
+        ctx.gap("AUTHOR_CONCEPT_TARGET", q["id"], "construction target does not resolve", "CORE2")
+        return ""
     rows = []
     for microtopic_id in ids:
         microtopic = microtopics.get(microtopic_id)
@@ -1513,8 +1656,8 @@ def _core2_concept_navigation(ctx: Ctx, q: dict) -> str:
             continue
         rows.append(
             f'<li><a data-g9-concept-link data-g9-question-ref="{esc(q["id"])}" '
-            f'data-g9-concept-ref="{esc(microtopic_id)}" href="core1a.html#{esc(microtopic_id)}">'
-            f'{esc(microtopic.get("title") or microtopic_id)}</a></li>'
+            f'data-g9-concept-ref="{esc(microtopic_id)}" href="core1a.html#{esc(target or microtopic_id)}">'
+            f'{esc(((q.get("extensions") or {}).get("grade9v3:attempt_labels") or {}).get("concept") or microtopic.get("title") or microtopic_id)}</a></li>'
         )
     return block("concept_navigation", "<ul>" + "".join(rows) + "</ul>" if rows else "",
                  title="Need the concept again?")
@@ -1652,7 +1795,11 @@ def _core2_support(ctx: Ctx, q: dict) -> str:
              + block("authored_core2_support",
                      _core2_support_ladder(ctx, q, authored_rows, core2_v2.AUTHORED_CORE2_SUPPORT),
                      title="Guided support"))
-    return ('<div class="g9-eyebrow">Hint ladder · reveal only what you need</div>' + lanes) if lanes else ""
+    return (secondary_disclosure(
+        "Need a hint? · guided support",
+        '<div class="g9-eyebrow">Hint ladder · reveal only what you need</div>' + lanes,
+        "core2-hints",
+    ) if lanes else "")
 
 
 def _core2_solution_moves(answer: dict) -> int:
@@ -1730,8 +1877,38 @@ def _difficulty_why(rid: str, analysis: dict) -> str:
     return (f'<button type="button" class="g9-why-toggle" data-g9-toggle aria-expanded="false" aria-controls="{target}">'
             f'<span class="g9-pill g9-pill-band" data-g9-band="{esc(d["band"])}">{esc(d["band"])}{score}</span>'
             f'<span>Why this difficulty?</span></button>'
-            f'<div id="{target}" class="g9-why" hidden>{para(d.get("basis"))}'
+            f'<div id="{target}" class="g9-why" hidden>'
+            '<p>This author estimate combines the five parts below. The detailed rationale is available with the answer and working after your attempt.</p>'
             f'{f"<div class=g9-dgrid>{cells}</div>" if cells else ""}</div>')
+
+
+def _core2_question_figures(ctx: Ctx, q: dict) -> str:
+    """Use explicitly reviewed authored support without replacing a source figure.
+
+    Frozen question figure_refs remain custody data. A correction may supersede
+    an authored representation, but not an authentic source snapshot/resource.
+    """
+    refs = q.get("figure_refs") or []
+    review = (q.get("extensions") or {}).get("grade9v3:core2_visual_review")
+    if review is not None:
+        authored = review.get("authored_figure_refs") if isinstance(review, dict) else None
+        valid = (isinstance(review, dict) and review.get("question_ref") == q["id"]
+                 and review.get("replaces_authored_figure_refs") == refs
+                 and isinstance(review.get("rationale"), str) and bool(review["rationale"].strip())
+                 and isinstance(authored, list) and bool(authored)
+                 and all(isinstance(ref, str) for ref in authored))
+        representations = ctx.index("representations")
+        if valid:
+            valid = all(ref in representations and representations[ref].get("kind") != "SOURCE_FIGURE"
+                        for ref in refs + authored)
+            valid = valid and all((representations[ref].get("extensions") or {}).get("grade9v3:authored_question_ref") == q["id"]
+                                  for ref in authored)
+        if not valid:
+            ctx.gap("AUTHOR_CORE2_VISUAL_REVIEW", q["id"],
+                    "review must bind this question and its frozen authored refs; source figure snapshots cannot be replaced", "CORE2")
+        else:
+            refs = authored
+    return "".join(figure(ctx, ref, "PRE_ATTEMPT", "CORE2", q["id"], first_stage_only=True) for ref in refs)
 
 
 def core2(ctx: Ctx, q: dict) -> str:
@@ -1741,8 +1918,7 @@ def core2(ctx: Ctx, q: dict) -> str:
         ctx.gap("AUTHOR_SOURCE_RESULT_DIFFERS", q["id"], "authored summary differs from current independent result", "CORE2")
     rid = q["id"]
     analysis = (q.get("extensions") or {}).get(owner_bank.ANALYSIS_KEY) or {}
-    figures = "".join(figure(ctx, ref, "PRE_ATTEMPT", "CORE2", rid, first_stage_only=True)
-                      for ref in q.get("figure_refs") or [])
+    figures = _core2_question_figures(ctx, q)
     roles = q.get("representation_roles") or {}
     teaching_figure = figure(ctx, roles.get("bound_ref"), "POST_ATTEMPT", "CORE2", rid + "-bound")
     conditions = "".join(f'<li>{question_text(ctx, q, "conditions", c)}</li>' for c in q.get("conditions") or [])
@@ -1758,13 +1934,26 @@ def core2(ctx: Ctx, q: dict) -> str:
     def part(cid: str, body: str, items: int | None = None) -> str:
         return component(ctx, "CORE2", cid, body, rid, items=items, band=band, waivers=waivers)
 
+    repair = (q.get("extensions") or {}).get(learning_repair.KEY)
+    unit_ids = {u["id"] for m in ctx.selection_rows.get("microtopics", []) for u in m.get("construction_units", [])}
+    repair_errors = learning_repair.problems(q, unit_ids) if repair is not None else []
+    for error in repair_errors:
+        ctx.gap("AUTHOR_LEARNING_REPAIR", rid, error, "CORE2")
+    repair_html = learning_repair.card(repair, rid) if repair and not repair_errors else ""
+    detailed_labels = ""
+    if (q.get("extensions") or {}).get("grade9v3:attempt_labels"):
+        concept = learner_metadata.resolve_concept(ctx.packages, q.get("primary_capability_ref"))
+        family = learner_metadata.resolve_family(ctx.packages, q.get("family_ref"))
+        detailed_labels = block("detailed_concept_labels", para(concept["concept"] + " · " + family["family"]),
+                                title="Concept and question family")
     worked = component_body(ctx, "CORE2", {
+        "DIAGNOSTIC_REPAIR": part("DIAGNOSTIC_REPAIR", repair_html),
         "SOLUTION_STEPS": part("SOLUTION_STEPS", _core2_solution(ctx, q, ans), items=_core2_solution_moves(ans)),
         "ANSWER": part("ANSWER", solution),
         "CHECK": part("CHECK", block("independent_check", '<p>' + question_text(ctx, q, "answer_check", ans["check"]) + '</p>'
                                      if ans.get("check") else "", title="Independent check")),
     }, parent="SOLUTION")
-    return compose(ctx, "CORE2", {
+    rendered = compose(ctx, "CORE2", {
         "identity": component_body(ctx, "CORE2", {
             "IDENTITY": part("IDENTITY", block("source_identity", f"<h2>{esc(_identity(q))}</h2><p class=\"g9-prov\">{esc(_custody(q))}</p>")
                              + metadata_strip(ctx, "CORE2", q)),
@@ -1775,8 +1964,12 @@ def core2(ctx: Ctx, q: dict) -> str:
             "STEM": part("STEM", '<div class="g9-eyebrow">Attempt first</div>'
                          + block("stem", '<p>' + question_text(ctx, q, "stem", q["stem"]) + '</p>')),
             "CONDITIONS": part("CONDITIONS", block("conditions", f'<ul>{conditions}</ul>' if conditions else "", title="Conditions")),
-            "TRAP": part("TRAP", block("common_wrong_route", '<p>' + question_text(ctx, q, "common_wrong_route", wrong_route) + '</p>'
-                                       if isinstance(wrong_route, str) and wrong_route.strip() else "", title="Common wrong route")),
+            "TRAP": part("TRAP", secondary_disclosure(
+                "Common wrong route · open if you want a warning",
+                block("common_wrong_route", '<p>' + question_text(ctx, q, "common_wrong_route", wrong_route) + '</p>'
+                      if isinstance(wrong_route, str) and wrong_route.strip() else "", title="Common wrong route"),
+                "core2-wrong-route",
+            )),
             "ATTEMPT": part("ATTEMPT", attempt_box("Your answer", response_for(q), q.get("options"), rid,
                                                    option_html=options if options else None)),
         }, "attempt"),
@@ -1790,9 +1983,12 @@ def core2(ctx: Ctx, q: dict) -> str:
             "CONCEPT_NAV": part("CONCEPT_NAV", _core2_concept_navigation(ctx, q)),
         }, "support"),
         "solution": component_body(ctx, "CORE2", {
-            "SOLUTION": part("SOLUTION", reveal("Answer and working", worked + teaching_figure, ref=f'CORE2-{rid}-solution')),
+            "SOLUTION": part("SOLUTION", reveal("Answer and working", worked + teaching_figure + detailed_labels
+                             + block("difficulty_basis", para((analysis.get("difficulty") or {}).get("basis")),
+                                     title="Author's difficulty rationale"), ref=f'CORE2-{rid}-solution')),
         }, "solution"),
     })
+    return rendered + _purpose_extension(ctx, "CORE2", rid)
 
 
 def _ladder(ctx: Ctx, q: dict, role: str, source: bool = False) -> str:
@@ -2001,17 +2197,22 @@ CSS = """
 --soft:#141c29;--pill-bg:#262f5a;--pill-fg:#c3c9ff;--src-bg:#12301f;--src-fg:#6ee7b7;--info-bg:#14263d;--info-line:#3b6db3;--info-fg:#b8c9de;--warn-bg:#2b1620;--warn-line:#6b3045;--warn-fg:#f3b6c4;--ok-bg:#10281d;--ok-line:#1f6b44;--ok-fg:#b7efcf}
 html{font-size:calc(var(--g9-type-body) * var(--g9-zoom))}body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.6 system-ui,sans-serif;overflow-wrap:break-word}
 header[data-g9-shell-header]{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px var(--g9-space);background:var(--card);border-bottom:1px solid var(--line)}
+.g9-header-inner{width:100%;min-width:0;box-sizing:border-box;padding:0;gap:12px}
+.g9-brand{min-width:0;max-width:100%;flex-wrap:wrap;justify-content:flex-start;overflow-wrap:anywhere}
+.g9-header-nav,.g9-header-actions{min-width:0;max-width:100%;flex-wrap:wrap;gap:8px}
+.g9-header-nav a,.g9-header-actions>*{max-width:100%;white-space:normal;overflow-wrap:anywhere}
 a{color:var(--accent)}
 header a,header button,button,summary,nav a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);font:inherit;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation}
 nav[data-g9-breadcrumb]{display:flex;gap:8px;flex-wrap:wrap;padding:8px var(--g9-space)}
 .g9-breadcrumb-bar{display:none!important}
-.g9-triad-context{font-size:.78rem;opacity:.7;margin-bottom:4px;display:block}
-.g9-triad-context a{color:inherit;text-decoration:none}
+.g9-triad-context{font-size:max(.85rem,14px);opacity:.7;margin-bottom:4px;display:block}
+.g9-triad-context a{color:inherit;text-decoration:none;min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:0 8px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;touch-action:manipulation}
 .g9-triad-context a:hover{text-decoration:underline}
-main{max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box}
+.g9-triad-actions a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;touch-action:manipulation}
+main{width:100%;min-width:0;max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box;overflow-wrap:anywhere}
 main>*{min-width:0}article[data-g9-unit]{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:var(--g9-space);margin:18px 0;min-width:0}
 article[data-g9-unit]>*{min-width:0}
-article[id],section[id]{scroll-margin-top:96px}
+article[id],section[id]{scroll-margin-top:var(--g9-header-offset,96px)}
 .g9-core1a-book{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,2vw,24px);margin:0 0 18px;min-width:0}
 .g9-core1a-book>h2{margin:.15em 0 .6em}
 .g9-bucket-orientation-grid{display:block;min-width:0}.g9-bucket-orientation-grid>*{min-width:0}
@@ -2022,7 +2223,7 @@ article[id],section[id]{scroll-margin-top:96px}
 .g9-cu:first-child{border-top:0}
 .g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] ol{list-style:none;padding-left:0;counter-reset:g9-derive}
 .g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li{counter-increment:g9-derive;margin:0 0 12px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--bg)}
-.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li::before{content:"Step " counter(g9-derive);display:block;color:var(--muted);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li::before{content:"Step " counter(g9-derive);display:block;color:var(--muted);font-size:max(.85rem,14px);font-weight:700;text-transform:uppercase;letter-spacing:.03em}
 .g9-cu-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:.35rem 0 .8rem}
 .g9-cu-nav-links{display:flex;gap:8px;flex-wrap:wrap}
 .g9-stage-controls{display:grid;gap:8px;max-width:100%}
@@ -2054,6 +2255,9 @@ figure{margin:14px 0;max-width:100%;overflow-x:auto}figure svg{width:100%;height
 [data-g9-meta-item] strong{font-weight:700;flex:0 0 auto}
 [data-g9-meta-label]{min-width:0;overflow-wrap:anywhere}
 h4{margin:.8em 0 .3em}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.g9-shell-header .g9-header-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 footer{padding:24px 16px;color:var(--muted)}
 @media print{:root,:root[data-theme=dark]{--bg:#fff;--fg:#000;--card:#fff;--line:#bbb;--accent:#1f5fae;--muted:#333;--soft:#fff;--pill-bg:#eee;--pill-fg:#222;--src-bg:#eee;--src-fg:#222;--info-bg:#fff;--info-line:#888;--info-fg:#222;--warn-bg:#fff;--warn-line:#888;--warn-fg:#222;--ok-bg:#fff;--ok-line:#888;--ok-fg:#222}
 header[data-g9-shell-header],nav[data-g9-breadcrumb],.g9-attempt,button,[data-g9-display-panel],[data-g9-source-pdf]{display:none!important}
@@ -2078,9 +2282,22 @@ input,select{font-size:max(16px,1rem)}
 COMPONENT_CSS = """
 .g9-split{display:block;min-width:0}.g9-col{min-width:0}
 .g9-component{min-width:0;margin:14px 0}.g9-component:first-child{margin-top:0}
-.g9-eyebrow{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px}
-.g9-pill{display:inline-flex;align-items:center;font-size:.85rem;font-weight:800;line-height:1.2;padding:3px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);white-space:nowrap}
+.g9-eyebrow{font-size:max(.85rem,14px);font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px}
+.g9-pill{display:inline-flex;align-items:center;font-size:max(.85rem,14px);font-weight:800;line-height:1.2;padding:3px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);white-space:nowrap}
 .g9-pill-source{background:var(--src-bg);color:var(--src-fg)}
+.g9-purpose-extension{margin:18px 0;padding:16px;border:2px solid var(--accent);border-radius:16px;background:var(--soft)}
+.g9-purpose-extension h3{margin:.1rem 0 .35rem}.g9-purpose-source{margin:.15rem 0 .7rem;color:var(--muted);font-size:.9rem}
+.g9-purpose-prompt p{font-size:1.05rem;line-height:1.55;white-space:pre-line}
+.g9-secondary-disclosure{border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
+.g9-secondary-disclosure{min-width:0;max-width:100%}
+.g9-secondary-disclosure>summary{min-height:var(--g9-touch-min);min-width:0;display:flex;align-items:center;flex-wrap:wrap;overflow-wrap:anywhere;padding:10px 12px;font-weight:800;cursor:pointer}
+.g9-secondary-disclosure>summary::after{content:"+";margin-left:auto;font-size:1.2em}.g9-secondary-disclosure[open]>summary::after{content:"−"}
+.g9-secondary-body{padding:0 12px 12px}
+.g9-worked-instruction{margin:.35rem 0 .6rem;color:var(--muted);font-weight:650}
+.g9-watch-steps{padding-left:1.35rem}.g9-watch-steps>li{margin:.65rem 0}
+.g9-worked-step{border:1px solid var(--line);border-radius:10px;background:var(--card);overflow:hidden}
+.g9-worked-step>summary{min-height:var(--g9-touch-min);display:flex;align-items:center;padding:9px 11px;font-weight:750;cursor:pointer}
+.g9-worked-step-body{padding:0 11px 11px}.g9-worked-step-body p{margin:.3rem 0}
 article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-bottom:1px solid var(--line)}
 .g9-c-header h2,.g9-c-concept-header h2{font-size:1.2rem;line-height:1.3;margin:0;letter-spacing:-.01em}
 .g9-c-header .g9-prov{margin:2px 0 0}
@@ -2091,14 +2308,14 @@ article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-
 :root[data-theme=dark] .g9-pill-band{background:#3a2a14;color:#fdba74}:root[data-theme=dark] .g9-pill-band[data-g9-band=D1]{background:#12301f;color:#6ee7b7}:root[data-theme=dark] .g9-pill-band[data-g9-band=D2]{background:#172a4d;color:#9ec5ff}:root[data-theme=dark] .g9-pill-band[data-g9-band=D4]{background:#3a1830;color:#f9a8d4}
 .g9-why{margin-top:6px}.g9-why p{margin:.2rem 0 .6rem;color:var(--muted)}
 .g9-dgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
-.g9-dcell{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.85rem;color:var(--muted)}.g9-dcell b{display:block;color:var(--fg);font-size:1rem}
+.g9-dcell{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:max(.85rem,14px);color:var(--muted)}.g9-dcell b{display:block;color:var(--fg);font-size:1rem}
 .g9-c-stem [data-g9-block=stem] p{margin:.1rem 0;font-size:1.12rem;line-height:1.58;font-weight:560;white-space:pre-line}
 .g9-c-callout-info{border-left:4px solid var(--info-line);background:var(--info-bg);padding:10px 14px;border-radius:0 12px 12px 0;color:var(--info-fg)}
 .g9-c-callout-warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:12px;padding:10px 14px;color:var(--warn-fg)}
 .g9-c-callout-info h4,.g9-c-callout-warn h4{margin:0 0 .2rem;font-size:1rem}.g9-c-callout-warn h4{color:var(--warn-fg)}
 .g9-c-callout-info ul{margin:.2rem 0;padding-left:1.2rem}.g9-c-callout-info p,.g9-c-callout-warn p{margin:.1rem 0}
 .g9-bridge-link{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
-.g9-crux-tag{display:inline-block;margin:0 0 4px;padding:1px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);font-size:.85rem;font-weight:800}
+.g9-crux-tag{display:inline-block;margin:0 0 4px;padding:1px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);font-size:max(.85rem,14px);font-weight:800}
 .g9-c-step-cards [data-g9-block=construction] ol>li[data-g9-crux-step]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
 .g9-lines{white-space:pre-line}
 .g9-cu-support>h3{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -2112,23 +2329,25 @@ article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-
 .g9-c-visual-card figure,.g9-c-staged-visual figure{margin:0}
 .g9-c-visual-card figure svg,.g9-c-staged-visual figure svg{display:block;width:100%;height:auto;max-width:100%}
 .g9-c-visual-card figure svg{max-height:min(48vh,440px)}.g9-c-staged-visual figure svg{max-height:min(42vh,360px)}
-.g9-c-ladder .g9-block>h4{margin:.9rem 0 .2rem;font-size:.85rem;color:var(--muted)}
+.g9-diagram-scroll{width:100%;max-width:100%;min-width:0;min-height:48px;box-sizing:border-box;overflow-x:auto}
+.g9-diagram-scroll svg{display:block;max-height:none!important;max-width:none!important}
+.g9-c-ladder .g9-block>h4{margin:.9rem 0 .2rem;font-size:max(.85rem,14px);color:var(--muted)}
 .g9-rung-map,.g9-c-ladder [data-g9-ladder]{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
 .g9-rung-map>li{border:1px dashed var(--line);border-radius:12px;padding:9px 13px;color:var(--muted)}
 .g9-c-ladder [data-g9-ladder]>li{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:10px 13px}
 .g9-rung-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-weight:800}
-.g9-rung-no{display:inline-grid;place-items:center;min-width:2.3em;height:2.1em;border-radius:8px;background:var(--pill-bg);color:var(--pill-fg);font-size:.85rem}
+.g9-rung-no{display:inline-grid;place-items:center;min-width:2.3em;height:2.1em;border-radius:8px;background:var(--pill-bg);color:var(--pill-fg);font-size:max(.85rem,14px)}
 .g9-c-ladder details[data-g9-support-reveal]{border:0;padding:0;margin:.5rem 0}
 .g9-c-ladder details[data-g9-support-reveal]>summary{width:100%;justify-content:space-between;font-weight:700}
 .g9-c-ladder [data-g9-support-prompt]{margin:.5rem 0}.g9-c-ladder .g9-ladder>button{margin-top:10px}
 .g9-pdf-link{gap:6px;font-weight:700}.g9-pdf-icon{flex:none;width:24px;height:24px}.g9-pdf-link span{white-space:nowrap}header .g9-pdf-link{color:var(--accent)}.g9-c-link-list .g9-source-pdf{border-radius:12px}
-.g9-c-link-list h4{margin:.9rem 0 .3rem;font-size:.85rem;color:var(--muted)}
+.g9-c-link-list h4{margin:.9rem 0 .3rem;font-size:max(.85rem,14px);color:var(--muted)}
 .g9-c-link-list ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.2rem 0;padding:0}
 .g9-c-link-list li{margin:0}.g9-c-link-list a{display:inline-flex;align-items:center;min-height:48px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--fg);text-decoration:none}
 .g9-c-disclosure>details{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:0;overflow:hidden;margin:0}
 .g9-c-disclosure>details>summary{list-style:none;display:flex;width:100%;justify-content:space-between;border:0;border-radius:0;background:transparent;padding:13px 15px;font-weight:850;min-height:48px}
 .g9-c-disclosure>details>summary::-webkit-details-marker{display:none}
-.g9-c-disclosure>details>summary::after{content:"Show";font-size:.85rem;background:var(--pill-bg);color:var(--pill-fg);padding:4px 10px;border-radius:999px}
+.g9-c-disclosure>details>summary::after{content:"Show";font-size:max(.85rem,14px);background:var(--pill-bg);color:var(--pill-fg);padding:4px 10px;border-radius:999px}
 .g9-c-disclosure>details[open]>summary::after{content:"Hide"}.g9-c-disclosure>details[data-locked]>summary::after{content:"After you attempt"}
 .g9-c-disclosure>details[open]>summary{border-bottom:1px solid var(--line);background:var(--card)}
 .g9-c-disclosure [data-g9-payload-slot]{padding:6px 16px 16px}
@@ -2138,15 +2357,15 @@ article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-
 .g9-step-body [data-g9-block=solution_inputs]{display:flex;flex-wrap:wrap;gap:.4rem;align-items:baseline;color:var(--muted)}
 .g9-step-body [data-g9-block=solution_inputs] h4{margin:0}
 .g9-step-body [data-g9-block=solution_inputs] ul{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;margin:0;padding:0}
-.g9-step-body [data-g9-block=solution_inputs] li{border:1px solid var(--line);border-radius:999px;padding:1px 10px;font-size:.85rem}
-.g9-step-body p{margin:.25rem 0}.g9-step-body h4{margin:0;font-size:.85rem;color:var(--muted)}
+.g9-step-body [data-g9-block=solution_inputs] li{border:1px solid var(--line);border-radius:999px;padding:1px 10px;font-size:max(.85rem,14px)}
+.g9-step-body p{margin:.25rem 0}.g9-step-body h4{margin:0;font-size:max(.85rem,14px);color:var(--muted)}
 .g9-solution-move[data-g9-solution-crux=true]{background:var(--info-bg);border-radius:10px;padding-left:8px;padding-right:8px}
 .g9-c-step-list [data-g9-block=working] ol{list-style:none;padding:0;margin:0;counter-reset:g9s}
 .g9-c-step-list [data-g9-block=working] ol>li{counter-increment:g9s;display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
 .g9-c-step-list [data-g9-block=working] ol>li::before{content:counter(g9s);font-weight:850;font-size:.9rem;color:var(--pill-fg);background:var(--pill-bg);border-radius:8px;padding:5px 6px;text-align:center;height:max-content}
 .g9-c-answer-box{background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:12px;padding:10px 14px;color:var(--ok-fg)}
-.g9-c-answer-box p{margin:.15rem 0}.g9-c-answer-box h4{margin:0 0 .2rem;font-size:.85rem}
-.g9-c-check-box{border-left:4px solid var(--ok-line);padding:4px 14px;color:var(--ok-fg)}.g9-c-check-box h4{margin:0;font-size:.85rem}.g9-c-check-box p{margin:.15rem 0}
+.g9-c-answer-box p{margin:.15rem 0}.g9-c-answer-box h4{margin:0 0 .2rem;font-size:max(.85rem,14px)}
+.g9-c-check-box{border-left:4px solid var(--ok-line);padding:4px 14px;color:var(--ok-fg)}.g9-c-check-box h4{margin:0;font-size:max(.85rem,14px)}.g9-c-check-box p{margin:.15rem 0}
 .g9-c-tile,.g9-c-recall-card{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:12px 16px}
 .g9-c-tile h4,.g9-c-recall-card h4{margin:0 0 .3rem}.g9-c-tile ul{margin:.2rem 0;padding-left:1.2rem}
 .g9-c-banner{border-left:5px solid var(--accent);background:var(--info-bg);padding:12px 16px;border-radius:0 14px 14px 0}.g9-c-banner h4{margin:0 0 .2rem;color:var(--accent)}.g9-c-banner p{margin:.1rem 0}
@@ -2161,14 +2380,14 @@ article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-
 .g9-c-equation-card,.g9-c-worked-card{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 14px}
 .g9-c-worked-card{border-left:4px solid var(--accent)}.g9-c-worked-card [data-g9-block=worked_anchor]{border-left:0;padding-left:0}
 .g9-c-trap-card{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:14px;padding:10px 14px;color:var(--warn-fg)}
-.g9-c-trap-card [data-g9-block]{border-left:0;padding-left:0}.g9-c-trap-card h4{margin:.5rem 0 .1rem;font-size:.85rem}
+.g9-c-trap-card [data-g9-block]{border-left:0;padding-left:0}.g9-c-trap-card h4{margin:.5rem 0 .1rem;font-size:max(.85rem,14px)}
 .g9-c-trap-card ul{margin:.1rem 0;padding-left:1.2rem}
 .g9-c-triad{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 14px}
-.g9-c-triad h4{margin:0 0 .4rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.g9-c-triad h4{margin:0 0 .4rem;font-size:max(.85rem,14px);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
 .g9-triad{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .g9-triad>li{display:grid;gap:2px;border-left:4px solid var(--line);padding:2px 0 2px 10px}
 .g9-triad>li[data-g9-triad-role=CHECK]{border-color:var(--info-line)}.g9-triad>li[data-g9-triad-role=APPLY]{border-color:var(--ok-line)}.g9-triad>li[data-g9-triad-role=CONNECT]{border-color:var(--pill-fg)}
-.g9-triad-head{font-size:.85rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.g9-triad-head{font-size:max(.85rem,14px);font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
 .g9-c-chips ul,.g9-c-chips ol{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.3rem 0;padding:0}
 .g9-c-chips li{margin:0}
 .g9-c-chips a{border:1px solid var(--line);border-radius:999px;background:var(--card);padding:6px 14px;min-height:48px;display:inline-flex;align-items:center;text-decoration:none;color:var(--fg)}
@@ -2187,6 +2406,8 @@ article[data-g9-role=CORE1A]>.slot-identity [data-g9-block=section_route] h4{mar
 article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] ol{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
 article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] li{margin:0}
 article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] a{display:inline-block;width:auto;max-width:24rem;padding:4px 14px;border-radius:999px;line-height:38px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-component=SECTION_ROUTE]{flex:1 1 100%;width:100%;min-width:0}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] a{max-width:100%;white-space:normal;overflow-wrap:anywhere}
 article[data-g9-role=CORE2]>.slot-identity [data-g9-meta-item],article[data-g9-role=CORE1A]>.slot-identity [data-g9-meta-item]{padding:2px 10px;line-height:1.35}
 .g9-interactive-bridge{border:2px solid var(--accent);border-radius:16px;background:var(--card);padding:16px 20px;margin:18px 0}
 .g9-interactive-bridge h3{margin:8px 0 4px;font-size:1.15rem;color:var(--fg)}
@@ -2239,17 +2460,20 @@ JS = r"""
 (()=>{const q=(s,r=document)=>[...r.querySelectorAll(s)];
 const store={get:k=>{try{return localStorage.getItem('g9-'+k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem('g9-'+k,v);return true}catch(e){return false}},remove:k=>{try{localStorage.removeItem('g9-'+k);return true}catch(e){return false}}};
 const root=document.documentElement;const scope=root.dataset.g9Product&&root.dataset.g9RenderDigest?root.dataset.g9Product+':'+root.dataset.g9RenderDigest:'';
+const shell=document.querySelector('.g9-shell-header');if(shell){const offset=()=>root.style.setProperty('--g9-header-offset',(shell.getBoundingClientRect().height+16)+'px');new ResizeObserver(offset).observe(shell);offset();}
 const apply=()=>{root.dataset.theme=store.get('theme')||root.dataset.theme||'light';root.style.setProperty('--g9-zoom',store.get('zoom')||'1');};apply();
 q('[data-g9-theme]').forEach(b=>b.onclick=()=>{store.set('theme',b.dataset.g9Theme);apply()});
 q('[data-g9-zoom]').forEach(b=>b.onclick=()=>{let z=parseFloat(store.get('zoom')||'1');z=b.dataset.g9Zoom==='inc'?Math.min(1.6,z+0.1):b.dataset.g9Zoom==='dec'?Math.max(0.8,z-0.1):1;store.set('zoom',z.toFixed(1));apply()});
 q('[data-g9-font]').forEach(b=>b.onclick=()=>q('[data-g9-zoom="'+b.dataset.g9Font+'"]')[0]?.click());
-function initFigure(f){if(f.dataset.g9Init)return;f.dataset.g9Init='1';const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);if(ids.length<2)return;let i=0;
+function fitFigure(f){const svg=q('svg',f)[0];if(!svg||!svg.isConnected)return;const groups=q('[data-g9-stage-id]',svg).filter(g=>getComputedStyle(g).display!=='none');if(groups.length){const boxes=groups.map(g=>g.getBBox()).filter(b=>b.width>0&&b.height>0);if(boxes.length){const x=Math.min(...boxes.map(b=>b.x))-12,y=Math.min(...boxes.map(b=>b.y))-12,r=Math.max(...boxes.map(b=>b.x+b.width))+12,b=Math.max(...boxes.map(b=>b.y+b.height))+12;svg.setAttribute('viewBox',[x,y,r-x,b-y].join(' '));}}
+const host=svg.parentElement;const labels=q('text',svg).filter(t=>t.checkVisibility({visibilityProperty:true}));const min=labels.reduce((v,t)=>Math.min(v,parseFloat(getComputedStyle(t).fontSize)||Infinity),Infinity);const box=svg.viewBox.baseVal;const floor=Number(f.dataset.g9MinFigureText)||14;const needed=Number.isFinite(min)&&min>0?Math.ceil(box.width*floor/min):0;svg.style.width=Math.max(host.clientWidth,needed)+'px';}
+function initFigure(f){if(f.dataset.g9Init)return;f.dataset.g9Init='1';const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);fitFigure(f);const host=q('.g9-diagram-scroll',f)[0];if(host){let width=host.clientWidth;new ResizeObserver(()=>{const next=host.clientWidth;if(next!==width){width=next;fitFigure(f)}}).observe(host)}if(ids.length<2)return;let i=0;
 const chips=q('[data-g9-stage-goto]',f);const desc=q('[data-g9-stage-desc-text]',f)[0];
-const isSeq=f.dataset.g9StageSequence==='true'||ids.every(id=>{const g=q('[data-g9-stage-id="'+id+'"]',f)[0];return g&&g.querySelector('text[y="24"]');});
+const stageMode=f.dataset.g9StageMode||'cumulative';const cumulative=stageMode!=='replace';
 ids.forEach(id=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display='none'));
-const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=(isSeq?n===i:n<=i)?'':'none'));const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
+const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=(cumulative?n<=i:n===i)?'':'none'));fitFigure(f);const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
 q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})}
-function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('[data-g9-rung-ghost]',l)[0]?.remove();q('figure[data-g9-figure]',payload).forEach(initFigure);q('[data-g9-ladder]',l)[0].append(payload);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
+function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('[data-g9-rung-ghost]',l)[0]?.remove();q('[data-g9-ladder]',l)[0].append(payload);q('figure[data-g9-figure]',l).forEach(initFigure);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
 function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}
 const number=t=>{const v=t.trim();if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?(?:\s*\/\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)?$/i.test(v))return false;const p=v.split('/').map(x=>Number(x.trim()));return p.every(Number.isFinite)&&(p.length===1||p[1]!==0)};
 function validAttempt(box){const type=box.dataset.g9ResponseType;if(type==='single_choice'||type==='multiple_choice'||type==='true_false')return q('[data-g9-choice]:checked',box).length>0;
@@ -2263,7 +2487,7 @@ const attemptFields=a=>q('[data-g9-attempt-box] input,[data-g9-attempt-box] text
 function saveCore2State(a){if(a.dataset.g9Role!=='CORE2')return;const key=stateKey(a);if(!key)return;const fields=attemptFields(a).map(el=>({value:el.value,checked:!!el.checked}));const ladders={};q('.g9-ladder[data-g9-ladder-ref]',a).forEach(l=>ladders[l.dataset.g9LadderRef]=rungCount(l));const reveals=q('details[data-g9-support-reveal]',a).map(d=>!!d.open);store.set(key,JSON.stringify({attempted:!!a.dataset.attempted,fields,ladders,reveals}))}
 function bindSupportRevealState(a){q('details[data-g9-support-reveal]',a).forEach(d=>{if(d.dataset.g9StateBound)return;d.dataset.g9StateBound='1';d.addEventListener('toggle',()=>saveCore2State(a))})}
 function restoreCore2State(a,lock){if(a.dataset.g9Role!=='CORE2')return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});bindSupportRevealState(a);q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.attempted){a.dataset.attempted='1';materialise(a)}lock()}
-const articles=q('article[data-g9-unit],article[data-g9-diagnostic]');
+const articles=q('article[data-g9-unit],article[data-g9-diagnostic],[data-g9-purpose-item]');
 articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);
 q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));
 q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});
@@ -2303,17 +2527,17 @@ def pdf_control(href: str, accessible_name: str = PDF_ACCESSIBLE_NAME) -> str:
             f'aria-label="{esc(accessible_name)}">{PDF_ICON}<span>PDF</span></a>')
 
 
-def shell_header(home_href: str, question_bank_href: str, pdf_href: str | None = None, pdf_name: str = PDF_ACCESSIBLE_NAME) -> str:
+def shell_header(home_href: str, question_bank_href: str, pdf_href: str | None = None, pdf_name: str = PDF_ACCESSIBLE_NAME, portal_root: str | None = None) -> str:
     """The shared tablet-shell header. Used by every rendered page."""
-    pdf_btn = f'<a class="g9-header-btn" href="{esc(pdf_href)}" title="{esc(pdf_name)}">PDF</a>' if pdf_href else ""
-    return (f'<header class="g9-shell-header"><div class="g9-header-inner">'
+    pdf_btn = f'<a class="g9-header-btn g9-pdf-link" data-g9-action="pdf" data-g9-pdf-link aria-label="{esc(pdf_name)}" href="{esc(pdf_href)}" title="{esc(pdf_name)}">PDF</a>' if pdf_href else ""
+    subjects = ''.join(f'<a href="{esc(urljoin(portal_root, name.lower()+"/index.html"))}">{name}</a>'
+                       for name in ('Physics','Chemistry','Mathematics')) if portal_root else ''
+    qb_link = f'<a href="{esc(question_bank_href)}">Question Bank</a>' if question_bank_href != home_href else ''
+    return (f'<header class="g9-shell-header" data-g9-shell-header><div class="g9-header-inner">'
             f'<a href="{esc(home_href)}" class="g9-brand"><span class="logo-icon">⚡</span><span class="brand-title">Grade9V3.5</span><span class="g9-brand-badge">Learner Platform</span></a>'
             f'<nav class="g9-header-nav" aria-label="Portal Navigation">'
-            f'<a href="{esc(home_href)}">Home</a>'
-            f'<a href="../../../physics/index.html">Physics</a>'
-            f'<a href="../../../chemistry/index.html">Chemistry</a>'
-            f'<a href="../../../mathematics/index.html">Mathematics</a>'
-            f'<a href="{esc(question_bank_href)}">Question Bank</a>'
+            f'<a data-g9-home href="{esc(home_href)}">Home</a>'
+            f'{subjects}{qb_link}'
             f'</nav>'
             f'<div class="g9-header-actions">'
             f'<button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search"><span class="g9-btn-icon">🔍</span><span class="g9-btn-text">Search</span></button>'
@@ -2337,6 +2561,13 @@ def _pdf_target(ctx: Ctx, role: str, mode: str) -> tuple[str | None, str]:
     return policy["target_pattern"].format(page_stem=stem), policy["accessible_name"]
 
 
+def _portal_root(manifest: dict, mode: str) -> str | None:
+    """A declared portal home supplies its base; a standalone product index does not."""
+    home = _mode_href(manifest["home_href"], mode)
+    parent = home.rsplit('/', 1)[0]+'/' if '/' in home else None
+    return parent
+
+
 def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
     m = ctx.manifest
     if mode == "EMBED":
@@ -2349,63 +2580,43 @@ def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
     qb_href = _mode_href(m.get("question_bank_href", m["home_href"]), mode)
     pdf_href, pdf_name = _pdf_target(ctx, role, mode) if pdf else (None, PDF_ACCESSIBLE_NAME)
     
-    header = shell_header(home_href, qb_href, pdf_href, pdf_name)
-    
-    # Breadcrumbs
-    subject = m.get("subject", "Physics")
-    subject_href = f"../../../{subject.lower()}/index.html"
-    
-
-    from Shared.tools.resolve_concept_bundle import resolve_bundle
-    cap_ref = None
-    try:
-        if ctx.selection_rows and "core2" in ctx.selection_rows and ctx.selection_rows["core2"]:
-            cap_ref = ctx.selection_rows["core2"][0].get("primary_capability_ref", "")
-        else:
-            cap_ref = "MIC-PHY-NLM-FRICTION" # fallback
-            
-        registry_path = REPO / "public" / "data" / "resource-registry.v1.json"
-        reg = load_json(registry_path) if registry_path.exists() else []
-        bundle = resolve_bundle(cap_ref, reg)
-        explore_btn = ""
+    portal_root = _portal_root(m, mode)
+    header = shell_header(home_href, qb_href, pdf_href, pdf_name, portal_root)
+    subject = m.get("subject", "")
+    subject_href = urljoin(portal_root, subject.lower()+"/index.html") if portal_root else None
+    concept = next(iter(ctx.selection_rows.get("microtopics", [])), {})
+    selected_questions = ctx.selection_rows.get("core2", [])
+    cap_ref = concept.get("primary_capability_ref") or (selected_questions[0].get("primary_capability_ref") if selected_questions else None)
+    explore_btn = ""
+    topic_href = None
+    if portal_root and cap_ref:
+        from Shared.tools.resolve_concept_bundle import resolve_bundle
+        registry_path = REPO / "public/data/resource-registry.v1.json"
+        bundle = resolve_bundle(cap_ref, load_json(registry_path)) if registry_path.exists() else {}
         if bundle.get("interactive"):
-            ep = bundle["interactive"][0].get("entrypoint", "")
-            explore_btn = f'<a class="g9-triad-btn g9-btn-explore" href="../../../{ep}">⚡ Try visually</a>'
-            
-        topic_id = bundle.get("topic_ref", "")
-        if topic_id:
-            topic_slug = topic_id.split(".")[-1]
-        else:
-            pid = m.get("product_id", "")
-            parts = pid.split("-")
-            topic_slug = parts[2].lower() if len(parts) >= 3 else "nlm"
-    except Exception:
-        explore_btn = ""
-        topic_slug = "nlm"
-        
-    topic_href = f"../../../topics/{topic_slug}/index.html"
-    
-    triad_context = (f'<div class="g9-triad-context" aria-label="breadcrumb">'
-                     f'<a href="{esc(home_href)}">Home</a>'
-                     f' / <a href="{subject_href}">{esc(subject)}</a>'
-                     f' / <a href="{topic_href}">{esc(m.get("title", ""))}</a>'
-                     f' / <span aria-current="page">{esc(current_role)}</span>'
-                     f'</div>')
-
-    qb_url = f"../../../question-bank/index.html?capability={esc(cap_ref)}"
-
-    c1a_active = ' active' if role == 'CORE1A' else ''
-    c2_active = ' active' if role == 'CORE2' else ''
-
-    triad = (f'<div class="g9-concept-triad-bar"><div class="g9-triad-inner">'
-             f'{triad_context}'
+            entry = bundle["interactive"][0].get("entrypoint")
+            if entry:
+                explore_btn = f'<a class="g9-triad-btn g9-btn-explore" href="{esc(urljoin(portal_root,entry))}">⚡ Try visually</a>'
+        topic_ref = bundle.get("topic_ref")
+        if topic_ref:
+            topic_href = urljoin(portal_root, "topics/"+topic_ref.split(".")[-1]+"/index.html")
+    subject_label = f'<a href="{esc(subject_href)}">{esc(subject)}</a>' if subject_href else esc(subject)
+    topic_label = f'<a href="{esc(topic_href)}">{esc(m.get("title", ""))}</a>' if topic_href else esc(m.get("title", ""))
+    triad_context = f'<div class="g9-triad-context">{subject_label} / {topic_label} / <span aria-current="page">{esc(current_role)}</span></div>'
+    actions = []
+    selected_roles = product_manifest.selected_output_roles(m)
+    for target,label in (("CORE1","Orientation"),("CORE1A","📖 Learn"),("CORE1B","Recall"),
+                         ("CORE2","✍️ Practice"),("CORE2A","Apply"),("CORE2B","Transfer")):
+        if target in selected_roles:
+            active = ' active' if role == target else ''
+            href = '#g9-role-'+target if mode == 'SINGLE_FILE' else ROLE_FILE[target]
+            actions.append(f'<a class="g9-triad-btn{active}" href="{esc(href)}">{label}</a>')
+    actions.append(explore_btn)
+    if qb_href != home_href:
+        actions.append(f'<a class="g9-triad-btn g9-btn-qb" href="{esc(qb_href)}">All questions in QB &rarr;</a>')
+    triad = (f'<div class="g9-concept-triad-bar"><div class="g9-triad-inner">{triad_context}'
              f'<span class="g9-triad-concept-title">Concept: {esc(m.get("title", ""))}</span>'
-             f'<div class="g9-triad-actions">'
-             f'<a class="g9-triad-btn g9-btn-learn{c1a_active}" href="core1a.html">📖 Learn</a>'
-             f'<a class="g9-triad-btn g9-btn-practice{c2_active}" href="core2.html">✍️ Practice</a>'
-             f'{explore_btn}'
-             f'<a class="g9-triad-btn g9-btn-qb" href="{qb_url}">All questions in QB &rarr;</a>'
-             f'</div></div></div>')
+             f'<div class="g9-triad-actions">{"".join(actions)}</div></div></div>')
 
     return header, triad
 
@@ -2446,9 +2657,19 @@ def _shared_head_assets(ctx: Ctx, mode: str) -> str:
     if mode == "EMBED":
         return ""
     if mode == "SINGLE_FILE":
-        return '<style data-g9-tablet-shell>' + TABLET_CSS.read_text(encoding="utf-8") + '</style>'
+        return ('<style data-g9-modern-shell>' + (REPO / 'public/css/modern-learner.css').read_text(encoding="utf-8")
+                + '</style><style data-g9-tablet-shell>' + TABLET_CSS.read_text(encoding="utf-8") + '</style>')
     root = _asset_root(ctx)
     return f'<link rel="stylesheet" href="{esc(root)}css/modern-learner.css"><link rel="stylesheet" href="{esc(root)}css/tablet-12-7.css">'
+
+
+def _shared_script_assets(ctx: Ctx, mode: str) -> str:
+    if mode == "EMBED":
+        return ""
+    paths = ("js/display-controls.js", "js/site-header.js")
+    if mode == "SINGLE_FILE":
+        return ''.join('<script>' + (REPO / 'public' / path).read_text(encoding='utf-8') + '</script>' for path in paths)
+    return ''.join(f'<script src="{esc(_asset_root(ctx))}{path}"></script>' for path in paths)
 
 
 def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
@@ -2472,13 +2693,13 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
             '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}">'
             f'{_shared_head_assets(ctx, mode)}'
-            f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}{COMPONENT_CSS}{layout_css(ctx.blueprints)}</style></head>'
+            f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}{COMPONENT_CSS}{learning_repair.CSS}{layout_css(ctx.blueprints)}</style></head>'
             f'<body data-core="{role}" data-blueprint-ref="{esc(bp["id"])}@{esc(bp["version"])}">'
             f'{header}{crumbs}<noscript>Answers open after you attempt; this page needs JavaScript.</noscript>'
             f'<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>'
             f'{_core1a_bucket_orientation(ctx) if role == "CORE1A" else ""}{articles}</main>'
             f'<footer data-g9-footer>{esc(m["subject"])} · {esc(m["title"])}</footer>'
-            f"<script>{JS}</script><script src=\"{esc(_asset_root(ctx))}js/display-controls.js\"></script><script src=\"{esc(_asset_root(ctx))}js/site-header.js\"></script></body></html>\n")
+            f"<script>{JS}{learning_repair.JS}</script>{_shared_script_assets(ctx, mode)}</body></html>\n")
 
 
 def index_page(ctx: Ctx, digest: str) -> str:
@@ -2874,7 +3095,9 @@ def pdf_publication_problems(folder: Path) -> list[str]:
     linked: set[str] = set()
     for page in sorted(folder.glob("*.html")):
         text = page.read_text(encoding="utf-8")
-        for href in re.findall(r'<a data-g9-action="pdf"[^>]*?\shref="([^"]*)"', text):
+        for anchor in re.findall(r'<a\b[^>]*\bdata-g9-action="pdf"[^>]*>', text):
+            target_attr = re.search(r'\bhref="([^"]*)"', anchor)
+            href = target_attr.group(1) if target_attr else ""
             if not re.fullmatch(r"[a-z0-9]+\.pdf", href):
                 problems.append(f"{page.name}: the PDF link {href!r} is not a learner PDF beside the page")
                 continue

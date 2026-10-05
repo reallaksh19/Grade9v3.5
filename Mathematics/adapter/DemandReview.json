@@ -1,0 +1,148 @@
+{
+  "schema": "demand-review-adapter/v1",
+  "version": "1.0.0",
+  "subject": "Mathematics",
+  "vocabulary_ref": "Mathematics/adapter/QualityVocabulary.json",
+  "basis_refs": [
+    "Mathematics/adapter/QualityVocabulary.json",
+    "Mathematics/adapter/CoreContracts.json"
+  ],
+  "demands": {
+    "RETRIEVE": {
+      "review_focus": "Definitions, theorem hypotheses, properties and domain restrictions must be reconstructed with their conditions.",
+      "representation_kinds": [
+        "NUMBER_LINE",
+        "GEOMETRIC_FIGURE"
+      ],
+      "check_types": [
+        "DOMAIN_CHECK",
+        "SPECIAL_CASE"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "A theorem/property is recalled without the hypothesis that makes it valid.",
+          "diagnostic_prompt": "Ask for a case where the remembered statement would fail if one condition were removed.",
+          "repair": "Pair the statement with its domain/hypotheses and a boundary example."
+        }
+      ]
+    },
+    "EXPLAIN": {
+      "review_focus": "Require why an equivalence, pattern or construction works; symbolic manipulation alone is not an explanation.",
+      "representation_kinds": [
+        "AREA_MODEL",
+        "COORDINATE_GRAPH",
+        "GEOMETRIC_FIGURE"
+      ],
+      "check_types": [
+        "SPECIAL_CASE",
+        "ALTERNATE_METHOD"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "The learner repeats an algebraic rule or observed pattern without giving the invariant or reason.",
+          "diagnostic_prompt": "Ask what stays unchanged across the transformation and why.",
+          "repair": "Name the invariant/property, connect it to each step, and test the explanation on a contrasting case."
+        }
+      ]
+    },
+    "APPLY": {
+      "review_focus": "Procedural fluency includes preserving equivalence/domain while carrying out a known algorithm.",
+      "representation_kinds": [
+        "NUMBER_LINE",
+        "ALGEBRA_TILES",
+        "COORDINATE_GRAPH"
+      ],
+      "check_types": [
+        "SUBSTITUTION_BACK_CHECK",
+        "INVERSE_OPERATION",
+        "DOMAIN_CHECK"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "A familiar algorithm is executed with an invalid cancellation, sign change, or domain expansion.",
+          "diagnostic_prompt": "Ask whether the current transformation is reversible and what values are excluded.",
+          "repair": "State the domain/equivalence condition, execute the procedure, then substitute back or reverse the operation."
+        }
+      ]
+    },
+    "MODEL": {
+      "review_focus": "Protect variable/relationship/strategy formulation from context; a correct calculation cannot repair a wrong model.",
+      "representation_kinds": [
+        "BAR_MODEL",
+        "TABLE_OF_VALUES",
+        "COORDINATE_GRAPH"
+      ],
+      "check_types": [
+        "ALTERNATE_METHOD",
+        "ESTIMATION"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "Numbers are inserted into a familiar formula before the relationships/unknowns in the situation are defined.",
+          "diagnostic_prompt": "Ask what each variable means and which sentence gives the relation between them.",
+          "repair": "Define quantities/constraints first, formulate the mathematical relation, then test it against the context or an estimate."
+        }
+      ]
+    },
+    "REPRESENT": {
+      "review_focus": "Meaning must survive graph/table/equation/diagram translation, including scale, domain, orientation and correspondence.",
+      "representation_kinds": [
+        "COORDINATE_GRAPH",
+        "TABLE_OF_VALUES",
+        "GEOMETRIC_FIGURE",
+        "NUMBER_LINE"
+      ],
+      "check_types": [
+        "GRAPHICAL_CHECK",
+        "DOMAIN_CHECK"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "A graph or diagram is copied by shape while scale, domain, orientation or corresponding quantities change.",
+          "diagnostic_prompt": "Ask for one value/relationship that must agree in both source and target representations.",
+          "repair": "State the invariant/correspondence, map elements explicitly, then translate back or check sample points."
+        }
+      ]
+    },
+    "SYNTHESIZE": {
+      "review_focus": "Non-routine work should expose dependencies and useful subgoals without giving away the strategic bridge.",
+      "representation_kinds": [
+        "GEOMETRIC_FIGURE",
+        "AREA_MODEL",
+        "TREE_DIAGRAM"
+      ],
+      "check_types": [
+        "ALTERNATE_METHOD",
+        "SPECIAL_CASE",
+        "ESTIMATION"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "Known results are tried independently without selecting a subgoal that links them to the target.",
+          "diagnostic_prompt": "Ask which intermediate statement would connect a known fact to the goal.",
+          "repair": "Choose a dependency-respecting subgoal, combine the relevant results, and verify by a second route or special case."
+        }
+      ]
+    },
+    "JUSTIFY": {
+      "review_focus": "Proof/derivation requires explicit hypotheses, warrants and a conclusion; examples/pictures are evidence or intuition, not proof.",
+      "representation_kinds": [
+        "GEOMETRIC_FIGURE",
+        "COORDINATE_GRAPH",
+        "VENN_DIAGRAM"
+      ],
+      "check_types": [
+        "SPECIAL_CASE",
+        "DOMAIN_CHECK",
+        "ALTERNATE_METHOD"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "A few examples, a convincing diagram, or an algebraic target match is treated as a general proof.",
+          "diagnostic_prompt": "Ask which theorem/property licenses the decisive implication and whether its hypotheses are met.",
+          "repair": "Write the claim-warrant-conclusion chain, preserve domain/equivalence, and challenge it with a counterexample or converse."
+        }
+      ]
+    }
+  }
+}

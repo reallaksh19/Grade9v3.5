@@ -1,0 +1,65 @@
+{
+  "schema": "issue29-correction-source-register/v1",
+  "checked_on": "2026-10-04",
+  "source_scope": "Claim-bounded primary sources, not certification of the original agents' entire bibliographies",
+  "sources": [
+    {
+      "id": "IUPAC-H02874",
+      "url": "https://goldbook.iupac.org/terms/view/H02874/1000",
+      "title": "hybridization",
+      "doi": "10.1351/goldbook.H02874",
+      "retrieval": "PRIMARY_INDEXED_TEXT; direct open returned 403",
+      "locator": "definition 1, orbital sense; the same entry also contains biotechnology senses",
+      "supports": "Hybridisation is a local linear-combination description of atomic orbitals",
+      "does_not_support": "Measured geometry, unique physical orbital decomposition or molecular energy"
+    },
+    {
+      "id": "IUPAC-HT07049",
+      "url": "https://goldbook.iupac.org/terms/view/HT07049",
+      "title": "hybrid orbital",
+      "doi": "10.1351/goldbook.HT07049",
+      "retrieval": "PRIMARY_INDEXED_TEXT; direct open returned 403",
+      "locator": "definition and source PAC 1999, 71, 1919, p.1944",
+      "supports": "Hybrid orbitals combine angular-momentum types at a given atom",
+      "does_not_support": "Any particular experimental barrier or universal orbital-energy formula"
+    },
+    {
+      "id": "OPENSTAX-CHEM2E-8.3",
+      "url": "https://openstax.org/books/chemistry-2e/pages/8-3-multiple-bonds",
+      "title": "8.3 Multiple Bonds",
+      "retrieval": "DIRECT_PRIMARY_PAGE",
+      "locator": "ethene/acetylene orbital allocation and resonance discussion",
+      "supports": "Introductory sigma/pi orbital inventories and qualitative orientation/delocalisation models",
+      "does_not_support": "Allene-specific measured geometry or an ab initio total-energy model"
+    },
+    {
+      "id": "NATURE-35079036",
+      "url": "https://www.nature.com/articles/35079036",
+      "title": "Hyperconjugation not steric repulsion leads to the staggered structure of ethane",
+      "doi": "10.1038/35079036",
+      "authors": ["Vojislava Pophristic", "Lionel Goodman"],
+      "retrieval": "PRIMARY_INDEXED_METADATA_AND_ABSTRACT; full text not reviewed",
+      "locator": "Nature 411, 565–568 (2001), abstract",
+      "supports": "A research counterexample to an unqualified purely-steric torsion explanation",
+      "does_not_support": "Universal partition of every torsional barrier or a single-term energy law"
+    },
+    {
+      "id": "ACS-JA9639426",
+      "url": "https://pubs.acs.org/doi/10.1021/ja9639426",
+      "title": "Role of Conjugation in the Stabilities and Rotational Barriers of Formamide and Thioformamide. An ab Initio Valence-Bond Study",
+      "doi": "10.1021/ja9639426",
+      "authors": ["David Lauvergnat", "Philippe C. Hiberty"],
+      "retrieval": "PRIMARY_INDEXED_METADATA_AND_ABSTRACT; full text not retrieved",
+      "locator": "JACS 119(40), 9478–9482 (1997), abstract",
+      "supports": "The discussed computed barriers are not attributed solely to conjugation",
+      "does_not_support": "Experimental barrier values, universal percentages or the authored toy comparator"
+    }
+  ],
+  "toy_probe": {
+    "provenance": "NEWLY_AUTHORED_COUNTEREXAMPLE",
+    "formula": "g=cos(theta); E=-g^2+c",
+    "units": "ARBITRARY_TOY_UNITS",
+    "not_a_molecular_energy_prediction": true
+  },
+  "historical_false_or_unretrieved_identifiers": "Preserved in frozen audit commit 9306bb1efcf4fb7a1f53fcc7703e7a98a8500bec; not promoted to VERIFIED"
+}

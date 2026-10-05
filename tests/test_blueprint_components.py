@@ -1,6 +1,7 @@
 """The blueprint is the page's source: its components, columns and depths decide what the renderer builds, what the
 gate fails and what an author is scaffolded and asked for. Each test changes or reads the blueprint, not a copy of it."""
 from __future__ import annotations
+from tests.test_issue29_lesson_closure import OwnedHTML
 
 import copy
 import json
@@ -99,6 +100,20 @@ class Realisation(unittest.TestCase):
         shown = re.search(r"<ol data-g9-ladder>(.*?)</ol>", article, re.S).group(1)
         self.assertEqual(shown, "", "no rung's words are in the page before the learner asks for it")
 
+    def test_guided_support_is_collapsed_by_default(self):
+        article = re.search(r"<article .*?</article>", self.html["CORE2"], re.S).group(0)
+        disclosure = re.search(r'<details class="g9-secondary-disclosure" data-g9-secondary="core2-hints"[^>]*>', article)
+        self.assertIsNotNone(disclosure)
+        self.assertNotIn(" open", disclosure.group(0))
+        self.assertIn("Need a hint? · guided support", article)
+
+    def test_wrong_route_warning_is_collapsed_by_default(self):
+        article = re.search(r"<article .*?</article>", self.html["CORE2"], re.S).group(0)
+        disclosure = re.search(r'<details class="g9-secondary-disclosure" data-g9-secondary="core2-wrong-route"[^>]*>', article)
+        self.assertIsNotNone(disclosure)
+        self.assertNotIn(" open", disclosure.group(0))
+        self.assertIn("Common wrong route · open if you want a warning", article)
+
 
 class Reporting(unittest.TestCase):
     def test_a_required_component_that_is_absent_or_below_its_floor_is_a_gap_that_names_it(self):
@@ -142,7 +157,7 @@ class Reporting(unittest.TestCase):
             render_core.component_body(ctx, "CORE2", {"NOT_A_COMPONENT": "x"}, "attempt")
 
     def test_the_gate_rule_reads_the_registry_not_a_copy_of_it(self):
-        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.9.0",
                 "units": [{"id": "Q", "components": [{"id": "STEM", "items": None, "unit": None},
                                                      {"id": "HINT_LADDER", "items": 1, "unit": None}]}]}
         problems = quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {})
@@ -157,7 +172,7 @@ class Reporting(unittest.TestCase):
                              quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {}))
 
     def test_a_per_unit_component_is_expected_once_for_each_construction_unit(self):
-        page = {"role": "CORE1A", "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
+        page = {"role": "CORE1A", "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.7.0",
                 "units": [{"id": "MIC", "construction_units": ["CU-1", "CU-2"],
                            "components": [{"id": "STAGED_VISUAL", "items": 3, "unit": "CU-1"}]}]}
         problems = quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {})
@@ -204,7 +219,7 @@ class ReferenceDepth(unittest.TestCase):
         self.assertEqual(ctx.waived, [])
 
     def test_the_gate_holds_a_deep_question_to_its_band_and_skips_what_the_record_waived(self):
-        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.9.0",
                 "units": [{"id": "Q", "metadata": [{"kind": "question-difficulty", "ref": "D3", "value": "D3",
                                                    "display_name": "Difficulty", "label": "D3"}],
                            "components": [{"id": "HINT_LADDER", "items": 3, "unit": None}],
@@ -231,6 +246,25 @@ class Core1aBenchmark(unittest.TestCase):
         self.assertIn('data-g9-theme="light"', self.html)
         self.assertIn('data-g9-theme="dark"', self.html)
 
+    def test_secondary_reference_is_collapsed_but_the_crux_and_practice_path_stay_visible(self):
+        for kind in ("core1a-prerequisites", "core1a-question-bridge", "core1a-equations", "core1a-trap-repair"):
+            matches = re.findall(rf'<details class="g9-secondary-disclosure" data-g9-secondary="{kind}"[^>]*>', self.html)
+            self.assertTrue(matches, kind)
+            self.assertTrue(all(" open" not in tag for tag in matches), kind)
+        self.assertIn('data-g9-component="KEY_STEP"', self.html)
+        self.assertIn('data-g9-component="CONSTRUCTION_STEPS"', self.html)
+        self.assertIn('data-g9-component="QUICK_CHECK"', self.html)
+        self.assertIn("Now you do one", self.html)
+
+    def test_worked_teaching_is_visible_and_precedes_the_fresh_attempt(self):
+        tree = OwnedHTML(self.html)
+        worked = tree.with_attr('data-g9-watch-step')
+        self.assertTrue(worked)
+        self.assertTrue(all(not any(a['tag']=='details' for a in node['ancestors']) for node in worked))
+        self.assertNotIn('data-g9-worked-predict', self.html)
+        self.assertIn('data-g9-block="worked_check"', self.html)
+        self.assertLess(self.html.index('data-g9-watch-step'), self.html.index('data-g9-component="EXIT_RECALL"'))
+
     def test_the_independent_checks_are_a_numbered_triad_that_names_each_items_job(self):
         triad = render_core._quick_check([{"statement": "Substitute back", "role": "CHECK"},
                                           {"statement": "Use it on new numbers", "role": "APPLY"},
@@ -239,6 +273,94 @@ class Core1aBenchmark(unittest.TestCase):
         self.assertEqual(re.findall(r'g9-triad-head">(\d) · (\w+)', triad), [("1", "Check"), ("2", "Apply"), ("3", "Connect")])
         self.assertIn(".g9-triad{", render_core.COMPONENT_CSS)
         self.assertTrue(re.search(r'<ol class="g9-triad">', self.html), "the unit's checks are a triad even where a package declares no job")
+
+    def test_revision_and_competition_project_distinct_authored_transfer_sections(self):
+        revision_package = {
+            "extensions": {
+                "grade9v3:purpose_delivery": {
+                    "REVISION": {
+                        "section_title": "Next-level revision",
+                        "support_policy": "REDUCED_SUPPORT",
+                        "items": [{
+                            "id": "REV-1",
+                            "roles": ["CORE1A", "CORE2"],
+                            "concept_refs": ["MIC-X"],
+                            "question_refs": ["Q-X"],
+                            "title": "One step harder",
+                            "prompt": "Apply the same idea with one added modelling decision.",
+                            "source_kind": "AUTHOR_CREATED_REVISION_TRANSFER",
+                            "source_label": "Original next-level revision transfer.",
+                            "answer": {"summary": "Model answer", "reasoning": ["Check the added decision."]},
+                        }],
+                    }
+                }
+            }
+        }
+        competition_package = {
+            "extensions": {
+                "grade9v3:purpose_delivery": {
+                    "COMPETITION": {
+                        "section_title": "Competition transfer",
+                        "support_policy": "NO_MID_TASK_BRIDGING",
+                        "items": [{
+                            "id": "COMP-1",
+                            "roles": ["CORE1A", "CORE2"],
+                            "concept_refs": ["MIC-X"],
+                            "question_refs": ["Q-X"],
+                            "title": "Mixed transfer",
+                            "prompt": "Solve the mixed transfer without a labelled route.",
+                            "source_kind": "AUTHOR_CREATED_COMPETITION_STYLE",
+                            "source_label": "Original competition-style transfer; not a past-paper claim.",
+                            "answer": {"summary": "Model answer", "reasoning": ["Identify the hidden structure."]},
+                        }],
+                    }
+                }
+            }
+        }
+        revision = render_core.Ctx(manifest={"product_id": "P", "purpose": "REVISION"}, packages=[revision_package], bank=[], blueprints={})
+        competition = render_core.Ctx(manifest={"product_id": "P", "purpose": "COMPETITION"}, packages=[competition_package], bank=[], blueprints={})
+        rev_html = render_core._purpose_extension(revision, "CORE1A", "MIC-X")
+        comp_html = render_core._purpose_extension(competition, "CORE1A", "MIC-X")
+        self.assertIn('data-g9-purpose-delivery="REVISION"', rev_html)
+        self.assertIn("Next-level revision", rev_html)
+        self.assertIn('data-g9-purpose-delivery="COMPETITION"', comp_html)
+        self.assertIn("Competition transfer", comp_html)
+        self.assertNotEqual(rev_html, comp_html)
+
+    def test_staged_figures_reveal_cumulatively_unless_the_author_explicitly_requests_replacement(self):
+        self.assertIn('data-g9-stage-mode="cumulative"', self.html)
+        self.assertNotIn("g9StageSequence", render_core.JS)
+        self.assertIn("stageMode=f.dataset.g9StageMode||'cumulative'", render_core.JS)
+        self.assertIn("cumulative?n<=i:n===i", render_core.JS)
+
+        asset = REPO / "tests/fixtures/_stage-mode.svg"
+        asset.write_text(
+            '<svg viewBox="0 0 200 100" role="img" aria-label="stages">'
+            '<title>stages</title><desc>two stages</desc>'
+            '<g data-g9-stage-id="A"><path d="M10 90 L100 10"/></g>'
+            '<g data-g9-stage-id="B"><text x="100" y="50">label</text></g></svg>',
+            encoding="utf-8",
+        )
+        self.addCleanup(lambda: asset.unlink(missing_ok=True))
+        rep = {
+            "id": "REP-STAGE",
+            "kind": "GEOMETRIC_CONSTRUCTION",
+            "purpose": "test",
+            "rendered_asset_refs": ["tests/fixtures/_stage-mode.svg"],
+            "reveal_stages": [
+                {"id": "A", "label": "Geometry", "purpose": "show structure"},
+                {"id": "B", "label": "Label", "purpose": "annotate structure"},
+            ],
+            "extensions": {"grade9v3:stage_mode": "REPLACE"},
+        }
+        ctx = render_core.Ctx(
+            manifest={"product_id": "P"},
+            packages=[{"representations": [rep]}],
+            bank=[],
+            blueprints={},
+        )
+        html = render_core.figure(ctx, "REP-STAGE", "TEACHING", "CORE1A", "CU")
+        self.assertIn('data-g9-stage-mode="replace"', html)
 
     def test_each_equation_card_belongs_to_a_construction_unit_and_every_stage_has_a_named_button(self):
         units = set(re.findall(r'data-g9-component="CONSTRUCTION_STEPS"[^>]*data-g9-component-unit="([^"]+)"', self.html))
@@ -256,6 +378,10 @@ class Core1aBenchmark(unittest.TestCase):
         self.assertEqual((by_id["CONSTRUCTION_STEPS"]["target_items"], by_id["STAGED_VISUAL"]["target_items"]), (3, 3))
         self.assertEqual(by_id["QUICK_CHECK"]["presentation"], "TRIAD")
         self.assertEqual(by_id["EQUATIONS"]["level"], "EXPECTED")
+        self.assertTrue(self.blueprint["interaction_policy"]["progressive_support"])
+        self.assertEqual(self.blueprint["interaction_policy"]["secondary_reference_default"], "COLLAPSED")
+        self.assertEqual(self.blueprint["interaction_policy"]["worked_example_step_policy"], "SHOW_ALL")
+        self.assertEqual(by_id["WORKED_EXAMPLE"]["presentation"], "WORKED_CARD")
 
 
 class Tablet(unittest.TestCase):
@@ -274,14 +400,16 @@ class Tablet(unittest.TestCase):
             self.assertGreaterEqual(promise["figure_min_text_css_px"], 14)
             self.assertLessEqual(promise["identity_max_px"], 200)
 
-    def test_the_key_step_and_what_the_learner_needs_open_the_first_unit_beside_the_figure_not_above_it(self):
-        article = re.search(r"<article .*?</article>", self.core1a, re.S).group(0)
-        split = article.index("g9-split")
-        for marker in ('data-g9-component="KEY_STEP"', 'data-g9-component="MODEL_CONTRACT"'):
-            self.assertGreater(article.index(marker), split, marker)
-        self.assertEqual(article.count('data-g9-component="KEY_STEP"'), 1)
-        self.assertLess(article.index('data-g9-component="UNIT_HEADER"'), article.index('data-g9-component="KEY_STEP"'))
-        self.assertLess(article.index('data-g9-component="KEY_STEP"'), article.index('data-g9-component="MODEL_CONTRACT"'))
+    def test_conditions_precede_construction_and_the_key_step_follows_its_adjacent_visual(self):
+        tree=OwnedHTML(self.core1a)
+        unit=tree.with_attr('data-g9-cu')[0]
+        markers=[r['attrs']['data-g9-component'] for r in tree.with_attr('data-g9-component') if unit in r['ancestors']]
+        self.assertLess(markers.index('MODEL_CONTRACT'), markers.index('CONSTRUCTION_STEPS'))
+        self.assertLess(markers.index('CONSTRUCTION_STEPS'), markers.index('STAGED_VISUAL'))
+        self.assertLess(markers.index('STAGED_VISUAL'), markers.index('KEY_STEP'))
+        self.assertLess(markers.index('KEY_STEP'), markers.index('WORKED_EXAMPLE'))
+        self.assertEqual(markers.count('KEY_STEP'), 1)
+        self.assertFalse(any('g9-split' in r['attrs'].get('class','') for r in tree.rows if unit in r['ancestors']))
 
     def test_a_concept_with_one_section_has_no_route_to_itself(self):
         one = {"construction_units": [{"id": "CU-A", "decision": "Only"}]}

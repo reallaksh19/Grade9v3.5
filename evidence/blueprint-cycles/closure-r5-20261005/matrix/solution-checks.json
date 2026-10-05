@@ -1,0 +1,58 @@
+{
+  "schema": "issue29-alternate-calibration-checks/v1",
+  "package_sha256": "31dd12ef05dbf13908e688f686fd8cba429ab38e65ba2068599af3857c39245a",
+  "checks": [
+    {
+      "cell": "QRT-RETRIEVE-D2",
+      "status": "PASS",
+      "method": "EXACT_SUBSTITUTION_AND_NONZERO_COEFFICIENT",
+      "detail": "Coefficient difference is 5, so there is one rational solution; 0 refutes all-solutions."
+    },
+    {
+      "cell": "QRT-RETRIEVE-D3",
+      "status": "PASS",
+      "method": "EXACT_BRANCH_REDUCTION_PLUS_RATIONAL_SAMPLING",
+      "detail": "85 rational parameter values \u00d7 45 rational unknown values; identities reduce to \u22126=k and (k\u22122)(x+2)=0."
+    },
+    {
+      "cell": "QRT-SYNTHESIZE-D4",
+      "status": "PASS",
+      "method": "EXHAUSTIVE_DOMAIN_BRANCHES_AND_RATIONAL_ROOT_ARGUMENT",
+      "detail": "k=2 invalid; k=1 admits x=0; other rational k fail compatibility; irrational k cannot produce a rational candidate. Sampling is an additional check, not the universal proof. Independent review rejected RETRIEVE primary ownership; its cell remains open."
+    },
+    {
+      "cell": "QRT-APPLY-D3",
+      "status": "PASS",
+      "method": "COLLAPSED_FORWARD_GRAPH_AND_EXACT_UNIT_CONVERSION",
+      "detail": "C=(3X+9)/10 cm; 22 mm=11/5 cm; X=13/3 cm reproduces the original observation."
+    },
+    {
+      "cell": "QRT-MODEL-D1",
+      "status": "PASS",
+      "method": "NONZERO_COEFFICIENT_INVERSE",
+      "detail": "Nonzero A permits the reversible rule x=B/A; the identity rule requires A=B=0."
+    },
+    {
+      "cell": "QRT-REPRESENT-D1",
+      "status": "PASS",
+      "method": "MEANING_PRESERVING_ROUND_TRIP",
+      "detail": "Reading the ordered pair back preserves x=2,y=3; a swap changes coordinate roles."
+    },
+    {
+      "cell": "QRT-SYNTHESIZE-D1",
+      "status": "PASS",
+      "method": "INVERSE_COMPOSITION_AND_COUNTERORDER",
+      "detail": "Halve then subtract undoes the forward dependency; subtract then halve fails on a changed input."
+    },
+    {
+      "cell": "QRT-JUSTIFY-D1",
+      "status": "PASS",
+      "method": "INVERSE_WARRANT_AND_ZERO_MULTIPLIER_COUNTEREXAMPLE",
+      "detail": "Dividing by nonzero 2 is defined and reversible; an identical zero-multiplication can enlarge the solution set."
+    }
+  ],
+  "status": "PASS",
+  "independent_reviewer": false,
+  "classification_acceptance": "AUTHOR_ESTIMATE_REQUIRES_INDEPENDENT_CALIBRATION",
+  "claim": "Alternate exact solution checks by the same author. No independent pedagogical verdict or mastery claim."
+}

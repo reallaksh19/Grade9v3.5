@@ -4,7 +4,7 @@
   "subject": "Mathematics",
   "maturity": "ENGINEERING",
   "provenance": {
-    "scope": "The one-unknown linear-equation gates the authored Mathematics bucket needs. Not the full grades 9-11 Mathematics registry.",
+    "scope": "Candidate one-variable rational equality gates and explicitly real-plane two-variable relations. No independent acceptance or full Mathematics coverage.",
     "adapted_from": "The subject-neutral gate schema in this repository, first exercised by Physics. No gate data was copied from any track.",
     "review_status": "Author-created. No independent mathematical or pedagogical review has occurred.",
     "parallel_track_note": "reallaksh19/Common PR #395 carries independent Mathematics work. It was not imported; these gates are authored here."
@@ -352,7 +352,7 @@
         },
         {
           "concept_id": "CON-EQ-APPROX-IS-DIFFERENT",
-          "statement": "A truncated decimal is a different number from the exact rational it approximates, however many digits are kept."
+          "statement": "A decimal approximation that changes the exact rational value is a different number; an exact terminating decimal is another notation for the same rational."
         }
       ],
       "prerequisites": [
@@ -363,7 +363,7 @@
         {
           "relation_id": "REL-EQ-EXACT-VERIFICATION",
           "expression": "x exact  =>  a*x + b = c holds exactly",
-          "meaning": "Only the exact value reproduces the original statement without residue; a truncated decimal leaves a small discrepancy.",
+          "meaning": "For a nonzero linear coefficient, the residual is a times the error in the candidate value. An exact terminating decimal is an exact rational too; only a changed value introduces a nonzero residual.",
           "symbols": [
             {
               "symbol": "x",
@@ -377,7 +377,8 @@
             }
           ],
           "conditions": [
-            "Substituting a truncated decimal does not satisfy the statement exactly.",
+            "The linear coefficient a is non-zero and all arithmetic is exact over the rationals.",
+            "The decimal approximation differs numerically from the exact solution.",
             "Rounding is a presentation choice made after the mathematics, never during it."
           ]
         }
@@ -445,8 +446,8 @@
         {
           "step_id": "RS-EQ-CONTRAST-DECIMAL",
           "sequence": 3,
-          "action": "Substitute a truncated decimal and observe the discrepancy.",
-          "why_valid": "Seeing the residue is what distinguishes the two objects.",
+          "action": "Compare an exact terminating decimal with a numerically changed approximation.",
+          "why_valid": "Notation alone changes no value; a changed value has residual a times its error.",
           "depends_on": [
             "RS-EQ-SUBSTITUTE-EXACT"
           ]
@@ -494,6 +495,232 @@
         },
         {
           "case_id": "FAL-EQ-PRESCRIBED-NO-BINDING",
+          "mutation": "Change scope_class to PRESCRIBED with no curriculum binding.",
+          "expected_report": "held_insufficient_authority"
+        }
+      ]
+    },
+    {
+      "gate_id": "MATH-EQ-CANDIDATE-EXTENDED-RELATIONS",
+      "title": "Declared-domain equality operations and real-plane line boundaries",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Linear Equations",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-EQ-DOMAIN-AND-LINE-BOUNDARIES",
+          "statement": "Reversible operations preserve the declared solution set; real-plane line equations include either single zero coefficient but exclude both zero."
+        }
+      ],
+      "prerequisites": [],
+      "external_prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-MAT-LEQ-01-SOLUTION-CONDITION",
+          "expression": "s is a solution of L(x) = R(x)  ⇔  L(s) = R(s)",
+          "meaning": "A number is a solution exactly when the LHS and the RHS take the same value at it; the equation is true only for such values, and a proposed solution is confirmed by substituting it back into the original equation.",
+          "symbols": [
+            {
+              "symbol": "x",
+              "meaning": "The one variable of the equation",
+              "domain": "numbers"
+            },
+            {
+              "symbol": "L(x)",
+              "meaning": "The linear expression on the left-hand side",
+              "domain": "linear expression in x"
+            },
+            {
+              "symbol": "R(x)",
+              "meaning": "The linear expression on the right-hand side",
+              "domain": "linear expression in x"
+            },
+            {
+              "symbol": "s",
+              "meaning": "The candidate value being tested",
+              "domain": "a number"
+            }
+          ],
+          "conditions": [
+            "The statement is an equation: an equality sign stands between two expressions in the variable.",
+            "Both sides are linear expressions in one variable only.",
+            "The equality is not assumed to hold for every value; only an identity does that."
+          ]
+        },
+        {
+          "relation_id": "REL-MAT-LEQ-02-SOLUTION-PRESERVING-OPERATIONS",
+          "expression": "L = R has the same solution as L + c = R + c, L − c = R − c, kL = kR and L ÷ k = R ÷ k (k ≠ 0); transposing: L + t = R ⇔ L = R − t",
+          "meaning": "Doing the same thing to both sides keeps the balance, so the solution is unchanged; subtracting a term from both sides is the same as transposing it to the other side, and variable terms can be transposed just like numbers.",
+          "symbols": [
+            {
+              "symbol": "L, R",
+              "meaning": "The left-hand and right-hand expressions of the equation",
+              "domain": "linear expressions in one variable"
+            },
+            {
+              "symbol": "c",
+              "meaning": "A number added to or subtracted from both sides",
+              "domain": "any number"
+            },
+            {
+              "symbol": "k",
+              "meaning": "A number both sides are multiplied or divided by",
+              "domain": "non-zero number"
+            },
+            {
+              "symbol": "t",
+              "meaning": "A term (a number or a variable term) moved across the equality sign",
+              "domain": "a term of L"
+            }
+          ],
+          "conditions": [
+            "The same operation is applied to the whole of both sides, never to one side only.",
+            "A number that multiplies or divides both sides is non-zero.",
+            "A transposed term changes its sign, because transposing is subtracting (or adding) it on both sides."
+          ]
+        },
+        {
+          "relation_id": "REL-MAT-LEQ-03-REDUCTION",
+          "expression": "L = R  ⇔  m·L = m·R, where m is the LCM of the denominators of the terms; opening brackets and combining like terms rewrites each side as an equal expression",
+          "meaning": "An equation is brought to a simpler form, without changing its solution, by opening brackets and combining like terms on both sides and by multiplying both sides by the LCM of the denominators of its terms.",
+          "symbols": [
+            {
+              "symbol": "L, R",
+              "meaning": "The two sides of the equation",
+              "domain": "expressions in one variable"
+            },
+            {
+              "symbol": "m",
+              "meaning": "The LCM of the denominators of all terms on both sides",
+              "domain": "positive whole number"
+            }
+          ],
+          "conditions": [
+            "Every term inside a bracket is multiplied by the factor in front of it, sign included.",
+            "Both whole sides are multiplied by the LCM, including terms that have no denominator, even when fractions appear on one side only.",
+            "Like terms are combined within one side; terms cross the equality sign only by a balanced operation.",
+            "Denominators are non-zero constant integers; the domain is declared before clearing them."
+          ]
+        },
+        {
+          "relation_id": "REL-MAT-LEQ-03-REDUCED-OUTCOMES",
+          "expression": "If reducing removes the variable: a false statement (e.g. 6 = 5) ⇒ no solution (contradiction); a true statement (e.g. 6 = 6) ⇒ every value is a solution (identity)",
+          "meaning": "After reversible reduction, a false constant equality has no admissible solutions; a true constant equality admits every value in the declared domain.",
+          "symbols": [
+            {
+              "symbol": "p = q",
+              "meaning": "The variable-free statement left after reduction",
+              "domain": "two numbers"
+            }
+          ],
+          "conditions": [
+            "The variable terms on the two sides cancel completely during reduction.",
+            "The verdict is read from the variable-free statement that remains, not from a value of x.",
+            "Every reduction preserves the original admissible domain and solution set."
+          ]
+        },
+        {
+          "relation_id": "REL-MAT-LEQ-04-TWO-VARIABLE-FORM",
+          "expression": "ax + by + c = 0, where a, b, c are real numbers and a and b are not both zero; a solution is a pair (x₀, y₀) with ax₀ + by₀ + c = 0",
+          "meaning": "A linear equation in two variables has infinitely many solutions; its graph is a straight line, and every point on that line represents a solution.",
+          "symbols": [
+            {
+              "symbol": "x, y",
+              "meaning": "The two variables",
+              "domain": "real numbers"
+            },
+            {
+              "symbol": "a, b",
+              "meaning": "The coefficients of x and y",
+              "domain": "real numbers, not both zero"
+            },
+            {
+              "symbol": "c",
+              "meaning": "The constant term",
+              "domain": "real number"
+            },
+            {
+              "symbol": "(x₀, y₀)",
+              "meaning": "One solution, written as an ordered pair",
+              "domain": "point of the Cartesian plane"
+            }
+          ],
+          "conditions": [
+            "a and b are not both zero; either individual coefficient may be zero.",
+            "a, b and c are real numbers.",
+            "The graph claim uses the real Cartesian plane and ordered real pairs."
+          ]
+        },
+        {
+          "relation_id": "REL-MAT-LEQ-04-STRAIGHT-LINE",
+          "expression": "y = ax + b (a straight line with slope a)",
+          "meaning": "The form y = ax + b describes every nonvertical line in the real Cartesian plane, including horizontal lines with a = 0. A vertical line x = k has no slope in this form.",
+          "symbols": [
+            {
+              "symbol": "a",
+              "meaning": "The slope of the line (not the coefficient a of ax + by + c = 0)",
+              "domain": "real number"
+            },
+            {
+              "symbol": "b",
+              "meaning": "The constant term of the line (not the coefficient b of ax + by + c = 0)",
+              "domain": "real number"
+            }
+          ],
+          "conditions": [
+            "x and y are real coordinates in the Cartesian plane.",
+            "The line is nonvertical; the coefficient of y in the general form is non-zero.",
+            "The letters a and b here name slope and constant; they differ from the a and b of ax + by + c = 0."
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Use each relation only under its own explicitly declared domain and conditions."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-EQ-CHECK-BOUNDARIES",
+          "sequence": 1,
+          "action": "Declare the domain, apply reversible operations, and check zero-coefficient branches.",
+          "why_valid": "Inverse operations preserve equality; the two line branches follow by division by whichever coefficient is nonzero."
+        }
+      ],
+      "transformations": [],
+      "misconceptions": [
+        {
+          "misconception_id": "MIS-EQ-SINGLE-ZERO-EXCLUDES-LINE",
+          "wrong_idea": "Either zero coefficient prevents a real-plane line.",
+          "counterexample": "x = 2 has a = 1, b = 0 and is a vertical line; y = 3 is horizontal.",
+          "repair": "Exclude both zero together, then divide by whichever coefficient is nonzero."
+        }
+      ],
+      "problem_families": [
+        {
+          "family_id": "FAM-EQ-DECLARED-DOMAIN-IDENTITY",
+          "title": "Distinguish the declared-domain identity from a contradiction",
+          "hidden_invariants": [
+            "Only reversible operations preserve all admissible solutions."
+          ]
+        }
+      ],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0,
+        "note": "Conceptually foundational and frequently skipped, which is why later sign and division errors are so hard to diagnose."
+      },
+      "badges": [
+        "EQUATION-FOUNDATION"
+      ],
+      "falsification_cases": [
+        {
+          "case_id": "FAL-EQ-EXTENDED-PRESCRIBED-NO-BINDING",
           "mutation": "Change scope_class to PRESCRIBED with no curriculum binding.",
           "expected_report": "held_insufficient_authority"
         }

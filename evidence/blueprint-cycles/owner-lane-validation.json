@@ -1,0 +1,43 @@
+{
+  "observation": "LOCAL_API_EXECUTION",
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "TEST/question-bank/probe.json",
+      "status": "PASS",
+      "accepted": true
+    },
+    {
+      "check": "Chemistry/library/owner-bank/probe.json",
+      "status": "PASS",
+      "accepted": true
+    },
+    {
+      "check": "Chemistry/library/exam-bank/probe.json",
+      "status": "PASS",
+      "accepted": false
+    },
+    {
+      "check": "Unknown/library/owner-bank/probe.json",
+      "status": "PASS",
+      "accepted": false
+    },
+    {
+      "check": "../outside-bank.json",
+      "status": "PASS",
+      "accepted": false
+    },
+    {
+      "check": "resolved symlink outside repository rejected",
+      "status": "PASS"
+    },
+    {
+      "check": "altered stem rejected",
+      "status": "PASS"
+    },
+    {
+      "check": "invented exam custody rejected",
+      "status": "PASS"
+    }
+  ]
+}
