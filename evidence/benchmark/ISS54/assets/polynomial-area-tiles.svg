@@ -1,0 +1,59 @@
+<svg aria-labelledby="title-poly-tiles desc-poly-tiles" class="question-svg" role="img" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .label { font-size: 15px; fill: #18324a; font-family: system-ui, sans-serif; font-weight: 700; }
+  .caption { font-size: 13px; fill: #475569; font-family: system-ui, sans-serif; }
+  .dim { font-size: 13px; fill: #1e3a8a; font-family: Cambria, "Times New Roman", serif; font-weight: 700; }
+  .math { font-size: 14px; fill: #0f172a; font-family: Cambria, "Times New Roman", serif; font-weight: 600; }
+  .highlight { font-size: 14px; fill: #047857; font-family: system-ui, sans-serif; font-weight: 700; }
+</style>
+<title id="title-poly-tiles">Rectangular Tiles Area Model: Polynomial Sum</title>
+<desc id="desc-poly-tiles">Geometric modeling of two non-overlapping tiles with dimensions (x+2) by (x+1) and x by (x+3), showing their individual polynomial areas and combined total area 2x^2+6x+2.</desc>
+
+<rect fill="#f8fafc" height="358" rx="12" stroke="#cbd5e1" stroke-width="2" width="638" x="1" y="1"/>
+
+<!-- STAGE 1: Tile 1: (x+2) by (x+1) -->
+<g data-g9-stage-id="stage-tile1">
+  <rect fill="#dbeafe" height="150" rx="6" stroke="#3b82f6" stroke-width="2" width="180" x="60" y="80"/>
+  <!-- Sub-blocks inside Tile 1: x by x, 2 by x, x by 1, 2 by 1 -->
+  <line stroke="#93c5fd" stroke-dasharray="3 3" stroke-width="1.5" x1="180" x2="180" y1="80" y2="230"/>
+  <line stroke="#93c5fd" stroke-dasharray="3 3" stroke-width="1.5" x1="60" x2="240" y1="180" y2="180"/>
+  <text class="dim" text-anchor="middle" x="150" y="65">(x + 2) cm</text>
+  <text class="dim" text-anchor="end" x="50" y="160">(x + 1) cm</text>
+
+  <text class="math" fill="#1e40af" text-anchor="middle" x="120" y="135">x²</text>
+  <text class="math" fill="#1e40af" text-anchor="middle" x="210" y="135">2x</text>
+  <text class="math" fill="#1e40af" text-anchor="middle" x="120" y="210">x</text>
+  <text class="math" fill="#1e40af" text-anchor="middle" x="210" y="210">2</text>
+
+  <text class="label" text-anchor="middle" x="150" y="260">Tile 1</text>
+  <text class="math" fill="#1d4ed8" text-anchor="middle" x="150" y="280">A₁ = (x + 2)(x + 1) = x² + 3x + 2</text>
+</g>
+
+<!-- STAGE 2: Tile 2: x by (x+3) -->
+<g data-g9-stage-id="stage-tile2">
+  <rect fill="#fef3c7" height="180" rx="6" stroke="#f59e0b" stroke-width="2" width="130" x="300" y="50"/>
+  <!-- Sub-blocks inside Tile 2: x by x, x by 3 -->
+  <line stroke="#fcd34d" stroke-dasharray="3 3" stroke-width="1.5" x1="300" x2="430" y1="180" y2="180"/>
+  <text class="dim" text-anchor="middle" x="365" y="38">x cm</text>
+  <text class="dim" text-anchor="start" x="440" y="145">(x + 3) cm</text>
+
+  <text class="math" fill="#b45309" text-anchor="middle" x="365" y="125">x²</text>
+  <text class="math" fill="#b45309" text-anchor="middle" x="365" y="215">3x</text>
+
+  <text class="label" text-anchor="middle" x="365" y="260">Tile 2</text>
+  <text class="math" fill="#b45309" text-anchor="middle" x="365" y="280">A₂ = x(x + 3) = x² + 3x</text>
+</g>
+
+<!-- STAGE 3: Total Area Model & Additivity -->
+<g data-g9-stage-id="stage-combined">
+  <rect fill="#ecfdf5" height="240" rx="8" stroke="#10b981" stroke-width="1.5" width="160" x="460" y="50"/>
+  <text class="label" fill="#065f46" text-anchor="middle" x="540" y="80">Total Area Model</text>
+  <text class="math" fill="#047857" text-anchor="middle" x="540" y="115">A_total = A₁ + A₂</text>
+  <text class="caption" text-anchor="middle" x="540" y="140">Non-overlapping union:</text>
+  <text class="math" fill="#065f46" text-anchor="middle" x="540" y="165">(x² + 3x + 2)</text>
+  <text class="math" fill="#065f46" text-anchor="middle" x="540" y="185">+ (x² + 3x)</text>
+  <line stroke="#059669" stroke-width="1.5" x1="480" x2="600" y1="200" y2="200"/>
+  <text class="highlight" text-anchor="middle" x="540" y="225">2x² + 6x + 2 cm²</text>
+  <text class="caption" text-anchor="middle" x="540" y="260">valid for all x > 0</text>
+</g>
+</svg>

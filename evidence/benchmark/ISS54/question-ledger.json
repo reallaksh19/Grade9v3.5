@@ -1,0 +1,907 @@
+{
+  "schema": "iss54-question-ledger/v1",
+  "issue": 54,
+  "round": 1,
+  "candidate": "B",
+  "source_commit": "91719ad8df2bfc06c6a481590d2e24c510c24835",
+  "core_prompt_sha256": "984f011770d466640d809b8caaa80e4dc0ae4c4b9c510ccdc8ab75b2793ea2cf",
+  "whole_issue_body_sha256": "392de1dc9afbb0e072d7eda1bb9bd6bd9939288d19c36cc9059057432ede88b5",
+  "learner_preset": {
+    "provenance": "SIMULATED_OWNER_PRESET",
+    "demonstrated": [
+      "polynomial terms and degree for simple nonzero cases",
+      "collecting terms",
+      "direct substitution",
+      "elementary product identities"
+    ],
+    "uncertain": [
+      "coordinating factor/remainder information",
+      "coefficient cancellation under a parameter",
+      "zero-polynomial boundaries",
+      "preserving the original domain during cancellation"
+    ],
+    "status": "ASSUMPTION_ONLY_NOT_MEASURED_MASTERY"
+  },
+  "difficulty_rule": "5-component additive cognitive load: concept_model_selection, representation_translation, reasoning_chain_length, algebra_computational_load, trap_exception_sensitivity",
+  "questions": [
+    {
+      "id": "ISS54-Q1",
+      "issue": 54,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q1",
+      "stem": "For $p_k(x)=(k-2)x^3+3x^2-x+4$, where $k$ is real, classify the degree when $k=2$ and when $k\\neq2$. Explain why the highest printed exponent is not sufficient to decide the degree.",
+      "stem_sha256": "sha256:78493cc2ac560d42af4ed069f055dcb76b4719bd2cbd4165333ab0bcfc8e8042",
+      "question_block_sha256": "sha256:bb54c4dc6c9a935b56022cab14ce76f291ef09fdc9e22e0c646ed2fc8c41363a",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested stress test; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS54-OWNER-CORE-PROMPT",
+        "SRC-NCERT-MATH-9-POLYNOMIALS",
+        "SRC-OPENSTAX-COLLEGE-ALGEBRA-POLY"
+      ],
+      "primary_capability_ref": "CAP-MATH-G9-POLY-DEGREE-EVAL",
+      "secondary_capability_refs": [
+        "CAP-MATH-G9-ZERO-POLYNOMIAL-BOUNDS"
+      ],
+      "microtopic_ref": "MIC-MATH-G9-POLY-DEGREE-REMAINDER",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Requires coordinating the formal definition of polynomial degree requiring a non-vanishing leading coefficient with algebraic evaluation under parameter k=2 vs k!=2."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "EXPLAIN",
+      "secondary_demands": [
+        "RETRIEVE",
+        "JUSTIFY"
+      ],
+      "qrt_template_id": "TMPL-MATH-G9-EXPLAIN-D2",
+      "qrt": {
+        "X": "the degree of polynomial p_k(x) under parameter cases k=2 and k!=2",
+        "Y": "the definition of polynomial degree: the highest exponent of the variable with a non-zero coefficient",
+        "Z": "evaluate the leading coefficient (k-2): when k=2, (k-2)=0 so the cubic term vanishes leaving 3x^2-x+4 (degree 2); when k!=2, (k-2)!=0 so the cubic term is active (degree 3)",
+        "W": "the highest printed exponent is insufficient because if its coefficient is zero, that term contributes 0 to the sum and cannot determine the degree",
+        "wrong_idea": "Reading the printed exponent 3 directly from the formula without checking whether its coefficient evaluates to zero.",
+        "replacement_rule": "Degree is the maximal exponent whose coefficient is non-zero; always simplify and check coefficient vanishing under parameters."
+      },
+      "answer": {
+        "summary": "When k=2, (k-2)=0, so p_2(x) = 3x^2 - x + 4, which has degree 2. When k != 2, (k-2) != 0, so the leading term is (k-2)x^3 and the degree is 3. The highest printed exponent is not sufficient because polynomial degree is defined as the highest power with a non-zero coefficient; if the coefficient evaluates to zero, that term vanishes from the polynomial sum.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "DECIDE",
+            "action": "Examine the leading term (k - 2)x^3 and test the coefficient condition k = 2.",
+            "why_valid": "A term with coefficient zero contributes zero to the polynomial value for all x.",
+            "inputs": [
+              "p_k(x) = (k-2)x^3 + 3x^2 - x + 4",
+              "k = 2"
+            ],
+            "output": "For k = 2, (k-2) = 0, so the x^3 term vanishes, reducing p_2(x) to 3x^2 - x + 4."
+          },
+          {
+            "id": "m2",
+            "kind": "CONNECT",
+            "action": "Classify the degree for both parameter cases k = 2 and k != 2.",
+            "why_valid": "Degree is the maximum exponent among terms having non-zero coefficients.",
+            "inputs": [
+              "p_2(x) = 3x^2 - x + 4",
+              "p_k(x) for k != 2"
+            ],
+            "output": "Degree is 2 when k = 2, and degree is 3 when k != 2."
+          },
+          {
+            "id": "m3",
+            "kind": "VERIFY",
+            "action": "Explain why the printed visual exponent alone fails to establish degree.",
+            "why_valid": "Formally, deg(p) = max{n : a_n != 0}. A printed symbol string does not account for coefficient cancellation.",
+            "inputs": [
+              "Definition of degree",
+              "vanished leading term"
+            ],
+            "output": "The highest printed exponent may have a vanishing coefficient (0*x^3), which makes it a non-leading term."
+          }
+        ],
+        "crux_move_ref": "m2",
+        "check": "Verify by testing specific values: at k=2, p_2(1) = 3(1)^2 - 1 + 4 = 6 matches quadratic evaluation; at k=3, p_3(x) = x^3 + 3x^2 - x + 4 is strictly cubic."
+      }
+    },
+    {
+      "id": "ISS54-Q2",
+      "issue": 54,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q2",
+      "stem": "Find the remainder when $p(x)=x^3-4x+1$ is divided by $x-2$, without carrying out long division. Explain why your chosen computation gives the remainder.",
+      "stem_sha256": "sha256:a61ce6f78122d21162d9916ed1e6353db6e269369bf49ced4ae7c1e64c304019",
+      "question_block_sha256": "sha256:d6a44c2d633fbf316e40d6eea7ed5664709e821580a901643b1c7a6466a61cd9",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested stress test; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS54-OWNER-CORE-PROMPT",
+        "SRC-NCERT-MATH-9-POLYNOMIALS",
+        "SRC-OPENSTAX-PRECALC-POLY-RECONSTRUCTION"
+      ],
+      "primary_capability_ref": "CAP-MATH-G9-POLY-DEGREE-EVAL",
+      "secondary_capability_refs": [
+        "CAP-MATH-G9-REMAINDER-THEOREM",
+        "CAP-MATH-G9-POLY-DEGREE-EVAL"
+      ],
+      "microtopic_ref": "MIC-MATH-G9-POLY-DEGREE-REMAINDER",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Requires selecting the Remainder Theorem over long division and explaining the algebraic foundation p(x) = (x-a)q(x) + R."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "APPLY",
+      "secondary_demands": [
+        "EXPLAIN"
+      ],
+      "qrt_template_id": "TMPL-MATH-G9-APPLY-D2",
+      "qrt": {
+        "X": "the remainder when p(x) = x^3 - 4x + 1 is divided by x - 2 without long division",
+        "Y": "the Remainder Theorem: for divisor (x - a), the constant remainder R equals p(a)",
+        "Z": "evaluate p(2) = 2^3 - 4(2) + 1 = 8 - 8 + 1 = 1",
+        "W": "the division algorithm identity p(x) = (x - 2)q(x) + R forces (2 - 2)q(2) = 0, directly isolating R = p(2)",
+        "wrong_idea": "Attempting full polynomial long division or evaluating at x = -2 instead of the root x = 2.",
+        "replacement_rule": "For linear divisor (x - a), find the zero of the divisor (x = a) and compute p(a) directly."
+      },
+      "answer": {
+        "summary": "The remainder is 1, computed as p(2) = 2^3 - 4(2) + 1 = 8 - 8 + 1 = 1. This computation gives the remainder by the Remainder Theorem: the division algorithm states p(x) = (x-2)q(x) + R where R is a constant. Evaluating at x=2 makes the divisor term (2-2)q(2) = 0, directly isolating R = p(2).",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "DECIDE",
+            "action": "Identify the linear divisor root by setting x - 2 = 0, which yields a = 2.",
+            "why_valid": "The Remainder Theorem applies to linear divisors of the form x - a.",
+            "inputs": [
+              "divisor x - 2"
+            ],
+            "output": "Evaluation point a = 2."
+          },
+          {
+            "id": "m2",
+            "kind": "TRANSFORM",
+            "action": "Compute p(2) by direct substitution into p(x) = x^3 - 4x + 1.",
+            "why_valid": "Polynomial evaluation preserves algebraic equality.",
+            "inputs": [
+              "p(x) = x^3 - 4x + 1",
+              "x = 2"
+            ],
+            "output": "p(2) = 2^3 - 4(2) + 1 = 8 - 8 + 1 = 1."
+          },
+          {
+            "id": "m3",
+            "kind": "VERIFY",
+            "action": "Justify why p(2) equals the remainder using the polynomial division identity.",
+            "why_valid": "p(x) = (x - 2)q(x) + R holds identically for all x, and deg(R) < deg(x - 2) = 1 implies R is a constant.",
+            "inputs": [
+              "Division identity",
+              "x = 2"
+            ],
+            "output": "p(2) = (2 - 2)q(2) + R = 0*q(2) + R = R, so R = 1."
+          }
+        ],
+        "crux_move_ref": "m2",
+        "check": "Verify by polynomial long division: (x^3 - 4x + 1) / (x - 2) = (x^2 + 2x) with remainder 1, confirming (x-2)(x^2+2x) + 1 = x^3 - 4x + 1."
+      }
+    },
+    {
+      "id": "ISS54-Q3",
+      "issue": 54,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q3",
+      "stem": "Factorise $x^2-5x+6$ and find its real zeros. Verify the factors by expansion and each zero by substitution.",
+      "stem_sha256": "sha256:85bfa5111144fbd813f67ab11c551df83fc4a555e5c5dd4883e318bdb9f05229",
+      "question_block_sha256": "sha256:a3e0e59568beb5283ed876a1162acad9bf049d1b46bf2336bd2ade8ab4a96a74",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested stress test; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS54-OWNER-CORE-PROMPT",
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "primary_capability_ref": "CAP-MATH-G9-POLY-DEGREE-EVAL",
+      "secondary_capability_refs": [
+        "CAP-MATH-G9-QUADRATIC-FACTORISATION",
+        "CAP-MATH-G9-POLY-DEGREE-EVAL"
+      ],
+      "microtopic_ref": "MIC-MATH-G9-POLY-DEGREE-REMAINDER",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 0,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Requires factorising a monic quadratic by splitting the middle term, finding its zeros, and independently verifying by expansion and substitution."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "APPLY",
+      "secondary_demands": [
+        "JUSTIFY"
+      ],
+      "qrt_template_id": "TMPL-MATH-G9-APPLY-D2",
+      "qrt": {
+        "X": "the factorisation and real zeros of x^2 - 5x + 6 with bidirectional verification",
+        "Y": "splitting the middle term: find two integers with sum -5 and product 6",
+        "Z": "integers are -2 and -3; factorise into (x - 2)(x - 3); zeros are x = 2 and x = 3",
+        "W": "expansion (x - 2)(x - 3) = x^2 - 5x + 6 verifies factors; substitutions p(2) = 0 and p(3) = 0 verify zeros",
+        "wrong_idea": "Confusing the sign of the factors with the sign of the zeros, or stopping before verifying both factors and zeros.",
+        "replacement_rule": "If (x - a)(x - b) = 0, the zeros are x = a and x = b; verify factors by expansion and zeros by substitution."
+      },
+      "answer": {
+        "summary": "Factorisation: (x - 2)(x - 3). Real zeros: x = 2 and x = 3. Verification by expansion: (x - 2)(x - 3) = x^2 - 3x - 2x + 6 = x^2 - 5x + 6. Verification by substitution: p(2) = 2^2 - 5(2) + 6 = 4 - 10 + 6 = 0, and p(3) = 3^2 - 5(3) + 6 = 9 - 15 + 6 = 0.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "DECIDE",
+            "action": "Find two integers u and v such that u + v = -5 and u * v = 6.",
+            "why_valid": "Monic quadratic x^2 + bx + c factors as (x + u)(x + v) where u + v = b and uv = c.",
+            "inputs": [
+              "b = -5",
+              "c = 6"
+            ],
+            "output": "Integers are u = -2 and v = -3, yielding factors (x - 2)(x - 3)."
+          },
+          {
+            "id": "m2",
+            "kind": "TRANSFORM",
+            "action": "Set each factor to zero to solve for the real zeros of the polynomial.",
+            "why_valid": "Zero Product Property: ab = 0 iff a = 0 or b = 0 over real numbers.",
+            "inputs": [
+              "(x - 2)(x - 3) = 0"
+            ],
+            "output": "Zeros are x = 2 and x = 3."
+          },
+          {
+            "id": "m3",
+            "kind": "VERIFY",
+            "action": "Verify factors by algebraic expansion, and verify each zero by direct substitution.",
+            "why_valid": "Expansion confirms symbolic equivalence; substitution confirms root definitions.",
+            "inputs": [
+              "Factors (x - 2)(x - 3)",
+              "Zeros x = 2, 3"
+            ],
+            "output": "Expansion produces x^2 - 5x + 6; substitution gives p(2) = 4 - 10 + 6 = 0 and p(3) = 9 - 15 + 6 = 0."
+          }
+        ],
+        "crux_move_ref": "m1",
+        "check": "Both factors and zeros independently confirmed: product of zeros is (-2)(-3)=6=c/a, sum of zeros is 2+3=5=-b/a."
+      }
+    },
+    {
+      "id": "ISS54-Q4",
+      "issue": 54,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q4",
+      "stem": "Two non-overlapping rectangular tiles have dimensions $(x+2)$ cm by $(x+1)$ cm, and $x$ cm by $(x+3)$ cm, with $x>0$. Construct and simplify a polynomial for their total area. Identify which part of your model accounts for adding the two areas.",
+      "stem_sha256": "sha256:f7e64fd479b68451bf5e81e6f6f030169a7970106947460e56c3883681dd201e",
+      "question_block_sha256": "sha256:ab1fb822cfea9a73bb1d5423aedd8fe77fd9aa6d2f0003a2a2b5ecf828e8a7ad",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested stress test; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS54-OWNER-CORE-PROMPT",
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "primary_capability_ref": "CAP-MATH-G9-POLY-DEGREE-EVAL",
+      "secondary_capability_refs": [
+        "CAP-MATH-G9-GEOMETRIC-AREA-MODELLING",
+        "CAP-MATH-G9-POLY-DEGREE-EVAL"
+      ],
+      "microtopic_ref": "MIC-MATH-G9-POLY-DEGREE-REMAINDER",
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "Requires constructing geometric area models for two distinct rectangles, expressing their union algebraically, simplifying the sum, and identifying the addition operator's modeling role."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "MODEL",
+      "secondary_demands": [
+        "APPLY",
+        "EXPLAIN"
+      ],
+      "qrt_template_id": "TMPL-MATH-G9-MODEL-D2",
+      "qrt": {
+        "X": "the total area polynomial of two non-overlapping tiles with dimensions (x+2) by (x+1) and x by (x+3)",
+        "Y": "the additivity of area for non-overlapping geometric regions: Area_total = Area_1 + Area_2",
+        "Z": "formulate A(x) = (x+2)(x+1) + x(x+3); expand to (x^2 + 3x + 2) + (x^2 + 3x); collect like terms to get 2x^2 + 6x + 2 cm^2",
+        "W": "the plus sign (+) joining the two product terms models the geometric union of the disjoint rectangular areas",
+        "wrong_idea": "Multiplying the two area expressions together instead of adding them, or forgetting to combine like terms.",
+        "replacement_rule": "Disjoint geometric regions add their areas: total area is the sum of individual area polynomials."
+      },
+      "answer": {
+        "summary": "Tile 1 area is A_1 = (x+2)(x+1) = x^2 + 3x + 2 cm^2. Tile 2 area is A_2 = x(x+3) = x^2 + 3x cm^2. The total area polynomial is A(x) = A_1 + A_2 = (x^2 + 3x + 2) + (x^2 + 3x) = 2x^2 + 6x + 2 cm^2. The addition operator (+) joining the two area product terms in A(x) = (x+2)(x+1) + x(x+3) accounts for adding the two non-overlapping geometric regions.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "REPRESENT",
+            "action": "Represent the area of each rectangular tile as a product of its dimensions.",
+            "why_valid": "Area of a rectangle is width * height.",
+            "inputs": [
+              "Tile 1: (x+2) by (x+1)",
+              "Tile 2: x by (x+3)"
+            ],
+            "output": "A_1 = (x+2)(x+1) and A_2 = x(x+3)."
+          },
+          {
+            "id": "m2",
+            "kind": "CONNECT",
+            "action": "Model total area by adding the areas of the disjoint, non-overlapping tiles.",
+            "why_valid": "Area measure is additive over finite unions of disjoint sets.",
+            "inputs": [
+              "A_1",
+              "A_2",
+              "non-overlapping condition"
+            ],
+            "output": "A(x) = (x+2)(x+1) + x(x+3)."
+          },
+          {
+            "id": "m3",
+            "kind": "TRANSFORM",
+            "action": "Expand both binomial products and collect like polynomial terms.",
+            "why_valid": "Distributive property of multiplication over addition and combining like terms.",
+            "inputs": [
+              "(x^2 + 3x + 2) + (x^2 + 3x)"
+            ],
+            "output": "A(x) = 2x^2 + 6x + 2 cm^2."
+          }
+        ],
+        "crux_move_ref": "m2",
+        "check": "Verify at x=1: Tile 1 is 3 * 2 = 6 cm^2, Tile 2 is 1 * 4 = 4 cm^2, Total is 10 cm^2. Model gives A(1) = 2(1)^2 + 6(1) + 2 = 10 cm^2."
+      }
+    },
+    {
+      "id": "ISS54-Q5",
+      "issue": 54,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q5",
+      "stem": "For $p(x)=(x-1)(x+1)$, produce a value table at $x=-2,-1,0,1,2$ and plot those five ordered pairs on labelled axes. Mark the zeros and distinguish a zero of the polynomial from an arbitrary plotted point.",
+      "stem_sha256": "sha256:88a694036bdcf93aaa19f638e57be7b0a02e4325a631f1ec8872c2ce46656767",
+      "question_block_sha256": "sha256:b024fa007a4deb20d2b39a201a824e15fe3e5d8a753c9fffe173fb97cc4e915a",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested stress test; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS54-OWNER-CORE-PROMPT",
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "primary_capability_ref": "CAP-MATH-G9-DOMAIN-PUNCTURE",
+      "secondary_capability_refs": [
+        "CAP-MATH-G9-GRAPHICAL-ZEROS-DISTINCTION",
+        "CAP-MATH-G9-POLY-DEGREE-EVAL"
+      ],
+      "microtopic_ref": "MIC-MATH-G9-POLY-RATIONAL-RECONSTRUCTION",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 0,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Requires constructing a value table for a quadratic, plotting points on coordinate axes, marking zeros, and distinguishing polynomial zeros from arbitrary curve points."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "REPRESENT",
+      "secondary_demands": [
+        "EXPLAIN"
+      ],
+      "qrt_template_id": "TMPL-MATH-G9-REPRESENT-D2",
+      "qrt": {
+        "X": "table, plot, and zeros of p(x) = (x-1)(x+1) with distinction from arbitrary plotted points",
+        "Y": "evaluating p(x) = x^2 - 1 at {-2, -1, 0, 1, 2} and the definition of a polynomial zero as an input where p(c)=0",
+        "Z": "table yields (-2, 3), (-1, 0), (0, -1), (1, 0), (2, 3); plotted points form a parabola; zeros are x = -1 and x = 1",
+        "W": "a zero is an input value where the graph intersects y=0 (x-intercept), whereas an arbitrary point (x0, y0) has y0 = p(x0) != 0 in general (e.g. (0,-1) is a y-intercept, not a zero)",
+        "wrong_idea": "Calling the point (0, -1) a zero because it contains a zero coordinate, or calling the coordinate pair (1, 0) a zero instead of the input x = 1.",
+        "replacement_rule": "A zero of p(x) is an input value c where p(c) = 0; graphically it is the x-coordinate of an x-intercept."
+      },
+      "answer": {
+        "summary": "Value table: x=-2 => 3 [(-2, 3)]; x=-1 => 0 [(-1, 0)]; x=0 => -1 [(0, -1)]; x=1 => 0 [(1, 0)]; x=2 => 3 [(2, 3)]. Plotted ordered pairs form a symmetric upward parabola with vertex (0, -1). The zeros are x = -1 and x = 1, corresponding to the x-intercepts (-1, 0) and (1, 0) where the curve intersects the line y=0. A zero of the polynomial is an input value c where p(c)=0 (an x-intercept), whereas an arbitrary plotted point (x_0, p(x_0)) simply pairs an input with its output (e.g. (0, -1) is a y-intercept, not a zero; (2, 3) has non-zero output 3).",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "TRANSFORM",
+            "action": "Evaluate p(x) = (x - 1)(x + 1) = x^2 - 1 for each required x value in {-2, -1, 0, 1, 2}.",
+            "why_valid": "Polynomial evaluation gives functional output values.",
+            "inputs": [
+              "x in {-2, -1, 0, 1, 2}"
+            ],
+            "output": "Pairs: (-2, 3), (-1, 0), (0, -1), (1, 0), (2, 3)."
+          },
+          {
+            "id": "m2",
+            "kind": "REPRESENT",
+            "action": "Plot the five ordered pairs on Cartesian axes and sketch the parabola.",
+            "why_valid": "Points (x, y) satisfy the polynomial equation y = p(x).",
+            "inputs": [
+              "Calculated coordinates"
+            ],
+            "output": "Labeled coordinate plot showing upward symmetric parabola."
+          },
+          {
+            "id": "m3",
+            "kind": "VERIFY",
+            "action": "Mark the zeros and articulate the conceptual distinction between a zero and an arbitrary plotted point.",
+            "why_valid": "A polynomial zero is a domain value c satisfying p(c) = 0. Arbitrary points generally have y != 0.",
+            "inputs": [
+              "Plotted graph",
+              "Definition of zero"
+            ],
+            "output": "Zeros are x = -1 and x = 1 at points (-1, 0) and (1, 0). Points like (0, -1) and (2, 3) are not zeros."
+          }
+        ],
+        "crux_move_ref": "m3",
+        "check": "Zeros verified algebraically: (x-1)(x+1) = x^2 - 1 = 0 => x^2 = 1 => x = +/- 1."
+      }
+    },
+    {
+      "id": "ISS54-Q6",
+      "issue": 54,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q6",
+      "stem": "Compare the original expression $r(x)=(x^2-1)/(x-1)$ with $q(x)=x+1$. State the domain of $r$, simplify it where valid, and decide whether $r$ and $q$ are the same function on all real numbers. Address $x=1$ explicitly.",
+      "stem_sha256": "sha256:696026a5fe5a0d98b1d36ce304aa50a573ccbe51642a0e63aa6424d9c2a12f8f",
+      "question_block_sha256": "sha256:efc383695042595fd333a41199036171c80227803c9a439eb0324694e337345d",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested stress test; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS54-OWNER-CORE-PROMPT",
+        "SRC-OPENSTAX-COLLEGE-ALGEBRA-POLY",
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "primary_capability_ref": "CAP-MATH-G9-DOMAIN-PUNCTURE",
+      "secondary_capability_refs": [
+        "CAP-MATH-G9-POLY-DEGREE-EVAL"
+      ],
+      "microtopic_ref": "MIC-MATH-G9-POLY-RATIONAL-RECONSTRUCTION",
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Requires analyzing domain puncture in rational expression simplification, evaluating at the singularity x=1, and applying the strict criterion for function identity."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "JUSTIFY",
+      "secondary_demands": [
+        "EXPLAIN",
+        "REPRESENT"
+      ],
+      "qrt_template_id": "TMPL-MATH-G9-JUSTIFY-D2",
+      "qrt": {
+        "X": "whether r(x) = (x^2 - 1)/(x - 1) and q(x) = x + 1 are the same function on all real numbers",
+        "Y": "the definition of function equality: Domain(r) must equal Domain(q) and r(x) = q(x) for all x in the common domain",
+        "Z": "Domain(r) = R \\ {1} because division by zero is undefined; simplifying yields r(x) = x + 1 for x != 1; at x = 1, r(1) is undefined while q(1) = 2",
+        "W": "because r is undefined at x = 1 while q is defined, their domains differ and they are NOT the same function on all real numbers",
+        "wrong_idea": "Cancelling (x - 1) unconditionally and concluding that r and q are identical functions everywhere on R.",
+        "replacement_rule": "Algebraic cancellation (x - a)/(x - a) = 1 is valid only when x != a; functions with different domains cannot be identical on R."
+      },
+      "answer": {
+        "summary": "The domain of r is R \\ {1} (all real numbers x != 1) because division by zero is undefined. For x != 1, x - 1 != 0, so simplifying gives r(x) = (x-1)(x+1)/(x-1) = x + 1. However, r and q are NOT the same function on all real numbers because two functions are identical if and only if they share the exact same domain and agree at every point. At x = 1, q(1) = 1 + 1 = 2, but r(1) = 0/0 is undefined; therefore r has a removable singularity (hole) at (1, 2) while q is continuous across all R.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "DECIDE",
+            "action": "Determine the domain of the rational expression r(x) by setting denominator != 0.",
+            "why_valid": "Division by zero is undefined in real arithmetic.",
+            "inputs": [
+              "r(x) = (x^2 - 1)/(x - 1)"
+            ],
+            "output": "Denominator x - 1 = 0 when x = 1, so Domain(r) = R \\ {1}."
+          },
+          {
+            "id": "m2",
+            "kind": "TRANSFORM",
+            "action": "Simplify r(x) by factorising the numerator and cancelling the common factor for x in Domain(r).",
+            "why_valid": "For any x != 1, (x - 1)/(x - 1) = 1.",
+            "inputs": [
+              "r(x) = (x-1)(x+1)/(x-1)",
+              "x != 1"
+            ],
+            "output": "r(x) = x + 1 for all x != 1."
+          },
+          {
+            "id": "m3",
+            "kind": "VERIFY",
+            "action": "Evaluate both functions at x = 1 and apply the formal criterion for function equality.",
+            "why_valid": "Two functions f and g are equal iff Domain(f) = Domain(g) and f(x) = g(x) for all x in Domain.",
+            "inputs": [
+              "Domain(r) = R \\ {1}",
+              "Domain(q) = R",
+              "x = 1"
+            ],
+            "output": "r(1) is undefined, but q(1) = 2. Since their domains differ, r and q are not the same function on all real numbers."
+          }
+        ],
+        "crux_move_ref": "m3",
+        "check": "Evaluate left and right limits: lim_{x -> 1} r(x) = 2 = q(1), confirming the singularity at x=1 is removable, but the function value r(1) does not exist."
+      }
+    },
+    {
+      "id": "ISS54-Q7",
+      "issue": 54,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q7",
+      "stem": "For $f(x)=2x^3+kx^2-5x+2$, find the real value of $k$ for which $x-1$ is a factor. Then exhibit a quotient and verify the resulting product without merely repeating the same substitution.",
+      "stem_sha256": "sha256:f74e6a30b148f1848d79077eac5e59be0e2d04a787e7d9a395b69dc4ade42578",
+      "question_block_sha256": "sha256:78523a4e63783be8684627cd414bfaa31a37c5afc0f9b8bca44abd25ac43c8d0",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested stress test; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS54-OWNER-CORE-PROMPT",
+        "SRC-NCERT-MATH-9-POLYNOMIALS",
+        "SRC-OPENSTAX-PRECALC-POLY-RECONSTRUCTION"
+      ],
+      "primary_capability_ref": "CAP-MATH-G9-POLY-DEGREE-EVAL",
+      "secondary_capability_refs": [
+        "CAP-MATH-G9-FACTOR-THEOREM-SYNTHESIS",
+        "CAP-MATH-G9-REMAINDER-THEOREM"
+      ],
+      "microtopic_ref": "MIC-MATH-G9-POLY-DEGREE-REMAINDER",
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Requires using the Factor Theorem to solve for parameter k, performing polynomial division to find the quotient, and verifying the factorisation by expansion."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "APPLY",
+      "secondary_demands": [
+        "JUSTIFY"
+      ],
+      "qrt_template_id": "TMPL-MATH-G9-APPLY-D2",
+      "qrt": {
+        "X": "the value of k making x - 1 a factor of f(x) = 2x^3 + kx^2 - 5x + 2, with quotient exhibition and expansion verification",
+        "Y": "the Factor Theorem: (x - 1) is a factor of f(x) iff f(1) = 0",
+        "Z": "solve f(1) = 2(1) + k(1) - 5(1) + 2 = k - 1 = 0 => k = 1; divide f(x) by x - 1 to find quotient 2x^2 + 3x - 2",
+        "W": "expanding (x - 1)(2x^2 + 3x - 2) yields 2x^3 + x^2 - 5x + 2, verifying both quotient and k=1 without repeating substitution",
+        "wrong_idea": "Finding k=1 by substitution and then merely plugging x=1 back in to verify, failing to produce or check the quotient.",
+        "replacement_rule": "To verify a factor independently, compute the quotient polynomial and expand the product to match the original expression."
+      },
+      "answer": {
+        "summary": "By the Factor Theorem, (x-1) is a factor of f(x) iff f(1) = 0. f(1) = 2(1)^3 + k(1)^2 - 5(1) + 2 = k - 1 = 0 => k = 1. With k=1, f(x) = 2x^3 + x^2 - 5x + 2. Dividing by (x-1) yields quotient q(x) = 2x^2 + 3x - 2. Independent verification by expansion: (x-1)(2x^2+3x-2) = x(2x^2+3x-2) - 1(2x^2+3x-2) = (2x^3+3x^2-2x) - (2x^2+3x-2) = 2x^3 + x^2 - 5x + 2 = f(x), verifying the quotient and k=1 without repeating evaluation at x=1.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "DECIDE",
+            "action": "Apply the Factor Theorem: set f(1) = 0 and solve for the unknown parameter k.",
+            "why_valid": "(x - a) divides f(x) with remainder zero iff f(a) = 0.",
+            "inputs": [
+              "f(x) = 2x^3 + kx^2 - 5x + 2",
+              "x = 1"
+            ],
+            "output": "f(1) = 2 + k - 5 + 2 = k - 1 = 0 => k = 1."
+          },
+          {
+            "id": "m2",
+            "kind": "TRANSFORM",
+            "action": "Divide f(x) = 2x^3 + x^2 - 5x + 2 by (x - 1) to determine the quotient polynomial.",
+            "why_valid": "Polynomial division algorithm yields unique quotient q(x).",
+            "inputs": [
+              "f(x) = 2x^3 + x^2 - 5x + 2",
+              "divisor x - 1"
+            ],
+            "output": "Quotient q(x) = 2x^2 + 3x - 2."
+          },
+          {
+            "id": "m3",
+            "kind": "VERIFY",
+            "action": "Verify the result by expanding (x - 1)(2x^2 + 3x - 2) algebraically.",
+            "why_valid": "Expansion confirms the product matches the cubic without reusing the evaluation f(1) = 0.",
+            "inputs": [
+              "(x - 1)",
+              "(2x^2 + 3x - 2)"
+            ],
+            "output": "x(2x^2+3x-2) - (2x^2+3x-2) = 2x^3 + x^2 - 5x + 2 = f(x)."
+          }
+        ],
+        "crux_move_ref": "m2",
+        "check": "Complete factorisation: 2x^2 + 3x - 2 = (2x - 1)(x + 2), so f(x) = (x - 1)(2x - 1)(x + 2). Check f(-2) = 2(-8) + 4 - 5(-2) + 2 = -16 + 4 + 10 + 2 = 0."
+      }
+    },
+    {
+      "id": "ISS54-Q8",
+      "issue": 54,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q8",
+      "stem": "A student checks $(2x)^2=2x^2$ at $x=0$ and calls it an identity. Decide whether that check is sufficient, give an exact counterexample if needed, and state a corrected identity with a general reason.",
+      "stem_sha256": "sha256:74746262f78c73ddab2bda02a9406186926030ed7f2713d680f53da3ae689688",
+      "question_block_sha256": "sha256:9127fdbc7e0d8daa410ea00891f80c5f339dfe858336ef4dfd6986ab5aca9fa6",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested stress test; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS54-OWNER-CORE-PROMPT",
+        "SRC-NCERT-MATH-9-POLYNOMIALS",
+        "SRC-OPENSTAX-COLLEGE-ALGEBRA-POLY"
+      ],
+      "primary_capability_ref": "CAP-MATH-G9-POLY-DEGREE-EVAL",
+      "secondary_capability_refs": [
+        "CAP-MATH-G9-IDENTITY-VS-CONDITIONAL",
+        "CAP-MATH-G9-POLY-DEGREE-EVAL"
+      ],
+      "microtopic_ref": "MIC-MATH-G9-POLY-DEGREE-REMAINDER",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Requires distinguishing universal identity quantification from isolated point equality, supplying a counterexample, and stating the correct power distribution identity."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "JUSTIFY",
+      "secondary_demands": [
+        "EXPLAIN"
+      ],
+      "qrt_template_id": "TMPL-MATH-G9-JUSTIFY-D2",
+      "qrt": {
+        "X": "whether checking (2x)^2 = 2x^2 at x = 0 is sufficient to call it an identity",
+        "Y": "the definition of an algebraic identity: an equality that holds true for all values of the variable in its domain",
+        "Z": "x = 0 is merely a particular solution to 4x^2 = 2x^2; counterexample x = 1 gives (2*1)^2 = 4 != 2(1^2) = 2",
+        "W": "the corrected identity is (2x)^2 = 4x^2, justified by the power of a product law (ab)^n = a^n * b^n with a=2, b=x, n=2",
+        "wrong_idea": "Believing that an algebraic statement that holds for x = 0 is universally true for all real numbers.",
+        "replacement_rule": "A single test point only proves conditional satisfaction; proving an identity requires algebraic deduction or testing across all values."
+      },
+      "answer": {
+        "summary": "The check is NOT sufficient. An identity must hold for ALL real values of x; checking a single value only tests whether x=0 is a solution to the conditional equation (2x)^2 = 2x^2. Exact counterexample: let x = 1. Then LHS is (2 * 1)^2 = 2^2 = 4, while RHS is 2(1^2) = 2(1) = 2. Since 4 != 2, the statement fails. The corrected identity is (2x)^2 = 4x^2. General reason: by the power of a product rule (ab)^n = a^n * b^n, the exponent 2 distributes over both factors of the base (2 * x), giving 2^2 * x^2 = 4x^2.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "DECIDE",
+            "action": "Evaluate whether testing a single value (x = 0) can establish an algebraic identity.",
+            "why_valid": "An identity is universally quantified: for all x in R, LHS = RHS. A single point is an existential claim.",
+            "inputs": [
+              "(2x)^2 = 2x^2",
+              "x = 0"
+            ],
+            "output": "Not sufficient; x = 0 is merely a root of 4x^2 - 2x^2 = 0."
+          },
+          {
+            "id": "m2",
+            "kind": "TRANSFORM",
+            "action": "Produce an exact counterexample disproving universal equality.",
+            "why_valid": "A single counterexample disproves a universal assertion.",
+            "inputs": [
+              "x = 1"
+            ],
+            "output": "LHS = (2*1)^2 = 4; RHS = 2*(1^2) = 2; 4 != 2."
+          },
+          {
+            "id": "m3",
+            "kind": "VERIFY",
+            "action": "Formulate the corrected identity and justify with exponent rules.",
+            "why_valid": "Power of a product law: (ab)^n = a^n * b^n.",
+            "inputs": [
+              "Base (2x)",
+              "exponent 2"
+            ],
+            "output": "(2x)^2 = 2^2 * x^2 = 4x^2. The exponent applies to both the coefficient 2 and the variable x."
+          }
+        ],
+        "crux_move_ref": "m2",
+        "check": "Test second counterexample: at x=2, LHS = (4)^2 = 16, RHS = 2(4) = 8 != 16. Corrected identity at x=2: 4(2^2) = 16 = 16."
+      }
+    },
+    {
+      "id": "ISS54-Q9",
+      "issue": 54,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q9",
+      "stem": "Construct a quadratic polynomial with real zeros $-2$ and $3$ and with $p(0)=-6$. Explain how the value at zero fixes the scale, then check all three conditions.",
+      "stem_sha256": "sha256:9746a1402d801ca118c1bb25c54494b4385803e8063f5bedf139ef15644b0774",
+      "question_block_sha256": "sha256:9c06503d40882ac2f633d57ee39d01cbce3b0a3d9e62dcd97f420851655ec4b4",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested stress test; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS54-OWNER-CORE-PROMPT",
+        "SRC-NCERT-MATH-9-POLYNOMIALS",
+        "SRC-OPENSTAX-PRECALC-POLY-RECONSTRUCTION"
+      ],
+      "primary_capability_ref": "CAP-MATH-G9-DOMAIN-PUNCTURE",
+      "secondary_capability_refs": [
+        "CAP-MATH-G9-POLYNOMIAL-RECONSTRUCTION",
+        "CAP-MATH-G9-GRAPHICAL-ZEROS-DISTINCTION"
+      ],
+      "microtopic_ref": "MIC-MATH-G9-POLY-RATIONAL-RECONSTRUCTION",
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Requires constructing a quadratic polynomial family from given roots, determining the scale factor from an evaluation constraint, and checking all three conditions."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "SYNTHESIZE",
+      "secondary_demands": [
+        "APPLY"
+      ],
+      "qrt_template_id": "TMPL-MATH-G9-SYNTHESIZE-D2",
+      "qrt": {
+        "X": "constructing a quadratic polynomial with zeros -2 and 3 and p(0) = -6",
+        "Y": "the Factor Theorem root family p(x) = a(x + 2)(x - 3) with scale coefficient a != 0",
+        "Z": "evaluate p(0) = a(0 + 2)(0 - 3) = -6a; set -6a = -6 to solve a = 1; expand p(x) = x^2 - x - 6",
+        "W": "evaluating at x=0 provides an independent constraint fixing the vertical stretch scale a; checking p(-2)=0, p(3)=0, p(0)=-6 verifies all conditions",
+        "wrong_idea": "Assuming a = 1 without justification or writing p(x) = (x - 2)(x + 3) with inverted signs.",
+        "replacement_rule": "Zeros r_1 and r_2 determine factors (x - r_1)(x - r_2); a point condition p(x_0) = y_0 uniquely fixes the leading coefficient a."
+      },
+      "answer": {
+        "summary": "Any quadratic with real zeros -2 and 3 belongs to the family p(x) = a(x - (-2))(x - 3) = a(x + 2)(x - 3) with a != 0. The value at zero fixes the scale because evaluating at x=0 gives p(0) = a(0+2)(0-3) = -6a. Setting -6a = -6 yields a = 1, uniquely determining the vertical scale parameter. Thus p(x) = 1(x+2)(x-3) = x^2 - x - 6. Check all three conditions: (1) p(-2) = (-2)^2 - (-2) - 6 = 4 + 2 - 6 = 0; (2) p(3) = 3^2 - 3 - 6 = 9 - 3 - 6 = 0; (3) p(0) = 0^2 - 0 - 6 = -6.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "DECIDE",
+            "action": "Express the quadratic family having zeros -2 and 3 with an arbitrary non-zero scaling coefficient a.",
+            "why_valid": "By the Factor Theorem, if r is a root, (x - r) is a factor.",
+            "inputs": [
+              "zeros -2 and 3"
+            ],
+            "output": "p(x) = a(x - (-2))(x - 3) = a(x + 2)(x - 3)."
+          },
+          {
+            "id": "m2",
+            "kind": "CONNECT",
+            "action": "Use the point constraint p(0) = -6 to solve for the unique vertical scale factor a.",
+            "why_valid": "Evaluating at x=0 yields a linear equation in the parameter a.",
+            "inputs": [
+              "p(0) = a(2)(-3) = -6a",
+              "p(0) = -6"
+            ],
+            "output": "-6a = -6 => a = 1, so p(x) = (x + 2)(x - 3) = x^2 - x - 6."
+          },
+          {
+            "id": "m3",
+            "kind": "VERIFY",
+            "action": "Verify all three conditions explicitly by substitution.",
+            "why_valid": "Substitution confirms that p(-2)=0, p(3)=0, and p(0)=-6.",
+            "inputs": [
+              "p(x) = x^2 - x - 6"
+            ],
+            "output": "p(-2) = 4 + 2 - 6 = 0; p(3) = 9 - 3 - 6 = 0; p(0) = -6. All conditions satisfied."
+          }
+        ],
+        "crux_move_ref": "m2",
+        "check": "Leading coefficient a=1 > 0 yields upward parabola. Vertex at x = -b/(2a) = 1/2, where p(1/2) = (1/4) - (1/2) - 6 = -25/4 = -6.25, which is less than p(0)=-6, consistent with y-intercept."
+      }
+    },
+    {
+      "id": "ISS54-Q10",
+      "issue": 54,
+      "round": 1,
+      "cohort_label": "D2",
+      "original_identifier": "Q10",
+      "stem": "For $g_a(x)=(a-1)x^2+2(a-1)x+(a-1)$, determine when it is the zero polynomial and determine its degree otherwise. Use the convention that the zero polynomial has no defined degree. Assess whether an arbitrarily large number of zeros in the exceptional case contradicts the usual degree bound for a nonzero polynomial.",
+      "stem_sha256": "sha256:fd5534d0351ff8d2652cb7eefaea754240a8aa4efce871809cdc6b60fcfcfe4d",
+      "question_block_sha256": "sha256:6cd3fbb2e2e5af10a08c66a119f6b44f249404fc81a3b3591ffe62a9ca2efdf6",
+      "origin": "OWNER_SUPPLIED",
+      "authorship_disclosure": "Coordinator/AI-drafted benchmark input supplied under the owner's requested stress test; not official exam/PYQ material and not represented as personally authored by the owner.",
+      "source_refs": [
+        "ISS54-OWNER-CORE-PROMPT",
+        "SRC-NCERT-MATH-9-POLYNOMIALS",
+        "SRC-OPENSTAX-COLLEGE-ALGEBRA-POLY"
+      ],
+      "primary_capability_ref": "CAP-MATH-G9-DOMAIN-PUNCTURE",
+      "secondary_capability_refs": [
+        "CAP-MATH-G9-ZERO-POLYNOMIAL-BOUNDS",
+        "CAP-MATH-G9-POLY-DEGREE-EVAL"
+      ],
+      "microtopic_ref": "MIC-MATH-G9-POLY-RATIONAL-RECONSTRUCTION",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Requires determining when a parametric quadratic is the zero polynomial, finding degree for all other values, and evaluating why infinite roots do not contradict degree bounds."
+      },
+      "cohort_alignment": "MATCH",
+      "primary_demand": "EXPLAIN",
+      "secondary_demands": [
+        "JUSTIFY"
+      ],
+      "qrt_template_id": "TMPL-MATH-G9-EXPLAIN-D2",
+      "qrt": {
+        "X": "when g_a(x) = (a-1)x^2 + 2(a-1)x + (a-1) is the zero polynomial, its degree otherwise, and assessment of degree bound contradiction",
+        "Y": "zero polynomial definition (all coefficients zero) and degree bound hypothesis (applies only to non-zero polynomials)",
+        "Z": "all coefficients equal zero iff a = 1; when a != 1, leading coefficient (a-1) != 0 so degree is 2",
+        "W": "an arbitrarily large number of zeros at a = 1 does NOT contradict the degree bound because that theorem explicitly requires a non-zero polynomial",
+        "wrong_idea": "Thinking the degree of the zero polynomial is 0, or claiming that having infinite zeros contradicts the fundamental degree bound theorem.",
+        "replacement_rule": "The degree bound theorem applies strictly to non-zero polynomials; the zero polynomial has undefined degree and vanishes everywhere."
+      },
+      "answer": {
+        "summary": "g_a(x) = (a-1)(x^2 + 2x + 1) = (a-1)(x+1)^2. It is the zero polynomial if and only if all coefficients vanish simultaneously: a - 1 = 0 <=> a = 1. When a != 1, the leading coefficient (a-1) is non-zero, so the degree is 2. The fact that g_1(x) = 0 has infinitely many zeros does NOT contradict the usual degree bound because the theorem ('a polynomial of degree n has at most n roots') explicitly applies only to NON-ZERO polynomials. The zero polynomial has undefined degree, so the theorem's prerequisite is not satisfied.",
+        "reasoning_route": [
+          {
+            "id": "m1",
+            "kind": "DECIDE",
+            "action": "Determine when all coefficients of g_a(x) vanish simultaneously.",
+            "why_valid": "A polynomial is identically zero iff every coefficient equals zero.",
+            "inputs": [
+              "Coefficients: a-1, 2(a-1), a-1"
+            ],
+            "output": "All three coefficients equal zero iff a = 1. Thus g_1(x) is the zero polynomial."
+          },
+          {
+            "id": "m2",
+            "kind": "TRANSFORM",
+            "action": "Determine the degree of g_a(x) for all parameter values a != 1.",
+            "why_valid": "When a != 1, the leading coefficient a - 1 != 0, and the highest power is x^2.",
+            "inputs": [
+              "a != 1"
+            ],
+            "output": "Degree of g_a(x) is 2 for all a != 1."
+          },
+          {
+            "id": "m3",
+            "kind": "VERIFY",
+            "action": "Assess whether infinitely many zeros for the zero polynomial contradicts the degree bound theorem.",
+            "why_valid": "Hypothesis inspection: the degree bound theorem states that a NON-ZERO polynomial of degree n has at most n real roots.",
+            "inputs": [
+              "Degree bound theorem statement",
+              "g_1(x) = 0"
+            ],
+            "output": "No contradiction: the zero polynomial is not a non-zero polynomial, and its degree is undefined."
+          }
+        ],
+        "crux_move_ref": "m3",
+        "check": "Verify: for a=2, g_2(x) = x^2 + 2x + 1 = (x+1)^2, degree is 2 with exactly one real root x=-1 (multiplicity 2); for a=1, g_1(x) = 0 vanishes at every x in R."
+      }
+    }
+  ]
+}

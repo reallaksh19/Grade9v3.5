@@ -1,0 +1,1144 @@
+{
+  "schema_version": "0.2.0",
+  "package_id": "LIB-MATH-G9-POLYNOMIALS-D2",
+  "title": "Polynomials: Degree, Roots, Remainder Principles, and Rational Domain Preservation",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Mathematics",
+  "scope_summary": "Authored Grade 9 Mathematics Polynomials and Rational Expressions spine covering polynomial degree and non-vanishing coefficient conditions, remainder and factor theorems, quadratic middle-term factorisation, area geometric modeling, graphical zeros vs arbitrary points, rational function domain preservation under cancellation, polynomial reconstruction from roots and scale-fixing points, and zero-polynomial boundaries.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-NCERT-MATH-9-POLYNOMIALS",
+      "version": "1.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "NCERT Class 9 Mathematics — Chapter 2: Polynomials",
+      "origin": "WEB",
+      "locator": "https://ncert.nic.in/textbook/pdf/iemh102.pdf",
+      "edition": "2026",
+      "section": "Chapter 2",
+      "last_checked": "2026-10-05",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Official Curriculum Authority (NCERT)",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "CURRICULUM"
+      ],
+      "supports_claims": [
+        "CAP-MATH-G9-POLY-DEGREE-EVAL",
+        "CAP-MATH-G9-REMAINDER-THEOREM"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Core standard definitions of polynomial degree, factorisation, and Remainder Theorem.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-OPENSTAX-COLLEGE-ALGEBRA-POLY",
+      "version": "1.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "OpenStax College Algebra 2e — Chapter 5: Polynomial and Rational Functions",
+      "origin": "WEB",
+      "locator": "https://openstax.org/books/college-algebra-2e/pages/5-6-rational-functions",
+      "edition": "2026",
+      "section": "Section 5.6",
+      "last_checked": "2026-10-05",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Creative Commons Attribution 4.0 International",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "CURRICULUM"
+      ],
+      "supports_claims": [
+        "CAP-MATH-G9-DOMAIN-PUNCTURE",
+        "CAP-MATH-G9-ZERO-POLYNOMIAL-BOUNDS"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Standard treatment of rational domain restrictions, removable singularities, and function equality.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-OPENSTAX-PRECALC-POLY-RECONSTRUCTION",
+      "version": "1.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "OpenStax Precalculus 2e — Polynomial Modeling and Root Reconstruction",
+      "origin": "WEB",
+      "locator": "https://openstax.org/books/precalculus-2e/pages/3-4-factor-theorem-and-remainder-theorem",
+      "edition": "2026",
+      "section": "Section 3.4",
+      "last_checked": "2026-10-05",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Creative Commons Attribution 4.0 International",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "CURRICULUM"
+      ],
+      "supports_claims": [
+        "CAP-MATH-G9-POLYNOMIAL-RECONSTRUCTION"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Standard root-based polynomial reconstruction and scale factor determination.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-MATH-G9-POLYNOMIALS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-MATH-9-POLYNOMIALS",
+        "SRC-OPENSTAX-COLLEGE-ALGEBRA-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomials and Rational Functions",
+      "topic": "Algebra and Polynomials",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Grade 9 polynomials requires distinguishing degree from printed exponents, applying factor and remainder theorems, modeling geometric areas, and preserving punctured domains under rational cancellation.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [],
+      "conventions": [
+        {
+          "id": "CONV-DEGREE-NONZERO",
+          "statement": "The degree of a polynomial is the highest power of x with a non-zero coefficient. The zero polynomial has no defined degree."
+        },
+        {
+          "id": "CONV-DOMAIN-PRESERVATION",
+          "statement": "Rational expression simplification (x-a)/(x-a)=1 is valid strictly on R \\ {a} and does not restore the punctured point to the function's domain."
+        }
+      ],
+      "scope": {
+        "covers": "Grade 9 polynomials, degree definitions, factor and remainder theorems, middle term factorisation, geometric area modeling, zeros and intercepts, rational expression domain preservation, polynomial reconstruction from zeros, zero polynomial bounds.",
+        "excluded": [
+          "Calculus differentiation and integration",
+          "Complex numbers and non-real roots",
+          "Galois theory",
+          "Multivariable polynomial ideal theory"
+        ],
+        "extension_refs": []
+      }
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-MATH-G9-POLY-DEGREE-EVAL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Determine the degree of a polynomial under parametric leading coefficient conditions.",
+      "success_criterion": "Correctly identify degree by evaluating whether the leading coefficient vanishes.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-G9-REMAINDER-THEOREM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Apply the Remainder Theorem to find division remainders without performing long division.",
+      "success_criterion": "Evaluate p(a) for linear divisor x - a and explain why (a - a)q(a) = 0 isolates the remainder.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-G9-QUADRATIC-FACTORISATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Factorise quadratic polynomials by splitting the middle term and find real zeros.",
+      "success_criterion": "Produce binomial factors and independently verify factors by expansion and zeros by substitution.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-G9-GEOMETRIC-AREA-MODELLING",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Construct and simplify algebraic polynomial models for geometric areas.",
+      "success_criterion": "Translate non-overlapping tile dimensions into area polynomials and identify addition as region union.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-G9-GRAPHICAL-ZEROS-DISTINCTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Produce evaluation tables and distinguish polynomial zeros from arbitrary graph points.",
+      "success_criterion": "Plot coordinates and articulate that zeros are x-intercepts (y=0), not arbitrary (x, y) points.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-G9-DOMAIN-PUNCTURE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-COLLEGE-ALGEBRA-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Preserve punctured domains under rational cancellation and evaluate function equality.",
+      "success_criterion": "State domain as R \\ {1}, simplify for x != 1, and prove functions are not equal on all of R.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-G9-FACTOR-THEOREM-SYNTHESIS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Solve parameter constraints using the Factor Theorem and verify quotient factors by expansion.",
+      "success_criterion": "Solve for k such that f(1) = 0, find quotient by division, and verify by polynomial expansion.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-G9-IDENTITY-VS-CONDITIONAL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Refute false algebraic identity claims with counterexamples and apply exponent distribution rules.",
+      "success_criterion": "Provide counterexample x = 1 showing 4 != 2, and justify corrected identity (2x)^2 = 4x^2.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-G9-POLYNOMIAL-RECONSTRUCTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-PRECALC-POLY-RECONSTRUCTION"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Synthesize polynomials from specified real zeros and point-based scale constraints.",
+      "success_criterion": "Formulate root family a(x + 2)(x - 3), solve for scale factor a = 1 using p(0) = -6, and check conditions.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-G9-ZERO-POLYNOMIAL-BOUNDS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-COLLEGE-ALGEBRA-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Classify zero polynomial conditions and evaluate hypotheses of the polynomial degree bound theorem.",
+      "success_criterion": "Determine a = 1 for zero polynomial and explain why infinite zeros do not contradict non-zero degree bounds.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-MATH-G9-POLY-DEGREE-REMAINDER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Polynomial Degree, Factorisation, and Remainder Principles",
+      "bucket_id": "BUCKET-MATH-G9-POLYNOMIALS",
+      "primary_capability_ref": "CAP-MATH-G9-POLY-DEGREE-EVAL",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Requires evaluating degree by checking leading coefficient non-vanishing, applying the Remainder Theorem p(a)=R, factorising quadratics, and modeling geometric areas.",
+      "entry_assumptions": [
+        "Polynomial terms and coefficients",
+        "Integer arithmetic",
+        "Monomial product expansion"
+      ],
+      "inferential_jump": "Why printed exponents do not determine degree when coefficients vanish, and why the division identity p(x) = (x-a)q(x) + R directly forces R = p(a).",
+      "teaching_path": [
+        {
+          "id": "DEG-1",
+          "role": "DECLARE",
+          "action": "Evaluate leading terms by testing coefficient conditions under parameters.",
+          "why_valid": "Terms with zero coefficients contribute zero to the polynomial value for all inputs.",
+          "inputs": [],
+          "output": "Vanishing leading coefficients reduce the effective polynomial degree."
+        },
+        {
+          "id": "DEG-2",
+          "role": "DECLARE",
+          "action": "Apply the Remainder Theorem by evaluating the dividend at the linear divisor root.",
+          "why_valid": "In p(x) = (x - a)q(x) + R, the quotient term vanishes at x = a leaving R = p(a).",
+          "inputs": [],
+          "output": "The remainder of p(x) divided by (x - a) is the constant p(a)."
+        },
+        {
+          "id": "DEG-3",
+          "role": "DECLARE",
+          "action": "Factorise quadratics by splitting linear terms and model geometric area sums.",
+          "why_valid": "Polynomial multiplication distributes across terms, and area measure is additive over disjoint sets.",
+          "inputs": [],
+          "output": "Factored products and combined area polynomials."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [
+        "REP-MATH-POLY-TILES-MODEL"
+      ],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Assuming the degree of a polynomial is determined solely by the highest visual exponent written, even when its coefficient is zero.",
+          "diagnostic_prompt": "In the polynomial p(x) = (k - 2)x^3 + 3x^2 - x + 4, what happens to the x^3 term when k = 2?",
+          "repair": "When k = 2, the coefficient (k - 2) equals 0, so 0*x^3 vanishes from the sum. The highest power with a non-zero coefficient is x^2, making the degree 2."
+        }
+      ],
+      "exit_task": {
+        "prompt": "For p(x) = (m - 3)x^4 + 2x^3 - 5, find the degree when m = 3 and when m != 3, and find the remainder when p(x) is divided by x - 1 for m = 3 without division.",
+        "source_ref": "SRC-NCERT-MATH-9-POLYNOMIALS",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "When m = 3, degree is 3; when m != 3, degree is 4. Remainder at m = 3 is p(1) = 2(1)^3 - 5 = -3.",
+          "reasoning": [
+            "For m = 3, the coefficient (m - 3) = 0, so the x^4 term vanishes. The leading term is 2x^3, giving degree 3.",
+            "For m != 3, (m - 3) != 0, so x^4 has a non-zero coefficient, giving degree 4.",
+            "By the Remainder Theorem, the remainder upon division by x - 1 is p(1) = 0*(1)^4 + 2(1)^3 - 5 = -3."
+          ],
+          "check": "Verify by long division: (2x^3 - 5) / (x - 1) = 2x^2 + 2x + 2 with remainder -3.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Qualitative degree classification and Remainder Theorem computation."
+        }
+      },
+      "research_contribution": "Author-created polynomial degree and remainder contrast; states no extra formula and promotes no candidate-packet formula.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a polynomial is written with an x^3 term, must its degree always be 3?",
+          "defensible_answer": "No. If the coefficient of x^3 is zero, the term vanishes and the degree is determined by the next highest power with a non-zero coefficient."
+        },
+        "attempt": {
+          "produces": "The degree of p(x) for k=2 and k!=2, and the remainder upon linear division.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Identify vanishing leading coefficient: when k=2, (k-2)=0 so degree is 2.",
+              "evidence_of": "Understanding degree requires non-vanishing coefficient."
+            },
+            {
+              "criterion": "Identify non-vanishing case: when k!=2, degree is 3.",
+              "evidence_of": "Classifying degree under parameter conditions."
+            },
+            {
+              "criterion": "Apply Remainder Theorem: remainder equals p(2) = 1 without long division.",
+              "evidence_of": "Using remainder theorem evaluation."
+            }
+          ],
+          "accepted": [
+            "For k=2 the x^3 coefficient is 0, leaving 3x^2-x+4 with degree 2. For k!=2 the degree is 3. The remainder is p(2) = 2^3 - 4(2) + 1 = 1."
+          ],
+          "rejected": [
+            "'The degree is always 3 because x^3 is written.' Degree requires a non-zero coefficient.",
+            "'Perform long division to find the remainder.' The Remainder Theorem gives p(2) directly."
+          ],
+          "task": {
+            "prompt": "Classify the degree of p_k(x) = (k-2)x^3 + 3x^2 - x + 4 for k=2 and k!=2, and find the remainder when x^3 - 4x + 1 is divided by x - 2.",
+            "givens": [
+              "Polynomial p_k(x) = (k-2)x^3 + 3x^2 - x + 4 with real k.",
+              "Polynomial p(x) = x^3 - 4x + 1 with divisor x - 2."
+            ],
+            "representation_ref": "REP-MATH-POLY-TILES-MODEL",
+            "stage_refs": [
+              "stage-tile1"
+            ]
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What is the value of the coefficient (k - 2) when k = 2?",
+              "why_this_ask": "Separates printed symbol from evaluated coefficient value.",
+              "from_step_ref": "DEG-1"
+            },
+            {
+              "ask": "What is the highest power of x with a non-zero coefficient when k = 2?",
+              "why_this_ask": "Isolates the actual leading term after cancellation.",
+              "from_step_ref": "DEG-2"
+            },
+            {
+              "ask": "What does evaluating p(2) give for a linear divisor (x - 2)?",
+              "why_this_ask": "Applies the Remainder Theorem directly.",
+              "from_step_ref": "DEG-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path proves the division identity in the abstract; the learner reconstruct route calculates the vanishing coefficient directly and evaluates p(2)."
+        },
+        "boundary_test": {
+          "prompt": "What is the degree if all coefficients of the polynomial vanish?",
+          "answer": "The polynomial is the zero polynomial, whose degree is undefined by convention.",
+          "confirms": "Degree requires at least one non-zero coefficient."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MATH-G9-DEGREE-REMAINDER",
+          "decision": "Evaluate polynomial degree with non-vanishing leading coefficients and apply the Remainder Theorem",
+          "step_refs": [
+            "DEG-1",
+            "DEG-2",
+            "DEG-3"
+          ],
+          "crux_step_ref": "DEG-2",
+          "crux_question_refs": [
+            "ISS54-Q1",
+            "ISS54-Q2"
+          ],
+          "bank_anchor_ref": "ISS54-Q1",
+          "representation_ref": "REP-MATH-POLY-TILES-MODEL",
+          "reveal_stage_refs": [
+            "stage-tile1",
+            "stage-tile2",
+            "stage-combined"
+          ],
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "Verify that (k-2)x^3 vanishes when k=2, reducing degree to 2."
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "Find the degree of p(x) = (2 - 2)x^3 + 4x - 1.",
+        "result": "Degree is 1 because the x^3 coefficient is 0, leaving 4x - 1 with leading power 1.",
+        "representation_ref": "REP-MATH-POLY-TILES-MODEL"
+      }
+    },
+    {
+      "id": "MIC-MATH-G9-POLY-RATIONAL-RECONSTRUCTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-COLLEGE-ALGEBRA-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:authored_by": "agent-author-pilot-1",
+        "grade9v3:citations": {
+          "elicitation.attempt.task": "AUTHORED_PEDAGOGICAL",
+          "elicitation.attempt.accepted": "AUTHORED_PEDAGOGICAL"
+        }
+      },
+      "title": "Domain Restriction, Geometric Zeros, and Polynomial Reconstruction",
+      "bucket_id": "BUCKET-MATH-G9-POLYNOMIALS",
+      "primary_capability_ref": "CAP-MATH-G9-DOMAIN-PUNCTURE",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Requires preserving punctured domains under algebraic cancellation, distinguishing polynomial zeros from arbitrary points, reconstructing quadratics from roots and scale-fixing points, and evaluating zero polynomial boundaries.",
+      "entry_assumptions": [
+        "Zero Product Property",
+        "Graphing ordered pairs",
+        "Rational fraction simplification"
+      ],
+      "inferential_jump": "Why algebraic cancellation (x-1)/(x-1) = 1 is invalid at x = 1, creating a removable singularity hole that prevents function identity across all real numbers.",
+      "teaching_path": [
+        {
+          "id": "RAT-1",
+          "role": "DECLARE",
+          "action": "Identify domain exclusions where rational denominators vanish.",
+          "why_valid": "Division by zero is undefined in real arithmetic.",
+          "inputs": [],
+          "output": "Domain is restricted to real numbers where the denominator is non-zero."
+        },
+        {
+          "id": "RAT-2",
+          "role": "DECLARE",
+          "action": "Distinguish between algebraic simplification and function identity across real numbers.",
+          "why_valid": "Two functions are equal iff their domains match and their values agree at all domain points.",
+          "inputs": [],
+          "output": "Simplification is valid only on the punctured domain; functions with different domains are not equal."
+        },
+        {
+          "id": "RAT-3",
+          "role": "DECLARE",
+          "action": "Reconstruct polynomials from given zeros and scale-fixing point values.",
+          "why_valid": "Factors (x - r) fix zeros, while a point evaluation uniquely determines the leading multiplier a.",
+          "inputs": [],
+          "output": "Unique quadratic polynomial satisfying zeros and point conditions."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [
+        "REP-MATH-RATIONAL-DOMAIN-PUNCTURE",
+        "REP-MATH-PARABOLA-ZEROS-PLOT"
+      ],
+      "question_family_refs": [],
+      "misconceptions": [
+        {
+          "wrong_idea": "Assuming that simplifying (x^2 - 1)/(x - 1) to x + 1 means both expressions represent the same function on all real numbers.",
+          "diagnostic_prompt": "What is the value of r(1) = (1^2 - 1)/(1 - 1)? Can a function be defined where division by zero occurs?",
+          "repair": "At x = 1, r(1) yields 0/0, which is undefined. The function q(x) = x + 1 is defined at x = 1 with q(1) = 2. Two functions cannot be equal on R if their domains differ."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Compare f(x) = (x^2 - 4)/(x - 2) with g(x) = x + 2. State the domain of f, simplify it for valid x, and determine whether f and g are equal on R.",
+        "source_ref": "SRC-OPENSTAX-COLLEGE-ALGEBRA-POLY",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Domain of f is R \\ {2}. For x != 2, f(x) = x + 2. f and g are not equal on R because f(2) is undefined while g(2) = 4.",
+          "reasoning": [
+            "Denominator x - 2 = 0 at x = 2, so Domain(f) = R \\ {2}.",
+            "For x != 2, (x - 2) != 0, so f(x) = (x - 2)(x + 2)/(x - 2) = x + 2.",
+            "At x = 2, f(2) is undefined, but g(2) = 4. Since domains differ, f and g are not the same function on R."
+          ],
+          "check": "Verify limit: lim_{x -> 2} f(x) = 4 = g(2), confirming the puncture is a removable hole at (2, 4).",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Qualitative domain analysis and removable singularity classification."
+        }
+      },
+      "research_contribution": "Author-created rational domain puncture contrast; states no extra formula and promotes no candidate-packet formula.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Is (x^2 - 1)/(x - 1) equal to x + 1 for every real number x?",
+          "defensible_answer": "No. It is equal for all real numbers except x = 1, where the denominator is zero and the expression is undefined."
+        },
+        "attempt": {
+          "produces": "The domain of r(x), the simplified form, and the evaluation at x=1 comparing r(1) and q(1).",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Identify domain restriction: x != 1 due to zero denominator.",
+              "evidence_of": "Analyzing rational expression domains."
+            },
+            {
+              "criterion": "Simplify conditionally: r(x) = x + 1 for x != 1.",
+              "evidence_of": "Factoring and cancelling under domain constraints."
+            },
+            {
+              "criterion": "Justify inequality on R: r(1) is undefined while q(1) = 2.",
+              "evidence_of": "Applying definition of function equality."
+            }
+          ],
+          "accepted": [
+            "Domain is R \\ {1}. Simplifies to x + 1 for x != 1. Not the same function on R because r(1) is undefined while q(1) = 2."
+          ],
+          "rejected": [
+            "'Yes, they are identical because (x^2-1)/(x-1) = x+1 everywhere.' Ignores division by zero at x=1.",
+            "'r(1) = 2 by cancellation.' Cancellation is illegal when dividing 0 by 0."
+          ],
+          "task": {
+            "prompt": "Find the domain of r(x) = (x^2 - 1)/(x - 1), simplify where valid, and determine whether r and q(x) = x + 1 are the same function on all real numbers.",
+            "givens": [
+              "Expression r(x) = (x^2 - 1)/(x - 1).",
+              "Polynomial q(x) = x + 1."
+            ],
+            "representation_ref": "REP-MATH-RATIONAL-DOMAIN-PUNCTURE",
+            "stage_refs": [
+              "stage-expression",
+              "stage-puncture",
+              "stage-graph"
+            ]
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What happens when you substitute x = 1 into (x^2 - 1)/(x - 1)?",
+              "why_this_ask": "Directly reveals the division by zero.",
+              "from_step_ref": "RAT-1"
+            },
+            {
+              "ask": "What is the domain of r(x)?",
+              "why_this_ask": "Establishes domain exclusion before simplification.",
+              "from_step_ref": "RAT-2"
+            },
+            {
+              "ask": "Are two functions equal if their domains are not equal?",
+              "why_this_ask": "Applies the definition of function equality.",
+              "from_step_ref": "RAT-3"
+            }
+          ],
+          "differs_from_teaching_path": "The teaching path discusses general rational functions and holes; the learner route evaluates x=1 immediately to establish the puncture."
+        },
+        "boundary_test": {
+          "prompt": "Does taking the limit as x approaches 1 change the fact that r(1) is undefined?",
+          "answer": "No. The limit is 2, which confirms the hole is removable, but the function value r(1) still does not exist.",
+          "confirms": "Limits do not alter the algebraic domain of a function."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MATH-G9-DOMAIN-PUNCTURE",
+          "decision": "Preserve domain punctures during rational simplification and evaluate function equality",
+          "step_refs": [
+            "RAT-1",
+            "RAT-2",
+            "RAT-3"
+          ],
+          "crux_step_ref": "RAT-3",
+          "crux_question_refs": [
+            "ISS54-Q6"
+          ],
+          "bank_anchor_ref": "ISS54-Q6",
+          "representation_ref": "REP-MATH-RATIONAL-DOMAIN-PUNCTURE",
+          "reveal_stage_refs": [
+            "stage-expression",
+            "stage-puncture",
+            "stage-graph"
+          ],
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "Verify that r(1) is undefined while q(1) = 2, establishing domain inequality."
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "State the domain of f(x) = (x - 3)/(x - 3).",
+        "result": "Domain is R \\ {3}; although f(x) = 1 for all x != 3, f(3) is undefined (0/0).",
+        "representation_ref": "REP-MATH-RATIONAL-DOMAIN-PUNCTURE"
+      }
+    }
+  ],
+  "relations": [],
+  "representations": [
+    {
+      "id": "REP-MATH-RATIONAL-DOMAIN-PUNCTURE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-COLLEGE-ALGEBRA-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:owner_architecture": "ODR-0004"
+      },
+      "kind": "DIAGRAM",
+      "purpose": "Compare rational expression r(x)=(x^2-1)/(x-1) and linear polynomial q(x)=x+1, highlighting domain puncture at x=1.",
+      "required_elements": [
+        "coordinate axes",
+        "linear function",
+        "removable singularity hole",
+        "domain label"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "coordinate axes",
+        "linear function",
+        "removable singularity hole",
+        "domain label"
+      ],
+      "instance_constraints": [
+        "Division by zero is undefined at x=1.",
+        "Cancellation (x-1)/(x-1)=1 is valid only on R \\ {1}."
+      ],
+      "accessibility": [
+        "Hole at (1, 2) is explicitly indicated by an open circle and descriptive text callout.",
+        "Axis numbers and function formulas are rendered with high contrast text."
+      ],
+      "misleading_alternatives": [
+        "Showing r(x) as continuous across all real numbers without a hole.",
+        "Assuming r(1) = 2 without noting domain restriction."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS54/assets/rational-domain-puncture.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "removable singularity hole",
+          "symbol": "x != 1",
+          "in_words": "The open circle indicates the input x=1 is excluded from the domain of r(x)."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "stage-expression",
+          "label": "Expression comparison",
+          "purpose": "Formula and domain definitions",
+          "visible_elements": [
+            "coordinate axes"
+          ]
+        },
+        {
+          "id": "stage-puncture",
+          "label": "Critical value x=1",
+          "purpose": "Evaluating r(1) and q(1)",
+          "visible_elements": [
+            "coordinate axes"
+          ]
+        },
+        {
+          "id": "stage-graph",
+          "label": "Graph comparison",
+          "purpose": "Line with removable hole at (1, 2)",
+          "visible_elements": [
+            "coordinate axes",
+            "linear function",
+            "removable singularity hole"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "stage-expression"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "stage-puncture"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "stage-graph"
+        }
+      ]
+    },
+    {
+      "id": "REP-MATH-POLY-TILES-MODEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:owner_architecture": "ODR-0004"
+      },
+      "kind": "DIAGRAM",
+      "purpose": "Model non-overlapping rectangular tile areas and their polynomial sum.",
+      "required_elements": [
+        "tile 1 rectangle",
+        "tile 2 rectangle",
+        "dimension labels",
+        "combined area sum"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "tile 1 rectangle",
+        "tile 2 rectangle",
+        "dimension labels",
+        "combined area sum"
+      ],
+      "instance_constraints": [
+        "Dimensions require x > 0.",
+        "Non-overlapping tiles add their areas."
+      ],
+      "accessibility": [
+        "Each tile has distinct color fill, bold dimension labels, and algebraic area breakdown."
+      ],
+      "misleading_alternatives": [
+        "Multiplying areas instead of adding them.",
+        "Assuming overlapping regions."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS54/assets/polynomial-area-tiles.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "combined area sum",
+          "symbol": "A_total = A_1 + A_2",
+          "in_words": "The plus operator represents the union of disjoint rectangular areas."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "stage-tile1",
+          "label": "Tile 1",
+          "purpose": "Area of (x+2) by (x+1)",
+          "visible_elements": [
+            "tile 1 rectangle"
+          ]
+        },
+        {
+          "id": "stage-tile2",
+          "label": "Tile 2",
+          "purpose": "Area of x by (x+3)",
+          "visible_elements": [
+            "tile 2 rectangle"
+          ]
+        },
+        {
+          "id": "stage-combined",
+          "label": "Combined area",
+          "purpose": "Total area polynomial",
+          "visible_elements": [
+            "tile 1 rectangle",
+            "tile 2 rectangle",
+            "combined area sum"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "stage-tile1"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "stage-tile2"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "stage-combined"
+        }
+      ]
+    },
+    {
+      "id": "REP-MATH-PARABOLA-ZEROS-PLOT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:owner_architecture": "ODR-0004"
+      },
+      "kind": "DIAGRAM",
+      "purpose": "Plot quadratic parabola, mark zeros at x-intercepts, and contrast zeros with arbitrary points.",
+      "required_elements": [
+        "coordinate axes",
+        "parabola curve",
+        "plotted points",
+        "marked zeros"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "coordinate axes",
+        "parabola curve",
+        "plotted points",
+        "marked zeros"
+      ],
+      "instance_constraints": [
+        "Parabola opens upward with vertex at (0, -1).",
+        "Zeros occur at y = 0."
+      ],
+      "accessibility": [
+        "Zeros are highlighted in green with prominent circles and text labels.",
+        "Ordered pairs are labeled with coordinates."
+      ],
+      "misleading_alternatives": [
+        "Calling the y-intercept (0, -1) a zero.",
+        "Confusing zero x-values with zero y-values."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS54/assets/parabola-zeros-intercepts.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "marked zeros",
+          "symbol": "p(x) = 0",
+          "in_words": "Points where the curve crosses the horizontal axis y = 0."
+        }
+      ],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "stage-points",
+          "label": "Plotted points",
+          "purpose": "Value table coordinates",
+          "visible_elements": [
+            "coordinate axes",
+            "plotted points"
+          ]
+        },
+        {
+          "id": "stage-zeros",
+          "label": "Marked zeros",
+          "purpose": "x-intercepts at y=0",
+          "visible_elements": [
+            "coordinate axes",
+            "marked zeros"
+          ]
+        },
+        {
+          "id": "stage-contrast",
+          "label": "Zero vs point",
+          "purpose": "Distinguishing zeros from arbitrary points",
+          "visible_elements": [
+            "coordinate axes",
+            "parabola curve",
+            "marked zeros"
+          ]
+        }
+      ],
+      "support_stage_map": [
+        {
+          "support_level": "low",
+          "visual_stage_ref": "stage-points"
+        },
+        {
+          "support_level": "medium",
+          "visual_stage_ref": "stage-zeros"
+        },
+        {
+          "support_level": "high",
+          "visual_stage_ref": "stage-contrast"
+        }
+      ]
+    }
+  ],
+  "question_families": [
+    {
+      "id": "FAM-MATH-POLY-DEGREE-REMAINDER",
+      "version": "1.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomial Degree Evaluation, Remainder Theorem, and Area Models",
+      "capability_refs": [
+        "CAP-MATH-G9-POLY-DEGREE-EVAL",
+        "CAP-MATH-G9-REMAINDER-THEOREM"
+      ],
+      "solution_structure": [
+        "Analyze leading coefficient vanishing conditions",
+        "Apply division identity to isolate remainder",
+        "Model combined rectangular areas"
+      ],
+      "demand_dimensions": {
+        "model_choice": "Euclidean polynomial division algorithm and degree definitions",
+        "representation_translation": "Translate algebraic expressions into geometric models",
+        "reasoning_steps": "Multi-step deduction from parameter cases to degree classification",
+        "novelty": "Testing vanishing coefficients under unknown parameters"
+      },
+      "safe_variations": [
+        "Vary parameter coefficient formulas",
+        "Vary linear divisor roots"
+      ],
+      "transfer_boundaries": [
+        "Applies to single-variable polynomials over real coefficients"
+      ],
+      "common_wrong_routes": [
+        "Reading printed exponents without checking for zero coefficients",
+        "Using long division when the Remainder Theorem suffices"
+      ],
+      "item_refs": [
+        "ISS54-Q1",
+        "ISS54-Q2",
+        "ISS54-Q3",
+        "ISS54-Q4",
+        "ISS54-Q7",
+        "ISS54-Q8"
+      ],
+      "context_refs": []
+    },
+    {
+      "id": "FAM-MATH-POLY-RATIONAL-RECONSTRUCTION",
+      "version": "1.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OPENSTAX-COLLEGE-ALGEBRA-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Domain Punctures, Graphical Zeros, and Polynomial Reconstruction",
+      "capability_refs": [
+        "CAP-MATH-G9-DOMAIN-PUNCTURE",
+        "CAP-MATH-G9-POLYNOMIAL-RECONSTRUCTION"
+      ],
+      "solution_structure": [
+        "Determine non-zero denominator domain restrictions",
+        "Distinguish zeros from non-zero evaluation coordinates",
+        "Solve scale factor a from point evaluation",
+        "Evaluate zero polynomial degree conventions"
+      ],
+      "demand_dimensions": {
+        "model_choice": "Function equality criteria and polynomial factor theorem",
+        "representation_translation": "Cartesian plot with removable singularities and parabolic curves",
+        "reasoning_steps": "Stepwise deduction from punctured domains to function inequality",
+        "novelty": "Distinguishing expression equality from function equality"
+      },
+      "safe_variations": [
+        "Vary excluded domain values",
+        "Vary root coordinates and scale values"
+      ],
+      "transfer_boundaries": [
+        "Applies to rational expressions and polynomial functions over R"
+      ],
+      "common_wrong_routes": [
+        "Cancelling common factors without preserving domain restrictions",
+        "Confusing y-intercepts with polynomial zeros"
+      ],
+      "item_refs": [
+        "ISS54-Q5",
+        "ISS54-Q6",
+        "ISS54-Q9",
+        "ISS54-Q10"
+      ],
+      "context_refs": []
+    }
+  ],
+  "questions": [],
+  "teaching_routes": [
+    {
+      "id": "ROUTE-MATH-G9-POLYNOMIALS-A",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:scope_class": "OWNER_EXTENSION",
+        "grade9v3:donor": "PR48"
+      },
+      "title": "Foundational Polynomial Principles: Degree, Roots, Remainder, and Domain Preservation",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-MATH-G9-POLY-DEGREE-REMAINDER",
+        "MIC-MATH-G9-POLY-RATIONAL-RECONSTRUCTION"
+      ],
+      "entry_needs": [
+        "Can perform integer arithmetic, substitute numbers into simple algebraic expressions, and expand monomial products."
+      ],
+      "learner_actions": [
+        "Identify when leading polynomial coefficients vanish under parameters.",
+        "Apply the Remainder Theorem to find linear division remainders without long division.",
+        "Factorise quadratic polynomials by splitting linear terms and find real zeros.",
+        "Model geometric area sums using polynomials.",
+        "Produce value tables and distinguish polynomial zeros from arbitrary graph points.",
+        "Preserve punctured domains under rational expression cancellation."
+      ],
+      "help_plan": [
+        "Prompt whether the coefficient of the highest power evaluates to zero before deciding degree.",
+        "Ask what x-value makes the linear divisor zero before applying the Remainder Theorem.",
+        "Prompt for the domain restriction before simplifying rational expressions."
+      ],
+      "reveal_plan": "Prediction, reconstruction, misconception diagnosis and boundary tests precede the closed reveal.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-NCERT-MATH-9-POLYNOMIALS",
+          "purpose": "Curriculum foundations",
+          "reason": "Standard Grade 9 mathematics curriculum definitions."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not substitute a declarative formula for the learner's domain evaluation.",
+        "Do not ignore the x != 1 condition when simplifying rational expressions."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "data": [
+    {
+      "id": "DAT-MATH-SAMPLE-SCALE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-MATH-9-POLYNOMIALS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 1,
+      "unit": "scalar",
+      "symbol": "a",
+      "meaning": "Leading vertical scale factor in polynomial reconstruction.",
+      "locator": "Author-created exact practice datum."
+    }
+  ],
+  "application_contexts": []
+}

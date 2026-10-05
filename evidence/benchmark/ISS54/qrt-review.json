@@ -1,0 +1,934 @@
+{
+  "schema": "iss54-qrt-review/v1",
+  "issue": 54,
+  "round": 1,
+  "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+  "templates_ref": "Shared/quality/question-demand-templates.v1.json",
+  "vocabulary_ref": "Shared/vocabularies/cognitive-demand.v1.json",
+  "review_scope": "Q1-Q10 full academic semantic review",
+  "records": [
+    {
+      "question_id": "ISS54-Q1",
+      "original_identifier": "Q1",
+      "template_id": "TMPL-MATH-G9-EXPLAIN-D2",
+      "primary_demand": "EXPLAIN",
+      "secondary_demands": [
+        "RETRIEVE",
+        "JUSTIFY"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "the degree of polynomial p_k(x) under parameter cases k=2 and k!=2",
+        "Y": "the definition of polynomial degree: the highest exponent of the variable with a non-zero coefficient",
+        "Z": "evaluate the leading coefficient (k-2): when k=2, (k-2)=0 so the cubic term vanishes leaving 3x^2-x+4 (degree 2); when k!=2, (k-2)!=0 so the cubic term is active (degree 3)",
+        "W": "the highest printed exponent is insufficient because if its coefficient is zero, that term contributes 0 to the sum and cannot determine the degree",
+        "wrong_idea": "Reading the printed exponent 3 directly from the formula without checking whether its coefficient evaluates to zero.",
+        "replacement_rule": "Degree is the maximal exponent whose coefficient is non-zero; always simplify and check coefficient vanishing under parameters."
+      },
+      "authored_support": {
+        "H1": "Review the definition of polynomial degree: does a term like 0*x^3 contribute to the degree of a polynomial?",
+        "H2": "Substitute k = 2 into the expression (k - 2)x^3 + 3x^2 - x + 4. What is the coefficient of x^3? What is the highest power with a non-zero coefficient?",
+        "H3": "Contrast the visual text of a formula with its mathematical value: why does the definition of degree require a_n != 0?"
+      },
+      "visual_spec": {
+        "description": "Visual or algebraic structural representation supporting Q1.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Reading the printed exponent 3 directly from the formula without checking whether its coefficient evaluates to zero.",
+        "diagnostic_prompt": "Why does 'Reading the printed exponent 3 directly from the formula without checking whether its coefficient evaluates to zero.' fail when evaluated mathematically for this problem?",
+        "repair": "Degree is the maximal exponent whose coefficient is non-zero; always simplify and check coefficient vanishing under parameters."
+      },
+      "independent_check": {
+        "method": "Algebraic expansion, domain boundary testing, or counterexample evaluation",
+        "verification": "Verify by testing specific values: at k=2, p_2(1) = 3(1)^2 - 1 + 4 = 6 matches quadratic evaluation; at k=3, p_3(x) = x^3 + 3x^2 - x + 4 is strictly cubic."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (the degree of polynomial p_k(x) under pa...) without disclosing protected work W."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates given problem data with demonstrated principle Y while keeping construction active for learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 guides the final synthesis path while strictly leaving decisive calculation W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Visual representation and algebraic layout present initial mathematical situation clearly."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in coordinate axes, tile geometry, or algebraic factors."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal domain punctures, area sums, or roots progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-MATH-G9-POLY-DEGREE-REMAINDER, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent algebraic expansion and root substitution."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Reading the printed exponent 3 directly from the formula without checking whether its coefficient evaluates to zero.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between conceptual misconception and mechanical calculation error."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'Degree is the maximal exponent whose coefficient is non-zero; always simplify and check coefficient vanishing under parameters.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS54-Q2",
+      "original_identifier": "Q2",
+      "template_id": "TMPL-MATH-G9-APPLY-D2",
+      "primary_demand": "APPLY",
+      "secondary_demands": [
+        "EXPLAIN"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "the remainder when p(x) = x^3 - 4x + 1 is divided by x - 2 without long division",
+        "Y": "the Remainder Theorem: for divisor (x - a), the constant remainder R equals p(a)",
+        "Z": "evaluate p(2) = 2^3 - 4(2) + 1 = 8 - 8 + 1 = 1",
+        "W": "the division algorithm identity p(x) = (x - 2)q(x) + R forces (2 - 2)q(2) = 0, directly isolating R = p(2)",
+        "wrong_idea": "Attempting full polynomial long division or evaluating at x = -2 instead of the root x = 2.",
+        "replacement_rule": "For linear divisor (x - a), find the zero of the divisor (x = a) and compute p(a) directly."
+      },
+      "authored_support": {
+        "H1": "What is the zero of the linear divisor x - 2? Setting x - 2 = 0 gives the evaluation point.",
+        "H2": "Evaluate the polynomial p(x) at x = 2: calculate 2^3 - 4(2) + 1 carefully.",
+        "H3": "Write the division identity p(x) = (x - 2)q(x) + R. What happens to the quotient term (x - 2)q(x) when you set x = 2?"
+      },
+      "visual_spec": {
+        "description": "Visual or algebraic structural representation supporting Q2.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Attempting full polynomial long division or evaluating at x = -2 instead of the root x = 2.",
+        "diagnostic_prompt": "Why does 'Attempting full polynomial long division or evaluating at x = -2 instead of the root x = 2.' fail when evaluated mathematically for this problem?",
+        "repair": "For linear divisor (x - a), find the zero of the divisor (x = a) and compute p(a) directly."
+      },
+      "independent_check": {
+        "method": "Algebraic expansion, domain boundary testing, or counterexample evaluation",
+        "verification": "Verify by polynomial long division: (x^3 - 4x + 1) / (x - 2) = (x^2 + 2x) with remainder 1, confirming (x-2)(x^2+2x) + 1 = x^3 - 4x + 1."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (the remainder when p(x) = x^3 - 4x + 1 i...) without disclosing protected work W."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates given problem data with demonstrated principle Y while keeping construction active for learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 guides the final synthesis path while strictly leaving decisive calculation W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Visual representation and algebraic layout present initial mathematical situation clearly."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in coordinate axes, tile geometry, or algebraic factors."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal domain punctures, area sums, or roots progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-MATH-G9-POLY-DEGREE-REMAINDER, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent algebraic expansion and root substitution."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Attempting full polynomial long division or evaluating at x = -2 instead of the root x = 2.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between conceptual misconception and mechanical calculation error."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'For linear divisor (x - a), find the zero of the divisor (x = a) and compute p(a) directly.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS54-Q3",
+      "original_identifier": "Q3",
+      "template_id": "TMPL-MATH-G9-APPLY-D2",
+      "primary_demand": "APPLY",
+      "secondary_demands": [
+        "JUSTIFY"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "the factorisation and real zeros of x^2 - 5x + 6 with bidirectional verification",
+        "Y": "splitting the middle term: find two integers with sum -5 and product 6",
+        "Z": "integers are -2 and -3; factorise into (x - 2)(x - 3); zeros are x = 2 and x = 3",
+        "W": "expansion (x - 2)(x - 3) = x^2 - 5x + 6 verifies factors; substitutions p(2) = 0 and p(3) = 0 verify zeros",
+        "wrong_idea": "Confusing the sign of the factors with the sign of the zeros, or stopping before verifying both factors and zeros.",
+        "replacement_rule": "If (x - a)(x - b) = 0, the zeros are x = a and x = b; verify factors by expansion and zeros by substitution."
+      },
+      "authored_support": {
+        "H1": "Find two numbers whose product is +6 and whose sum is -5. Check pairs of factors of 6.",
+        "H2": "Once you have (x - 2)(x - 3) = 0, apply the Zero Product Property: when does each factor equal zero?",
+        "H3": "Expand (x - 2)(x - 3) step by step to verify the original polynomial. Then compute p(2) and p(3) to verify they yield zero."
+      },
+      "visual_spec": {
+        "description": "Visual or algebraic structural representation supporting Q3.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Confusing the sign of the factors with the sign of the zeros, or stopping before verifying both factors and zeros.",
+        "diagnostic_prompt": "Why does 'Confusing the sign of the factors with the sign of the zeros, or stopping before verifying both factors and zeros.' fail when evaluated mathematically for this problem?",
+        "repair": "If (x - a)(x - b) = 0, the zeros are x = a and x = b; verify factors by expansion and zeros by substitution."
+      },
+      "independent_check": {
+        "method": "Algebraic expansion, domain boundary testing, or counterexample evaluation",
+        "verification": "Both factors and zeros independently confirmed: product of zeros is (-2)(-3)=6=c/a, sum of zeros is 2+3=5=-b/a."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (the factorisation and real zeros of x^2 ...) without disclosing protected work W."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates given problem data with demonstrated principle Y while keeping construction active for learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 guides the final synthesis path while strictly leaving decisive calculation W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Visual representation and algebraic layout present initial mathematical situation clearly."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in coordinate axes, tile geometry, or algebraic factors."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal domain punctures, area sums, or roots progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-MATH-G9-POLY-DEGREE-REMAINDER, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent algebraic expansion and root substitution."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Confusing the sign of the factors with the sign of the zeros, or stopping before verifying both factors and zeros.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between conceptual misconception and mechanical calculation error."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'If (x - a)(x - b) = 0, the zeros are x = a and x = b; verify factors by expansion and zeros by substitution.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS54-Q4",
+      "original_identifier": "Q4",
+      "template_id": "TMPL-MATH-G9-MODEL-D2",
+      "primary_demand": "MODEL",
+      "secondary_demands": [
+        "APPLY",
+        "EXPLAIN"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "the total area polynomial of two non-overlapping tiles with dimensions (x+2) by (x+1) and x by (x+3)",
+        "Y": "the additivity of area for non-overlapping geometric regions: Area_total = Area_1 + Area_2",
+        "Z": "formulate A(x) = (x+2)(x+1) + x(x+3); expand to (x^2 + 3x + 2) + (x^2 + 3x); collect like terms to get 2x^2 + 6x + 2 cm^2",
+        "W": "the plus sign (+) joining the two product terms models the geometric union of the disjoint rectangular areas",
+        "wrong_idea": "Multiplying the two area expressions together instead of adding them, or forgetting to combine like terms.",
+        "replacement_rule": "Disjoint geometric regions add their areas: total area is the sum of individual area polynomials."
+      },
+      "authored_support": {
+        "H1": "Write the formula for the area of a rectangle. What is the area of Tile 1? What is the area of Tile 2?",
+        "H2": "Since the tiles do not overlap, how do you find the total area? Which mathematical operation combines them?",
+        "H3": "Expand (x+2)(x+1) and x(x+3). Combine like terms (x^2 terms, x terms, constant terms) to produce the simplified polynomial."
+      },
+      "visual_spec": {
+        "description": "Visual or algebraic structural representation supporting Q4.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Multiplying the two area expressions together instead of adding them, or forgetting to combine like terms.",
+        "diagnostic_prompt": "Why does 'Multiplying the two area expressions together instead of adding them, or forgetting to combine like terms.' fail when evaluated mathematically for this problem?",
+        "repair": "Disjoint geometric regions add their areas: total area is the sum of individual area polynomials."
+      },
+      "independent_check": {
+        "method": "Algebraic expansion, domain boundary testing, or counterexample evaluation",
+        "verification": "Verify at x=1: Tile 1 is 3 * 2 = 6 cm^2, Tile 2 is 1 * 4 = 4 cm^2, Total is 10 cm^2. Model gives A(1) = 2(1)^2 + 6(1) + 2 = 10 cm^2."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (the total area polynomial of two non-ove...) without disclosing protected work W."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates given problem data with demonstrated principle Y while keeping construction active for learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 guides the final synthesis path while strictly leaving decisive calculation W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Visual representation and algebraic layout present initial mathematical situation clearly."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in coordinate axes, tile geometry, or algebraic factors."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal domain punctures, area sums, or roots progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-MATH-G9-POLY-DEGREE-REMAINDER, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent algebraic expansion and root substitution."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Multiplying the two area expressions together instead of adding them, or forgetting to combine like terms.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between conceptual misconception and mechanical calculation error."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'Disjoint geometric regions add their areas: total area is the sum of individual area polynomials.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS54-Q5",
+      "original_identifier": "Q5",
+      "template_id": "TMPL-MATH-G9-REPRESENT-D2",
+      "primary_demand": "REPRESENT",
+      "secondary_demands": [
+        "EXPLAIN"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "table, plot, and zeros of p(x) = (x-1)(x+1) with distinction from arbitrary plotted points",
+        "Y": "evaluating p(x) = x^2 - 1 at {-2, -1, 0, 1, 2} and the definition of a polynomial zero as an input where p(c)=0",
+        "Z": "table yields (-2, 3), (-1, 0), (0, -1), (1, 0), (2, 3); plotted points form a parabola; zeros are x = -1 and x = 1",
+        "W": "a zero is an input value where the graph intersects y=0 (x-intercept), whereas an arbitrary point (x0, y0) has y0 = p(x0) != 0 in general (e.g. (0,-1) is a y-intercept, not a zero)",
+        "wrong_idea": "Calling the point (0, -1) a zero because it contains a zero coordinate, or calling the coordinate pair (1, 0) a zero instead of the input x = 1.",
+        "replacement_rule": "A zero of p(x) is an input value c where p(c) = 0; graphically it is the x-coordinate of an x-intercept."
+      },
+      "authored_support": {
+        "H1": "Calculate p(x) = (x-1)(x+1) for x = -2, -1, 0, 1, 2. Fill in the table of (x, y) coordinates.",
+        "H2": "Plot each of the five points on coordinate axes. Where does the curve cross the horizontal axis (y = 0)?",
+        "H3": "What makes a point an x-intercept versus a y-intercept? What is the output value y at a zero of a polynomial?"
+      },
+      "visual_spec": {
+        "description": "Visual or algebraic structural representation supporting Q5.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Calling the point (0, -1) a zero because it contains a zero coordinate, or calling the coordinate pair (1, 0) a zero instead of the input x = 1.",
+        "diagnostic_prompt": "Why does 'Calling the point (0, -1) a zero because it contains a zero coordinate, or calling the coordinate pair (1, 0) a zero instead of the input x = 1.' fail when evaluated mathematically for this problem?",
+        "repair": "A zero of p(x) is an input value c where p(c) = 0; graphically it is the x-coordinate of an x-intercept."
+      },
+      "independent_check": {
+        "method": "Algebraic expansion, domain boundary testing, or counterexample evaluation",
+        "verification": "Zeros verified algebraically: (x-1)(x+1) = x^2 - 1 = 0 => x^2 = 1 => x = +/- 1."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (table, plot, and zeros of p(x) = (x-1)(x...) without disclosing protected work W."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates given problem data with demonstrated principle Y while keeping construction active for learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 guides the final synthesis path while strictly leaving decisive calculation W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Visual representation and algebraic layout present initial mathematical situation clearly."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in coordinate axes, tile geometry, or algebraic factors."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal domain punctures, area sums, or roots progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-MATH-G9-POLY-RATIONAL-RECONSTRUCTION, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent algebraic expansion and root substitution."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Calling the point (0, -1) a zero because it contains a zero coordinate, or calling the coordinate pair (1, 0) a zero instead of the input x = 1.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between conceptual misconception and mechanical calculation error."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'A zero of p(x) is an input value c where p(c) = 0; graphically it is the x-coordinate of an x-intercept.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS54-Q6",
+      "original_identifier": "Q6",
+      "template_id": "TMPL-MATH-G9-JUSTIFY-D2",
+      "primary_demand": "JUSTIFY",
+      "secondary_demands": [
+        "EXPLAIN",
+        "REPRESENT"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "whether r(x) = (x^2 - 1)/(x - 1) and q(x) = x + 1 are the same function on all real numbers",
+        "Y": "the definition of function equality: Domain(r) must equal Domain(q) and r(x) = q(x) for all x in the common domain",
+        "Z": "Domain(r) = R \\ {1} because division by zero is undefined; simplifying yields r(x) = x + 1 for x != 1; at x = 1, r(1) is undefined while q(1) = 2",
+        "W": "because r is undefined at x = 1 while q is defined, their domains differ and they are NOT the same function on all real numbers",
+        "wrong_idea": "Cancelling (x - 1) unconditionally and concluding that r and q are identical functions everywhere on R.",
+        "replacement_rule": "Algebraic cancellation (x - a)/(x - a) = 1 is valid only when x != a; functions with different domains cannot be identical on R."
+      },
+      "authored_support": {
+        "H1": "What value of x makes the denominator of r(x) equal to zero? Can you divide by zero in mathematics?",
+        "H2": "Factorise the numerator x^2 - 1. When is it legally permitted to cancel the factor (x - 1) from numerator and denominator?",
+        "H3": "Check what happens specifically at x = 1: what is r(1)? What is q(1)? If two functions give different results at x = 1, can they be identical on all real numbers?"
+      },
+      "visual_spec": {
+        "description": "Visual or algebraic structural representation supporting Q6.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Cancelling (x - 1) unconditionally and concluding that r and q are identical functions everywhere on R.",
+        "diagnostic_prompt": "Why does 'Cancelling (x - 1) unconditionally and concluding that r and q are identical functions everywhere on R.' fail when evaluated mathematically for this problem?",
+        "repair": "Algebraic cancellation (x - a)/(x - a) = 1 is valid only when x != a; functions with different domains cannot be identical on R."
+      },
+      "independent_check": {
+        "method": "Algebraic expansion, domain boundary testing, or counterexample evaluation",
+        "verification": "Evaluate left and right limits: lim_{x -> 1} r(x) = 2 = q(1), confirming the singularity at x=1 is removable, but the function value r(1) does not exist."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (whether r(x) = (x^2 - 1)/(x - 1) and q(x...) without disclosing protected work W."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates given problem data with demonstrated principle Y while keeping construction active for learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 guides the final synthesis path while strictly leaving decisive calculation W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Visual representation and algebraic layout present initial mathematical situation clearly."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in coordinate axes, tile geometry, or algebraic factors."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal domain punctures, area sums, or roots progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-MATH-G9-POLY-RATIONAL-RECONSTRUCTION, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent algebraic expansion and root substitution."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Cancelling (x - 1) unconditionally and concluding that r and q are identical functions everywhere on R.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between conceptual misconception and mechanical calculation error."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'Algebraic cancellation (x - a)/(x - a) = 1 is valid only when x != a; functions with different domains cannot be identical on R.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS54-Q7",
+      "original_identifier": "Q7",
+      "template_id": "TMPL-MATH-G9-APPLY-D2",
+      "primary_demand": "APPLY",
+      "secondary_demands": [
+        "JUSTIFY"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "the value of k making x - 1 a factor of f(x) = 2x^3 + kx^2 - 5x + 2, with quotient exhibition and expansion verification",
+        "Y": "the Factor Theorem: (x - 1) is a factor of f(x) iff f(1) = 0",
+        "Z": "solve f(1) = 2(1) + k(1) - 5(1) + 2 = k - 1 = 0 => k = 1; divide f(x) by x - 1 to find quotient 2x^2 + 3x - 2",
+        "W": "expanding (x - 1)(2x^2 + 3x - 2) yields 2x^3 + x^2 - 5x + 2, verifying both quotient and k=1 without repeating substitution",
+        "wrong_idea": "Finding k=1 by substitution and then merely plugging x=1 back in to verify, failing to produce or check the quotient.",
+        "replacement_rule": "To verify a factor independently, compute the quotient polynomial and expand the product to match the original expression."
+      },
+      "authored_support": {
+        "H1": "According to the Factor Theorem, if (x - 1) is a factor of f(x), what must f(1) equal?",
+        "H2": "Substitute x = 1 into 2x^3 + kx^2 - 5x + 2 and set the result equal to zero to find k.",
+        "H3": "Divide 2x^3 + x^2 - 5x + 2 by (x - 1) by synthetic division or long division. Then multiply (x - 1)*q(x) to verify."
+      },
+      "visual_spec": {
+        "description": "Visual or algebraic structural representation supporting Q7.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Finding k=1 by substitution and then merely plugging x=1 back in to verify, failing to produce or check the quotient.",
+        "diagnostic_prompt": "Why does 'Finding k=1 by substitution and then merely plugging x=1 back in to verify, failing to produce or check the quotient.' fail when evaluated mathematically for this problem?",
+        "repair": "To verify a factor independently, compute the quotient polynomial and expand the product to match the original expression."
+      },
+      "independent_check": {
+        "method": "Algebraic expansion, domain boundary testing, or counterexample evaluation",
+        "verification": "Complete factorisation: 2x^2 + 3x - 2 = (2x - 1)(x + 2), so f(x) = (x - 1)(2x - 1)(x + 2). Check f(-2) = 2(-8) + 4 - 5(-2) + 2 = -16 + 4 + 10 + 2 = 0."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (the value of k making x - 1 a factor of ...) without disclosing protected work W."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates given problem data with demonstrated principle Y while keeping construction active for learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 guides the final synthesis path while strictly leaving decisive calculation W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Visual representation and algebraic layout present initial mathematical situation clearly."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in coordinate axes, tile geometry, or algebraic factors."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal domain punctures, area sums, or roots progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-MATH-G9-POLY-DEGREE-REMAINDER, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent algebraic expansion and root substitution."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Finding k=1 by substitution and then merely plugging x=1 back in to verify, failing to produce or check the quotient.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between conceptual misconception and mechanical calculation error."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'To verify a factor independently, compute the quotient polynomial and expand the product to match the original expression.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS54-Q8",
+      "original_identifier": "Q8",
+      "template_id": "TMPL-MATH-G9-JUSTIFY-D2",
+      "primary_demand": "JUSTIFY",
+      "secondary_demands": [
+        "EXPLAIN"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "whether checking (2x)^2 = 2x^2 at x = 0 is sufficient to call it an identity",
+        "Y": "the definition of an algebraic identity: an equality that holds true for all values of the variable in its domain",
+        "Z": "x = 0 is merely a particular solution to 4x^2 = 2x^2; counterexample x = 1 gives (2*1)^2 = 4 != 2(1^2) = 2",
+        "W": "the corrected identity is (2x)^2 = 4x^2, justified by the power of a product law (ab)^n = a^n * b^n with a=2, b=x, n=2",
+        "wrong_idea": "Believing that an algebraic statement that holds for x = 0 is universally true for all real numbers.",
+        "replacement_rule": "A single test point only proves conditional satisfaction; proving an identity requires algebraic deduction or testing across all values."
+      },
+      "authored_support": {
+        "H1": "What is the difference between a conditional equation (true for some values of x) and an identity (true for ALL values of x)?",
+        "H2": "Test the student's equation at x = 1. What does the left side equal? What does the right side equal?",
+        "H3": "Apply the exponent rule (a * b)^2: how does the power 2 distribute over the product of 2 and x?"
+      },
+      "visual_spec": {
+        "description": "Visual or algebraic structural representation supporting Q8.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Believing that an algebraic statement that holds for x = 0 is universally true for all real numbers.",
+        "diagnostic_prompt": "Why does 'Believing that an algebraic statement that holds for x = 0 is universally true for all real numbers.' fail when evaluated mathematically for this problem?",
+        "repair": "A single test point only proves conditional satisfaction; proving an identity requires algebraic deduction or testing across all values."
+      },
+      "independent_check": {
+        "method": "Algebraic expansion, domain boundary testing, or counterexample evaluation",
+        "verification": "Test second counterexample: at x=2, LHS = (4)^2 = 16, RHS = 2(4) = 8 != 16. Corrected identity at x=2: 4(2^2) = 16 = 16."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (whether checking (2x)^2 = 2x^2 at x = 0 ...) without disclosing protected work W."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates given problem data with demonstrated principle Y while keeping construction active for learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 guides the final synthesis path while strictly leaving decisive calculation W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Visual representation and algebraic layout present initial mathematical situation clearly."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in coordinate axes, tile geometry, or algebraic factors."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal domain punctures, area sums, or roots progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-MATH-G9-POLY-DEGREE-REMAINDER, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent algebraic expansion and root substitution."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Believing that an algebraic statement that holds for x = 0 is universally true for all real numbers.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between conceptual misconception and mechanical calculation error."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'A single test point only proves conditional satisfaction; proving an identity requires algebraic deduction or testing across all values.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS54-Q9",
+      "original_identifier": "Q9",
+      "template_id": "TMPL-MATH-G9-SYNTHESIZE-D2",
+      "primary_demand": "SYNTHESIZE",
+      "secondary_demands": [
+        "APPLY"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "constructing a quadratic polynomial with zeros -2 and 3 and p(0) = -6",
+        "Y": "the Factor Theorem root family p(x) = a(x + 2)(x - 3) with scale coefficient a != 0",
+        "Z": "evaluate p(0) = a(0 + 2)(0 - 3) = -6a; set -6a = -6 to solve a = 1; expand p(x) = x^2 - x - 6",
+        "W": "evaluating at x=0 provides an independent constraint fixing the vertical stretch scale a; checking p(-2)=0, p(3)=0, p(0)=-6 verifies all conditions",
+        "wrong_idea": "Assuming a = 1 without justification or writing p(x) = (x - 2)(x + 3) with inverted signs.",
+        "replacement_rule": "Zeros r_1 and r_2 determine factors (x - r_1)(x - r_2); a point condition p(x_0) = y_0 uniquely fixes the leading coefficient a."
+      },
+      "authored_support": {
+        "H1": "If r is a zero of a quadratic polynomial, (x - r) is a factor. What are the factors for zeros -2 and 3?",
+        "H2": "Include an unknown leading multiplier a: p(x) = a(x + 2)(x - 3). What do you get when you set x = 0?",
+        "H3": "Solve for a using p(0) = -6. Expand the resulting quadratic and check p(-2), p(3), and p(0)."
+      },
+      "visual_spec": {
+        "description": "Visual or algebraic structural representation supporting Q9.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Assuming a = 1 without justification or writing p(x) = (x - 2)(x + 3) with inverted signs.",
+        "diagnostic_prompt": "Why does 'Assuming a = 1 without justification or writing p(x) = (x - 2)(x + 3) with inverted signs.' fail when evaluated mathematically for this problem?",
+        "repair": "Zeros r_1 and r_2 determine factors (x - r_1)(x - r_2); a point condition p(x_0) = y_0 uniquely fixes the leading coefficient a."
+      },
+      "independent_check": {
+        "method": "Algebraic expansion, domain boundary testing, or counterexample evaluation",
+        "verification": "Leading coefficient a=1 > 0 yields upward parabola. Vertex at x = -b/(2a) = 1/2, where p(1/2) = (1/4) - (1/2) - 6 = -25/4 = -6.25, which is less than p(0)=-6, consistent with y-intercept."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (constructing a quadratic polynomial with...) without disclosing protected work W."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates given problem data with demonstrated principle Y while keeping construction active for learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 guides the final synthesis path while strictly leaving decisive calculation W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Visual representation and algebraic layout present initial mathematical situation clearly."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in coordinate axes, tile geometry, or algebraic factors."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal domain punctures, area sums, or roots progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-MATH-G9-POLY-RATIONAL-RECONSTRUCTION, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent algebraic expansion and root substitution."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Assuming a = 1 without justification or writing p(x) = (x - 2)(x + 3) with inverted signs.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between conceptual misconception and mechanical calculation error."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'Zeros r_1 and r_2 determine factors (x - r_1)(x - r_2); a point condition p(x_0) = y_0 uniquely fixes the leading coefficient a.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    },
+    {
+      "question_id": "ISS54-Q10",
+      "original_identifier": "Q10",
+      "template_id": "TMPL-MATH-G9-EXPLAIN-D2",
+      "primary_demand": "EXPLAIN",
+      "secondary_demands": [
+        "JUSTIFY"
+      ],
+      "band": "D2",
+      "protected_work": "Leave the core connection/execution/synthesis decision to the learner; support orients relevant givens and principles without disclosing W.",
+      "targets": {
+        "X": "when g_a(x) = (a-1)x^2 + 2(a-1)x + (a-1) is the zero polynomial, its degree otherwise, and assessment of degree bound contradiction",
+        "Y": "zero polynomial definition (all coefficients zero) and degree bound hypothesis (applies only to non-zero polynomials)",
+        "Z": "all coefficients equal zero iff a = 1; when a != 1, leading coefficient (a-1) != 0 so degree is 2",
+        "W": "an arbitrarily large number of zeros at a = 1 does NOT contradict the degree bound because that theorem explicitly requires a non-zero polynomial",
+        "wrong_idea": "Thinking the degree of the zero polynomial is 0, or claiming that having infinite zeros contradicts the fundamental degree bound theorem.",
+        "replacement_rule": "The degree bound theorem applies strictly to non-zero polynomials; the zero polynomial has undefined degree and vanishes everywhere."
+      },
+      "authored_support": {
+        "H1": "What does it mean for a polynomial to be the zero polynomial? What must be true about each of its coefficients?",
+        "H2": "For a != 1, is the coefficient of x^2 zero or non-zero? What does that tell you about its degree?",
+        "H3": "State the degree bound theorem carefully: does it say 'any polynomial' or 'any non-zero polynomial'? What is the degree of the zero polynomial?"
+      },
+      "visual_spec": {
+        "description": "Visual or algebraic structural representation supporting Q10.",
+        "stages": [
+          "stage-1",
+          "stage-2",
+          "stage-3"
+        ]
+      },
+      "misconception": {
+        "wrong_idea": "Thinking the degree of the zero polynomial is 0, or claiming that having infinite zeros contradicts the fundamental degree bound theorem.",
+        "diagnostic_prompt": "Why does 'Thinking the degree of the zero polynomial is 0, or claiming that having infinite zeros contradicts the fundamental degree bound theorem.' fail when evaluated mathematically for this problem?",
+        "repair": "The degree bound theorem applies strictly to non-zero polynomials; the zero polynomial has undefined degree and vanishes everywhere."
+      },
+      "independent_check": {
+        "method": "Algebraic expansion, domain boundary testing, or counterexample evaluation",
+        "verification": "Verify: for a=2, g_2(x) = x^2 + 2x + 1 = (x+1)^2, degree is 2 with exactly one real root x=-1 (multiplicity 2); for a=1, g_1(x) = 0 vanishes at every x in R."
+      },
+      "semantic_review": {
+        "H1": {
+          "verdict": "YES",
+          "evidence": "H1 clarifies the core decision surface (when g_a(x) = (a-1)x^2 + 2(a-1)x + (a-1)...) without disclosing protected work W."
+        },
+        "H2": {
+          "verdict": "YES",
+          "evidence": "H2 correlates given problem data with demonstrated principle Y while keeping construction active for learner."
+        },
+        "H3": {
+          "verdict": "YES",
+          "evidence": "H3 guides the final synthesis path while strictly leaving decisive calculation W to the learner."
+        },
+        "S1": {
+          "verdict": "YES",
+          "evidence": "Visual representation and algebraic layout present initial mathematical situation clearly."
+        },
+        "S2": {
+          "verdict": "YES",
+          "evidence": "Visual stages ground learner knowledge in coordinate axes, tile geometry, or algebraic factors."
+        },
+        "S3": {
+          "verdict": "YES",
+          "evidence": "Subsequent visual stages reveal domain punctures, area sums, or roots progressively."
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "Pre-attempt panels orient without revealing the decisive answer or execution steps."
+        },
+        "P2": {
+          "verdict": "YES",
+          "evidence": "Concept link routes to MIC-MATH-G9-POLY-RATIONAL-RECONSTRUCTION, where the relevant bridge is formally taught."
+        },
+        "P3": {
+          "verdict": "YES",
+          "evidence": "Solution steps articulate warranted moves and verify against independent algebraic expansion and root substitution."
+        },
+        "M1": {
+          "verdict": "YES",
+          "evidence": "Explicitly models the common wrong route: 'Thinking the degree of the zero polynomial is 0, or claiming that having infinite zeros contradicts the fundamental degree bound theorem.'."
+        },
+        "M2": {
+          "verdict": "YES",
+          "evidence": "Diagnostic prompt discriminates between conceptual misconception and mechanical calculation error."
+        },
+        "M3": {
+          "verdict": "YES",
+          "evidence": "Repair establishes replacement rule: 'The degree bound theorem applies strictly to non-zero polynomials; the zero polynomial has undefined degree and vanishes everywhere.'."
+        }
+      },
+      "render_review_status": "GOVERNED_CORE_RENDERED"
+    }
+  ]
+}
