@@ -3046,7 +3046,9 @@ def pdf_publication_problems(folder: Path) -> list[str]:
     linked: set[str] = set()
     for page in sorted(folder.glob("*.html")):
         text = page.read_text(encoding="utf-8")
-        for href in re.findall(r'<a data-g9-action="pdf"[^>]*?\shref="([^"]*)"', text):
+        for anchor in re.findall(r'<a\b[^>]*\bdata-g9-action="pdf"[^>]*>', text):
+            target_attr = re.search(r'\bhref="([^"]*)"', anchor)
+            href = target_attr.group(1) if target_attr else ""
             if not re.fullmatch(r"[a-z0-9]+\.pdf", href):
                 problems.append(f"{page.name}: the PDF link {href!r} is not a learner PDF beside the page")
                 continue

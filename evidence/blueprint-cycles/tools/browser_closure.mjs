@@ -80,20 +80,24 @@ try {
   if(opened.pageOverflow>0)failures.push('opened reference page overflow: '+opened.pageOverflow);
   if(opened.smallestFigureText<13.95)failures.push('opened figure text below floor: '+opened.smallestFigureText);
   // Exact saved pages own these local PDFs; no learner publication is performed.
-  await page.setViewportSize({width:1280,height:900});
+  // Print a fresh learner state. Review attempts from this browser run must
+  // never cause a solution-inclusive key to replace the linked learner PDF.
+  const printContext=await browser.newContext({viewport:{width:1280,height:900}});
+  const printPage=await printContext.newPage();
+  const printReceipt={tool:'issue29-browser-closure/2',mode:'LEARNER_PDF',pages:[]};
   for(const role of ['core1a','core2']){
-    await page.goto(base+`/evidence/blueprint-cycles/ISS${issue}/rendered/${role}.html`);
-    await page.evaluate(()=>{
-      for(const a of document.querySelectorAll('article[data-g9-unit]')){
-        const paper=a.querySelector('[data-g9-paper]');const field=a.querySelector('[data-g9-attempt]');
-        if(paper)paper.checked=true;else if(field)field.value='Print review';
-        a.querySelector('[data-g9-commit]')?.click();
-        for(const input of a.querySelectorAll('textarea,input[type="text"]'))input.value='';
-      }
-      document.querySelectorAll('details').forEach(d=>d.open=true);
-    });
-    await page.pdf({path:path.join(directory,'rendered',role+'.pdf'),format:'A4',printBackground:true,margin:{top:'12mm',bottom:'12mm',left:'10mm',right:'10mm'}});
+    const file=role+'.html';
+    await printPage.goto(base+`/evidence/blueprint-cycles/ISS${issue}/rendered/${file}`);
+    const figures=await printPage.locator('figure[data-g9-figure] svg').count();
+    const materialized=await printPage.locator('[data-g9-protected-body]:not(template)').count();
+    if(materialized)failures.push(file+': protected answer materialized in fresh learner print state');
+    await printPage.emulateMedia({media:'print'});
+    await printPage.pdf({path:path.join(directory,'rendered',role+'.pdf'),width:'280mm',height:'175mm',printBackground:true,margin:{top:'10mm',bottom:'10mm',left:'10mm',right:'10mm'}});
+    printReceipt.pages.push({page:file,page_digest:'sha256:'+hash(path.join(directory,'rendered',file)),pdf:role+'.pdf',pdf_digest:'sha256:'+hash(path.join(directory,'rendered',role+'.pdf')),figures,protected_bodies_materialized:materialized});
+    await printPage.emulateMedia({media:'screen'});
   }
+  fs.writeFileSync(path.join(directory,'rendered','print-receipt.json'),JSON.stringify(printReceipt,null,2)+'\n');
+  await printContext.close();
   for(const [file,expected] of Object.entries(binding))if(hash(path.join(directory,file))!==expected)failures.push('tested source changed: '+file);
   results.push({issue,status:failures.length?'FAIL':'PASS',binding,questionStates:checks,reloadRestored:restored,openedReferences:opened,pdfs:{'core1a.pdf':hash(path.join(directory,'rendered/core1a.pdf')),'core2.pdf':hash(path.join(directory,'rendered/core2.pdf'))},failures});
   await context.close();

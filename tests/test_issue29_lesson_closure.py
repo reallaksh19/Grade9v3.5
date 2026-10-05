@@ -58,4 +58,12 @@ class LessonClosure(unittest.TestCase):
         self.assertFalse(any('topics/nlm' in r['attrs']['href'] for r in tree.with_attr('href')))
         roles=[r['attrs']['href'] for r in tree.with_attr('href') if any('g9-triad-actions' in a['attrs'].get('class','') for a in r['ancestors'])]
         self.assertEqual(roles,['core1a.html','core2.html'])
+    def test_pdf_publication_checks_the_modern_header_link(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as directory:
+            folder=Path(directory)
+            folder.joinpath('core1a.html').write_text('<a class="g9-header-btn" href="core1a.pdf" data-g9-action="pdf">PDF</a>', encoding='utf-8')
+            problems=render_core.pdf_publication_problems(folder)
+            self.assertTrue(any('links core1a.pdf, which is not there' in p for p in problems), problems)
 if __name__=='__main__':unittest.main()
+
