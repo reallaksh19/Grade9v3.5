@@ -44,8 +44,12 @@ def score_band(score):
 
 def math_spans(text):
     out=[]
+    seen=set()
     for m in re.finditer(r"\$([^$]+)\$", text):
         literal=m.group(1)
+        if literal in seen:
+            continue
+        seen.add(literal)
         out.append({"target":"stem","literal":literal,"tex":literal,"display":False})
     return out
 
@@ -147,7 +151,7 @@ def build_bank(intake, specs):
             ext["grade9v3:core2_visual_review"]={
                 "question_ref":qid,
                 "authored_figure_refs":q["figure_refs"],
-                "replaces_authored_figure_refs":[],
+                "replaces_authored_figure_refs":q["figure_refs"],
                 "rationale":"The representation exposes only supplied structure and a blank bridge; the requested coefficient, expansion, model result or parameter remains learner work.",
                 "review_status":"AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE",
             }
@@ -281,8 +285,12 @@ def build_representations(config):
     for rep in config:
         path=ASSETS/rep["file"]
         path.write_text(svg_for(rep),encoding="utf-8")
+        ext={}
+        match=re.search(r"-Q(\d+)$", rep["id"])
+        if match:
+            ext["grade9v3:authored_question_ref"]=f"OWN-{BANK_ID.upper()}-{int(match.group(1)):02d}"
         out.append(common_record(
-            rep["id"],kind=rep["kind"],purpose=rep["purpose"],
+            rep["id"],kind=rep["kind"],purpose=rep["purpose"],extensions=ext,
             required_elements=[s["label"] for s in rep["stages"]],
             relation_refs=[],
             read_order=[s["text"] for s in rep["stages"]],
