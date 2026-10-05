@@ -4,8 +4,8 @@
   "round": "BLUEPRINT_CORRECTION_R2",
   "status": "CANDIDATE",
   "renderer": "render_core/2",
-  "registry_version": "1.10.0",
-  "render_digest": "6d2923decf108a84",
+  "registry_version": "1.12.0",
+  "render_digest": "280cb16589e55b15",
   "source_bank_sha256": "4ca1ea97ce028b328276c7b02ab6c27c74f19fcf6eeb9b52e711f5a766d03327",
   "source_package_sha256": "589cc8ce2a7b3b18ee5e0434b11ffd01e491625d25541688c040a981fe8eb5cc",
   "source_manifest_sha256": "31017ca3cdab259be9533fb3802825a3470cb628643d7ee60b8cf7d6e05d1507",
@@ -17,40 +17,49 @@
   "owner_bank_basic": [],
   "owner_bank_reference_findings": [],
   "render_gaps": [],
-  "advisories": [],
+  "advisories": [
+    {
+      "component": "STAGED_VISUAL",
+      "record": "CU-CHEM-G11-CO2-SYNTHESIS-Q3",
+      "detail": "STAGED_VISUAL has 2 of the 3 stages the reference page has for a D2 question",
+      "core": "CORE1A",
+      "product": "CHE-11-HYBRIDISATION-D2-ISS34-BLUEPRINT-CYCLE-R2"
+    }
+  ],
   "page_hashes": {
-    "core1a.html": "3f00d1f8a1026df2c839483832c395b7e7b64e4d42ba9ba66fc3b0ea7e0219e5",
-    "core2.html": "83b742d443a0f92919fbce20f0d228355b78f6bfe509d635adf31db11eee5227",
-    "index.html": "2f02ee6e7e18ee89b502f3e2a3d1a941d898bf743f632bd066566fa637ab3b20"
+    "core1a.html": "ea7c744db3ab06d577fc026e0ada1740508920859825aa24a7e3ceb4d0e66ddc",
+    "core2.html": "ff9eb612ae37eb952c55a7bfce2fe9f0bea2ba250b5c6891fa24632d74fdddce",
+    "index.html": "a051b6d4f187e6657186170785b40a2dab2b0cc35c08f7aa3797c9ee5d77fd11"
   },
-  "browser": "PARTIAL_PASS_TABLET_PROFILE_WITH_OPEN_QUALITY_FINDINGS",
+  "browser": "NOT_RUN",
   "all_12_facets_independently_certified": false,
   "golden": false,
   "observation": "LOCAL_EXECUTION + ARTIFACT_INSPECTION",
   "oracle": "IMPLEMENTATION_COUPLED plus separate academic correction data",
   "render_basis": {
-    "source_commit": "346accad5f2489d6a082cffd927c84d4295fb6e3",
+    "source_commit": "1facd846101c74a69389f9cc6df5b7dbfebd5bea",
     "authority_sha256": {
-      "Shared/tools/render_core.py": "8613cad13176b5577394329a0ddf8edf8446b14fecebe91a5a7410da40139691",
+      "Shared/tools/render_core.py": "ddde9ce7bcc00908120754d57ef4991954161cdb76a634a5acdcbccacfcf4e15",
       "Shared/tools/core2_v2.py": "ceeb0c50e65f7967f6890ac7f14c6c3a63ca9f3be8d8f2728da98ffe55d580ef",
       "Shared/tools/learning_repair.py": "62b2ac09b6015cd035e604d28b4782ef231f22806c2162e65252cd08e118208f",
-      "Shared/web/interactive-page-blueprints.v1.json": "d141f40df8ef514f00aa6e521fed348203d7a5b4daac3ccaade19c7cf3e771da",
-      "public/css/modern-learner.css": "24a4c6db8cc1d4948ffc91b32a46495a27be2ebad6987b9ecad2bc021e7f5596",
+      "Shared/web/interactive-page-blueprints.v1.json": "0fd7eaa93051c4cb780528d10b7bf01e309ea27b6e5a1353b680f3a42c059361",
+      "public/css/modern-learner.css": "1534437082327a575623b4044949de0bee500dfa095cad2f0236f846b5fd73c6",
       "public/css/tablet-12-7.css": "a8d2f54184818bf4fa3f5acdb61e6efc2c8103e475b0bb4a4c0747d8898455ab",
-      "public/js/display-controls.js": "bf5737e1a87ec6d1c5021f368c3aaf96d7037e1440d55b6e7d4cb168d962bfd6",
+      "public/js/display-controls.js": "b9e0e34e577c1baa6b81bb8cb1a7c144810e527b0789b9a80a112db78169c937",
       "public/js/site-header.js": "72a1f89b975c36ea8fb0b0c4170f47533dc9e49e59c4120cd90c6383128922f2"
     },
     "authority_byte_policy": "UTF8_TEXT_LF",
     "canonical_input_sha256": {
-      "evidence/blueprint-cycles/ISS34/inputs/owner.bank.json": "1b2fa0a661c20c12be9d23720cfebfa53a913fa1ba2d47868fa9e83cfe774db5",
-      "evidence/blueprint-cycles/ISS34/inputs/package.v1.json": "7cd6a0c485ab778f742f28db61fc450c2899c3536c1ae6d8356d333cef1f0078",
+      "evidence/blueprint-cycles/ISS34/inputs/owner.bank.json": "ebf7648dfad0c32590e20490ce33f549094b6ec9cc9ac35198f7467d5e365c8a",
+      "evidence/blueprint-cycles/ISS34/inputs/package.v1.json": "f1a4d3a4c7d8142a6cd73f2d8cfcb9303d720e16182a094b5c5107166932af50",
       "evidence/blueprint-cycles/ISS34/inputs/product.manifest.json": "d66e6c9628dac3cd53abbd300ad8332b195ccf76854485cb4981a0e79ff0aa0b"
     },
+    "source_commit_role": "Checkout basis; actual tested authority and corrected inputs are bound by SHA256.",
+    "custody_baseline": "1facd846101c74a69389f9cc6df5b7dbfebd5bea",
+    "source_question_custody_unchanged": true,
     "legacy_source_hashes": "Retained from predecessor receipt; not used as corrected-input digests.",
     "observation": "NEW_LOCAL_EXECUTION",
     "method": "PRODUCTION_RENDERER_API_WITH_LOCAL_SCHEMA_RESOLVER",
-    "historical_artifact_snapshot": "46e91c9ec4285e14ca0db469eda281ff31df596a",
-    "source_commit_role": "CHECKOUT_BASE; authority_sha256 binds actual tested working-tree files"
-  },
-  "browser_evidence": "../compatibility-20261004/browser-bindings.json#ISS34"
+    "historical_artifact_snapshot": "46e91c9ec4285e14ca0db469eda281ff31df596a"
+  }
 }

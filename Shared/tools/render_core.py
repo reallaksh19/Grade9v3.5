@@ -34,7 +34,7 @@ import subprocess
 from functools import lru_cache
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, urljoin
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
@@ -318,10 +318,13 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
                 role, component="STAGED_VISUAL" if role == "CORE1A" else "REPRESENTATION")
         stage_mode = "CUMULATIVE"
     mode_attr = f' data-g9-stage-mode="{stage_mode.lower()}"' if len(stage_ids) > 1 else ""
+    bp = blueprint_of(ctx, role) or {}
+    text_floor = ((bp.get('responsive_policy') or {}).get('tablet_12_7') or {}).get('figure_min_text_css_px',
+                  ((ctx.blueprints.get('shell') or {}).get('typography_policy') or {}).get('minimum_learner_text_css_px',14))
     return (f'<figure data-g9-figure data-g9-fig="{esc(record)}-{esc(rep_id)}" data-g9-stage="{stage}" '
-            f'data-g9-representation="{esc(rep_id)}" data-g9-kind="{esc(kind)}" data-reveal-stages="{max(len(shown), 1)}" '
+            f'data-g9-representation="{esc(rep_id)}" data-g9-kind="{esc(kind)}" data-g9-min-figure-text="{esc(text_floor)}" data-reveal-stages="{max(len(shown), 1)}" '
             f'data-g9-stages-total="{max(len(stage_ids), 1)}" data-g9-stages="{esc(" ".join(shown))}"{mode_attr}>'
-            f'{svg}{controls}{caption}</figure>')
+            f'<div class="g9-diagram-scroll" tabindex="0" role="region" aria-label="Diagram; scroll horizontally when enlarged">{svg}</div>{controls}{caption}</figure>')
 
 
 def _without_stages(svg: str, withheld: set[str]) -> str:
@@ -1006,7 +1009,7 @@ def _core1a_bucket_orientation(ctx: Ctx) -> str:
             f'<div class="g9-bucket-orientation-grid"><div>{primary}</div><aside>{companion}</aside></div>'
             f'</section>'
         )
-    return "".join(rendered)
+    return secondary_disclosure("Contents and concept route", "".join(rendered), "core1a-contents")
 
 
 def _core1a_section_route(m: dict) -> str:
@@ -1114,7 +1117,8 @@ def _core1a_practice_navigation(ctx: Ctx, m: dict) -> str:
 def _core1a_interactive_bridge(ctx: Ctx, m: dict) -> str:
     """Conditionally render contextual interactive bridge if an eligible explorer is registered for this concept."""
     concept_id = m.get("id")
-    if not concept_id:
+    portal_root = _portal_root(ctx.manifest, "PAGES")
+    if not concept_id or not portal_root:
         return ""
     try:
         from Shared.tools.resolve_concept_bundle import resolve_bundle
@@ -1131,7 +1135,7 @@ def _core1a_interactive_bridge(ctx: Ctx, m: dict) -> str:
         for it in interactives:
             ep = it.get("entrypoint", "")
             title = it.get("title", "Interactive Explorer")
-            rel_href = f"../../../{ep}"
+            rel_href = urljoin(portal_root, ep)
             cards.append(
                 f'<aside class="g9-interactive-bridge" data-g9-interactive-bridge>'
                 f'<span class="g9-pill g9-pill-interactive">Try Visually</span>'
@@ -1149,7 +1153,8 @@ def _core1a_interactive_bridge(ctx: Ctx, m: dict) -> str:
 def _core1a_learning_transitions(ctx: Ctx, m: dict) -> str:
     """Render derived transitions connecting Learn to Practice, Interactive, and Question Bank."""
     concept_id = m.get("id")
-    if not concept_id:
+    portal_root = _portal_root(ctx.manifest, "PAGES")
+    if not concept_id or not portal_root:
         return ""
     chips = []
     if "CORE2" in product_manifest.selected_output_roles(ctx.manifest):
@@ -1196,25 +1201,22 @@ def _core1a_worked_anchor(question: dict, ctx: Ctx | None = None, owner: bool = 
     if route:
         steps = "".join(
             f'<li data-g9-watch-step data-g9-move-ref="{esc(row.get("id", index))}">'
-            f'<details class="g9-worked-step" data-g9-worked-predict>'
-            f'<summary>Predict step {index}, then reveal</summary>'
             f'<div class="g9-worked-step-body"><strong>{esc(row.get("action", ""))}</strong>'
             f'{para("Why valid: " + row["why_valid"]) if row.get("why_valid") else ""}'
-            f'{para("Result: " + row["output"]) if row.get("output") else ""}</div></details></li>'
+            f'{para("Result: " + row["output"]) if row.get("output") else ""}</div></li>'
             for index, row in enumerate(route, 1)
         )
-        working = ('<p class="g9-worked-instruction">Before opening each step, say what you would do next.</p>'
+        working = ('<p class="g9-worked-instruction">Follow the operation, its justification and its result.</p>'
                    f'<ol class="g9-watch-steps">{steps}</ol>')
     else:
         legacy = [str(step) for step in answer.get("reasoning") or [] if str(step).strip()]
         if legacy:
             steps = "".join(
-                f'<li data-g9-watch-step><details class="g9-worked-step" data-g9-worked-predict>'
-                f'<summary>Predict step {index}, then reveal</summary>'
-                f'<div class="g9-worked-step-body">{para(step)}</div></details></li>'
+                f'<li data-g9-watch-step>'
+                f'<div class="g9-worked-step-body">{para(step)}</div></li>'
                 for index, step in enumerate(legacy, 1)
             )
-            working = ('<p class="g9-worked-instruction">Before opening each step, say what you would do next.</p>'
+            working = ('<p class="g9-worked-instruction">Follow the operation, its justification and its result.</p>'
                        f'<ol class="g9-watch-steps">{steps}</ol>')
         else:
             working = ""
@@ -1225,12 +1227,8 @@ def _core1a_worked_anchor(question: dict, ctx: Ctx | None = None, owner: bool = 
         head
         + (f'<p class="g9-lines">{question_text(ctx, question, "stem", stem, "CORE1A")}</p>' if ctx and stem else para(stem))
         + working
-        + secondary_disclosure(
-            "Result and independent check",
-            block("worked_result", para(answer.get("summary")), title="Result")
-            + block("worked_check", para(answer.get("check")), title="Check"),
-            "worked-result",
-        )
+        + block("worked_result", para(answer.get("summary")), title="Result")
+        + block("worked_check", para(answer.get("check")), title="Check")
     )
 
 
@@ -1352,18 +1350,16 @@ def core1a(ctx: Ctx, m: dict) -> str:
 
     identity = component_body(ctx, "CORE1A", {
         "CONCEPT_HEADER": part("CONCEPT_HEADER", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1A", m)),
-        "SECTION_ROUTE": part("SECTION_ROUTE", block("section_route", _core1a_section_route(m), title="Sections")),
+        "SECTION_ROUTE": part("SECTION_ROUTE", secondary_disclosure("Sections", _core1a_section_route(m), "core1a-section-route")),
     }, "identity")
 
     def opening() -> dict[str, str]:
-        """What opens the construction, once per concept: the key step, then what the learner must already hold."""
+        """Current conditions precede construction; its key insight follows the visual."""
         return {
             "KEY_STEP": part("KEY_STEP", block("inferential_jump", para(m["inferential_jump"]), title="The key step")),
-            "MODEL_CONTRACT": part("MODEL_CONTRACT", secondary_disclosure(
-                "What you need before this",
-                block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m), title="Prerequisites"),
-                "core1a-prerequisites",
-            )),
+            "MODEL_CONTRACT": part("MODEL_CONTRACT",
+                block("entry_assumptions", items(m.get("entry_assumptions")), title="Conditions for this construction")
+                + secondary_disclosure("Prerequisite reference", _prereqs(ctx, m), "core1a-prerequisites")),
         }
     closure = component_body(ctx, "CORE1A", {
         "EXIT_RECALL": part("EXIT_RECALL", (
@@ -1472,7 +1468,7 @@ def core1a(ctx: Ctx, m: dict) -> str:
             else:
                 ctx.gap('AUTHOR_LEARNING_REPAIR', u['id'], 'construction probe does not bind this question and crux', 'CORE1A')
 
-        # The unit card holds the unit's own components in blueprint order; the key step precedes the first card.
+        # Construction, its adjacent visual and then the insight follow the active blueprint order.
         card_parts = {
             "UNIT_HEADER": unit_part("UNIT_HEADER", unit_head),
             **(opening() if n == 0 else {}),
@@ -1489,7 +1485,9 @@ def core1a(ctx: Ctx, m: dict) -> str:
                 block("equation_matrix", relation_matrix, title="Equations and validity"),
                 "core1a-equations",
             )),
-            "WORKED_EXAMPLE": unit_part("WORKED_EXAMPLE", block("worked_anchor", anchor_html, title="Watch one · predict before reveal")),
+            "STAGED_VISUAL": unit_part("STAGED_VISUAL", figure_html, items=_stages_of(figure_html), band=unit_band),
+            "MODEL_SCOPE_PROBE": unit_part("MODEL_SCOPE_PROBE", primary_probe),
+            "WORKED_EXAMPLE": unit_part("WORKED_EXAMPLE", block("worked_anchor", anchor_html, title="Worked explanation")),
         }
         card = component_body(ctx, "CORE1A", card_parts, "construction")
         construction = f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">{card}</section>'
@@ -1510,13 +1508,9 @@ def core1a(ctx: Ctx, m: dict) -> str:
             }, "repair_closure")
             + "</section>"
         )
-        # Each unit is its own row: its construction on the primary side, its picture and repair on the support side.
+        # Each complete construction is followed by its requestable repair and independent check.
         rows += compose(ctx, "CORE1A", {
             "construction": construction,
-            "representation": component_body(ctx, "CORE1A", {
-                "STAGED_VISUAL": unit_part("STAGED_VISUAL", figure_html, items=_stages_of(figure_html), band=unit_band),
-                "MODEL_SCOPE_PROBE": unit_part("MODEL_SCOPE_PROBE", primary_probe),
-            }, "representation"),
             "repair_closure": support,
         })
 
@@ -2166,10 +2160,10 @@ nav[data-g9-breadcrumb]{display:flex;gap:8px;flex-wrap:wrap;padding:8px var(--g9
 .g9-triad-context a{color:inherit;text-decoration:none;min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:0 8px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;touch-action:manipulation}
 .g9-triad-context a:hover{text-decoration:underline}
 .g9-triad-actions a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;touch-action:manipulation}
-main{max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box}
+main{width:100%;min-width:0;max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box;overflow-wrap:anywhere}
 main>*{min-width:0}article[data-g9-unit]{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:var(--g9-space);margin:18px 0;min-width:0}
 article[data-g9-unit]>*{min-width:0}
-article[id],section[id]{scroll-margin-top:96px}
+article[id],section[id]{scroll-margin-top:var(--g9-header-offset,96px)}
 .g9-core1a-book{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,2vw,24px);margin:0 0 18px;min-width:0}
 .g9-core1a-book>h2{margin:.15em 0 .6em}
 .g9-bucket-orientation-grid{display:block;min-width:0}.g9-bucket-orientation-grid>*{min-width:0}
@@ -2212,6 +2206,9 @@ figure{margin:14px 0;max-width:100%;overflow-x:auto}figure svg{width:100%;height
 [data-g9-meta-item] strong{font-weight:700;flex:0 0 auto}
 [data-g9-meta-label]{min-width:0;overflow-wrap:anywhere}
 h4{margin:.8em 0 .3em}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.g9-shell-header .g9-header-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 footer{padding:24px 16px;color:var(--muted)}
 @media print{:root,:root[data-theme=dark]{--bg:#fff;--fg:#000;--card:#fff;--line:#bbb;--accent:#1f5fae;--muted:#333;--soft:#fff;--pill-bg:#eee;--pill-fg:#222;--src-bg:#eee;--src-fg:#222;--info-bg:#fff;--info-line:#888;--info-fg:#222;--warn-bg:#fff;--warn-line:#888;--warn-fg:#222;--ok-bg:#fff;--ok-line:#888;--ok-fg:#222}
 header[data-g9-shell-header],nav[data-g9-breadcrumb],.g9-attempt,button,[data-g9-display-panel],[data-g9-source-pdf]{display:none!important}
@@ -2283,6 +2280,8 @@ article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-
 .g9-c-visual-card figure,.g9-c-staged-visual figure{margin:0}
 .g9-c-visual-card figure svg,.g9-c-staged-visual figure svg{display:block;width:100%;height:auto;max-width:100%}
 .g9-c-visual-card figure svg{max-height:min(48vh,440px)}.g9-c-staged-visual figure svg{max-height:min(42vh,360px)}
+.g9-diagram-scroll{width:100%;max-width:100%;min-width:0;min-height:48px;box-sizing:border-box;overflow-x:auto}
+.g9-diagram-scroll svg{display:block;max-height:none!important;max-width:none!important}
 .g9-c-ladder .g9-block>h4{margin:.9rem 0 .2rem;font-size:max(.85rem,14px);color:var(--muted)}
 .g9-rung-map,.g9-c-ladder [data-g9-ladder]{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
 .g9-rung-map>li{border:1px dashed var(--line);border-radius:12px;padding:9px 13px;color:var(--muted)}
@@ -2358,6 +2357,8 @@ article[data-g9-role=CORE1A]>.slot-identity [data-g9-block=section_route] h4{mar
 article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] ol{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
 article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] li{margin:0}
 article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] a{display:inline-block;width:auto;max-width:24rem;padding:4px 14px;border-radius:999px;line-height:38px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-component=SECTION_ROUTE]{flex:1 1 100%;width:100%;min-width:0}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] a{max-width:100%;white-space:normal;overflow-wrap:anywhere}
 article[data-g9-role=CORE2]>.slot-identity [data-g9-meta-item],article[data-g9-role=CORE1A]>.slot-identity [data-g9-meta-item]{padding:2px 10px;line-height:1.35}
 .g9-interactive-bridge{border:2px solid var(--accent);border-radius:16px;background:var(--card);padding:16px 20px;margin:18px 0}
 .g9-interactive-bridge h3{margin:8px 0 4px;font-size:1.15rem;color:var(--fg)}
@@ -2410,17 +2411,20 @@ JS = r"""
 (()=>{const q=(s,r=document)=>[...r.querySelectorAll(s)];
 const store={get:k=>{try{return localStorage.getItem('g9-'+k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem('g9-'+k,v);return true}catch(e){return false}},remove:k=>{try{localStorage.removeItem('g9-'+k);return true}catch(e){return false}}};
 const root=document.documentElement;const scope=root.dataset.g9Product&&root.dataset.g9RenderDigest?root.dataset.g9Product+':'+root.dataset.g9RenderDigest:'';
+const shell=document.querySelector('.g9-shell-header');if(shell){const offset=()=>root.style.setProperty('--g9-header-offset',(shell.getBoundingClientRect().height+16)+'px');new ResizeObserver(offset).observe(shell);offset();}
 const apply=()=>{root.dataset.theme=store.get('theme')||root.dataset.theme||'light';root.style.setProperty('--g9-zoom',store.get('zoom')||'1');};apply();
 q('[data-g9-theme]').forEach(b=>b.onclick=()=>{store.set('theme',b.dataset.g9Theme);apply()});
 q('[data-g9-zoom]').forEach(b=>b.onclick=()=>{let z=parseFloat(store.get('zoom')||'1');z=b.dataset.g9Zoom==='inc'?Math.min(1.6,z+0.1):b.dataset.g9Zoom==='dec'?Math.max(0.8,z-0.1):1;store.set('zoom',z.toFixed(1));apply()});
 q('[data-g9-font]').forEach(b=>b.onclick=()=>q('[data-g9-zoom="'+b.dataset.g9Font+'"]')[0]?.click());
-function initFigure(f){if(f.dataset.g9Init)return;f.dataset.g9Init='1';const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);if(ids.length<2)return;let i=0;
+function fitFigure(f){const svg=q('svg',f)[0];if(!svg||!svg.isConnected)return;const groups=q('[data-g9-stage-id]',svg).filter(g=>getComputedStyle(g).display!=='none');if(groups.length){const boxes=groups.map(g=>g.getBBox()).filter(b=>b.width>0&&b.height>0);if(boxes.length){const x=Math.min(...boxes.map(b=>b.x))-12,y=Math.min(...boxes.map(b=>b.y))-12,r=Math.max(...boxes.map(b=>b.x+b.width))+12,b=Math.max(...boxes.map(b=>b.y+b.height))+12;svg.setAttribute('viewBox',[x,y,r-x,b-y].join(' '));}}
+const host=svg.parentElement;const labels=q('text',svg).filter(t=>t.checkVisibility({visibilityProperty:true}));const min=labels.reduce((v,t)=>Math.min(v,parseFloat(getComputedStyle(t).fontSize)||Infinity),Infinity);const box=svg.viewBox.baseVal;const floor=Number(f.dataset.g9MinFigureText)||14;const needed=Number.isFinite(min)&&min>0?Math.ceil(box.width*floor/min):0;svg.style.width=Math.max(host.clientWidth,needed)+'px';}
+function initFigure(f){if(f.dataset.g9Init)return;f.dataset.g9Init='1';const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);fitFigure(f);const host=q('.g9-diagram-scroll',f)[0];if(host){let width=host.clientWidth;new ResizeObserver(()=>{const next=host.clientWidth;if(next!==width){width=next;fitFigure(f)}}).observe(host)}if(ids.length<2)return;let i=0;
 const chips=q('[data-g9-stage-goto]',f);const desc=q('[data-g9-stage-desc-text]',f)[0];
 const stageMode=f.dataset.g9StageMode||'cumulative';const cumulative=stageMode!=='replace';
 ids.forEach(id=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display='none'));
-const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=(cumulative?n<=i:n===i)?'':'none'));const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
+const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=(cumulative?n<=i:n===i)?'':'none'));fitFigure(f);const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
 q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})}
-function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('[data-g9-rung-ghost]',l)[0]?.remove();q('figure[data-g9-figure]',payload).forEach(initFigure);q('[data-g9-ladder]',l)[0].append(payload);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
+function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('[data-g9-rung-ghost]',l)[0]?.remove();q('[data-g9-ladder]',l)[0].append(payload);q('figure[data-g9-figure]',l).forEach(initFigure);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
 function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}
 const number=t=>{const v=t.trim();if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?(?:\s*\/\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)?$/i.test(v))return false;const p=v.split('/').map(x=>Number(x.trim()));return p.every(Number.isFinite)&&(p.length===1||p[1]!==0)};
 function validAttempt(box){const type=box.dataset.g9ResponseType;if(type==='single_choice'||type==='multiple_choice'||type==='true_false')return q('[data-g9-choice]:checked',box).length>0;
@@ -2474,17 +2478,17 @@ def pdf_control(href: str, accessible_name: str = PDF_ACCESSIBLE_NAME) -> str:
             f'aria-label="{esc(accessible_name)}">{PDF_ICON}<span>PDF</span></a>')
 
 
-def shell_header(home_href: str, question_bank_href: str, pdf_href: str | None = None, pdf_name: str = PDF_ACCESSIBLE_NAME) -> str:
+def shell_header(home_href: str, question_bank_href: str, pdf_href: str | None = None, pdf_name: str = PDF_ACCESSIBLE_NAME, portal_root: str | None = None) -> str:
     """The shared tablet-shell header. Used by every rendered page."""
-    pdf_btn = f'<a class="g9-header-btn" data-g9-action="pdf" href="{esc(pdf_href)}" title="{esc(pdf_name)}">PDF</a>' if pdf_href else ""
+    pdf_btn = f'<a class="g9-header-btn g9-pdf-link" data-g9-action="pdf" data-g9-pdf-link aria-label="{esc(pdf_name)}" href="{esc(pdf_href)}" title="{esc(pdf_name)}">PDF</a>' if pdf_href else ""
+    subjects = ''.join(f'<a href="{esc(urljoin(portal_root, name.lower()+"/index.html"))}">{name}</a>'
+                       for name in ('Physics','Chemistry','Mathematics')) if portal_root else ''
+    qb_link = f'<a href="{esc(question_bank_href)}">Question Bank</a>' if question_bank_href != home_href else ''
     return (f'<header class="g9-shell-header" data-g9-shell-header><div class="g9-header-inner">'
             f'<a href="{esc(home_href)}" class="g9-brand"><span class="logo-icon">⚡</span><span class="brand-title">Grade9V3.5</span><span class="g9-brand-badge">Learner Platform</span></a>'
             f'<nav class="g9-header-nav" aria-label="Portal Navigation">'
-            f'<a href="{esc(home_href)}">Home</a>'
-            f'<a href="../../../physics/index.html">Physics</a>'
-            f'<a href="../../../chemistry/index.html">Chemistry</a>'
-            f'<a href="../../../mathematics/index.html">Mathematics</a>'
-            f'<a href="{esc(question_bank_href)}">Question Bank</a>'
+            f'<a data-g9-home href="{esc(home_href)}">Home</a>'
+            f'{subjects}{qb_link}'
             f'</nav>'
             f'<div class="g9-header-actions">'
             f'<button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search"><span class="g9-btn-icon">🔍</span><span class="g9-btn-text">Search</span></button>'
@@ -2508,6 +2512,13 @@ def _pdf_target(ctx: Ctx, role: str, mode: str) -> tuple[str | None, str]:
     return policy["target_pattern"].format(page_stem=stem), policy["accessible_name"]
 
 
+def _portal_root(manifest: dict, mode: str) -> str | None:
+    """A declared portal home supplies its base; a standalone product index does not."""
+    home = _mode_href(manifest["home_href"], mode)
+    parent = home.rsplit('/', 1)[0]+'/' if '/' in home else None
+    return parent
+
+
 def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
     m = ctx.manifest
     if mode == "EMBED":
@@ -2520,63 +2531,43 @@ def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
     qb_href = _mode_href(m.get("question_bank_href", m["home_href"]), mode)
     pdf_href, pdf_name = _pdf_target(ctx, role, mode) if pdf else (None, PDF_ACCESSIBLE_NAME)
     
-    header = shell_header(home_href, qb_href, pdf_href, pdf_name)
-    
-    # Breadcrumbs
-    subject = m.get("subject", "Physics")
-    subject_href = f"../../../{subject.lower()}/index.html"
-    
-
-    from Shared.tools.resolve_concept_bundle import resolve_bundle
-    cap_ref = None
-    try:
-        if ctx.selection_rows and "core2" in ctx.selection_rows and ctx.selection_rows["core2"]:
-            cap_ref = ctx.selection_rows["core2"][0].get("primary_capability_ref", "")
-        else:
-            cap_ref = "MIC-PHY-NLM-FRICTION" # fallback
-            
-        registry_path = REPO / "public" / "data" / "resource-registry.v1.json"
-        reg = load_json(registry_path) if registry_path.exists() else []
-        bundle = resolve_bundle(cap_ref, reg)
-        explore_btn = ""
+    portal_root = _portal_root(m, mode)
+    header = shell_header(home_href, qb_href, pdf_href, pdf_name, portal_root)
+    subject = m.get("subject", "")
+    subject_href = urljoin(portal_root, subject.lower()+"/index.html") if portal_root else None
+    concept = next(iter(ctx.selection_rows.get("microtopics", [])), {})
+    selected_questions = ctx.selection_rows.get("core2", [])
+    cap_ref = concept.get("primary_capability_ref") or (selected_questions[0].get("primary_capability_ref") if selected_questions else None)
+    explore_btn = ""
+    topic_href = None
+    if portal_root and cap_ref:
+        from Shared.tools.resolve_concept_bundle import resolve_bundle
+        registry_path = REPO / "public/data/resource-registry.v1.json"
+        bundle = resolve_bundle(cap_ref, load_json(registry_path)) if registry_path.exists() else {}
         if bundle.get("interactive"):
-            ep = bundle["interactive"][0].get("entrypoint", "")
-            explore_btn = f'<a class="g9-triad-btn g9-btn-explore" href="../../../{ep}">⚡ Try visually</a>'
-            
-        topic_id = bundle.get("topic_ref", "")
-        if topic_id:
-            topic_slug = topic_id.split(".")[-1]
-        else:
-            pid = m.get("product_id", "")
-            parts = pid.split("-")
-            topic_slug = parts[2].lower() if len(parts) >= 3 else "nlm"
-    except Exception:
-        explore_btn = ""
-        topic_slug = "nlm"
-        
-    topic_href = f"../../../topics/{topic_slug}/index.html"
-    
-    triad_context = (f'<div class="g9-triad-context" aria-label="breadcrumb">'
-                     f'<a href="{esc(home_href)}">Home</a>'
-                     f' / <a href="{subject_href}">{esc(subject)}</a>'
-                     f' / <a href="{topic_href}">{esc(m.get("title", ""))}</a>'
-                     f' / <span aria-current="page">{esc(current_role)}</span>'
-                     f'</div>')
-
-    qb_url = f"../../../question-bank/index.html?capability={esc(cap_ref)}"
-
-    c1a_active = ' active' if role == 'CORE1A' else ''
-    c2_active = ' active' if role == 'CORE2' else ''
-
-    triad = (f'<div class="g9-concept-triad-bar"><div class="g9-triad-inner">'
-             f'{triad_context}'
+            entry = bundle["interactive"][0].get("entrypoint")
+            if entry:
+                explore_btn = f'<a class="g9-triad-btn g9-btn-explore" href="{esc(urljoin(portal_root,entry))}">⚡ Try visually</a>'
+        topic_ref = bundle.get("topic_ref")
+        if topic_ref:
+            topic_href = urljoin(portal_root, "topics/"+topic_ref.split(".")[-1]+"/index.html")
+    subject_label = f'<a href="{esc(subject_href)}">{esc(subject)}</a>' if subject_href else esc(subject)
+    topic_label = f'<a href="{esc(topic_href)}">{esc(m.get("title", ""))}</a>' if topic_href else esc(m.get("title", ""))
+    triad_context = f'<div class="g9-triad-context">{subject_label} / {topic_label} / <span aria-current="page">{esc(current_role)}</span></div>'
+    actions = []
+    selected_roles = product_manifest.selected_output_roles(m)
+    for target,label in (("CORE1","Orientation"),("CORE1A","📖 Learn"),("CORE1B","Recall"),
+                         ("CORE2","✍️ Practice"),("CORE2A","Apply"),("CORE2B","Transfer")):
+        if target in selected_roles:
+            active = ' active' if role == target else ''
+            href = '#g9-role-'+target if mode == 'SINGLE_FILE' else ROLE_FILE[target]
+            actions.append(f'<a class="g9-triad-btn{active}" href="{esc(href)}">{label}</a>')
+    actions.append(explore_btn)
+    if qb_href != home_href:
+        actions.append(f'<a class="g9-triad-btn g9-btn-qb" href="{esc(qb_href)}">All questions in QB &rarr;</a>')
+    triad = (f'<div class="g9-concept-triad-bar"><div class="g9-triad-inner">{triad_context}'
              f'<span class="g9-triad-concept-title">Concept: {esc(m.get("title", ""))}</span>'
-             f'<div class="g9-triad-actions">'
-             f'<a class="g9-triad-btn g9-btn-learn{c1a_active}" href="core1a.html">📖 Learn</a>'
-             f'<a class="g9-triad-btn g9-btn-practice{c2_active}" href="core2.html">✍️ Practice</a>'
-             f'{explore_btn}'
-             f'<a class="g9-triad-btn g9-btn-qb" href="{qb_url}">All questions in QB &rarr;</a>'
-             f'</div></div></div>')
+             f'<div class="g9-triad-actions">{"".join(actions)}</div></div></div>')
 
     return header, triad
 
@@ -2617,9 +2608,19 @@ def _shared_head_assets(ctx: Ctx, mode: str) -> str:
     if mode == "EMBED":
         return ""
     if mode == "SINGLE_FILE":
-        return '<style data-g9-tablet-shell>' + TABLET_CSS.read_text(encoding="utf-8") + '</style>'
+        return ('<style data-g9-modern-shell>' + (REPO / 'public/css/modern-learner.css').read_text(encoding="utf-8")
+                + '</style><style data-g9-tablet-shell>' + TABLET_CSS.read_text(encoding="utf-8") + '</style>')
     root = _asset_root(ctx)
     return f'<link rel="stylesheet" href="{esc(root)}css/modern-learner.css"><link rel="stylesheet" href="{esc(root)}css/tablet-12-7.css">'
+
+
+def _shared_script_assets(ctx: Ctx, mode: str) -> str:
+    if mode == "EMBED":
+        return ""
+    paths = ("js/display-controls.js", "js/site-header.js")
+    if mode == "SINGLE_FILE":
+        return ''.join('<script>' + (REPO / 'public' / path).read_text(encoding='utf-8') + '</script>' for path in paths)
+    return ''.join(f'<script src="{esc(_asset_root(ctx))}{path}"></script>' for path in paths)
 
 
 def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
@@ -2649,7 +2650,7 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
             f'<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>'
             f'{_core1a_bucket_orientation(ctx) if role == "CORE1A" else ""}{articles}</main>'
             f'<footer data-g9-footer>{esc(m["subject"])} · {esc(m["title"])}</footer>'
-            f"<script>{JS}{learning_repair.JS}</script><script src=\"{esc(_asset_root(ctx))}js/display-controls.js\"></script><script src=\"{esc(_asset_root(ctx))}js/site-header.js\"></script></body></html>\n")
+            f"<script>{JS}{learning_repair.JS}</script>{_shared_script_assets(ctx, mode)}</body></html>\n")
 
 
 def index_page(ctx: Ctx, digest: str) -> str:

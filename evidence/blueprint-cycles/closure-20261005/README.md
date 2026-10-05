@@ -1,0 +1,11 @@
+# R3 implementation and final evidence — 5 October 2026
+
+This is a new cumulative repair round under issue #29, not a reconstruction of historical execution. `cumulative-rule-round.json` and eight full registry snapshots record the executed D1 B32 → rule → A31 → rule, D2 B34/A33, D3 B36/A35, D4 B38/A37 order. All eight products were then regenerated against registry 1.12.0, Core1A 1.6.0 and Core2 1.7.0. Intermediate band render reports are checkpoint history; `all-render.json` is the latest regeneration.
+
+All 80 source-question instances keep their supplied stems, options, source identities and selection. Each now has a question-specific action/warrant/output reasoning route and construction bridge. Original named teaching anchors remain. Worked explanation is visible in a continuous lesson; fresh checks remain gated. Misconception clinics use the actual question's wrong idea, probe and replacement rule. Novel exit cases replace repetitions.
+
+Shared fixes cover standalone versus portal navigation, selected six-role navigation and single-file inline shell assets, enlarged text, opened references, focus/reduced motion, local diagram scrolling and staged figure framing at the declared 14px label floor. Linked Core1A/Core2 PDFs are generated from actual pages. Browser reports bind saved inputs, HTML and assets by SHA256; any subsequent source edit invalidates that report.
+
+Validation at the implementation checkpoint: six targeted lesson/adjacency/tablet policy checks PASS. Final clean full suite and refreshed eight-pack browser evidence are pending and will be added before push. Earlier local observations in this directory are historical until their bindings match the final source bytes. No independent educational acceptance, universal mastery, golden admission, merge or learner publication is claimed.
+
+STEP-BACK CHECK: SBC-1 learner: exact question-to-teaching route; SBC-2 gates: fresh attempts protected, explanation visible; SBC-3 thinking: warranted moves and changed checks; SBC-4 applicability: no compulsory decoration; SBC-5 construction: premises before visual and insight; SBC-6 coherence: one lesson pane; SBC-7 state: author review distinguished from independent acceptance; SBC-8 convergence: cumulative rules and final all-eight sweep; SBC-9 reuse: Shared rendering and subject-neutral navigation.

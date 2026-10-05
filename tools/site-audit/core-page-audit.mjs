@@ -138,8 +138,11 @@ for (const file of files) {
     const expectedColumns = policy && policy.support_fraction ? { primary: pct(policy.primary_fraction), support: pct(policy.support_fraction) } : null;
     const expectedTablet = policy && policy.tablet_12_7 ? policy.tablet_12_7 : null;
     const r = await page.evaluate(({ minTarget, expectedColumns, expectedTablet }) => {
-      const visible = el => { const b = el.getBoundingClientRect(); return b.width > 0 && b.height > 0; };
-      const controls = [...document.querySelectorAll('a[href],button,summary,textarea,input,select')].filter(visible);
+      const visible = el => {
+        const b = el.getBoundingClientRect();
+        return b.width > 0 && b.height > 0 && el.checkVisibility({ visibilityProperty: true, contentVisibilityAuto: true });
+      };
+      const controls = [...document.querySelectorAll('a[href],button,summary,textarea,input,select,[tabindex="0"]')].filter(visible);
       // Inline text links inside a paragraph, list item or table cell are exempt (WCAG 2.5.8), as in tablet-audit.mjs.
       const small = controls.filter(el => { const b = el.getBoundingClientRect(); return Math.min(b.width, b.height) < minTarget && el.tagName !== 'TEXTAREA' && !(el.tagName === 'A' && el.closest('p,li,td')); });
       const texts = [...document.querySelectorAll('body *')].filter(el => el.childElementCount === 0 && el.textContent.trim() && visible(el));
@@ -195,6 +198,7 @@ for (const file of files) {
           return {
             secondaryDisclosures: secondary.length,
             secondaryOpenByDefault: secondary.filter(el => el.open).length,
+            workedVisibleSteps: [...document.querySelectorAll("[data-g9-watch-step]")].filter(visible).length,
             workedPredictSteps: worked.length,
             workedPredictOpenByDefault: worked.filter(el => el.open).length,
             keyStepInsideDisclosure: keySteps.filter(el => !!el.closest('details')).length,
@@ -218,7 +222,10 @@ for (const file of files) {
               const visibleGroups = groups.filter(group => getComputedStyle(group).display !== 'none');
               const structural = visibleGroups.reduce((count, group) =>
                 count + group.querySelectorAll('path,line,rect,circle,ellipse,polygon,polyline').length, 0);
-              return { visibleGroups: visibleGroups.length, structural };
+              const sizes=[...figure.querySelectorAll('svg text')].filter(visible).map(label=>{
+                const m=label.getScreenCTM(); return m ? parseFloat(getComputedStyle(label).fontSize)*Math.hypot(m.a,m.b):Infinity;
+              });
+              return { visibleGroups: visibleGroups.length, structural, smallestTextPx:sizes.length?Math.min(...sizes):null };
             };
             const progression = [];
             chips.forEach((chip, index) => {
@@ -228,7 +235,11 @@ for (const file of files) {
             if (chips[0]) chips[0].click();
             if (mode === 'cumulative') {
               for (let index = 0; index < progression.length; index += 1) {
-                const current = progression[index];
+              const current = progression[index];
+              if (current.smallestTextPx !== null && current.smallestTextPx < 13.95) {
+                violations.push((figure.dataset.g9Representation || figure.dataset.g9Fig || 'figure')+
+                  ': stage '+current.stage+' label '+current.smallestTextPx.toFixed(2)+'px < 14px');
+              }
                 const previous = index ? progression[index - 1] : null;
                 if (current.visibleGroups < index + 1) {
                   violations.push((figure.dataset.g9Representation || figure.dataset.g9Fig || 'figure') +
@@ -574,7 +585,7 @@ if (enforce && profile === 'core1a-spec') {
       if (row.svg !== row.svgAccessible) failures.push(`${vp.name}: accessible SVG ${row.svgAccessible}/${row.svg}`);
       if (row.stagedSvg?.violations?.length) failures.push(`${vp.name}: staged SVG progression: ${row.stagedSvg.violations.join(' | ')}`);
       if (row.progressiveLearning.secondaryOpenByDefault !== 0) failures.push(`${vp.name}: secondary Core1A disclosures open by default=${row.progressiveLearning.secondaryOpenByDefault}`);
-      if (row.progressiveLearning.workedPredictSteps < 1) failures.push(`${vp.name}: no predict-before-reveal worked steps`);
+      if (row.progressiveLearning.workedVisibleSteps < 1) failures.push(`${vp.name}: no visible coherent worked explanation`);
       if (row.progressiveLearning.workedPredictOpenByDefault !== 0) failures.push(`${vp.name}: worked-example steps open by default=${row.progressiveLearning.workedPredictOpenByDefault}`);
       if (row.progressiveLearning.keyStepInsideDisclosure !== 0) failures.push(`${vp.name}: key step is hidden inside a disclosure`);
       if (row.progressiveLearning.exitRecallCount < 1) failures.push(`${vp.name}: no less-supported independent close`);
@@ -585,7 +596,9 @@ if (enforce && profile === 'core1a-spec') {
       if (row.externalRequests.length !== 0) failures.push(`${vp.name}: external request(s): ${row.externalRequests.join(', ')}`);
       const layout = row.core1aLayout;
       const want = row.expectedLayout;
-      if (!want) failures.push(`${vp.name}: the page's blueprint declares no two-column layout to check against`);
+      if (!want) {
+        if (row.core1aLayout.expandedCount !== 0) failures.push(`${vp.name}: integrated lesson unexpectedly split into columns`);
+      }
       else if (vp.width >= want.minPx) {
         if (layout.expandedCount !== layout.articleCount) failures.push(`${vp.name}: expanded layout ${layout.expandedCount}/${layout.articleCount}`);
         for (const sample of layout.samples) {
@@ -635,7 +648,7 @@ if (enforce && profile === 'tablet-12.7') {
       if (row.stagedSvg?.violations?.length) failures.push(`${file} ${vp.name}: staged SVG progression: ${row.stagedSvg.violations.join(' | ')}`);
       if (file === 'core1a.html') {
         if (row.progressiveLearning.secondaryOpenByDefault !== 0) failures.push(`${file} ${vp.name}: secondary disclosures open by default=${row.progressiveLearning.secondaryOpenByDefault}`);
-        if (row.progressiveLearning.workedPredictSteps < 1) failures.push(`${file} ${vp.name}: no predict-before-reveal worked steps`);
+        if (row.progressiveLearning.workedVisibleSteps < 1) failures.push(`${file} ${vp.name}: no visible coherent worked explanation`);
         if (row.progressiveLearning.workedPredictOpenByDefault !== 0) failures.push(`${file} ${vp.name}: worked-example steps open by default=${row.progressiveLearning.workedPredictOpenByDefault}`);
         if (row.progressiveLearning.keyStepInsideDisclosure !== 0) failures.push(`${file} ${vp.name}: key step is hidden inside a disclosure`);
         if (row.progressiveLearning.exitRecallCount < 1) failures.push(`${file} ${vp.name}: no independent less-supported close`);

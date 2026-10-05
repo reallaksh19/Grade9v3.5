@@ -307,9 +307,9 @@ class Renderer(unittest.TestCase):
             self.assertGreaterEqual(construction_slot, 0)
             self.assertGreater(support_slot, construction_slot)
 
-        # each unit is its own two-column row, then one support-only row for the closing task, laid out by the blueprint's fractions
-        self.assertEqual(article.count('class="g9-split'), len(units) + 1)
-        self.assertIn('article[data-g9-role="CORE1A"] .g9-split{display:grid;', render_core.layout_css(ctx.blueprints))
+        # Teaching and its adjacent repair stay in one continuous reading pane.
+        self.assertNotIn('class="g9-split', article)
+        self.assertEqual(next(row for row in ctx.blueprints["blueprints"] if "CORE1A" in row["core_roles"])["responsive_policy"]["expanded"], "SINGLE_PANE")
 
     def test_core1a_relation_matrix_preserves_equation_meaning_and_validity_semantics(self):
         repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
@@ -507,18 +507,12 @@ class Renderer(unittest.TestCase):
             if "CORE1A" in row["core_roles"]
         )
 
-        self.assertEqual(blueprint["responsive_policy"]["expanded"], "STAGE_SUPPORT")
-        # 60/40: the support column is wide enough that a figure drawn in a 480-unit viewBox renders its labels at 14 px or more
-        # on the 12.7-inch reference tablet (see responsive_policy.tablet_12_7).
-        self.assertAlmostEqual(
-            blueprint["responsive_policy"]["primary_fraction"], 0.6, places=2
-        )
-        self.assertAlmostEqual(
-            blueprint["responsive_policy"]["support_fraction"], 0.4, places=2
-        )
+        self.assertEqual(blueprint["responsive_policy"]["expanded"], "SINGLE_PANE")
+        self.assertEqual(blueprint["interaction_policy"]["worked_example_step_policy"], "SHOW_ALL")
+        self.assertNotIn('class="g9-split', html)
         self.assertGreaterEqual(blueprint["touch_policy"]["minimum_target_css_px"], 48)
         self.assertGreaterEqual(blueprint["touch_policy"]["minimum_control_gap_css_px"], 8)
-        self.assertFalse(blueprint["interaction_policy"]["progressive_support"])
+        self.assertTrue(blueprint["interaction_policy"]["progressive_support"])
         self.assertIn("ATTEMPT_FIRST_AS_PRIMARY_MODE", blueprint["forbidden"])
 
         self.assertIn("@media (min-width:1100px)", render_core.CSS)

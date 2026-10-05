@@ -167,7 +167,7 @@
             "microtopic_ref": "MIC-CHEM-G11-ALLENE-STEREO",
             "status": "CORRECTION_CANDIDATE",
             "parent_issue": 36,
-            "crux_move_ref": "OWN-ISS36-D3-HYB-03-REPAIR-MOVE-3"
+            "crux_move_ref": "OWN-ISS36-D3-HYB-03-REPAIR-MOVE-2"
           },
           {
             "clarify": "Explain the terminal-plane constraint using overlap geometry, not an invalid occupation claim.",
@@ -181,11 +181,11 @@
             "wrong_idea": "Pauli exclusion forbids one atomic orbital from participating in any multicentre description.",
             "question_ref": "OWN-ISS36-D3-HYB-04",
             "label": "Q4",
-            "construction_ref": "CU-CHEM-ALLENE-STEREO",
+            "construction_ref": "CU-CHEM-ALLENE-STEREO-Q4",
             "microtopic_ref": "MIC-CHEM-G11-ALLENE-STEREO",
             "status": "CORRECTION_CANDIDATE",
             "parent_issue": 36,
-            "crux_move_ref": "OWN-ISS36-D3-HYB-04-REPAIR-MOVE-3"
+            "crux_move_ref": "OWN-ISS36-D3-HYB-04-REPAIR-MOVE-2"
           }
         ],
         "grade9v3:lesson_anchors": {
@@ -202,8 +202,24 @@
               "check": "Changed check: looking down C=C=C, terminal CH2 planes project at right angles; rotating the whole model leaves that relation unchanged."
             },
             "target_question_ref": "OWN-ISS36-D3-HYB-03",
-            "target_crux_move_ref": "OWN-ISS36-D3-HYB-03-REPAIR-MOVE-3",
+            "target_crux_move_ref": "OWN-ISS36-D3-HYB-03-REPAIR-MOVE-2",
             "construction_ref": "CU-CHEM-ALLENE-STEREO"
+          },
+          "CU-CHEM-ALLENE-STEREO-Q4": {
+            "id": "ANCHOR-CU-CHEM-ALLENE-STEREO-Q4",
+            "stem": "Does forming a pi contribution make an atomic p function unavailable to every multicentre molecular combination? Contrast allene direction constraints with nitrate delocalisation.",
+            "answer": {
+              "summary": "No. Allene uses distinct perpendicular local p directions in its model; nitrate is multicentre. A persistent forbidden-reuse claim identifies the faulty warrant.",
+              "reasoning": [
+                "Atomic basis functions participate in molecular combinations; Pauli exclusion is an electron-state rule.",
+                "No. Allene uses distinct perpendicular local p directions in its model; nitrate is multicentre. A persistent forbidden-reuse claim identifies the faulty warrant.",
+                "Allene central sp accounting retains two perpendicular p functions. Terminal sigma planes are perpendicular to their respective p functions. Do not claim the first p orbital is filled by one bond and forbidden from multicentre participation by Pauli."
+              ],
+              "check": "Changed check: a delocalised nitrate p function participates in a multicentre description, falsifying the claimed one-AO-one-bond prohibition."
+            },
+            "target_question_ref": "OWN-ISS36-D3-HYB-04",
+            "target_crux_move_ref": "OWN-ISS36-D3-HYB-04-REPAIR-MOVE-2",
+            "construction_ref": "CU-CHEM-ALLENE-STEREO-Q4"
           }
         }
       },
@@ -215,37 +231,87 @@
       "entry_assumptions": [
         "Can count local electron domains and identify sp vs sp² geometries."
       ],
-      "inferential_jump": "The central carbon in allene is shared by two double bonds; because its two unhybridised p orbitals are mutually orthogonal, the two pi bonds lie in perpendicular planes, forcing the terminal CH2 groups to be perpendicular.",
+      "inferential_jump": "Allene uses terminal sp2, central sp accounting. The two central perpendicular p directions support perpendicular terminal CH2 planes in the introductory model.",
       "teaching_path": [
         {
-          "id": "ALLENE-T1",
+          "id": "CU-CHEM-ALLENE-STEREO-TEACH-1",
           "role": "DECLARE",
-          "action": "Assign local bases before deducing the relation between terminal planes.",
-          "why_valid": "Allene uses terminal sp2, central sp accounting. The two central perpendicular p directions support perpendicular terminal CH2 planes in the introductory model.",
+          "action": "Count local sigma-neighbour directions in allene.",
+          "why_valid": "Each terminal carbon has two H plus the central C; the central carbon has two terminal-C neighbours.",
           "inputs": [
-            "stated givens"
+            "For propadiene (allene), H2C=C=CH2, apply local electron-domain counting at each of the three carbon atoms. Assign the introductory hybridisation of each carbon and show how the two mutually perpendicular unhybridised p orbitals on the central carbon constrain the relative planes of the terminal CH2 groups."
           ],
-          "output": "A central sp carbon retains two perpendicular p directions."
+          "output": "Terminals: three directions; centre: two."
         },
         {
-          "id": "ALLENE-T2",
-          "role": "TRANSFORM",
-          "action": "Match each central p direction with an aligned terminal p direction; infer terminal sigma planes yourself.",
-          "why_valid": "Allene uses terminal sp2, central sp accounting. The two central perpendicular p directions support perpendicular terminal CH2 planes in the introductory model.",
+          "id": "CU-CHEM-ALLENE-STEREO-TEACH-2",
+          "role": "DECLARE",
+          "action": "Allocate the local valence bases.",
+          "why_valid": "Terminal sp2 leaves one p each; central sp leaves two mutually perpendicular p functions.",
           "inputs": [
-            "stated givens"
+            "Terminals: three directions; centre: two."
           ],
-          "output": "Allene uses terminal sp2, central sp accounting. The two central perpendicular p directions support perpendicular terminal CH2 planes in the introductory model."
+          "output": "sp2-sp-sp2 along the carbon chain."
         },
         {
-          "id": "ALLENE-T3",
-          "role": "VERIFY",
-          "action": "Changed check: looking down C=C=C, terminal CH2 planes project at right angles; rotating the whole model leaves that relation unchanged.",
-          "why_valid": "Allene uses terminal sp2, central sp accounting. The two central perpendicular p directions support perpendicular terminal CH2 planes in the introductory model.",
+          "id": "CU-CHEM-ALLENE-STEREO-TEACH-3",
+          "role": "DECLARE",
+          "action": "Match the two separate central p directions to terminal p functions.",
+          "why_valid": "Each localized pi component needs suitable lateral alignment with its terminal p.",
           "inputs": [
-            "stated givens"
+            "sp2-sp-sp2 along the carbon chain."
           ],
-          "output": "Allene uses terminal sp2, central sp accounting. The two central perpendicular p directions support perpendicular terminal CH2 planes in the introductory model."
+          "output": "Two orthogonal pi planes."
+        },
+        {
+          "id": "CU-CHEM-ALLENE-STEREO-TEACH-4",
+          "role": "DECLARE",
+          "action": "Deduce and check terminal CH2 planes.",
+          "why_valid": "Each terminal sigma plane is perpendicular to its participating p; looking down the chain makes the relation explicit.",
+          "inputs": [
+            "Two orthogonal pi planes."
+          ],
+          "output": "Terminal CH2 planes are perpendicular in this introductory model; rigid rotation preserves that relation."
+        },
+        {
+          "id": "CU-CHEM-ALLENE-STEREO-Q4-TEACH-1",
+          "role": "DECLARE",
+          "action": "Construct the ethene baseline.",
+          "why_valid": "Each carbon uses three planar sigma directions and one residual perpendicular p.",
+          "inputs": [
+            "Ethene is planar; propadiene has terminal CH2 groups in perpendicular planes. Build a connected account from each carbon's local sigma framework, the required pi overlaps and the p-orbital directions. Explain why copying the planar ethene sketch to allene fails."
+          ],
+          "output": "One pair of parallel p functions; a coplanar sigma framework."
+        },
+        {
+          "id": "CU-CHEM-ALLENE-STEREO-Q4-TEACH-2",
+          "role": "DECLARE",
+          "action": "Reallocate the central carbon for allene.",
+          "why_valid": "Its two sigma-neighbour directions use sp, leaving two perpendicular p functions.",
+          "inputs": [
+            "One pair of parallel p functions; a coplanar sigma framework."
+          ],
+          "output": "Two independent central p directions rather than ethene's single p direction."
+        },
+        {
+          "id": "CU-CHEM-ALLENE-STEREO-Q4-TEACH-3",
+          "role": "DECLARE",
+          "action": "Match each terminal p to its corresponding central direction.",
+          "why_valid": "The terminal sigma plane is perpendicular to its p, so distinct orthogonal p alignments constrain distinct planes.",
+          "inputs": [
+            "Two independent central p directions rather than ethene's single p direction."
+          ],
+          "output": "Perpendicular terminal CH2 planes."
+        },
+        {
+          "id": "CU-CHEM-ALLENE-STEREO-Q4-TEACH-4",
+          "role": "DECLARE",
+          "action": "Reject both a copied planar sketch and the Pauli explanation.",
+          "why_valid": "The supplied localized construction requires orthogonal directions; Pauli limits state occupancy, not all multicentre participation of one basis function.",
+          "inputs": [
+            "Perpendicular terminal CH2 planes."
+          ],
+          "output": "The plane relation follows orbital alignment in this model, not a universal one-bond-per-orbital prohibition."
         }
       ],
       "relation_refs": [
@@ -261,12 +327,12 @@
         {
           "wrong_idea": "All double-bonded fragments must share one plane.",
           "diagnostic_prompt": "Compare ethene with allene: how many residual p directions are needed at the centre, and which planes must align with each?",
-          "repair": "Allene uses terminal sp2, central sp accounting. The two central perpendicular p directions support perpendicular terminal CH2 planes in the introductory model."
+          "repair": "Allene uses terminal sp2, central sp accounting. The two central perpendicular p directions support perpendicular terminal CH2 planes in the introductory model. Changed check: looking down C=C=C, terminal CH2 planes project at right angles; rotating the whole model leaves that relation unchanged."
         },
         {
           "wrong_idea": "Pauli exclusion forbids one atomic orbital from participating in any multicentre description.",
           "diagnostic_prompt": "Does forming a pi contribution make an atomic p function unavailable to every multicentre molecular combination? Contrast allene direction constraints with nitrate delocalisation.",
-          "repair": "Allene central sp accounting retains two perpendicular p functions. Terminal sigma planes are perpendicular to their respective p functions. Do not claim the first p orbital is filled by one bond and forbidden from multicentre participation by Pauli."
+          "repair": "Allene central sp accounting retains two perpendicular p functions. Terminal sigma planes are perpendicular to their respective p functions. Do not claim the first p orbital is filled by one bond and forbidden from multicentre participation by Pauli. Changed check: a delocalised nitrate p function participates in a multicentre description, falsifying the claimed one-AO-one-bond prohibition."
         }
       ],
       "exit_task": {
@@ -344,11 +410,12 @@
       "construction_units": [
         {
           "id": "CU-CHEM-ALLENE-STEREO",
-          "decision": "Orient mutually perpendicular p-orbitals on central sp carbon to enforce terminal CH2 perpendicularity",
+          "decision": "Assign local bases before deducing the relation between terminal planes.",
           "step_refs": [
-            "ALLENE-T1",
-            "ALLENE-T2",
-            "ALLENE-T3"
+            "CU-CHEM-ALLENE-STEREO-TEACH-1",
+            "CU-CHEM-ALLENE-STEREO-TEACH-2",
+            "CU-CHEM-ALLENE-STEREO-TEACH-3",
+            "CU-CHEM-ALLENE-STEREO-TEACH-4"
           ],
           "representation_ref": "REP-ALLENE-ORTHOGONAL-PI",
           "reveal_stage_refs": [
@@ -360,14 +427,11 @@
           ],
           "bank_anchor_ref": "OWN-ISS36-D3-HYB-03",
           "crux_question_refs": [
-            "OWN-ISS36-D3-HYB-03",
-            "OWN-ISS36-D3-HYB-04",
-            "OWN-ISS36-D3-HYB-10"
+            "OWN-ISS36-D3-HYB-03"
           ],
-          "crux_step_ref": "ALLENE-T2",
+          "crux_step_ref": "CU-CHEM-ALLENE-STEREO-TEACH-2",
           "misconception_indexes": [
-            0,
-            1
+            0
           ],
           "independent_checks": [
             {
@@ -380,7 +444,47 @@
             },
             {
               "role": "CONNECT",
-              "statement": "Allene uses terminal sp2, central sp accounting. The two central perpendicular p directions support perpendicular terminal CH2 planes in the introductory model."
+              "statement": "A central sp carbon retains two perpendicular p directions."
+            }
+          ]
+        },
+        {
+          "id": "CU-CHEM-ALLENE-STEREO-Q4",
+          "decision": "Explain the terminal-plane constraint using overlap geometry, not an invalid occupation claim.",
+          "step_refs": [
+            "CU-CHEM-ALLENE-STEREO-Q4-TEACH-1",
+            "CU-CHEM-ALLENE-STEREO-Q4-TEACH-2",
+            "CU-CHEM-ALLENE-STEREO-Q4-TEACH-3",
+            "CU-CHEM-ALLENE-STEREO-Q4-TEACH-4"
+          ],
+          "representation_ref": "REP-ALLENE-ORTHOGONAL-PI",
+          "reveal_stage_refs": [
+            "ISS36-REPAIRED-REP-ALLENE-ORTHOGONAL-PI-1",
+            "ISS36-REPAIRED-REP-ALLENE-ORTHOGONAL-PI-2",
+            "ISS36-REPAIRED-REP-ALLENE-ORTHOGONAL-PI-3",
+            "ISS36-REPAIRED-REP-ALLENE-ORTHOGONAL-PI-4",
+            "ISS36-REPAIRED-REP-ALLENE-ORTHOGONAL-PI-5"
+          ],
+          "bank_anchor_ref": "OWN-ISS36-D3-HYB-04",
+          "crux_question_refs": [
+            "OWN-ISS36-D3-HYB-04"
+          ],
+          "crux_step_ref": "CU-CHEM-ALLENE-STEREO-Q4-TEACH-2",
+          "misconception_indexes": [
+            1
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Changed check: a delocalised nitrate p function participates in a multicentre description, falsifying the claimed one-AO-one-bond prohibition."
+            },
+            {
+              "role": "APPLY",
+              "statement": "Explain allene perpendicularity without using the phrase orbital already occupied."
+            },
+            {
+              "role": "CONNECT",
+              "statement": "Atomic basis functions participate in molecular combinations; Pauli exclusion is an electron-state rule."
             }
           ]
         }
@@ -413,11 +517,11 @@
             "wrong_idea": "Equivalent bonds are a permanently selected Lewis double bond.",
             "question_ref": "OWN-ISS36-D3-HYB-01",
             "label": "Q1",
-            "construction_ref": "CU-CHEM-DELOCALISATION",
+            "construction_ref": "CU-CHEM-DELOCALISATION-Q1",
             "microtopic_ref": "MIC-CHEM-G11-DELOCALISATION-RESONANCE",
             "status": "CORRECTION_CANDIDATE",
             "parent_issue": 36,
-            "crux_move_ref": "OWN-ISS36-D3-HYB-01-REPAIR-MOVE-3"
+            "crux_move_ref": "OWN-ISS36-D3-HYB-01-REPAIR-MOVE-2"
           },
           {
             "clarify": "Translate formal contributors into one sigma framework and a complete pi-space ledger.",
@@ -435,7 +539,7 @@
             "microtopic_ref": "MIC-CHEM-G11-DELOCALISATION-RESONANCE",
             "status": "CORRECTION_CANDIDATE",
             "parent_issue": 36,
-            "crux_move_ref": "OWN-ISS36-D3-HYB-02-REPAIR-MOVE-3"
+            "crux_move_ref": "OWN-ISS36-D3-HYB-02-REPAIR-MOVE-2"
           },
           {
             "clarify": "Include the terminal-oxygen contributions when describing carbonate pi occupancy.",
@@ -449,29 +553,61 @@
             "wrong_idea": "A delocalised carbonate pi space contains only one pair; formal charge averages are measured partial charges.",
             "question_ref": "OWN-ISS36-D3-HYB-07",
             "label": "Q7",
-            "construction_ref": "CU-CHEM-DELOCALISATION",
+            "construction_ref": "CU-CHEM-DELOCALISATION-Q7",
             "microtopic_ref": "MIC-CHEM-G11-DELOCALISATION-RESONANCE",
             "status": "CORRECTION_CANDIDATE",
             "parent_issue": 36,
-            "crux_move_ref": "OWN-ISS36-D3-HYB-07-REPAIR-MOVE-3"
+            "crux_move_ref": "OWN-ISS36-D3-HYB-07-REPAIR-MOVE-2"
           }
         ],
         "grade9v3:lesson_anchors": {
+          "CU-CHEM-DELOCALISATION-Q1": {
+            "id": "ANCHOR-CU-CHEM-DELOCALISATION-Q1",
+            "stem": "Can equivalent bonds at CO2 carbon and nitrate nitrogen imply the same local hybrid label? Recount directions.",
+            "answer": {
+              "summary": "No: two versus three directions in these local models.",
+              "reasoning": [
+                "Equivalent contributors are bookkeeping alternatives for one delocalised description.",
+                "No: two versus three directions in these local models.",
+                "Planar equivalent nitrate bonds reject one permanently unique N=O position. N sigma framework is locally sp2; equivalence alone is not the hybridisation criterion."
+              ],
+              "check": "Changed check: supplied equivalent CO2 bonds coexist with sp carbon; equivalence cannot alone imply sp2."
+            },
+            "target_question_ref": "OWN-ISS36-D3-HYB-01",
+            "target_crux_move_ref": "OWN-ISS36-D3-HYB-01-REPAIR-MOVE-2",
+            "construction_ref": "CU-CHEM-DELOCALISATION-Q1"
+          },
           "CU-CHEM-DELOCALISATION": {
             "id": "ANCHOR-CU-CHEM-DELOCALISATION",
             "stem": "For nitrate and carbonate, count pi-space electrons including terminal perpendicular lone pairs. Do formal contributors describe alternating nuclear structures?",
             "answer": {
-              "summary": "Six pi-space electrons in each; no switching of nuclear structures. Repeated two-electron pi totals expose omitted lone-pair contributions.",
+              "summary": "Six pi-space electrons in each; no switching of nuclear structures.",
               "reasoning": [
                 "A formal Lewis double bond does not identify the whole delocalised occupancy.",
-                "Six pi-space electrons in each; no switching of nuclear structures. Repeated two-electron pi totals expose omitted lone-pair contributions.",
+                "Six pi-space electrons in each; no switching of nuclear structures.",
                 "Nitrate has three in-plane N-O sigma directions and four perpendicular p functions spanning a six-electron pi space. Contributors do not switch in time."
               ],
               "check": "Changed check: 24 total valence electrons = 18 in sigma/in-plane lone-pair bookkeeping plus six in the perpendicular pi space."
             },
             "target_question_ref": "OWN-ISS36-D3-HYB-02",
-            "target_crux_move_ref": "OWN-ISS36-D3-HYB-02-REPAIR-MOVE-3",
+            "target_crux_move_ref": "OWN-ISS36-D3-HYB-02-REPAIR-MOVE-2",
             "construction_ref": "CU-CHEM-DELOCALISATION"
+          },
+          "CU-CHEM-DELOCALISATION-Q7": {
+            "id": "ANCHOR-CU-CHEM-DELOCALISATION-Q7",
+            "stem": "How many carbonate pi-space electrons arise from one C=O pi pair plus two perpendicular O lone pairs? Does averaging formal charges measure physical partial charges?",
+            "answer": {
+              "summary": "Six; no.",
+              "reasoning": [
+                "Formal charge averages and physical partial charges have different meanings.",
+                "Six; no.",
+                "Carbonate has three in-plane sigma bonds and four perpendicular p functions holding six pi-space electrons. Average formal O charge -2/3 is contributor bookkeeping, not a uniquely measured atomic partial charge."
+              ],
+              "check": "Independent ledger: CO3^2- has 24 valence electrons; three sigma pairs and six in-plane O lone pairs use eighteen, leaving six in the pi space."
+            },
+            "target_question_ref": "OWN-ISS36-D3-HYB-07",
+            "target_crux_move_ref": "OWN-ISS36-D3-HYB-07-REPAIR-MOVE-2",
+            "construction_ref": "CU-CHEM-DELOCALISATION-Q7"
           }
         }
       },
@@ -483,37 +619,127 @@
       "entry_assumptions": [
         "Can draw valid Lewis structures with resonance contributors."
       ],
-      "inferential_jump": "A molecule with equivalent resonance structures does not oscillate between them; it possesses a single stationary electronic state with a continuous delocalised pi system and equal intermediate bond lengths.",
+      "inferential_jump": "Nitrate has three in-plane N-O sigma directions and four perpendicular p functions spanning a six-electron pi space. Contributors do not switch in time.",
       "teaching_path": [
         {
-          "id": "DELOC-T1",
+          "id": "CU-CHEM-DELOCALISATION-Q1-TEACH-1",
           "role": "DECLARE",
-          "action": "Separate supplied bond equivalence from a permanently chosen Lewis double bond.",
-          "why_valid": "Planar equivalent nitrate bonds reject one permanently unique N=O position. N sigma framework is locally sp2; equivalence alone is not the hybridisation criterion.",
+          "action": "Compare a fixed localized nitrate picture with the supplied equivalence.",
+          "why_valid": "A permanently unique N=O position distinguishes one bond; the observation instead supplies three equivalent N-O bonds.",
           "inputs": [
-            "stated givens"
+            "Nitrate, NO3−, is planar and has three equivalent N–O bonds. Its three conventional Lewis contributors place one N=O bond in different positions. Choose between a permanently localised single/double-bond picture and a delocalised pi description. Explain which observations discriminate between them, and state separately the introductory sigma-framework hybridisation model at nitrogen."
           ],
-          "output": "Equivalent contributors are bookkeeping alternatives for one delocalised description."
+          "output": "The fixed single/double-bond assignment is inadequate."
         },
         {
-          "id": "DELOC-T2",
-          "role": "TRANSFORM",
-          "action": "Compare what a fixed unequal-bond model predicts with the supplied equivalent positions.",
-          "why_valid": "Planar equivalent nitrate bonds reject one permanently unique N=O position. N sigma framework is locally sp2; equivalence alone is not the hybridisation criterion.",
+          "id": "CU-CHEM-DELOCALISATION-Q1-TEACH-2",
+          "role": "DECLARE",
+          "action": "Choose one delocalised pi account for all contributors.",
+          "why_valid": "The contributors are alternative bookkeeping descriptions of one electronic state, not switching structures.",
           "inputs": [
-            "stated givens"
+            "The fixed single/double-bond assignment is inadequate."
           ],
-          "output": "Planar equivalent nitrate bonds reject one permanently unique N=O position. N sigma framework is locally sp2; equivalence alone is not the hybridisation criterion."
+          "output": "One delocalised pi system spans the N-O framework."
         },
         {
-          "id": "DELOC-T3",
-          "role": "VERIFY",
-          "action": "Changed check: supplied equivalent CO2 bonds coexist with sp carbon; equivalence cannot alone imply sp2.",
-          "why_valid": "Planar equivalent nitrate bonds reject one permanently unique N=O position. N sigma framework is locally sp2; equivalence alone is not the hybridisation criterion.",
+          "id": "CU-CHEM-DELOCALISATION-Q1-TEACH-3",
+          "role": "DECLARE",
+          "action": "Specify nitrogen sigma accounting independently.",
+          "why_valid": "Three planar local sigma directions support the introductory sp2 framework; equivalence alone is not its criterion.",
           "inputs": [
-            "stated givens"
+            "One delocalised pi system spans the N-O framework."
           ],
-          "output": "Planar equivalent nitrate bonds reject one permanently unique N=O position. N sigma framework is locally sp2; equivalence alone is not the hybridisation criterion."
+          "output": "Three N sigma directions; residual perpendicular p participates in the pi space."
+        },
+        {
+          "id": "CU-CHEM-DELOCALISATION-Q1-TEACH-4",
+          "role": "DECLARE",
+          "action": "Test the equivalence-implies-sp2 inference on NH3.",
+          "why_valid": "NH3 can have three equivalent N-H bonds while having four local domains.",
+          "inputs": [
+            "Three N sigma directions; residual perpendicular p participates in the pi space."
+          ],
+          "output": "Bond equivalence does not uniquely select an sp2 description."
+        },
+        {
+          "id": "CU-CHEM-DELOCALISATION-TEACH-1",
+          "role": "DECLARE",
+          "action": "Preserve the nitrate nuclei and sigma connectivity.",
+          "why_valid": "Every supplied contributor has the same N centre and three N-O connections.",
+          "inputs": [
+            "Use the supplied nitrate description: three planar sigma bond directions around nitrogen and a pi system delocalised across the N–O framework. Translate the three Lewis contributors into one qualitative orbital diagram. Distinguish the sigma framework from the delocalised pi system, and explain what is preserved and what must not be interpreted as a molecule switching between drawings."
+          ],
+          "output": "Three coplanar N-O sigma directions."
+        },
+        {
+          "id": "CU-CHEM-DELOCALISATION-TEACH-2",
+          "role": "DECLARE",
+          "action": "Build a perpendicular p basis across all four centres.",
+          "why_valid": "A delocalised qualitative diagram combines the central N and three O p functions.",
+          "inputs": [
+            "Three coplanar N-O sigma directions."
+          ],
+          "output": "Four perpendicular p functions spanning one pi space."
+        },
+        {
+          "id": "CU-CHEM-DELOCALISATION-TEACH-3",
+          "role": "DECLARE",
+          "action": "Count pi-space electrons from one contributor.",
+          "why_valid": "One N=O pi pair and p-oriented pairs on the two singly bonded O sites supply three pairs.",
+          "inputs": [
+            "Four perpendicular p functions spanning one pi space."
+          ],
+          "output": "Six pi-space electrons; the Lewis double bond alone is not the complete pi inventory."
+        },
+        {
+          "id": "CU-CHEM-DELOCALISATION-TEACH-4",
+          "role": "DECLARE",
+          "action": "Check contributor invariants rather than a switching animation.",
+          "why_valid": "Changing the drawn N=O position changes bookkeeping, not nuclei, total charge or electron number.",
+          "inputs": [
+            "Six pi-space electrons; the Lewis double bond alone is not the complete pi inventory."
+          ],
+          "output": "One planar equivalent-bond state; no molecule oscillating between three structures."
+        },
+        {
+          "id": "CU-CHEM-DELOCALISATION-Q7-TEACH-1",
+          "role": "DECLARE",
+          "action": "Preserve carbonate connectivity across contributors.",
+          "why_valid": "All contributors use one C centre and three O neighbours with total charge -2.",
+          "inputs": [
+            "The benchmark supplies that carbonate, CO3²−, is planar and has three equivalent C–O bonds; its three conventional Lewis contributors place one C=O bond in different positions. Construct one qualitative description of its sigma framework and delocalised pi system. State why no single contributor should be read as the complete physical picture."
+          ],
+          "output": "Three planar C-O sigma directions."
+        },
+        {
+          "id": "CU-CHEM-DELOCALISATION-Q7-TEACH-2",
+          "role": "DECLARE",
+          "action": "Construct the delocalised pi basis and electron ledger.",
+          "why_valid": "Central C plus three O p functions span the pi space; a contributor has one pi pair plus p-oriented pairs at two singly bonded O sites.",
+          "inputs": [
+            "Three planar C-O sigma directions."
+          ],
+          "output": "Four p functions and six pi-space electrons."
+        },
+        {
+          "id": "CU-CHEM-DELOCALISATION-Q7-TEACH-3",
+          "role": "DECLARE",
+          "action": "Interpret contributor charge bookkeeping.",
+          "why_valid": "Three equivalent contributors average the two formal negative O charges across three sites.",
+          "inputs": [
+            "Four p functions and six pi-space electrons."
+          ],
+          "output": "Average formal charge -2/3 per O; this is not a uniquely measured partial charge."
+        },
+        {
+          "id": "CU-CHEM-DELOCALISATION-Q7-TEACH-4",
+          "role": "DECLARE",
+          "action": "Check why one fixed contributor is incomplete.",
+          "why_valid": "A permanently selected C=O position conflicts with the supplied three equivalent C-O bonds.",
+          "inputs": [
+            "Average formal charge -2/3 per O; this is not a uniquely measured partial charge."
+          ],
+          "output": "Use one delocalised description, preserving nuclei, total charge and electron count."
         }
       ],
       "relation_refs": [
@@ -529,17 +755,17 @@
         {
           "wrong_idea": "Equivalent bonds are a permanently selected Lewis double bond.",
           "diagnostic_prompt": "Can equivalent bonds at CO2 carbon and nitrate nitrogen imply the same local hybrid label? Recount directions.",
-          "repair": "Planar equivalent nitrate bonds reject one permanently unique N=O position. N sigma framework is locally sp2; equivalence alone is not the hybridisation criterion."
+          "repair": "Planar equivalent nitrate bonds reject one permanently unique N=O position. N sigma framework is locally sp2; equivalence alone is not the hybridisation criterion. Changed check: supplied equivalent CO2 bonds coexist with sp carbon; equivalence cannot alone imply sp2."
         },
         {
           "wrong_idea": "Resonance contributors are molecular structures switching in time; only the drawn double bond supplies pi electrons.",
           "diagnostic_prompt": "For nitrate and carbonate, count pi-space electrons including terminal perpendicular lone pairs. Do formal contributors describe alternating nuclear structures?",
-          "repair": "Nitrate has three in-plane N-O sigma directions and four perpendicular p functions spanning a six-electron pi space. Contributors do not switch in time."
+          "repair": "Nitrate has three in-plane N-O sigma directions and four perpendicular p functions spanning a six-electron pi space. Contributors do not switch in time. Changed check: 24 total valence electrons = 18 in sigma/in-plane lone-pair bookkeeping plus six in the perpendicular pi space."
         },
         {
           "wrong_idea": "A delocalised carbonate pi space contains only one pair; formal charge averages are measured partial charges.",
           "diagnostic_prompt": "How many carbonate pi-space electrons arise from one C=O pi pair plus two perpendicular O lone pairs? Does averaging formal charges measure physical partial charges?",
-          "repair": "Carbonate has three in-plane sigma bonds and four perpendicular p functions holding six pi-space electrons. Average formal O charge -2/3 is contributor bookkeeping, not a uniquely measured atomic partial charge."
+          "repair": "Carbonate has three in-plane sigma bonds and four perpendicular p functions holding six pi-space electrons. Average formal O charge -2/3 is contributor bookkeeping, not a uniquely measured atomic partial charge. Independent ledger: CO3^2- has 24 valence electrons; three sigma pairs and six in-plane O lone pairs use eighteen, leaving six in the pi space."
         }
       ],
       "exit_task": {
@@ -616,12 +842,13 @@
       },
       "construction_units": [
         {
-          "id": "CU-CHEM-DELOCALISATION",
-          "decision": "Construct delocalised 4-centre pi molecular orbital from parallel 2pz orbitals",
+          "id": "CU-CHEM-DELOCALISATION-Q1",
+          "decision": "Separate supplied bond equivalence from a permanently chosen Lewis double bond.",
           "step_refs": [
-            "DELOC-T1",
-            "DELOC-T2",
-            "DELOC-T3"
+            "CU-CHEM-DELOCALISATION-Q1-TEACH-1",
+            "CU-CHEM-DELOCALISATION-Q1-TEACH-2",
+            "CU-CHEM-DELOCALISATION-Q1-TEACH-3",
+            "CU-CHEM-DELOCALISATION-Q1-TEACH-4"
           ],
           "representation_ref": "REP-NITRATE-DELOCALISED-PI",
           "reveal_stage_refs": [
@@ -629,17 +856,13 @@
             "NO3-STAGE-2",
             "NO3-STAGE-3"
           ],
-          "bank_anchor_ref": "OWN-ISS36-D3-HYB-02",
+          "bank_anchor_ref": "OWN-ISS36-D3-HYB-01",
           "crux_question_refs": [
-            "OWN-ISS36-D3-HYB-01",
-            "OWN-ISS36-D3-HYB-02",
-            "OWN-ISS36-D3-HYB-07"
+            "OWN-ISS36-D3-HYB-01"
           ],
-          "crux_step_ref": "DELOC-T3",
+          "crux_step_ref": "CU-CHEM-DELOCALISATION-Q1-TEACH-2",
           "misconception_indexes": [
-            0,
-            1,
-            2
+            0
           ],
           "independent_checks": [
             {
@@ -652,7 +875,83 @@
             },
             {
               "role": "CONNECT",
-              "statement": "Planar equivalent nitrate bonds reject one permanently unique N=O position. N sigma framework is locally sp2; equivalence alone is not the hybridisation criterion."
+              "statement": "Equivalent contributors are bookkeeping alternatives for one delocalised description."
+            }
+          ]
+        },
+        {
+          "id": "CU-CHEM-DELOCALISATION",
+          "decision": "Translate formal contributors into one sigma framework and a complete pi-space ledger.",
+          "step_refs": [
+            "CU-CHEM-DELOCALISATION-TEACH-1",
+            "CU-CHEM-DELOCALISATION-TEACH-2",
+            "CU-CHEM-DELOCALISATION-TEACH-3",
+            "CU-CHEM-DELOCALISATION-TEACH-4"
+          ],
+          "representation_ref": "REP-NITRATE-DELOCALISED-PI",
+          "reveal_stage_refs": [
+            "NO3-STAGE-1",
+            "NO3-STAGE-2",
+            "NO3-STAGE-3"
+          ],
+          "bank_anchor_ref": "OWN-ISS36-D3-HYB-02",
+          "crux_question_refs": [
+            "OWN-ISS36-D3-HYB-02"
+          ],
+          "crux_step_ref": "CU-CHEM-DELOCALISATION-TEACH-2",
+          "misconception_indexes": [
+            1
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Changed check: 24 total valence electrons = 18 in sigma/in-plane lone-pair bookkeeping plus six in the perpendicular pi space."
+            },
+            {
+              "role": "APPLY",
+              "statement": "Translate carbonate contributors into a continuous p-space description."
+            },
+            {
+              "role": "CONNECT",
+              "statement": "A formal Lewis double bond does not identify the whole delocalised occupancy."
+            }
+          ]
+        },
+        {
+          "id": "CU-CHEM-DELOCALISATION-Q7",
+          "decision": "Include the terminal-oxygen contributions when describing carbonate pi occupancy.",
+          "step_refs": [
+            "CU-CHEM-DELOCALISATION-Q7-TEACH-1",
+            "CU-CHEM-DELOCALISATION-Q7-TEACH-2",
+            "CU-CHEM-DELOCALISATION-Q7-TEACH-3",
+            "CU-CHEM-DELOCALISATION-Q7-TEACH-4"
+          ],
+          "representation_ref": "REP-NITRATE-DELOCALISED-PI",
+          "reveal_stage_refs": [
+            "NO3-STAGE-1",
+            "NO3-STAGE-2",
+            "NO3-STAGE-3"
+          ],
+          "bank_anchor_ref": "OWN-ISS36-D3-HYB-07",
+          "crux_question_refs": [
+            "OWN-ISS36-D3-HYB-07"
+          ],
+          "crux_step_ref": "CU-CHEM-DELOCALISATION-Q7-TEACH-2",
+          "misconception_indexes": [
+            2
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Independent ledger: CO3^2- has 24 valence electrons; three sigma pairs and six in-plane O lone pairs use eighteen, leaving six in the pi space."
+            },
+            {
+              "role": "APPLY",
+              "statement": "Explain why equal bond lengths do not uniquely determine atomic partial charges."
+            },
+            {
+              "role": "CONNECT",
+              "statement": "Formal charge averages and physical partial charges have different meanings."
             }
           ]
         }
@@ -689,7 +988,7 @@
             "microtopic_ref": "MIC-CHEM-G11-HYBRID-EPISTEMICS-CONJUGATION",
             "status": "CORRECTION_CANDIDATE",
             "parent_issue": 36,
-            "crux_move_ref": "OWN-ISS36-D3-HYB-05-REPAIR-MOVE-3"
+            "crux_move_ref": "OWN-ISS36-D3-HYB-05-REPAIR-MOVE-2"
           },
           {
             "clarify": "Assign each carbon locally and count sigma/pi components across the whole structure.",
@@ -703,11 +1002,11 @@
             "wrong_idea": "Each triple-bond line is a sigma bond.",
             "question_ref": "OWN-ISS36-D3-HYB-06",
             "label": "Q6",
-            "construction_ref": "CU-CHEM-EPISTEMICS-CONJUGATION",
+            "construction_ref": "CU-CHEM-EPISTEMICS-CONJUGATION-Q6",
             "microtopic_ref": "MIC-CHEM-G11-HYBRID-EPISTEMICS-CONJUGATION",
             "status": "CORRECTION_CANDIDATE",
             "parent_issue": 36,
-            "crux_move_ref": "OWN-ISS36-D3-HYB-06-REPAIR-MOVE-3"
+            "crux_move_ref": "OWN-ISS36-D3-HYB-06-REPAIR-MOVE-2"
           },
           {
             "clarify": "Separate persistence of the axial sigma connection from claims about all electronic interactions.",
@@ -721,11 +1020,11 @@
             "wrong_idea": "A fixed central sigma axis means every molecular interaction is unchanged.",
             "question_ref": "OWN-ISS36-D3-HYB-08",
             "label": "Q8",
-            "construction_ref": "CU-CHEM-EPISTEMICS-CONJUGATION",
+            "construction_ref": "CU-CHEM-EPISTEMICS-CONJUGATION-Q8",
             "microtopic_ref": "MIC-CHEM-G11-HYBRID-EPISTEMICS-CONJUGATION",
             "status": "CORRECTION_CANDIDATE",
             "parent_issue": 36,
-            "crux_move_ref": "OWN-ISS36-D3-HYB-08-REPAIR-MOVE-3"
+            "crux_move_ref": "OWN-ISS36-D3-HYB-08-REPAIR-MOVE-2"
           },
           {
             "clarify": "Trace the continuous aligned p pathway rather than counting all double bonds.",
@@ -739,11 +1038,11 @@
             "wrong_idea": "Spatial closeness repairs an interrupted p pathway.",
             "question_ref": "OWN-ISS36-D3-HYB-09",
             "label": "Q9",
-            "construction_ref": "CU-CHEM-EPISTEMICS-CONJUGATION",
+            "construction_ref": "CU-CHEM-EPISTEMICS-CONJUGATION-Q9",
             "microtopic_ref": "MIC-CHEM-G11-HYBRID-EPISTEMICS-CONJUGATION",
             "status": "CORRECTION_CANDIDATE",
             "parent_issue": 36,
-            "crux_move_ref": "OWN-ISS36-D3-HYB-09-REPAIR-MOVE-3"
+            "crux_move_ref": "OWN-ISS36-D3-HYB-09-REPAIR-MOVE-2"
           },
           {
             "clarify": "Synthesize a local procedure that also checks inter-centre compatibility.",
@@ -757,11 +1056,11 @@
             "wrong_idea": "A whole molecule has one hybridisation label.",
             "question_ref": "OWN-ISS36-D3-HYB-10",
             "label": "Q10",
-            "construction_ref": "CU-CHEM-EPISTEMICS-CONJUGATION",
+            "construction_ref": "CU-CHEM-EPISTEMICS-CONJUGATION-Q10",
             "microtopic_ref": "MIC-CHEM-G11-HYBRID-EPISTEMICS-CONJUGATION",
             "status": "CORRECTION_CANDIDATE",
             "parent_issue": 36,
-            "crux_move_ref": "OWN-ISS36-D3-HYB-10-REPAIR-MOVE-3"
+            "crux_move_ref": "OWN-ISS36-D3-HYB-10-REPAIR-MOVE-2"
           }
         ],
         "grade9v3:lesson_anchors": {
@@ -778,8 +1077,72 @@
               "check": "Changed check: CH4 has equivalent C-H bonds but four carbon directions, contradicting equality-implies-sp2."
             },
             "target_question_ref": "OWN-ISS36-D3-HYB-05",
-            "target_crux_move_ref": "OWN-ISS36-D3-HYB-05-REPAIR-MOVE-3",
+            "target_crux_move_ref": "OWN-ISS36-D3-HYB-05-REPAIR-MOVE-2",
             "construction_ref": "CU-CHEM-EPISTEMICS-CONJUGATION"
+          },
+          "CU-CHEM-EPISTEMICS-CONJUGATION-Q6": {
+            "id": "ANCHOR-CU-CHEM-EPISTEMICS-CONJUGATION-Q6",
+            "stem": "Count sigma bonds in propyne, then in ethyne. Do double/triple bond lines each count as additional sigma bonds?",
+            "answer": {
+              "summary": "Propyne six, ethyne three; multiplicity adds pi components.",
+              "reasoning": [
+                "A triple bond supplies one sigma plus two pi components.",
+                "Propyne six, ethyne three; multiplicity adds pi components.",
+                "Propyne CH3-C≡CH has carbon labels sp3, sp, sp; four C-H plus two C-C sigma bonds gives six sigma, and the triple bond gives two pi."
+              ],
+              "check": "Independent electron ledger: C3H4 has 16 valence electrons; six sigma pairs plus two pi pairs account for sixteen."
+            },
+            "target_question_ref": "OWN-ISS36-D3-HYB-06",
+            "target_crux_move_ref": "OWN-ISS36-D3-HYB-06-REPAIR-MOVE-2",
+            "construction_ref": "CU-CHEM-EPISTEMICS-CONJUGATION-Q6"
+          },
+          "CU-CHEM-EPISTEMICS-CONJUGATION-Q8": {
+            "id": "ANCHOR-CU-CHEM-EPISTEMICS-CONJUGATION-Q8",
+            "stem": "During ethane rotation, does an unchanged C-C axis guarantee unchanged orientation of every neighbouring orbital? Compare ethene p alignment.",
+            "answer": {
+              "summary": "No; ethene relative p alignment also changes. A whole-molecule no-overlap-change claim reveals model overextension.",
+              "reasoning": [
+                "Relative p alignment affects pi overlap; one axial sketch is not a total-energy decomposition.",
+                "No; ethene relative p alignment also changes. A whole-molecule no-overlap-change claim reveals model overextension.",
+                "Ethane axial C-C sigma bonding can persist through torsion; ethene pi alignment changes under twist. Other interactions, including hyperconjugation, can change; an exclusively steric total-energy account is unjustified."
+              ],
+              "check": "Changed check: a fixed central sigma direction does not hold every C-H/donor-acceptor orientation fixed."
+            },
+            "target_question_ref": "OWN-ISS36-D3-HYB-08",
+            "target_crux_move_ref": "OWN-ISS36-D3-HYB-08-REPAIR-MOVE-2",
+            "construction_ref": "CU-CHEM-EPISTEMICS-CONJUGATION-Q8"
+          },
+          "CU-CHEM-EPISTEMICS-CONJUGATION-Q9": {
+            "id": "ANCHOR-CU-CHEM-EPISTEMICS-CONJUGATION-Q9",
+            "stem": "Compare CH2=CH-CH=CH2 with CH2=CH-CH2-CH=CH2. Does spatial closeness alone repair the missing p pathway?",
+            "answer": {
+              "summary": "No; the first has a continuous path, the second an sp3 interruption.",
+              "reasoning": [
+                "An intervening saturated sp3 centre breaks the ordinary contiguous pi pathway in this model.",
+                "No; the first has a continuous path, the second an sp3 interruption.",
+                "Butadiene has four contiguous p-bearing centres; a central saturated CH2 in separated pentadiene interrupts this introductory pathway. This is not a proof of zero interaction of every quantum-mechanical kind."
+              ],
+              "check": "Changed check: replacing the saturated spacer with an appropriate unsaturated p-bearing centre restores a contiguous path."
+            },
+            "target_question_ref": "OWN-ISS36-D3-HYB-09",
+            "target_crux_move_ref": "OWN-ISS36-D3-HYB-09-REPAIR-MOVE-2",
+            "construction_ref": "CU-CHEM-EPISTEMICS-CONJUGATION-Q9"
+          },
+          "CU-CHEM-EPISTEMICS-CONJUGATION-Q10": {
+            "id": "ANCHOR-CU-CHEM-EPISTEMICS-CONJUGATION-Q10",
+            "stem": "Can a whole molecule have one hybridisation label? Run a local ledger for allene and propyne.",
+            "answer": {
+              "summary": "No; the positions differ. Repeating one molecule-wide label identifies failure to localise the procedure.",
+              "reasoning": [
+                "Local count, residual p directions and model applicability have different jobs.",
+                "No; the positions differ. Repeating one molecule-wide label identifies failure to localise the procedure.",
+                "Count local sigma directions and lone pairs, conserve the valence basis, check residual p orientation and neighbouring compatibility, then qualify applicability. Propyne/allene classifications are atom-local."
+              ],
+              "check": "Changed check: the procedure must return allene sp2/sp/sp2 and propyne sp3/sp/sp while conserving four carbon basis functions at each site."
+            },
+            "target_question_ref": "OWN-ISS36-D3-HYB-10",
+            "target_crux_move_ref": "OWN-ISS36-D3-HYB-10-REPAIR-MOVE-2",
+            "construction_ref": "CU-CHEM-EPISTEMICS-CONJUGATION-Q10"
           }
         }
       },
@@ -791,37 +1154,207 @@
       "entry_assumptions": [
         "Can assign steric numbers to central atoms and count sigma/pi bonds."
       ],
-      "inferential_jump": "Hybridisation is an atom-centred local valence-bond model, not an entire-molecule property; bond equivalence reflects point-group symmetry, and conjugation requires an unbroken sequence of contiguous parallel p orbitals.",
+      "inferential_jump": "Equivalent bonds do not imply sp2: CO2 carbon is sp, nitrate N sp2, and NH3 N sp3-like in their introductory models.",
       "teaching_path": [
         {
-          "id": "EPIST-T1",
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-TEACH-1",
           "role": "DECLARE",
-          "action": "Evaluate bond equivalence as a criterion rather than as a conclusion.",
-          "why_valid": "Equivalent bonds do not imply sp2: CO2 carbon is sp, nitrate N sp2, and NH3 N sp3-like in their introductory models.",
+          "action": "List the supplied local inventories beside equivalence.",
+          "why_valid": "CO2 C has two domains; nitrate N three; NH3 N four although each case has equivalent central bonds.",
           "inputs": [
-            "stated givens"
+            "For the benchmark, use these supplied simplified observations, not an exam-source claim: CO2 is linear with two equivalent C–O bonds; NO3− is planar with three equivalent N–O bonds; NH3 is pyramidal with three equivalent N–H bonds. Assess the claim 'Equivalent bonds imply sp2 at the central atom.' Use counterexamples and valid warrants, and distinguish equivalence, electron-domain count and hybridisation as a model description."
           ],
-          "output": "Equivalent bond properties and local orbital-basis selection are separate statements."
+          "output": "Two, three and four local totals with equivalence held true."
         },
         {
-          "id": "EPIST-T2",
-          "role": "TRANSFORM",
-          "action": "Test the rule on equivalent-bond examples with different central domain counts.",
-          "why_valid": "Equivalent bonds do not imply sp2: CO2 carbon is sp, nitrate N sp2, and NH3 N sp3-like in their introductory models.",
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-TEACH-2",
+          "role": "DECLARE",
+          "action": "Use CO2 or NH3 as a counterexample.",
+          "why_valid": "One case satisfying the premise but failing the claimed sp2 consequence refutes a universal implication.",
           "inputs": [
-            "stated givens"
+            "Two, three and four local totals with equivalence held true."
           ],
-          "output": "Equivalent bonds do not imply sp2: CO2 carbon is sp, nitrate N sp2, and NH3 N sp3-like in their introductory models."
+          "output": "CO2 uses introductory sp; NH3 sp3-like; the claim is false."
         },
         {
-          "id": "EPIST-T3",
-          "role": "VERIFY",
-          "action": "Changed check: CH4 has equivalent C-H bonds but four carbon directions, contradicting equality-implies-sp2.",
-          "why_valid": "Equivalent bonds do not imply sp2: CO2 carbon is sp, nitrate N sp2, and NH3 N sp3-like in their introductory models.",
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-TEACH-3",
+          "role": "DECLARE",
+          "action": "Separate model labels from observable bond equality.",
+          "why_valid": "Domain count and orbital allocation are different layers from measured equivalence.",
           "inputs": [
-            "stated givens"
+            "CO2 uses introductory sp; NH3 sp3-like; the claim is false."
           ],
-          "output": "Equivalent bonds do not imply sp2: CO2 carbon is sp, nitrate N sp2, and NH3 N sp3-like in their introductory models."
+          "output": "Only nitrate's three-direction planar framework supports the local sp2 description here."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-TEACH-4",
+          "role": "DECLARE",
+          "action": "Change to CH4 as an independent test.",
+          "why_valid": "Equivalent C-H bonds coexist with four local directions and an sp3 model.",
+          "inputs": [
+            "Only nitrate's three-direction planar framework supports the local sp2 description here."
+          ],
+          "output": "The rejected equivalence-only rule fails a fresh fourth case."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q6-TEACH-1",
+          "role": "DECLARE",
+          "action": "Classify each carbon from its own neighbours in propyne.",
+          "why_valid": "CH3 has four directions; both triple-bond carbons have two sigma-neighbour directions.",
+          "inputs": [
+            "For propyne, CH3–C≡CH, assign the introductory hybridisation of each carbon and count the sigma and pi bonds in the entire molecule. Show a check that distinguishes the triple bond's components from the local domain count."
+          ],
+          "output": "C labels in order: sp3, sp, sp."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q6-TEACH-2",
+          "role": "DECLARE",
+          "action": "Count sigma components by atom connectivity.",
+          "why_valid": "Each connected atom pair has one sigma component regardless of bond order.",
+          "inputs": [
+            "C labels in order: sp3, sp, sp."
+          ],
+          "output": "Four C-H plus two C-C sigma components = six."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q6-TEACH-3",
+          "role": "DECLARE",
+          "action": "Count the extra components of the triple bond.",
+          "why_valid": "A triple bond contains one sigma and two pi components in the introductory account.",
+          "inputs": [
+            "Four C-H plus two C-C sigma components = six."
+          ],
+          "output": "Two pi bonds in the whole molecule."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q6-TEACH-4",
+          "role": "DECLARE",
+          "action": "Reconcile local and whole-molecule inventories.",
+          "why_valid": "The triple bond connects one neighbour at either end even though it has three components.",
+          "inputs": [
+            "Two pi bonds in the whole molecule."
+          ],
+          "output": "Six sigma/two pi globally; two local directions at each sp carbon, with no contradiction."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q8-TEACH-1",
+          "role": "DECLARE",
+          "action": "Specify the axial C-C sigma reference in both molecules.",
+          "why_valid": "Rotation about that axis can preserve the axial sigma overlap.",
+          "inputs": [
+            "Compare rotation about the central C–C bond in ethane with twisting about the C=C bond in ethene. Use the sigma and pi overlap arrangements to explain which overlap is altered by each motion. Do not infer a numerical energy barrier from a sketch."
+          ],
+          "output": "A sigma connection can persist during torsion."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q8-TEACH-2",
+          "role": "DECLARE",
+          "action": "Identify the extra ethene pi alignment requirement.",
+          "why_valid": "Its parallel residual p functions overlap laterally; relative group twist changes that alignment.",
+          "inputs": [
+            "A sigma connection can persist during torsion."
+          ],
+          "output": "Ethene twist alters pi overlap; ethane has no corresponding C-C pi component."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q8-TEACH-3",
+          "role": "DECLARE",
+          "action": "Separate rigid rotation from relative torsion.",
+          "why_valid": "Only relative orientation about the bond changes the participating p relation.",
+          "inputs": [
+            "Ethene twist alters pi overlap; ethane has no corresponding C-C pi component."
+          ],
+          "output": "Rotating the whole molecule does not reproduce twisting one group."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q8-TEACH-4",
+          "role": "DECLARE",
+          "action": "Bound the energy inference.",
+          "why_valid": "Other interactions, including hyperconjugation, can change even when the central sigma connection remains.",
+          "inputs": [
+            "Rotating the whole molecule does not reproduce twisting one group."
+          ],
+          "output": "No numerical barrier or exclusively steric total-energy law follows from the sketch."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q9-TEACH-1",
+          "role": "DECLARE",
+          "action": "Trace consecutive p-bearing carbon sites in butadiene.",
+          "why_valid": "An approximately planar conjugated chain supplies a p function at each of its four sp2 sites.",
+          "inputs": [
+            "For CH2=CH–CH=CH2 in an approximately planar conformation, identify the continuous sequence of p orbitals and contrast it with CH2=CH–CH2–CH=CH2. Explain which structural feature interrupts that pathway in the second molecule."
+          ],
+          "output": "A four-site contiguous aligned p pathway."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q9-TEACH-2",
+          "role": "DECLARE",
+          "action": "Trace the second molecule using the same local test.",
+          "why_valid": "Its intervening saturated CH2 uses localized sp3 accounting, with no ordinary residual p in this model.",
+          "inputs": [
+            "A four-site contiguous aligned p pathway."
+          ],
+          "output": "The central spacer interrupts the contiguous pathway."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q9-TEACH-3",
+          "role": "DECLARE",
+          "action": "Distinguish adjacency from spatial proximity.",
+          "why_valid": "Moving separated fragments near each other does not remove the saturated node from their bonding path.",
+          "inputs": [
+            "The central spacer interrupts the contiguous pathway."
+          ],
+          "output": "The ordinary through-chain conjugation criterion remains unmet."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q9-TEACH-4",
+          "role": "DECLARE",
+          "action": "State the model boundary explicitly.",
+          "why_valid": "Absence of the chosen contiguous p path does not exclude every possible quantum interaction.",
+          "inputs": [
+            "The ordinary through-chain conjugation criterion remains unmet."
+          ],
+          "output": "No absolute zero-interaction claim; reassess if the spacer becomes p-bearing and suitably aligned."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q10-TEACH-1",
+          "role": "DECLARE",
+          "action": "Test one-label-per-molecule on propyne.",
+          "why_valid": "Its carbon local inventories differ: four, two, two directions.",
+          "inputs": [
+            "A student assigns one hybridisation label to an entire molecule. Use propyne and allene to test this procedure and devise a more reliable local procedure. State the electron-domain information and orbital-consistency checks your procedure needs."
+          ],
+          "output": "sp3, sp, sp; a single whole-molecule label fails."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q10-TEACH-2",
+          "role": "DECLARE",
+          "action": "Test the procedure on allene.",
+          "why_valid": "The terminal and central inventories are three, two, three directions.",
+          "inputs": [
+            "sp3, sp, sp; a single whole-molecule label fails."
+          ],
+          "output": "sp2, sp, sp2; two perpendicular central p directions must remain."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q10-TEACH-3",
+          "role": "DECLARE",
+          "action": "Build the replacement atom-local procedure.",
+          "why_valid": "Count neighbours and lone pairs, conserve each local valence basis, then assign residual p roles.",
+          "inputs": [
+            "sp2, sp, sp2; two perpendicular central p directions must remain."
+          ],
+          "output": "A label and orbital ledger for each atom."
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q10-TEACH-4",
+          "role": "DECLARE",
+          "action": "Check neighbouring orientation and applicability.",
+          "why_valid": "Adjacent p functions must support the intended pi account; delocalisation or unusual occupancy can require a richer model.",
+          "inputs": [
+            "A label and orbital ledger for each atom."
+          ],
+          "output": "A qualified local framework with explicit compatibility and stop-for-more-evidence checks."
         }
       ],
       "relation_refs": [
@@ -837,27 +1370,27 @@
         {
           "wrong_idea": "Bond equivalence by itself implies sp2.",
           "diagnostic_prompt": "Apply the proposed equality-implies-sp2 rule to CH4 and CO2, then compare it with a domain inventory.",
-          "repair": "Equivalent bonds do not imply sp2: CO2 carbon is sp, nitrate N sp2, and NH3 N sp3-like in their introductory models."
+          "repair": "Equivalent bonds do not imply sp2: CO2 carbon is sp, nitrate N sp2, and NH3 N sp3-like in their introductory models. Changed check: CH4 has equivalent C-H bonds but four carbon directions, contradicting equality-implies-sp2."
         },
         {
           "wrong_idea": "Each triple-bond line is a sigma bond.",
           "diagnostic_prompt": "Count sigma bonds in propyne, then in ethyne. Do double/triple bond lines each count as additional sigma bonds?",
-          "repair": "Propyne CH3-C≡CH has carbon labels sp3, sp, sp; four C-H plus two C-C sigma bonds gives six sigma, and the triple bond gives two pi."
+          "repair": "Propyne CH3-C≡CH has carbon labels sp3, sp, sp; four C-H plus two C-C sigma bonds gives six sigma, and the triple bond gives two pi. Independent electron ledger: C3H4 has 16 valence electrons; six sigma pairs plus two pi pairs account for sixteen."
         },
         {
           "wrong_idea": "A fixed central sigma axis means every molecular interaction is unchanged.",
           "diagnostic_prompt": "During ethane rotation, does an unchanged C-C axis guarantee unchanged orientation of every neighbouring orbital? Compare ethene p alignment.",
-          "repair": "Ethane axial C-C sigma bonding can persist through torsion; ethene pi alignment changes under twist. Other interactions, including hyperconjugation, can change; an exclusively steric total-energy account is unjustified."
+          "repair": "Ethane axial C-C sigma bonding can persist through torsion; ethene pi alignment changes under twist. Other interactions, including hyperconjugation, can change; an exclusively steric total-energy account is unjustified. Changed check: a fixed central sigma direction does not hold every C-H/donor-acceptor orientation fixed."
         },
         {
           "wrong_idea": "Spatial closeness repairs an interrupted p pathway.",
           "diagnostic_prompt": "Compare CH2=CH-CH=CH2 with CH2=CH-CH2-CH=CH2. Does spatial closeness alone repair the missing p pathway?",
-          "repair": "Butadiene has four contiguous p-bearing centres; a central saturated CH2 in separated pentadiene interrupts this introductory pathway. This is not a proof of zero interaction of every quantum-mechanical kind."
+          "repair": "Butadiene has four contiguous p-bearing centres; a central saturated CH2 in separated pentadiene interrupts this introductory pathway. This is not a proof of zero interaction of every quantum-mechanical kind. Changed check: replacing the saturated spacer with an appropriate unsaturated p-bearing centre restores a contiguous path."
         },
         {
           "wrong_idea": "A whole molecule has one hybridisation label.",
           "diagnostic_prompt": "Can a whole molecule have one hybridisation label? Run a local ledger for allene and propyne.",
-          "repair": "Count local sigma directions and lone pairs, conserve the valence basis, check residual p orientation and neighbouring compatibility, then qualify applicability. Propyne/allene classifications are atom-local."
+          "repair": "Count local sigma directions and lone pairs, conserve the valence basis, check residual p orientation and neighbouring compatibility, then qualify applicability. Propyne/allene classifications are atom-local. Changed check: the procedure must return allene sp2/sp/sp2 and propyne sp3/sp/sp while conserving four carbon basis functions at each site."
         }
       ],
       "exit_task": {
@@ -935,11 +1468,12 @@
       "construction_units": [
         {
           "id": "CU-CHEM-EPISTEMICS-CONJUGATION",
-          "decision": "Map steric number to local hybridisation and trace continuous parallel p-orbital overlap",
+          "decision": "Evaluate bond equivalence as a criterion rather than as a conclusion.",
           "step_refs": [
-            "EPIST-T1",
-            "EPIST-T2",
-            "EPIST-T3"
+            "CU-CHEM-EPISTEMICS-CONJUGATION-TEACH-1",
+            "CU-CHEM-EPISTEMICS-CONJUGATION-TEACH-2",
+            "CU-CHEM-EPISTEMICS-CONJUGATION-TEACH-3",
+            "CU-CHEM-EPISTEMICS-CONJUGATION-TEACH-4"
           ],
           "representation_ref": "REP-CONJUGATION-PATHWAY",
           "reveal_stage_refs": [
@@ -949,19 +1483,11 @@
           ],
           "bank_anchor_ref": "OWN-ISS36-D3-HYB-05",
           "crux_question_refs": [
-            "OWN-ISS36-D3-HYB-05",
-            "OWN-ISS36-D3-HYB-06",
-            "OWN-ISS36-D3-HYB-08",
-            "OWN-ISS36-D3-HYB-09",
-            "OWN-ISS36-D3-HYB-10"
+            "OWN-ISS36-D3-HYB-05"
           ],
-          "crux_step_ref": "EPIST-T1",
+          "crux_step_ref": "CU-CHEM-EPISTEMICS-CONJUGATION-TEACH-2",
           "misconception_indexes": [
-            0,
-            1,
-            2,
-            3,
-            4
+            0
           ],
           "independent_checks": [
             {
@@ -974,7 +1500,159 @@
             },
             {
               "role": "CONNECT",
-              "statement": "Equivalent bonds do not imply sp2: CO2 carbon is sp, nitrate N sp2, and NH3 N sp3-like in their introductory models."
+              "statement": "Equivalent bond properties and local orbital-basis selection are separate statements."
+            }
+          ]
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q6",
+          "decision": "Assign each carbon locally and count sigma/pi components across the whole structure.",
+          "step_refs": [
+            "CU-CHEM-EPISTEMICS-CONJUGATION-Q6-TEACH-1",
+            "CU-CHEM-EPISTEMICS-CONJUGATION-Q6-TEACH-2",
+            "CU-CHEM-EPISTEMICS-CONJUGATION-Q6-TEACH-3",
+            "CU-CHEM-EPISTEMICS-CONJUGATION-Q6-TEACH-4"
+          ],
+          "representation_ref": "REP-CONJUGATION-PATHWAY",
+          "reveal_stage_refs": [
+            "CONJ-STAGE-1",
+            "CONJ-STAGE-2",
+            "ISS36-INVENTORY-CHECK"
+          ],
+          "bank_anchor_ref": "OWN-ISS36-D3-HYB-06",
+          "crux_question_refs": [
+            "OWN-ISS36-D3-HYB-06"
+          ],
+          "crux_step_ref": "CU-CHEM-EPISTEMICS-CONJUGATION-Q6-TEACH-2",
+          "misconception_indexes": [
+            1
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Independent electron ledger: C3H4 has 16 valence electrons; six sigma pairs plus two pi pairs account for sixteen."
+            },
+            {
+              "role": "APPLY",
+              "statement": "Classify each carbon and count bond components in ethyne."
+            },
+            {
+              "role": "CONNECT",
+              "statement": "A triple bond supplies one sigma plus two pi components."
+            }
+          ]
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q8",
+          "decision": "Separate persistence of the axial sigma connection from claims about all electronic interactions.",
+          "step_refs": [
+            "CU-CHEM-EPISTEMICS-CONJUGATION-Q8-TEACH-1",
+            "CU-CHEM-EPISTEMICS-CONJUGATION-Q8-TEACH-2",
+            "CU-CHEM-EPISTEMICS-CONJUGATION-Q8-TEACH-3",
+            "CU-CHEM-EPISTEMICS-CONJUGATION-Q8-TEACH-4"
+          ],
+          "representation_ref": "REP-CONJUGATION-PATHWAY",
+          "reveal_stage_refs": [
+            "CONJ-STAGE-1",
+            "CONJ-STAGE-2",
+            "ISS36-INVENTORY-CHECK"
+          ],
+          "bank_anchor_ref": "OWN-ISS36-D3-HYB-08",
+          "crux_question_refs": [
+            "OWN-ISS36-D3-HYB-08"
+          ],
+          "crux_step_ref": "CU-CHEM-EPISTEMICS-CONJUGATION-Q8-TEACH-2",
+          "misconception_indexes": [
+            2
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Changed check: a fixed central sigma direction does not hold every C-H/donor-acceptor orientation fixed."
+            },
+            {
+              "role": "APPLY",
+              "statement": "Explain the sigma/pi contrast without assigning a universal torsional energy cause."
+            },
+            {
+              "role": "CONNECT",
+              "statement": "Relative p alignment affects pi overlap; one axial sketch is not a total-energy decomposition."
+            }
+          ]
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q9",
+          "decision": "Trace the continuous aligned p pathway rather than counting all double bonds.",
+          "step_refs": [
+            "CU-CHEM-EPISTEMICS-CONJUGATION-Q9-TEACH-1",
+            "CU-CHEM-EPISTEMICS-CONJUGATION-Q9-TEACH-2",
+            "CU-CHEM-EPISTEMICS-CONJUGATION-Q9-TEACH-3",
+            "CU-CHEM-EPISTEMICS-CONJUGATION-Q9-TEACH-4"
+          ],
+          "representation_ref": "REP-CONJUGATION-PATHWAY",
+          "reveal_stage_refs": [
+            "CONJ-STAGE-1",
+            "CONJ-STAGE-2",
+            "ISS36-INVENTORY-CHECK"
+          ],
+          "bank_anchor_ref": "OWN-ISS36-D3-HYB-09",
+          "crux_question_refs": [
+            "OWN-ISS36-D3-HYB-09"
+          ],
+          "crux_step_ref": "CU-CHEM-EPISTEMICS-CONJUGATION-Q9-TEACH-2",
+          "misconception_indexes": [
+            3
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Changed check: replacing the saturated spacer with an appropriate unsaturated p-bearing centre restores a contiguous path."
+            },
+            {
+              "role": "APPLY",
+              "statement": "Specify a structural change that restores the pathway and a model limitation."
+            },
+            {
+              "role": "CONNECT",
+              "statement": "An intervening saturated sp3 centre breaks the ordinary contiguous pi pathway in this model."
+            }
+          ]
+        },
+        {
+          "id": "CU-CHEM-EPISTEMICS-CONJUGATION-Q10",
+          "decision": "Synthesize a local procedure that also checks inter-centre compatibility.",
+          "step_refs": [
+            "CU-CHEM-EPISTEMICS-CONJUGATION-Q10-TEACH-1",
+            "CU-CHEM-EPISTEMICS-CONJUGATION-Q10-TEACH-2",
+            "CU-CHEM-EPISTEMICS-CONJUGATION-Q10-TEACH-3",
+            "CU-CHEM-EPISTEMICS-CONJUGATION-Q10-TEACH-4"
+          ],
+          "representation_ref": "REP-CONJUGATION-PATHWAY",
+          "reveal_stage_refs": [
+            "CONJ-STAGE-1",
+            "CONJ-STAGE-2",
+            "ISS36-INVENTORY-CHECK"
+          ],
+          "bank_anchor_ref": "OWN-ISS36-D3-HYB-10",
+          "crux_question_refs": [
+            "OWN-ISS36-D3-HYB-10"
+          ],
+          "crux_step_ref": "CU-CHEM-EPISTEMICS-CONJUGATION-Q10-TEACH-2",
+          "misconception_indexes": [
+            4
+          ],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Changed check: the procedure must return allene sp2/sp/sp2 and propyne sp3/sp/sp while conserving four carbon basis functions at each site."
+            },
+            {
+              "role": "APPLY",
+              "statement": "State the evidence that would require revisiting a localized lone-pair assignment."
+            },
+            {
+              "role": "CONNECT",
+              "statement": "Local count, residual p directions and model applicability have different jobs."
             }
           ]
         }

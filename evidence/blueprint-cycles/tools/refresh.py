@@ -15,6 +15,15 @@ from pathlib import Path
 from jsonschema import Draft202012Validator, RefResolver
 
 ISSUES = (32, 31, 34, 33, 36, 35, 38, 37)
+CORRECTION_BASELINE = "1facd846101c74a69389f9cc6df5b7dbfebd5bea"
+
+
+def custody_projection(bank):
+    """Immutable source identity and question payload; authored support may be repaired."""
+    fields = ("id", "original_identifier", "stem", "conditions", "options", "figure_refs", "representation_roles")
+    return [{**{key: q.get(key) for key in fields},
+             "source_custody": (q.get("extensions") or {}).get("grade9v3:source_custody")}
+            for q in bank["questions"]]
 
 
 def sha(data: bytes) -> str:
@@ -29,6 +38,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo", type=Path, default=Path(__file__).resolve().parents[3])
     parser.add_argument("--write", action="store_true", help="Replace generated review copies, not source inputs")
+    parser.add_argument("--issues", type=int, nargs="+", choices=ISSUES, default=list(ISSUES))
     parser.add_argument("--out", type=Path, required=True, help="Write a prospective/current render report")
     args = parser.parse_args()
     repo = args.repo.resolve()
@@ -54,12 +64,16 @@ def main() -> int:
     ]
     authorities = {path: sha((repo / path).read_bytes().replace(b"\r\n", b"\n")) for path in authority_paths}
     rows = []
-    for issue in ISSUES:
+    for issue in args.issues:
         directory = repo / f"evidence/blueprint-cycles/ISS{issue}"
         package_path = directory / "inputs/package.v1.json"
         bank_path = directory / "inputs/owner.bank.json"
         manifest_path = directory / "inputs/product.manifest.json"
         package, bank, manifest = map(load, (package_path, bank_path, manifest_path))
+        baseline_bank = json.loads(subprocess.check_output(
+            ["git", "-C", str(repo), "show", f"{CORRECTION_BASELINE}:{bank_path.relative_to(repo).as_posix()}"]))
+        if custody_projection(bank) != custody_projection(baseline_bank):
+            raise ValueError(f"ISS{issue}: protected source question/custody changed")
         validate(package, render_core.PACKAGE_SCHEMA)
         basic = owner_bank.check(bank, complete=False)
         reference = owner_bank.check(bank, complete=True)
@@ -87,9 +101,9 @@ def main() -> int:
         for source in (bank_path, package_path, manifest_path):
             relative = source.relative_to(repo).as_posix()
             committed = subprocess.check_output(["git", "-C", str(repo), "show", f"{basis}:{relative}"])
-            if source.read_bytes() != committed:
-                raise ValueError(f"ISS{issue}: committed canonical input changed: {relative}")
-            input_hashes[relative] = sha(committed)
+            if source == manifest_path and load(source) != json.loads(committed):
+                raise ValueError(f"ISS{issue}: product selection/custody manifest changed")
+            input_hashes[relative] = sha(source.read_bytes().replace(b"\r\n", b"\n"))
         receipt = {
             **original_receipt,
             "registry_version": registry["registry_version"],
@@ -102,6 +116,9 @@ def main() -> int:
                 "authority_sha256": authorities,
                 "authority_byte_policy": "UTF8_TEXT_LF",
                 "canonical_input_sha256": input_hashes,
+                "source_commit_role": "Checkout basis; actual tested authority and corrected inputs are bound by SHA256.",
+                "custody_baseline": CORRECTION_BASELINE,
+                "source_question_custody_unchanged": True,
                 "legacy_source_hashes": "Retained from predecessor receipt; not used as corrected-input digests.",
                 "observation": "NEW_LOCAL_EXECUTION",
                 "method": "PRODUCTION_RENDERER_API_WITH_LOCAL_SCHEMA_RESOLVER",
@@ -111,6 +128,7 @@ def main() -> int:
             "all_12_facets_independently_certified": False,
             "golden": False,
         }
+        receipt.pop("browser_evidence", None)
         if args.write:
             for name, data in output.items():
                 (directory / "rendered" / name).write_bytes(data)
@@ -133,7 +151,7 @@ def main() -> int:
             "issue": issue, "status": "REGENERATED" if args.write else "PROSPECTIVE",
             "render_digest": digest, "page_hashes": hashes,
             "previous_digest": original_receipt["render_digest"],
-            "inputs_unchanged": True, "browser": "NOT_RUN", "golden": False,
+            "source_question_custody_unchanged": True, "browser": "NOT_RUN", "golden": False,
         })
     report = {"schema": "blueprint-refresh/v1", "basis_commit": basis,
               "authority_sha256": authorities, "results": rows,

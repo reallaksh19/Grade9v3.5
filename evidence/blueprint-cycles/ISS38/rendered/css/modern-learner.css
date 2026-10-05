@@ -90,6 +90,8 @@ a { color: inherit; text-decoration: none; }
   flex-wrap: wrap;
 }
 .g9-brand {
+  min-width: 0;
+  overflow-wrap: anywhere;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -108,6 +110,8 @@ a { color: inherit; text-decoration: none; }
   text-transform: uppercase;
 }
 .g9-header-nav {
+  flex-wrap: wrap;
+  min-width: 0;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -120,6 +124,8 @@ a { color: inherit; text-decoration: none; }
   color: var(--accent-learn);
 }
 .g9-header-actions {
+  flex-wrap: wrap;
+  min-width: 0;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -138,7 +144,7 @@ a { color: inherit; text-decoration: none; }
   cursor: pointer;
   min-height: var(--touch-min);
   min-width: var(--touch-min);
-  transition: all 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
   font-family: inherit;
 }
 .g9-header-btn:hover {

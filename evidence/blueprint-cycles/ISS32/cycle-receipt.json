@@ -4,8 +4,8 @@
   "round": "BLUEPRINT_CORRECTION_R2",
   "status": "CANDIDATE",
   "renderer": "render_core/2",
-  "registry_version": "1.10.0",
-  "render_digest": "78aa4f523b6a7a84",
+  "registry_version": "1.12.0",
+  "render_digest": "18e8e13a05fe538c",
   "source_bank_sha256": "573c1bccf68785bab632f14f39ba1db44bea90b8d81ee88996c1bc5a101d6634",
   "source_package_sha256": "81b14d579ecd9c1a4ce736658d9402417e1c012c93f1dbc8ee73f59926706f42",
   "source_manifest_sha256": "b35da9170b13f9e3236d4be9f9c9badecb1bbfc1e9eb8083b1249c577c126d69",
@@ -26,6 +26,20 @@
       "product": "EVIDENCE-CHE-ISSUE32-HYBRID-BLUEPRINT-CYCLE-R2"
     },
     {
+      "component": "EQUATIONS",
+      "record": "CU-CHE-DOMAIN-COUNTING-Q8",
+      "detail": "EQUATIONS is absent",
+      "core": "CORE1A",
+      "product": "EVIDENCE-CHE-ISSUE32-HYBRID-BLUEPRINT-CYCLE-R2"
+    },
+    {
+      "component": "EQUATIONS",
+      "record": "CU-CHE-DOMAIN-COUNTING-Q9",
+      "detail": "EQUATIONS is absent",
+      "core": "CORE1A",
+      "product": "EVIDENCE-CHE-ISSUE32-HYBRID-BLUEPRINT-CYCLE-R2"
+    },
+    {
       "component": "TYPESET",
       "record": "REL-CHE-HYBRID-ORBITAL-CONSERVATION",
       "detail": "REL-CHE-HYBRID-ORBITAL-CONSERVATION has no presentation MathML (relation.mathml), so its equation is shown as plain text: n atomic orbitals mixed -> n hybrid orbitals produced (sp ->",
@@ -36,6 +50,27 @@
       "component": "TYPESET",
       "record": "REL-CHE-ORBITAL-OVERLAP-SYMMETRY",
       "detail": "REL-CHE-ORBITAL-OVERLAP-SYMMETRY has no presentation MathML (relation.mathml), so its equation is shown as plain text: σ bond: coaxial end-on overlap with cylindrical symmetry; π ",
+      "core": "CORE1A",
+      "product": "EVIDENCE-CHE-ISSUE32-HYBRID-BLUEPRINT-CYCLE-R2"
+    },
+    {
+      "component": "EQUATIONS",
+      "record": "CU-CHE-HYBRID-CONSERVATION-Q3",
+      "detail": "EQUATIONS is absent",
+      "core": "CORE1A",
+      "product": "EVIDENCE-CHE-ISSUE32-HYBRID-BLUEPRINT-CYCLE-R2"
+    },
+    {
+      "component": "EQUATIONS",
+      "record": "CU-CHE-HYBRID-CONSERVATION-Q6",
+      "detail": "EQUATIONS is absent",
+      "core": "CORE1A",
+      "product": "EVIDENCE-CHE-ISSUE32-HYBRID-BLUEPRINT-CYCLE-R2"
+    },
+    {
+      "component": "EQUATIONS",
+      "record": "CU-CHE-HYBRID-CONSERVATION",
+      "detail": "EQUATIONS is absent",
       "core": "CORE1A",
       "product": "EVIDENCE-CHE-ISSUE32-HYBRID-BLUEPRINT-CYCLE-R2"
     },
@@ -54,53 +89,61 @@
       "product": "EVIDENCE-CHE-ISSUE32-HYBRID-BLUEPRINT-CYCLE-R2"
     },
     {
-      "component": "CONSTRUCTION_STEPS",
-      "record": "CU-CHE-3D-REPRESENTATION",
-      "detail": "CONSTRUCTION_STEPS has 3 of the 4 steps the reference page has for a D3 question",
+      "component": "EQUATIONS",
+      "record": "CU-CHE-3D-REPRESENTATION-Q5",
+      "detail": "EQUATIONS is absent",
       "core": "CORE1A",
       "product": "EVIDENCE-CHE-ISSUE32-HYBRID-BLUEPRINT-CYCLE-R2"
     },
     {
       "component": "STAGED_VISUAL",
-      "record": "CU-CHE-3D-REPRESENTATION",
+      "record": "CU-CHE-3D-REPRESENTATION-Q5",
       "detail": "STAGED_VISUAL has 3 of the 4 stages the reference page has for a D3 question",
+      "core": "CORE1A",
+      "product": "EVIDENCE-CHE-ISSUE32-HYBRID-BLUEPRINT-CYCLE-R2"
+    },
+    {
+      "component": "EQUATIONS",
+      "record": "CU-CHE-3D-REPRESENTATION-Q7",
+      "detail": "EQUATIONS is absent",
       "core": "CORE1A",
       "product": "EVIDENCE-CHE-ISSUE32-HYBRID-BLUEPRINT-CYCLE-R2"
     }
   ],
   "page_hashes": {
-    "core1a.html": "f2307b5c2882abe82cead44a02414724d2fce1e7c88827ce0d463219899b6393",
-    "core2.html": "d7cfb8c165b50d0769ef52424f667a30be768e2335fc0b255a9d7ae648edb2b5",
-    "index.html": "55194e1afc13cbcee6cfb0279e0f26af697dd2c8e77ec13dd9ff702e720caa4c"
+    "core1a.html": "20054dc16ce27e4d47083b35e329ff8dd86f5a6cebea8fe96772dfca69cd16b4",
+    "core2.html": "4b511e86bb45a6fe547687a15a934fd0ed662b521227e3f929ea595233649158",
+    "index.html": "dc01bda4d3156616e703b3caea465a8e08b104ab522f9979a093abcf2aa73713"
   },
-  "browser": "PARTIAL_PASS_TABLET_PROFILE_WITH_OPEN_QUALITY_FINDINGS",
+  "browser": "NOT_RUN",
   "all_12_facets_independently_certified": false,
   "golden": false,
   "observation": "LOCAL_EXECUTION + ARTIFACT_INSPECTION",
   "oracle": "IMPLEMENTATION_COUPLED plus separate academic correction data",
   "render_basis": {
-    "source_commit": "346accad5f2489d6a082cffd927c84d4295fb6e3",
+    "source_commit": "1facd846101c74a69389f9cc6df5b7dbfebd5bea",
     "authority_sha256": {
-      "Shared/tools/render_core.py": "8613cad13176b5577394329a0ddf8edf8446b14fecebe91a5a7410da40139691",
+      "Shared/tools/render_core.py": "ddde9ce7bcc00908120754d57ef4991954161cdb76a634a5acdcbccacfcf4e15",
       "Shared/tools/core2_v2.py": "ceeb0c50e65f7967f6890ac7f14c6c3a63ca9f3be8d8f2728da98ffe55d580ef",
       "Shared/tools/learning_repair.py": "62b2ac09b6015cd035e604d28b4782ef231f22806c2162e65252cd08e118208f",
-      "Shared/web/interactive-page-blueprints.v1.json": "d141f40df8ef514f00aa6e521fed348203d7a5b4daac3ccaade19c7cf3e771da",
-      "public/css/modern-learner.css": "24a4c6db8cc1d4948ffc91b32a46495a27be2ebad6987b9ecad2bc021e7f5596",
+      "Shared/web/interactive-page-blueprints.v1.json": "0fd7eaa93051c4cb780528d10b7bf01e309ea27b6e5a1353b680f3a42c059361",
+      "public/css/modern-learner.css": "1534437082327a575623b4044949de0bee500dfa095cad2f0236f846b5fd73c6",
       "public/css/tablet-12-7.css": "a8d2f54184818bf4fa3f5acdb61e6efc2c8103e475b0bb4a4c0747d8898455ab",
-      "public/js/display-controls.js": "bf5737e1a87ec6d1c5021f368c3aaf96d7037e1440d55b6e7d4cb168d962bfd6",
+      "public/js/display-controls.js": "b9e0e34e577c1baa6b81bb8cb1a7c144810e527b0789b9a80a112db78169c937",
       "public/js/site-header.js": "72a1f89b975c36ea8fb0b0c4170f47533dc9e49e59c4120cd90c6383128922f2"
     },
     "authority_byte_policy": "UTF8_TEXT_LF",
     "canonical_input_sha256": {
-      "evidence/blueprint-cycles/ISS32/inputs/owner.bank.json": "e97852773509d10ab5fcd4c72d518a266be44637260a483f40f7c47df560a8bf",
-      "evidence/blueprint-cycles/ISS32/inputs/package.v1.json": "06924c0dbf5ef54b64369b5628caaa6de2617375a563b974219b08a9f511c11f",
+      "evidence/blueprint-cycles/ISS32/inputs/owner.bank.json": "1c9e3883d94c41af44558e84513df568a88a33834243ae9dc9200005f6d80d7e",
+      "evidence/blueprint-cycles/ISS32/inputs/package.v1.json": "a459c172d4e8e720210d9e241a6a2a582d64cc1d1e3b654b02c14882d62b1234",
       "evidence/blueprint-cycles/ISS32/inputs/product.manifest.json": "a467ddf2b9b441890fbf0c8437a00441ab50b1eed6696734de2feb2a4e8fe800"
     },
+    "source_commit_role": "Checkout basis; actual tested authority and corrected inputs are bound by SHA256.",
+    "custody_baseline": "1facd846101c74a69389f9cc6df5b7dbfebd5bea",
+    "source_question_custody_unchanged": true,
     "legacy_source_hashes": "Retained from predecessor receipt; not used as corrected-input digests.",
     "observation": "NEW_LOCAL_EXECUTION",
     "method": "PRODUCTION_RENDERER_API_WITH_LOCAL_SCHEMA_RESOLVER",
-    "historical_artifact_snapshot": "46e91c9ec4285e14ca0db469eda281ff31df596a",
-    "source_commit_role": "CHECKOUT_BASE; authority_sha256 binds actual tested working-tree files"
-  },
-  "browser_evidence": "../compatibility-20261004/browser-bindings.json#ISS32"
+    "historical_artifact_snapshot": "46e91c9ec4285e14ca0db469eda281ff31df596a"
+  }
 }

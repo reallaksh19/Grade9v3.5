@@ -60,9 +60,9 @@
 
     // 1. Apply Font Scale
     document.documentElement.style.setProperty('--font-scale', fontScale.toString());
-    document.documentElement.style.fontSize = (16 * fontScale) + 'px';
+    document.documentElement.style.fontSize = 'calc(var(--g9-type-body, 16px) * var(--font-scale, 1) * var(--g9-zoom, 1))';
     if (document.body) {
-      document.body.style.fontSize = (16 * fontScale) + 'px';
+      document.body.style.fontSize = '1rem';
     }
 
     // 2. Apply UI Zoom Scale

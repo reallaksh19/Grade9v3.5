@@ -3,7 +3,7 @@
 Generated from `Shared/web/interactive-page-blueprints.v1.json` by `Shared/tools/blueprint_spec.py`. Do not edit.
 To change what a page shows, change the blueprint; the renderer, the quality gate and the owner-bank scaffold follow.
 
-Registry 1.10.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
+Registry 1.12.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
 
 Depth: min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source (for a Core1A construction unit, the hardest band among the bank questions it names in crux_question_refs). Between the floor and the reference depth the renderer says so as an advisory.
 
@@ -82,7 +82,7 @@ Browser audit (`tools/site-audit/core-page-audit.mjs --profile tablet-12.7`): me
 
 **Evidence.** A digest is taken over the bytes of a file, so the bytes must be the same on every machine. Line endings: LF (`.gitattributes`). Text is LF in every working tree (`* text=auto eol=lf`). A file already committed with CRLF keeps its bytes, so no recorded digest moves; a new file is LF.
 
-## BP-CORE2-SOURCE-QUESTION@1.6.0 (CORE2)
+## BP-CORE2-SOURCE-QUESTION@1.7.0 (CORE2)
 
 Learner job: Preserve authentic assessment demand while allowing bounded, provenance-explicit help that advances the learner without becoming a Question Clinic.
 
@@ -139,7 +139,7 @@ Required: a page without it is a gap, and the quality gate fails it.
 - The learner gets: Show the working as numbered moves: what is done, why it is valid, what it gives.
 - The reference page: selected_question_bank_TABLET_STUDY: three or four numbered steps with a bold lead and the reason (geometry, balance, Newton II, eliminate)
 - Record fields: `answer.reasoning_route`, `answer.crux_move_ref`
-- To author it: Write answer.reasoning_route[]: 3 moves for a D1 or D2 question, 4 for a D3 or D4. Each move has id, kind (DECIDE, REPRESENT, CONNECT, TRANSFORM or VERIFY), action (what is done), why_valid (the physical or logical reason this step is allowed; not 'this follows from the model'), inputs and output. Set crux_move_ref to the id of the move a learner is most likely to miss. Delete the move the band does not need.
+- To author it: Write answer.reasoning_route[]: 3 moves for a D1 or D2 question, 4 for a D3 or D4. Each move has id, kind (DECIDE, REPRESENT, CONNECT, TRANSFORM or VERIFY), action (what is done), why_valid (the physical or logical reason this step is allowed; not 'this follows from the model'), inputs and output. Set crux_move_ref to the id of the move a learner is most likely to miss. Delete the move the band does not need. D1 repair: Keep neighbour/domain, bond-component and orbital-basis inventories distinct. A pi component is not axial density; VSEPR is qualitative. Each action needs its actual local warrant and output, rather than a generic assertion that the source/model permits it. D2 repair: Close the valence-basis ledger: hybrid outputs plus residual functions equal the independent inputs, with no double use. Nuclear shape excludes lone-pair vertices. A geometry drawing does not uniquely measure an orbital basis. D3 repair: Contributors are bookkeeping alternatives, not switching structures. Count the occupied delocalised pi space, not only a drawn double bond. Orthogonal p directions constrain allene terminal planes; Pauli is not a blanket one-bond-per-orbital ban. D4 repair: Separate local counts, occupancy, adjacency, alignment and empirical evidence. A supplied overlap factor is not total energy. Preserve formal electron inventory under torsion; strength, barrier and unique basis require specified further evidence.
 
 **ANSWER** · slot `solution`, inside SOLUTION · ANSWER_BOX
 
@@ -210,20 +210,19 @@ Optional: shown when the record has it.
 - Record fields: `extensions.grade9v3:learning_repair`
 - To author it: Use question-specific paired/changed cases that separate the predicted misconception from a slip. Preserve uncertainty; do not grade free response by keyword or declare mastery. Optional for legacy records; when authored, question/crux/target validation remains mandatory. New semantic review must still adjudicate M1–M3.
 
-## BP-CORE1A-CONSTRUCTION@1.5.0 (CORE1A)
+## BP-CORE1A-CONSTRUCTION@1.6.0 (CORE1A)
 
-Learner job: Build the concept around its crux, study one worked example with prediction before reveal, then retrieve and apply the idea with less support. Construct on a distinct teaching anchor, then test a fresh changed case; worked protected source questions are not the default lesson anchor.
+Learner job: Build the concept in a coherent construction with its adjacent representation, summarize the key insight, study a visible worked explanation, then attempt a fresh changed case. References and diagnosis remain requestable; protected source questions are not the default teaching anchor.
 
 Theme: opens light, and the learner can switch.
 
-Layout: from 1100 px wide, the primary column is 60% and the support column 40%; the support column stays in view while the primary column scrolls. Narrower, everything is one column, primary first.
+Layout: from 1100 px wide, the primary column is 60% and the support column 40%. Narrower, everything is one column, primary first.
 
 | Slot | Column | Kept |
 |---|---|---|
 | `identity` | FULL | always |
-| `construction` | PRIMARY | always |
-| `representation` | SUPPORT | always |
-| `repair_closure` | SUPPORT | always |
+| `construction` | FULL | always |
+| `repair_closure` | FULL | always |
 
 ### Required components
 
@@ -241,6 +240,13 @@ Required: a page without it is a gap, and the quality gate fails it.
 - The reference page: core1a-motion-in-a-plane-tablet: the concept-card header with number, decision and unit id
 - Record fields: `construction_units[].decision`
 
+**CONSTRUCTION_STEPS** · slot `construction`, once per construction unit · STEP_CARDS · at least 2 item(s); the reference has D1 3, D2 3, D3 4, D4 4 by difficulty band
+
+- The learner gets: Build the idea in steps; every step says what is done, why it is valid and what state it gives.
+- The reference page: core1a-motion-in-a-plane-tablet: step cards (action, why physically valid, state output)
+- Record fields: `construction_units[].step_refs`, `teaching_path`
+- To author it: Each construction unit lists step_refs naming 2 or more teaching_path steps; each step has action, why_valid and output written for this unit, none repeated from another unit. A unit that builds the crux of a D3 or D4 question (it names that question in crux_question_refs) needs 4 steps, and its last step is the move that question turns on. D1 repair: Teach construction and its selected visual before summarizing the insight. Every source question needs an exact construction bridge; an exit uses a changed case with a concrete expected result, not a repeated worked input. D2 repair: Maintain a question-specific orbital allocation, conditions and independent changed check. Multiple questions may share a concept; a broad section label does not prove that each requested operation was constructed. D3 repair: Preserve atom-local roles and every relevant electron/charge invariant through representations. Separate a supplied equivalence observation from the model label and from a unique physical orbital/charge claim. D4 repair: Use explicit model assumptions, a counterfactual or independently changed contribution, and an applicability stopping condition. Diagnosis compares a changed-case response with uncertain patterns; it does not assign mastery or a misconception from opening help.
+
 **KEY_STEP** · slot `construction` · BANNER
 
 - The learner gets: Name the one step learners cannot infer on their own.
@@ -248,16 +254,9 @@ Required: a page without it is a gap, and the quality gate fails it.
 - Record fields: `inferential_jump`
 - To author it: inferential_jump: one or two sentences naming the step a learner does not make unaided and why it is not obvious.
 
-**CONSTRUCTION_STEPS** · slot `construction`, once per construction unit · STEP_CARDS · at least 2 item(s); the reference has D1 3, D2 3, D3 4, D4 4 by difficulty band
+**WORKED_EXAMPLE** · slot `construction`, once per construction unit · WORKED_CARD
 
-- The learner gets: Build the idea in steps; every step says what is done, why it is valid and what state it gives.
-- The reference page: core1a-motion-in-a-plane-tablet: step cards (action, why physically valid, state output)
-- Record fields: `construction_units[].step_refs`, `teaching_path`
-- To author it: Each construction unit lists step_refs naming 2 or more teaching_path steps; each step has action, why_valid and output written for this unit, none repeated from another unit. A unit that builds the crux of a D3 or D4 question (it names that question in crux_question_refs) needs 4 steps, and its last step is the move that question turns on.
-
-**WORKED_EXAMPLE** · slot `construction`, once per construction unit · PREDICT_REVEAL_WORKED_CARD
-
-- The learner gets: Predict through a distinct teaching instance that explicitly builds the target assessment crux.
+- The learner gets: Show a coherent worked explanation with an explicit warrant and output at each authored move.
 - The reference page: core1a-motion-in-a-plane-tablet: the worked card
 - Record fields: `construction_units[].worked_anchor_ref`, `construction_units[].bank_anchor_ref`, `extensions.grade9v3:lesson_anchors`
 - To author it: Use the microtopic extension grade9v3:lesson_anchors keyed by construction unit. Name target_question_ref, target_crux_move_ref and construction_ref, with a new stem, reasoned answer and independent check. The target must resolve to this product bank; a hardest-target unit must bind that precise question. Preserve the legacy worked/bank-anchor path where no extension is authored.
@@ -293,19 +292,19 @@ Expected: an official page missing it carries an advisory naming the field to au
 - Record fields: `entry_assumptions`, `prerequisite_refs`
 - To author it: List in entry_assumptions[] each thing a learner must already be able to do before this concept, one per entry and specific to this concept.
 
+**STAGED_VISUAL** · slot `construction`, once per construction unit · STAGED_VISUAL · at least 2 item(s); the reference has D1 3, D2 3, D3 4, D4 4 by difficulty band
+
+- The learner gets: When a spatial or mechanism representation materially helps the construction, show it as a picture that builds stage by stage. A construction with no useful visual is explicitly waived by the authored record; no decorative figure is invented.
+- The reference page: core1a-motion-in-a-plane-tablet: the rail's staged visual with stage buttons
+- Record fields: `construction_units[].representation_ref`
+- To author it: First decide whether a staged visual has a real semantic job for this construction. When it does, representation_ref names a package representation with an authored accessible SVG and at least 2 data-g9-stage-id groups; reveal_stages names the useful build-up. The reference depth is 3 stages (4 for a D3/D4 crux), not a semantic pass count. When a visual is genuinely not applicable, waive STAGED_VISUAL with a written reason instead of drawing decoration.
+
 **EQUATIONS** · slot `construction`, once per construction unit · DISCLOSURE_EQUATION_CARD
 
 - The learner gets: Keep formulas, meaning and validity conditions available as on-demand reference rather than a mandatory reading detour.
 - The reference page: core1a-motion-in-a-plane-tablet: the equation card of every concept card (definition and validity scope)
 - Record fields: `construction_units[].relation_refs`, `relation_refs`
 - To author it: Each construction unit names the microtopic's relations it uses in construction_units[].relation_refs; each relation record needs its expression, meaning and conditions. A subject that declares no gates writes gate_relation_ref: null.
-
-**STAGED_VISUAL** · slot `representation`, once per construction unit · STAGED_VISUAL · at least 2 item(s); the reference has D1 3, D2 3, D3 4, D4 4 by difficulty band
-
-- The learner gets: When a spatial or mechanism representation materially helps the construction, show it as a picture that builds stage by stage. A construction with no useful visual is explicitly waived by the authored record; no decorative figure is invented.
-- The reference page: core1a-motion-in-a-plane-tablet: the rail's staged visual with stage buttons
-- Record fields: `construction_units[].representation_ref`
-- To author it: First decide whether a staged visual has a real semantic job for this construction. When it does, representation_ref names a package representation with an authored accessible SVG and at least 2 data-g9-stage-id groups; reveal_stages names the useful build-up. The reference depth is 3 stages (4 for a D3/D4 crux), not a semantic pass count. When a visual is genuinely not applicable, waive STAGED_VISUAL with a written reason instead of drawing decoration.
 
 ### Optional components
 
@@ -322,6 +321,13 @@ Optional: shown when the record has it.
 - The reference page: core1a-motion-in-a-plane-tablet: each concept card is built around the inferential leap the practice questions need
 - Record fields: `construction_units[].crux_question_refs`, `construction_units[].crux_step_ref`, `answer.crux_move_ref`
 - To author it: Name actual crux_question_refs and crux_step_ref. The hardest-target unit must teach that precise bridge through its worked instance; a distinct lesson anchor must explicitly bind the target question, its actual crux move and this construction unit. A shared topic alone is insufficient.
+
+**MODEL_SCOPE_PROBE** · slot `construction`, once per construction unit · CHECK_BOX
+
+- The learner gets: When explicitly authored, make bounded parameter/countermodel construction visible beside the staged visual; keep diagnostic help separately closed.
+- The reference page: Issue #37 Q9 and #38 Q2/Q9 correction cycle: absent continuous model-boundary construction.
+- Record fields: `extensions.grade9v3:question_repairs`
+- To author it: Opt in with a question/crux/construction-bound MODEL_SCOPE_PROBE repair record. Declare axis, independent variables, toy versus physical outputs and a static fallback. Do not infer applicability from the demand label.
 
 **PRACTICE_LINKS** · slot `repair_closure` · CHIPS
 
@@ -340,13 +346,6 @@ Optional: shown when the record has it.
 - The learner gets: Derived transitions connecting Learn, Practice, Interactive, and Question Bank.
 - The reference page: core1a-nlm-friction-tablet: learning transition bar
 - Record fields: `concept_bundle`
-
-**MODEL_SCOPE_PROBE** · slot `representation`, once per construction unit · CHECK_BOX
-
-- The learner gets: When explicitly authored, make bounded parameter/countermodel construction visible beside the staged visual; keep diagnostic help separately closed.
-- The reference page: Issue #37 Q9 and #38 Q2/Q9 correction cycle: absent continuous model-boundary construction.
-- Record fields: `extensions.grade9v3:question_repairs`
-- To author it: Opt in with a question/crux/construction-bound MODEL_SCOPE_PROBE repair record. Declare axis, independent variables, toy versus physical outputs and a static fallback. Do not infer applicability from the demand label.
 
 ## BP-EXPLORER-GCDR@1.0.0 (EXPLORER)
 

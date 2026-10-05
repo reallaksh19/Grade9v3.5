@@ -15,6 +15,14 @@ for n in (31,32,33,34,35,36,37,38):
     a=html.fromstring((directory/'rendered/core1a.html').read_text());b=html.fromstring((directory/'rendered/core2.html').read_text())
     aids=set(a.xpath('//@id'));bids=set(b.xpath('//@id'));failures=[]
     qs={q['id']:q for q in bank['questions']}
+    receipt=json.loads((directory/'cycle-receipt.json').read_text())
+    for name,expected in receipt['page_hashes'].items():
+        if hashlib.sha256((directory/'rendered'/name).read_bytes()).hexdigest()!=expected:
+            failures.append({'defect':'saved page bytes differ from receipt','path':name})
+    for group in ('authority_sha256','canonical_input_sha256'):
+        for path,expected in receipt['render_basis'][group].items():
+            if hashlib.sha256((ROOT/path).read_bytes().replace(b'\r\n',b'\n')).hexdigest()!=expected:
+                failures.append({'defect':'receipt does not cover current source','path':path})
     for q in bank['questions']:
         nodes=b.xpath('//article[@data-g9-unit=$id]',id=q['id']);assert len(nodes)==1
         node=nodes[0];r=q['extensions']['grade9v3:learning_repair']
@@ -26,6 +34,10 @@ for n in (31,32,33,34,35,36,37,38):
         if not repair[0].xpath('ancestor::template'):failures.append({'q':q['id'],'defect':'diagnostic leaked into pre-attempt DOM'})
         if len(node.xpath('.//a[@data-g9-repair-link]'))!=1:failures.append({'q':q['id'],'defect':'missing item-specific repair'})
         all_text=' '.join(node.itertext())
+        for move in q['answer']['reasoning_route']:
+            for field in ('action','why_valid','output'):
+                if move[field] not in all_text:
+                    failures.append({'q':q['id'],'defect':'current reasoning differs from rendered solution','move':move['id'],'field':field})
         for h in q['scaffolds']:
             if h['text'] not in all_text:failures.append({'q':q['id'],'defect':'authored hint differs from exact rendered support'})
         # Template text is checked as authored evidence, not assumed visible to a learner.
