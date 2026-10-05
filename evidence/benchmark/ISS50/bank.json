@@ -1,0 +1,1174 @@
+{
+  "schema_version": "grade9v3-owner-supplied-bank-v1",
+  "bank_id": "iss50-polynomials",
+  "intake_digest": "sha256:984f011770d466640d809b8caaa80e4dc0ae4c4b9c510ccdc8ab75b2793ea2cf",
+  "questions": [
+    {
+      "id": "ISS50-Q1",
+      "original_identifier": "Q1",
+      "stem": "For $p_k(x)=(k-2)x^3+3x^2-x+4$, where $k$ is real, classify the degree when $k=2$ and when $k\\neq2$. Explain why the highest printed exponent is not sufficient to decide the degree.",
+      "conditions": [
+        "k is real."
+      ],
+      "options": [],
+      "subparts": [],
+      "figure_refs": [],
+      "answer": {
+        "summary": "If k=2, p_k(x)=3x^2-x+4 has degree 2. If k≠2, the x^3 coefficient k-2 is nonzero, so the degree is 3. A printed exponent contributes to degree only when its coefficient is nonzero.",
+        "reasoning": [
+          "Inspect the coefficient of the highest printed power x^3. Degree is the greatest exponent with a nonzero coefficient, so the leading coefficient must be checked.",
+          "Split into the cases k=2 and k≠2. A parameter can make a coefficient zero for one value and nonzero for all others.",
+          "Read the highest remaining nonzero power in each case. After cancellation, degree is determined from the actual polynomial, not the printed template."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q1-M1",
+            "kind": "DECIDE",
+            "action": "Inspect the coefficient of the highest printed power x^3.",
+            "why_valid": "Degree is the greatest exponent with a nonzero coefficient, so the leading coefficient must be checked.",
+            "inputs": [],
+            "output": "The possible leading coefficient is k-2."
+          },
+          {
+            "id": "Q1-M2",
+            "kind": "CONNECT",
+            "action": "Split into the cases k=2 and k≠2.",
+            "why_valid": "A parameter can make a coefficient zero for one value and nonzero for all others.",
+            "inputs": [],
+            "output": "At k=2 the cubic term disappears; otherwise it remains."
+          },
+          {
+            "id": "Q1-M3",
+            "kind": "VERIFY",
+            "action": "Read the highest remaining nonzero power in each case.",
+            "why_valid": "After cancellation, degree is determined from the actual polynomial, not the printed template.",
+            "inputs": [],
+            "output": "Degree 2 for k=2 and degree 3 for k≠2."
+          }
+        ],
+        "crux_move_ref": "Q1-M2",
+        "check": "Substitute k=2 and confirm the cubic coefficient is zero; substitute k=3 and confirm a nonzero cubic term remains."
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-EXCEPTIONS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MATH-POLY-EXCEPTIONS",
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Inspect the coefficient multiplying the highest printed power before reading the degree.",
+          "prompt": "Hint 1: Inspect the coefficient multiplying the highest printed power before reading the degree.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "Q1-M1"
+        },
+        {
+          "text": "Find the parameter value that makes k-2 equal to zero and separate it from all other values.",
+          "prompt": "Hint 2: Find the parameter value that makes k-2 equal to zero and separate it from all other values.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "Q1-M2"
+        },
+        {
+          "text": "After that possible cancellation, identify the highest power with a nonzero coefficient.",
+          "prompt": "Hint 3: After that possible cancellation, identify the highest power with a nonzero coefficient.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "Q1-M3"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS50-Q1",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:78493cc2ac560d42af4ed069f055dcb76b4719bd2cbd4165333ab0bcfc8e8042"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "note": "Benchmark input requested and supplied by the Owner; not official exam/PYQ material and not represented as personally authored by the Owner."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "The parameter can cancel the printed leading term, so degree must be classified after checking the leading coefficient rather than by reading the largest exponent."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "Reading the printed x^3 and declaring degree 3 without checking whether its coefficient vanishes."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt figure would be decorative or would disclose the learner-owned symbolic, theorem-selection, or domain decision; the exact symbolic givens are the faithful representation."
+        }
+      }
+    },
+    {
+      "id": "ISS50-Q2",
+      "original_identifier": "Q2",
+      "stem": "Find the remainder when $p(x)=x^3-4x+1$ is divided by $x-2$, without carrying out long division. Explain why your chosen computation gives the remainder.",
+      "conditions": [
+        "Divide by x-2 without carrying out long division."
+      ],
+      "options": [],
+      "subparts": [],
+      "figure_refs": [],
+      "answer": {
+        "summary": "The remainder is 1, because division by x-2 leaves remainder p(2)=2^3-4(2)+1=1.",
+        "reasoning": [
+          "Write p(x)=(x-2)q(x)+r with constant r. A linear divisor leaves a remainder of degree less than 1, hence a constant.",
+          "Evaluate at x=2. The product (x-2)q(x) becomes zero, so p(2)=r.",
+          "Check divisibility of p(x)-1 by x-2. If p(x)-r is divisible by x-2, r is the remainder."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q2-M1",
+            "kind": "CONNECT",
+            "action": "Write p(x)=(x-2)q(x)+r with constant r.",
+            "why_valid": "A linear divisor leaves a remainder of degree less than 1, hence a constant.",
+            "inputs": [],
+            "output": "The remainder is isolated by the division form."
+          },
+          {
+            "id": "Q2-M2",
+            "kind": "TRANSFORM",
+            "action": "Evaluate at x=2.",
+            "why_valid": "The product (x-2)q(x) becomes zero, so p(2)=r.",
+            "inputs": [],
+            "output": "r=1."
+          },
+          {
+            "id": "Q2-M3",
+            "kind": "VERIFY",
+            "action": "Check divisibility of p(x)-1 by x-2.",
+            "why_valid": "If p(x)-r is divisible by x-2, r is the remainder.",
+            "inputs": [],
+            "output": "x^3-4x=x(x-2)(x+2)."
+          }
+        ],
+        "crux_move_ref": "Q2-M1",
+        "check": "p(x)-1=x^3-4x=x(x-2)(x+2), which is divisible by x-2."
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-THEOREMS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MATH-POLY-THEOREMS",
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Write p(x)=(x-2)q(x)+r, where r is constant.",
+          "prompt": "Hint 1: Write p(x)=(x-2)q(x)+r, where r is constant.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "Q2-M1"
+        },
+        {
+          "text": "Which x-value makes x-2 vanish? Evaluating there isolates the remainder.",
+          "prompt": "Hint 2: Which x-value makes x-2 vanish? Evaluating there isolates the remainder.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "Q2-M2"
+        },
+        {
+          "text": "Compute only that exact evaluation; no long division is needed.",
+          "prompt": "Hint 3: Compute only that exact evaluation; no long division is needed.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "Q2-M3"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS50-Q2",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:a61ce6f78122d21162d9916ed1e6353db6e269369bf49ced4ae7c1e64c304019"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "note": "Benchmark input requested and supplied by the Owner; not official exam/PYQ material and not represented as personally authored by the Owner."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "The computation is short once the Remainder Theorem is selected, but the learner must connect division by x-2 to evaluation at 2 and explain the warrant."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Performing long division despite the constraint, or evaluating at -2 because of the minus sign."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt figure would be decorative or would disclose the learner-owned symbolic, theorem-selection, or domain decision; the exact symbolic givens are the faithful representation."
+        }
+      }
+    },
+    {
+      "id": "ISS50-Q3",
+      "original_identifier": "Q3",
+      "stem": "Factorise $x^2-5x+6$ and find its real zeros. Verify the factors by expansion and each zero by substitution.",
+      "conditions": [
+        "Find real zeros and verify both factors and zeros."
+      ],
+      "options": [],
+      "subparts": [],
+      "figure_refs": [],
+      "answer": {
+        "summary": "x^2-5x+6=(x-2)(x-3), so the real zeros are 2 and 3.",
+        "reasoning": [
+          "Find two numbers with product 6 and sum -5. Expanding (x-a)(x-b) gives x^2-(a+b)x+ab.",
+          "Expand the proposed factors. Expansion must reproduce every coefficient of the original polynomial.",
+          "Substitute x=2 and x=3 into the original polynomial. A zero is an input where the polynomial value is exactly zero."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q3-M1",
+            "kind": "TRANSFORM",
+            "action": "Find two numbers with product 6 and sum -5.",
+            "why_valid": "Expanding (x-a)(x-b) gives x^2-(a+b)x+ab.",
+            "inputs": [],
+            "output": "The factors are (x-2)(x-3)."
+          },
+          {
+            "id": "Q3-M2",
+            "kind": "VERIFY",
+            "action": "Expand the proposed factors.",
+            "why_valid": "Expansion must reproduce every coefficient of the original polynomial.",
+            "inputs": [],
+            "output": "The expansion is x^2-5x+6."
+          },
+          {
+            "id": "Q3-M3",
+            "kind": "VERIFY",
+            "action": "Substitute x=2 and x=3 into the original polynomial.",
+            "why_valid": "A zero is an input where the polynomial value is exactly zero.",
+            "inputs": [],
+            "output": "Both substitutions give 0."
+          }
+        ],
+        "crux_move_ref": "Q3-M1",
+        "check": "Expansion gives x^2-5x+6, and p(2)=p(3)=0."
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-THEOREMS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MATH-POLY-THEOREMS",
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Look for two integers whose product is 6 and whose sum is -5.",
+          "prompt": "Hint 1: Look for two integers whose product is 6 and whose sum is -5.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "Q3-M1"
+        },
+        {
+          "text": "Use them to form two linear factors.",
+          "prompt": "Hint 2: Use them to form two linear factors.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "Q3-M2"
+        },
+        {
+          "text": "Expand your factors, then substitute each proposed zero into the original polynomial.",
+          "prompt": "Hint 3: Expand your factors, then substitute each proposed zero into the original polynomial.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "Q3-M3"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS50-Q3",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:85bfa5111144fbd813f67ab11c551df83fc4a555e5c5dd4883e318bdb9f05229"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "note": "Benchmark input requested and supplied by the Owner; not official exam/PYQ material and not represented as personally authored by the Owner."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D1",
+            "score": 2,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "Factoring a monic quadratic and checking by expansion/substitution are direct procedures with a short verification chain."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "Choosing two numbers with product 6 but the wrong sum, then not checking by expansion."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt figure would be decorative or would disclose the learner-owned symbolic, theorem-selection, or domain decision; the exact symbolic givens are the faithful representation."
+        }
+      }
+    },
+    {
+      "id": "ISS50-Q4",
+      "original_identifier": "Q4",
+      "stem": "Two non-overlapping rectangular tiles have dimensions $(x+2)$ cm by $(x+1)$ cm, and $x$ cm by $(x+3)$ cm, with $x>0$. Construct and simplify a polynomial for their total area. Identify which part of your model accounts for adding the two areas.",
+      "conditions": [
+        "The tiles do not overlap.",
+        "x>0.",
+        "Dimensions are measured in centimetres."
+      ],
+      "options": [],
+      "subparts": [],
+      "figure_refs": [
+        "REP-MATH-POLY-AREA-TILES"
+      ],
+      "answer": {
+        "summary": "The total area is (x+2)(x+1)+x(x+3)=2x^2+6x+2 cm^2. The plus sign between the two rectangle-area expressions accounts for adding the non-overlapping areas.",
+        "reasoning": [
+          "Write one area expression for each rectangle. Rectangle area is length times width.",
+          "Add the two area expressions. The tiles do not overlap, so total area is the sum of their separate areas.",
+          "Expand and collect like terms. Distributivity preserves the area while putting it in polynomial form."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q4-M1",
+            "kind": "REPRESENT",
+            "action": "Write one area expression for each rectangle.",
+            "why_valid": "Rectangle area is length times width.",
+            "inputs": [],
+            "output": "A1=(x+2)(x+1) and A2=x(x+3)."
+          },
+          {
+            "id": "Q4-M2",
+            "kind": "CONNECT",
+            "action": "Add the two area expressions.",
+            "why_valid": "The tiles do not overlap, so total area is the sum of their separate areas.",
+            "inputs": [],
+            "output": "A_total=(x+2)(x+1)+x(x+3)."
+          },
+          {
+            "id": "Q4-M3",
+            "kind": "TRANSFORM",
+            "action": "Expand and collect like terms.",
+            "why_valid": "Distributivity preserves the area while putting it in polynomial form.",
+            "inputs": [],
+            "output": "2x^2+6x+2 cm^2."
+          }
+        ],
+        "crux_move_ref": "Q4-M2",
+        "check": "At x=1 the separate areas are 6 and 4, total 10; the polynomial gives 10."
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-REP-DOMAIN",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MATH-POLY-REP-DOMAIN",
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Give each rectangle its own area expression: length times width.",
+          "prompt": "Hint 1: Give each rectangle its own area expression: length times width.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "Q4-M1"
+        },
+        {
+          "text": "Use the non-overlap statement to decide how the two separate areas combine.",
+          "prompt": "Hint 2: Use the non-overlap statement to decide how the two separate areas combine.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "Q4-M2"
+        },
+        {
+          "text": "Only after writing the model, expand both products and collect like terms.",
+          "prompt": "Hint 3: Only after writing the model, expand both products and collect like terms.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "Q4-M3"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS50-Q4",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:f7e64fd479b68451bf5e81e6f6f030169a7970106947460e56c3883681dd201e"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "note": "Benchmark input requested and supplied by the Owner; not official exam/PYQ material and not represented as personally authored by the Owner."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "The learner must translate two rectangular areas into expressions, use non-overlap to add them, and then simplify."
+          },
+          "expected_time_seconds": 210,
+          "common_wrong_route": "Multiplying the two tile areas together instead of adding them, or dropping one rectangle after expansion."
+        }
+      }
+    },
+    {
+      "id": "ISS50-Q5",
+      "original_identifier": "Q5",
+      "stem": "For $p(x)=(x-1)(x+1)$, produce a value table at $x=-2,-1,0,1,2$ and plot those five ordered pairs on labelled axes. Mark the zeros and distinguish a zero of the polynomial from an arbitrary plotted point.",
+      "conditions": [
+        "Use exactly x=-2,-1,0,1,2 and label the axes."
+      ],
+      "options": [],
+      "subparts": [],
+      "figure_refs": [
+        "REP-MATH-POLY-BLANK-AXES"
+      ],
+      "answer": {
+        "summary": "The table values are 3,0,-1,0,3 at x=-2,-1,0,1,2. Plot (-2,3),(-1,0),(0,-1),(1,0),(2,3). The zeros are x=-1 and x=1 because only those inputs have p(x)=0.",
+        "reasoning": [
+          "Evaluate p(x)=(x-1)(x+1) at each requested input. A value table records the function value paired with each input.",
+          "Plot each input-output pair on labelled axes. A graph point (x,p(x)) preserves the table's input-output relation.",
+          "Mark only points with y=0 as zeros. By definition, a zero is an input x for which p(x)=0."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q5-M1",
+            "kind": "TRANSFORM",
+            "action": "Evaluate p(x)=(x-1)(x+1) at each requested input.",
+            "why_valid": "A value table records the function value paired with each input.",
+            "inputs": [],
+            "output": "Values 3,0,-1,0,3."
+          },
+          {
+            "id": "Q5-M2",
+            "kind": "REPRESENT",
+            "action": "Plot each input-output pair on labelled axes.",
+            "why_valid": "A graph point (x,p(x)) preserves the table's input-output relation.",
+            "inputs": [],
+            "output": "Five ordered pairs are plotted."
+          },
+          {
+            "id": "Q5-M3",
+            "kind": "CONNECT",
+            "action": "Mark only points with y=0 as zeros.",
+            "why_valid": "By definition, a zero is an input x for which p(x)=0.",
+            "inputs": [],
+            "output": "Zeros are x=-1 and x=1."
+          }
+        ],
+        "crux_move_ref": "Q5-M3",
+        "check": "Substitution at x=-1 and x=1 gives 0; at x=0 it gives -1, so x=0 is plotted but is not a zero."
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-REP-DOMAIN",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MATH-POLY-REP-DOMAIN",
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Evaluate p(x) exactly at each requested input before plotting.",
+          "prompt": "Hint 1: Evaluate p(x) exactly at each requested input before plotting.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "Q5-M1"
+        },
+        {
+          "text": "Each graph point must carry the same x and p(x) as the table entry.",
+          "prompt": "Hint 2: Each graph point must carry the same x and p(x) as the table entry.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "Q5-M2"
+        },
+        {
+          "text": "Use the definition of zero: p(x)=0, not merely 'this x was plotted'.",
+          "prompt": "Hint 3: Use the definition of zero: p(x)=0, not merely 'this x was plotted'.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "Q5-M3"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS50-Q5",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:88a694036bdcf93aaa19f638e57be7b0a02e4325a631f1ec8872c2ce46656767"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "note": "Benchmark input requested and supplied by the Owner; not official exam/PYQ material and not represented as personally authored by the Owner."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 2,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "The main demand is preserving values while translating from formula to table to graph and then distinguishing x-intercepts from arbitrary plotted points."
+          },
+          "expected_time_seconds": 300,
+          "common_wrong_route": "Calling every plotted x-value a zero, rather than only inputs whose plotted y-value is 0."
+        }
+      }
+    },
+    {
+      "id": "ISS50-Q6",
+      "original_identifier": "Q6",
+      "stem": "Compare the original expression $r(x)=(x^2-1)/(x-1)$ with $q(x)=x+1$. State the domain of $r$, simplify it where valid, and decide whether $r$ and $q$ are the same function on all real numbers. Address $x=1$ explicitly.",
+      "conditions": [
+        "Compare the original expression with q(x)=x+1 as functions on real inputs.",
+        "Address x=1 explicitly."
+      ],
+      "options": [],
+      "subparts": [],
+      "figure_refs": [],
+      "answer": {
+        "summary": "The domain of r is all real x except 1. For x≠1, r(x)=x+1. The functions are not the same on all real numbers: r is undefined at x=1, whereas q(1)=2. They agree on R\\{1}.",
+        "reasoning": [
+          "Determine the domain of the original rational expression before simplifying. A denominator may not be zero, and simplification cannot make an excluded input legal.",
+          "Factor x^2-1 and cancel x-1 only under x≠1. Cancellation is division by x-1, so it is valid only where that factor is nonzero.",
+          "Compare the domains of r and q as part of function equality. Two functions are the same only when domains and corresponding values agree.",
+          "Inspect x=1 explicitly. This is the excluded point most likely to be lost by cancellation."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q6-M1",
+            "kind": "DECIDE",
+            "action": "Determine the domain of the original rational expression before simplifying.",
+            "why_valid": "A denominator may not be zero, and simplification cannot make an excluded input legal.",
+            "inputs": [],
+            "output": "The original domain excludes x=1."
+          },
+          {
+            "id": "Q6-M2",
+            "kind": "CONNECT",
+            "action": "Factor x^2-1 and cancel x-1 only under x≠1.",
+            "why_valid": "Cancellation is division by x-1, so it is valid only where that factor is nonzero.",
+            "inputs": [],
+            "output": "r(x)=x+1 for x≠1."
+          },
+          {
+            "id": "Q6-M3",
+            "kind": "DECIDE",
+            "action": "Compare the domains of r and q as part of function equality.",
+            "why_valid": "Two functions are the same only when domains and corresponding values agree.",
+            "inputs": [],
+            "output": "They are not the same function on all real numbers."
+          },
+          {
+            "id": "Q6-M4",
+            "kind": "VERIFY",
+            "action": "Inspect x=1 explicitly.",
+            "why_valid": "This is the excluded point most likely to be lost by cancellation.",
+            "inputs": [],
+            "output": "r(1) is undefined while q(1)=2."
+          }
+        ],
+        "crux_move_ref": "Q6-M2",
+        "check": "At x=2 both give 3; at x=1 only q is defined."
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-REP-DOMAIN",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MATH-POLY-REP-DOMAIN",
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Record the original denominator restriction before cancelling anything.",
+          "prompt": "Hint 1: Record the original denominator restriction before cancelling anything.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "Q6-M1"
+        },
+        {
+          "text": "Factor the numerator, but keep the excluded input beside every simplification.",
+          "prompt": "Hint 2: Factor the numerator, but keep the excluded input beside every simplification.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "Q6-M2"
+        },
+        {
+          "text": "Compare function domains as well as formulas.",
+          "prompt": "Hint 3: Compare function domains as well as formulas.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "Q6-M3"
+        },
+        {
+          "text": "Inspect x=1 explicitly after the simplification.",
+          "prompt": "Hint 4: Inspect x=1 explicitly after the simplification.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "Q6-M4"
+        },
+        {
+          "text": "Use one ordinary input and the excluded input as two different checks.",
+          "prompt": "Hint 5: Use one ordinary input and the excluded input as two different checks.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "Q6-M4"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS50-Q6",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:696026a5fe5a0d98b1d36ce304aa50a573ccbe51642a0e63aa6424d9c2a12f8f"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "note": "Benchmark input requested and supplied by the Owner; not official exam/PYQ material and not represented as personally authored by the Owner."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Cancellation gives the same formula only on the original domain; the learner must preserve the excluded input and distinguish expression equality from equality of functions."
+          },
+          "expected_time_seconds": 300,
+          "common_wrong_route": "Cancelling x-1 and then restoring x=1, concluding the original rational expression and x+1 are identical functions on all real numbers."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt figure would be decorative or would disclose the learner-owned symbolic, theorem-selection, or domain decision; the exact symbolic givens are the faithful representation."
+        }
+      }
+    },
+    {
+      "id": "ISS50-Q7",
+      "original_identifier": "Q7",
+      "stem": "For $f(x)=2x^3+kx^2-5x+2$, find the real value of $k$ for which $x-1$ is a factor. Then exhibit a quotient and verify the resulting product without merely repeating the same substitution.",
+      "conditions": [
+        "k is real.",
+        "Verification must not merely repeat the substitution used to determine k."
+      ],
+      "options": [],
+      "subparts": [],
+      "figure_refs": [],
+      "answer": {
+        "summary": "k=1. Then f(x)=2x^3+x^2-5x+2=(x-1)(2x^2+3x-2).",
+        "reasoning": [
+          "Translate the factor condition into f(1)=0. By the Factor Theorem, x-1 is a factor exactly when 1 is a zero.",
+          "Divide the resulting polynomial by x-1. Zero remainder yields a quadratic quotient.",
+          "Multiply the factor and quotient. Multiplication-back checks every coefficient without repeating the substitution used to find k."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q7-M1",
+            "kind": "CONNECT",
+            "action": "Translate the factor condition into f(1)=0.",
+            "why_valid": "By the Factor Theorem, x-1 is a factor exactly when 1 is a zero.",
+            "inputs": [],
+            "output": "k=1."
+          },
+          {
+            "id": "Q7-M2",
+            "kind": "TRANSFORM",
+            "action": "Divide the resulting polynomial by x-1.",
+            "why_valid": "Zero remainder yields a quadratic quotient.",
+            "inputs": [],
+            "output": "The quotient is 2x^2+3x-2."
+          },
+          {
+            "id": "Q7-M3",
+            "kind": "VERIFY",
+            "action": "Multiply the factor and quotient.",
+            "why_valid": "Multiplication-back checks every coefficient without repeating the substitution used to find k.",
+            "inputs": [],
+            "output": "The original polynomial is recovered."
+          }
+        ],
+        "crux_move_ref": "Q7-M1",
+        "check": "Multiplying (x-1)(2x^2+3x-2) gives 2x^3+x^2-5x+2."
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-THEOREMS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MATH-POLY-THEOREMS",
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Translate 'x-1 is a factor' into the corresponding zero condition.",
+          "prompt": "Hint 1: Translate 'x-1 is a factor' into the corresponding zero condition.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "Q7-M1"
+        },
+        {
+          "text": "Evaluate f(1) symbolically and solve for k.",
+          "prompt": "Hint 2: Evaluate f(1) symbolically and solve for k.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "Q7-M2"
+        },
+        {
+          "text": "Then divide by x-1 and reserve multiplication-back for verification.",
+          "prompt": "Hint 3: Then divide by x-1 and reserve multiplication-back for verification.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "Q7-M3"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS50-Q7",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:f74e6a30b148f1848d79077eac5e59be0e2d04a787e7d9a395b69dc4ade42578"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "note": "Benchmark input requested and supplied by the Owner; not official exam/PYQ material and not represented as personally authored by the Owner."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "The factor condition determines k, after which a quotient must be constructed and independently verified by multiplication."
+          },
+          "expected_time_seconds": 300,
+          "common_wrong_route": "Stopping after f(1)=0 and never producing or multiplying back the quotient."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt figure would be decorative or would disclose the learner-owned symbolic, theorem-selection, or domain decision; the exact symbolic givens are the faithful representation."
+        }
+      }
+    },
+    {
+      "id": "ISS50-Q8",
+      "original_identifier": "Q8",
+      "stem": "A student checks $(2x)^2=2x^2$ at $x=0$ and calls it an identity. Decide whether that check is sufficient, give an exact counterexample if needed, and state a corrected identity with a general reason.",
+      "conditions": [
+        "The student's only check is at x=0.",
+        "Give an exact counterexample if needed and a corrected identity with a general reason."
+      ],
+      "options": [],
+      "subparts": [],
+      "figure_refs": [],
+      "answer": {
+        "summary": "The x=0 check is insufficient. At x=1, the two sides are 4 and 2, so the claim is false. The corrected identity is (2x)^2=4x^2 because (2x)(2x)=4x^2 for every real x.",
+        "reasoning": [
+          "Judge what one successful substitution can establish. An identity must hold for every allowed input; one agreeing value cannot establish a universal claim.",
+          "Test a simple nonzero exact input such as x=1. One counterexample is enough to disprove a universal claim.",
+          "Expand (2x)^2 as (2x)(2x). Associativity and commutativity give 2·2·x·x=4x^2 for arbitrary real x."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q8-M1",
+            "kind": "DECIDE",
+            "action": "Judge what one successful substitution can establish.",
+            "why_valid": "An identity must hold for every allowed input; one agreeing value cannot establish a universal claim.",
+            "inputs": [],
+            "output": "The x=0 check is insufficient."
+          },
+          {
+            "id": "Q8-M2",
+            "kind": "VERIFY",
+            "action": "Test a simple nonzero exact input such as x=1.",
+            "why_valid": "One counterexample is enough to disprove a universal claim.",
+            "inputs": [],
+            "output": "4≠2, so the proposed identity is false."
+          },
+          {
+            "id": "Q8-M3",
+            "kind": "CONNECT",
+            "action": "Expand (2x)^2 as (2x)(2x).",
+            "why_valid": "Associativity and commutativity give 2·2·x·x=4x^2 for arbitrary real x.",
+            "inputs": [],
+            "output": "The corrected identity is (2x)^2=4x^2."
+          }
+        ],
+        "crux_move_ref": "Q8-M1",
+        "check": "At x=-3 both sides of the corrected identity give 36; the product argument proves the equality for arbitrary x."
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-THEOREMS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MATH-POLY-THEOREMS",
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "An identity is a statement for every real x; ask what one successful test can prove.",
+          "prompt": "Hint 1: An identity is a statement for every real x; ask what one successful test can prove.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "Q8-M1"
+        },
+        {
+          "text": "Try a simple nonzero exact input to challenge the claim.",
+          "prompt": "Hint 2: Try a simple nonzero exact input to challenge the claim.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "Q8-M2"
+        },
+        {
+          "text": "For the corrected rule, expand (2x)^2 as the product (2x)(2x).",
+          "prompt": "Hint 3: For the corrected rule, expand (2x)^2 as the product (2x)(2x).",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "Q8-M3"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS50-Q8",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:74746262f78c73ddab2bda02a9406186926030ed7f2713d680f53da3ae689688"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "note": "Benchmark input requested and supplied by the Owner; not official exam/PYQ material and not represented as personally authored by the Owner."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "The learner must reject finite sampled agreement as an identity proof, produce a counterexample, and replace the false statement with a generally warranted identity."
+          },
+          "expected_time_seconds": 180,
+          "common_wrong_route": "Treating agreement at x=0 as proof that two algebraic expressions are identical for every real x."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt figure would be decorative or would disclose the learner-owned symbolic, theorem-selection, or domain decision; the exact symbolic givens are the faithful representation."
+        }
+      }
+    },
+    {
+      "id": "ISS50-Q9",
+      "original_identifier": "Q9",
+      "stem": "Construct a quadratic polynomial with real zeros $-2$ and $3$ and with $p(0)=-6$. Explain how the value at zero fixes the scale, then check all three conditions.",
+      "conditions": [
+        "The required zeros are -2 and 3.",
+        "p(0)=-6.",
+        "The required polynomial is quadratic."
+      ],
+      "options": [],
+      "subparts": [],
+      "figure_refs": [],
+      "answer": {
+        "summary": "p(x)=(x+2)(x-3)=x^2-x-6. In general p(x)=c(x+2)(x-3); p(0)=-6c=-6 forces c=1.",
+        "reasoning": [
+          "Use the zeros to write p(x)=c(x+2)(x-3) with c nonzero. A zero r gives a factor x-r; multiplying by a nonzero constant preserves the zeros.",
+          "Use p(0)=-6 to determine c. The remaining value condition fixes the multiplicative scale.",
+          "Check both zeros and p(0) directly. These are exactly the three stated conditions."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q9-M1",
+            "kind": "REPRESENT",
+            "action": "Use the zeros to write p(x)=c(x+2)(x-3) with c nonzero.",
+            "why_valid": "A zero r gives a factor x-r; multiplying by a nonzero constant preserves the zeros.",
+            "inputs": [],
+            "output": "The zeros determine the factors up to scale c."
+          },
+          {
+            "id": "Q9-M2",
+            "kind": "CONNECT",
+            "action": "Use p(0)=-6 to determine c.",
+            "why_valid": "The remaining value condition fixes the multiplicative scale.",
+            "inputs": [],
+            "output": "-6c=-6, so c=1."
+          },
+          {
+            "id": "Q9-M3",
+            "kind": "VERIFY",
+            "action": "Check both zeros and p(0) directly.",
+            "why_valid": "These are exactly the three stated conditions.",
+            "inputs": [],
+            "output": "All three conditions hold."
+          }
+        ],
+        "crux_move_ref": "Q9-M2",
+        "check": "p(-2)=0, p(3)=0, and p(0)=-6."
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-THEOREMS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MATH-POLY-THEOREMS",
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Use each zero r to create a factor x-r, but include an unknown nonzero scale c.",
+          "prompt": "Hint 1: Use each zero r to create a factor x-r, but include an unknown nonzero scale c.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "Q9-M1"
+        },
+        {
+          "text": "Substitute x=0 into the scaled factor form to determine c.",
+          "prompt": "Hint 2: Substitute x=0 into the scaled factor form to determine c.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "Q9-M2"
+        },
+        {
+          "text": "Verify both zeros and p(0) directly.",
+          "prompt": "Hint 3: Verify both zeros and p(0) directly.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "Q9-M3"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS50-Q9",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:9746a1402d801ca118c1bb25c54494b4385803e8063f5bedf139ef15644b0774"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "note": "Benchmark input requested and supplied by the Owner; not official exam/PYQ material and not represented as personally authored by the Owner."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "Zeros determine the factors only up to a nonzero scale; the value p(0) must be coordinated with that factor form to fix the scale."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "Writing (x+2)(x-3) from the zeros and assuming the leading scale is automatically correct without using p(0)."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt figure would be decorative or would disclose the learner-owned symbolic, theorem-selection, or domain decision; the exact symbolic givens are the faithful representation."
+        }
+      }
+    },
+    {
+      "id": "ISS50-Q10",
+      "original_identifier": "Q10",
+      "stem": "For $g_a(x)=(a-1)x^2+2(a-1)x+(a-1)$, determine when it is the zero polynomial and determine its degree otherwise. Use the convention that the zero polynomial has no defined degree. Assess whether an arbitrarily large number of zeros in the exceptional case contradicts the usual degree bound for a nonzero polynomial.",
+      "conditions": [
+        "a is real.",
+        "Use the convention that the zero polynomial has no defined degree.",
+        "Apply the usual degree bound only in its nonzero-polynomial scope."
+      ],
+      "options": [],
+      "subparts": [],
+      "figure_refs": [],
+      "answer": {
+        "summary": "g_a(x)=(a-1)(x+1)^2. If a=1, it is the zero polynomial; under the stated convention its degree is undefined and every real x is a zero. If a≠1, its degree is 2. This does not contradict the usual zero bound because that theorem applies to nonzero polynomials.",
+        "reasoning": [
+          "Factor the common parameter coefficient: g_a(x)=(a-1)(x+1)^2. All coefficients share a-1, so the factored form exposes simultaneous cancellation.",
+          "Branch on whether a-1 is zero before assigning degree. Degree uses the highest nonzero coefficient; if every coefficient vanishes, the stipulated zero-polynomial convention applies.",
+          "Assign degree 2 only in the a≠1 branch. There the x^2 coefficient a-1 is nonzero.",
+          "Check the nonzero-polynomial hypothesis before applying the root-count bound. A theorem does not contradict an object excluded by its hypothesis."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q10-M1",
+            "kind": "REPRESENT",
+            "action": "Factor the common parameter coefficient: g_a(x)=(a-1)(x+1)^2.",
+            "why_valid": "All coefficients share a-1, so the factored form exposes simultaneous cancellation.",
+            "inputs": [],
+            "output": "One scalar controls whether the polynomial is zero."
+          },
+          {
+            "id": "Q10-M2",
+            "kind": "DECIDE",
+            "action": "Branch on whether a-1 is zero before assigning degree.",
+            "why_valid": "Degree uses the highest nonzero coefficient; if every coefficient vanishes, the stipulated zero-polynomial convention applies.",
+            "inputs": [],
+            "output": "a=1 is exceptional; a≠1 is a nonzero quadratic."
+          },
+          {
+            "id": "Q10-M3",
+            "kind": "CONNECT",
+            "action": "Assign degree 2 only in the a≠1 branch.",
+            "why_valid": "There the x^2 coefficient a-1 is nonzero.",
+            "inputs": [],
+            "output": "Degree 2 for a≠1."
+          },
+          {
+            "id": "Q10-M4",
+            "kind": "VERIFY",
+            "action": "Check the nonzero-polynomial hypothesis before applying the root-count bound.",
+            "why_valid": "A theorem does not contradict an object excluded by its hypothesis.",
+            "inputs": [],
+            "output": "Infinitely many zeros at a=1 cause no contradiction."
+          }
+        ],
+        "crux_move_ref": "Q10-M2",
+        "check": "At a=2 the family is (x+1)^2, a nonzero quadratic; at a=1 it is 0 for every x, verifying both branches."
+      },
+      "primary_capability_ref": "CAP-MATH-POLY-EXCEPTIONS",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MATH-POLY-EXCEPTIONS",
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Look for a factor shared by every coefficient before naming a degree.",
+          "prompt": "Hint 1: Look for a factor shared by every coefficient before naming a degree.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "Q10-M1"
+        },
+        {
+          "text": "Rewrite the family as a parameter factor times a fixed polynomial.",
+          "prompt": "Hint 2: Rewrite the family as a parameter factor times a fixed polynomial.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "Q10-M2"
+        },
+        {
+          "text": "Solve the condition making that common factor zero and branch there.",
+          "prompt": "Hint 3: Solve the condition making that common factor zero and branch there.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "Q10-M3"
+        },
+        {
+          "text": "Apply the degree rule only after confirming a nonzero leading coefficient.",
+          "prompt": "Hint 4: Apply the degree rule only after confirming a nonzero leading coefficient.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "Q10-M4"
+        },
+        {
+          "text": "Before using the zero-count theorem, state and check its nonzero-polynomial hypothesis.",
+          "prompt": "Hint 5: Before using the zero-count theorem, state and check its nonzero-polynomial hypothesis.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "Q10-M4"
+        }
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "ISS50-Q10",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:fd5534d0351ff8d2652cb7eefaea754240a8aa4efce871809cdc6b60fcfcfe4d"
+        },
+        "grade9v3:provenance_class": "OWNER_SUPPLIED",
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "note": "Benchmark input requested and supplied by the Owner; not official exam/PYQ material and not represented as personally authored by the Owner."
+        },
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 7,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "The parameter can collapse every coefficient simultaneously, forcing an exceptional zero-polynomial branch with undefined degree and a root-bound theorem whose nonzero-polynomial hypothesis must be checked."
+          },
+          "expected_time_seconds": 300,
+          "common_wrong_route": "Reading x^2 and declaring degree 2 for every a, then treating the zero polynomial's infinitely many zeros as a contradiction of the nonzero-polynomial degree bound."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A pre-attempt figure would be decorative or would disclose the learner-owned symbolic, theorem-selection, or domain decision; the exact symbolic givens are the faithful representation."
+        }
+      }
+    }
+  ]
+}
