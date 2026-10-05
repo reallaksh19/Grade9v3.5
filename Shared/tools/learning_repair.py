@@ -64,8 +64,9 @@ def card(repair, question_id, role='CORE2', return_href=None):
         f'<p><strong>Fresh application:</strong> {e(repair["transfer"])}</p>'
         + (alignment_probe(prefix) if repair.get('interaction') == 'MODEL_SCOPE_PROBE' else '')
         +
+        '</div>'
         f'<a href="{e(href)}" data-g9-repair-link>{link}</a>'
-        '</div></section>'
+        '</section>'
     )
 
 def alignment_probe(prefix):

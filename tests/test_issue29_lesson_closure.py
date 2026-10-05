@@ -104,6 +104,14 @@ class LessonClosure(unittest.TestCase):
         self.assertTrue(marker)
         self.assertTrue(any(a['tag']=='template' for a in marker[0]['ancestors']))
         self.assertIn(sentinel,source)
+    def test_repair_navigation_does_not_require_a_second_attempt(self):
+        from Shared.tools import learning_repair
+        repair={key:'A bounded changed-case check.' for key in learning_repair.FIELDS}
+        for role in ('CORE1A','CORE2'):
+            tree=OwnedHTML(learning_repair.card(repair,'Q-TEST',role))
+            link=tree.with_attr('data-g9-repair-link')[0]
+            self.assertFalse(tree.under(link,'data-g9-probe-feedback'))
+            self.assertTrue(any(r['tag']=='div' and 'hidden' in r['attrs'] for r in tree.with_attr('data-g9-probe-feedback')))
     def test_authored_visual_review_rejects_foreign_question_and_source_resource(self):
         ctx=copy.deepcopy(self.ctx)
         q=ctx.selection_rows['core2'][0]

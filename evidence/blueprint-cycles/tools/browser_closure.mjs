@@ -29,7 +29,7 @@ try {
   const failures=[], checks=[];
   const context=await browser.newContext({viewport:{width:390,height:844}});
   const page=await context.newPage();
-  page.on('pageerror',e=>failures.push('page error: '+e.message));
+  page.on('pageerror',e=>{failures.push('page error: '+e.message);console.error('page error: '+e.message)});
   const url=base+`/evidence/blueprint-cycles/ISS${issue}/rendered/core2.html`;
   await page.goto(url);
   for(const q of bank.questions){
@@ -38,7 +38,7 @@ try {
    const visual=q.extensions['grade9v3:core2_visual_review'];
    if(visual){
     for(const ref of visual.authored_figure_refs){
-     if(!await a.locator(`figure[data-g9-figure="${ref}"]`).count())failures.push(q.id+': question-local visual absent');
+     if(!await a.locator(`figure[data-g9-representation="${ref}"]`).count())failures.push(q.id+': question-local visual absent');
     }
    }
    const gate=a.locator('details[data-requires-attempt]').first();
@@ -67,6 +67,7 @@ try {
     await diagnostic.locator('[data-g9-probe-compare]').click();
     if(!await feedback.isVisible())failures.push(q.id+': committed diagnostic did not show comparison');
     await diagnostic.locator('[data-g9-repair-link]').click();
+    await page.waitForLoadState('load');
     const clinic=page.locator(`[id="repair-${q.id}"]`);
     if(!await clinic.count())failures.push(q.id+': exact repair navigation failed');
     else{
