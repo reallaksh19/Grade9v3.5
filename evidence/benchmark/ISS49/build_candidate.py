@@ -214,12 +214,55 @@ def capabilities():
     return out
 
 def relations():
+    def rel(id_, expression, meaning, symbols, conditions, checks, limits, source=True):
+        return common_record(
+            id_,
+            source_refs=["SRC-NCERT-9-POLYNOMIALS"] if source else [],
+            expression=expression,
+            meaning=meaning,
+            symbols=symbols,
+            conditions=conditions,
+            derivation=[{
+                "id":f"{id_}-DERIVE-1","role":"DECLARE",
+                "action":"State the governing definition, identity or geometric relation.",
+                "why_valid":"This relation is used only under its stated conditions.",
+                "inputs":[expression],"output":meaning
+            }],
+            limits=limits,
+            checks=checks,
+            gate_relation_ref=None,
+        )
     return [
-      common_record("REL-MAT-POLY-FORM",source_refs=["SRC-NCERT-9-POLYNOMIALS"],expression="p(x)=a_n x^n+...+a_1 x+a_0",meaning="A one-variable real-coefficient polynomial is a finite sum whose variable exponents are non-negative integers; missing powers have coefficient zero.",symbols=[{"symbol":"a_k","meaning":"real coefficient of x^k","unit_or_domain":"real number"},{"symbol":"k","meaning":"exponent index","unit_or_domain":"non-negative integer"}],conditions=["Only finitely many coefficients are non-zero.","The highest non-zero exponent is the degree for a non-zero polynomial."],limits=["The zero polynomial needs a separate degree convention and is not required by the supplied questions."],checks=["Reconstruct the expression from its coefficient slots."],gate_relation_ref=None),
-      common_record("REL-MAT-DISTRIBUTIVE",source_refs=["SRC-NCERT-9-POLYNOMIALS"],expression="a(b+c)=ab+ac",meaning="Multiplication distributes over addition; applying it repeatedly expands polynomial products.",symbols=[{"symbol":"a,b,c","meaning":"real expressions","unit_or_domain":"real algebraic quantities"}],conditions=["Ordinary real-number algebra applies."],limits=[],checks=["Factor the expanded expression or substitute a simple value."],gate_relation_ref=None),
-      common_record("REL-MAT-DIFF-SQUARES",source_refs=["SRC-NCERT-9-POLYNOMIALS"],expression="a^2-b^2=(a-b)(a+b)",meaning="Conjugate factors expand with cancelling cross terms.",symbols=[{"symbol":"a,b","meaning":"real expressions","unit_or_domain":"real algebraic quantities"}],conditions=["The expression is a difference of two squares."],limits=["A sum of squares does not factor by this real identity."],checks=["Multiply the factors to recover the original difference."],gate_relation_ref=None),
-      common_record("REL-MAT-RECT-AREA",expression="A=L×W",meaning="Rectangle area is the product of perpendicular side lengths.",symbols=[{"symbol":"A","meaning":"area","unit_or_domain":"square length unit"},{"symbol":"L,W","meaning":"side lengths","unit_or_domain":"length"}],conditions=["L and W are the rectangle's perpendicular side lengths."],limits=[],checks=["At a permitted simple input, compare with direct numeric length×width."],gate_relation_ref=None),
-      common_record("REL-MAT-POLY-ZERO",source_refs=["SRC-NCERT-9-POLYNOMIALS"],expression="r is a zero of p iff p(r)=0",meaning="A specified zero is a substitution condition on the polynomial.",symbols=[{"symbol":"r","meaning":"specified zero","unit_or_domain":"real number"},{"symbol":"p","meaning":"polynomial","unit_or_domain":"real-coefficient polynomial"}],conditions=["r is in the polynomial's real input domain."],limits=[],checks=["Substitute r into the constructed polynomial."],gate_relation_ref=None),
+      rel("REL-MAT-POLY-FORM","p(x)=a_n x^n+...+a_1 x+a_0",
+          "A one-variable real-coefficient polynomial is a finite sum whose variable exponents are non-negative integers; missing powers have coefficient zero.",
+          [{"symbol":"a_k","meaning":"real coefficient of x^k","unit_or_domain":"real number"},{"symbol":"k","meaning":"exponent index","unit_or_domain":"non-negative integer"}],
+          ["Only finitely many coefficients are non-zero.","The highest non-zero exponent is the degree for a non-zero polynomial."],
+          ["Reconstruct the expression from its coefficient slots."],
+          ["The zero polynomial needs a separate degree convention and is not required by the supplied questions."]),
+      rel("REL-MAT-DISTRIBUTIVE","a(b+c)=ab+ac",
+          "Multiplication distributes over addition; applying it repeatedly expands polynomial products.",
+          [{"symbol":"a,b,c","meaning":"real expressions","unit_or_domain":"real algebraic quantities"}],
+          ["Ordinary real-number algebra applies."],
+          ["Factor the expanded expression or substitute a simple value."],
+          ["The identity preserves equality but does not by itself justify combining unlike powers."]),
+      rel("REL-MAT-DIFF-SQUARES","a^2-b^2=(a-b)(a+b)",
+          "Conjugate factors expand with cancelling cross terms.",
+          [{"symbol":"a,b","meaning":"real expressions","unit_or_domain":"real algebraic quantities"}],
+          ["The expression is a difference of two squares."],
+          ["Multiply the factors to recover the original difference."],
+          ["A sum of squares does not factor by this real identity."]),
+      rel("REL-MAT-RECT-AREA","A=L×W",
+          "Rectangle area is the product of perpendicular side lengths.",
+          [{"symbol":"A","meaning":"area","unit_or_domain":"square length unit"},{"symbol":"L,W","meaning":"side lengths","unit_or_domain":"length"}],
+          ["L and W are the rectangle's perpendicular side lengths."],
+          ["At a permitted simple input, compare with direct numeric length×width."],
+          ["This relation models area, not perimeter or a one-dimensional length."],source=False),
+      rel("REL-MAT-POLY-ZERO","r is a zero of p iff p(r)=0",
+          "A specified zero is a substitution condition on the polynomial.",
+          [{"symbol":"r","meaning":"specified zero","unit_or_domain":"real number"},{"symbol":"p","meaning":"polynomial","unit_or_domain":"real-coefficient polynomial"}],
+          ["r is in the polynomial's real input domain."],
+          ["Substitute r into the constructed polynomial."],
+          ["The relation identifies zeros; uniqueness of a constructed polynomial needs any additional coefficient constraints too."]),
     ]
 
 def svg_for(rep):
