@@ -142,6 +142,31 @@ jobs:
           git rev-parse HEAD > evidence/benchmark/ISS49/runtime/tested-head.txt
           printf '%s\n' "$GITHUB_RUN_ID" > evidence/benchmark/ISS49/runtime/workflow-run-id.txt
 
+      - name: Preserve deterministic candidate bytes in branch
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            evidence/benchmark/ISS49/assets \
+            evidence/benchmark/ISS49/inputs \
+            evidence/benchmark/ISS49/qrt-review.json \
+            evidence/benchmark/ISS49/question-ledger.json \
+            evidence/benchmark/ISS49/source-cards.json \
+            evidence/benchmark/ISS49/hardest-target.json \
+            evidence/benchmark/ISS49/custody-receipt.json \
+            evidence/benchmark/ISS49/rendered \
+            evidence/benchmark/ISS49/runtime/quality-gate.json \
+            evidence/benchmark/ISS49/runtime/browser-audit.json
+          if ! git diff --cached --quiet; then
+            git commit -m "test(iss49): preserve governed candidate evidence"
+            git push origin HEAD:feat/iss49-polynomial-stress-d1
+          else
+            echo "deterministic candidate evidence already current"
+          fi
+
       - uses: actions/upload-artifact@v4
         if: always()
         with:
