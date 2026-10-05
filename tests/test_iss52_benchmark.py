@@ -105,7 +105,7 @@ class ISS52PolynomialBenchmark(unittest.TestCase):
         self.assertEqual(toughest["question_ref"], "ISS52-Q4")
         self.assertEqual(toughest["microtopic_ref"], "MIC-MATH-ISS52-PARAMETER")
         q10 = next(q for q in self.bank["questions"] if q["id"] == "ISS52-Q10")
-        self.assertIn("degree 1 at t=1", q10["answer"]["summary"])
+        self.assertIn("degree 2 at t=1", q10["answer"]["summary"])
 
 
     def test_emit_exact_render_payload_for_freeze(self):
