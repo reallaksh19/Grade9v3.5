@@ -1,4 +1,5 @@
 """Reconcile measured checks without converting them into academic acceptance."""
+import os
 import hashlib
 import json
 import subprocess
@@ -11,7 +12,7 @@ from Shared.tools.render_core import pdf_publication_problems
 from pypdf import PdfReader
 
 BASE = ROOT / 'evidence/blueprint-cycles'
-OUT = BASE / 'closure-20261005'
+OUT = ROOT / os.environ.get('G9_REVIEW_DIR','evidence/blueprint-cycles/closure-20261005')
 def read(p): return json.loads(p.read_text(encoding='utf-8-sig'))
 def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
 
@@ -84,7 +85,7 @@ report = {
     'schema': 'issue29-final-assurance/v1',
     'production_basis': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
     'mechanical_status': 'PASS' if not failures else 'FAIL', 'failures': failures,
-    'registry': '1.12.0', 'core1a_blueprint': '1.6.0', 'core2_blueprint': '1.7.0',
+    'registry': read(ROOT/'Shared/web/interactive-page-blueprints.v1.json')['registry_version'], 'core1a_blueprint': next(b['version'] for b in read(ROOT/'Shared/web/interactive-page-blueprints.v1.json')['blueprints'] if 'CORE1A' in b['core_roles']), 'core2_blueprint': next(b['version'] for b in read(ROOT/'Shared/web/interactive-page-blueprints.v1.json')['blueprints'] if 'CORE2' in b['core_roles']),
     'original_question_instances': 80, 'distinct_owner_questions': 40,
     'exact_review_facets': facet_count, 'independent_facets_accepted': 0,
     'original_instantiated_cells': 20, 'supplement_candidates': 8,
@@ -97,11 +98,11 @@ report = {
                    'seed_basis': seed['basis_head'], 'seed_summary': seed['tests_summary'],
                    'introduced_failure_ids': added,
                    'seed_failure_ids_absent': sorted(set(seed['failures']) - set(full['failures'])),
-                   'note': 'The full suite covers all functional changes. The subsequent neutral wording and assertion delta is separately checked at production_basis; browser renders also cover that basis. Absent failure IDs include reconciled contract/version expectations and are not all independent bug fixes.'},
+                   'note': 'The full suite covers d8262dc. The subsequent afdb585 repair-link placement and its regression are separately checked by the focused run and all-80 click-through browser observations. Review/report helpers added afterward confer no academic acceptance. Absent failure IDs include reconciled contract/version expectations and are not all independent bug fixes.'},
     'final_focused': {'basis': focused['basis_head'], 'summary': focused['tests_summary'], 'exit_code': focused['exit_code']},
     'frozen_submissions': 'ALL_EIGHT_UNCHANGED',
     'academic_verdict': 'REQUIRES_INDEPENDENT_REVIEW',
-    'subject_limitations': ['Mathematics: six GATE_RELATION_UNKNOWN findings remain; derived source records are SOURCE_UNVERIFIED; original invalid publication/canonical claims are not inherited.',
+    'subject_limitations': ['Mathematics: six missing gate bindings and false author rule boundaries repaired; current authority check passes. Derived source records remain SOURCE_UNVERIFIED; original invalid publication/canonical claims are quarantined in the derived copy.',
                             'Physics: bounded toy scope probe demonstrates shared component behavior, not a law of friction or molecular energy.'],
     'static_gate_verdict': 'FAIL_RENDERED_RULES_NOT_MEASURED_UNCHANGED_NOT_REINTERPRETED',
     'golden': False, 'responsibility_complete': False,

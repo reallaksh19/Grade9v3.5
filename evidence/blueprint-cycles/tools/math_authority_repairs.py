@@ -39,7 +39,8 @@ for rid,fields in changes.items():
     # The old evidence mapping must not silently certify corrected statements.
     old=ext.pop('grade9v3:citations',None)
     if old:ext['grade9v3:academic_revision']['previous_citations']=old
-    ext['grade9v3:academic_revision']['basis']='OpenStax Elementary Algebra 2e sections 2.4 and 4.1, with the explicit algebraic counterexamples in the R4 review report.'
+    ext['grade9v3:academic_revision']['basis']='R4 '+rid+': '+r['meaning']
+    ext['grade9v3:academic_revision']['review_report_ref']='mathematics-proof-review.json'
 exact=relations['REL-MATH-EXACTNESS']
 exact['derivation'][1].update(action='Substitute a decimal value different from the exact solution and subtract the two sides.',why_valid='The residual a*(approximation - exact solution) is nonzero when a and the difference are nonzero.',output='A non-zero difference only when the candidate value has changed.')
 r=relations[prefix+'04-TWO-VARIABLE-FORM']
@@ -70,6 +71,7 @@ newgate.update(gate_id='MATH-EQ-CANDIDATE-EXTENDED-RELATIONS',title='Declared-do
 registry['gates']=[a for a in registry['gates'] if a['gate_id']!=newgate['gate_id']]+[newgate]
 registry['provenance']['scope']='Candidate one-variable rational equality gates and explicitly real-plane two-variable relations. No independent acceptance or full Mathematics coverage.'
 library['version']='0.2.0'
+library['extensions']['grade9v3:academic_review_report']='evidence/blueprint-cycles/closure-r4-20261005/mathematics-proof-review.json'
 for m in library['microtopics']:
     for step in m.get('teaching_path',[]):
         if step.get('action')=='Write the equation in the form ax + by + c = 0 and check that a and b are both non-zero.':

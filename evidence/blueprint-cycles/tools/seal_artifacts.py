@@ -1,4 +1,5 @@
 """Seal/verify Git index bytes without rewriting browser-observed artifacts."""
+import os
 import argparse
 import hashlib
 import json
@@ -60,12 +61,14 @@ for name in sorted(names):
     rows.append({'path': name, 'bytes': len(data),
                  'git_blob_sha': hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest(),
                  'sha256': hashlib.sha256(data).hexdigest()})
+review_dir=os.environ.get('G9_REVIEW_DIR','evidence/blueprint-cycles/closure-20261005')
+assurance=json.loads((ROOT/review_dir/'final-assurance.json').read_text())
 manifest = {'schema': 'correction-artifact-manifest/v1', 'excludes_self': True,
-            'tested_basis': '6dd20aa33c65f48315175e8ff360c339b204da16',
-            'full_suite_basis': '37e5e3ea3b0e8b68d59f18c5fa691f095fcf4936',
+            'tested_basis': assurance['production_basis'],
+            'full_suite_basis': assurance['full_suite']['basis'],
             'historical_basis': '46e91c9ec4285e14ca0db469eda281ff31df596a',
             'byte_policy': 'EXACT_PUBLISHED_GIT_BLOB_BYTES',
-            'evidence_scope': 'See closure-20261005/final-assurance.json; mechanical checks are not academic acceptance.',
+            'evidence_scope': 'See '+review_dir+'/final-assurance.json; mechanical checks are not academic acceptance.',
             'files': rows}
 (ROOT / NAME).write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8', newline='\n')
 print(json.dumps({'sealed_index_files': len(rows), 'bytes': sum(r['bytes'] for r in rows), 'excludes_self': True}))
