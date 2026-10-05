@@ -1,0 +1,174 @@
+name: issue51-polynomial-stress-cold-run
+
+on:
+  push:
+    branches:
+      - agent/iss51-polynomial-stress-v1-d3
+    paths:
+      - "evidence/benchmark/ISS51/**"
+      - "agents/ISS51_workreport.md"
+      - ".github/workflows/issue51-polynomial-stress-cold-run.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cold-run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install run dependencies
+        run: |
+          pip install --quiet jsonschema pypdf
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Verify frozen A/B/C bytes
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          from pathlib import Path
+          path=Path("evidence/benchmark/ISS51/owner-core-prompt.md")
+          got=hashlib.sha256(path.read_bytes()).hexdigest()
+          want="b1a2b54b267d765e9f8665787f292c78b61c49a5b306987aa00d6e6440d66fd5"
+          print("owner-core-prompt sha256:",got)
+          if got != want:
+              raise SystemExit(f"frozen input mismatch: {got} != {want}")
+          PY
+
+      - name: Compile candidate utilities
+        run: |
+          python3 -m py_compile             evidence/benchmark/ISS51/build_candidate.py             evidence/benchmark/ISS51/inspect_render.py             evidence/benchmark/ISS51/finalize_run.py
+
+      - name: Materialize governed records
+        run: PYTHONPATH=. python3 evidence/benchmark/ISS51/build_candidate.py
+
+      - name: Validate custody and package schema
+        run: |
+          python3 Shared/tools/owner_bank.py check             evidence/benchmark/ISS51/generated/owner.bank.json             --intake evidence/benchmark/ISS51/generated/intake.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          schema=json.loads(Path("Shared/library/package.schema.json").read_text(encoding="utf-8"))
+          package=json.loads(Path("evidence/benchmark/ISS51/generated/package.v1.json").read_text(encoding="utf-8"))
+          Draft202012Validator(schema).validate(package)
+          print("package schema: PASS")
+          PY
+
+      - name: Strict canonical render
+        run: |
+          rm -rf /tmp/iss51-site
+          mkdir -p /tmp/iss51-site/products/mathematics/iss51-polynomials /tmp/iss51-site/css /tmp/iss51-site/js
+          python3 Shared/tools/render_core.py build             --manifest evidence/benchmark/ISS51/generated/product.manifest.json             --out /tmp/iss51-site/products/mathematics/iss51-polynomials             --mode PAGES
+          test -f /tmp/iss51-site/products/mathematics/iss51-polynomials/core1a.html
+          test -f /tmp/iss51-site/products/mathematics/iss51-polynomials/core2.html
+          test ! -f /tmp/iss51-site/products/mathematics/iss51-polynomials/core1b.html
+          test ! -f /tmp/iss51-site/products/mathematics/iss51-polynomials/core2a.html
+          test ! -f /tmp/iss51-site/products/mathematics/iss51-polynomials/core2b.html
+          cp public/css/tablet-12-7.css public/css/modern-learner.css /tmp/iss51-site/css/
+          cp public/js/display-controls.js public/js/site-header.js /tmp/iss51-site/js/
+
+      - name: Inspect semantics and protected outcomes
+        run: |
+          python3 evidence/benchmark/ISS51/inspect_render.py             /tmp/iss51-site/products/mathematics/iss51-polynomials
+
+      - name: Learner quality report
+        run: |
+          python3 Shared/tools/quality_gate.py \
+            /tmp/iss51-site/products/mathematics/iss51-polynomials \
+            --subject Mathematics \
+            --product-id EVIDENCE-MAT-ISS51-POLY \
+            --report /tmp/iss51-site/products/mathematics/iss51-polynomials/quality-gate.json
+
+      - name: Classify shared Core1A layout authority mismatch
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          product=Path("/tmp/iss51-site/products/mathematics/iss51-polynomials")
+          report=json.loads((product/"quality-gate.json").read_text(encoding="utf-8"))
+          registry=json.loads(Path("Shared/web/interactive-page-blueprints.v1.json").read_text(encoding="utf-8"))
+          core1a=next(bp for bp in registry["blueprints"] if "CORE1A" in bp["core_roles"])
+          policy=core1a["responsive_policy"]
+          renderer=Path("Shared/tools/render_core.py").read_text(encoding="utf-8")
+          exact={"rule":"PAGE-STAGE-SUPPORT","severity":"S2","where":"core1a.html","detail":"stage support layout absent"}
+          if report["verdict"] == "PASS":
+              status="RESOLVED"
+          else:
+              if report.get("fail_reasons") != ["BLOCKING_FINDINGS"] or report.get("continuity"):
+                  raise SystemExit(f"unexpected quality failure shape: {report}")
+              if report.get("findings") != [exact]:
+                  raise SystemExit(f"unexpected quality findings: {report.get('findings')}")
+              if policy.get("expanded") != "SINGLE_PANE" or policy.get("primary_fraction") != 0.6 or policy.get("support_fraction") != 0.4:
+                  raise SystemExit(f"Core1A blueprint changed unexpectedly: {policy}")
+              marker='if rp.get("expanded") != "STAGE_SUPPORT" or not rp.get("support_fraction"):'
+              if marker not in renderer:
+                  raise SystemExit("renderer layout policy changed unexpectedly")
+              status="INHERITED_AUTHORITY_MISMATCH"
+          evidence={
+            "schema":"iss51-layout-authority-mismatch/v1",
+            "status":status,
+            "quality_gate_verdict":report["verdict"],
+            "quality_findings":report.get("findings",[]),
+            "core1a_blueprint":{"id":core1a["id"],"version":core1a["version"],"expanded":policy.get("expanded"),
+              "primary_fraction":policy.get("primary_fraction"),"support_fraction":policy.get("support_fraction"),
+              "expanded_min_px":policy.get("expanded_min_px")},
+            "renderer_policy":"layout_css emits split columns only when responsive_policy.expanded == STAGE_SUPPORT",
+            "quality_contract_rule":"PAGE-STAGE-SUPPORT applies to CORE1A and requires rendered stage_support_layout",
+            "classification":"Shared pinned blueprint/renderer/auditor authority mismatch; candidate records do not control this layout."
+          }
+          (product/"layout-authority-mismatch.json").write_text(json.dumps(evidence,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(evidence,indent=2))
+          PY
+
+      - name: Tablet 12.7 browser audit
+        run: |
+          node tools/site-audit/core-page-audit.mjs             /tmp/iss51-site/products/mathematics/iss51-polynomials             --profile tablet-12.7             --http-root /tmp/iss51-site             --json /tmp/iss51-site/products/mathematics/iss51-polynomials/tablet-audit.json
+
+      - name: Preserve exact render and reports
+        run: |
+          mkdir -p evidence/benchmark/ISS51/rendered evidence/benchmark/ISS51/reports
+          cp /tmp/iss51-site/products/mathematics/iss51-polynomials/core1a.html evidence/benchmark/ISS51/rendered/core1a.html
+          cp /tmp/iss51-site/products/mathematics/iss51-polynomials/core2.html evidence/benchmark/ISS51/rendered/core2.html
+          cp /tmp/iss51-site/products/mathematics/iss51-polynomials/quality-gate.json evidence/benchmark/ISS51/reports/quality-gate.json
+          cp /tmp/iss51-site/products/mathematics/iss51-polynomials/tablet-audit.json evidence/benchmark/ISS51/reports/tablet-audit.json
+          cp /tmp/iss51-site/products/mathematics/iss51-polynomials/semantic-inspection.json evidence/benchmark/ISS51/reports/semantic-inspection.json
+          cp /tmp/iss51-site/products/mathematics/iss51-polynomials/layout-authority-mismatch.json evidence/benchmark/ISS51/reports/layout-authority-mismatch.json
+          python3 evidence/benchmark/ISS51/finalize_run.py             /tmp/iss51-site/products/mathematics/iss51-polynomials
+
+      - name: Commit exact candidate evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evidence/benchmark/ISS51
+          if ! git diff --cached --quiet; then
+            git commit -m "test(iss51): preserve governed polynomial render [skip ci]"
+            git push origin HEAD:agent/iss51-polynomial-stress-v1-d3
+          else
+            echo "exact candidate bytes already current"
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: iss51-polynomial-stress-cold-run
+          path: |
+            /tmp/iss51-site/products/mathematics/iss51-polynomials
+            evidence/benchmark/ISS51/generated
+            evidence/benchmark/ISS51/rendered
+            evidence/benchmark/ISS51/reports
+          if-no-files-found: warn
+          retention-days: 14
