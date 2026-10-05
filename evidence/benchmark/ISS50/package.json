@@ -1,0 +1,1251 @@
+{
+  "schema_version": "0.2.0",
+  "package_id": "LIB-MATH-G9-POLYNOMIALS-ISS50",
+  "title": "Grade 9 Polynomials — Issue 50 Candidate",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Mathematics",
+  "scope_summary": "Candidate concept-learning spine for the ten fixed Issue #50 polynomial questions, preserving source wording while teaching parameter-sensitive degree, factor/remainder reasoning, modelling/representation and original-domain preservation.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-ISS50-OWNER",
+      "version": "1.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Issue #50 owner task input",
+      "origin": "WEB",
+      "locator": "https://github.com/reallaksh19/Grade9v3.5/issues/50",
+      "edition": "2026-10-05 checked",
+      "section": "Relevant section",
+      "last_checked": "2026-10-05",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "Publicly accessible source; only short factual support is recorded.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK"
+      ],
+      "supports_claims": [
+        "Exact Q1-Q10 wording",
+        "Simulated learner preset",
+        "Benchmark provenance"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Supports the stated mathematical/curriculum claim without supplying benchmark answers.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-NCERT-G9-POLY-STANDARDS",
+      "version": "1.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "NCERT Grade 9 Learning Standards — Mathematics",
+      "origin": "WEB",
+      "locator": "https://ncert.nic.in/pdf/announcement/Syllabus_Secondary_Stage_Phase_I_Grade_9_Part_2.pdf",
+      "edition": "2026-10-05 checked",
+      "section": "Relevant section",
+      "last_checked": "2026-10-05",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "Publicly accessible source; only short factual support is recorded.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "CURRICULUM"
+      ],
+      "supports_claims": [
+        "Grade 9 C-3.1 includes remainder theorem, factor theorem and division algorithm."
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Supports the stated mathematical/curriculum claim without supplying benchmark answers.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-NCERT-G9-POLYNOMIALS",
+      "version": "1.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "NCERT Ganita Manjari Grade 9 Part I — Polynomials",
+      "origin": "WEB",
+      "locator": "https://ncert.nic.in/textbook/pdf/iemh102.pdf",
+      "edition": "2026-10-05 checked",
+      "section": "Relevant section",
+      "last_checked": "2026-10-05",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "Publicly accessible source; only short factual support is recorded.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "CURRICULUM",
+        "EXPLANATION"
+      ],
+      "supports_claims": [
+        "One-variable polynomial terminology",
+        "Degree is determined by the highest nonzero-power term",
+        "Zeros and factor relationships."
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Supports the stated mathematical/curriculum claim without supplying benchmark answers.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-OPENSTAX-POLY-ZEROS",
+      "version": "1.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "OpenStax Precalculus 2e — Zeros of Polynomial Functions",
+      "origin": "WEB",
+      "locator": "https://openstax.org/books/precalculus-2e/pages/3-6-zeros-of-polynomial-functions",
+      "edition": "2026-10-05 checked",
+      "section": "Relevant section",
+      "last_checked": "2026-10-05",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "Publicly accessible source; only short factual support is recorded.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "SCIENTIFIC_CHECK",
+        "EXPLANATION"
+      ],
+      "supports_claims": [
+        "Division algorithm derivation of the Remainder Theorem",
+        "Factor Theorem connection between zeros and linear factors."
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Supports the stated mathematical/curriculum claim without supplying benchmark answers.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-MATH-G9-POLYNOMIALS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-G9-POLYNOMIALS",
+        "SRC-NCERT-G9-POLY-STANDARDS"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomials in One Variable",
+      "topic": "Grade 9 Mathematics — Polynomials",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Most algebra is elementary, but parameter cancellation, theorem conditions, representation translation and domain preservation create connected and exception-sensitive reasoning.",
+      "depth_overlay": "EXAM",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [],
+      "conventions": [
+        {
+          "id": "CONV-ZERO-DEGREE",
+          "statement": "For this benchmark, the zero polynomial has no defined degree, exactly as stipulated in Q10."
+        },
+        {
+          "id": "CONV-DOMAIN-PRESERVATION",
+          "statement": "Cancelling a factor preserves values only where the cancelled factor is nonzero; it does not add an input excluded from the original expression."
+        }
+      ],
+      "scope": {
+        "covers": "Grade 9 real-coefficient polynomials in one variable, factor/remainder reasoning, zeros, degree, modelling, graph/table representation, identities and exceptional parameter cases.",
+        "excluded": [
+          "Complex-number root counting",
+          "Calculus",
+          "Abstract field theory"
+        ],
+        "extension_refs": []
+      },
+      "primary_representation_ref": "REP-MATH-POLY-PARAMETER-BRANCH"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-MATH-POLY-EXCEPTIONS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS50-OWNER"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Classify degree and theorem applicability when a parameter can cancel leading or all coefficients.",
+      "success_criterion": "Branches on coefficient-zero cases before assigning degree and separates the zero polynomial from nonzero degree-bound claims.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-POLY-THEOREMS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS50-OWNER"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Coordinate evaluation, factorisation, zeros, factor/remainder theorems and algebraic identity warrants.",
+      "success_criterion": "Selects the appropriate theorem or factor form, states why it applies and checks the result by an independent operation.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-POLY-REP-DOMAIN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS50-OWNER"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Translate polynomial situations among area, table/graph and simplified-expression representations while preserving constraints and domains.",
+      "success_criterion": "Builds the requested representation without changing meaning and retains original domain restrictions through simplification.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-MATH-POLY-EXCEPTIONS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-G9-POLYNOMIALS",
+        "SRC-ISS50-OWNER"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:component_waivers": {
+          "EQUATIONS": "The pinned Mathematics gate registry has no polynomial relation family. This candidate teaches source-backed definitions/theorems in construction text rather than inventing a gate-owned relation record."
+        },
+        "grade9v3:lesson_anchors": {
+          "CU-MATH-POLY-EXCEPTION": {
+            "id": "ANCHOR-MATH-POLY-EXCEPTION",
+            "target_question_ref": "ISS50-Q10",
+            "target_crux_move_ref": "Q10-M2",
+            "construction_ref": "CU-MATH-POLY-EXCEPTION",
+            "stem": "For h_t(x)=(t+2)(x-4)^2, determine when h_t is the zero polynomial and determine its degree otherwise, using the same zero-polynomial convention.",
+            "answer": {
+              "summary": "If t=-2, h_t is the zero polynomial and its degree is undefined under the convention. If t≠-2, h_t has degree 2.",
+              "check": "Test t=-2 to get 0 for every x and t=0 to get 2(x-4)^2.",
+              "reasoning_route": [
+                {
+                  "id": "AEX-1",
+                  "kind": "REPRESENT",
+                  "action": "Keep the scalar t+2 visibly factored from (x-4)^2.",
+                  "why_valid": "The scalar controls all coefficients at once.",
+                  "inputs": [],
+                  "output": "One coefficient branch controls zero versus nonzero polynomial."
+                },
+                {
+                  "id": "AEX-2",
+                  "kind": "DECIDE",
+                  "action": "Branch on t+2=0 before assigning degree.",
+                  "why_valid": "Degree depends on the highest nonzero coefficient, so the all-zero case must be separated first.",
+                  "inputs": [],
+                  "output": "t=-2 is exceptional; t≠-2 is nonzero."
+                },
+                {
+                  "id": "AEX-3",
+                  "kind": "VERIFY",
+                  "action": "Substitute one value from each branch.",
+                  "why_valid": "Direct substitution checks both cases.",
+                  "inputs": [],
+                  "output": "Zero polynomial versus degree-2 polynomial."
+                }
+              ]
+            }
+          }
+        }
+      },
+      "title": "Parameter Cancellation, Degree and the Zero-Polynomial Boundary",
+      "bucket_id": "BUCKET-MATH-G9-POLYNOMIALS",
+      "primary_capability_ref": "CAP-MATH-POLY-EXCEPTIONS",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "A parameter can remove a leading term or all terms, so degree and zero-count theorems must be applied only after classifying the coefficient branch.",
+      "entry_assumptions": [
+        "Can collect polynomial terms and identify degree in a simple nonzero polynomial.",
+        "Can substitute a real parameter value into coefficients."
+      ],
+      "inferential_jump": "Do not assign degree from printed exponents first. Check whether the parameter makes the relevant coefficient zero, and treat the all-zero case separately before using a theorem whose hypothesis says nonzero polynomial.",
+      "teaching_path": [
+        {
+          "id": "EX-1",
+          "role": "REPRESENT",
+          "action": "Factor or isolate the parameter-dependent coefficient shared by the leading term or all terms.",
+          "why_valid": "Degree is defined from nonzero coefficients, so parameter-controlled cancellation is the first structural question.",
+          "inputs": [],
+          "output": "The controlling coefficient is visible."
+        },
+        {
+          "id": "EX-2",
+          "role": "TRANSFORM",
+          "action": "Solve when the controlling coefficient is zero and split exceptional from ordinary parameter values.",
+          "why_valid": "The same printed family can represent polynomials of different degree when a coefficient vanishes.",
+          "inputs": [],
+          "output": "Separate parameter branches."
+        },
+        {
+          "id": "EX-3",
+          "role": "DECLARE",
+          "action": "Assign degree only after the branch is known to be nonzero.",
+          "why_valid": "A leading power contributes to degree only when its coefficient is nonzero; the task stipulates undefined degree for the zero polynomial.",
+          "inputs": [],
+          "output": "A valid degree statement or zero-polynomial exception."
+        },
+        {
+          "id": "EX-4",
+          "role": "VERIFY",
+          "action": "Before using a degree-based zero bound, check its nonzero-polynomial hypothesis.",
+          "why_valid": "A theorem cannot contradict an object excluded by its hypothesis.",
+          "inputs": [],
+          "output": "The zero-count statement is scoped to the nonzero branch."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [
+        "REP-MATH-POLY-PARAMETER-BRANCH"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-POLY-EXCEPTIONS"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "The highest printed exponent determines degree even when its coefficient is zero, and the root bound applies to the zero polynomial.",
+          "diagnostic_prompt": "For h_b(x)=b(x-2)^2, what changes at b=0 before you count zeros?",
+          "repair": "Branch on b=0 first. Only a nonzero leading coefficient supports degree 2 and the nonzero-polynomial zero bound."
+        }
+      ],
+      "exit_task": {
+        "prompt": "For m_c(x)=(c-5)x^3+(c-5), classify the zero-polynomial case and the degree otherwise.",
+        "source_ref": "SRC-ISS50-OWNER",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "At c=5 the polynomial is zero with undefined degree under the benchmark convention; for c≠5 it has degree 3.",
+          "reasoning": [
+            "Factor c-5: m_c(x)=(c-5)(x^3+1).",
+            "At c=5 every coefficient vanishes.",
+            "For c≠5 the x^3 coefficient is nonzero."
+          ],
+          "check": "Check c=5 and c=6 directly.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Parameter branch classification rather than a single computed value."
+        }
+      },
+      "research_contribution": "Candidate teaching authored for Issue #50; no observed learner mastery or golden status is claimed.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "construction_units": [
+        {
+          "id": "CU-MATH-POLY-EXCEPTION",
+          "decision": "Branch on coefficient collapse before assigning degree or invoking a zero bound.",
+          "step_refs": [
+            "EX-1",
+            "EX-2",
+            "EX-3",
+            "EX-4"
+          ],
+          "crux_step_ref": "EX-2",
+          "crux_question_refs": [
+            "ISS50-Q10"
+          ],
+          "representation_ref": "REP-MATH-POLY-PARAMETER-BRANCH",
+          "reveal_stage_refs": [
+            "param-1",
+            "param-2",
+            "param-3",
+            "param-4"
+          ],
+          "misconception_indexes": [
+            0
+          ],
+          "relation_refs": [],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Substitute the exceptional parameter into every coefficient and verify each becomes zero.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "role": "APPLY",
+              "statement": "Change the scalar to b+1 in (b+1)(x-2)^2 and classify b=-1 versus b=0 before reading degree.",
+              "check_type": "SPECIAL_CASE"
+            },
+            {
+              "role": "CONNECT",
+              "statement": "Before using a theorem, state its nonzero-polynomial hypothesis and identify which branch satisfies it.",
+              "check_type": "DOMAIN_CHECK"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MIC-MATH-POLY-THEOREMS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-G9-POLY-STANDARDS",
+        "SRC-OPENSTAX-POLY-ZEROS"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:component_waivers": {
+          "EQUATIONS": "The pinned Mathematics gate registry has no polynomial relation family. This candidate teaches source-backed definitions/theorems in construction text rather than inventing a gate-owned relation record."
+        },
+        "grade9v3:lesson_anchors": {
+          "CU-MATH-POLY-THEOREMS": {
+            "id": "ANCHOR-MATH-POLY-THEOREMS",
+            "target_question_ref": "ISS50-Q7",
+            "target_crux_move_ref": "Q7-M1",
+            "construction_ref": "CU-MATH-POLY-THEOREMS",
+            "stem": "For F(x)=x^3+t x^2-4x+2, find t so that x-2 is a factor, then state how you would verify the factorisation by a route different from the substitution that found t.",
+            "answer": {
+              "summary": "Use F(2)=0 to determine t, divide by x-2, then multiply the factor and quotient to verify every coefficient.",
+              "check": "Multiplication-back is independent of the factor-theorem substitution.",
+              "reasoning_route": [
+                {
+                  "id": "ATH-1",
+                  "kind": "CONNECT",
+                  "action": "Translate x-2 being a factor into F(2)=0.",
+                  "why_valid": "The Factor Theorem links x-c to the zero c.",
+                  "inputs": [],
+                  "output": "A linear equation for t."
+                },
+                {
+                  "id": "ATH-2",
+                  "kind": "TRANSFORM",
+                  "action": "Solve for t and divide by x-2.",
+                  "why_valid": "A zero remainder yields a polynomial quotient.",
+                  "inputs": [],
+                  "output": "Parameter and quotient."
+                },
+                {
+                  "id": "ATH-3",
+                  "kind": "VERIFY",
+                  "action": "Multiply the quotient by x-2.",
+                  "why_valid": "Multiplication-back checks every coefficient without repeating F(2)=0.",
+                  "inputs": [],
+                  "output": "Independent factorisation verification."
+                }
+              ]
+            }
+          }
+        }
+      },
+      "title": "Evaluation, Factors, Zeros and Algebraic Warrants",
+      "bucket_id": "BUCKET-MATH-G9-POLYNOMIALS",
+      "primary_capability_ref": "CAP-MATH-POLY-THEOREMS",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The algebra is elementary but theorem selection, scale and independent verification must be coordinated.",
+      "entry_assumptions": [
+        "Can substitute values into a polynomial.",
+        "Can expand elementary products and collect like terms."
+      ],
+      "inferential_jump": "For division by x-c, evaluating at c isolates the remainder; when that value is zero, x-c is a factor. Universal identities need an algebraic warrant, not a finite sample.",
+      "teaching_path": [
+        {
+          "id": "TH-1",
+          "role": "DECLARE",
+          "action": "Write p(x)=(x-c)q(x)+r for division by a linear divisor.",
+          "why_valid": "The division algorithm leaves a constant remainder because its degree is less than 1.",
+          "inputs": [],
+          "output": "A form in which evaluation at c isolates the remainder."
+        },
+        {
+          "id": "TH-2",
+          "role": "TRANSFORM",
+          "action": "Set x=c to obtain p(c)=r; when r=0, connect the zero to factor x-c.",
+          "why_valid": "The factor term vanishes exactly, establishing the Remainder Theorem and its Factor-Theorem case.",
+          "inputs": [],
+          "output": "Evaluation, remainder and factor information are coordinated."
+        },
+        {
+          "id": "TH-3",
+          "role": "VERIFY",
+          "action": "Use expansion, multiplication-back or exact substitution as an independent check.",
+          "why_valid": "A different operation can catch a coefficient or scale error that the original route misses.",
+          "inputs": [],
+          "output": "A non-circular verification."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [
+        "REP-MATH-POLY-THEOREM-FLOW"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-POLY-THEOREMS"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A successful sample proves an identity, or one factor condition certifies the whole factorisation.",
+          "diagnostic_prompt": "If two expressions agree at x=0, what additional warrant establishes equality for every real x?",
+          "repair": "A universal identity needs algebra valid for arbitrary x; a proposed factorisation should be expanded or multiplied back."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Let p(x)=x^3-3x+2. Without long division, find the remainder on division by x-1 and decide whether x-1 is a factor. Explain the link.",
+        "source_ref": "SRC-OPENSTAX-POLY-ZEROS",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "p(1)=0, so the remainder is 0 and x-1 is a factor.",
+          "reasoning": [
+            "For division by x-1, the remainder is p(1).",
+            "p(1)=1-3+2=0.",
+            "Zero remainder means x-1 divides p(x)."
+          ],
+          "check": "Expand p(x)=(x-1)^2(x+2) to verify.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The answer combines an exact zero with a theorem classification."
+        }
+      },
+      "research_contribution": "Candidate theorem teaching is source-backed; it does not establish a new subject gate.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "construction_units": [
+        {
+          "id": "CU-MATH-POLY-THEOREMS",
+          "decision": "Turn evaluation at c into remainder/factor information, then verify by a different operation.",
+          "step_refs": [
+            "TH-1",
+            "TH-2",
+            "TH-3"
+          ],
+          "crux_step_ref": "TH-2",
+          "crux_question_refs": [
+            "ISS50-Q7"
+          ],
+          "representation_ref": "REP-MATH-POLY-THEOREM-FLOW",
+          "reveal_stage_refs": [
+            "theorem-1",
+            "theorem-2",
+            "theorem-3"
+          ],
+          "misconception_indexes": [
+            0
+          ],
+          "relation_refs": [],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "After obtaining a factor and quotient, multiply them and compare every coefficient with the original polynomial.",
+              "check_type": "INVERSE_OPERATION"
+            },
+            {
+              "role": "APPLY",
+              "statement": "For p(x)=x^2-1, use p(1) to predict the remainder on division by x-1 before factoring.",
+              "check_type": "SPECIAL_CASE"
+            },
+            {
+              "role": "CONNECT",
+              "statement": "Explain why one counterexample can disprove an identity while agreeing sample points do not prove it.",
+              "check_type": "COUNTEREXAMPLE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MIC-MATH-POLY-REP-DOMAIN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-G9-POLYNOMIALS",
+        "SRC-ISS50-OWNER"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:component_waivers": {
+          "EQUATIONS": "The pinned Mathematics gate registry has no polynomial relation family. This candidate teaches source-backed definitions/theorems in construction text rather than inventing a gate-owned relation record."
+        },
+        "grade9v3:lesson_anchors": {
+          "CU-MATH-POLY-DOMAIN": {
+            "id": "ANCHOR-MATH-POLY-DOMAIN",
+            "target_question_ref": "ISS50-Q6",
+            "target_crux_move_ref": "Q6-M2",
+            "construction_ref": "CU-MATH-POLY-DOMAIN",
+            "stem": "Compare H(x)=(x^2-9)/(x-3) with K(x)=x+3. Simplify H where valid and decide whether H and K are the same real function.",
+            "answer": {
+              "summary": "H(x)=x+3 only for x≠3. H is undefined at 3 while K(3)=6, so they are not the same function on all real numbers.",
+              "check": "At x=4 both give 7; at x=3 only K is defined.",
+              "reasoning_route": [
+                {
+                  "id": "ADOM-1",
+                  "kind": "DECIDE",
+                  "action": "Record x≠3 before simplifying.",
+                  "why_valid": "The original denominator is zero at x=3.",
+                  "inputs": [],
+                  "output": "domain(H)=R\\{3}."
+                },
+                {
+                  "id": "ADOM-2",
+                  "kind": "TRANSFORM",
+                  "action": "Factor and cancel only for x≠3.",
+                  "why_valid": "Cancellation divides by x-3 and requires it to be nonzero.",
+                  "inputs": [],
+                  "output": "H(x)=x+3 on its original domain."
+                },
+                {
+                  "id": "ADOM-3",
+                  "kind": "VERIFY",
+                  "action": "Compare the excluded input with K.",
+                  "why_valid": "Function equality includes domain equality.",
+                  "inputs": [],
+                  "output": "H is undefined at 3 while K(3)=6."
+                }
+              ]
+            }
+          }
+        }
+      },
+      "title": "Modelling, Tables/Graphs and Domain-Preserving Simplification",
+      "bucket_id": "BUCKET-MATH-G9-POLYNOMIALS",
+      "primary_capability_ref": "CAP-MATH-POLY-REP-DOMAIN",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Meaning must survive movement among area, table/graph and algebraic forms, including the original domain after cancellation.",
+      "entry_assumptions": [
+        "Can multiply binomials and collect terms.",
+        "Can substitute inputs and read ordered pairs.",
+        "Can identify when a denominator is zero."
+      ],
+      "inferential_jump": "A changed representation must preserve the same mathematical object and constraints. Cancelling a factor can simplify a formula without enlarging the original function's domain.",
+      "teaching_path": [
+        {
+          "id": "RD-1",
+          "role": "REPRESENT",
+          "action": "Write down the invariant before translating: total area, input-output value or original allowed input set.",
+          "why_valid": "A representation is faithful only when the preserved meaning is explicit.",
+          "inputs": [],
+          "output": "A named invariant guides the translation."
+        },
+        {
+          "id": "RD-2",
+          "role": "TRANSFORM",
+          "action": "Carry out the algebraic or graphical translation while keeping the invariant visible.",
+          "why_valid": "Expansion, plotting and cancellation change appearance but not valid values under their conditions.",
+          "inputs": [],
+          "output": "A second representation of the same valid information."
+        },
+        {
+          "id": "RD-3",
+          "role": "VERIFY",
+          "action": "Translate back or test a boundary/special input.",
+          "why_valid": "A reverse or boundary check detects lost signs, areas, points or domain restrictions.",
+          "inputs": [],
+          "output": "The translation is checked independently."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [
+        "REP-MATH-POLY-DOMAIN-LEDGER"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-POLY-REP-DOMAIN"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Cancelling a common factor permanently removes the original denominator restriction.",
+          "diagnostic_prompt": "After simplifying (x^2-4)/(x-2) to x+2, what is the value of the original expression at x=2?",
+          "repair": "There is no original value at x=2. Record the domain first and keep it after cancellation."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Simplify s(x)=(x^2-16)/(x-4) where valid and compare it with t(x)=x+4 as real functions.",
+        "source_ref": "SRC-ISS50-OWNER",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "s(x)=x+4 for x≠4, but s and t are not the same function on all reals because s is undefined at 4 while t(4)=8.",
+          "reasoning": [
+            "The original denominator excludes x=4.",
+            "Factor and cancel only for x≠4.",
+            "Compare the domains after simplification."
+          ],
+          "check": "At x=5 both give 9; at x=4 only t is defined.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The main claim is a domain-sensitive function comparison."
+        }
+      },
+      "research_contribution": "Candidate representation/domain teaching authored for Issue #50; no learner diagnosis is inferred.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "construction_units": [
+        {
+          "id": "CU-MATH-POLY-DOMAIN",
+          "decision": "Preserve the invariant and the original domain while changing representation or simplifying.",
+          "step_refs": [
+            "RD-1",
+            "RD-2",
+            "RD-3"
+          ],
+          "crux_step_ref": "RD-2",
+          "crux_question_refs": [
+            "ISS50-Q6"
+          ],
+          "representation_ref": "REP-MATH-POLY-DOMAIN-LEDGER",
+          "reveal_stage_refs": [
+            "domain-1",
+            "domain-2",
+            "domain-3"
+          ],
+          "misconception_indexes": [
+            0
+          ],
+          "relation_refs": [],
+          "independent_checks": [
+            {
+              "role": "CHECK",
+              "statement": "Test one ordinary input in both the original and simplified formulas.",
+              "check_type": "SUBSTITUTION_BACK_CHECK"
+            },
+            {
+              "role": "APPLY",
+              "statement": "For (x^2-25)/(x-5), state the excluded input before cancelling and keep it in the final function description.",
+              "check_type": "DOMAIN_CHECK"
+            },
+            {
+              "role": "CONNECT",
+              "statement": "When plotting a value table, identify zeros from y=0 rather than merely from the fact that a point was plotted.",
+              "check_type": "SPECIAL_CASE"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relations": [],
+  "representations": [
+    {
+      "id": "REP-MATH-POLY-PARAMETER-BRANCH",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS50-OWNER"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DIAGRAM",
+      "purpose": "Staged case split showing why coefficient collapse precedes degree/root-bound claims.",
+      "required_elements": [
+        "common scalar",
+        "case split",
+        "nonzero branch",
+        "theorem hypothesis"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "common scalar",
+        "case split",
+        "nonzero branch",
+        "theorem hypothesis"
+      ],
+      "instance_constraints": [
+        "Use only supplied givens or the explicitly authored changed teaching case; do not imply geometric scale.",
+        "Text labels repeat information carried by position so colour is never the sole carrier."
+      ],
+      "accessibility": [
+        "Each stage has a text label and purpose.",
+        "The SVG carries title and description text."
+      ],
+      "misleading_alternatives": [
+        "Assigning degree before the case split.",
+        "Presenting infinitely many zeros as a contradiction of a theorem whose hypothesis fails."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS50/assets/parameter-zero-polynomial.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "param-1",
+          "label": "Expose scalar",
+          "purpose": "Show the shared parameter factor.",
+          "visible_elements": [
+            "common scalar"
+          ]
+        },
+        {
+          "id": "param-2",
+          "label": "Branch",
+          "purpose": "Separate zero and nonzero scalar cases.",
+          "visible_elements": [
+            "common scalar",
+            "case split"
+          ]
+        },
+        {
+          "id": "param-3",
+          "label": "Assign degree",
+          "purpose": "Use degree only on the nonzero branch.",
+          "visible_elements": [
+            "common scalar",
+            "case split",
+            "nonzero branch"
+          ]
+        },
+        {
+          "id": "param-4",
+          "label": "Check theorem scope",
+          "purpose": "Make the nonzero-polynomial hypothesis explicit.",
+          "visible_elements": [
+            "common scalar",
+            "case split",
+            "nonzero branch",
+            "theorem hypothesis"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-MATH-POLY-THEOREM-FLOW",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS50-OWNER"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DIAGRAM",
+      "purpose": "Staged logic map from division form to evaluation, remainder and factor information.",
+      "required_elements": [
+        "division form",
+        "evaluation",
+        "factor link"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "division form",
+        "evaluation",
+        "factor link"
+      ],
+      "instance_constraints": [
+        "Use only supplied givens or the explicitly authored changed teaching case; do not imply geometric scale.",
+        "Text labels repeat information carried by position so colour is never the sole carrier."
+      ],
+      "accessibility": [
+        "Each stage has a text label and purpose.",
+        "The SVG carries title and description text."
+      ],
+      "misleading_alternatives": [
+        "Presenting p(c)=0 as true for every polynomial.",
+        "Treating the factor link as a numerical coincidence."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS50/assets/theorem-flow.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "theorem-1",
+          "label": "Division form",
+          "purpose": "Show the division form.",
+          "visible_elements": [
+            "division form"
+          ]
+        },
+        {
+          "id": "theorem-2",
+          "label": "Evaluate at c",
+          "purpose": "Show why the divisor term vanishes.",
+          "visible_elements": [
+            "division form",
+            "evaluation"
+          ]
+        },
+        {
+          "id": "theorem-3",
+          "label": "Factor case",
+          "purpose": "Connect zero remainder to a linear factor.",
+          "visible_elements": [
+            "division form",
+            "evaluation",
+            "factor link"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-MATH-POLY-DOMAIN-LEDGER",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS50-OWNER"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DIAGRAM",
+      "purpose": "Staged ledger separating original domain, simplified formula and function comparison.",
+      "required_elements": [
+        "original expression",
+        "domain ledger",
+        "conditional simplification",
+        "function comparison"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "original expression",
+        "domain ledger",
+        "conditional simplification",
+        "function comparison"
+      ],
+      "instance_constraints": [
+        "Use only supplied givens or the explicitly authored changed teaching case; do not imply geometric scale.",
+        "Text labels repeat information carried by position so colour is never the sole carrier."
+      ],
+      "accessibility": [
+        "Each stage has a text label and purpose.",
+        "The SVG carries title and description text."
+      ],
+      "misleading_alternatives": [
+        "Erasing the excluded input after cancellation.",
+        "Equating formulas while ignoring domains."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS50/assets/domain-ledger.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "domain-1",
+          "label": "Original first",
+          "purpose": "Record the denominator restriction.",
+          "visible_elements": [
+            "original expression",
+            "domain ledger"
+          ]
+        },
+        {
+          "id": "domain-2",
+          "label": "Simplify conditionally",
+          "purpose": "Show cancellation under the nonzero-factor condition.",
+          "visible_elements": [
+            "original expression",
+            "domain ledger",
+            "conditional simplification"
+          ]
+        },
+        {
+          "id": "domain-3",
+          "label": "Compare functions",
+          "purpose": "Compare formula and domain together.",
+          "visible_elements": [
+            "original expression",
+            "domain ledger",
+            "conditional simplification",
+            "function comparison"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-MATH-POLY-AREA-TILES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS50-OWNER"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DIAGRAM",
+      "purpose": "Pre-attempt diagram of the two non-overlapping rectangles using only stated dimensions.",
+      "required_elements": [
+        "tile A",
+        "tile B",
+        "dimension labels",
+        "non-overlap"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "tile A",
+        "tile B",
+        "dimension labels",
+        "non-overlap"
+      ],
+      "instance_constraints": [
+        "Use only supplied givens or the explicitly authored changed teaching case; do not imply geometric scale.",
+        "Text labels repeat information carried by position so colour is never the sole carrier."
+      ],
+      "accessibility": [
+        "Each stage has a text label and purpose.",
+        "The SVG carries title and description text."
+      ],
+      "misleading_alternatives": [
+        "Writing expanded areas on the pre-attempt figure.",
+        "Drawing the tiles overlapped."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS50/assets/rectangle-area-model.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "area-1",
+          "label": "Tile dimensions",
+          "purpose": "Show both rectangles and given side labels without computing areas.",
+          "visible_elements": [
+            "tile A",
+            "tile B",
+            "dimension labels"
+          ]
+        },
+        {
+          "id": "area-2",
+          "label": "Separate pieces",
+          "purpose": "Keep non-overlap visible while the learner chooses how to combine areas.",
+          "visible_elements": [
+            "tile A",
+            "tile B",
+            "dimension labels",
+            "non-overlap"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-MATH-POLY-BLANK-AXES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS50-OWNER"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DIAGRAM",
+      "purpose": "Blank labelled axes with the requested x ticks; no values, answer points or zeros are supplied.",
+      "required_elements": [
+        "x-axis",
+        "p(x)-axis",
+        "x ticks"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "x-axis",
+        "p(x)-axis",
+        "x ticks"
+      ],
+      "instance_constraints": [
+        "Use only supplied givens or the explicitly authored changed teaching case; do not imply geometric scale.",
+        "Text labels repeat information carried by position so colour is never the sole carrier."
+      ],
+      "accessibility": [
+        "Each stage has a text label and purpose.",
+        "The SVG carries title and description text."
+      ],
+      "misleading_alternatives": [
+        "Pre-plotting the ordered pairs.",
+        "Marking zeros before the learner evaluates the polynomial."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS50/assets/value-table-axes.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "interactive_resource_refs": [],
+      "reveal_stages": [
+        {
+          "id": "axes-1",
+          "label": "Axes",
+          "purpose": "Provide labelled x and p(x) axes.",
+          "visible_elements": [
+            "x-axis",
+            "p(x)-axis"
+          ]
+        },
+        {
+          "id": "axes-2",
+          "label": "Requested inputs",
+          "purpose": "Show only requested x ticks, leaving every y-value and point to the learner.",
+          "visible_elements": [
+            "x-axis",
+            "p(x)-axis",
+            "x ticks"
+          ]
+        }
+      ]
+    }
+  ],
+  "question_families": [
+    {
+      "id": "FAM-MATH-POLY-EXCEPTIONS",
+      "version": "1.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS50-OWNER"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Parameter-sensitive degree and zero-polynomial exceptions",
+      "capability_refs": [
+        "CAP-MATH-POLY-EXCEPTIONS"
+      ],
+      "solution_structure": [
+        "Identify the controlling condition or invariant",
+        "Carry out the exact transformation",
+        "Verify with an independent check"
+      ],
+      "demand_dimensions": {
+        "model_choice": "Select the valid branch or algebraic model.",
+        "representation_translation": "Preserve meaning across the representation used.",
+        "reasoning_steps": "Coordinate the decisive connection before execution.",
+        "novelty": "Changed parameter, representation or theorem-boundary case."
+      },
+      "safe_variations": [
+        "Change exact coefficients while preserving the same governing structure."
+      ],
+      "transfer_boundaries": [
+        "Do not assign a finite degree to the zero polynomial under the benchmark convention."
+      ],
+      "common_wrong_routes": [
+        "Reading degree from printed exponents before checking coefficients."
+      ],
+      "item_refs": [
+        "ISS50-Q1",
+        "ISS50-Q10"
+      ]
+    },
+    {
+      "id": "FAM-MATH-POLY-THEOREMS",
+      "version": "1.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS50-OWNER"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Evaluation, factors, zeros and exact algebraic warrants",
+      "capability_refs": [
+        "CAP-MATH-POLY-THEOREMS"
+      ],
+      "solution_structure": [
+        "Identify the controlling condition or invariant",
+        "Carry out the exact transformation",
+        "Verify with an independent check"
+      ],
+      "demand_dimensions": {
+        "model_choice": "Select the valid branch or algebraic model.",
+        "representation_translation": "Preserve meaning across the representation used.",
+        "reasoning_steps": "Coordinate the decisive connection before execution.",
+        "novelty": "Changed parameter, representation or theorem-boundary case."
+      },
+      "safe_variations": [
+        "Change exact coefficients while preserving the same governing structure."
+      ],
+      "transfer_boundaries": [
+        "Finite sample agreement is not a proof of an identity."
+      ],
+      "common_wrong_routes": [
+        "Using theorem language without its condition or stopping before independent verification."
+      ],
+      "item_refs": [
+        "ISS50-Q2",
+        "ISS50-Q3",
+        "ISS50-Q7",
+        "ISS50-Q8",
+        "ISS50-Q9"
+      ]
+    },
+    {
+      "id": "FAM-MATH-POLY-REP-DOMAIN",
+      "version": "1.0.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS50-OWNER"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Meaning-preserving models, graphs and simplifications",
+      "capability_refs": [
+        "CAP-MATH-POLY-REP-DOMAIN"
+      ],
+      "solution_structure": [
+        "Identify the controlling condition or invariant",
+        "Carry out the exact transformation",
+        "Verify with an independent check"
+      ],
+      "demand_dimensions": {
+        "model_choice": "Select the valid branch or algebraic model.",
+        "representation_translation": "Preserve meaning across the representation used.",
+        "reasoning_steps": "Coordinate the decisive connection before execution.",
+        "novelty": "Changed parameter, representation or theorem-boundary case."
+      },
+      "safe_variations": [
+        "Change exact coefficients while preserving the same governing structure."
+      ],
+      "transfer_boundaries": [
+        "A simplified formula does not enlarge the original function's domain."
+      ],
+      "common_wrong_routes": [
+        "Changing representation while dropping an invariant or original domain restriction."
+      ],
+      "item_refs": [
+        "ISS50-Q4",
+        "ISS50-Q5",
+        "ISS50-Q6"
+      ]
+    }
+  ],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [
+    {
+      "id": "ISS50-KNOWN-POLY-GATE",
+      "affected_refs": [
+        "MIC-MATH-POLY-EXCEPTIONS",
+        "MIC-MATH-POLY-THEOREMS",
+        "MIC-MATH-POLY-REP-DOMAIN"
+      ],
+      "classification": "AUTHORITY_LIMITATION",
+      "description": "The pinned Mathematics gate registry contains linear-equation relations but no polynomial relation family; this candidate therefore does not invent gate-owned relation records.",
+      "next_action": "Independent review may propose a governed polynomial relation gate in a later shared round if the Owner chooses to expand subject authority."
+    }
+  ],
+  "extensions": {
+    "grade9v3:benchmark_issue": 50,
+    "grade9v3:round": "POLYNOMIAL-STRESS-V1",
+    "grade9v3:learner_profile_provenance": "SIMULATED_OWNER_PRESET"
+  },
+  "data": []
+}
