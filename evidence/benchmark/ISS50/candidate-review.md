@@ -4,7 +4,8 @@
 **Round:** POLYNOMIAL-STRESS-V1  
 **Launch commit:** `91719ad8df2bfc06c6a481590d2e24c510c24835`  
 **Academic/input head:** `df528411b244b924447a675a2deadb3032a2e32b`  
-**Exact-render run:** [37329563177](https://github.com/reallaksh19/Grade9v3.5/actions/runs/37329563177)  
+**Exact-render run:** [37335932093](https://github.com/reallaksh19/Grade9v3.5/actions/runs/37335932093)  
+**Repository render commit:** `dc8affc091cb968da21e08f3d3cea08f78af486f`
 **Status:** CANDIDATE — independent review and Owner publication/golden decisions remain outstanding.
 
 ## Independence and review identity
@@ -52,4 +53,8 @@ The exact Q5 page exposes a real interaction-fit limitation: the learner is aske
 - Independent exact-render/academic review is still required.
 - The Owner alone decides publication/golden status.
 - Repository-wide baseline guardrail/browser/canonical-assurance failures remain inherited and are not represented as fixed by this issue.
-- Exact generated HTML is retained as Actions artifact `11354285398` with recorded byte hashes but is not committed under `rendered/`; the safe tool path did not permit granting CI repository-write permission.
+- Exact generated HTML is committed under `evidence/benchmark/ISS50/rendered/` at `dc8affc091cb968da21e08f3d3cea08f78af486f`; the Actions artifact `11356038999` is supplemental evidence for logs, browser audit and screenshots.
+
+## Visual exact-render inspection
+
+The full-page Core1A and Core2 captures from run 37335932093 were inspected after the machine audit. No clipping or answer leakage is visible in the staged Core1A constructions or the Q4/Q5 pre-attempt figures. The Q5 interaction-fit limitation is visible: the blank coordinate frame is present, but the ATTEMPT surface is still a textarea rather than a table/point editor. That observed mismatch is the sole basis for the reusable builder proposal; no shared builder code is modified by this candidate.
