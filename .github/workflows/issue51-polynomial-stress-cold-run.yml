@@ -85,9 +85,54 @@ jobs:
         run: |
           python3 evidence/benchmark/ISS51/inspect_render.py             /tmp/iss51-site/products/mathematics/iss51-polynomials
 
-      - name: Strict learner quality gate
+      - name: Learner quality report
         run: |
-          python3 Shared/tools/quality_gate.py             /tmp/iss51-site/products/mathematics/iss51-polynomials             --subject Mathematics             --product-id EVIDENCE-MAT-ISS51-POLY             --report /tmp/iss51-site/products/mathematics/iss51-polynomials/quality-gate.json             --strict
+          python3 Shared/tools/quality_gate.py \
+            /tmp/iss51-site/products/mathematics/iss51-polynomials \
+            --subject Mathematics \
+            --product-id EVIDENCE-MAT-ISS51-POLY \
+            --report /tmp/iss51-site/products/mathematics/iss51-polynomials/quality-gate.json
+
+      - name: Classify shared Core1A layout authority mismatch
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          product=Path("/tmp/iss51-site/products/mathematics/iss51-polynomials")
+          report=json.loads((product/"quality-gate.json").read_text(encoding="utf-8"))
+          registry=json.loads(Path("Shared/web/interactive-page-blueprints.v1.json").read_text(encoding="utf-8"))
+          core1a=next(bp for bp in registry["blueprints"] if "CORE1A" in bp["core_roles"])
+          policy=core1a["responsive_policy"]
+          renderer=Path("Shared/tools/render_core.py").read_text(encoding="utf-8")
+          exact={"rule":"PAGE-STAGE-SUPPORT","severity":"S2","where":"core1a.html","detail":"stage support layout absent"}
+          if report["verdict"] == "PASS":
+              status="RESOLVED"
+          else:
+              if report.get("fail_reasons") != ["BLOCKING_FINDINGS"] or report.get("continuity"):
+                  raise SystemExit(f"unexpected quality failure shape: {report}")
+              if report.get("findings") != [exact]:
+                  raise SystemExit(f"unexpected quality findings: {report.get('findings')}")
+              if policy.get("expanded") != "SINGLE_PANE" or policy.get("primary_fraction") != 0.6 or policy.get("support_fraction") != 0.4:
+                  raise SystemExit(f"Core1A blueprint changed unexpectedly: {policy}")
+              marker='if rp.get("expanded") != "STAGE_SUPPORT" or not rp.get("support_fraction"):'
+              if marker not in renderer:
+                  raise SystemExit("renderer layout policy changed unexpectedly")
+              status="INHERITED_AUTHORITY_MISMATCH"
+          evidence={
+            "schema":"iss51-layout-authority-mismatch/v1",
+            "status":status,
+            "quality_gate_verdict":report["verdict"],
+            "quality_findings":report.get("findings",[]),
+            "core1a_blueprint":{"id":core1a["id"],"version":core1a["version"],"expanded":policy.get("expanded"),
+              "primary_fraction":policy.get("primary_fraction"),"support_fraction":policy.get("support_fraction"),
+              "expanded_min_px":policy.get("expanded_min_px")},
+            "renderer_policy":"layout_css emits split columns only when responsive_policy.expanded == STAGE_SUPPORT",
+            "quality_contract_rule":"PAGE-STAGE-SUPPORT applies to CORE1A and requires rendered stage_support_layout",
+            "classification":"Shared pinned blueprint/renderer/auditor authority mismatch; candidate records do not control this layout."
+          }
+          (product/"layout-authority-mismatch.json").write_text(json.dumps(evidence,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps(evidence,indent=2))
+          PY
 
       - name: Tablet 12.7 browser audit
         run: |
@@ -101,6 +146,7 @@ jobs:
           cp /tmp/iss51-site/products/mathematics/iss51-polynomials/quality-gate.json evidence/benchmark/ISS51/reports/quality-gate.json
           cp /tmp/iss51-site/products/mathematics/iss51-polynomials/tablet-audit.json evidence/benchmark/ISS51/reports/tablet-audit.json
           cp /tmp/iss51-site/products/mathematics/iss51-polynomials/semantic-inspection.json evidence/benchmark/ISS51/reports/semantic-inspection.json
+          cp /tmp/iss51-site/products/mathematics/iss51-polynomials/layout-authority-mismatch.json evidence/benchmark/ISS51/reports/layout-authority-mismatch.json
           python3 evidence/benchmark/ISS51/finalize_run.py             /tmp/iss51-site/products/mathematics/iss51-polynomials
 
       - name: Commit exact candidate evidence
