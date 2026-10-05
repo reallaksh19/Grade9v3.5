@@ -58,6 +58,29 @@ class LessonClosure(unittest.TestCase):
         self.assertFalse(any('topics/nlm' in r['attrs']['href'] for r in tree.with_attr('href')))
         roles=[r['attrs']['href'] for r in tree.with_attr('href') if any('g9-triad-actions' in a['attrs'].get('class','') for a in r['ancestors'])]
         self.assertEqual(roles,['core1a.html','core2.html'])
+    def test_optional_probe_accepts_its_exact_authored_worked_anchor(self):
+        from Shared.tools import learning_repair
+        ctx=copy.deepcopy(self.ctx)
+        m=ctx.selection_rows['microtopics'][0]
+        unit=m['construction_units'][0]
+        question=ctx.index('questions')[unit['worked_anchor_ref']]
+        question['answer']['crux_move_ref']='AUTHORED-PROBE-CRUX'
+        question['answer']['reasoning_route']=[{'id':'AUTHORED-PROBE-CRUX','kind':'DECIDE','action':'Hold the angle fixed while changing the independent contribution.','why_valid':'The declared toy has two independent inputs.','inputs':['Fixed angle'],'output':'Same factor can accompany different totals.'}]
+        repair={field:'Declared toy-model review boundary.' for field in learning_repair.FIELDS}
+        repair.update(question_ref=question['id'],label='Authored probe',construction_ref=unit['id'],
+                      crux_move_ref=question['answer']['crux_move_ref'],interaction='MODEL_SCOPE_PROBE')
+        question.setdefault('extensions',{})[learning_repair.KEY]=repair
+        m.setdefault('extensions',{})['grade9v3:question_repairs']=[repair]
+        html=render_core.core1a(ctx,m)
+        self.assertIn('data-g9-alignment-probe',html)
+        self.assertNotIn('AUTHOR_LEARNING_REPAIR',[g['duty'] for g in ctx.gaps])
+        foreign=copy.deepcopy(question);foreign['id']='FOREIGN-WORKED-PROBE'
+        foreign['extensions'][learning_repair.KEY]['question_ref']=foreign['id']
+        ctx.packages[0]['questions'].append(foreign)
+        m['extensions']['grade9v3:question_repairs']=[foreign['extensions'][learning_repair.KEY]]
+        ctx.gaps=[]
+        render_core.core1a(ctx,m)
+        self.assertTrue(any(g['duty']=='AUTHOR_LEARNING_REPAIR' for g in ctx.gaps))
     def test_pdf_publication_checks_the_modern_header_link(self):
         import tempfile
         with tempfile.TemporaryDirectory() as directory:

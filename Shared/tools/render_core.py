@@ -1461,7 +1461,9 @@ def core1a(ctx: Ctx, m: dict) -> str:
         primary_probe = ''
         if probes:
             row = next((r for r in probes if novel_anchor and r['question_ref'] == novel_anchor.get('target_question_ref')), probes[0])
-            question = bank_by_id.get(row.get('question_ref'))
+            question = bank_by_id.get(row.get('question_ref')) or (
+                questions.get(row.get('question_ref'))
+                if u.get('worked_anchor_ref') == row.get('question_ref') else None)
             valid = question and row == (question.get('extensions') or {}).get(learning_repair.KEY) and not learning_repair.problems(question, {u['id']})
             if valid:
                 primary_probe = learning_repair.alignment_probe('construction-' + u['id'])
