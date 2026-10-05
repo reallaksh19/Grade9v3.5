@@ -14,3 +14,7 @@ All ten questions were independently solved before canonical authoring. Machine-
 ## Execution state
 
 Canonical schema checks, renderer gaps, exact learner HTML/PDF, browser inspection and quality-gate deltas are **NOT_RUN** at this checkpoint. The connected GitHub API is being used for durable writes; existing CI may be observed, but CI configuration will not be changed to manufacture evidence.
+
+## First repository-native integration observation
+
+PR #60 initially placed the owner bank/package under canonical Mathematics/product paths. The Question Bank platform contract tests passed, but its generated-artifact check correctly reported stale public Question Bank artifacts. Rather than regenerating public artifacts for an unaccepted benchmark, the candidate inputs were moved to `evidence/benchmark/ISS52/inputs/`, consistent with prior governed blueprint-cycle specimens. A rerun on the corrected head is pending.
