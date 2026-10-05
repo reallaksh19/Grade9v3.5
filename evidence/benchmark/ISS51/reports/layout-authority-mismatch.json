@@ -1,0 +1,24 @@
+{
+  "schema": "iss51-layout-authority-mismatch/v1",
+  "status": "INHERITED_AUTHORITY_MISMATCH",
+  "quality_gate_verdict": "FAIL",
+  "quality_findings": [
+    {
+      "rule": "PAGE-STAGE-SUPPORT",
+      "severity": "S2",
+      "where": "core1a.html",
+      "detail": "stage support layout absent"
+    }
+  ],
+  "core1a_blueprint": {
+    "id": "BP-CORE1A-CONSTRUCTION",
+    "version": "1.7.0",
+    "expanded": "SINGLE_PANE",
+    "primary_fraction": 0.6,
+    "support_fraction": 0.4,
+    "expanded_min_px": 1100
+  },
+  "renderer_policy": "layout_css emits split columns only when responsive_policy.expanded == STAGE_SUPPORT",
+  "quality_contract_rule": "PAGE-STAGE-SUPPORT applies to CORE1A and requires rendered stage_support_layout",
+  "classification": "Shared pinned blueprint/renderer/auditor authority mismatch; candidate records do not control this layout."
+}

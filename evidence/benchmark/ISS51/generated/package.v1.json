@@ -1,0 +1,1874 @@
+{
+  "schema_version": "0.2.0",
+  "package_id": "EVIDENCE-LIB-MAT-ISS51-POLY",
+  "title": "Polynomials — Issue #51 stress candidate",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Mathematics",
+  "scope_summary": "Grade 9 polynomial concept-learning and competition-preparation candidate from ten fixed owner-authorized benchmark questions; no official item provenance claimed.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-ISS51-POLY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Issue #51 owner-authorized polynomial benchmark intake",
+      "origin": "AUTHORED",
+      "locator": "https://github.com/reallaksh19/Grade9v3.5/issues/51",
+      "edition": "POLYNOMIAL-STRESS-V1",
+      "section": "A/B/C frozen owner task input",
+      "last_checked": "2026-10-05",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Owner-authorized benchmark text, AI/coordinator authored; no official exam/PYQ or authenticated textbook provenance claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": "sha256:b1a2b54b267d765e9f8665787f292c78b61c49a5b306987aa00d6e6440d66fd5",
+      "role": [
+        "QUESTION_BANK",
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "COMPETITION"
+      ],
+      "selection_reason": "Exact custody surface for the ten fixed Issue #51 questions.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-ISS51-POLY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomials in one real variable",
+      "topic": "Polynomials",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "The set coordinates factor structure, degree-bounded logic, sign/multiplicity, modelling and auxiliary-domain control.",
+      "depth_overlay": "ADVANCED",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [],
+      "primary_representation_ref": "REP-ISS51-DIFFERENCE-IDENTITY"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-ISS51-FACTOR-SIGN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Coordinate factor/zero information, multiplicity and sign evidence",
+      "success_criterion": "Preserve multiplicity, distinguish distinct zeros and justify signs from factors or exact tests",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-ISS51-DEGREE-IDENTITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Use degree bounds to control polynomial data, divisibility and identity claims",
+      "success_criterion": "Prove or limit claims using a remaining-factor or difference polynomial while handling the zero-polynomial exception",
+      "prerequisite_refs": [
+        "CAP-ISS51-FACTOR-SIGN"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-ISS51-MODEL-CANCEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Construct and simplify a polynomial model while interpreting cancellation",
+      "success_criterion": "Translate component quantities faithfully and explain the degree of the simplified result",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-ISS51-PARAM-DOMAIN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Coordinate parameter conditions and preserve an auxiliary variable's domain",
+      "success_criterion": "Separate root/degree/zero-polynomial conditions and carry y=x^2 => y>=0 back to real x",
+      "prerequisite_refs": [
+        "CAP-ISS51-FACTOR-SIGN"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-ISS51-FACTOR-SIGN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:lesson_anchors": {
+          "CU-ISS51-FACTOR-SIGN": {
+            "id": "ANCHOR-CU-ISS51-FACTOR-SIGN",
+            "target_question_ref": "OWN-ISS51-POLY-02",
+            "target_crux_move_ref": "OWN-ISS51-POLY-02-MOVE-2",
+            "construction_ref": "CU-ISS51-FACTOR-SIGN",
+            "stem": "For F(x)=(x+1)^2(x-3), distinguish distinct zeros from multiplicity and predict sign change at each zero.",
+            "answer": {
+              "summary": "Distinct zeros are -1 and 3; no sign change at -1, sign change at 3.",
+              "reasoning": [
+                "Read locations from factors.",
+                "Read multiplicity from exponents.",
+                "Use factor signs across each zero."
+              ],
+              "check": "Exact nearby values confirm the predictions."
+            }
+          }
+        },
+        "grade9v3:question_repairs": [
+          {
+            "clarify": "Restate exactly what the condition licenses before calculating.",
+            "connect": "Use x-3 to impose p_k(3)=0, then factor the resulting cubic and check the complete product.",
+            "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+            "rule": "A stated factor x-r licenses p(r)=0; after a parameter is fixed, finish and independently verify the whole factorisation.",
+            "check": "Expanding (x-3)(x-2)(x+2) returns x^3-3x^2-4x+12.",
+            "probe": "If x-4 is a factor of x^3-4x^2+(m-1)x+4m, what equation does substitution at 4 create before you factor the rest?",
+            "pattern": "A stated factor x-r licenses p(r)=0; after a parameter is fixed, finish and independently verify the whole factorisation.",
+            "transfer": "Repeat with a different supplied factor/parameter and expand the final product.",
+            "wrong_idea": "Use the supplied factor only to report x=3 and never determine k or the remaining factors.",
+            "question_ref": "OWN-ISS51-POLY-01",
+            "construction_ref": "CU-ISS51-FACTOR-SIGN",
+            "crux_move_ref": "OWN-ISS51-POLY-01-MOVE-2",
+            "label": "Q1"
+          },
+          {
+            "clarify": "Restate exactly what the condition licenses before calculating.",
+            "connect": "Keep multiplicity visible, separate zero locations from repeated factors, then compare exact signs on both sides.",
+            "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+            "rule": "Even multiplicity preserves sign through the zero; odd multiplicity reverses it.",
+            "check": "p(1/2)=-3/8 and p(3/2)=-1/8; p(5/2)=9/8.",
+            "probe": "For f(x)=(x+2)^2(x-3), predict whether the sign changes at -2 and 3 using exact nearby values.",
+            "pattern": "Even multiplicity preserves sign through the zero; odd multiplicity reverses it.",
+            "transfer": "Apply the same test to (x-4)^3(x+1)^2.",
+            "wrong_idea": "Count (x-1)^2 as two distinct zeros or assume every zero changes sign.",
+            "question_ref": "OWN-ISS51-POLY-02",
+            "construction_ref": "CU-ISS51-FACTOR-SIGN",
+            "crux_move_ref": "OWN-ISS51-POLY-02-MOVE-2",
+            "label": "Q2"
+          },
+          {
+            "clarify": "Restate exactly what the condition licenses before calculating.",
+            "connect": "Partition the real line at 1,2,3 and multiply the signs of the individual factors on each interval.",
+            "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+            "rule": "Each interval sign is the product of the factor signs; zeros are separate boundary entries.",
+            "check": "Exact tests at 0,3/2,5/2,4 give -,+,-,+.",
+            "probe": "For g(x)=(x+1)(x-2)(x-5), build only the factor-sign rows before drawing anything.",
+            "pattern": "Each interval sign is the product of the factor signs; zeros are separate boundary entries.",
+            "transfer": "Repeat with one squared factor and compare the sign behaviour at that zero.",
+            "wrong_idea": "Sketch a cubic from memory and read signs from the shape without verifying factors.",
+            "question_ref": "OWN-ISS51-POLY-05",
+            "construction_ref": "CU-ISS51-FACTOR-SIGN",
+            "crux_move_ref": "OWN-ISS51-POLY-05-MOVE-2",
+            "label": "Q5"
+          },
+          {
+            "clarify": "Restate exactly what the condition licenses before calculating.",
+            "connect": "Use the two forced factors and monicity, keep one unknown linear factor, then use p(2)=6.",
+            "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+            "rule": "Known zeros determine factors; an unfixed cubic factor still needs the extra condition.",
+            "check": "x^3-x gives p(1)=0, p(-1)=0 and p(2)=6.",
+            "probe": "A monic cubic has zeros ±2 and f(3)=15. Determine the remaining factor instead of guessing it.",
+            "pattern": "Known zeros determine factors; an unfixed cubic factor still needs the extra condition.",
+            "transfer": "Repeat with two different roots and one function value, then verify by expansion.",
+            "wrong_idea": "Assume the third zero is 0 merely because ±1 are symmetric.",
+            "question_ref": "OWN-ISS51-POLY-06",
+            "construction_ref": "CU-ISS51-FACTOR-SIGN",
+            "crux_move_ref": "OWN-ISS51-POLY-06-MOVE-2",
+            "label": "Q6"
+          }
+        ]
+      },
+      "title": "Factors, multiplicity and sign",
+      "bucket_id": "BUCKET-ISS51-POLY",
+      "primary_capability_ref": "CAP-ISS51-FACTOR-SIGN",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Factor form carries zero location, multiplicity and interval-sign information that must not be collapsed into one claim.",
+      "entry_assumptions": [
+        "Can substitute exact real values and carry out routine polynomial algebra."
+      ],
+      "inferential_jump": "Factor form carries zero location, multiplicity and interval-sign information that must not be collapsed into one claim.",
+      "teaching_path": [
+        {
+          "id": "MF1",
+          "role": "DECLARE",
+          "action": "Separate zero location, multiplicity and any extra value/parameter condition.",
+          "why_valid": "Different facts constrain different parts of the polynomial.",
+          "inputs": [],
+          "output": "condition map"
+        },
+        {
+          "id": "MF2",
+          "role": "TRANSFORM",
+          "action": "Keep repeated factors visible while completing the factor structure.",
+          "why_valid": "The exponent records multiplicity at one location.",
+          "inputs": [],
+          "output": "factor structure"
+        },
+        {
+          "id": "MF3",
+          "role": "TRANSFORM",
+          "action": "For sign work, partition by distinct zeros and multiply factor signs.",
+          "why_valid": "A product's sign follows from its factors on each interval.",
+          "inputs": [],
+          "output": "interval signs"
+        },
+        {
+          "id": "MF4",
+          "role": "VERIFY",
+          "action": "Use expansion or exact nearby values as a second route.",
+          "why_valid": "The check is independent of an assumed graph shape.",
+          "inputs": [],
+          "output": "verified structure"
+        }
+      ],
+      "relation_refs": [
+        "REL-ISS51-FACTOR-ZERO",
+        "REL-ISS51-MULTIPLICITY-SIGN"
+      ],
+      "representation_refs": [
+        "REP-ISS51-FACTOR-SIGN"
+      ],
+      "question_family_refs": [
+        "FAM-ISS51-FACTOR-SIGN"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A repeated factor creates another distinct zero or every zero changes sign.",
+          "diagnostic_prompt": "List zero locations and exponents in separate columns before deciding signs.",
+          "repair": "Treat location, multiplicity and sign behaviour as separate pieces of evidence."
+        }
+      ],
+      "exit_task": {
+        "prompt": "For F(x)=(x+1)^2(x-3), list the distinct zeros and say where the sign changes.",
+        "source_ref": "SRC-ISS51-POLY",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Distinct zeros are -1 and 3; sign is preserved at -1 and changes at 3.",
+          "reasoning": [
+            "The square gives even multiplicity at -1.",
+            "The factor x-3 has odd multiplicity."
+          ],
+          "check": "Use exact values on both sides.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Changed-case exit task checks the construction rather than source recall."
+        }
+      },
+      "research_contribution": "Issue #51 benchmark analysis groups supplied items around this learner-facing construction.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "For F(x)=(x+1)^2(x-3), list the distinct zeros and say where the sign changes.",
+          "defensible_answer": "Distinct zeros are -1 and 3; sign is preserved at -1 and changes at 3."
+        },
+        "attempt": {
+          "produces": "A reasoned changed-case response.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses the construction rule with its stated condition.",
+              "evidence_of": "Explains rather than guesses."
+            }
+          ],
+          "accepted": [
+            "Distinct zeros are -1 and 3; sign is preserved at -1 and changes at 3."
+          ],
+          "rejected": [
+            "A repeated factor creates another distinct zero or every zero changes sign."
+          ],
+          "task": {
+            "prompt": "For F(x)=(x+1)^2(x-3), list the distinct zeros and say where the sign changes.",
+            "givens": [],
+            "representation_ref": "REP-ISS51-FACTOR-SIGN"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What object or condition should be made explicit first?",
+              "why_this_ask": "It exposes the decisive bridge."
+            },
+            {
+              "ask": "What check distinguishes the safe rule from the tempting shortcut?",
+              "why_this_ask": "It tests transfer."
+            }
+          ],
+          "differs_from_teaching_path": "Uses a changed case rather than the protected source instance."
+        },
+        "boundary_test": {
+          "prompt": "State one boundary where the shortcut would fail.",
+          "answer": "Treat location, multiplicity and sign behaviour as separate pieces of evidence.",
+          "confirms": "The construction is conditional, not a slogan."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-ISS51-FACTOR-SIGN",
+          "decision": "Factor form carries zero location, multiplicity and interval-sign information that must not be collapsed into one claim.",
+          "step_refs": [
+            "MF1",
+            "MF2",
+            "MF3",
+            "MF4"
+          ],
+          "representation_ref": "REP-ISS51-FACTOR-SIGN",
+          "reveal_stage_refs": [
+            "POLY-SIGN-1",
+            "POLY-SIGN-2",
+            "POLY-SIGN-3",
+            "POLY-SIGN-4"
+          ],
+          "relation_refs": [
+            "REL-ISS51-FACTOR-ZERO",
+            "REL-ISS51-MULTIPLICITY-SIGN"
+          ],
+          "crux_question_refs": [
+            "OWN-ISS51-POLY-02",
+            "OWN-ISS51-POLY-06"
+          ],
+          "crux_step_ref": "MF4",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "CHECK: Does a squared factor create a second zero location?",
+              "role": "CHECK"
+            },
+            {
+              "statement": "APPLY: Predict sign change for (x-4)^3.",
+              "role": "APPLY"
+            },
+            {
+              "statement": "CONNECT: Explain why exact nearby values can check a factor-sign conclusion.",
+              "role": "CONNECT"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "For F(x)=(x+1)^2(x-3), list the distinct zeros and say where the sign changes.",
+        "result": "Distinct zeros are -1 and 3; sign is preserved at -1 and changes at 3.",
+        "representation_ref": "REP-ISS51-FACTOR-SIGN"
+      }
+    },
+    {
+      "id": "MIC-ISS51-DEGREE-IDENTITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:lesson_anchors": {
+          "CU-ISS51-DEGREE-IDENTITY": {
+            "id": "ANCHOR-CU-ISS51-DEGREE-IDENTITY",
+            "target_question_ref": "OWN-ISS51-POLY-08",
+            "target_crux_move_ref": "OWN-ISS51-POLY-08-MOVE-1",
+            "construction_ref": "CU-ISS51-DEGREE-IDENTITY",
+            "stem": "Suppose f and g are real polynomials of degree at most one and agree at two distinct real inputs. Must they agree everywhere?",
+            "answer": {
+              "summary": "Yes. Let h=f-g; if h were nonzero it would have too many distinct zeros, so h is the zero polynomial.",
+              "reasoning": [
+                "Define h=f-g.",
+                "Translate the two agreements into h-zeros.",
+                "Assume h nonzero and derive the degree-one contradiction.",
+                "Interpret h identically zero."
+              ],
+              "check": "A nonzero degree-at-most-one polynomial has at most one distinct root."
+            }
+          }
+        },
+        "grade9v3:question_repairs": [
+          {
+            "clarify": "Restate exactly what the condition licenses before calculating.",
+            "connect": "Use the first three records to determine the three coefficients; then treat the fourth record as a consistency test.",
+            "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+            "rule": "Once the degree-bounded coefficients are fixed, extra records are checks rather than new degrees of freedom.",
+            "check": "Substitution verifies 1,3,7 and gives p(3)=13.",
+            "probe": "A degree-at-most-one polynomial has f(0)=2 and f(2)=8. What does it force at x=1, and what would a conflicting record mean?",
+            "pattern": "Once the degree-bounded coefficients are fixed, extra records are checks rather than new degrees of freedom.",
+            "transfer": "Try three exact records for a degree-at-most-one polynomial and identify what must change if the third conflicts.",
+            "wrong_idea": "Treat four exact records as four free fitting conditions while silently retaining degree≤2.",
+            "question_ref": "OWN-ISS51-POLY-03",
+            "construction_ref": "CU-ISS51-DEGREE-IDENTITY",
+            "crux_move_ref": "OWN-ISS51-POLY-03-MOVE-2",
+            "label": "Q3"
+          },
+          {
+            "clarify": "Restate exactly what the condition licenses before calculating.",
+            "connect": "Separate divisibility from equality, falsify the stronger claim with a higher-degree example, then identify the missing degree bound.",
+            "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+            "rule": "Known distinct zeros force corresponding factors; they do not cap the degree.",
+            "check": "The counterexample expands to x^3+2x^2-x-2 and is not a constant multiple of x^2-1.",
+            "probe": "If a nonzero polynomial has zeros 0 and 2, state the strongest factor conclusion without a degree bound and give a cubic counterexample.",
+            "pattern": "Known distinct zeros force corresponding factors; they do not cap the degree.",
+            "transfer": "Generalize to three prescribed zeros and state the degree bound that forces a constant multiple.",
+            "wrong_idea": "Jump from two known zeros directly to equality with a quadratic.",
+            "question_ref": "OWN-ISS51-POLY-07",
+            "construction_ref": "CU-ISS51-DEGREE-IDENTITY",
+            "crux_move_ref": "OWN-ISS51-POLY-07-MOVE-2",
+            "label": "Q7"
+          },
+          {
+            "clarify": "Restate exactly what the condition licenses before calculating.",
+            "connect": "Construct r=p-q so equality becomes zero information; invoke the root bound only under a nonzero assumption; then interpret the zero-polynomial case.",
+            "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+            "rule": "Convert agreement to zeros of a difference polynomial, apply the zero bound conditionally on nonzero, then interpret h≡0.",
+            "check": "The proof is global: three r-zeros plus deg r≤2 contradict nonzero r; no extra sampling is used.",
+            "probe": "Suppose f,g have degree at most one and agree at two distinct inputs. Let h=f-g and predict whether h can be nonzero.",
+            "pattern": "Convert agreement to zeros of a difference polynomial, apply the zero bound conditionally on nonzero, then interpret h≡0.",
+            "transfer": "Use the same method for degree at most three with four agreement inputs.",
+            "wrong_idea": "Say every degree-at-most-two polynomial has at most two zeros, thereby falsely excluding the zero polynomial.",
+            "question_ref": "OWN-ISS51-POLY-08",
+            "construction_ref": "CU-ISS51-DEGREE-IDENTITY",
+            "crux_move_ref": "OWN-ISS51-POLY-08-MOVE-1",
+            "label": "Q8"
+          }
+        ]
+      },
+      "title": "Degree bounds and polynomial identity",
+      "bucket_id": "BUCKET-ISS51-POLY",
+      "primary_capability_ref": "CAP-ISS51-DEGREE-IDENTITY",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "A degree bound becomes useful only after the right auxiliary object is built; for identity, agreement must become zeros of a difference polynomial and the zero-polynomial branch must remain explicit.",
+      "entry_assumptions": [
+        "Can substitute exact real values and carry out routine polynomial algebra."
+      ],
+      "inferential_jump": "A degree bound becomes useful only after the right auxiliary object is built; for identity, agreement must become zeros of a difference polynomial and the zero-polynomial branch must remain explicit.",
+      "teaching_path": [
+        {
+          "id": "MI1",
+          "role": "DECLARE",
+          "action": "State only what the supplied zeros or agreements force.",
+          "why_valid": "This prevents a degree assumption from being smuggled in.",
+          "inputs": [],
+          "output": "minimal consequence"
+        },
+        {
+          "id": "MI2",
+          "role": "TRANSFORM",
+          "action": "For identity claims, define the difference polynomial.",
+          "why_valid": "Agreement becomes zeros of one polynomial.",
+          "inputs": [],
+          "output": "difference polynomial"
+        },
+        {
+          "id": "MI3",
+          "role": "TRANSFORM",
+          "action": "Assume the difference is nonzero before applying the distinct-root bound.",
+          "why_valid": "The theorem excludes the zero polynomial.",
+          "inputs": [],
+          "output": "contradiction branch"
+        },
+        {
+          "id": "MI4",
+          "role": "VERIFY",
+          "action": "Interpret the remaining zero-polynomial case or give a counterexample when no degree bound exists.",
+          "why_valid": "This closes the logic without overclaiming.",
+          "inputs": [],
+          "output": "global conclusion or counterexample"
+        }
+      ],
+      "relation_refs": [
+        "REL-ISS51-DIFFERENCE-IDENTITY",
+        "REL-ISS51-FACTOR-ZERO"
+      ],
+      "representation_refs": [
+        "REP-ISS51-DIFFERENCE-IDENTITY"
+      ],
+      "question_family_refs": [
+        "FAM-ISS51-DEGREE-IDENTITY"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Every polynomial of degree at most n has at most n zeros, including the zero polynomial.",
+          "diagnostic_prompt": "State the nonzero hypothesis before invoking the root-count theorem.",
+          "repair": "Use contradiction only for a nonzero difference; then interpret the identically-zero case."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Two real polynomials of degree at most one agree at two distinct inputs. Must they agree everywhere?",
+        "source_ref": "SRC-ISS51-POLY",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Yes. Let h=f-g; two h-zeros contradict a nonzero degree-at-most-one h, so h is identically zero.",
+          "reasoning": [
+            "Convert agreement to h-zeros.",
+            "Invoke the root bound only under h nonzero.",
+            "Interpret h identically zero."
+          ],
+          "check": "A nonzero linear polynomial cannot have two distinct roots.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Changed-case exit task checks the construction rather than source recall."
+        }
+      },
+      "research_contribution": "Issue #51 benchmark analysis groups supplied items around this learner-facing construction.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Two real polynomials of degree at most one agree at two distinct inputs. Must they agree everywhere?",
+          "defensible_answer": "Yes. Let h=f-g; two h-zeros contradict a nonzero degree-at-most-one h, so h is identically zero."
+        },
+        "attempt": {
+          "produces": "A reasoned changed-case response.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses the construction rule with its stated condition.",
+              "evidence_of": "Explains rather than guesses."
+            }
+          ],
+          "accepted": [
+            "Yes. Let h=f-g; two h-zeros contradict a nonzero degree-at-most-one h, so h is identically zero."
+          ],
+          "rejected": [
+            "Every polynomial of degree at most n has at most n zeros, including the zero polynomial."
+          ],
+          "task": {
+            "prompt": "Two real polynomials of degree at most one agree at two distinct inputs. Must they agree everywhere?",
+            "givens": [],
+            "representation_ref": "REP-ISS51-DIFFERENCE-IDENTITY"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What object or condition should be made explicit first?",
+              "why_this_ask": "It exposes the decisive bridge."
+            },
+            {
+              "ask": "What check distinguishes the safe rule from the tempting shortcut?",
+              "why_this_ask": "It tests transfer."
+            }
+          ],
+          "differs_from_teaching_path": "Uses a changed case rather than the protected source instance."
+        },
+        "boundary_test": {
+          "prompt": "State one boundary where the shortcut would fail.",
+          "answer": "Use contradiction only for a nonzero difference; then interpret the identically-zero case.",
+          "confirms": "The construction is conditional, not a slogan."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-ISS51-DEGREE-IDENTITY",
+          "decision": "A degree bound becomes useful only after the right auxiliary object is built; for identity, agreement must become zeros of a difference polynomial and the zero-polynomial branch must remain explicit.",
+          "step_refs": [
+            "MI1",
+            "MI2",
+            "MI3",
+            "MI4"
+          ],
+          "representation_ref": "REP-ISS51-DIFFERENCE-IDENTITY",
+          "reveal_stage_refs": [
+            "POLY-ID-1",
+            "POLY-ID-2",
+            "POLY-ID-3",
+            "POLY-ID-4"
+          ],
+          "relation_refs": [
+            "REL-ISS51-DIFFERENCE-IDENTITY",
+            "REL-ISS51-FACTOR-ZERO"
+          ],
+          "crux_question_refs": [
+            "OWN-ISS51-POLY-07",
+            "OWN-ISS51-POLY-08"
+          ],
+          "crux_step_ref": "MI4",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "CHECK: State the root-count fact with the word nonzero.",
+              "role": "CHECK"
+            },
+            {
+              "statement": "APPLY: For degree at most three, how many agreement inputs force identity by this method?",
+              "role": "APPLY"
+            },
+            {
+              "statement": "CONNECT: Explain why known zeros alone imply divisibility but not a degree cap.",
+              "role": "CONNECT"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "Two real polynomials of degree at most one agree at two distinct inputs. Must they agree everywhere?",
+        "result": "Yes. Let h=f-g; two h-zeros contradict a nonzero degree-at-most-one h, so h is identically zero.",
+        "representation_ref": "REP-ISS51-DIFFERENCE-IDENTITY"
+      }
+    },
+    {
+      "id": "MIC-ISS51-MODEL-CANCEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:lesson_anchors": {
+          "CU-ISS51-MODEL-CANCEL": {
+            "id": "ANCHOR-CU-ISS51-MODEL-CANCEL",
+            "target_question_ref": "OWN-ISS51-POLY-04",
+            "target_crux_move_ref": "OWN-ISS51-POLY-04-MOVE-2",
+            "construction_ref": "CU-ISS51-MODEL-CANCEL",
+            "stem": "An outer rectangle is (x+5) by (x+1) and an x by x square is removed. Find the remaining-area polynomial and its degree.",
+            "answer": {
+              "summary": "6x+5, degree 1.",
+              "reasoning": [
+                "Model (x+5)(x+1)-x^2.",
+                "Expand and cancel x^2."
+              ],
+              "check": "At x=1 both forms give 11."
+            }
+          }
+        },
+        "grade9v3:question_repairs": [
+          {
+            "clarify": "Restate exactly what the condition licenses before calculating.",
+            "connect": "Translate whole area and cut-out area separately; simplify only after the physical subtraction is correct.",
+            "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+            "rule": "Leading terms can cancel exactly when component polynomials are combined.",
+            "check": "At x=1, 15-1=14=6(1)+8.",
+            "probe": "A frame has outer area (x+5)(x+1) and an x-by-x cut-out. Predict the degree after simplification.",
+            "pattern": "Leading terms can cancel exactly when component polynomials are combined.",
+            "transfer": "Construct one changed cut-out where the x^2 terms cancel and one where they do not.",
+            "wrong_idea": "Assume two quadratic component areas must leave a quadratic result.",
+            "question_ref": "OWN-ISS51-POLY-04",
+            "construction_ref": "CU-ISS51-MODEL-CANCEL",
+            "crux_move_ref": "OWN-ISS51-POLY-04-MOVE-2",
+            "label": "Q4"
+          }
+        ]
+      },
+      "title": "Model first, then simplify",
+      "bucket_id": "BUCKET-ISS51-POLY",
+      "primary_capability_ref": "CAP-ISS51-MODEL-CANCEL",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The degree of a combined polynomial belongs to the simplified result; component leading terms may cancel after a faithful contextual model is built.",
+      "entry_assumptions": [
+        "Can substitute exact real values and carry out routine polynomial algebra."
+      ],
+      "inferential_jump": "The degree of a combined polynomial belongs to the simplified result; component leading terms may cancel after a faithful contextual model is built.",
+      "teaching_path": [
+        {
+          "id": "MM1",
+          "role": "DECLARE",
+          "action": "Write whole and removed quantities separately.",
+          "why_valid": "The context fixes the algebraic components.",
+          "inputs": [],
+          "output": "component model"
+        },
+        {
+          "id": "MM2",
+          "role": "TRANSFORM",
+          "action": "Combine and simplify the complete expressions.",
+          "why_valid": "Leading terms may cancel.",
+          "inputs": [],
+          "output": "simplified polynomial"
+        },
+        {
+          "id": "MM3",
+          "role": "VERIFY",
+          "action": "Check one admissible input in both forms.",
+          "why_valid": "Matching values test the translation.",
+          "inputs": [],
+          "output": "model check"
+        }
+      ],
+      "relation_refs": [
+        "REL-ISS51-AREA-CANCEL"
+      ],
+      "representation_refs": [
+        "REP-ISS51-AREA-CANCEL"
+      ],
+      "question_family_refs": [
+        "FAM-ISS51-MODEL-DOMAIN"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Two quadratic component areas must combine to a quadratic result.",
+          "diagnostic_prompt": "Compare the leading terms after writing whole minus removed.",
+          "repair": "Determine degree only after exact simplification."
+        }
+      ],
+      "exit_task": {
+        "prompt": "An outer rectangle is (x+5) by (x+1) and an x by x square is removed. What degree remains?",
+        "source_ref": "SRC-ISS51-POLY",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The remaining area is 6x+5, which is linear.",
+          "reasoning": [
+            "Write whole minus removed.",
+            "Expand: x^2+6x+5-x^2.",
+            "The leading terms cancel."
+          ],
+          "check": "At x=1, 12-1=11=6(1)+5.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Changed-case exit task checks the construction rather than source recall."
+        }
+      },
+      "research_contribution": "Issue #51 benchmark analysis groups supplied items around this learner-facing construction.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "An outer rectangle is (x+5) by (x+1) and an x by x square is removed. What degree remains?",
+          "defensible_answer": "The remaining area is 6x+5, which is linear."
+        },
+        "attempt": {
+          "produces": "A reasoned changed-case response.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses the construction rule with its stated condition.",
+              "evidence_of": "Explains rather than guesses."
+            }
+          ],
+          "accepted": [
+            "The remaining area is 6x+5, which is linear."
+          ],
+          "rejected": [
+            "Two quadratic component areas must combine to a quadratic result."
+          ],
+          "task": {
+            "prompt": "An outer rectangle is (x+5) by (x+1) and an x by x square is removed. What degree remains?",
+            "givens": [],
+            "representation_ref": "REP-ISS51-AREA-CANCEL"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What object or condition should be made explicit first?",
+              "why_this_ask": "It exposes the decisive bridge."
+            },
+            {
+              "ask": "What check distinguishes the safe rule from the tempting shortcut?",
+              "why_this_ask": "It tests transfer."
+            }
+          ],
+          "differs_from_teaching_path": "Uses a changed case rather than the protected source instance."
+        },
+        "boundary_test": {
+          "prompt": "State one boundary where the shortcut would fail.",
+          "answer": "Determine degree only after exact simplification.",
+          "confirms": "The construction is conditional, not a slogan."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-ISS51-MODEL-CANCEL",
+          "decision": "The degree of a combined polynomial belongs to the simplified result; component leading terms may cancel after a faithful contextual model is built.",
+          "step_refs": [
+            "MM1",
+            "MM2",
+            "MM3"
+          ],
+          "representation_ref": "REP-ISS51-AREA-CANCEL",
+          "reveal_stage_refs": [
+            "POLY-AREA-1",
+            "POLY-AREA-2",
+            "POLY-AREA-3"
+          ],
+          "relation_refs": [
+            "REL-ISS51-AREA-CANCEL"
+          ],
+          "crux_question_refs": [
+            "OWN-ISS51-POLY-04"
+          ],
+          "crux_step_ref": "MM2",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "CHECK: Which expression is the whole and which is removed?",
+              "role": "CHECK"
+            },
+            {
+              "statement": "APPLY: Simplify a changed frame model.",
+              "role": "APPLY"
+            },
+            {
+              "statement": "CONNECT: Explain how cancellation can lower degree.",
+              "role": "CONNECT"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "An outer rectangle is (x+5) by (x+1) and an x by x square is removed. What degree remains?",
+        "result": "The remaining area is 6x+5, which is linear.",
+        "representation_ref": "REP-ISS51-AREA-CANCEL"
+      }
+    },
+    {
+      "id": "MIC-ISS51-PARAM-DOMAIN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:lesson_anchors": {
+          "CU-ISS51-PARAM-DOMAIN": {
+            "id": "ANCHOR-CU-ISS51-PARAM-DOMAIN",
+            "target_question_ref": "OWN-ISS51-POLY-10",
+            "target_crux_move_ref": "OWN-ISS51-POLY-10-MOVE-2",
+            "construction_ref": "CU-ISS51-PARAM-DOMAIN",
+            "stem": "Solve x^4+3x^2-4=0 over the reals using y=x^2, preserving the auxiliary-variable condition.",
+            "answer": {
+              "summary": "The real zeros are +/-1.",
+              "reasoning": [
+                "Set y=x^2 with y>=0.",
+                "Solve (y+4)(y-1)=0.",
+                "Reject y=-4 and map y=1 to x=+/-1."
+              ],
+              "check": "Direct substitution gives zero."
+            }
+          }
+        },
+        "grade9v3:question_repairs": [
+          {
+            "clarify": "Restate exactly what the condition licenses before calculating.",
+            "connect": "Solve the root condition by evaluation, the degree condition by the leading coefficient, then compare them and inspect all coefficients.",
+            "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+            "rule": "Degree drop kills only the leading coefficient; the zero polynomial requires every coefficient to vanish.",
+            "check": "At a=1, 2x^2-2x is nonzero; moreover the x coefficient is always -2.",
+            "probe": "For f_b=(b-2)x^3+(b+2)x^2+5x, compare degree<3 with the stronger zero-polynomial condition.",
+            "pattern": "Degree drop kills only the leading coefficient; the zero polynomial requires every coefficient to vanish.",
+            "transfer": "Create a family where the root and degree-drop conditions do not coincide.",
+            "wrong_idea": "Set the leading coefficient to zero and conclude the whole polynomial is zero.",
+            "question_ref": "OWN-ISS51-POLY-09",
+            "construction_ref": "CU-ISS51-PARAM-DOMAIN",
+            "crux_move_ref": "OWN-ISS51-POLY-09-MOVE-2",
+            "label": "Q9"
+          },
+          {
+            "clarify": "Restate exactly what the condition licenses before calculating.",
+            "connect": "Set y=x^2 and carry y≥0 through solving, filtering and mapping back to real x.",
+            "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+            "rule": "An auxiliary substitution inherits its image/domain; roots outside it do not correspond to admissible original-variable solutions.",
+            "check": "p(±1)=p(±2)=0; independently q=(x^2+2)^2>0 for all real x.",
+            "probe": "For r=x^4+3x^2-4, set y=x^2, list y-roots first, then filter by the real-x image.",
+            "pattern": "An auxiliary substitution inherits its image/domain; roots outside it do not correspond to admissible original-variable solutions.",
+            "transfer": "Try y=x^2 on x^4+x^2+1=0 and explain the real-zero conclusion.",
+            "wrong_idea": "Treat y as unrestricted real and accept y=-2 for q.",
+            "question_ref": "OWN-ISS51-POLY-10",
+            "construction_ref": "CU-ISS51-PARAM-DOMAIN",
+            "crux_move_ref": "OWN-ISS51-POLY-10-MOVE-2",
+            "label": "Q10"
+          }
+        ]
+      },
+      "title": "Parameters and auxiliary-variable domains",
+      "bucket_id": "BUCKET-ISS51-POLY",
+      "primary_capability_ref": "CAP-ISS51-PARAM-DOMAIN",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "A parameter condition constrains specific coefficients or values, while an auxiliary substitution is a mapping whose image must travel through the algebra.",
+      "entry_assumptions": [
+        "Can substitute exact real values and carry out routine polynomial algebra."
+      ],
+      "inferential_jump": "A parameter condition constrains specific coefficients or values, while an auxiliary substitution is a mapping whose image must travel through the algebra.",
+      "teaching_path": [
+        {
+          "id": "MD1",
+          "role": "DECLARE",
+          "action": "Name the condition being tested and any substitution image.",
+          "why_valid": "Root, degree and zero-polynomial conditions are different; y=x^2 has y>=0.",
+          "inputs": [],
+          "output": "condition map"
+        },
+        {
+          "id": "MD2",
+          "role": "TRANSFORM",
+          "action": "Solve the reduced algebraic condition.",
+          "why_valid": "This exposes candidate parameter or auxiliary values.",
+          "inputs": [],
+          "output": "candidate values"
+        },
+        {
+          "id": "MD3",
+          "role": "TRANSFORM",
+          "action": "Filter by coefficient/domain restrictions.",
+          "why_valid": "Only admissible candidates survive.",
+          "inputs": [],
+          "output": "filtered values"
+        },
+        {
+          "id": "MD4",
+          "role": "VERIFY",
+          "action": "Return to the original polynomial and check.",
+          "why_valid": "The original formulation is authoritative.",
+          "inputs": [],
+          "output": "verified conclusion"
+        }
+      ],
+      "relation_refs": [
+        "REL-ISS51-AUX-DOMAIN",
+        "REL-ISS51-FACTOR-ZERO"
+      ],
+      "representation_refs": [
+        "REP-ISS51-AUX-DOMAIN"
+      ],
+      "question_family_refs": [
+        "FAM-ISS51-MODEL-DOMAIN"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "After setting y=x^2, y can be any real number; or a vanished leading coefficient makes the whole polynomial zero.",
+          "diagnostic_prompt": "Ask what y=x^2 can actually equal and which coefficients remain after a degree drop.",
+          "repair": "Carry the substitution image and test all coefficients for a zero-polynomial claim."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Solve x^4+3x^2-4=0 over the reals by y=x^2.",
+        "source_ref": "SRC-ISS51-POLY",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Use y>=0; y^2+3y-4=0 gives y=1 or -4, retain y=1, so x=+/-1.",
+          "reasoning": [
+            "Declare y>=0.",
+            "Solve in y.",
+            "Filter, then return to x."
+          ],
+          "check": "Substitute x=+/-1 into the original quartic.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "Changed-case exit task checks the construction rather than source recall."
+        }
+      },
+      "research_contribution": "Issue #51 benchmark analysis groups supplied items around this learner-facing construction.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Solve x^4+3x^2-4=0 over the reals by y=x^2.",
+          "defensible_answer": "Use y>=0; y^2+3y-4=0 gives y=1 or -4, retain y=1, so x=+/-1."
+        },
+        "attempt": {
+          "produces": "A reasoned changed-case response.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Uses the construction rule with its stated condition.",
+              "evidence_of": "Explains rather than guesses."
+            }
+          ],
+          "accepted": [
+            "Use y>=0; y^2+3y-4=0 gives y=1 or -4, retain y=1, so x=+/-1."
+          ],
+          "rejected": [
+            "After setting y=x^2, y can be any real number; or a vanished leading coefficient makes the whole polynomial zero."
+          ],
+          "task": {
+            "prompt": "Solve x^4+3x^2-4=0 over the reals by y=x^2.",
+            "givens": [],
+            "representation_ref": "REP-ISS51-AUX-DOMAIN"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What object or condition should be made explicit first?",
+              "why_this_ask": "It exposes the decisive bridge."
+            },
+            {
+              "ask": "What check distinguishes the safe rule from the tempting shortcut?",
+              "why_this_ask": "It tests transfer."
+            }
+          ],
+          "differs_from_teaching_path": "Uses a changed case rather than the protected source instance."
+        },
+        "boundary_test": {
+          "prompt": "State one boundary where the shortcut would fail.",
+          "answer": "Carry the substitution image and test all coefficients for a zero-polynomial claim.",
+          "confirms": "The construction is conditional, not a slogan."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-ISS51-PARAM-DOMAIN",
+          "decision": "A parameter condition constrains specific coefficients or values, while an auxiliary substitution is a mapping whose image must travel through the algebra.",
+          "step_refs": [
+            "MD1",
+            "MD2",
+            "MD3",
+            "MD4"
+          ],
+          "representation_ref": "REP-ISS51-AUX-DOMAIN",
+          "reveal_stage_refs": [
+            "POLY-AUX-1",
+            "POLY-AUX-2",
+            "POLY-AUX-3",
+            "POLY-AUX-4"
+          ],
+          "relation_refs": [
+            "REL-ISS51-AUX-DOMAIN",
+            "REL-ISS51-FACTOR-ZERO"
+          ],
+          "crux_question_refs": [
+            "OWN-ISS51-POLY-09",
+            "OWN-ISS51-POLY-10"
+          ],
+          "crux_step_ref": "MD4",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "CHECK: What image condition follows from y=x^2 over real x?",
+              "role": "CHECK"
+            },
+            {
+              "statement": "APPLY: Filter the y-roots of a changed even-power quartic.",
+              "role": "APPLY"
+            },
+            {
+              "statement": "CONNECT: Explain why degree<3 is weaker than being the zero polynomial.",
+              "role": "CONNECT"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "Solve x^4+3x^2-4=0 over the reals by y=x^2.",
+        "result": "Use y>=0; y^2+3y-4=0 gives y=1 or -4, retain y=1, so x=+/-1.",
+        "representation_ref": "REP-ISS51-AUX-DOMAIN"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-ISS51-FACTOR-ZERO",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "p(r)=0 iff (x-r) is a factor of p(x)",
+      "meaning": "For a polynomial, a real zero and the corresponding real linear factor are equivalent statements.",
+      "symbols": [
+        {
+          "symbol": "p",
+          "meaning": "polynomial",
+          "unit_or_domain": "real coefficients"
+        },
+        {
+          "symbol": "r",
+          "meaning": "candidate zero",
+          "unit_or_domain": "real"
+        }
+      ],
+      "conditions": [
+        "Use the factor theorem on the polynomial under discussion."
+      ],
+      "derivation": [
+        {
+          "id": "RF1",
+          "role": "DECLARE",
+          "action": "Translate a supplied factor or zero into the equivalent condition.",
+          "why_valid": "This is the factor theorem.",
+          "inputs": [],
+          "output": "usable constraint"
+        },
+        {
+          "id": "RF2",
+          "role": "TRANSFORM",
+          "action": "Keep repeated factors visible while completing factorisation.",
+          "why_valid": "Their exponents carry multiplicity.",
+          "inputs": [],
+          "output": "factored structure"
+        },
+        {
+          "id": "RF3",
+          "role": "VERIFY",
+          "action": "Expand or substitute independently.",
+          "why_valid": "A second route checks the complete result.",
+          "inputs": [],
+          "output": "verified polynomial"
+        }
+      ],
+      "limits": [
+        "Known zeros do not by themselves forbid additional factors."
+      ],
+      "checks": [
+        "Expand the complete product or verify all supplied values."
+      ],
+      "gate_relation_ref": "REL-ISS51-FACTOR-ZERO"
+    },
+    {
+      "id": "REL-ISS51-MULTIPLICITY-SIGN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "sign(product)=product of factor signs; even multiplicity preserves sign and odd multiplicity reverses it",
+      "meaning": "A sign chart is derived interval by interval from a factored polynomial.",
+      "symbols": [
+        {
+          "symbol": "m",
+          "meaning": "zero multiplicity",
+          "unit_or_domain": "positive integer"
+        }
+      ],
+      "conditions": [
+        "Work on open intervals separated by distinct real zeros."
+      ],
+      "derivation": [
+        {
+          "id": "RS1",
+          "role": "DECLARE",
+          "action": "Order the distinct zeros.",
+          "why_valid": "They partition the real line.",
+          "inputs": [],
+          "output": "intervals"
+        },
+        {
+          "id": "RS2",
+          "role": "TRANSFORM",
+          "action": "Record each factor's sign on each interval.",
+          "why_valid": "No factor changes sign without crossing its zero.",
+          "inputs": [],
+          "output": "factor-sign rows"
+        },
+        {
+          "id": "RS3",
+          "role": "VERIFY",
+          "action": "Multiply signs and check exact sample values where requested.",
+          "why_valid": "This independently confirms the chart.",
+          "inputs": [],
+          "output": "verified signs"
+        }
+      ],
+      "limits": [
+        "A sketch alone is not proof of interval signs."
+      ],
+      "checks": [
+        "Use exact rational test values when practical."
+      ],
+      "gate_relation_ref": "REL-ISS51-MULTIPLICITY-SIGN"
+    },
+    {
+      "id": "REL-ISS51-DIFFERENCE-IDENTITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "r=p-q; if deg r<=n and r has n+1 distinct zeros, nonzero r is impossible",
+      "meaning": "Agreement becomes a root-count problem for the difference polynomial, with the zero-polynomial branch handled explicitly.",
+      "symbols": [
+        {
+          "symbol": "r",
+          "meaning": "difference polynomial p-q",
+          "unit_or_domain": "real polynomial"
+        }
+      ],
+      "conditions": [
+        "Agreement inputs are distinct.",
+        "The root-count theorem is invoked only after assuming r is nonzero."
+      ],
+      "derivation": [
+        {
+          "id": "RI1",
+          "role": "DECLARE",
+          "action": "Define r=p-q.",
+          "why_valid": "This converts equality data into zeros.",
+          "inputs": [],
+          "output": "difference polynomial"
+        },
+        {
+          "id": "RI2",
+          "role": "TRANSFORM",
+          "action": "Turn each agreement input into r(t)=0.",
+          "why_valid": "p(t)=q(t) iff r(t)=0.",
+          "inputs": [],
+          "output": "distinct zeros"
+        },
+        {
+          "id": "RI3",
+          "role": "TRANSFORM",
+          "action": "Assume r nonzero and compare its zero count with its degree bound.",
+          "why_valid": "A nonzero degree-at-most-n polynomial has at most n distinct roots.",
+          "inputs": [],
+          "output": "contradiction"
+        },
+        {
+          "id": "RI4",
+          "role": "VERIFY",
+          "action": "Interpret r identically zero.",
+          "why_valid": "Then p and q agree at every input.",
+          "inputs": [],
+          "output": "global identity"
+        }
+      ],
+      "limits": [
+        "Do not apply the nonzero root-count bound to the zero polynomial."
+      ],
+      "checks": [
+        "State the nonzero assumption before the root-count step."
+      ],
+      "gate_relation_ref": "REL-ISS51-DIFFERENCE-IDENTITY"
+    },
+    {
+      "id": "REL-ISS51-AREA-CANCEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "remaining area = whole area - removed area; degree is read after simplification",
+      "meaning": "Leading polynomial terms can cancel when component quantities are combined.",
+      "symbols": [
+        {
+          "symbol": "x",
+          "meaning": "model variable",
+          "unit_or_domain": "stated admissible real values"
+        }
+      ],
+      "conditions": [
+        "Subtract the complete removed quantity.",
+        "Preserve restrictions such as x>0."
+      ],
+      "derivation": [
+        {
+          "id": "RM1",
+          "role": "DECLARE",
+          "action": "Write each component from the physical model.",
+          "why_valid": "This protects meaning before algebra.",
+          "inputs": [],
+          "output": "component expressions"
+        },
+        {
+          "id": "RM2",
+          "role": "TRANSFORM",
+          "action": "Combine and simplify exactly.",
+          "why_valid": "Leading terms may cancel.",
+          "inputs": [],
+          "output": "simplified polynomial"
+        },
+        {
+          "id": "RM3",
+          "role": "VERIFY",
+          "action": "Check one admissible input by both representations.",
+          "why_valid": "Matching values test the translation.",
+          "inputs": [],
+          "output": "verified model"
+        }
+      ],
+      "limits": [
+        "Do not assign degree from unsimplified components."
+      ],
+      "checks": [
+        "Evaluate one admissible value in both forms."
+      ],
+      "gate_relation_ref": "REL-ISS51-AREA-CANCEL"
+    },
+    {
+      "id": "REL-ISS51-AUX-DOMAIN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "y=x^2 with real x implies y>=0",
+      "meaning": "An auxiliary variable inherits the image of its defining substitution.",
+      "symbols": [
+        {
+          "symbol": "x",
+          "meaning": "original variable",
+          "unit_or_domain": "real"
+        },
+        {
+          "symbol": "y",
+          "meaning": "x squared",
+          "unit_or_domain": "real and nonnegative"
+        }
+      ],
+      "conditions": [
+        "Original x is real.",
+        "Only y>=0 can map back to real x."
+      ],
+      "derivation": [
+        {
+          "id": "RD1",
+          "role": "DECLARE",
+          "action": "Set y=x^2 and state y>=0.",
+          "why_valid": "The substitution has a restricted image.",
+          "inputs": [],
+          "output": "restricted y"
+        },
+        {
+          "id": "RD2",
+          "role": "TRANSFORM",
+          "action": "Solve the lower-degree equation in y.",
+          "why_valid": "The even powers become an ordinary polynomial in y.",
+          "inputs": [],
+          "output": "candidate y roots"
+        },
+        {
+          "id": "RD3",
+          "role": "TRANSFORM",
+          "action": "Filter candidate y values through y>=0.",
+          "why_valid": "This removes algebraic values outside the substitution image.",
+          "inputs": [],
+          "output": "admissible y roots"
+        },
+        {
+          "id": "RD4",
+          "role": "VERIFY",
+          "action": "Map back to x and substitute accepted values into the original equation.",
+          "why_valid": "The original variable/domain is the final authority.",
+          "inputs": [],
+          "output": "verified real zeros"
+        }
+      ],
+      "limits": [
+        "A negative y root cannot produce a real x when y=x^2."
+      ],
+      "checks": [
+        "Substitute accepted x values into the original polynomial."
+      ],
+      "gate_relation_ref": "REL-ISS51-AUX-DOMAIN"
+    }
+  ],
+  "representations": [
+    {
+      "id": "REP-ISS51-FACTOR-SIGN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_CONSTRUCTION",
+      "purpose": "Separate zero location, multiplicity and interval sign in a changed product.",
+      "required_elements": [
+        "Locations",
+        "Multiplicity",
+        "Factor signs",
+        "Product check"
+      ],
+      "relation_refs": [
+        "REL-ISS51-FACTOR-ZERO",
+        "REL-ISS51-MULTIPLICITY-SIGN"
+      ],
+      "read_order": [
+        "Locate the changed-case zeros.",
+        "Separate exponent from location.",
+        "Track signs interval by interval.",
+        "Combine factor signs and compare with a test value."
+      ],
+      "instance_constraints": [
+        "The visual uses a changed teaching case and must not reveal the supplied source-question outcome."
+      ],
+      "accessibility": [
+        "Accessible SVG title/description are required; text duplicates structural meaning."
+      ],
+      "misleading_alternatives": [
+        "Treating the changed case as an answer key for the protected source question."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS51/assets/multiplicity-sign.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "marked zeros",
+          "symbol": "distinct locations",
+          "in_words": "each zero location is shown once"
+        },
+        {
+          "element": "squared factor",
+          "symbol": "even multiplicity",
+          "in_words": "the sign is preserved through that location"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "POLY-SIGN-1",
+          "label": "Locations",
+          "purpose": "Locate the changed-case zeros.",
+          "visible_elements": [
+            "Locations"
+          ]
+        },
+        {
+          "id": "POLY-SIGN-2",
+          "label": "Multiplicity",
+          "purpose": "Separate exponent from location.",
+          "visible_elements": [
+            "Multiplicity"
+          ]
+        },
+        {
+          "id": "POLY-SIGN-3",
+          "label": "Factor signs",
+          "purpose": "Track signs interval by interval.",
+          "visible_elements": [
+            "Factor signs"
+          ]
+        },
+        {
+          "id": "POLY-SIGN-4",
+          "label": "Product check",
+          "purpose": "Combine factor signs and compare with a test value.",
+          "visible_elements": [
+            "Product check"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-ISS51-DIFFERENCE-IDENTITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_CONSTRUCTION",
+      "purpose": "Build the difference-polynomial identity proof on a changed degree-one case.",
+      "required_elements": [
+        "Agreement data",
+        "Difference polynomial",
+        "Nonzero branch",
+        "Zero-polynomial branch"
+      ],
+      "relation_refs": [
+        "REL-ISS51-DIFFERENCE-IDENTITY"
+      ],
+      "read_order": [
+        "Start from two changed-case agreements.",
+        "Turn agreement into zeros.",
+        "Compare zero count with degree.",
+        "Interpret the only remaining case."
+      ],
+      "instance_constraints": [
+        "The visual uses a changed teaching case and must not reveal the supplied source-question outcome."
+      ],
+      "accessibility": [
+        "Accessible SVG title/description are required; text duplicates structural meaning."
+      ],
+      "misleading_alternatives": [
+        "Treating the changed case as an answer key for the protected source question."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS51/assets/identity-difference.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "h=f-g",
+          "symbol": "difference polynomial",
+          "in_words": "agreement becomes zeros of one polynomial"
+        },
+        {
+          "element": "nonzero branch",
+          "symbol": "root bound",
+          "in_words": "the theorem is conditional on nonzero h"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "POLY-ID-1",
+          "label": "Agreement data",
+          "purpose": "Start from two changed-case agreements.",
+          "visible_elements": [
+            "Agreement data"
+          ]
+        },
+        {
+          "id": "POLY-ID-2",
+          "label": "Difference polynomial",
+          "purpose": "Turn agreement into zeros.",
+          "visible_elements": [
+            "Difference polynomial"
+          ]
+        },
+        {
+          "id": "POLY-ID-3",
+          "label": "Nonzero branch",
+          "purpose": "Compare zero count with degree.",
+          "visible_elements": [
+            "Nonzero branch"
+          ]
+        },
+        {
+          "id": "POLY-ID-4",
+          "label": "Zero-polynomial branch",
+          "purpose": "Interpret the only remaining case.",
+          "visible_elements": [
+            "Zero-polynomial branch"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-ISS51-AREA-CANCEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_CONSTRUCTION",
+      "purpose": "Connect contextual subtraction to leading-term cancellation in a changed frame.",
+      "required_elements": [
+        "Component areas",
+        "Algebra model",
+        "Cancellation"
+      ],
+      "relation_refs": [
+        "REL-ISS51-AREA-CANCEL"
+      ],
+      "read_order": [
+        "Identify whole and removed parts.",
+        "Write whole minus cut-out.",
+        "Compare leading terms after simplification."
+      ],
+      "instance_constraints": [
+        "The visual uses a changed teaching case and must not reveal the supplied source-question outcome."
+      ],
+      "accessibility": [
+        "Accessible SVG title/description are required; text duplicates structural meaning."
+      ],
+      "misleading_alternatives": [
+        "Treating the changed case as an answer key for the protected source question."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS51/assets/area-cancellation.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "outer rectangle",
+          "symbol": "whole",
+          "in_words": "whole area is modelled before subtraction"
+        },
+        {
+          "element": "inner square",
+          "symbol": "x^2",
+          "in_words": "the removed leading term can cancel"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "POLY-AREA-1",
+          "label": "Component areas",
+          "purpose": "Identify whole and removed parts.",
+          "visible_elements": [
+            "Component areas"
+          ]
+        },
+        {
+          "id": "POLY-AREA-2",
+          "label": "Algebra model",
+          "purpose": "Write whole minus cut-out.",
+          "visible_elements": [
+            "Algebra model"
+          ]
+        },
+        {
+          "id": "POLY-AREA-3",
+          "label": "Cancellation",
+          "purpose": "Compare leading terms after simplification.",
+          "visible_elements": [
+            "Cancellation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-ISS51-AUX-DOMAIN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "GEOMETRIC_CONSTRUCTION",
+      "purpose": "Carry the image y>=0 through a changed even-power equation.",
+      "required_elements": [
+        "Even-power pattern",
+        "Domain declaration",
+        "Filter",
+        "Return"
+      ],
+      "relation_refs": [
+        "REL-ISS51-AUX-DOMAIN"
+      ],
+      "read_order": [
+        "Recognize a quadratic in x^2.",
+        "Attach y>=0 to y=x^2.",
+        "Reject y-values outside the image.",
+        "Map admissible y back to real x and check."
+      ],
+      "instance_constraints": [
+        "The visual uses a changed teaching case and must not reveal the supplied source-question outcome."
+      ],
+      "accessibility": [
+        "Accessible SVG title/description are required; text duplicates structural meaning."
+      ],
+      "misleading_alternatives": [
+        "Treating the changed case as an answer key for the protected source question."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS51/assets/auxiliary-domain.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "y=x^2 box",
+          "symbol": "y>=0",
+          "in_words": "the auxiliary variable has a restricted image"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "POLY-AUX-1",
+          "label": "Even-power pattern",
+          "purpose": "Recognize a quadratic in x^2.",
+          "visible_elements": [
+            "Even-power pattern"
+          ]
+        },
+        {
+          "id": "POLY-AUX-2",
+          "label": "Domain declaration",
+          "purpose": "Attach y>=0 to y=x^2.",
+          "visible_elements": [
+            "Domain declaration"
+          ]
+        },
+        {
+          "id": "POLY-AUX-3",
+          "label": "Filter",
+          "purpose": "Reject y-values outside the image.",
+          "visible_elements": [
+            "Filter"
+          ]
+        },
+        {
+          "id": "POLY-AUX-4",
+          "label": "Return",
+          "purpose": "Map admissible y back to real x and check.",
+          "visible_elements": [
+            "Return"
+          ]
+        }
+      ]
+    }
+  ],
+  "question_families": [
+    {
+      "id": "FAM-ISS51-FACTOR-SIGN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Factor, zero, multiplicity and sign coordination",
+      "capability_refs": [
+        "CAP-ISS51-FACTOR-SIGN"
+      ],
+      "solution_structure": [
+        "Translate factor/zero conditions.",
+        "Keep multiplicity visible.",
+        "Build sign or parameter consequences.",
+        "Check independently."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Choose which condition to exploit.",
+        "representation_translation": "Move among expanded, factored and sign forms.",
+        "reasoning_steps": "Coordinate multiple conditions.",
+        "novelty": "Repeated zeros and exact sign evidence."
+      },
+      "safe_variations": [
+        "Change roots, multiplicities or a parameter."
+      ],
+      "transfer_boundaries": [
+        "Do not assume a cubic has three distinct real zeros."
+      ],
+      "common_wrong_routes": [
+        "Count repeated factors as distinct zero locations."
+      ],
+      "item_refs": [
+        "OWN-ISS51-POLY-01",
+        "OWN-ISS51-POLY-02",
+        "OWN-ISS51-POLY-05",
+        "OWN-ISS51-POLY-06"
+      ]
+    },
+    {
+      "id": "FAM-ISS51-DEGREE-IDENTITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Degree bounds, divisibility and identity",
+      "capability_refs": [
+        "CAP-ISS51-DEGREE-IDENTITY"
+      ],
+      "solution_structure": [
+        "State the strongest consequence.",
+        "Introduce a remaining-factor or difference polynomial.",
+        "Use the degree bound only where licensed.",
+        "Handle exceptional cases."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Choose an auxiliary polynomial.",
+        "representation_translation": "Turn agreement into zeros.",
+        "reasoning_steps": "Counterexample or contradiction.",
+        "novelty": "Zero-polynomial and missing-degree-bound exceptions."
+      },
+      "safe_variations": [
+        "Change degree n and agreement/zero counts."
+      ],
+      "transfer_boundaries": [
+        "Never apply a nonzero root-count theorem to the zero polynomial."
+      ],
+      "common_wrong_routes": [
+        "Promote divisibility to equality or finite agreement to identity without the degree argument."
+      ],
+      "item_refs": [
+        "OWN-ISS51-POLY-03",
+        "OWN-ISS51-POLY-07",
+        "OWN-ISS51-POLY-08"
+      ]
+    },
+    {
+      "id": "FAM-ISS51-MODEL-DOMAIN",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-ISS51-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomial modelling, parameters and auxiliary domains",
+      "capability_refs": [
+        "CAP-ISS51-MODEL-CANCEL",
+        "CAP-ISS51-PARAM-DOMAIN"
+      ],
+      "solution_structure": [
+        "Translate the model/condition.",
+        "Simplify or reduce degree.",
+        "Carry domain/coefficient conditions.",
+        "Return to the original formulation."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Choose model or auxiliary variable.",
+        "representation_translation": "Move from context/parameters to polynomial structure.",
+        "reasoning_steps": "Filter and verify.",
+        "novelty": "Cancellation and substitution-image restrictions."
+      },
+      "safe_variations": [
+        "Change dimensions, coefficients or even-power quartics."
+      ],
+      "transfer_boundaries": [
+        "Auxiliary variables inherit the image of the substitution."
+      ],
+      "common_wrong_routes": [
+        "Lose x>0 or y>=0, or confuse degree drop with the zero polynomial."
+      ],
+      "item_refs": [
+        "OWN-ISS51-POLY-04",
+        "OWN-ISS51-POLY-09",
+        "OWN-ISS51-POLY-10"
+      ]
+    }
+  ],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "grade9v3:authoring_specimen": {
+      "issue": 51,
+      "round": "POLYNOMIAL-STRESS-V1",
+      "purpose": "COMPETITION",
+      "learner_profile_ref": "PROFILE-ISS51-POLY-COMPETITION",
+      "qrt_evidence": "evidence/benchmark/ISS51/qrt-review.v1.json"
+    }
+  },
+  "data": []
+}

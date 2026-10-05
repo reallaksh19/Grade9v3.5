@@ -1,0 +1,1421 @@
+{
+  "schema_version": "grade9v3-owner-supplied-bank-v1",
+  "bank_id": "iss51-polynomial-stress-v1",
+  "intake_digest": "b1a2b54b267d765e9f8665787f292c78b61c49a5b306987aa00d6e6440d66fd5",
+  "questions": [
+    {
+      "id": "OWN-ISS51-POLY-01",
+      "original_identifier": "Q1",
+      "stem": "The polynomial $p_k(x)=x^3-3x^2+(k-4)x+12$ has factor $x-3$. Determine $k$, obtain a complete real factorisation and list the distinct real zeros. Give an independent check of the complete polynomial, not only the initially supplied factor.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "k=0; p(x)=(x-3)(x-2)(x+2); distinct real zeros -2, 2, 3.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS51-POLY-01-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Use the factor theorem to impose p_k(3)=0.",
+            "why_valid": "A factor x-3 is equivalent to a zero at x=3.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "k=0"
+          },
+          {
+            "id": "OWN-ISS51-POLY-01-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "With k fixed, divide or group around the known factor.",
+            "why_valid": "The supplied factor can now be used without losing the rest of the cubic.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "(x-3)(x^2-4)"
+          },
+          {
+            "id": "OWN-ISS51-POLY-01-MOVE-3",
+            "kind": "TRANSFORM",
+            "action": "Factor the difference of squares.",
+            "why_valid": "This completes the real factorisation.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "(x-3)(x-2)(x+2)"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS51-POLY-01-MOVE-2",
+        "check": "Expanding (x-3)(x-2)(x+2) returns x^3-3x^2-4x+12.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-ISS51-FACTOR-SIGN",
+      "family_ref": "FAM-ISS51-FACTOR-SIGN",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q1",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:94f268bc6eea8fb6e609ca16e6049704dfecf7f8f90879b7523bf3c850ad710a"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Use the supplied factor only to report x=3 and never determine k or the remaining factors. Decisive bridge: Use x-3 to impose p_k(3)=0, then factor the resulting cubic and check the complete product. Score 5 resolves to D2."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Use the supplied factor only to report x=3 and never determine k or the remaining factors.",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": []
+          },
+          "stable_crux_move": "Use x-3 to impose p_k(3)=0, then factor the resulting cubic and check the complete product."
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "claim": "Benchmark input, not official/PYQ and not personally authored by Owner."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Restate exactly what the condition licenses before calculating.",
+          "connect": "Use x-3 to impose p_k(3)=0, then factor the resulting cubic and check the complete product.",
+          "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+          "rule": "A stated factor x-r licenses p(r)=0; after a parameter is fixed, finish and independently verify the whole factorisation.",
+          "check": "Expanding (x-3)(x-2)(x+2) returns x^3-3x^2-4x+12.",
+          "probe": "If x-4 is a factor of x^3-4x^2+(m-1)x+4m, what equation does substitution at 4 create before you factor the rest?",
+          "pattern": "A stated factor x-r licenses p(r)=0; after a parameter is fixed, finish and independently verify the whole factorisation.",
+          "transfer": "Repeat with a different supplied factor/parameter and expand the final product.",
+          "wrong_idea": "Use the supplied factor only to report x=3 and never determine k or the remaining factors.",
+          "question_ref": "OWN-ISS51-POLY-01",
+          "construction_ref": "CU-ISS51-FACTOR-SIGN",
+          "crux_move_ref": "OWN-ISS51-POLY-01-MOVE-2",
+          "label": "Q1"
+        }
+      },
+      "conditions": [
+        "Real coefficients and real zeros are requested."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Name which supplied condition should be converted first before doing algebra.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS51-POLY-01-MOVE-1"
+        },
+        {
+          "text": "Use x-3 to impose p_k(3)=0, then factor the resulting cubic and check the complete product.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS51-POLY-01-MOVE-2"
+        },
+        {
+          "text": "Use the original conditions or a second representation to check the result.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISS51-POLY-01-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS51-POLY-02",
+      "original_identifier": "Q2",
+      "stem": "A student claims that a cubic must have three distinct real zeros. Test this against $p(x)=x^3-4x^2+5x-2$ by factorising it. Distinguish distinct zeros from repeated factors, and use exact nearby test values to decide whether the sign changes at each zero.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "p(x)=(x-1)^2(x-2); distinct zeros 1 and 2; no sign change at 1; sign change at 2.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS51-POLY-02-MOVE-1",
+            "kind": "TRANSFORM",
+            "action": "Factor the cubic until multiplicity is visible.",
+            "why_valid": "Repeated factors carry multiplicity at one zero location.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "(x-1)^2(x-2)"
+          },
+          {
+            "id": "OWN-ISS51-POLY-02-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "List distinct zero locations separately from factor exponents.",
+            "why_valid": "Multiplicity and distinctness answer different questions.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "zeros 1 and 2"
+          },
+          {
+            "id": "OWN-ISS51-POLY-02-MOVE-3",
+            "kind": "DECIDE",
+            "action": "Compare exact signs immediately to the left and right of each zero.",
+            "why_valid": "A sign change is a statement about neighbouring intervals, not root count.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "no change at 1; change at 2"
+          },
+          {
+            "id": "OWN-ISS51-POLY-02-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Evaluate at exact rational test values.",
+            "why_valid": "Exact values independently confirm both local sign decisions.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "-3/8,-1/8,9/8 checks"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS51-POLY-02-MOVE-2",
+        "check": "p(1/2)=-3/8 and p(3/2)=-1/8; p(5/2)=9/8.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-ISS51-FACTOR-SIGN",
+      "family_ref": "FAM-ISS51-FACTOR-SIGN",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q2",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:d4c6832b4f236530f3957623c44969b259a48c830bc474bd733ec21aeab30006"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 7,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Count (x-1)^2 as two distinct zeros or assume every zero changes sign. Decisive bridge: Keep multiplicity visible, separate zero locations from repeated factors, then compare exact signs on both sides. Score 7 resolves to D3."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "Count (x-1)^2 as two distinct zeros or assume every zero changes sign.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": []
+          },
+          "stable_crux_move": "Keep multiplicity visible, separate zero locations from repeated factors, then compare exact signs on both sides."
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "claim": "Benchmark input, not official/PYQ and not personally authored by Owner."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Restate exactly what the condition licenses before calculating.",
+          "connect": "Keep multiplicity visible, separate zero locations from repeated factors, then compare exact signs on both sides.",
+          "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+          "rule": "Even multiplicity preserves sign through the zero; odd multiplicity reverses it.",
+          "check": "p(1/2)=-3/8 and p(3/2)=-1/8; p(5/2)=9/8.",
+          "probe": "For f(x)=(x+2)^2(x-3), predict whether the sign changes at -2 and 3 using exact nearby values.",
+          "pattern": "Even multiplicity preserves sign through the zero; odd multiplicity reverses it.",
+          "transfer": "Apply the same test to (x-4)^3(x+1)^2.",
+          "wrong_idea": "Count (x-1)^2 as two distinct zeros or assume every zero changes sign.",
+          "question_ref": "OWN-ISS51-POLY-02",
+          "construction_ref": "CU-ISS51-FACTOR-SIGN",
+          "crux_move_ref": "OWN-ISS51-POLY-02-MOVE-2",
+          "label": "Q2"
+        }
+      },
+      "conditions": [
+        "Use exact nearby test values for the sign-change decision."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Name which supplied condition should be converted first before doing algebra.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS51-POLY-02-MOVE-1"
+        },
+        {
+          "text": "Keep multiplicity visible, separate zero locations from repeated factors, then compare exact signs on both sides.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS51-POLY-02-MOVE-2"
+        },
+        {
+          "text": "Use the original conditions or a second representation to check the result.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISS51-POLY-02-MOVE-3"
+        },
+        {
+          "text": "Write a one-line sign table for each factor before multiplying signs.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISS51-POLY-02-MOVE-4"
+        },
+        {
+          "text": "Use the test values only as a check on the factor-sign conclusion.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISS51-POLY-02-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS51-POLY-03",
+      "original_identifier": "Q3",
+      "stem": "A real polynomial $p$ has degree at most two and satisfies $p(0)=1$, $p(1)=3$ and $p(2)=7$. Construct it from these data. A further exact record claims $p(3)=14$: decide whether all four records are compatible with the degree bound and explain what has to be reconsidered if they are not.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "p(x)=x^2+x+1; therefore p(3)=13, so p(3)=14 is incompatible with the degree-at-most-two bound.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS51-POLY-03-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Write p(x)=ax^2+bx+c and use p(0)=1.",
+            "why_valid": "A degree-at-most-two polynomial has at most three coefficients to determine.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "c=1"
+          },
+          {
+            "id": "OWN-ISS51-POLY-03-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Use p(1)=3 and p(2)=7 to determine a and b.",
+            "why_valid": "The first three exact records determine the quadratic.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "a=1,b=1"
+          },
+          {
+            "id": "OWN-ISS51-POLY-03-MOVE-3",
+            "kind": "DECIDE",
+            "action": "Evaluate the fixed polynomial at x=3.",
+            "why_valid": "The fourth record is now a consistency check, not a free fitting condition.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "p(3)=13"
+          },
+          {
+            "id": "OWN-ISS51-POLY-03-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Compare 13 with the claimed 14 under the same degree bound.",
+            "why_valid": "The mismatch means the records and degree bound cannot all be retained.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "reconsider a record or the degree bound"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS51-POLY-03-MOVE-2",
+        "check": "Substitution verifies 1,3,7 and gives p(3)=13.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-ISS51-DEGREE-IDENTITY",
+      "family_ref": "FAM-ISS51-DEGREE-IDENTITY",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q3",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:d06c869ae2ec7e7fb99b013d08ba909200604fd8e4cd10218801d15a6d25c6a4"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Treat four exact records as four free fitting conditions while silently retaining degree≤2. Decisive bridge: Use the first three records to determine the three coefficients; then treat the fourth record as a consistency test. Score 6 resolves to D3."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "Treat four exact records as four free fitting conditions while silently retaining degree≤2.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": []
+          },
+          "stable_crux_move": "Use the first three records to determine the three coefficients; then treat the fourth record as a consistency test."
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "claim": "Benchmark input, not official/PYQ and not personally authored by Owner."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Restate exactly what the condition licenses before calculating.",
+          "connect": "Use the first three records to determine the three coefficients; then treat the fourth record as a consistency test.",
+          "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+          "rule": "Once the degree-bounded coefficients are fixed, extra records are checks rather than new degrees of freedom.",
+          "check": "Substitution verifies 1,3,7 and gives p(3)=13.",
+          "probe": "A degree-at-most-one polynomial has f(0)=2 and f(2)=8. What does it force at x=1, and what would a conflicting record mean?",
+          "pattern": "Once the degree-bounded coefficients are fixed, extra records are checks rather than new degrees of freedom.",
+          "transfer": "Try three exact records for a degree-at-most-one polynomial and identify what must change if the third conflicts.",
+          "wrong_idea": "Treat four exact records as four free fitting conditions while silently retaining degree≤2.",
+          "question_ref": "OWN-ISS51-POLY-03",
+          "construction_ref": "CU-ISS51-DEGREE-IDENTITY",
+          "crux_move_ref": "OWN-ISS51-POLY-03-MOVE-2",
+          "label": "Q3"
+        }
+      },
+      "conditions": [
+        "The degree bound is at most two and all four records are exact claims."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Name which supplied condition should be converted first before doing algebra.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS51-POLY-03-MOVE-1"
+        },
+        {
+          "text": "Use the first three records to determine the three coefficients; then treat the fourth record as a consistency test.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS51-POLY-03-MOVE-2"
+        },
+        {
+          "text": "Use the original conditions or a second representation to check the result.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISS51-POLY-03-MOVE-3"
+        },
+        {
+          "text": "Ask whether the degree bound leaves any free coefficient after the first three records.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISS51-POLY-03-MOVE-4"
+        },
+        {
+          "text": "State explicitly which assumption must change when the fourth record conflicts.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISS51-POLY-03-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS51-POLY-04",
+      "original_identifier": "Q4",
+      "stem": "A rectangular card has outer dimensions $(x+4)$ cm by $(x+2)$ cm. A square of side $x$ cm is cut out from its interior, with $x>0$. Construct the remaining-area polynomial and explain how its degree can differ from the degrees of the two component areas. Check your model at one admissible value.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "A(x)=(x+4)(x+2)-x^2=6x+8 for x>0; at x=1 both routes give 14 cm^2.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS51-POLY-04-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Model remaining area as outer rectangle minus the interior square.",
+            "why_valid": "The physical model determines the algebra before simplification.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "(x+4)(x+2)-x^2"
+          },
+          {
+            "id": "OWN-ISS51-POLY-04-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Expand and combine like terms.",
+            "why_valid": "The leading x^2 terms cancel exactly.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "6x+8"
+          },
+          {
+            "id": "OWN-ISS51-POLY-04-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Check x=1 in the geometric and simplified forms.",
+            "why_valid": "x=1 is admissible and a changed representation checks the model.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "15-1=14=6(1)+8"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS51-POLY-04-MOVE-2",
+        "check": "At x=1, 15-1=14=6(1)+8.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-ISS51-MODEL-CANCEL",
+      "family_ref": "FAM-ISS51-MODEL-DOMAIN",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q4",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:c69d164257c1d46ae27224b3ce56f50eaf44c551245053bc556f618389557e54"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 0,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Assume two quadratic component areas must leave a quadratic result. Decisive bridge: Translate whole area and cut-out area separately; simplify only after the physical subtraction is correct. Score 4 resolves to D2."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Assume two quadratic component areas must leave a quadratic result.",
+          "cognitive_demand": {
+            "primary": "MODEL",
+            "secondary": []
+          },
+          "stable_crux_move": "Translate whole area and cut-out area separately; simplify only after the physical subtraction is correct."
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "claim": "Benchmark input, not official/PYQ and not personally authored by Owner."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Restate exactly what the condition licenses before calculating.",
+          "connect": "Translate whole area and cut-out area separately; simplify only after the physical subtraction is correct.",
+          "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+          "rule": "Leading terms can cancel exactly when component polynomials are combined.",
+          "check": "At x=1, 15-1=14=6(1)+8.",
+          "probe": "A frame has outer area (x+5)(x+1) and an x-by-x cut-out. Predict the degree after simplification.",
+          "pattern": "Leading terms can cancel exactly when component polynomials are combined.",
+          "transfer": "Construct one changed cut-out where the x^2 terms cancel and one where they do not.",
+          "wrong_idea": "Assume two quadratic component areas must leave a quadratic result.",
+          "question_ref": "OWN-ISS51-POLY-04",
+          "construction_ref": "CU-ISS51-MODEL-CANCEL",
+          "crux_move_ref": "OWN-ISS51-POLY-04-MOVE-2",
+          "label": "Q4"
+        }
+      },
+      "conditions": [
+        "x>0."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Name which supplied condition should be converted first before doing algebra.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS51-POLY-04-MOVE-1"
+        },
+        {
+          "text": "Translate whole area and cut-out area separately; simplify only after the physical subtraction is correct.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS51-POLY-04-MOVE-2"
+        },
+        {
+          "text": "Use the original conditions or a second representation to check the result.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISS51-POLY-04-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS51-POLY-05",
+      "original_identifier": "Q5",
+      "stem": "For $p(x)=x^3-6x^2+11x-6$, create a factored representation and a sign chart covering all real $x$, including the zeros. Explain how the chart follows from the signs of the individual factors rather than from an unverified sketch.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "p(x)=(x-1)(x-2)(x-3); signs are -,0,+,0,-,0,+ across the ordered intervals/zeros.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS51-POLY-05-MOVE-1",
+            "kind": "TRANSFORM",
+            "action": "Factor the cubic completely.",
+            "why_valid": "The ordered linear factors expose all three real zeros.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "(x-1)(x-2)(x-3)"
+          },
+          {
+            "id": "OWN-ISS51-POLY-05-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Partition the real line at 1,2,3.",
+            "why_valid": "Each factor has a fixed sign inside each open interval.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "four open intervals plus zero boundaries"
+          },
+          {
+            "id": "OWN-ISS51-POLY-05-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Multiply factor signs and check one exact value per interval.",
+            "why_valid": "The chart comes from the product structure rather than an assumed sketch.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "-,+,-,+"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS51-POLY-05-MOVE-2",
+        "check": "Exact tests at 0,3/2,5/2,4 give -,+,-,+.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-ISS51-FACTOR-SIGN",
+      "family_ref": "FAM-ISS51-FACTOR-SIGN",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q5",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:a7dfdf5250c082fa75c67c3809ea3a847c46f9e05a70519402840899cb7a0f16"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 2,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Sketch a cubic from memory and read signs from the shape without verifying factors. Decisive bridge: Partition the real line at 1,2,3 and multiply the signs of the individual factors on each interval. Score 5 resolves to D2."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Sketch a cubic from memory and read signs from the shape without verifying factors.",
+          "cognitive_demand": {
+            "primary": "REPRESENT",
+            "secondary": []
+          },
+          "stable_crux_move": "Partition the real line at 1,2,3 and multiply the signs of the individual factors on each interval."
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "claim": "Benchmark input, not official/PYQ and not personally authored by Owner."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Restate exactly what the condition licenses before calculating.",
+          "connect": "Partition the real line at 1,2,3 and multiply the signs of the individual factors on each interval.",
+          "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+          "rule": "Each interval sign is the product of the factor signs; zeros are separate boundary entries.",
+          "check": "Exact tests at 0,3/2,5/2,4 give -,+,-,+.",
+          "probe": "For g(x)=(x+1)(x-2)(x-5), build only the factor-sign rows before drawing anything.",
+          "pattern": "Each interval sign is the product of the factor signs; zeros are separate boundary entries.",
+          "transfer": "Repeat with one squared factor and compare the sign behaviour at that zero.",
+          "wrong_idea": "Sketch a cubic from memory and read signs from the shape without verifying factors.",
+          "question_ref": "OWN-ISS51-POLY-05",
+          "construction_ref": "CU-ISS51-FACTOR-SIGN",
+          "crux_move_ref": "OWN-ISS51-POLY-05-MOVE-2",
+          "label": "Q5"
+        }
+      },
+      "conditions": [
+        "The sign chart covers all real x and includes the zeros."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Name which supplied condition should be converted first before doing algebra.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS51-POLY-05-MOVE-1"
+        },
+        {
+          "text": "Partition the real line at 1,2,3 and multiply the signs of the individual factors on each interval.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS51-POLY-05-MOVE-2"
+        },
+        {
+          "text": "Use the original conditions or a second representation to check the result.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISS51-POLY-05-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS51-POLY-06",
+      "original_identifier": "Q6",
+      "stem": "A monic cubic $p$ satisfies $p(1)=0$, $p(-1)=0$ and $p(2)=6$. Construct $p$ by coordinating the factor information and the remaining value condition. Check the result by an approach different from the one used to construct it.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "p(x)=x(x-1)(x+1)=x^3-x.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS51-POLY-06-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Write a monic cubic with forced factors x-1 and x+1 plus one unknown linear factor.",
+            "why_valid": "The two zeros determine divisibility but not the remaining root.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "(x-1)(x+1)(x-r)"
+          },
+          {
+            "id": "OWN-ISS51-POLY-06-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Use p(2)=6 to determine r.",
+            "why_valid": "Substitution gives 3(2-r)=6.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "r=0"
+          },
+          {
+            "id": "OWN-ISS51-POLY-06-MOVE-3",
+            "kind": "DECIDE",
+            "action": "Write the completed factored polynomial.",
+            "why_valid": "Monicity fixes the leading scale at 1.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "x(x-1)(x+1)"
+          },
+          {
+            "id": "OWN-ISS51-POLY-06-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Expand and check all three supplied values.",
+            "why_valid": "This route differs from the root-parameter construction.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "x^3-x; conditions verified"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS51-POLY-06-MOVE-2",
+        "check": "x^3-x gives p(1)=0, p(-1)=0 and p(2)=6.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-ISS51-FACTOR-SIGN",
+      "family_ref": "FAM-ISS51-FACTOR-SIGN",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q6",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:9714848900038ecf1a396e3cc46832eba3ca37d008b26134483118fe4f09d3cf"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 6,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Assume the third zero is 0 merely because ±1 are symmetric. Decisive bridge: Use the two forced factors and monicity, keep one unknown linear factor, then use p(2)=6. Score 6 resolves to D3."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "Assume the third zero is 0 merely because ±1 are symmetric.",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": []
+          },
+          "stable_crux_move": "Use the two forced factors and monicity, keep one unknown linear factor, then use p(2)=6."
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "claim": "Benchmark input, not official/PYQ and not personally authored by Owner."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Restate exactly what the condition licenses before calculating.",
+          "connect": "Use the two forced factors and monicity, keep one unknown linear factor, then use p(2)=6.",
+          "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+          "rule": "Known zeros determine factors; an unfixed cubic factor still needs the extra condition.",
+          "check": "x^3-x gives p(1)=0, p(-1)=0 and p(2)=6.",
+          "probe": "A monic cubic has zeros ±2 and f(3)=15. Determine the remaining factor instead of guessing it.",
+          "pattern": "Known zeros determine factors; an unfixed cubic factor still needs the extra condition.",
+          "transfer": "Repeat with two different roots and one function value, then verify by expansion.",
+          "wrong_idea": "Assume the third zero is 0 merely because ±1 are symmetric.",
+          "question_ref": "OWN-ISS51-POLY-06",
+          "construction_ref": "CU-ISS51-FACTOR-SIGN",
+          "crux_move_ref": "OWN-ISS51-POLY-06-MOVE-2",
+          "label": "Q6"
+        }
+      },
+      "conditions": [
+        "p is a monic cubic."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Name which supplied condition should be converted first before doing algebra.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS51-POLY-06-MOVE-1"
+        },
+        {
+          "text": "Use the two forced factors and monicity, keep one unknown linear factor, then use p(2)=6.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS51-POLY-06-MOVE-2"
+        },
+        {
+          "text": "Use the original conditions or a second representation to check the result.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISS51-POLY-06-MOVE-3"
+        },
+        {
+          "text": "Do not infer the remaining factor from symmetry; keep it symbolic until p(2)=6 is used.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISS51-POLY-06-MOVE-4"
+        },
+        {
+          "text": "Expand only after construction so expansion acts as an independent route.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISS51-POLY-06-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS51-POLY-07",
+      "original_identifier": "Q7",
+      "stem": "A student knows only that a nonzero real polynomial has zeros $-1$ and $1$, and concludes that it must equal $c(x^2-1)$ for some nonzero constant $c$. Decide what really follows without a degree bound, give a counterexample to any unwarranted part, and identify the extra condition that makes the stated form valid.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Only p(x)=(x^2-1)r(x) follows, for a nonzero real polynomial r. Counterexample: (x^2-1)(x+2). Adding deg p≤2 forces r to be a nonzero constant.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS51-POLY-07-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Apply the factor theorem at -1 and 1.",
+            "why_valid": "Two distinct zeros force two corresponding linear factors.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "p=(x^2-1)r(x)"
+          },
+          {
+            "id": "OWN-ISS51-POLY-07-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Leave r(x) unrestricted without a degree bound.",
+            "why_valid": "The supplied zeros do not rule out additional factors.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "r may be nonconstant"
+          },
+          {
+            "id": "OWN-ISS51-POLY-07-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Use (x^2-1)(x+2) as a counterexample to the constant-multiple claim.",
+            "why_valid": "One counterexample is enough to refute the universal overclaim.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "counterexample established"
+          },
+          {
+            "id": "OWN-ISS51-POLY-07-MOVE-4",
+            "kind": "TRANSFORM",
+            "action": "Add deg p<=2 and revisit the remaining factor.",
+            "why_valid": "The quadratic factor already has degree two, so r must be a nonzero constant.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "p=c(x^2-1)"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS51-POLY-07-MOVE-2",
+        "check": "The counterexample expands to x^3+2x^2-x-2 and is not a constant multiple of x^2-1.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-ISS51-DEGREE-IDENTITY",
+      "family_ref": "FAM-ISS51-DEGREE-IDENTITY",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q7",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:e684c25740d6e712abea060f1ff44c8d51a2599b1ec023303cdf500d95930411"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 8,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 1,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Jump from two known zeros directly to equality with a quadratic. Decisive bridge: Separate divisibility from equality, falsify the stronger claim with a higher-degree example, then identify the missing degree bound. Score 8 resolves to D4."
+          },
+          "expected_time_seconds": 330,
+          "common_wrong_route": "Jump from two known zeros directly to equality with a quadratic.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": []
+          },
+          "stable_crux_move": "Separate divisibility from equality, falsify the stronger claim with a higher-degree example, then identify the missing degree bound."
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "claim": "Benchmark input, not official/PYQ and not personally authored by Owner."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Restate exactly what the condition licenses before calculating.",
+          "connect": "Separate divisibility from equality, falsify the stronger claim with a higher-degree example, then identify the missing degree bound.",
+          "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+          "rule": "Known distinct zeros force corresponding factors; they do not cap the degree.",
+          "check": "The counterexample expands to x^3+2x^2-x-2 and is not a constant multiple of x^2-1.",
+          "probe": "If a nonzero polynomial has zeros 0 and 2, state the strongest factor conclusion without a degree bound and give a cubic counterexample.",
+          "pattern": "Known distinct zeros force corresponding factors; they do not cap the degree.",
+          "transfer": "Generalize to three prescribed zeros and state the degree bound that forces a constant multiple.",
+          "wrong_idea": "Jump from two known zeros directly to equality with a quadratic.",
+          "question_ref": "OWN-ISS51-POLY-07",
+          "construction_ref": "CU-ISS51-DEGREE-IDENTITY",
+          "crux_move_ref": "OWN-ISS51-POLY-07-MOVE-2",
+          "label": "Q7"
+        }
+      },
+      "conditions": [
+        "p is a nonzero real polynomial; no degree bound is supplied initially."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Name which supplied condition should be converted first before doing algebra.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS51-POLY-07-MOVE-1"
+        },
+        {
+          "text": "Separate divisibility from equality, falsify the stronger claim with a higher-degree example, then identify the missing degree bound.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS51-POLY-07-MOVE-2"
+        },
+        {
+          "text": "Use the original conditions or a second representation to check the result.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISS51-POLY-07-MOVE-3"
+        },
+        {
+          "text": "A counterexample should satisfy the two supplied zeros while violating the constant-multiple claim.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISS51-POLY-07-MOVE-4"
+        },
+        {
+          "text": "After adding deg p<=2, compare degrees of (x^2-1) and the remaining factor.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISS51-POLY-07-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS51-POLY-08",
+      "original_identifier": "Q8",
+      "stem": "Two real polynomials $p$ and $q$ each have degree at most two and agree at three distinct real inputs. Prove or disprove that they agree everywhere. You may use the fact that a nonzero polynomial of degree at most two has at most two distinct real zeros; distinguish that fact from a claim about the zero polynomial.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "True. Let r=p-q. Then deg r≤2 and the three agreement inputs are three distinct zeros. If r were nonzero this contradicts the root bound; hence r is the zero polynomial and p=q everywhere.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS51-POLY-08-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Define r=p-q.",
+            "why_valid": "A single difference polynomial turns agreement into zero information.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "deg r<=2"
+          },
+          {
+            "id": "OWN-ISS51-POLY-08-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Translate the three distinct agreements into three distinct zeros of r.",
+            "why_valid": "p(t)=q(t) exactly means r(t)=0.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "three distinct zeros"
+          },
+          {
+            "id": "OWN-ISS51-POLY-08-MOVE-3",
+            "kind": "DECIDE",
+            "action": "Assume r is nonzero and apply the degree-at-most-two root bound.",
+            "why_valid": "The theorem is explicitly about nonzero polynomials.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "contradiction"
+          },
+          {
+            "id": "OWN-ISS51-POLY-08-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Resolve the remaining branch r identically zero.",
+            "why_valid": "The zero polynomial is not excluded by the root bound; r=0 everywhere means p=q everywhere.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "identity proved"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS51-POLY-08-MOVE-1",
+        "check": "The proof is global: three r-zeros plus deg r≤2 contradict nonzero r; no extra sampling is used.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-ISS51-DEGREE-IDENTITY",
+      "family_ref": "FAM-ISS51-DEGREE-IDENTITY",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q8",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:6bf73df2112471ca91f9ade296632344139cc10614c05afe86c36df89c8cddf1"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D4",
+            "score": 9,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 2
+            },
+            "basis": "Say every degree-at-most-two polynomial has at most two zeros, thereby falsely excluding the zero polynomial. Decisive bridge: Construct r=p-q so equality becomes zero information; invoke the root bound only under a nonzero assumption; then interpret the zero-polynomial case. Score 9 resolves to D4."
+          },
+          "expected_time_seconds": 330,
+          "common_wrong_route": "Say every degree-at-most-two polynomial has at most two zeros, thereby falsely excluding the zero polynomial.",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": []
+          },
+          "stable_crux_move": "Construct r=p-q so equality becomes zero information; invoke the root bound only under a nonzero assumption; then interpret the zero-polynomial case."
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "claim": "Benchmark input, not official/PYQ and not personally authored by Owner."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Restate exactly what the condition licenses before calculating.",
+          "connect": "Construct r=p-q so equality becomes zero information; invoke the root bound only under a nonzero assumption; then interpret the zero-polynomial case.",
+          "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+          "rule": "Convert agreement to zeros of a difference polynomial, apply the zero bound conditionally on nonzero, then interpret h≡0.",
+          "check": "The proof is global: three r-zeros plus deg r≤2 contradict nonzero r; no extra sampling is used.",
+          "probe": "Suppose f,g have degree at most one and agree at two distinct inputs. Let h=f-g and predict whether h can be nonzero.",
+          "pattern": "Convert agreement to zeros of a difference polynomial, apply the zero bound conditionally on nonzero, then interpret h≡0.",
+          "transfer": "Use the same method for degree at most three with four agreement inputs.",
+          "wrong_idea": "Say every degree-at-most-two polynomial has at most two zeros, thereby falsely excluding the zero polynomial.",
+          "question_ref": "OWN-ISS51-POLY-08",
+          "construction_ref": "CU-ISS51-DEGREE-IDENTITY",
+          "crux_move_ref": "OWN-ISS51-POLY-08-MOVE-1",
+          "label": "Q8"
+        }
+      },
+      "conditions": [
+        "p and q are real polynomials of degree at most two; the three agreement inputs are distinct."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Translate each agreement p(t)=q(t) into a statement about p(t)-q(t).",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS51-POLY-08-MOVE-1"
+        },
+        {
+          "text": "Construct r=p-q so equality becomes zero information; invoke the root bound only under a nonzero assumption; then interpret the zero-polynomial case.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS51-POLY-08-MOVE-2"
+        },
+        {
+          "text": "Before using the root bound, state the hypothesis it requires about the difference polynomial.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISS51-POLY-08-MOVE-3"
+        },
+        {
+          "text": "Assume the difference polynomial is nonzero before invoking the root-count fact.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISS51-POLY-08-MOVE-4"
+        },
+        {
+          "text": "After contradiction, translate 'difference polynomial is zero' back into a statement about p and q.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISS51-POLY-08-MOVE-4"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS51-POLY-09",
+      "original_identifier": "Q9",
+      "stem": "For $p_a(x)=(a-1)x^3+(a+1)x^2-2x$, determine the parameter values for which $1$ is a zero and the parameter values for which the degree is less than three. Explain how the two conditions relate and whether the family can ever become the zero polynomial.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "1 is a zero iff a=1; degree<3 iff a=1; at a=1 the polynomial is 2x^2-2x, so the family is never the zero polynomial.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS51-POLY-09-MOVE-1",
+            "kind": "TRANSFORM",
+            "action": "Substitute x=1 for the root condition.",
+            "why_valid": "A zero at 1 means p_a(1)=0.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "a=1"
+          },
+          {
+            "id": "OWN-ISS51-POLY-09-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Set the cubic coefficient a-1 to zero for degree below three.",
+            "why_valid": "Degree drops when the leading coefficient vanishes.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "a=1"
+          },
+          {
+            "id": "OWN-ISS51-POLY-09-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Inspect every coefficient for the zero-polynomial question.",
+            "why_valid": "The x coefficient is always -2, so all coefficients can never vanish.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "family never zero polynomial"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS51-POLY-09-MOVE-2",
+        "check": "At a=1, 2x^2-2x is nonzero; moreover the x coefficient is always -2.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-ISS51-PARAM-DOMAIN",
+      "family_ref": "FAM-ISS51-MODEL-DOMAIN",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q9",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:7a382847a75e2ee382b7e18612950193be5a878fa83b463792cb7312e577a6cc"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Set the leading coefficient to zero and conclude the whole polynomial is zero. Decisive bridge: Solve the root condition by evaluation, the degree condition by the leading coefficient, then compare them and inspect all coefficients. Score 5 resolves to D2."
+          },
+          "expected_time_seconds": 150,
+          "common_wrong_route": "Set the leading coefficient to zero and conclude the whole polynomial is zero.",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": []
+          },
+          "stable_crux_move": "Solve the root condition by evaluation, the degree condition by the leading coefficient, then compare them and inspect all coefficients."
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "claim": "Benchmark input, not official/PYQ and not personally authored by Owner."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Restate exactly what the condition licenses before calculating.",
+          "connect": "Solve the root condition by evaluation, the degree condition by the leading coefficient, then compare them and inspect all coefficients.",
+          "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+          "rule": "Degree drop kills only the leading coefficient; the zero polynomial requires every coefficient to vanish.",
+          "check": "At a=1, 2x^2-2x is nonzero; moreover the x coefficient is always -2.",
+          "probe": "For f_b=(b-2)x^3+(b+2)x^2+5x, compare degree<3 with the stronger zero-polynomial condition.",
+          "pattern": "Degree drop kills only the leading coefficient; the zero polynomial requires every coefficient to vanish.",
+          "transfer": "Create a family where the root and degree-drop conditions do not coincide.",
+          "wrong_idea": "Set the leading coefficient to zero and conclude the whole polynomial is zero.",
+          "question_ref": "OWN-ISS51-POLY-09",
+          "construction_ref": "CU-ISS51-PARAM-DOMAIN",
+          "crux_move_ref": "OWN-ISS51-POLY-09-MOVE-2",
+          "label": "Q9"
+        }
+      },
+      "conditions": [
+        "a is real; degree is taken after coefficient cancellation."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Name which supplied condition should be converted first before doing algebra.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS51-POLY-09-MOVE-1"
+        },
+        {
+          "text": "Solve the root condition by evaluation, the degree condition by the leading coefficient, then compare them and inspect all coefficients.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS51-POLY-09-MOVE-2"
+        },
+        {
+          "text": "Use the original conditions or a second representation to check the result.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISS51-POLY-09-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS51-POLY-10",
+      "original_identifier": "Q10",
+      "stem": "Find all real zeros of $p(x)=x^4-5x^2+4$ and $q(x)=x^4+4x^2+4$ by choosing a useful change of variable. State the condition imposed by that change of variable, check each accepted real zero, and explain why treating the new variable as an unrestricted real number can mislead. This is a competition extension; no general quartic formula is required.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "For p the real zeros are -2,-1,1,2. For q there are no real zeros. With y=x^2, y≥0; q gives y=-2, which is inadmissible.",
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS51-POLY-10-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Set y=x^2 and state y>=0 because x is real.",
+            "why_valid": "The substitution lowers algebraic degree but has a restricted image.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "restricted auxiliary variable"
+          },
+          {
+            "id": "OWN-ISS51-POLY-10-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Solve each quadratic in y.",
+            "why_valid": "The quartics become y^2-5y+4 and y^2+4y+4.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "p: y=1,4; q: y=-2"
+          },
+          {
+            "id": "OWN-ISS51-POLY-10-MOVE-3",
+            "kind": "DECIDE",
+            "action": "Filter by y>=0 before mapping back to x.",
+            "why_valid": "Only auxiliary values in the image of x^2 represent real x.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "reject q's y=-2"
+          },
+          {
+            "id": "OWN-ISS51-POLY-10-MOVE-4",
+            "kind": "VERIFY",
+            "action": "Return accepted y-values to x and check in the original quartics.",
+            "why_valid": "The original equations are the final authority.",
+            "inputs": [
+              "stated givens and prior moves"
+            ],
+            "output": "p zeros +/-1,+/-2; q none"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS51-POLY-10-MOVE-2",
+        "check": "p(±1)=p(±2)=0; independently q=(x^2+2)^2>0 for all real x.",
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-ISS51-PARAM-DOMAIN",
+      "family_ref": "FAM-ISS51-MODEL-DOMAIN",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q10",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:e459fc38bd0c80def0cd563cbc06c42c72b10bb31da595b53777a582d73dac95"
+        },
+        "grade9v3:math_spans": [],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D3",
+            "score": 7,
+            "components": {
+              "concept_model_selection": 2,
+              "representation_translation": 2,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Treat y as unrestricted real and accept y=-2 for q. Decisive bridge: Set y=x^2 and carry y≥0 through solving, filtering and mapping back to real x. Score 7 resolves to D3."
+          },
+          "expected_time_seconds": 240,
+          "common_wrong_route": "Treat y as unrestricted real and accept y=-2 for q.",
+          "cognitive_demand": {
+            "primary": "MODEL",
+            "secondary": []
+          },
+          "stable_crux_move": "Set y=x^2 and carry y≥0 through solving, filtering and mapping back to real x."
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_authorized": true,
+          "claim": "Benchmark input, not official/PYQ and not personally authored by Owner."
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Restate exactly what the condition licenses before calculating.",
+          "connect": "Set y=x^2 and carry y≥0 through solving, filtering and mapping back to real x.",
+          "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+          "rule": "An auxiliary substitution inherits its image/domain; roots outside it do not correspond to admissible original-variable solutions.",
+          "check": "p(±1)=p(±2)=0; independently q=(x^2+2)^2>0 for all real x.",
+          "probe": "For r=x^4+3x^2-4, set y=x^2, list y-roots first, then filter by the real-x image.",
+          "pattern": "An auxiliary substitution inherits its image/domain; roots outside it do not correspond to admissible original-variable solutions.",
+          "transfer": "Try y=x^2 on x^4+x^2+1=0 and explain the real-zero conclusion.",
+          "wrong_idea": "Treat y as unrestricted real and accept y=-2 for q.",
+          "question_ref": "OWN-ISS51-POLY-10",
+          "construction_ref": "CU-ISS51-PARAM-DOMAIN",
+          "crux_move_ref": "OWN-ISS51-POLY-10-MOVE-2",
+          "label": "Q10"
+        }
+      },
+      "conditions": [
+        "Only real zeros are requested; any auxiliary-variable restriction must be preserved."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Name which supplied condition should be converted first before doing algebra.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS51-POLY-10-MOVE-1"
+        },
+        {
+          "text": "Set y=x^2 and carry y≥0 through solving, filtering and mapping back to real x.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS51-POLY-10-MOVE-2"
+        },
+        {
+          "text": "Use the original conditions or a second representation to check the result.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "OWN-ISS51-POLY-10-MOVE-3"
+        },
+        {
+          "text": "Filter auxiliary roots before taking square roots.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FORMAL_MODEL",
+          "supports_move_ref": "OWN-ISS51-POLY-10-MOVE-4"
+        },
+        {
+          "text": "Use q(x)=(x^2+2)^2 as a second check on the no-real-zero result.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "CHECKPOINT",
+          "supports_move_ref": "OWN-ISS51-POLY-10-MOVE-4"
+        }
+      ]
+    }
+  ]
+}

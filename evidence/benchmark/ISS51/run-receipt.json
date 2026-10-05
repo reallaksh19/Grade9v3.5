@@ -3,7 +3,7 @@
   "issue": 51,
   "run_id": "ISS51-D3-R1",
   "round": "POLYNOMIAL-STRESS-V1",
-  "status": "SOURCE_AUTHORED_AWAITING_COLD_RENDER",
+  "status": "CANDIDATE_RENDERED_WITH_INHERITED_BLOCKER",
   "launch_commit": "91719ad8df2bfc06c6a481590d2e24c510c24835",
   "branch": "agent/iss51-polynomial-stress-v1-d3",
   "code_authority_commit": "91719ad8df2bfc06c6a481590d2e24c510c24835",
@@ -26,5 +26,30 @@
     "python3 Shared/tools/render_core.py build --manifest evidence/benchmark/ISS51/generated/product.manifest.json --out <site>/products/mathematics/iss51-polynomials --mode PAGES",
     "node tools/site-audit/core-page-audit.mjs <product-dir> --profile tablet-12.7 --http-root <site> --json <report>"
   ],
-  "distinction_note": "Code authority commit, authored source commit, exact render digests and frozen handoff commit are tracked separately."
+  "distinction_note": "Code authority commit, authored source commit, exact render digests and frozen handoff commit are tracked separately.",
+  "workflow_run_id": "37337745550",
+  "source_artifact_commit": "ca4a85f4004cf3fac9a264a5ba1aa35b31a6c078",
+  "rendered": {
+    "core1a_html": "sha256:338e302a67c7b171e2b87b109f1dfc56b906d40052e0dbc1b2678112b83127c6",
+    "core2_html": "sha256:dbcc5514238f7fc499b9be02ec696687d4b092ad1a26e7385e7b4e31cdd87341"
+  },
+  "generated": {
+    "package": "sha256:e3185350ab3cd85cc78171ccb23de0b62e84b114b635617666c973b6a632cb5a",
+    "owner_bank": "sha256:3ecf7eefa87649b811048d7784e77c6757ae52b92158112bb4b338b04e2b8059",
+    "manifest": "sha256:eaa1dd11c1edca7073faff73da94744ebf7526ec9ca0c5e37fe1ba98f131e3f9"
+  },
+  "reports": {
+    "quality_gate": "sha256:d23837e9cb9c2fd7c507a214203c208a189210ca5354db147d16fefa0e3146a2",
+    "tablet_audit": "sha256:6c36aa985306736bfbcbf466fdca0868425c38f7838fee0a22b746fe2b267277",
+    "semantic_inspection": "sha256:ac40309e7ef6e83634a0ebc2d74236c8883a9c11cd83366adaee82696b134ab6",
+    "layout_authority_mismatch": "sha256:36155eadd978ce620ecb9c92b779c62a142cf45f6a5f5666acb128b954594ffc"
+  },
+  "blocking_findings": [
+    {
+      "rule": "PAGE-STAGE-SUPPORT",
+      "severity": "S2",
+      "where": "core1a.html",
+      "detail": "stage support layout absent"
+    }
+  ]
 }
