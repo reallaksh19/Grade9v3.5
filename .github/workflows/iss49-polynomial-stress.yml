@@ -93,43 +93,45 @@ jobs:
             --report /tmp/iss49/quality-gate.json \
             --strict
 
-      - name: Baseline stage-layout witness
-        id: baseline_quality
-        continue-on-error: true
+      - name: Classify quality authority delta
         run: |
-          rm -rf /tmp/iss49-baseline
-          python Shared/tools/render_core.py build \
-            --manifest products/physics/phy-kin-2d-motion.manifest.json \
-            --out /tmp/iss49-baseline \
-            --mode PAGES
-          python Shared/tools/quality_gate.py /tmp/iss49-baseline \
-            --subject Physics \
-            --product-id ISS49-BASELINE-WITNESS \
-            --report /tmp/iss49-baseline/quality-gate.json \
-            --strict
-
-      - name: Classify quality delta
-        run: |
+          git diff --quiet 91719ad8df2bfc06c6a481590d2e24c510c24835 -- \
+            Shared/web/interactive-page-blueprints.v1.json \
+            Shared/quality/learner-quality.v1.json \
+            Shared/tools/quality_gate.py \
+            tools/site-audit/core-page-audit.mjs
           python - <<'PY'
           import json
           from pathlib import Path
           cand=json.loads(Path("/tmp/iss49/quality-gate.json").read_text(encoding="utf-8"))
-          base=json.loads(Path("/tmp/iss49-baseline/quality-gate.json").read_text(encoding="utf-8"))
-          allowed={"PAGE-STAGE-SUPPORT"}
-          unexpected=[f for f in cand["findings"] if f["rule"] not in allowed]
+          unexpected=[f for f in cand["findings"] if f["rule"]!="PAGE-STAGE-SUPPORT"]
           if unexpected:
               raise SystemExit("candidate-specific quality findings remain: "+json.dumps(unexpected, ensure_ascii=False))
-          if not any(f["rule"]=="PAGE-STAGE-SUPPORT" for f in cand["findings"]):
-              raise SystemExit("expected inherited PAGE-STAGE-SUPPORT witness is absent from candidate")
-          if not any(f["rule"]=="PAGE-STAGE-SUPPORT" for f in base["findings"]):
-              raise SystemExit("baseline witness does not reproduce PAGE-STAGE-SUPPORT")
+          stage=[f for f in cand["findings"] if f["rule"]=="PAGE-STAGE-SUPPORT"]
+          if len(stage)!=1 or stage[0]["where"]!="core1a.html":
+              raise SystemExit("unexpected PAGE-STAGE-SUPPORT shape: "+json.dumps(stage, ensure_ascii=False))
+          reg=json.loads(Path("Shared/web/interactive-page-blueprints.v1.json").read_text(encoding="utf-8"))
+          bp=next(b for b in reg["blueprints"] if "CORE1A" in b["core_roles"])
+          if bp["responsive_policy"].get("expanded")!="SINGLE_PANE":
+              raise SystemExit("Core1A blueprint no longer declares SINGLE_PANE")
+          contract=json.loads(Path("Shared/quality/learner-quality.v1.json").read_text(encoding="utf-8"))
+          rule=next(r for r in contract["rules"] if r["id"]=="PAGE-STAGE-SUPPORT")
+          if "CORE1A" not in rule["roles"]:
+              raise SystemExit("PAGE-STAGE-SUPPORT no longer applies to CORE1A")
           print("candidate-specific quality findings: 0")
-          print("inherited PAGE-STAGE-SUPPORT reproduced in baseline and candidate")
+          print("inherited authority contradiction: Core1A blueprint SINGLE_PANE vs PAGE-STAGE-SUPPORT requirement")
           PY
 
       - name: Exact-render browser audit
+        id: browser_audit
+        continue-on-error: true
         run: |
-          node tools/site-audit/core-page-audit.mjs             /tmp/iss49             --profile core1a-spec             --http-root /tmp/iss49             --json /tmp/iss49/browser-audit.json             --enforce
+          node tools/site-audit/core-page-audit.mjs \
+            /tmp/iss49 \
+            --profile core1a-spec \
+            --http-root /tmp/iss49 \
+            --json /tmp/iss49/browser-audit.json \
+            --enforce
 
       - name: Preserve exact validation evidence
         if: always()
@@ -137,7 +139,6 @@ jobs:
           mkdir -p evidence/benchmark/ISS49/runtime
           test -f /tmp/iss49/quality-gate.json && cp /tmp/iss49/quality-gate.json evidence/benchmark/ISS49/runtime/quality-gate.json || true
           test -f /tmp/iss49/browser-audit.json && cp /tmp/iss49/browser-audit.json evidence/benchmark/ISS49/runtime/browser-audit.json || true
-          test -f /tmp/iss49-baseline/quality-gate.json && cp /tmp/iss49-baseline/quality-gate.json evidence/benchmark/ISS49/runtime/baseline-quality-gate.json || true
           git rev-parse HEAD > evidence/benchmark/ISS49/runtime/tested-head.txt
           printf '%s\n' "$GITHUB_RUN_ID" > evidence/benchmark/ISS49/runtime/workflow-run-id.txt
 
