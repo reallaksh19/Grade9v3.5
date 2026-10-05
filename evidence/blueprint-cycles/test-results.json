@@ -1,0 +1,20 @@
+[
+  {
+    "name": "existing-core2",
+    "status": "PASS",
+    "command": "python -m unittest tests.test_core2_v2 tests.test_core2_v2_quality -v",
+    "exit_code": 0,
+    "observation": "LOCAL_EXECUTION",
+    "oracle": "FOCUSED_REGRESSION; Node DOM harness is not browser",
+    "log_sha256": "f10ff7be88737e8e3543f1717b6e3b8a4b1a5ffda6563f0538f1b1d7297245c4"
+  },
+  {
+    "name": "focused-repair",
+    "status": "PASS",
+    "command": "python evidence/blueprint-cycles/tools/test_learning_repair.py -v",
+    "exit_code": 0,
+    "observation": "LOCAL_EXECUTION",
+    "oracle": "FOCUSED_REGRESSION; Node DOM harness is not browser",
+    "log_sha256": "74163d6cc5644039c03f2cab3cb18ba7e18ef862a37e3e7406b354cdc3a23e1e"
+  }
+]

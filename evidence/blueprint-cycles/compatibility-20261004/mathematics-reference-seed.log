@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "C:\CodeB\Grade9v3.5\.codex-recovery\seed\Shared\tools\render_core.py", line 3139, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\CodeB\Grade9v3.5\.codex-recovery\seed\Shared\tools\render_core.py", line 3089, in main
+    pages, gaps, digest, _advisories, _waived = build_report(
+                                                ^^^^^^^^^^^^^
+  File "C:\CodeB\Grade9v3.5\.codex-recovery\seed\Shared\tools\render_core.py", line 2928, in build_report
+    ctx = context(manifest_path)
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\CodeB\Grade9v3.5\.codex-recovery\seed\Shared\tools\render_core.py", line 2676, in context
+    raise ValueError(f"PRODUCT_STRUCTURE_INVALID: {path}: {shown}"
+ValueError: PRODUCT_STRUCTURE_INVALID: C:\CodeB\Grade9v3.5\.codex-recovery\seed\Mathematics\library\linear-equations.v1.json: questions/11/answer/verification_status: 'VERIFIED_CANONICAL' is not one of ['NOT_RUN', 'CHECKED_BY_AUTHOR', 'INDEPENDENTLY_CHECKED', 'DISPUTED']; questions/11/status: 'PUBLISHED' is not one of ['DISCOVERED', 'CANDIDATE', 'REVIEWED', 'CURATED', 'DISPUTED', 'STALE', 'RETIRED']; questions/12/answer/verification_status: 'VERIFIED_CANONICAL' is not one of ['NOT_RUN', 'CHECKED_BY_AUTHOR', 'INDEPENDENTLY_CHECKED', 'DISPUTED']; questions/12/status: 'PUBLISHED' is not one of ['DISCOVERED', 'CANDIDATE', 'REVIEWED', 'CURATED', 'DISPUTED', 'STALE', 'RETIRED']; questions/13/answer/verification_status: 'VERIFIED_CANONICAL' is not one of ['NOT_RUN', 'CHECKED_BY_AUTHOR', 'INDEPENDENTLY_CHECKED', 'DISPUTED']; questions/13/status: 'PUBLISHED' is not one of ['DISCOVERED', 'CANDIDATE', 'REVIEWED', 'CURATED', 'DISPUTED', 'STALE', 'RETIRED'] (+30 more)

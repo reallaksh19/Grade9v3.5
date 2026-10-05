@@ -1,0 +1,2242 @@
+{
+  "schema_version": "1.0",
+  "registry_version": "1.12.0",
+  "shell": {
+    "id": "G9-TABLET-SHELL-V1",
+    "fixed_header": true,
+    "controls": [
+      "BACK",
+      "HOME",
+      "SUBJECT_CONTEXT",
+      "QUESTION_BANK",
+      "PRINT_PDF",
+      "SEARCH",
+      "REFRESH",
+      "DISPLAY",
+      "OVERFLOW"
+    ],
+    "responsive_modes": [
+      "COMPACT",
+      "MEDIUM",
+      "EXPANDED"
+    ],
+    "typography_policy": {
+      "base_text_css_px": 17,
+      "minimum_learner_text_css_px": 14,
+      "exception_policy": "EXPLICIT_NON_LEARNER_METADATA_ONLY"
+    },
+    "math_policy": {
+      "static_relation_format": "RESTRICTED_PRESENTATION_MATHML",
+      "dynamic_question_format": "TYPED_TEX_SEGMENTS",
+      "dynamic_renderer": "LOCAL_KATEX",
+      "runtime_text_inference": "FORBIDDEN"
+    },
+    "representation_accessibility_policy": {
+      "instructional_visual_requires_accessible_name": true,
+      "instructional_visual_requires_description": true,
+      "color_only_meaning": "FORBIDDEN"
+    },
+    "data_representation_policy": {
+      "comparative_relations": "TABLE_OR_MATRIX_ALLOWED",
+      "independent_facts": "CARDS_OR_TILES_ALLOWED",
+      "tag_count_as_quality_metric": "FORBIDDEN"
+    },
+    "vendor_policy": {
+      "pages_external_runtime": "FORBIDDEN",
+      "publication_rewrite": "BUILD_PIPELINE",
+      "unknown_runtime_dependency": "FAIL_CLOSED"
+    },
+    "version": "1.3.0",
+    "print_policy": {
+      "control": "PRINT_PDF",
+      "purpose": "A learner or a teacher can print the page: a PDF icon in the fixed header opens the PDF printed from this very page, ready for the print dialog of the tablet.",
+      "applies_to_roles": [
+        "CORE1",
+        "CORE1A",
+        "CORE1B",
+        "CORE2",
+        "CORE2A",
+        "CORE2B"
+      ],
+      "icon": "PDF",
+      "accessible_name": "Open the PDF of this page to print it",
+      "target": "GENERATED_LEARNER_PDF",
+      "target_pattern": "{page_stem}.pdf",
+      "never_linked": [
+        "KEY_PDF"
+      ],
+      "opens": "NEW_TAB",
+      "target_css_px_min": 48,
+      "in_print": "HIDDEN",
+      "single_file_mode": "NO_CONTROL",
+      "link_must_resolve": "A page that links its PDF is published only with that PDF beside it, printed from the same bytes (print-receipt.json); a link that does not resolve refuses the publication."
+    },
+    "standalone_policy": {
+      "purpose": "A learner page that did not come through render_core (a snapshot, a suite, a page written by hand or taken from another tool) meets the shell's own policies, read from its own bytes. The renderer meets them by construction; nothing else does unless something checks.",
+      "applies_to": "LEARNER_HTML_OUTSIDE_THE_RENDERER",
+      "governed_roots": [
+        "standalone"
+      ],
+      "unknown_page": "FAIL_CLOSED",
+      "zoom_max_scale_min": 5,
+      "rules": [
+        {
+          "id": "REMOTE_RUNTIME",
+          "severity": "BLOCK",
+          "executes": "vendor_policy.pages_external_runtime",
+          "statement": "A page loads no script, stylesheet, font, image or frame from the network. A link to a source is a citation and is allowed; a dependency is not.",
+          "assurance_type": "NETWORK_POLICY"
+        },
+        {
+          "id": "VIEWPORT_ZOOM",
+          "severity": "BLOCK",
+          "executes": "responsive_modes",
+          "statement": "A page declares a viewport and never turns zoom off: no user-scalable=no, no maximum-scale under the limit.",
+          "assurance_type": "PROJECTION_STATIC_CONFORMANCE"
+        },
+        {
+          "id": "FONT_FLOOR",
+          "severity": "BLOCK",
+          "executes": "typography_policy.minimum_learner_text_css_px",
+          "statement": "No declared text size is under the learner text floor. A size that scaling changes (an SVG label in a narrow column) is measured by the browser audit.",
+          "assurance_type": "PROJECTION_STATIC_CONFORMANCE"
+        },
+        {
+          "id": "LINKS_RESOLVE",
+          "severity": "BLOCK",
+          "executes": "responsive_modes",
+          "statement": "Every relative reference lands on a file that exists, and every fragment on an id that page holds.",
+          "assurance_type": "LINK_INTEGRITY"
+        },
+        {
+          "id": "LINKS_LEAVE_ROOT",
+          "severity": "ADVISE",
+          "executes": "vendor_policy.pages_external_runtime",
+          "statement": "A reference that leaves the governed root means the page is not whole where it is shipped alone. Said, not held: whether it matters depends on what is shipped.",
+          "assurance_type": "LINK_INTEGRITY"
+        },
+        {
+          "id": "MATH_CONTROL_CHARS",
+          "severity": "BLOCK",
+          "executes": "math_policy",
+          "statement": "No control character in the source: a TeX escape read as one (\\v for \\vec, \\f for \\frac) is gone from the maths.",
+          "assurance_type": "PROJECTION_STATIC_CONFORMANCE"
+        },
+        {
+          "id": "MATH_UNRENDERED",
+          "severity": "BLOCK",
+          "executes": "math_policy.dynamic_renderer",
+          "statement": "TeX in the visible text means a script on the page renders it; maths shown as raw delimiters is not maths.",
+          "assurance_type": "PROJECTION_STATIC_CONFORMANCE"
+        },
+        {
+          "id": "STORAGE_GUARDED",
+          "severity": "BLOCK",
+          "executes": "representation_accessibility_policy",
+          "statement": "Storage is read only inside a try block: with storage blocked the read throws, and one throw ends the script.",
+          "assurance_type": "PROJECTION_STATIC_CONFORMANCE"
+        },
+        {
+          "id": "VENDOR_CONFIG_DANGLING",
+          "severity": "BLOCK",
+          "executes": "vendor_policy.unknown_runtime_dependency",
+          "statement": "No configuration for a vendor script the page does not load: it throws on every load.",
+          "assurance_type": "PROJECTION_STATIC_CONFORMANCE"
+        },
+        {
+          "id": "UNIQUE_IDS",
+          "severity": "BLOCK",
+          "executes": "representation_accessibility_policy",
+          "statement": "An id appears once on a page.",
+          "assurance_type": "PROJECTION_STATIC_CONFORMANCE"
+        }
+      ],
+      "checker": "Shared/tools/standalone_conformance.py",
+      "ledger": "Shared/web/standalone-ledger.v1.json",
+      "ledger_rule": "A page may have no more findings of a rule than the ledger records, and a page the ledger does not list has none. The ledger holds what was already there when the rule arrived; the checker writes it, and it can only be tightened.",
+      "browser_audit": {
+        "tool": "tools/site-audit/core-page-audit.mjs",
+        "profile": "tablet-12.7",
+        "measures": [
+          "horizontal overflow",
+          "touch targets of at least 48 px",
+          "rendered text size, SVG labels included",
+          "return navigation"
+        ],
+        "note": "These need a rendered page. A snapshot is not done until this audit has run on it; the static rules above are what a pull request can be held to without a browser."
+      }
+    }
+  },
+  "component_policy": {
+    "levels": {
+      "REQUIRED": "The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product.",
+      "EXPECTED": "A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content.",
+      "OPTIONAL": "Shown when the record has it."
+    },
+    "column": {
+      "FULL": "A band across the whole page width.",
+      "PRIMARY": "The main column of the expanded two-column layout; in the compact flow it comes first.",
+      "SUPPORT": "The support column of the expanded layout; it follows the primary column in the compact flow."
+    },
+    "waivers": "A record may declare an EXPECTED component not applicable, with a written reason, in extensions['grade9v3:component_waivers'] as {COMPONENT_ID: reason}; the reason is kept in the page and the receipt. A REQUIRED component cannot be waived, and a page never waives anything itself.",
+    "depth": "min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source (for a Core1A construction unit, the hardest band among the bank questions it names in crux_question_refs). Between the floor and the reference depth the renderer says so as an advisory.",
+    "held_to": "FLOOR: official records and products are judged at the floor; an EXPECTED component that is absent is an advisory. REFERENCE: new authoring (a TEST deploy, a scaffolded owner bank) is judged at the reference depth, and an EXPECTED component must be present or waived by the record; otherwise it is a gap.",
+    "coverage": {
+      "purpose": "A product shows what the library holds for its subject, not what an author happened to list: the list of selected questions is a choice, and a choice leaves a record.",
+      "denominator": "What product_manifest.derive would select: for Core2, the exam-bank questions whose capability or concept bucket belongs to the package; for Core2A and Core2B, the package questions exposed to that Core.",
+      "rule": "Every record of the denominator is selected, or omitted by the manifest with a reason (coverage.omitted: {record id: why}); the hardest question of the denominator, by the toughest-concept rule, is selected.",
+      "held_to": {
+        "FLOOR": "ADVISORY",
+        "REFERENCE": "GAP"
+      },
+      "component": "COVERAGE",
+      "duty": "AUTHOR_COVERAGE",
+      "sources": "Source documents whose questions the library does not hold as records yet are declared in the manifest (coverage.sources: source, kind, questions, ingested, status). They are counted and said on the page of Deployments and in the receipt; nothing is rendered from them, and the figures are the author's claim."
+    },
+    "promotion": {
+      "purpose": "A record that its own status says is not ready to teach is not selected into a product.",
+      "selectable_statuses": [
+        "CANDIDATE",
+        "REVIEWED",
+        "CURATED"
+      ],
+      "refused_statuses": [
+        "DISCOVERED",
+        "DISPUTED",
+        "STALE",
+        "RETIRED"
+      ],
+      "applies_to": [
+        "microtopics",
+        "core2",
+        "core2a",
+        "core2b"
+      ],
+      "refusal": "PRODUCT_SELECTION_STATUS_NOT_SELECTABLE",
+      "note": "A record that declares no status makes no claim and is not refused. What a selected record must contain is the blueprint's own components: a REQUIRED one that is absent is a gap, as before."
+    },
+    "typeset": {
+      "purpose": "An equation a learner is meant to read is typeset, not left as the author's plain text.",
+      "rule": "A relation shown on a page carries presentation MathML (relation.mathml, the restricted subset the renderer accepts). One that has only an expression is shown as plain text, and the build says so.",
+      "held_to": {
+        "FLOOR": "ADVISORY",
+        "REFERENCE": "GAP"
+      },
+      "component": "TYPESET",
+      "duty": "AUTHOR_TYPESET"
+    },
+    "admission": {
+      "purpose": "A question record is admitted by the library's own intake and resolver. A registration does not bring a gate of its own: a gate that checks that fields are non-empty cannot see a record that says nothing.",
+      "authority": [
+        "Shared/library/intake.py",
+        "Shared/library/resolve.py",
+        "Shared/library/question_admission.py"
+      ],
+      "points": [
+        {
+          "id": "QUESTION_STEM",
+          "severity": "BLOCK",
+          "statement": "The stem asks something: it has at least 6 words and is not made of sentences that the record's own hints or solution also say.",
+          "assurance_type": "STRUCTURAL_VALIDITY"
+        },
+        {
+          "id": "QUESTION_STEM_COMPLETE",
+          "severity": "ADVISE",
+          "statement": "The stem ends where a sentence ends; a stem cut off mid-sentence asks half a question. Said, not held: a stem that ends on a variable looks the same from the text.",
+          "assurance_type": "STRUCTURAL_VALIDITY"
+        },
+        {
+          "id": "QUESTION_OPTIONS",
+          "severity": "BLOCK",
+          "statement": "An option carries text. A letter standing for itself ('(A) A') is a choice with nothing to choose.",
+          "assurance_type": "STRUCTURAL_VALIDITY"
+        },
+        {
+          "id": "QUESTION_GIVENS",
+          "severity": "ADVISE",
+          "statement": "A number a hint relies on is in the stem, the options or the conditions, so a learner who has not opened the hint can already start. Said, not held: a constant or a value worked out from the stem looks the same from the text.",
+          "assurance_type": "DISCLOSURE_CONFORMANCE"
+        },
+        {
+          "id": "QUESTION_SCOPE",
+          "severity": "BLOCK",
+          "statement": "The question does not teach a concept the scope document defers (read from Shared/policy/grade9-physics.v1.json; an entry that names a row of the scope document is held to it by a test), unless the record is routed as a declared extension. A concept only the policy defers is said, not held, until the document names it. A question that excludes the concept ('do not invent a torque equation') is not refused. The capability tag is not the test: the registrar writes it.",
+          "assurance_type": "SCOPE_CONFORMANCE"
+        },
+        {
+          "id": "ANSWER_ANCHORED",
+          "severity": "BLOCK",
+          "statement": "The answer is about this question: it shares at least 2 words or numbers with the stem, options and conditions. No list of banned phrases is kept; an answer that could stand under any question fails without one.",
+          "assurance_type": "CORPUS_SPECIFICITY"
+        },
+        {
+          "id": "ANSWER_WORKED",
+          "severity": "BLOCK",
+          "statement": "The answer is worked: at least 2 reasoning steps and 80 characters of reasoning, and a summary of at most 500 characters that states the result; a page pasted in as the summary is not a result.",
+          "assurance_type": "CORPUS_SPECIFICITY"
+        },
+        {
+          "id": "ANSWER_VERIFIED",
+          "severity": "BLOCK",
+          "statement": "A key that nobody ran (NOT_RUN), or that someone disputes, does not enter a library. The status is the author's word, so it is a floor and not a proof.",
+          "assurance_type": "REASONING_VALIDITY"
+        }
+      ],
+      "note": "Intake and the resolver stay the one gate of record: CI runs them over every committed library (tests/test_question_admission.py), and a registration does not bring a gate of its own. These sit beside the corpus checks that were already there (duplicated and templated text, unresolved references). A package intake refuses is not registered, whatever else is said about it. What none of this can do is tell a plausible wrong explanation from a right one; a numeric key computed from the stem's own givens by an oracle would. Each point and each page rule names the assurance type its evidence is of; a check that proves part of a type (a static page rule cannot prove a layout) feeds a type of its own and leaves the whole type open."
+    },
+    "evidence": {
+      "purpose": "A digest is taken over the bytes of a file, so the bytes must be the same on every machine.",
+      "line_endings": "LF",
+      "attributes_file": ".gitattributes",
+      "note": "Text is LF in every working tree (`* text=auto eol=lf`). A file already committed with CRLF keeps its bytes, so no recorded digest moves; a new file is LF."
+    }
+  },
+  "blueprints": [
+    {
+      "id": "BP-CORE1-ORIENTATION",
+      "version": "1.1.0",
+      "status": "ACTIVE",
+      "core_roles": [
+        "CORE1"
+      ],
+      "learner_job": "Orient to the bucket without replacing detailed teaching.",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "READING_ORIENTATION",
+      "slots": [
+        {
+          "id": "identity",
+          "accepts_blocks": [
+            "identity_scope",
+            "learner_metadata"
+          ],
+          "required": true,
+          "column": "FULL"
+        },
+        {
+          "id": "orientation",
+          "accepts_blocks": [
+            "objects_conventions",
+            "canonical_representation",
+            "governing_relations",
+            "compact_anchor",
+            "hard_transition_map",
+            "exclusions_extensions",
+            "orientation_closure"
+          ],
+          "required": true,
+          "column": "FULL"
+        }
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": false,
+        "solution_policy": "FROM_PROJECTION"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "SINGLE_PANE",
+        "expanded": "SINGLE_PANE",
+        "primary_fraction": 1,
+        "support_fraction": 0
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "FULL_INFERENTIAL_CONSTRUCTION"
+      ]
+    },
+    {
+      "id": "BP-CORE2-SOURCE-QUESTION",
+      "version": "1.7.0",
+      "status": "ACTIVE",
+      "core_roles": [
+        "CORE2"
+      ],
+      "learner_job": "Preserve authentic assessment demand while allowing bounded, provenance-explicit help that advances the learner without becoming a Question Clinic.",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "QUESTION_READER",
+      "slots": [
+        {
+          "id": "identity",
+          "accepts_blocks": [
+            "source_identity_provenance",
+            "learner_metadata"
+          ],
+          "required": true,
+          "column": "FULL"
+        },
+        {
+          "id": "attempt",
+          "accepts_blocks": [
+            "source_question"
+          ],
+          "required": true,
+          "column": "PRIMARY"
+        },
+        {
+          "id": "representation",
+          "accepts_blocks": [
+            "source_figure"
+          ],
+          "required": false,
+          "column": "SUPPORT"
+        },
+        {
+          "id": "support",
+          "accepts_blocks": [
+            "source_hint_ladder",
+            "authored_core2_support",
+            "concept_navigation"
+          ],
+          "required": false,
+          "column": "SUPPORT"
+        },
+        {
+          "id": "solution",
+          "accepts_blocks": [
+            "source_answer_rubric",
+            "verified_solution_reasoning",
+            "custody_status"
+          ],
+          "required": true,
+          "column": "FULL"
+        }
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": true,
+        "solution_policy": "LEARNER_OPENABLE"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.42,
+        "support_fraction": 0.58,
+        "expanded_min_px": 980,
+        "support_sticky": false,
+        "tablet_12_7": {
+          "reference_viewport": {
+            "width": 1366,
+            "height": 854
+          },
+          "identity_max_px": 190,
+          "figure_min_text_css_px": 14
+        }
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "AUTHORED_SCAFFOLD_PRESENTED_AS_SOURCE_HINT",
+        "ANSWER_REVEALED_BY_PRE_SOLUTION_SUPPORT",
+        "GENERIC_FILLER_SUPPORT_TO_MEET_RUNG_COUNT",
+        "CORE2_COLLAPSED_INTO_QUESTION_CLINIC"
+      ],
+      "components": [
+        {
+          "id": "IDENTITY",
+          "slot": "identity",
+          "level": "REQUIRED",
+          "presentation": "HEADER",
+          "purpose": "Say whose question this is and what kind of question it is before anything else.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: question id, source line and badges in the header band",
+          "source": [
+            "id",
+            "original_identifier",
+            "extensions.grade9v3:source_custody"
+          ],
+          "authoring": {
+            "hint": "Identity comes from the question's custody. An owner-supplied question shows 'Owner-supplied question' and carries no exam, year or paper."
+          },
+          "compact_order": 10
+        },
+        {
+          "id": "SOURCE_PDF",
+          "slot": "identity",
+          "level": "OPTIONAL",
+          "presentation": "LINK_LIST",
+          "purpose": "Give the learner the original past paper as a PDF, ready to print, when the question's custody names it.",
+          "benchmark": "Owner request 2026-10-01: a PDF icon that links the generated or the source PDF so that it is readily available for print",
+          "source": [
+            "extensions.grade9v3:source_custody.paper_url",
+            "extensions.grade9v3:source_custody.authority_class",
+            "extensions.grade9v3:source_custody.source_status"
+          ],
+          "authoring": {
+            "hint": "Nothing to write: the page links the paper when the question's source custody is an official exam organizer archive, verified (source_status PYQ_VERIFIED_PARENT), and paper_url is an https link to a PDF. An owner-supplied question has no source file and shows no link; never put a link in the record to make the icon appear."
+          },
+          "compact_order": 15
+        },
+        {
+          "id": "DIFFICULTY_WHY",
+          "slot": "identity",
+          "level": "EXPECTED",
+          "presentation": "DISCLOSURE_GRID",
+          "purpose": "Show the difficulty band, its score and about how long the question should take, with the five reasons behind it folded away until asked.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the D-pill and the 'Why this difficulty?' grid",
+          "source": [
+            "extensions.grade9v3:analysis.difficulty",
+            "extensions.grade9v3:analysis.expected_time_seconds"
+          ],
+          "authoring": {
+            "hint": "Fill extensions['grade9v3:analysis'].difficulty: five components (each 0 to 2), score (their sum), band for that score, basis (one sentence); and expected_time_seconds, your estimate of the time a prepared learner needs. They are your estimates and are shown as estimates.",
+            "skeleton": {
+              "extensions": {
+                "grade9v3:analysis": {
+                  "expected_time_seconds": 0
+                }
+              }
+            }
+          },
+          "compact_order": 20
+        },
+        {
+          "id": "STEM",
+          "slot": "attempt",
+          "level": "REQUIRED",
+          "presentation": "STEM",
+          "purpose": "The question exactly as set, under the label 'Attempt first'.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the left column's eyebrow and stem",
+          "source": [
+            "stem"
+          ],
+          "compact_order": 30
+        },
+        {
+          "id": "CONDITIONS",
+          "slot": "attempt",
+          "level": "EXPECTED",
+          "presentation": "CALLOUT_INFO",
+          "purpose": "The givens and assumptions the question states, apart from the question itself.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the 'Conditions.' callout under the options",
+          "source": [
+            "conditions"
+          ],
+          "authoring": {
+            "hint": "List each stated condition (a constraint or assumption the question gives) as one entry of conditions[]. Never list a method or a result there.",
+            "skeleton": {
+              "conditions": []
+            }
+          },
+          "compact_order": 50
+        },
+        {
+          "id": "TRAP",
+          "slot": "attempt",
+          "level": "EXPECTED",
+          "presentation": "CALLOUT_WARN",
+          "purpose": "Name the tempting wrong route so the learner can watch for it.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the 'Common wrong route.' box",
+          "source": [
+            "extensions.grade9v3:analysis.common_wrong_route"
+          ],
+          "authoring": {
+            "hint": "One sentence naming the wrong route learners take and why it tempts. It must not give the answer or the right route.",
+            "skeleton": {
+              "extensions": {
+                "grade9v3:analysis": {
+                  "common_wrong_route": ""
+                }
+              }
+            }
+          },
+          "compact_order": 60
+        },
+        {
+          "id": "ATTEMPT",
+          "slot": "attempt",
+          "level": "REQUIRED",
+          "presentation": "ATTEMPT",
+          "purpose": "Ask for a typed commitment before any answer or working opens.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the options cards; the commit step is this app's own attempt-first rule",
+          "source": [
+            "response",
+            "options"
+          ],
+          "compact_order": 70
+        },
+        {
+          "id": "REPRESENTATION",
+          "slot": "representation",
+          "level": "EXPECTED",
+          "presentation": "VISUAL_CARD",
+          "purpose": "Show a question-aligned representation only when it materially helps the learner interpret, translate or reason about the question; otherwise preserve the explicit applicability waiver.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the 'Representation' card with the question-aligned schematic",
+          "source": [
+            "figure_refs"
+          ],
+          "min_items": 1,
+          "authoring": {
+            "hint": "Decide representation applicability from the question's semantic review. If useful, add an accessible authored SVG drawn only from the question data and name it in figure_refs. If a figure would be decorative or would leak protected work, waive REPRESENTATION with a written reason.",
+            "skeleton": {
+              "figure_refs": []
+            }
+          },
+          "compact_order": 40
+        },
+        {
+          "id": "HINT_LADDER",
+          "slot": "support",
+          "level": "REQUIRED",
+          "presentation": "LADDER",
+          "purpose": "Let the learner ask for help one rung at a time; every rung says what it is for and whose words it carries.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: 'Hint ladder · reveal only what you need', five rungs on a hard question (represent / first move, connect, crux, equation / formal model, assembly checkpoint) with SOURCE and EXPANSION pills",
+          "source": [
+            "scaffolds",
+            "hints",
+            "hint_ladder"
+          ],
+          "min_items": 2,
+          "authoring": {
+            "hint": "Author question-specific scaffolds for the semantic jobs the resolved QRT requires: clarify the learner-relative obstacle, connect to demonstrated knowledge, and open the route toward the crux while preserving the learner-owned move. Add further rungs only when they do useful work. The 3-rung D1/D2 and 5-rung D3/D4 values are reference depth, not semantic pass counts; never create filler merely to reach a number. Each rung keeps typed support_kind/reveals/learner_stage and a supports_move_ref, and pre-solution support must not reveal the answer.",
+            "skeleton": {
+              "scaffolds": [
+                {
+                  "text": "",
+                  "prompt": "",
+                  "support_kind": "REPRESENT",
+                  "reveals": "CONCEPT",
+                  "learner_stage": "REPRESENTATION",
+                  "supports_move_ref": "{qid}-MOVE-2"
+                },
+                {
+                  "text": "",
+                  "prompt": "",
+                  "support_kind": "CONNECT",
+                  "reveals": "CONCEPT",
+                  "learner_stage": "KEY_CONCEPT",
+                  "supports_move_ref": "{qid}-MOVE-1"
+                },
+                {
+                  "text": "",
+                  "prompt": "",
+                  "support_kind": "CONNECT",
+                  "reveals": "METHOD",
+                  "learner_stage": "CRUX",
+                  "supports_move_ref": "{qid}-MOVE-3"
+                },
+                {
+                  "text": "",
+                  "prompt": "",
+                  "support_kind": "EXECUTE",
+                  "reveals": "METHOD",
+                  "learner_stage": "FORMAL_MODEL",
+                  "supports_move_ref": "{qid}-MOVE-3"
+                },
+                {
+                  "text": "",
+                  "prompt": "",
+                  "support_kind": "EXECUTE",
+                  "reveals": "METHOD",
+                  "learner_stage": "CHECKPOINT",
+                  "supports_move_ref": "{qid}-MOVE-4"
+                }
+              ]
+            }
+          },
+          "target_items": 3,
+          "target_items_by_band": {
+            "D1": 3,
+            "D2": 3,
+            "D3": 5,
+            "D4": 5
+          },
+          "band_source": "extensions.grade9v3:analysis.difficulty.band",
+          "compact_order": 80
+        },
+        {
+          "id": "CONCEPT_NAV",
+          "slot": "support",
+          "level": "OPTIONAL",
+          "presentation": "LINK_LIST",
+          "purpose": "Land on the exact construction unit; question-specific repair includes a return link. Record the help as assisted, not independent success.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: concept links beside the hints (the Core1A cross-link)",
+          "source": [
+            "primary_capability_ref",
+            "secondary_capability_refs"
+          ],
+          "compact_order": 90
+        },
+        {
+          "id": "SOLUTION",
+          "slot": "solution",
+          "level": "REQUIRED",
+          "presentation": "DISCLOSURE",
+          "purpose": "Open the full working only after an attempt.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the 'Teacher solution · complete derivation' disclosure",
+          "source": [
+            "answer"
+          ],
+          "compact_order": 100
+        },
+        {
+          "id": "SOLUTION_STEPS",
+          "slot": "solution",
+          "level": "REQUIRED",
+          "presentation": "STEP_LIST",
+          "purpose": "Show the working as numbered moves: what is done, why it is valid, what it gives.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: three or four numbered steps with a bold lead and the reason (geometry, balance, Newton II, eliminate)",
+          "parent": "SOLUTION",
+          "source": [
+            "answer.reasoning_route",
+            "answer.crux_move_ref"
+          ],
+          "min_items": 2,
+          "authoring": {
+            "hint": "Write answer.reasoning_route[]: 3 moves for a D1 or D2 question, 4 for a D3 or D4. Each move has id, kind (DECIDE, REPRESENT, CONNECT, TRANSFORM or VERIFY), action (what is done), why_valid (the physical or logical reason this step is allowed; not 'this follows from the model'), inputs and output. Set crux_move_ref to the id of the move a learner is most likely to miss. Delete the move the band does not need. D1 repair: Keep neighbour/domain, bond-component and orbital-basis inventories distinct. A pi component is not axial density; VSEPR is qualitative. Each action needs its actual local warrant and output, rather than a generic assertion that the source/model permits it. D2 repair: Close the valence-basis ledger: hybrid outputs plus residual functions equal the independent inputs, with no double use. Nuclear shape excludes lone-pair vertices. A geometry drawing does not uniquely measure an orbital basis. D3 repair: Contributors are bookkeeping alternatives, not switching structures. Count the occupied delocalised pi space, not only a drawn double bond. Orthogonal p directions constrain allene terminal planes; Pauli is not a blanket one-bond-per-orbital ban. D4 repair: Separate local counts, occupancy, adjacency, alignment and empirical evidence. A supplied overlap factor is not total energy. Preserve formal electron inventory under torsion; strength, barrier and unique basis require specified further evidence.",
+            "skeleton": {
+              "answer": {
+                "reasoning_route": [
+                  {
+                    "id": "{qid}-MOVE-1",
+                    "kind": "DECIDE",
+                    "action": "",
+                    "why_valid": "",
+                    "inputs": [],
+                    "output": ""
+                  },
+                  {
+                    "id": "{qid}-MOVE-2",
+                    "kind": "REPRESENT",
+                    "action": "",
+                    "why_valid": "",
+                    "inputs": [],
+                    "output": ""
+                  },
+                  {
+                    "id": "{qid}-MOVE-3",
+                    "kind": "TRANSFORM",
+                    "action": "",
+                    "why_valid": "",
+                    "inputs": [],
+                    "output": ""
+                  },
+                  {
+                    "id": "{qid}-MOVE-4",
+                    "kind": "VERIFY",
+                    "action": "",
+                    "why_valid": "",
+                    "inputs": [],
+                    "output": ""
+                  }
+                ],
+                "crux_move_ref": ""
+              }
+            }
+          },
+          "target_items": 3,
+          "target_items_by_band": {
+            "D1": 3,
+            "D2": 3,
+            "D3": 4,
+            "D4": 4
+          },
+          "band_source": "extensions.grade9v3:analysis.difficulty.band"
+        },
+        {
+          "id": "ANSWER",
+          "slot": "solution",
+          "level": "REQUIRED",
+          "presentation": "ANSWER_BOX",
+          "purpose": "State the final answer in one place.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the green answer box",
+          "parent": "SOLUTION",
+          "source": [
+            "answer.summary"
+          ]
+        },
+        {
+          "id": "CHECK",
+          "slot": "solution",
+          "level": "EXPECTED",
+          "presentation": "CHECK_BOX",
+          "purpose": "Test the answer by a route the working did not use.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the 'Check.' line under the answer",
+          "parent": "SOLUTION",
+          "source": [
+            "answer.check"
+          ],
+          "authoring": {
+            "hint": "Use a changed case, conservation ledger, counterexample or independent operation with expected result. Repeating the wrong rule as a rejection is not an independent check.",
+            "skeleton": {
+              "answer": {
+                "check": ""
+              }
+            }
+          }
+        },
+        {
+          "id": "DIAGNOSTIC_REPAIR",
+          "slot": "solution",
+          "parent": "SOLUTION",
+          "level": "OPTIONAL",
+          "presentation": "CHECK_BOX",
+          "benchmark": "Issue #32 Q1/Q4 observed hint and representation defects; Issue #31 repeated reject-the-rule checks, correction cycle R2.",
+          "purpose": "After the source attempt, elicit a changed-case prediction and reason before showing a diagnostic pattern, bounded replacement rule, fresh application and exact repair link.",
+          "source": [
+            "extensions.grade9v3:learning_repair"
+          ],
+          "authoring": {
+            "hint": "Use question-specific paired/changed cases that separate the predicted misconception from a slip. Preserve uncertainty; do not grade free response by keyword or declare mastery. Optional for legacy records; when authored, question/crux/target validation remains mandatory. New semantic review must still adjudicate M1–M3."
+          }
+        }
+      ],
+      "presentation_policy": {
+        "default_theme": "light"
+      }
+    },
+    {
+      "id": "BP-CORE1A-CONSTRUCTION",
+      "version": "1.6.0",
+      "status": "ACTIVE",
+      "core_roles": [
+        "CORE1A"
+      ],
+      "learner_job": "Build the concept in a coherent construction with its adjacent representation, summarize the key insight, study a visible worked explanation, then attempt a fresh changed case. References and diagnosis remain requestable; protected source questions are not the default teaching anchor.",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "READING_CONSTRUCTION",
+      "slots": [
+        {
+          "id": "identity",
+          "accepts_blocks": [
+            "identity_entry_assumptions",
+            "convention_declaration",
+            "learner_metadata"
+          ],
+          "required": true,
+          "column": "FULL"
+        },
+        {
+          "id": "construction",
+          "accepts_blocks": [
+            "inferential_jump",
+            "completed_construction",
+            "worked_conceptual_anchor",
+            "representation_bridge"
+          ],
+          "required": true,
+          "column": "FULL"
+        },
+        {
+          "id": "repair_closure",
+          "accepts_blocks": [
+            "plausible_wrong_path",
+            "diagnose",
+            "repair",
+            "independent_checks",
+            "exit_task_closure",
+            "practice_navigation"
+          ],
+          "required": true,
+          "column": "FULL"
+        }
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": true,
+        "solution_policy": "FROM_PROJECTION",
+        "secondary_reference_default": "COLLAPSED",
+        "worked_example_step_policy": "SHOW_ALL"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "SINGLE_PANE",
+        "expanded": "SINGLE_PANE",
+        "primary_fraction": 0.6,
+        "support_fraction": 0.4,
+        "expanded_min_px": 1100,
+        "support_sticky": false,
+        "tablet_12_7": {
+          "reference_viewport": {
+            "width": 1366,
+            "height": 854
+          },
+          "identity_max_px": 190,
+          "figure_min_text_css_px": 14,
+          "support_scrolls_inside": false
+        }
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+      ],
+      "components": [
+        {
+          "id": "CONCEPT_HEADER",
+          "slot": "identity",
+          "level": "REQUIRED",
+          "presentation": "CONCEPT_HEADER",
+          "purpose": "Name the concept and where it sits.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the concept header with title and metadata",
+          "source": [
+            "title",
+            "extensions.grade9v3:learner_metadata"
+          ],
+          "compact_order": 10
+        },
+        {
+          "id": "SECTION_ROUTE",
+          "slot": "identity",
+          "level": "OPTIONAL",
+          "presentation": "CHIPS",
+          "purpose": "Let the learner jump to a construction step.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the section tabs",
+          "compact_order": 20
+        },
+        {
+          "id": "UNIT_HEADER",
+          "slot": "construction",
+          "level": "REQUIRED",
+          "presentation": "UNIT_HEADER",
+          "purpose": "Number and title each construction unit.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the concept-card header with number, decision and unit id",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "construction_units[].decision"
+          ],
+          "duty": "AUTHOR_CONSTRUCTION_UNITS",
+          "compact_order": 30
+        },
+        {
+          "id": "MODEL_CONTRACT",
+          "slot": "construction",
+          "level": "EXPECTED",
+          "presentation": "DISCLOSURE_TILE",
+          "purpose": "Keep prerequisites available without competing with the construction; collapsed by default.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the 'Model contract & assumptions' tile",
+          "source": [
+            "entry_assumptions",
+            "prerequisite_refs"
+          ],
+          "authoring": {
+            "hint": "List in entry_assumptions[] each thing a learner must already be able to do before this concept, one per entry and specific to this concept."
+          },
+          "compact_order": 40
+        },
+        {
+          "id": "QUESTION_BRIDGE",
+          "slot": "construction",
+          "level": "OPTIONAL",
+          "presentation": "DISCLOSURE_INFO",
+          "purpose": "Keep question-set rationale available on demand without interrupting the learning path.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: each concept card is built around the inferential leap the practice questions need",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "construction_units[].crux_question_refs",
+            "construction_units[].crux_step_ref",
+            "answer.crux_move_ref"
+          ],
+          "authoring": {
+            "hint": "Name actual crux_question_refs and crux_step_ref. The hardest-target unit must teach that precise bridge through its worked instance; a distinct lesson anchor must explicitly bind the target question, its actual crux move and this construction unit. A shared topic alone is insufficient."
+          },
+          "compact_order": 50
+        },
+        {
+          "id": "CONSTRUCTION_STEPS",
+          "slot": "construction",
+          "level": "REQUIRED",
+          "presentation": "STEP_CARDS",
+          "purpose": "Build the idea in steps; every step says what is done, why it is valid and what state it gives.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: step cards (action, why physically valid, state output)",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "construction_units[].step_refs",
+            "teaching_path"
+          ],
+          "min_items": 2,
+          "authoring": {
+            "hint": "Each construction unit lists step_refs naming 2 or more teaching_path steps; each step has action, why_valid and output written for this unit, none repeated from another unit. A unit that builds the crux of a D3 or D4 question (it names that question in crux_question_refs) needs 4 steps, and its last step is the move that question turns on. D1 repair: Teach construction and its selected visual before summarizing the insight. Every source question needs an exact construction bridge; an exit uses a changed case with a concrete expected result, not a repeated worked input. D2 repair: Maintain a question-specific orbital allocation, conditions and independent changed check. Multiple questions may share a concept; a broad section label does not prove that each requested operation was constructed. D3 repair: Preserve atom-local roles and every relevant electron/charge invariant through representations. Separate a supplied equivalence observation from the model label and from a unique physical orbital/charge claim. D4 repair: Use explicit model assumptions, a counterfactual or independently changed contribution, and an applicability stopping condition. Diagnosis compares a changed-case response with uncertain patterns; it does not assign mastery or a misconception from opening help."
+          },
+          "target_items": 3,
+          "target_items_by_band": {
+            "D1": 3,
+            "D2": 3,
+            "D3": 4,
+            "D4": 4
+          },
+          "band_source": "crux_question_refs",
+          "compact_order": 60
+        },
+        {
+          "id": "STAGED_VISUAL",
+          "slot": "construction",
+          "level": "EXPECTED",
+          "presentation": "STAGED_VISUAL",
+          "purpose": "When a spatial or mechanism representation materially helps the construction, show it as a picture that builds stage by stage. A construction with no useful visual is explicitly waived by the authored record; no decorative figure is invented.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the rail's staged visual with stage buttons",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "construction_units[].representation_ref"
+          ],
+          "min_items": 2,
+          "authoring": {
+            "hint": "First decide whether a staged visual has a real semantic job for this construction. When it does, representation_ref names a package representation with an authored accessible SVG and at least 2 data-g9-stage-id groups; reveal_stages names the useful build-up. The reference depth is 3 stages (4 for a D3/D4 crux), not a semantic pass count. When a visual is genuinely not applicable, waive STAGED_VISUAL with a written reason instead of drawing decoration."
+          },
+          "duty": "STAGE_REPRESENTATION",
+          "target_items": 3,
+          "target_items_by_band": {
+            "D1": 3,
+            "D2": 3,
+            "D3": 4,
+            "D4": 4
+          },
+          "band_source": "crux_question_refs",
+          "compact_order": 70
+        },
+        {
+          "id": "MODEL_SCOPE_PROBE",
+          "slot": "construction",
+          "level": "OPTIONAL",
+          "presentation": "CHECK_BOX",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "extensions.grade9v3:question_repairs"
+          ],
+          "purpose": "When explicitly authored, make bounded parameter/countermodel construction visible beside the staged visual; keep diagnostic help separately closed.",
+          "benchmark": "Issue #37 Q9 and #38 Q2/Q9 correction cycle: absent continuous model-boundary construction.",
+          "authoring": {
+            "hint": "Opt in with a question/crux/construction-bound MODEL_SCOPE_PROBE repair record. Declare axis, independent variables, toy versus physical outputs and a static fallback. Do not infer applicability from the demand label."
+          },
+          "compact_order": 80
+        },
+        {
+          "id": "KEY_STEP",
+          "slot": "construction",
+          "level": "REQUIRED",
+          "presentation": "BANNER",
+          "purpose": "Name the one step learners cannot infer on their own.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the inferential-leap banner",
+          "source": [
+            "inferential_jump"
+          ],
+          "authoring": {
+            "hint": "inferential_jump: one or two sentences naming the step a learner does not make unaided and why it is not obvious."
+          },
+          "compact_order": 90
+        },
+        {
+          "id": "EQUATIONS",
+          "slot": "construction",
+          "level": "EXPECTED",
+          "presentation": "DISCLOSURE_EQUATION_CARD",
+          "purpose": "Keep formulas, meaning and validity conditions available as on-demand reference rather than a mandatory reading detour.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the equation card of every concept card (definition and validity scope)",
+          "source": [
+            "construction_units[].relation_refs",
+            "relation_refs"
+          ],
+          "authoring": {
+            "hint": "Each construction unit names the microtopic's relations it uses in construction_units[].relation_refs; each relation record needs its expression, meaning and conditions. A subject that declares no gates writes gate_relation_ref: null."
+          },
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "compact_order": 100
+        },
+        {
+          "id": "WORKED_EXAMPLE",
+          "slot": "construction",
+          "level": "REQUIRED",
+          "presentation": "WORKED_CARD",
+          "purpose": "Show a coherent worked explanation with an explicit warrant and output at each authored move.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the worked card",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "construction_units[].worked_anchor_ref",
+            "construction_units[].bank_anchor_ref",
+            "extensions.grade9v3:lesson_anchors"
+          ],
+          "duty": "AUTHOR_WORKED_ANCHOR",
+          "authoring": {
+            "hint": "Use the microtopic extension grade9v3:lesson_anchors keyed by construction unit. Name target_question_ref, target_crux_move_ref and construction_ref, with a new stem, reasoned answer and independent check. The target must resolve to this product bank; a hardest-target unit must bind that precise question. Preserve the legacy worked/bank-anchor path where no extension is authored."
+          },
+          "compact_order": 110
+        },
+        {
+          "id": "TRAP_REPAIR",
+          "slot": "repair_closure",
+          "level": "REQUIRED",
+          "presentation": "DISCLOSURE_TRAP_CARD",
+          "purpose": "Keep mistake clinics closed initially. Diagnose using discriminating changed cases, establish a bounded replacement rule, and return to a fresh application.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the easy-mistake card with diagnostic and repair",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "misconceptions",
+            "construction_units[].misconception_indexes"
+          ],
+          "min_items": 1,
+          "authoring": {
+            "hint": "misconceptions[] holds wrong_idea, diagnostic_prompt and repair for this concept; each construction unit names the ones that apply in misconception_indexes."
+          },
+          "compact_order": 120
+        },
+        {
+          "id": "QUICK_CHECK",
+          "slot": "repair_closure",
+          "level": "REQUIRED",
+          "presentation": "TRIAD",
+          "purpose": "Let the learner test the idea three ways before moving on: recall it, use it on a small case, and say where it leads next.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the 1-2-3 quick check (CHECK, APPLY, CONNECT)",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "construction_units[].independent_checks"
+          ],
+          "min_items": 1,
+          "duty": "AUTHOR_INDEPENDENT_CHECK",
+          "target_items": 3,
+          "authoring": {
+            "hint": "Each construction unit lists three independent_checks, each with a role: CHECK (a question that recalls the idea), APPLY (a small case to work with numbers or a picture given in the question) and CONNECT (one sentence saying which idea this leads to next). Each statement is specific to the unit."
+          },
+          "compact_order": 130
+        },
+        {
+          "id": "EXIT_RECALL",
+          "slot": "repair_closure",
+          "level": "REQUIRED",
+          "presentation": "RECALL_CARD",
+          "purpose": "Require an independent attempt with less support after the construction and worked example.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the active-recall attempt",
+          "source": [
+            "exit_task"
+          ],
+          "compact_order": 140
+        },
+        {
+          "id": "PRACTICE_LINKS",
+          "slot": "repair_closure",
+          "level": "OPTIONAL",
+          "presentation": "CHIPS",
+          "purpose": "Point to the authentic questions that practise this concept.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the practice chips",
+          "source": [
+            "practice"
+          ],
+          "compact_order": 150
+        },
+        {
+          "id": "INTERACTIVE_BRIDGE",
+          "slot": "repair_closure",
+          "level": "OPTIONAL",
+          "presentation": "VISUAL_CARD",
+          "purpose": "Contextual action to open an interactive simulation when one is bound to this concept.",
+          "benchmark": "core1a-nlm-friction-tablet: interactive threshold explorer bridge",
+          "source": [
+            "concept_bundle.interactive"
+          ],
+          "compact_order": 160
+        },
+        {
+          "id": "LEARNING_TRANSITIONS",
+          "slot": "repair_closure",
+          "level": "OPTIONAL",
+          "presentation": "CHIPS",
+          "purpose": "Derived transitions connecting Learn, Practice, Interactive, and Question Bank.",
+          "benchmark": "core1a-nlm-friction-tablet: learning transition bar",
+          "source": [
+            "concept_bundle"
+          ],
+          "compact_order": 170
+        }
+      ],
+      "presentation_policy": {
+        "default_theme": "light"
+      }
+    },
+    {
+      "id": "BP-CORE1B-RECONSTRUCTION",
+      "version": "1.1.0",
+      "status": "ACTIVE",
+      "core_roles": [
+        "CORE1B"
+      ],
+      "learner_job": "Elicit the conceptual decision before reconstruction, diagnosis and repair.",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "GUIDED_RECONSTRUCTION",
+      "slots": [
+        {
+          "id": "identity",
+          "accepts_blocks": [
+            "identity_concept",
+            "learner_metadata"
+          ],
+          "required": true,
+          "column": "FULL"
+        },
+        {
+          "id": "attempt",
+          "accepts_blocks": [
+            "predict",
+            "attempt"
+          ],
+          "required": true,
+          "column": "PRIMARY"
+        },
+        {
+          "id": "reconstruction",
+          "accepts_blocks": [
+            "reconstruct",
+            "diagnose",
+            "repair",
+            "boundary_test",
+            "model_response_or_rubric",
+            "rejoin_inferential_jump"
+          ],
+          "required": true,
+          "column": "PRIMARY"
+        }
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": true,
+        "solution_policy": "POST_ATTEMPT"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.68,
+        "support_fraction": 0.32
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "ANSWER_BEFORE_ATTEMPT"
+      ]
+    },
+    {
+      "id": "BP-CORE2A-SUPPORTED-APPLICATION",
+      "version": "1.1.0",
+      "status": "ACTIVE",
+      "core_roles": [
+        "CORE2A"
+      ],
+      "learner_job": "Teach a familiar application route with progressive support and complete closure.",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "QUESTION_STUDY",
+      "slots": [
+        {
+          "id": "identity",
+          "accepts_blocks": [
+            "family_identity_provenance",
+            "learner_metadata"
+          ],
+          "required": true,
+          "column": "FULL"
+        },
+        {
+          "id": "attempt",
+          "accepts_blocks": [
+            "question",
+            "initial_representation"
+          ],
+          "required": true,
+          "column": "PRIMARY"
+        },
+        {
+          "id": "support",
+          "accepts_blocks": [
+            "pedagogical_scaffolds",
+            "application_crux",
+            "bound_representation"
+          ],
+          "required": false,
+          "column": "SUPPORT"
+        },
+        {
+          "id": "reasoning",
+          "accepts_blocks": [
+            "reasoning_route",
+            "complete_solution",
+            "independent_check",
+            "failure_signal_repair",
+            "exposure_family_closure"
+          ],
+          "required": true,
+          "column": "PRIMARY"
+        }
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": true,
+        "solution_policy": "LEARNER_OPENABLE"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.68,
+        "support_fraction": 0.32
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "SOURCE_HINT_AND_AUTHORED_SCAFFOLD_COLLAPSE"
+      ]
+    },
+    {
+      "id": "BP-CORE2B-TRANSFER",
+      "version": "1.1.0",
+      "status": "ACTIVE",
+      "core_roles": [
+        "CORE2B"
+      ],
+      "learner_job": "Protect the changed decision before commitment, then provide transfer review and repair.",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "TRANSFER_ATTEMPT",
+      "slots": [
+        {
+          "id": "identity",
+          "accepts_blocks": [
+            "question_prior_exposure",
+            "learner_metadata"
+          ],
+          "required": true,
+          "column": "FULL"
+        },
+        {
+          "id": "attempt",
+          "accepts_blocks": [
+            "safe_initial_representation",
+            "safe_pre_attempt_support",
+            "attempt_commitment"
+          ],
+          "required": true,
+          "column": "PRIMARY"
+        },
+        {
+          "id": "post_attempt",
+          "accepts_blocks": [
+            "post_attempt_support",
+            "full_answer_rubric",
+            "changed_demand_review",
+            "repair_route",
+            "lineage_continuity_check"
+          ],
+          "required": true,
+          "column": "PRIMARY"
+        }
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "FROM_PROJECTION",
+        "progressive_support": true,
+        "solution_policy": "POST_ATTEMPT"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "PORTABLE_SCENE",
+          "COMPONENT",
+          "STATIC_FIGURE"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.68,
+        "support_fraction": 0.32
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT"
+      ]
+    },
+    {
+      "id": "BP-EXPLORER-GCDR",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "core_roles": [
+        "EXPLORER"
+      ],
+      "learner_job": "Test the tempting model of the hardest concept of the question set against a model that cannot be argued with, rebuild the mathematics from what is visible, find where it stops being true, and then do a fresh task without the explorer.",
+      "shell_ref": "G9-TABLET-SHELL-V1",
+      "layout_family": "STAGE_SUPPORT",
+      "route": [
+        "CONTEXT",
+        "PREDICT",
+        "MANIPULATE",
+        "OBSERVE",
+        "CONTRADICT",
+        "DECONSTRUCT",
+        "RECONSTRUCT",
+        "INVARIANT",
+        "BOUNDARY",
+        "FADE",
+        "TRANSFER"
+      ],
+      "slots": [
+        {
+          "id": "identity",
+          "accepts_blocks": [
+            "page_title",
+            "route_rail"
+          ],
+          "required": true,
+          "column": "FULL"
+        },
+        {
+          "id": "stage",
+          "accepts_blocks": [
+            "phenomenon_view",
+            "mechanism_view",
+            "second_representation",
+            "state_controls"
+          ],
+          "required": true,
+          "column": "PRIMARY"
+        },
+        {
+          "id": "route",
+          "accepts_blocks": [
+            "cognitive_target",
+            "source_question",
+            "route_step"
+          ],
+          "required": true,
+          "column": "SUPPORT"
+        }
+      ],
+      "interaction_policy": {
+        "attempt_before_reveal": "ALWAYS",
+        "progressive_support": true,
+        "solution_policy": "POST_ATTEMPT"
+      },
+      "representation_policy": {
+        "preferred_mount_modes": [
+          "COMPONENT"
+        ],
+        "legacy_iframe": "MIGRATION_ONLY"
+      },
+      "responsive_policy": {
+        "compact": "SINGLE_PANE",
+        "medium": "STACKED_SUPPORT",
+        "expanded": "STAGE_SUPPORT",
+        "primary_fraction": 0.66,
+        "support_fraction": 0.34,
+        "expanded_min_px": 1100,
+        "support_sticky": true,
+        "tablet_12_7": {
+          "reference_viewport": {
+            "width": 1366,
+            "height": 854
+          },
+          "identity_max_px": 110,
+          "figure_min_text_css_px": 14,
+          "support_scrolls_inside": true
+        }
+      },
+      "touch_policy": {
+        "minimum_target_css_px": 48,
+        "minimum_control_gap_css_px": 8
+      },
+      "packaging_modes": [
+        "PUBLIC",
+        "PAGES",
+        "OFFLINE_DIRECTORY",
+        "SINGLE_FILE",
+        "EMBED"
+      ],
+      "forbidden": [
+        "PAGE_LOCAL_ACADEMIC_TRUTH",
+        "HOVER_ONLY_ESSENTIAL_INFORMATION",
+        "FREE_PLAY_BEFORE_PREDICTION",
+        "UNCHECKED_NUMBER",
+        "DECORATIVE_ANIMATION",
+        "TARGET_OTHER_THAN_THE_TOUGHEST_CONCEPT"
+      ],
+      "presentation_policy": {
+        "default_theme": "light"
+      },
+      "components": [
+        {
+          "id": "ROUTE_RAIL",
+          "slot": "identity",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_RAIL",
+          "purpose": "See the eleven steps of the route and which one the learner is on, so the page is a path with an end and not a toy.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): the mandatory cognitive sequence, one chip per step",
+          "compact_order": 10
+        },
+        {
+          "id": "TARGET",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "CALLOUT_INFO",
+          "purpose": "Name the one concept the page is for, the tempting model it replaces, the move to acquire, what survives and where it stops: the toughest concept of the question set.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): one explorer, one cognitive target",
+          "source": [
+            "target"
+          ],
+          "authoring": {
+            "hint": "target: question_ref is the toughest question of the set (python3 Shared/tools/explorer_build.py new fills it in; python3 Shared/tools/toughest_concept.py MANIFEST names it). failure: the learner's tempting model, one sentence, in the learner's words. operation: the move to acquire. invariant: what survives every valid variation. boundary: where the shortcut stops being right. quantity: the id of the quantity the whole page is about.",
+            "skeleton": {
+              "target": {
+                "question_ref": "",
+                "quantity": "",
+                "failure": "",
+                "operation": "",
+                "invariant": "",
+                "boundary": ""
+              }
+            }
+          },
+          "compact_order": 50
+        },
+        {
+          "id": "SOURCE",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "STEM",
+          "purpose": "Show the owner's question the concept comes from, word for word, so that the explorer rejoins it.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): the exit rejoins the same semantic leaf",
+          "compact_order": 60
+        },
+        {
+          "id": "PARAMETERS",
+          "slot": "stage",
+          "level": "REQUIRED",
+          "presentation": "CONTROL_PANEL",
+          "purpose": "The state the learner moves (sliders) and the givens that stay fixed: the only way the page changes.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): direct manipulation of one governed state",
+          "source": [
+            "parameters"
+          ],
+          "min_items": 1,
+          "target_items": 1,
+          "authoring": {
+            "hint": "parameters: each {id, label, unit, min, max, step, value} for a slider, or {id, label, unit, value, fixed: true} for a given of the question. max - min must be a whole number of steps and value a position of the slider. Ids are letters, digits and underscores (theta, v_1); never a word of the expression language (min, max, if, e, pi).",
+            "skeleton": {
+              "parameters": [
+                {
+                  "id": "",
+                  "label": "",
+                  "unit": "",
+                  "min": 0,
+                  "max": 0,
+                  "step": 1,
+                  "value": 0
+                }
+              ]
+            }
+          },
+          "compact_order": 40
+        },
+        {
+          "id": "QUANTITIES",
+          "slot": "stage",
+          "level": "REQUIRED",
+          "presentation": "CONTROL_PANEL",
+          "purpose": "Every number the page shows, as an expression of the parameters, so each one is computed and none is typed.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): one authoritative state; no invented exact parameters",
+          "source": [
+            "quantities"
+          ],
+          "min_items": 3,
+          "target_items": 4,
+          "authoring": {
+            "hint": "quantities: in order, each {id, label, unit, expr, decimals}; expr uses the parameters and earlier quantities: + - * / ^ ( ), sqrt abs hypot min max clamp round if(c,a,b) sin cos tan (radians), sind cosd tand asind acosd atand atan2d (degrees), pi, and comparisons with and/or/not. Write 2*a*b, never 2ab; v_x is written as a subscript. Include the quantity the page is about, the tempting model's value, and the parts the mechanism shows.",
+            "skeleton": {
+              "quantities": [
+                {
+                  "id": "",
+                  "label": "",
+                  "unit": "",
+                  "expr": "",
+                  "decimals": 2
+                },
+                {
+                  "id": "",
+                  "label": "",
+                  "unit": "",
+                  "expr": "",
+                  "decimals": 2
+                },
+                {
+                  "id": "",
+                  "label": "",
+                  "unit": "",
+                  "expr": "",
+                  "decimals": 2
+                },
+                {
+                  "id": "",
+                  "label": "",
+                  "unit": "",
+                  "expr": "",
+                  "decimals": 2
+                }
+              ]
+            }
+          },
+          "compact_order": 45
+        },
+        {
+          "id": "SCENE",
+          "slot": "stage",
+          "level": "REQUIRED",
+          "presentation": "STAGE_VIEW",
+          "purpose": "The phenomenon and, one step at a time, its hidden mechanism, drawn from the model's own numbers; and the checks that tie the drawing to them.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): G1 phenomenon and G2 mechanism; rendered-geometry truth",
+          "source": [
+            "scene",
+            "oracles"
+          ],
+          "min_items": 5,
+          "target_items": 8,
+          "authoring": {
+            "hint": "scene: title, job (what this view shows that the other cannot), description (what a learner who cannot see it is told), world {x:[min,max], y:[min,max]} (keep the aspect between 0.36 and 1.1), elements of kind point, segment, arrow, circle, arc, polygon, curve, text. Coordinates are expressions: at/from/to/center are [x, y]; curve has param, t_min, t_max, x, y. role: object, given, result, wrong (the tempting model, dashed), helper, frame. label may show a number as {quantity:decimals}. reveal: start (the situation), manipulate (the result), contradict (the tempting model), deconstruct (the mechanism: components, constraints, forces, relative motion). The check says where an element leaves the picture. oracles: expressions that tie the drawing to the quantities using an element's numbers (arrow_x1, arrow_y2, point_x, circle_r, arc_a2).",
+            "skeleton": {
+              "scene": {
+                "title": "",
+                "job": "",
+                "description": "",
+                "world": {
+                  "x": [
+                    0,
+                    0
+                  ],
+                  "y": [
+                    0,
+                    0
+                  ]
+                },
+                "elements": [
+                  {
+                    "id": "",
+                    "kind": "arrow",
+                    "role": "given",
+                    "from": [
+                      "",
+                      ""
+                    ],
+                    "to": [
+                      "",
+                      ""
+                    ],
+                    "label": "",
+                    "reveal": "start"
+                  },
+                  {
+                    "id": "",
+                    "kind": "point",
+                    "role": "result",
+                    "at": [
+                      "",
+                      ""
+                    ],
+                    "label": "",
+                    "reveal": "manipulate"
+                  }
+                ]
+              },
+              "oracles": [
+                {
+                  "text": "",
+                  "left": "",
+                  "right": ""
+                }
+              ]
+            }
+          },
+          "compact_order": 20
+        },
+        {
+          "id": "SECOND_VIEW",
+          "slot": "stage",
+          "level": "REQUIRED",
+          "presentation": "STAGE_VIEW",
+          "purpose": "A second representation that does a different reasoning job from the picture: the quantity against the slider, with the tempting model's curve as a ghost.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): coordinated representations that add distinct reasoning value",
+          "source": [
+            "second_view"
+          ],
+          "min_items": 1,
+          "target_items": 1,
+          "authoring": {
+            "hint": "second_view: kind graph, title, job, description, x (a slider parameter), series [{quantity, label, role}] (include the quantity the page is about), guides [{expr, label, orient: h or v}] for bounds the learner should see, ghost {quantity, label} for the tempting model (drawn only at the contradiction).",
+            "skeleton": {
+              "second_view": {
+                "kind": "graph",
+                "title": "",
+                "job": "",
+                "description": "",
+                "x": "",
+                "y_label": "",
+                "series": [
+                  {
+                    "quantity": "",
+                    "label": "",
+                    "role": "result"
+                  }
+                ],
+                "guides": [],
+                "ghost": {
+                  "quantity": "",
+                  "label": ""
+                }
+              }
+            }
+          },
+          "compact_order": 30
+        },
+        {
+          "id": "CONTEXT",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "Place the learner in the situation the question describes, with the question itself, before any equation or control.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): CONTEXT",
+          "source": [
+            "context"
+          ],
+          "authoring": {
+            "hint": "context.situation: one to three sentences placing the learner in the physical or geometric situation, with no equation and no hint of the answer.",
+            "skeleton": {
+              "context": {
+                "situation": ""
+              }
+            }
+          },
+          "compact_order": 70
+        },
+        {
+          "id": "PREDICT",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "The learner commits to a prediction before any control moves; the page keeps it and returns to it after the evidence.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): PREDICT; prediction occurs before answer reveal",
+          "source": [
+            "predict"
+          ],
+          "min_items": 3,
+          "target_items": 3,
+          "authoring": {
+            "hint": "predict.prompt, predict.options (three): each {text, tests: [{set: {parameter: value}, holds: expression, says: sentence with {quantity:decimals}}]}. An option is true of the model when all its tests hold. Exactly one option is true (predict.correct is its index); every other has a test that fails, and says tells the learner what that test showed. Make the tempting wrong model one of the options. Expressions may read the whole model: at(R, theta, 90) is R with theta set to 90, maxover(R, theta) and minover(R, theta) its largest and smallest, argmax(R, theta) where it is largest.",
+            "skeleton": {
+              "predict": {
+                "prompt": "",
+                "options": [
+                  {
+                    "text": "",
+                    "tests": [
+                      {
+                        "set": {},
+                        "holds": "",
+                        "says": ""
+                      }
+                    ]
+                  },
+                  {
+                    "text": "",
+                    "tests": [
+                      {
+                        "set": {},
+                        "holds": "",
+                        "says": ""
+                      }
+                    ]
+                  },
+                  {
+                    "text": "",
+                    "tests": [
+                      {
+                        "set": {},
+                        "holds": "",
+                        "says": ""
+                      }
+                    ]
+                  }
+                ],
+                "correct": 0
+              }
+            }
+          },
+          "compact_order": 80
+        },
+        {
+          "id": "MANIPULATE",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "Direct manipulation with a purpose: goals the learner reaches on the sliders. The controls stay locked until the prediction is made.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): MANIPULATE; meaningful direct manipulation",
+          "source": [
+            "manipulate"
+          ],
+          "min_items": 2,
+          "target_items": 3,
+          "authoring": {
+            "hint": "manipulate.goals: each {prompt, goal: an expression true at the state to reach, hint}. Each goal must be reachable on the sliders' steps and not already met at the start; the check says if not.",
+            "skeleton": {
+              "manipulate": {
+                "goals": [
+                  {
+                    "prompt": "",
+                    "goal": "",
+                    "hint": ""
+                  },
+                  {
+                    "prompt": "",
+                    "goal": "",
+                    "hint": ""
+                  },
+                  {
+                    "prompt": "",
+                    "goal": "",
+                    "hint": ""
+                  }
+                ]
+              }
+            }
+          },
+          "compact_order": 90
+        },
+        {
+          "id": "OBSERVE",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "The learner judges statements about what they saw; the page checks each against the whole model and shows a state that settles it.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): OBSERVE",
+          "source": [
+            "observe"
+          ],
+          "min_items": 3,
+          "target_items": 4,
+          "authoring": {
+            "hint": "observe.statements: each {text, claim, truth, why}. claim is an expression checked at every state the sliders reach; truth says what that gives: always (a law of the model), never, or sometimes. Include at least one that is always true and the tempting one that is not. why explains it in a sentence.",
+            "skeleton": {
+              "observe": {
+                "statements": [
+                  {
+                    "text": "",
+                    "claim": "",
+                    "truth": "always",
+                    "why": ""
+                  },
+                  {
+                    "text": "",
+                    "claim": "",
+                    "truth": "always",
+                    "why": ""
+                  },
+                  {
+                    "text": "",
+                    "claim": "",
+                    "truth": "always",
+                    "why": ""
+                  },
+                  {
+                    "text": "",
+                    "claim": "",
+                    "truth": "always",
+                    "why": ""
+                  }
+                ]
+              }
+            }
+          },
+          "compact_order": 100
+        },
+        {
+          "id": "CONTRADICT",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "The learner imposes the tempting model and sees, in the picture and on the graph, where it cannot be right, and why the correct model works.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): CONTRADICT; counterfactual requirement",
+          "source": [
+            "contradict"
+          ],
+          "min_items": 1,
+          "target_items": 1,
+          "authoring": {
+            "hint": "contradict: wrong_model {label, quantity} (the quantity that states the tempting model), imposes (one sentence: suppose the model were true), goal {prompt, goal, hint} (find a state where it visibly fails), why_correct and why_wrong (feedback must answer both why the correct model works and why the tempting one cannot). Show the tempting model in the scene with reveal: contradict, and as second_view.ghost.",
+            "skeleton": {
+              "contradict": {
+                "wrong_model": {
+                  "label": "",
+                  "quantity": ""
+                },
+                "imposes": "",
+                "goal": {
+                  "prompt": "",
+                  "goal": "",
+                  "hint": ""
+                },
+                "why_correct": "",
+                "why_wrong": ""
+              }
+            }
+          },
+          "compact_order": 110
+        },
+        {
+          "id": "DECONSTRUCT",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "Expose what is normally invisible, one cause at a time, in the order the cause acts.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): GRAPHICAL DECONSTRUCTION; G2 mechanism; explicit causal chain",
+          "source": [
+            "deconstruct"
+          ],
+          "min_items": 3,
+          "target_items": 4,
+          "authoring": {
+            "hint": "deconstruct.steps: each {text, reveals: [element ids], ask?: {prompt, options, correct, why}}; the elements it reveals have reveal: deconstruct in the scene and each is revealed by exactly one step. Order the steps as the causes act. A step may reveal nothing and only say what the last one means.",
+            "skeleton": {
+              "deconstruct": {
+                "steps": [
+                  {
+                    "text": "",
+                    "reveals": []
+                  },
+                  {
+                    "text": "",
+                    "reveals": []
+                  },
+                  {
+                    "text": "",
+                    "reveals": []
+                  },
+                  {
+                    "text": "",
+                    "reveals": []
+                  }
+                ]
+              }
+            }
+          },
+          "compact_order": 120
+        },
+        {
+          "id": "RECONSTRUCT",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "Build the mathematics from the visible mechanism: each step is a quantity the picture shows, and the final equation compresses them and is checked equal to the quantity at every state.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): MATHEMATICAL RECONSTRUCTION; the final equation is a compression of the visible mechanism",
+          "source": [
+            "reconstruct"
+          ],
+          "min_items": 2,
+          "target_items": 3,
+          "authoring": {
+            "hint": "reconstruct.steps: each {text, quantity} naming a quantity the mechanism showed; reconstruct.equation {text, expr}: the closed form that must equal the quantity the page is about at every state (the check says where it does not, and rejects an expression identical to the quantity's own).",
+            "skeleton": {
+              "reconstruct": {
+                "steps": [
+                  {
+                    "text": "",
+                    "quantity": ""
+                  },
+                  {
+                    "text": "",
+                    "quantity": ""
+                  },
+                  {
+                    "text": "",
+                    "quantity": ""
+                  }
+                ],
+                "equation": {
+                  "text": "",
+                  "expr": ""
+                }
+              }
+            }
+          },
+          "compact_order": 130
+        },
+        {
+          "id": "INVARIANT",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "The learner tries to break what survives every valid variation, and finds they cannot.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): INVARIANT DISCOVERY; representation invariants need an oracle",
+          "source": [
+            "invariants"
+          ],
+          "min_items": 2,
+          "target_items": 2,
+          "authoring": {
+            "hint": "invariants: each {text, lhs, rel, rhs, try}; rel is ==, <= or >=; the relation must hold at every state the sliders reach (the check says where it does not). try tells the learner how to look for a state that breaks it.",
+            "skeleton": {
+              "invariants": [
+                {
+                  "text": "",
+                  "lhs": "",
+                  "rel": "==",
+                  "rhs": "",
+                  "try": ""
+                },
+                {
+                  "text": "",
+                  "lhs": "",
+                  "rel": "==",
+                  "rhs": "",
+                  "try": ""
+                }
+              ]
+            }
+          },
+          "compact_order": 140
+        },
+        {
+          "id": "BOUNDARY",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "The learner finds where the shortcut stops being right: cases where it holds and cases where it fails, judged against the model.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): BOUNDARY STRESS",
+          "source": [
+            "boundary"
+          ],
+          "min_items": 2,
+          "target_items": 3,
+          "authoring": {
+            "hint": "boundary: assumption (what must hold for the shortcut), learner_must_identify (the point the learner takes away), cases: each {text, set: {parameter: value}, shortcut_label, shortcut: expression, expect: holds or fails}. The page compares the shortcut with the quantity the page is about at that state; expect must agree, and at least one case holds and one fails.",
+            "skeleton": {
+              "boundary": {
+                "assumption": "",
+                "learner_must_identify": "",
+                "cases": [
+                  {
+                    "text": "",
+                    "set": {},
+                    "shortcut_label": "",
+                    "shortcut": "",
+                    "expect": "holds"
+                  },
+                  {
+                    "text": "",
+                    "set": {},
+                    "shortcut_label": "",
+                    "shortcut": "",
+                    "expect": "holds"
+                  },
+                  {
+                    "text": "",
+                    "set": {},
+                    "shortcut_label": "",
+                    "shortcut": "",
+                    "expect": "holds"
+                  }
+                ]
+              }
+            }
+          },
+          "compact_order": 150
+        },
+        {
+          "id": "FADE",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "The supports are taken away in three levels: the numbers on the picture, then the relation, then the mechanism; the learner answers with less each time.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): SCAFFOLD FADE",
+          "source": [
+            "fade"
+          ],
+          "min_items": 3,
+          "target_items": 3,
+          "authoring": {
+            "hint": "fade: three tasks, each {prompt, set: {parameter: value}, answer: expression, unit, decimals, tolerance, why}. Level 1 hides the numbers on the picture, level 2 also hides the mechanism and the graph, level 3 shows the physical scene only. The page sets the state to `set`; the answer is an expression at that state.",
+            "skeleton": {
+              "fade": [
+                {
+                  "prompt": "",
+                  "set": {},
+                  "answer": "",
+                  "unit": "",
+                  "decimals": 1,
+                  "tolerance": 0.5,
+                  "why": ""
+                },
+                {
+                  "prompt": "",
+                  "set": {},
+                  "answer": "",
+                  "unit": "",
+                  "decimals": 1,
+                  "tolerance": 0.5,
+                  "why": ""
+                },
+                {
+                  "prompt": "",
+                  "set": {},
+                  "answer": "",
+                  "unit": "",
+                  "decimals": 1,
+                  "tolerance": 0.5,
+                  "why": ""
+                }
+              ]
+            }
+          },
+          "compact_order": 160
+        },
+        {
+          "id": "TRANSFER",
+          "slot": "route",
+          "level": "REQUIRED",
+          "presentation": "ROUTE_STEP",
+          "purpose": "A fresh task, with the explorer closed: new numbers the learner has not seen, answered from what was learned.",
+          "benchmark": "GCDR v1.3 (docs/GRAPHICAL-COGNITIVE-DECONSTRUCTION-BLUEPRINT.md): FRESH TRANSFER; the exit rejoins the same semantic leaf",
+          "source": [
+            "transfer"
+          ],
+          "min_items": 2,
+          "target_items": 3,
+          "authoring": {
+            "hint": "transfer: tasks, each {prompt, set: {parameter: value}, answer: expression, unit, decimals, tolerance, why, worked: [lines with {quantity:decimals}]}. set must differ from the starting numbers (fresh); the answer is an expression at that state; worked is the solution shown after the learner's attempt, every number computed.",
+            "skeleton": {
+              "transfer": [
+                {
+                  "prompt": "",
+                  "set": {},
+                  "answer": "",
+                  "unit": "",
+                  "decimals": 1,
+                  "tolerance": 0.5,
+                  "why": "",
+                  "worked": []
+                },
+                {
+                  "prompt": "",
+                  "set": {},
+                  "answer": "",
+                  "unit": "",
+                  "decimals": 1,
+                  "tolerance": 0.5,
+                  "why": "",
+                  "worked": []
+                },
+                {
+                  "prompt": "",
+                  "set": {},
+                  "answer": "",
+                  "unit": "",
+                  "decimals": 1,
+                  "tolerance": 0.5,
+                  "why": "",
+                  "worked": []
+                }
+              ]
+            }
+          },
+          "compact_order": 170
+        }
+      ]
+    }
+  ]
+}

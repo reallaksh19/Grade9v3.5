@@ -228,6 +228,11 @@ def validate_artifacts_and_reviews(run: dict[str, Any]) -> list[str]:
     for review in run.get("reviews") or []:
         if not isinstance(review, dict):
             continue
+        if review.get("basis") == "AUTHOR_ONLY":
+            continue  # Retain author assessments without promoting them to post-render evidence.
+        if review.get("basis", "RENDERED") != "RENDERED":
+            problems.append(f"REVIEW_BASIS_INVALID: {review.get('question_ref')}")
+            continue
         qid = str(review.get("question_ref") or "")
         if qid:
             review_by_question[qid] = review

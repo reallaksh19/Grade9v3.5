@@ -228,6 +228,10 @@
               "uniqueItems": true,
               "description": "Explicit learner-facing math spans. Runtime text inference is forbidden; only these declared literals may be typeset."
             },
+            "grade9v3:core2_support_plan": {
+              "type": "object",
+              "description": "Optional Core2 support binding. Its canonical shape is validated with the base question in package.schema.json; Core2 resolves its question-local move and scene references."
+            },
             "grade9v3:visual_review": {
               "type": "object",
               "additionalProperties": false,

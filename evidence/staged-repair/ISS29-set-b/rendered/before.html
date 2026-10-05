@@ -1,0 +1,2528 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-g9-shell data-g9-role="CORE2" data-g9-mode="SINGLE_FILE" data-g9-product="ISS29-STAGED-SET-B-REPLAY" data-g9-render-digest="b1c24e5b9dfc9b76"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="g9-render" content="render_core/2 b1c24e5b9dfc9b76"><style data-g9-modern-shell>/* Grade9V3.5 Modern Kid-Friendly Design System */
+:root, [data-theme="light"] {
+  --bg: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-soft: #f1f5f9;
+  --border: #e2e8f0;
+  --border-focus: #4f46e5;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --text-dim: #94a3b8;
+  --accent-learn: #4f46e5;
+  --accent-learn-bg: #eef2ff;
+  --accent-practice: #0d9488;
+  --accent-practice-bg: #f0fdfa;
+  --accent-explore: #d97706;
+  --accent-explore-bg: #fffbeb;
+  --accent-qb: #0284c7;
+  --accent-qb-bg: #f0f9ff;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 9999px;
+  --touch-min: 48px;
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-floor: 14px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="dark"] {
+  --bg: #0d1117;
+  --bg-card: #161b22;
+  --bg-soft: #21262d;
+  --border: #30363d;
+  --border-focus: #58a6ff;
+  --text-main: #f0f6fc;
+  --text-muted: #8b949e;
+  --text-dim: #6e7681;
+  --accent-learn: #58a6ff;
+  --accent-learn-bg: rgba(56, 139, 253, 0.15);
+  --accent-practice: #2dd4bf;
+  --accent-practice-bg: rgba(45, 212, 191, 0.15);
+  --accent-explore: #fbbf24;
+  --accent-explore-bg: rgba(251, 191, 36, 0.15);
+  --accent-qb: #38bdf8;
+  --accent-qb-bg: rgba(56, 189, 248, 0.15);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body, h1, h2, h3, h4, p { margin: 0; }
+
+html {
+  font-size: calc(16px * var(--font-scale, 1));
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  font-size: calc(1rem * var(--font-scale, 1));
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* Shell Header */
+.g9-shell-header {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+.g9-header-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.g9-brand {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+.g9-brand-badge {
+  background: var(--accent-learn);
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-floor);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.g9-header-nav {
+  flex-wrap: wrap;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.g9-header-nav a:hover,
+.g9-header-nav a.active {
+  color: var(--accent-learn);
+}
+.g9-header-actions {
+  flex-wrap: wrap;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.g9-header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  font-size: var(--font-floor);
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+  min-height: var(--touch-min);
+  min-width: var(--touch-min);
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  font-family: inherit;
+}
+.g9-header-btn:hover {
+  background: var(--border);
+}
+.g9-header-btn.g9-drive-btn {
+  color: var(--text-main);
+  text-decoration: none;
+}
+.g9-header-btn.g9-drive-btn:hover {
+  border-color: #4285f4;
+  background: rgba(66, 133, 244, 0.1);
+  color: #4285f4;
+}
+
+/* Header Dropdown (for Drive PDFs) */
+.g9-header-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.g9-header-dropdown summary {
+  list-style: none;
+}
+.g9-header-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+.g9-header-dropdown[open] .g9-btn-caret {
+  transform: rotate(180deg);
+}
+.g9-btn-caret {
+  font-size: var(--font-floor);
+  transition: transform 0.15s ease;
+  margin-left: 2px;
+}
+.g9-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 320px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-hover);
+  padding: 8px 0;
+  z-index: 1000;
+  animation: g9DropIn 0.15s ease-out;
+}
+@keyframes g9DropIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.g9-dropdown-header {
+  padding: 6px 16px 8px;
+  font-size: var(--font-floor);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+}
+.g9-dropdown-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 16px;
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: var(--font-floor);
+  transition: background 0.12s ease;
+}
+.g9-dropdown-item:hover {
+  background: var(--bg-soft);
+  color: var(--accent-learn);
+}
+.g9-dropdown-item .g9-item-icon {
+  font-size: 16px;
+  line-height: 1.3;
+  flex-shrink: 0;
+}
+.g9-dropdown-item strong {
+  display: block;
+  font-weight: 700;
+  font-size: var(--font-floor);
+}
+.g9-dropdown-item small {
+  display: block;
+  color: var(--text-muted);
+  font-size: var(--font-floor);
+  word-break: break-all;
+  margin-top: 2px;
+}
+.g9-dropdown-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 6px 0;
+}
+
+/* Breadcrumbs */
+.g9-breadcrumb-bar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 20px;
+}
+.g9-breadcrumbs {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-floor);
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+.g9-breadcrumbs a:hover { color: var(--accent-learn); text-decoration: underline; }
+
+/* Main Container */
+.g9-container {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+  flex: 1;
+}
+
+/* Hero Section */
+.g9-hero {
+  margin-bottom: 36px;
+}
+.g9-hero-title {
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+.g9-hero-subtitle {
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--text-muted);
+}
+
+/* Grids */
+.g9-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+/* Subject & Topic Cards */
+.g9-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+.g9-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  border-color: #cbd5e1;
+}
+.g9-card-header {
+  margin-bottom: 16px;
+}
+.g9-card-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-floor);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.g9-tag-physics { background: #e0e7ff; color: #3730a3; }
+.g9-tag-chemistry { background: #dcfce7; color: #166534; }
+.g9-tag-math { background: #fae8ff; color: #86198f; }
+
+.g9-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.g9-card-desc {
+  font-size: var(--font-floor);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.g9-card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent-learn);
+  margin-top: 16px;
+}
+
+/* Concept Cards in Workspace */
+.g9-concept-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-md);
+}
+.g9-concept-header {
+  margin-bottom: 20px;
+}
+.g9-concept-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-soft);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-floor);
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-family: inherit;
+}
+.g9-concept-title {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+.g9-concept-desc {
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+/* Action Group */
+.g9-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.g9-btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--touch-min);
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+.g9-btn-learn {
+  background: var(--accent-learn);
+  color: #fff;
+}
+.g9-btn-learn:hover { opacity: 0.95; transform: scale(1.02); }
+.g9-btn-practice {
+  background: var(--accent-practice);
+  color: #fff;
+}
+.g9-btn-practice:hover { opacity: 0.95; transform: scale(1.02); }
+.g9-btn-explore {
+  background: var(--accent-explore-bg);
+  color: var(--accent-explore);
+  border-color: #fde68a;
+}
+.g9-btn-explore:hover { background: #fef3c7; }
+.g9-btn-qb {
+  background: var(--bg-soft);
+  color: var(--text-main);
+  border-color: var(--border);
+}
+.g9-btn-qb:hover { background: #e2e8f0; color: var(--text-main); }
+.g9-btn-atlas {
+  background: var(--bg-soft);
+  color: var(--text-muted);
+  border-color: var(--border);
+  font-weight: 600;
+}
+.g9-btn-atlas:hover { background: #e2e8f0; color: var(--accent-learn); }
+
+/* Quick Access / QB Callout */
+.g9-qb-banner {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: var(--shadow-md);
+}
+.g9-qb-banner h3 { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+.g9-qb-banner p { font-size: 15px; opacity: 0.9; }
+.g9-btn-qb-white {
+  background: #ffffff;
+  color: #0369a1;
+  min-height: var(--touch-min);
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+.g9-btn-qb-white:hover { background: #f8fafc; transform: scale(1.02); }
+
+/* Search Dialog (Unified Across Portal) */
+.g9-search-dialog {
+  width: min(680px, calc(100vw - 32px));
+  max-height: min(80vh, 720px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  color: var(--text-main);
+  padding: 0;
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.35);
+  margin: auto;
+  overflow: hidden;
+}
+.g9-search-dialog::backdrop {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.g9-search-wrap {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 14px;
+}
+.g9-search-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.g9-search-top strong {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-main);
+}
+.g9-search-top .site-icon-btn {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.g9-search-top .site-icon-btn:hover {
+  background: var(--border);
+  color: var(--text-main);
+}
+.g9-search-wrap input[type="search"] {
+  width: 100%;
+  min-height: 48px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  background: var(--bg);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+.g9-search-wrap input[type="search"]:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+.g9-search-hint {
+  font-size: var(--font-floor);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.g9-search-results {
+  max-height: 420px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 4px;
+}
+.g9-search-result {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  gap: 2px 12px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+.g9-search-result:hover, .g9-search-result:focus-visible {
+  background: var(--bg-soft);
+  border-color: var(--accent-learn);
+  transform: translateY(-1px);
+}
+.g9-search-result-main {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+  grid-column: 1;
+}
+.g9-search-result-sub {
+  font-size: var(--font-floor);
+  color: var(--text-muted);
+  grid-column: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.g9-search-result-kind {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  font-size: var(--font-floor);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-soft);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.g9-search-result:hover .g9-search-result-kind {
+  background: var(--accent-learn-bg);
+  color: var(--accent-learn);
+  border-color: var(--accent-learn);
+}
+.g9-search-empty {
+  text-align: center;
+  padding: 32px 16px;
+  font-size: 14.5px;
+  color: var(--text-muted);
+}
+
+/* Footer */
+.g9-footer {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  padding: 24px 20px;
+  text-align: center;
+  font-size: var(--font-floor);
+  color: var(--text-muted);
+}
+</style><style data-g9-tablet-shell>/* ==========================================================================
+   Grade9V3 · 12.7" Tablet Ergonomics, Touch Targets & Icon Design System
+   Target Viewport: 1366x854 to 1440x900 CSS px (Landscape), 900x1440 (Portrait)
+   WCAG 2.5.5 Enhanced / Android Material Large Tablet Compliance (>= 48x48 px)
+   ========================================================================== */
+
+:root {
+  --tab12-container-max: 1380px;
+  --tab12-touch-min: 48px;
+  --tab12-thumb-size: 30px;
+  --tab12-base-font: 16px;
+  --tab12-radius-sm: 8px;
+  --tab12-radius-md: 12px;
+  --tab12-radius-lg: 16px;
+}
+
+/* 12.7" Base Typography Elevation */
+@media (min-width: 900px) {
+  html {
+    font-size: var(--tab12-base-font);
+  }
+}
+
+/* Large Tablet Container Constraints */
+.container, main, .main-container {
+  max-width: var(--tab12-container-max);
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   1. STRICT 48px+ TOUCH TARGET ENFORCEMENT
+   ========================================================================== */
+
+/* Buttons, Action Links, and Tab Buttons */
+button, 
+.btn, 
+.g9-btn, 
+.tab-btn, 
+.rung-node, 
+.subtopic-actions a, 
+.jump-nav a,
+a.action-btn {
+  min-height: var(--tab12-touch-min);
+  min-width: var(--tab12-touch-min);
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--tab12-radius-sm);
+  padding: 10px 18px;
+}
+
+/* Accordion Summary & Disclosure Controls */
+details summary, 
+summary.rung-summary, 
+details.reveal-block summary, 
+details.core-box summary {
+  min-height: 52px;
+  padding: 14px 20px;
+  cursor: pointer;
+  touch-action: manipulation;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Touch-Optimized Range Sliders */
+input[type="range"] {
+  height: var(--tab12-touch-min) !important;
+  touch-action: pan-y;
+  cursor: pointer;
+  margin: 4px 0;
+  accent-color: #38bdf8;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: var(--tab12-thumb-size);
+  height: var(--tab12-thumb-size);
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: pointer;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+  touch-action: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: var(--tab12-thumb-size);
+  height: var(--tab12-thumb-size);
+  border-radius: 50%;
+  background: #38bdf8;
+  cursor: pointer;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Textareas for Virtual Tablet Keyboard Typing */
+textarea, 
+textarea.attempt-input, 
+.attempt-box textarea {
+  min-height: 120px;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 14px 16px;
+  border-radius: var(--tab12-radius-sm);
+  box-sizing: border-box;
+  touch-action: manipulation;
+}
+
+/* Elimination of sub-14px micro fonts (the shell's learner text floor, minimum_learner_text_css_px) */
+small, .badge, .subtopic-desc, .node-id, .stat-label, .evidence-citation {
+  font-size: 14px !important;
+}
+
+/* Tailwind utility floor: arbitrary micro-font classes are common in legacy explorers.
+   Keep learner-visible text at or above 14px on the tablet target even when a
+   runtime utility stylesheet is injected after this file. */
+.text-xs,
+[class~="text-[9px]"],
+[class~="text-[10px]"],
+[class~="text-[11px]"],
+[class~="text-[12px]"],
+[class~="text-[12.5px]"] {
+  font-size: 14px !important;
+}
+
+/* ==========================================================================
+   2. ICONS-INSTEAD-OF-TABLES COMPONENT SYSTEM
+   ========================================================================== */
+
+/* Metric Tile Clusters (replaces tabular telemetry) */
+.metric-tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin: 14px 0;
+}
+
+.metric-tile {
+  background: var(--bg-card, #1f293b);
+  border: 1px solid var(--border, #2e3d56);
+  border-radius: var(--tab12-radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.metric-tile:hover {
+  border-color: var(--accent, #38bdf8);
+}
+
+.metric-tile-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted, #94a3b8);
+}
+
+.metric-tile-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.metric-tile-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent, #38bdf8);
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-tile-sub {
+  font-size: 14px;
+  color: var(--text-muted, #94a3b8);
+}
+
+/* Tablet Card Deck (replaces table rows) */
+.tablet-card-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.tablet-card-row {
+  background: var(--bg-card, #1f293b);
+  border: 1px solid var(--border, #2e3d56);
+  border-radius: var(--tab12-radius-md);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  min-height: 64px;
+}
+
+.tablet-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid var(--accent, #38bdf8);
+  color: var(--accent, #38bdf8);
+}
+
+/* Dual Comparison Cards (replaces side-by-side comparison tables) */
+.dual-frame-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+
+@media (min-width: 860px) {
+  .dual-frame-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dual-frame-card {
+  background: var(--bg-card, #161b22);
+  border: 1.5px solid var(--border, #30363d);
+  border-radius: var(--tab12-radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dual-frame-card.active {
+  border-color: var(--accent, #58a6ff);
+  box-shadow: 0 0 16px rgba(88, 166, 255, 0.2);
+}
+
+.dual-frame-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text, #f0f6fc);
+}
+
+/* Visual Arithmetic Flow Pipeline (replaces numeric arrays and synthetic division tables) */
+.arithmetic-pipeline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 16px 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pipeline-step {
+  background: var(--bg-card, #1f293b);
+  border: 1px solid var(--border, #2e3d56);
+  border-radius: var(--tab12-radius-sm);
+  padding: 12px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 110px;
+  text-align: center;
+}
+
+.pipeline-step.highlight {
+  border-color: #34d399;
+  background: rgba(52, 211, 153, 0.1);
+}
+
+.pipeline-arrow {
+  font-size: 20px;
+  color: var(--text-muted, #94a3b8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+}
+
+/* Stage Layout on 12.7" Tablets */
+@media (min-width: 960px) {
+  .stage-grid-12-7 {
+    display: grid;
+    grid-template-columns: 1.85fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+}
+</style><title>Source questions · Polynomial questions · staged repair replay</title><style>
+[hidden]{display:none!important}
+:root{--g9-zoom:1;--g9-content-max:1380px;--g9-touch-min:48px;--g9-space:clamp(16px,2vw,28px);--g9-type-body:17px;--bg:#f6f7fb;--fg:#172033;--card:#fff;--line:#d5dce6;--accent:#1f5fae;--muted:#52627a;
+--soft:#fbfdff;--pill-bg:#eef2ff;--pill-fg:#4338ca;--src-bg:#ecfdf5;--src-fg:#047857;--info-bg:#f8fbff;--info-line:#93c5fd;--info-fg:#455d72;--warn-bg:#fff7f8;--warn-line:#ffc9d3;--warn-fg:#8a2942;--ok-bg:#f0fdf7;--ok-line:#bbf7d0;--ok-fg:#14532d}
+:root[data-theme=dark]{--bg:#0f1520;--fg:#e8edf5;--card:#18212f;--line:#2c394d;--accent:#8ab4f8;--muted:#a3b1c6;
+--soft:#141c29;--pill-bg:#262f5a;--pill-fg:#c3c9ff;--src-bg:#12301f;--src-fg:#6ee7b7;--info-bg:#14263d;--info-line:#3b6db3;--info-fg:#b8c9de;--warn-bg:#2b1620;--warn-line:#6b3045;--warn-fg:#f3b6c4;--ok-bg:#10281d;--ok-line:#1f6b44;--ok-fg:#b7efcf}
+html{font-size:calc(var(--g9-type-body) * var(--g9-zoom))}body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.6 system-ui,sans-serif;overflow-wrap:break-word}
+header[data-g9-shell-header]{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px var(--g9-space);background:var(--card);border-bottom:1px solid var(--line)}
+.g9-header-inner{width:100%;min-width:0;box-sizing:border-box;padding:0;gap:12px}
+.g9-brand{min-width:0;max-width:100%;flex-wrap:wrap;justify-content:flex-start;overflow-wrap:anywhere}
+.g9-header-nav,.g9-header-actions{min-width:0;max-width:100%;flex-wrap:wrap;gap:8px}
+.g9-header-nav a,.g9-header-actions>*{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+a{color:var(--accent)}
+header a,header button,button,summary,nav a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);font:inherit;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation}
+nav[data-g9-breadcrumb]{display:flex;gap:8px;flex-wrap:wrap;padding:8px var(--g9-space)}
+.g9-breadcrumb-bar{display:none!important}
+.g9-triad-context{font-size:max(.85rem,14px);opacity:.7;margin-bottom:4px;display:block}
+.g9-triad-context a{color:inherit;text-decoration:none;min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:0 8px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;touch-action:manipulation}
+.g9-triad-context a:hover{text-decoration:underline}
+.g9-triad-actions a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;touch-action:manipulation}
+main{width:100%;min-width:0;max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box;overflow-wrap:anywhere}
+main>*{min-width:0}article[data-g9-unit]{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:var(--g9-space);margin:18px 0;min-width:0}
+article[data-g9-unit]>*{min-width:0}
+article[id],section[id]{scroll-margin-top:var(--g9-header-offset,96px)}
+.g9-core1a-book{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,2vw,24px);margin:0 0 18px;min-width:0}
+.g9-core1a-book>h2{margin:.15em 0 .6em}
+.g9-bucket-orientation-grid{display:block;min-width:0}.g9-bucket-orientation-grid>*{min-width:0}
+[data-g9-concept-route] ol,[data-g9-section-route] ol{padding-left:1.4rem;margin:.5rem 0;box-sizing:border-box;max-width:100%;min-width:0}
+[data-g9-concept-route] li,[data-g9-section-route] li{margin:.35rem 0;max-width:100%;min-width:0}
+[data-g9-concept-route] a,[data-g9-section-route] a{display:flex;width:100%;max-width:100%;min-width:0;justify-content:flex-start;text-align:left;white-space:normal;overflow-wrap:anywhere}
+.g9-cu{padding-top:8px;border-top:1px solid var(--line)}
+.g9-cu:first-child{border-top:0}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] ol{list-style:none;padding-left:0;counter-reset:g9-derive}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li{counter-increment:g9-derive;margin:0 0 12px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--bg)}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li::before{content:"Step " counter(g9-derive);display:block;color:var(--muted);font-size:max(.85rem,14px);font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.g9-cu-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:.35rem 0 .8rem}
+.g9-cu-nav-links{display:flex;gap:8px;flex-wrap:wrap}
+.g9-stage-controls{display:grid;gap:8px;max-width:100%}
+.g9-stage-chips{display:flex;flex-wrap:wrap;gap:8px}
+.g9-stage-chip{border-radius:999px;padding:6px 14px;font-size:.9rem}.g9-stage-chip[aria-pressed=true]{background:var(--accent);color:var(--card);border-color:var(--accent);font-weight:700}
+.g9-stage-desc{margin:0;color:var(--muted);font-size:.92rem;min-height:1.4em}
+.g9-stage-stepper{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.g9-stage-stepper>[data-g9-stage-label]{color:var(--muted);flex:0 1 auto}
+.g9-table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.g9-table-scroll table{width:100%;min-width:680px;border-collapse:collapse}
+.g9-table-scroll th,.g9-table-scroll td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}
+.g9-table-scroll th{background:var(--bg)}
+.g9-table-scroll td>.g9-math,.g9-table-scroll td>.g9-expr{margin:.15rem 0}
+[data-g9-block=worked_anchor]{border-left:4px solid var(--accent);padding-left:14px}
+.g9-watch-steps>li{margin:.8rem 0}.g9-watch-steps p{margin:.2rem 0}
+[data-g9-block=wrong_path],[data-g9-block=repair]{border-left:3px solid var(--line);padding-left:12px}
+[data-g9-block=scope_boundary]{color:var(--muted);font-size:.92rem}
+[data-g9-block=scope_boundary] ul{margin:.35rem 0;padding-left:1.2rem}
+.g9-availability-note{color:var(--muted);font-size:.9rem}
+.g9-cu-support{padding:0 0 16px;margin:0 0 16px;border-bottom:1px solid var(--line)}
+.g9-cu-support:last-of-type{border-bottom:0}.g9-cu-support>h3{font-size:1rem;line-height:1.35;margin:.3rem 0 .7rem;color:var(--muted)}
+@media (min-width:1100px){.g9-bucket-orientation-grid{display:grid;grid-template-columns:.68fr .32fr;gap:20px}}
+textarea{width:100%;min-height:120px;font:inherit;border:1px solid var(--line);border-radius:10px;padding:14px 16px;box-sizing:border-box;background:var(--card);color:var(--fg)}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;padding:0 12px}details[data-locked] summary{opacity:.55;cursor:not-allowed}
+figure{margin:14px 0;max-width:100%;overflow-x:auto}figure svg{width:100%;height:auto;max-width:720px}figcaption{color:var(--muted)}
+.g9-prov{color:var(--muted);font-size:.95rem}.g9-expr{font-family:ui-monospace,monospace;font-size:1.05rem}
+[data-g9-meta-strip]{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+[data-g9-meta-item]{display:inline-flex;flex-wrap:wrap;gap:4px;align-items:baseline;padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:var(--bg);font-size:.9rem;max-width:100%;min-width:0;box-sizing:border-box}
+[data-g9-meta-item] strong{font-weight:700;flex:0 0 auto}
+[data-g9-meta-label]{min-width:0;overflow-wrap:anywhere}
+h4{margin:.8em 0 .3em}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.g9-shell-header .g9-header-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+footer{padding:24px 16px;color:var(--muted)}
+@media print{:root,:root[data-theme=dark]{--bg:#fff;--fg:#000;--card:#fff;--line:#bbb;--accent:#1f5fae;--muted:#333;--soft:#fff;--pill-bg:#eee;--pill-fg:#222;--src-bg:#eee;--src-fg:#222;--info-bg:#fff;--info-line:#888;--info-fg:#222;--warn-bg:#fff;--warn-line:#888;--warn-fg:#222;--ok-bg:#fff;--ok-line:#888;--ok-fg:#222}
+header[data-g9-shell-header],nav[data-g9-breadcrumb],.g9-attempt,button,[data-g9-display-panel],[data-g9-source-pdf]{display:none!important}
+.g9-attempt:has(.g9-answer-options){display:block!important}
+.g9-attempt>:not(.g9-answer-options),.g9-answer-option input{display:none!important}
+details[data-requires-attempt]:not([open]){display:none!important}
+details{border:none}article[data-g9-unit]{break-inside:auto;border:none}
+h1,h2,h3,h4{break-after:avoid-page}footer{padding:0;break-before:avoid-page}
+body{background:#fff;color:#000}}
+.g9-attempt input[type=text],.g9-attempt select,.g9-attempt textarea{min-height:48px;box-sizing:border-box}
+.g9-answer-option,.g9-paper,.g9-match{display:flex;align-items:center;gap:.5rem;min-height:48px}
+.g9-answer-option input,.g9-paper input{min-width:48px;min-height:48px}
+.g9-attempt fieldset{min-height:48px}
+.g9-math,pre,table{max-width:100%;overflow-x:auto}
+input,select{font-size:max(16px,1rem)}
+@media (max-width:899px){header[data-g9-shell-header]{position:relative}article[data-g9-unit]{padding:16px}nav[data-g9-breadcrumb]{font-size:.95rem}}
+
+.g9-split{display:block;min-width:0}.g9-col{min-width:0}
+.g9-component{min-width:0;margin:14px 0}.g9-component:first-child{margin-top:0}
+.g9-eyebrow{font-size:max(.85rem,14px);font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px}
+.g9-pill{display:inline-flex;align-items:center;font-size:max(.85rem,14px);font-weight:800;line-height:1.2;padding:3px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);white-space:nowrap}
+.g9-pill-source{background:var(--src-bg);color:var(--src-fg)}
+.g9-purpose-extension{margin:18px 0;padding:16px;border:2px solid var(--accent);border-radius:16px;background:var(--soft)}
+.g9-purpose-extension h3{margin:.1rem 0 .35rem}.g9-purpose-source{margin:.15rem 0 .7rem;color:var(--muted);font-size:.9rem}
+.g9-purpose-prompt p{font-size:1.05rem;line-height:1.55;white-space:pre-line}
+.g9-secondary-disclosure{border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
+.g9-secondary-disclosure{min-width:0;max-width:100%}
+.g9-secondary-disclosure>summary{min-height:var(--g9-touch-min);min-width:0;display:flex;align-items:center;flex-wrap:wrap;overflow-wrap:anywhere;padding:10px 12px;font-weight:800;cursor:pointer}
+.g9-secondary-disclosure>summary::after{content:"+";margin-left:auto;font-size:1.2em}.g9-secondary-disclosure[open]>summary::after{content:"−"}
+.g9-secondary-body{padding:0 12px 12px}
+.g9-worked-instruction{margin:.35rem 0 .6rem;color:var(--muted);font-weight:650}
+.g9-watch-steps{padding-left:1.35rem}.g9-watch-steps>li{margin:.65rem 0}
+.g9-worked-step{border:1px solid var(--line);border-radius:10px;background:var(--card);overflow:hidden}
+.g9-worked-step>summary{min-height:var(--g9-touch-min);display:flex;align-items:center;padding:9px 11px;font-weight:750;cursor:pointer}
+.g9-worked-step-body{padding:0 11px 11px}.g9-worked-step-body p{margin:.3rem 0}
+article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-bottom:1px solid var(--line)}
+.g9-c-header h2,.g9-c-concept-header h2{font-size:1.2rem;line-height:1.3;margin:0;letter-spacing:-.01em}
+.g9-c-header .g9-prov{margin:2px 0 0}
+.g9-c-disclosure-grid{margin-top:0}
+.g9-c-unit-header{margin-top:0}
+.g9-why-toggle{margin-top:10px;gap:4px 10px;flex-wrap:wrap;max-width:100%;text-align:left;justify-content:flex-start;border:0;background:transparent;padding:6px 0;font-weight:700;color:var(--muted)}
+.g9-pill-band{background:#fff7ed;color:#9a3412}.g9-pill-band[data-g9-band=D1]{background:#ecfdf5;color:#047857}.g9-pill-band[data-g9-band=D2]{background:#eff6ff;color:#1d4ed8}.g9-pill-band[data-g9-band=D4]{background:#fdf2f8;color:#be185d}
+:root[data-theme=dark] .g9-pill-band{background:#3a2a14;color:#fdba74}:root[data-theme=dark] .g9-pill-band[data-g9-band=D1]{background:#12301f;color:#6ee7b7}:root[data-theme=dark] .g9-pill-band[data-g9-band=D2]{background:#172a4d;color:#9ec5ff}:root[data-theme=dark] .g9-pill-band[data-g9-band=D4]{background:#3a1830;color:#f9a8d4}
+.g9-why{margin-top:6px}.g9-why p{margin:.2rem 0 .6rem;color:var(--muted)}
+.g9-dgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.g9-dcell{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:max(.85rem,14px);color:var(--muted)}.g9-dcell b{display:block;color:var(--fg);font-size:1rem}
+.g9-c-stem [data-g9-block=stem] p{margin:.1rem 0;font-size:1.12rem;line-height:1.58;font-weight:560;white-space:pre-line}
+.g9-c-callout-info{border-left:4px solid var(--info-line);background:var(--info-bg);padding:10px 14px;border-radius:0 12px 12px 0;color:var(--info-fg)}
+.g9-c-callout-warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:12px;padding:10px 14px;color:var(--warn-fg)}
+.g9-c-callout-info h4,.g9-c-callout-warn h4{margin:0 0 .2rem;font-size:1rem}.g9-c-callout-warn h4{color:var(--warn-fg)}
+.g9-c-callout-info ul{margin:.2rem 0;padding-left:1.2rem}.g9-c-callout-info p,.g9-c-callout-warn p{margin:.1rem 0}
+.g9-bridge-link{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.g9-crux-tag{display:inline-block;margin:0 0 4px;padding:1px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);font-size:max(.85rem,14px);font-weight:800}
+.g9-c-step-cards [data-g9-block=construction] ol>li[data-g9-crux-step]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.g9-lines{white-space:pre-line}
+.g9-cu-support>h3{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.g9-c-attempt .g9-attempt{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--soft)}
+.g9-answer-options{display:grid;gap:8px;counter-reset:g9opt}
+.g9-answer-option{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:6px 12px}
+.g9-answer-option::before{counter-increment:g9opt;content:"(" counter(g9opt,upper-alpha) ")";font-weight:850;color:var(--accent);order:1;min-width:2.2rem}
+.g9-answer-option input{order:0}.g9-answer-option>span{order:2}
+.g9-c-visual-card,.g9-c-staged-visual{border:1px solid var(--line);border-radius:16px;background:var(--soft);padding:10px 12px 12px}
+.g9-card-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:6px}.g9-card-head strong{font-size:.9rem}
+.g9-c-visual-card figure,.g9-c-staged-visual figure{margin:0}
+.g9-c-visual-card figure svg,.g9-c-staged-visual figure svg{display:block;width:100%;height:auto;max-width:100%}
+.g9-c-visual-card figure svg{max-height:min(48vh,440px)}.g9-c-staged-visual figure svg{max-height:min(42vh,360px)}
+.g9-diagram-scroll{width:100%;max-width:100%;min-width:0;min-height:48px;box-sizing:border-box;overflow-x:auto}
+.g9-diagram-scroll svg{display:block;max-height:none!important;max-width:none!important}
+.g9-c-ladder .g9-block>h4{margin:.9rem 0 .2rem;font-size:max(.85rem,14px);color:var(--muted)}
+.g9-rung-map,.g9-c-ladder [data-g9-ladder]{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
+.g9-rung-map>li{border:1px dashed var(--line);border-radius:12px;padding:9px 13px;color:var(--muted)}
+.g9-c-ladder [data-g9-ladder]>li{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:10px 13px}
+.g9-rung-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-weight:800}
+.g9-rung-no{display:inline-grid;place-items:center;min-width:2.3em;height:2.1em;border-radius:8px;background:var(--pill-bg);color:var(--pill-fg);font-size:max(.85rem,14px)}
+.g9-c-ladder details[data-g9-support-reveal]{border:0;padding:0;margin:.5rem 0}
+.g9-c-ladder details[data-g9-support-reveal]>summary{width:100%;justify-content:space-between;font-weight:700}
+.g9-c-ladder [data-g9-support-prompt]{margin:.5rem 0}.g9-c-ladder .g9-ladder>button{margin-top:10px}
+.g9-pdf-link{gap:6px;font-weight:700}.g9-pdf-icon{flex:none;width:24px;height:24px}.g9-pdf-link span{white-space:nowrap}header .g9-pdf-link{color:var(--accent)}.g9-c-link-list .g9-source-pdf{border-radius:12px}
+.g9-c-link-list h4{margin:.9rem 0 .3rem;font-size:max(.85rem,14px);color:var(--muted)}
+.g9-c-link-list ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.2rem 0;padding:0}
+.g9-c-link-list li{margin:0}.g9-c-link-list a{display:inline-flex;align-items:center;min-height:48px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--fg);text-decoration:none}
+.g9-c-disclosure>details{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:0;overflow:hidden;margin:0}
+.g9-c-disclosure>details>summary{list-style:none;display:flex;width:100%;justify-content:space-between;border:0;border-radius:0;background:transparent;padding:13px 15px;font-weight:850;min-height:48px}
+.g9-c-disclosure>details>summary::-webkit-details-marker{display:none}
+.g9-c-disclosure>details>summary::after{content:"Show";font-size:max(.85rem,14px);background:var(--pill-bg);color:var(--pill-fg);padding:4px 10px;border-radius:999px}
+.g9-c-disclosure>details[open]>summary::after{content:"Hide"}.g9-c-disclosure>details[data-locked]>summary::after{content:"After you attempt"}
+.g9-c-disclosure>details[open]>summary{border-bottom:1px solid var(--line);background:var(--card)}
+.g9-c-disclosure [data-g9-payload-slot]{padding:6px 16px 16px}
+.g9-solution-move{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.g9-solution-move:last-child{border-bottom:0}
+.g9-step-no{font-weight:850;font-size:.9rem;color:var(--pill-fg);background:var(--pill-bg);border-radius:8px;padding:5px 6px;text-align:center;height:max-content}
+.g9-step-body [data-g9-block=solution_inputs]{display:flex;flex-wrap:wrap;gap:.4rem;align-items:baseline;color:var(--muted)}
+.g9-step-body [data-g9-block=solution_inputs] h4{margin:0}
+.g9-step-body [data-g9-block=solution_inputs] ul{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;margin:0;padding:0}
+.g9-step-body [data-g9-block=solution_inputs] li{border:1px solid var(--line);border-radius:999px;padding:1px 10px;font-size:max(.85rem,14px)}
+.g9-step-body p{margin:.25rem 0}.g9-step-body h4{margin:0;font-size:max(.85rem,14px);color:var(--muted)}
+.g9-solution-move[data-g9-solution-crux=true]{background:var(--info-bg);border-radius:10px;padding-left:8px;padding-right:8px}
+.g9-c-step-list [data-g9-block=working] ol{list-style:none;padding:0;margin:0;counter-reset:g9s}
+.g9-c-step-list [data-g9-block=working] ol>li{counter-increment:g9s;display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.g9-c-step-list [data-g9-block=working] ol>li::before{content:counter(g9s);font-weight:850;font-size:.9rem;color:var(--pill-fg);background:var(--pill-bg);border-radius:8px;padding:5px 6px;text-align:center;height:max-content}
+.g9-c-answer-box{background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:12px;padding:10px 14px;color:var(--ok-fg)}
+.g9-c-answer-box p{margin:.15rem 0}.g9-c-answer-box h4{margin:0 0 .2rem;font-size:max(.85rem,14px)}
+.g9-c-check-box{border-left:4px solid var(--ok-line);padding:4px 14px;color:var(--ok-fg)}.g9-c-check-box h4{margin:0;font-size:max(.85rem,14px)}.g9-c-check-box p{margin:.15rem 0}
+.g9-c-tile,.g9-c-recall-card{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:12px 16px}
+.g9-c-tile h4,.g9-c-recall-card h4{margin:0 0 .3rem}.g9-c-tile ul{margin:.2rem 0;padding-left:1.2rem}
+.g9-c-banner{border-left:5px solid var(--accent);background:var(--info-bg);padding:12px 16px;border-radius:0 14px 14px 0}.g9-c-banner h4{margin:0 0 .2rem;color:var(--accent)}.g9-c-banner p{margin:.1rem 0}
+.g9-unit-head{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.g9-unit-no{display:inline-grid;place-items:center;width:2.3em;height:2.3em;border-radius:50%;background:var(--accent);color:var(--card);font-weight:850}
+.g9-unit-head h3{margin:0;flex:1 1 12rem;font-size:1.12rem;line-height:1.35}.g9-pill-concept{background:var(--info-bg);color:var(--info-fg);border:1px solid var(--info-line)}
+.g9-c-step-cards [data-g9-block=construction] ol{list-style:none;margin:0;padding:0;counter-reset:g9c;display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.g9-c-step-cards [data-g9-block=construction] ol>li{counter-increment:g9c;position:relative;border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 14px 12px 54px;min-width:0;overflow-wrap:anywhere}
+.g9-c-step-cards [data-g9-block=construction] ol>li::before{content:counter(g9c);position:absolute;left:14px;top:12px;display:grid;place-items:center;width:1.9em;height:1.9em;border-radius:50%;background:var(--pill-bg);color:var(--pill-fg);font-weight:850;font-size:.9rem}
+.g9-c-step-cards li em{display:inline-block;min-width:5.6rem;color:var(--muted);font-style:normal;font-weight:700}
+.g9-c-step-cards li br{display:block;content:"";margin-top:.3rem}
+.g9-c-equation-card,.g9-c-worked-card{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 14px}
+.g9-c-worked-card{border-left:4px solid var(--accent)}.g9-c-worked-card [data-g9-block=worked_anchor]{border-left:0;padding-left:0}
+.g9-c-trap-card{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:14px;padding:10px 14px;color:var(--warn-fg)}
+.g9-c-trap-card [data-g9-block]{border-left:0;padding-left:0}.g9-c-trap-card h4{margin:.5rem 0 .1rem;font-size:max(.85rem,14px)}
+.g9-c-trap-card ul{margin:.1rem 0;padding-left:1.2rem}
+.g9-c-triad{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 14px}
+.g9-c-triad h4{margin:0 0 .4rem;font-size:max(.85rem,14px);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.g9-triad{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.g9-triad>li{display:grid;gap:2px;border-left:4px solid var(--line);padding:2px 0 2px 10px}
+.g9-triad>li[data-g9-triad-role=CHECK]{border-color:var(--info-line)}.g9-triad>li[data-g9-triad-role=APPLY]{border-color:var(--ok-line)}.g9-triad>li[data-g9-triad-role=CONNECT]{border-color:var(--pill-fg)}
+.g9-triad-head{font-size:max(.85rem,14px);font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.g9-c-chips ul,.g9-c-chips ol{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.3rem 0;padding:0}
+.g9-c-chips li{margin:0}
+.g9-c-chips a{border:1px solid var(--line);border-radius:999px;background:var(--card);padding:6px 14px;min-height:48px;display:inline-flex;align-items:center;text-decoration:none;color:var(--fg)}
+/* 12.7-inch tablet: the identity block is a title row and a chip row, so the first screen shows the work and not the labels */
+article[data-g9-role=CORE2]>.slot-identity,article[data-g9-role=CORE1A]>.slot-identity{display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px;padding:0 0 8px;margin-bottom:12px}
+article[data-g9-role=CORE2]>.slot-identity>.g9-component,article[data-g9-role=CORE1A]>.slot-identity>.g9-component{display:contents}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-block=source_identity]{order:1;flex:1 1 16rem;display:flex;align-items:baseline;flex-wrap:wrap;gap:0 14px;min-width:0}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-block=source_identity] h2,article[data-g9-role=CORE1A]>.slot-identity h2{margin:0}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-block=source_identity] .g9-prov{margin:0}
+article[data-g9-role=CORE2]>.slot-identity .g9-why-toggle{order:2;margin:0;padding:2px 0;min-height:var(--g9-touch-min)}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-meta-strip],article[data-g9-role=CORE1A]>.slot-identity [data-g9-meta-strip]{order:3;flex:1 0 100%;margin:0;gap:6px}
+article[data-g9-role=CORE2]>.slot-identity .g9-why{order:4;flex:1 0 100%}
+article[data-g9-role=CORE1A]>.slot-identity h2{order:1;flex:1 1 auto}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-block=section_route]{order:4;flex:1 0 100%;display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-block=section_route] h4{margin:0;white-space:nowrap}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] ol{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] li{margin:0}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] a{display:inline-block;width:auto;max-width:24rem;padding:4px 14px;border-radius:999px;line-height:38px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-component=SECTION_ROUTE]{flex:1 1 100%;width:100%;min-width:0}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] a{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+article[data-g9-role=CORE2]>.slot-identity [data-g9-meta-item],article[data-g9-role=CORE1A]>.slot-identity [data-g9-meta-item]{padding:2px 10px;line-height:1.35}
+.g9-interactive-bridge{border:2px solid var(--accent);border-radius:16px;background:var(--card);padding:16px 20px;margin:18px 0}
+.g9-interactive-bridge h3{margin:8px 0 4px;font-size:1.15rem;color:var(--fg)}
+.g9-interactive-desc{color:var(--muted);font-size:.92rem;margin:0 0 12px}
+.g9-action-interactive{display:inline-flex;align-items:center;min-height:var(--g9-touch-min);padding:8px 16px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700}
+.g9-action-interactive:hover{opacity:.95}
+.g9-transitions-row{display:flex;flex-wrap:wrap;gap:12px;margin:10px 0}
+.g9-transition-chip{display:inline-flex;align-items:center;min-height:var(--g9-touch-min);padding:8px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--accent);font-weight:700;text-decoration:none}
+.g9-transition-chip:hover{background:var(--soft);border-color:var(--accent)}
+
+article[id],section[id]{scroll-margin-top:var(--g9-header-offset,160px)}
+.g9-repair-probe{padding:12px;border:1px solid var(--line);border-radius:12px;margin:12px 0}
+.g9-repair-probe label,.g9-repair-probe textarea{display:block;width:100%;box-sizing:border-box}
+.g9-repair-probe textarea{min-height:88px;font:inherit;margin:8px 0}
+.g9-repair-probe button,.g9-repair-probe a{min-height:48px;display:inline-flex;align-items:center}
+.g9-repair-probe [hidden]{display:none!important}
+[data-g9-alignment-probe] input{display:block;min-height:48px;width:100%;box-sizing:border-box}
+[data-g9-alignment-probe] label{display:block}
+[data-g9-alignment-probe] svg{max-width:100%;height:auto}
+section[id]:focus{outline:3px solid var(--accent);outline-offset:3px}
+@media (min-width:980px){article[data-g9-role="CORE2"] .g9-split{display:grid;grid-template-columns:minmax(0,42fr) minmax(0,58fr);gap:22px;align-items:start}article[data-g9-role="CORE2"] .g9-split-primary-only,article[data-g9-role="CORE2"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}}@media (max-width:979px){article[data-g9-role="CORE2"] .g9-split{display:flex;flex-direction:column}article[data-g9-role="CORE2"] .g9-split .g9-col,article[data-g9-role="CORE2"] .g9-split .blueprint-slot,article[data-g9-role="CORE2"] .g9-split .g9-cu,article[data-g9-role="CORE2"] .g9-split .g9-cu-support{display:contents}article[data-g9-role="CORE2"] [data-g9-component="IDENTITY"]{order:10}article[data-g9-role="CORE2"] [data-g9-component="SOURCE_PDF"]{order:15}article[data-g9-role="CORE2"] [data-g9-component="DIFFICULTY_WHY"]{order:20}article[data-g9-role="CORE2"] [data-g9-component="STEM"]{order:30}article[data-g9-role="CORE2"] [data-g9-component="CONDITIONS"]{order:50}article[data-g9-role="CORE2"] [data-g9-component="TRAP"]{order:60}article[data-g9-role="CORE2"] [data-g9-component="ATTEMPT"]{order:70}article[data-g9-role="CORE2"] [data-g9-component="REPRESENTATION"]{order:40}article[data-g9-role="CORE2"] [data-g9-component="HINT_LADDER"]{order:80}article[data-g9-role="CORE2"] [data-g9-component="CONCEPT_NAV"]{order:90}article[data-g9-role="CORE2"] [data-g9-component="SOLUTION"]{order:100}}@media print{article[data-g9-role="CORE2"] .g9-split{display:grid;grid-template-columns:minmax(0,42fr) minmax(0,58fr);gap:12px}}@media (min-width:1100px){article[data-g9-role="CORE1B"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:22px;align-items:start}article[data-g9-role="CORE1B"] .g9-split-primary-only,article[data-g9-role="CORE1B"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}}@media print{article[data-g9-role="CORE1B"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:12px}}@media (min-width:1100px){article[data-g9-role="CORE2A"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:22px;align-items:start}article[data-g9-role="CORE2A"] .g9-split-primary-only,article[data-g9-role="CORE2A"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}}@media print{article[data-g9-role="CORE2A"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:12px}}@media (min-width:1100px){article[data-g9-role="CORE2B"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:22px;align-items:start}article[data-g9-role="CORE2B"] .g9-split-primary-only,article[data-g9-role="CORE2B"] .g9-split-support-only{grid-template-columns:minmax(0,1fr)}}@media print{article[data-g9-role="CORE2B"] .g9-split{display:grid;grid-template-columns:minmax(0,68fr) minmax(0,32fr);gap:12px}}</style></head><body data-core="CORE2" data-blueprint-ref="BP-CORE2-SOURCE-QUESTION@1.9.0"><header class="g9-shell-header" data-g9-shell-header><div class="g9-header-inner"><a href="../../../public/../public/index.html" class="g9-brand"><span class="logo-icon">⚡</span><span class="brand-title">Grade9V3.5</span><span class="g9-brand-badge">Learner Platform</span></a><nav class="g9-header-nav" aria-label="Portal Navigation"><a data-g9-home href="../../../public/../public/index.html">Home</a><a href="public/physics/index.html">Physics</a><a href="public/chemistry/index.html">Chemistry</a><a href="public/mathematics/index.html">Mathematics</a><a href="../../../public/../public/Mathematics/question-bank/index.html">Question Bank</a></nav><div class="g9-header-actions"><button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search"><span class="g9-btn-icon">🔍</span><span class="g9-btn-text">Search</span></button><button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" title="Display & Theme Settings" aria-label="Display & Theme"><span class="g9-btn-icon">🌙 / ☀️</span><span class="g9-btn-text">Display</span></button></div></div><div data-g9-search-panel hidden><input data-g9-search-input type="search" aria-label="Search this page"></div><div data-g9-display-panel hidden><button type="button" data-g9-font="dec">A-</button><button type="button" data-g9-font="reset">A</button><button type="button" data-g9-font="inc">A+</button><button type="button" data-g9-theme="light">Light</button><button type="button" data-g9-theme="dark">Dark</button><button type="button" data-g9-zoom="dec">Zoom -</button><button type="button" data-g9-zoom="reset">100%</button><button type="button" data-g9-zoom="inc">Zoom +</button></div></header><div class="g9-concept-triad-bar"><div class="g9-triad-inner"><div class="g9-triad-context"><a href="public/mathematics/index.html">Mathematics</a> / <a href="public/topics/nlm/index.html">Polynomial questions · staged repair replay</a> / <span aria-current="page">Practice</span></div><span class="g9-triad-concept-title">Concept: Polynomial questions · staged repair replay</span><div class="g9-triad-actions"><a class="g9-triad-btn active" href="#g9-role-CORE2">✍️ Practice</a><a class="g9-triad-btn g9-btn-qb" href="../../../public/../public/Mathematics/question-bank/index.html">All questions in QB &rarr;</a></div></div></div><noscript>Answers open after you attempt; this page needs JavaScript.</noscript><main><h1>Polynomial questions · staged repair replay: Source questions</h1><article id="OWN-ISSUE53-POLY-01" data-g9-unit="OWN-ISSUE53-POLY-01" data-g9-kind="QUESTION" data-g9-role="CORE2" data-g9-search-text="For $p(x)=4x^3-2x+7$, state its degree, leading coefficient, constant term and coefficient of $x^2$. Explain how the missing $x^2$ term is recorded." class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-header" data-g9-component="IDENTITY" data-g9-level="REQUIRED" data-g9-presentation="HEADER"><div class="g9-block" data-g9-block="source_identity"><h2>Q1</h2><p class="g9-prov">Owner-supplied question, verbatim</p></div><div data-g9-meta-strip data-g9-meta-role="CORE2" data-g9-meta-record="OWN-ISSUE53-POLY-01" data-g9-meta-incomplete="true"></div></div><div class="g9-component g9-c-disclosure-grid" data-g9-component="DIFFICULTY_WHY" data-g9-level="EXPECTED" data-g9-presentation="DISCLOSURE_GRID"><button type="button" class="g9-why-toggle" data-g9-toggle aria-expanded="false" aria-controls="g9-why-OWN-ISSUE53-POLY-01"><span class="g9-pill g9-pill-band" data-g9-band="D1">D1 · 2/10 · about 2 min</span><span>Why this difficulty?</span></button><div id="g9-why-OWN-ISSUE53-POLY-01" class="g9-why" hidden><p>This author estimate combines the five parts below. The detailed rationale is available with the answer and working after your attempt.</p><div class=g9-dgrid><div class="g9-dcell"><span>Choosing the model</span><b>1/2</b></div><div class="g9-dcell"><span>Representation</span><b>0/2</b></div><div class="g9-dcell"><span>Reasoning chain</span><b>0/2</b></div><div class="g9-dcell"><span>Algebra and numbers</span><b>0/2</b></div><div class="g9-dcell"><span>Traps and exceptions</span><b>1/2</b></div></div></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-attempt" data-blueprint-slot="attempt" data-required="true"><div class="g9-component g9-c-stem" data-g9-component="STEM" data-g9-level="REQUIRED" data-g9-presentation="STEM"><div class="g9-eyebrow">Attempt first</div><div class="g9-block" data-g9-block="stem"><p>For $p(x)=4x^3-2x+7$, state its degree, leading coefficient, constant term and coefficient of $x^2$. Explain how the missing $x^2$ term is recorded.</p></div></div><div class="g9-component g9-c-callout-info" data-g9-component="CONDITIONS" data-g9-level="EXPECTED" data-g9-presentation="CALLOUT_INFO"><div class="g9-block" data-g9-block="conditions"><h4>Conditions</h4><ul><li>Polynomials in one variable with real coefficients; no calculus or complex numbers assumed; preserve stated domains and degree bounds.</li></ul></div></div><div class="g9-component g9-c-callout-warn" data-g9-component="TRAP" data-g9-level="EXPECTED" data-g9-presentation="CALLOUT_WARN"><details class="g9-secondary-disclosure" data-g9-secondary="core2-wrong-route"><summary>Common wrong route · open if you want a warning</summary><div class="g9-secondary-body"><div class="g9-block" data-g9-block="common_wrong_route"><h4>Common wrong route</h4><p>Learner states coefficient of $x^2$ does not exist or is undefined because the term is omitted.</p></div></div></details></div><div class="g9-component g9-c-attempt" data-g9-component="ATTEMPT" data-g9-level="REQUIRED" data-g9-presentation="ATTEMPT"><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div></div></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="false"><div class="g9-component g9-c-visual-card" data-g9-component="REPRESENTATION" data-g9-level="EXPECTED" data-g9-presentation="VISUAL_CARD" data-g9-component-items="1"><div class="g9-card-head"><strong>Representation</strong></div><figure data-g9-figure data-g9-fig="OWN-ISSUE53-POLY-01-REP-MATH-POLY-COEFF-TABLE" data-g9-stage="PRE_ATTEMPT" data-g9-representation="REP-MATH-POLY-COEFF-TABLE" data-g9-kind="TABLE_OF_VALUES" data-g9-min-figure-text="14" data-reveal-stages="1" data-g9-stages-total="3" data-g9-stages="COEFF-STAGE-1" data-g9-stage-mode="cumulative"><div class="g9-diagram-scroll" tabindex="0" role="region" aria-label="Diagram; scroll horizontally when enlarged"><svg role="img" aria-label="Power Inventory" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="100%" height="100%">
+  
+  
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .border { stroke: #cbd5e1; stroke-width: 1.5; }
+      .header-bg { fill: #e2e8f0; }
+      .text-title { font-family: system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 700; fill: #0f172a; }
+      .text-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #475569; }
+      .text-header { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 600; fill: #1e293b; text-anchor: middle; }
+      .text-cell { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; fill: #334155; text-anchor: middle; }
+      .text-bold { font-weight: 700; fill: #0f172a; }
+      .highlight-row { fill: #fef3c7; }
+      .highlight-text { fill: #b45309; font-weight: 700; }
+      .grid-line { stroke: #e2e8f0; stroke-width: 1; }
+      .badge-accent { fill: #dbeafe; stroke: #3b82f6; stroke-width: 1; }
+      .badge-text { font-family: system-ui, sans-serif; font-size: 12px; fill: #1d4ed8; font-weight: 600; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="360" rx="8" class="bg border"/>
+
+  <!-- Static Canvas Title -->
+  <text x="30" y="32" class="text-title">Positional Coefficient Architecture: p(x) = 5x³ − 2x + 7</text>
+  <text x="30" y="52" class="text-sub">Every power k ∈ {3, 2, 1, 0} must have a determined scalar coefficient aₖ</text>
+
+  <!-- Stage 1: Power Inventory & Expression Terms -->
+  <g data-g9-stage-id="COEFF-STAGE-1">
+    <rect x="30" y="70" width="540" height="50" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="45" y="92" class="text-sub">Given Expression:</text>
+    <text x="170" y="94" font-family="monospace" font-size="16px" font-weight="700" fill="#2563eb">p(x) = 5x³ + [?] − 2x + 7</text>
+    <text x="45" y="112" class="text-sub">Power set present: degree 3 (cubic), power 1 (linear), power 0 (constant 7). Power 2 is omitted.</text>
+  </g>
+
+  <!-- Stage 2: Tabular Powers with Zero-Entry -->
+  
+
+  <!-- Stage 3: Complete Reconstruction & Addition Alignment -->
+  
+</svg>
+</div><figcaption data-g9-block="stage_caption" data-g9-caption="stages">Power Inventory</figcaption></figure></div></section><section class="blueprint-slot slot-support" data-blueprint-slot="support" data-required="false"><div class="g9-component g9-c-ladder" data-g9-component="HINT_LADDER" data-g9-level="REQUIRED" data-g9-presentation="LADDER" data-g9-component-items="3"><details class="g9-secondary-disclosure" data-g9-secondary="core2-hints"><summary>Need a hint? · guided support</summary><div class="g9-secondary-body"><div class="g9-eyebrow">Hint ladder · reveal only what you need</div><div class="g9-block" data-g9-block="authored_core2_support"><h4>Guided support</h4><div class="g9-ladder" data-g9-ladder-ref="CORE2-OWN-ISSUE53-POLY-01-AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-group="AUTHORED_CORE2_PROMPT_REVEAL"><ol data-g9-ladder></ol><ol class="g9-rung-map" aria-label="Rungs still to come"><li data-g9-rung-ghost><div class="g9-rung-head"><span class="g9-rung-no">H0</span><span class="g9-rung-label" data-g9-support-stage-label>Key concept</span><span class="g9-pill g9-pill-guided">Guided</span></div></li><li data-g9-rung-ghost><div class="g9-rung-head"><span class="g9-rung-no">H1</span><span class="g9-rung-label" data-g9-support-stage-label>Representation</span><span class="g9-pill g9-pill-guided">Guided</span></div></li><li data-g9-rung-ghost><div class="g9-rung-head"><span class="g9-rung-no">H2</span><span class="g9-rung-label" data-g9-support-stage-label>First move</span><span class="g9-pill g9-pill-guided">Guided</span></div></li></ol><template data-g9-rung-payload="CORE2-OWN-ISSUE53-POLY-01-AUTHORED_CORE2_PROMPT_REVEAL-1"><li data-g9-rung="1" data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-source="scaffolds[0]" data-g9-support-reveals="CONCEPT" data-g9-support-stage="KEY_CONCEPT" data-g9-support-kind="CONNECT" data-g9-supports-move="OWN-ISSUE53-POLY-01-MOVE-1"><div class="g9-rung-head"><span class="g9-rung-no">H0</span><span class="g9-rung-label" data-g9-support-stage-label>Key concept</span><span class="g9-pill g9-pill-guided">Guided</span></div><div data-g9-support-reveal><p>Identify the highest power of $x$ present with a non-zero coefficient to find the degree.</p></div></li></template><template data-g9-rung-payload="CORE2-OWN-ISSUE53-POLY-01-AUTHORED_CORE2_PROMPT_REVEAL-2"><li data-g9-rung="2" data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-source="scaffolds[1]" data-g9-support-reveals="METHOD" data-g9-support-stage="REPRESENTATION" data-g9-support-kind="REPRESENT" data-g9-supports-move="OWN-ISSUE53-POLY-01-MOVE-2"><div class="g9-rung-head"><span class="g9-rung-no">H1</span><span class="g9-rung-label" data-g9-support-stage-label>Representation</span><span class="g9-pill g9-pill-guided">Guided</span></div><div data-g9-support-reveal><p>The leading coefficient is the coefficient of the highest power term, and the constant term is the term without $x$ (the $x^0$ term).</p></div></li></template><template data-g9-rung-payload="CORE2-OWN-ISSUE53-POLY-01-AUTHORED_CORE2_PROMPT_REVEAL-3"><li data-g9-rung="3" data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-source="scaffolds[2]" data-g9-support-reveals="METHOD" data-g9-support-stage="FIRST_MOVE" data-g9-support-kind="EXECUTE" data-g9-supports-move="OWN-ISSUE53-POLY-01-MOVE-3"><div class="g9-rung-head"><span class="g9-rung-no">H2</span><span class="g9-rung-label" data-g9-support-stage-label>First move</span><span class="g9-pill g9-pill-guided">Guided</span></div><div data-g9-support-reveal><p>When a power of $x$ between 0 and the degree does not appear, consider what number multiplied by $x^2$ leaves the polynomial value unchanged.</p></div></li></template><button type="button" data-g9-next-rung>Show guided support</button></div></div></div></details></div></section></div></div><section class="blueprint-slot slot-solution" data-blueprint-slot="solution" data-required="true"><div class="g9-component g9-c-disclosure" data-g9-component="SOLUTION" data-g9-level="REQUIRED" data-g9-presentation="DISCLOSURE"><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE2-OWN-ISSUE53-POLY-01-solution"><summary>Answer and working</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE2-OWN-ISSUE53-POLY-01-solution"><div class="g9-component g9-c-step-list" data-g9-component="SOLUTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_LIST" data-g9-component-items="4"><div class="g9-block" data-g9-block="structured_working"><h4>Reasoning route</h4><section class="g9-solution-move" data-g9-solution-order="1" data-g9-solution-move="OWN-ISSUE53-POLY-01-MOVE-1" data-g9-solution-kind="DECIDE" data-g9-solution-stage="UNDERSTAND" data-g9-solution-crux="false"><div class="g9-step-no" aria-hidden="true">1</div><div class="g9-step-body"><h4 data-g9-solution-stage-label>Understand</h4><p data-g9-solution-action>Identify degree from highest power</p><div class="g9-block" data-g9-block="solution_inputs"><h4>Uses</h4><ul><li>stated givens and prior move</li></ul></div><p data-g9-solution-why><em>Why valid:</em> The degree of a polynomial is the highest power of the variable with a non-zero coefficient. In 4x^3 - 2x + 7, the highest power is 3.</p><p data-g9-solution-output><strong>Result:</strong> Degree = 3</p></div></section><section class="g9-solution-move" data-g9-solution-order="2" data-g9-solution-move="OWN-ISSUE53-POLY-01-MOVE-2" data-g9-solution-kind="CONNECT" data-g9-solution-stage="CONNECT" data-g9-solution-crux="false"><div class="g9-step-no" aria-hidden="true">2</div><div class="g9-step-body"><h4 data-g9-solution-stage-label>Connect</h4><p data-g9-solution-action>Extract leading coefficient and constant term</p><div class="g9-block" data-g9-block="solution_inputs"><h4>Uses</h4><ul><li>stated givens and prior move</li></ul></div><p data-g9-solution-why><em>Why valid:</em> The leading coefficient is the coefficient of the highest power term (4 for x^3), and the constant term is the term independent of x (7).</p><p data-g9-solution-output><strong>Result:</strong> Leading coeff = 4, Constant term = 7</p></div></section><section class="g9-solution-move" data-g9-solution-order="3" data-g9-solution-move="OWN-ISSUE53-POLY-01-MOVE-3" data-g9-solution-kind="TRANSFORM" data-g9-solution-stage="CALCULATE" data-g9-solution-crux="true"><div class="g9-step-no" aria-hidden="true">3</div><div class="g9-step-body"><h4 data-g9-solution-stage-label>Calculate</h4><p class="g9-prov" data-g9-crux-label>Key move</p><p data-g9-solution-action>Evaluate missing x^2 term coefficient</p><div class="g9-block" data-g9-block="solution_inputs"><h4>Uses</h4><ul><li>stated givens and prior move</li></ul></div><p data-g9-solution-why><em>Why valid:</em> The power x^2 does not appear explicitly in the polynomial. Its coefficient is recorded as 0 because 0 * x^2 = 0 contributes nothing to the sum.</p><p data-g9-solution-output><strong>Result:</strong> Coefficient of x^2 = 0</p></div></section><section class="g9-solution-move" data-g9-solution-order="4" data-g9-solution-move="OWN-ISSUE53-POLY-01-MOVE-4" data-g9-solution-kind="VERIFY" data-g9-solution-stage="INTERPRET" data-g9-solution-crux="false"><div class="g9-step-no" aria-hidden="true">4</div><div class="g9-step-body"><h4 data-g9-solution-stage-label>Interpret</h4><p data-g9-solution-action>Confirm complete power sequence</p><div class="g9-block" data-g9-block="solution_inputs"><h4>Uses</h4><ul><li>stated givens and prior move</li></ul></div><p data-g9-solution-why><em>Why valid:</em> Writing p(x) = 4x^3 + 0x^2 - 2x + 7 shows all integer powers 3, 2, 1, 0 are accounted for.</p><p data-g9-solution-output><strong>Result:</strong> Verified complete representation</p></div></section></div></div><div class="g9-component g9-c-answer-box" data-g9-component="ANSWER" data-g9-level="REQUIRED" data-g9-presentation="ANSWER_BOX"><div class="g9-block" data-g9-block="answer"><p>Degree: 3; Leading coefficient: 4; Constant term: 7; Coefficient of $x^2$: 0. The missing $x^2$ term is recorded with coefficient 0 because $0x^2 = 0$, contributing nothing to the polynomial sum while preserving positional power sequencing.</p></div></div><div class="g9-component g9-c-check-box" data-g9-component="CHECK" data-g9-level="EXPECTED" data-g9-presentation="CHECK_BOX"><div class="g9-block" data-g9-block="independent_check"><h4>Independent check</h4><p>Reconstruct: $4x^3 + 0x^2 - 2x + 7 = 4x^3 - 2x + 7$; highest power is 3 with coeff 4, constant is 7.</p></div></div><div class="g9-block" data-g9-block="difficulty_basis"><h4>Author&#x27;s difficulty rationale</h4><p>Polynomial $p(x)=4x^3-2x+7$ with an omitted $x^2$ power. Decisive move: State degree 3, leading coefficient 4, constant 7, and explain that missing power $x^2$ has coefficient 0.. Total score 2 -&gt; D1.</p></div></template></div></section></article><article id="ISS54-Q9" data-g9-unit="ISS54-Q9" data-g9-kind="QUESTION" data-g9-role="CORE2" data-g9-search-text="Construct a quadratic polynomial with real zeros $-2$ and $3$ and with $p(0)=-6$. Explain how the value at zero fixes the scale, then check all three conditions." class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-header" data-g9-component="IDENTITY" data-g9-level="REQUIRED" data-g9-presentation="HEADER"><div class="g9-block" data-g9-block="source_identity"><h2>Q9</h2><p class="g9-prov">Owner-supplied question, verbatim</p></div><div data-g9-meta-strip data-g9-meta-role="CORE2" data-g9-meta-record="ISS54-Q9" data-g9-meta-incomplete="true"></div></div><div class="g9-component g9-c-disclosure-grid" data-g9-component="DIFFICULTY_WHY" data-g9-level="EXPECTED" data-g9-presentation="DISCLOSURE_GRID"><button type="button" class="g9-why-toggle" data-g9-toggle aria-expanded="false" aria-controls="g9-why-ISS54-Q9"><span class="g9-pill g9-pill-band" data-g9-band="D2">D2 · 4/10</span><span>Why this difficulty?</span></button><div id="g9-why-ISS54-Q9" class="g9-why" hidden><p>This author estimate combines the five parts below. The detailed rationale is available with the answer and working after your attempt.</p><div class=g9-dgrid><div class="g9-dcell"><span>Choosing the model</span><b>1/2</b></div><div class="g9-dcell"><span>Representation</span><b>0/2</b></div><div class="g9-dcell"><span>Reasoning chain</span><b>1/2</b></div><div class="g9-dcell"><span>Algebra and numbers</span><b>1/2</b></div><div class="g9-dcell"><span>Traps and exceptions</span><b>1/2</b></div></div></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-attempt" data-blueprint-slot="attempt" data-required="true"><div class="g9-component g9-c-stem" data-g9-component="STEM" data-g9-level="REQUIRED" data-g9-presentation="STEM"><div class="g9-eyebrow">Attempt first</div><div class="g9-block" data-g9-block="stem"><p>Construct a quadratic polynomial with real zeros $-2$ and $3$ and with $p(0)=-6$. Explain how the value at zero fixes the scale, then check all three conditions.</p></div></div><div class="g9-component g9-c-callout-warn" data-g9-component="TRAP" data-g9-level="EXPECTED" data-g9-presentation="CALLOUT_WARN"><details class="g9-secondary-disclosure" data-g9-secondary="core2-wrong-route"><summary>Common wrong route · open if you want a warning</summary><div class="g9-secondary-body"><div class="g9-block" data-g9-block="common_wrong_route"><h4>Common wrong route</h4><p>Writing p(x) = (x - 2)(x + 3) = x^2 + x - 6, which inverts the signs of the zeros.</p></div></div></details></div><div class="g9-component g9-c-attempt" data-g9-component="ATTEMPT" data-g9-level="REQUIRED" data-g9-presentation="ATTEMPT"><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div></div></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="false"><div class="g9-component g9-c-visual-card" data-g9-component="REPRESENTATION" data-g9-level="EXPECTED" data-g9-presentation="VISUAL_CARD" data-g9-component-items="1"><div class="g9-card-head"><strong>Representation</strong></div><figure data-g9-figure data-g9-fig="ISS54-Q9-REP-MATH-PARABOLA-ZEROS-PLOT" data-g9-stage="PRE_ATTEMPT" data-g9-representation="REP-MATH-PARABOLA-ZEROS-PLOT" data-g9-kind="DIAGRAM" data-g9-min-figure-text="14" data-reveal-stages="1" data-g9-stages-total="3" data-g9-stages="stage-points" data-g9-stage-mode="cumulative"><div class="g9-diagram-scroll" tabindex="0" role="region" aria-label="Diagram; scroll horizontally when enlarged"><svg role="img" aria-label="Plotted points" class="question-svg" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .label { font-size: 15px; fill: #18324a; font-family: system-ui, sans-serif; font-weight: 700; }
+  .caption { font-size: 13px; fill: #475569; font-family: system-ui, sans-serif; }
+  .axis { font-size: 12px; fill: #94a3b8; font-family: system-ui, sans-serif; font-style: italic; }
+  .math { font-size: 14px; fill: #0f172a; font-family: Cambria, "Times New Roman", serif; font-weight: 600; }
+  .zero-label { font-size: 13px; fill: #15803d; font-family: system-ui, sans-serif; font-weight: 700; }
+  .point-label { font-size: 12px; fill: #2563eb; font-family: system-ui, sans-serif; }
+</style>
+
+
+
+<rect fill="#f8fafc" height="358" rx="12" stroke="#cbd5e1" stroke-width="2" width="638" x="1" y="1"/>
+
+<!-- Background Grid / Coordinate Axes -->
+<!-- Origin is at (320, 220).
+     Scale: dx = 60 px per unit.
+     x = -2 -> 200
+     x = -1 -> 260
+     x = 0  -> 320
+     x = 1  -> 380
+     x = 2  -> 440
+     dy = 40 px per unit.
+     y = 0  -> 220 (x-axis)
+     y = -1 -> 260
+     y = 1  -> 180
+     y = 2  -> 140
+     y = 3  -> 100
+-->
+<g stroke="#e2e8f0" stroke-width="1.5">
+  <!-- x-axis -->
+  <line x1="100" y1="220" x2="540" y2="220" stroke="#94a3b8" stroke-width="1.5"/>
+  <!-- y-axis -->
+  <line x1="320" y1="40" x2="320" y2="310" stroke="#94a3b8" stroke-width="1.5"/>
+  <!-- Grid tick lines -->
+  <line x1="200" y1="40" x2="200" y2="310" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="260" y1="40" x2="260" y2="310" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="380" y1="40" x2="380" y2="310" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="440" y1="40" x2="440" y2="310" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="100" y1="100" x2="540" y2="100" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="100" y1="180" x2="540" y2="180" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="100" y1="260" x2="540" y2="260" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+</g>
+<text class="axis" x="530" y="235">x</text>
+<text class="axis" x="328" y="55">y</text>
+<text class="axis" x="308" y="235">0</text>
+<text class="axis" x="375" y="235">1</text>
+<text class="axis" x="435" y="235">2</text>
+<text class="axis" x="250" y="235">-1</text>
+<text class="axis" x="190" y="235">-2</text>
+<text class="axis" x="305" y="265">-1</text>
+<text class="axis" x="305" y="105">3</text>
+
+<!-- Smooth Parabola Curve y = x^2 - 1 -->
+<path d="M 180 60 Q 320 460 460 60" fill="none" stroke="#3b82f6" stroke-width="2.5"/>
+
+<!-- STAGE 1: Plotted Ordered Pairs -->
+<g data-g9-stage-id="stage-points">
+  <!-- (-2, 3) -->
+  <circle cx="200" cy="100" fill="#2563eb" r="5"/>
+  <text class="point-label" x="145" y="95">(-2, 3)</text>
+
+  <!-- (0, -1) -->
+  <circle cx="320" cy="260" fill="#6366f1" r="5"/>
+  <text class="point-label" fill="#4338ca" x="330" y="275">(0, -1) y-intercept</text>
+
+  <!-- (2, 3) -->
+  <circle cx="440" cy="100" fill="#2563eb" r="5"/>
+  <text class="point-label" x="450" y="95">(2, 3)</text>
+</g>
+
+<!-- STAGE 2: Marked Zeros at x-intercepts -->
+
+
+<!-- STAGE 3: Contrast Box -->
+
+</svg>
+</div><figcaption data-g9-block="stage_caption" data-g9-caption="stages">Plotted points</figcaption></figure></div></section><section class="blueprint-slot slot-support" data-blueprint-slot="support" data-required="false"><div class="g9-component g9-c-ladder" data-g9-component="HINT_LADDER" data-g9-level="REQUIRED" data-g9-presentation="LADDER" data-g9-component-items="3"><details class="g9-secondary-disclosure" data-g9-secondary="core2-hints"><summary>Need a hint? · guided support</summary><div class="g9-secondary-body"><div class="g9-eyebrow">Hint ladder · reveal only what you need</div><div class="g9-block" data-g9-block="authored_core2_support"><h4>Guided support</h4><div class="g9-ladder" data-g9-ladder-ref="CORE2-ISS54-Q9-AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-group="AUTHORED_CORE2_PROMPT_REVEAL"><ol data-g9-ladder></ol><ol class="g9-rung-map" aria-label="Rungs still to come"><li data-g9-rung-ghost><div class="g9-rung-head"><span class="g9-rung-no">H0</span><span class="g9-rung-label" data-g9-support-stage-label>Key concept</span><span class="g9-pill g9-pill-guided">Guided</span></div></li><li data-g9-rung-ghost><div class="g9-rung-head"><span class="g9-rung-no">H1</span><span class="g9-rung-label" data-g9-support-stage-label>First move</span><span class="g9-pill g9-pill-guided">Guided</span></div></li><li data-g9-rung-ghost><div class="g9-rung-head"><span class="g9-rung-no">H2</span><span class="g9-rung-label" data-g9-support-stage-label>Crux</span><span class="g9-pill g9-pill-guided">Guided</span></div></li></ol><template data-g9-rung-payload="CORE2-ISS54-Q9-AUTHORED_CORE2_PROMPT_REVEAL-1"><li data-g9-rung="1" data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-source="scaffolds[0]" data-g9-support-reveals="CONCEPT" data-g9-support-stage="KEY_CONCEPT" data-g9-support-kind="CONNECT" data-g9-supports-move="m1"><div class="g9-rung-head"><span class="g9-rung-no">H0</span><span class="g9-rung-label" data-g9-support-stage-label>Key concept</span><span class="g9-pill g9-pill-guided">Guided</span></div><div data-g9-support-reveal><p>If r is a zero of a quadratic polynomial, (x - r) is a factor. What are the factors for zeros -2 and 3?</p></div></li></template><template data-g9-rung-payload="CORE2-ISS54-Q9-AUTHORED_CORE2_PROMPT_REVEAL-2"><li data-g9-rung="2" data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-source="scaffolds[1]" data-g9-support-reveals="METHOD" data-g9-support-stage="FIRST_MOVE" data-g9-support-kind="EXECUTE" data-g9-supports-move="m2"><div class="g9-rung-head"><span class="g9-rung-no">H1</span><span class="g9-rung-label" data-g9-support-stage-label>First move</span><span class="g9-pill g9-pill-guided">Guided</span></div><div data-g9-support-reveal><p>Include an unknown leading multiplier a: p(x) = a(x + 2)(x - 3). What do you get when you set x = 0?</p></div></li></template><template data-g9-rung-payload="CORE2-ISS54-Q9-AUTHORED_CORE2_PROMPT_REVEAL-3"><li data-g9-rung="3" data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-source="scaffolds[2]" data-g9-support-reveals="METHOD" data-g9-support-stage="CRUX" data-g9-support-kind="EXECUTE" data-g9-supports-move="m3"><div class="g9-rung-head"><span class="g9-rung-no">H2</span><span class="g9-rung-label" data-g9-support-stage-label>Crux</span><span class="g9-pill g9-pill-guided">Guided</span></div><div data-g9-support-reveal><p>Solve for a using p(0) = -6. Expand the resulting quadratic and check p(-2), p(3), and p(0).</p></div></li></template><button type="button" data-g9-next-rung>Show guided support</button></div></div></div></details></div></section></div></div><section class="blueprint-slot slot-solution" data-blueprint-slot="solution" data-required="true"><div class="g9-component g9-c-disclosure" data-g9-component="SOLUTION" data-g9-level="REQUIRED" data-g9-presentation="DISCLOSURE"><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE2-ISS54-Q9-solution"><summary>Answer and working</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE2-ISS54-Q9-solution"><div class="g9-component g9-c-step-list" data-g9-component="SOLUTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_LIST" data-g9-component-items="3"><div class="g9-block" data-g9-block="structured_working"><h4>Reasoning route</h4><section class="g9-solution-move" data-g9-solution-order="1" data-g9-solution-move="m1" data-g9-solution-kind="DECIDE" data-g9-solution-stage="UNDERSTAND" data-g9-solution-crux="false"><div class="g9-step-no" aria-hidden="true">1</div><div class="g9-step-body"><h4 data-g9-solution-stage-label>Understand</h4><p data-g9-solution-action>Express the quadratic family having zeros -2 and 3 with an arbitrary non-zero scaling coefficient a.</p><div class="g9-block" data-g9-block="solution_inputs"><h4>Uses</h4><ul><li>zeros -2 and 3</li></ul></div><p data-g9-solution-why><em>Why valid:</em> By the Factor Theorem, if r is a root, (x - r) is a factor.</p><p data-g9-solution-output><strong>Result:</strong> p(x) = a(x - (-2))(x - 3) = a(x + 2)(x - 3).</p></div></section><section class="g9-solution-move" data-g9-solution-order="2" data-g9-solution-move="m2" data-g9-solution-kind="CONNECT" data-g9-solution-stage="CONNECT" data-g9-solution-crux="true"><div class="g9-step-no" aria-hidden="true">2</div><div class="g9-step-body"><h4 data-g9-solution-stage-label>Connect</h4><p class="g9-prov" data-g9-crux-label>Key move</p><p data-g9-solution-action>Use the point constraint p(0) = -6 to solve for the unique vertical scale factor a.</p><div class="g9-block" data-g9-block="solution_inputs"><h4>Uses</h4><ul><li>p(0) = a(2)(-3) = -6a</li><li>p(0) = -6</li></ul></div><p data-g9-solution-why><em>Why valid:</em> Evaluating at x=0 yields a linear equation in the parameter a.</p><p data-g9-solution-output><strong>Result:</strong> -6a = -6 =&gt; a = 1, so p(x) = (x + 2)(x - 3) = x^2 - x - 6.</p></div></section><section class="g9-solution-move" data-g9-solution-order="3" data-g9-solution-move="m3" data-g9-solution-kind="VERIFY" data-g9-solution-stage="INTERPRET" data-g9-solution-crux="false"><div class="g9-step-no" aria-hidden="true">3</div><div class="g9-step-body"><h4 data-g9-solution-stage-label>Interpret</h4><p data-g9-solution-action>Verify all three conditions explicitly by substitution.</p><div class="g9-block" data-g9-block="solution_inputs"><h4>Uses</h4><ul><li>p(x) = x^2 - x - 6</li></ul></div><p data-g9-solution-why><em>Why valid:</em> Substitution confirms that p(-2)=0, p(3)=0, and p(0)=-6.</p><p data-g9-solution-output><strong>Result:</strong> p(-2) = 4 + 2 - 6 = 0; p(3) = 9 - 3 - 6 = 0; p(0) = -6. All conditions satisfied.</p></div></section></div></div><div class="g9-component g9-c-answer-box" data-g9-component="ANSWER" data-g9-level="REQUIRED" data-g9-presentation="ANSWER_BOX"><div class="g9-block" data-g9-block="answer"><p>Any quadratic with real zeros -2 and 3 belongs to the family p(x) = a(x - (-2))(x - 3) = a(x + 2)(x - 3) with a != 0. The value at zero fixes the scale because evaluating at x=0 gives p(0) = a(0+2)(0-3) = -6a. Setting -6a = -6 yields a = 1, uniquely determining the vertical scale parameter. Thus p(x) = 1(x+2)(x-3) = x^2 - x - 6. Check all three conditions: (1) p(-2) = (-2)^2 - (-2) - 6 = 4 + 2 - 6 = 0; (2) p(3) = 3^2 - 3 - 6 = 9 - 3 - 6 = 0; (3) p(0) = 0^2 - 0 - 6 = -6.</p></div></div><div class="g9-component g9-c-check-box" data-g9-component="CHECK" data-g9-level="EXPECTED" data-g9-presentation="CHECK_BOX"><div class="g9-block" data-g9-block="independent_check"><h4>Independent check</h4><p>Leading coefficient a=1 &gt; 0 yields upward parabola. Vertex at x = -b/(2a) = 1/2, where p(1/2) = (1/4) - (1/2) - 6 = -25/4 = -6.25, which is less than p(0)=-6, consistent with y-intercept.</p></div></div><figure data-g9-figure data-g9-fig="ISS54-Q9-bound-REP-MATH-PARABOLA-ZEROS-PLOT" data-g9-stage="POST_ATTEMPT" data-g9-representation="REP-MATH-PARABOLA-ZEROS-PLOT" data-g9-kind="DIAGRAM" data-g9-min-figure-text="14" data-reveal-stages="3" data-g9-stages-total="3" data-g9-stages="stage-points stage-zeros stage-contrast" data-g9-stage-mode="cumulative"><div class="g9-diagram-scroll" tabindex="0" role="region" aria-label="Diagram; scroll horizontally when enlarged"><svg aria-labelledby="g9fig-CORE2-ISS54-Q9-bound-REP-MATH-PARABOLA-ZEROS-PLOT-1--title-parabola g9fig-CORE2-ISS54-Q9-bound-REP-MATH-PARABOLA-ZEROS-PLOT-1--desc-parabola" class="question-svg" role="img" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .label { font-size: 15px; fill: #18324a; font-family: system-ui, sans-serif; font-weight: 700; }
+  .caption { font-size: 13px; fill: #475569; font-family: system-ui, sans-serif; }
+  .axis { font-size: 12px; fill: #94a3b8; font-family: system-ui, sans-serif; font-style: italic; }
+  .math { font-size: 14px; fill: #0f172a; font-family: Cambria, "Times New Roman", serif; font-weight: 600; }
+  .zero-label { font-size: 13px; fill: #15803d; font-family: system-ui, sans-serif; font-weight: 700; }
+  .point-label { font-size: 12px; fill: #2563eb; font-family: system-ui, sans-serif; }
+</style>
+<title id="g9fig-CORE2-ISS54-Q9-bound-REP-MATH-PARABOLA-ZEROS-PLOT-1--title-parabola">Polynomial Zeros vs Plotted Graph Points: p(x) = (x-1)(x+1)</title>
+<desc id="g9fig-CORE2-ISS54-Q9-bound-REP-MATH-PARABOLA-ZEROS-PLOT-1--desc-parabola">Graph of quadratic polynomial p(x) = x^2 - 1 showing five plotted points, with explicit distinction between zeros at x-intercepts (-1,0) and (1,0) where y=0, the y-intercept (0,-1), and arbitrary plotted points.</desc>
+
+<rect fill="#f8fafc" height="358" rx="12" stroke="#cbd5e1" stroke-width="2" width="638" x="1" y="1"/>
+
+<!-- Background Grid / Coordinate Axes -->
+<!-- Origin is at (320, 220).
+     Scale: dx = 60 px per unit.
+     x = -2 -> 200
+     x = -1 -> 260
+     x = 0  -> 320
+     x = 1  -> 380
+     x = 2  -> 440
+     dy = 40 px per unit.
+     y = 0  -> 220 (x-axis)
+     y = -1 -> 260
+     y = 1  -> 180
+     y = 2  -> 140
+     y = 3  -> 100
+-->
+<g stroke="#e2e8f0" stroke-width="1.5">
+  <!-- x-axis -->
+  <line x1="100" y1="220" x2="540" y2="220" stroke="#94a3b8" stroke-width="1.5"/>
+  <!-- y-axis -->
+  <line x1="320" y1="40" x2="320" y2="310" stroke="#94a3b8" stroke-width="1.5"/>
+  <!-- Grid tick lines -->
+  <line x1="200" y1="40" x2="200" y2="310" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="260" y1="40" x2="260" y2="310" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="380" y1="40" x2="380" y2="310" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="440" y1="40" x2="440" y2="310" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="100" y1="100" x2="540" y2="100" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="100" y1="180" x2="540" y2="180" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="100" y1="260" x2="540" y2="260" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+</g>
+<text class="axis" x="530" y="235">x</text>
+<text class="axis" x="328" y="55">y</text>
+<text class="axis" x="308" y="235">0</text>
+<text class="axis" x="375" y="235">1</text>
+<text class="axis" x="435" y="235">2</text>
+<text class="axis" x="250" y="235">-1</text>
+<text class="axis" x="190" y="235">-2</text>
+<text class="axis" x="305" y="265">-1</text>
+<text class="axis" x="305" y="105">3</text>
+
+<!-- Smooth Parabola Curve y = x^2 - 1 -->
+<path d="M 180 60 Q 320 460 460 60" fill="none" stroke="#3b82f6" stroke-width="2.5"/>
+
+<!-- STAGE 1: Plotted Ordered Pairs -->
+<g data-g9-stage-id="stage-points">
+  <!-- (-2, 3) -->
+  <circle cx="200" cy="100" fill="#2563eb" r="5"/>
+  <text class="point-label" x="145" y="95">(-2, 3)</text>
+
+  <!-- (0, -1) -->
+  <circle cx="320" cy="260" fill="#6366f1" r="5"/>
+  <text class="point-label" fill="#4338ca" x="330" y="275">(0, -1) y-intercept</text>
+
+  <!-- (2, 3) -->
+  <circle cx="440" cy="100" fill="#2563eb" r="5"/>
+  <text class="point-label" x="450" y="95">(2, 3)</text>
+</g>
+
+<!-- STAGE 2: Marked Zeros at x-intercepts -->
+<g data-g9-stage-id="stage-zeros">
+  <!-- Zero at x = -1, pair (-1, 0) -->
+  <circle cx="260" cy="220" fill="#16a34a" r="7" stroke="#15803d" stroke-width="2"/>
+  <text class="zero-label" text-anchor="end" x="250" y="210">Zero: x = -1</text>
+  <text class="caption" text-anchor="end" x="250" y="225">(-1, 0)</text>
+
+  <!-- Zero at x = 1, pair (1, 0) -->
+  <circle cx="380" cy="220" fill="#16a34a" r="7" stroke="#15803d" stroke-width="2"/>
+  <text class="zero-label" text-anchor="start" x="390" y="210">Zero: x = 1</text>
+  <text class="caption" text-anchor="start" x="390" y="225">(1, 0)</text>
+</g>
+
+<!-- STAGE 3: Contrast Box -->
+<g data-g9-stage-id="stage-contrast">
+  <rect fill="#ffffff" opacity="0.95" x="30" y="20" width="230" height="90" rx="8" stroke="#cbd5e1" stroke-width="1"/>
+  <text class="label" x="40" y="42">Zero vs Plotted Point</text>
+  <text class="caption" x="40" y="62">• Zero: value of x where p(x) = 0</text>
+  <text class="caption" fill="#15803d" font-weight="700" x="40" y="80">  x-intercept on the axis y = 0</text>
+  <text class="caption" x="40" y="98">• Point: any pair (x, p(x)) on graph</text>
+</g>
+</svg>
+</div><div class="g9-stage-controls"><div class="g9-stage-chips" role="group" aria-label="Stages"><button type="button" class="g9-stage-chip" data-g9-stage-goto="0" data-g9-stage-desc="Value table coordinates">1: Plotted points</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="1" data-g9-stage-desc="x-intercepts at y=0">2: Marked zeros</button><button type="button" class="g9-stage-chip" data-g9-stage-goto="2" data-g9-stage-desc="Distinguishing zeros from arbitrary points">3: Zero vs point</button></div><p class="g9-stage-desc" data-g9-stage-desc-text></p><div class="g9-stage-stepper"><button type="button" data-g9-stage-step="prev">Previous stage</button><span data-g9-stage-label></span><button type="button" data-g9-stage-step="next">Next stage</button></div></div><figcaption data-g9-block="representation_bridge" data-g9-caption="purpose">Plot quadratic parabola, mark zeros at x-intercepts, and contrast zeros with arbitrary points.</figcaption></figure><div class="g9-block" data-g9-block="difficulty_basis"><h4>Author&#x27;s difficulty rationale</h4><p>Requires constructing a quadratic polynomial family from given roots, determining the scale factor from an evaluation constraint, and checking all three conditions.</p></div></template></div></section></article><article id="OWN-ISS55-POLY-01" data-g9-unit="OWN-ISS55-POLY-01" data-g9-kind="QUESTION" data-g9-role="CORE2" data-g9-search-text="The polynomial $p_k(x)=x^3-3x^2+(k-4)x+12$ has factor $x-3$. Determine $k$, obtain a complete real factorisation and list the distinct real zeros. Give an independent check of the complete polynomial, not only the initially supplied factor." class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-header" data-g9-component="IDENTITY" data-g9-level="REQUIRED" data-g9-presentation="HEADER"><div class="g9-block" data-g9-block="source_identity"><h2>Q1</h2><p class="g9-prov">Owner-supplied question, verbatim</p></div><div data-g9-meta-strip data-g9-meta-role="CORE2" data-g9-meta-record="OWN-ISS55-POLY-01" data-g9-meta-incomplete="true"></div></div><div class="g9-component g9-c-disclosure-grid" data-g9-component="DIFFICULTY_WHY" data-g9-level="EXPECTED" data-g9-presentation="DISCLOSURE_GRID"><button type="button" class="g9-why-toggle" data-g9-toggle aria-expanded="false" aria-controls="g9-why-OWN-ISS55-POLY-01"><span class="g9-pill g9-pill-band" data-g9-band="D3">D3 · 6/10 · about 4 min</span><span>Why this difficulty?</span></button><div id="g9-why-OWN-ISS55-POLY-01" class="g9-why" hidden><p>This author estimate combines the five parts below. The detailed rationale is available with the answer and working after your attempt.</p><div class=g9-dgrid><div class="g9-dcell"><span>Choosing the model</span><b>1/2</b></div><div class="g9-dcell"><span>Representation</span><b>1/2</b></div><div class="g9-dcell"><span>Reasoning chain</span><b>2/2</b></div><div class="g9-dcell"><span>Algebra and numbers</span><b>1/2</b></div><div class="g9-dcell"><span>Traps and exceptions</span><b>1/2</b></div></div></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-attempt" data-blueprint-slot="attempt" data-required="true"><div class="g9-component g9-c-stem" data-g9-component="STEM" data-g9-level="REQUIRED" data-g9-presentation="STEM"><div class="g9-eyebrow">Attempt first</div><div class="g9-block" data-g9-block="stem"><p>The polynomial $p_k(x)=x^3-3x^2+(k-4)x+12$ has factor $x-3$. Determine $k$, obtain a complete real factorisation and list the distinct real zeros. Give an independent check of the complete polynomial, not only the initially supplied factor.</p></div></div><span hidden data-g9-component-waiver="CONDITIONS" data-g9-waiver-reason="The supplied benchmark stem already states its material conditions; no extra condition is added to the verbatim task."></span><div class="g9-component g9-c-callout-warn" data-g9-component="TRAP" data-g9-level="EXPECTED" data-g9-presentation="CALLOUT_WARN"><details class="g9-secondary-disclosure" data-g9-secondary="core2-wrong-route"><summary>Common wrong route · open if you want a warning</summary><div class="g9-secondary-body"><div class="g9-block" data-g9-block="common_wrong_route"><h4>Common wrong route</h4><p>Assuming k - 4 = 0 without evaluating at x = 3, or only re-verifying x = 3 during the check.</p></div></div></details></div><div class="g9-component g9-c-attempt" data-g9-component="ATTEMPT" data-g9-level="REQUIRED" data-g9-presentation="ATTEMPT"><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div></div></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="false"><div class="g9-component g9-c-visual-card" data-g9-component="REPRESENTATION" data-g9-level="EXPECTED" data-g9-presentation="VISUAL_CARD" data-g9-component-items="1"><div class="g9-card-head"><strong>Representation</strong></div><figure data-g9-figure data-g9-fig="OWN-ISS55-POLY-01-REP-MATH-POLY-GROUPING-ALGEBRA" data-g9-stage="PRE_ATTEMPT" data-g9-representation="REP-MATH-POLY-GROUPING-ALGEBRA" data-g9-kind="ALGEBRA_TILES" data-g9-min-figure-text="14" data-reveal-stages="1" data-g9-stages-total="4" data-g9-stages="POLY-SIGN-1" data-g9-stage-mode="cumulative"><div class="g9-diagram-scroll" tabindex="0" role="region" aria-label="Diagram; scroll horizontally when enlarged"><svg role="img" aria-label="Factoring by grouping pairs in cubic polynomials." xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="system-ui, sans-serif" font-size="20">
+  
+  
+  <g data-g9-stage-id="POLY-SIGN-1">
+    <text x="40" y="45" font-weight="700" font-size="24">1 · Factored form and real zeros</text>
+    <text x="60" y="85">p(x) = x³ - 6x² + 11x - 6 = (x - 1)(x - 2)(x - 3)</text>
+    <line x1="80" y1="120" x2="820" y2="120" stroke="currentColor" stroke-width="3"/>
+    <!-- Zero markers -->
+    <circle cx="280" cy="120" r="6" fill="currentColor"/>
+    <text x="275" y="150" font-weight="700">1</text>
+    <circle cx="480" cy="120" r="6" fill="currentColor"/>
+    <text x="475" y="150" font-weight="700">2</text>
+    <circle cx="680" cy="120" r="6" fill="currentColor"/>
+    <text x="675" y="150" font-weight="700">3</text>
+    <text x="140" y="105" font-style="italic">(-∞, 1)</text>
+    <text x="360" y="105" font-style="italic">(1, 2)</text>
+    <text x="560" y="105" font-style="italic">(2, 3)</text>
+    <text x="740" y="105" font-style="italic">(3, ∞)</text>
+  </g>
+  
+  
+  
+</svg>
+</div><figcaption data-g9-block="stage_caption" data-g9-caption="stages"></figcaption></figure></div></section><section class="blueprint-slot slot-support" data-blueprint-slot="support" data-required="false"><div class="g9-component g9-c-ladder" data-g9-component="HINT_LADDER" data-g9-level="REQUIRED" data-g9-presentation="LADDER" data-g9-component-items="5"><details class="g9-secondary-disclosure" data-g9-secondary="core2-hints"><summary>Need a hint? · guided support</summary><div class="g9-secondary-body"><div class="g9-eyebrow">Hint ladder · reveal only what you need</div><div class="g9-block" data-g9-block="authored_core2_support"><h4>Guided support</h4><div class="g9-ladder" data-g9-ladder-ref="CORE2-OWN-ISS55-POLY-01-AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-group="AUTHORED_CORE2_PROMPT_REVEAL"><ol data-g9-ladder></ol><ol class="g9-rung-map" aria-label="Rungs still to come"><li data-g9-rung-ghost><div class="g9-rung-head"><span class="g9-rung-no">H0</span><span class="g9-rung-label" data-g9-support-stage-label>Key concept</span><span class="g9-pill g9-pill-guided">Guided</span></div></li><li data-g9-rung-ghost><div class="g9-rung-head"><span class="g9-rung-no">H1</span><span class="g9-rung-label" data-g9-support-stage-label>Representation</span><span class="g9-pill g9-pill-guided">Guided</span></div></li><li data-g9-rung-ghost><div class="g9-rung-head"><span class="g9-rung-no">H2</span><span class="g9-rung-label" data-g9-support-stage-label>First move</span><span class="g9-pill g9-pill-guided">Guided</span></div></li><li data-g9-rung-ghost><div class="g9-rung-head"><span class="g9-rung-no">H3</span><span class="g9-rung-label" data-g9-support-stage-label>Equation / formal model</span><span class="g9-pill g9-pill-guided">Guided</span></div></li><li data-g9-rung-ghost><div class="g9-rung-head"><span class="g9-rung-no">H4</span><span class="g9-rung-label" data-g9-support-stage-label>Assembly checkpoint</span><span class="g9-pill g9-pill-guided">Guided</span></div></li></ol><template data-g9-rung-payload="CORE2-OWN-ISS55-POLY-01-AUTHORED_CORE2_PROMPT_REVEAL-1"><li data-g9-rung="1" data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-source="scaffolds[0]" data-g9-support-reveals="CONCEPT" data-g9-support-stage="KEY_CONCEPT" data-g9-support-kind="CONNECT" data-g9-supports-move="OWN-ISS55-POLY-01-MOVE-1"><div class="g9-rung-head"><span class="g9-rung-no">H0</span><span class="g9-rung-label" data-g9-support-stage-label>Key concept</span><span class="g9-pill g9-pill-guided">Guided</span></div><div data-g9-support-reveal><p>Start by applying the Factor Theorem: what does (x - 3) being a factor tell you about the value p_k(3)?</p></div></li></template><template data-g9-rung-payload="CORE2-OWN-ISS55-POLY-01-AUTHORED_CORE2_PROMPT_REVEAL-2"><li data-g9-rung="2" data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-source="scaffolds[1]" data-g9-support-reveals="METHOD" data-g9-support-stage="REPRESENTATION" data-g9-support-kind="REPRESENT" data-g9-supports-move="OWN-ISS55-POLY-01-MOVE-2"><div class="g9-rung-head"><span class="g9-rung-no">H1</span><span class="g9-rung-label" data-g9-support-stage-label>Representation</span><span class="g9-pill g9-pill-guided">Guided</span></div><div data-g9-support-reveal><p>Set p_k(3) = 0 and solve for k, then write down the numerical polynomial p_0(x).</p></div></li></template><template data-g9-rung-payload="CORE2-OWN-ISS55-POLY-01-AUTHORED_CORE2_PROMPT_REVEAL-3"><li data-g9-rung="3" data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-source="scaffolds[2]" data-g9-support-reveals="METHOD" data-g9-support-stage="FIRST_MOVE" data-g9-support-kind="CONNECT" data-g9-supports-move="OWN-ISS55-POLY-01-MOVE-3"><div class="g9-rung-head"><span class="g9-rung-no">H2</span><span class="g9-rung-label" data-g9-support-stage-label>First move</span><span class="g9-pill g9-pill-guided">Guided</span></div><div data-g9-support-reveal><p>Group the terms in pairs: notice that x^3 - 3x^2 and -4x + 12 both share a common binomial factor.</p></div></li></template><template data-g9-rung-payload="CORE2-OWN-ISS55-POLY-01-AUTHORED_CORE2_PROMPT_REVEAL-4"><li data-g9-rung="4" data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-source="scaffolds[3]" data-g9-support-reveals="METHOD" data-g9-support-stage="FORMAL_MODEL" data-g9-support-kind="EXECUTE" data-g9-supports-move="OWN-ISS55-POLY-01-MOVE-4"><div class="g9-rung-head"><span class="g9-rung-no">H3</span><span class="g9-rung-label" data-g9-support-stage-label>Equation / formal model</span><span class="g9-pill g9-pill-guided">Guided</span></div><div data-g9-support-reveal><p>Factor x^2 - 4 as a difference of two squares to find the complete linear factorisation.</p></div></li></template><template data-g9-rung-payload="CORE2-OWN-ISS55-POLY-01-AUTHORED_CORE2_PROMPT_REVEAL-5"><li data-g9-rung="5" data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-source="scaffolds[4]" data-g9-support-reveals="METHOD" data-g9-support-stage="CHECKPOINT" data-g9-support-kind="EXECUTE" data-g9-supports-move="OWN-ISS55-POLY-01-MOVE-4"><div class="g9-rung-head"><span class="g9-rung-no">H4</span><span class="g9-rung-label" data-g9-support-stage-label>Assembly checkpoint</span><span class="g9-pill g9-pill-guided">Guided</span></div><div data-g9-support-reveal><p>Checkpoint: check the newly found zeros x = 2 and x = -2 in the original polynomial to verify the complete cubic.</p></div></li></template><button type="button" data-g9-next-rung>Show guided support</button></div></div></div></details></div></section></div></div><section class="blueprint-slot slot-solution" data-blueprint-slot="solution" data-required="true"><div class="g9-component g9-c-disclosure" data-g9-component="SOLUTION" data-g9-level="REQUIRED" data-g9-presentation="DISCLOSURE"><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE2-OWN-ISS55-POLY-01-solution"><summary>Answer and working</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE2-OWN-ISS55-POLY-01-solution"><div class="g9-component g9-c-step-list" data-g9-component="SOLUTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_LIST" data-g9-component-items="4"><div class="g9-block" data-g9-block="structured_working"><h4>Reasoning route</h4><section class="g9-solution-move" data-g9-solution-order="1" data-g9-solution-move="OWN-ISS55-POLY-01-MOVE-1" data-g9-solution-kind="DECIDE" data-g9-solution-stage="UNDERSTAND" data-g9-solution-crux="false"><div class="g9-step-no" aria-hidden="true">1</div><div class="g9-step-body"><h4 data-g9-solution-stage-label>Understand</h4><p data-g9-solution-action>Apply Factor Theorem: p_k(3) = 0 yields 3k = 0, so k = 0.</p><div class="g9-block" data-g9-block="solution_inputs"><h4>Uses</h4><ul><li>supplied benchmark stem and prior move</li></ul></div><p data-g9-solution-why><em>Why valid:</em> A binomial (x - c) divides p(x) if and only if p(c) = 0.</p><p data-g9-solution-output><strong>Result:</strong> k = 0</p></div></section><section class="g9-solution-move" data-g9-solution-order="2" data-g9-solution-move="OWN-ISS55-POLY-01-MOVE-2" data-g9-solution-kind="REPRESENT" data-g9-solution-stage="REPRESENT" data-g9-solution-crux="false"><div class="g9-step-no" aria-hidden="true">2</div><div class="g9-step-body"><h4 data-g9-solution-stage-label>Represent</h4><p data-g9-solution-action>Substitute k = 0 to establish explicit cubic p_0(x) = x^3 - 3x^2 - 4x + 12.</p><div class="g9-block" data-g9-block="solution_inputs"><h4>Uses</h4><ul><li>supplied benchmark stem and prior move</li></ul></div><p data-g9-solution-why><em>Why valid:</em> All coefficients must be explicit real constants before factorisation.</p><p data-g9-solution-output><strong>Result:</strong> p_0(x) = x^3 - 3x^2 - 4x + 12</p></div></section><section class="g9-solution-move" data-g9-solution-order="3" data-g9-solution-move="OWN-ISS55-POLY-01-MOVE-3" data-g9-solution-kind="TRANSFORM" data-g9-solution-stage="CALCULATE" data-g9-solution-crux="false"><div class="g9-step-no" aria-hidden="true">3</div><div class="g9-step-body"><h4 data-g9-solution-stage-label>Calculate</h4><p data-g9-solution-action>Factor by grouping: x^2(x - 3) - 4(x - 3) = (x^2 - 4)(x - 3) = (x - 2)(x + 2)(x - 3).</p><div class="g9-block" data-g9-block="solution_inputs"><h4>Uses</h4><ul><li>supplied benchmark stem and prior move</li></ul></div><p data-g9-solution-why><em>Why valid:</em> Common binomial factor (x - 3) and difference of squares x^2 - 4.</p><p data-g9-solution-output><strong>Result:</strong> (x - 2)(x + 2)(x - 3) with roots {-2, 2, 3}</p></div></section><section class="g9-solution-move" data-g9-solution-order="4" data-g9-solution-move="OWN-ISS55-POLY-01-MOVE-4" data-g9-solution-kind="VERIFY" data-g9-solution-stage="INTERPRET" data-g9-solution-crux="true"><div class="g9-step-no" aria-hidden="true">4</div><div class="g9-step-body"><h4 data-g9-solution-stage-label>Interpret</h4><p class="g9-prov" data-g9-crux-label>Key move</p><p data-g9-solution-action>Check roots x = 2 and x = -2 directly in p_0(x) and verify expansion.</p><div class="g9-block" data-g9-block="solution_inputs"><h4>Uses</h4><ul><li>supplied benchmark stem and prior move</li></ul></div><p data-g9-solution-why><em>Why valid:</em> Independent check must test the non-given roots in the original polynomial.</p><p data-g9-solution-output><strong>Result:</strong> p_0(2) = 0, p_0(-2) = 0, expansion verified</p></div></section></div></div><div class="g9-component g9-c-answer-box" data-g9-component="ANSWER" data-g9-level="REQUIRED" data-g9-presentation="ANSWER_BOX"><div class="g9-block" data-g9-block="answer"><p>By the Factor Theorem, x - 3 is a factor implies p_k(3) = 0. We compute p_k(3) = 3^3 - 3(3^2) + (k-4)(3) + 12 = 27 - 27 + 3k - 12 + 12 = 3k = 0, which yields k = 0. Substituting k = 0 gives p_0(x) = x^3 - 3x^2 - 4x + 12. Factorising by grouping: p_0(x) = x^2(x - 3) - 4(x - 3) = (x^2 - 4)(x - 3) = (x - 2)(x + 2)(x - 3). The distinct real zeros are x = -2, 2, 3. Independent check: evaluating p_0 at the newly found zeros gives p_0(2) = 8 - 12 - 8 + 12 = 0 and p_0(-2) = -8 - 12 + 8 + 12 = 0. Expanding (x^2 - 4)(x - 3) = x^3 - 3x^2 - 4x + 12 confirms the complete polynomial with constant term (-2)(2)(-3) = 12.</p></div></div><div class="g9-component g9-c-check-box" data-g9-component="CHECK" data-g9-level="EXPECTED" data-g9-presentation="CHECK_BOX"><div class="g9-block" data-g9-block="independent_check"><h4>Independent check</h4><p>Direct substitution: p_0(2) = 8 - 12 - 8 + 12 = 0 and p_0(-2) = -8 - 12 + 8 + 12 = 0. Expanding (x - 2)(x + 2)(x - 3) = (x^2 - 4)(x - 3) = x^3 - 3x^2 - 4x + 12 confirms identity.</p></div></div><div class="g9-block" data-g9-block="difficulty_basis"><h4>Author&#x27;s difficulty rationale</h4><p>Multi-step coordinate application of Factor Theorem to determine unknown parameter k, complete factoring by grouping, and independent verification of all zeros.</p></div></template></div></section></article><article id="OWN-ISSUE56-POLY-05" data-g9-unit="OWN-ISSUE56-POLY-05" data-g9-kind="QUESTION" data-g9-role="CORE2" data-g9-search-text="An open box is formed by cutting squares of side $x$ cm from the corners of a $10$ cm square sheet and folding the sides up, ignoring thickness. An exact calculation table gives volumes $0$, $64$ and $72$ cubic centimetres at $x=0,1,2$ respectively; $x=0$ denotes the flat limiting configuration. An analyst fits $Q(x)=-28x^2+92x$ to these three entries and treats it as the volume model. Derive the model from the geometry, state the domain for a non-degenerate box, assess the fitted model over that domain, and choose an additional admissible input that discriminates between the two accounts. Explain why matching the recorded entries is insufficient." class="g9-stage-support"><section class="blueprint-slot slot-identity" data-blueprint-slot="identity" data-required="true"><div class="g9-component g9-c-header" data-g9-component="IDENTITY" data-g9-level="REQUIRED" data-g9-presentation="HEADER"><div class="g9-block" data-g9-block="source_identity"><h2>Q5</h2><p class="g9-prov">Owner-supplied question, verbatim</p></div><div data-g9-meta-strip data-g9-meta-role="CORE2" data-g9-meta-record="OWN-ISSUE56-POLY-05" data-g9-meta-incomplete="true"></div></div><div class="g9-component g9-c-disclosure-grid" data-g9-component="DIFFICULTY_WHY" data-g9-level="EXPECTED" data-g9-presentation="DISCLOSURE_GRID"><button type="button" class="g9-why-toggle" data-g9-toggle aria-expanded="false" aria-controls="g9-why-OWN-ISSUE56-POLY-05"><span class="g9-pill g9-pill-band" data-g9-band="D3">D3 · 7/10 · about 3 min</span><span>Why this difficulty?</span></button><div id="g9-why-OWN-ISSUE56-POLY-05" class="g9-why" hidden><p>This author estimate combines the five parts below. The detailed rationale is available with the answer and working after your attempt.</p><div class=g9-dgrid><div class="g9-dcell"><span>Choosing the model</span><b>2/2</b></div><div class="g9-dcell"><span>Representation</span><b>1/2</b></div><div class="g9-dcell"><span>Reasoning chain</span><b>2/2</b></div><div class="g9-dcell"><span>Algebra and numbers</span><b>1/2</b></div><div class="g9-dcell"><span>Traps and exceptions</span><b>1/2</b></div></div></div></div></section><div class="g9-split"><div class="g9-col g9-col-primary"><section class="blueprint-slot slot-attempt" data-blueprint-slot="attempt" data-required="true"><div class="g9-component g9-c-stem" data-g9-component="STEM" data-g9-level="REQUIRED" data-g9-presentation="STEM"><div class="g9-eyebrow">Attempt first</div><div class="g9-block" data-g9-block="stem"><p>An open box is formed by cutting squares of side $x$ cm from the corners of a $10$ cm square sheet and folding the sides up, ignoring thickness. An exact calculation table gives volumes $0$, $64$ and $72$ cubic centimetres at $x=0,1,2$ respectively; $x=0$ denotes the flat limiting configuration. An analyst fits $Q(x)=-28x^2+92x$ to these three entries and treats it as the volume model. Derive the model from the geometry, state the domain for a non-degenerate box, assess the fitted model over that domain, and choose an additional admissible input that discriminates between the two accounts. Explain why matching the recorded entries is insufficient.</p></div></div><div class="g9-component g9-c-callout-info" data-g9-component="CONDITIONS" data-g9-level="EXPECTED" data-g9-presentation="CALLOUT_INFO"><div class="g9-block" data-g9-block="conditions"><h4>Conditions</h4><ul><li>10 cm square sheet, thickness ignored.</li><li>Corner cut of side x cm.</li><li>Non-degenerate box.</li></ul></div></div><div class="g9-component g9-c-callout-warn" data-g9-component="TRAP" data-g9-level="EXPECTED" data-g9-presentation="CALLOUT_WARN"><details class="g9-secondary-disclosure" data-g9-secondary="core2-wrong-route"><summary>Common wrong route · open if you want a warning</summary><div class="g9-secondary-body"><div class="g9-block" data-g9-block="common_wrong_route"><h4>Common wrong route</h4><p>Assuming matching 3 data points validates Q(x) as the physical model without checking geometry or testing additional points.</p></div></div></details></div><div class="g9-component g9-c-attempt" data-g9-component="ATTEMPT" data-g9-level="REQUIRED" data-g9-presentation="ATTEMPT"><div class="g9-attempt" data-g9-attempt-box data-g9-response-type="free_response"><label>Your answer<textarea data-g9-attempt rows="4"></textarea></label><label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label><button type="button" data-g9-commit>I have attempted this</button></div></div></section></div><div class="g9-col g9-col-support"><section class="blueprint-slot slot-representation" data-blueprint-slot="representation" data-required="false"><div class="g9-component g9-c-visual-card" data-g9-component="REPRESENTATION" data-g9-level="EXPECTED" data-g9-presentation="VISUAL_CARD" data-g9-component-items="1"><div class="g9-card-head"><strong>Representation</strong></div><figure data-g9-figure data-g9-fig="OWN-ISSUE56-POLY-05-REP-MATH-POLY-BOX-VOLUME" data-g9-stage="PRE_ATTEMPT" data-g9-representation="REP-MATH-POLY-BOX-VOLUME" data-g9-kind="CONCEPT_FIGURE" data-g9-min-figure-text="14" data-reveal-stages="1" data-g9-stages-total="4" data-g9-stages="BOX-1" data-g9-stage-mode="cumulative"><div class="g9-diagram-scroll" tabindex="0" role="region" aria-label="Diagram; scroll horizontally when enlarged"><svg role="img" aria-label="Folded box sheet geometry" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="system-ui, sans-serif" font-size="20">
+
+
+<rect width="900" height="520" fill="#f8fafc" rx="12"/>
+<g data-g9-stage-id="BOX-1">
+  <text x="40" y="45" font-weight="700" fill="#0f172a" font-size="22">1 · Geometric formulation from 10 cm square sheet</text>
+  <rect x="80" y="80" width="140" height="140" fill="#e2e8f0" stroke="#475569" stroke-width="2"/>
+  <rect x="80" y="80" width="30" height="30" fill="#cbd5e1" stroke="#94a3b8" stroke-dasharray="4 2"/>
+  <rect x="190" y="80" width="30" height="30" fill="#cbd5e1" stroke="#94a3b8" stroke-dasharray="4 2"/>
+  <rect x="80" y="190" width="30" height="30" fill="#cbd5e1" stroke="#94a3b8" stroke-dasharray="4 2"/>
+  <rect x="190" y="190" width="30" height="30" fill="#cbd5e1" stroke="#94a3b8" stroke-dasharray="4 2"/>
+  <text x="240" y="120" fill="#334155" font-size="18">Base: (10 - 2x) × (10 - 2x)</text>
+  <text x="240" y="150" fill="#334155" font-size="18">Height: x</text>
+  <text x="240" y="180" font-weight="700" fill="#1e40af">V(x) = x(10 - 2x)² = 4x³ - 40x² + 100x</text>
+  <text x="240" y="210" fill="#64748b" font-size="18">Non-degenerate domain: x ∈ (0, 5) cm</text>
+</g>
+
+
+
+</svg></div><figcaption data-g9-block="stage_caption" data-g9-caption="stages">Folded box sheet geometry</figcaption></figure></div></section><section class="blueprint-slot slot-support" data-blueprint-slot="support" data-required="false"><div class="g9-component g9-c-ladder" data-g9-component="HINT_LADDER" data-g9-level="REQUIRED" data-g9-presentation="LADDER" data-g9-component-items="5"><details class="g9-secondary-disclosure" data-g9-secondary="core2-hints"><summary>Need a hint? · guided support</summary><div class="g9-secondary-body"><div class="g9-eyebrow">Hint ladder · reveal only what you need</div><div class="g9-block" data-g9-block="authored_core2_support"><h4>Guided support</h4><div class="g9-ladder" data-g9-ladder-ref="CORE2-OWN-ISSUE56-POLY-05-AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-group="AUTHORED_CORE2_PROMPT_REVEAL"><ol data-g9-ladder></ol><ol class="g9-rung-map" aria-label="Rungs still to come"><li data-g9-rung-ghost><div class="g9-rung-head"><span class="g9-rung-no">H0</span><span class="g9-rung-label" data-g9-support-stage-label>Key concept</span><span class="g9-pill g9-pill-guided">Guided</span></div></li><li data-g9-rung-ghost><div class="g9-rung-head"><span class="g9-rung-no">H1</span><span class="g9-rung-label" data-g9-support-stage-label>Representation</span><span class="g9-pill g9-pill-guided">Guided</span></div></li><li data-g9-rung-ghost><div class="g9-rung-head"><span class="g9-rung-no">H2</span><span class="g9-rung-label" data-g9-support-stage-label>First move</span><span class="g9-pill g9-pill-guided">Guided</span></div></li><li data-g9-rung-ghost><div class="g9-rung-head"><span class="g9-rung-no">H3</span><span class="g9-rung-label" data-g9-support-stage-label>Crux</span><span class="g9-pill g9-pill-guided">Guided</span></div></li><li data-g9-rung-ghost><div class="g9-rung-head"><span class="g9-rung-no">H4</span><span class="g9-rung-label" data-g9-support-stage-label>Equation / formal model</span><span class="g9-pill g9-pill-guided">Guided</span></div></li></ol><template data-g9-rung-payload="CORE2-OWN-ISSUE56-POLY-05-AUTHORED_CORE2_PROMPT_REVEAL-1"><li data-g9-rung="1" data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-source="scaffolds[0]" data-g9-support-reveals="CONCEPT" data-g9-support-stage="KEY_CONCEPT" data-g9-support-kind="CONNECT" data-g9-supports-move="OWN-ISSUE56-POLY-05-MOVE-1"><div class="g9-rung-head"><span class="g9-rung-no">H0</span><span class="g9-rung-label" data-g9-support-stage-label>Key concept</span><span class="g9-pill g9-pill-guided">Guided</span></div><div data-g9-support-reveal><p>Express the base dimensions and height of the folded box in terms of x.</p></div></li></template><template data-g9-rung-payload="CORE2-OWN-ISSUE56-POLY-05-AUTHORED_CORE2_PROMPT_REVEAL-2"><li data-g9-rung="2" data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-source="scaffolds[1]" data-g9-support-reveals="CONCEPT" data-g9-support-stage="REPRESENTATION" data-g9-support-kind="REPRESENT" data-g9-supports-move="OWN-ISSUE56-POLY-05-MOVE-2"><div class="g9-rung-head"><span class="g9-rung-no">H1</span><span class="g9-rung-label" data-g9-support-stage-label>Representation</span><span class="g9-pill g9-pill-guided">Guided</span></div><div data-g9-support-reveal><p>Determine what values of x keep the height and base lengths strictly positive.</p></div></li></template><template data-g9-rung-payload="CORE2-OWN-ISSUE56-POLY-05-AUTHORED_CORE2_PROMPT_REVEAL-3"><li data-g9-rung="3" data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-source="scaffolds[2]" data-g9-support-reveals="METHOD" data-g9-support-stage="FIRST_MOVE" data-g9-support-kind="CONNECT" data-g9-supports-move="OWN-ISSUE56-POLY-05-MOVE-3"><div class="g9-rung-head"><span class="g9-rung-no">H2</span><span class="g9-rung-label" data-g9-support-stage-label>First move</span><span class="g9-pill g9-pill-guided">Guided</span></div><div data-g9-support-reveal><p>Evaluate the analyst quadratic Q(x) across the domain (0, 5) and find where it predicts zero or negative volume.</p></div></li></template><template data-g9-rung-payload="CORE2-OWN-ISSUE56-POLY-05-AUTHORED_CORE2_PROMPT_REVEAL-4"><li data-g9-rung="4" data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-source="scaffolds[3]" data-g9-support-reveals="METHOD" data-g9-support-stage="CRUX" data-g9-support-kind="EXECUTE" data-g9-supports-move="OWN-ISSUE56-POLY-05-MOVE-4"><div class="g9-rung-head"><span class="g9-rung-no">H3</span><span class="g9-rung-label" data-g9-support-stage-label>Crux</span><span class="g9-pill g9-pill-guided">Guided</span></div><div data-g9-support-reveal><p>Select an admissible test value (such as x = 3) and calculate both V(x) and Q(x).</p></div></li></template><template data-g9-rung-payload="CORE2-OWN-ISSUE56-POLY-05-AUTHORED_CORE2_PROMPT_REVEAL-5"><li data-g9-rung="5" data-g9-support-provenance="AUTHORED_CORE2_PROMPT_REVEAL" data-g9-support-source="scaffolds[4]" data-g9-support-reveals="METHOD" data-g9-support-stage="FORMAL_MODEL" data-g9-support-kind="EXECUTE" data-g9-supports-move="OWN-ISSUE56-POLY-05-MOVE-4"><div class="g9-rung-head"><span class="g9-rung-no">H4</span><span class="g9-rung-label" data-g9-support-stage-label>Equation / formal model</span><span class="g9-pill g9-pill-guided">Guided</span></div><div data-g9-support-reveal><p>Explain why matching 3 data points is algebraically guaranteed for any quadratic and does not prove the model is correct.</p></div></li></template><button type="button" data-g9-next-rung>Show guided support</button></div></div></div></details></div></section></div></div><section class="blueprint-slot slot-solution" data-blueprint-slot="solution" data-required="true"><div class="g9-component g9-c-disclosure" data-g9-component="SOLUTION" data-g9-level="REQUIRED" data-g9-presentation="DISCLOSURE"><details data-g9-reveal data-requires-attempt data-g9-payload-ref="CORE2-OWN-ISSUE56-POLY-05-solution"><summary>Answer and working</summary><div data-g9-payload-slot></div></details><template data-g9-payload="CORE2-OWN-ISSUE56-POLY-05-solution"><div class="g9-component g9-c-step-list" data-g9-component="SOLUTION_STEPS" data-g9-level="REQUIRED" data-g9-presentation="STEP_LIST" data-g9-component-items="4"><div class="g9-block" data-g9-block="structured_working"><h4>Reasoning route</h4><section class="g9-solution-move" data-g9-solution-order="1" data-g9-solution-move="OWN-ISSUE56-POLY-05-MOVE-1" data-g9-solution-kind="REPRESENT" data-g9-solution-stage="REPRESENT" data-g9-solution-crux="false"><div class="g9-step-no" aria-hidden="true">1</div><div class="g9-step-body"><h4 data-g9-solution-stage-label>Represent</h4><p data-g9-solution-action>Derive geometric volume model: base is (10 - 2x) by (10 - 2x) and height is x, so V(x) = x(10 - 2x)^2 = 4x^3 - 40x^2 + 100x.</p><div class="g9-block" data-g9-block="solution_inputs"><h4>Uses</h4><ul><li>10 cm square sheet</li><li>corner cut x</li></ul></div><p data-g9-solution-why><em>Why valid:</em> Cutting corner squares of side x reduces each side of 10 cm square by 2x.</p><p data-g9-solution-output><strong>Result:</strong> V(x) = 4x^3 - 40x^2 + 100x</p></div></section><section class="g9-solution-move" data-g9-solution-order="2" data-g9-solution-move="OWN-ISSUE56-POLY-05-MOVE-2" data-g9-solution-kind="DECIDE" data-g9-solution-stage="UNDERSTAND" data-g9-solution-crux="false"><div class="g9-step-no" aria-hidden="true">2</div><div class="g9-step-body"><h4 data-g9-solution-stage-label>Understand</h4><p data-g9-solution-action>Determine non-degenerate domain: height x &gt; 0 and base 10 - 2x &gt; 0 =&gt; x in (0, 5) cm.</p><div class="g9-block" data-g9-block="solution_inputs"><h4>Uses</h4><ul><li>physical dimensions</li></ul></div><p data-g9-solution-why><em>Why valid:</em> A non-degenerate box requires strictly positive physical length, width, and height.</p><p data-g9-solution-output><strong>Result:</strong> domain (0, 5) cm</p></div></section><section class="g9-solution-move" data-g9-solution-order="3" data-g9-solution-move="OWN-ISSUE56-POLY-05-MOVE-3" data-g9-solution-kind="TRANSFORM" data-g9-solution-stage="CALCULATE" data-g9-solution-crux="true"><div class="g9-step-no" aria-hidden="true">3</div><div class="g9-step-body"><h4 data-g9-solution-stage-label>Calculate</h4><p class="g9-prov" data-g9-crux-label>Key move</p><p data-g9-solution-action>Assess fitted model Q(x) = -28x^2 + 92x: verify it matches at 0, 1, 2, but identify spurious zero at x = 23/7 ~ 3.29 cm and negative volume beyond it.</p><div class="g9-block" data-g9-block="solution_inputs"><h4>Uses</h4><ul><li>Q(x) formula</li><li>domain (0, 5)</li></ul></div><p data-g9-solution-why><em>Why valid:</em> Q(0)=0, Q(1)=64, Q(2)=72. But Q(x) = 0 at x = 92/28 = 23/7 cm, giving Q(x) &lt; 0 on (23/7, 5).</p><p data-g9-solution-output><strong>Result:</strong> Q(x) produces unphysical negative volumes</p></div></section><section class="g9-solution-move" data-g9-solution-order="4" data-g9-solution-move="OWN-ISSUE56-POLY-05-MOVE-4" data-g9-solution-kind="TRANSFORM" data-g9-solution-stage="CALCULATE" data-g9-solution-crux="false"><div class="g9-step-no" aria-hidden="true">4</div><div class="g9-step-body"><h4 data-g9-solution-stage-label>Calculate</h4><p data-g9-solution-action>Choose discriminating admissible input x = 3 cm, compute both models, and explain why 3 points cannot prove model validity.</p><div class="g9-block" data-g9-block="solution_inputs"><h4>Uses</h4><ul><li>x = 3 cm</li></ul></div><p data-g9-solution-why><em>Why valid:</em> x = 3 is in (0, 5). V(3) = 3(4)^2 = 48 cm^3, Q(3) = -252 + 276 = 24 cm^3. Three data points have 3 degrees of freedom, uniquely fixing any quadratic regardless of physics.</p><p data-g9-solution-output><strong>Result:</strong> V(3)=48 != Q(3)=24; degrees of freedom explanation</p></div></section></div></div><div class="g9-component g9-c-answer-box" data-g9-component="ANSWER" data-g9-level="REQUIRED" data-g9-presentation="ANSWER_BOX"><div class="g9-block" data-g9-block="answer"><p>Geometry yields base dimensions (10 - 2x) by (10 - 2x) and height x, giving cubic volume V(x) = x(10 - 2x)^2 = 4x^3 - 40x^2 + 100x cm^3. Non-degenerate physical box requires strictly positive dimensions (x &gt; 0 and 10 - 2x &gt; 0), giving domain (0, 5) cm. The analyst fitted model Q(x) = -28x^2 + 92x matches entries at x = 0, 1, 2 purely because 3 points uniquely determine a quadratic algebraically. However, Q(x) drops to zero at x = 23/7 ~ 3.29 cm and predicts impossible negative volume for x in (23/7, 5). At discriminating input x = 3 cm, physical V(3) = 3(4)^2 = 48 cm^3 while fitted Q(3) = -28(9) + 92(3) = 24 cm^3 (factor of 2 discrepancy). Matching 3 entries is insufficient because a lower-degree polynomial can fit sample points exactly without matching the cubic geometry.</p></div></div><div class="g9-component g9-c-check-box" data-g9-component="CHECK" data-g9-level="EXPECTED" data-g9-presentation="CHECK_BOX"><div class="g9-block" data-g9-block="independent_check"><h4>Independent check</h4><p>Check V(0)=0, V(1)=64, V(2)=72. Check Q(0)=0, Q(1)=64, Q(2)=72. At x=3: V(3)=48, Q(3)=24. At x=4: V(4)=4(2)^2=16 &gt; 0, while Q(4)=-28(16)+368=-448+368=-80 &lt; 0 (impossible for physical box).</p></div></div><div class="g9-block" data-g9-block="difficulty_basis"><h4>Author&#x27;s difficulty rationale</h4><p>Geometric cubic modeling on (0, 5) and exposing the physical failure of empirical quadratic overfitting.</p></div></template></div></section></article></main><footer data-g9-footer>Mathematics · Polynomial questions · staged repair replay</footer><script>
+(()=>{const q=(s,r=document)=>[...r.querySelectorAll(s)];
+const store={get:k=>{try{return localStorage.getItem('g9-'+k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem('g9-'+k,v);return true}catch(e){return false}},remove:k=>{try{localStorage.removeItem('g9-'+k);return true}catch(e){return false}}};
+const root=document.documentElement;const scope=root.dataset.g9Product&&root.dataset.g9RenderDigest?root.dataset.g9Product+':'+root.dataset.g9RenderDigest:'';
+const shell=document.querySelector('.g9-shell-header');if(shell){const offset=()=>root.style.setProperty('--g9-header-offset',(shell.getBoundingClientRect().height+16)+'px');new ResizeObserver(offset).observe(shell);offset();}
+const apply=()=>{root.dataset.theme=store.get('theme')||root.dataset.theme||'light';root.style.setProperty('--g9-zoom',store.get('zoom')||'1');};apply();
+q('[data-g9-theme]').forEach(b=>b.onclick=()=>{store.set('theme',b.dataset.g9Theme);apply()});
+q('[data-g9-zoom]').forEach(b=>b.onclick=()=>{let z=parseFloat(store.get('zoom')||'1');z=b.dataset.g9Zoom==='inc'?Math.min(1.6,z+0.1):b.dataset.g9Zoom==='dec'?Math.max(0.8,z-0.1):1;store.set('zoom',z.toFixed(1));apply()});
+q('[data-g9-font]').forEach(b=>b.onclick=()=>q('[data-g9-zoom="'+b.dataset.g9Font+'"]')[0]?.click());
+function fitFigure(f){const svg=q('svg',f)[0];if(!svg||!svg.isConnected)return;const groups=q('[data-g9-stage-id]',svg).filter(g=>getComputedStyle(g).display!=='none');if(groups.length){const boxes=groups.map(g=>g.getBBox()).filter(b=>b.width>0&&b.height>0);if(boxes.length){const x=Math.min(...boxes.map(b=>b.x))-12,y=Math.min(...boxes.map(b=>b.y))-12,r=Math.max(...boxes.map(b=>b.x+b.width))+12,b=Math.max(...boxes.map(b=>b.y+b.height))+12;svg.setAttribute('viewBox',[x,y,r-x,b-y].join(' '));}}
+const host=svg.parentElement;const labels=q('text',svg).filter(t=>t.checkVisibility({visibilityProperty:true}));const min=labels.reduce((v,t)=>Math.min(v,parseFloat(getComputedStyle(t).fontSize)||Infinity),Infinity);const box=svg.viewBox.baseVal;const floor=Number(f.dataset.g9MinFigureText)||14;const needed=Number.isFinite(min)&&min>0?Math.ceil(box.width*floor/min):0;svg.style.width=Math.max(host.clientWidth,needed)+'px';}
+function initFigure(f){if(f.dataset.g9Init)return;f.dataset.g9Init='1';const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);fitFigure(f);const host=q('.g9-diagram-scroll',f)[0];if(host){let width=host.clientWidth;new ResizeObserver(()=>{const next=host.clientWidth;if(next!==width){width=next;fitFigure(f)}}).observe(host)}if(ids.length<2)return;let i=0;
+const chips=q('[data-g9-stage-goto]',f);const desc=q('[data-g9-stage-desc-text]',f)[0];
+const stageMode=f.dataset.g9StageMode||'cumulative';const cumulative=stageMode!=='replace';
+ids.forEach(id=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display='none'));
+const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=(cumulative?n<=i:n===i)?'':'none'));fitFigure(f);const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
+q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})}
+function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('[data-g9-rung-ghost]',l)[0]?.remove();q('[data-g9-ladder]',l)[0].append(payload);q('figure[data-g9-figure]',l).forEach(initFigure);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
+function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}
+const number=t=>{const v=t.trim();if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?(?:\s*\/\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)?$/i.test(v))return false;const p=v.split('/').map(x=>Number(x.trim()));return p.every(Number.isFinite)&&(p.length===1||p[1]!==0)};
+function validAttempt(box){const type=box.dataset.g9ResponseType;if(type==='single_choice'||type==='multiple_choice'||type==='true_false')return q('[data-g9-choice]:checked',box).length>0;
+if(type==='numeric')return number(q('[data-g9-number]',box)[0]?.value||'');if(type==='short_text')return !!q('[data-g9-attempt]',box)[0]?.value.trim();
+if(type==='match'){const fields=q('[data-g9-match]',box);return fields.length>0&&fields.every(x=>x.value!=='')}
+if(q('[data-g9-paper]:checked',box).length)return true;if(type==='multipart'){const fields=q('[data-g9-part-input]',box);return fields.length>0&&fields.every(x=>x.value.trim()&&(!x.dataset.g9PartType||x.dataset.g9PartType!=='numeric'||number(x.value)))}
+return !!q('[data-g9-attempt]',box)[0]?.value.trim()}
+const stateKey=a=>scope&&a?.dataset.g9Unit?'state:'+scope+':'+a.dataset.g9Unit:null;const returnKey=concept=>scope&&concept?'return:'+scope+':'+concept:null;
+function readState(key){if(!key)return null;const raw=store.get(key);if(!raw)return null;try{const state=JSON.parse(raw);return state&&typeof state==='object'?state:null}catch(e){return null}}
+const attemptFields=a=>q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a);const rungCount=l=>{const list=q('[data-g9-ladder]',l)[0];return list?q('[data-g9-rung]',list).length:0};
+function saveCore2State(a){if(a.dataset.g9Role!=='CORE2')return;const key=stateKey(a);if(!key)return;const fields=attemptFields(a).map(el=>({value:el.value,checked:!!el.checked}));const ladders={};q('.g9-ladder[data-g9-ladder-ref]',a).forEach(l=>ladders[l.dataset.g9LadderRef]=rungCount(l));const reveals=q('details[data-g9-support-reveal]',a).map(d=>!!d.open);store.set(key,JSON.stringify({attempted:!!a.dataset.attempted,fields,ladders,reveals}))}
+function bindSupportRevealState(a){q('details[data-g9-support-reveal]',a).forEach(d=>{if(d.dataset.g9StateBound)return;d.dataset.g9StateBound='1';d.addEventListener('toggle',()=>saveCore2State(a))})}
+function restoreCore2State(a,lock){if(a.dataset.g9Role!=='CORE2')return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});bindSupportRevealState(a);q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.attempted){a.dataset.attempted='1';materialise(a)}lock()}
+const articles=q('article[data-g9-unit],article[data-g9-diagnostic],[data-g9-purpose-item]');
+articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);
+q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));
+q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});
+a.addEventListener('click',e=>{const b=e.target.closest('[data-g9-next-rung]');if(b&&a.contains(b)){nextRung(b.closest('.g9-ladder'));bindSupportRevealState(a);saveCore2State(a)}});attemptFields(a).forEach(el=>{el.addEventListener('input',()=>saveCore2State(a));el.addEventListener('change',()=>saveCore2State(a))});
+q('[data-g9-concept-link]',a).forEach(link=>link.addEventListener('click',()=>{saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef);if(key)store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit);refreshReturnLinks()}))});
+const practiceLinks=q('[data-g9-practice-link]');const practiceLabels=new Map(practiceLinks.map(link=>[link,link.textContent]));
+function refreshReturnLinks(){practiceLinks.forEach(link=>{const key=returnKey(link.dataset.g9ConceptRef);const active=!!key&&store.get(key)===link.dataset.g9QuestionRef;if(active){link.dataset.g9ReturnLink='';link.textContent='Return to question · '+practiceLabels.get(link)}else{delete link.dataset.g9ReturnLink;link.textContent=practiceLabels.get(link)}})}
+practiceLinks.forEach(link=>link.addEventListener('click',()=>{const key=returnKey(link.dataset.g9ConceptRef);if(key&&store.get(key)===link.dataset.g9QuestionRef){store.remove(key);refreshReturnLinks()}}));refreshReturnLinks();
+window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)});
+q('figure[data-g9-figure]').forEach(initFigure);
+q('[data-g9-toggle]').forEach(b=>b.onclick=()=>{const t=document.getElementById(b.getAttribute('aria-controls'));if(!t)return;const open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));t.hidden=open});
+const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();articles.forEach(a=>{a.hidden=!!v&&!(a.dataset.g9SearchText||'').toLowerCase().includes(v)})};
+q('[data-g9-action="search"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-search-panel]')[0];p.hidden=!p.hidden;if(!p.hidden)input.focus()});
+q('[data-g9-action="display"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-display-panel]')[0];p.hidden=!p.hidden});
+})();
+document.addEventListener('click',event=>{
+ const button=event.target.closest('[data-g9-probe-compare]');if(!button)return;
+ const root=button.closest('[data-g9-learning-repair]');if(!root)return;
+ const response=root.querySelector('[data-g9-probe-response]');
+ const message=root.querySelector('[data-g9-probe-message]');
+ if(!response.value.trim()){message.textContent='Write your prediction and reason first.';response.focus();return;}
+ root.dataset.g9ProbeCommitted='true';root.querySelector('[data-g9-probe-feedback]').hidden=false;
+ message.textContent='Compare your reasoning with the pattern below. Your response is not automatically graded.';
+});
+document.addEventListener('input',event=>{
+ const root=event.target.closest('[data-g9-alignment-probe]');if(!root)return;
+ const theta=Number(root.querySelector('[data-g9-theta]').value);
+ const other=Number(root.querySelector('[data-g9-other]').value);
+ const factor=Math.abs(theta-90)<1e-10?0:Math.cos(theta*Math.PI/180);
+ root.querySelector('[data-g9-donor]').setAttribute('transform',`rotate(${theta} 180 180)`);
+ root.querySelector('[data-g9-alignment-output]').textContent=`θ = ${theta}°; given factor = ${factor.toFixed(3)}; toy E = ${(-factor*factor+other).toFixed(3)}; c = ${other.toFixed(1)}.`;
+});
+const g9RepairHeader=document.querySelector('[data-g9-shell-header]');
+if(g9RepairHeader&&window.ResizeObserver){new ResizeObserver(()=>{
+ document.documentElement.style.setProperty('--g9-header-offset',Math.ceil(g9RepairHeader.getBoundingClientRect().height+16)+'px');
+}).observe(g9RepairHeader);}
+if(g9RepairHeader)document.documentElement.style.setProperty('--g9-header-offset',Math.ceil(g9RepairHeader.getBoundingClientRect().height+16)+'px');
+function g9OpenRepairTarget(){
+ let id;try{id=decodeURIComponent(location.hash.slice(1));}catch(_){return;}if(!id.startsWith('repair-'))return;
+ const target=document.getElementById(id);if(!target)return;
+ let parent=target.parentElement;while(parent){if(parent.tagName==='DETAILS')parent.open=true;parent=parent.parentElement;}
+ target.focus({preventScroll:true});target.scrollIntoView({block:'start'});
+}
+window.addEventListener('hashchange',g9OpenRepairTarget);g9OpenRepairTarget();
+</script><script>/**
+ * Grade9V3 Display & Accessibility Controls
+ * Manages global font adjustment and UI zoom scale across all pages and explorers.
+ * Persists preferences in localStorage ('grade9v3_font_scale', 'grade9v3_ui_scale').
+ * Synchronizes in real-time across tabs via storage event.
+ */
+
+(function () {
+  'use strict';
+
+  const STORAGE_KEY_FONT = 'grade9v3_font_scale';
+  const STORAGE_KEY_SCALE = 'grade9v3_ui_scale';
+  const STORAGE_KEY_THEME = 'g9-theme';
+
+  let fontScale = 1.0;
+  let uiScale = 1.0;
+  let currentTheme = 'light';
+
+  // Read saved preferences
+  try {
+    const savedFont = localStorage.getItem(STORAGE_KEY_FONT);
+    if (savedFont) {
+      const parsed = parseFloat(savedFont);
+      if (!isNaN(parsed) && parsed >= 0.75 && parsed <= 1.6) fontScale = parsed;
+    }
+    const savedScale = localStorage.getItem(STORAGE_KEY_SCALE);
+    if (savedScale) {
+      const parsed = parseFloat(savedScale);
+      if (!isNaN(parsed) && parsed >= 0.7 && parsed <= 1.5) uiScale = parsed;
+    }
+    const savedTheme = localStorage.getItem(STORAGE_KEY_THEME) || localStorage.getItem('grade9v3_theme');
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      currentTheme = savedTheme;
+    } else if (document.documentElement.dataset.theme) {
+      currentTheme = document.documentElement.dataset.theme;
+    }
+  } catch (e) {
+    console.warn('Grade9V3: localStorage unavailable for display preferences', e);
+  }
+
+  function applyTheme(theme, save = true) {
+    currentTheme = theme === 'dark' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = currentTheme;
+    if (save) {
+      try {
+        localStorage.setItem(STORAGE_KEY_THEME, currentTheme);
+        localStorage.setItem('grade9v3_theme', currentTheme);
+      } catch (e) {}
+    }
+    updateWidgetUI();
+  }
+
+  function toggleTheme() {
+    applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  }
+
+  function applyDisplaySettings() {
+    // 0. Apply Theme
+    document.documentElement.dataset.theme = currentTheme;
+
+    // 1. Apply Font Scale
+    document.documentElement.style.setProperty('--font-scale', fontScale.toString());
+    document.documentElement.style.fontSize = 'calc(var(--g9-type-body, 16px) * var(--font-scale, 1) * var(--g9-zoom, 1))';
+    if (document.body) {
+      document.body.style.fontSize = '1rem';
+    }
+
+    // 2. Apply UI Zoom Scale
+    document.documentElement.style.setProperty('--ui-scale', uiScale.toString());
+    if (document.body) {
+      document.body.style.zoom = uiScale.toString();
+    }
+
+    // 3. Update active UI controls if rendered
+    updateWidgetUI();
+  }
+
+  function setFontScale(scale, save = true) {
+    fontScale = Math.max(0.75, Math.min(1.6, parseFloat(scale)));
+    if (save) {
+      try { localStorage.setItem(STORAGE_KEY_FONT, fontScale.toFixed(2)); } catch (e) {}
+    }
+    applyDisplaySettings();
+  }
+
+  function setUiScale(scale, save = true) {
+    uiScale = Math.max(0.7, Math.min(1.5, parseFloat(scale)));
+    if (save) {
+      try { localStorage.setItem(STORAGE_KEY_SCALE, uiScale.toFixed(2)); } catch (e) {}
+    }
+    applyDisplaySettings();
+  }
+
+  function stepFont(delta) {
+    const next = Math.round((fontScale + delta) * 100) / 100;
+    setFontScale(next);
+  }
+
+  function stepScale(delta) {
+    const next = Math.round((uiScale + delta) * 100) / 100;
+    setUiScale(next);
+  }
+
+  function resetDisplay() {
+    setFontScale(1.0);
+    setUiScale(1.0);
+  }
+
+  function togglePopover() {
+    const popover = document.getElementById('g9-display-popover');
+    if (popover) {
+      popover.classList.toggle('active');
+    }
+  }
+
+  function openPopover() {
+    const popover = document.getElementById('g9-display-popover');
+    if (popover) {
+      popover.classList.add('active');
+    }
+  }
+
+  function closePopover() {
+    const popover = document.getElementById('g9-display-popover');
+    if (popover) {
+      popover.classList.remove('active');
+    }
+  }
+
+  // Cross-tab synchronization
+  window.addEventListener('storage', (e) => {
+    if (e.key === STORAGE_KEY_FONT && e.newValue) {
+      setFontScale(parseFloat(e.newValue), false);
+    } else if (e.key === STORAGE_KEY_SCALE && e.newValue) {
+      setUiScale(parseFloat(e.newValue), false);
+    }
+  });
+
+  // Apply immediately upon script execution
+  applyDisplaySettings();
+
+  // Re-apply once body is loaded to ensure body.style.zoom is set
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWidget);
+  } else {
+    initWidget();
+  }
+
+  function updateWidgetUI() {
+    const fontSlider = document.getElementById('g9-font-slider');
+    const fontLabel = document.getElementById('g9-font-val');
+    const scaleSlider = document.getElementById('g9-scale-slider');
+    const scaleLabel = document.getElementById('g9-scale-val');
+
+    const fontPct = Math.round(fontScale * 100) + '%';
+    const scalePct = Math.round(uiScale * 100) + '%';
+
+    if (fontSlider) fontSlider.value = fontScale;
+    if (fontLabel) fontLabel.textContent = fontPct;
+    if (scaleSlider) scaleSlider.value = uiScale;
+    if (scaleLabel) scaleLabel.textContent = scalePct;
+
+    const themeLabel = document.getElementById('g9-theme-val');
+    if (themeLabel) themeLabel.textContent = currentTheme === 'dark' ? 'Dark Mode' : 'Light Mode';
+    const lightBtn = document.getElementById('g9-theme-btn-light');
+    const darkBtn = document.getElementById('g9-theme-btn-dark');
+    if (lightBtn) lightBtn.style.borderColor = currentTheme === 'light' ? '#38bdf8' : '';
+    if (darkBtn) darkBtn.style.borderColor = currentTheme === 'dark' ? '#38bdf8' : '';
+
+    // Update all inline badges
+    document.querySelectorAll('.g9-inline-font-val').forEach(el => {
+      el.textContent = fontPct;
+    });
+    document.querySelectorAll('.g9-inline-scale-val').forEach(el => {
+      el.textContent = scalePct;
+    });
+  }
+
+  function initWidget() {
+    applyDisplaySettings();
+
+    // Prevent duplicate injection
+    if (document.getElementById('g9-display-widget-root')) {
+      updateWidgetUI();
+      return;
+    }
+
+    // Inject CSS for the display widget
+    const style = document.createElement('style');
+    style.id = 'g9-display-widget-styles';
+    style.textContent = `
+      #g9-display-widget-root {
+        position: fixed;
+        top: 70px;
+        right: 16px;
+        z-index: 2147483647;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        pointer-events: none;
+      }
+      .g9-display-trigger {
+        display: none !important;
+      }
+      .g9-display-popover {
+        position: fixed;
+        top: 70px;
+        right: 16px;
+        bottom: auto;
+        width: min(360px, calc(100vw - 32px));
+        box-sizing: border-box;
+        max-height: calc(100vh - 86px);
+        overflow-y: auto;
+        background: #161b22;
+        border: 1px solid #444c56;
+        border-radius: 12px;
+        padding: 16px 18px;
+        box-shadow: 0 12px 36px rgba(0,0,0,0.6);
+        display: none;
+        flex-direction: column;
+        gap: 14px;
+        z-index: 2147483647;
+        pointer-events: auto;
+        backdrop-filter: blur(14px);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      }
+      .g9-display-popover.active {
+        display: flex;
+      }
+      .g9-popover-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(68, 76, 86, 0.5);
+        padding-bottom: 8px;
+      }
+      .g9-popover-title {
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        color: #c9d1d9;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .g9-popover-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .g9-close-btn {
+        background: transparent;
+        border: none;
+        color: #8b949e;
+        font-size: 16px;
+        cursor: pointer;
+        padding: 0 4px;
+        line-height: 1;
+        transition: color 0.15s;
+      }
+      .g9-close-btn:hover {
+        color: #f0f6fc;
+      }
+      .g9-control-row {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .g9-control-label-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+        font-weight: 600;
+        color: #c9d1d9;
+      }
+      .g9-val-badge {
+        font-family: ui-monospace, monospace;
+        color: #58a6ff;
+        font-weight: 700;
+        background: rgba(56, 139, 253, 0.12);
+        border: 1px solid rgba(56, 139, 253, 0.3);
+        padding: 1px 6px;
+        border-radius: 4px;
+      }
+      .g9-slider {
+        width: 100%;
+        accent-color: #58a6ff;
+        cursor: pointer;
+        height: 48px;
+      }
+      .g9-btn-pill-row {
+        display: flex;
+        gap: 8px;
+        margin-top: 2px;
+      }
+      #g9-display-widget-root .g9-pill {
+        background: #21262d;
+        border: 1px solid #30363d;
+        color: #9aa4b2;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.1s ease, color 0.1s ease, border-color 0.1s ease;
+        flex: 1;
+        text-align: center;
+      }
+      #g9-display-widget-root .g9-pill:hover {
+        background: #2d333b;
+        color: #58a6ff;
+        border-color: #58a6ff;
+      }
+      .g9-reset-btn {
+        background: transparent;
+        border: 1px solid #30363d;
+        color: #9aa4b2;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .g9-reset-btn:hover {
+        background: rgba(248, 81, 73, 0.1);
+        border-color: #f85149;
+        color: #ff7b72;
+      }
+      .g9-popover-hint {
+        font-size: 14px;
+        color: #8b949e;
+        line-height: 1.4;
+        border-top: 1px solid rgba(68, 76, 86, 0.3);
+        padding-top: 6px;
+      }
+      .g9-display-trigger-btn {
+        background: var(--bg-card, #161b22);
+        border: 1px solid var(--border, #30363d);
+        color: var(--text, #c9d1d9);
+        font-size: 14px;
+        font-weight: 600;
+        padding: 5px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.15s;
+      }
+      .g9-display-trigger-btn:hover {
+        border-color: var(--accent, #58a6ff);
+        color: var(--accent, #58a6ff);
+      }
+      #g9-display-widget-root button {
+        min-width: 48px;
+        min-height: 48px;
+        box-sizing: border-box;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Create widget container anchored directly to documentElement (immune to body zoom/scroll)
+    const container = document.createElement('div');
+    container.id = 'g9-display-widget-root';
+
+    container.innerHTML = `
+      <button class="g9-display-trigger" id="g9-display-toggle-btn" title="Global Display & Accessibility (Font & UI Scale)">
+        <span>🔤 / 🔍</span>
+        <span>Display & Scale</span>
+      </button>
+
+      <div class="g9-display-popover" id="g9-display-popover">
+        <div class="g9-popover-header">
+          <span class="g9-popover-title">⚙️ Display &amp; Scale</span>
+          <div class="g9-popover-actions">
+            <button class="g9-reset-btn" id="g9-btn-reset" title="Reset Font &amp; Scale to 100%">Reset</button>
+            <button class="g9-close-btn" id="g9-btn-close" title="Close">✕</button>
+          </div>
+        </div>
+
+        <!-- Color Theme -->
+        <div class="g9-control-row">
+          <div class="g9-control-label-wrap">
+            <span>🌓 Color Theme</span>
+            <span class="g9-val-badge" id="g9-theme-val">Light Mode</span>
+          </div>
+          <div class="g9-btn-pill-row">
+            <button type="button" class="g9-pill" id="g9-theme-btn-light" data-theme-val="light">☀️ Light</button>
+            <button type="button" class="g9-pill" id="g9-theme-btn-dark" data-theme-val="dark">🌙 Dark</button>
+          </div>
+        </div>
+
+        <!-- Font Size Slider -->
+        <div class="g9-control-row">
+          <div class="g9-control-label-wrap">
+            <span>🔤 Global Font Size</span>
+            <span class="g9-val-badge" id="g9-font-val">100%</span>
+          </div>
+          <input type="range" class="g9-slider" id="g9-font-slider" min="0.80" max="1.45" step="0.05" value="1.0">
+          <div class="g9-btn-pill-row">
+            <button class="g9-pill" data-font="0.85">85%</button>
+            <button class="g9-pill" data-font="1.00">100%</button>
+            <button class="g9-pill" data-font="1.15">115%</button>
+            <button class="g9-pill" data-font="1.30">130%</button>
+          </div>
+        </div>
+
+        <!-- UI Zoom Scale Slider -->
+        <div class="g9-control-row">
+          <div class="g9-control-label-wrap">
+            <span>🔍 Global UI Zoom</span>
+            <span class="g9-val-badge" id="g9-scale-val">100%</span>
+          </div>
+          <input type="range" class="g9-slider" id="g9-scale-slider" min="0.75" max="1.35" step="0.05" value="1.0">
+          <div class="g9-btn-pill-row">
+            <button class="g9-pill" data-scale="0.80">80%</button>
+            <button class="g9-pill" data-scale="0.90">90%</button>
+            <button class="g9-pill" data-scale="1.00">100%</button>
+            <button class="g9-pill" data-scale="1.20">120%</button>
+          </div>
+        </div>
+
+        <div class="g9-popover-hint">
+          💡 Persists in localStorage and syncs across open tabs in real-time.
+        </div>
+      </div>
+    `;
+
+    // Append to documentElement so position:fixed is always relative to the viewport window
+    document.documentElement.appendChild(container);
+
+    // Event handlers
+    const toggleBtn = document.getElementById('g9-display-toggle-btn');
+    const popover = document.getElementById('g9-display-popover');
+    const closeBtn = document.getElementById('g9-btn-close');
+    const fontSlider = document.getElementById('g9-font-slider');
+    const scaleSlider = document.getElementById('g9-scale-slider');
+    const resetBtn = document.getElementById('g9-btn-reset');
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      popover.classList.toggle('active');
+    });
+
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      popover.classList.remove('active');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!container.contains(e.target) && !e.target.closest('.g9-display-trigger-btn') && !e.target.closest('[data-g9-action="display"]') && !e.target.closest('.display-controls-wrap')) {
+        popover.classList.remove('active');
+      }
+    });
+
+    fontSlider.addEventListener('input', (e) => {
+      setFontScale(e.target.value);
+    });
+
+    scaleSlider.addEventListener('input', (e) => {
+      setUiScale(e.target.value);
+    });
+
+    resetBtn.addEventListener('click', () => {
+      resetDisplay();
+    });
+
+    // Preset pills & theme buttons
+    container.querySelectorAll('.g9-pill').forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        if (pill.dataset.themeVal) {
+          applyTheme(pill.dataset.themeVal);
+        } else if (pill.dataset.font) {
+          setFontScale(pill.dataset.font);
+        } else if (pill.dataset.scale) {
+          setUiScale(pill.dataset.scale);
+        }
+      });
+    });
+
+    // Initial update
+    updateWidgetUI();
+  }
+
+  // Expose global API
+  window.Grade9Display = {
+    setFontScale,
+    setUiScale,
+    stepFont,
+    stepScale,
+    resetDisplay,
+    togglePopover,
+    openPopover,
+    closePopover,
+    applyTheme,
+    toggleTheme,
+    getTheme: () => currentTheme,
+    getFontScale: () => fontScale,
+    getUiScale: () => uiScale
+  };
+})();
+</script><script>(function() {
+  'use strict';
+
+  const script = document.currentScript;
+  const root = (script && script.dataset.siteRoot) || '';
+  const parent = (script && script.dataset.siteParent) || root + 'index.html';
+
+  // 1. Legacy header enhancement (for question-bank or older pages)
+  function initLegacyHeader() {
+    const header = document.querySelector('header.site-nav');
+    if (!header || header.dataset.g9Enhanced) return;
+    header.dataset.g9Enhanced = 'true';
+
+    document.body.classList.add('g9-fixed-header');
+    header.classList.add('site-nav-enhanced');
+
+    const brand = header.querySelector('.brand-link');
+    const nav = header.querySelector('.nav-links');
+
+    if (brand && nav) {
+      if (!header.querySelector('.site-leading')) {
+        const leading = document.createElement('div');
+        leading.className = 'site-leading';
+        const back = document.createElement('button');
+        back.type = 'button';
+        back.className = 'site-icon-btn';
+        back.title = 'Back';
+        back.setAttribute('aria-label', 'Go back');
+        back.textContent = '←';
+        back.addEventListener('click', () => { history.back(); });
+        leading.appendChild(back);
+        header.insertBefore(leading, brand);
+        leading.appendChild(brand);
+      }
+
+      if (!header.querySelector('.site-actions')) {
+        const actions = document.createElement('div');
+        actions.className = 'site-actions';
+
+        const searchBtn = document.createElement('button');
+        searchBtn.type = 'button';
+        searchBtn.className = 'site-icon-btn g9-search-btn';
+        searchBtn.title = 'Search Grade9V3 (Ctrl/⌘ K)';
+        searchBtn.setAttribute('aria-label', 'Search Grade9V3');
+        searchBtn.textContent = '🔍';
+        searchBtn.addEventListener('click', openSearch);
+
+        const themeBtn = document.createElement('button');
+        themeBtn.type = 'button';
+        themeBtn.className = 'site-icon-btn g9-theme-btn';
+        themeBtn.title = 'Toggle Dark / Light Theme';
+        themeBtn.setAttribute('aria-label', 'Toggle theme');
+        themeBtn.textContent = '🌓';
+        themeBtn.addEventListener('click', () => {
+          if (window.Grade9Display && window.Grade9Display.toggleTheme) {
+            window.Grade9Display.toggleTheme();
+          } else {
+            const current = document.documentElement.dataset.theme;
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.dataset.theme = next;
+            try { localStorage.setItem('g9-theme', next); } catch (e) {}
+          }
+        });
+
+        actions.append(searchBtn, themeBtn);
+
+        const displayBtn = nav.querySelector('.g9-display-trigger-btn');
+        if (displayBtn) {
+          actions.appendChild(displayBtn);
+        }
+
+        header.appendChild(actions);
+      }
+    }
+  }
+
+  // 2. Global search dialog
+  const dialog = document.createElement('dialog');
+  dialog.className = 'g9-search-dialog';
+  dialog.setAttribute('aria-labelledby', 'g9SearchTitle');
+
+  const wrap = document.createElement('div');
+  wrap.className = 'g9-search-wrap';
+
+  const top=document.createElement('div');
+  top.className = 'g9-search-top';
+
+  const title = document.createElement('strong');
+  title.id = 'g9SearchTitle';
+  title.textContent = 'Search Grade9V3.5';
+
+  const close = document.createElement('button');
+  close.type = 'button';
+  close.className = 'site-icon-btn';
+  close.textContent = '×';
+  close.setAttribute('aria-label', 'Close search');
+  close.addEventListener('click', () => dialog.close());
+
+  top.append(title, close);
+
+  const input = document.createElement('input');
+  input.type = 'search';
+  input.placeholder = 'Search pages, concepts, questions, or topics…';
+  input.autocomplete = 'off';
+  input.setAttribute('aria-label', 'Search Grade9V3');
+
+  const hint = document.createElement('div');
+  hint.className = 'g9-search-hint';
+  hint.textContent = 'Tip: press Ctrl/⌘ K from anywhere to search.';
+
+  const tabsContainer = document.createElement('div');
+  tabsContainer.className = 'g9-search-tabs';
+  tabsContainer.setAttribute('role', 'tablist');
+  tabsContainer.hidden = true;
+
+  const results = document.createElement('div');
+  results.className = 'g9-search-results';
+  results.setAttribute('aria-live', 'polite');
+
+  wrap.append(top, input, hint, tabsContainer, results);
+  dialog.appendChild(wrap);
+
+  if (document.body) {
+    document.body.appendChild(dialog);
+  } else {
+    document.addEventListener('DOMContentLoaded', () => document.body.appendChild(dialog));
+  }
+
+  // 3. Search Data Loader with robust multi-depth path resolution
+  let searchDataPromise = null;
+  function getCandidateSearchUrls() {
+    let scriptRoot = (script && script.dataset.siteRoot);
+    if (!scriptRoot && script && script.src) {
+      try {
+        const u = new URL(script.src, window.location.href);
+        const idx = u.pathname.lastIndexOf('/js/');
+        if (idx !== -1) {
+          scriptRoot = u.pathname.slice(0, idx + 1);
+        }
+      } catch (e) {}
+    }
+    const prefix = scriptRoot || '';
+    const candidates = [
+      prefix + 'data/learner-search-index.v1.json',
+      '/data/learner-search-index.v1.json',
+      '../data/learner-search-index.v1.json',
+      '../../data/learner-search-index.v1.json',
+      'data/learner-search-index.v1.json'
+    ];
+    return Array.from(new Set(candidates));
+  }
+
+  function loadSearchData() {
+    if (searchDataPromise) return searchDataPromise;
+    const urls = getCandidateSearchUrls();
+
+    async function tryFetch() {
+      for (const u of urls) {
+        try {
+          const res = await fetch(u);
+          if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data) && data.length > 0) return data;
+          }
+        } catch (e) {}
+      }
+      throw new Error('All search index candidate URLs failed');
+    }
+
+    searchDataPromise = tryFetch()
+      .catch((err) => {
+        console.warn('Search index fetch failed, falling back to QB data:', err);
+        return new Promise(resolve => {
+          if (window.GRADE9_QUESTION_BANK) {
+            resolve(mapQbData(window.GRADE9_QUESTION_BANK));
+          } else {
+            const s = document.createElement('script');
+            s.src = root + 'data/question-bank-data.js';
+            s.onload = () => resolve(mapQbData(window.GRADE9_QUESTION_BANK || {}));
+            s.onerror = () => resolve([]);
+            document.head.appendChild(s);
+          }
+        });
+      });
+    return searchDataPromise;
+  }
+
+  function mapQbData(qb) {
+    const list = [];
+    (qb.destinations || []).forEach(d => {
+      list.push({
+        id: d.path,
+        title: d.title,
+        url: d.path,
+        type: 'PAGE',
+        search_text: [d.title, d.kind, ...(d.keywords || [])].join(' ')
+      });
+    });
+    (qb.questions || []).forEach(q => {
+      list.push({
+        id: q.id,
+        title: (q.exam || '') + ' ' + (q.year || '') + ' - ' + (q.topic || ''),
+        url: 'question-bank/index.html?q=' + encodeURIComponent(q.id) + '#' + encodeURIComponent(q.id),
+        type: 'QUESTION',
+        search_text: [q.id, q.subject, q.topic, q.stem].join(' ')
+      });
+    });
+    return list;
+  }
+
+  function normalize(v) {
+    return String(v || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  }
+
+  function getCategory(item) {
+    if (item.category) return item.category;
+    const t = String(item.type || '').toUpperCase();
+    if (t === 'QUESTION') return 'question';
+    if (t === 'TOPIC' || t === 'SUBTOPIC' || t === 'CONCEPT') return 'curriculum';
+    if (t.includes('CORE_1A') || t.includes('CORE_2') || item.sub_type === 'CORE_1A' || item.sub_type === 'CORE_2' || (item.url && item.url.includes('12-7-tablet'))) return 'tablet';
+    return 'tablet';
+  }
+
+  function getReadableKind(type) {
+    const t = String(type || '').toUpperCase();
+    if (t === 'EXPLORE_RESOURCE') return 'EXPLORER';
+    if (t === 'LEARN_RESOURCE') return 'CORE STUDY';
+    if (t === 'PRACTICE_RESOURCE') return 'PRACTICE';
+    if (t === 'CONCEPT') return 'CONCEPT';
+    if (t === 'QUESTION') return 'QUESTION';
+    if (t === 'TOPIC') return 'TOPIC';
+    if (t === 'SUBTOPIC') return 'SUBTOPIC';
+    if (t === 'HINT' || t === 'RUNG') return 'HINT';
+    return t || 'PAGE';
+  }
+
+  function scoreItem(item, tokens, term) {
+    let score = 1000;
+    const titleNorm = normalize(item.title);
+    const idNorm = normalize(item.id);
+    const textNorm = normalize(item.search_text);
+
+    if (idNorm === term || item.id === term || item.id === 'Q-' + term || idNorm === 'q ' + term) score += 25000;
+    else if (idNorm.includes(term)) score += 5000;
+
+    if (titleNorm === term) score += 15000;
+    else if (titleNorm.startsWith(term)) score += 6000;
+    else if (tokens.every(tok => titleNorm.includes(tok))) score += 3000;
+    else if (tokens.some(tok => titleNorm.includes(tok))) score += 1000;
+
+    if (tokens.every(tok => textNorm.includes(tok))) score += 500;
+    if (textNorm.includes(term)) score += 300;
+
+    return score;
+  }
+
+  function resultLink(item, href) {
+    const a = document.createElement('a');
+    a.className = 'g9-search-result';
+    a.href = href;
+    if (item.target === '_blank') {
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+    }
+
+    const main = document.createElement('span');
+    main.className = 'g9-search-result-main';
+    main.textContent = item.title || item.id;
+
+    const sub = document.createElement('span');
+    if (item.breadcrumb) {
+      sub.className = 'g9-search-breadcrumb';
+      sub.textContent = item.breadcrumb;
+    } else {
+      sub.className = 'g9-search-result-sub';
+      sub.textContent = item.search_text ? item.search_text.slice(0, 110) + '…' : (item.id || '');
+    }
+
+    const badge = document.createElement('span');
+    badge.className = 'g9-search-result-kind';
+    const rawBadge = item.badge || getReadableKind(item.type);
+    badge.textContent = rawBadge;
+
+    const bNorm = rawBadge.toLowerCase();
+    if (bNorm.includes('core 1a')) badge.classList.add('g9-badge-core1a');
+    else if (bNorm.includes('core 2')) badge.classList.add('g9-badge-core2');
+    else if (bNorm.includes('ncert')) badge.classList.add('g9-badge-ncert');
+    else if (bNorm.includes('jee') || bNorm.includes('iit')) badge.classList.add('g9-badge-jee');
+    else if (item.type === 'TOPIC' || item.type === 'SUBTOPIC') badge.classList.add('g9-badge-topic');
+
+    a.append(main, sub, badge);
+    return a;
+  }
+
+  let activeCategory = 'all';
+
+  async function renderSearch() {
+    const term = normalize(input.value);
+    results.replaceChildren();
+    if (!term) {
+      tabsContainer.hidden = true;
+      const p = document.createElement('p');
+      p.className = 'g9-search-empty';
+      p.textContent = 'Type to search the portal, concepts, and canonical Question Bank.';
+      results.appendChild(p);
+      return;
+    }
+
+    const data = await loadSearchData().catch(() => []);
+    const tokens = term.split(/\s+/).filter(Boolean);
+
+    const matched = (Array.isArray(data) ? data : []).filter(item => {
+      const hay = normalize([item.title, item.id, item.search_text, item.type].join(' '));
+      return tokens.every(t => {
+        if (hay.includes(t)) return true;
+        if (t.length >= 4) {
+          const stem = t.slice(0, 4);
+          if (hay.includes(stem)) return true;
+        }
+        return false;
+      });
+    });
+
+    if (matched.length === 0) {
+      tabsContainer.hidden = true;
+      const p = document.createElement('p');
+      p.className = 'g9-search-empty';
+      p.textContent = 'No matching results found.';
+      results.appendChild(p);
+      return;
+    }
+
+    // Sort by relevance score
+    matched.sort((a, b) => scoreItem(b, tokens, term) - scoreItem(a, tokens, term));
+
+    let effectiveRoot = (script && script.dataset.siteRoot);
+    if (!effectiveRoot && script && script.src) {
+      try {
+        const u = new URL(script.src, window.location.href);
+        const idx = u.pathname.lastIndexOf('/js/');
+        if (idx !== -1) {
+          effectiveRoot = u.pathname.slice(0, idx + 1);
+        }
+      } catch (e) {}
+    }
+    effectiveRoot = effectiveRoot || '';
+
+    // Calculate dynamic counts
+    const countAll = matched.length;
+    const countQuestions = matched.filter(m => getCategory(m) === 'question').length;
+    const countTablets = matched.filter(m => getCategory(m) === 'tablet').length;
+    const countCurriculum = matched.filter(m => getCategory(m) === 'curriculum').length;
+
+    // Reset tab if current active has 0 results
+    if (activeCategory === 'question' && countQuestions === 0) activeCategory = 'all';
+    if (activeCategory === 'tablet' && countTablets === 0) activeCategory = 'all';
+    if (activeCategory === 'curriculum' && countCurriculum === 0) activeCategory = 'all';
+
+    // Render tabs
+    tabsContainer.hidden = false;
+    tabsContainer.replaceChildren();
+    const tabDefs = [
+      { id: 'all', label: 'All', count: countAll },
+      { id: 'question', label: 'Questions', count: countQuestions },
+      { id: 'tablet', label: 'Core 1A & 2 Tablets', count: countTablets },
+      { id: 'curriculum', label: 'Topics & Concepts', count: countCurriculum },
+    ];
+    tabDefs.forEach(def => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'g9-search-tab' + (activeCategory === def.id ? ' active' : '');
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-selected', String(activeCategory === def.id));
+
+      const lbl = document.createElement('span');
+      lbl.textContent = def.label;
+
+      const badgeCount = document.createElement('span');
+      badgeCount.className = 'g9-search-tab-count';
+      badgeCount.textContent = String(def.count);
+
+      btn.append(lbl, badgeCount);
+      btn.addEventListener('click', () => {
+        activeCategory = def.id;
+        renderSearch();
+      });
+      tabsContainer.appendChild(btn);
+    });
+
+    const createBridge = () => {
+      const bridge = document.createElement('a');
+      bridge.className = 'g9-search-qb-bridge';
+      bridge.href = effectiveRoot + 'question-bank/index.html?q=' + encodeURIComponent(input.value.trim());
+      const leftText = document.createElement('span');
+      leftText.textContent = `View all ${countQuestions} questions in Question Bank`;
+      const rightArrow = document.createElement('span');
+      rightArrow.textContent = '›';
+      bridge.append(leftText, rightArrow);
+      return bridge;
+    };
+
+    const renderCard = item => {
+      let itemUrl = item.url || '';
+      if (!itemUrl.startsWith('http') && !itemUrl.startsWith('/')) {
+        itemUrl = effectiveRoot + itemUrl;
+      }
+      return resultLink(item, itemUrl);
+    };
+
+    if (activeCategory === 'all') {
+      const tablets = matched.filter(m => getCategory(m) === 'tablet');
+      const curriculum = matched.filter(m => getCategory(m) === 'curriculum');
+      const questions = matched.filter(m => getCategory(m) === 'question');
+
+      if (tablets.length) {
+        const secHdr = document.createElement('div');
+        secHdr.className = 'g9-search-section-header';
+        secHdr.textContent = `📑 Core 1A & 2 Tablets (${tablets.length})`;
+        results.appendChild(secHdr);
+        tablets.slice(0, 6).forEach(item => results.appendChild(renderCard(item)));
+      }
+
+      if (curriculum.length) {
+        const secHdr = document.createElement('div');
+        secHdr.className = 'g9-search-section-header';
+        secHdr.textContent = `📚 Topics & Concepts (${curriculum.length})`;
+        results.appendChild(secHdr);
+        curriculum.slice(0, 4).forEach(item => results.appendChild(renderCard(item)));
+      }
+
+      if (questions.length) {
+        const secHdr = document.createElement('div');
+        secHdr.className = 'g9-search-section-header';
+        secHdr.textContent = `🎯 Questions in Question Bank (${questions.length})`;
+        results.appendChild(secHdr);
+        results.appendChild(createBridge());
+        questions.slice(0, 8).forEach(item => results.appendChild(renderCard(item)));
+      }
+    } else if (activeCategory === 'question') {
+      if (countQuestions > 0) results.appendChild(createBridge());
+      const questions = matched.filter(m => getCategory(m) === 'question');
+      questions.slice(0, 20).forEach(item => results.appendChild(renderCard(item)));
+    } else if (activeCategory === 'tablet') {
+      const tablets = matched.filter(m => getCategory(m) === 'tablet');
+      tablets.slice(0, 20).forEach(item => results.appendChild(renderCard(item)));
+    } else if (activeCategory === 'curriculum') {
+      const curriculum = matched.filter(m => getCategory(m) === 'curriculum');
+      curriculum.slice(0, 20).forEach(item => results.appendChild(renderCard(item)));
+    }
+  }
+
+  let searchTimer = null;
+  input.addEventListener('input', () => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(renderSearch, 60);
+  });
+
+  function openSearch(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (typeof dialog.showModal === 'function' && !dialog.open) {
+      dialog.showModal();
+    } else {
+      dialog.setAttribute('open', '');
+    }
+    input.focus();
+    renderSearch();
+  }
+
+  // 4. Bind universal triggers
+  function bindTriggers() {
+    initLegacyHeader();
+
+    document.querySelectorAll('[data-g9-action="search"], .g9-search-trigger, .g9-search-btn').forEach(btn => {
+      btn.onclick = openSearch;
+    });
+
+    document.querySelectorAll('[data-g9-action="theme"], .g9-theme-toggle').forEach(btn => {
+      btn.onclick = (e) => {
+        e.preventDefault();
+        if (window.Grade9Display && window.Grade9Display.toggleTheme) {
+          window.Grade9Display.toggleTheme();
+        } else {
+          const current = document.documentElement.dataset.theme;
+          const next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.theme = next;
+          try { localStorage.setItem('g9-theme', next); } catch (err) {}
+        }
+      };
+    });
+
+    document.querySelectorAll('[data-g9-action="display"], .g9-display-btn').forEach(btn => {
+      btn.onclick = (e) => {
+        e.preventDefault();
+        if (window.Grade9Display && window.Grade9Display.togglePopover) {
+          window.Grade9Display.togglePopover();
+        } else {
+          const panel = document.querySelector('[data-g9-display-panel]');
+          if (panel) panel.toggleAttribute('hidden');
+        }
+      };
+    });
+  }
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.g9-header-dropdown')) {
+      document.querySelectorAll('.g9-header-dropdown[open]').forEach(d => d.removeAttribute('open'));
+    }
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindTriggers);
+  } else {
+    bindTriggers();
+  }
+
+  document.addEventListener('keydown', e => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      openSearch();
+    }
+    if (e.key === 'Escape') {
+      if (dialog.open) dialog.close();
+      document.querySelectorAll('.g9-header-dropdown[open]').forEach(d => d.removeAttribute('open'));
+    }
+  });
+
+  // Global API
+  window.Grade9Header = {
+    openSearch,
+    closeSearch: () => dialog.close()
+  };
+})();
+</script></body></html>

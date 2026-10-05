@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 510" width="100%" height="100%" role="img" aria-labelledby="conj-title conj-desc">
+  <title id="conj-title">Conjugated Butadiene vs Interrupted Pentadiene Orbital Pathways</title>
+  <desc id="conj-desc">Comparison of continuous parallel p-orbital overlap in buta-1,3-diene versus the interruption caused by an sp3 methylene carbon in penta-1,4-diene.</desc>
+  <style>
+    .bg { fill: #f8fafc; }
+    .carbon { fill: #1e293b; font-weight: bold; font-size: 16px; font-family: sans-serif; text-anchor: middle; }
+    .label { font-size: 14px; font-family: sans-serif; fill: #0f172a; }
+    .title-txt { font-size: 16px; font-family: sans-serif; font-weight: bold; fill: #0f172a; }
+    .sigma-line { stroke: #64748b; stroke-width: 3.5; stroke-linecap: round; }
+    .p-lobe-pos { fill: #38bdf8; fill-opacity: 0.65; stroke: #0284c7; stroke-width: 1.5; }
+    .p-lobe-neg { fill: #bae6fd; fill-opacity: 0.65; stroke: #0284c7; stroke-width: 1.5; }
+    .pi-overlap { stroke: #0284c7; stroke-width: 2.5; stroke-dasharray: 4,3; fill: none; }
+    .interruption-x { stroke: #dc2626; stroke-width: 4; stroke-linecap: round; }
+    .box-sp3 { fill: #fee2e2; stroke: #ef4444; stroke-width: 2; rx: 6; }
+  </style>
+
+  <rect width="800" height="450" class="bg" rx="8" />
+
+  <!-- Stage 1: Buta-1,3-diene Continuous Conjugated Pathway -->
+  <g data-g9-stage-id="CONJ-STAGE-1">
+    <text x="400" y="30" class="title-txt" text-anchor="middle">Buta-1,3-diene: Continuous 4-Centre Conjugated Pi System</text>
+    
+    <!-- Backbone C1-C2-C3-C4 -->
+    <line x1="160" y1="130" x2="280" y2="100" class="sigma-line" />
+    <line x1="280" y1="100" x2="400" y2="130" class="sigma-line" />
+    <line x1="400" y1="130" x2="520" y2="100" class="sigma-line" />
+
+    <!-- 4 parallel p-orbitals -->
+    <!-- C1 -->
+    <ellipse cx="160" cy="80" rx="14" ry="28" class="p-lobe-pos" />
+    <ellipse cx="160" cy="180" rx="14" ry="28" class="p-lobe-neg" />
+    <circle cx="160" cy="130" r="14" fill="#fff" stroke="#1e293b" stroke-width="2" />
+    <text x="160" y="135" class="carbon">C1</text>
+    <text x="160" y="225" class="label" text-anchor="middle">sp²</text>
+
+    <!-- C2 -->
+    <ellipse cx="280" cy="50" rx="14" ry="28" class="p-lobe-pos" />
+    <ellipse cx="280" cy="150" rx="14" ry="28" class="p-lobe-neg" />
+    <circle cx="280" cy="100" r="14" fill="#fff" stroke="#1e293b" stroke-width="2" />
+    <text x="280" y="105" class="carbon">C2</text>
+    <text x="280" y="195" class="label" text-anchor="middle">sp²</text>
+
+    <!-- C3 -->
+    <ellipse cx="400" cy="80" rx="14" ry="28" class="p-lobe-pos" />
+    <ellipse cx="400" cy="180" rx="14" ry="28" class="p-lobe-neg" />
+    <circle cx="400" cy="130" r="14" fill="#fff" stroke="#1e293b" stroke-width="2" />
+    <text x="400" y="135" class="carbon">C3</text>
+    <text x="400" y="225" class="label" text-anchor="middle">sp²</text>
+
+    <!-- C4 -->
+    <ellipse cx="520" cy="50" rx="14" ry="28" class="p-lobe-pos" />
+    <ellipse cx="520" cy="150" rx="14" ry="28" class="p-lobe-neg" />
+    <circle cx="520" cy="100" r="14" fill="#fff" stroke="#1e293b" stroke-width="2" />
+    <text x="520" y="105" class="carbon">C4</text>
+    <text x="520" y="195" class="label" text-anchor="middle">sp²</text>
+
+    <!-- Continuous overlap waves -->
+    <path d="M 160 65 Q 220 35 280 35 Q 340 50 400 65 Q 460 35 520 35" class="pi-overlap" />
+    <path d="M 160 195 Q 220 165 280 165 Q 340 180 400 195 Q 460 165 520 165" class="pi-overlap" />
+    <text x="640" y="110" class="label" fill="#0284c7" font-weight="bold">Continuous overlap</text>
+    <text x="640" y="130" class="label" fill="#0284c7">Delocalised across 4 carbons</text>
+  </g>
+
+  <!-- Stage 2: Penta-1,4-diene Interrupted Pathway -->
+  <g data-g9-stage-id="CONJ-STAGE-2">
+    <text x="400" y="260" class="title-txt" text-anchor="middle">Penta-1,4-diene: Saturated sp³ -CH2- Breaks Orbital Overlap Continuity</text>
+    
+    <!-- Backbone C1-C2-C3-C4-C5 -->
+    <line x1="120" y1="360" x2="220" y2="330" class="sigma-line" />
+    <line x1="220" y1="330" x2="350" y2="360" class="sigma-line" />
+    <line x1="350" y1="360" x2="480" y2="330" class="sigma-line" />
+    <line x1="480" y1="330" x2="580" y2="360" class="sigma-line" />
+
+    <!-- C1 & C2 (double bond 1) -->
+    <ellipse cx="120" cy="320" rx="12" ry="24" class="p-lobe-pos" />
+    <circle cx="120" cy="360" r="13" fill="#fff" stroke="#1e293b" stroke-width="2" />
+    <text x="120" y="365" class="carbon">C1</text>
+
+    <ellipse cx="220" cy="290" rx="12" ry="24" class="p-lobe-pos" />
+    <circle cx="220" cy="330" r="13" fill="#fff" stroke="#1e293b" stroke-width="2" />
+    <text x="220" y="335" class="carbon">C2</text>
+    <path d="M 120 305 Q 170 280 220 280" class="pi-overlap" />
+    <text x="170" y="415" class="label" text-anchor="middle" fill="#0284c7">Isolated π1 (C1=C2)</text>
+
+    <!-- Central C3 (sp3 methylene - no p orbital!) -->
+    <rect x="310" y="325" width="80" height="75" class="box-sp3" />
+    <circle cx="350" cy="360" r="15" fill="#fff" stroke="#ef4444" stroke-width="2.5" />
+    <text x="350" y="365" class="carbon" fill="#ef4444">C3</text>
+    <text x="350" y="388" class="label" text-anchor="middle" font-weight="bold" fill="#ef4444">sp³ -CH2-</text>
+    <text x="350" y="420" class="label" text-anchor="middle" fill="#dc2626">NO unhybridised p-orbital!</text>
+
+    <!-- Interruption Crosses -->
+    <line x1="270" y1="310" x2="300" y2="340" class="interruption-x" />
+    <line x1="270" y1="340" x2="300" y2="310" class="interruption-x" />
+    <line x1="400" y1="310" x2="430" y2="340" class="interruption-x" />
+    <line x1="400" y1="340" x2="430" y2="310" class="interruption-x" />
+
+    <!-- C4 & C5 (double bond 2) -->
+    <ellipse cx="480" cy="290" rx="12" ry="24" class="p-lobe-pos" />
+    <circle cx="480" cy="330" r="13" fill="#fff" stroke="#1e293b" stroke-width="2" />
+    <text x="480" y="335" class="carbon">C4</text>
+
+    <ellipse cx="580" cy="320" rx="12" ry="24" class="p-lobe-pos" />
+    <circle cx="580" cy="360" r="13" fill="#fff" stroke="#1e293b" stroke-width="2" />
+    <text x="580" y="365" class="carbon">C5</text>
+    <path d="M 480 280 Q 530 280 580 305" class="pi-overlap" />
+    <text x="530" y="415" class="label" text-anchor="middle" fill="#0284c7">Isolated π2 (C4=C5)</text>
+
+    <text x="690" y="340" class="label" fill="#dc2626" font-weight="bold">Path Interrupted</text>
+    <text x="690" y="360" class="label" fill="#475569">Two isolated π bonds</text>
+  </g>
+<g data-g9-stage-id="ISS36-INVENTORY-CHECK"><text x="25" y="440" font-size="24">Independent check: CH4 has four domains.</text><text x="25" y="475" font-size="24">Equivalent C-H bonds do not imply sp2.</text></g></svg>

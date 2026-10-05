@@ -381,6 +381,225 @@
         }
       },
       "additionalProperties": true
+    },
+    "reviewJudgement": {
+      "type": "object",
+      "properties": {
+        "applicability": {
+          "enum": [
+            "APPLICABLE",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "verdict": {
+          "enum": [
+            "YES",
+            "PARTLY",
+            "NO"
+          ]
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fix": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "applicability": {
+                "const": "NOT_APPLICABLE"
+              }
+            },
+            "required": [
+              "applicability"
+            ]
+          },
+          "then": {
+            "required": [
+              "reason"
+            ]
+          },
+          "else": {
+            "required": [
+              "verdict",
+              "evidence"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "verdict": {
+                "enum": [
+                  "PARTLY",
+                  "NO"
+                ]
+              }
+            },
+            "required": [
+              "verdict"
+            ]
+          },
+          "then": {
+            "required": [
+              "fix"
+            ]
+          }
+        }
+      ],
+      "additionalProperties": true
+    },
+    "renderedArtifact": {
+      "type": "object",
+      "required": [
+        "id",
+        "path",
+        "sha256",
+        "head_sha"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "head_sha": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        }
+      },
+      "additionalProperties": true
+    },
+    "semanticReview": {
+      "type": "object",
+      "required": [
+        "question_ref"
+      ],
+      "properties": {
+        "question_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "basis": {
+          "enum": [
+            "AUTHOR_ONLY",
+            "RENDERED"
+          ]
+        },
+        "artifact_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifact_sha256": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "judgements": {
+          "type": "object",
+          "properties": {
+            "H1": {
+              "$ref": "#/$defs/reviewJudgement"
+            },
+            "H2": {
+              "$ref": "#/$defs/reviewJudgement"
+            },
+            "H3": {
+              "$ref": "#/$defs/reviewJudgement"
+            },
+            "S1": {
+              "$ref": "#/$defs/reviewJudgement"
+            },
+            "S2": {
+              "$ref": "#/$defs/reviewJudgement"
+            },
+            "S3": {
+              "$ref": "#/$defs/reviewJudgement"
+            },
+            "P1": {
+              "$ref": "#/$defs/reviewJudgement"
+            },
+            "P2": {
+              "$ref": "#/$defs/reviewJudgement"
+            },
+            "P3": {
+              "$ref": "#/$defs/reviewJudgement"
+            },
+            "M1": {
+              "$ref": "#/$defs/reviewJudgement"
+            },
+            "M2": {
+              "$ref": "#/$defs/reviewJudgement"
+            },
+            "M3": {
+              "$ref": "#/$defs/reviewJudgement"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "basis": {
+                "const": "AUTHOR_ONLY"
+              }
+            },
+            "required": [
+              "basis"
+            ]
+          },
+          "then": {
+            "required": [
+              "basis"
+            ],
+            "description": "Author assessment retained without rendered acceptance credit."
+          },
+          "else": {
+            "required": [
+              "artifact_ref",
+              "artifact_sha256",
+              "judgements"
+            ],
+            "properties": {
+              "judgements": {
+                "required": [
+                  "H1",
+                  "H2",
+                  "H3",
+                  "S1",
+                  "S2",
+                  "S3",
+                  "P1",
+                  "P2",
+                  "P3",
+                  "M1",
+                  "M2",
+                  "M3"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": true,
+      "description": "Canonical pipeline review. Missing basis preserves legacy rendered semantics; explicit author-only assessments cannot satisfy a post-render review."
     }
   },
   "required": [
@@ -678,11 +897,14 @@
     "rendered_artifacts": {
       "type": "array",
       "items": {
-        "type": "object"
+        "$ref": "#/$defs/renderedArtifact"
       }
     },
     "reviews": {
-      "type": "array"
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/semanticReview"
+      }
     },
     "validation": {
       "type": "object",
