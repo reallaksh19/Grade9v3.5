@@ -1,0 +1,2432 @@
+{
+  "schema": "iss52-qrt-review-ledger/v1",
+  "issue": 52,
+  "round": "POLYNOMIAL-STRESS-V1",
+  "source_matrix": "Shared/quality/question-demand-matrix.v1.json",
+  "source_templates": "Shared/quality/question-demand-templates.v1.json",
+  "exact_render_state": "PENDING",
+  "independent_semantic_review": false,
+  "rows": [
+    {
+      "question_ref": "ISS52-Q1",
+      "label": "Q1",
+      "template_id": "QRT-JUSTIFY-D3",
+      "band": "D3",
+      "primary_demand": "JUSTIFY",
+      "secondary_demands": [
+        "SYNTHESIZE",
+        "APPLY"
+      ],
+      "construction_ref": "CU-MATH-ISS52-FINITE-DATA-1",
+      "microtopic_ref": "MIC-MATH-ISS52-FINITE-DATA",
+      "crux_move_ref": "ISS52-Q1-MOVE-3",
+      "facets": {
+        "H1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 1 help this learner clarify the claim to establish and the evidence or conditions that may legitimately support it?",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 1: What should be made explicit next?",
+              "text": "Separate the bounded and unbounded parts. The four exact values are observations; the degree condition is an additional structural hypothesis.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "ISS52-Q1-MOVE-1"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 2 help this learner correlate the claim to establish and the evidence or conditions that may legitimately support it with a demonstrated theorem, principle, data rule, or warrant, and see why that bridge applies here?",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 2: What should be made explicit next?",
+              "text": "Compare p with a simple polynomial that matches 1,2,5,10. Then ask what zeros their difference must have.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "ISS52-Q1-MOVE-2"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 3 open the way to construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 4: What is the structural move to set up?",
+              "text": "In the unbounded part, use the factor theorem on the difference at all four nodes. Leave the remaining factor arbitrary.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "CRUX",
+              "supports_move_ref": "ISS52-Q1-MOVE-3"
+            },
+            "protected_work": "the decisive warrant, inference, or proof step that establishes the claim. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S1": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does stage 1 show the situation and help this learner see the claim to establish and the evidence or conditions that may legitimately support it, without disclosing the decisive warrant, inference, or proof step that establishes the claim?",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "core1a_teaching_representation_refs": []
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S2": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a stage show a demonstrated theorem, principle, data rule, or warrant in this question's context? Visual job: show givens, evidence, and construction relationships without marking the conclusion as established.",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "visual_job": "show givens, evidence, and construction relationships without marking the conclusion as established"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S3": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a later stage show the way toward construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner?",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the decisive warrant, inference, or proof step that establishes the claim. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Do all pre-attempt panels leave the decisive warrant, inference, or proof step that establishes the claim to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "authored_evidence": {
+            "conditions": [
+              "p(0)=1, p(1)=2, p(2)=5, p(3)=10 are exact.",
+              "First part: p is real with degree at most 3.",
+              "Second part: the degree bound is removed."
+            ],
+            "scaffolds": [
+              {
+                "prompt": "Support 1: What should be made explicit next?",
+                "text": "Separate the bounded and unbounded parts. The four exact values are observations; the degree condition is an additional structural hypothesis.",
+                "support_kind": "REPRESENT",
+                "reveals": "CONCEPT",
+                "learner_stage": "KEY_CONCEPT",
+                "supports_move_ref": "ISS52-Q1-MOVE-1"
+              },
+              {
+                "prompt": "Support 2: What should be made explicit next?",
+                "text": "Compare p with a simple polynomial that matches 1,2,5,10. Then ask what zeros their difference must have.",
+                "support_kind": "CONNECT",
+                "reveals": "CONCEPT",
+                "learner_stage": "REPRESENTATION",
+                "supports_move_ref": "ISS52-Q1-MOVE-2"
+              },
+              {
+                "prompt": "Support 3: What should be made explicit next?",
+                "text": "In the bounded part, compare the number of distinct zeros of the difference with its maximum possible degree. Do not yet name p.",
+                "support_kind": "CONNECT",
+                "reveals": "METHOD",
+                "learner_stage": "FIRST_MOVE",
+                "supports_move_ref": "ISS52-Q1-MOVE-2"
+              },
+              {
+                "prompt": "Support 4: What is the structural move to set up?",
+                "text": "In the unbounded part, use the factor theorem on the difference at all four nodes. Leave the remaining factor arbitrary.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CRUX",
+                "supports_move_ref": "ISS52-Q1-MOVE-3"
+              },
+              {
+                "prompt": "Support 5: What should be made explicit next?",
+                "text": "After you have both conclusions, identify the exact sentence that stops being valid when the degree bound is removed.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CHECKPOINT",
+                "supports_move_ref": "ISS52-Q1-MOVE-4"
+              }
+            ],
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the decisive warrant, inference, or proof step that establishes the claim. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the concept link land where the bridge from the claim to establish and the evidence or conditions that may legitimately support it to a demonstrated theorem, principle, data rule, or warrant is actually taught or repaired?",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "authored_evidence": {
+            "construction_ref": "CU-MATH-ISS52-FINITE-DATA-1",
+            "microtopic_ref": "MIC-MATH-ISS52-FINITE-DATA",
+            "construction_decision": "Finite agreement becomes an identity only after a structural bound makes too many distinct roots impossible for the difference polynomial."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does each solution move explain why it holds here, and does the check challenge the argument with a counterexample, converse, boundary case, independent derivation, or evidence-consistency test?",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "authored_evidence": {
+            "reasoning_route": [
+              {
+                "id": "ISS52-Q1-MOVE-1",
+                "kind": "DECIDE",
+                "action": "Separate what the bounded and unbounded parts are asking.",
+                "why_valid": "The same four data have different identification force depending on the allowed degree.",
+                "inputs": [
+                  "four exact values",
+                  "degree condition"
+                ],
+                "output": "Two inference problems with different admissible classes."
+              },
+              {
+                "id": "ISS52-Q1-MOVE-2",
+                "kind": "REPRESENT",
+                "action": "Compare p with x^2+1 and form their difference.",
+                "why_valid": "x^2+1 matches all four values, so the difference vanishes at 0,1,2,3.",
+                "inputs": [
+                  "data values"
+                ],
+                "output": "A difference polynomial with four named roots."
+              },
+              {
+                "id": "ISS52-Q1-MOVE-3",
+                "kind": "CONNECT",
+                "action": "Use the degree bound to decide whether that difference can be nonzero.",
+                "why_valid": "A nonzero polynomial of degree at most 3 cannot have four distinct real roots.",
+                "inputs": [
+                  "four roots",
+                  "degree at most 3"
+                ],
+                "output": "The bounded candidate is forced and unique."
+              },
+              {
+                "id": "ISS52-Q1-MOVE-4",
+                "kind": "TRANSFORM",
+                "action": "Remove the degree bound by factoring every difference that vanishes at all four nodes.",
+                "why_valid": "Repeated use of the factor theorem gives the product x(x-1)(x-2)(x-3) times an arbitrary real polynomial.",
+                "inputs": [
+                  "four roots"
+                ],
+                "output": "The complete unrestricted family and the exact inference that used the bound."
+              }
+            ],
+            "independent_check": "Substitute x=0,1,2,3 into the bounded candidate. Then set q(x)=1 in the unrestricted family: it gives a different polynomial with the same four data, directly showing why the degree bound is the uniqueness warrant."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Is this likely wrong idea represented: an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof?",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "authored_evidence": {
+            "wrong_idea": "Four matching values are treated as if they determined every polynomial even after the degree bound is removed.",
+            "common_wrong_route": "Four matching values are treated as if they determined every polynomial even after the degree bound is removed."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Would a learner who holds 'an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof' answer the diagnostic differently from a learner who merely slipped?",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "authored_evidence": {
+            "probe": "Change the four observation nodes to three nodes and remove any degree bound. What family of differences can still vanish there?",
+            "expected_pattern": "The difference can contain the product of the three node factors times an arbitrary polynomial; finite agreement alone is not identity."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the repair show why 'an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof' fails and establish this replacement rule: state the warrant explicitly and show why its conditions license this conclusion?",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "authored_evidence": {
+            "replacement_rule": "Finite agreement forces identity only when a degree bound on the difference makes the number of distinct agreement roots impossible for a nonzero difference.",
+            "fresh_application": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+            "return_construction_ref": "CU-MATH-ISS52-FINITE-DATA-1"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        }
+      }
+    },
+    {
+      "question_ref": "ISS52-Q2",
+      "label": "Q2",
+      "template_id": "QRT-SYNTHESIZE-D3",
+      "band": "D3",
+      "primary_demand": "SYNTHESIZE",
+      "secondary_demands": [
+        "JUSTIFY",
+        "APPLY"
+      ],
+      "construction_ref": "CU-MATH-ISS52-MULTIPLICITY-1",
+      "microtopic_ref": "MIC-MATH-ISS52-MULTIPLICITY",
+      "crux_move_ref": "ISS52-Q2-MOVE-2",
+      "facets": {
+        "H1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 1 help this learner clarify the dependency between subproblems or ideas that makes their order or coordination matter?",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 1: What should be made explicit next?",
+              "text": "Translate each local sign statement into only a parity statement about multiplicity: odd versus even.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "ISS52-Q2-MOVE-1"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 2 help this learner correlate the dependency between subproblems or ideas that makes their order or coordination matter with a demonstrated component idea that can anchor the first valid bridge, and see why that bridge applies here?",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 2: What should be made explicit next?",
+              "text": "Write the least positive multiplicity compatible with each parity and add them before choosing any coefficients.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "ISS52-Q2-MOVE-2"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 3 open the way to coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 4: What is the structural move to set up?",
+              "text": "Once the multiplicities are fixed, write the factorized form with one unknown scalar and use p(1) only for that scalar.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "CRUX",
+              "supports_move_ref": "ISS52-Q2-MOVE-2"
+            },
+            "protected_work": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S1": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does stage 1 show the situation and help this learner see the dependency between subproblems or ideas that makes their order or coordination matter, without disclosing the bridge or ordering decision that unlocks the multi-step route?",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "core1a_teaching_representation_refs": []
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S2": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a stage show a demonstrated component idea that can anchor the first valid bridge in this question's context? Visual job: make dependencies, shared conditions, or state transitions visible without completing the route.",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "visual_job": "make dependencies, shared conditions, or state transitions visible without completing the route"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S3": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a later stage show the way toward coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner?",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Do all pre-attempt panels leave the bridge or ordering decision that unlocks the multi-step route to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "authored_evidence": {
+            "conditions": [
+              "p is nonzero, real, degree at most 4.",
+              "Zeros are -2, 0 and 2.",
+              "The sign changes at -2 and 2 but not across 0 locally.",
+              "p(1)=-3."
+            ],
+            "scaffolds": [
+              {
+                "prompt": "Support 1: What should be made explicit next?",
+                "text": "Translate each local sign statement into only a parity statement about multiplicity: odd versus even.",
+                "support_kind": "REPRESENT",
+                "reveals": "CONCEPT",
+                "learner_stage": "KEY_CONCEPT",
+                "supports_move_ref": "ISS52-Q2-MOVE-1"
+              },
+              {
+                "prompt": "Support 2: What should be made explicit next?",
+                "text": "Write the least positive multiplicity compatible with each parity and add them before choosing any coefficients.",
+                "support_kind": "CONNECT",
+                "reveals": "CONCEPT",
+                "learner_stage": "REPRESENTATION",
+                "supports_move_ref": "ISS52-Q2-MOVE-2"
+              },
+              {
+                "prompt": "Support 3: What should be made explicit next?",
+                "text": "Compare that minimum total with the degree-at-most-4 budget. Ask whether any multiplicity can be increased.",
+                "support_kind": "CONNECT",
+                "reveals": "METHOD",
+                "learner_stage": "FIRST_MOVE",
+                "supports_move_ref": "ISS52-Q2-MOVE-2"
+              },
+              {
+                "prompt": "Support 4: What is the structural move to set up?",
+                "text": "Once the multiplicities are fixed, write the factorized form with one unknown scalar and use p(1) only for that scalar.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CRUX",
+                "supports_move_ref": "ISS52-Q2-MOVE-2"
+              },
+              {
+                "prompt": "Support 5: What should be made explicit next?",
+                "text": "Check the local sign behaviour directly from the factor parities; do not treat p(1) as a sign-pattern proof.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CHECKPOINT",
+                "supports_move_ref": "ISS52-Q2-MOVE-4"
+              }
+            ],
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the concept link land where the bridge from the dependency between subproblems or ideas that makes their order or coordination matter to a demonstrated component idea that can anchor the first valid bridge is actually taught or repaired?",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "authored_evidence": {
+            "construction_ref": "CU-MATH-ISS52-MULTIPLICITY-1",
+            "microtopic_ref": "MIC-MATH-ISS52-MULTIPLICITY",
+            "construction_decision": "Local sign behaviour determines only the parity of a root's multiplicity; the degree budget and other constraints are what turn those parities into exact multiplicities."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does each solution move explain why it holds here, and does the check verify through an independent invariant, alternate route, limiting case, or consistency relation?",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "authored_evidence": {
+            "reasoning_route": [
+              {
+                "id": "ISS52-Q2-MOVE-1",
+                "kind": "DECIDE",
+                "action": "Translate each local sign statement into multiplicity parity.",
+                "why_valid": "Odd multiplicity changes sign; even multiplicity preserves local sign.",
+                "inputs": [
+                  "sign data at three zeros"
+                ],
+                "output": "Odd parity at -2,2 and even parity at 0."
+              },
+              {
+                "id": "ISS52-Q2-MOVE-2",
+                "kind": "CONNECT",
+                "action": "Use the total degree budget to determine the only possible positive multiplicities.",
+                "why_valid": "The least positive odd/even multiplicities already sum to four, the maximum allowed degree.",
+                "inputs": [
+                  "parities",
+                  "degree at most 4"
+                ],
+                "output": "Multiplicities 1,2,1."
+              },
+              {
+                "id": "ISS52-Q2-MOVE-3",
+                "kind": "TRANSFORM",
+                "action": "Write the factorized polynomial and use p(1)=-3 to determine its scale.",
+                "why_valid": "The factor theorem supplies one factor per multiplicity; the remaining freedom is one nonzero scalar.",
+                "inputs": [
+                  "multiplicities",
+                  "p(1)=-3"
+                ],
+                "output": "A single candidate polynomial."
+              },
+              {
+                "id": "ISS52-Q2-MOVE-4",
+                "kind": "VERIFY",
+                "action": "Check the value and local sign behaviour directly from the factorization.",
+                "why_valid": "The simple factors flip sign and x^2 does not; substitution checks the scale.",
+                "inputs": [
+                  "candidate"
+                ],
+                "output": "All supplied conditions verified and uniqueness closed."
+              }
+            ],
+            "independent_check": "Use the factorization x^2(x-2)(x+2): the simple factors force sign changes at ±2, the square prevents a sign change at 0, and substitution at x=1 returns -3."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Is this likely wrong idea represented: pieces are solved independently or chained in a convenient but invalid order?",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "authored_evidence": {
+            "wrong_idea": "Every listed zero is assumed simple, ignoring that local sign behaviour determines parity of multiplicity.",
+            "common_wrong_route": "Every listed zero is assumed simple, ignoring that local sign behaviour determines parity of multiplicity."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Would a learner who holds 'pieces are solved independently or chained in a convenient but invalid order' answer the diagnostic differently from a learner who merely slipped?",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "authored_evidence": {
+            "probe": "A zero has the same nonzero sign immediately on both sides. What multiplicity parity is compatible with that local behaviour?",
+            "expected_pattern": "Same nonzero sign on both sides requires even multiplicity; odd multiplicity changes sign."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the repair show why 'pieces are solved independently or chained in a convenient but invalid order' fails and establish this replacement rule: identify dependencies, establish the bridge quantity or condition, then propagate it through the chain?",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "authored_evidence": {
+            "replacement_rule": "Use local sign change only to determine multiplicity parity; use the total degree budget and value/scale conditions to determine exact multiplicities and the polynomial.",
+            "fresh_application": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+            "return_construction_ref": "CU-MATH-ISS52-MULTIPLICITY-1"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        }
+      }
+    },
+    {
+      "question_ref": "ISS52-Q3",
+      "label": "Q3",
+      "template_id": "QRT-JUSTIFY-D4",
+      "band": "D4",
+      "primary_demand": "JUSTIFY",
+      "secondary_demands": [
+        "SYNTHESIZE",
+        "MODEL"
+      ],
+      "construction_ref": "CU-MATH-ISS52-MIN-DEGREE-1",
+      "microtopic_ref": "MIC-MATH-ISS52-MIN-DEGREE",
+      "crux_move_ref": "ISS52-Q3-MOVE-3",
+      "facets": {
+        "H1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 1 help this learner clarify the claim to establish and the evidence or conditions that may legitimately support it?",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 1: What should be made explicit next?",
+              "text": "Factor the two required real zeros first and call the remaining factor g. Translate p(0)=p(2)=1 into two values of g.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "ISS52-Q3-MOVE-1"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 2 help this learner correlate the claim to establish and the evidence or conditions that may legitimately support it with a demonstrated theorem, principle, data rule, or warrant, and see why that bridge applies here?",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 2: What should be made explicit next?",
+              "text": "A proposed total degree gives a maximum degree for g. Start by eliminating constant and linear g.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "ISS52-Q3-MOVE-2"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 3 open the way to construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 4: What is the structural move to set up?",
+              "text": "If that root is simple, a real quadratic has a second real root. Ask where that second root is allowed to be, then test whether those two roots can satisfy both required g-values.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "CRUX",
+              "supports_move_ref": "ISS52-Q3-MOVE-3"
+            },
+            "protected_work": "the decisive warrant, inference, or proof step that establishes the claim. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S1": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does stage 1 show the situation and help this learner see the claim to establish and the evidence or conditions that may legitimately support it, without disclosing the decisive warrant, inference, or proof step that establishes the claim?",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "core1a_teaching_representation_refs": []
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S2": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a stage show a demonstrated theorem, principle, data rule, or warrant in this question's context? Visual job: show givens, evidence, and construction relationships without marking the conclusion as established.",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "visual_job": "show givens, evidence, and construction relationships without marking the conclusion as established"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S3": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a later stage show the way toward construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner?",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the decisive warrant, inference, or proof step that establishes the claim. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Do all pre-attempt panels leave the decisive warrant, inference, or proof step that establishes the claim to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "authored_evidence": {
+            "conditions": [
+              "The distinct real zeros must be exactly -1 and 1.",
+              "p(0)=p(2)=1.",
+              "Continuity and the factor theorem may be used."
+            ],
+            "scaffolds": [
+              {
+                "prompt": "Support 1: What should be made explicit next?",
+                "text": "Factor the two required real zeros first and call the remaining factor g. Translate p(0)=p(2)=1 into two values of g.",
+                "support_kind": "REPRESENT",
+                "reveals": "CONCEPT",
+                "learner_stage": "KEY_CONCEPT",
+                "supports_move_ref": "ISS52-Q3-MOVE-1"
+              },
+              {
+                "prompt": "Support 2: What should be made explicit next?",
+                "text": "A proposed total degree gives a maximum degree for g. Start by eliminating constant and linear g.",
+                "support_kind": "CONNECT",
+                "reveals": "CONCEPT",
+                "learner_stage": "REPRESENTATION",
+                "supports_move_ref": "ISS52-Q3-MOVE-2"
+              },
+              {
+                "prompt": "Support 3: What should be made explicit next?",
+                "text": "For quadratic g, use the opposite signs of g(0) and g(2) to force a real root between them, then use the exact allowed zero set to locate it.",
+                "support_kind": "CONNECT",
+                "reveals": "METHOD",
+                "learner_stage": "FIRST_MOVE",
+                "supports_move_ref": "ISS52-Q3-MOVE-2"
+              },
+              {
+                "prompt": "Support 4: What is the structural move to set up?",
+                "text": "If that root is simple, a real quadratic has a second real root. Ask where that second root is allowed to be, then test whether those two roots can satisfy both required g-values.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CRUX",
+                "supports_move_ref": "ISS52-Q3-MOVE-3"
+              },
+              {
+                "prompt": "Support 5: What should be made explicit next?",
+                "text": "Only after all smaller degrees fail, design a degree-5 witness whose remaining quadratic has no real roots; solve its scale from the value conditions.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CHECKPOINT",
+                "supports_move_ref": "ISS52-Q3-MOVE-4"
+              }
+            ],
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the decisive warrant, inference, or proof step that establishes the claim. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the concept link land where the bridge from the claim to establish and the evidence or conditions that may legitimately support it to a demonstrated theorem, principle, data rule, or warrant is actually taught or repaired?",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "authored_evidence": {
+            "construction_ref": "CU-MATH-ISS52-MIN-DEGREE-1",
+            "microtopic_ref": "MIC-MATH-ISS52-MIN-DEGREE",
+            "construction_decision": "A construction proves possibility only; minimality needs a lower-bound argument that eliminates every smaller degree while respecting the exact real-zero set."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does each solution move explain why it holds here, and does the check challenge the argument with a counterexample, converse, boundary case, independent derivation, or evidence-consistency test?",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "authored_evidence": {
+            "reasoning_route": [
+              {
+                "id": "ISS52-Q3-MOVE-1",
+                "kind": "REPRESENT",
+                "action": "Factor out the two required real zeros and translate the two value conditions to the remaining factor.",
+                "why_valid": "The factor theorem gives p=(x^2-1)g and the values determine g(0),g(2).",
+                "inputs": [
+                  "zeros ±1",
+                  "p(0)=p(2)=1"
+                ],
+                "output": "Constraints g(0)=-1 and g(2)=1/3."
+              },
+              {
+                "id": "ISS52-Q3-MOVE-2",
+                "kind": "DECIDE",
+                "action": "Eliminate total degrees 2 and 3.",
+                "why_valid": "A constant g cannot take both required values; a linear g is forced and its real zero creates an extra zero of p.",
+                "inputs": [
+                  "g values"
+                ],
+                "output": "Degrees 2 and 3 are impossible."
+              },
+              {
+                "id": "ISS52-Q3-MOVE-3",
+                "kind": "CONNECT",
+                "action": "Eliminate total degree 4 using continuity, exact-zero-set restrictions, and the two value conditions on the quadratic g.",
+                "why_valid": "The endpoint sign change forces a root of g in (0,2), hence at the only allowed point 1. That root must be simple, so a quadratic has a second real root. The exact zero set forces it to be -1, giving g=k(x^2-1); then g(0)=-1 forces k=1 but g(2)=3, contradicting the required 1/3.",
+                "inputs": [
+                  "g(0)<0",
+                  "g(2)>0"
+                ],
+                "output": "Degree 4 is impossible without violating either the exact zero set or the required values."
+              },
+              {
+                "id": "ISS52-Q3-MOVE-4",
+                "kind": "TRANSFORM",
+                "action": "Construct a degree-5 example with a repeated allowed root and a quadratic having no real roots.",
+                "why_valid": "A negative quadratic discriminant prevents extra real zeros while the value constraints can be met exactly.",
+                "inputs": [
+                  "degree at least 5"
+                ],
+                "output": "A verified degree-5 witness, proving minimality."
+              }
+            ],
+            "independent_check": "For the degree-5 witness, substitute x=0 and x=2, verify zeros at ±1, and check the remaining quadratic has discriminant -3. For the lower bound, the degree-4 auxiliary quadratic would have to have roots 1 and -1, which contradicts its two required values."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Is this likely wrong idea represented: an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof?",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "authored_evidence": {
+            "wrong_idea": "Finding one degree-5 example is mistaken for proving degree 5 is least.",
+            "common_wrong_route": "Finding one degree-5 example is mistaken for proving degree 5 is least."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Would a learner who holds 'an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof' answer the diagnostic differently from a learner who merely slipped?",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "authored_evidence": {
+            "probe": "If an auxiliary quadratic changes sign between two inputs, can its only real zero be a double root? Explain.",
+            "expected_pattern": "No. A quadratic with one real zero has that zero double and does not change sign there."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the repair show why 'an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof' fails and establish this replacement rule: state the warrant explicitly and show why its conditions license this conclusion?",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "authored_evidence": {
+            "replacement_rule": "Minimality requires two obligations: eliminate every smaller degree under the exact-zero-set constraints, then construct and verify a witness at the first surviving degree.",
+            "fresh_application": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+            "return_construction_ref": "CU-MATH-ISS52-MIN-DEGREE-1"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        }
+      }
+    },
+    {
+      "question_ref": "ISS52-Q4",
+      "label": "Q4",
+      "template_id": "QRT-SYNTHESIZE-D4",
+      "band": "D4",
+      "primary_demand": "SYNTHESIZE",
+      "secondary_demands": [
+        "JUSTIFY",
+        "MODEL"
+      ],
+      "construction_ref": "CU-MATH-ISS52-PARAMETER-1",
+      "microtopic_ref": "MIC-MATH-ISS52-PARAMETER",
+      "crux_move_ref": "ISS52-Q4-MOVE-2",
+      "facets": {
+        "H1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 1 help this learner clarify the dependency between subproblems or ideas that makes their order or coordination matter?",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 1: What should be made explicit next?",
+              "text": "Factor F_a before making a case table. Keep the fixed linear roots separate from the parameter-dependent factor.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "ISS52-Q4-MOVE-1"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 2 help this learner correlate the dependency between subproblems or ideas that makes their order or coordination matter with a demonstrated component idea that can anchor the first valid bridge, and see why that bridge applies here?",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 2: What should be made explicit next?",
+              "text": "Ask what algebraic equality would make the polynomial lose its top degree, without solving that equality yet.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "ISS52-Q4-MOVE-2"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 3 open the way to coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 4: What is the structural move to set up?",
+              "text": "A distinct-root count can also change at an isolated collision. Set up, but do not skip, the condition that an extra root equals an already fixed root.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "CRUX",
+              "supports_move_ref": "ISS52-Q4-MOVE-2"
+            },
+            "protected_work": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S1": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does stage 1 show the situation and help this learner see the dependency between subproblems or ideas that makes their order or coordination matter, without disclosing the bridge or ordering decision that unlocks the multi-step route?",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "core1a_teaching_representation_refs": [
+              "REP-ISS52-PARAM-EVENT-MAP"
+            ]
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S2": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a stage show a demonstrated component idea that can anchor the first valid bridge in this question's context? Visual job: make dependencies, shared conditions, or state transitions visible without completing the route.",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "visual_job": "make dependencies, shared conditions, or state transitions visible without completing the route"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S3": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a later stage show the way toward coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner?",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Do all pre-attempt panels leave the bridge or ordering decision that unlocks the multi-step route to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "authored_evidence": {
+            "conditions": [
+              "a is real.",
+              "F_a(x)=(a-1)x^4+2(a-1)x^3+(a+2)x^2+2(a+2)x.",
+              "Classify degree, distinct real zeros, exceptional values and multiplicities for all a."
+            ],
+            "scaffolds": [
+              {
+                "prompt": "Support 1: What should be made explicit next?",
+                "text": "Factor F_a before making a case table. Keep the fixed linear roots separate from the parameter-dependent factor.",
+                "support_kind": "REPRESENT",
+                "reveals": "CONCEPT",
+                "learner_stage": "KEY_CONCEPT",
+                "supports_move_ref": "ISS52-Q4-MOVE-1"
+              },
+              {
+                "prompt": "Support 2: What should be made explicit next?",
+                "text": "Ask what algebraic equality would make the polynomial lose its top degree, without solving that equality yet.",
+                "support_kind": "CONNECT",
+                "reveals": "CONCEPT",
+                "learner_stage": "REPRESENTATION",
+                "supports_move_ref": "ISS52-Q4-MOVE-2"
+              },
+              {
+                "prompt": "Support 3: What should be made explicit next?",
+                "text": "For the parameter-dependent factor, express extra real roots through an x^2 condition and record the sign requirement for those roots to exist.",
+                "support_kind": "CONNECT",
+                "reveals": "METHOD",
+                "learner_stage": "FIRST_MOVE",
+                "supports_move_ref": "ISS52-Q4-MOVE-2"
+              },
+              {
+                "prompt": "Support 4: What is the structural move to set up?",
+                "text": "A distinct-root count can also change at an isolated collision. Set up, but do not skip, the condition that an extra root equals an already fixed root.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CRUX",
+                "supports_move_ref": "ISS52-Q4-MOVE-2"
+              },
+              {
+                "prompt": "Support 5: What should be made explicit next?",
+                "text": "After deriving all critical values, order them and test one point per open interval; refactor the critical points separately for multiplicity.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CHECKPOINT",
+                "supports_move_ref": "ISS52-Q4-MOVE-4"
+              }
+            ],
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the concept link land where the bridge from the dependency between subproblems or ideas that makes their order or coordination matter to a demonstrated component idea that can anchor the first valid bridge is actually taught or repaired?",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "authored_evidence": {
+            "construction_ref": "CU-MATH-ISS52-PARAMETER-1",
+            "microtopic_ref": "MIC-MATH-ISS52-PARAMETER",
+            "construction_decision": "Do not start by sampling parameter values. First derive every equality or sign boundary at which degree, root existence or root coincidence can change; those events determine the exhaustive case split."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does each solution move explain why it holds here, and does the check verify through an independent invariant, alternate route, limiting case, or consistency relation?",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "authored_evidence": {
+            "reasoning_route": [
+              {
+                "id": "ISS52-Q4-MOVE-1",
+                "kind": "REPRESENT",
+                "action": "Factor F_a so fixed roots and the parameter-dependent quadratic are visible.",
+                "why_valid": "Factoring preserves the polynomial while isolating all ways its root structure can change.",
+                "inputs": [
+                  "given F_a"
+                ],
+                "output": "F_a=x(x+2)((a-1)x^2+(a+2))."
+              },
+              {
+                "id": "ISS52-Q4-MOVE-2",
+                "kind": "DECIDE",
+                "action": "Derive the complete event list before choosing sample parameter values.",
+                "why_valid": "The classification can change only if the leading coefficient vanishes, the quadratic switches between no/two real roots, or an extra root collides with a fixed root.",
+                "inputs": [
+                  "factorized form"
+                ],
+                "output": "Three event equations: degree drop, existence boundary and collision."
+              },
+              {
+                "id": "ISS52-Q4-MOVE-3",
+                "kind": "TRANSFORM",
+                "action": "Solve the event equations, order the critical parameter values and classify each open interval plus each event point.",
+                "why_valid": "Between critical values none of the defining sign/equality conditions changes, so the root pattern is stable.",
+                "inputs": [
+                  "event equations"
+                ],
+                "output": "An exhaustive parameter partition with degree and distinct-root counts."
+              },
+              {
+                "id": "ISS52-Q4-MOVE-4",
+                "kind": "VERIFY",
+                "action": "At each exceptional parameter, refactor to read multiplicities and check no event was omitted.",
+                "why_valid": "Direct factorization at event values verifies collisions/degree drop; the event derivation proves exhaustiveness.",
+                "inputs": [
+                  "critical values"
+                ],
+                "output": "Complete case table with multiplicities at exceptions."
+              }
+            ],
+            "independent_check": "Choose one test value in each open parameter interval and compare its real-root count with the table; then refactor exactly at a=-2, a=2/5 and a=1 to verify multiplicities and the degree drop."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Is this likely wrong idea represented: pieces are solved independently or chained in a convenient but invalid order?",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "authored_evidence": {
+            "wrong_idea": "Generic roots are computed for one parameter range but degree-drop and collision values are not derived, so the classification is not exhaustive.",
+            "common_wrong_route": "Generic roots are computed for one parameter range but degree-drop and collision values are not derived, so the classification is not exhaustive."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Would a learner who holds 'pieces are solved independently or chained in a convenient but invalid order' answer the diagnostic differently from a learner who merely slipped?",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "authored_evidence": {
+            "probe": "For a changed parameter family with fixed roots, name every event type that must be solved before interval sampling.",
+            "expected_pattern": "Check degree drop, real-root existence boundaries, and collisions with already fixed roots before splitting intervals."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the repair show why 'pieces are solved independently or chained in a convenient but invalid order' fails and establish this replacement rule: identify dependencies, establish the bridge quantity or condition, then propagate it through the chain?",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "authored_evidence": {
+            "replacement_rule": "An exhaustive parameter classification starts by deriving every structural event at which degree, real-root existence, or root coincidence can change; only then may intervals be sampled.",
+            "fresh_application": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+            "return_construction_ref": "CU-MATH-ISS52-PARAMETER-1"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        }
+      }
+    },
+    {
+      "question_ref": "ISS52-Q5",
+      "label": "Q5",
+      "template_id": "QRT-MODEL-D3",
+      "band": "D3",
+      "primary_demand": "MODEL",
+      "secondary_demands": [
+        "JUSTIFY",
+        "REPRESENT"
+      ],
+      "construction_ref": "CU-MATH-ISS52-MODEL-1",
+      "microtopic_ref": "MIC-MATH-ISS52-MODEL",
+      "crux_move_ref": "ISS52-Q5-MOVE-2",
+      "facets": {
+        "H1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 1 help this learner clarify which features of the situation determine the model, law, or strategy and which features are irrelevant?",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 1: What should be made explicit next?",
+              "text": "Start from the box dimensions after the corner cuts: identify height and the two equal base sides.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "ISS52-Q5-MOVE-1"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 2 help this learner correlate which features of the situation determine the model, law, or strategy and which features are irrelevant with a demonstrated model's assumptions, invariants, or selection cues, and see why that bridge applies here?",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 2: What should be made explicit next?",
+              "text": "Derive the admissible non-degenerate x-domain from positive physical dimensions before comparing formulas.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "ISS52-Q5-MOVE-2"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 3 open the way to choose or formulate the governing model and map the situation into it while leaving the final model, law, or strategy choice or formulation to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 4: What is the structural move to set up?",
+              "text": "Compare the two accounts at a new admissible input or factor their difference; finite agreement at the recorded inputs is not the model-selection warrant.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "CRUX",
+              "supports_move_ref": "ISS52-Q5-MOVE-2"
+            },
+            "protected_work": "the final model, law, or strategy choice or formulation. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S1": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does stage 1 show the situation and help this learner see which features of the situation determine the model, law, or strategy and which features are irrelevant, without disclosing the final model, law, or strategy choice or formulation?",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "core1a_teaching_representation_refs": []
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S2": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a stage show a demonstrated model's assumptions, invariants, or selection cues in this question's context? Visual job: surface features that discriminate between candidate models without naming the winning model.",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "visual_job": "surface features that discriminate between candidate models without naming the winning model"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S3": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a later stage show the way toward choose or formulate the governing model and map the situation into it while leaving the final model, law, or strategy choice or formulation to the learner?",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the final model, law, or strategy choice or formulation. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Do all pre-attempt panels leave the final model, law, or strategy choice or formulation to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "authored_evidence": {
+            "conditions": [
+              "The sheet is a 10 cm square and corner cuts have side x cm.",
+              "x=0 is a flat limiting configuration; a non-degenerate box requires positive dimensions.",
+              "The table values at x=0,1,2 are exact.",
+              "The competing fit is Q(x)=-28x^2+92x."
+            ],
+            "scaffolds": [
+              {
+                "prompt": "Support 1: What should be made explicit next?",
+                "text": "Start from the box dimensions after the corner cuts: identify height and the two equal base sides.",
+                "support_kind": "REPRESENT",
+                "reveals": "CONCEPT",
+                "learner_stage": "KEY_CONCEPT",
+                "supports_move_ref": "ISS52-Q5-MOVE-1"
+              },
+              {
+                "prompt": "Support 2: What should be made explicit next?",
+                "text": "Derive the admissible non-degenerate x-domain from positive physical dimensions before comparing formulas.",
+                "support_kind": "CONNECT",
+                "reveals": "CONCEPT",
+                "learner_stage": "REPRESENTATION",
+                "supports_move_ref": "ISS52-Q5-MOVE-2"
+              },
+              {
+                "prompt": "Support 3: What should be made explicit next?",
+                "text": "Derive V(x) from base area times height. Treat the quadratic only as a formula known to match three rows.",
+                "support_kind": "CONNECT",
+                "reveals": "METHOD",
+                "learner_stage": "FIRST_MOVE",
+                "supports_move_ref": "ISS52-Q5-MOVE-2"
+              },
+              {
+                "prompt": "Support 4: What is the structural move to set up?",
+                "text": "Compare the two accounts at a new admissible input or factor their difference; finite agreement at the recorded inputs is not the model-selection warrant.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CRUX",
+                "supports_move_ref": "ISS52-Q5-MOVE-2"
+              },
+              {
+                "prompt": "Support 5: What should be made explicit next?",
+                "text": "Use a physical invariant such as nonnegative volume inside the valid domain as an independent check.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CHECKPOINT",
+                "supports_move_ref": "ISS52-Q5-MOVE-4"
+              }
+            ],
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the final model, law, or strategy choice or formulation. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the concept link land where the bridge from which features of the situation determine the model, law, or strategy and which features are irrelevant to a demonstrated model's assumptions, invariants, or selection cues is actually taught or repaired?",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "authored_evidence": {
+            "construction_ref": "CU-MATH-ISS52-MODEL-1",
+            "microtopic_ref": "MIC-MATH-ISS52-MODEL",
+            "construction_decision": "Matching a finite table is evidence of agreement at those inputs, not a license to replace a model derived from the mechanism and its domain."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does each solution move explain why it holds here, and does the check test the chosen model against its assumptions, dimensions, limiting cases, or a plausible alternative model?",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "authored_evidence": {
+            "reasoning_route": [
+              {
+                "id": "ISS52-Q5-MOVE-1",
+                "kind": "REPRESENT",
+                "action": "Derive the box volume from its dimensions after the cuts.",
+                "why_valid": "Base-area times height is the governing geometry, not an arbitrary curve fit.",
+                "inputs": [
+                  "10 cm sheet",
+                  "cut x"
+                ],
+                "output": "V=x(10-2x)^2 with the physical dimensions visible."
+              },
+              {
+                "id": "ISS52-Q5-MOVE-2",
+                "kind": "DECIDE",
+                "action": "State the non-degenerate domain and decide which account is a model versus an interpolant.",
+                "why_valid": "Positive height and base side constrain x; matching three rows alone does not encode the construction.",
+                "inputs": [
+                  "box geometry",
+                  "three-row table",
+                  "Q"
+                ],
+                "output": "A physical model/domain and a separate empirical interpolant."
+              },
+              {
+                "id": "ISS52-Q5-MOVE-3",
+                "kind": "TRANSFORM",
+                "action": "Compare the two formulas algebraically and choose a new admissible input.",
+                "why_valid": "Their difference exposes the recorded interpolation nodes; a new point tests whether the accounts agree away from them.",
+                "inputs": [
+                  "V",
+                  "Q"
+                ],
+                "output": "A discriminating exact calculation."
+              },
+              {
+                "id": "ISS52-Q5-MOVE-4",
+                "kind": "VERIFY",
+                "action": "Check that the new input lies in the physical domain and that volume remains nonnegative.",
+                "why_valid": "A geometric volume cannot become negative on a valid box domain.",
+                "inputs": [
+                  "chosen input"
+                ],
+                "output": "A domain-consistent rejection of the fitted quadratic as the volume model."
+              }
+            ],
+            "independent_check": "Use an admissible new input such as x=4: V(4)=16 while Q(4)=-80. The disagreement occurs inside 0<x<5, so it is not a boundary artifact and the fitted quadratic cannot be the box-volume model."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Is this likely wrong idea represented: the most familiar model is selected from keywords instead of checking assumptions?",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "authored_evidence": {
+            "wrong_idea": "The interpolating quadratic is accepted because it matches all recorded rows, without checking the geometry or physical domain.",
+            "common_wrong_route": "The interpolating quadratic is accepted because it matches all recorded rows, without checking the geometry or physical domain."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Would a learner who holds 'the most familiar model is selected from keywords instead of checking assumptions' answer the diagnostic differently from a learner who merely slipped?",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "authored_evidence": {
+            "probe": "Two candidate formulas match three physical measurements. What additional evidence distinguishes mechanism-derived model from interpolation?",
+            "expected_pattern": "Derive the governing relation/domain from the mechanism or use a new admissible test; finite interpolation alone is insufficient."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the repair show why 'the most familiar model is selected from keywords instead of checking assumptions' fails and establish this replacement rule: compare candidate models against the stated conditions and choose the one whose assumptions fit?",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "authored_evidence": {
+            "replacement_rule": "A physical polynomial model is derived from the mechanism and its admissible domain; finite interpolation points alone do not identify the governing law.",
+            "fresh_application": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+            "return_construction_ref": "CU-MATH-ISS52-MODEL-1"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        }
+      }
+    },
+    {
+      "question_ref": "ISS52-Q6",
+      "label": "Q6",
+      "template_id": "QRT-EXPLAIN-D2",
+      "band": "D2",
+      "primary_demand": "EXPLAIN",
+      "secondary_demands": [
+        "JUSTIFY",
+        "APPLY"
+      ],
+      "construction_ref": "CU-MATH-ISS52-DOMAIN-1",
+      "microtopic_ref": "MIC-MATH-ISS52-DOMAIN",
+      "crux_move_ref": "ISS52-Q6-MOVE-2",
+      "facets": {
+        "H1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 1 help this learner clarify the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement?",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 1: What should be made explicit next?",
+              "text": "Write the original excluded input x=a before any algebraic cancellation.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "ISS52-Q6-MOVE-1"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 2 help this learner correlate the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement with a demonstrated mechanism or principle that can account for it, and see why that bridge applies here?",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 2: What should be made explicit next?",
+              "text": "Factor the numerator and simplify only under the already recorded condition x≠a.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "ISS52-Q6-MOVE-2"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 3 open the way to build the explanatory chain from principle to outcome while leaving the causal or linking statement that completes the explanation to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 3: What is the structural move to set up?",
+              "text": "A zero must both make the simplified rule zero and belong to the original domain. Check the special parameter value where those two facts conflict.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "CRUX",
+              "supports_move_ref": "ISS52-Q6-MOVE-2"
+            },
+            "protected_work": "the causal or linking statement that completes the explanation. Band protection: Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S1": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does stage 1 show the situation and help this learner see the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement, without disclosing the causal or linking statement that completes the explanation?",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "core1a_teaching_representation_refs": []
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S2": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a stage show a demonstrated mechanism or principle that can account for it in this question's context? Visual job: show causal states, dependencies, or before/after relations without writing the conclusion.",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "visual_job": "show causal states, dependencies, or before/after relations without writing the conclusion"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S3": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a later stage show the way toward build the explanatory chain from principle to outcome while leaving the causal or linking statement that completes the explanation to the learner?",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the causal or linking statement that completes the explanation. Band protection: Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Do all pre-attempt panels leave the causal or linking statement that completes the explanation to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "authored_evidence": {
+            "conditions": [
+              "R_a is defined by the given quotient on its original domain x!=a.",
+              "a is real.",
+              "Polynomial extension and original-domain function must be discussed separately."
+            ],
+            "scaffolds": [
+              {
+                "prompt": "Support 1: What should be made explicit next?",
+                "text": "Write the original excluded input x=a before any algebraic cancellation.",
+                "support_kind": "REPRESENT",
+                "reveals": "CONCEPT",
+                "learner_stage": "KEY_CONCEPT",
+                "supports_move_ref": "ISS52-Q6-MOVE-1"
+              },
+              {
+                "prompt": "Support 2: What should be made explicit next?",
+                "text": "Factor the numerator and simplify only under the already recorded condition x≠a.",
+                "support_kind": "CONNECT",
+                "reveals": "CONCEPT",
+                "learner_stage": "REPRESENTATION",
+                "supports_move_ref": "ISS52-Q6-MOVE-2"
+              },
+              {
+                "prompt": "Support 3: What is the structural move to set up?",
+                "text": "A zero must both make the simplified rule zero and belong to the original domain. Check the special parameter value where those two facts conflict.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CRUX",
+                "supports_move_ref": "ISS52-Q6-MOVE-2"
+              }
+            ],
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the causal or linking statement that completes the explanation. Band protection: Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the concept link land where the bridge from the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement to a demonstrated mechanism or principle that can account for it is actually taught or repaired?",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "authored_evidence": {
+            "construction_ref": "CU-MATH-ISS52-DOMAIN-1",
+            "microtopic_ref": "MIC-MATH-ISS52-DOMAIN",
+            "construction_decision": "Cancelling a common factor simplifies the rule only where the cancelled denominator was nonzero; assigning a value at the hole is a separate extension operation."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does each solution move explain why it holds here, and does the check test the explanation against a changed condition, counterexample, or predicted consequence?",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "authored_evidence": {
+            "reasoning_route": [
+              {
+                "id": "ISS52-Q6-MOVE-1",
+                "kind": "TRANSFORM",
+                "action": "Factor the numerator and cancel only under the original restriction x!=a.",
+                "why_valid": "Division by x-a is valid only where that factor is nonzero.",
+                "inputs": [
+                  "numerator",
+                  "original domain"
+                ],
+                "output": "The simplified rule x-1 on R\\{a}."
+              },
+              {
+                "id": "ISS52-Q6-MOVE-2",
+                "kind": "DECIDE",
+                "action": "Classify whether x=1 is an allowed zero as a varies.",
+                "why_valid": "A zero must both make the rule zero and belong to the function's domain.",
+                "inputs": [
+                  "simplified rule",
+                  "excluded input a"
+                ],
+                "output": "One zero when a!=1; no zeros when a=1."
+              },
+              {
+                "id": "ISS52-Q6-MOVE-3",
+                "kind": "CONNECT",
+                "action": "Describe the polynomial extension separately from the original function.",
+                "why_valid": "Extension intentionally assigns a value at the hole; simplification alone does not alter the original domain.",
+                "inputs": [
+                  "original-domain function"
+                ],
+                "output": "The all-real polynomial x-1, distinguished from every R_a."
+              }
+            ],
+            "independent_check": "Compare a=2 with a=1. For a=2 the original domain includes x=1, so 1 is a zero; for a=1 the same input is the hole, so the original function has no zero even though its polynomial extension does."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Is this likely wrong idea represented: the outcome is restated, labelled, or accompanied by a formula without explaining why it follows?",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "authored_evidence": {
+            "wrong_idea": "Cancellation is treated as permission to restore the excluded input and thereby change the function.",
+            "common_wrong_route": "Cancellation is treated as permission to restore the excluded input and thereby change the function."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Would a learner who holds 'the outcome is restated, labelled, or accompanied by a formula without explaining why it follows' answer the diagnostic differently from a learner who merely slipped?",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "authored_evidence": {
+            "probe": "After cancelling a common factor, the simplified rule is zero at the excluded input. Is that input a zero of the original function?",
+            "expected_pattern": "No. A zero must lie in the original domain; the polynomial rule describes a separate extension."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the repair show why 'the outcome is restated, labelled, or accompanied by a formula without explaining why it follows' fails and establish this replacement rule: name the mechanism or principle and connect it to the outcome through warranted links?",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "authored_evidence": {
+            "replacement_rule": "Cancellation preserves the rule only on the original nonzero-denominator domain; filling the cancelled hole is a separate polynomial extension.",
+            "fresh_application": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+            "return_construction_ref": "CU-MATH-ISS52-DOMAIN-1"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        }
+      }
+    },
+    {
+      "question_ref": "ISS52-Q7",
+      "label": "Q7",
+      "template_id": "QRT-SYNTHESIZE-D3",
+      "band": "D3",
+      "primary_demand": "SYNTHESIZE",
+      "secondary_demands": [
+        "JUSTIFY"
+      ],
+      "construction_ref": "CU-MATH-ISS52-FINITE-DATA-1",
+      "microtopic_ref": "MIC-MATH-ISS52-FINITE-DATA",
+      "crux_move_ref": "ISS52-Q7-MOVE-4",
+      "facets": {
+        "H1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 1 help this learner clarify the dependency between subproblems or ideas that makes their order or coordination matter?",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 1: What should be made explicit next?",
+              "text": "Use evenness first: every positive zero forces its negative partner.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "ISS52-Q7-MOVE-1"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 2 help this learner correlate the dependency between subproblems or ideas that makes their order or coordination matter with a demonstrated component idea that can anchor the first valid bridge, and see why that bridge applies here?",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 2: What should be made explicit next?",
+              "text": "Under degree at most 4, compare the four forced distinct roots with the whole degree budget before using p(0).",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "ISS52-Q7-MOVE-2"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 3 open the way to coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 4: What is the structural move to set up?",
+              "text": "When only the degree bound is removed, keep the four forced factors and multiply by a general even polynomial whose value at 0 preserves p(0)=4.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "CRUX",
+              "supports_move_ref": "ISS52-Q7-MOVE-4"
+            },
+            "protected_work": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S1": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does stage 1 show the situation and help this learner see the dependency between subproblems or ideas that makes their order or coordination matter, without disclosing the bridge or ordering decision that unlocks the multi-step route?",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "core1a_teaching_representation_refs": []
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S2": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a stage show a demonstrated component idea that can anchor the first valid bridge in this question's context? Visual job: make dependencies, shared conditions, or state transitions visible without completing the route.",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "visual_job": "make dependencies, shared conditions, or state transitions visible without completing the route"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S3": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a later stage show the way toward coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner?",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Do all pre-attempt panels leave the bridge or ordering decision that unlocks the multi-step route to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "authored_evidence": {
+            "conditions": [
+              "p is a real even polynomial.",
+              "Initially degree at most 4.",
+              "p(1)=p(2)=0 and p(0)=4.",
+              "Then reassess after removing only the degree bound."
+            ],
+            "scaffolds": [
+              {
+                "prompt": "Support 1: What should be made explicit next?",
+                "text": "Use evenness first: every positive zero forces its negative partner.",
+                "support_kind": "REPRESENT",
+                "reveals": "CONCEPT",
+                "learner_stage": "KEY_CONCEPT",
+                "supports_move_ref": "ISS52-Q7-MOVE-1"
+              },
+              {
+                "prompt": "Support 2: What should be made explicit next?",
+                "text": "Under degree at most 4, compare the four forced distinct roots with the whole degree budget before using p(0).",
+                "support_kind": "CONNECT",
+                "reveals": "CONCEPT",
+                "learner_stage": "REPRESENTATION",
+                "supports_move_ref": "ISS52-Q7-MOVE-2"
+              },
+              {
+                "prompt": "Support 3: What should be made explicit next?",
+                "text": "Use p(0)=4 to fix the scalar in the bounded case, then classify the five statements there.",
+                "support_kind": "CONNECT",
+                "reveals": "METHOD",
+                "learner_stage": "FIRST_MOVE",
+                "supports_move_ref": "ISS52-Q7-MOVE-2"
+              },
+              {
+                "prompt": "Support 4: What is the structural move to set up?",
+                "text": "When only the degree bound is removed, keep the four forced factors and multiply by a general even polynomial whose value at 0 preserves p(0)=4.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CRUX",
+                "supports_move_ref": "ISS52-Q7-MOVE-4"
+              },
+              {
+                "prompt": "Support 5: What should be made explicit next?",
+                "text": "Use two different allowed multipliers—one with no new real zeros and one with new real zeros—to separate necessary from merely possible conclusions.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CHECKPOINT",
+                "supports_move_ref": "ISS52-Q7-MOVE-4"
+              }
+            ],
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the concept link land where the bridge from the dependency between subproblems or ideas that makes their order or coordination matter to a demonstrated component idea that can anchor the first valid bridge is actually taught or repaired?",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "authored_evidence": {
+            "construction_ref": "CU-MATH-ISS52-FINITE-DATA-1",
+            "microtopic_ref": "MIC-MATH-ISS52-FINITE-DATA",
+            "construction_decision": "Finite agreement becomes an identity only after a structural bound makes too many distinct roots impossible for the difference polynomial."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does each solution move explain why it holds here, and does the check verify through an independent invariant, alternate route, limiting case, or consistency relation?",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "authored_evidence": {
+            "reasoning_route": [
+              {
+                "id": "ISS52-Q7-MOVE-1",
+                "kind": "REPRESENT",
+                "action": "Use evenness to reflect the given positive zeros and factor the four forced roots.",
+                "why_valid": "For an even polynomial p(r)=0 implies p(-r)=0.",
+                "inputs": [
+                  "evenness",
+                  "zeros 1,2"
+                ],
+                "output": "Forced factors (x^2-1)(x^2-4)."
+              },
+              {
+                "id": "ISS52-Q7-MOVE-2",
+                "kind": "CONNECT",
+                "action": "Use degree at most 4 and p(0)=4 to close the bounded case.",
+                "why_valid": "Four distinct forced roots consume the entire allowed degree; the value fixes the scalar.",
+                "inputs": [
+                  "forced factors",
+                  "degree bound",
+                  "p(0)"
+                ],
+                "output": "One bounded polynomial."
+              },
+              {
+                "id": "ISS52-Q7-MOVE-3",
+                "kind": "DECIDE",
+                "action": "Classify every claim from that bounded polynomial.",
+                "why_valid": "Necessary/impossible status follows directly from its degree, zero set and leading coefficient.",
+                "inputs": [
+                  "bounded polynomial"
+                ],
+                "output": "Five bounded verdicts."
+              },
+              {
+                "id": "ISS52-Q7-MOVE-4",
+                "kind": "TRANSFORM",
+                "action": "Remove the degree bound by parameterizing every even multiplier that preserves p(0)=4.",
+                "why_valid": "Multiplying by an even h with h(0)=1 preserves the stated zeros/values while allowing additional structure.",
+                "inputs": [
+                  "forced factor"
+                ],
+                "output": "Complete unbounded family and revised claim statuses."
+              }
+            ],
+            "independent_check": "Use h(x)=1+x^2 to get an unbounded example with exactly the four forced real zeros, and h(x)=1-x^2/9 to create extra zeros ±3 and change the leading coefficient. These two examples separate what is necessary from what is merely possible."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Is this likely wrong idea represented: pieces are solved independently or chained in a convenient but invalid order?",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "authored_evidence": {
+            "wrong_idea": "Conclusions forced only by degree at most 4 are carried unchanged into the unbounded case.",
+            "common_wrong_route": "Conclusions forced only by degree at most 4 are carried unchanged into the unbounded case."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Would a learner who holds 'pieces are solved independently or chained in a convenient but invalid order' answer the diagnostic differently from a learner who merely slipped?",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "authored_evidence": {
+            "probe": "Remove a degree bound while preserving evenness and fixed roots. Which conclusions remain necessary and which become merely possible?",
+            "expected_pattern": "Only conclusions supported without the removed bound stay necessary; new even multipliers generate counterexamples to the others."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the repair show why 'pieces are solved independently or chained in a convenient but invalid order' fails and establish this replacement rule: identify dependencies, establish the bridge quantity or condition, then propagate it through the chain?",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "authored_evidence": {
+            "replacement_rule": "When a hypothesis such as a degree bound is removed, retain only conclusions that can be re-derived without it; use a complete family or counterexamples to classify the rest.",
+            "fresh_application": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+            "return_construction_ref": "CU-MATH-ISS52-FINITE-DATA-1"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        }
+      }
+    },
+    {
+      "question_ref": "ISS52-Q8",
+      "label": "Q8",
+      "template_id": "QRT-SYNTHESIZE-D2",
+      "band": "D2",
+      "primary_demand": "SYNTHESIZE",
+      "secondary_demands": [
+        "APPLY",
+        "JUSTIFY"
+      ],
+      "construction_ref": "CU-MATH-ISS52-FINITE-DATA-1",
+      "microtopic_ref": "MIC-MATH-ISS52-FINITE-DATA",
+      "crux_move_ref": "ISS52-Q8-MOVE-3",
+      "facets": {
+        "H1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 1 help this learner clarify the dependency between subproblems or ideas that makes their order or coordination matter?",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 1: What should be made explicit next?",
+              "text": "Form d=p-q. Agreement at -1,0,1 means those three numbers are roots of d, and d still has degree at most 3.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "ISS52-Q8-MOVE-1"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 2 help this learner correlate the dependency between subproblems or ideas that makes their order or coordination matter with a demonstrated component idea that can anchor the first valid bridge, and see why that bridge applies here?",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 2: What should be made explicit next?",
+              "text": "Factor d using those roots; the degree bound leaves only one scalar to determine from d(2)=12.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "ISS52-Q8-MOVE-2"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 3 open the way to coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 3: What is the structural move to set up?",
+              "text": "After d is fixed, test whether p and q themselves are fixed by adding the same degree-at-most-3 polynomial to both.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "CRUX",
+              "supports_move_ref": "ISS52-Q8-MOVE-3"
+            },
+            "protected_work": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S1": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does stage 1 show the situation and help this learner see the dependency between subproblems or ideas that makes their order or coordination matter, without disclosing the bridge or ordering decision that unlocks the multi-step route?",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "core1a_teaching_representation_refs": []
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S2": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a stage show a demonstrated component idea that can anchor the first valid bridge in this question's context? Visual job: make dependencies, shared conditions, or state transitions visible without completing the route.",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "visual_job": "make dependencies, shared conditions, or state transitions visible without completing the route"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S3": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a later stage show the way toward coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner?",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Do all pre-attempt panels leave the bridge or ordering decision that unlocks the multi-step route to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "authored_evidence": {
+            "conditions": [
+              "p and q are real, each degree at most 3.",
+              "They agree at x=-1,0,1.",
+              "p(2)-q(2)=12."
+            ],
+            "scaffolds": [
+              {
+                "prompt": "Support 1: What should be made explicit next?",
+                "text": "Form d=p-q. Agreement at -1,0,1 means those three numbers are roots of d, and d still has degree at most 3.",
+                "support_kind": "REPRESENT",
+                "reveals": "CONCEPT",
+                "learner_stage": "KEY_CONCEPT",
+                "supports_move_ref": "ISS52-Q8-MOVE-1"
+              },
+              {
+                "prompt": "Support 2: What should be made explicit next?",
+                "text": "Factor d using those roots; the degree bound leaves only one scalar to determine from d(2)=12.",
+                "support_kind": "CONNECT",
+                "reveals": "CONCEPT",
+                "learner_stage": "REPRESENTATION",
+                "supports_move_ref": "ISS52-Q8-MOVE-2"
+              },
+              {
+                "prompt": "Support 3: What is the structural move to set up?",
+                "text": "After d is fixed, test whether p and q themselves are fixed by adding the same degree-at-most-3 polynomial to both.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CRUX",
+                "supports_move_ref": "ISS52-Q8-MOVE-3"
+              }
+            ],
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the concept link land where the bridge from the dependency between subproblems or ideas that makes their order or coordination matter to a demonstrated component idea that can anchor the first valid bridge is actually taught or repaired?",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "authored_evidence": {
+            "construction_ref": "CU-MATH-ISS52-FINITE-DATA-1",
+            "microtopic_ref": "MIC-MATH-ISS52-FINITE-DATA",
+            "construction_decision": "Finite agreement becomes an identity only after a structural bound makes too many distinct roots impossible for the difference polynomial."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does each solution move explain why it holds here, and does the check verify through an independent invariant, alternate route, limiting case, or consistency relation?",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "authored_evidence": {
+            "reasoning_route": [
+              {
+                "id": "ISS52-Q8-MOVE-1",
+                "kind": "REPRESENT",
+                "action": "Form d=p-q and encode the three agreement inputs as roots of d.",
+                "why_valid": "Subtracting equal values gives zeros; the degree bound is inherited by the difference.",
+                "inputs": [
+                  "agreement at -1,0,1"
+                ],
+                "output": "d=kx(x^2-1)."
+              },
+              {
+                "id": "ISS52-Q8-MOVE-2",
+                "kind": "TRANSFORM",
+                "action": "Use d(2)=12 to determine k, then evaluate d(3).",
+                "why_valid": "The factorization leaves only one scalar degree of freedom.",
+                "inputs": [
+                  "d(2)=12"
+                ],
+                "output": "The unique difference polynomial and d(3)."
+              },
+              {
+                "id": "ISS52-Q8-MOVE-3",
+                "kind": "DECIDE",
+                "action": "Test whether unique d forces unique p and q by constructing two decompositions.",
+                "why_valid": "Adding the same cubic-or-less r to both components preserves their difference.",
+                "inputs": [
+                  "unique d"
+                ],
+                "output": "Explicit nonuniqueness of the individual polynomials."
+              }
+            ],
+            "independent_check": "Substitute -1,0,1,2 into d(x)=2x(x^2-1). Then compare (p,q)=(d,0) and (d+1,1): both obey the degree bounds and have the same difference, proving the components are not unique."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Is this likely wrong idea represented: pieces are solved independently or chained in a convenient but invalid order?",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "authored_evidence": {
+            "wrong_idea": "Agreement of p and q at three inputs is mistaken for individual identification of both polynomials.",
+            "common_wrong_route": "Agreement of p and q at three inputs is mistaken for individual identification of both polynomials."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Would a learner who holds 'pieces are solved independently or chained in a convenient but invalid order' answer the diagnostic differently from a learner who merely slipped?",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "authored_evidence": {
+            "probe": "If a difference polynomial is unique, construct two different component pairs with that same difference.",
+            "expected_pattern": "Adding the same allowed polynomial to both components changes neither their difference nor the identified value."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the repair show why 'pieces are solved independently or chained in a convenient but invalid order' fails and establish this replacement rule: identify dependencies, establish the bridge quantity or condition, then propagate it through the chain?",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "authored_evidence": {
+            "replacement_rule": "A bounded-degree difference may be uniquely identified even when its two component polynomials are not; a common additive polynomial preserves the difference.",
+            "fresh_application": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+            "return_construction_ref": "CU-MATH-ISS52-FINITE-DATA-1"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        }
+      }
+    },
+    {
+      "question_ref": "ISS52-Q9",
+      "label": "Q9",
+      "template_id": "QRT-JUSTIFY-D4",
+      "band": "D4",
+      "primary_demand": "JUSTIFY",
+      "secondary_demands": [
+        "SYNTHESIZE"
+      ],
+      "construction_ref": "CU-MATH-ISS52-MIN-DEGREE-1",
+      "microtopic_ref": "MIC-MATH-ISS52-MIN-DEGREE",
+      "crux_move_ref": "ISS52-Q9-MOVE-3",
+      "facets": {
+        "H1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 1 help this learner clarify the claim to establish and the evidence or conditions that may legitimately support it?",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 1: What should be made explicit next?",
+              "text": "Write p=(x-1)^m(x+1)^n times a possible remaining monic factor, with m,n positive.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "ISS52-Q9-MOVE-1"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 2 help this learner correlate the claim to establish and the evidence or conditions that may legitimately support it with a demonstrated theorem, principle, data rule, or warrant, and see why that bridge applies here?",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 2: What should be made explicit next?",
+              "text": "Use p(0)=1 to constrain the parity of m before enumerating degree budgets.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "ISS52-Q9-MOVE-2"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 3 open the way to construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 4: What is the structural move to set up?",
+              "text": "Examine the only possible residual-factor degree. If it is quadratic, use p(0)=1 to determine its constant term and then test whether it can avoid real roots.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "CRUX",
+              "supports_move_ref": "ISS52-Q9-MOVE-3"
+            },
+            "protected_work": "the decisive warrant, inference, or proof step that establishes the claim. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S1": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does stage 1 show the situation and help this learner see the claim to establish and the evidence or conditions that may legitimately support it, without disclosing the decisive warrant, inference, or proof step that establishes the claim?",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "core1a_teaching_representation_refs": []
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S2": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a stage show a demonstrated theorem, principle, data rule, or warrant in this question's context? Visual job: show givens, evidence, and construction relationships without marking the conclusion as established.",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "visual_job": "show givens, evidence, and construction relationships without marking the conclusion as established"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S3": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a later stage show the way toward construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner?",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the decisive warrant, inference, or proof step that establishes the claim. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Do all pre-attempt panels leave the decisive warrant, inference, or proof step that establishes the claim to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "authored_evidence": {
+            "conditions": [
+              "p is monic, real, degree at most 4.",
+              "Its distinct real zeros are exactly -1 and 1.",
+              "p(0)=1."
+            ],
+            "scaffolds": [
+              {
+                "prompt": "Support 1: What should be made explicit next?",
+                "text": "Write p=(x-1)^m(x+1)^n times a possible remaining monic factor, with m,n positive.",
+                "support_kind": "REPRESENT",
+                "reveals": "CONCEPT",
+                "learner_stage": "KEY_CONCEPT",
+                "supports_move_ref": "ISS52-Q9-MOVE-1"
+              },
+              {
+                "prompt": "Support 2: What should be made explicit next?",
+                "text": "Use p(0)=1 to constrain the parity of m before enumerating degree budgets.",
+                "support_kind": "CONNECT",
+                "reveals": "CONCEPT",
+                "learner_stage": "REPRESENTATION",
+                "supports_move_ref": "ISS52-Q9-MOVE-2"
+              },
+              {
+                "prompt": "Support 3: What should be made explicit next?",
+                "text": "List the no-remainder multiplicity pairs with total degree at most 4; do not assume these are already complete.",
+                "support_kind": "CONNECT",
+                "reveals": "METHOD",
+                "learner_stage": "FIRST_MOVE",
+                "supports_move_ref": "ISS52-Q9-MOVE-2"
+              },
+              {
+                "prompt": "Support 4: What is the structural move to set up?",
+                "text": "Examine the only possible residual-factor degree. If it is quadratic, use p(0)=1 to determine its constant term and then test whether it can avoid real roots.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CRUX",
+                "supports_move_ref": "ISS52-Q9-MOVE-3"
+              },
+              {
+                "prompt": "Support 5: What should be made explicit next?",
+                "text": "Verify monicity, p(0), total degree and the exact distinct real-zero set for every survivor.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CHECKPOINT",
+                "supports_move_ref": "ISS52-Q9-MOVE-4"
+              }
+            ],
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the decisive warrant, inference, or proof step that establishes the claim. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the concept link land where the bridge from the claim to establish and the evidence or conditions that may legitimately support it to a demonstrated theorem, principle, data rule, or warrant is actually taught or repaired?",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "authored_evidence": {
+            "construction_ref": "CU-MATH-ISS52-MIN-DEGREE-1",
+            "microtopic_ref": "MIC-MATH-ISS52-MIN-DEGREE",
+            "construction_decision": "A construction proves possibility only; minimality needs a lower-bound argument that eliminates every smaller degree while respecting the exact real-zero set."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does each solution move explain why it holds here, and does the check challenge the argument with a counterexample, converse, boundary case, independent derivation, or evidence-consistency test?",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "authored_evidence": {
+            "reasoning_route": [
+              {
+                "id": "ISS52-Q9-MOVE-1",
+                "kind": "REPRESENT",
+                "action": "Write the required factors with positive multiplicities and isolate any remaining monic factor.",
+                "why_valid": "Every allowed polynomial contains powers of x-1 and x+1; degree at most 4 limits the remainder.",
+                "inputs": [
+                  "exact real zero set",
+                  "monic",
+                  "degree bound"
+                ],
+                "output": "A finite multiplicity/remainder case structure."
+              },
+              {
+                "id": "ISS52-Q9-MOVE-2",
+                "kind": "DECIDE",
+                "action": "Enumerate multiplicity choices allowed by degree and p(0)=1 when no remainder remains.",
+                "why_valid": "At x=0 the sign depends on the multiplicity of x-1.",
+                "inputs": [
+                  "multiplicity form",
+                  "p(0)=1"
+                ],
+                "output": "Two direct candidate multiplicity patterns."
+              },
+              {
+                "id": "ISS52-Q9-MOVE-3",
+                "kind": "CONNECT",
+                "action": "Eliminate the only possible quadratic remainder case.",
+                "why_valid": "With one copy of each linear factor, p(0)=1 forces the monic quadratic constant to -1, whose discriminant is positive for every real linear coefficient.",
+                "inputs": [
+                  "quadratic remainder",
+                  "p(0)=1"
+                ],
+                "output": "Any such remainder creates forbidden real zeros."
+              },
+              {
+                "id": "ISS52-Q9-MOVE-4",
+                "kind": "VERIFY",
+                "action": "Check monicity, degree, p(0) and exact distinct real zero set for each surviving polynomial.",
+                "why_valid": "Each criterion is explicit and the case split exhausted all degree allocations.",
+                "inputs": [
+                  "surviving list"
+                ],
+                "output": "A complete two-polynomial classification."
+              }
+            ],
+            "independent_check": "Substitute x=0 and inspect factors for both surviving polynomials. In the discarded quadratic-remainder case, constant term -1 makes the discriminant b^2+4 positive, so forbidden extra real zeros are unavoidable."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Is this likely wrong idea represented: an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof?",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "authored_evidence": {
+            "wrong_idea": "Examples with the right two visible roots are listed without proving that no residual factor can introduce another real zero.",
+            "common_wrong_route": "Examples with the right two visible roots are listed without proving that no residual factor can introduce another real zero."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Would a learner who holds 'an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof' answer the diagnostic differently from a learner who merely slipped?",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "authored_evidence": {
+            "probe": "If a leftover monic quadratic has negative constant term, what does its discriminant tell you about extra real zeros?",
+            "expected_pattern": "A monic quadratic with negative constant has positive discriminant and real roots, so it cannot be an invisible residual factor."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the repair show why 'an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof' fails and establish this replacement rule: state the warrant explicitly and show why its conditions license this conclusion?",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "authored_evidence": {
+            "replacement_rule": "To classify an exact real-zero set, enumerate multiplicities and every residual-factor degree allowed by the budget, then eliminate any residual factor that must create another real zero.",
+            "fresh_application": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+            "return_construction_ref": "CU-MATH-ISS52-MIN-DEGREE-1"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        }
+      }
+    },
+    {
+      "question_ref": "ISS52-Q10",
+      "label": "Q10",
+      "template_id": "QRT-SYNTHESIZE-D4",
+      "band": "D4",
+      "primary_demand": "SYNTHESIZE",
+      "secondary_demands": [
+        "JUSTIFY",
+        "EXPLAIN"
+      ],
+      "construction_ref": "CU-MATH-ISS52-QUALIFIED-RULES-1",
+      "microtopic_ref": "MIC-MATH-ISS52-QUALIFIED-RULES",
+      "crux_move_ref": "ISS52-Q10-MOVE-1",
+      "facets": {
+        "H1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 1 help this learner clarify the dependency between subproblems or ideas that makes their order or coordination matter?",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 1: What should be made explicit next?",
+              "text": "For each slogan, write the hidden condition beside it before touching A_t, B, C, D or E.",
+              "support_kind": "REPRESENT",
+              "reveals": "CONCEPT",
+              "learner_stage": "KEY_CONCEPT",
+              "supports_move_ref": "ISS52-Q10-MOVE-1"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 2 help this learner correlate the dependency between subproblems or ideas that makes their order or coordination matter with a demonstrated component idea that can anchor the first valid bridge, and see why that bridge applies here?",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 2: What should be made explicit next?",
+              "text": "Group the conditions: original domain for cancellation; simplified leading coefficient for degree; nonzero polynomial for the root-count bound; degree of a difference for finite-data identity.",
+              "support_kind": "CONNECT",
+              "reveals": "CONCEPT",
+              "learner_stage": "REPRESENTATION",
+              "supports_move_ref": "ISS52-Q10-MOVE-2"
+            }
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "H3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Can hint 3 open the way to coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "authored_evidence": {
+            "scaffold": {
+              "prompt": "Support 4: What is the structural move to set up?",
+              "text": "For finite agreement, form E-D and ask what its zeros at 0,1,2 do—and do not—prove without a smaller degree bound.",
+              "support_kind": "EXECUTE",
+              "reveals": "METHOD",
+              "learner_stage": "CRUX",
+              "supports_move_ref": "ISS52-Q10-MOVE-1"
+            },
+            "protected_work": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S1": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does stage 1 show the situation and help this learner see the dependency between subproblems or ideas that makes their order or coordination matter, without disclosing the bridge or ordering decision that unlocks the multi-step route?",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "core1a_teaching_representation_refs": []
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S2": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a stage show a demonstrated component idea that can anchor the first valid bridge in this question's context? Visual job: make dependencies, shared conditions, or state transitions visible without completing the route.",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "visual_job": "make dependencies, shared conditions, or state transitions visible without completing the route"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "S3": {
+          "status": "WAIVED_WITH_REASON_REQUIRES_REVIEW",
+          "review_question": "Does a later stage show the way toward coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner?",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "authored_evidence": {
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Do all pre-attempt panels leave the bridge or ordering decision that unlocks the multi-step route to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "authored_evidence": {
+            "conditions": [
+              "All parameters/domains printed in A_t, B, C, D and E are part of the task.",
+              "B must retain its original domain.",
+              "The four slogans must be replaced by qualified rules before application."
+            ],
+            "scaffolds": [
+              {
+                "prompt": "Support 1: What should be made explicit next?",
+                "text": "For each slogan, write the hidden condition beside it before touching A_t, B, C, D or E.",
+                "support_kind": "REPRESENT",
+                "reveals": "CONCEPT",
+                "learner_stage": "KEY_CONCEPT",
+                "supports_move_ref": "ISS52-Q10-MOVE-1"
+              },
+              {
+                "prompt": "Support 2: What should be made explicit next?",
+                "text": "Group the conditions: original domain for cancellation; simplified leading coefficient for degree; nonzero polynomial for the root-count bound; degree of a difference for finite-data identity.",
+                "support_kind": "CONNECT",
+                "reveals": "CONCEPT",
+                "learner_stage": "REPRESENTATION",
+                "supports_move_ref": "ISS52-Q10-MOVE-2"
+              },
+              {
+                "prompt": "Support 3: What should be made explicit next?",
+                "text": "Apply each repaired rule to its matching example, keeping exceptional parameter/domain cases separate.",
+                "support_kind": "CONNECT",
+                "reveals": "METHOD",
+                "learner_stage": "FIRST_MOVE",
+                "supports_move_ref": "ISS52-Q10-MOVE-2"
+              },
+              {
+                "prompt": "Support 4: What is the structural move to set up?",
+                "text": "For finite agreement, form E-D and ask what its zeros at 0,1,2 do—and do not—prove without a smaller degree bound.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CRUX",
+                "supports_move_ref": "ISS52-Q10-MOVE-1"
+              },
+              {
+                "prompt": "Support 5: What should be made explicit next?",
+                "text": "Give a fresh counterexample to one unqualified slogan and state exactly which omitted hypothesis it violates.",
+                "support_kind": "EXECUTE",
+                "reveals": "METHOD",
+                "learner_stage": "CHECKPOINT",
+                "supports_move_ref": "ISS52-Q10-MOVE-4"
+              }
+            ],
+            "representation_waiver": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job.",
+            "protected_work": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the concept link land where the bridge from the dependency between subproblems or ideas that makes their order or coordination matter to a demonstrated component idea that can anchor the first valid bridge is actually taught or repaired?",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "authored_evidence": {
+            "construction_ref": "CU-MATH-ISS52-QUALIFIED-RULES-1",
+            "microtopic_ref": "MIC-MATH-ISS52-QUALIFIED-RULES",
+            "construction_decision": "Attach the exact hidden hypothesis to each familiar polynomial/rational-expression rule before applying it."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "P3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does each solution move explain why it holds here, and does the check verify through an independent invariant, alternate route, limiting case, or consistency relation?",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "authored_evidence": {
+            "reasoning_route": [
+              {
+                "id": "ISS52-Q10-MOVE-1",
+                "kind": "DECIDE",
+                "action": "Replace each slogan by a conditional rule before touching the examples.",
+                "why_valid": "Each shortcut suppresses a necessary hypothesis about domain, simplification, root count or degree-bounded identity.",
+                "inputs": [
+                  "four slogans"
+                ],
+                "output": "Four qualified rules."
+              },
+              {
+                "id": "ISS52-Q10-MOVE-2",
+                "kind": "REPRESENT",
+                "action": "For A_t, B, C and D-E, expose the structural feature relevant to the matching qualified rule.",
+                "why_valid": "Leading coefficient, excluded input, repeated/irreducible factors and a difference polynomial respectively control the conclusions.",
+                "inputs": [
+                  "four applications"
+                ],
+                "output": "A condition-to-example mapping."
+              },
+              {
+                "id": "ISS52-Q10-MOVE-3",
+                "kind": "TRANSFORM",
+                "action": "Apply each qualified rule to obtain the requested conclusions without overextending it.",
+                "why_valid": "The conclusions now follow under explicit hypotheses instead of slogans.",
+                "inputs": [
+                  "qualified rules",
+                  "mapped examples"
+                ],
+                "output": "Correct degree/domain/root/identity conclusions."
+              },
+              {
+                "id": "ISS52-Q10-MOVE-4",
+                "kind": "VERIFY",
+                "action": "Give a fresh counterexample and state exactly which omitted condition it violates.",
+                "why_valid": "A counterexample demonstrates why the unqualified rule is false without changing the valid qualified form.",
+                "inputs": [
+                  "one unqualified rule"
+                ],
+                "output": "A new independently checkable failure case."
+              }
+            ],
+            "independent_check": "Check each application against its repaired rule: at t=1, A_t=x+1 has degree 1; B remains undefined at x=1 before extension; C=(x-2)^2(x^2+1) has one distinct real zero; and E(3)-D(3)=6 despite agreement at 0,1,2."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M1": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Is this likely wrong idea represented: pieces are solved independently or chained in a convenient but invalid order?",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "authored_evidence": {
+            "wrong_idea": "Each shortcut is applied as an unconditional slogan, so domain, cancellation, parameter and degree-bound exceptions are missed.",
+            "common_wrong_route": "Each shortcut is applied as an unconditional slogan, so domain, cancellation, parameter and degree-bound exceptions are missed."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M2": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Would a learner who holds 'pieces are solved independently or chained in a convenient but invalid order' answer the diagnostic differently from a learner who merely slipped?",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "authored_evidence": {
+            "probe": "Take one unconditional shortcut rule and state a changed example where its missing hypothesis fails.",
+            "expected_pattern": "The counterexample must fail exactly the omitted domain/degree/nonzero/identity-bound condition while leaving the qualified rule valid."
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        },
+        "M3": {
+          "status": "AUTHORED_REQUIRES_INDEPENDENT_SEMANTIC_REVIEW",
+          "review_question": "Does the repair show why 'pieces are solved independently or chained in a convenient but invalid order' fails and establish this replacement rule: identify dependencies, establish the bridge quantity or condition, then propagate it through the chain?",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "authored_evidence": {
+            "replacement_rule": "Before using a familiar polynomial or rational-expression rule, state its domain/nonzero/degree hypothesis explicitly; the unqualified slogan is not the rule.",
+            "fresh_application": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+            "return_construction_ref": "CU-MATH-ISS52-QUALIFIED-RULES-1"
+          },
+          "mechanical_render_binding": "PENDING_EXACT_RENDER"
+        }
+      }
+    }
+  ]
+}
