@@ -511,9 +511,9 @@
             "way": "Compare what a fixed unequal-bond model predicts with the supplied equivalent positions.",
             "rule": "Planar equivalent nitrate bonds reject one permanently unique N=O position. N sigma framework is locally sp2; equivalence alone is not the hybridisation criterion.",
             "check": "Changed check: supplied equivalent CO2 bonds coexist with sp carbon; equivalence cannot alone imply sp2.",
-            "probe": "Can equivalent bonds at CO2 carbon and nitrate nitrogen imply the same local hybrid label? Recount directions.",
-            "pattern": "No: two versus three directions in these local models. Repeated equality-to-sp2 classification suggests the faulty criterion.",
-            "transfer": "Apply the distinction to supplied equivalent carbonate bonds.",
+            "probe": "For nitrate, predict whether one permanently selected N=O position would have the same bond properties as both remaining N-O positions. Test the same interpretation against the supplied equivalent carbonate bonds. Do formal contributors mean the nuclei switch structures?",
+            "pattern": "A permanently unequal single/double-bond interpretation conflicts with the supplied equivalence in both ions. Repeating that interpretation, or literal temporal switching, suggests a held model error; revising it on the second case after one notation slip does not establish that misconception.",
+            "transfer": "Explain why a single permanent double-bond position cannot represent the supplied three equivalent carbonate bonds.",
             "wrong_idea": "Equivalent bonds are a permanently selected Lewis double bond.",
             "question_ref": "OWN-ISS36-D3-HYB-01",
             "label": "Q1",
@@ -754,8 +754,8 @@
       "misconceptions": [
         {
           "wrong_idea": "Equivalent bonds are a permanently selected Lewis double bond.",
-          "diagnostic_prompt": "Can equivalent bonds at CO2 carbon and nitrate nitrogen imply the same local hybrid label? Recount directions.",
-          "repair": "Planar equivalent nitrate bonds reject one permanently unique N=O position. N sigma framework is locally sp2; equivalence alone is not the hybridisation criterion. Changed check: supplied equivalent CO2 bonds coexist with sp carbon; equivalence cannot alone imply sp2."
+          "diagnostic_prompt": "For nitrate, predict whether one permanently selected N=O position would have the same bond properties as both remaining N-O positions. Test the same interpretation against the supplied equivalent carbonate bonds. Do formal contributors mean the nuclei switch structures?",
+          "repair": "Planar equivalent nitrate bonds reject one permanently unique N=O position. N sigma framework is locally sp2; equivalence alone is not the hybridisation criterion. Changed check: Explain why a single permanent double-bond position cannot represent the supplied three equivalent carbonate bonds."
         },
         {
           "wrong_idea": "Resonance contributors are molecular structures switching in time; only the drawn double bond supplies pi electrons.",
@@ -2104,6 +2104,656 @@
           "purpose": "Test equivalence versus local inventory with CH4.",
           "visible_elements": [
             "CH4 four-domain check"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-ACADEMIC-ISS36-Q1",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "REPLACE",
+        "grade9v3:authored_question_ref": "OWN-ISS36-D3-HYB-01"
+      },
+      "kind": "STRUCTURAL_FORMULA",
+      "purpose": "Compare a permanent unequal-bond interpretation with the supplied bond-equivalence observation.",
+      "required_elements": [
+        "Supplied situation",
+        "Question-local bridge"
+      ],
+      "relation_refs": [
+        "REL-CHEM-ALLENE-ORTHOGONALITY",
+        "REL-CHEM-PI-DELOCALISATION",
+        "REL-CHEM-STERIC-HYBRID-MAP"
+      ],
+      "read_order": [
+        "Supplied nitrate contributors",
+        "Compare a permanent unequal-bond interpretation with the supplied bond-equivalence observation."
+      ],
+      "instance_constraints": [
+        "Pre-attempt stages must orient on the geometry without revealing the complete solution."
+      ],
+      "accessibility": [
+        "The SVG has an accessible name, title and description.",
+        "Text labels duplicate any line-style meaning."
+      ],
+      "misleading_alternatives": [
+        "Using a different species or printing the requested final decision before commitment."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS36/assets/question-1-givens.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "labels and connectivity",
+          "symbol": "given situation",
+          "in_words": "Supplied nitrate contributors"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "REP-ACADEMIC-ISS36-Q1-GIVENS",
+          "label": "Supplied situation",
+          "purpose": "Supplied nitrate contributors",
+          "visible_elements": [
+            "Supplied situation"
+          ]
+        },
+        {
+          "id": "REP-ACADEMIC-ISS36-Q1-BRIDGE",
+          "label": "Question-local bridge",
+          "purpose": "Compare a permanent unequal-bond interpretation with the supplied bond-equivalence observation.",
+          "visible_elements": [
+            "Question-local bridge"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-ACADEMIC-ISS36-Q2",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "REPLACE",
+        "grade9v3:authored_question_ref": "OWN-ISS36-D3-HYB-02"
+      },
+      "kind": "STRUCTURAL_FORMULA",
+      "purpose": "Keep one nuclear framework while changing from formal contributors to orbital accounting.",
+      "required_elements": [
+        "Supplied situation",
+        "Question-local bridge"
+      ],
+      "relation_refs": [
+        "REL-CHEM-ALLENE-ORTHOGONALITY",
+        "REL-CHEM-PI-DELOCALISATION",
+        "REL-CHEM-STERIC-HYBRID-MAP"
+      ],
+      "read_order": [
+        "Nitrate contributors to be translated",
+        "Keep one nuclear framework while changing from formal contributors to orbital accounting."
+      ],
+      "instance_constraints": [
+        "Pre-attempt stages must orient on the geometry without revealing the complete solution."
+      ],
+      "accessibility": [
+        "The SVG has an accessible name, title and description.",
+        "Text labels duplicate any line-style meaning."
+      ],
+      "misleading_alternatives": [
+        "Using a different species or printing the requested final decision before commitment."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS36/assets/question-2-givens.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "labels and connectivity",
+          "symbol": "given situation",
+          "in_words": "Nitrate contributors to be translated"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "REP-ACADEMIC-ISS36-Q2-GIVENS",
+          "label": "Supplied situation",
+          "purpose": "Nitrate contributors to be translated",
+          "visible_elements": [
+            "Supplied situation"
+          ]
+        },
+        {
+          "id": "REP-ACADEMIC-ISS36-Q2-BRIDGE",
+          "label": "Question-local bridge",
+          "purpose": "Keep one nuclear framework while changing from formal contributors to orbital accounting.",
+          "visible_elements": [
+            "Question-local bridge"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-ACADEMIC-ISS36-Q3",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "REPLACE",
+        "grade9v3:authored_question_ref": "OWN-ISS36-D3-HYB-03"
+      },
+      "kind": "STRUCTURAL_FORMULA",
+      "purpose": "Select each carbon locally, then coordinate the required neighbouring overlaps.",
+      "required_elements": [
+        "Supplied situation",
+        "Question-local bridge"
+      ],
+      "relation_refs": [
+        "REL-CHEM-ALLENE-ORTHOGONALITY",
+        "REL-CHEM-PI-DELOCALISATION",
+        "REL-CHEM-STERIC-HYBRID-MAP"
+      ],
+      "read_order": [
+        "Supplied allene connectivity",
+        "Select each carbon locally, then coordinate the required neighbouring overlaps."
+      ],
+      "instance_constraints": [
+        "Pre-attempt stages must orient on the geometry without revealing the complete solution."
+      ],
+      "accessibility": [
+        "The SVG has an accessible name, title and description.",
+        "Text labels duplicate any line-style meaning."
+      ],
+      "misleading_alternatives": [
+        "Using a different species or printing the requested final decision before commitment."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS36/assets/question-3-givens.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "labels and connectivity",
+          "symbol": "given situation",
+          "in_words": "Supplied allene connectivity"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "REP-ACADEMIC-ISS36-Q3-GIVENS",
+          "label": "Supplied situation",
+          "purpose": "Supplied allene connectivity",
+          "visible_elements": [
+            "Supplied situation"
+          ]
+        },
+        {
+          "id": "REP-ACADEMIC-ISS36-Q3-BRIDGE",
+          "label": "Question-local bridge",
+          "purpose": "Select each carbon locally, then coordinate the required neighbouring overlaps.",
+          "visible_elements": [
+            "Question-local bridge"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-ACADEMIC-ISS36-Q4",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "REPLACE",
+        "grade9v3:authored_question_ref": "OWN-ISS36-D3-HYB-04"
+      },
+      "kind": "STRUCTURAL_FORMULA",
+      "purpose": "Use each declared plane and relative orbital direction, rather than copying page geometry.",
+      "required_elements": [
+        "Supplied situation",
+        "Question-local bridge"
+      ],
+      "relation_refs": [
+        "REL-CHEM-ALLENE-ORTHOGONALITY",
+        "REL-CHEM-PI-DELOCALISATION",
+        "REL-CHEM-STERIC-HYBRID-MAP"
+      ],
+      "read_order": [
+        "Ethene and allene connectivity",
+        "Use each declared plane and relative orbital direction, rather than copying page geometry."
+      ],
+      "instance_constraints": [
+        "Pre-attempt stages must orient on the geometry without revealing the complete solution."
+      ],
+      "accessibility": [
+        "The SVG has an accessible name, title and description.",
+        "Text labels duplicate any line-style meaning."
+      ],
+      "misleading_alternatives": [
+        "Using a different species or printing the requested final decision before commitment."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS36/assets/question-4-givens.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "labels and connectivity",
+          "symbol": "given situation",
+          "in_words": "Ethene and allene connectivity"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "REP-ACADEMIC-ISS36-Q4-GIVENS",
+          "label": "Supplied situation",
+          "purpose": "Ethene and allene connectivity",
+          "visible_elements": [
+            "Supplied situation"
+          ]
+        },
+        {
+          "id": "REP-ACADEMIC-ISS36-Q4-BRIDGE",
+          "label": "Question-local bridge",
+          "purpose": "Use each declared plane and relative orbital direction, rather than copying page geometry.",
+          "visible_elements": [
+            "Question-local bridge"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-ACADEMIC-ISS36-Q5",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "REPLACE",
+        "grade9v3:authored_question_ref": "OWN-ISS36-D3-HYB-05"
+      },
+      "kind": "STRUCTURAL_FORMULA",
+      "purpose": "Bond equivalence and local domain inventory must be tested as distinct criteria.",
+      "required_elements": [
+        "Supplied situation",
+        "Question-local bridge"
+      ],
+      "relation_refs": [
+        "REL-CHEM-ALLENE-ORTHOGONALITY",
+        "REL-CHEM-PI-DELOCALISATION",
+        "REL-CHEM-STERIC-HYBRID-MAP"
+      ],
+      "read_order": [
+        "Supplied equivalence observations",
+        "Bond equivalence and local domain inventory must be tested as distinct criteria."
+      ],
+      "instance_constraints": [
+        "Pre-attempt stages must orient on the geometry without revealing the complete solution."
+      ],
+      "accessibility": [
+        "The SVG has an accessible name, title and description.",
+        "Text labels duplicate any line-style meaning."
+      ],
+      "misleading_alternatives": [
+        "Using a different species or printing the requested final decision before commitment."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS36/assets/question-5-givens.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "labels and connectivity",
+          "symbol": "given situation",
+          "in_words": "Supplied equivalence observations"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "REP-ACADEMIC-ISS36-Q5-GIVENS",
+          "label": "Supplied situation",
+          "purpose": "Supplied equivalence observations",
+          "visible_elements": [
+            "Supplied situation"
+          ]
+        },
+        {
+          "id": "REP-ACADEMIC-ISS36-Q5-BRIDGE",
+          "label": "Question-local bridge",
+          "purpose": "Bond equivalence and local domain inventory must be tested as distinct criteria.",
+          "visible_elements": [
+            "Question-local bridge"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-ACADEMIC-ISS36-Q6",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "REPLACE",
+        "grade9v3:authored_question_ref": "OWN-ISS36-D3-HYB-06"
+      },
+      "kind": "STRUCTURAL_FORMULA",
+      "purpose": "Count connected atom pairs for the sigma ledger and account separately for multiplicity.",
+      "required_elements": [
+        "Supplied situation",
+        "Question-local bridge"
+      ],
+      "relation_refs": [
+        "REL-CHEM-ALLENE-ORTHOGONALITY",
+        "REL-CHEM-PI-DELOCALISATION",
+        "REL-CHEM-STERIC-HYBRID-MAP"
+      ],
+      "read_order": [
+        "Supplied propyne connectivity",
+        "Count connected atom pairs for the sigma ledger and account separately for multiplicity."
+      ],
+      "instance_constraints": [
+        "Pre-attempt stages must orient on the geometry without revealing the complete solution."
+      ],
+      "accessibility": [
+        "The SVG has an accessible name, title and description.",
+        "Text labels duplicate any line-style meaning."
+      ],
+      "misleading_alternatives": [
+        "Using a different species or printing the requested final decision before commitment."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS36/assets/question-6-givens.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "labels and connectivity",
+          "symbol": "given situation",
+          "in_words": "Supplied propyne connectivity"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "REP-ACADEMIC-ISS36-Q6-GIVENS",
+          "label": "Supplied situation",
+          "purpose": "Supplied propyne connectivity",
+          "visible_elements": [
+            "Supplied situation"
+          ]
+        },
+        {
+          "id": "REP-ACADEMIC-ISS36-Q6-BRIDGE",
+          "label": "Question-local bridge",
+          "purpose": "Count connected atom pairs for the sigma ledger and account separately for multiplicity.",
+          "visible_elements": [
+            "Question-local bridge"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-ACADEMIC-ISS36-Q7",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "REPLACE",
+        "grade9v3:authored_question_ref": "OWN-ISS36-D3-HYB-07"
+      },
+      "kind": "STRUCTURAL_FORMULA",
+      "purpose": "Distinguish formal-contributor bookkeeping from the requested complete pi-space model.",
+      "required_elements": [
+        "Supplied situation",
+        "Question-local bridge"
+      ],
+      "relation_refs": [
+        "REL-CHEM-ALLENE-ORTHOGONALITY",
+        "REL-CHEM-PI-DELOCALISATION",
+        "REL-CHEM-STERIC-HYBRID-MAP"
+      ],
+      "read_order": [
+        "Supplied carbonate contributors",
+        "Distinguish formal-contributor bookkeeping from the requested complete pi-space model."
+      ],
+      "instance_constraints": [
+        "Pre-attempt stages must orient on the geometry without revealing the complete solution."
+      ],
+      "accessibility": [
+        "The SVG has an accessible name, title and description.",
+        "Text labels duplicate any line-style meaning."
+      ],
+      "misleading_alternatives": [
+        "Using a different species or printing the requested final decision before commitment."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS36/assets/question-7-givens.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "labels and connectivity",
+          "symbol": "given situation",
+          "in_words": "Supplied carbonate contributors"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "REP-ACADEMIC-ISS36-Q7-GIVENS",
+          "label": "Supplied situation",
+          "purpose": "Supplied carbonate contributors",
+          "visible_elements": [
+            "Supplied situation"
+          ]
+        },
+        {
+          "id": "REP-ACADEMIC-ISS36-Q7-BRIDGE",
+          "label": "Question-local bridge",
+          "purpose": "Distinguish formal-contributor bookkeeping from the requested complete pi-space model.",
+          "visible_elements": [
+            "Question-local bridge"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-ACADEMIC-ISS36-Q8",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "REPLACE",
+        "grade9v3:authored_question_ref": "OWN-ISS36-D3-HYB-08"
+      },
+      "kind": "STRUCTURAL_FORMULA",
+      "purpose": "Hold the central axis fixed while distinguishing whole-picture from relative-group rotation.",
+      "required_elements": [
+        "Supplied situation",
+        "Question-local bridge"
+      ],
+      "relation_refs": [
+        "REL-CHEM-ALLENE-ORTHOGONALITY",
+        "REL-CHEM-PI-DELOCALISATION",
+        "REL-CHEM-STERIC-HYBRID-MAP"
+      ],
+      "read_order": [
+        "Ethane and ethene connectivity",
+        "Hold the central axis fixed while distinguishing whole-picture from relative-group rotation."
+      ],
+      "instance_constraints": [
+        "Pre-attempt stages must orient on the geometry without revealing the complete solution."
+      ],
+      "accessibility": [
+        "The SVG has an accessible name, title and description.",
+        "Text labels duplicate any line-style meaning."
+      ],
+      "misleading_alternatives": [
+        "Using a different species or printing the requested final decision before commitment."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS36/assets/question-8-givens.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "labels and connectivity",
+          "symbol": "given situation",
+          "in_words": "Ethane and ethene connectivity"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "REP-ACADEMIC-ISS36-Q8-GIVENS",
+          "label": "Supplied situation",
+          "purpose": "Ethane and ethene connectivity",
+          "visible_elements": [
+            "Supplied situation"
+          ]
+        },
+        {
+          "id": "REP-ACADEMIC-ISS36-Q8-BRIDGE",
+          "label": "Question-local bridge",
+          "purpose": "Hold the central axis fixed while distinguishing whole-picture from relative-group rotation.",
+          "visible_elements": [
+            "Question-local bridge"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-ACADEMIC-ISS36-Q9",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "REPLACE",
+        "grade9v3:authored_question_ref": "OWN-ISS36-D3-HYB-09"
+      },
+      "kind": "STRUCTURAL_FORMULA",
+      "purpose": "Mark orbital availability and adjacency; draw the pathway you judge to be continuous.",
+      "required_elements": [
+        "Supplied situation",
+        "Question-local bridge"
+      ],
+      "relation_refs": [
+        "REL-CHEM-ALLENE-ORTHOGONALITY",
+        "REL-CHEM-PI-DELOCALISATION",
+        "REL-CHEM-STERIC-HYBRID-MAP"
+      ],
+      "read_order": [
+        "Supplied pathway comparison",
+        "Mark orbital availability and adjacency; draw the pathway you judge to be continuous."
+      ],
+      "instance_constraints": [
+        "Pre-attempt stages must orient on the geometry without revealing the complete solution."
+      ],
+      "accessibility": [
+        "The SVG has an accessible name, title and description.",
+        "Text labels duplicate any line-style meaning."
+      ],
+      "misleading_alternatives": [
+        "Using a different species or printing the requested final decision before commitment."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS36/assets/question-9-givens.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "labels and connectivity",
+          "symbol": "given situation",
+          "in_words": "Supplied pathway comparison"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "REP-ACADEMIC-ISS36-Q9-GIVENS",
+          "label": "Supplied situation",
+          "purpose": "Supplied pathway comparison",
+          "visible_elements": [
+            "Supplied situation"
+          ]
+        },
+        {
+          "id": "REP-ACADEMIC-ISS36-Q9-BRIDGE",
+          "label": "Question-local bridge",
+          "purpose": "Mark orbital availability and adjacency; draw the pathway you judge to be continuous.",
+          "visible_elements": [
+            "Question-local bridge"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-ACADEMIC-ISS36-Q10",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "REPLACE",
+        "grade9v3:authored_question_ref": "OWN-ISS36-D3-HYB-10"
+      },
+      "kind": "STRUCTURAL_FORMULA",
+      "purpose": "Apply one local inventory procedure to each selected atom, then check neighbours.",
+      "required_elements": [
+        "Supplied situation",
+        "Question-local bridge"
+      ],
+      "relation_refs": [
+        "REL-CHEM-ALLENE-ORTHOGONALITY",
+        "REL-CHEM-PI-DELOCALISATION",
+        "REL-CHEM-STERIC-HYBRID-MAP"
+      ],
+      "read_order": [
+        "Supplied local-procedure tests",
+        "Apply one local inventory procedure to each selected atom, then check neighbours."
+      ],
+      "instance_constraints": [
+        "Pre-attempt stages must orient on the geometry without revealing the complete solution."
+      ],
+      "accessibility": [
+        "The SVG has an accessible name, title and description.",
+        "Text labels duplicate any line-style meaning."
+      ],
+      "misleading_alternatives": [
+        "Using a different species or printing the requested final decision before commitment."
+      ],
+      "rendered_asset_refs": [
+        "evidence/blueprint-cycles/ISS36/assets/question-10-givens.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "labels and connectivity",
+          "symbol": "given situation",
+          "in_words": "Supplied local-procedure tests"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "REP-ACADEMIC-ISS36-Q10-GIVENS",
+          "label": "Supplied situation",
+          "purpose": "Supplied local-procedure tests",
+          "visible_elements": [
+            "Supplied situation"
+          ]
+        },
+        {
+          "id": "REP-ACADEMIC-ISS36-Q10-BRIDGE",
+          "label": "Question-local bridge",
+          "purpose": "Apply one local inventory procedure to each selected atom, then check neighbours.",
+          "visible_elements": [
+            "Question-local bridge"
           ]
         }
       ]

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "registry_version": "1.12.0",
+  "registry_version": "1.13.0",
   "shell": {
     "id": "G9-TABLET-SHELL-V1",
     "fixed_header": true,
@@ -366,7 +366,7 @@
     },
     {
       "id": "BP-CORE2-SOURCE-QUESTION",
-      "version": "1.7.0",
+      "version": "1.8.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE2"
@@ -510,14 +510,14 @@
           "slot": "identity",
           "level": "EXPECTED",
           "presentation": "DISCLOSURE_GRID",
-          "purpose": "Show the difficulty band, its score and about how long the question should take, with the five reasons behind it folded away until asked.",
+          "purpose": "Show the author-estimated band, score, time and five component scores. Protect the free-text rationale with the answer and working until the learner commits an attempt.",
           "benchmark": "selected_question_bank_TABLET_STUDY: the D-pill and the 'Why this difficulty?' grid",
           "source": [
             "extensions.grade9v3:analysis.difficulty",
             "extensions.grade9v3:analysis.expected_time_seconds"
           ],
           "authoring": {
-            "hint": "Fill extensions['grade9v3:analysis'].difficulty: five components (each 0 to 2), score (their sum), band for that score, basis (one sentence); and expected_time_seconds, your estimate of the time a prepared learner needs. They are your estimates and are shown as estimates.",
+            "hint": "Fill extensions['grade9v3:analysis'].difficulty: five components (each 0 to 2), score (their sum), band for that score, basis (one sentence); and expected_time_seconds, your estimate of the time a prepared learner needs. They are your estimates and are shown as estimates. The basis may discuss the answer route, so it belongs only to the protected post-attempt solution. Never expose it in the initial difficulty grid.",
             "skeleton": {
               "extensions": {
                 "grade9v3:analysis": {
@@ -601,11 +601,12 @@
           "purpose": "Show a question-aligned representation only when it materially helps the learner interpret, translate or reason about the question; otherwise preserve the explicit applicability waiver.",
           "benchmark": "selected_question_bank_TABLET_STUDY: the 'Representation' card with the question-aligned schematic",
           "source": [
-            "figure_refs"
+            "figure_refs",
+            "extensions.grade9v3:core2_visual_review"
           ],
           "min_items": 1,
           "authoring": {
-            "hint": "Decide representation applicability from the question's semantic review. If useful, add an accessible authored SVG drawn only from the question data and name it in figure_refs. If a figure would be decorative or would leak protected work, waive REPRESENTATION with a written reason.",
+            "hint": "Decide representation applicability from the question's semantic review. If useful, add an accessible authored SVG drawn only from the question data and name it in figure_refs. If a figure would be decorative or would leak protected work, waive REPRESENTATION with a written reason. To correct a legacy authored visual while preserving frozen question refs, bind core2_visual_review to the exact question and replaced refs, with a rationale and question-owned authored refs. Authentic SOURCE_FIGURE resources cannot be superseded. A third stage needs a reason if it would perform the learner decision.",
             "skeleton": {
               "figure_refs": []
             }

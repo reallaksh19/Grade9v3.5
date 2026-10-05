@@ -6,9 +6,10 @@ Neither this script nor a render establishes independent difficulty acceptance.
 """
 import hashlib, json
 from fractions import Fraction as F
+import os
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3]
-OUT=ROOT/'evidence/blueprint-cycles/closure-20261005/matrix'
+OUT=ROOT/os.environ.get('G9_REVIEW_DIR','evidence/blueprint-cycles/closure-20261005')/'matrix'
 checks=[]
 def record(cell,method,detail):checks.append({'cell':cell,'status':'PASS','method':method,'detail':detail})
 

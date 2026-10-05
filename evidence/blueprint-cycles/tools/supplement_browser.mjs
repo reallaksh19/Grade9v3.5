@@ -6,7 +6,7 @@ import crypto from 'node:crypto';
 import {createRequire} from 'node:module';
 const require=createRequire(path.resolve(process.env.NODE_PATH,'package.json'));
 const {chromium}=require('playwright');
-const root=process.cwd(),baseDir='evidence/blueprint-cycles/closure-20261005';
+const root=process.cwd(),baseDir=process.env.G9_REVIEW_DIR||'evidence/blueprint-cycles/closure-20261005';
 const sha=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 const server=http.createServer((req,res)=>{
   const file=path.resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname));

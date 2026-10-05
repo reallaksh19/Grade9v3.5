@@ -1877,8 +1877,38 @@ def _difficulty_why(rid: str, analysis: dict) -> str:
     return (f'<button type="button" class="g9-why-toggle" data-g9-toggle aria-expanded="false" aria-controls="{target}">'
             f'<span class="g9-pill g9-pill-band" data-g9-band="{esc(d["band"])}">{esc(d["band"])}{score}</span>'
             f'<span>Why this difficulty?</span></button>'
-            f'<div id="{target}" class="g9-why" hidden>{para(d.get("basis"))}'
+            f'<div id="{target}" class="g9-why" hidden>'
+            '<p>This author estimate combines the five parts below. The detailed rationale is available with the answer and working after your attempt.</p>'
             f'{f"<div class=g9-dgrid>{cells}</div>" if cells else ""}</div>')
+
+
+def _core2_question_figures(ctx: Ctx, q: dict) -> str:
+    """Use explicitly reviewed authored support without replacing a source figure.
+
+    Frozen question figure_refs remain custody data. A correction may supersede
+    an authored representation, but not an authentic source snapshot/resource.
+    """
+    refs = q.get("figure_refs") or []
+    review = (q.get("extensions") or {}).get("grade9v3:core2_visual_review")
+    if review is not None:
+        authored = review.get("authored_figure_refs") if isinstance(review, dict) else None
+        valid = (isinstance(review, dict) and review.get("question_ref") == q["id"]
+                 and review.get("replaces_authored_figure_refs") == refs
+                 and isinstance(review.get("rationale"), str) and bool(review["rationale"].strip())
+                 and isinstance(authored, list) and bool(authored)
+                 and all(isinstance(ref, str) for ref in authored))
+        representations = ctx.index("representations")
+        if valid:
+            valid = all(ref in representations and representations[ref].get("kind") != "SOURCE_FIGURE"
+                        for ref in refs + authored)
+            valid = valid and all((representations[ref].get("extensions") or {}).get("grade9v3:authored_question_ref") == q["id"]
+                                  for ref in authored)
+        if not valid:
+            ctx.gap("AUTHOR_CORE2_VISUAL_REVIEW", q["id"],
+                    "review must bind this question and its frozen authored refs; source figure snapshots cannot be replaced", "CORE2")
+        else:
+            refs = authored
+    return "".join(figure(ctx, ref, "PRE_ATTEMPT", "CORE2", q["id"], first_stage_only=True) for ref in refs)
 
 
 def core2(ctx: Ctx, q: dict) -> str:
@@ -1888,8 +1918,7 @@ def core2(ctx: Ctx, q: dict) -> str:
         ctx.gap("AUTHOR_SOURCE_RESULT_DIFFERS", q["id"], "authored summary differs from current independent result", "CORE2")
     rid = q["id"]
     analysis = (q.get("extensions") or {}).get(owner_bank.ANALYSIS_KEY) or {}
-    figures = "".join(figure(ctx, ref, "PRE_ATTEMPT", "CORE2", rid, first_stage_only=True)
-                      for ref in q.get("figure_refs") or [])
+    figures = _core2_question_figures(ctx, q)
     roles = q.get("representation_roles") or {}
     teaching_figure = figure(ctx, roles.get("bound_ref"), "POST_ATTEMPT", "CORE2", rid + "-bound")
     conditions = "".join(f'<li>{question_text(ctx, q, "conditions", c)}</li>' for c in q.get("conditions") or [])
@@ -1948,7 +1977,9 @@ def core2(ctx: Ctx, q: dict) -> str:
             "CONCEPT_NAV": part("CONCEPT_NAV", _core2_concept_navigation(ctx, q)),
         }, "support"),
         "solution": component_body(ctx, "CORE2", {
-            "SOLUTION": part("SOLUTION", reveal("Answer and working", worked + teaching_figure, ref=f'CORE2-{rid}-solution')),
+            "SOLUTION": part("SOLUTION", reveal("Answer and working", worked + teaching_figure
+                             + block("difficulty_basis", para((analysis.get("difficulty") or {}).get("basis")),
+                                     title="Author's difficulty rationale"), ref=f'CORE2-{rid}-solution')),
         }, "solution"),
     })
     return rendered + _purpose_extension(ctx, "CORE2", rid)

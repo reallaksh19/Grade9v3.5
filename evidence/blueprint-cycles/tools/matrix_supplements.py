@@ -4,11 +4,12 @@ These are original practice, not additional owner inputs or authenticated exam
 questions. Difficulty/classification estimates require independent calibration.
 """
 import copy, hashlib, json
+import os
 from pathlib import Path
 from Shared.tools import product_manifest
 
 ROOT=Path(__file__).resolve().parents[3]
-OUT=ROOT/'evidence/blueprint-cycles/closure-20261005/matrix'
+OUT=ROOT/os.environ.get('G9_REVIEW_DIR','evidence/blueprint-cycles/closure-20261005')/'matrix'
 KEYS=['concept_model_selection','representation_translation','reasoning_chain_length','algebra_computational_load','trap_exception_sensitivity']
 
 # Each tuple includes the actual decisive act, five-component estimate, protected

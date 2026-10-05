@@ -4,11 +4,12 @@ Invalid historical publication enums are quarantined only in a derived review
 copy. Source verification is NOT_RUN, never granted by a successful render.
 """
 import copy, hashlib, json, shutil
+import os
 from pathlib import Path
 from Shared.tools import product_manifest, render_core
 
 ROOT = Path(__file__).resolve().parents[3]
-OUT = ROOT / 'evidence/blueprint-cycles/closure-20261005/subjects'
+OUT = ROOT / os.environ.get('G9_REVIEW_DIR','evidence/blueprint-cycles/closure-20261005') / 'subjects'
 KEYS = ['concept_model_selection','representation_translation','reasoning_chain_length','algebra_computational_load','trap_exception_sensitivity']
 
 def save(path, obj):

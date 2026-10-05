@@ -3,7 +3,7 @@
 Generated from `Shared/web/interactive-page-blueprints.v1.json` by `Shared/tools/blueprint_spec.py`. Do not edit.
 To change what a page shows, change the blueprint; the renderer, the quality gate and the owner-bank scaffold follow.
 
-Registry 1.12.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
+Registry 1.13.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
 
 Depth: min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source (for a Core1A construction unit, the hardest band among the bank questions it names in crux_question_refs). Between the floor and the reference depth the renderer says so as an advisory.
 
@@ -82,7 +82,7 @@ Browser audit (`tools/site-audit/core-page-audit.mjs --profile tablet-12.7`): me
 
 **Evidence.** A digest is taken over the bytes of a file, so the bytes must be the same on every machine. Line endings: LF (`.gitattributes`). Text is LF in every working tree (`* text=auto eol=lf`). A file already committed with CRLF keeps its bytes, so no recorded digest moves; a new file is LF.
 
-## BP-CORE2-SOURCE-QUESTION@1.7.0 (CORE2)
+## BP-CORE2-SOURCE-QUESTION@1.8.0 (CORE2)
 
 Learner job: Preserve authentic assessment demand while allowing bounded, provenance-explicit help that advances the learner without becoming a Question Clinic.
 
@@ -153,10 +153,10 @@ Expected: an official page missing it carries an advisory naming the field to au
 
 **DIFFICULTY_WHY** · slot `identity` · DISCLOSURE_GRID
 
-- The learner gets: Show the difficulty band, its score and about how long the question should take, with the five reasons behind it folded away until asked.
+- The learner gets: Show the author-estimated band, score, time and five component scores. Protect the free-text rationale with the answer and working until the learner commits an attempt.
 - The reference page: selected_question_bank_TABLET_STUDY: the D-pill and the 'Why this difficulty?' grid
 - Record fields: `extensions.grade9v3:analysis.difficulty`, `extensions.grade9v3:analysis.expected_time_seconds`
-- To author it: Fill extensions['grade9v3:analysis'].difficulty: five components (each 0 to 2), score (their sum), band for that score, basis (one sentence); and expected_time_seconds, your estimate of the time a prepared learner needs. They are your estimates and are shown as estimates.
+- To author it: Fill extensions['grade9v3:analysis'].difficulty: five components (each 0 to 2), score (their sum), band for that score, basis (one sentence); and expected_time_seconds, your estimate of the time a prepared learner needs. They are your estimates and are shown as estimates. The basis may discuss the answer route, so it belongs only to the protected post-attempt solution. Never expose it in the initial difficulty grid.
 
 **CONDITIONS** · slot `attempt` · CALLOUT_INFO
 
@@ -176,8 +176,8 @@ Expected: an official page missing it carries an advisory naming the field to au
 
 - The learner gets: Show a question-aligned representation only when it materially helps the learner interpret, translate or reason about the question; otherwise preserve the explicit applicability waiver.
 - The reference page: selected_question_bank_TABLET_STUDY: the 'Representation' card with the question-aligned schematic
-- Record fields: `figure_refs`
-- To author it: Decide representation applicability from the question's semantic review. If useful, add an accessible authored SVG drawn only from the question data and name it in figure_refs. If a figure would be decorative or would leak protected work, waive REPRESENTATION with a written reason.
+- Record fields: `figure_refs`, `extensions.grade9v3:core2_visual_review`
+- To author it: Decide representation applicability from the question's semantic review. If useful, add an accessible authored SVG drawn only from the question data and name it in figure_refs. If a figure would be decorative or would leak protected work, waive REPRESENTATION with a written reason. To correct a legacy authored visual while preserving frozen question refs, bind core2_visual_review to the exact question and replaced refs, with a rationale and question-owned authored refs. Authentic SOURCE_FIGURE resources cannot be superseded. A third stage needs a reason if it would perform the learner decision.
 
 **CHECK** · slot `solution`, inside SOLUTION · CHECK_BOX
 

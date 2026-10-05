@@ -1266,7 +1266,7 @@ window.GRADE9V3_CORE = {
             }
           ],
           "relation_checks": [
-            "A solution whose denominator has a prime factor other than 2 or 5 has no terminating decimal form."
+            "For 2x = 1, x = 0.5 is exact and has zero residual; for 3x = 1, x = 0.333 has residual -0.001."
           ],
           "exit_task": {
             "prompt": "Solve 3x + 2 = 9 over the rationals, and explain why writing the answer as 2.33 would be a different claim.",
@@ -1581,7 +1581,7 @@ window.GRADE9V3_CORE = {
             }
           ],
           "relation_checks": [
-            "A solution whose denominator has a prime factor other than 2 or 5 has no terminating decimal form."
+            "For 2x = 1, x = 0.5 is exact and has zero residual; for 3x = 1, x = 0.333 has residual -0.001."
           ],
           "exit_task": {
             "prompt": "Solve 3x + 2 = 9 over the rationals, and explain why writing the answer as 2.33 would be a different claim.",

@@ -80,6 +80,18 @@
           "template_id": "QRT-EXPLAIN-D2",
           "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
           "status": "CORRECTION_CANDIDATE"
+        },
+        "grade9v3:core2_visual_review": {
+          "question_ref": "ISS34-Q1",
+          "authored_figure_refs": [
+            "REP-ACADEMIC-ISS34-Q1"
+          ],
+          "replaces_authored_figure_refs": [
+            "REP-CHEM-TETRAHEDRAL-LONE-PAIRS"
+          ],
+          "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
         }
       },
       "answer": {
@@ -136,14 +148,18 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q1",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q1-GIVENS"
         },
         {
           "text": "A central lone pair adds a domain even though it adds no bonded nucleus.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q1",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q1-BRIDGE"
         },
         {
           "text": "Make two columns: bonded neighbours and central lone pairs; connect totals to geometry yourself.",
@@ -227,6 +243,16 @@
           "template_id": "QRT-APPLY-D2",
           "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
           "status": "CORRECTION_CANDIDATE"
+        },
+        "grade9v3:core2_visual_review": {
+          "question_ref": "ISS34-Q2",
+          "authored_figure_refs": [
+            "REP-ACADEMIC-ISS34-Q2"
+          ],
+          "replaces_authored_figure_refs": [],
+          "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
         }
       },
       "answer": {
@@ -283,14 +309,18 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q2",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q2-GIVENS"
         },
         {
           "text": "Three sigma directions do not consume the remaining perpendicular p orbital.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q2",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q2-BRIDGE"
         },
         {
           "text": "Assign each carbon valence orbital once: hybrids to sigma, residual p to pi.",
@@ -377,6 +407,18 @@
           "template_id": "QRT-REPRESENT-D2",
           "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
           "status": "CORRECTION_CANDIDATE"
+        },
+        "grade9v3:core2_visual_review": {
+          "question_ref": "ISS34-Q3",
+          "authored_figure_refs": [
+            "REP-ACADEMIC-ISS34-Q3"
+          ],
+          "replaces_authored_figure_refs": [
+            "REP-CHEM-ETHENE-OVERLAP"
+          ],
+          "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
         }
       },
       "answer": {
@@ -433,14 +475,18 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q3",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q3-GIVENS"
         },
         {
           "text": "Three sigma directions lie in each sp2 carbon plane; residual p is perpendicular to that plane.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q3",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q3-BRIDGE"
         },
         {
           "text": "Draw both carbon frames, then align the residual p directions for possible lateral overlap.",
@@ -503,10 +549,10 @@
           "way": "Allocate carbon basis functions and bond components in separate ledgers; keep the localized drawing explicitly a model.",
           "rule": "CO2 carbon: two domains/sp, two sigma components and two pi components. A localized VB drawing is useful accounting, not a unique experimentally compulsory terminal-O orbital-plane picture.",
           "check": "Changed check: HCN carbon also has two sigma directions and two residual p directions although its neighbours differ.",
-          "probe": "Give carbon orbital inventory for CO2 and HCN. Does a localized drawing uniquely measure the oxygen orbital basis?",
-          "pattern": "Both carbon inventories close at four. No unique O basis follows from the drawing alone. Repeated uniqueness claims expose model/observation conflation.",
-          "transfer": "State what CO2 geometry supports and what it cannot uniquely prove.",
-          "wrong_idea": "A localized CO2 drawing uniquely measures the terminal oxygen basis.",
+          "probe": "Allocate the carbon basis in CO2 and HCN. For each, count axial hybrid functions and residual p functions. Does bond multiplicity create extra carbon basis functions?",
+          "pattern": "Both local carbon ledgers have two sp hybrids plus two residual p functions, total four. Repeated larger totals or a third residual p function identify a double-counting rule rather than one addition slip.",
+          "transfer": "Check the carbon orbital allocation in ethyne while retaining one 2s and three 2p inputs.",
+          "wrong_idea": "Each multiple-bond component needs an extra carbon orbital beyond the available valence basis.",
           "question_ref": "ISS34-Q4",
           "label": "Q4",
           "construction_ref": "CU-CHEM-G11-CO2-SYNTHESIS",
@@ -527,6 +573,18 @@
           "template_id": "QRT-SYNTHESIZE-D2",
           "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
           "status": "CORRECTION_CANDIDATE"
+        },
+        "grade9v3:core2_visual_review": {
+          "question_ref": "ISS34-Q4",
+          "authored_figure_refs": [
+            "REP-ACADEMIC-ISS34-Q4"
+          ],
+          "replaces_authored_figure_refs": [
+            "REP-CHEM-CO2-PI-ORTHOGONAL"
+          ],
+          "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
         }
       },
       "answer": {
@@ -583,14 +641,18 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q4",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q4-GIVENS"
         },
         {
           "text": "sp accounting leaves two mutually perpendicular p directions.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q4",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q4-BRIDGE"
         },
         {
           "text": "Allocate carbon basis functions and bond components in separate ledgers; keep the localized drawing explicitly a model.",
@@ -674,6 +736,16 @@
           "template_id": "QRT-JUSTIFY-D2",
           "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
           "status": "CORRECTION_CANDIDATE"
+        },
+        "grade9v3:core2_visual_review": {
+          "question_ref": "ISS34-Q5",
+          "authored_figure_refs": [
+            "REP-ACADEMIC-ISS34-Q5"
+          ],
+          "replaces_authored_figure_refs": [],
+          "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
         }
       },
       "answer": {
@@ -730,14 +802,18 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q5",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q5-GIVENS"
         },
         {
           "text": "A counterexample must hold the claimed condition while changing an omitted relevant condition.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q5",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q5-BRIDGE"
         },
         {
           "text": "Choose a centre with three bonds and a central lone pair; test the claim rather than naming a familiar molecule only.",
@@ -821,6 +897,16 @@
           "template_id": "QRT-EXPLAIN-D2",
           "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
           "status": "CORRECTION_CANDIDATE"
+        },
+        "grade9v3:core2_visual_review": {
+          "question_ref": "ISS34-Q6",
+          "authored_figure_refs": [
+            "REP-ACADEMIC-ISS34-Q6"
+          ],
+          "replaces_authored_figure_refs": [],
+          "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
         }
       },
       "answer": {
@@ -877,14 +963,18 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q6",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q6-GIVENS"
         },
         {
           "text": "Replacing a substituent changes chemical environment without automatically changing connectivity count.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q6",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q6-BRIDGE"
         },
         {
           "text": "Recount neighbours before considering any unprovided property differences.",
@@ -968,6 +1058,16 @@
           "template_id": "QRT-APPLY-D2",
           "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
           "status": "CORRECTION_CANDIDATE"
+        },
+        "grade9v3:core2_visual_review": {
+          "question_ref": "ISS34-Q7",
+          "authored_figure_refs": [
+            "REP-ACADEMIC-ISS34-Q7"
+          ],
+          "replaces_authored_figure_refs": [],
+          "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
         }
       },
       "answer": {
@@ -1024,14 +1124,18 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q7",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q7-GIVENS"
         },
         {
           "text": "One bonded neighbour supplies one direction even when three bond components are present.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q7",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q7-BRIDGE"
         },
         {
           "text": "At C and N count local sigma directions/lone pairs, then tally one sigma plus residual pi components.",
@@ -1118,6 +1222,18 @@
           "template_id": "QRT-EXPLAIN-D2",
           "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
           "status": "CORRECTION_CANDIDATE"
+        },
+        "grade9v3:core2_visual_review": {
+          "question_ref": "ISS34-Q8",
+          "authored_figure_refs": [
+            "REP-ACADEMIC-ISS34-Q8"
+          ],
+          "replaces_authored_figure_refs": [
+            "REP-CHEM-TETRAHEDRAL-LONE-PAIRS"
+          ],
+          "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
         }
       },
       "answer": {
@@ -1174,14 +1290,18 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q8",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q8-GIVENS"
         },
         {
           "text": "A lone pair contributes to electron-domain geometry but is excluded from molecular-shape naming.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q8",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q8-BRIDGE"
         },
         {
           "text": "Use separate C and N inventories; do not carry a whole-molecule label from one atom to the other.",
@@ -1265,6 +1385,16 @@
           "template_id": "QRT-REPRESENT-D2",
           "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
           "status": "CORRECTION_CANDIDATE"
+        },
+        "grade9v3:core2_visual_review": {
+          "question_ref": "ISS34-Q9",
+          "authored_figure_refs": [
+            "REP-ACADEMIC-ISS34-Q9"
+          ],
+          "replaces_authored_figure_refs": [],
+          "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
         }
       },
       "answer": {
@@ -1321,14 +1451,18 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q9",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q9-GIVENS"
         },
         {
           "text": "For second-period carbon, one 2s and three 2p functions form a four-dimensional valence basis.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q9",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q9-BRIDGE"
         },
         {
           "text": "Assign three hybrid sigma directions and reserve only unused functions for the pi job.",
@@ -1415,6 +1549,18 @@
           "template_id": "QRT-JUSTIFY-D2",
           "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
           "status": "CORRECTION_CANDIDATE"
+        },
+        "grade9v3:core2_visual_review": {
+          "question_ref": "ISS34-Q10",
+          "authored_figure_refs": [
+            "REP-ACADEMIC-ISS34-Q10"
+          ],
+          "replaces_authored_figure_refs": [
+            "REP-CHEM-TETRAHEDRAL-LONE-PAIRS"
+          ],
+          "rationale": "Use the actual supplied species/conditions; leave the requested classification, construction and computed result to the learner. Frozen authored refs remain in custody data.",
+          "third_stage_waiver": "A third stage would repeat the route or perform the requested construction. The two authored stages support situation and bridge; the response remains learner work.",
+          "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
         }
       },
       "answer": {
@@ -1471,14 +1617,18 @@
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "KEY_CONCEPT",
-          "supports_move_ref": "m1"
+          "supports_move_ref": "m1",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q10",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q10-GIVENS"
         },
         {
           "text": "A lone-pair domain has no bonded nucleus to include in molecular-shape naming.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "learner_stage": "REPRESENTATION",
-          "supports_move_ref": "m2"
+          "supports_move_ref": "m2",
+          "visual_ref": "REP-ACADEMIC-ISS34-Q10",
+          "visual_stage_ref": "REP-ACADEMIC-ISS34-Q10-BRIDGE"
         },
         {
           "text": "Hold four domains fixed and vary how many slots are bonded atoms.",

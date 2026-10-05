@@ -157,7 +157,7 @@ class Reporting(unittest.TestCase):
             render_core.component_body(ctx, "CORE2", {"NOT_A_COMPONENT": "x"}, "attempt")
 
     def test_the_gate_rule_reads_the_registry_not_a_copy_of_it(self):
-        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.7.0",
+        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.8.0",
                 "units": [{"id": "Q", "components": [{"id": "STEM", "items": None, "unit": None},
                                                      {"id": "HINT_LADDER", "items": 1, "unit": None}]}]}
         problems = quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {})
@@ -219,7 +219,7 @@ class ReferenceDepth(unittest.TestCase):
         self.assertEqual(ctx.waived, [])
 
     def test_the_gate_holds_a_deep_question_to_its_band_and_skips_what_the_record_waived(self):
-        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.7.0",
+        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.8.0",
                 "units": [{"id": "Q", "metadata": [{"kind": "question-difficulty", "ref": "D3", "value": "D3",
                                                    "display_name": "Difficulty", "label": "D3"}],
                            "components": [{"id": "HINT_LADDER", "items": 3, "unit": None}],

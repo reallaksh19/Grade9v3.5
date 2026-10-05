@@ -90,4 +90,42 @@ class LessonClosure(unittest.TestCase):
             folder.joinpath('core1a.html').write_text('<a class="g9-header-btn" href="core1a.pdf" data-g9-action="pdf">PDF</a>', encoding='utf-8')
             problems=render_core.pdf_publication_problems(folder)
             self.assertTrue(any('links core1a.pdf, which is not there' in p for p in problems), problems)
+    def test_difficulty_rationale_cannot_disclose_a_solution_before_attempt(self):
+        from Shared.tools import owner_bank
+        ctx=copy.deepcopy(self.ctx)
+        q=ctx.selection_rows['core2'][0]
+        sentinel='The correct final choice is SENTINEL-ANSWER.'
+        q.setdefault('extensions',{}).setdefault(owner_bank.ANALYSIS_KEY,{})['difficulty']={
+            'band':'D2','score':3,'basis':sentinel,'components':{'reasoning_chain_length':1}}
+        source=render_core.core2(ctx,q)
+        tree=OwnedHTML(source)
+        self.assertNotIn(sentinel,render_core._difficulty_why(q['id'],q['extensions'][owner_bank.ANALYSIS_KEY]))
+        marker=[r for r in tree.rows if r['attrs'].get('data-g9-block')=='difficulty_basis']
+        self.assertTrue(marker)
+        self.assertTrue(any(a['tag']=='template' for a in marker[0]['ancestors']))
+        self.assertIn(sentinel,source)
+    def test_authored_visual_review_rejects_foreign_question_and_source_resource(self):
+        ctx=copy.deepcopy(self.ctx)
+        q=ctx.selection_rows['core2'][0]
+        rep=next(iter(ctx.index('representations')))
+        q['figure_refs']=[rep]
+        q.setdefault('extensions',{})['grade9v3:core2_visual_review']={
+            'question_ref':'FOREIGN','replaces_authored_figure_refs':[rep],
+            'authored_figure_refs':[rep],'rationale':'Corrected author support.'}
+        render_core._core2_question_figures(ctx,q)
+        self.assertTrue(any(g['duty']=='AUTHOR_CORE2_VISUAL_REVIEW' for g in ctx.gaps))
+        ctx.gaps=[]
+        q['extensions']['grade9v3:core2_visual_review']['question_ref']=q['id']
+        target=ctx.index('representations')[rep]
+        target.setdefault('extensions',{})['grade9v3:authored_question_ref']=q['id']
+        render_core._core2_question_figures(ctx,q)
+        self.assertFalse(any(g['duty']=='AUTHOR_CORE2_VISUAL_REVIEW' for g in ctx.gaps))
+        target['extensions']['grade9v3:authored_question_ref']='FOREIGN'
+        render_core._core2_question_figures(ctx,q)
+        self.assertTrue(any(g['duty']=='AUTHOR_CORE2_VISUAL_REVIEW' for g in ctx.gaps))
+        ctx.gaps=[]
+        q['figure_refs']=['SOURCE-SNAPSHOT']
+        q['extensions']['grade9v3:core2_visual_review']['replaces_authored_figure_refs']=['SOURCE-SNAPSHOT']
+        render_core._core2_question_figures(ctx,q)
+        self.assertTrue(any(g['duty']=='AUTHOR_CORE2_VISUAL_REVIEW' for g in ctx.gaps))
 if __name__=='__main__':unittest.main()

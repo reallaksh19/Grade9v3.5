@@ -7,7 +7,7 @@ import crypto from 'node:crypto';
 import {createRequire} from 'node:module';
 const require=createRequire(path.resolve(process.env.NODE_PATH,'package.json'));
 const {chromium}=require('playwright');
-const root=process.cwd(), out=path.join(root,'evidence/blueprint-cycles/closure-20261005');
+const root=process.cwd(), out=path.join(root,process.env.G9_REVIEW_DIR||'evidence/blueprint-cycles/closure-20261005');
 const issues=[32,31,34,33,36,35,38,37];
 const hash=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 const server=http.createServer((req,res)=>{
@@ -34,6 +34,13 @@ try {
   await page.goto(url);
   for(const q of bank.questions){
    const a=page.locator(`article[data-g9-unit="${q.id}"]`);
+   if(await a.locator('[data-g9-block="difficulty_basis"]').count())failures.push(q.id+': difficulty rationale materialized before attempt');
+   const visual=q.extensions['grade9v3:core2_visual_review'];
+   if(visual){
+    for(const ref of visual.authored_figure_refs){
+     if(!await a.locator(`figure[data-g9-figure="${ref}"]`).count())failures.push(q.id+': question-local visual absent');
+    }
+   }
    const gate=a.locator('details[data-requires-attempt]').first();
    await gate.locator('summary').click();
    if(await gate.getAttribute('open')!==null)failures.push(q.id+': blank response opened protected solution');
@@ -49,6 +56,7 @@ try {
    await a.locator('[data-g9-commit]').first().click();
    if(await a.getAttribute('data-attempted')!=='1')failures.push(q.id+': commitment did not unlock the solution');
    await gate.locator('summary').click();
+   if(!await a.locator('[data-g9-block="difficulty_basis"]').count())failures.push(q.id+': difficulty rationale absent after committed solution');
    const diagnostic=a.locator('[data-g9-learning-repair]');
    if(await diagnostic.count()!==1)failures.push(q.id+': missing post-attempt diagnostic');
    else{
@@ -58,6 +66,14 @@ try {
     await diagnostic.locator('[data-g9-probe-response]').fill('Changed-case explanation for browser testing.');
     await diagnostic.locator('[data-g9-probe-compare]').click();
     if(!await feedback.isVisible())failures.push(q.id+': committed diagnostic did not show comparison');
+    await diagnostic.locator('[data-g9-repair-link]').click();
+    const clinic=page.locator(`[id="repair-${q.id}"]`);
+    if(!await clinic.count())failures.push(q.id+': exact repair navigation failed');
+    else{
+     await clinic.locator('[data-g9-repair-link]').click();
+     if(new URL(page.url()).hash!=='#'+q.id)failures.push(q.id+': repair did not return to exact question');
+    }
+    await page.goto(url);
    }
    checks.push({question:q.id,states:['INITIAL_PROTECTED','HELP','COMMITTED','SOLUTION','DIAGNOSTIC'],claim:'Interaction execution, not response grading or learning validation'});
   }
