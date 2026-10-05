@@ -41,7 +41,10 @@ def contributors(center):
         ends=[('O' if i==j else 'O−',2 if i==j else 1) for j in range(3)]
         result+=molecule(cx,180,'N+' if center=='N' else 'C',ends)
         for j,(dx,dy) in enumerate([(-100,0),(90,0),(0,-75)]):
-            result+=text(cx+dx-26,180+dy+28,'·· ··' if i==j else '·· ·· ··',18)
+            if dy<0:
+                result+=text(cx+dx-40,180+dy,'··',18)+text(cx+dx+25,180+dy,'··',18)
+                if i!=j:result+=text(cx+dx-7,180+dy-25,'··',18)
+            else:result+=text(cx+dx-26,180+dy+28,'·· ··' if i==j else '·· ·· ··',18)
         result+=text(cx-95,320,f'Contributor {i+1}')
     return result
 def overlap():
@@ -73,7 +76,8 @@ SPACER=lambda x,y:chain(x,y,['H-C(=O)','CH2','NH2:'],[1,1],'Saturated spacer; no
 def pair(a,b):return a(170,180)+b(540,180)
 def nf3():
     result=molecule(380,185,'N',[('F',1)]*3,lp=1,caption='NF3 Lewis inventory')
-    for x,y in [(280,185),(470,185),(380,110)]:result+=text(x-24,y+28,'·· ·· ··',18)
+    for x,y in [(280,185),(470,185)]:result+=text(x-24,y+28,'·· ·· ··',18)
+    result+=text(340,110,'··',18)+text(405,110,'··',18)+text(373,85,'··',18)
     return result
 
 JOBS={
