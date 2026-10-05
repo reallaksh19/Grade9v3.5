@@ -144,7 +144,15 @@
           },
           "expected_time_seconds": 300,
           "common_wrong_route": "Four matching values are treated as if they determined every polynomial even after the degree bound is removed.",
-          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "SYNTHESIZE",
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "the degree-bound warrant that forces the difference to vanish"
         },
         "grade9v3:component_waivers": {
           "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
@@ -162,8 +170,31 @@
             "Z": "separate bounded uniqueness from the unrestricted vanishing-factor family",
             "W": "the degree-bound warrant that forces the difference to vanish"
           }
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-JUSTIFY-D3",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Clarify what four exact observations do and do not determine.",
+          "connect": "Connect that to factor theorem plus the root-count bound.",
+          "way": "Build toward separate bounded uniqueness from the unrestricted vanishing-factor family without skipping its conditions.",
+          "rule": "Before concluding, state the exact condition that licenses the decisive inference: the degree-bound warrant that forces the difference to vanish.",
+          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "probe": "Change the four observation nodes to three nodes and remove any degree bound. What family of differences can still vanish there?",
+          "pattern": "The difference can contain the product of the three node factors times an arbitrary polynomial; finite agreement alone is not identity.",
+          "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+          "wrong_idea": "Four matching values are treated as if they determined every polynomial even after the degree bound is removed.",
+          "question_ref": "ISS52-Q1",
+          "label": "Q1",
+          "construction_ref": "CU-MATH-ISS52-FINITE-DATA-1",
+          "status": "CANDIDATE",
+          "parent_issue": 52,
+          "crux_move_ref": "ISS52-Q1-MOVE-3"
         }
-      }
+      },
+      "secondary_capability_refs": []
     },
     {
       "id": "ISS52-Q2",
@@ -307,7 +338,15 @@
           },
           "expected_time_seconds": 300,
           "common_wrong_route": "Every listed zero is assumed simple, ignoring that local sign behaviour determines parity of multiplicity.",
-          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "JUSTIFY",
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "the multiplicity allocation before scale"
         },
         "grade9v3:component_waivers": {
           "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
@@ -325,8 +364,31 @@
             "Z": "coordinate parity, degree and scale",
             "W": "the multiplicity allocation before scale"
           }
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-SYNTHESIZE-D3",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Clarify what local sign behaviour says about root multiplicity.",
+          "connect": "Connect that to odd/even multiplicity sign rules and the degree budget.",
+          "way": "Build toward coordinate parity, degree and scale without skipping its conditions.",
+          "rule": "Before concluding, state the exact condition that licenses the decisive inference: the multiplicity allocation before scale.",
+          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "probe": "A zero has the same nonzero sign immediately on both sides. What multiplicity parity is compatible with that local behaviour?",
+          "pattern": "Same nonzero sign on both sides requires even multiplicity; odd multiplicity changes sign.",
+          "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+          "wrong_idea": "Every listed zero is assumed simple, ignoring that local sign behaviour determines parity of multiplicity.",
+          "question_ref": "ISS52-Q2",
+          "label": "Q2",
+          "construction_ref": "CU-MATH-ISS52-MULTIPLICITY-1",
+          "status": "CANDIDATE",
+          "parent_issue": 52,
+          "crux_move_ref": "ISS52-Q2-MOVE-2"
         }
-      }
+      },
+      "secondary_capability_refs": []
     },
     {
       "id": "ISS52-Q3",
@@ -469,7 +531,15 @@
           },
           "expected_time_seconds": 480,
           "common_wrong_route": "Finding one degree-5 example is mistaken for proving degree 5 is least.",
-          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "SYNTHESIZE",
+              "MODEL"
+            ]
+          },
+          "stable_crux_move": "the degree-4 impossibility argument"
         },
         "grade9v3:component_waivers": {
           "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
@@ -487,8 +557,31 @@
             "Z": "eliminate degrees 2,3,4 then construct degree5",
             "W": "the degree-4 impossibility argument"
           }
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-JUSTIFY-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Clarify why exact values and an exact zero set impose a lower bound.",
+          "connect": "Connect that to factor theorem, continuity and quadratic discriminant.",
+          "way": "Build toward eliminate degrees 2,3,4 then construct degree5 without skipping its conditions.",
+          "rule": "Before concluding, state the exact condition that licenses the decisive inference: the degree-4 impossibility argument.",
+          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "probe": "If an auxiliary quadratic changes sign between two inputs, can its only real zero be a double root? Explain.",
+          "pattern": "No. A quadratic with one real zero has that zero double and does not change sign there.",
+          "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+          "wrong_idea": "Finding one degree-5 example is mistaken for proving degree 5 is least.",
+          "question_ref": "ISS52-Q3",
+          "label": "Q3",
+          "construction_ref": "CU-MATH-ISS52-MIN-DEGREE-1",
+          "status": "CANDIDATE",
+          "parent_issue": 52,
+          "crux_move_ref": "ISS52-Q3-MOVE-3"
         }
-      }
+      },
+      "secondary_capability_refs": []
     },
     {
       "id": "ISS52-Q4",
@@ -629,7 +722,15 @@
           },
           "expected_time_seconds": 540,
           "common_wrong_route": "Generic roots are computed for one parameter range but degree-drop and collision values are not derived, so the classification is not exhaustive.",
-          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "JUSTIFY",
+              "MODEL"
+            ]
+          },
+          "stable_crux_move": "the exhaustive event set and interval/collision split"
         },
         "grade9v3:component_waivers": {
           "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
@@ -647,8 +748,31 @@
             "Z": "derive every critical value then partition parameter space",
             "W": "the exhaustive event set and interval/collision split"
           }
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-SYNTHESIZE-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Clarify which parameter events change degree, root existence or coincidence.",
+          "connect": "Connect that to factorization plus sign conditions.",
+          "way": "Build toward derive every critical value then partition parameter space without skipping its conditions.",
+          "rule": "Before concluding, state the exact condition that licenses the decisive inference: the exhaustive event set and interval/collision split.",
+          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "probe": "For a changed parameter family with fixed roots, name every event type that must be solved before interval sampling.",
+          "pattern": "Check degree drop, real-root existence boundaries, and collisions with already fixed roots before splitting intervals.",
+          "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+          "wrong_idea": "Generic roots are computed for one parameter range but degree-drop and collision values are not derived, so the classification is not exhaustive.",
+          "question_ref": "ISS52-Q4",
+          "label": "Q4",
+          "construction_ref": "CU-MATH-ISS52-PARAMETER-1",
+          "status": "CANDIDATE",
+          "parent_issue": 52,
+          "crux_move_ref": "ISS52-Q4-MOVE-2"
         }
-      }
+      },
+      "secondary_capability_refs": []
     },
     {
       "id": "ISS52-Q5",
@@ -794,7 +918,15 @@
           },
           "expected_time_seconds": 360,
           "common_wrong_route": "The interpolating quadratic is accepted because it matches all recorded rows, without checking the geometry or physical domain.",
-          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE",
+          "cognitive_demand": {
+            "primary": "MODEL",
+            "secondary": [
+              "JUSTIFY",
+              "REPRESENT"
+            ]
+          },
+          "stable_crux_move": "the inference that three rows do not identify the model"
         },
         "grade9v3:component_waivers": {
           "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
@@ -812,8 +944,31 @@
             "Z": "derive V, compare Q-V, then test a changed input",
             "W": "the inference that three rows do not identify the model"
           }
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-MODEL-D3",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Clarify which account is a geometric model and which only interpolates.",
+          "connect": "Connect that to volume geometry and physical domain.",
+          "way": "Build toward derive V, compare Q-V, then test a changed input without skipping its conditions.",
+          "rule": "Before concluding, state the exact condition that licenses the decisive inference: the inference that three rows do not identify the model.",
+          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "probe": "Two candidate formulas match three physical measurements. What additional evidence distinguishes mechanism-derived model from interpolation?",
+          "pattern": "Derive the governing relation/domain from the mechanism or use a new admissible test; finite interpolation alone is insufficient.",
+          "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+          "wrong_idea": "The interpolating quadratic is accepted because it matches all recorded rows, without checking the geometry or physical domain.",
+          "question_ref": "ISS52-Q5",
+          "label": "Q5",
+          "construction_ref": "CU-MATH-ISS52-MODEL-1",
+          "status": "CANDIDATE",
+          "parent_issue": 52,
+          "crux_move_ref": "ISS52-Q5-MOVE-2"
         }
-      }
+      },
+      "secondary_capability_refs": []
     },
     {
       "id": "ISS52-Q6",
@@ -929,7 +1084,15 @@
           },
           "expected_time_seconds": 180,
           "common_wrong_route": "Cancellation is treated as permission to restore the excluded input and thereby change the function.",
-          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE",
+          "cognitive_demand": {
+            "primary": "EXPLAIN",
+            "secondary": [
+              "JUSTIFY",
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "preserving the excluded point"
         },
         "grade9v3:component_waivers": {
           "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
@@ -947,8 +1110,31 @@
             "Z": "cancel on the original domain then classify extension",
             "W": "preserving the excluded point"
           }
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-EXPLAIN-D2",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Clarify expression equality versus function domain.",
+          "connect": "Connect that to conditional cancellation.",
+          "way": "Build toward cancel on the original domain then classify extension without skipping its conditions.",
+          "rule": "Before concluding, state the exact condition that licenses the decisive inference: preserving the excluded point.",
+          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "probe": "After cancelling a common factor, the simplified rule is zero at the excluded input. Is that input a zero of the original function?",
+          "pattern": "No. A zero must lie in the original domain; the polynomial rule describes a separate extension.",
+          "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+          "wrong_idea": "Cancellation is treated as permission to restore the excluded input and thereby change the function.",
+          "question_ref": "ISS52-Q6",
+          "label": "Q6",
+          "construction_ref": "CU-MATH-ISS52-DOMAIN-1",
+          "status": "CANDIDATE",
+          "parent_issue": 52,
+          "crux_move_ref": "ISS52-Q6-MOVE-2"
         }
-      }
+      },
+      "secondary_capability_refs": []
     },
     {
       "id": "ISS52-Q7",
@@ -1093,7 +1279,14 @@
           },
           "expected_time_seconds": 420,
           "common_wrong_route": "Conclusions forced only by degree at most 4 are carried unchanged into the unbounded case.",
-          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "separating necessary from possible claims"
         },
         "grade9v3:component_waivers": {
           "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
@@ -1110,8 +1303,33 @@
             "Z": "solve bounded then parameterize unbounded",
             "W": "separating necessary from possible claims"
           }
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-SYNTHESIZE-D3",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Clarify which consequences require the degree bound.",
+          "connect": "Connect that to even-polynomial root symmetry and divisibility.",
+          "way": "Build toward solve bounded then parameterize unbounded without skipping its conditions.",
+          "rule": "Before concluding, state the exact condition that licenses the decisive inference: separating necessary from possible claims.",
+          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "probe": "Remove a degree bound while preserving evenness and fixed roots. Which conclusions remain necessary and which become merely possible?",
+          "pattern": "Only conclusions supported without the removed bound stay necessary; new even multipliers generate counterexamples to the others.",
+          "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+          "wrong_idea": "Conclusions forced only by degree at most 4 are carried unchanged into the unbounded case.",
+          "question_ref": "ISS52-Q7",
+          "label": "Q7",
+          "construction_ref": "CU-MATH-ISS52-FINITE-DATA-1",
+          "status": "CANDIDATE",
+          "parent_issue": 52,
+          "crux_move_ref": "ISS52-Q7-MOVE-4"
         }
-      }
+      },
+      "secondary_capability_refs": [
+        "CAP-MATH-POLY-FINITE-DATA-IDENTITY"
+      ]
     },
     {
       "id": "ISS52-Q8",
@@ -1225,7 +1443,15 @@
           },
           "expected_time_seconds": 240,
           "common_wrong_route": "Agreement of p and q at three inputs is mistaken for individual identification of both polynomials.",
-          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "APPLY",
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "uniqueness of difference versus components"
         },
         "grade9v3:component_waivers": {
           "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
@@ -1243,8 +1469,33 @@
             "Z": "factor the difference then construct distinct decompositions",
             "W": "uniqueness of difference versus components"
           }
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-SYNTHESIZE-D2",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Clarify what is identifiable about p-q.",
+          "connect": "Connect that to factor theorem and degree-3 bound.",
+          "way": "Build toward factor the difference then construct distinct decompositions without skipping its conditions.",
+          "rule": "Before concluding, state the exact condition that licenses the decisive inference: uniqueness of difference versus components.",
+          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "probe": "If a difference polynomial is unique, construct two different component pairs with that same difference.",
+          "pattern": "Adding the same allowed polynomial to both components changes neither their difference nor the identified value.",
+          "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+          "wrong_idea": "Agreement of p and q at three inputs is mistaken for individual identification of both polynomials.",
+          "question_ref": "ISS52-Q8",
+          "label": "Q8",
+          "construction_ref": "CU-MATH-ISS52-FINITE-DATA-1",
+          "status": "CANDIDATE",
+          "parent_issue": 52,
+          "crux_move_ref": "ISS52-Q8-MOVE-3"
         }
-      }
+      },
+      "secondary_capability_refs": [
+        "CAP-MATH-POLY-FINITE-DATA-IDENTITY"
+      ]
     },
     {
       "id": "ISS52-Q9",
@@ -1389,7 +1640,14 @@
           },
           "expected_time_seconds": 480,
           "common_wrong_route": "Examples with the right two visible roots are listed without proving that no residual factor can introduce another real zero.",
-          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE",
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "SYNTHESIZE"
+            ]
+          },
+          "stable_crux_move": "the completeness proof"
         },
         "grade9v3:component_waivers": {
           "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
@@ -1406,8 +1664,33 @@
             "Z": "enumerate cases and eliminate the quadratic remainder",
             "W": "the completeness proof"
           }
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-JUSTIFY-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Clarify how multiplicities and leftover factors interact with all constraints.",
+          "connect": "Connect that to factor theorem and quadratic real-root test.",
+          "way": "Build toward enumerate cases and eliminate the quadratic remainder without skipping its conditions.",
+          "rule": "Before concluding, state the exact condition that licenses the decisive inference: the completeness proof.",
+          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "probe": "If a leftover monic quadratic has negative constant term, what does its discriminant tell you about extra real zeros?",
+          "pattern": "A monic quadratic with negative constant has positive discriminant and real roots, so it cannot be an invisible residual factor.",
+          "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+          "wrong_idea": "Examples with the right two visible roots are listed without proving that no residual factor can introduce another real zero.",
+          "question_ref": "ISS52-Q9",
+          "label": "Q9",
+          "construction_ref": "CU-MATH-ISS52-MIN-DEGREE-1",
+          "status": "CANDIDATE",
+          "parent_issue": 52,
+          "crux_move_ref": "ISS52-Q9-MOVE-3"
         }
-      }
+      },
+      "secondary_capability_refs": [
+        "CAP-MATH-POLY-MINIMUM-DEGREE"
+      ]
     },
     {
       "id": "ISS52-Q10",
@@ -1549,7 +1832,15 @@
           },
           "expected_time_seconds": 540,
           "common_wrong_route": "Each shortcut is applied as an unconditional slogan, so domain, cancellation, parameter and degree-bound exceptions are missed.",
-          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE"
+          "concept_bucket": "BUCKET-MATH-ISS52-POLYNOMIAL-INFERENCE",
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "JUSTIFY",
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "choosing the qualification before algebra"
         },
         "grade9v3:component_waivers": {
           "REPRESENTATION": "A pre-attempt Core2 figure is unnecessary; encoding the decisive factorization or case split visually would risk handing over protected work. Use Core1A representation when it has a genuine teaching job."
@@ -1567,8 +1858,31 @@
             "Z": "qualify each rule then apply it",
             "W": "choosing the qualification before algebra"
           }
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-SYNTHESIZE-D4",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Clarify the hidden condition omitted by each shortcut.",
+          "connect": "Connect that to domain, simplified degree, root-count and identity bounds.",
+          "way": "Build toward qualify each rule then apply it without skipping its conditions.",
+          "rule": "Before concluding, state the exact condition that licenses the decisive inference: choosing the qualification before algebra.",
+          "check": "Recheck every original domain, degree, value and zero-set condition, then challenge the result with a changed or boundary case.",
+          "probe": "Take one unconditional shortcut rule and state a changed example where its missing hypothesis fails.",
+          "pattern": "The counterexample must fail exactly the omitted domain/degree/nonzero/identity-bound condition while leaving the qualified rule valid.",
+          "transfer": "Apply the corrected rule to a fresh polynomial or parameter case with changed numbers and state which hypothesis you checked.",
+          "wrong_idea": "Each shortcut is applied as an unconditional slogan, so domain, cancellation, parameter and degree-bound exceptions are missed.",
+          "question_ref": "ISS52-Q10",
+          "label": "Q10",
+          "construction_ref": "CU-MATH-ISS52-QUALIFIED-RULES-1",
+          "status": "CANDIDATE",
+          "parent_issue": 52,
+          "crux_move_ref": "ISS52-Q10-MOVE-1"
         }
-      }
+      },
+      "secondary_capability_refs": []
     }
   ]
 }
