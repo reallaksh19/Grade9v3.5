@@ -1,0 +1,300 @@
+{
+  "schema": "iss49-question-authoring/v1",
+  "questions": [
+    {
+      "n": 1,
+      "cap": "CAP-MAT-POLY-STRUCTURE",
+      "fam": "FAM-MAT-POLY-STRUCTURE",
+      "band": "D1",
+      "comp": {
+        "concept_model_selection": 1,
+        "representation_translation": 1,
+        "reasoning_chain_length": 0,
+        "algebra_computational_load": 0,
+        "trap_exception_sensitivity": 0
+      },
+      "demand": "RETRIEVE",
+      "secondary": [
+        "REPRESENT",
+        "EXPLAIN"
+      ],
+      "time": 90,
+      "summary": "Degree 3; leading coefficient 4; constant term 7; coefficient of x^2 is 0. The missing x^2 term is recorded as 0x^2, or as a zero in the x^2 coefficient slot.",
+      "moves": [
+        [
+          "REPRESENT",
+          "List powers 3, 2, 1, 0 in order.",
+          "Coefficient positions are indexed by powers, including unwritten powers.",
+          "power slots 3, 2, 1, 0"
+        ],
+        [
+          "CONNECT",
+          "Place 0 in the x^2 slot.",
+          "No written x^2 term means 0 times x^2; later coefficients do not shift.",
+          "coefficient row 4, 0, -2, 7"
+        ],
+        [
+          "VERIFY",
+          "Read the requested features from the completed slots.",
+          "Degree is the greatest power with non-zero coefficient; x^0 supplies the constant.",
+          "degree 3, leading coefficient 4, constant 7, x^2 coefficient 0"
+        ]
+      ],
+      "crux": "Q1-MOVE-2",
+      "check": "Reconstructing 4x^3 + 0x^2 - 2x + 7 gives the supplied polynomial.",
+      "scaffolds": [
+        "Write the power slots 3, 2, 1, 0 before reading coefficients.",
+        "A missing power keeps its place and has coefficient 0.",
+        "Fill coefficient slots first; then read degree, leading coefficient and constant term."
+      ],
+      "wrong": "Skipping the missing x^2 slot and shifting -2 into it.",
+      "repair": {
+        "clarify": "Keep a slot for every power down to 0.",
+        "connect": "The coefficient 0 preserves place value in the coefficient sequence.",
+        "way": "Write the power row first, fill visible coefficients, then put 0 in missing slots.",
+        "rule": "An absent x^k term has coefficient 0; degree still comes from the highest non-zero coefficient.",
+        "check": "For 3x^4+x-6, the x^3 and x^2 coefficients are both 0.",
+        "probe": "For 3x^4+x-6, write coefficient slots for powers 4,3,2,1,0 before naming the degree.",
+        "pattern": "3,0,0,1,-6; degree 4. Repeated shifting after a missing term indicates a place-value misconception.",
+        "transfer": "Build the coefficient row for 7x^5-4x^2+1.",
+        "wrong_idea": "A missing term can simply be skipped when positions matter."
+      },
+      "score": 2
+    },
+    {
+      "n": 2,
+      "cap": "CAP-MAT-POLY-STRUCTURE",
+      "fam": "FAM-MAT-POLY-STRUCTURE",
+      "band": "D1",
+      "comp": {
+        "concept_model_selection": 1,
+        "representation_translation": 0,
+        "reasoning_chain_length": 0,
+        "algebra_computational_load": 0,
+        "trap_exception_sensitivity": 1
+      },
+      "demand": "RETRIEVE",
+      "secondary": [
+        "JUSTIFY"
+      ],
+      "time": 120,
+      "summary": "3x^2-2x+1 is a polynomial of degree 2, and -5 is a constant polynomial of degree 0. 1/x+3 is not a polynomial because it contains x^-1; sqrt(x)+1 is not a polynomial because it contains x^(1/2). Polynomial exponents on x must be non-negative integers.",
+      "moves": [
+        [
+          "DECIDE",
+          "Rewrite variable-dependent parts as powers of x.",
+          "The defining exponent condition is easiest to inspect in power notation.",
+          "x^2, x^-1, x^(1/2), and no variable term"
+        ],
+        [
+          "CONNECT",
+          "Apply the non-negative-integer exponent criterion to each expression.",
+          "A real-coefficient polynomial is a finite sum of a_k x^k with k a non-negative integer.",
+          "first and fourth accepted; reciprocal and square-root expressions rejected"
+        ],
+        [
+          "VERIFY",
+          "Treat the non-zero constant as a degree-0 polynomial.",
+          "-5=-5x^0 and x^0=1, so its greatest non-zero exponent is 0.",
+          "accepted degrees 2 and 0"
+        ]
+      ],
+      "crux": "Q2-MOVE-2",
+      "check": "The rejected expressions fail structurally because their exponents are -1 and 1/2.",
+      "scaffolds": [
+        "Rewrite 1/x and sqrt(x) as powers of x.",
+        "Check whether every exponent of x is a non-negative integer.",
+        "Remember that a non-zero constant can be written as c x^0."
+      ],
+      "wrong": "Accepting any algebraic-looking expression, or rejecting a non-zero constant because x is not written.",
+      "repair": {
+        "clarify": "Classification depends on exponent conditions, not surface appearance.",
+        "connect": "A non-zero constant uses exponent 0, which is allowed.",
+        "way": "Rewrite reciprocal and radical powers explicitly before classifying.",
+        "rule": "A polynomial in x is a finite sum of real multiples of x^k with k a non-negative integer; a non-zero constant has degree 0.",
+        "check": "(1/2)x^3+2 is a polynomial; x^-2+1 is not.",
+        "probe": "Classify (1/2)x^3+2, x^-2+1, and 9, and state the decisive exponent in each case.",
+        "pattern": "Accepted: degree 3 and degree 0; rejected: exponent -2. Repeated acceptance of negative or fractional exponents indicates the boundary is not secure.",
+        "transfer": "Classify x^(3/2)+x and 4x^5-1 without numerical testing.",
+        "wrong_idea": "Anything written with x using ordinary arithmetic is automatically a polynomial."
+      },
+      "score": 2
+    },
+    {
+      "n": 3,
+      "cap": "CAP-MAT-POLY-OPERATE",
+      "fam": "FAM-MAT-POLY-OPERATE",
+      "band": "D1",
+      "comp": {
+        "concept_model_selection": 0,
+        "representation_translation": 0,
+        "reasoning_chain_length": 0,
+        "algebra_computational_load": 1,
+        "trap_exception_sensitivity": 0
+      },
+      "demand": "APPLY",
+      "secondary": [],
+      "time": 60,
+      "summary": "p(2) = (2)^2 - 3(2) + 4 = 4 - 6 + 4 = 2.",
+      "moves": [
+        [
+          "REPRESENT",
+          "Substitute x=2 with brackets in every occurrence of x.",
+          "Brackets preserve which value is powered or multiplied.",
+          "(2)^2 - 3(2) + 4"
+        ],
+        [
+          "TRANSFORM",
+          "Evaluate powers and products before combining.",
+          "Standard order of operations applies after substitution.",
+          "4 - 6 + 4"
+        ],
+        [
+          "VERIFY",
+          "Combine signed numbers and confirm every x was replaced.",
+          "4-6+4=2 and the substitution was made everywhere.",
+          "p(2)=2"
+        ]
+      ],
+      "crux": "Q3-MOVE-1",
+      "check": "Direct recomputation gives 4-6+4=2.",
+      "scaffolds": [
+        "Replace every x by (2) before doing arithmetic.",
+        "Keep the substituted value inside brackets while evaluating powers and products.",
+        "Now simplify 2^2 and 3·2, then combine signed terms."
+      ],
+      "wrong": "Substituting into only one occurrence of x or dropping grouping too early.",
+      "repair": {
+        "clarify": "Substitution replaces every occurrence of the variable.",
+        "connect": "Brackets make the replacement visible before arithmetic starts.",
+        "way": "Copy the expression and replace each x by the same bracketed number.",
+        "rule": "To evaluate p(c), replace every x by (c), then simplify using ordinary order of operations.",
+        "check": "For r(x)=x^2+x, r(-2)=(-2)^2+(-2)=2.",
+        "probe": "Evaluate r(-2) for r(x)=x^2+x, writing the bracketed substitution before simplifying.",
+        "pattern": "(-2)^2+(-2)=4-2=2. A sign error only on negative inputs often comes from removing brackets too soon.",
+        "transfer": "Evaluate 2x^2-5x+1 at x=-1 with the same bracket-first method.",
+        "wrong_idea": "A substituted negative or multiplied value can be written without preserving grouping."
+      },
+      "score": 1
+    },
+    {
+      "n": 4,
+      "cap": "CAP-MAT-POLY-OPERATE",
+      "fam": "FAM-MAT-POLY-OPERATE",
+      "band": "D1",
+      "comp": {
+        "concept_model_selection": 0,
+        "representation_translation": 0,
+        "reasoning_chain_length": 1,
+        "algebra_computational_load": 1,
+        "trap_exception_sensitivity": 0
+      },
+      "demand": "APPLY",
+      "secondary": [
+        "REPRESENT"
+      ],
+      "time": 90,
+      "summary": "p(x)+q(x)=x^2+7x-3. Combine x^2 terms with x^2 terms, x terms with x terms, and constants with constants.",
+      "moves": [
+        [
+          "REPRESENT",
+          "Align terms by equal powers of x.",
+          "Like terms have the same variable part and exponent, so only coefficients combine.",
+          "(2x^2-x^2)+(3x+4x)+(-5+2)"
+        ],
+        [
+          "TRANSFORM",
+          "Add coefficients within each like-term group.",
+          "Coefficient addition preserves the common variable power.",
+          "x^2+7x-3"
+        ],
+        [
+          "VERIFY",
+          "Check at x=1 using originals and the sum.",
+          "p(1)=0 and q(1)=5; the result gives 1+7-3=5.",
+          "both routes give 5"
+        ]
+      ],
+      "crux": "Q4-MOVE-1",
+      "check": "At x=1 the originals total 5 and x^2+7x-3 also gives 5.",
+      "scaffolds": [
+        "Line up x^2, x, and constant terms.",
+        "Only terms with the same power of x are like terms.",
+        "Add coefficients separately, then write powers in descending order."
+      ],
+      "wrong": "Combining unlike terms such as an x^2 term with an x term.",
+      "repair": {
+        "clarify": "Like terms are matched by variable and exponent.",
+        "connect": "Factoring the common x^k shows why only coefficients change.",
+        "way": "Use columns x^2, x, constant; place each term in its column.",
+        "rule": "When adding polynomials, combine only terms with identical variable powers and keep that power unchanged.",
+        "check": "(3x^2-x+4)+(2x^2+5x-1)=5x^2+4x+3.",
+        "probe": "Add 3x^2-x+4 and 2x^2+5x-1 by first naming the three like-term columns.",
+        "pattern": "5x^2+4x+3. Mixing powers indicates grouping by proximity rather than algebraic type.",
+        "transfer": "Add 4x^3+x-2 and -x^3+6x+9 in descending powers.",
+        "wrong_idea": "Terms can be combined merely because they are adjacent or both contain x."
+      },
+      "score": 2
+    },
+    {
+      "n": 5,
+      "cap": "CAP-MAT-POLY-STRUCTURE",
+      "fam": "FAM-MAT-POLY-STRUCTURE",
+      "band": "D2",
+      "comp": {
+        "concept_model_selection": 0,
+        "representation_translation": 2,
+        "reasoning_chain_length": 0,
+        "algebra_computational_load": 0,
+        "trap_exception_sensitivity": 1
+      },
+      "demand": "REPRESENT",
+      "secondary": [
+        "EXPLAIN"
+      ],
+      "time": 120,
+      "figure": "REP-MATH-ISS49-Q5",
+      "summary": "For powers 3,2,1,0 the coefficients are 5,0,-2,7. The table reconstructs 5x^3+0x^2-2x+7=5x^3-2x+7. A zero entry means that power has no contribution, not that later coefficients move left.",
+      "moves": [
+        [
+          "REPRESENT",
+          "Create one table slot for each power 3,2,1,0.",
+          "The target representation is positional: every power needs its own column.",
+          "columns 3,2,1,0"
+        ],
+        [
+          "CONNECT",
+          "Map each source term to its matching power and place 0 at power 2.",
+          "Translation must preserve the coefficient attached to each exponent.",
+          "row 5,0,-2,7"
+        ],
+        [
+          "VERIFY",
+          "Translate the row back into a polynomial.",
+          "Reconstruction checks that the positional invariant was preserved.",
+          "5x^3+0x^2-2x+7"
+        ]
+      ],
+      "crux": "Q5-MOVE-2",
+      "check": "Reading the table backward reproduces the original polynomial exactly.",
+      "scaffolds": [
+        "The invariant is that each coefficient stays attached to its exponent.",
+        "Make all four columns 3,2,1,0 before placing values.",
+        "After filling the row, translate it back to verify the missing power stayed in place."
+      ],
+      "wrong": "Deleting the x^2 column and shifting later coefficients into the wrong powers.",
+      "repair": {
+        "clarify": "A coefficient table is a positional representation.",
+        "connect": "A zero coefficient carries the information that the x^2 slot exists but contributes nothing.",
+        "way": "Write the complete descending exponent row first, then map coefficients one by one.",
+        "rule": "Polynomial-to-table translation preserves exponent-to-coefficient correspondence, including explicit zeros for missing powers.",
+        "check": "For 2x^4+3x-1, powers 4,3,2,1,0 have coefficients 2,0,0,3,-1.",
+        "probe": "Build the coefficient row for 2x^4+3x-1 using every power from 4 down to 0, then reconstruct it.",
+        "pattern": "2,0,0,3,-1 and the reconstruction is unchanged. Repeated shifting after zero slots signals a representation error.",
+        "transfer": "Translate -x^5+4x^2+6 into a six-slot coefficient row and back.",
+        "wrong_idea": "Omitted terms should also be omitted from a positional coefficient representation."
+      },
+      "score": 3
+    }
+  ]
+}

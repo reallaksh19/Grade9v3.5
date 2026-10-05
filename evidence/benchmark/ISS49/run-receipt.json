@@ -1,0 +1,148 @@
+{
+  "schema": "iss49-run-receipt/v1",
+  "issue": 49,
+  "round": "POLYNOMIAL-STRESS-V1",
+  "cohort_label": "D1 intended",
+  "responsibility": "Core1A + Core2 polynomial stress candidate execution",
+  "protocol": {
+    "requested": "Engineering Relay V3.2",
+    "ref": "reallaksh19/Common@149770a21ca073df49717a96e2106c967adddc2d:skills/engineering-pr-delivery-v3.2",
+    "production_compatibility_note": "V3.2 skill states V3.1 remains current production protocol while V3.2 is an additive candidate."
+  },
+  "material": {
+    "pinned_seed": "91719ad8df2bfc06c6a481590d2e24c510c24835",
+    "branch": "feat/iss49-polynomial-stress-d1",
+    "validated_candidate_head_before_audit_packaging": "a9f38c448eca0f8b092155d2e81764d22691a034",
+    "pull_request": 62,
+    "pull_request_state": "DRAFT",
+    "pull_request_base": "feat/issue29-integrated-core-templates"
+  },
+  "input": {
+    "owner_core_sha256": "c2cca6e6b92997c30d2f3a7eab91577bc8463ec9ce44ca90b9be728f3d1d46b8",
+    "questions": 10,
+    "custody": "OWNER_SUPPLIED",
+    "authorship": "AI/coordinator authored under Owner request",
+    "official_exam_or_pyq": false,
+    "authenticated_textbook_transcription": false,
+    "simulated_learner_profile": true
+  },
+  "launch_authority_git_blob_sha1": {
+    "Shared/tools/render_core.py": "23fc31ae33248c0e287e589879d1b7c84d528b13",
+    "Shared/web/interactive-page-blueprints.v1.json": "592bffeb87ce283d62ea2479fa359a5278f4ee08",
+    "Shared/web/interactive-page-blueprint.schema.json": "a306b926a6ea39db6090b0121b6c612246f3aa9b",
+    "Shared/tools/web_blueprint_contract.py": "96b15ae6fb68ff71a56d3696e1f53edef6a3fc25",
+    "Shared/quality/question-demand-matrix.v1.json": "3779a53ae7d20efbb4644bc3f9243909e93dc145",
+    "Shared/quality/question-demand-templates.v1.json": "e2409aef11ae7d98444593bfbe1a38eb00c97cef",
+    "Shared/vocabularies/cognitive-demand.v1.json": "37ebe1ffa6edf5a9651bef49f424db4788cc9e6d",
+    "Shared/roles/CORE2.md": "3a3bcdd4dc3f9ff8ab1af3e33da15e95c40091c5",
+    "Shared/roles/CORE1A.md": "51743989387265f37a96edf104b6a001e93fcc3a",
+    "Shared/tools/owner_bank.py": "80e2f2b108aeb43aa796a1b02c7a276213f6622b",
+    "Shared/tools/learning_repair.py": "3804f51019982b4c92bfe7eb7a4202c39c9e282a",
+    "Shared/tools/quality_gate.py": "3855d5513a8cf0ffe56a8883e3a574752b1567f2",
+    "tools/site-audit/core-page-audit.mjs": "ff77b95a41deddd3b438256b372535e518dc0392",
+    "public/css/modern-learner.css": "e58b258307cc1de42b4094f37854aaf00c5fe104",
+    "public/css/tablet-12-7.css": "0f7663409a075f69e68c6e23cbd213f271e69303",
+    "public/js/display-controls.js": "2c7dfefeb4e2312287bd5dd5411649ebdfee3996",
+    "public/js/site-header.js": "867d8566f727dfa15cea8b34f246704b2818fd9d",
+    "public/vendor/katex/0.16.8/katex.min.js": "f5cd23aa762ad20e4bd0e8b435f1da7bc375edc9"
+  },
+  "environment": {
+    "execution": "GitHub Actions hosted runner for build/render/browser checks; repository mutation through authenticated GitHub connector",
+    "runner_os": "Ubuntu 24.04",
+    "python": "3.12.14",
+    "node_requested": "22",
+    "playwright": "1.56.1",
+    "jsonschema": "installed by pip; exact package version was not captured in the reference run",
+    "local_shell_checkout": "NOT_AVAILABLE_IN_EXECUTOR_SESSION",
+    "implementation_start_projection": "NOT_RUN locally; semantic PLAN_UPDATE was published and the limitation recorded"
+  },
+  "reference_validation": {
+    "workflow_run": 37329225494,
+    "job": 111827742295,
+    "head": "a9f38c448eca0f8b092155d2e81764d22691a034",
+    "conclusion": "SUCCESS",
+    "artifact": {
+      "id": 11353965698,
+      "name": "iss49-polynomial-stress-candidate",
+      "sha256": "a258c19de1edda35eab169c33e450c038f5b68b970da8231f40a748ee3eed303",
+      "size_bytes": 194741
+    }
+  },
+  "render": {
+    "renderer": "render_core/2",
+    "render_digest": "ef9a4565a4bc05a5",
+    "semantic_digest": "22512584ac9f1f6a",
+    "held_to": "FLOOR",
+    "draft": false,
+    "gaps": [],
+    "output_roles": [
+      "CORE1A",
+      "CORE2"
+    ],
+    "html_sha256": {
+      "core1a.html": "19af674ad2360cbe1542d9f3dc115688ec030ff065d8ada14a5804b48eca45c0",
+      "core2.html": "07723efd4e1532358a1105dac8222a464e0b96af3dc70e9a9f6365d9198cb2d6"
+    }
+  },
+  "quality": {
+    "strict_report_verdict": "FAIL",
+    "candidate_specific_findings": 0,
+    "open_findings": [
+      {
+        "rule": "PAGE-STAGE-SUPPORT",
+        "severity": "S2",
+        "where": "core1a.html",
+        "detail": "stage support layout absent",
+        "classification": "INHERITED_AUTHORITY_CONTRADICTION"
+      }
+    ],
+    "browser_audit": "PASS_ENFORCED_SIX_PROFILES",
+    "browser_summary": {
+      "root_horizontal_overflow": 0,
+      "undersized_controls": 0,
+      "focus_failures": 0,
+      "staged_svg_violations": 0,
+      "root_horizontal_overflow_at_200pct_text": 0
+    },
+    "repository_regression_delta": {
+      "new_failing_test_ids": 0,
+      "fixed_test_ids": 0,
+      "still_failing_not_new": 99,
+      "workflow_run": 37329634456
+    },
+    "repository_green": false
+  },
+  "source_support": {
+    "official_reference": "NCERT Ganita Manjari Grade 9 Part I, Chapter 2.1, Introduction to Linear Polynomials",
+    "locator": "https://ncert.nic.in/textbook/pdf/iemh102.pdf",
+    "inspected_utc_date": "2026-10-05",
+    "supports": [
+      "one-variable polynomial terminology",
+      "coefficient and constant terminology",
+      "degree as highest power in the presented polynomial examples",
+      "non-zero constant polynomial degree 0"
+    ],
+    "does_not_supply": [
+      "Issue #49 benchmark question provenance",
+      "answer key",
+      "difficulty adjudication",
+      "QRT classification"
+    ]
+  },
+  "reproduction_commands": [
+    "PYTHONPATH=. python evidence/benchmark/ISS49/build_candidate.py",
+    "python Shared/tools/owner_bank.py check evidence/benchmark/ISS49/inputs/owner.bank.json --intake evidence/benchmark/ISS49/intake.json",
+    "python Shared/tools/blueprint_spec.py --check",
+    "python Shared/tools/quality_contract.py --check",
+    "python Shared/tools/render_core.py build --manifest evidence/benchmark/ISS49/inputs/product.manifest.json --out /tmp/iss49 --mode PAGES",
+    "python Shared/tools/quality_gate.py /tmp/iss49 --subject Mathematics --product-id EVIDENCE-MAT-ISS49-POLY-D1 --report /tmp/iss49/quality-gate.json --strict",
+    "node tools/site-audit/core-page-audit.mjs /tmp/iss49 --profile core1a-spec --http-root /tmp/iss49 --json /tmp/iss49/browser-audit.json --enforce"
+  ],
+  "handoff": {
+    "independent_semantic_acceptance": "PENDING",
+    "golden_promotion": "NOT_AUTHORIZED",
+    "learner_publication": "NOT_AUTHORIZED",
+    "merge": "NOT_PERFORMED",
+    "pr_event_relay_observability_gap": "Issue #49 has no Task Snapshot under relay/GENERATED/tasks; PR-event V3.1 task binding is red even though push Relay validation passed."
+  }
+}

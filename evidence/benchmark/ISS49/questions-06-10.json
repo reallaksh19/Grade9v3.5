@@ -1,0 +1,305 @@
+{
+  "schema": "iss49-question-authoring/v1",
+  "questions": [
+    {
+      "n": 6,
+      "cap": "CAP-MAT-POLY-OPERATE",
+      "fam": "FAM-MAT-POLY-OPERATE",
+      "band": "D2",
+      "comp": {
+        "concept_model_selection": 0,
+        "representation_translation": 0,
+        "reasoning_chain_length": 1,
+        "algebra_computational_load": 1,
+        "trap_exception_sensitivity": 1
+      },
+      "demand": "EXPLAIN",
+      "secondary": [
+        "APPLY"
+      ],
+      "time": 120,
+      "figure": "REP-MATH-ISS49-Q6",
+      "summary": "(x+3)^2=(x+3)(x+3)=x^2+3x+3x+9=x^2+6x+9. The incorrect expansion omits the two cross-products, which combine to 6x.",
+      "moves": [
+        [
+          "REPRESENT",
+          "Rewrite the square as the product (x+3)(x+3).",
+          "Squaring a binomial means multiplying the whole binomial by itself.",
+          "(x+3)(x+3)"
+        ],
+        [
+          "CONNECT",
+          "Distribute each term in the first factor across the second.",
+          "The distributive law creates four products, including two cross-products.",
+          "x^2+3x+3x+9"
+        ],
+        [
+          "VERIFY",
+          "Collect the middle terms and test a simple value.",
+          "3x+3x=6x; at x=1 both (1+3)^2 and 1+6+9 equal 16.",
+          "x^2+6x+9"
+        ]
+      ],
+      "crux": "Q6-MOVE-2",
+      "check": "At x=1, both the product and corrected expansion equal 16; x^2+9 gives 10.",
+      "scaffolds": [
+        "Replace the square by two identical factors.",
+        "Distribute x and 3 from the first factor across both terms of the second.",
+        "Keep all four products visible before collecting the two middle terms."
+      ],
+      "wrong": "Squaring each addend separately and omitting the cross-products.",
+      "repair": {
+        "clarify": "The exponent 2 applies to the whole binomial.",
+        "connect": "Distributive multiplication produces two equal cross-products.",
+        "way": "Expand (x+2)(x+2) as four products before collecting.",
+        "rule": "(a+b)^2=a^2+2ab+b^2 because ab and ba both occur in the product.",
+        "check": "(x+2)^2=x^2+4x+4, and x=1 gives 9 on both sides.",
+        "probe": "Expand (x+2)^2 from the product and compare it with the tempting x^2+4.",
+        "pattern": "The correct middle term is 4x. Repeated omission indicates termwise squaring of a sum.",
+        "transfer": "Expand (2x+1)^2 without copying a memorized final line.",
+        "wrong_idea": "A sum can be squared by squaring each addend and adding the results."
+      },
+      "score": 3
+    },
+    {
+      "n": 7,
+      "cap": "CAP-MAT-POLY-MODEL",
+      "fam": "FAM-MAT-POLY-MODEL",
+      "band": "D2",
+      "comp": {
+        "concept_model_selection": 1,
+        "representation_translation": 1,
+        "reasoning_chain_length": 1,
+        "algebra_computational_load": 1,
+        "trap_exception_sensitivity": 0
+      },
+      "demand": "MODEL",
+      "secondary": [
+        "APPLY",
+        "REPRESENT"
+      ],
+      "time": 150,
+      "figure": "REP-MATH-ISS49-Q7",
+      "summary": "Area=(x+3)(x+1)=x^2+4x+3 cm^2. The expression represents the rectangle's area; square centimetres are required because area is two-dimensional.",
+      "moves": [
+        [
+          "DECIDE",
+          "Choose the rectangle area model A=length×width.",
+          "The given quantities are perpendicular side lengths, so their product is the requested measure.",
+          "A=(x+3)(x+1)"
+        ],
+        [
+          "TRANSFORM",
+          "Expand the product using distribution.",
+          "The requested polynomial form is obtained without changing the represented area.",
+          "A=x^2+4x+3"
+        ],
+        [
+          "VERIFY",
+          "Attach square units and check x=0.",
+          "Multiplying centimetres by centimetres gives cm^2; at x=0 the sides are 3 cm and 1 cm.",
+          "x^2+4x+3 cm^2 represents area"
+        ]
+      ],
+      "crux": "Q7-MOVE-1",
+      "check": "At x=0 the polynomial gives 3, matching 3 cm × 1 cm.",
+      "scaffolds": [
+        "Identify what operation converts two side lengths into area.",
+        "Keep the product form until the geometric meaning is fixed.",
+        "Expand after choosing the model, then use cm×cm to determine the output unit."
+      ],
+      "wrong": "Adding the side lengths, or reporting cm instead of cm^2, because the givens are lengths.",
+      "repair": {
+        "clarify": "First decide which geometric quantity is requested.",
+        "connect": "Rectangle area is the product of perpendicular side lengths.",
+        "way": "For sides x+4 and x+2, write the area product before expanding.",
+        "rule": "If lengths are in cm, rectangle area is length×width and is measured in cm^2; expansion changes form, not meaning.",
+        "check": "At x=0, (x+4)(x+2) gives 8 cm^2, matching 4×2.",
+        "probe": "A rectangle has sides x+4 cm and x+2 cm for x≥0. Model its area, expand it, and name the unit.",
+        "pattern": "(x+4)(x+2)=x^2+6x+8 cm^2. Adding sides or using cm reveals confusion between length and area.",
+        "transfer": "Model the area of a rectangle with sides 2x+1 cm and x+5 cm.",
+        "wrong_idea": "Any expression built from the side lengths represents area, and the unit stays cm."
+      },
+      "score": 4
+    },
+    {
+      "n": 8,
+      "cap": "CAP-MAT-POLY-OPERATE",
+      "fam": "FAM-MAT-POLY-OPERATE",
+      "band": "D1",
+      "comp": {
+        "concept_model_selection": 1,
+        "representation_translation": 0,
+        "reasoning_chain_length": 0,
+        "algebra_computational_load": 1,
+        "trap_exception_sensitivity": 0
+      },
+      "demand": "APPLY",
+      "secondary": [
+        "JUSTIFY"
+      ],
+      "time": 90,
+      "summary": "x^2-9=x^2-3^2=(x-3)(x+3). Multiplying gives x^2+3x-3x-9=x^2-9.",
+      "moves": [
+        [
+          "DECIDE",
+          "Recognize x^2-9 as a difference of two squares.",
+          "9=3^2, so a^2-b^2=(a-b)(a+b) applies.",
+          "x^2-3^2"
+        ],
+        [
+          "TRANSFORM",
+          "Apply the difference-of-squares factorisation.",
+          "Substitute a=x and b=3 into the identity.",
+          "(x-3)(x+3)"
+        ],
+        [
+          "VERIFY",
+          "Multiply the factors.",
+          "The middle terms +3x and -3x cancel, recovering the original expression.",
+          "x^2-9"
+        ]
+      ],
+      "crux": "Q8-MOVE-1",
+      "check": "Expansion of (x-3)(x+3) reproduces x^2-9.",
+      "scaffolds": [
+        "Rewrite 9 as a square.",
+        "Match the expression to a^2-b^2.",
+        "Form conjugate factors, then multiply them back as the check."
+      ],
+      "wrong": "Using a square-of-a-difference pattern instead of difference of squares.",
+      "repair": {
+        "clarify": "Check whether both terms are perfect squares separated by subtraction.",
+        "connect": "Conjugate factors produce cancelling middle terms.",
+        "way": "Rewrite x^2-16 as x^2-4^2 before choosing factors.",
+        "rule": "a^2-b^2=(a-b)(a+b); opposite factor signs make the cross terms cancel.",
+        "check": "(x-4)(x+4)=x^2-16.",
+        "probe": "Factor x^2-16 and verify by multiplication.",
+        "pattern": "(x-4)(x+4), with middle terms cancelling. Repeated use of (x-4)^2 indicates identity confusion.",
+        "transfer": "Factor 9x^2-25 and verify the result.",
+        "wrong_idea": "A difference of squares factors as a squared binomial with the same sign pattern."
+      },
+      "score": 2
+    },
+    {
+      "n": 9,
+      "cap": "CAP-MAT-POLY-MODEL",
+      "fam": "FAM-MAT-POLY-MODEL",
+      "band": "D2",
+      "comp": {
+        "concept_model_selection": 1,
+        "representation_translation": 0,
+        "reasoning_chain_length": 1,
+        "algebra_computational_load": 0,
+        "trap_exception_sensitivity": 1
+      },
+      "demand": "JUSTIFY",
+      "secondary": [
+        "APPLY"
+      ],
+      "time": 120,
+      "summary": "Yes. For every real x, the distributive law gives x(x+1)=x·x+x·1=x^2+x, so the two expressions are algebraically identical rather than merely equal at sampled values.",
+      "moves": [
+        [
+          "DECIDE",
+          "Treat the statement as a universal identity claim, not a numerical test.",
+          "The question asks for every real x, so finitely many examples cannot establish it.",
+          "a general algebraic warrant is required"
+        ],
+        [
+          "CONNECT",
+          "Apply the distributive law symbolically to x(x+1).",
+          "Distribution is valid for every real x and transforms the expression without choosing a sample.",
+          "x^2+x"
+        ],
+        [
+          "VERIFY",
+          "Compare the transformed expression with the other side.",
+          "They are the same symbolic expression, so equality holds throughout the stated domain.",
+          "identity established"
+        ]
+      ],
+      "crux": "Q9-MOVE-2",
+      "check": "Factoring x^2+x back to x(x+1) recovers the original form without restricting x.",
+      "scaffolds": [
+        "The words 'for every real x' require a general reason.",
+        "Use a law valid for arbitrary x instead of testing a few values.",
+        "Distribute x across both terms and compare the resulting expression symbolically."
+      ],
+      "wrong": "Checking one or several numerical values and treating agreement as proof for all real numbers.",
+      "repair": {
+        "clarify": "Universal claims need a warrant that covers the whole domain.",
+        "connect": "An identity obtained by valid symbolic transformations covers every allowed value.",
+        "way": "For (x+2)(x-2) and x^2-4, expand symbolically before concluding.",
+        "rule": "To establish an identity for all real x, use transformations valid throughout the domain; finite sampled agreement alone is not proof.",
+        "check": "(x+2)(x-2)=x^2-4 by distribution and cancellation.",
+        "probe": "Are (x+2)(x-2) and x^2-4 equal for every real x? Give a universal reason, not a sample.",
+        "pattern": "Yes, because distribution gives x^2-2x+2x-4=x^2-4. Numerical spot checks alone do not establish the identity.",
+        "transfer": "Decide whether (x+1)^2 and x^2+1 are identical, using algebra rather than examples.",
+        "wrong_idea": "Agreement at a few chosen values proves two expressions equal for every real input."
+      },
+      "score": 3
+    },
+    {
+      "n": 10,
+      "cap": "CAP-MAT-POLY-CONSTRAINT",
+      "fam": "FAM-MAT-POLY-CONSTRAINT",
+      "band": "D2",
+      "comp": {
+        "concept_model_selection": 1,
+        "representation_translation": 0,
+        "reasoning_chain_length": 2,
+        "algebra_computational_load": 1,
+        "trap_exception_sensitivity": 1
+      },
+      "demand": "SYNTHESIZE",
+      "secondary": [
+        "MODEL",
+        "JUSTIFY"
+      ],
+      "time": 180,
+      "figure": "REP-MATH-ISS49-Q10",
+      "summary": "Let p(x)=ax+2 with a≠0. Since the zero is 1, p(1)=a+2=0, so a=-2. Thus p(x)=-2x+2. Its constant term is 2 and p(1)=0. The coefficient a is forced, so exactly one linear polynomial satisfies both conditions.",
+      "moves": [
+        [
+          "REPRESENT",
+          "Write the family of linear polynomials with constant term 2 as p(x)=ax+2, with a≠0.",
+          "Fixing the constant leaves the x-coefficient as the only free parameter.",
+          "p(x)=ax+2"
+        ],
+        [
+          "CONNECT",
+          "Translate 'zero is 1' into p(1)=0 and solve for a.",
+          "A number r is a zero exactly when p(r)=0; combining this with the fixed constant links the constraints.",
+          "a+2=0, so a=-2"
+        ],
+        [
+          "VERIFY",
+          "Check both conditions and use the forced parameter to establish uniqueness.",
+          "The result has constant 2 and p(1)=0; a+2=0 has only one real solution.",
+          "p(x)=-2x+2, uniquely"
+        ]
+      ],
+      "crux": "Q10-MOVE-2",
+      "check": "The constant term is 2 and -2(1)+2=0; no other a satisfies a+2=0.",
+      "scaffolds": [
+        "Start with the family ax+2 rather than guessing a whole polynomial.",
+        "A zero at 1 means the polynomial value at x=1 must be 0.",
+        "Use that equation to determine the remaining coefficient, then check whether any freedom remains."
+      ],
+      "wrong": "Finding a polynomial with zero 1 but ignoring the fixed constant, or arbitrarily scaling a valid polynomial and changing that constant.",
+      "repair": {
+        "clarify": "Separate what is fixed from what remains free in the linear family.",
+        "connect": "The zero condition becomes an equation in the remaining coefficient.",
+        "way": "For constant term 6 and zero 3, write p(x)=ax+6 and impose p(3)=0.",
+        "rule": "For p(x)=ax+b with fixed non-zero b and specified non-zero zero r, ar+b=0 determines a uniquely; both conditions must be rechecked.",
+        "check": "With b=6 and r=3, 3a+6=0 gives a=-2 and p(x)=-2x+6.",
+        "probe": "Construct a linear polynomial with constant term 6 and zero 3. Before comparing, state whether the coefficient of x is still free after both conditions are imposed.",
+        "pattern": "p(x)=ax+6, p(3)=0 gives 3a+6=0, so a=-2; the coefficient is no longer free and the polynomial is unique.",
+        "transfer": "Construct a linear polynomial with constant term -4 and zero 2, and justify uniqueness.",
+        "wrong_idea": "Once one condition is satisfied, an arbitrary scaling or coefficient choice can satisfy the second without changing the constant term."
+      },
+      "score": 5
+    }
+  ]
+}

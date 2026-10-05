@@ -1,0 +1,1641 @@
+{
+  "schema_version": "grade9v3-owner-supplied-bank-v1",
+  "bank_id": "iss49-poly-d1",
+  "intake_digest": "sha256:c2cca6e6b92997c30d2f3a7eab91577bc8463ec9ce44ca90b9be728f3d1d46b8",
+  "questions": [
+    {
+      "id": "OWN-ISS49-POLY-D1-01",
+      "original_identifier": "Q1",
+      "stem": "For $p(x)=4x^3-2x+7$, state its degree, leading coefficient, constant term and coefficient of $x^2$. Explain how the missing $x^2$ term is recorded.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Degree 3; leading coefficient 4; constant term 7; coefficient of x^2 is 0. The missing x^2 term is recorded as 0x^2, or as a zero in the x^2 coefficient slot.",
+        "reasoning": [
+          "power slots 3, 2, 1, 0",
+          "coefficient row 4, 0, -2, 7",
+          "degree 3, leading coefficient 4, constant 7, x^2 coefficient 0"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS49-POLY-D1-01-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "List powers 3, 2, 1, 0 in order.",
+            "why_valid": "Coefficient positions are indexed by powers, including unwritten powers.",
+            "inputs": [
+              "Degree 3; leading coefficient 4; constant term 7; coefficient of x^2 is 0. The missing x^2 term is recorded as 0x^2, or as a zero in the x^2 coefficient slot."
+            ],
+            "output": "power slots 3, 2, 1, 0"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-01-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Place 0 in the x^2 slot.",
+            "why_valid": "No written x^2 term means 0 times x^2; later coefficients do not shift.",
+            "inputs": [
+              "power slots 3, 2, 1, 0"
+            ],
+            "output": "coefficient row 4, 0, -2, 7"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-01-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Read the requested features from the completed slots.",
+            "why_valid": "Degree is the greatest power with non-zero coefficient; x^0 supplies the constant.",
+            "inputs": [
+              "coefficient row 4, 0, -2, 7"
+            ],
+            "output": "degree 3, leading coefficient 4, constant 7, x^2 coefficient 0"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS49-POLY-D1-01-MOVE-2",
+        "check": "Reconstructing 4x^3 + 0x^2 - 2x + 7 gives the supplied polynomial.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-STRUCTURE",
+      "family_ref": "FAM-MAT-POLY-STRUCTURE",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q1",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:9e842562b093ff0429469a60898d6cbd598fa265aea599b50c0e0987678dd771"
+        },
+        "grade9v3:math_spans": [
+          {
+            "target": "stem",
+            "literal": "p(x)=4x^3-2x+7",
+            "tex": "p(x)=4x^3-2x+7",
+            "display": false
+          },
+          {
+            "target": "stem",
+            "literal": "x^2",
+            "tex": "x^2",
+            "display": false
+          }
+        ],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D1",
+            "score": 2,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 0,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "Q1 decisive act: Place 0 in the x^2 slot.. Total score 2 -> D1."
+          },
+          "common_wrong_route": "Skipping the missing x^2 slot and shifting -2 into it.",
+          "expected_time_seconds": 90,
+          "cognitive_demand": {
+            "primary": "RETRIEVE",
+            "secondary": [
+              "REPRESENT",
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "Place 0 in the x^2 slot."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Keep a slot for every power down to 0.",
+          "connect": "The coefficient 0 preserves place value in the coefficient sequence.",
+          "way": "Write the power row first, fill visible coefficients, then put 0 in missing slots.",
+          "rule": "An absent x^k term has coefficient 0; degree still comes from the highest non-zero coefficient.",
+          "check": "For 3x^4+x-6, the x^3 and x^2 coefficients are both 0.",
+          "probe": "For 3x^4+x-6, write coefficient slots for powers 4,3,2,1,0 before naming the degree.",
+          "pattern": "3,0,0,1,-6; degree 4. Repeated shifting after a missing term indicates a place-value misconception.",
+          "transfer": "Build the coefficient row for 7x^5-4x^2+1.",
+          "wrong_idea": "A missing term can simply be skipped when positions matter.",
+          "question_ref": "OWN-ISS49-POLY-D1-01",
+          "label": "Q1",
+          "construction_ref": "CU-MAT-POLY-STRUCTURE",
+          "microtopic_ref": "MIC-MAT-POLY-STRUCTURE",
+          "status": "CANDIDATE",
+          "parent_issue": 49,
+          "crux_move_ref": "OWN-ISS49-POLY-D1-01-MOVE-2"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-RETRIEVE-D1",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:component_waivers": {
+          "CONDITIONS": "No additional condition is needed beyond the verbatim stem and global one-variable real-coefficient scope.",
+          "REPRESENTATION": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+        }
+      },
+      "conditions": [],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Write the power slots 3, 2, 1, 0 before reading coefficients.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-01-MOVE-1"
+        },
+        {
+          "text": "A missing power keeps its place and has coefficient 0.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-01-MOVE-2"
+        },
+        {
+          "text": "Fill coefficient slots first; then read degree, leading coefficient and constant term.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-01-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS49-POLY-D1-02",
+      "original_identifier": "Q2",
+      "stem": "Which of $3x^2-2x+1$, $1/x+3$, $\\sqrt{x}+1$ and $-5$ are polynomials in $x$ with real coefficients? For each accepted expression state its degree; for each rejected expression identify the defining condition it fails.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "3x^2-2x+1 is a polynomial of degree 2, and -5 is a constant polynomial of degree 0. 1/x+3 is not a polynomial because it contains x^-1; sqrt(x)+1 is not a polynomial because it contains x^(1/2). Polynomial exponents on x must be non-negative integers.",
+        "reasoning": [
+          "x^2, x^-1, x^(1/2), and no variable term",
+          "first and fourth accepted; reciprocal and square-root expressions rejected",
+          "accepted degrees 2 and 0"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS49-POLY-D1-02-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Rewrite variable-dependent parts as powers of x.",
+            "why_valid": "The defining exponent condition is easiest to inspect in power notation.",
+            "inputs": [
+              "3x^2-2x+1 is a polynomial of degree 2, and -5 is a constant polynomial of degree 0. 1/x+3 is not a polynomial because it contains x^-1; sqrt(x)+1 is not a polynomial because it contains x^(1/2). Polynomial exponents on x must be non-negative integers."
+            ],
+            "output": "x^2, x^-1, x^(1/2), and no variable term"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-02-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Apply the non-negative-integer exponent criterion to each expression.",
+            "why_valid": "A real-coefficient polynomial is a finite sum of a_k x^k with k a non-negative integer.",
+            "inputs": [
+              "x^2, x^-1, x^(1/2), and no variable term"
+            ],
+            "output": "first and fourth accepted; reciprocal and square-root expressions rejected"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-02-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Treat the non-zero constant as a degree-0 polynomial.",
+            "why_valid": "-5=-5x^0 and x^0=1, so its greatest non-zero exponent is 0.",
+            "inputs": [
+              "first and fourth accepted; reciprocal and square-root expressions rejected"
+            ],
+            "output": "accepted degrees 2 and 0"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS49-POLY-D1-02-MOVE-2",
+        "check": "The rejected expressions fail structurally because their exponents are -1 and 1/2.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-STRUCTURE",
+      "family_ref": "FAM-MAT-POLY-STRUCTURE",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q2",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:7acb03399356d472d1c0ca510c00974c9b6490b9f49a1823f9b2e95ff986f8f7"
+        },
+        "grade9v3:math_spans": [
+          {
+            "target": "stem",
+            "literal": "3x^2-2x+1",
+            "tex": "3x^2-2x+1",
+            "display": false
+          },
+          {
+            "target": "stem",
+            "literal": "1/x+3",
+            "tex": "1/x+3",
+            "display": false
+          },
+          {
+            "target": "stem",
+            "literal": "\\sqrt{x}+1",
+            "tex": "\\sqrt{x}+1",
+            "display": false
+          },
+          {
+            "target": "stem",
+            "literal": "-5",
+            "tex": "-5",
+            "display": false
+          },
+          {
+            "target": "stem",
+            "literal": "x",
+            "tex": "x",
+            "display": false
+          }
+        ],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D1",
+            "score": 2,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 0,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Q2 decisive act: Apply the non-negative-integer exponent criterion to each expression.. Total score 2 -> D1."
+          },
+          "common_wrong_route": "Accepting any algebraic-looking expression, or rejecting a non-zero constant because x is not written.",
+          "expected_time_seconds": 120,
+          "cognitive_demand": {
+            "primary": "RETRIEVE",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Apply the non-negative-integer exponent criterion to each expression."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Classification depends on exponent conditions, not surface appearance.",
+          "connect": "A non-zero constant uses exponent 0, which is allowed.",
+          "way": "Rewrite reciprocal and radical powers explicitly before classifying.",
+          "rule": "A polynomial in x is a finite sum of real multiples of x^k with k a non-negative integer; a non-zero constant has degree 0.",
+          "check": "(1/2)x^3+2 is a polynomial; x^-2+1 is not.",
+          "probe": "Classify (1/2)x^3+2, x^-2+1, and 9, and state the decisive exponent in each case.",
+          "pattern": "Accepted: degree 3 and degree 0; rejected: exponent -2. Repeated acceptance of negative or fractional exponents indicates the boundary is not secure.",
+          "transfer": "Classify x^(3/2)+x and 4x^5-1 without numerical testing.",
+          "wrong_idea": "Anything written with x using ordinary arithmetic is automatically a polynomial.",
+          "question_ref": "OWN-ISS49-POLY-D1-02",
+          "label": "Q2",
+          "construction_ref": "CU-MAT-POLY-STRUCTURE",
+          "microtopic_ref": "MIC-MAT-POLY-STRUCTURE",
+          "status": "CANDIDATE",
+          "parent_issue": 49,
+          "crux_move_ref": "OWN-ISS49-POLY-D1-02-MOVE-2"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-RETRIEVE-D1",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+        }
+      },
+      "conditions": [
+        "The variable is x and the coefficient field is the real numbers."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Rewrite 1/x and sqrt(x) as powers of x.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-02-MOVE-1"
+        },
+        {
+          "text": "Check whether every exponent of x is a non-negative integer.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-02-MOVE-2"
+        },
+        {
+          "text": "Remember that a non-zero constant can be written as c x^0.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-02-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS49-POLY-D1-03",
+      "original_identifier": "Q3",
+      "stem": "For $p(x)=x^2-3x+4$, calculate $p(2)$. Show the substitution with brackets before simplifying.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "p(2) = (2)^2 - 3(2) + 4 = 4 - 6 + 4 = 2.",
+        "reasoning": [
+          "(2)^2 - 3(2) + 4",
+          "4 - 6 + 4",
+          "p(2)=2"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS49-POLY-D1-03-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Substitute x=2 with brackets in every occurrence of x.",
+            "why_valid": "Brackets preserve which value is powered or multiplied.",
+            "inputs": [
+              "p(2) = (2)^2 - 3(2) + 4 = 4 - 6 + 4 = 2."
+            ],
+            "output": "(2)^2 - 3(2) + 4"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-03-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Evaluate powers and products before combining.",
+            "why_valid": "Standard order of operations applies after substitution.",
+            "inputs": [
+              "(2)^2 - 3(2) + 4"
+            ],
+            "output": "4 - 6 + 4"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-03-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Combine signed numbers and confirm every x was replaced.",
+            "why_valid": "4-6+4=2 and the substitution was made everywhere.",
+            "inputs": [
+              "4 - 6 + 4"
+            ],
+            "output": "p(2)=2"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS49-POLY-D1-03-MOVE-1",
+        "check": "Direct recomputation gives 4-6+4=2.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-OPERATE",
+      "family_ref": "FAM-MAT-POLY-OPERATE",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q3",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:2e5dbbe0a0790220b7625164c20a772f4ba592fd999efe0791241c503f5682e1"
+        },
+        "grade9v3:math_spans": [
+          {
+            "target": "stem",
+            "literal": "p(x)=x^2-3x+4",
+            "tex": "p(x)=x^2-3x+4",
+            "display": false
+          },
+          {
+            "target": "stem",
+            "literal": "p(2)",
+            "tex": "p(2)",
+            "display": false
+          }
+        ],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D1",
+            "score": 1,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 0,
+              "reasoning_chain_length": 0,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "Q3 decisive act: Substitute x=2 with brackets in every occurrence of x.. Total score 1 -> D1."
+          },
+          "common_wrong_route": "Substituting into only one occurrence of x or dropping grouping too early.",
+          "expected_time_seconds": 60,
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": []
+          },
+          "stable_crux_move": "Substitute x=2 with brackets in every occurrence of x."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Substitution replaces every occurrence of the variable.",
+          "connect": "Brackets make the replacement visible before arithmetic starts.",
+          "way": "Copy the expression and replace each x by the same bracketed number.",
+          "rule": "To evaluate p(c), replace every x by (c), then simplify using ordinary order of operations.",
+          "check": "For r(x)=x^2+x, r(-2)=(-2)^2+(-2)=2.",
+          "probe": "Evaluate r(-2) for r(x)=x^2+x, writing the bracketed substitution before simplifying.",
+          "pattern": "(-2)^2+(-2)=4-2=2. A sign error only on negative inputs often comes from removing brackets too soon.",
+          "transfer": "Evaluate 2x^2-5x+1 at x=-1 with the same bracket-first method.",
+          "wrong_idea": "A substituted negative or multiplied value can be written without preserving grouping.",
+          "question_ref": "OWN-ISS49-POLY-D1-03",
+          "label": "Q3",
+          "construction_ref": "CU-MAT-POLY-OPERATE",
+          "microtopic_ref": "MIC-MAT-POLY-OPERATE",
+          "status": "CANDIDATE",
+          "parent_issue": 49,
+          "crux_move_ref": "OWN-ISS49-POLY-D1-03-MOVE-1"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-APPLY-D1",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:component_waivers": {
+          "CONDITIONS": "No additional condition is needed beyond the verbatim stem and global one-variable real-coefficient scope.",
+          "REPRESENTATION": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+        }
+      },
+      "conditions": [],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Replace every x by (2) before doing arithmetic.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-03-MOVE-1"
+        },
+        {
+          "text": "Keep the substituted value inside brackets while evaluating powers and products.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-03-MOVE-1"
+        },
+        {
+          "text": "Now simplify 2^2 and 3·2, then combine signed terms.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-03-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS49-POLY-D1-04",
+      "original_identifier": "Q4",
+      "stem": "Add $p(x)=2x^2+3x-5$ and $q(x)=-x^2+4x+2$. Write the result in descending powers and identify which terms can be combined.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "p(x)+q(x)=x^2+7x-3. Combine x^2 terms with x^2 terms, x terms with x terms, and constants with constants.",
+        "reasoning": [
+          "(2x^2-x^2)+(3x+4x)+(-5+2)",
+          "x^2+7x-3",
+          "both routes give 5"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS49-POLY-D1-04-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Align terms by equal powers of x.",
+            "why_valid": "Like terms have the same variable part and exponent, so only coefficients combine.",
+            "inputs": [
+              "p(x)+q(x)=x^2+7x-3. Combine x^2 terms with x^2 terms, x terms with x terms, and constants with constants."
+            ],
+            "output": "(2x^2-x^2)+(3x+4x)+(-5+2)"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-04-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Add coefficients within each like-term group.",
+            "why_valid": "Coefficient addition preserves the common variable power.",
+            "inputs": [
+              "(2x^2-x^2)+(3x+4x)+(-5+2)"
+            ],
+            "output": "x^2+7x-3"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-04-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Check at x=1 using originals and the sum.",
+            "why_valid": "p(1)=0 and q(1)=5; the result gives 1+7-3=5.",
+            "inputs": [
+              "x^2+7x-3"
+            ],
+            "output": "both routes give 5"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS49-POLY-D1-04-MOVE-1",
+        "check": "At x=1 the originals total 5 and x^2+7x-3 also gives 5.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-OPERATE",
+      "family_ref": "FAM-MAT-POLY-OPERATE",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q4",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:b74dadfa25655d1292386b7e46ad648139fb1340c5676baffe1eab1c02cf6fc1"
+        },
+        "grade9v3:math_spans": [
+          {
+            "target": "stem",
+            "literal": "p(x)=2x^2+3x-5",
+            "tex": "p(x)=2x^2+3x-5",
+            "display": false
+          },
+          {
+            "target": "stem",
+            "literal": "q(x)=-x^2+4x+2",
+            "tex": "q(x)=-x^2+4x+2",
+            "display": false
+          }
+        ],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D1",
+            "score": 2,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "Q4 decisive act: Align terms by equal powers of x.. Total score 2 -> D1."
+          },
+          "common_wrong_route": "Combining unlike terms such as an x^2 term with an x term.",
+          "expected_time_seconds": 90,
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "REPRESENT"
+            ]
+          },
+          "stable_crux_move": "Align terms by equal powers of x."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Like terms are matched by variable and exponent.",
+          "connect": "Factoring the common x^k shows why only coefficients change.",
+          "way": "Use columns x^2, x, constant; place each term in its column.",
+          "rule": "When adding polynomials, combine only terms with identical variable powers and keep that power unchanged.",
+          "check": "(3x^2-x+4)+(2x^2+5x-1)=5x^2+4x+3.",
+          "probe": "Add 3x^2-x+4 and 2x^2+5x-1 by first naming the three like-term columns.",
+          "pattern": "5x^2+4x+3. Mixing powers indicates grouping by proximity rather than algebraic type.",
+          "transfer": "Add 4x^3+x-2 and -x^3+6x+9 in descending powers.",
+          "wrong_idea": "Terms can be combined merely because they are adjacent or both contain x.",
+          "question_ref": "OWN-ISS49-POLY-D1-04",
+          "label": "Q4",
+          "construction_ref": "CU-MAT-POLY-OPERATE",
+          "microtopic_ref": "MIC-MAT-POLY-OPERATE",
+          "status": "CANDIDATE",
+          "parent_issue": 49,
+          "crux_move_ref": "OWN-ISS49-POLY-D1-04-MOVE-1"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-APPLY-D1",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:component_waivers": {
+          "CONDITIONS": "No additional condition is needed beyond the verbatim stem and global one-variable real-coefficient scope.",
+          "REPRESENTATION": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+        }
+      },
+      "conditions": [],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Line up x^2, x, and constant terms.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-04-MOVE-1"
+        },
+        {
+          "text": "Only terms with the same power of x are like terms.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-04-MOVE-1"
+        },
+        {
+          "text": "Add coefficients separately, then write powers in descending order.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-04-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS49-POLY-D1-05",
+      "original_identifier": "Q5",
+      "stem": "Translate $p(x)=5x^3-2x+7$ into a coefficient table with one row for each power $3,2,1,0$. Reconstruct the polynomial from your table and explain what a zero entry means.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "For powers 3,2,1,0 the coefficients are 5,0,-2,7. The table reconstructs 5x^3+0x^2-2x+7=5x^3-2x+7. A zero entry means that power has no contribution, not that later coefficients move left.",
+        "reasoning": [
+          "columns 3,2,1,0",
+          "row 5,0,-2,7",
+          "5x^3+0x^2-2x+7"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS49-POLY-D1-05-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Create one table slot for each power 3,2,1,0.",
+            "why_valid": "The target representation is positional: every power needs its own column.",
+            "inputs": [
+              "For powers 3,2,1,0 the coefficients are 5,0,-2,7. The table reconstructs 5x^3+0x^2-2x+7=5x^3-2x+7. A zero entry means that power has no contribution, not that later coefficients move left."
+            ],
+            "output": "columns 3,2,1,0"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-05-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Map each source term to its matching power and place 0 at power 2.",
+            "why_valid": "Translation must preserve the coefficient attached to each exponent.",
+            "inputs": [
+              "columns 3,2,1,0"
+            ],
+            "output": "row 5,0,-2,7"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-05-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Translate the row back into a polynomial.",
+            "why_valid": "Reconstruction checks that the positional invariant was preserved.",
+            "inputs": [
+              "row 5,0,-2,7"
+            ],
+            "output": "5x^3+0x^2-2x+7"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS49-POLY-D1-05-MOVE-2",
+        "check": "Reading the table backward reproduces the original polynomial exactly.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-STRUCTURE",
+      "family_ref": "FAM-MAT-POLY-STRUCTURE",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q5",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:620542ba3a36947e3ad7b60e1354487b86f2b59b9f4bd76ff64ef9d78277ab8e"
+        },
+        "grade9v3:math_spans": [
+          {
+            "target": "stem",
+            "literal": "p(x)=5x^3-2x+7",
+            "tex": "p(x)=5x^3-2x+7",
+            "display": false
+          },
+          {
+            "target": "stem",
+            "literal": "3,2,1,0",
+            "tex": "3,2,1,0",
+            "display": false
+          }
+        ],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 2,
+              "reasoning_chain_length": 0,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Q5 decisive act: Map each source term to its matching power and place 0 at power 2.. Total score 3 -> D2."
+          },
+          "common_wrong_route": "Deleting the x^2 column and shifting later coefficients into the wrong powers.",
+          "expected_time_seconds": 120,
+          "cognitive_demand": {
+            "primary": "REPRESENT",
+            "secondary": [
+              "EXPLAIN"
+            ]
+          },
+          "stable_crux_move": "Map each source term to its matching power and place 0 at power 2."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "A coefficient table is a positional representation.",
+          "connect": "A zero coefficient carries the information that the x^2 slot exists but contributes nothing.",
+          "way": "Write the complete descending exponent row first, then map coefficients one by one.",
+          "rule": "Polynomial-to-table translation preserves exponent-to-coefficient correspondence, including explicit zeros for missing powers.",
+          "check": "For 2x^4+3x-1, powers 4,3,2,1,0 have coefficients 2,0,0,3,-1.",
+          "probe": "Build the coefficient row for 2x^4+3x-1 using every power from 4 down to 0, then reconstruct it.",
+          "pattern": "2,0,0,3,-1 and the reconstruction is unchanged. Repeated shifting after zero slots signals a representation error.",
+          "transfer": "Translate -x^5+4x^2+6 into a six-slot coefficient row and back.",
+          "wrong_idea": "Omitted terms should also be omitted from a positional coefficient representation.",
+          "question_ref": "OWN-ISS49-POLY-D1-05",
+          "label": "Q5",
+          "construction_ref": "CU-MAT-POLY-STRUCTURE",
+          "microtopic_ref": "MIC-MAT-POLY-STRUCTURE",
+          "status": "CANDIDATE",
+          "parent_issue": 49,
+          "crux_move_ref": "OWN-ISS49-POLY-D1-05-MOVE-2"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-REPRESENT-D2",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:component_waivers": {
+          "CONDITIONS": "No additional condition is needed beyond the verbatim stem and global one-variable real-coefficient scope."
+        },
+        "grade9v3:core2_visual_review": {
+          "question_ref": "OWN-ISS49-POLY-D1-05",
+          "authored_figure_refs": [
+            "REP-MATH-ISS49-Q5"
+          ],
+          "replaces_authored_figure_refs": [
+            "REP-MATH-ISS49-Q5"
+          ],
+          "rationale": "The representation exposes only supplied structure and a blank bridge; the requested coefficient, expansion, model result or parameter remains learner work.",
+          "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+        }
+      },
+      "conditions": [],
+      "figure_refs": [
+        "REP-MATH-ISS49-Q5"
+      ],
+      "scaffolds": [
+        {
+          "text": "The invariant is that each coefficient stays attached to its exponent.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-05-MOVE-1"
+        },
+        {
+          "text": "Make all four columns 3,2,1,0 before placing values.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-05-MOVE-2"
+        },
+        {
+          "text": "After filling the row, translate it back to verify the missing power stayed in place.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-05-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS49-POLY-D1-06",
+      "original_identifier": "Q6",
+      "stem": "A student writes $(x+3)^2=x^2+9$. Use the product $(x+3)(x+3)$ to locate the error and give the corrected expansion.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(x+3)^2=(x+3)(x+3)=x^2+3x+3x+9=x^2+6x+9. The incorrect expansion omits the two cross-products, which combine to 6x.",
+        "reasoning": [
+          "(x+3)(x+3)",
+          "x^2+3x+3x+9",
+          "x^2+6x+9"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS49-POLY-D1-06-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Rewrite the square as the product (x+3)(x+3).",
+            "why_valid": "Squaring a binomial means multiplying the whole binomial by itself.",
+            "inputs": [
+              "(x+3)^2=(x+3)(x+3)=x^2+3x+3x+9=x^2+6x+9. The incorrect expansion omits the two cross-products, which combine to 6x."
+            ],
+            "output": "(x+3)(x+3)"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-06-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Distribute each term in the first factor across the second.",
+            "why_valid": "The distributive law creates four products, including two cross-products.",
+            "inputs": [
+              "(x+3)(x+3)"
+            ],
+            "output": "x^2+3x+3x+9"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-06-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Collect the middle terms and test a simple value.",
+            "why_valid": "3x+3x=6x; at x=1 both (1+3)^2 and 1+6+9 equal 16.",
+            "inputs": [
+              "x^2+3x+3x+9"
+            ],
+            "output": "x^2+6x+9"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS49-POLY-D1-06-MOVE-2",
+        "check": "At x=1, both the product and corrected expansion equal 16; x^2+9 gives 10.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-OPERATE",
+      "family_ref": "FAM-MAT-POLY-OPERATE",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q6",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:f60dbd29652861c328be9e843d5e5e469c4bb1a2f43227f333b4b45230851b59"
+        },
+        "grade9v3:math_spans": [
+          {
+            "target": "stem",
+            "literal": "(x+3)^2=x^2+9",
+            "tex": "(x+3)^2=x^2+9",
+            "display": false
+          },
+          {
+            "target": "stem",
+            "literal": "(x+3)(x+3)",
+            "tex": "(x+3)(x+3)",
+            "display": false
+          }
+        ],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 0,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Q6 decisive act: Distribute each term in the first factor across the second.. Total score 3 -> D2."
+          },
+          "common_wrong_route": "Squaring each addend separately and omitting the cross-products.",
+          "expected_time_seconds": 120,
+          "cognitive_demand": {
+            "primary": "EXPLAIN",
+            "secondary": [
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "Distribute each term in the first factor across the second."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "The exponent 2 applies to the whole binomial.",
+          "connect": "Distributive multiplication produces two equal cross-products.",
+          "way": "Expand (x+2)(x+2) as four products before collecting.",
+          "rule": "(a+b)^2=a^2+2ab+b^2 because ab and ba both occur in the product.",
+          "check": "(x+2)^2=x^2+4x+4, and x=1 gives 9 on both sides.",
+          "probe": "Expand (x+2)^2 from the product and compare it with the tempting x^2+4.",
+          "pattern": "The correct middle term is 4x. Repeated omission indicates termwise squaring of a sum.",
+          "transfer": "Expand (2x+1)^2 without copying a memorized final line.",
+          "wrong_idea": "A sum can be squared by squaring each addend and adding the results.",
+          "question_ref": "OWN-ISS49-POLY-D1-06",
+          "label": "Q6",
+          "construction_ref": "CU-MAT-POLY-OPERATE",
+          "microtopic_ref": "MIC-MAT-POLY-OPERATE",
+          "status": "CANDIDATE",
+          "parent_issue": 49,
+          "crux_move_ref": "OWN-ISS49-POLY-D1-06-MOVE-2"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-EXPLAIN-D2",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:component_waivers": {
+          "CONDITIONS": "No additional condition is needed beyond the verbatim stem and global one-variable real-coefficient scope."
+        },
+        "grade9v3:core2_visual_review": {
+          "question_ref": "OWN-ISS49-POLY-D1-06",
+          "authored_figure_refs": [
+            "REP-MATH-ISS49-Q6"
+          ],
+          "replaces_authored_figure_refs": [
+            "REP-MATH-ISS49-Q6"
+          ],
+          "rationale": "The representation exposes only supplied structure and a blank bridge; the requested coefficient, expansion, model result or parameter remains learner work.",
+          "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+        }
+      },
+      "conditions": [],
+      "figure_refs": [
+        "REP-MATH-ISS49-Q6"
+      ],
+      "scaffolds": [
+        {
+          "text": "Replace the square by two identical factors.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-06-MOVE-1"
+        },
+        {
+          "text": "Distribute x and 3 from the first factor across both terms of the second.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-06-MOVE-2"
+        },
+        {
+          "text": "Keep all four products visible before collecting the two middle terms.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-06-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS49-POLY-D1-07",
+      "original_identifier": "Q7",
+      "stem": "A rectangle has length $(x+3)$ cm and width $(x+1)$ cm, where $x\\geq0$. Write a polynomial for its area, identify the output unit and state which feature of the rectangle your expression represents.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Area=(x+3)(x+1)=x^2+4x+3 cm^2. The expression represents the rectangle's area; square centimetres are required because area is two-dimensional.",
+        "reasoning": [
+          "A=(x+3)(x+1)",
+          "A=x^2+4x+3",
+          "x^2+4x+3 cm^2 represents area"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS49-POLY-D1-07-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Choose the rectangle area model A=length×width.",
+            "why_valid": "The given quantities are perpendicular side lengths, so their product is the requested measure.",
+            "inputs": [
+              "Area=(x+3)(x+1)=x^2+4x+3 cm^2. The expression represents the rectangle's area; square centimetres are required because area is two-dimensional."
+            ],
+            "output": "A=(x+3)(x+1)"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-07-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Expand the product using distribution.",
+            "why_valid": "The requested polynomial form is obtained without changing the represented area.",
+            "inputs": [
+              "A=(x+3)(x+1)"
+            ],
+            "output": "A=x^2+4x+3"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-07-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Attach square units and check x=0.",
+            "why_valid": "Multiplying centimetres by centimetres gives cm^2; at x=0 the sides are 3 cm and 1 cm.",
+            "inputs": [
+              "A=x^2+4x+3"
+            ],
+            "output": "x^2+4x+3 cm^2 represents area"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS49-POLY-D1-07-MOVE-1",
+        "check": "At x=0 the polynomial gives 3, matching 3 cm × 1 cm.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-MODEL",
+      "family_ref": "FAM-MAT-POLY-MODEL",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q7",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:ce4ac438784f208cb8adb25e9941b5677aa2a42c6233a5ed2caaa6932eacdb0c"
+        },
+        "grade9v3:math_spans": [
+          {
+            "target": "stem",
+            "literal": "(x+3)",
+            "tex": "(x+3)",
+            "display": false
+          },
+          {
+            "target": "stem",
+            "literal": "(x+1)",
+            "tex": "(x+1)",
+            "display": false
+          },
+          {
+            "target": "stem",
+            "literal": "x\\geq0",
+            "tex": "x\\geq0",
+            "display": false
+          }
+        ],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 4,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 1,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "Q7 decisive act: Choose the rectangle area model A=length×width.. Total score 4 -> D2."
+          },
+          "common_wrong_route": "Adding the side lengths, or reporting cm instead of cm^2, because the givens are lengths.",
+          "expected_time_seconds": 150,
+          "cognitive_demand": {
+            "primary": "MODEL",
+            "secondary": [
+              "APPLY",
+              "REPRESENT"
+            ]
+          },
+          "stable_crux_move": "Choose the rectangle area model A=length×width."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "First decide which geometric quantity is requested.",
+          "connect": "Rectangle area is the product of perpendicular side lengths.",
+          "way": "For sides x+4 and x+2, write the area product before expanding.",
+          "rule": "If lengths are in cm, rectangle area is length×width and is measured in cm^2; expansion changes form, not meaning.",
+          "check": "At x=0, (x+4)(x+2) gives 8 cm^2, matching 4×2.",
+          "probe": "A rectangle has sides x+4 cm and x+2 cm for x≥0. Model its area, expand it, and name the unit.",
+          "pattern": "(x+4)(x+2)=x^2+6x+8 cm^2. Adding sides or using cm reveals confusion between length and area.",
+          "transfer": "Model the area of a rectangle with sides 2x+1 cm and x+5 cm.",
+          "wrong_idea": "Any expression built from the side lengths represents area, and the unit stays cm.",
+          "question_ref": "OWN-ISS49-POLY-D1-07",
+          "label": "Q7",
+          "construction_ref": "CU-MAT-POLY-MODEL",
+          "microtopic_ref": "MIC-MAT-POLY-MODEL",
+          "status": "CANDIDATE",
+          "parent_issue": 49,
+          "crux_move_ref": "OWN-ISS49-POLY-D1-07-MOVE-1"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-MODEL-D2",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:core2_visual_review": {
+          "question_ref": "OWN-ISS49-POLY-D1-07",
+          "authored_figure_refs": [
+            "REP-MATH-ISS49-Q7"
+          ],
+          "replaces_authored_figure_refs": [
+            "REP-MATH-ISS49-Q7"
+          ],
+          "rationale": "The representation exposes only supplied structure and a blank bridge; the requested coefficient, expansion, model result or parameter remains learner work.",
+          "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+        }
+      },
+      "conditions": [
+        "x ≥ 0."
+      ],
+      "figure_refs": [
+        "REP-MATH-ISS49-Q7"
+      ],
+      "scaffolds": [
+        {
+          "text": "Identify what operation converts two side lengths into area.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-07-MOVE-1"
+        },
+        {
+          "text": "Keep the product form until the geometric meaning is fixed.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-07-MOVE-1"
+        },
+        {
+          "text": "Expand after choosing the model, then use cm×cm to determine the output unit.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-07-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS49-POLY-D1-08",
+      "original_identifier": "Q8",
+      "stem": "Factorise $x^2-9$ using a familiar algebraic identity. Check your factorisation by multiplying the factors.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "x^2-9=x^2-3^2=(x-3)(x+3). Multiplying gives x^2+3x-3x-9=x^2-9.",
+        "reasoning": [
+          "x^2-3^2",
+          "(x-3)(x+3)",
+          "x^2-9"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS49-POLY-D1-08-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Recognize x^2-9 as a difference of two squares.",
+            "why_valid": "9=3^2, so a^2-b^2=(a-b)(a+b) applies.",
+            "inputs": [
+              "x^2-9=x^2-3^2=(x-3)(x+3). Multiplying gives x^2+3x-3x-9=x^2-9."
+            ],
+            "output": "x^2-3^2"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-08-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Apply the difference-of-squares factorisation.",
+            "why_valid": "Substitute a=x and b=3 into the identity.",
+            "inputs": [
+              "x^2-3^2"
+            ],
+            "output": "(x-3)(x+3)"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-08-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Multiply the factors.",
+            "why_valid": "The middle terms +3x and -3x cancel, recovering the original expression.",
+            "inputs": [
+              "(x-3)(x+3)"
+            ],
+            "output": "x^2-9"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS49-POLY-D1-08-MOVE-1",
+        "check": "Expansion of (x-3)(x+3) reproduces x^2-9.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-OPERATE",
+      "family_ref": "FAM-MAT-POLY-OPERATE",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q8",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:d41dd0d41dd259bf4e62f666ad5767a189952c58e8dcfd409b48d694f56c8059"
+        },
+        "grade9v3:math_spans": [
+          {
+            "target": "stem",
+            "literal": "x^2-9",
+            "tex": "x^2-9",
+            "display": false
+          }
+        ],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D1",
+            "score": 2,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 0,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "Q8 decisive act: Recognize x^2-9 as a difference of two squares.. Total score 2 -> D1."
+          },
+          "common_wrong_route": "Using a square-of-a-difference pattern instead of difference of squares.",
+          "expected_time_seconds": 90,
+          "cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Recognize x^2-9 as a difference of two squares."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Check whether both terms are perfect squares separated by subtraction.",
+          "connect": "Conjugate factors produce cancelling middle terms.",
+          "way": "Rewrite x^2-16 as x^2-4^2 before choosing factors.",
+          "rule": "a^2-b^2=(a-b)(a+b); opposite factor signs make the cross terms cancel.",
+          "check": "(x-4)(x+4)=x^2-16.",
+          "probe": "Factor x^2-16 and verify by multiplication.",
+          "pattern": "(x-4)(x+4), with middle terms cancelling. Repeated use of (x-4)^2 indicates identity confusion.",
+          "transfer": "Factor 9x^2-25 and verify the result.",
+          "wrong_idea": "A difference of squares factors as a squared binomial with the same sign pattern.",
+          "question_ref": "OWN-ISS49-POLY-D1-08",
+          "label": "Q8",
+          "construction_ref": "CU-MAT-POLY-OPERATE",
+          "microtopic_ref": "MIC-MAT-POLY-OPERATE",
+          "status": "CANDIDATE",
+          "parent_issue": 49,
+          "crux_move_ref": "OWN-ISS49-POLY-D1-08-MOVE-1"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-APPLY-D1",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:component_waivers": {
+          "CONDITIONS": "No additional condition is needed beyond the verbatim stem and global one-variable real-coefficient scope.",
+          "REPRESENTATION": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+        }
+      },
+      "conditions": [],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "Rewrite 9 as a square.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-08-MOVE-1"
+        },
+        {
+          "text": "Match the expression to a^2-b^2.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-08-MOVE-1"
+        },
+        {
+          "text": "Form conjugate factors, then multiply them back as the check.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-08-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS49-POLY-D1-09",
+      "original_identifier": "Q9",
+      "stem": "Are $x(x+1)$ and $x^2+x$ equal for every real $x$? Give a reason that applies to every value, rather than relying on one numerical substitution.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Yes. For every real x, the distributive law gives x(x+1)=x·x+x·1=x^2+x, so the two expressions are algebraically identical rather than merely equal at sampled values.",
+        "reasoning": [
+          "a general algebraic warrant is required",
+          "x^2+x",
+          "identity established"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS49-POLY-D1-09-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Treat the statement as a universal identity claim, not a numerical test.",
+            "why_valid": "The question asks for every real x, so finitely many examples cannot establish it.",
+            "inputs": [
+              "Yes. For every real x, the distributive law gives x(x+1)=x·x+x·1=x^2+x, so the two expressions are algebraically identical rather than merely equal at sampled values."
+            ],
+            "output": "a general algebraic warrant is required"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-09-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Apply the distributive law symbolically to x(x+1).",
+            "why_valid": "Distribution is valid for every real x and transforms the expression without choosing a sample.",
+            "inputs": [
+              "a general algebraic warrant is required"
+            ],
+            "output": "x^2+x"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-09-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Compare the transformed expression with the other side.",
+            "why_valid": "They are the same symbolic expression, so equality holds throughout the stated domain.",
+            "inputs": [
+              "x^2+x"
+            ],
+            "output": "identity established"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS49-POLY-D1-09-MOVE-2",
+        "check": "Factoring x^2+x back to x(x+1) recovers the original form without restricting x.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-MODEL",
+      "family_ref": "FAM-MAT-POLY-MODEL",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q9",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:00874621d3ba34d51316ce473dd2e1c3bc4685026446f56aa93cff7f10d86eac"
+        },
+        "grade9v3:math_spans": [
+          {
+            "target": "stem",
+            "literal": "x(x+1)",
+            "tex": "x(x+1)",
+            "display": false
+          },
+          {
+            "target": "stem",
+            "literal": "x^2+x",
+            "tex": "x^2+x",
+            "display": false
+          },
+          {
+            "target": "stem",
+            "literal": "x",
+            "tex": "x",
+            "display": false
+          }
+        ],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 3,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Q9 decisive act: Apply the distributive law symbolically to x(x+1).. Total score 3 -> D2."
+          },
+          "common_wrong_route": "Checking one or several numerical values and treating agreement as proof for all real numbers.",
+          "expected_time_seconds": 120,
+          "cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [
+              "APPLY"
+            ]
+          },
+          "stable_crux_move": "Apply the distributive law symbolically to x(x+1)."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Universal claims need a warrant that covers the whole domain.",
+          "connect": "An identity obtained by valid symbolic transformations covers every allowed value.",
+          "way": "For (x+2)(x-2) and x^2-4, expand symbolically before concluding.",
+          "rule": "To establish an identity for all real x, use transformations valid throughout the domain; finite sampled agreement alone is not proof.",
+          "check": "(x+2)(x-2)=x^2-4 by distribution and cancellation.",
+          "probe": "Are (x+2)(x-2) and x^2-4 equal for every real x? Give a universal reason, not a sample.",
+          "pattern": "Yes, because distribution gives x^2-2x+2x-4=x^2-4. Numerical spot checks alone do not establish the identity.",
+          "transfer": "Decide whether (x+1)^2 and x^2+1 are identical, using algebra rather than examples.",
+          "wrong_idea": "Agreement at a few chosen values proves two expressions equal for every real input.",
+          "question_ref": "OWN-ISS49-POLY-D1-09",
+          "label": "Q9",
+          "construction_ref": "CU-MAT-POLY-MODEL",
+          "microtopic_ref": "MIC-MAT-POLY-MODEL",
+          "status": "CANDIDATE",
+          "parent_issue": 49,
+          "crux_move_ref": "OWN-ISS49-POLY-D1-09-MOVE-2"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-JUSTIFY-D2",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "A separate diagram would be decorative or would duplicate the symbolic object; the question is reviewed through symbolic text and construction support."
+        }
+      },
+      "conditions": [
+        "The equality claim is over every real x."
+      ],
+      "figure_refs": [],
+      "scaffolds": [
+        {
+          "text": "The words 'for every real x' require a general reason.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-09-MOVE-1"
+        },
+        {
+          "text": "Use a law valid for arbitrary x instead of testing a few values.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-09-MOVE-2"
+        },
+        {
+          "text": "Distribute x across both terms and compare the resulting expression symbolically.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-09-MOVE-3"
+        }
+      ]
+    },
+    {
+      "id": "OWN-ISS49-POLY-D1-10",
+      "original_identifier": "Q10",
+      "stem": "Construct a linear polynomial whose constant term is $2$ and whose zero is $1$. Check both conditions and state whether more than one linear polynomial can satisfy them.",
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Let p(x)=ax+2 with a≠0. Since the zero is 1, p(1)=a+2=0, so a=-2. Thus p(x)=-2x+2. Its constant term is 2 and p(1)=0. The coefficient a is forced, so exactly one linear polynomial satisfies both conditions.",
+        "reasoning": [
+          "p(x)=ax+2",
+          "a+2=0, so a=-2",
+          "p(x)=-2x+2, uniquely"
+        ],
+        "reasoning_route": [
+          {
+            "id": "OWN-ISS49-POLY-D1-10-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Write the family of linear polynomials with constant term 2 as p(x)=ax+2, with a≠0.",
+            "why_valid": "Fixing the constant leaves the x-coefficient as the only free parameter.",
+            "inputs": [
+              "Let p(x)=ax+2 with a≠0. Since the zero is 1, p(1)=a+2=0, so a=-2. Thus p(x)=-2x+2. Its constant term is 2 and p(1)=0. The coefficient a is forced, so exactly one linear polynomial satisfies both conditions."
+            ],
+            "output": "p(x)=ax+2"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-10-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Translate 'zero is 1' into p(1)=0 and solve for a.",
+            "why_valid": "A number r is a zero exactly when p(r)=0; combining this with the fixed constant links the constraints.",
+            "inputs": [
+              "p(x)=ax+2"
+            ],
+            "output": "a+2=0, so a=-2"
+          },
+          {
+            "id": "OWN-ISS49-POLY-D1-10-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Check both conditions and use the forced parameter to establish uniqueness.",
+            "why_valid": "The result has constant 2 and p(1)=0; a+2=0 has only one real solution.",
+            "inputs": [
+              "a+2=0, so a=-2"
+            ],
+            "output": "p(x)=-2x+2, uniquely"
+          }
+        ],
+        "crux_move_ref": "OWN-ISS49-POLY-D1-10-MOVE-2",
+        "check": "The constant term is 2 and -2(1)+2=0; no other a satisfies a+2=0.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-CONSTRAINT",
+      "family_ref": "FAM-MAT-POLY-CONSTRAINT",
+      "extensions": {
+        "grade9v3:source_custody": {
+          "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+          "intake_ref": "Q10",
+          "wording_custody": "VERBATIM",
+          "text_sha256": "sha256:03d41d47abf7a54c8f87660ef2ca5c1fa3d2419f4939b6bcbe5f0614510eeb73"
+        },
+        "grade9v3:math_spans": [
+          {
+            "target": "stem",
+            "literal": "2",
+            "tex": "2",
+            "display": false
+          },
+          {
+            "target": "stem",
+            "literal": "1",
+            "tex": "1",
+            "display": false
+          }
+        ],
+        "grade9v3:analysis": {
+          "learner_question_type": "constructed_response",
+          "difficulty": {
+            "band": "D2",
+            "score": 5,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 2,
+              "algebra_computational_load": 1,
+              "trap_exception_sensitivity": 1
+            },
+            "basis": "Q10 decisive act: Translate 'zero is 1' into p(1)=0 and solve for a.. Total score 5 -> D2."
+          },
+          "common_wrong_route": "Finding a polynomial with zero 1 but ignoring the fixed constant, or arbitrarily scaling a valid polynomial and changing that constant.",
+          "expected_time_seconds": 180,
+          "cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [
+              "MODEL",
+              "JUSTIFY"
+            ]
+          },
+          "stable_crux_move": "Translate 'zero is 1' into p(1)=0 and solve for a."
+        },
+        "grade9v3:learning_repair": {
+          "clarify": "Separate what is fixed from what remains free in the linear family.",
+          "connect": "The zero condition becomes an equation in the remaining coefficient.",
+          "way": "For constant term 6 and zero 3, write p(x)=ax+6 and impose p(3)=0.",
+          "rule": "For p(x)=ax+b with fixed non-zero b and specified non-zero zero r, ar+b=0 determines a uniquely; both conditions must be rechecked.",
+          "check": "With b=6 and r=3, 3a+6=0 gives a=-2 and p(x)=-2x+6.",
+          "probe": "Construct a linear polynomial with constant term 6 and zero 3. Before comparing, state whether the coefficient of x is still free after both conditions are imposed.",
+          "pattern": "p(x)=ax+6, p(3)=0 gives 3a+6=0, so a=-2; the coefficient is no longer free and the polynomial is unique.",
+          "transfer": "Construct a linear polynomial with constant term -4 and zero 2, and justify uniqueness.",
+          "wrong_idea": "Once one condition is satisfied, an arbitrary scaling or coefficient choice can satisfy the second without changing the constant term.",
+          "question_ref": "OWN-ISS49-POLY-D1-10",
+          "label": "Q10",
+          "construction_ref": "CU-MAT-POLY-CONSTRAINT",
+          "microtopic_ref": "MIC-MAT-POLY-CONSTRAINT",
+          "status": "CANDIDATE",
+          "parent_issue": 49,
+          "crux_move_ref": "OWN-ISS49-POLY-D1-10-MOVE-2"
+        },
+        "grade9v3:authorship": {
+          "kind": "COORDINATOR_AI_DRAFTED",
+          "owner_supplied": true,
+          "personally_owner_authored": false
+        },
+        "grade9v3:qrt_template": {
+          "template_id": "QRT-SYNTHESIZE-D2",
+          "matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+          "status": "CANDIDATE"
+        },
+        "grade9v3:component_waivers": {
+          "CONDITIONS": "No additional condition is needed beyond the verbatim stem and global one-variable real-coefficient scope."
+        },
+        "grade9v3:core2_visual_review": {
+          "question_ref": "OWN-ISS49-POLY-D1-10",
+          "authored_figure_refs": [
+            "REP-MATH-ISS49-Q10"
+          ],
+          "replaces_authored_figure_refs": [
+            "REP-MATH-ISS49-Q10"
+          ],
+          "rationale": "The representation exposes only supplied structure and a blank bridge; the requested coefficient, expansion, model result or parameter remains learner work.",
+          "review_status": "AUTHOR_REFERENCE_GROUNDED_REVIEW_NOT_INDEPENDENT_ACCEPTANCE"
+        }
+      },
+      "conditions": [],
+      "figure_refs": [
+        "REP-MATH-ISS49-Q10"
+      ],
+      "scaffolds": [
+        {
+          "text": "Start with the family ax+2 rather than guessing a whole polynomial.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-10-MOVE-1"
+        },
+        {
+          "text": "A zero at 1 means the polynomial value at x=1 must be 0.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "learner_stage": "REPRESENTATION",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-10-MOVE-2"
+        },
+        {
+          "text": "Use that equation to determine the remaining coefficient, then check whether any freedom remains.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "OWN-ISS49-POLY-D1-10-MOVE-3"
+        }
+      ]
+    }
+  ]
+}
