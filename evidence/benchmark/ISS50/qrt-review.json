@@ -1,0 +1,631 @@
+{
+  "schema": "iss50-qrt-review/v1",
+  "issue": 50,
+  "round": "POLYNOMIAL-STRESS-V1",
+  "matrix_ref": "Shared/quality/question-demand-matrix.v1.json@1.0.0",
+  "review_asks": [
+    "H1",
+    "H2",
+    "H3",
+    "S1",
+    "S2",
+    "S3",
+    "P1",
+    "P2",
+    "P3",
+    "M1",
+    "M2",
+    "M3"
+  ],
+  "questions": {
+    "ISS50-Q1": {
+      "primary_cell": "EXPLAIN-D2",
+      "targets": {
+        "X": "whether the x^3 coefficient survives the parameter value",
+        "Y": "the demonstrated rule that degree uses the highest nonzero coefficient",
+        "Z": "branch on coefficient cancellation before classifying degree",
+        "W": "the final degree in each branch",
+        "wrong_idea": "Reading the printed x^3 and declaring degree 3 without checking whether its coefficient vanishes."
+      },
+      "facets": {
+        "H1": {
+          "verdict": "PASS",
+          "evidence": "Hint 1 focuses on whether the x^3 coefficient survives the parameter value without giving the final degree in each branch."
+        },
+        "H2": {
+          "verdict": "PASS",
+          "evidence": "Hint 2 connects to the demonstrated rule that degree uses the highest nonzero coefficient."
+        },
+        "H3": {
+          "verdict": "PASS",
+          "evidence": "Later support opens branch on coefficient cancellation before classifying degree while leaving the final degree in each branch to the learner."
+        },
+        "S1": {
+          "verdict": "WAIVED",
+          "evidence": "A pre-attempt visual is explicitly waived because it would be decorative or leak the symbolic/domain decision."
+        },
+        "S2": {
+          "verdict": "WAIVED",
+          "evidence": "Same justified non-applicability as S1."
+        },
+        "S3": {
+          "verdict": "WAIVED",
+          "evidence": "Same justified non-applicability as S1."
+        },
+        "P1": {
+          "verdict": "PASS",
+          "evidence": "Pre-attempt support leaves the final degree in each branch protected."
+        },
+        "P2": {
+          "verdict": "PASS",
+          "evidence": "CAP-MATH-POLY-EXCEPTIONS routes to the exact Core1A construction."
+        },
+        "P3": {
+          "verdict": "PASS",
+          "evidence": "Structured solution moves carry local why-valid warrants and the final check uses an independent operation or boundary case."
+        },
+        "M1": {
+          "verdict": "PASS",
+          "evidence": "Reading the printed x^3 and declaring degree 3 without checking whether its coefficient vanishes."
+        },
+        "M2": {
+          "verdict": "PASS_WITH_UNCERTAINTY",
+          "evidence": "No single response is treated as proof of a held misconception; uncertainty is retained."
+        },
+        "M3": {
+          "verdict": "PASS_WITH_UNCERTAINTY",
+          "evidence": "The replacement rule is taught/checkable, but no learner mastery claim is made."
+        }
+      }
+    },
+    "ISS50-Q2": {
+      "primary_cell": "APPLY-D2",
+      "targets": {
+        "X": "why x-2 points to evaluation at 2",
+        "Y": "direct substitution plus p=(x-2)q+r",
+        "Z": "isolate the constant remainder at the divisor root",
+        "W": "the numerical remainder",
+        "wrong_idea": "Using long division despite the constraint, or evaluating at -2 because of the minus sign."
+      },
+      "facets": {
+        "H1": {
+          "verdict": "PASS",
+          "evidence": "Hint 1 focuses on why x-2 points to evaluation at 2 without giving the numerical remainder."
+        },
+        "H2": {
+          "verdict": "PASS",
+          "evidence": "Hint 2 connects to direct substitution plus p=(x-2)q+r."
+        },
+        "H3": {
+          "verdict": "PASS",
+          "evidence": "Later support opens isolate the constant remainder at the divisor root while leaving the numerical remainder to the learner."
+        },
+        "S1": {
+          "verdict": "WAIVED",
+          "evidence": "A pre-attempt visual is explicitly waived because it would be decorative or leak the symbolic/domain decision."
+        },
+        "S2": {
+          "verdict": "WAIVED",
+          "evidence": "Same justified non-applicability as S1."
+        },
+        "S3": {
+          "verdict": "WAIVED",
+          "evidence": "Same justified non-applicability as S1."
+        },
+        "P1": {
+          "verdict": "PASS",
+          "evidence": "Pre-attempt support leaves the numerical remainder protected."
+        },
+        "P2": {
+          "verdict": "PASS",
+          "evidence": "CAP-MATH-POLY-THEOREMS routes to the exact Core1A construction."
+        },
+        "P3": {
+          "verdict": "PASS",
+          "evidence": "Structured solution moves carry local why-valid warrants and the final check uses an independent operation or boundary case."
+        },
+        "M1": {
+          "verdict": "PASS",
+          "evidence": "Using long division despite the constraint, or evaluating at -2 because of the minus sign."
+        },
+        "M2": {
+          "verdict": "PASS_WITH_UNCERTAINTY",
+          "evidence": "No single response is treated as proof of a held misconception; uncertainty is retained."
+        },
+        "M3": {
+          "verdict": "PASS_WITH_UNCERTAINTY",
+          "evidence": "The replacement rule is taught/checkable, but no learner mastery claim is made."
+        }
+      }
+    },
+    "ISS50-Q3": {
+      "primary_cell": "APPLY-D1",
+      "targets": {
+        "X": "the factor pair matching product and sum",
+        "Y": "elementary product expansion",
+        "Z": "construct and verify the factors",
+        "W": "the final factors and zeros",
+        "wrong_idea": "Choosing a factor pair with product 6 but the wrong sum and skipping expansion."
+      },
+      "facets": {
+        "H1": {
+          "verdict": "PASS",
+          "evidence": "Hint 1 focuses on the factor pair matching product and sum without giving the final factors and zeros."
+        },
+        "H2": {
+          "verdict": "PASS",
+          "evidence": "Hint 2 connects to elementary product expansion."
+        },
+        "H3": {
+          "verdict": "PASS",
+          "evidence": "Later support opens construct and verify the factors while leaving the final factors and zeros to the learner."
+        },
+        "S1": {
+          "verdict": "WAIVED",
+          "evidence": "A pre-attempt visual is explicitly waived because it would be decorative or leak the symbolic/domain decision."
+        },
+        "S2": {
+          "verdict": "WAIVED",
+          "evidence": "Same justified non-applicability as S1."
+        },
+        "S3": {
+          "verdict": "WAIVED",
+          "evidence": "Same justified non-applicability as S1."
+        },
+        "P1": {
+          "verdict": "PASS",
+          "evidence": "Pre-attempt support leaves the final factors and zeros protected."
+        },
+        "P2": {
+          "verdict": "PASS",
+          "evidence": "CAP-MATH-POLY-THEOREMS routes to the exact Core1A construction."
+        },
+        "P3": {
+          "verdict": "PASS",
+          "evidence": "Structured solution moves carry local why-valid warrants and the final check uses an independent operation or boundary case."
+        },
+        "M1": {
+          "verdict": "PASS",
+          "evidence": "Choosing a factor pair with product 6 but the wrong sum and skipping expansion."
+        },
+        "M2": {
+          "verdict": "PASS_WITH_UNCERTAINTY",
+          "evidence": "No single response is treated as proof of a held misconception; uncertainty is retained."
+        },
+        "M3": {
+          "verdict": "PASS_WITH_UNCERTAINTY",
+          "evidence": "The replacement rule is taught/checkable, but no learner mastery claim is made."
+        }
+      }
+    },
+    "ISS50-Q4": {
+      "primary_cell": "MODEL-D2",
+      "targets": {
+        "X": "how non-overlapping tile areas combine",
+        "Y": "rectangle area and collecting like terms",
+        "Z": "model total area as a sum then simplify",
+        "W": "the total-area polynomial",
+        "wrong_idea": "Multiplying the two tile areas instead of adding them."
+      },
+      "facets": {
+        "H1": {
+          "verdict": "PASS",
+          "evidence": "Hint 1 focuses on how non-overlapping tile areas combine without giving the total-area polynomial."
+        },
+        "H2": {
+          "verdict": "PASS",
+          "evidence": "Hint 2 connects to rectangle area and collecting like terms."
+        },
+        "H3": {
+          "verdict": "PASS",
+          "evidence": "Later support opens model total area as a sum then simplify while leaving the total-area polynomial to the learner."
+        },
+        "S1": {
+          "verdict": "PASS",
+          "evidence": "The authored pre-attempt figure contains only supplied dimensions/axes."
+        },
+        "S2": {
+          "verdict": "PASS",
+          "evidence": "The second stage exposes representation structure but not requested outputs."
+        },
+        "S3": {
+          "verdict": "PASS",
+          "evidence": "The visual remains pre-answer and leaves the learner-owned calculation/plotting to the learner."
+        },
+        "P1": {
+          "verdict": "PASS",
+          "evidence": "Pre-attempt support leaves the total-area polynomial protected."
+        },
+        "P2": {
+          "verdict": "PASS",
+          "evidence": "CAP-MATH-POLY-REP-DOMAIN routes to the exact Core1A construction."
+        },
+        "P3": {
+          "verdict": "PASS",
+          "evidence": "Structured solution moves carry local why-valid warrants and the final check uses an independent operation or boundary case."
+        },
+        "M1": {
+          "verdict": "PASS",
+          "evidence": "Multiplying the two tile areas instead of adding them."
+        },
+        "M2": {
+          "verdict": "PASS_WITH_UNCERTAINTY",
+          "evidence": "No single response is treated as proof of a held misconception; uncertainty is retained."
+        },
+        "M3": {
+          "verdict": "PASS_WITH_UNCERTAINTY",
+          "evidence": "The replacement rule is taught/checkable, but no learner mastery claim is made."
+        }
+      }
+    },
+    "ISS50-Q5": {
+      "primary_cell": "REPRESENT-D2",
+      "targets": {
+        "X": "what stays invariant from formula to table to graph",
+        "Y": "direct substitution and ordered-pair meaning",
+        "Z": "translate values consistently and identify y=0",
+        "W": "the plotted points and zero classification",
+        "wrong_idea": "Calling every plotted input a zero instead of only inputs with output 0."
+      },
+      "facets": {
+        "H1": {
+          "verdict": "PASS",
+          "evidence": "Hint 1 focuses on what stays invariant from formula to table to graph without giving the plotted points and zero classification."
+        },
+        "H2": {
+          "verdict": "PASS",
+          "evidence": "Hint 2 connects to direct substitution and ordered-pair meaning."
+        },
+        "H3": {
+          "verdict": "PASS",
+          "evidence": "Later support opens translate values consistently and identify y=0 while leaving the plotted points and zero classification to the learner."
+        },
+        "S1": {
+          "verdict": "PASS",
+          "evidence": "The authored pre-attempt figure contains only supplied dimensions/axes."
+        },
+        "S2": {
+          "verdict": "PASS",
+          "evidence": "The second stage exposes representation structure but not requested outputs."
+        },
+        "S3": {
+          "verdict": "PASS",
+          "evidence": "The visual remains pre-answer and leaves the learner-owned calculation/plotting to the learner."
+        },
+        "P1": {
+          "verdict": "PASS",
+          "evidence": "Pre-attempt support leaves the plotted points and zero classification protected."
+        },
+        "P2": {
+          "verdict": "PASS",
+          "evidence": "CAP-MATH-POLY-REP-DOMAIN routes to the exact Core1A construction."
+        },
+        "P3": {
+          "verdict": "PASS",
+          "evidence": "Structured solution moves carry local why-valid warrants and the final check uses an independent operation or boundary case."
+        },
+        "M1": {
+          "verdict": "PASS",
+          "evidence": "Calling every plotted input a zero instead of only inputs with output 0."
+        },
+        "M2": {
+          "verdict": "PASS_WITH_UNCERTAINTY",
+          "evidence": "No single response is treated as proof of a held misconception; uncertainty is retained."
+        },
+        "M3": {
+          "verdict": "PASS_WITH_UNCERTAINTY",
+          "evidence": "The replacement rule is taught/checkable, but no learner mastery claim is made."
+        }
+      }
+    },
+    "ISS50-Q6": {
+      "primary_cell": "JUSTIFY-D3",
+      "targets": {
+        "X": "the original input restriction cancellation must preserve",
+        "Y": "difference of squares plus division-by-zero boundary",
+        "Z": "cancel conditionally while retaining the original domain",
+        "W": "the all-real function-equality verdict at x=1",
+        "wrong_idea": "Cancelling x-1 and then restoring x=1 to the original rational function."
+      },
+      "facets": {
+        "H1": {
+          "verdict": "PASS",
+          "evidence": "Hint 1 focuses on the original input restriction cancellation must preserve without giving the all-real function-equality verdict at x=1."
+        },
+        "H2": {
+          "verdict": "PASS",
+          "evidence": "Hint 2 connects to difference of squares plus division-by-zero boundary."
+        },
+        "H3": {
+          "verdict": "PASS",
+          "evidence": "Later support opens cancel conditionally while retaining the original domain while leaving the all-real function-equality verdict at x=1 to the learner."
+        },
+        "S1": {
+          "verdict": "WAIVED",
+          "evidence": "A pre-attempt visual is explicitly waived because it would be decorative or leak the symbolic/domain decision."
+        },
+        "S2": {
+          "verdict": "WAIVED",
+          "evidence": "Same justified non-applicability as S1."
+        },
+        "S3": {
+          "verdict": "WAIVED",
+          "evidence": "Same justified non-applicability as S1."
+        },
+        "P1": {
+          "verdict": "PASS",
+          "evidence": "Pre-attempt support leaves the all-real function-equality verdict at x=1 protected."
+        },
+        "P2": {
+          "verdict": "PASS",
+          "evidence": "CAP-MATH-POLY-REP-DOMAIN routes to the exact Core1A construction."
+        },
+        "P3": {
+          "verdict": "PASS",
+          "evidence": "Structured solution moves carry local why-valid warrants and the final check uses an independent operation or boundary case."
+        },
+        "M1": {
+          "verdict": "PASS",
+          "evidence": "Cancelling x-1 and then restoring x=1 to the original rational function."
+        },
+        "M2": {
+          "verdict": "PASS",
+          "evidence": "A changed-case prediction distinguishes the target rule from a one-off arithmetic slip."
+        },
+        "M3": {
+          "verdict": "PASS",
+          "evidence": "The repair states and reapplies the bounded replacement rule on a fresh case."
+        }
+      }
+    },
+    "ISS50-Q7": {
+      "primary_cell": "SYNTHESIZE-D2",
+      "targets": {
+        "X": "how the factor condition determines k before quotient verification",
+        "Y": "evaluation and factor/remainder information",
+        "Z": "use the zero condition, divide, then multiply back",
+        "W": "k and a verified quotient",
+        "wrong_idea": "Stopping after f(1)=0 without exhibiting and multiplying back the quotient."
+      },
+      "facets": {
+        "H1": {
+          "verdict": "PASS",
+          "evidence": "Hint 1 focuses on how the factor condition determines k before quotient verification without giving k and a verified quotient."
+        },
+        "H2": {
+          "verdict": "PASS",
+          "evidence": "Hint 2 connects to evaluation and factor/remainder information."
+        },
+        "H3": {
+          "verdict": "PASS",
+          "evidence": "Later support opens use the zero condition, divide, then multiply back while leaving k and a verified quotient to the learner."
+        },
+        "S1": {
+          "verdict": "WAIVED",
+          "evidence": "A pre-attempt visual is explicitly waived because it would be decorative or leak the symbolic/domain decision."
+        },
+        "S2": {
+          "verdict": "WAIVED",
+          "evidence": "Same justified non-applicability as S1."
+        },
+        "S3": {
+          "verdict": "WAIVED",
+          "evidence": "Same justified non-applicability as S1."
+        },
+        "P1": {
+          "verdict": "PASS",
+          "evidence": "Pre-attempt support leaves k and a verified quotient protected."
+        },
+        "P2": {
+          "verdict": "PASS",
+          "evidence": "CAP-MATH-POLY-THEOREMS routes to the exact Core1A construction."
+        },
+        "P3": {
+          "verdict": "PASS",
+          "evidence": "Structured solution moves carry local why-valid warrants and the final check uses an independent operation or boundary case."
+        },
+        "M1": {
+          "verdict": "PASS",
+          "evidence": "Stopping after f(1)=0 without exhibiting and multiplying back the quotient."
+        },
+        "M2": {
+          "verdict": "PASS_WITH_UNCERTAINTY",
+          "evidence": "No single response is treated as proof of a held misconception; uncertainty is retained."
+        },
+        "M3": {
+          "verdict": "PASS_WITH_UNCERTAINTY",
+          "evidence": "The replacement rule is taught/checkable, but no learner mastery claim is made."
+        }
+      }
+    },
+    "ISS50-Q8": {
+      "primary_cell": "JUSTIFY-D2",
+      "targets": {
+        "X": "whether one agreeing sample can prove a universal identity",
+        "Y": "substitution and elementary product identities",
+        "Z": "refute by counterexample then prove the corrected rule algebraically",
+        "W": "the identity verdict, counterexample and correction",
+        "wrong_idea": "Treating agreement at x=0 as proof of an identity for every real x."
+      },
+      "facets": {
+        "H1": {
+          "verdict": "PASS",
+          "evidence": "Hint 1 focuses on whether one agreeing sample can prove a universal identity without giving the identity verdict, counterexample and correction."
+        },
+        "H2": {
+          "verdict": "PASS",
+          "evidence": "Hint 2 connects to substitution and elementary product identities."
+        },
+        "H3": {
+          "verdict": "PASS",
+          "evidence": "Later support opens refute by counterexample then prove the corrected rule algebraically while leaving the identity verdict, counterexample and correction to the learner."
+        },
+        "S1": {
+          "verdict": "WAIVED",
+          "evidence": "A pre-attempt visual is explicitly waived because it would be decorative or leak the symbolic/domain decision."
+        },
+        "S2": {
+          "verdict": "WAIVED",
+          "evidence": "Same justified non-applicability as S1."
+        },
+        "S3": {
+          "verdict": "WAIVED",
+          "evidence": "Same justified non-applicability as S1."
+        },
+        "P1": {
+          "verdict": "PASS",
+          "evidence": "Pre-attempt support leaves the identity verdict, counterexample and correction protected."
+        },
+        "P2": {
+          "verdict": "PASS",
+          "evidence": "CAP-MATH-POLY-THEOREMS routes to the exact Core1A construction."
+        },
+        "P3": {
+          "verdict": "PASS",
+          "evidence": "Structured solution moves carry local why-valid warrants and the final check uses an independent operation or boundary case."
+        },
+        "M1": {
+          "verdict": "PASS",
+          "evidence": "Treating agreement at x=0 as proof of an identity for every real x."
+        },
+        "M2": {
+          "verdict": "PASS_WITH_UNCERTAINTY",
+          "evidence": "No single response is treated as proof of a held misconception; uncertainty is retained."
+        },
+        "M3": {
+          "verdict": "PASS_WITH_UNCERTAINTY",
+          "evidence": "The replacement rule is taught/checkable, but no learner mastery claim is made."
+        }
+      }
+    },
+    "ISS50-Q9": {
+      "primary_cell": "SYNTHESIZE-D2",
+      "targets": {
+        "X": "the scale left after the zeros determine factors",
+        "Y": "a zero r gives x-r and direct substitution",
+        "Z": "introduce a scalar and use p(0) to determine it",
+        "W": "the final quadratic satisfying all conditions",
+        "wrong_idea": "Using the zero-derived factors but failing to use p(0) to determine scale."
+      },
+      "facets": {
+        "H1": {
+          "verdict": "PASS",
+          "evidence": "Hint 1 focuses on the scale left after the zeros determine factors without giving the final quadratic satisfying all conditions."
+        },
+        "H2": {
+          "verdict": "PASS",
+          "evidence": "Hint 2 connects to a zero r gives x-r and direct substitution."
+        },
+        "H3": {
+          "verdict": "PASS",
+          "evidence": "Later support opens introduce a scalar and use p(0) to determine it while leaving the final quadratic satisfying all conditions to the learner."
+        },
+        "S1": {
+          "verdict": "WAIVED",
+          "evidence": "A pre-attempt visual is explicitly waived because it would be decorative or leak the symbolic/domain decision."
+        },
+        "S2": {
+          "verdict": "WAIVED",
+          "evidence": "Same justified non-applicability as S1."
+        },
+        "S3": {
+          "verdict": "WAIVED",
+          "evidence": "Same justified non-applicability as S1."
+        },
+        "P1": {
+          "verdict": "PASS",
+          "evidence": "Pre-attempt support leaves the final quadratic satisfying all conditions protected."
+        },
+        "P2": {
+          "verdict": "PASS",
+          "evidence": "CAP-MATH-POLY-THEOREMS routes to the exact Core1A construction."
+        },
+        "P3": {
+          "verdict": "PASS",
+          "evidence": "Structured solution moves carry local why-valid warrants and the final check uses an independent operation or boundary case."
+        },
+        "M1": {
+          "verdict": "PASS",
+          "evidence": "Using the zero-derived factors but failing to use p(0) to determine scale."
+        },
+        "M2": {
+          "verdict": "PASS_WITH_UNCERTAINTY",
+          "evidence": "No single response is treated as proof of a held misconception; uncertainty is retained."
+        },
+        "M3": {
+          "verdict": "PASS_WITH_UNCERTAINTY",
+          "evidence": "The replacement rule is taught/checkable, but no learner mastery claim is made."
+        }
+      }
+    },
+    "ISS50-Q10": {
+      "primary_cell": "JUSTIFY-D3",
+      "targets": {
+        "X": "the parameter making every coefficient vanish",
+        "Y": "coefficient checking for ordinary nonzero polynomials",
+        "Z": "factor the common coefficient, branch, then check theorem hypotheses",
+        "W": "the zero-polynomial/degree classification and non-contradiction verdict",
+        "wrong_idea": "Declaring degree 2 for every a and applying the nonzero-polynomial root bound to the zero polynomial."
+      },
+      "facets": {
+        "H1": {
+          "verdict": "PASS",
+          "evidence": "Hint 1 focuses on the parameter making every coefficient vanish without giving the zero-polynomial/degree classification and non-contradiction verdict."
+        },
+        "H2": {
+          "verdict": "PASS",
+          "evidence": "Hint 2 connects to coefficient checking for ordinary nonzero polynomials."
+        },
+        "H3": {
+          "verdict": "PASS",
+          "evidence": "Later support opens factor the common coefficient, branch, then check theorem hypotheses while leaving the zero-polynomial/degree classification and non-contradiction verdict to the learner."
+        },
+        "S1": {
+          "verdict": "WAIVED",
+          "evidence": "A pre-attempt visual is explicitly waived because it would be decorative or leak the symbolic/domain decision."
+        },
+        "S2": {
+          "verdict": "WAIVED",
+          "evidence": "Same justified non-applicability as S1."
+        },
+        "S3": {
+          "verdict": "WAIVED",
+          "evidence": "Same justified non-applicability as S1."
+        },
+        "P1": {
+          "verdict": "PASS",
+          "evidence": "Pre-attempt support leaves the zero-polynomial/degree classification and non-contradiction verdict protected."
+        },
+        "P2": {
+          "verdict": "PASS",
+          "evidence": "CAP-MATH-POLY-EXCEPTIONS routes to the exact Core1A construction."
+        },
+        "P3": {
+          "verdict": "PASS",
+          "evidence": "Structured solution moves carry local why-valid warrants and the final check uses an independent operation or boundary case."
+        },
+        "M1": {
+          "verdict": "PASS",
+          "evidence": "Declaring degree 2 for every a and applying the nonzero-polynomial root bound to the zero polynomial."
+        },
+        "M2": {
+          "verdict": "PASS",
+          "evidence": "A changed-case prediction distinguishes the target rule from a one-off arithmetic slip."
+        },
+        "M3": {
+          "verdict": "PASS",
+          "evidence": "The repair states and reapplies the bounded replacement rule on a fresh case."
+        }
+      }
+    }
+  },
+  "hardest_target": {
+    "question_ref": "ISS50-Q10",
+    "subconcept": "Zero-polynomial boundary under parameter-wide coefficient cancellation",
+    "primary_demand": "JUSTIFY",
+    "band": "D3",
+    "score": 7,
+    "learner_relative_reason": "The simulated preset is uncertain about parameter cancellation and zero-polynomial boundaries; Q10 also requires checking the hypothesis of the usual zero bound.",
+    "interaction": "Core1A uses a four-stage parameter branch construction and a changed-case prediction/compare repair with h_b(x)=b(x-2)^2."
+  }
+}
