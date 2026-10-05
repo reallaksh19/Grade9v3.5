@@ -83,6 +83,15 @@ frozen = read(OUT / 'frozen-submission-heads.json')
 if any(r['status'] != 'UNCHANGED' for r in frozen['results']): failures.append('frozen submission drift')
 academic_path=OUT/'academic-review.json'
 academic=read(academic_path) if academic_path.exists() else None
+independent_path = OUT / 'independent-review-summary.json'
+independent = read(independent_path) if independent_path.exists() else None
+if independent:
+    for row in independent['exact_binding_checks']:
+        if sha(ROOT / row['path']) != row['expected']:
+            failures.append('stale independent review binding: ' + row['path'])
+    for row in independent['reviewer_reports']:
+        if sha(OUT / row['file']) != row['sha256']:
+            failures.append('stale independent report: ' + row['file'])
 if academic:
     for row in academic['rows']:
         folder=BASE/f'ISS{row["issue"]}'
@@ -94,7 +103,10 @@ report = {
     'mechanical_status': 'PASS' if not failures else 'FAIL', 'failures': failures,
     'registry': read(ROOT/'Shared/web/interactive-page-blueprints.v1.json')['registry_version'], 'core1a_blueprint': next(b['version'] for b in read(ROOT/'Shared/web/interactive-page-blueprints.v1.json')['blueprints'] if 'CORE1A' in b['core_roles']), 'core2_blueprint': next(b['version'] for b in read(ROOT/'Shared/web/interactive-page-blueprints.v1.json')['blueprints'] if 'CORE2' in b['core_roles']),
     'original_question_instances': 80, 'distinct_owner_questions': 40,
-    'exact_review_facets': facet_count, 'independent_facets_accepted': 0,
+    'exact_review_facets': facet_count,
+    'independent_reviewed_facets': independent['original_facets_reviewed'] if independent else 0,
+    'independent_review': independent,
+    'owner_accepted_facets': 0,
     'original_instantiated_cells': 20, 'supplement_candidates': 8,
     'candidate_cell_union': cells, 'all_28_cells_independently_accepted': False,
     'open_matrix_cells': matrix.get('open_cells',[]),
@@ -112,9 +124,9 @@ report = {
                                'independent_facets_accepted': 0},
     'final_focused': {'basis': focused['basis_head'], 'summary': focused['tests_summary'], 'exit_code': focused['exit_code']},
     'frozen_submissions': 'ALL_EIGHT_UNCHANGED',
-    'academic_verdict': 'REQUIRES_INDEPENDENT_REVIEW',
+    'academic_verdict': independent['status'] if independent else 'REQUIRES_INDEPENDENT_REVIEW',
     'subject_limitations': ['Mathematics: six missing gate bindings and false author rule boundaries repaired; current authority check passes. Derived source records remain SOURCE_UNVERIFIED; original invalid publication/canonical claims are quarantined in the derived copy.',
-                            'Physics: bounded toy scope probe demonstrates shared component behavior, not a law of friction or molecular energy.'],
+                            'Physics: ten unchanged authentic source questions reviewed; R_perp notation repair retains the supplied N=5. Advanced torque extension is outside baseline prerequisites. Shared toy scope probe alone demonstrates no physical law.'],
     'static_gate_verdict': 'FAIL_RENDERED_RULES_NOT_MEASURED_UNCHANGED_NOT_REINTERPRETED',
     'golden': False, 'responsibility_complete': False,
 }

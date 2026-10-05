@@ -1,0 +1,64 @@
+{
+  "current_basis": "4a8bf130db8702a2a242fdd1488e796d63bce656",
+  "current_summary": [
+    "Ran 2330 tests in 743.813s",
+    "FAILED (failures=62, errors=47, skipped=5)"
+  ],
+  "clean_before_and_after": true,
+  "execution_difference": "R5 uses available Chromium, so browser classes that failed during historical setup now execute additional tests. Different test counts are not silently treated as equivalent suites.",
+  "R4": {
+    "basis": "c8789b3b4d71a95498d446cd980ff114af23d68d",
+    "summary": [
+      "Ran 2298 tests in 685.410s",
+      "FAILED (failures=63, errors=52, skipped=5)"
+    ],
+    "added_failure_ids": [],
+    "absent_failure_ids": [
+      "setUpClass (test_explorer_browser.CollinearLabels)",
+      "setUpClass (test_explorer_browser.EveryKind)",
+      "setUpClass (test_explorer_browser.Explorer)",
+      "setUpClass (test_explorer_browser.Persistence)",
+      "setUpClass (test_explorer_browser.TwoSliders)",
+      "test_committed_pages_mirror_is_current (test_pages_site.PagesSiteTest.test_committed_pages_mirror_is_current)"
+    ]
+  },
+  "seed": {
+    "basis": "e01c6365acfd6aec84c0a6e94f11b683bd961f6e",
+    "summary": [
+      "Ran 2289 tests in 802.513s",
+      "FAILED (failures=77, errors=52, skipped=5)"
+    ],
+    "added_failure_ids": [],
+    "absent_failure_ids": [
+      "setUpClass (test_explorer_browser.CollinearLabels)",
+      "setUpClass (test_explorer_browser.EveryKind)",
+      "setUpClass (test_explorer_browser.Explorer)",
+      "setUpClass (test_explorer_browser.Persistence)",
+      "setUpClass (test_explorer_browser.TwoSliders)",
+      "test_bank_first_route_can_emit_core2_only (test_renderer_inventory.OutputRoleScope.test_bank_first_route_can_emit_core2_only)",
+      "test_bank_first_single_file_contains_only_core2 (test_renderer_inventory.OutputRoleScope.test_bank_first_single_file_contains_only_core2)",
+      "test_committed_pages_mirror_is_current (test_pages_site.PagesSiteTest.test_committed_pages_mirror_is_current)",
+      "test_core1a_tablet_contract_reuses_existing_shared_shell_invariants (test_render_core.Renderer.test_core1a_tablet_contract_reuses_existing_shared_shell_invariants)",
+      "test_every_committed_package_agrees_with_the_gates (test_library.GateAuthorityOverSubjectTruth.test_every_committed_package_agrees_with_the_gates) (subject='Mathematics')",
+      "test_every_role_renders_through_its_blueprint_slots_in_the_shell (test_render_core.Renderer.test_every_role_renders_through_its_blueprint_slots_in_the_shell) (role='CORE1')",
+      "test_every_role_renders_through_its_blueprint_slots_in_the_shell (test_render_core.Renderer.test_every_role_renders_through_its_blueprint_slots_in_the_shell) (role='CORE1A')",
+      "test_every_role_renders_through_its_blueprint_slots_in_the_shell (test_render_core.Renderer.test_every_role_renders_through_its_blueprint_slots_in_the_shell) (role='CORE1B')",
+      "test_every_role_renders_through_its_blueprint_slots_in_the_shell (test_render_core.Renderer.test_every_role_renders_through_its_blueprint_slots_in_the_shell) (role='CORE2')",
+      "test_every_role_renders_through_its_blueprint_slots_in_the_shell (test_render_core.Renderer.test_every_role_renders_through_its_blueprint_slots_in_the_shell) (role='CORE2A')",
+      "test_every_role_renders_through_its_blueprint_slots_in_the_shell (test_render_core.Renderer.test_every_role_renders_through_its_blueprint_slots_in_the_shell) (role='CORE2B')",
+      "test_renderer_emits_zero_gap_declared_first_stage_pages (test_renderer_inventory.OutputRoleScope.test_renderer_emits_zero_gap_declared_first_stage_pages)",
+      "test_single_file_contains_only_zero_gap_declared_first_stage_role (test_renderer_inventory.OutputRoleScope.test_single_file_contains_only_zero_gap_declared_first_stage_role)",
+      "test_single_file_inlines_tablet_shell_and_uses_role_anchors (test_render_core.Renderer.test_single_file_inlines_tablet_shell_and_uses_role_anchors)",
+      "test_single_file_mode_is_self_contained_for_nlm_pilot (test_product_standalone_contract.ProductStandaloneContractTest.test_single_file_mode_is_self_contained_for_nlm_pilot)"
+    ]
+  },
+  "initial_r5": {
+    "basis": "f52b85180aa1ad9eabaa8bea09ca2545770561fe",
+    "introduced_fixture_ids_resolved": [
+      "test_cli_writes_true_single_file (test_interactive_page_builder.InteractivePageBuilderTests.test_cli_writes_true_single_file)",
+      "test_core1a_blueprint_expected_component_accepts_scoped_waiver (test_authoring_applicability.AuthoringApplicabilityTests.test_core1a_blueprint_expected_component_accepts_scoped_waiver)",
+      "test_package_uses_projection_blueprint_without_subject_switch (test_interactive_page_builder.InteractivePageBuilderTests.test_package_uses_projection_blueprint_without_subject_switch)"
+    ],
+    "proof": "Both unchanged semantic expectations rerun at registered1.7.0 fixture version; current full suite has no added IDs."
+  }
+}

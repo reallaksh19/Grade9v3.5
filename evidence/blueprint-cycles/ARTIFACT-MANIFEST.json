@@ -1,12 +1,18 @@
 {
   "schema": "correction-artifact-manifest/v1",
   "excludes_self": true,
-  "tested_basis": "c8789b3b4d71a95498d446cd980ff114af23d68d",
-  "full_suite_basis": "c8789b3b4d71a95498d446cd980ff114af23d68d",
+  "tested_basis": "4a8bf130db8702a2a242fdd1488e796d63bce656",
+  "full_suite_basis": "4a8bf130db8702a2a242fdd1488e796d63bce656",
   "historical_basis": "46e91c9ec4285e14ca0db469eda281ff31df596a",
   "byte_policy": "EXACT_PUBLISHED_GIT_BLOB_BYTES",
-  "evidence_scope": "See evidence/blueprint-cycles/closure-r4-20261005/final-assurance.json; mechanical checks are not academic acceptance.",
+  "evidence_scope": "See evidence/blueprint-cycles/closure-r5-20261005/final-assurance.json; mechanical checks are not academic acceptance.",
   "files": [
+    {
+      "path": ".github/workflows/core1a-tablet-browser.yml",
+      "bytes": 9652,
+      "git_blob_sha": "36ce7de87e951a7f71ecbaa56fbce9d03b96ecb7",
+      "sha256": "4e82b42c60fbcc881cfd5b65e3279328f84ad5a63ddd3ed7a76159135c3648cd"
+    },
     {
       "path": "Mathematics/gates/linear-equations.v1.json",
       "bytes": 29087,
@@ -22,8 +28,14 @@
     {
       "path": "Shared/roles/LEARNER-PRODUCT-TEMPLATES.md",
       "bytes": 16194,
-      "git_blob_sha": "2270e1b99334d561a4717269b70e3bd363ff7fe8",
-      "sha256": "71c6d4aa4fce51d7035cab539edb057333ba2a51629597a5545badf303ba9a71"
+      "git_blob_sha": "75471f9a94273e21d48ce04120504888feb56d99",
+      "sha256": "171965fe74a23aceffc4594f4f6262e1543f0e2253e2e18b7612ef52ee9f453a"
+    },
+    {
+      "path": "Shared/tools/learner_metadata.py",
+      "bytes": 20152,
+      "git_blob_sha": "95766e283ce66404b8d514c92a6b84909ea58d4c",
+      "sha256": "5db2d1b0cee736a375a9da2acca786b61f5abc6c1f49da221b6606391c3416e5"
     },
     {
       "path": "Shared/tools/learning_repair.py",
@@ -45,15 +57,15 @@
     },
     {
       "path": "Shared/tools/render_core.py",
-      "bytes": 197676,
-      "git_blob_sha": "e5d3bdaacb64b61d1d48a640117680f0d8c527b4",
-      "sha256": "8e0752ba368baa343cafbe97020a6d9d8b2e44a3a14648cec276d3a1789ef353"
+      "bytes": 198601,
+      "git_blob_sha": "23fc31ae33248c0e287e589879d1b7c84d528b13",
+      "sha256": "66010d8d8930f35b81f51d80e6630b16b936fdb71c185b8ce6883b14494f949d"
     },
     {
       "path": "Shared/web/interactive-page-blueprints.v1.json",
-      "bytes": 91458,
-      "git_blob_sha": "56765862651e364efb732e685f28b841a6014af9",
-      "sha256": "840a27735464a11a55c28cfbfc28f2e93acee62be51f4435e9fb1b783081bfaf"
+      "bytes": 91657,
+      "git_blob_sha": "592bffeb87ce283d62ea2479fa359a5278f4ee08",
+      "sha256": "ea76bbcae595b93d0d8c5cc8548e8d8c76250447f42fe89a5a0f86e1877551df"
     },
     {
       "path": "agents/WIP-ISS29-blueprint-cycles_workreport.md",
@@ -80,10 +92,40 @@
       "sha256": "ab29b4d0091035df97603d6e902c2162c6ecfb3071c56671519da9561105bb95"
     },
     {
+      "path": "docs/.pages-manifest.json",
+      "bytes": 37838,
+      "git_blob_sha": "dfab5815d961a27e6a6372d469c8c7c97cd95056",
+      "sha256": "d18f43416d85317a9a3b75cb1fbd3e10045bcd8a1abdc944a56ff4b565c74266"
+    },
+    {
+      "path": "docs/core-learning/data.js",
+      "bytes": 2479373,
+      "git_blob_sha": "29675a6d1f3fdfdab82f6e1520514ceabd000f05",
+      "sha256": "25d5c8804c7a571a0d072737d3cf236889e0e56a45243791b096977c63d73fff"
+    },
+    {
+      "path": "docs/css/modern-learner.css",
+      "bytes": 14366,
+      "git_blob_sha": "e58b258307cc1de42b4094f37854aaf00c5fe104",
+      "sha256": "1534437082327a575623b4044949de0bee500dfa095cad2f0236f846b5fd73c6"
+    },
+    {
+      "path": "docs/data/data.js",
+      "bytes": 2336920,
+      "git_blob_sha": "c74b70636a4a28c423e44a9b21a577a0088b4f20",
+      "sha256": "afadb1739741e3f981fb9bc3aa3a61998502af395f0f5c0ce3f938cfe58e2148"
+    },
+    {
       "path": "docs/data/question-bank-catalog.js",
       "bytes": 14054,
       "git_blob_sha": "85b8aaf7e7d61e79677c4432f1cadaebaf7f7a7a",
       "sha256": "83b6f033ded2ed2cd10eb604f3ad08c61ea29885ef307966c0442168a995ca4f"
+    },
+    {
+      "path": "docs/data/question-bank-data.js",
+      "bytes": 1098443,
+      "git_blob_sha": "c31abe719490562165e26398f68ffd9456b7c399",
+      "sha256": "968ebba8135fabe2da33cfb73bda8878afc3a25e5ae04aa42c3f5ef7a3ca5406"
     },
     {
       "path": "docs/data/question-bank-details/subject-chemistry-97462a79cb.js",
@@ -128,6 +170,12 @@
       "sha256": "6489486477ae5a7ad117e77f611009f5c702bb17c19dfee7bda8c20e93b8f8f7"
     },
     {
+      "path": "docs/js/display-controls.js",
+      "bytes": 15998,
+      "git_blob_sha": "2c7dfefeb4e2312287bd5dd5411649ebdfee3996",
+      "sha256": "2121a1e242220e38cb93dc6e900ee0d0c223b1eab4d32a07398fd632a7d3de1e"
+    },
+    {
       "path": "docs/plans/ISS29-BLUEPRINT-REPAIR-CYCLES.md",
       "bytes": 23549,
       "git_blob_sha": "336a055fb091cc9c5b92027d66d27bf6be6a7055",
@@ -135,9 +183,15 @@
     },
     {
       "path": "docs/specs/PAGE-BLUEPRINT-COMPONENTS.md",
-      "bytes": 47470,
-      "git_blob_sha": "f8a3d719d1725fe351d6f9c9ea6a04c6b79714d3",
-      "sha256": "d2a5c3a62f9f8ec4141e69509523eabce2db42f0e60fc1a0357ce21d8c297041"
+      "bytes": 47669,
+      "git_blob_sha": "103cd1569e55d4bb67ca97ef5c3648aa8c234b82",
+      "sha256": "08a015911d8838094051fded6ebade5a8cd15fc14fce12d1c93affd51aea13e3"
+    },
+    {
+      "path": "docs/tools/data.js",
+      "bytes": 2336920,
+      "git_blob_sha": "c74b70636a4a28c423e44a9b21a577a0088b4f20",
+      "sha256": "afadb1739741e3f981fb9bc3aa3a61998502af395f0f5c0ce3f938cfe58e2148"
     },
     {
       "path": "evidence/blueprint-cycles/COMPATIBILITY-CHECKPOINT.md",
@@ -201,69 +255,69 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/assets/question-1-givens.svg",
-      "bytes": 1735,
-      "git_blob_sha": "a917ac30a998113ca4aaff2f23c84a3a3f26f5bb",
-      "sha256": "2b6a0a9481219968a761636dbb2fc122af626347fdf6a819c211f22bf9d2de46"
+      "bytes": 2541,
+      "git_blob_sha": "ce2fcb5ee107ef887b73a2e2742c1ba0d50bdde5",
+      "sha256": "66d93d946b7b66a4851b898645d3d8814ae37a4e50482e9d1f7903e9dd25730f"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/assets/question-10-givens.svg",
-      "bytes": 3097,
-      "git_blob_sha": "7f15eb37a2f893a00b3f9f355ccccb18d36355de",
-      "sha256": "afb2b225572fe8f94f49257c70afb7ada7ac627ec883dbe351314c4039fc0f49"
+      "bytes": 3735,
+      "git_blob_sha": "9aa576ab519c495f133a8699f645c2957c7b1d67",
+      "sha256": "b038701adeef2d76865e5f51b9751ec7e5e70ee8a16cd7cfdca6dadc1e40f03c"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/assets/question-2-givens.svg",
-      "bytes": 2031,
-      "git_blob_sha": "5b8965b8d966fb87b53e67a32a30387f0827869a",
-      "sha256": "b1df653542ebfeaa78b0f1166f814df1709cf00a7a94e3589dcfee5200a6ee25"
+      "bytes": 3072,
+      "git_blob_sha": "a21e8c2524e41af975a674ce1b1fb4af8346ae30",
+      "sha256": "7188bbb1775385e1acd9508a7ea570f180fa60a23c1c8458a907fc21c763eb56"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/assets/question-3-givens.svg",
-      "bytes": 2079,
-      "git_blob_sha": "54421f3893b4c779f2d8fec2fee2bddfd55d03e1",
-      "sha256": "547b3df5d3575cdc6b27b18ca0f3145ffab39645ca8c735b799c9d8f1fac7c5d"
+      "bytes": 2668,
+      "git_blob_sha": "9293da9b9952c44c4d693bd5caf914d6ccde9786",
+      "sha256": "c7fb26f1680a7f5e6dda6202bfb92bdda60018ddc1df0b1a5b33849a5d43820e"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/assets/question-4-givens.svg",
-      "bytes": 2005,
-      "git_blob_sha": "c32881c22e99a96b17211f1c0e6f8686aa319a43",
-      "sha256": "0fb52366c2d4db4f0d16f08148ad69c21b0ba19fac221b81e5604b135d2ef6b0"
+      "bytes": 2190,
+      "git_blob_sha": "4bb7e351ee626f18079874919cb6ce52eace28a7",
+      "sha256": "9656450dbeed8c7c640f58d71e68f5951e6d2b64d2aa7c1eff88830124273ca2"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/assets/question-5-givens.svg",
-      "bytes": 1477,
-      "git_blob_sha": "23fcb012e0d6cd4ad8a823db7a76de5264fa3fe5",
-      "sha256": "0825d7ad35f3896eca01de389536573b1f36dbede4d7588e04e61ddf921051df"
+      "bytes": 2810,
+      "git_blob_sha": "baf8083fc550aa248ef7699ebbbf944613e4d021",
+      "sha256": "040138b34d57c2ed2b0f721b8432b2a798e89b65369d7eee3fca09cc22379b9c"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/assets/question-6-givens.svg",
-      "bytes": 3648,
-      "git_blob_sha": "e1a18cfcb8ecaa452f6cfd0cac9822b59e7f92a2",
-      "sha256": "cb43d82443a37da46f948d8f4262416788843c6b08d2137b4b466e1308295b2b"
+      "bytes": 4024,
+      "git_blob_sha": "a16489dd650d2244361e85e473f88d7e3e118f6b",
+      "sha256": "04c1177761b88e98ef2600a770ece7166da164d20515c74a07b718bd3faff395"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/assets/question-7-givens.svg",
-      "bytes": 2112,
-      "git_blob_sha": "661c5f2bc56858197a64005becb1cd9915480da8",
-      "sha256": "37129679c072c1df46a3da7a35b5e80ba110e33c20e0234a302e5981c5b8fa01"
+      "bytes": 2223,
+      "git_blob_sha": "c4690f68af481a5518a64e82e56479ecd3cd0514",
+      "sha256": "5b16c975ee0e67b5aba4bc516d269881f2d046de759b34c440506ab87d52b8e2"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/assets/question-8-givens.svg",
-      "bytes": 2504,
-      "git_blob_sha": "6cf571405385c5436446ced1eeec1d742a9206e7",
-      "sha256": "42b74e7e59f8747b90a5e45ef392b5815cfdf0cefc430d506b1d8866dc6062ae"
+      "bytes": 3442,
+      "git_blob_sha": "1764da4a58eb76d80bb9d5bde2d21de4bfa4a3fa",
+      "sha256": "4091c56f49b68385470cbbb39a7539faff543dca483e3ca9bf1b337cd4f793e7"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/assets/question-9-givens.svg",
-      "bytes": 2090,
-      "git_blob_sha": "dd9fb7ca722d7675cf38402873994d4f9120fe78",
-      "sha256": "273992d3570f9a282314832f809f2505ab196a8ff9c08e3d26478fff7984b639"
+      "bytes": 3138,
+      "git_blob_sha": "17504a415c49b3ebec87dbf3e10038978792e731",
+      "sha256": "0e11e775cbd8271371976c2be4136124a0f179b58e2669f829790db651f648c1"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/cycle-receipt.json",
-      "bytes": 6711,
-      "git_blob_sha": "e0a4a41e0dac9f5b1cdb2765669313ab3bf885b6",
-      "sha256": "5f7b3dd57d1396dabf5a3fb13ca28c410ab0f02d9306ea446f33c2aad56a0529"
+      "bytes": 7096,
+      "git_blob_sha": "811a84b8bb6ebbc82f5e23697d1e67494ae18727",
+      "sha256": "0171a4e968699d147686ed8551631a8b965e115f8cf16609bf28b7a5f12d1fb7"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/inputs/owner.bank.json",
@@ -273,9 +327,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/inputs/package.v1.json",
-      "bytes": 184032,
-      "git_blob_sha": "dd9752f00f498a2b6460e845e5dd171ca65df065",
-      "sha256": "ecaf5031d056ee8c5c9a0143d8cdd267dad247e979591433aaec08ec7077f98c"
+      "bytes": 184086,
+      "git_blob_sha": "7ae4870069917cf68cd740d57179d00bdc0d08a4",
+      "sha256": "19ed9aa8ce10fadc8435b3b8f388f22e2fde28b9a3c91b21c53b28efe5b43a7b"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/inputs/product.manifest.json",
@@ -285,9 +339,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/qrt-repair-ledger.json",
-      "bytes": 236444,
-      "git_blob_sha": "4981edc3bdd95456ad099d298a879794421b6ee1",
-      "sha256": "d9e8b95b1f52f6bb6210cbab4d68b695e11105e979961f795acf1c220f43c9aa"
+      "bytes": 236018,
+      "git_blob_sha": "6cc2e5b8b39561d1b3fd76453fb92bb7e4764594",
+      "sha256": "67ce845bdc7c0c375a47c9ff1197ce855e575c2976401ac4d8fe16f133bde8f2"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/quality-static.json",
@@ -297,27 +351,27 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/rendered/core1a.html",
-      "bytes": 218241,
-      "git_blob_sha": "de3b28b769983df02ff9aa3ba6b0772437138877",
-      "sha256": "049510adb3818a7c640e8f719ff845327ed43e4e8a9df08c630ff0bd43e07fca"
+      "bytes": 220450,
+      "git_blob_sha": "a66b6666f82d4cff947997d3896c87592e39423f",
+      "sha256": "30c70574367aee036a509ed1c04f1baad7b89b695c275ec9d72bc5671e4fd4e3"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/rendered/core1a.pdf",
-      "bytes": 587732,
-      "git_blob_sha": "55d46cb6d65bc7a1195bb6465655ab95c3c39009",
-      "sha256": "ea197bc36f341d0b6bd31226bac6c94b580e74e884c6043f1fb13123a1936f58"
+      "bytes": 615295,
+      "git_blob_sha": "6970713a506b4cd7cfc4c7f4c09ae71c04ca32c9",
+      "sha256": "0146ff07ea1b362eab0a368afe83736cc730cfbfdf438ac3863e94836867e261"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/rendered/core2.html",
-      "bytes": 274245,
-      "git_blob_sha": "f009f41f4730bf9e9df955a95a55174eb0dd248f",
-      "sha256": "fdd325a587f2ba5b4635db973dca7c853baa247cbe51fdf1120ef3f608206459"
+      "bytes": 281676,
+      "git_blob_sha": "4b895e93c96c64b62ee8b25475dd50f612a81dfc",
+      "sha256": "ce6b3b9f5dd93cf0092d928cd5cf63181bee10862177f13fa4ca1168801955ea"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/rendered/core2.pdf",
-      "bytes": 406978,
-      "git_blob_sha": "169270162c4f794364404a30009206f5c50c2d95",
-      "sha256": "6ae5b7956e7e95ade51edf96e048ba96d7eb7dd274f5901b7f6069597034599e"
+      "bytes": 406975,
+      "git_blob_sha": "07a846c9d46801d0ecdb541c4fdcac26129811cc",
+      "sha256": "857e75cf15f2e765586ba1fdb776170c76f78ad5fb6fc4b6b32fffdd4870f80c"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/rendered/css/modern-learner.css",
@@ -333,9 +387,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/rendered/index.html",
-      "bytes": 22098,
-      "git_blob_sha": "3f5c1a4565435e27dcfec1e8ba09f20cb2f415e0",
-      "sha256": "e62f935420eb6752b8c48c9bb23c2d7870467a4dc9e1ae94fbd44761c22e0fbc"
+      "bytes": 22464,
+      "git_blob_sha": "331caf6597932ab258a870e6d5c5e729fc167d8f",
+      "sha256": "0dfa103e03cae17a1a6b3a895d933b3ddb2f38e5ac61b3eaa0619a6da9a7f72a"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/rendered/js/display-controls.js",
@@ -352,14 +406,14 @@
     {
       "path": "evidence/blueprint-cycles/ISS31/rendered/print-receipt.json",
       "bytes": 726,
-      "git_blob_sha": "7c9aa5b3beb65d857f0e20cb045fa7c5bb6aa9ec",
-      "sha256": "4456026abdf7ac6eb3b07f313068b2580ee69f4d758d345f76fe078d706f04c8"
+      "git_blob_sha": "acf09c2b38d106e89390bee0432923d45330cabe",
+      "sha256": "1fdfe7b0ba9e51d4142bcfdfe9fab9b8ec92bc34979e92528f6279427ac0c09d"
     },
     {
       "path": "evidence/blueprint-cycles/ISS31/rendered/render-receipt.json",
-      "bytes": 2460,
-      "git_blob_sha": "8928353a9da370088013afa303ac17823f5df9d5",
-      "sha256": "99680aaef75528e011cc593cbddb8d00d29ffdaf23b834966ee2f0e0c6c7785b"
+      "bytes": 2570,
+      "git_blob_sha": "b0ae5307792dc9c463d356cbd80aed06c4e0b25f",
+      "sha256": "87cf9996e4ad203ef971287b94a23aa4de2bd94fe9dd181dde381275e6a10655"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/assets/electron-domains-hcho.svg",
@@ -381,63 +435,63 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/assets/question-1-givens.svg",
-      "bytes": 1735,
-      "git_blob_sha": "6875af977bc7a4725820a78c22134f54ecf6c508",
-      "sha256": "e2f0efa1be4a53dbf63a7cc03856ac4662f5c672547457fe9f49c39f1772b689"
+      "bytes": 2541,
+      "git_blob_sha": "839baabee6908167e6b5c5b0817150a64f43999d",
+      "sha256": "92edb027dbc1550b6d4ac6a41cfbb7b035645e1268c30d058d6be356a3fc8f79"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/assets/question-10-givens.svg",
-      "bytes": 3097,
-      "git_blob_sha": "fcc3f7a3c031ea268c0eaf1f3f3765ab5e6d5c27",
-      "sha256": "b3ba6d3bdb6c682cac6dd46fd8b22ac5eadf33f041e9df45b8f7764130f2b90d"
+      "bytes": 3735,
+      "git_blob_sha": "90753cabdade9009d75867a4337723f559d879df",
+      "sha256": "9581567b5673fc312099dbfe2bba854c30ad9ebcc42d68d5d056e2eb87b8f7c6"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/assets/question-2-givens.svg",
-      "bytes": 2031,
-      "git_blob_sha": "27505f9f96a5ab960635d67ac17026af7adde13c",
-      "sha256": "08bc3b25bf82da88fd26b1ef459928eeaab64c69efebba7be3601076f56452f4"
+      "bytes": 3072,
+      "git_blob_sha": "3423daaf5625d25ba0ff12ba1014799b0589b726",
+      "sha256": "7fb7fdcea74b0b6553b52f61b552a5bcd7a2b847e305754488bf3330dad3c2ba"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/assets/question-3-givens.svg",
-      "bytes": 2079,
-      "git_blob_sha": "06a279b26f4a2412d36dc024a8b8c8ea0b0c9f59",
-      "sha256": "3a4875ef070ce2c7ff085cab29276bb59d918a2e5f087f152a31a5e434e013ff"
+      "bytes": 2668,
+      "git_blob_sha": "8f164f58210746522c41611392946a5ce1ad5144",
+      "sha256": "71146ba49733a8c637867280853c239095e1dc51098bec4d29de6021947f42d4"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/assets/question-4-givens.svg",
-      "bytes": 2005,
-      "git_blob_sha": "706f86e348236c701bdf4544662564ef44ad7dd7",
-      "sha256": "fc7b6a19f3377f40cd23bfc28cea8d4829543646eb5fc82f882159f930bcd0ea"
+      "bytes": 2190,
+      "git_blob_sha": "dc72e8beaca50aa4e4021d22425987e5b9ba1f1d",
+      "sha256": "06e1cd356512f0ab0918503b6055c6659f7bfa9562dff418596ad09bf3d23b2b"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/assets/question-5-givens.svg",
-      "bytes": 1477,
-      "git_blob_sha": "2fb6f2074556715feae4990a25bbd3568145cf42",
-      "sha256": "b5dadb53e322f54066f15af6c51f2fbd65ca3064249036211d58e51b1c34ee59"
+      "bytes": 2810,
+      "git_blob_sha": "1dd467b81791ecf9d1a142da6eabb2df3fbd3ea9",
+      "sha256": "58d6a8ede0b2e631751fc87cbbdc4ded9e4b4d26823013f68f1805238d214c81"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/assets/question-6-givens.svg",
-      "bytes": 3648,
-      "git_blob_sha": "a6b71165f85329470ab16bc91b68b62942e81509",
-      "sha256": "baca36e56655b57abf5bff9b745d794bc80ce898a476e662b45c04bd31dfca13"
+      "bytes": 4024,
+      "git_blob_sha": "cf689a17ac7fe70cb42fb37400ff35a2f09cebf7",
+      "sha256": "e55fba82d25483bb6b879a756de71cf9ce3f118efc0b4776e4c5db8c142d0e32"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/assets/question-7-givens.svg",
-      "bytes": 2112,
-      "git_blob_sha": "aa30c4a8bfa7f056db99eda2bc136f910b19429f",
-      "sha256": "97a5b9e6671121e2bac7f8ad450e4c964c84469a1bbebe866b1017773e9aff48"
+      "bytes": 2223,
+      "git_blob_sha": "18c1fce90e826a98f013b1f8a5fdf7f247b28b4c",
+      "sha256": "4bff9ea108deebcc8aa0cbcce6c09a1d9f9b58916b83f533cb75b20f43a3e05c"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/assets/question-8-givens.svg",
-      "bytes": 2504,
-      "git_blob_sha": "cc37caf2fd7f557579a422aeaff13300c0fa2bc5",
-      "sha256": "e3d22406ef2f513df67a1f234f22bb05c710af9666cb6b090729c1451cd25394"
+      "bytes": 3442,
+      "git_blob_sha": "b59a6992d82d0a0f8cfd44133b342030f149e9f5",
+      "sha256": "797d9d57d0cb6c082b362cc2bba7633b195a93a87f233ec06ca7318ec801558b"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/assets/question-9-givens.svg",
-      "bytes": 2090,
-      "git_blob_sha": "aeed8913f44655d6695380abe2841a3e8a02ecc9",
-      "sha256": "76b64779429df5bd13f3bcd77f19292b53823b74d826bfbbea296c338f5de1c2"
+      "bytes": 3138,
+      "git_blob_sha": "01e54f7b4e15ca5be3a43d9c5ba4afa76bcbcde7",
+      "sha256": "44d067ab961524be42ce4ee333a79f3e49bc495b8a86c62ba9dbecbd759e7a0e"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/assets/sigma-pi-overlap.svg",
@@ -447,9 +501,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/cycle-receipt.json",
-      "bytes": 6961,
-      "git_blob_sha": "6a23ac911b2341227dadf858b227bd7ddb33fc38",
-      "sha256": "1353fad8b462bc453c99a7892c2cea4b5f4fd61e525eccf6f31ae04c6dfad34d"
+      "bytes": 7351,
+      "git_blob_sha": "52bf5d9b131f6f10448aa1d7f104d1761d9d3107",
+      "sha256": "95692e06b52b588cc4b369fceca538c9cca05974a0b2ec0467d85a24fe64d109"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/inputs/owner.bank.json",
@@ -459,9 +513,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/inputs/package.v1.json",
-      "bytes": 134004,
-      "git_blob_sha": "d51dfc34e41cfc486ee9b4aa35d444f9772e41a9",
-      "sha256": "072b72954d5146e5cfc97467a43d493da08b599c47cc4115b0d1a73d1d1a995a"
+      "bytes": 134045,
+      "git_blob_sha": "2da532334bd02723e15167a599a37964bd538dda",
+      "sha256": "3536c15060cb7e2f2b6f115a53e4fa1fa80aa792180d4c97060d9108527d84f7"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/inputs/product.manifest.json",
@@ -471,9 +525,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/qrt-repair-ledger.json",
-      "bytes": 240562,
-      "git_blob_sha": "2d63b05c95d4ddecdac88f934c984ea66e165a3c",
-      "sha256": "7e64319d2bfdb0b0913cd6021df43bcb7f7e41ab393f173a9089313a3052d446"
+      "bytes": 240205,
+      "git_blob_sha": "cd62f4379a461cb5e359f68a68dbc66831f51256",
+      "sha256": "67d09d101c2a5994f35d68d3af370cae4dc4862615dcf216a525f997f5bae800"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/quality-static.json",
@@ -483,27 +537,27 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/rendered/core1a.html",
-      "bytes": 235588,
-      "git_blob_sha": "d5e16c7a9eb50fe5c3d632656c3025f221bef786",
-      "sha256": "1b389e39648f10d2af95339d8a6b52a728d95460dd2aa6a7d19db73d1521d51c"
+      "bytes": 232945,
+      "git_blob_sha": "ebd1a0c19441c07f6fc20d3282eb43920a351da8",
+      "sha256": "58a8617baa565ffcf3e2734f7154d21569389f7bda29275254a791f6a81f9706"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/rendered/core1a.pdf",
-      "bytes": 709269,
-      "git_blob_sha": "94556302c7459118be413ef65146c2b61bdbab26",
-      "sha256": "19d9f10d050add54631ad510c03cbef17f2f4a04de56e7f34b9b207a55235992"
+      "bytes": 710270,
+      "git_blob_sha": "6e7eade1eae0b80994572b3fee550d6df7112668",
+      "sha256": "bc7abc6dc23a42f857630cf23c131dcde290b2e573c488231934ad0839f9e10b"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/rendered/core2.html",
-      "bytes": 277300,
-      "git_blob_sha": "516adea68c18810179cfa1ab2003fb3018eba5b0",
-      "sha256": "816f00197850780f4121ba1d74e3d86a6b120513b8081978748f8428d6effb07"
+      "bytes": 284731,
+      "git_blob_sha": "b3f5f911be7ba1b70e30b5a7b21014d70011ac10",
+      "sha256": "205e4ad0000305cfa14ee6775138b5687b646baff9f3ae0181520b285b39ebf0"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/rendered/core2.pdf",
-      "bytes": 411267,
-      "git_blob_sha": "a965e73efd9384319ee53a6688647ace5275e89c",
-      "sha256": "5b71e145c1691ecf30afed0d82c5019a3b000b3aa147e3859028d7e43c72e517"
+      "bytes": 411440,
+      "git_blob_sha": "2e7811d3dcf66264eaa185e37893300dd22052da",
+      "sha256": "6f48a1c30c3e2193b6d02dd9e7ae7bf7f8e0a31b250b2dda433e36279d0590f1"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/rendered/css/modern-learner.css",
@@ -519,9 +573,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/rendered/index.html",
-      "bytes": 22124,
-      "git_blob_sha": "bc35499c2756cad9eeac88183e6beab320908386",
-      "sha256": "5a9b6eb1de712879834a27aa996c82f222c414ad8c012841bb3ca959266017a1"
+      "bytes": 22490,
+      "git_blob_sha": "b6e59b19a3c3db573342aa996c954f00e116ceb5",
+      "sha256": "1219ac5e365a8726507e9b290e7db2d11f7f69f42bda804ad3550401e0e1293b"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/rendered/js/display-controls.js",
@@ -538,14 +592,14 @@
     {
       "path": "evidence/blueprint-cycles/ISS32/rendered/print-receipt.json",
       "bytes": 726,
-      "git_blob_sha": "e3114b883914fb91e12d088eabe59d402332728a",
-      "sha256": "4d4c29a87ec207fbe33c7d6281c0754d7b38f1a85719803db72bf05aeaa6a1bb"
+      "git_blob_sha": "16c932e76b32f9769e507c17c3477efa0c86e83e",
+      "sha256": "52de5b9e0ffd37e5824bf2d38c32ed602c4c9be89ece360551691830c6dac4d7"
     },
     {
       "path": "evidence/blueprint-cycles/ISS32/rendered/render-receipt.json",
-      "bytes": 2460,
-      "git_blob_sha": "b85bf612f61f0d5aae037253c20b98dede094210",
-      "sha256": "660193934b576bbc403b5d4a97e9748624e8b4cbc0cd425f97c0b6fb03a06aee"
+      "bytes": 2570,
+      "git_blob_sha": "f9567f36aabb7fb6fb47d7029312bc9baba50d99",
+      "sha256": "7089802906ee47e0c954637b690c5597c68cac6a9c40d0c0d57e9975b2ab4a50"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/assets/domain-shape.svg",
@@ -561,63 +615,63 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/assets/question-1-givens.svg",
-      "bytes": 2885,
-      "git_blob_sha": "5b4e294fe3e28dedc078543ad51745f5fcbd1be2",
-      "sha256": "5ce7cd103100e7cbe02bf98d89a15fbd891154b1a204d5d75db5f7de8447a9db"
+      "bytes": 3600,
+      "git_blob_sha": "33ead0f0cc5066e219d5597acb90b1aaa5d41b76",
+      "sha256": "198b3e13dbf003ec1c126b467bb1d3c3d9cf36c21ac2e9e55a6aacd2d0cfdff3"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/assets/question-10-givens.svg",
-      "bytes": 3933,
-      "git_blob_sha": "7202ede35a64771ed43d0acdcb7e8f2787644829",
-      "sha256": "7407381d267ba4a6347703720b5f505e6ea7a29a3808cb88295ca17bb95fa22b"
+      "bytes": 4649,
+      "git_blob_sha": "ae76c6c3b86f46841d9c607e5ccde47b7a29d564",
+      "sha256": "7d08e695ff2aed01e2d0dc700ceb98987211ebbdd62c300457d039c2f9b25335"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/assets/question-2-givens.svg",
-      "bytes": 1982,
-      "git_blob_sha": "44ddfe9a5d09e9fa5b9611ac1cfcbd3b2f602c2e",
-      "sha256": "79f91b0311c601b46ece11d97c548036b7631a0f294ebe08f7053a2acf77f74d"
+      "bytes": 2556,
+      "git_blob_sha": "5b868d423c674a3d818dabd0508ba0ae4926aa56",
+      "sha256": "438457046a4a2c4d676d3bbb5737c83ff83235474056736b5e12c2d250739a79"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/assets/question-3-givens.svg",
-      "bytes": 1583,
-      "git_blob_sha": "f1e4cfbbf7832ab4d4f7ec7c2e5e6eafdcd1d6b5",
-      "sha256": "2d741b495dca2a5a999b8e5cb90def77f5f787cad0f82075ad5e8dff31d61f4d"
+      "bytes": 1783,
+      "git_blob_sha": "8db24f798e91ed9c6d393b64e3354e6313256c2c",
+      "sha256": "358d6195930613acef91afd9b28ea73371ffede0b15ff2ace35995cf0dbcade4"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/assets/question-4-givens.svg",
-      "bytes": 1980,
-      "git_blob_sha": "65f5006fc712100604e3bd96514bade43009da31",
-      "sha256": "bbf844d53c158d62822812e0e63dfa92759a3fcd3e0be3fb70c3e9b43c9170a0"
+      "bytes": 3577,
+      "git_blob_sha": "51f184f618fbeaf52827ca8395c9dc0100846f8b",
+      "sha256": "8d88cc1f74ccd072700e3be1c270b6f22f7703d0c4486fe4637ebf6f8cc3a418"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/assets/question-5-givens.svg",
-      "bytes": 3006,
-      "git_blob_sha": "7ab5f130786566d7bac40b894351560a0144ca5b",
-      "sha256": "453940b499aca0b671a49482adcd5494b5c3da5363af4d510729a8ceb72a1de8"
+      "bytes": 3726,
+      "git_blob_sha": "7702d4e59af43208520ba1fd74636182f98ea2ae",
+      "sha256": "fafd5cd5b0b55053904daa089332f25053829c06ee1de3ad6f08f46188397060"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/assets/question-6-givens.svg",
-      "bytes": 3313,
-      "git_blob_sha": "1a6a00de6b5dd930834062e064c36ae871127b05",
-      "sha256": "2ce8c766b50d52dccc86ee995e67d59c57a5d18ff9bc9915fe4c88a238d46f63"
+      "bytes": 3838,
+      "git_blob_sha": "fd36d0427169ccc7235446e2a6cffbbf365ce622",
+      "sha256": "32d20d212516150647e1a60c1eca92aa83e998cbdd68df0e1c8b405f0e09846f"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/assets/question-7-givens.svg",
-      "bytes": 2039,
-      "git_blob_sha": "8f6644edf515a03d06cd3b20df35471522c08ac9",
-      "sha256": "5de6da1e55d83e2eda0ac80c86407e59df95131d09561e840b4ef3623c03f068"
+      "bytes": 3214,
+      "git_blob_sha": "e8f8af9f20405facea8815aa8f422cb3c981f47b",
+      "sha256": "ac7c784c4d390ab83b9f9217c5243fdb8ea880fcd4669f36140dacb76ad5b87b"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/assets/question-8-givens.svg",
-      "bytes": 1422,
-      "git_blob_sha": "e3298d107800442aba0f67d0765174f32b3d87ae",
-      "sha256": "fdd47f7763234d937af765db13cdae06e9b88485d7aff62b45cf827a70944051"
+      "bytes": 2873,
+      "git_blob_sha": "da3a001a8db013ebc8f9846f4c788e4193386d0e",
+      "sha256": "424e3b0baf37ba4486a4cb86d9ad73ad8fe32181bfc9c23059338780607c0421"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/assets/question-9-givens.svg",
-      "bytes": 1412,
-      "git_blob_sha": "d3ab2eb94fe5d95844cf47cf33bc80078568f768",
-      "sha256": "6479eeabbd8fd745c22117b241d1fee7c08660ea48ff711dbdfe6f3a007c3321"
+      "bytes": 3408,
+      "git_blob_sha": "99c768b94478f5df49f380f031a91f183bdc9dd3",
+      "sha256": "15a58f0261764dd514d31bd7144d46936d2e113e98e10808b568040fca20c8e4"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/assets/sigma-pi-linear.svg",
@@ -633,21 +687,21 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/cycle-receipt.json",
-      "bytes": 3241,
-      "git_blob_sha": "c393085af19e17b33042e6fc2b3cd32e3f746a13",
-      "sha256": "2e67a87bc1f6ea858c52e0bb80f2dd6d8fac51ff081dc00bd26ecf26f72ecfeb"
+      "bytes": 4190,
+      "git_blob_sha": "5b6165263f3fd083252e65cdfabf63d1cc567985",
+      "sha256": "7db8b4816d42595ff7c56bdaf7ffb1ea383c55dfdaecac218cc3715f5db37f7e"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/inputs/owner.bank.json",
-      "bytes": 85480,
-      "git_blob_sha": "926843483c4390e6051fb871713c11f785dde6a1",
-      "sha256": "5e9055fa23d50ef680701ee2083fdbaaf5f578b66f21da9b47d4000e9027430f"
+      "bytes": 85514,
+      "git_blob_sha": "8250e1267ef41e10a8b1fdbb29f0173c9d493725",
+      "sha256": "ff928164abc94380edd9df24916d3d62169c0abce496f1d37060dfa6a49ce8a9"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/inputs/package.v1.json",
-      "bytes": 130852,
-      "git_blob_sha": "744db43f70e82dd68222e6e1e97924a3453e5177",
-      "sha256": "4ea6b201b4631e784b7573997bdb6e89a3b5ab8983c08eb2ae2b66f6f42bc5b3"
+      "bytes": 130867,
+      "git_blob_sha": "8a259849ce235e5baeca4d7a1a4c67661f596333",
+      "sha256": "848eed0eb7496a69e19bfad10f76b895a578cb926fee135f65b46e282c958223"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/inputs/product.manifest.json",
@@ -657,9 +711,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/qrt-repair-ledger.json",
-      "bytes": 232393,
-      "git_blob_sha": "744a76667ec3f7b73adf5d4540e47941c2bc991e",
-      "sha256": "c054af10350a8c7695d6bd4687442051e1ac9d46eb1f9fd9bcd53f83274fd4df"
+      "bytes": 229413,
+      "git_blob_sha": "272cbe50b2b06ecd65aa3fbde7a2a114d89eb1af",
+      "sha256": "4344bfe69508af2716edf55dea5cb40a952a01a855850e1ac188a1a1ff4c7308"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/quality-static.json",
@@ -669,27 +723,27 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/rendered/core1a.html",
-      "bytes": 205422,
-      "git_blob_sha": "d647ffaac2b52ec4b26c82fab5b0c41beff086d1",
-      "sha256": "74416012ec69d6795112e635f258711f912cc06983dd84fccd98ee4d10dab517"
+      "bytes": 207686,
+      "git_blob_sha": "03ada3eaf65bf41b546184b9032474e2138dd1ec",
+      "sha256": "43e5c435c4c23461303d846d6ecf9527d3641d47ebab46a63bd276901fa3b47f"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/rendered/core1a.pdf",
-      "bytes": 534636,
-      "git_blob_sha": "23ce4757d050092ef15072a890d635624c2a798f",
-      "sha256": "983a1cc479e26750c3d501011e522d5f67cbfe1aec90f6d8efca2ce80920201e"
+      "bytes": 562787,
+      "git_blob_sha": "c74b1aae9efebc2fca74eef479b8fcac25f67d41",
+      "sha256": "b536c039fee69384ced4cb443202c9b76879e9fed4cc3450e10b954f6e614efc"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/rendered/core2.html",
-      "bytes": 276921,
-      "git_blob_sha": "4a6315e6d66c09b14f27f853f11e2f43ee4de506",
-      "sha256": "529a9ce2102f22f8eb53c8da171125bf196dd4dbbc5037096e59e35005f7ca1e"
+      "bytes": 286990,
+      "git_blob_sha": "bbdf4d6a72a77f1108409b29b8e92891d9babeaa",
+      "sha256": "d76e96b592271e9fddd2b005299d9e6f8caa62d6c876562c1604aad8b5b4a5d6"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/rendered/core2.pdf",
-      "bytes": 407332,
-      "git_blob_sha": "372555a8cf8887688acf086cf2a596be3adac735",
-      "sha256": "18072d2d7478c11fe07f0e9f3bfa44c6f21e06e9b32149fad2e001eda48b27df"
+      "bytes": 407359,
+      "git_blob_sha": "e532ba0583ae0dffe80b96740ae64bf1d2b86756",
+      "sha256": "e8823734b6a6f98ec590ba66c1a851bbb448922b5286db4898c9bab0563fc147"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/rendered/css/modern-learner.css",
@@ -705,9 +759,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/rendered/index.html",
-      "bytes": 22134,
-      "git_blob_sha": "a38b78a77d56d9686149f549b10669f13a12e942",
-      "sha256": "6cc214e660bd4e7f9ad8d1c554605569f520320d7a3415d0c025069459b91a76"
+      "bytes": 22500,
+      "git_blob_sha": "02135eede6f800350b916055a985c5635b10206c",
+      "sha256": "2323b97fd732b4221d9f5ce117d5b637fc0e6db9454decb9945ab4183123147d"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/rendered/js/display-controls.js",
@@ -724,14 +778,14 @@
     {
       "path": "evidence/blueprint-cycles/ISS33/rendered/print-receipt.json",
       "bytes": 726,
-      "git_blob_sha": "3f2503a12d94aa37691fc377445543d7fd6dce00",
-      "sha256": "8d68064a98ca8be68f7ed34c7eef159cd70b5b829a19614933fa0c57ed250aa2"
+      "git_blob_sha": "61de8271b18d6aad4469274d6bc27f55b03d4725",
+      "sha256": "5b0effd34ac787c78c0b39df9027a8bca1eeb6a1bceff5d104fe3f7b3a65a5c4"
     },
     {
       "path": "evidence/blueprint-cycles/ISS33/rendered/render-receipt.json",
-      "bytes": 2460,
-      "git_blob_sha": "a39ce1a63e176f302fc46d9a918c091974506db3",
-      "sha256": "68bec3c3d9282750b88792ee0fb64a8fe2e06b994373a59b330e679d8784251a"
+      "bytes": 2570,
+      "git_blob_sha": "6e144a15cfb87094c4bce7fcdd798b5f78a1b7f0",
+      "sha256": "f80d19e25c5d3f41ca63b8771e0a70202c1555011a95fca16409514c7d5bb810"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/assets/co2-linear-orthogonal-pi.svg",
@@ -747,63 +801,63 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/assets/question-1-givens.svg",
-      "bytes": 2885,
-      "git_blob_sha": "eb9c28cf5ea90bddec1ac7ea8682d87cf067ed2c",
-      "sha256": "697d41a21aaf0c097a2494f9fd8568c10bc7f32b363d8ca85fab1de132f5bdab"
+      "bytes": 3600,
+      "git_blob_sha": "566d9be1a59557c69deb931a1d256d25f21082af",
+      "sha256": "f3e342a68f8b49777505714a87cb1da71df3558c00b3049e5dc3f461aced0baa"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/assets/question-10-givens.svg",
-      "bytes": 3933,
-      "git_blob_sha": "5670a3dc5c97545cf466999b37a2cc457c3290c7",
-      "sha256": "3e467691d46b24431f4622b0ce0be6b8fac3633127abcdeea1c713b1ff3a2642"
+      "bytes": 4649,
+      "git_blob_sha": "2aff89963ca81d4d70df4a21da1765b53a89a1f8",
+      "sha256": "e24922a7bde584c8e6dcf665bd5f6b7a1709699ab34630eadbc4612632b1c699"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/assets/question-2-givens.svg",
-      "bytes": 1982,
-      "git_blob_sha": "d0dc407d597e32daa88911e6250e0886d175e4d6",
-      "sha256": "d4024c3e3f57776619136ebd4504590b9d5404073ece0ce9d6956b65b7e0cff2"
+      "bytes": 2556,
+      "git_blob_sha": "8b75e2a44c5d39d50277a840de6bd93922a18f0b",
+      "sha256": "cd4ff8a8fa9b949675ac16f4439da73631ed6ce7a8705f64c18a76dd49b35eff"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/assets/question-3-givens.svg",
-      "bytes": 1583,
-      "git_blob_sha": "d187f58ac6548395415ce334a77b3540ba9b8a68",
-      "sha256": "4edcceea531e0bacdc935682864f349d5e0cedac584764864e05f9df9f5f3ff7"
+      "bytes": 1783,
+      "git_blob_sha": "9ffa788d9998fd9879f46eb856e1b767e4d288e2",
+      "sha256": "31ff9fdf0735a87374e63438a25dda2718aa7732f993cc0e50a7b3c506b65703"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/assets/question-4-givens.svg",
-      "bytes": 1980,
-      "git_blob_sha": "2669757ca3b4ae409a5fb82abb9f0acb5eadb199",
-      "sha256": "3eda20d3eada579120ea2226be256bc17e8ecc46de09f6f86f6953ced3e8aadb"
+      "bytes": 3577,
+      "git_blob_sha": "8db7450a7835755a64dceb630606703deab3a73a",
+      "sha256": "7cc1b28a6a5425340c650268ac5fe067bd449e7ece513e99119ec2e4fb06103a"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/assets/question-5-givens.svg",
-      "bytes": 3006,
-      "git_blob_sha": "0003338c352cae36ef3ac3b5754486c1002a84b2",
-      "sha256": "8533635b0048e3270a164a3348887bdceeb90143602785c37438110dfbd57de6"
+      "bytes": 3726,
+      "git_blob_sha": "a685d84f819576209b89ff40d9ef797a6a946ad7",
+      "sha256": "2691bcad5dda14515712c3b4c6349b202b3aed4033778b840ccd20a0d6c58ac6"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/assets/question-6-givens.svg",
-      "bytes": 3313,
-      "git_blob_sha": "fc06b30e25882be4884c1f44be7aef33de0d5a7f",
-      "sha256": "63462d3769d5d8b06011152a78f16e913e144ab987cd7ad4f5cc85760a75fc34"
+      "bytes": 3838,
+      "git_blob_sha": "6c5b9d2ea30db0090e32c05e3984eff5f25eea7b",
+      "sha256": "4e7b5ba04ec55e627f6e74e06b2f6e463ae82f389047b4c2c5c2e48e67060ae8"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/assets/question-7-givens.svg",
-      "bytes": 2039,
-      "git_blob_sha": "18e13a81d60f95c2789a1d4ae59a9c242741f85c",
-      "sha256": "05a9e1f317c9d539f0969b980a50bc51dc79ca6713662bfd94e83ec769bba316"
+      "bytes": 3214,
+      "git_blob_sha": "702354a88e552607d3484d1506d20611e2d81ad5",
+      "sha256": "5d9ca0a1a3b83e560f5c8d320e6f9ff3eebc9e398f141c86d577b2d02353ac8e"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/assets/question-8-givens.svg",
-      "bytes": 1422,
-      "git_blob_sha": "b00314f97dd4b654b19e41e7012365b81f6d7780",
-      "sha256": "5b4e96bec562eacd49bad67fe1b408ff2652499c6b8e09943b16ced2fb265bb1"
+      "bytes": 2873,
+      "git_blob_sha": "d01996643e414f667dad1762b76d138700d80b40",
+      "sha256": "bc3d4fe78828c17d407576b97ef16f12e9692699e381fa607059e445d6b8b11d"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/assets/question-9-givens.svg",
-      "bytes": 1412,
-      "git_blob_sha": "37e8d570477a3d40fc98defe4fdcdeddb125324a",
-      "sha256": "35be0bcbb8c253ebcb3eb2b60f6438db2d0e6dedc517c78624cd3835f806e934"
+      "bytes": 3408,
+      "git_blob_sha": "7c77172ebb00001bba2e97346a679b621d30c17e",
+      "sha256": "1f681d260bc80b43db89c6255be7e536f87bdd0dec3e7dcd8c1491d726b2e29c"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/assets/tetrahedral-lone-pairs.svg",
@@ -813,21 +867,21 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/cycle-receipt.json",
-      "bytes": 3528,
-      "git_blob_sha": "6538f8216e341a5e3b24fe2b6f14d44891b63857",
-      "sha256": "dddf038bb050182b5246756320ca83f5795e18366d6d71ef92454c31c1479b59"
+      "bytes": 4493,
+      "git_blob_sha": "28b02f25c8bc2c5249f9fe47ebb1719255275db8",
+      "sha256": "c2149afdb1e8dccef5f53044c6118252bd5f7e7db9ed0252ecc7fc4739bb5baa"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/inputs/owner.bank.json",
-      "bytes": 82807,
-      "git_blob_sha": "ea3829bae05401e1449603f93a6b03936e17bd38",
-      "sha256": "51808f5cef8f88b469cfc73a4813a1dfa9a97fd1c9b6316e96ff1390200b5638"
+      "bytes": 82857,
+      "git_blob_sha": "4278b75192014887a6fc95069af23133f824345a",
+      "sha256": "db4bc71e3c5b7e859637085cd762326b01729c191ed6cdb13dbd1681e5d95de1"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/inputs/package.v1.json",
-      "bytes": 150160,
-      "git_blob_sha": "1ea0feeb201817bb16a38a1cb9ee6a4a912cd1ec",
-      "sha256": "4fdc9599952f546802e5d27b569a9cbd0be76425fba10e8ef1c1b3c97ad79c1b"
+      "bytes": 150148,
+      "git_blob_sha": "607bc9e9722eed0339dfc89495ce89166a11dbe2",
+      "sha256": "1cd2d9c828a3a4f8439de3d7761034de195c13b0e3d74da62235bba13ab94ec5"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/inputs/product.manifest.json",
@@ -837,9 +891,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/qrt-repair-ledger.json",
-      "bytes": 263215,
-      "git_blob_sha": "2f7b48c2b69d77e1e99717f2741b726bf757f95d",
-      "sha256": "dfa10c865ae70e44fe58978d5bdcca02a0a4804965beab27efde336e2d6b9096"
+      "bytes": 257278,
+      "git_blob_sha": "ff421299a1619dc2e28ac6324f5de894c2689e9c",
+      "sha256": "74037550dc1fe39af1029a042240f3649c916c33bcdc8802271a4efa3454da2b"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/quality-static.json",
@@ -849,27 +903,27 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/rendered/core1a.html",
-      "bytes": 233987,
-      "git_blob_sha": "51847520005c3337f38805eac639ece285e09286",
-      "sha256": "27c60a865145ff260556c2e0f60027f795598283c5e7caca0319b5951d75c841"
+      "bytes": 221343,
+      "git_blob_sha": "08fbaf6450f08e473b2c750dd3140dd2cb44f3ba",
+      "sha256": "b01da257093c51bbcdd809d60345e45198d31c79c1b85c0e4aade3953aa15935"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/rendered/core1a.pdf",
-      "bytes": 686849,
-      "git_blob_sha": "ea9d8bbcfc8dc9f471f49b60e26cbd31d5de101f",
-      "sha256": "eb95f4b96ff96c6e3d3e3eba851f8886baa7370658814123e513bedb3806fc0a"
+      "bytes": 690642,
+      "git_blob_sha": "0803021616535be1af1aa6e7174cb870254873a4",
+      "sha256": "cd85fb80820062d8aac877fb8476065d317dbbb48b4b16cb3ce0deb595789441"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/rendered/core2.html",
-      "bytes": 306235,
-      "git_blob_sha": "aec21f6ac044dc0217fec77ddc1febe0fa279ed1",
-      "sha256": "ddddf98eb6ad62921c92e7fea2a93a165d93a3fd61a613f8effaa37952dcc097"
+      "bytes": 316320,
+      "git_blob_sha": "5629644d7d3bb53fc7ebcc95df508658298de168",
+      "sha256": "4998cd55d514d8ab376e85eff9af728e1be3b7f69946370694e41f4dd05b87d7"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/rendered/core2.pdf",
-      "bytes": 387482,
-      "git_blob_sha": "ef09f7d6ee883d6a994d6daa39521f803dee6756",
-      "sha256": "0f44a91e350cf6606df8ad4ad10a35b022ee458a1398f0958d1458f418b30ba2"
+      "bytes": 387419,
+      "git_blob_sha": "b3697663ced2638e817ea9666ed2063671ef6690",
+      "sha256": "266ac69ce82d64af25e00c69c6002623061d94e6c73d30fc0bb74063d07c2ea2"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/rendered/css/modern-learner.css",
@@ -885,9 +939,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/rendered/index.html",
-      "bytes": 22106,
-      "git_blob_sha": "98997630d835a142c00a3061cdf859a3bf3ba344",
-      "sha256": "b50a155a5063edf7a7eacfea03cbd8dabbe0d13b9a38b38b11ae7887820d27f6"
+      "bytes": 22472,
+      "git_blob_sha": "5809047c610a75354059327250b15d8a70d36214",
+      "sha256": "7d51d2ee7b55818cc09b1f398f295adcd5abe413b1b3cdc35c80e615c473ae01"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/rendered/js/display-controls.js",
@@ -904,14 +958,14 @@
     {
       "path": "evidence/blueprint-cycles/ISS34/rendered/print-receipt.json",
       "bytes": 726,
-      "git_blob_sha": "3f8af65238347a21401cc8ecccaa9343aee95c89",
-      "sha256": "2ba98ac7200eebed587d8ff0e4df76c267c177374b75f5b85eddd280e73f5fe4"
+      "git_blob_sha": "78c388cc160b9f370dd8773f6d70ccd280ab9e0b",
+      "sha256": "9adfbc921ccdeb0068fd0b5fd8cfa743764359beaa8af2429860e32a95c45921"
     },
     {
       "path": "evidence/blueprint-cycles/ISS34/rendered/render-receipt.json",
-      "bytes": 2460,
-      "git_blob_sha": "36ad8de23acbae3fc0e7c8ad77ac311f16fd19e7",
-      "sha256": "177140a975dc2373b6e18886d28293f878720da8a6c4d2817fdb41e22b609fbc"
+      "bytes": 2570,
+      "git_blob_sha": "e507ecf5e0a68a8caae7c71090acfce40d30fb37",
+      "sha256": "86198b60774935ffad55fad50f5d11d3d88842f8fdcb852da4442d81e7328c2d"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/assets/allene-REP-CHEM-HYB-ALLENE-ORTHOGONAL-P.svg",
@@ -945,81 +999,81 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/assets/question-1-givens.svg",
-      "bytes": 5754,
-      "git_blob_sha": "1e9c39d811c7acbf453a2d6974a61f98b06d6630",
-      "sha256": "694889bad3873528514308767e2532fbb66e1ed4f941acf97f6c4a695d2a5f30"
+      "bytes": 5008,
+      "git_blob_sha": "726d115205a9fce580653d93095631ff28155025",
+      "sha256": "fce31bde405975d4934e199a573297e07112d52f8726625ffcd761d6b554c8d5"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/assets/question-10-givens.svg",
-      "bytes": 3049,
-      "git_blob_sha": "1bc914a29575fa7d5440fb77173f5ee7d854008f",
-      "sha256": "5233ab42ae10bbe573b4ac309c34c52b7d471679e226123b27b0e665b63cc7f0"
+      "bytes": 3740,
+      "git_blob_sha": "c85b59b67a056c40e45bb0c9afb52709316be1d9",
+      "sha256": "adbd1a0a11fbad81271a74f798eb0e79ca9ff50af7db72454663b05b3d5799a3"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/assets/question-2-givens.svg",
-      "bytes": 5779,
-      "git_blob_sha": "d25e8a12cd4b66552e15be2025025a1ffd4ba3b1",
-      "sha256": "50e0244f446171b90582cc5817dd913afe6481268b4f65cb798f7f3be3df7717"
+      "bytes": 5105,
+      "git_blob_sha": "6d177ab8c1f3341d675ffd9def2c0ab559df9bfd",
+      "sha256": "682154fb32637d3ceb55abee92e2b45cb62cb8f02b04af14d2486fdd761443b0"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/assets/question-3-givens.svg",
-      "bytes": 2007,
-      "git_blob_sha": "7da0a8d016c7e8950234485b0fe8314e8bdc1414",
-      "sha256": "9e9c2ca5c5baed5736967f717a25e03635352b8fad947999c74eb239a607da2d"
+      "bytes": 3730,
+      "git_blob_sha": "d572853f2fbc9178bf77aba56c2090cee64a8636",
+      "sha256": "0b19d3adadc0f1c729f329fc1901624cf8c0364678e7bb4151842e509c56d2d4"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/assets/question-4-givens.svg",
-      "bytes": 2660,
-      "git_blob_sha": "8b414347b2273e726233505f197fbd48e2b419ca",
-      "sha256": "ffe4883c63bc85bf63a77a5ca8b57990d8c1996d53ef7d7f94f2fe99934cf635"
+      "bytes": 2468,
+      "git_blob_sha": "07c044ab9f3a4f5fd50234c20c5b45b06b9bcdbb",
+      "sha256": "3dcd3f0b76329e4e811e0cc1413650367900f15e394f754e57071f09804aa3a1"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/assets/question-5-givens.svg",
-      "bytes": 1498,
-      "git_blob_sha": "534ab17c51ac3d0515b03cae498cb69769eabff7",
-      "sha256": "157b786521511ef94001f4eecabc2cc6a592e0ba2293b27f1c79ef75026456ff"
+      "bytes": 2949,
+      "git_blob_sha": "619989b198b17c62149ea1759b28b69006cf458a",
+      "sha256": "4b2f368c0b649d9e180314eca320cf2a08204bc25ac9f6c2de1d8d23a85ec8d6"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/assets/question-6-givens.svg",
-      "bytes": 2004,
-      "git_blob_sha": "4a85cb5598a47287aeef9363ef0559077ea436de",
-      "sha256": "86f9e5861e7d8ff5294666bd239431326ee54feef9fbe2e4470ed0d941dbb10a"
+      "bytes": 3198,
+      "git_blob_sha": "65fae67e811265480956e9d7144a11d90f857bb2",
+      "sha256": "0babcf878142d5a207767d5cc0cedb474cec2f12aa7d7202d56f985c8eab5858"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/assets/question-7-givens.svg",
-      "bytes": 5747,
-      "git_blob_sha": "ce2e79e772baeb7241363d89172b7eb20118b3d0",
-      "sha256": "cb4a2b6a13486216f65c92ee4b58aa0917ece5b7625d35d6d1a2045aa401c0e8"
+      "bytes": 5076,
+      "git_blob_sha": "ffbe964e23cc4d3e1ade4fb86c8758f567f24070",
+      "sha256": "0e4953f93ff7eadbc130017b3b245db71b98b5c368da4d8e7dcabd119cad9a2c"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/assets/question-8-givens.svg",
-      "bytes": 2053,
-      "git_blob_sha": "3817ee8567187fccbf1ef8da6a01e15b03965e7f",
-      "sha256": "7e062e06beb987ba8e98a9b7bed0dd8b86a39192d58bc7744ffc70cfc3edcb68"
+      "bytes": 2166,
+      "git_blob_sha": "83b26244a24f4acb0d2ae7d79e47cde60dfc3114",
+      "sha256": "687c5609f02e17f3f7d9e1f7aeb1b35ea97fafeca1f1feed7286e6e7f39c26d8"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/assets/question-9-givens.svg",
-      "bytes": 3787,
-      "git_blob_sha": "5433581836092d3a8d5b5cbeaf7d31df88e75c7d",
-      "sha256": "b93ff10082d12841a70bcc7f77f2623b3ddda08ee4a9967546c4c8db4b45f792"
+      "bytes": 3722,
+      "git_blob_sha": "f8d5b54105ca2c7bf6646f8bbbdd1972f9d99b41",
+      "sha256": "b2745c64267a36f87ad9a9ab84e4615b8d9adfdcf90d3c98e022ac73249874e6"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/cycle-receipt.json",
-      "bytes": 3241,
-      "git_blob_sha": "ff757874045e64bb35f05a7e26d9f6f28e14a3df",
-      "sha256": "b4e0dbd18eb0ddf5936a0345338b22147b229501073b910f82caf553b863166c"
+      "bytes": 3351,
+      "git_blob_sha": "134ec30ed8cf0349afa737906c582dcdcd18fd4a",
+      "sha256": "4520d08d21856cd4b84994e58969f594f64ea6b2c124f849e0e6ba13fd6122c2"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/inputs/owner.bank.json",
-      "bytes": 98412,
-      "git_blob_sha": "790a97d6fbc565cc5ffd40f13c39de99603f6ce3",
-      "sha256": "65f492e09132f972faaa0e4f9f22454cb00dee286b031eb59e79fb0351b21862"
+      "bytes": 101648,
+      "git_blob_sha": "f4a9ee5945e6fca8efffe4502ad807a498b0e172",
+      "sha256": "e5e9ac24fbdaa37bdaaaa3c41658c5e07567fe912149124a1f7826c3df817c6f"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/inputs/package.v1.json",
-      "bytes": 138555,
-      "git_blob_sha": "89751bf91d88f2b182bbfd543e52d2929ca03e13",
-      "sha256": "23490610524a1a92aa3813399b672d4c4df80f0b2f710cda331933fbae830acc"
+      "bytes": 139265,
+      "git_blob_sha": "64e0067656b8d48c446b22289411cefd601fe6b5",
+      "sha256": "da987946c222d1a8203cbd297f62eb380cb648da8e8f5060050af9e9ffce751d"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/inputs/product.manifest.json",
@@ -1029,9 +1083,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/qrt-repair-ledger.json",
-      "bytes": 248402,
-      "git_blob_sha": "e9e9861f415fb4524642682c9f5cd28b4bf5c2f1",
-      "sha256": "a74de701071cb4fe890e98c0d16fb04044d9fe225739586854d7554a6589de51"
+      "bytes": 249466,
+      "git_blob_sha": "609f951a50793f1db3c518cd8e341cf64ac90589",
+      "sha256": "43c6817ecf1f8b711cf2094763a19becd76337cdf3894db07a912ef1817e2b13"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/quality-static.json",
@@ -1041,27 +1095,27 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/rendered/core1a.html",
-      "bytes": 205077,
-      "git_blob_sha": "7577ea7189656113c9de5322c4fecf57dcce7be0",
-      "sha256": "a9aaaa113953258aaaf4edaa47e22214b086ac22176ab2179b1e688861c83e52"
+      "bytes": 205939,
+      "git_blob_sha": "6895ce9ab4012b00aee326253a36b141e8d9b2f5",
+      "sha256": "8c33919cec52ad668c1e1992ac8b936b4a18e5e3c7adc8ae961a4a69902b56bc"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/rendered/core1a.pdf",
       "bytes": 515280,
-      "git_blob_sha": "17334c2922306e90829db679897041323a53325f",
-      "sha256": "2d8b9a33603efb8b444676a404e5e8b5e1677e72890e228256084af0eaf77cc5"
+      "git_blob_sha": "e108fd8f90f7e0d1fe07e2cfba0c54c8da6a2208",
+      "sha256": "b0679a0e56f53a8ec172f2de0c6b39637872b412ba6898343b58d2224b05fa89"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/rendered/core2.html",
-      "bytes": 302203,
-      "git_blob_sha": "1f23d4bfa296f4c368f304a366514567288b1c9c",
-      "sha256": "b6412cbadaf39e354380fe1843348f6bc831ed09837beb1ae9b8ba26ea301c5e"
+      "bytes": 307969,
+      "git_blob_sha": "24df239bbe5c8a733fa6c66bd1c5c5e10d39aefc",
+      "sha256": "6ae2a120d41b8d9ff7b9cda25191584d1b09cb6c49e5805e5d9b5adbf7dacaa9"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/rendered/core2.pdf",
-      "bytes": 389499,
-      "git_blob_sha": "6f5e73395ae26286edbe42002732767486b0c92a",
-      "sha256": "eab1ccf3d438588169039cea95cba5d747e97db522793facc9445464c349687c"
+      "bytes": 388438,
+      "git_blob_sha": "d10a417f72bf16449725924425587d78b966b0a3",
+      "sha256": "d71605b5799743e15bea1d264cd23e07c47348510f897a4979f8b6b01b167d13"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/rendered/css/modern-learner.css",
@@ -1077,9 +1131,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/rendered/index.html",
-      "bytes": 22186,
-      "git_blob_sha": "149111cdbd45b093c77e1393782ee283deacf112",
-      "sha256": "9f22df7c99e6ee3d8aab0718b20a2505a88ec32a14f50a2c511acac291def2d2"
+      "bytes": 22552,
+      "git_blob_sha": "873eb2e3fa953c8f5565842ee615d2aa74ab483b",
+      "sha256": "2746e8feb62a64ef5f5dee907f6e266957330cb5df882d06675071fa2f0a925f"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/rendered/js/display-controls.js",
@@ -1096,14 +1150,14 @@
     {
       "path": "evidence/blueprint-cycles/ISS35/rendered/print-receipt.json",
       "bytes": 726,
-      "git_blob_sha": "21b1e97bcd656e35c3f29387c283ce879455daf1",
-      "sha256": "3629b5c0b1f601c3b5ff9a6ca1133987351ca86554602bf071c09ff32e54c94f"
+      "git_blob_sha": "25cfe5fd4a6c6194805909ceace4d7ad206eefed",
+      "sha256": "36f541b4c3fbb22f7be9543f8a69570b827924ba7da6aef63a6bdf4df50f82ae"
     },
     {
       "path": "evidence/blueprint-cycles/ISS35/rendered/render-receipt.json",
-      "bytes": 2460,
-      "git_blob_sha": "438d1802113756db56dbdd3b869b8f4c76a93e50",
-      "sha256": "56b5d7951f89bb7cef0cf8773784fd91cb299300da712c9129fbcf3b94fa7e68"
+      "bytes": 2570,
+      "git_blob_sha": "71950e0a4144a6a42c38f89fe6d1b829b1e4fc25",
+      "sha256": "fa3046485353f0011882290010d194363fa0377da3ae0d67329ef688d5e8c549"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/assets/allene-REP-ALLENE-ORTHOGONAL-PI.svg",
@@ -1131,81 +1185,81 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/assets/question-1-givens.svg",
-      "bytes": 5754,
-      "git_blob_sha": "a48b78ceda84021a3ba0ce0117cd0d8e9057db80",
-      "sha256": "98b1bfcc8a7ec150ff9e6bf33c98f84f1dcc399f31f8b56795844577f26a193d"
+      "bytes": 5008,
+      "git_blob_sha": "0e3d3ae64a74f994d541470811f6d968388dc5cb",
+      "sha256": "ffba282740a66414382cda1ca029cc3b59d59698639f63e384d51a1ffdb11c71"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/assets/question-10-givens.svg",
-      "bytes": 3049,
-      "git_blob_sha": "38f3fc1ca8edbfcfdc7d34542e5bb25c6b2b3ae5",
-      "sha256": "5984b8035a3b2ad3322555e22def749fefb9cf34537d25b0e06452b1bb0e86e1"
+      "bytes": 3740,
+      "git_blob_sha": "52f47323209c8692d69d86befefd6b36027beb74",
+      "sha256": "8548f8e3669c723f00bc7d8a9da6355600b6167dd76bfbf07da17dc99d118297"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/assets/question-2-givens.svg",
-      "bytes": 5779,
-      "git_blob_sha": "9dfd039c87efb255d5d4542b14142084aeb3e3e2",
-      "sha256": "4ee317abd821bae16abc2c5e6ba2034ed1733bf0c334b4623526958c3e878626"
+      "bytes": 5105,
+      "git_blob_sha": "0111b7fa0cef084935b8223ae08fe0d331334e3b",
+      "sha256": "2504693b60e77157871206a0007c8ce24445dbaa3d6d7de7569273b6f093b562"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/assets/question-3-givens.svg",
-      "bytes": 2007,
-      "git_blob_sha": "035a4ea17b6012a39d1611d7f66071f71b4708bd",
-      "sha256": "20714e1fbdf9f22fe3e24687f0302e35e36426e14309245cae0ccad209453b4f"
+      "bytes": 3730,
+      "git_blob_sha": "0448183a11dfdc29fd452cc8103f933a92b2ab34",
+      "sha256": "ddb1672cb9a12446cfca10cf76ac1826e841c562aeda34e501d6d7e8b4aaac7c"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/assets/question-4-givens.svg",
-      "bytes": 2660,
-      "git_blob_sha": "4a9e0a0bdd3072a7e337989988cc1d0958078493",
-      "sha256": "415330eccd7a732cc7f17bc44a47c0660eda567a4117600d31cbe358ac74cb49"
+      "bytes": 2468,
+      "git_blob_sha": "288359a166df4a632fb7414f92a89a05f7e03ce7",
+      "sha256": "7747c0f69403c6f0178c541a7ae2d0ceab9cd9329d4383a7e9b39219a2eabaad"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/assets/question-5-givens.svg",
-      "bytes": 1498,
-      "git_blob_sha": "1271ea391b3f803619af176728ae297e8c65ca0d",
-      "sha256": "025fe096ae7d478f257156310203516a9a51c2b43420a70d8109f8fbcfe276e7"
+      "bytes": 2949,
+      "git_blob_sha": "3b05faccdad1e1f2f0c296e62e9726c0ef72ce50",
+      "sha256": "3206b1851881bf87460e88d8d7755490d4656e84e62af4848d4ae4e1ceaa71ac"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/assets/question-6-givens.svg",
-      "bytes": 2004,
-      "git_blob_sha": "f4c5934a6c776c3aaeca27194c3ff017994bce7e",
-      "sha256": "c78aa56eb9088267c7c510817671d9ec60eae33aa672a780e70e411c4512fe88"
+      "bytes": 3198,
+      "git_blob_sha": "f4f20d58ef2f45496886ba4d49de33432f110398",
+      "sha256": "aa9b2dff9412d8002908d2fc1862458efa88e88186cb0bc479d07a258ea5dc07"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/assets/question-7-givens.svg",
-      "bytes": 5747,
-      "git_blob_sha": "f5ecd44a5f7fca1221347da8f6fb178f83db5474",
-      "sha256": "b295349ab052e23d829765ced285845fbb0d0c87ebeb65d28c8fd7be45bfc33c"
+      "bytes": 5076,
+      "git_blob_sha": "dbfe5d431fefa74cd1ed4facbb5ff607ef72f423",
+      "sha256": "6af73e40df1aed457a763bb64df2e70fb47cd3e6b5aaf784c77d8d6c90109157"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/assets/question-8-givens.svg",
-      "bytes": 2053,
-      "git_blob_sha": "669bd6d6674a702a70bf7796c7b6f31cd88f8c62",
-      "sha256": "a94627e8b9cd1957ea91af1f0bded7cf7f7fc78da01a44c1094e49b8f21c756e"
+      "bytes": 2166,
+      "git_blob_sha": "102f9d75ed3801cc41b7089daeffa9384f793788",
+      "sha256": "bb3a6a6052c87fa2e262804821d5eacca7851503c6a5d598c023b278f924b5ae"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/assets/question-9-givens.svg",
-      "bytes": 3787,
-      "git_blob_sha": "af9aace738ca25e7543e7a64f94174ad96a4e2b2",
-      "sha256": "fb1ffccef317985e424e8d71415777fcacdd2e4cdcceae41ae9e92a7d7934b35"
+      "bytes": 3722,
+      "git_blob_sha": "07d6e8761a0fb2b86c71d71392f0610e8799410b",
+      "sha256": "55d76b307103399e6f08fcb89a567654ad1ed8883009cc8a1d62d0074a263840"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/cycle-receipt.json",
-      "bytes": 7603,
-      "git_blob_sha": "33a0fac9408ef636d67e5fd33659388209c57b66",
-      "sha256": "3f1963e56eedad584595b0e9036677563d38b8d0b6a017bd07235c108b9b21ec"
+      "bytes": 7713,
+      "git_blob_sha": "028c0e9c50ed2ed0f11d84693e274fd807dfda42",
+      "sha256": "198c1077946d6057fdcef3e757bd2f78acbcc7c26daf94cdaf0d000417ada51a"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/inputs/owner.bank.json",
-      "bytes": 97561,
-      "git_blob_sha": "01a59835d13ec3da1aafeb0e07004bb0d2352c21",
-      "sha256": "2b2155f12d15f1f0a6826bba89ed9109ee942c10f101088437cf0c84e2e1927b"
+      "bytes": 100827,
+      "git_blob_sha": "750c6472174857ce294a4b79e635edd92f9e7622",
+      "sha256": "b9df99cd249a1e2fc84a6157774c10119737a1866f2f72f9c69652b5dc34d7c9"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/inputs/package.v1.json",
-      "bytes": 144817,
-      "git_blob_sha": "d36ba8cf429168d173b2b05dcc4b40e9d99caf82",
-      "sha256": "707bef610983e1ce1a62d6ca1153f5f57b17f3ad207a8a6dc276e2a246ea4e67"
+      "bytes": 145474,
+      "git_blob_sha": "f567012fef5c6f2fb5ab84f60d5d2c86148da309",
+      "sha256": "24e9a38c800a73d707fd0cc927e8a8efe63547846f5a21b3f4c268467f1bf513"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/inputs/product.manifest.json",
@@ -1215,9 +1269,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/qrt-repair-ledger.json",
-      "bytes": 249323,
-      "git_blob_sha": "9b9dc9c7aea1c85d6259ee6649ac0f837f5e4105",
-      "sha256": "6d037d7a85165b8d4a7205956694df2b2bb728c019b53800e9b0ad7d4078b1df"
+      "bytes": 250387,
+      "git_blob_sha": "44410cff3e9f782ed99292c850a0a76be825a305",
+      "sha256": "caf372cf3fca7932bb846ed0af16f9bba6eb746b3cf7bf632c3197ef064f9304"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/quality-static.json",
@@ -1227,27 +1281,27 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/rendered/core1a.html",
-      "bytes": 233379,
-      "git_blob_sha": "1ecc5563816f0eb4a7e22de7e8666eef91028a76",
-      "sha256": "892398723ba01725804ce1156660001ae8ce4be89bf7478171b790eb09bb7a93"
+      "bytes": 234241,
+      "git_blob_sha": "c252464bf182a9b05c6c0fd8de0e5bdffa8813d4",
+      "sha256": "dce6ad1d7284a15f45955b9857eb46062b02c25341aaf71cd0dd29a2147a14a3"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/rendered/core1a.pdf",
-      "bytes": 708407,
-      "git_blob_sha": "55890fcc2c6c70f4c2a482eb4a081e2f6eab493c",
-      "sha256": "ea9138af06a15868929ea8de668c1e019890636fd10eefb80944efa5440c7f8a"
+      "bytes": 708387,
+      "git_blob_sha": "a74133a27657a7d9f071b1d2650c974bfd938ec8",
+      "sha256": "ca8535caaa91cc0dfb2f4d713dbcdf4ccbfbe60ef044c672a31974dd2ebc890b"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/rendered/core2.html",
-      "bytes": 306890,
-      "git_blob_sha": "a2384f675178624cff1c34d3a1c2ccbb0bd885c2",
-      "sha256": "a22253730b7f179911bd06ff76808d962b41f655df70aa4cda7d068584a2e8cd"
+      "bytes": 311909,
+      "git_blob_sha": "53f3a9bb0ec5b1239c8020738a0e078f9b67f0d4",
+      "sha256": "c0e94b9491d5c8e5f34d2f16684ce7e4930dc9b26420f19dcacb7e18610640fc"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/rendered/core2.pdf",
-      "bytes": 391305,
-      "git_blob_sha": "aad9817f669975d1fd12b27c87f86ee7ca88d9df",
-      "sha256": "20469aa6f22a4418b95f50458fb170c1438833e4a39aec56b70ad1c8c17c83cd"
+      "bytes": 388397,
+      "git_blob_sha": "13731bd3222475f58b0d4481d764723ce9d3abb1",
+      "sha256": "31f8136bb04436b812e8e2fe5958a746054cc152af2e8648b31e5f1fcd049158"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/rendered/css/modern-learner.css",
@@ -1263,9 +1317,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/rendered/index.html",
-      "bytes": 22170,
-      "git_blob_sha": "95d2e55459403a38ddebc17611d640d29d15ef3b",
-      "sha256": "e97f9591ddd16067e0a4163962b5b2f37494250932feeec72b027c547bfb4362"
+      "bytes": 22536,
+      "git_blob_sha": "624028507f0624be866fb70c2706a208676abc77",
+      "sha256": "78c51e52044f95cd3ea061ff8be497cad33815f28e9c3895e7a7e01ba8e0ab6c"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/rendered/js/display-controls.js",
@@ -1282,74 +1336,74 @@
     {
       "path": "evidence/blueprint-cycles/ISS36/rendered/print-receipt.json",
       "bytes": 726,
-      "git_blob_sha": "cea3295909835404a2d8b81a3348530c45078e9a",
-      "sha256": "d27238ad0eb97cedf51c65a0cf7c29a0d6263a25e55e73bf3ddf8294fac39b0e"
+      "git_blob_sha": "0891116729f4733035d530f3320f34b99c7e65d1",
+      "sha256": "784de8fc5566d7c6bbb5c336d32e1bbd3f10ebf533a7f79cbace02c7efaa6bda"
     },
     {
       "path": "evidence/blueprint-cycles/ISS36/rendered/render-receipt.json",
-      "bytes": 2460,
-      "git_blob_sha": "59834aab4026f1f1581048055e01bb59cfacca32",
-      "sha256": "cdc333c46094fa0e6595ce3d189ed7bc770092cd77196e6ff01c580bfb873122"
+      "bytes": 2570,
+      "git_blob_sha": "049a911403fc5d768c33ffe17796c0dd0f15efdb",
+      "sha256": "503fde035572d770a99f898b97bfc5411cf62257cbd7f40d8b122a43ac04349b"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/assets/question-1-givens.svg",
-      "bytes": 1446,
-      "git_blob_sha": "ecae4df498b0f4afea224e7e6fd3ebd9df8be78b",
-      "sha256": "03fef11d7626770c929d5d89196db1ba30938867a3a76d9957d962b4f465d37a"
+      "bytes": 2900,
+      "git_blob_sha": "75157daa6793162bb4fcab4018921c016c98e1ae",
+      "sha256": "aec347cd2ee21f875585b51bb77d34697d26a1b8d5f1d4f37e691eda14c0ef4a"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/assets/question-10-givens.svg",
-      "bytes": 1572,
-      "git_blob_sha": "8a652fd7081ad4277daa76af8ffaea3b79d2ff58",
-      "sha256": "21ef1d8602d31d1bb78135e71bb540e8b873eda8f3cc3330c13393633f25e2b8"
+      "bytes": 3018,
+      "git_blob_sha": "35434627f1bb8de366d3ac3a8dde27ecd32d4452",
+      "sha256": "9fe73cf61ed83fa2ba3c8fd095f6347479b46122dfa58b75d5461430f8b28aab"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/assets/question-2-givens.svg",
-      "bytes": 1727,
-      "git_blob_sha": "71706e232935242c1b45cbf8915c100d69c52b5d",
-      "sha256": "66f6b4c7f2f1e518136a9444a5d6168eb641f4bbd3f5f231d68d40fd20678b0b"
+      "bytes": 2018,
+      "git_blob_sha": "1c6429fa23bd729c63fcd2afbd305ee7a4e652d9",
+      "sha256": "fd720aaf0094249a39ed2540fada4472f7350c798f25d09d33db6488c497c237"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/assets/question-3-givens.svg",
-      "bytes": 1456,
-      "git_blob_sha": "20572cd72bf5e88589c055251261bee07c995814",
-      "sha256": "3388588c53fe9dac88fa3e3db6256f51dc4f33cc9fdf0f2fbaeddb20d8d8524c"
+      "bytes": 1869,
+      "git_blob_sha": "3b5e121066c38e262b6f83c12414e94efffe358a",
+      "sha256": "cfd4cca00929e5d36d1e6628a7b7e7f5bff3cb8341214286da630ee072f27732"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/assets/question-4-givens.svg",
-      "bytes": 2223,
-      "git_blob_sha": "042dd28e35eab82218a82f7d29ca6699fb1adb48",
-      "sha256": "fb118cd1b357d00c26294b916118246a448ed1cd23d9fb7d37d2c063d5243d19"
+      "bytes": 3294,
+      "git_blob_sha": "3d1b95deaf86b7f8eaaef86f591e716dd95b563d",
+      "sha256": "959a688395827354c9dbc1458766824cf3f00c374272f0c355588f5753a2df4a"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/assets/question-5-givens.svg",
-      "bytes": 1520,
-      "git_blob_sha": "4d4f50d51d9ee28b9ad4e6fd702201108914f5b6",
-      "sha256": "f564b4edacdc11217a2426c2bcb16c857bdf9440ab5de24025bb043a5136bffb"
+      "bytes": 3003,
+      "git_blob_sha": "9bcdbebf49d5f44f996e7764a985f73a13e50af9",
+      "sha256": "7a109a12dea4b3b2d4cda9877df86f9a7736a79b0357e20485585868f6d13a77"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/assets/question-6-givens.svg",
-      "bytes": 2214,
-      "git_blob_sha": "51704b172637b2546a51bb18936851acda9a6e72",
-      "sha256": "34bb7701b7544c3a29ac41bc0f6d8a8469a1c20fd3b283707a62649176321a91"
+      "bytes": 3279,
+      "git_blob_sha": "1275b4b7f83fdc14ef4e0e8184d98a2cf6da9d9f",
+      "sha256": "94a30c7cc9a08af6f6077ff1af4a21e0dc4939a622cd419ec54995c65adbb39b"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/assets/question-7-givens.svg",
-      "bytes": 1496,
-      "git_blob_sha": "64e2b4221f57ba71053ff863f51e4af778bf9fed",
-      "sha256": "4bbd160edc1de5a8459836b5584f3f3518f3ec1c1ce67b7f4d8c0a99fe63c717"
+      "bytes": 2838,
+      "git_blob_sha": "4e6583365314533c5013b55cab05b5d0a7eb48d1",
+      "sha256": "d0349faa214ba4ab3c32766ac42ad9b14bbd496383805704660059523bfcc975"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/assets/question-8-givens.svg",
-      "bytes": 1521,
-      "git_blob_sha": "41c566e2d102593603ad56529cb910f9a750d912",
-      "sha256": "ac88cfe9dde6ab27f8ae00c362827611f5e90ed5a4d2c4add8cd67c97e629df5"
+      "bytes": 2982,
+      "git_blob_sha": "a5ecc6213dc3c37191f37e2f2b485273b422b950",
+      "sha256": "329ff8253acd64a2530828a57235dc5403104ed6307b86402a0c6dd35e165392"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/assets/question-9-givens.svg",
-      "bytes": 1355,
-      "git_blob_sha": "5bd85bcef3916ed7129735e442bb5a2e3a406625",
-      "sha256": "c94ae704167907981d5a4b676def8800d497d721bb7f7c9f43f4c466edbeab7d"
+      "bytes": 3385,
+      "git_blob_sha": "9c66cc754e0b917b8966d44fecb28c1d091d54c5",
+      "sha256": "188bc2ab964ebf6116bbb18edc8ff5433b28659ceeb248f916e475b078067f90"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/assets/torsion-REP-CHEM-ISS37-TORSION-OVERLAP.svg",
@@ -1365,21 +1419,21 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/cycle-receipt.json",
-      "bytes": 5606,
-      "git_blob_sha": "d380850b1e9e05f250af2a56654331dfc6ea3db4",
-      "sha256": "d63c225e4de7d2ef9a6bbb5ad3ac2ca167d8464ae798dc8d1d4247bd4b8b61d8"
+      "bytes": 5716,
+      "git_blob_sha": "3026ca16b78ab03158d51e0b433a3689b2da1a9b",
+      "sha256": "cf8a2a69f7b0cf2e8ec634779ee7f154ecda4f4eae25f22e75ba1099b4d82bd3"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/inputs/owner.bank.json",
-      "bytes": 107299,
-      "git_blob_sha": "450f3d0e6ab11c08a06deb8c17cfe05f73e544d6",
-      "sha256": "b43aca64018e04be15d14db03d7944f76b0f445e981ff51b2d943d1dd420b1ac"
+      "bytes": 107913,
+      "git_blob_sha": "7d1a3dafcd32379d8b0fdf44fc156b32b7ef1625",
+      "sha256": "cea390c311840ab4fb0ec5f7bbf61113f40f88cd527e57094d15114b8b9c94cb"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/inputs/package.v1.json",
-      "bytes": 117073,
-      "git_blob_sha": "75704429e68798467061ac869f01cec201465ad8",
-      "sha256": "fc2661c9e2c4ffb2f0215ddc80fb371496b92dbd8a9c5f903aff226ac7201245"
+      "bytes": 117632,
+      "git_blob_sha": "413ae76080d080e2ffb0ab894693ab3281b0d4e6",
+      "sha256": "888567aacc52a5d0f163cca202197b58e51b12f771e49ba71f14713f0ddc2aad"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/inputs/product.manifest.json",
@@ -1389,9 +1443,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/qrt-repair-ledger.json",
-      "bytes": 264087,
-      "git_blob_sha": "43392e6f50e1750c358b5e600edb7e386c19303c",
-      "sha256": "b18856f44f88eea993dad48d4a4aae91f33a02ee9ac2684ac500fe48ec17ffbe"
+      "bytes": 264750,
+      "git_blob_sha": "f55ad9f6a73cb296f82ae63f6a22b298cbfc7c1e",
+      "sha256": "c2545d011343cc0533220e376cdfc09b7ed8fd99cb044be5b49031b484fd4e65"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/quality-static.json",
@@ -1401,27 +1455,27 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/rendered/core1a.html",
-      "bytes": 199277,
-      "git_blob_sha": "148625887270ca4f2483a98a101cdfae442cbca4",
-      "sha256": "cc2de1f4294e284793ac4f1a9987d0e0ba45c4e86c57ca42a171e954af12806d"
+      "bytes": 200075,
+      "git_blob_sha": "5d982e72c2847f287dbe8e26e59b1a21ab5e1e01",
+      "sha256": "0d890865823a45ce7af10971bc29a23746aee372fba30e9d6ca47b20261ef482"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/rendered/core1a.pdf",
-      "bytes": 520028,
-      "git_blob_sha": "28d1f3d881c27c1db99f90ee0adcc812bbe28be9",
-      "sha256": "1c3c33c3520977d260173ecb8cbf939fce2ed58fd0847a9cb8eea93f8eec7b98"
+      "bytes": 520271,
+      "git_blob_sha": "b0e828d2554ff0a7f35f28be2c8791dc4a16c1b9",
+      "sha256": "eed6223c929f57d1349864f81954f31d420b84922301fad75964df15ded4ae72"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/rendered/core2.html",
-      "bytes": 298509,
-      "git_blob_sha": "5b5d00ea32c3d348676634d28fe55978b2f1aa4b",
-      "sha256": "3cc8e0c13ba166f8ff192edf8b9f53388ae2de21dbbf4e6a652129b22d67ba4a"
+      "bytes": 311311,
+      "git_blob_sha": "3024a95e929636974aa0a06b10c9f02ad7d3cc55",
+      "sha256": "ff3068cfe5f04a1ba9120ede1bde4ab1d9821e748a7e3adb88301da19fcdaf90"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/rendered/core2.pdf",
-      "bytes": 425029,
-      "git_blob_sha": "ef07e25730d5082e0bcc085fc632facb0bdab737",
-      "sha256": "0afa3c72f379ac551b19f1a08f88e5c3c53073f9de72a77244fd0ba9a3ec6a80"
+      "bytes": 425035,
+      "git_blob_sha": "05cdbe9f057ced04e63b3f044a31dc651b0e8ae0",
+      "sha256": "b80a74e9182938a83c3942cd168cdd6eeeb26d70056cfc38970434b976b50383"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/rendered/css/modern-learner.css",
@@ -1437,9 +1491,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/rendered/index.html",
-      "bytes": 22116,
-      "git_blob_sha": "96e90719d58c2d80113809996137d4fff43fb46f",
-      "sha256": "149821f1878b8bb98adc9537791682ef06d7c346aecd1a08fd791a940999e4ba"
+      "bytes": 22482,
+      "git_blob_sha": "eb3e271fd4dfcaa63177bbffe3c469b753b09918",
+      "sha256": "b3804281835abc6b1bddf560caebaf30797dc438362905d7361e89f73b864bfe"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/rendered/js/display-controls.js",
@@ -1456,14 +1510,14 @@
     {
       "path": "evidence/blueprint-cycles/ISS37/rendered/print-receipt.json",
       "bytes": 726,
-      "git_blob_sha": "66439b2985cb6e80e7a22c93523ed90d30967c9f",
-      "sha256": "0f8720963238596a4c431779045ed267741e7ca5fe572d146ea237770adcdddf"
+      "git_blob_sha": "bef1b1b5d788ed00957c9d576bdb2be0eacaebe8",
+      "sha256": "daf0570bccd0ea56c4cea6b122b29b0b23b5a8b5c2b8cc09da99bc23b2d6ca44"
     },
     {
       "path": "evidence/blueprint-cycles/ISS37/rendered/render-receipt.json",
-      "bytes": 2460,
-      "git_blob_sha": "ff2804fc56477a560e9ee4efee8be1c18846d539",
-      "sha256": "2bc6e89e7e361d6480dc150201db4f241e3d12182234a6e2816abd0721d9253a"
+      "bytes": 2570,
+      "git_blob_sha": "9031dc16610ea6abb848dff11f97a95028519642",
+      "sha256": "bb60081da5308e23e7f9fa29b5d67de2a33c3e0f8fba7109b0d3ecbb704c71f1"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/assets/allene-orthogonal-p.svg",
@@ -1497,63 +1551,63 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/assets/question-1-givens.svg",
-      "bytes": 1446,
-      "git_blob_sha": "5f967af6802b0f559ab485f269cd4c465f948c44",
-      "sha256": "5c8479aca528f0366023b002ace49126dc91d2e5e52f6ced7ff28019a7068f38"
+      "bytes": 2900,
+      "git_blob_sha": "2bc0ee0d9535354cb13c8074d45a97af4e9203b1",
+      "sha256": "6325d7f3d7d19f0b42f28259b542c5780e5cd85fe866e47d24b0b33fd71faea4"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/assets/question-10-givens.svg",
-      "bytes": 1572,
-      "git_blob_sha": "6caa62cb912e8b57ebd5f1c2d323fe4fd485ea91",
-      "sha256": "de9e7939aa75bd1213c0103fcfe1e7af740b2369220b673e239d9ca5dbd8b6dc"
+      "bytes": 3018,
+      "git_blob_sha": "a3dab307e4519db0a4f9e725bb25dffd9979883a",
+      "sha256": "6fe8082fc7e19601a13422791363c3efb41606eb5c643b652db5be1aa9552224"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/assets/question-2-givens.svg",
-      "bytes": 1727,
-      "git_blob_sha": "4207f02715341af09262ef56033780e45e7d6f39",
-      "sha256": "d824df4b0f541f253c8d181a3523246c822471d9f66bb9406a0f64921e211bbf"
+      "bytes": 2018,
+      "git_blob_sha": "96b103a3b1616d48e06287228f85bd0ae2888e08",
+      "sha256": "8efae1e0e48111152e148b5f45526d24e38f86a68f07a446e3e43f02d43c31c3"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/assets/question-3-givens.svg",
-      "bytes": 1456,
-      "git_blob_sha": "9e17265837490a3ebce99b2a560d90f138d12f5c",
-      "sha256": "2e0571fa0bae126623e6672ae2ddbfd2434945c8576fd70ec9dfdf24e972e777"
+      "bytes": 1869,
+      "git_blob_sha": "04cfc1b6dfe8181125eeb6bfbb5a596662b97d53",
+      "sha256": "3dd0b5a443995b2ea090ea8149fd3900d3b52c7f6067eac88dc697b8845d0a76"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/assets/question-4-givens.svg",
-      "bytes": 2223,
-      "git_blob_sha": "0c180f3b92d43dbca0b28439e0f0428b3279e764",
-      "sha256": "9b937764a6960304088d9478a6109a7a537b982b9b76566fd6ea2dc3b59cdcbb"
+      "bytes": 3294,
+      "git_blob_sha": "e72843a48f4f665558783b64e589f6614facc0a6",
+      "sha256": "ef5ea9b7c8044c03e88a08b0dadb724b81274099cfda99186e1492ac24706349"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/assets/question-5-givens.svg",
-      "bytes": 1520,
-      "git_blob_sha": "73a4f917adaef61cde930f6bfc6125921ee6a924",
-      "sha256": "a62de59c4dfbff236ac55e6d713ac5487679dd6bdcc5969e28ed8ed670f4b95b"
+      "bytes": 3003,
+      "git_blob_sha": "9a5f4c8a8fafe85f54fb769f6b63dff7f62277f3",
+      "sha256": "59ef9afb42908662f1d87634eb0512eb118b4058ebaa1dca701ee63c0cbc22c3"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/assets/question-6-givens.svg",
-      "bytes": 2214,
-      "git_blob_sha": "5e435b84626b39bde27eb8a62c8404203964842b",
-      "sha256": "6fdf43bfff9b38dcdf6dd40ec7f822362313485abcf6551e07633c6cbfc610f3"
+      "bytes": 3279,
+      "git_blob_sha": "e6271aba513eea0c8c12852e2c22cd66c892b98b",
+      "sha256": "b86b1bf43eb51977c8f1635c823912297c42232ecd0605ee8f549eac662850eb"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/assets/question-7-givens.svg",
-      "bytes": 1496,
-      "git_blob_sha": "842df5b70ee7b5c127792a9dd232186c8f5e2b4f",
-      "sha256": "675b2f6546263b6aaa54f760af331038eedccd56968be1cbef484ea61b9ed3ec"
+      "bytes": 2838,
+      "git_blob_sha": "25d58a7fa5bc7fd4ee67b0b3590451028cf04e8a",
+      "sha256": "3b16bc155f0b927b05ba5775d69686e7c201c6d6e8a046d22afec9394d511d53"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/assets/question-8-givens.svg",
-      "bytes": 1521,
-      "git_blob_sha": "77a7345ff3e94ff25b209fca157b4552255cb7e7",
-      "sha256": "4452d01848c0c9c2d5e455ee966358912eac1a0516b546dd5eeccd21240c57af"
+      "bytes": 2982,
+      "git_blob_sha": "1f52625937cdc5a882c692bb052d2f0c9d0c58c7",
+      "sha256": "d51fcc2e7f8d5d12f6e5f2c265d8a216ed8d01414fb7f7992a74cbc49e3fc7e4"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/assets/question-9-givens.svg",
-      "bytes": 1355,
-      "git_blob_sha": "046b6fcb860780a94638f4712bdda5bff0eb461e",
-      "sha256": "92cc67c435baa9581c59605a4e3009fe5bdc3659433f654b0e963ac1955aa6ca"
+      "bytes": 3385,
+      "git_blob_sha": "64d42ca84b943754c3c9fb3e659469028d765b66",
+      "sha256": "58870bf221596a9ccb400d9b6062c2415311a3f1e6a3d9a1190e3ea90ae06fda"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/assets/torsion-REP-CHE-FORMAMIDE-TWIST.svg",
@@ -1563,21 +1617,21 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/cycle-receipt.json",
-      "bytes": 7042,
-      "git_blob_sha": "a6b921c13664efa50c75209a3aaa2112615d8583",
-      "sha256": "a8d411a74bd2c26f21b3634775da22a6bd9a716f9bf7b562353c6f49f4750303"
+      "bytes": 7152,
+      "git_blob_sha": "d29c793266363c10be34b80fbb5be4c2abc28a5c",
+      "sha256": "eec514b80f7a2e100d3c20118837f1cbb35e1339cd7575fea3e58ce6a08694aa"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/inputs/owner.bank.json",
-      "bytes": 102951,
-      "git_blob_sha": "4528f96debc4277cfbf6753258e9d7e1f24b57f0",
-      "sha256": "9ed14ce427c81081d6e67074c55e3f16fca6a33023957045d8dc03a010720ad0"
+      "bytes": 103442,
+      "git_blob_sha": "57b6a153827cd7ecb224b06adb5618c3de9cb033",
+      "sha256": "f149ba69d055ad06c98078e527f3094cbadc26cbc01c7a9fbb43393178afa206"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/inputs/package.v1.json",
-      "bytes": 146411,
-      "git_blob_sha": "80540d5b2f2620b15f671f4ebccfffadad20aafe",
-      "sha256": "50dbe15947f052c2d1f8307f327fd39a741c20d1984423da1f5932b4bb357a2c"
+      "bytes": 146970,
+      "git_blob_sha": "23cb9705601763bda20fa75b188c6dbf482b7b2b",
+      "sha256": "4146c8697b6bfc048d28bbfc61d851b9ac22d8166cd78fe08ee9800c10f46c8c"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/inputs/product.manifest.json",
@@ -1587,9 +1641,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/qrt-repair-ledger.json",
-      "bytes": 259185,
-      "git_blob_sha": "5d90b3f1471022e6ef2c1daf45face0c3ddc4b2e",
-      "sha256": "170ec03712b295d88ffff81fa19d06a27bd69d1274a7407dbf5683168deb1692"
+      "bytes": 259848,
+      "git_blob_sha": "43b5f9b100cfb730107d4c69175940fa82e6c5d4",
+      "sha256": "1ca9cf0888d2dca26efcb50967da3d39824c2bd7a49829b63564b369d533118e"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/quality-static.json",
@@ -1599,27 +1653,27 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/rendered/core1a.html",
-      "bytes": 215974,
-      "git_blob_sha": "915afec0ed79a0f618130155e3d9a3b8a36ae534",
-      "sha256": "85061eea08b28d1cd148caa5132bc3791a50993447913b6b71f00c67bc66feac"
+      "bytes": 216772,
+      "git_blob_sha": "b2447ab298601ee3e291230d18a71157a9f9b556",
+      "sha256": "cfe18b673b7659f90743a361c015d536fc14c893f5efdc69672e35bac24b7824"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/rendered/core1a.pdf",
       "bytes": 566185,
-      "git_blob_sha": "f03a18f7dc289a46aee2ed161efbbb5dd916f654",
-      "sha256": "9b9edc353df7c7710fdabf2512308d9edfa679882f4368927f8e4f496a47b355"
+      "git_blob_sha": "2400edf2c35ffb0690a3fc15c0e5fd03a145b3bf",
+      "sha256": "d136a4d414e3635711031c56bb8e8209e9bada16b6f5e4f7dab7e0fb0bb39b31"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/rendered/core2.html",
-      "bytes": 297250,
-      "git_blob_sha": "c9b81154cf4784051db51f1203f2f4dc78d21e96",
-      "sha256": "4bf041ccba3133e60730c2d4c36b7fb66b1decf3617dca2278f997d352e4d51b"
+      "bytes": 310052,
+      "git_blob_sha": "f66cc629d26a94c0f7a69c6bbec5c1cb7eaca7b3",
+      "sha256": "1873c87b72655c1d269ce52d1e828d029990b6dc9a86e50d2335dfff7e11bfe2"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/rendered/core2.pdf",
-      "bytes": 423018,
-      "git_blob_sha": "4169fb35314ad39dfa3689a113ba418a4644386b",
-      "sha256": "97c89aa6351187ed6173729d013009cc537ca3d6ead0a7dd938df4f451d4ef48"
+      "bytes": 423022,
+      "git_blob_sha": "9453f092fad857230b99453999055ad6483ba1f7",
+      "sha256": "0c129853a649e5dc15f4c31616ebeaefc0321f35a3b0a10e23175576a6049fa4"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/rendered/css/modern-learner.css",
@@ -1635,9 +1689,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/rendered/index.html",
-      "bytes": 22181,
-      "git_blob_sha": "664294d75abb02c29b939c9dd50f816e31de6865",
-      "sha256": "bf18644310030e1b12ac272bc20740c178e5fc70cab58aceea90712ae8701969"
+      "bytes": 22547,
+      "git_blob_sha": "b38fedd1af8dc0bd974e497e0c81680a40f12e50",
+      "sha256": "0183d3dd2ada8497fce33a5d15c455b8469994c4d8b62aa1a10984c1d69a79cd"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/rendered/js/display-controls.js",
@@ -1654,14 +1708,14 @@
     {
       "path": "evidence/blueprint-cycles/ISS38/rendered/print-receipt.json",
       "bytes": 726,
-      "git_blob_sha": "88682fdf30cfd7240d613dc4498d1e3c086049ec",
-      "sha256": "99e696e5f816d382c9ae1d49519e009a12ef2010cd6d8eccbc1a4cb02160bcd8"
+      "git_blob_sha": "8ec5fa2059ec912339ae2da086dcc00434aa17a9",
+      "sha256": "c5aabde4adaf16b3044642f632c516620620ad0fa8cf4e7adfe2548091e751c2"
     },
     {
       "path": "evidence/blueprint-cycles/ISS38/rendered/render-receipt.json",
-      "bytes": 2460,
-      "git_blob_sha": "b0b47bec44d8af43644761db3c5f041263cb25ad",
-      "sha256": "320ebb237cd59ee899961710c98cf37acd9ce192d285473ce7ad64b89cb571a4"
+      "bytes": 2570,
+      "git_blob_sha": "ff7d87ef1bb021ac824d1788c6ae32e2f68644ca",
+      "sha256": "e63a54ba2336b57a565510d0648223949f0c541e1fca61e1843ec43e44ff4ed7"
     },
     {
       "path": "evidence/blueprint-cycles/README.md",
@@ -1672,8 +1726,8 @@
     {
       "path": "evidence/blueprint-cycles/REPORT.md",
       "bytes": 17218,
-      "git_blob_sha": "555881a2457ecb3a352c5f5a8d6969d381c716a6",
-      "sha256": "b1ca735443c2580fc6c6e7e55153b90767eb6fac514f64c760db4cf671349b80"
+      "git_blob_sha": "d7eed90e5523a3a205e91fe85e9aaef5dbe42e22",
+      "sha256": "04a74223e57ac965aad6a2a6690c25c065200c1b4480b54e389852a8e11bb3df"
     },
     {
       "path": "evidence/blueprint-cycles/a37-origin-reproduction.json",
@@ -3494,6 +3548,1308 @@
       "sha256": "9a86966c75219f6b163073341bf00884538dc33d1887d9bc0430872fbfd646d5"
     },
     {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/.gitattributes",
+      "bytes": 80,
+      "git_blob_sha": "c0add37f58a1dfaf022b79236fc56681e44a682f",
+      "sha256": "23342307074f3d9798e6b5eb84cdc47c6a1dd2445d6f46440dfe09da9e618b92"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS31-final-figure.png",
+      "bytes": 43048,
+      "git_blob_sha": "e8f613cd820d9cd52e32fc70d9a51585acd1111c",
+      "sha256": "68fe75ed70f272416d061410654dc7244c2ccc585f20c3728dabb3ba44476a22"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS31-strict.json",
+      "bytes": 115679,
+      "git_blob_sha": "8fa099ae5524db22813a54cd2d4b53243592938b",
+      "sha256": "75539e715d9cbddec1431911c6f55f7f492d2593b6fade27dd1ff89758b6a3e9"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS31-strict.log",
+      "bytes": 6463,
+      "git_blob_sha": "b7a31d3a3c28b771a9e142ef6f9685378cb22117",
+      "sha256": "e684d7ff92a0977fff9dbb30e4c4abfc6eb4633b0c673f475962b02a271e2f6d"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS31-tablet.json",
+      "bytes": 56265,
+      "git_blob_sha": "02746ce02980abc3942115dbf1437ddcf57980cf",
+      "sha256": "844fe8df7b6d85ac930df58b62d2a983dcb322c9ef5ef1104b48f9926e4b0433"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS31-tablet.log",
+      "bytes": 2867,
+      "git_blob_sha": "ae744be9f5693c0be6ddcf95830679f74367dc6f",
+      "sha256": "3eed09cf146efc59fa03c45060c0d90aa2c1a8abb47d27933961642a16a8dc9b"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS32-strict.json",
+      "bytes": 113148,
+      "git_blob_sha": "ffef25358a0a44a5dc3850b33ff8c903f403c42c",
+      "sha256": "a9403ac41b3d74365c272443c6ec6bb9ca3854a4b9235f25418f67202a011974"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS32-strict.log",
+      "bytes": 6181,
+      "git_blob_sha": "8c07050361eb4f09b03e52113e238bffb3d4b403",
+      "sha256": "8e0b106c8a7ae85a8bc0aff9ecd7a618702a946002a5e0a5e5f79de06146d9a5"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS32-tablet.json",
+      "bytes": 56168,
+      "git_blob_sha": "8a9e4088ebb7572e7219ab58c66e57448dbe1df2",
+      "sha256": "c7c08d658d581949d345c2f07552ce46b77443bfe28af70e8dd15cecd325df8f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS32-tablet.log",
+      "bytes": 2833,
+      "git_blob_sha": "1994290a4ca9f713aea697057db7405828c78e31",
+      "sha256": "21fa061507ce510b4014e50bb577490a7e342b0d01a768dbb0a57184d18aed13"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS33-strict.json",
+      "bytes": 107663,
+      "git_blob_sha": "1af8816eb6d01653b377f02028a32c7bb1cd9755",
+      "sha256": "66ab530bb6c10ad07870381eaad624aee6bf8cbab0248ebfc64ce4bedce67a71"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS33-strict.log",
+      "bytes": 6481,
+      "git_blob_sha": "78b2d39c5766873b0424e8c8ea908d7ea7794eab",
+      "sha256": "9445ce96f465c416f36e273c5d009f6966a2c8d9973c3f56de143a07e3ad0700"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS33-tablet.json",
+      "bytes": 57497,
+      "git_blob_sha": "9d037b3698dfce2315aff4688713f820e054d34d",
+      "sha256": "adfb5f3b26dfd0e4ba78e57d8f1437ab622ae0f457d7fdfcfd51d59f1b83e14d"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS33-tablet.log",
+      "bytes": 2800,
+      "git_blob_sha": "066d1cc5b0f5f42f90d9e73841c492c9d034956e",
+      "sha256": "b18892c531875e7d6874021b51e6b4a361348774558400cf610e7f41bfcd10a7"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS34-strict.json",
+      "bytes": 113520,
+      "git_blob_sha": "913189a28d2c38cc94814a7caeb3c3bd96fe40f8",
+      "sha256": "999fec34e8490fef42026b41410e678573999155ebf5f9461baeb51abd0272e6"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS34-strict.log",
+      "bytes": 6032,
+      "git_blob_sha": "9c0cdbfe04d91ccd90816c5472cc0ca42b1de552",
+      "sha256": "9810b33c61802284b8665a96e8dd7cf8b94b553e24de45c70518aa8d676c431b"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS34-tablet.json",
+      "bytes": 55606,
+      "git_blob_sha": "a0a30fa282f2033cafe099689be53cd061ef0e23",
+      "sha256": "bda602489d45529d5421ae0f2d27fda8561c866c28414dafecaa6f727c366059"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS34-tablet.log",
+      "bytes": 2772,
+      "git_blob_sha": "dfc19cb344ddd73eb467cb7d65a443aa34abe6fd",
+      "sha256": "eb2d9b14c8ec695ac0d336a44b57ad5585b4c36da4cda045c36cdabf8f1e4a5d"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS35-strict.json",
+      "bytes": 115544,
+      "git_blob_sha": "91f4a45bc5b20d2062fa738cf55e2aeece52ab1c",
+      "sha256": "e5ccd487c7afce6c8b158e7f1bbe929edef871866eddf73852b924c2fa19eddf"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS35-strict.log",
+      "bytes": 6321,
+      "git_blob_sha": "ecc93dfd64fe51189b6bff9554c6f2b108c73c23",
+      "sha256": "96205f8974217fc4463f506e2554e56c03aa91d62583f819838d2c0f3be10f56"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS35-tablet.json",
+      "bytes": 63074,
+      "git_blob_sha": "e1101b3c8b9af5560908525f01d95854f249e918",
+      "sha256": "2aa9dd16aefb463f4e617da96eedb4cd1d7cb952339be3a47110f06a78425729"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS35-tablet.log",
+      "bytes": 2791,
+      "git_blob_sha": "fe90c7bb85206c27cf938bd0e64e042e5bd85efd",
+      "sha256": "adaac4901f48f747b56d691226bcb5939a7d5f343624a64f6468588f7c57e6a7"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS36-strict.json",
+      "bytes": 121695,
+      "git_blob_sha": "c3dd570db1b0544051d2b507ff6ded1f4843daaf",
+      "sha256": "550327f849481566aa2b6a982be68c8fde9063cd64b9c44c3aa42682e42f477d"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS36-strict.log",
+      "bytes": 6655,
+      "git_blob_sha": "c49f3aa302bacc5385bacde5c26d45ad0f634f17",
+      "sha256": "93e05e4fe4006982d47f6a1b367574aa89ff84b5f69889d61e80f138eff5cbb8"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS36-tablet.json",
+      "bytes": 59859,
+      "git_blob_sha": "cf526aac651277abad2e1154cf05a1d4c628c05a",
+      "sha256": "ee46a805c69e25eb4322c081511031b1728522842bada3e26a0f7580cfa44b94"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS36-tablet.log",
+      "bytes": 2845,
+      "git_blob_sha": "875aacb2908a39881cf61a8a8ae3c2a85830c9b2",
+      "sha256": "c094cd2b4a771df81a97c8874cde9c2a253baeadd509afe301b7d9e38f8e9daa"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS37-final-figure.png",
+      "bytes": 80409,
+      "git_blob_sha": "6dd80b9893e47ec115ba879909cf2cd9f68b263b",
+      "sha256": "2c1b11bd5c0599d94e8faf53d4df73ccc25382b89b314f46ea7bc510e09756fd"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS37-strict.json",
+      "bytes": 118139,
+      "git_blob_sha": "a9af43f804d027ba13356015576f7f8fee558c3c",
+      "sha256": "2ab19fe569187e442bdcd0bd2b031faf154766d67671f78c83dc5b6334464c40"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS37-strict.log",
+      "bytes": 5437,
+      "git_blob_sha": "c2750607e82264d103dea432c7e599d0efcb9749",
+      "sha256": "b34522112858fe0514984714f227c3cb57fffd6993fbd3d44516fcaadaf79306"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS37-tablet.json",
+      "bytes": 65943,
+      "git_blob_sha": "3154018e32d3101f11e54dcd0020212ec1495e5c",
+      "sha256": "d63aee926c719f3db3e3e4bdf255057226f6a1c4ef8a1b80ee172019031161df"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS37-tablet.log",
+      "bytes": 2791,
+      "git_blob_sha": "02cfd2980e9f3f1ac4be644e51a4e16ea593b3e8",
+      "sha256": "f20f52dbb5afa7d2afc5df7c39349963d636e389ee25e45f6e6dc6105ac13d0a"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS38-strict.json",
+      "bytes": 118243,
+      "git_blob_sha": "f2afda9dbec85024309d55b366b72af14a11e3b2",
+      "sha256": "fe5e62ec82f03c08ad4f631ffecab32f6d4749aba9b993692fc483a4c11b6e4b"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS38-strict.log",
+      "bytes": 6745,
+      "git_blob_sha": "34dd09827cfa941b525522337f3d49f204c7fc2f",
+      "sha256": "d2086cbb02767f38819c729e475b777f44c091408bee5cd9e7bd112abe76b6e1"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS38-tablet.json",
+      "bytes": 64349,
+      "git_blob_sha": "69389236e00cfb244f13776887ba5f97b5bae42c",
+      "sha256": "1460d82a4f71fba1fa12f8007bedd51a84c5e660245a7d09058f5b5d9481b4f2"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/ISS38-tablet.log",
+      "bytes": 2811,
+      "git_blob_sha": "f2dd569e1bc525ffb23a4f34ee3e1d39130ca0d5",
+      "sha256": "e5c3864c31cf4bb517cf5a28c1a039380342892a656fcb751a1b71b1b009903e"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/README.md",
+      "bytes": 8817,
+      "git_blob_sha": "5ce6f19c5390b3d4665e282af251a2a9d1c1c68c",
+      "sha256": "21834dad20b5f1e60ea32708e6116ff1fc9251cd9651384354a85a19f19195e3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/assurance-comparison.json",
+      "bytes": 5353,
+      "git_blob_sha": "39dc8476bc7d068884a39a5a6485072a507a5dde",
+      "sha256": "031c1ab12c446e43c5a3b7ac21dabd41b323daa3727d746aa97c8b01b0b86169"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/assurance-current.log",
+      "bytes": 5674,
+      "git_blob_sha": "ef847945b19c0f501858aa0f63764e1ae04e98bf",
+      "sha256": "4d4118bcb2d7f21c5495bb263eb0622e4d1b8cb27531e9d36f7dd2d893e45ebd"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/browser-audit-executions.json",
+      "bytes": 1205,
+      "git_blob_sha": "490ce3615320ef3339f536bcdcc065a047a5bea7",
+      "sha256": "f14fe937e848b7e64798c2f752b3e843698b4164c48111398b4842e43787d2c6"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/browser-closure.log",
+      "bytes": 456,
+      "git_blob_sha": "61584765b6567522cd93d63fd4e36430bad86673",
+      "sha256": "48da8b272cbef1ca1366be601eb0280286b183469b4f5ae50c27642a930b2c19"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/closure-full-suite.json",
+      "bytes": 19486,
+      "git_blob_sha": "42b775aa7372cf3b0b0db041ae60d320ca799c23",
+      "sha256": "2d411f2ec67b83e22baa2691927d14a0248feea9313873c31a47eac7eadb5d14"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/closure-full-suite.log",
+      "bytes": 920801,
+      "git_blob_sha": "a90599267abc2c4081baf59b27e195cf99444bf1",
+      "sha256": "bfaa7a0b8627bd9c54eba4d3fe6712fb90681a20eb82f7c9d85866750357a072"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/committed-contract-tests.json",
+      "bytes": 1313,
+      "git_blob_sha": "29da160e9f223944ae507b73a7106df0c106f7af",
+      "sha256": "3e9e0edb692bf0cae41ddd985d8b694a86df6a2bdead034f2ea27e8887638edf"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/committed-contract-tests.log",
+      "bytes": 137,
+      "git_blob_sha": "8627e56ef3a99f4f37e80c45054683960d925edd",
+      "sha256": "e2c8e21cc17afc1c5840dd834b51ec06a50167cda738662c263f5765c1c134fc"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/final-assurance.json",
+      "bytes": 60447,
+      "git_blob_sha": "7ce709cfcbb1b832fb7b70b0c11741bf2509657a",
+      "sha256": "90c241c07e9967fb3efc75d5e0eb8b791b257f39b4d525245d30ee07ad394f61"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/fixture-authoring-tests.json",
+      "bytes": 760,
+      "git_blob_sha": "c148888cdf4b1c9bdea27289d7433de9a052e389",
+      "sha256": "6bad5b9973b189eabd90ab50ecc4838f59665af9797df20f62231d9c765e891b"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/fixture-authoring-tests.log",
+      "bytes": 108,
+      "git_blob_sha": "24cdc00c562f237bbba5ced60730effa068eef40",
+      "sha256": "a61344b045e606f8c60b7bedd5887cf9bc54b365f7688b9445a5ec8eab25f7e3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/fixture-builder-tests.json",
+      "bytes": 757,
+      "git_blob_sha": "9fec6380c6b98ef04d90194699b730b10f2db261",
+      "sha256": "e30c2add1da8b805aeedc341e754c5b525650a475ce0b77f5da09277501c435c"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/fixture-builder-tests.log",
+      "bytes": 112,
+      "git_blob_sha": "dc4c1ce3d3160613126473d202f8f4dbd585e4e9",
+      "sha256": "1eeaab9f2ed86b9fbb6b14041ba8a49d18f1ce5e896766172ec9ac9dcb2ac264"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/frozen-submission-heads.json",
+      "bytes": 2205,
+      "git_blob_sha": "dc122c3bcc4f5f48b7564a244cf953709e504e41",
+      "sha256": "542139cf78fe08e767ee58ec2384ee89da430d25041de2e736d35b47e61f2129"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/full-suite-comparison.json",
+      "bytes": 4904,
+      "git_blob_sha": "93019e6b950fe03a3517784a83007868b1a7a9c7",
+      "sha256": "266f0068523296e0bfbd958cf4fd226e1553662786d29663c4ab08a34ddca040"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/independent-review-summary.json",
+      "bytes": 44113,
+      "git_blob_sha": "cd0e18f0a7911c1e8d406a23e245dcea6fb2b615",
+      "sha256": "07ce30eb671ede3a8f723494846b78f71c16f27fd63aa4f3846e14562aa7a6c8"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/initial-closure-full-suite.json",
+      "bytes": 20007,
+      "git_blob_sha": "839d3e427bb1058d87089c721b6868d0bc627490",
+      "sha256": "d7bcf882afa63c994ca2768fc18aa89793e45f7e0a2c12462ef7d10339c261a5"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/initial-closure-full-suite.log",
+      "bytes": 924024,
+      "git_blob_sha": "4aa488c59f1d9bd16deb20d70f4765a313b7d4b0",
+      "sha256": "9b3306fa1f1c3e226e7ee4e0e20acd9f706af1046af173dcc6b4afaa6aea5c43"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/initial-full-suite-comparison.json",
+      "bytes": 4965,
+      "git_blob_sha": "66fcf962ad891c2ad9da024dfb21efa410b1265f",
+      "sha256": "a7d2bc22b67b1756c2a56447a7dccf1928173f0907aae99585aa052be52e17a7"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/initial-phy-kin-1d-motion-core1a-audit.json",
+      "bytes": 147518,
+      "git_blob_sha": "2cf722869b0375e8100d8d8e634b35477ceb0a35",
+      "sha256": "54bb0211b5cf906ff4889ea004d9d3d81cdcbe75a5ddda464f15c710d8478fe5"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/initial-phy-kin-1d-motion-core1a-audit.log",
+      "bytes": 10533,
+      "git_blob_sha": "1918f03c9f7a87551380501a8c7a90ba2587b77d",
+      "sha256": "f6f439f61378ac9be8d0161b769862ecb561d8a763a7dbc22cfe7c01f399be22"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/initial-phy-kin-2d-motion-core1a-audit.json",
+      "bytes": 215725,
+      "git_blob_sha": "144134197d3460ce2001f82ce5ce2f2d7880aa3a",
+      "sha256": "422192ee5dd42eb5ba26b908133b11b17b571245efda1a22229aa5f5e74b377f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/initial-phy-kin-2d-motion-core1a-audit.log",
+      "bytes": 12810,
+      "git_blob_sha": "bb0cb714b1995ef718395abfd89e0bc78cd14248",
+      "sha256": "3b294e7c989ddc9a12df6a2d762a4941db36b97e1ff5bbf49a5dd61c3f160dd4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/interaction-closure.json",
+      "bytes": 36472,
+      "git_blob_sha": "8c8824d1a9de36adcbfd2a87b0ab5737eaa279ae",
+      "sha256": "9cfbed2d1d77ae7d16caa41c76fef38369b133ff41564ecd26e106847aeaf853"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/assets/CAL-ISS29-APPLY-D3.svg",
+      "bytes": 3085,
+      "git_blob_sha": "65d5daf2f8261eb7c8ee3ac08a6f43952f8abaa1",
+      "sha256": "c0597105f4aa6d93f4a9b67508079d3b4dbd8f5016e892ef2eea82a4fb843949"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/assets/CAL-ISS29-JUSTIFY-D1.svg",
+      "bytes": 2432,
+      "git_blob_sha": "5700d826778fc09277d0019ec4d3b0d4a8254b4b",
+      "sha256": "5622b6542a2d2882e8fdc1953f9cf9a41661672e390eb238d37b2499ac854d36"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/assets/CAL-ISS29-MODEL-D1.svg",
+      "bytes": 2330,
+      "git_blob_sha": "9deaa0d31477bc170f7ec315998ffce4e3870ad0",
+      "sha256": "927ad34ced2122d4a806a06d6f8e012d45e6ac3f27ae876a93cda64da7f67e63"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/assets/CAL-ISS29-REPRESENT-D1.svg",
+      "bytes": 1098,
+      "git_blob_sha": "d25f755caf49a1b0aaeba1fe8aff351e8cb78e3e",
+      "sha256": "9c120b24f3c6297a3733e3e73c9d2e62201ba955569fad923a431d9731e1e429"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/assets/CAL-ISS29-RETRIEVE-D2.svg",
+      "bytes": 2449,
+      "git_blob_sha": "79614b4da00f9d68d46552d171f5ae757c3c4975",
+      "sha256": "8a3125843b224a8511dabbbe6049d9c6a5415a3d9408ac156d72d17d48e07b2f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/assets/CAL-ISS29-RETRIEVE-D3.svg",
+      "bytes": 2397,
+      "git_blob_sha": "72fedf3ac7b608214c2489f20b69231c02c993af",
+      "sha256": "64725e5f49cf53e7124b23afcd35af7ea62c5fa6b2056579302f0084d5e9963f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/assets/CAL-ISS29-SYNTHESIZE-D1.svg",
+      "bytes": 2450,
+      "git_blob_sha": "2b9734911e4c43e345ee0b43937028ac6c98dc01",
+      "sha256": "c8bfb3726a30130ad87bb2ec88b6506568f0fa72a30f6b3c42cd2d13d1470da1"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/assets/CAL-ISS29-SYNTHESIZE-D4.svg",
+      "bytes": 2882,
+      "git_blob_sha": "52c8d01e376ce6502bdfb3b80e21ed89783b9071",
+      "sha256": "0157de48d07f4ea3288d59a8d2c7709035cb8f408072c05fc0c4b3062d56ce36"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/calibration-ledger.json",
+      "bytes": 42792,
+      "git_blob_sha": "eadb9a97396c856ab57e7350b8932e704eee6ebd",
+      "sha256": "c96770db968efb2dc1393b413859e8bcba3dfd7e733c7377999829d0200fc873"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/manifest.json",
+      "bytes": 985,
+      "git_blob_sha": "e13df6952bd7e8b24f9ec8a15f704bcfe46005ff",
+      "sha256": "a7a412f169047a3271f82ab3beca5e105bfb94a27fbb7c1b25d181571c87803f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/package.v1.json",
+      "bytes": 159885,
+      "git_blob_sha": "2c8713be10e5b3b9e54408aee5a3bd16848c1356",
+      "sha256": "31dd12ef05dbf13908e688f686fd8cba429ab38e65ba2068599af3857c39245a"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/core1a.html",
+      "bytes": 163773,
+      "git_blob_sha": "18a1d10ca0e0c36167d0e248a28a6f3da4815377",
+      "sha256": "2872fc5e21dd194af7cde90b09c3c80a908f5b756326ffb5cda91bf10f22e904"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/core1a.pdf",
+      "bytes": 348185,
+      "git_blob_sha": "bd73e554b3faa6550a8f1cf0dabfcc74a1f11015",
+      "sha256": "b5c23e452717fa5696a60b267f53f0d361b59f47ac66bce598cbc9c8296af925"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/core2a.html",
+      "bytes": 166159,
+      "git_blob_sha": "37f2fc98a508e6bbe140e1987e3986a96dde8552",
+      "sha256": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/core2a.pdf",
+      "bytes": 165389,
+      "git_blob_sha": "7ca9698345e23b6aa8271cb75750bd5586888e1b",
+      "sha256": "5661e7a411a17a2faf7962c966e786d9893e0a369a614621ae881832b5fcc330"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/css/core-prompt-composer.css",
+      "bytes": 4766,
+      "git_blob_sha": "d00b12c1e87f190ddb9e949a8c00a46704779800",
+      "sha256": "1bb04207ccb8765457adc1ed2593e03858792c393d0d534fe85ffd23e56da1ae"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/css/modern-learner.css",
+      "bytes": 14366,
+      "git_blob_sha": "e58b258307cc1de42b4094f37854aaf00c5fe104",
+      "sha256": "1534437082327a575623b4044949de0bee500dfa095cad2f0236f846b5fd73c6"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/css/question-bank.css",
+      "bytes": 25651,
+      "git_blob_sha": "e0012034afae3c1a441f9bb17cc70257db74a809",
+      "sha256": "35aa7752a59e2c8b2c1047c2255edf4bc61b46d29b4e9abc7d819c33ffd0cf34"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/css/site.css",
+      "bytes": 18812,
+      "git_blob_sha": "672f6780e49ae0f3c7b28320d005c85cdffefb68",
+      "sha256": "7168837866f76b6bdb4212c740af02b9151b705cb2aabcca1f902e8b8c583b1f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/css/tablet-12-7.css",
+      "bytes": 7227,
+      "git_blob_sha": "0f7663409a075f69e68c6e23cbd213f271e69303",
+      "sha256": "a8d2f54184818bf4fa3f5acdb61e6efc2c8103e475b0bb4a4c0747d8898455ab"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/index.html",
+      "bytes": 22441,
+      "git_blob_sha": "10e3aa03bd332a7fbe2acbd3dd626b58baa7b959",
+      "sha256": "a204c01d5d59521548e4cefef77ce3ee202776659ac5ce95dd5f13f604c28806"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/js/core-learning/core-learning-host.mjs",
+      "bytes": 4785,
+      "git_blob_sha": "9811199f3729ef99b763cb20b7701aedcf665f89",
+      "sha256": "a3b1382290c1ab6cc45a4b51c250dbb4e6c440416fa90330bcf15eb90cd71182"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/js/core-learning/core-learning-page.mjs",
+      "bytes": 64651,
+      "git_blob_sha": "09fca9e25fa9e3242b31da14e14ecc30a85b8eaf",
+      "sha256": "fe32cf24ca3ba30118efbb164d39a77617414fbbf42eca7bad85e66ccf9ee6d5"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/js/core-learning/runtime.mjs",
+      "bytes": 21365,
+      "git_blob_sha": "acc009580e76d092d3b92a7e34b1f576310049f4",
+      "sha256": "bb3432ee687e5deb9665bf399d5b04948c278b708ab0cccc1c749909014ab245"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/js/core-learning/semantic-workbench.mjs",
+      "bytes": 19627,
+      "git_blob_sha": "66d0bef590a49eedd5f87f03f647ef1a55cf38fe",
+      "sha256": "831eafce184ca9b17a14f57a5f4a9d246a9c05aca8d6f57834c54289ce703b9f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/js/core-prompt-composer.js",
+      "bytes": 37525,
+      "git_blob_sha": "55bd9bcf1ae257b3a2091030a1b312a43112c928",
+      "sha256": "34eb144632448207e89c671c032a6437bd4339959c38a1a26e71d46ae01f76c7"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/js/display-controls.js",
+      "bytes": 15998,
+      "git_blob_sha": "2c7dfefeb4e2312287bd5dd5411649ebdfee3996",
+      "sha256": "2121a1e242220e38cb93dc6e900ee0d0c223b1eab4d32a07398fd632a7d3de1e"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/js/question-bank-data-service.js",
+      "bytes": 10734,
+      "git_blob_sha": "9b2199cdd19bbd600f127ce6d14b54b9fdb2e803",
+      "sha256": "4b757c8b18e5773036fc7e38fe810f5a031eb0d01f55f0dda25ef2f7c3e30728"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/js/question-bank.js",
+      "bytes": 44852,
+      "git_blob_sha": "55851343fd397ea93fc6656277e9e7195e583c0b",
+      "sha256": "9ced99c739244f473caa466faeeef16e81633de491b4af2c2e3d46fb02ffec29"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/js/raw-intake.js",
+      "bytes": 18213,
+      "git_blob_sha": "335c261d5dfe9db0905f5c26383ceb2e659ee330",
+      "sha256": "aa9529970a9f60dbb8c3d5c2c7056dc681b2dd3e89fe087a9afaf65799c78808"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/js/site-header.js",
+      "bytes": 19311,
+      "git_blob_sha": "867d8566f727dfa15cea8b34f246704b2818fd9d",
+      "sha256": "72a1f89b975c36ea8fb0b0c4170f47533dc9e49e59c4120cd90c6383128922f2"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/js/topic-atlas.js",
+      "bytes": 78831,
+      "git_blob_sha": "c742783ea6a938e5093490e6b58433d208dce1f3",
+      "sha256": "4ebf350cfdc4dd4cbb3f4a9448094e3410e4942f20c7dc90382a223afa8d535f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/print-receipt.json",
+      "bytes": 689,
+      "git_blob_sha": "9819fd7fc44c72bed23789eb9acf71f730d57cbf",
+      "sha256": "d4f8c824b475245ffb0b3cc67f5237d01d9c08a7cf6b7937891df006e6dc4165"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/render-receipt.json",
+      "bytes": 449,
+      "git_blob_sha": "97f28c61363a58f82fb3ee79edb9e1a658e52728",
+      "sha256": "32e234df1bec7a7ec2903dca97c14616e4f4bc0d8028a1d22f4f072d41fa734a"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/solution-checks.json",
+      "bytes": 2520,
+      "git_blob_sha": "d8be5ba86bf99ec983635c73aaacea3d89d8a08e",
+      "sha256": "4b3017860a5260f6592a626a43b52c1266e2fe6afed7d9d3e3ed87875ebb3c6c"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/merge-readiness.json",
+      "bytes": 985,
+      "git_blob_sha": "20fa7d46aa33177f246eb208d051b398748adbac",
+      "sha256": "a5d0d4c2fea486d895ec18feb0c164b9f6adbccea9680c4bd5b39870af47ba41"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/phy-kin-1d-motion-core1a-audit.json",
+      "bytes": 147003,
+      "git_blob_sha": "a12eb333464334b9b220343b0111800c0609bd04",
+      "sha256": "a91969e1099b238e4311362b468c7936e7b0a9e09f0e186c86fceeb48e9fa954"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/phy-kin-1d-motion-core1a-audit.log",
+      "bytes": 10195,
+      "git_blob_sha": "f13df095bb174bc5c221f6bd4d55f6d45a0c17f5",
+      "sha256": "72b5f42650e283de6434776ea6f237d1a9d35d25e24973bfdc65d01913a75fb7"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/phy-kin-2d-motion-core1a-audit.json",
+      "bytes": 215216,
+      "git_blob_sha": "a626c2fea37e5f3d9e88d402bcb236df1e562652",
+      "sha256": "6a097b078ff7a1cf8edddb4a0c19edbeb777c2c9543ce0f6b8de7b03cfcde2dd"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/phy-kin-2d-motion-core1a-audit.log",
+      "bytes": 12480,
+      "git_blob_sha": "576a9467d3a7e902a563ab70387881386dd6b357",
+      "sha256": "d259052fe1915a1d24c6a918f71a72ff23631fb148e9f4df44287273aafcc154"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/physics-model-probe.png",
+      "bytes": 38016,
+      "git_blob_sha": "d7d232affa824c0ea5af81fa506976d4b0a0cfb5",
+      "sha256": "124021ef2ca51aa22696d022be91fbfd3b1c9d7481d7e492e82e28ebb71eaed4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/render-final.json",
+      "bytes": 5626,
+      "git_blob_sha": "db006a0af05b1d3fd1be6b1a1755982587f93b9c",
+      "sha256": "6c79efd6f0647f94265fb8d98295c17e805244f26a04a135a1ccb8dcde07c76a"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/replay.json",
+      "bytes": 4546,
+      "git_blob_sha": "43b34b35a6bee57b8ea737f3450b695dd4d6e059",
+      "sha256": "64520e98a8f5a8d53251bcb5aa18b180492d739bee50921b6419c52883073a82"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-d1-d2-revision.json",
+      "bytes": 314586,
+      "git_blob_sha": "276c6346009c5dbb066746ffd915fd57092bd0fb",
+      "sha256": "af7c01b1714facdc53f6a8d051b90b666afb8e93d6d6ac7ccee277f65b9c0864"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-d1-d2-revision.md",
+      "bytes": 3485,
+      "git_blob_sha": "55cf950579a03e2894d8d1b7119a51f9fba1aebf",
+      "sha256": "6bef8d20fdc0a4ae4010b8102431aeac3e50a00f8f90e9650b946d47427799d7"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-d1-d2.browser.json",
+      "bytes": 2510,
+      "git_blob_sha": "5e09e545798b35cf0886e3c0acf9b234156372c8",
+      "sha256": "809a89bb67660d84b3f569225523f8e73ec40203aa62b898ac2141162785e700"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-d1-d2.json",
+      "bytes": 288102,
+      "git_blob_sha": "af62389fbe362e9da112f0d4c88af54c4db50e07",
+      "sha256": "06b661a3985d723e19cfb449de741efc78bd6cc64c51867ce152bed5b43ddc49"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-d1-d2.md",
+      "bytes": 4052,
+      "git_blob_sha": "d06db4b5f5b102c78824575c96f2bd964f9e497f",
+      "sha256": "168a61825997ae27ed7b2da094f8e4ae3c3057de7f6e32c1b7f30ae8e44e6f06"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-d1-d2.py",
+      "bytes": 21442,
+      "git_blob_sha": "6e64adf598df66a5e4849a70536844d67b361b30",
+      "sha256": "704984eb16a7e212593c9812c9c12152816cb00c005c787fc1fcd6ed588f49a6"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-d3-d4-revision.json",
+      "bytes": 320127,
+      "git_blob_sha": "14bc2b54a396e36c9cda8288a363cf67c7078fe3",
+      "sha256": "da06a923b54fafb4e525e1e718c6e07067a28f35bcbedb7e38e151474f41f851"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-d3-d4-revision.md",
+      "bytes": 4875,
+      "git_blob_sha": "108110d833288083209dc9f1514015150262087f",
+      "sha256": "e26f0099e773d9d1b3258ec44d78a7bfbc56e051524c5e0a985a6297a7dfbcf7"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-d3-d4.json",
+      "bytes": 328017,
+      "git_blob_sha": "83eb64f7de68a3a020673f1db2b524c2d977df15",
+      "sha256": "338e8106f3e345308da2e2a2d50a9728e7589fa1062f99f8020ce4bf5172559d"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-d3-d4.md",
+      "bytes": 7992,
+      "git_blob_sha": "e9b3088163afc89ed184f1534b3abda41c96b5c7",
+      "sha256": "719fdbc111c1cec73b524e452723cac6e69b0e4ebd8a7796e9a5a04f60a00a57"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-d3-d4.py",
+      "bytes": 31238,
+      "git_blob_sha": "30133b938f79c7ba4ec5950cccc57601ba289f95",
+      "sha256": "b41a94db958dac141ee06a023dd558ffe0feeb0e38ba6e4844b4719185667717"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.browser.json",
+      "bytes": 169802,
+      "git_blob_sha": "d2f70cfb7c34c5e49a7d58465747daefb0aeef43",
+      "sha256": "72003240387980f4f5c01214416df18c09eeddd3755adcf97a30a2498380ef3b"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.browser.mjs",
+      "bytes": 9601,
+      "git_blob_sha": "9e943bd839379f4b8b00b5319d19ce4b5c7e4c93",
+      "sha256": "277f523f2ac07b75e286a97a2c3385b10be3b258064132c398002806a884f94e"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.json",
+      "bytes": 41586,
+      "git_blob_sha": "f4b13e9924ebea59be1b3d94a5d345f8f535b2a4",
+      "sha256": "21328f41c574ad855520428b596f7d5ad313e2d5f5d5a13cd23d396685eee6d6"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.md",
+      "bytes": 10040,
+      "git_blob_sha": "ded2077fc7d0a34ee1dae21aaa00512ff4eb8ad6",
+      "sha256": "331fbabda56bec32f83b439b644049a20c14827cd1cd25d914573727e3760e7d"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.rereview-browser.json",
+      "bytes": 176702,
+      "git_blob_sha": "04c818ac4fff11aa02023092b5429555789d42e9",
+      "sha256": "fcfd4d3882fbb4e366ff6ff23c41ec1372a70db43a56d10b27eb0ccf79a7a3ac"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.rereview.json",
+      "bytes": 16709,
+      "git_blob_sha": "741fed174409b86825daecae013c55e928c1f7aa",
+      "sha256": "7221f45269ed89b5f265b11e6dc64e80c3327a960e55039b45767453c3697599"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-CAL-ISS29-APPLY-D3.png",
+      "bytes": 24951,
+      "git_blob_sha": "331dfbdb72504731dfb10df1efc76b19b4af4c03",
+      "sha256": "17c67ffeb831c759c72312f8f78834a9db8404d4fb55c9e9ae88687889b167cc"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-CAL-ISS29-JUSTIFY-D1.png",
+      "bytes": 22245,
+      "git_blob_sha": "37b6e8302e2e6c03024a92ed0e4683b6b27ea4a8",
+      "sha256": "574fec5849bc23ff1eccc7954fa63a9f6c707c5ed5be7941a96fd362b7072fb6"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-CAL-ISS29-MODEL-D1.png",
+      "bytes": 21929,
+      "git_blob_sha": "c450efd6de36442ad9e14cffe132b8635943d043",
+      "sha256": "314314d6549322be606da75406ae009e0389b3edad74188b53b43f0091c1cf77"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-CAL-ISS29-REPRESENT-D1.png",
+      "bytes": 25195,
+      "git_blob_sha": "03612ee666383e471da9e7c65cbdc4354bd6395e",
+      "sha256": "a4a1c0854454c6b3603ea3c2766e9e67375a899fb4d09a41278307584ebedcf7"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-CAL-ISS29-RETRIEVE-D2.png",
+      "bytes": 20951,
+      "git_blob_sha": "957a561238fee89d46546223a2e37ed1f30a64b4",
+      "sha256": "b14c054bc69a3eb9e7cde7b25330bba475ecffbacdbab96c9eb0a7d00e2ab035"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-CAL-ISS29-RETRIEVE-D3.png",
+      "bytes": 20481,
+      "git_blob_sha": "8a3aeb4ff555a70ce970560f66053f5ba30beac4",
+      "sha256": "7bc7871db6cf4e7e92ea64f0624543973a11bc42d85251a0b390de0c17f656bb"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-CAL-ISS29-SYNTHESIZE-D1.png",
+      "bytes": 22036,
+      "git_blob_sha": "a8d85f939786749c3f6e0cde82e479e666955c04",
+      "sha256": "9c94d24c016aef8ece52071354e0b54aa7c545bec6ade6306ce9b2147ba8cd77"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-CAL-ISS29-SYNTHESIZE-D4.png",
+      "bytes": 21947,
+      "git_blob_sha": "c7c2f79edab77670c3c980b9425303eefcd70fad",
+      "sha256": "5d2dfe637131eaf89adfb5b5dd63e6e5e93bf68148b5c2156dc337d271e59737"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-MATH-TRANSFER.png",
+      "bytes": 30538,
+      "git_blob_sha": "8b271627cd8d21d18c86a684ff9fa6e3d23f7a35",
+      "sha256": "883cf103bc67b7086cc33e72f355cacd48cbdb20f0bbf687df97c91d3d52ec8c"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/source-field-reconciliation.json",
+      "bytes": 2459,
+      "git_blob_sha": "6a9299c71c5377e19deb0a8f66d9ca325ae9d6cc",
+      "sha256": "7b3eac72d99910cd5ffdfa4e08ffd51d12aebd6ceca83fb852bb8dc1657f49ff"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/assets/exact-transfer.svg",
+      "bytes": 741,
+      "git_blob_sha": "35dd89fc44c868ec0425539ca21b4d99545516eb",
+      "sha256": "c80123f7f65a3397db98c613393f5d80a731246714237a733e1b5c11f8f50767"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/bank.v1.json",
+      "bytes": 86263,
+      "git_blob_sha": "617f92df2f823d0617df6aa0e70523a3ed41d76c",
+      "sha256": "dc7c4980b78649b276e96450da8c98b29563aa52b1a348ba9e7157be7a67c5d9"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/derivation.json",
+      "bytes": 3275,
+      "git_blob_sha": "de404ec3caa7779b6973244135577940c305704d",
+      "sha256": "fb3c922db6c0234cba6b101bc7b6cd41c11f2f020ef6cab969572c6999eaaa90"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/manifest.json",
+      "bytes": 2350,
+      "git_blob_sha": "637b9edb08b10b1e34ea58e4a1784de80749c49e",
+      "sha256": "c49eacfefb536082f5322fc03f30e03c74bf5fe538c590b16177eedc14fed1c9"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/package.v1.json",
+      "bytes": 305046,
+      "git_blob_sha": "88bcc2b2c2e62fa9b23d4388f4f5e6ac599bf25e",
+      "sha256": "5d59f88674df7753a2ad6cfed0ca8ecc68a3ef964ddc079a63d615ac659459b4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core1.html",
+      "bytes": 70883,
+      "git_blob_sha": "61bb3144cdbdd3bb3f7595cbf6301ca4cfaced8b",
+      "sha256": "5c68ef576525f0c2530040cb3f87aa9531a1adacbac6660bfdf2d0f71801bbe4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core1.pdf",
+      "bytes": 192975,
+      "git_blob_sha": "741b60a055e94d993560beb02ddb5373ceeb1144",
+      "sha256": "390923568c1164a9addedc73cb74bf592e08a29e66189d321607a7c0fb1417ed"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core1a.html",
+      "bytes": 97959,
+      "git_blob_sha": "5f8bf44c278a94d6e76531d8d02d8e5043efd160",
+      "sha256": "18deaaab1b9005297e0119b0b1a9121b9bc98dba6908659d618e6e2b137b5cca"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core1a.pdf",
+      "bytes": 268755,
+      "git_blob_sha": "e5f4e29157dc83e862ef6d4cacf3ce8220629b31",
+      "sha256": "13e4e9f097fa8d83b65f3647a98ced1720cd2664b112f19c0f5ba20700701187"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core1b.html",
+      "bytes": 83458,
+      "git_blob_sha": "264b2ed5a0209675d7eae18437a0a3f8a370869f",
+      "sha256": "771c94652a0480aec5439d5e1f6acb7d42b11095a667d8a399ac3122ef8a94cd"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core1b.pdf",
+      "bytes": 156148,
+      "git_blob_sha": "9006fd5640136a38b7227d87cd0d5d75c3448f9c",
+      "sha256": "f0bc81101ca470104b95a3a0e74adb70dc8dd4d768cd00fc97dbacd842ebd65a"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2.html",
+      "bytes": 180285,
+      "git_blob_sha": "9b8c83c25e39791d633ee26d5fecde1a1204e0f9",
+      "sha256": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2.pdf",
+      "bytes": 320508,
+      "git_blob_sha": "b43b70d1b9055c9ee93796823bc4a726e87e6d15",
+      "sha256": "efba00fa4f22e6f726b4ea76a88e4a67671700a5eb29a54ab8fbc4ca7fd9a2ff"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2a.html",
+      "bytes": 60963,
+      "git_blob_sha": "d0d3e165944d96323b71052990ef76223fff014e",
+      "sha256": "119f5422bb46b8703dd2298d8afa89de055eec29f191b117663f785c2aac6d2f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2a.pdf",
+      "bytes": 148382,
+      "git_blob_sha": "d06d03bf5282921e29a1134a409ebb85a6b867e2",
+      "sha256": "89b546bcea58943704177fae251e0d61a63997eb136de02729de0821c428dcf0"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2b.html",
+      "bytes": 55340,
+      "git_blob_sha": "fdaf8d12cf31ec857cf7f85a0da2facbc23791f8",
+      "sha256": "19135a227c0593e1cd21ed94e7d9e391e86f7aad7e3dba35a0c214a2e1ed1b5a"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2b.pdf",
+      "bytes": 151393,
+      "git_blob_sha": "72ee457cbd613ae971eae8072f35238317a79b73",
+      "sha256": "24394835a2e9dcd549d061bd6dd87e0a780890f6da820434a0516c5f310d6ae9"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/css/core-prompt-composer.css",
+      "bytes": 4766,
+      "git_blob_sha": "d00b12c1e87f190ddb9e949a8c00a46704779800",
+      "sha256": "1bb04207ccb8765457adc1ed2593e03858792c393d0d534fe85ffd23e56da1ae"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/css/modern-learner.css",
+      "bytes": 14366,
+      "git_blob_sha": "e58b258307cc1de42b4094f37854aaf00c5fe104",
+      "sha256": "1534437082327a575623b4044949de0bee500dfa095cad2f0236f846b5fd73c6"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/css/question-bank.css",
+      "bytes": 25651,
+      "git_blob_sha": "e0012034afae3c1a441f9bb17cc70257db74a809",
+      "sha256": "35aa7752a59e2c8b2c1047c2255edf4bc61b46d29b4e9abc7d819c33ffd0cf34"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/css/site.css",
+      "bytes": 18812,
+      "git_blob_sha": "672f6780e49ae0f3c7b28320d005c85cdffefb68",
+      "sha256": "7168837866f76b6bdb4212c740af02b9151b705cb2aabcca1f902e8b8c583b1f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/css/tablet-12-7.css",
+      "bytes": 7227,
+      "git_blob_sha": "0f7663409a075f69e68c6e23cbd213f271e69303",
+      "sha256": "a8d2f54184818bf4fa3f5acdb61e6efc2c8103e475b0bb4a4c0747d8898455ab"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/index.html",
+      "bytes": 22809,
+      "git_blob_sha": "2aed7fca551f92619c80348503db05d3e28de49a",
+      "sha256": "6a17cbef8774321f7464f7846c9470e5c5244a2c19a9113822aa2694c4a8c31c"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/js/core-learning/core-learning-host.mjs",
+      "bytes": 4785,
+      "git_blob_sha": "9811199f3729ef99b763cb20b7701aedcf665f89",
+      "sha256": "a3b1382290c1ab6cc45a4b51c250dbb4e6c440416fa90330bcf15eb90cd71182"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/js/core-learning/core-learning-page.mjs",
+      "bytes": 64651,
+      "git_blob_sha": "09fca9e25fa9e3242b31da14e14ecc30a85b8eaf",
+      "sha256": "fe32cf24ca3ba30118efbb164d39a77617414fbbf42eca7bad85e66ccf9ee6d5"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/js/core-learning/runtime.mjs",
+      "bytes": 21365,
+      "git_blob_sha": "acc009580e76d092d3b92a7e34b1f576310049f4",
+      "sha256": "bb3432ee687e5deb9665bf399d5b04948c278b708ab0cccc1c749909014ab245"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/js/core-learning/semantic-workbench.mjs",
+      "bytes": 19627,
+      "git_blob_sha": "66d0bef590a49eedd5f87f03f647ef1a55cf38fe",
+      "sha256": "831eafce184ca9b17a14f57a5f4a9d246a9c05aca8d6f57834c54289ce703b9f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/js/core-prompt-composer.js",
+      "bytes": 37525,
+      "git_blob_sha": "55bd9bcf1ae257b3a2091030a1b312a43112c928",
+      "sha256": "34eb144632448207e89c671c032a6437bd4339959c38a1a26e71d46ae01f76c7"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/js/display-controls.js",
+      "bytes": 15998,
+      "git_blob_sha": "2c7dfefeb4e2312287bd5dd5411649ebdfee3996",
+      "sha256": "2121a1e242220e38cb93dc6e900ee0d0c223b1eab4d32a07398fd632a7d3de1e"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/js/question-bank-data-service.js",
+      "bytes": 10734,
+      "git_blob_sha": "9b2199cdd19bbd600f127ce6d14b54b9fdb2e803",
+      "sha256": "4b757c8b18e5773036fc7e38fe810f5a031eb0d01f55f0dda25ef2f7c3e30728"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/js/question-bank.js",
+      "bytes": 44852,
+      "git_blob_sha": "55851343fd397ea93fc6656277e9e7195e583c0b",
+      "sha256": "9ced99c739244f473caa466faeeef16e81633de491b4af2c2e3d46fb02ffec29"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/js/raw-intake.js",
+      "bytes": 18213,
+      "git_blob_sha": "335c261d5dfe9db0905f5c26383ceb2e659ee330",
+      "sha256": "aa9529970a9f60dbb8c3d5c2c7056dc681b2dd3e89fe087a9afaf65799c78808"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/js/site-header.js",
+      "bytes": 19311,
+      "git_blob_sha": "867d8566f727dfa15cea8b34f246704b2818fd9d",
+      "sha256": "72a1f89b975c36ea8fb0b0c4170f47533dc9e49e59c4120cd90c6383128922f2"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/js/topic-atlas.js",
+      "bytes": 78831,
+      "git_blob_sha": "c742783ea6a938e5093490e6b58433d208dce1f3",
+      "sha256": "4ebf350cfdc4dd4cbb3f4a9448094e3410e4942f20c7dc90382a223afa8d535f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/print-receipt.json",
+      "bytes": 1889,
+      "git_blob_sha": "18ec7ef9ffc555a116adf90de8600b7fe508aef9",
+      "sha256": "08e566c076db47eac984a7e5a91c8d9d55c313478aeddb5768b717a7c840fb74"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/render-receipt.json",
+      "bytes": 599,
+      "git_blob_sha": "a8367d18beab3f41153b286d6ad88852a6c01b17",
+      "sha256": "d4cabb332441037fa1aebdc4917c403bf24aa1ff85d1f33197155226b715a39b"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/assets/model-scope.svg",
+      "bytes": 685,
+      "git_blob_sha": "1b7e262e5e6b4007f977094d7fae77bd962cf828",
+      "sha256": "b9128cc00f55a9df941bb1fdb9be3f61fc646f37cf2a82e2b362e7f9e0c6a091"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/bank.v1.json",
+      "bytes": 300070,
+      "git_blob_sha": "8159a622f2f6511a2aaaed1ab89cff819df2ee09",
+      "sha256": "3ac8ec34cb6ea7bb55254a7087f5fa990dedf42571a0a6d3e3a6849376914c27"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/derivation.json",
+      "bytes": 460,
+      "git_blob_sha": "00995155fd1829c343a7edaef26a76f91e428bea",
+      "sha256": "b21242a6b05c80b3984f7a78827902e096d34cbf3a9b35e47315e6f06412e164"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/manifest.json",
+      "bytes": 3922,
+      "git_blob_sha": "9ac280b5b294f5a5da42f844ee095198eb179e65",
+      "sha256": "d06e80fc058dc42b277a23b52de382a54be3e993074e7dd7474a51d497fb74b7"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/package.v1.json",
+      "bytes": 846387,
+      "git_blob_sha": "866adef22b204213eb8dc43f501df8d027903002",
+      "sha256": "bb48d948660cc248c7f4a11bd9dbf2e40f0174f657569965e3314d5447f286a7"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/core1a.html",
+      "bytes": 118168,
+      "git_blob_sha": "10e0f52acfb84d20cd301bc81b702f547274b97f",
+      "sha256": "0b887e06f58f56bb8afe79a33146027cd2055e38f994d3a2af2f43982cccee1d"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/core1a.pdf",
+      "bytes": 342252,
+      "git_blob_sha": "30b4e9caf804430e6fb032cfceae60f56cc666f0",
+      "sha256": "e0bef265f37c586fbf24d272780e1e6c654d9083ae322776146b97728c99bfaa"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/core2.html",
+      "bytes": 254560,
+      "git_blob_sha": "d347a284c432ff19b87e4da493e1e6e669dbcd57",
+      "sha256": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/core2.pdf",
+      "bytes": 401550,
+      "git_blob_sha": "3ca89412f6afb42633aa2922d1a029d8da26a7fe",
+      "sha256": "64085ba8353760cc4d82e4df118f1006dce3c81de940a93a966feb1b1e4f62cb"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/css/core-prompt-composer.css",
+      "bytes": 4766,
+      "git_blob_sha": "d00b12c1e87f190ddb9e949a8c00a46704779800",
+      "sha256": "1bb04207ccb8765457adc1ed2593e03858792c393d0d534fe85ffd23e56da1ae"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/css/modern-learner.css",
+      "bytes": 14366,
+      "git_blob_sha": "e58b258307cc1de42b4094f37854aaf00c5fe104",
+      "sha256": "1534437082327a575623b4044949de0bee500dfa095cad2f0236f846b5fd73c6"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/css/question-bank.css",
+      "bytes": 25651,
+      "git_blob_sha": "e0012034afae3c1a441f9bb17cc70257db74a809",
+      "sha256": "35aa7752a59e2c8b2c1047c2255edf4bc61b46d29b4e9abc7d819c33ffd0cf34"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/css/site.css",
+      "bytes": 18812,
+      "git_blob_sha": "672f6780e49ae0f3c7b28320d005c85cdffefb68",
+      "sha256": "7168837866f76b6bdb4212c740af02b9151b705cb2aabcca1f902e8b8c583b1f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/css/tablet-12-7.css",
+      "bytes": 7227,
+      "git_blob_sha": "0f7663409a075f69e68c6e23cbd213f271e69303",
+      "sha256": "a8d2f54184818bf4fa3f5acdb61e6efc2c8103e475b0bb4a4c0747d8898455ab"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/index.html",
+      "bytes": 22334,
+      "git_blob_sha": "831e93db05c09701ad6587450463bab7c3efa5e7",
+      "sha256": "12ba0773abbefb5a2c7afde7efea4f05d8d78f309e3f1f3c34247e5670f0e77f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/js/core-learning/core-learning-host.mjs",
+      "bytes": 4785,
+      "git_blob_sha": "9811199f3729ef99b763cb20b7701aedcf665f89",
+      "sha256": "a3b1382290c1ab6cc45a4b51c250dbb4e6c440416fa90330bcf15eb90cd71182"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/js/core-learning/core-learning-page.mjs",
+      "bytes": 64651,
+      "git_blob_sha": "09fca9e25fa9e3242b31da14e14ecc30a85b8eaf",
+      "sha256": "fe32cf24ca3ba30118efbb164d39a77617414fbbf42eca7bad85e66ccf9ee6d5"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/js/core-learning/runtime.mjs",
+      "bytes": 21365,
+      "git_blob_sha": "acc009580e76d092d3b92a7e34b1f576310049f4",
+      "sha256": "bb3432ee687e5deb9665bf399d5b04948c278b708ab0cccc1c749909014ab245"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/js/core-learning/semantic-workbench.mjs",
+      "bytes": 19627,
+      "git_blob_sha": "66d0bef590a49eedd5f87f03f647ef1a55cf38fe",
+      "sha256": "831eafce184ca9b17a14f57a5f4a9d246a9c05aca8d6f57834c54289ce703b9f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/js/core-prompt-composer.js",
+      "bytes": 37525,
+      "git_blob_sha": "55bd9bcf1ae257b3a2091030a1b312a43112c928",
+      "sha256": "34eb144632448207e89c671c032a6437bd4339959c38a1a26e71d46ae01f76c7"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/js/display-controls.js",
+      "bytes": 15998,
+      "git_blob_sha": "2c7dfefeb4e2312287bd5dd5411649ebdfee3996",
+      "sha256": "2121a1e242220e38cb93dc6e900ee0d0c223b1eab4d32a07398fd632a7d3de1e"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/js/question-bank-data-service.js",
+      "bytes": 10734,
+      "git_blob_sha": "9b2199cdd19bbd600f127ce6d14b54b9fdb2e803",
+      "sha256": "4b757c8b18e5773036fc7e38fe810f5a031eb0d01f55f0dda25ef2f7c3e30728"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/js/question-bank.js",
+      "bytes": 44852,
+      "git_blob_sha": "55851343fd397ea93fc6656277e9e7195e583c0b",
+      "sha256": "9ced99c739244f473caa466faeeef16e81633de491b4af2c2e3d46fb02ffec29"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/js/raw-intake.js",
+      "bytes": 18213,
+      "git_blob_sha": "335c261d5dfe9db0905f5c26383ceb2e659ee330",
+      "sha256": "aa9529970a9f60dbb8c3d5c2c7056dc681b2dd3e89fe087a9afaf65799c78808"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/js/site-header.js",
+      "bytes": 19311,
+      "git_blob_sha": "867d8566f727dfa15cea8b34f246704b2818fd9d",
+      "sha256": "72a1f89b975c36ea8fb0b0c4170f47533dc9e49e59c4120cd90c6383128922f2"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/js/topic-atlas.js",
+      "bytes": 78831,
+      "git_blob_sha": "c742783ea6a938e5093490e6b58433d208dce1f3",
+      "sha256": "4ebf350cfdc4dd4cbb3f4a9448094e3410e4942f20c7dc90382a223afa8d535f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/print-receipt.json",
+      "bytes": 687,
+      "git_blob_sha": "9be06e284c47ccd81c2eec01d5c17c77b0327ba6",
+      "sha256": "50e0ff2f3b36eec917effabc2997f1d0a7bd2f81bbd6f2be2e28ecfd429fc18e"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/render-receipt.json",
+      "bytes": 457,
+      "git_blob_sha": "2e142d9dd72a2136d481fe76525179de5c524641",
+      "sha256": "7cea6e4029bef868fa8a3469b5196ff5faf80443d5ab4ca0ea12259f34378902"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/supplement-browser.json",
+      "bytes": 16967,
+      "git_blob_sha": "b8c78c5f1444f1341660c413a3e647bf59663f9e",
+      "sha256": "567e039623845373b6aa245b9027d8f90db96798ce697914c2459da36ef4e0d8"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/supplement-browser.log",
+      "bytes": 69,
+      "git_blob_sha": "abadd6b126d44a6b46d53539b230979d832959ee",
+      "sha256": "69678faf9c2c312be3a68c54e5bcc366004f9be1344fe17558eaec2b29009a58"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-reproduction.json",
+      "bytes": 6376,
+      "git_blob_sha": "50e6b3aaa2a37ddb030868011e6f32d4fdcc67d5",
+      "sha256": "e0a0ff7310389866cdf0192a6fab74409570a7945e2240acc23ae758811ac2ac"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/css/modern-learner.css",
+      "bytes": 14366,
+      "git_blob_sha": "e58b258307cc1de42b4094f37854aaf00c5fe104",
+      "sha256": "1534437082327a575623b4044949de0bee500dfa095cad2f0236f846b5fd73c6"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/css/tablet-12-7.css",
+      "bytes": 7227,
+      "git_blob_sha": "0f7663409a075f69e68c6e23cbd213f271e69303",
+      "sha256": "a8d2f54184818bf4fa3f5acdb61e6efc2c8103e475b0bb4a4c0747d8898455ab"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/js/display-controls.js",
+      "bytes": 15998,
+      "git_blob_sha": "2c7dfefeb4e2312287bd5dd5411649ebdfee3996",
+      "sha256": "2121a1e242220e38cb93dc6e900ee0d0c223b1eab4d32a07398fd632a7d3de1e"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/js/site-header.js",
+      "bytes": 19311,
+      "git_blob_sha": "867d8566f727dfa15cea8b34f246704b2818fd9d",
+      "sha256": "72a1f89b975c36ea8fb0b0c4170f47533dc9e49e59c4120cd90c6383128922f2"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/phy-kin-1d-motion-render.json",
+      "bytes": 3474,
+      "git_blob_sha": "5f91453d5c50f6865673beee8923994a3529def3",
+      "sha256": "30a371875e403b1ef22c5855f60f285d911e7148b3219597423d69b80f81729b"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/phy-kin-2d-motion-render.json",
+      "bytes": 814,
+      "git_blob_sha": "a39531f32340087fd5de84c061a6671abba94bd5",
+      "sha256": "13353e14e2137563ca5e043323beccf42e3f3052ae87efd1339ff88a106fa4fd"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/products/physics/phy-kin-1d-motion/core1.html",
+      "bytes": 67903,
+      "git_blob_sha": "799848bd5ed54bea01a32436a2266b4249d6bada",
+      "sha256": "f4ab721c37e6f8da28b2ba4994399a0a880872110a3b1e71b9bde4615eb6d58b"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/products/physics/phy-kin-1d-motion/core1a.html",
+      "bytes": 121602,
+      "git_blob_sha": "f7007b0b05dd58daab0f1e4c9aeab52939ad4ae9",
+      "sha256": "0c46f6ad7bdfbe82e4f5b78752439817e58765c1bf95b1b390d86ef5afec3583"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/products/physics/phy-kin-1d-motion/core1b.html",
+      "bytes": 81808,
+      "git_blob_sha": "1a8b71d6089c84d67e7be09c4ea2533ae1546671",
+      "sha256": "ae67736e285d42e0c3ac60a27c41f2e03fe6734bfbbe250619c5c727580fbc57"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/products/physics/phy-kin-1d-motion/core2.html",
+      "bytes": 46009,
+      "git_blob_sha": "ad83c9376f066bd633b6fff9dae31f2fedd152d7",
+      "sha256": "7eb8f381654923f3ad4cea7f0f3d08da56d3220ac425ce9ba64883b99109d8ec"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/products/physics/phy-kin-1d-motion/core2a.html",
+      "bytes": 116761,
+      "git_blob_sha": "581f5b9288b174657f722b1838a2b0046f83d1ee",
+      "sha256": "51dc43e121559c0ed25b1ffb16cf4743467820bae6d06e23df1c5902fbab868e"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/products/physics/phy-kin-1d-motion/core2b.html",
+      "bytes": 94648,
+      "git_blob_sha": "6216815d91651f121614ce808b91b1da7cdf9502",
+      "sha256": "beeccfeb00c2c54e4924e8537b87e7632b0b8ffa8e4b395703882701290edc34"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/products/physics/phy-kin-1d-motion/index.html",
+      "bytes": 23172,
+      "git_blob_sha": "02011daaf7e1daa48a43913ca502c261f64114af",
+      "sha256": "061470b1c31a48ceca1467486ca292de9d90b87ece0cfd6c58ce7b18dde0c909"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/products/physics/phy-kin-2d-motion/core1.html",
+      "bytes": 73854,
+      "git_blob_sha": "195ee8b6621249966f2ea734666c1a9889d383ac",
+      "sha256": "ce5de279b9678d3fb8416c8ea81d65593c653ee1310fb9763c4c6af22f305aa5"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/products/physics/phy-kin-2d-motion/core1a.html",
+      "bytes": 153268,
+      "git_blob_sha": "6a79296b0cec024f2ccbe2ab94907f68936865bf",
+      "sha256": "de9e2f4fa66f2ca1975cbf45969e5e5efff25a5204ebba7e496a2bb42652b9a3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/products/physics/phy-kin-2d-motion/core1b.html",
+      "bytes": 97385,
+      "git_blob_sha": "1611c7d1c6c79a2f8d2d675e13620c79e58f2903",
+      "sha256": "20ac63add2c6ff3f64cc6bd89468745cdc4a26f30e893c9ae18876e126b53912"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/products/physics/phy-kin-2d-motion/core2.html",
+      "bytes": 293242,
+      "git_blob_sha": "739f7adaf508897a1945438e9094e0e4076294bc",
+      "sha256": "82f2621ea9c4c31d098fd77323d776a15782d5f8dae4c15c3ca35296eb587682"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/products/physics/phy-kin-2d-motion/core2a.html",
+      "bytes": 141465,
+      "git_blob_sha": "fc1e33cfce534b0c797719107d74f04707f1915e",
+      "sha256": "5b22a5f40195118b5ff29a97ab6aaa26acc4bd34b4120194ff46172464c4af70"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/products/physics/phy-kin-2d-motion/core2b.html",
+      "bytes": 138608,
+      "git_blob_sha": "a7afd7247ed24b6d075fbe4d69cb4aef172abf22",
+      "sha256": "0f934df981d1400cb0b10b8731d1462ad310d3f52a2db7e5b85883f65df31f4c"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/workflow-witness/products/physics/phy-kin-2d-motion/index.html",
+      "bytes": 23272,
+      "git_blob_sha": "aafed8a399719472d14e1bc444137f2edcdd989b",
+      "sha256": "c9e07b928904da10ffedacb34265419206049b202544554272b4dcdfdb73b33d"
+    },
+    {
       "path": "evidence/blueprint-cycles/compatibility-20261004/README.md",
       "bytes": 3339,
       "git_blob_sha": "a35c56094d8a0e22d8f736b4053c88a8ff32d65e",
@@ -3862,8 +5218,8 @@
     {
       "path": "evidence/blueprint-cycles/final-cycle-results.json",
       "bytes": 4947,
-      "git_blob_sha": "af30eda3f906f2300afdde1c179a91fbfeb67aa5",
-      "sha256": "9ce9a2fc976ab8f906a76794332d9596291ee1623670f11dff1141f110827656"
+      "git_blob_sha": "0d32a8cae7d19ca46c1ff102129fe7090c500288",
+      "sha256": "8813abd34f479885dd8ea8a69027817d177eab7004785bafab43d9ad070b8a63"
     },
     {
       "path": "evidence/blueprint-cycles/focused-repair-tests.log",
@@ -4208,6 +5564,12 @@
       "sha256": "392867120a720e6a886664339bda644fdac8206c2e58a32a60f9de9737c3e464"
     },
     {
+      "path": "evidence/blueprint-cycles/tools/academic_bridge_svg.py",
+      "bytes": 9536,
+      "git_blob_sha": "4f9b4c09fa3453185791a4e78f0316336e94ac66",
+      "sha256": "25ca1b464cef62e74582a48869538bef5f6abe3d73802f456936ac0caa094009"
+    },
+    {
       "path": "evidence/blueprint-cycles/tools/academic_review.py",
       "bytes": 10456,
       "git_blob_sha": "941d72843ad6ab085c8d565a3564bfc8a9862a7f",
@@ -4215,9 +5577,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/tools/academic_support_repairs.py",
-      "bytes": 19015,
-      "git_blob_sha": "70f51cdac5a385b9efb89098b3ea054a8b946a62",
-      "sha256": "021441558218f8b44e30d45b2bc150e7012604ad00305283215ac4ef6908c202"
+      "bytes": 19350,
+      "git_blob_sha": "8e2d65a98bdc2f0fcf9316dae529a00f69f8ba15",
+      "sha256": "4e65e7d0276a2fa96bd4be2951e7c53be7eeda023e77e3b822720e8ff76c954d"
     },
     {
       "path": "evidence/blueprint-cycles/tools/author_repairs.py",
@@ -4251,9 +5613,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/tools/final_assurance.py",
-      "bytes": 8618,
-      "git_blob_sha": "8028b3e15a1d21daec9a7d24310be60a65898041",
-      "sha256": "9db642a3de18e5fb14ff7929e415dbc5ba3ec64434c07fa8b2adc3867eff6226"
+      "bytes": 9535,
+      "git_blob_sha": "1a434852c139e5d614deb368d447cd34e844c73d",
+      "sha256": "1f16f4785b28c8c903b1797c6d5eadac4c96200eaf8351982f2c1adc3d22db53"
     },
     {
       "path": "evidence/blueprint-cycles/tools/final_cycle_check.py",
@@ -4268,6 +5630,12 @@
       "sha256": "3e6111989aaae5ca5e24a9846cf7da719818d900bc467ff9e2a8f5c109fa2a1a"
     },
     {
+      "path": "evidence/blueprint-cycles/tools/independent_review_repairs.py",
+      "bytes": 7574,
+      "git_blob_sha": "a18bba28b425d561be59c859eed5fa1aaa5dc68c",
+      "sha256": "7c6a52a6fe3b5f45e0366f003139791575f6873a850dcbfaee9f5035ff6a2353"
+    },
+    {
       "path": "evidence/blueprint-cycles/tools/math_authority_repairs.py",
       "bytes": 8723,
       "git_blob_sha": "1648d78e93e4f7e9e3e481a435c8664c739a86c4",
@@ -4275,9 +5643,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/tools/matrix_supplements.py",
-      "bytes": 30387,
-      "git_blob_sha": "fc76647e70f12eede3bf98f89c4b23c7a6c45914",
-      "sha256": "16e7eaa5d8cb7b323477064277ccd6656c3aae6dca13be0fd9b4c9b36c259753"
+      "bytes": 31910,
+      "git_blob_sha": "8066c05d025fa005db5de249c63ef34a34a80029",
+      "sha256": "2415844484d23fd35be9b014d6782caaa83479382a91a59bfedcf22b984dfd0a"
     },
     {
       "path": "evidence/blueprint-cycles/tools/quality_static.py",
@@ -4293,9 +5661,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/tools/refresh.py",
-      "bytes": 9062,
-      "git_blob_sha": "153b74d0636439b5a90286cd9c8749d942fadff7",
-      "sha256": "34f005ec6d6102131dc640df06c73528d908469fdde955c038340888cc1768df"
+      "bytes": 9106,
+      "git_blob_sha": "68fc1f6973ceca1d549ffd6eb9047da9ff83b26d",
+      "sha256": "a479d211ca5f5bbb9afb411b7de84b543ecf2b51ee615b9507e1af70a339e74c"
     },
     {
       "path": "evidence/blueprint-cycles/tools/replay.py",
@@ -4317,9 +5685,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/tools/subject_replay.py",
-      "bytes": 15616,
-      "git_blob_sha": "3435b8d91ac3bfeb409ed7cb22207ae4b58af90e",
-      "sha256": "5bfd2cd4058ea1921ce00769bb49a06f00b29dbd34e4ef97fc06389677f39874"
+      "bytes": 20205,
+      "git_blob_sha": "f39cd7b5bc1dfab88a496fa7ac488b7e05b91fbd",
+      "sha256": "08f5e4081a05435c475e9dad70f6e416f754bf4c3151635de6256696590ba1f6"
     },
     {
       "path": "evidence/blueprint-cycles/tools/supplement_browser.mjs",
@@ -4335,9 +5703,9 @@
     },
     {
       "path": "evidence/blueprint-cycles/tools/verify_calibration.py",
-      "bytes": 4335,
-      "git_blob_sha": "4324b800197ae70fe97e0b17d91f37460ebd1100",
-      "sha256": "48350ef79a8e0a6c908dfe06c2f27f397da3d5202832e35e89b2c5475a1d71d1"
+      "bytes": 4416,
+      "git_blob_sha": "47f3b6792a175436c6c664475844926d04e1b774",
+      "sha256": "9283d8e683e26b82fce3aecfc2a436d2430d12e18b371d46b3837d25b68ef3c0"
     },
     {
       "path": "evidence/blueprint-cycles/tools/visual_repairs.py",
@@ -4348,8 +5716,8 @@
     {
       "path": "public/core-learning/data.js",
       "bytes": 2479373,
-      "git_blob_sha": "fa009f967951df3289adffae60981aa8f2ab02bf",
-      "sha256": "0339f51f7a9db5cd1e449e05812a1806072da7840def72b5002126939d7f0f95"
+      "git_blob_sha": "29675a6d1f3fdfdab82f6e1520514ceabd000f05",
+      "sha256": "25d5c8804c7a571a0d072737d3cf236889e0e56a45243791b096977c63d73fff"
     },
     {
       "path": "public/css/modern-learner.css",
@@ -4426,26 +5794,26 @@
     {
       "path": "tests/fixtures/workbench/core-learning-projections.json",
       "bytes": 21866,
-      "git_blob_sha": "7a7dfb7f2453ca46673efd5265d0bdead2eec8ec",
-      "sha256": "0f2f0f0f8636368554d9676ba9a72545baadcb3bd863f21e992080b3a53f18e9"
+      "git_blob_sha": "073b7225f339df09db3807fc653978eec932cd8c",
+      "sha256": "6bab97d0893dd676d8a4a73654c4dd854e4784841aa42e699bc983be0c3412cf"
     },
     {
       "path": "tests/test_authoring_applicability.py",
       "bytes": 3361,
-      "git_blob_sha": "5de3b040bdfb0eaac88596a1d82e571ed64532b9",
-      "sha256": "f5e366df879bfe0a23ff28021d9277ab4243e5a1798e423d57779b2c15fd5b3f"
+      "git_blob_sha": "0233ef4f32c92d5507a096705fb1271c214ba6c2",
+      "sha256": "63f29e718a9a498719f4b5dc070746163af6da40888e87fb38bbb9ff6e10531e"
     },
     {
       "path": "tests/test_blueprint_components.py",
       "bytes": 35125,
-      "git_blob_sha": "58236f57b18e585b2a3838c98ab265b037c6392b",
-      "sha256": "219b91f2afc650a06803ce78b0d5e86b4b9519aaf9322fd805dc1e6c14a4fad9"
+      "git_blob_sha": "65d4ea8be506f784c7084961f605727586686ae2",
+      "sha256": "c8a0f101e05fea23922902c36fc0f61450ea384bd629b0aa3d296969a4da7daa"
     },
     {
       "path": "tests/test_core2_v2_boundaries.py",
       "bytes": 2665,
-      "git_blob_sha": "edcc22f8a64ac10a99543ae3553c0f5f283670b9",
-      "sha256": "62894af83012c5b34be8b07815b4cfbe8cf4c07a87e9f557975698709c5d5d06"
+      "git_blob_sha": "5d97566b7ac49f1c5ea4983cd4d8479160db9a1e",
+      "sha256": "ad99c00aa665bf0cdbeb240281a552dc8289a30496075470ae7933e5a713728b"
     },
     {
       "path": "tests/test_core2_v2_layout.py",
@@ -4461,9 +5829,9 @@
     },
     {
       "path": "tests/test_issue29_lesson_closure.py",
-      "bytes": 9762,
-      "git_blob_sha": "88bc35b88bfb5757ae0af77de86341c038121ead",
-      "sha256": "0ca1e78c00f9fb126bd90d47d395493be6d8399a852c036e5f6e167497b1f4c4"
+      "bytes": 10806,
+      "git_blob_sha": "cb705d3c6c628c51b15bf81b6dad53d7388fe76a",
+      "sha256": "f8f8a0e1d6c0adeeaadbce4151d06bcc2035b5452b6209d32ca7c0df9333fbfa"
     },
     {
       "path": "tests/test_render_core.py",
@@ -4474,8 +5842,8 @@
     {
       "path": "tests/test_web_blueprint_projection.py",
       "bytes": 2702,
-      "git_blob_sha": "ddb7a3a75d250d88229084f7abd3871492048a71",
-      "sha256": "86ffa1555ad4337776cf48bc0e34e6e02a47f596e65274b84f100845bda120bc"
+      "git_blob_sha": "7ef6f04abb2df08a065ee96eabd5a7b61d1e1e5c",
+      "sha256": "f0638296e10f4ad97bb29cfcbc38221fe53e92766dc27a596426ad127742ecb6"
     },
     {
       "path": "tools/data.js",

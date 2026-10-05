@@ -1,0 +1,842 @@
+{
+  "schema": "independent-review-reconciliation/v1",
+  "functional_basis": "f52b85180aa1ad9eabaa8bea09ca2545770561fe",
+  "status": "INDEPENDENTLY_REVIEWED_WITH_DECLARED_COACHING_AND_SOURCE_LIMITS",
+  "reviewer_reports": [
+    {
+      "file": "review-d1-d2-revision.json",
+      "sha256": "af7c01b1714facdc53f6a8d051b90b666afb8e93d6d6ac7ccee277f65b9c0864"
+    },
+    {
+      "file": "review-d3-d4-revision.json",
+      "sha256": "da06a923b54fafb4e525e1e718c6e07067a28f35bcbedb7e38e151474f41f851"
+    },
+    {
+      "file": "review-matrix-subjects.rereview.json",
+      "sha256": "7221f45269ed89b5f265b11e6dc64e80c3327a960e55039b45767453c3697599"
+    },
+    {
+      "file": "review-matrix-subjects.rereview-browser.json",
+      "sha256": "fcfd4d3882fbb4e366ff6ff23c41ec1372a70db43a56d10b27eb0ccf79a7a3ac"
+    }
+  ],
+  "original_instances_reviewed": 80,
+  "original_facets_reviewed": 960,
+  "d1_d2_verdict_counts": {
+    "PASS_BOUNDED_SEMANTIC": 341,
+    "PARTIAL_FRAMEWORK_WITH_COACHING_FINDING": 8,
+    "NOT_APPLICABLE_JUSTIFIED_TWO_STAGE_WAIVER": 40,
+    "PASS_SEMANTIC_TARGET_ONLY": 40,
+    "REQUEST_CHANGES_GENERIC_CRITERION": 51
+  },
+  "d3_d4_verdict_counts": {
+    "ACCEPT_BOUNDED": 386,
+    "PARTIAL_COACHING_FINDING": 54,
+    "ACCEPT_WAIVER": 40
+  },
+  "exact_binding_checks": [
+    {
+      "path": "evidence/blueprint-cycles/ISS32/inputs/owner.bank.json",
+      "expected": "5f29ecc7d95b134af2d4d585df7fefbcd51d064d1d83692604340534898928c4",
+      "actual": "5f29ecc7d95b134af2d4d585df7fefbcd51d064d1d83692604340534898928c4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS32/inputs/package.v1.json",
+      "expected": "3536c15060cb7e2f2b6f115a53e4fa1fa80aa792180d4c97060d9108527d84f7",
+      "actual": "3536c15060cb7e2f2b6f115a53e4fa1fa80aa792180d4c97060d9108527d84f7"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS32/rendered/core1a.html",
+      "expected": "58a8617baa565ffcf3e2734f7154d21569389f7bda29275254a791f6a81f9706",
+      "actual": "58a8617baa565ffcf3e2734f7154d21569389f7bda29275254a791f6a81f9706"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS32/rendered/core2.html",
+      "expected": "205e4ad0000305cfa14ee6775138b5687b646baff9f3ae0181520b285b39ebf0",
+      "actual": "205e4ad0000305cfa14ee6775138b5687b646baff9f3ae0181520b285b39ebf0"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS32/assets/question-1-givens.svg",
+      "expected": "92edb027dbc1550b6d4ac6a41cfbb7b035645e1268c30d058d6be356a3fc8f79",
+      "actual": "92edb027dbc1550b6d4ac6a41cfbb7b035645e1268c30d058d6be356a3fc8f79"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS32/assets/question-2-givens.svg",
+      "expected": "7fb7fdcea74b0b6553b52f61b552a5bcd7a2b847e305754488bf3330dad3c2ba",
+      "actual": "7fb7fdcea74b0b6553b52f61b552a5bcd7a2b847e305754488bf3330dad3c2ba"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS32/assets/question-3-givens.svg",
+      "expected": "71146ba49733a8c637867280853c239095e1dc51098bec4d29de6021947f42d4",
+      "actual": "71146ba49733a8c637867280853c239095e1dc51098bec4d29de6021947f42d4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS32/assets/question-4-givens.svg",
+      "expected": "06e1cd356512f0ab0918503b6055c6659f7bfa9562dff418596ad09bf3d23b2b",
+      "actual": "06e1cd356512f0ab0918503b6055c6659f7bfa9562dff418596ad09bf3d23b2b"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS32/assets/question-5-givens.svg",
+      "expected": "58d6a8ede0b2e631751fc87cbbdc4ded9e4b4d26823013f68f1805238d214c81",
+      "actual": "58d6a8ede0b2e631751fc87cbbdc4ded9e4b4d26823013f68f1805238d214c81"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS32/assets/question-6-givens.svg",
+      "expected": "e55fba82d25483bb6b879a756de71cf9ce3f118efc0b4776e4c5db8c142d0e32",
+      "actual": "e55fba82d25483bb6b879a756de71cf9ce3f118efc0b4776e4c5db8c142d0e32"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS32/assets/question-7-givens.svg",
+      "expected": "4bff9ea108deebcc8aa0cbcce6c09a1d9f9b58916b83f533cb75b20f43a3e05c",
+      "actual": "4bff9ea108deebcc8aa0cbcce6c09a1d9f9b58916b83f533cb75b20f43a3e05c"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS32/assets/question-8-givens.svg",
+      "expected": "797d9d57d0cb6c082b362cc2bba7633b195a93a87f233ec06ca7318ec801558b",
+      "actual": "797d9d57d0cb6c082b362cc2bba7633b195a93a87f233ec06ca7318ec801558b"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS32/assets/question-9-givens.svg",
+      "expected": "44d067ab961524be42ce4ee333a79f3e49bc495b8a86c62ba9dbecbd759e7a0e",
+      "actual": "44d067ab961524be42ce4ee333a79f3e49bc495b8a86c62ba9dbecbd759e7a0e"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS32/assets/question-10-givens.svg",
+      "expected": "9581567b5673fc312099dbfe2bba854c30ad9ebcc42d68d5d056e2eb87b8f7c6",
+      "actual": "9581567b5673fc312099dbfe2bba854c30ad9ebcc42d68d5d056e2eb87b8f7c6"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS31/inputs/owner.bank.json",
+      "expected": "738b8b1bf769fdefd71d039c9187630d105186d6393ab6006c91d314804855bc",
+      "actual": "738b8b1bf769fdefd71d039c9187630d105186d6393ab6006c91d314804855bc"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS31/inputs/package.v1.json",
+      "expected": "19ed9aa8ce10fadc8435b3b8f388f22e2fde28b9a3c91b21c53b28efe5b43a7b",
+      "actual": "19ed9aa8ce10fadc8435b3b8f388f22e2fde28b9a3c91b21c53b28efe5b43a7b"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS31/rendered/core1a.html",
+      "expected": "30c70574367aee036a509ed1c04f1baad7b89b695c275ec9d72bc5671e4fd4e3",
+      "actual": "30c70574367aee036a509ed1c04f1baad7b89b695c275ec9d72bc5671e4fd4e3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS31/rendered/core2.html",
+      "expected": "ce6b3b9f5dd93cf0092d928cd5cf63181bee10862177f13fa4ca1168801955ea",
+      "actual": "ce6b3b9f5dd93cf0092d928cd5cf63181bee10862177f13fa4ca1168801955ea"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS31/assets/question-1-givens.svg",
+      "expected": "66d93d946b7b66a4851b898645d3d8814ae37a4e50482e9d1f7903e9dd25730f",
+      "actual": "66d93d946b7b66a4851b898645d3d8814ae37a4e50482e9d1f7903e9dd25730f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS31/assets/question-2-givens.svg",
+      "expected": "7188bbb1775385e1acd9508a7ea570f180fa60a23c1c8458a907fc21c763eb56",
+      "actual": "7188bbb1775385e1acd9508a7ea570f180fa60a23c1c8458a907fc21c763eb56"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS31/assets/question-3-givens.svg",
+      "expected": "c7fb26f1680a7f5e6dda6202bfb92bdda60018ddc1df0b1a5b33849a5d43820e",
+      "actual": "c7fb26f1680a7f5e6dda6202bfb92bdda60018ddc1df0b1a5b33849a5d43820e"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS31/assets/question-4-givens.svg",
+      "expected": "9656450dbeed8c7c640f58d71e68f5951e6d2b64d2aa7c1eff88830124273ca2",
+      "actual": "9656450dbeed8c7c640f58d71e68f5951e6d2b64d2aa7c1eff88830124273ca2"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS31/assets/question-5-givens.svg",
+      "expected": "040138b34d57c2ed2b0f721b8432b2a798e89b65369d7eee3fca09cc22379b9c",
+      "actual": "040138b34d57c2ed2b0f721b8432b2a798e89b65369d7eee3fca09cc22379b9c"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS31/assets/question-6-givens.svg",
+      "expected": "04c1177761b88e98ef2600a770ece7166da164d20515c74a07b718bd3faff395",
+      "actual": "04c1177761b88e98ef2600a770ece7166da164d20515c74a07b718bd3faff395"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS31/assets/question-7-givens.svg",
+      "expected": "5b16c975ee0e67b5aba4bc516d269881f2d046de759b34c440506ab87d52b8e2",
+      "actual": "5b16c975ee0e67b5aba4bc516d269881f2d046de759b34c440506ab87d52b8e2"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS31/assets/question-8-givens.svg",
+      "expected": "4091c56f49b68385470cbbb39a7539faff543dca483e3ca9bf1b337cd4f793e7",
+      "actual": "4091c56f49b68385470cbbb39a7539faff543dca483e3ca9bf1b337cd4f793e7"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS31/assets/question-9-givens.svg",
+      "expected": "0e11e775cbd8271371976c2be4136124a0f179b58e2669f829790db651f648c1",
+      "actual": "0e11e775cbd8271371976c2be4136124a0f179b58e2669f829790db651f648c1"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS31/assets/question-10-givens.svg",
+      "expected": "b038701adeef2d76865e5f51b9751ec7e5e70ee8a16cd7cfdca6dadc1e40f03c",
+      "actual": "b038701adeef2d76865e5f51b9751ec7e5e70ee8a16cd7cfdca6dadc1e40f03c"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS34/inputs/owner.bank.json",
+      "expected": "db4bc71e3c5b7e859637085cd762326b01729c191ed6cdb13dbd1681e5d95de1",
+      "actual": "db4bc71e3c5b7e859637085cd762326b01729c191ed6cdb13dbd1681e5d95de1"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS34/inputs/package.v1.json",
+      "expected": "1cd2d9c828a3a4f8439de3d7761034de195c13b0e3d74da62235bba13ab94ec5",
+      "actual": "1cd2d9c828a3a4f8439de3d7761034de195c13b0e3d74da62235bba13ab94ec5"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS34/rendered/core1a.html",
+      "expected": "b01da257093c51bbcdd809d60345e45198d31c79c1b85c0e4aade3953aa15935",
+      "actual": "b01da257093c51bbcdd809d60345e45198d31c79c1b85c0e4aade3953aa15935"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS34/rendered/core2.html",
+      "expected": "4998cd55d514d8ab376e85eff9af728e1be3b7f69946370694e41f4dd05b87d7",
+      "actual": "4998cd55d514d8ab376e85eff9af728e1be3b7f69946370694e41f4dd05b87d7"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS34/assets/question-1-givens.svg",
+      "expected": "f3e342a68f8b49777505714a87cb1da71df3558c00b3049e5dc3f461aced0baa",
+      "actual": "f3e342a68f8b49777505714a87cb1da71df3558c00b3049e5dc3f461aced0baa"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS34/assets/question-2-givens.svg",
+      "expected": "cd4ff8a8fa9b949675ac16f4439da73631ed6ce7a8705f64c18a76dd49b35eff",
+      "actual": "cd4ff8a8fa9b949675ac16f4439da73631ed6ce7a8705f64c18a76dd49b35eff"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS34/assets/question-3-givens.svg",
+      "expected": "31ff9fdf0735a87374e63438a25dda2718aa7732f993cc0e50a7b3c506b65703",
+      "actual": "31ff9fdf0735a87374e63438a25dda2718aa7732f993cc0e50a7b3c506b65703"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS34/assets/question-4-givens.svg",
+      "expected": "7cc1b28a6a5425340c650268ac5fe067bd449e7ece513e99119ec2e4fb06103a",
+      "actual": "7cc1b28a6a5425340c650268ac5fe067bd449e7ece513e99119ec2e4fb06103a"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS34/assets/question-5-givens.svg",
+      "expected": "2691bcad5dda14515712c3b4c6349b202b3aed4033778b840ccd20a0d6c58ac6",
+      "actual": "2691bcad5dda14515712c3b4c6349b202b3aed4033778b840ccd20a0d6c58ac6"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS34/assets/question-6-givens.svg",
+      "expected": "4e7b5ba04ec55e627f6e74e06b2f6e463ae82f389047b4c2c5c2e48e67060ae8",
+      "actual": "4e7b5ba04ec55e627f6e74e06b2f6e463ae82f389047b4c2c5c2e48e67060ae8"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS34/assets/question-7-givens.svg",
+      "expected": "5d9ca0a1a3b83e560f5c8d320e6f9ff3eebc9e398f141c86d577b2d02353ac8e",
+      "actual": "5d9ca0a1a3b83e560f5c8d320e6f9ff3eebc9e398f141c86d577b2d02353ac8e"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS34/assets/question-8-givens.svg",
+      "expected": "bc3d4fe78828c17d407576b97ef16f12e9692699e381fa607059e445d6b8b11d",
+      "actual": "bc3d4fe78828c17d407576b97ef16f12e9692699e381fa607059e445d6b8b11d"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS34/assets/question-9-givens.svg",
+      "expected": "1f681d260bc80b43db89c6255be7e536f87bdd0dec3e7dcd8c1491d726b2e29c",
+      "actual": "1f681d260bc80b43db89c6255be7e536f87bdd0dec3e7dcd8c1491d726b2e29c"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS34/assets/question-10-givens.svg",
+      "expected": "e24922a7bde584c8e6dcf665bd5f6b7a1709699ab34630eadbc4612632b1c699",
+      "actual": "e24922a7bde584c8e6dcf665bd5f6b7a1709699ab34630eadbc4612632b1c699"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS33/inputs/owner.bank.json",
+      "expected": "ff928164abc94380edd9df24916d3d62169c0abce496f1d37060dfa6a49ce8a9",
+      "actual": "ff928164abc94380edd9df24916d3d62169c0abce496f1d37060dfa6a49ce8a9"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS33/inputs/package.v1.json",
+      "expected": "848eed0eb7496a69e19bfad10f76b895a578cb926fee135f65b46e282c958223",
+      "actual": "848eed0eb7496a69e19bfad10f76b895a578cb926fee135f65b46e282c958223"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS33/rendered/core1a.html",
+      "expected": "43e5c435c4c23461303d846d6ecf9527d3641d47ebab46a63bd276901fa3b47f",
+      "actual": "43e5c435c4c23461303d846d6ecf9527d3641d47ebab46a63bd276901fa3b47f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS33/rendered/core2.html",
+      "expected": "d76e96b592271e9fddd2b005299d9e6f8caa62d6c876562c1604aad8b5b4a5d6",
+      "actual": "d76e96b592271e9fddd2b005299d9e6f8caa62d6c876562c1604aad8b5b4a5d6"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS33/assets/question-1-givens.svg",
+      "expected": "198b3e13dbf003ec1c126b467bb1d3c3d9cf36c21ac2e9e55a6aacd2d0cfdff3",
+      "actual": "198b3e13dbf003ec1c126b467bb1d3c3d9cf36c21ac2e9e55a6aacd2d0cfdff3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS33/assets/question-2-givens.svg",
+      "expected": "438457046a4a2c4d676d3bbb5737c83ff83235474056736b5e12c2d250739a79",
+      "actual": "438457046a4a2c4d676d3bbb5737c83ff83235474056736b5e12c2d250739a79"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS33/assets/question-3-givens.svg",
+      "expected": "358d6195930613acef91afd9b28ea73371ffede0b15ff2ace35995cf0dbcade4",
+      "actual": "358d6195930613acef91afd9b28ea73371ffede0b15ff2ace35995cf0dbcade4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS33/assets/question-4-givens.svg",
+      "expected": "8d88cc1f74ccd072700e3be1c270b6f22f7703d0c4486fe4637ebf6f8cc3a418",
+      "actual": "8d88cc1f74ccd072700e3be1c270b6f22f7703d0c4486fe4637ebf6f8cc3a418"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS33/assets/question-5-givens.svg",
+      "expected": "fafd5cd5b0b55053904daa089332f25053829c06ee1de3ad6f08f46188397060",
+      "actual": "fafd5cd5b0b55053904daa089332f25053829c06ee1de3ad6f08f46188397060"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS33/assets/question-6-givens.svg",
+      "expected": "32d20d212516150647e1a60c1eca92aa83e998cbdd68df0e1c8b405f0e09846f",
+      "actual": "32d20d212516150647e1a60c1eca92aa83e998cbdd68df0e1c8b405f0e09846f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS33/assets/question-7-givens.svg",
+      "expected": "ac7c784c4d390ab83b9f9217c5243fdb8ea880fcd4669f36140dacb76ad5b87b",
+      "actual": "ac7c784c4d390ab83b9f9217c5243fdb8ea880fcd4669f36140dacb76ad5b87b"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS33/assets/question-8-givens.svg",
+      "expected": "424e3b0baf37ba4486a4cb86d9ad73ad8fe32181bfc9c23059338780607c0421",
+      "actual": "424e3b0baf37ba4486a4cb86d9ad73ad8fe32181bfc9c23059338780607c0421"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS33/assets/question-9-givens.svg",
+      "expected": "15a58f0261764dd514d31bd7144d46936d2e113e98e10808b568040fca20c8e4",
+      "actual": "15a58f0261764dd514d31bd7144d46936d2e113e98e10808b568040fca20c8e4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS33/assets/question-10-givens.svg",
+      "expected": "7d08e695ff2aed01e2d0dc700ceb98987211ebbdd62c300457d039c2f9b25335",
+      "actual": "7d08e695ff2aed01e2d0dc700ceb98987211ebbdd62c300457d039c2f9b25335"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS36/inputs/owner.bank.json",
+      "expected": "b9df99cd249a1e2fc84a6157774c10119737a1866f2f72f9c69652b5dc34d7c9",
+      "actual": "b9df99cd249a1e2fc84a6157774c10119737a1866f2f72f9c69652b5dc34d7c9"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS36/inputs/package.v1.json",
+      "expected": "24e9a38c800a73d707fd0cc927e8a8efe63547846f5a21b3f4c268467f1bf513",
+      "actual": "24e9a38c800a73d707fd0cc927e8a8efe63547846f5a21b3f4c268467f1bf513"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS36/qrt-repair-ledger.json",
+      "expected": "caf372cf3fca7932bb846ed0af16f9bba6eb746b3cf7bf632c3197ef064f9304",
+      "actual": "caf372cf3fca7932bb846ed0af16f9bba6eb746b3cf7bf632c3197ef064f9304"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS36/rendered/core1a.html",
+      "expected": "dce6ad1d7284a15f45955b9857eb46062b02c25341aaf71cd0dd29a2147a14a3",
+      "actual": "dce6ad1d7284a15f45955b9857eb46062b02c25341aaf71cd0dd29a2147a14a3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS36/rendered/core2.html",
+      "expected": "c0e94b9491d5c8e5f34d2f16684ce7e4930dc9b26420f19dcacb7e18610640fc",
+      "actual": "c0e94b9491d5c8e5f34d2f16684ce7e4930dc9b26420f19dcacb7e18610640fc"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS36/assets/question-1-givens.svg",
+      "expected": "ffba282740a66414382cda1ca029cc3b59d59698639f63e384d51a1ffdb11c71",
+      "actual": "ffba282740a66414382cda1ca029cc3b59d59698639f63e384d51a1ffdb11c71"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS36/assets/question-2-givens.svg",
+      "expected": "2504693b60e77157871206a0007c8ce24445dbaa3d6d7de7569273b6f093b562",
+      "actual": "2504693b60e77157871206a0007c8ce24445dbaa3d6d7de7569273b6f093b562"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS36/assets/question-3-givens.svg",
+      "expected": "ddb1672cb9a12446cfca10cf76ac1826e841c562aeda34e501d6d7e8b4aaac7c",
+      "actual": "ddb1672cb9a12446cfca10cf76ac1826e841c562aeda34e501d6d7e8b4aaac7c"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS36/assets/question-4-givens.svg",
+      "expected": "7747c0f69403c6f0178c541a7ae2d0ceab9cd9329d4383a7e9b39219a2eabaad",
+      "actual": "7747c0f69403c6f0178c541a7ae2d0ceab9cd9329d4383a7e9b39219a2eabaad"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS36/assets/question-5-givens.svg",
+      "expected": "3206b1851881bf87460e88d8d7755490d4656e84e62af4848d4ae4e1ceaa71ac",
+      "actual": "3206b1851881bf87460e88d8d7755490d4656e84e62af4848d4ae4e1ceaa71ac"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS36/assets/question-6-givens.svg",
+      "expected": "aa9b2dff9412d8002908d2fc1862458efa88e88186cb0bc479d07a258ea5dc07",
+      "actual": "aa9b2dff9412d8002908d2fc1862458efa88e88186cb0bc479d07a258ea5dc07"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS36/assets/question-7-givens.svg",
+      "expected": "6af73e40df1aed457a763bb64df2e70fb47cd3e6b5aaf784c77d8d6c90109157",
+      "actual": "6af73e40df1aed457a763bb64df2e70fb47cd3e6b5aaf784c77d8d6c90109157"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS36/assets/question-8-givens.svg",
+      "expected": "bb3a6a6052c87fa2e262804821d5eacca7851503c6a5d598c023b278f924b5ae",
+      "actual": "bb3a6a6052c87fa2e262804821d5eacca7851503c6a5d598c023b278f924b5ae"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS36/assets/question-9-givens.svg",
+      "expected": "55d76b307103399e6f08fcb89a567654ad1ed8883009cc8a1d62d0074a263840",
+      "actual": "55d76b307103399e6f08fcb89a567654ad1ed8883009cc8a1d62d0074a263840"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS36/assets/question-10-givens.svg",
+      "expected": "8548f8e3669c723f00bc7d8a9da6355600b6167dd76bfbf07da17dc99d118297",
+      "actual": "8548f8e3669c723f00bc7d8a9da6355600b6167dd76bfbf07da17dc99d118297"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS35/inputs/owner.bank.json",
+      "expected": "e5e9ac24fbdaa37bdaaaa3c41658c5e07567fe912149124a1f7826c3df817c6f",
+      "actual": "e5e9ac24fbdaa37bdaaaa3c41658c5e07567fe912149124a1f7826c3df817c6f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS35/inputs/package.v1.json",
+      "expected": "da987946c222d1a8203cbd297f62eb380cb648da8e8f5060050af9e9ffce751d",
+      "actual": "da987946c222d1a8203cbd297f62eb380cb648da8e8f5060050af9e9ffce751d"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS35/qrt-repair-ledger.json",
+      "expected": "43c6817ecf1f8b711cf2094763a19becd76337cdf3894db07a912ef1817e2b13",
+      "actual": "43c6817ecf1f8b711cf2094763a19becd76337cdf3894db07a912ef1817e2b13"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS35/rendered/core1a.html",
+      "expected": "8c33919cec52ad668c1e1992ac8b936b4a18e5e3c7adc8ae961a4a69902b56bc",
+      "actual": "8c33919cec52ad668c1e1992ac8b936b4a18e5e3c7adc8ae961a4a69902b56bc"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS35/rendered/core2.html",
+      "expected": "6ae2a120d41b8d9ff7b9cda25191584d1b09cb6c49e5805e5d9b5adbf7dacaa9",
+      "actual": "6ae2a120d41b8d9ff7b9cda25191584d1b09cb6c49e5805e5d9b5adbf7dacaa9"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS35/assets/question-1-givens.svg",
+      "expected": "fce31bde405975d4934e199a573297e07112d52f8726625ffcd761d6b554c8d5",
+      "actual": "fce31bde405975d4934e199a573297e07112d52f8726625ffcd761d6b554c8d5"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS35/assets/question-2-givens.svg",
+      "expected": "682154fb32637d3ceb55abee92e2b45cb62cb8f02b04af14d2486fdd761443b0",
+      "actual": "682154fb32637d3ceb55abee92e2b45cb62cb8f02b04af14d2486fdd761443b0"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS35/assets/question-3-givens.svg",
+      "expected": "0b19d3adadc0f1c729f329fc1901624cf8c0364678e7bb4151842e509c56d2d4",
+      "actual": "0b19d3adadc0f1c729f329fc1901624cf8c0364678e7bb4151842e509c56d2d4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS35/assets/question-4-givens.svg",
+      "expected": "3dcd3f0b76329e4e811e0cc1413650367900f15e394f754e57071f09804aa3a1",
+      "actual": "3dcd3f0b76329e4e811e0cc1413650367900f15e394f754e57071f09804aa3a1"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS35/assets/question-5-givens.svg",
+      "expected": "4b2f368c0b649d9e180314eca320cf2a08204bc25ac9f6c2de1d8d23a85ec8d6",
+      "actual": "4b2f368c0b649d9e180314eca320cf2a08204bc25ac9f6c2de1d8d23a85ec8d6"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS35/assets/question-6-givens.svg",
+      "expected": "0babcf878142d5a207767d5cc0cedb474cec2f12aa7d7202d56f985c8eab5858",
+      "actual": "0babcf878142d5a207767d5cc0cedb474cec2f12aa7d7202d56f985c8eab5858"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS35/assets/question-7-givens.svg",
+      "expected": "0e4953f93ff7eadbc130017b3b245db71b98b5c368da4d8e7dcabd119cad9a2c",
+      "actual": "0e4953f93ff7eadbc130017b3b245db71b98b5c368da4d8e7dcabd119cad9a2c"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS35/assets/question-8-givens.svg",
+      "expected": "687c5609f02e17f3f7d9e1f7aeb1b35ea97fafeca1f1feed7286e6e7f39c26d8",
+      "actual": "687c5609f02e17f3f7d9e1f7aeb1b35ea97fafeca1f1feed7286e6e7f39c26d8"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS35/assets/question-9-givens.svg",
+      "expected": "b2745c64267a36f87ad9a9ab84e4615b8d9adfdcf90d3c98e022ac73249874e6",
+      "actual": "b2745c64267a36f87ad9a9ab84e4615b8d9adfdcf90d3c98e022ac73249874e6"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS35/assets/question-10-givens.svg",
+      "expected": "adbd1a0a11fbad81271a74f798eb0e79ca9ff50af7db72454663b05b3d5799a3",
+      "actual": "adbd1a0a11fbad81271a74f798eb0e79ca9ff50af7db72454663b05b3d5799a3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS38/inputs/owner.bank.json",
+      "expected": "f149ba69d055ad06c98078e527f3094cbadc26cbc01c7a9fbb43393178afa206",
+      "actual": "f149ba69d055ad06c98078e527f3094cbadc26cbc01c7a9fbb43393178afa206"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS38/inputs/package.v1.json",
+      "expected": "4146c8697b6bfc048d28bbfc61d851b9ac22d8166cd78fe08ee9800c10f46c8c",
+      "actual": "4146c8697b6bfc048d28bbfc61d851b9ac22d8166cd78fe08ee9800c10f46c8c"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS38/qrt-repair-ledger.json",
+      "expected": "1ca9cf0888d2dca26efcb50967da3d39824c2bd7a49829b63564b369d533118e",
+      "actual": "1ca9cf0888d2dca26efcb50967da3d39824c2bd7a49829b63564b369d533118e"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS38/rendered/core1a.html",
+      "expected": "cfe18b673b7659f90743a361c015d536fc14c893f5efdc69672e35bac24b7824",
+      "actual": "cfe18b673b7659f90743a361c015d536fc14c893f5efdc69672e35bac24b7824"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS38/rendered/core2.html",
+      "expected": "1873c87b72655c1d269ce52d1e828d029990b6dc9a86e50d2335dfff7e11bfe2",
+      "actual": "1873c87b72655c1d269ce52d1e828d029990b6dc9a86e50d2335dfff7e11bfe2"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS38/assets/question-1-givens.svg",
+      "expected": "6325d7f3d7d19f0b42f28259b542c5780e5cd85fe866e47d24b0b33fd71faea4",
+      "actual": "6325d7f3d7d19f0b42f28259b542c5780e5cd85fe866e47d24b0b33fd71faea4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS38/assets/question-2-givens.svg",
+      "expected": "8efae1e0e48111152e148b5f45526d24e38f86a68f07a446e3e43f02d43c31c3",
+      "actual": "8efae1e0e48111152e148b5f45526d24e38f86a68f07a446e3e43f02d43c31c3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS38/assets/question-3-givens.svg",
+      "expected": "3dd0b5a443995b2ea090ea8149fd3900d3b52c7f6067eac88dc697b8845d0a76",
+      "actual": "3dd0b5a443995b2ea090ea8149fd3900d3b52c7f6067eac88dc697b8845d0a76"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS38/assets/question-4-givens.svg",
+      "expected": "ef5ea9b7c8044c03e88a08b0dadb724b81274099cfda99186e1492ac24706349",
+      "actual": "ef5ea9b7c8044c03e88a08b0dadb724b81274099cfda99186e1492ac24706349"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS38/assets/question-5-givens.svg",
+      "expected": "59ef9afb42908662f1d87634eb0512eb118b4058ebaa1dca701ee63c0cbc22c3",
+      "actual": "59ef9afb42908662f1d87634eb0512eb118b4058ebaa1dca701ee63c0cbc22c3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS38/assets/question-6-givens.svg",
+      "expected": "b86b1bf43eb51977c8f1635c823912297c42232ecd0605ee8f549eac662850eb",
+      "actual": "b86b1bf43eb51977c8f1635c823912297c42232ecd0605ee8f549eac662850eb"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS38/assets/question-7-givens.svg",
+      "expected": "3b16bc155f0b927b05ba5775d69686e7c201c6d6e8a046d22afec9394d511d53",
+      "actual": "3b16bc155f0b927b05ba5775d69686e7c201c6d6e8a046d22afec9394d511d53"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS38/assets/question-8-givens.svg",
+      "expected": "d51fcc2e7f8d5d12f6e5f2c265d8a216ed8d01414fb7f7992a74cbc49e3fc7e4",
+      "actual": "d51fcc2e7f8d5d12f6e5f2c265d8a216ed8d01414fb7f7992a74cbc49e3fc7e4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS38/assets/question-9-givens.svg",
+      "expected": "58870bf221596a9ccb400d9b6062c2415311a3f1e6a3d9a1190e3ea90ae06fda",
+      "actual": "58870bf221596a9ccb400d9b6062c2415311a3f1e6a3d9a1190e3ea90ae06fda"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS38/assets/question-10-givens.svg",
+      "expected": "6fe8082fc7e19601a13422791363c3efb41606eb5c643b652db5be1aa9552224",
+      "actual": "6fe8082fc7e19601a13422791363c3efb41606eb5c643b652db5be1aa9552224"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS37/inputs/owner.bank.json",
+      "expected": "cea390c311840ab4fb0ec5f7bbf61113f40f88cd527e57094d15114b8b9c94cb",
+      "actual": "cea390c311840ab4fb0ec5f7bbf61113f40f88cd527e57094d15114b8b9c94cb"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS37/inputs/package.v1.json",
+      "expected": "888567aacc52a5d0f163cca202197b58e51b12f771e49ba71f14713f0ddc2aad",
+      "actual": "888567aacc52a5d0f163cca202197b58e51b12f771e49ba71f14713f0ddc2aad"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS37/qrt-repair-ledger.json",
+      "expected": "c2545d011343cc0533220e376cdfc09b7ed8fd99cb044be5b49031b484fd4e65",
+      "actual": "c2545d011343cc0533220e376cdfc09b7ed8fd99cb044be5b49031b484fd4e65"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS37/rendered/core1a.html",
+      "expected": "0d890865823a45ce7af10971bc29a23746aee372fba30e9d6ca47b20261ef482",
+      "actual": "0d890865823a45ce7af10971bc29a23746aee372fba30e9d6ca47b20261ef482"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS37/rendered/core2.html",
+      "expected": "ff3068cfe5f04a1ba9120ede1bde4ab1d9821e748a7e3adb88301da19fcdaf90",
+      "actual": "ff3068cfe5f04a1ba9120ede1bde4ab1d9821e748a7e3adb88301da19fcdaf90"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS37/assets/question-1-givens.svg",
+      "expected": "aec347cd2ee21f875585b51bb77d34697d26a1b8d5f1d4f37e691eda14c0ef4a",
+      "actual": "aec347cd2ee21f875585b51bb77d34697d26a1b8d5f1d4f37e691eda14c0ef4a"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS37/assets/question-2-givens.svg",
+      "expected": "fd720aaf0094249a39ed2540fada4472f7350c798f25d09d33db6488c497c237",
+      "actual": "fd720aaf0094249a39ed2540fada4472f7350c798f25d09d33db6488c497c237"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS37/assets/question-3-givens.svg",
+      "expected": "cfd4cca00929e5d36d1e6628a7b7e7f5bff3cb8341214286da630ee072f27732",
+      "actual": "cfd4cca00929e5d36d1e6628a7b7e7f5bff3cb8341214286da630ee072f27732"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS37/assets/question-4-givens.svg",
+      "expected": "959a688395827354c9dbc1458766824cf3f00c374272f0c355588f5753a2df4a",
+      "actual": "959a688395827354c9dbc1458766824cf3f00c374272f0c355588f5753a2df4a"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS37/assets/question-5-givens.svg",
+      "expected": "7a109a12dea4b3b2d4cda9877df86f9a7736a79b0357e20485585868f6d13a77",
+      "actual": "7a109a12dea4b3b2d4cda9877df86f9a7736a79b0357e20485585868f6d13a77"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS37/assets/question-6-givens.svg",
+      "expected": "94a30c7cc9a08af6f6077ff1af4a21e0dc4939a622cd419ec54995c65adbb39b",
+      "actual": "94a30c7cc9a08af6f6077ff1af4a21e0dc4939a622cd419ec54995c65adbb39b"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS37/assets/question-7-givens.svg",
+      "expected": "d0349faa214ba4ab3c32766ac42ad9b14bbd496383805704660059523bfcc975",
+      "actual": "d0349faa214ba4ab3c32766ac42ad9b14bbd496383805704660059523bfcc975"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS37/assets/question-8-givens.svg",
+      "expected": "329ff8253acd64a2530828a57235dc5403104ed6307b86402a0c6dd35e165392",
+      "actual": "329ff8253acd64a2530828a57235dc5403104ed6307b86402a0c6dd35e165392"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS37/assets/question-9-givens.svg",
+      "expected": "188bc2ab964ebf6116bbb18edc8ff5433b28659ceeb248f916e475b078067f90",
+      "actual": "188bc2ab964ebf6116bbb18edc8ff5433b28659ceeb248f916e475b078067f90"
+    },
+    {
+      "path": "evidence/blueprint-cycles/ISS37/assets/question-10-givens.svg",
+      "expected": "9fe73cf61ed83fa2ba3c8fd095f6347479b46122dfa58b75d5461430f8b28aab",
+      "actual": "9fe73cf61ed83fa2ba3c8fd095f6347479b46122dfa58b75d5461430f8b28aab"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/core2a.html",
+      "expected": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4",
+      "actual": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/core2a.html",
+      "expected": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4",
+      "actual": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/core2a.html",
+      "expected": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4",
+      "actual": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/core2a.html",
+      "expected": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4",
+      "actual": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/core2a.html",
+      "expected": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4",
+      "actual": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/core2a.html",
+      "expected": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4",
+      "actual": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/core2a.html",
+      "expected": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4",
+      "actual": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/matrix/rendered/core2a.html",
+      "expected": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4",
+      "actual": "5e77749acd38cb85c443c129ba9e942794f79171804c85ff3d66c23131d1aeb4"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2.html",
+      "expected": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265",
+      "actual": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2.html",
+      "expected": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265",
+      "actual": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2.html",
+      "expected": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265",
+      "actual": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2.html",
+      "expected": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265",
+      "actual": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2.html",
+      "expected": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265",
+      "actual": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2.html",
+      "expected": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265",
+      "actual": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2.html",
+      "expected": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265",
+      "actual": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2.html",
+      "expected": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265",
+      "actual": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2.html",
+      "expected": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265",
+      "actual": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2.html",
+      "expected": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265",
+      "actual": "35984f60d75f0781a868d1c03440915baa550409cef52032e3696d2d250a7265"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2a.html",
+      "expected": "119f5422bb46b8703dd2298d8afa89de055eec29f191b117663f785c2aac6d2f",
+      "actual": "119f5422bb46b8703dd2298d8afa89de055eec29f191b117663f785c2aac6d2f"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/mathematics/rendered/core2b.html",
+      "expected": "19135a227c0593e1cd21ed94e7d9e391e86f7aad7e3dba35a0c214a2e1ed1b5a",
+      "actual": "19135a227c0593e1cd21ed94e7d9e391e86f7aad7e3dba35a0c214a2e1ed1b5a"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/core2.html",
+      "expected": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3",
+      "actual": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/core2.html",
+      "expected": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3",
+      "actual": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/core2.html",
+      "expected": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3",
+      "actual": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/core2.html",
+      "expected": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3",
+      "actual": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/core2.html",
+      "expected": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3",
+      "actual": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/core2.html",
+      "expected": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3",
+      "actual": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/core2.html",
+      "expected": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3",
+      "actual": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/core2.html",
+      "expected": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3",
+      "actual": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/core2.html",
+      "expected": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3",
+      "actual": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/subjects/physics/rendered/core2.html",
+      "expected": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3",
+      "actual": "09954ad085240ef174e8b6d6a3586d1e8fe8e6cb49f46d67235e1b47a8fbdbb3"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-CAL-ISS29-RETRIEVE-D2.png",
+      "expected": "b14c054bc69a3eb9e7cde7b25330bba475ecffbacdbab96c9eb0a7d00e2ab035",
+      "actual": "b14c054bc69a3eb9e7cde7b25330bba475ecffbacdbab96c9eb0a7d00e2ab035"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-CAL-ISS29-RETRIEVE-D3.png",
+      "expected": "7bc7871db6cf4e7e92ea64f0624543973a11bc42d85251a0b390de0c17f656bb",
+      "actual": "7bc7871db6cf4e7e92ea64f0624543973a11bc42d85251a0b390de0c17f656bb"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-CAL-ISS29-SYNTHESIZE-D4.png",
+      "expected": "5d2dfe637131eaf89adfb5b5dd63e6e5e93bf68148b5c2156dc337d271e59737",
+      "actual": "5d2dfe637131eaf89adfb5b5dd63e6e5e93bf68148b5c2156dc337d271e59737"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-CAL-ISS29-APPLY-D3.png",
+      "expected": "17c67ffeb831c759c72312f8f78834a9db8404d4fb55c9e9ae88687889b167cc",
+      "actual": "17c67ffeb831c759c72312f8f78834a9db8404d4fb55c9e9ae88687889b167cc"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-CAL-ISS29-MODEL-D1.png",
+      "expected": "314314d6549322be606da75406ae009e0389b3edad74188b53b43f0091c1cf77",
+      "actual": "314314d6549322be606da75406ae009e0389b3edad74188b53b43f0091c1cf77"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-CAL-ISS29-REPRESENT-D1.png",
+      "expected": "a4a1c0854454c6b3603ea3c2766e9e67375a899fb4d09a41278307584ebedcf7",
+      "actual": "a4a1c0854454c6b3603ea3c2766e9e67375a899fb4d09a41278307584ebedcf7"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-CAL-ISS29-SYNTHESIZE-D1.png",
+      "expected": "9c94d24c016aef8ece52071354e0b54aa7c545bec6ade6306ce9b2147ba8cd77",
+      "actual": "9c94d24c016aef8ece52071354e0b54aa7c545bec6ade6306ce9b2147ba8cd77"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-CAL-ISS29-JUSTIFY-D1.png",
+      "expected": "574fec5849bc23ff1eccc7954fa63a9f6c707c5ed5be7941a96fd362b7072fb6",
+      "actual": "574fec5849bc23ff1eccc7954fa63a9f6c707c5ed5be7941a96fd362b7072fb6"
+    },
+    {
+      "path": "evidence/blueprint-cycles/closure-r5-20261005/review-matrix-subjects.visual-MATH-TRANSFER.png",
+      "expected": "883cf103bc67b7086cc33e72f355cacd48cbdb20f0bbf687df97c91d3d52ec8c",
+      "actual": "883cf103bc67b7086cc33e72f355cacd48cbdb20f0bbf687df97c91d3d52ec8c"
+    }
+  ],
+  "exact_binding_status": "PASS",
+  "matrix": {
+    "candidate_identity_union": 27,
+    "open_cells": [
+      "QRT-RETRIEVE-D4"
+    ],
+    "reviewed_candidate_classifications": 8,
+    "original20_cells_classification": "Outside this matrix-only original-cell audit; retain as original declared provenance, not globally grant acceptance.",
+    "owner_accepted_union_in_this_review": 0
+  },
+  "fresh_independent_subject_matrix_attempts": {
+    "count": 30,
+    "solutions_disclosed": 30,
+    "meaning": "Eight authored matrix plus10realMath source,2Math practice/application and10realPhysics source exact attempts. Every response was independently reasoned, not automatically marked correct.",
+    "owner_acceptance": "NOT_GRANTED"
+  },
+  "independent_chemistry_browser_revision": "NOT_RUN; D1/D2 runtime unavailable and D3/D4 browser restriction respected. Parent mechanical harness is separately attributed. Initial D1/D2 observations retained as historical.",
+  "open_coaching": [
+    "D1/D2 eight S2 frameworks lack demonstrated changed-case anchors;51 M facet requests remain.",
+    "D3/D4 forty S2 frameworks and fourteen other observations remain PARTIAL; no original REVISE verdict remains.",
+    "Original question classification disagreements and advanced prerequisites are recorded without changing supplied identities.",
+    "RETRIEVE D4 remains open after independent reclassification of the authored example to SYNTHESIZE D4.",
+    "Source-card rebinding, authenticated NCERT cross-read and Owner academic acceptance remain open."
+  ],
+  "unconditional_all_criteria_acceptance_claimed": false,
+  "owner_acceptance": "NOT_GRANTED",
+  "merge_recommendation": "DELIVER_REVIEWED_REPAIRS_WITH_ACKNOWLEDGED_FINDINGS_PER_HOUSE_RULE_6",
+  "learner_publication": false
+}

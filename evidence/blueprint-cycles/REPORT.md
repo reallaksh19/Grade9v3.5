@@ -1,4 +1,4 @@
-Current continuation: [R4 academic repair and final measured evidence](closure-r4-20261005/README.md). Earlier observations below retain their original execution scope; they are not current browser/PDF/full-suite verdicts.
+Current continuation: [R5 independently reviewed repairs and delivery](closure-r5-20261005/README.md). Earlier observations below retain their original execution scope; they are not current browser/PDF/full-suite verdicts.
 
 # Current R3 amendment — 5 October 2026
 
