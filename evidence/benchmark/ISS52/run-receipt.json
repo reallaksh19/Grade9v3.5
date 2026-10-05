@@ -1,0 +1,50 @@
+{
+  "schema": "iss52-run-receipt/v1",
+  "issue": 52,
+  "round": "POLYNOMIAL-STRESS-V1",
+  "status": "CANDIDATE_IN_PROGRESS",
+  "source_commit": "91719ad8df2bfc06c6a481590d2e24c510c24835",
+  "branch": "agent/iss52-polynomial-stress-v1",
+  "registry_version": "1.14.0",
+  "core1a_blueprint": "BP-CORE1A-CONSTRUCTION@1.7.0",
+  "core2_blueprint": "BP-CORE2-SOURCE-QUESTION@1.9.0",
+  "owner_core_sha256": "sha256:46058f7ade3862a6f5707fa0f49c5e284d74b6de56100312d6f1a840d65392b9",
+  "owner_core_hash_match": true,
+  "delivery_protocol": "reallaksh19/Common@149770a21ca073df49717a96e2106c967adddc2d:skills/engineering-pr-delivery-v3.2",
+  "units": {
+    "U1": "COMPLETE",
+    "U2": "COMPLETE",
+    "U3": "COMPLETE",
+    "U4": "COMPLETE",
+    "U5": "IN_PROGRESS",
+    "U6": "NOT_STARTED",
+    "U7": "NOT_STARTED",
+    "U8": "NOT_STARTED"
+  },
+  "execution_environment": {
+    "local_repo": "UNAVAILABLE",
+    "local_reason": "container cannot resolve external GitHub",
+    "provider_continuity_script": "NOT_RUN",
+    "candidate_render": "NOT_RUN",
+    "first_ci_observation": {
+      "workflow": "question-bank-platform",
+      "run_id": 37326066755,
+      "contract_tests": "PASS",
+      "generated_platform_check": "FAIL_BEFORE_EVIDENCE_LANE_MOVE",
+      "resolution": "Moved benchmark inputs out of canonical Question Bank publication lanes; rerun pending."
+    }
+  },
+  "question_count": 10,
+  "pull_request": {
+    "number": 60,
+    "url": "https://github.com/reallaksh19/Grade9v3.5/pull/60",
+    "base_branch": "benchmark-base/iss52-91719ad8",
+    "base_sha": "91719ad8df2bfc06c6a481590d2e24c510c24835",
+    "head_sha": "d873256a18fc7f1adf37774bf7411cf27cfd0091"
+  },
+  "inputs": {
+    "owner_bank": "evidence/benchmark/ISS52/inputs/owner.bank.json",
+    "package": "evidence/benchmark/ISS52/inputs/package.v1.json",
+    "manifest": "evidence/benchmark/ISS52/inputs/product.manifest.json"
+  }
+}

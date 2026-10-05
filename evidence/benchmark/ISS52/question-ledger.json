@@ -1,0 +1,383 @@
+{
+  "schema": "iss52-question-ledger/v1",
+  "issue": 52,
+  "round": "POLYNOMIAL-STRESS-V1",
+  "owner_core_sha256": "sha256:46058f7ade3862a6f5707fa0f49c5e284d74b6de56100312d6f1a840d65392b9",
+  "intended_cohort": "D4",
+  "questions": [
+    {
+      "question_id": "ISS52-Q1",
+      "original_identifier": "Q1",
+      "text_sha256": "sha256:e02e5c653b6dcfb9d18d947aa1822cc7b2283c9d2eaf506212c9b42ad0308ba7",
+      "stem": "Exact data give $p(0)=1$, $p(1)=2$, $p(2)=5$ and $p(3)=10$. First assume $p$ is a real polynomial of degree at most three: determine it and justify uniqueness. Then remove the degree bound and characterise every real polynomial consistent with the same four data points. State precisely which inference depended on the bound.",
+      "capability_ref": "CAP-MATH-POLY-FINITE-DATA-IDENTITY",
+      "answer_status": "CHECKED_BY_EXECUTION_AGENT",
+      "answer": "For degree at most 3, p(x)=x^2+1; uniqueness follows because the difference of two such polynomials has four distinct zeros but degree at most 3. Without the bound, p=x^2+1+x(x-1)(x-2)(x-3)q for arbitrary real polynomial q. The degree bound is exactly what forces q=0.",
+      "difficulty": {
+        "band": "D3",
+        "score": 6,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+      },
+      "cognitive_demand": {
+        "primary": "JUSTIFY",
+        "secondary": [
+          "SYNTHESIZE",
+          "APPLY"
+        ],
+        "qrt_cell": "QRT-JUSTIFY-D3"
+      },
+      "qrt_targets": {
+        "X": "what four exact observations do and do not determine",
+        "Y": "factor theorem plus the root-count bound",
+        "Z": "separate bounded uniqueness from the unrestricted vanishing-factor family",
+        "W": "the degree-bound warrant that forces the difference to vanish"
+      },
+      "cohort_match": "EASIER_THAN_INTENDED_D4"
+    },
+    {
+      "question_id": "ISS52-Q2",
+      "original_identifier": "Q2",
+      "text_sha256": "sha256:39d0b46d0a99c1abf2bc23dd3341168a57f3266a80708505ae6157f365bf8db3",
+      "stem": "A nonzero real polynomial has degree at most four and zeros at $-2$, $0$ and $2$. It changes sign across each of $-2$ and $2$, but has the same nonzero sign on the two sides sufficiently close to $0$. Also $p(1)=-3$. Construct the polynomial, justify the multiplicity information you use, and establish whether these conditions determine it uniquely. These are exact benchmark conditions, not measurements from a graph.",
+      "capability_ref": "CAP-MATH-POLY-MULTIPLICITY-SIGN",
+      "answer_status": "CHECKED_BY_EXECUTION_AGENT",
+      "answer": "Sign changes at -2 and 2 force odd multiplicities; same nonzero sign across 0 forces an even multiplicity. The degree budget forces multiplicities 1,2,1. Thus p=k(x+2)x^2(x-2), and p(1)=-3 gives k=1; unique.",
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 0,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+      },
+      "cognitive_demand": {
+        "primary": "SYNTHESIZE",
+        "secondary": [
+          "JUSTIFY",
+          "APPLY"
+        ],
+        "qrt_cell": "QRT-SYNTHESIZE-D3"
+      },
+      "qrt_targets": {
+        "X": "what local sign behaviour says about root multiplicity",
+        "Y": "odd/even multiplicity sign rules and the degree budget",
+        "Z": "coordinate parity, degree and scale",
+        "W": "the multiplicity allocation before scale"
+      },
+      "cohort_match": "EASIER_THAN_INTENDED_D4"
+    },
+    {
+      "question_id": "ISS52-Q3",
+      "original_identifier": "Q3",
+      "text_sha256": "sha256:dc8957c7bdb5e6011083beee02230b04220fac10a7a4160f7569a9fbf6922fe3",
+      "stem": "Find the least possible degree of a real polynomial whose distinct real zeros are exactly $-1$ and $1$, and which satisfies $p(0)=p(2)=1$. Exhibit one such polynomial, verify that it has no other real zeros, and prove that every smaller degree is impossible. You may use continuity of real polynomial functions and the factor theorem. This is an advanced competition extension.",
+      "capability_ref": "CAP-MATH-POLY-MINIMUM-DEGREE",
+      "answer_status": "CHECKED_BY_EXECUTION_AGENT",
+      "answer": "Write p=(x^2-1)g, so g(0)=-1 and g(2)=1/3. Degree 2 is impossible; degree 3 forces a linear g with extra zero 3/2. For degree 4, g is quadratic. Because g(0)<0<g(2), continuity forces a root in (0,2), and the exact zero set forces that root to be 1. The sign change makes the root at 1 simple, so the quadratic has a second real root; to avoid a new zero of p it would have to be -1. Then g=k(x^2-1); g(0)=-1 gives k=1, but g(2)=3, contradicting g(2)=1/3. Degree 5 works: p=(1/3)(x+1)(x-1)^2(x^2-3x+3), whose remaining quadratic has discriminant -3. Therefore the least possible degree is 5.",
+      "difficulty": {
+        "band": "D4",
+        "score": 8,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 0,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 2,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+      },
+      "cognitive_demand": {
+        "primary": "JUSTIFY",
+        "secondary": [
+          "SYNTHESIZE",
+          "MODEL"
+        ],
+        "qrt_cell": "QRT-JUSTIFY-D4"
+      },
+      "qrt_targets": {
+        "X": "why exact values and an exact zero set impose a lower bound",
+        "Y": "factor theorem, continuity and quadratic discriminant",
+        "Z": "eliminate degrees 2,3,4 then construct degree5",
+        "W": "the degree-4 impossibility argument"
+      },
+      "cohort_match": "MATCHES_INTENDED_D4"
+    },
+    {
+      "question_id": "ISS52-Q4",
+      "original_identifier": "Q4",
+      "text_sha256": "sha256:d28d5a24aa86299fc4568717767bd5410f1ba0dd963a758e835322005d644e0b",
+      "stem": "For real $a$, consider $F_a(x)=(a-1)x^4+2(a-1)x^3+(a+2)x^2+2(a+2)x$. Develop a complete classification of its degree and number of distinct real zeros as $a$ varies. Identify all exceptional parameter values where the degree drops or zeros coincide, and account for multiplicities at those values. Justify that your cases are exhaustive.",
+      "capability_ref": "CAP-MATH-POLY-PARAMETER-CLASSIFICATION",
+      "answer_status": "CHECKED_BY_EXECUTION_AGENT",
+      "answer": "F_a=x(x+2)((a-1)x^2+(a+2)). Degree is 2 at a=1 and 4 otherwise. Extra real roots occur exactly for -2<a<1. Exceptional values are a=-2 (0 has multiplicity 3), a=2/5 (the negative extra root collides with -2, making it double), and a=1 (degree drop). Therefore: a<-2: 2 distinct simple zeros; a=-2: 2 distinct; -2<a<1 except 2/5: 4 distinct simple; a=2/5: 3 distinct; a=1: 2 distinct simple degree2; a>1: 2 distinct simple.",
+      "difficulty": {
+        "band": "D4",
+        "score": 9,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 2,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+      },
+      "cognitive_demand": {
+        "primary": "SYNTHESIZE",
+        "secondary": [
+          "JUSTIFY",
+          "MODEL"
+        ],
+        "qrt_cell": "QRT-SYNTHESIZE-D4"
+      },
+      "qrt_targets": {
+        "X": "which parameter events change degree, root existence or coincidence",
+        "Y": "factorization plus sign conditions",
+        "Z": "derive every critical value then partition parameter space",
+        "W": "the exhaustive event set and interval/collision split"
+      },
+      "cohort_match": "MATCHES_INTENDED_D4"
+    },
+    {
+      "question_id": "ISS52-Q5",
+      "original_identifier": "Q5",
+      "text_sha256": "sha256:9524918a2550cfdbd9ac49e0667b45e5b4428c9ab629c35fb92f9e16b8b4ec77",
+      "stem": "An open box is formed by cutting squares of side $x$ cm from the corners of a $10$ cm square sheet and folding the sides up, ignoring thickness. An exact calculation table gives volumes $0$, $64$ and $72$ cubic centimetres at $x=0,1,2$ respectively; $x=0$ denotes the flat limiting configuration. An analyst fits $Q(x)=-28x^2+92x$ to these three entries and treats it as the volume model. Derive the model from the geometry, state the domain for a non-degenerate box, assess the fitted model over that domain, and choose an additional admissible input that discriminates between the two accounts. Explain why matching the recorded entries is insufficient.",
+      "capability_ref": "CAP-MATH-POLY-MODEL-VS-INTERPOLATION",
+      "answer_status": "CHECKED_BY_EXECUTION_AGENT",
+      "answer": "Geometry gives V=x(10-2x)^2 on 0<x<5. The fitted Q=-28x^2+92x matches the three recorded rows but Q-V=-4x(x-1)(x-2). At admissible x=4, V=16 while Q=-80. Finite agreement is not a geometric model or an unrestricted identity proof.",
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+      },
+      "cognitive_demand": {
+        "primary": "MODEL",
+        "secondary": [
+          "JUSTIFY",
+          "REPRESENT"
+        ],
+        "qrt_cell": "QRT-MODEL-D3"
+      },
+      "qrt_targets": {
+        "X": "which account is a geometric model and which only interpolates",
+        "Y": "volume geometry and physical domain",
+        "Z": "derive V, compare Q-V, then test a changed input",
+        "W": "the inference that three rows do not identify the model"
+      },
+      "cohort_match": "EASIER_THAN_INTENDED_D4"
+    },
+    {
+      "question_id": "ISS52-Q6",
+      "original_identifier": "Q6",
+      "text_sha256": "sha256:419740a92840120d38694742de086b1252a859def86f8210b661e7628c576bf8",
+      "stem": "For real $a$, let $R_a(x)=[x^2-(a+1)x+a]/(x-a)$ with its original domain $x\\neq a$. A student cancels a factor and says that every $R_a$ is the same polynomial function on all real numbers, with zero $1$. Determine which parts of that statement hold on the original domains, classify the real zeros as $a$ varies, and describe the polynomial extension separately. Explain why extending a function and preserving its original domain are different operations.",
+      "capability_ref": "CAP-MATH-POLY-DOMAIN-EXTENSION",
+      "answer_status": "CHECKED_BY_EXECUTION_AGENT",
+      "answer": "The numerator is (x-a)(x-1), so R_a=x-1 only on x!=a. If a!=1, x=1 is an allowed zero; if a=1 it is excluded and there are no zeros. The polynomial extension x-1 is defined on all reals and always has zero 1; filling the hole changes the function domain.",
+      "difficulty": {
+        "band": "D2",
+        "score": 5,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+      },
+      "cognitive_demand": {
+        "primary": "EXPLAIN",
+        "secondary": [
+          "JUSTIFY",
+          "APPLY"
+        ],
+        "qrt_cell": "QRT-EXPLAIN-D2"
+      },
+      "qrt_targets": {
+        "X": "expression equality versus function domain",
+        "Y": "conditional cancellation",
+        "Z": "cancel on the original domain then classify extension",
+        "W": "preserving the excluded point"
+      },
+      "cohort_match": "EASIER_THAN_INTENDED_D4"
+    },
+    {
+      "question_id": "ISS52-Q7",
+      "original_identifier": "Q7",
+      "text_sha256": "sha256:7179b2bb8a15301a553bd1f99c95c924a49f9debf9b9e5ecf0c4fb303fa9094a",
+      "stem": "A real polynomial $p$ has degree at most four, satisfies $p(-x)=p(x)$ for every real $x$, and has $p(1)=p(2)=0$ and $p(0)=4$. Classify the following claims as necessary, possible but not necessary, or impossible under these conditions: its degree is two; it has exactly four distinct real zeros; it also has zero $3$; its leading coefficient is $1$; the data determine a unique polynomial. Justify each verdict. Reassess the claims when the degree bound is removed, while all other conditions are retained.",
+      "capability_ref": "CAP-MATH-POLY-BOUNDED-UNBOUNDED-IDENTIFICATION",
+      "answer_status": "CHECKED_BY_EXECUTION_AGENT",
+      "answer": "With degree at most 4, evenness forces roots ±1,±2 and p(0)=4 gives p=(x^2-1)(x^2-4). Thus degree2 impossible, exactly four distinct real zeros necessary, zero3 impossible, leading coefficient1 necessary, and uniqueness necessary. Without the degree bound, p=(x^2-1)(x^2-4)h with even h and h(0)=1; only degree2 remains impossible, while the other bounded conclusions become possible-but-not-necessary or uniqueness becomes false.",
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 0,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+      },
+      "cognitive_demand": {
+        "primary": "SYNTHESIZE",
+        "secondary": [
+          "JUSTIFY"
+        ],
+        "qrt_cell": "QRT-SYNTHESIZE-D3"
+      },
+      "qrt_targets": {
+        "X": "which consequences require the degree bound",
+        "Y": "even-polynomial root symmetry and divisibility",
+        "Z": "solve bounded then parameterize unbounded",
+        "W": "separating necessary from possible claims"
+      },
+      "cohort_match": "EASIER_THAN_INTENDED_D4"
+    },
+    {
+      "question_id": "ISS52-Q8",
+      "original_identifier": "Q8",
+      "text_sha256": "sha256:0618c1769d3974b8366495cfdb2d55b9f40098922efe4d6bd6cf608ce501a500",
+      "stem": "Real polynomials $p$ and $q$ each have degree at most three. They agree at $x=-1,0,1$, but $p(2)-q(2)=12$. Characterise every possible difference polynomial, determine $p(3)-q(3)$, and decide whether the evidence identifies either polynomial individually. Use explicit examples to separate uniqueness of a difference from uniqueness of its two components.",
+      "capability_ref": "CAP-MATH-POLY-DIFFERENCE-IDENTIFICATION",
+      "answer_status": "CHECKED_BY_EXECUTION_AGENT",
+      "answer": "d=p-q has degree at most 3 and roots -1,0,1, so d=kx(x^2-1). d(2)=12 gives k=2 and d(3)=48. p and q are not individually identified: choose any cubic-or-less r and set q=r, p=r+d.",
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+      },
+      "cognitive_demand": {
+        "primary": "SYNTHESIZE",
+        "secondary": [
+          "APPLY",
+          "JUSTIFY"
+        ],
+        "qrt_cell": "QRT-SYNTHESIZE-D2"
+      },
+      "qrt_targets": {
+        "X": "what is identifiable about p-q",
+        "Y": "factor theorem and degree-3 bound",
+        "Z": "factor the difference then construct distinct decompositions",
+        "W": "uniqueness of difference versus components"
+      },
+      "cohort_match": "EASIER_THAN_INTENDED_D4"
+    },
+    {
+      "question_id": "ISS52-Q9",
+      "original_identifier": "Q9",
+      "text_sha256": "sha256:6217d10f7b4a7a1bc454f160878027bbd35060f1b4c580eedda5400d7c6354f2",
+      "stem": "Characterise all monic real polynomials of degree at most four whose distinct real zeros are exactly $-1$ and $1$ and whose value at zero is $1$. Explain how repeated factors and any remaining quadratic factor affect completeness of your list. Prove both that every item in your list works and that no allowed polynomial has been omitted.",
+      "capability_ref": "CAP-MATH-POLY-EXACT-REAL-ZERO-SET",
+      "answer_status": "CHECKED_BY_EXECUTION_AGENT",
+      "answer": "Let multiplicities at 1 and -1 be m,n>=1. With no leftover factor, p(0)=(-1)^m=1, so m is even; degree at most 4 gives (m,n)=(2,1) or (2,2). A leftover monic quadratic can only occur with m=n=1; p(0)=1 then forces constant -1, giving discriminant b^2+4>0 and unwanted real roots. Hence exactly (x-1)^2(x+1) and (x-1)^2(x+1)^2.",
+      "difficulty": {
+        "band": "D4",
+        "score": 8,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 0,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 2,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+      },
+      "cognitive_demand": {
+        "primary": "JUSTIFY",
+        "secondary": [
+          "SYNTHESIZE"
+        ],
+        "qrt_cell": "QRT-JUSTIFY-D4"
+      },
+      "qrt_targets": {
+        "X": "how multiplicities and leftover factors interact with all constraints",
+        "Y": "factor theorem and quadratic real-root test",
+        "Z": "enumerate cases and eliminate the quadratic remainder",
+        "W": "the completeness proof"
+      },
+      "cohort_match": "MATCHES_INTENDED_D4"
+    },
+    {
+      "question_id": "ISS52-Q10",
+      "original_identifier": "Q10",
+      "text_sha256": "sha256:c8e877db99b662cb2ca901cb9ff6acde0ad99db5b2bc06900347d1c7d6671831",
+      "stem": "A solver uses four rules: cancellation makes a rational expression a polynomial on all real numbers; the largest printed exponent is always the degree; a degree-$n$ polynomial has exactly $n$ distinct real zeros; agreement at three inputs proves an identity. Develop a qualified decision procedure and apply it to: $A_t(x)=(t-1)x^3+x^2-1$ with real $t$; $B(x)=(x^2-1)/(x-1)$ on its original domain; $C(x)=(x-2)^2(x^2+1)$; and the pair $D(x)=x^2+1$, $E(x)=x^2+1+x(x-1)(x-2)$ compared at $x=0,1,2$. State the relevant conditions and valid conclusions in each case, then create one fresh counterexample to an unqualified rule. Preserve the difference between expressions, functions, identities and finite observations.",
+      "capability_ref": "CAP-MATH-POLY-QUALIFIED-RULES",
+      "answer_status": "CHECKED_BY_EXECUTION_AGENT",
+      "answer": "Qualified rules: cancellation preserves equality only on the original domain; degree is read after simplification and leading-coefficient parameter checks; a nonzero degree-n polynomial has at most n distinct real zeros; finite agreement proves identity only when the difference has a degree bound smaller than the number of distinct agreement points. Applications: A_t has degree 3 for t≠1 and degree 2 at t=1; B equals x+1 only for x≠1 and its extension fills the hole; C has degree 4 but one distinct real zero x=2 (multiplicity 2); D and E agree at 0,1,2 but differ elsewhere, e.g. E(3)-D(3)=6. Fresh counterexample: (x-3)^2/(x-3), x≠3, cancels to x-3 but the original function has no value/zero at 3.",
+      "difficulty": {
+        "band": "D4",
+        "score": 8,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        },
+        "basis": "Governed five-component estimate; the intended D4 cohort is not pre-adjudication."
+      },
+      "cognitive_demand": {
+        "primary": "SYNTHESIZE",
+        "secondary": [
+          "JUSTIFY",
+          "EXPLAIN"
+        ],
+        "qrt_cell": "QRT-SYNTHESIZE-D4"
+      },
+      "qrt_targets": {
+        "X": "the hidden condition omitted by each shortcut",
+        "Y": "domain, simplified degree, root-count and identity bounds",
+        "Z": "qualify each rule then apply it",
+        "W": "choosing the qualification before algebra"
+      },
+      "cohort_match": "MATCHES_INTENDED_D4"
+    }
+  ],
+  "hardest_target": {
+    "question_ref": "ISS52-Q4",
+    "subconcept": "exhaustive parameter classification from degree-drop, real-root-existence, and root-coincidence events",
+    "demand": "SYNTHESIZE",
+    "band": "D4",
+    "qrt_cell": "QRT-SYNTHESIZE-D4",
+    "learner_relative_state": {
+      "X": "critical parameter events are not yet reliably identified as a complete set",
+      "Y": "routine factorization and simple identities are demonstrated",
+      "Z": "derive event equations and use them to partition parameter space exhaustively",
+      "W": "the event-set/partition decision remains learner-owned in source-question support"
+    },
+    "crux": "Derive every structural change event before sampling parameter cases.",
+    "diagnostic_hypothesis": "A learner may solve a generic branch correctly but omit a degree-drop or collision event, producing a plausible non-exhaustive table.",
+    "interaction": "Use a staged parameter-event map on a changed polynomial family; reveal degree-drop, existence-boundary and collision tests one stage at a time before a fresh application, without exposing Q4-specific event values pre-attempt."
+  }
+}
