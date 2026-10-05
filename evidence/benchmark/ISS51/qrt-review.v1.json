@@ -1,0 +1,1256 @@
+{
+  "schema": "iss51-qrt-review/v1",
+  "status": "AUTHORED_NOT_RENDER_VERIFIED",
+  "repository": "reallaksh19/Grade9v3.5",
+  "issue": 51,
+  "run_id": "ISS51-D3-R1",
+  "round": "POLYNOMIAL-STRESS-V1",
+  "subject": "Mathematics",
+  "grade": 9,
+  "topic": "Polynomials in one real variable",
+  "input_sha256": "b1a2b54b267d765e9f8665787f292c78b61c49a5b306987aa00d6e6440d66fd5",
+  "source_status": "OWNER_SUPPLIED_RAW_INPUT",
+  "authorship": "AI/coordinator-authored benchmark under explicit Owner request; not official exam/PYQ, not authenticated textbook transcription, not personally authored by Owner.",
+  "learner_profile": {
+    "profile_id": "PROFILE-ISS51-POLY-COMPETITION",
+    "provenance": "SIMULATED_OWNER_PRESET",
+    "purpose": "COMPETITION",
+    "demonstrated": [
+      "simple factorisation",
+      "substitution",
+      "introductory factor/remainder theorems",
+      "reading a basic value table"
+    ],
+    "uncertain": [
+      "choosing a route across several conditions",
+      "repeated factors versus distinct zeros",
+      "sign charts",
+      "degree-bounded data sufficiency",
+      "domain of an auxiliary variable"
+    ],
+    "knowledge_percentage": null,
+    "measured_fit_claim": false
+  },
+  "difficulty_band_rule": {
+    "D1": [
+      0,
+      2
+    ],
+    "D2": [
+      3,
+      5
+    ],
+    "D3": [
+      6,
+      7
+    ],
+    "D4": [
+      8,
+      10
+    ]
+  },
+  "qrt_matrix_ref": "Shared/quality/question-demand-matrix.v1.json@91719ad8df2bfc06c6a481590d2e24c510c24835",
+  "qrt_templates_ref": "Shared/quality/question-demand-templates.v1.json@91719ad8df2bfc06c6a481590d2e24c510c24835",
+  "demand_vocabulary_ref": "Shared/vocabularies/cognitive-demand.v1.json@91719ad8df2bfc06c6a481590d2e24c510c24835",
+  "hardest_target": {
+    "question_id": "Q8",
+    "sub_concept": "Degree-bounded polynomial identity via the difference polynomial and the zero-polynomial exception",
+    "primary_demand": "JUSTIFY",
+    "band": "D4",
+    "selection_rule": "maximize concept_model_selection + trap_exception_sensitivity, then total score, representation_translation, reasoning_chain_length, then source order",
+    "rationale": "Q7 and Q8 tie at 4/4 conceptual+exception sensitivity; Q8 total score 9 exceeds Q7 score 8.",
+    "interaction": "Changed degree-one agreement case, staged h=f-g bridge, and commit-before-compare repair probe in Core1A."
+  },
+  "primary_cell_coverage": [
+    "SYNTHESIZE-D2",
+    "SYNTHESIZE-D3",
+    "JUSTIFY-D3",
+    "JUSTIFY-D4",
+    "MODEL-D2",
+    "MODEL-D3",
+    "REPRESENT-D2"
+  ],
+  "missing_primary_cells_note": "Ten supplied instances cover 7 of 28 canonical primary QRT cells. Secondary acts are not counted as primary coverage.",
+  "items": [
+    {
+      "question_id": "Q1",
+      "stable_id": "ISS51-Q1",
+      "template_id": "QRT-SYNTHESIZE-D2",
+      "intended_cohort": "D3",
+      "cohort_match": "EASIER_THAN_COHORT",
+      "competition_extension": false,
+      "difficulty": {
+        "band": "D2",
+        "score": 5,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        }
+      },
+      "demand": {
+        "primary": "SYNTHESIZE",
+        "secondary": []
+      },
+      "verified_answer": "k=0; p(x)=(x-3)(x-2)(x+2); distinct real zeros -2, 2, 3.",
+      "X": "Use the supplied factor only to report x=3 and never determine k or the remaining factors.",
+      "Y": "SIMULATED OWNER PRESET: foundational factorisation/substitution knowledge is demonstrated; named higher-order bridge remains uncertain.",
+      "Y_capability_ref": null,
+      "Z": "Use x-3 to impose p_k(3)=0, then factor the resulting cubic and check the complete product.",
+      "W": "Use x-3 to impose p_k(3)=0, then factor the resulting cubic and check the complete product.",
+      "hints": [
+        "Name which supplied condition should be converted first before doing algebra.",
+        "Use x-3 to impose p_k(3)=0, then factor the resulting cubic and check the complete product.",
+        "Use the original conditions or a second representation to check the result."
+      ],
+      "representation": {
+        "applicability": "NOT_APPLICABLE",
+        "reason": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+      },
+      "misconception": {
+        "M1": "Use the supplied factor only to report x=3 and never determine k or the remaining factors.",
+        "M2": "Use a changed-case probe to separate a held rule error from a one-off slip.",
+        "M3": "A stated factor x-r licenses p(r)=0; after a parameter is fixed, finish and independently verify the whole factorisation."
+      },
+      "repair": {
+        "clarify": "Restate exactly what the condition licenses before calculating.",
+        "connect": "Use x-3 to impose p_k(3)=0, then factor the resulting cubic and check the complete product.",
+        "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+        "rule": "A stated factor x-r licenses p(r)=0; after a parameter is fixed, finish and independently verify the whole factorisation.",
+        "check": "Expanding (x-3)(x-2)(x+2) returns x^3-3x^2-4x+12.",
+        "probe": "If x-4 is a factor of x^3-4x^2+(m-1)x+4m, what equation does substitution at 4 create before you factor the rest?",
+        "pattern": "A stated factor x-r licenses p(r)=0; after a parameter is fixed, finish and independently verify the whole factorisation.",
+        "transfer": "Repeat with a different supplied factor/parameter and expand the final product.",
+        "wrong_idea": "Use the supplied factor only to report x=3 and never determine k or the remaining factors."
+      },
+      "independent_check": "Expanding (x-3)(x-2)(x+2) returns x^3-3x^2-4x+12.",
+      "review": {
+        "H1": {
+          "id": "H1",
+          "verdict": "PASS",
+          "evidence": "First support rung orients without giving the decisive answer."
+        },
+        "H2": {
+          "id": "H2",
+          "verdict": "PASS",
+          "evidence": "Later support adds one bridge at a time and remains method-level."
+        },
+        "H3": {
+          "id": "H3",
+          "verdict": "PASS",
+          "evidence": "Complete working remains post-attempt in the governed solution reveal."
+        },
+        "S1": {
+          "id": "S1",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "S2": {
+          "id": "S2",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "The source item can be attempted symbolically; changed-case teaching carries the useful representation."
+        },
+        "S3": {
+          "id": "S3",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "No decorative source figure is substituted for the learner's requested construction."
+        },
+        "P1": {
+          "id": "P1",
+          "verdict": "PASS",
+          "evidence": "Answer was independently solved from the exact supplied givens and conditions."
+        },
+        "P2": {
+          "id": "P2",
+          "verdict": "PASS",
+          "evidence": "An expansion, substitution, exact-sign or structural second check is recorded."
+        },
+        "P3": {
+          "id": "P3",
+          "verdict": "PASS",
+          "evidence": "Degree/domain/exception conditions are explicit; finite samples are not used as identity proof."
+        },
+        "M1": {
+          "id": "M1",
+          "verdict": "PASS",
+          "evidence": "A concrete tempting wrong route is recorded."
+        },
+        "M2": {
+          "id": "M2",
+          "verdict": "PASS",
+          "evidence": "A changed-case prediction-and-reason probe is used after attempted work; it does not certify mastery."
+        },
+        "M3": {
+          "id": "M3",
+          "verdict": "PASS",
+          "evidence": "Repair states a replacement rule and a fresh transfer application."
+        }
+      },
+      "notes": ""
+    },
+    {
+      "question_id": "Q2",
+      "stable_id": "ISS51-Q2",
+      "template_id": "QRT-JUSTIFY-D3",
+      "intended_cohort": "D3",
+      "cohort_match": "MATCH",
+      "competition_extension": true,
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        }
+      },
+      "demand": {
+        "primary": "JUSTIFY",
+        "secondary": []
+      },
+      "verified_answer": "p(x)=(x-1)^2(x-2); distinct zeros 1 and 2; no sign change at 1; sign change at 2.",
+      "X": "Count (x-1)^2 as two distinct zeros or assume every zero changes sign.",
+      "Y": "SIMULATED OWNER PRESET: foundational factorisation/substitution knowledge is demonstrated; named higher-order bridge remains uncertain.",
+      "Y_capability_ref": null,
+      "Z": "Keep multiplicity visible, separate zero locations from repeated factors, then compare exact signs on both sides.",
+      "W": "Keep multiplicity visible, separate zero locations from repeated factors, then compare exact signs on both sides.",
+      "hints": [
+        "Name which supplied condition should be converted first before doing algebra.",
+        "Keep multiplicity visible, separate zero locations from repeated factors, then compare exact signs on both sides.",
+        "Use the original conditions or a second representation to check the result."
+      ],
+      "representation": {
+        "applicability": "NOT_APPLICABLE",
+        "reason": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+      },
+      "misconception": {
+        "M1": "Count (x-1)^2 as two distinct zeros or assume every zero changes sign.",
+        "M2": "Use a changed-case probe to separate a held rule error from a one-off slip.",
+        "M3": "Even multiplicity preserves sign through the zero; odd multiplicity reverses it."
+      },
+      "repair": {
+        "clarify": "Restate exactly what the condition licenses before calculating.",
+        "connect": "Keep multiplicity visible, separate zero locations from repeated factors, then compare exact signs on both sides.",
+        "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+        "rule": "Even multiplicity preserves sign through the zero; odd multiplicity reverses it.",
+        "check": "p(1/2)=-3/8 and p(3/2)=-1/8; p(5/2)=9/8.",
+        "probe": "For f(x)=(x+2)^2(x-3), predict whether the sign changes at -2 and 3 using exact nearby values.",
+        "pattern": "Even multiplicity preserves sign through the zero; odd multiplicity reverses it.",
+        "transfer": "Apply the same test to (x-4)^3(x+1)^2.",
+        "wrong_idea": "Count (x-1)^2 as two distinct zeros or assume every zero changes sign."
+      },
+      "independent_check": "p(1/2)=-3/8 and p(3/2)=-1/8; p(5/2)=9/8.",
+      "review": {
+        "H1": {
+          "id": "H1",
+          "verdict": "PASS",
+          "evidence": "First support rung orients without giving the decisive answer."
+        },
+        "H2": {
+          "id": "H2",
+          "verdict": "PASS",
+          "evidence": "Later support adds one bridge at a time and remains method-level."
+        },
+        "H3": {
+          "id": "H3",
+          "verdict": "PASS",
+          "evidence": "Complete working remains post-attempt in the governed solution reveal."
+        },
+        "S1": {
+          "id": "S1",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "S2": {
+          "id": "S2",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "The source item can be attempted symbolically; changed-case teaching carries the useful representation."
+        },
+        "S3": {
+          "id": "S3",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "No decorative source figure is substituted for the learner's requested construction."
+        },
+        "P1": {
+          "id": "P1",
+          "verdict": "PASS",
+          "evidence": "Answer was independently solved from the exact supplied givens and conditions."
+        },
+        "P2": {
+          "id": "P2",
+          "verdict": "PASS",
+          "evidence": "An expansion, substitution, exact-sign or structural second check is recorded."
+        },
+        "P3": {
+          "id": "P3",
+          "verdict": "PASS",
+          "evidence": "Degree/domain/exception conditions are explicit; finite samples are not used as identity proof."
+        },
+        "M1": {
+          "id": "M1",
+          "verdict": "PASS",
+          "evidence": "A concrete tempting wrong route is recorded."
+        },
+        "M2": {
+          "id": "M2",
+          "verdict": "PASS",
+          "evidence": "A changed-case prediction-and-reason probe is used after attempted work; it does not certify mastery."
+        },
+        "M3": {
+          "id": "M3",
+          "verdict": "PASS",
+          "evidence": "Repair states a replacement rule and a fresh transfer application."
+        }
+      },
+      "notes": ""
+    },
+    {
+      "question_id": "Q3",
+      "stable_id": "ISS51-Q3",
+      "template_id": "QRT-JUSTIFY-D3",
+      "intended_cohort": "D3",
+      "cohort_match": "MATCH",
+      "competition_extension": false,
+      "difficulty": {
+        "band": "D3",
+        "score": 6,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        }
+      },
+      "demand": {
+        "primary": "JUSTIFY",
+        "secondary": []
+      },
+      "verified_answer": "p(x)=x^2+x+1; therefore p(3)=13, so p(3)=14 is incompatible with the degree-at-most-two bound.",
+      "X": "Treat four exact records as four free fitting conditions while silently retaining degree≤2.",
+      "Y": "SIMULATED OWNER PRESET: foundational factorisation/substitution knowledge is demonstrated; named higher-order bridge remains uncertain.",
+      "Y_capability_ref": null,
+      "Z": "Use the first three records to determine the three coefficients; then treat the fourth record as a consistency test.",
+      "W": "Use the first three records to determine the three coefficients; then treat the fourth record as a consistency test.",
+      "hints": [
+        "Name which supplied condition should be converted first before doing algebra.",
+        "Use the first three records to determine the three coefficients; then treat the fourth record as a consistency test.",
+        "Use the original conditions or a second representation to check the result."
+      ],
+      "representation": {
+        "applicability": "NOT_APPLICABLE",
+        "reason": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+      },
+      "misconception": {
+        "M1": "Treat four exact records as four free fitting conditions while silently retaining degree≤2.",
+        "M2": "Use a changed-case probe to separate a held rule error from a one-off slip.",
+        "M3": "Once the degree-bounded coefficients are fixed, extra records are checks rather than new degrees of freedom."
+      },
+      "repair": {
+        "clarify": "Restate exactly what the condition licenses before calculating.",
+        "connect": "Use the first three records to determine the three coefficients; then treat the fourth record as a consistency test.",
+        "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+        "rule": "Once the degree-bounded coefficients are fixed, extra records are checks rather than new degrees of freedom.",
+        "check": "Substitution verifies 1,3,7 and gives p(3)=13.",
+        "probe": "A degree-at-most-one polynomial has f(0)=2 and f(2)=8. What does it force at x=1, and what would a conflicting record mean?",
+        "pattern": "Once the degree-bounded coefficients are fixed, extra records are checks rather than new degrees of freedom.",
+        "transfer": "Try three exact records for a degree-at-most-one polynomial and identify what must change if the third conflicts.",
+        "wrong_idea": "Treat four exact records as four free fitting conditions while silently retaining degree≤2."
+      },
+      "independent_check": "Substitution verifies 1,3,7 and gives p(3)=13.",
+      "review": {
+        "H1": {
+          "id": "H1",
+          "verdict": "PASS",
+          "evidence": "First support rung orients without giving the decisive answer."
+        },
+        "H2": {
+          "id": "H2",
+          "verdict": "PASS",
+          "evidence": "Later support adds one bridge at a time and remains method-level."
+        },
+        "H3": {
+          "id": "H3",
+          "verdict": "PASS",
+          "evidence": "Complete working remains post-attempt in the governed solution reveal."
+        },
+        "S1": {
+          "id": "S1",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "S2": {
+          "id": "S2",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "The source item can be attempted symbolically; changed-case teaching carries the useful representation."
+        },
+        "S3": {
+          "id": "S3",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "No decorative source figure is substituted for the learner's requested construction."
+        },
+        "P1": {
+          "id": "P1",
+          "verdict": "PASS",
+          "evidence": "Answer was independently solved from the exact supplied givens and conditions."
+        },
+        "P2": {
+          "id": "P2",
+          "verdict": "PASS",
+          "evidence": "An expansion, substitution, exact-sign or structural second check is recorded."
+        },
+        "P3": {
+          "id": "P3",
+          "verdict": "PASS",
+          "evidence": "Degree/domain/exception conditions are explicit; finite samples are not used as identity proof."
+        },
+        "M1": {
+          "id": "M1",
+          "verdict": "PASS",
+          "evidence": "A concrete tempting wrong route is recorded."
+        },
+        "M2": {
+          "id": "M2",
+          "verdict": "PASS",
+          "evidence": "A changed-case prediction-and-reason probe is used after attempted work; it does not certify mastery."
+        },
+        "M3": {
+          "id": "M3",
+          "verdict": "PASS",
+          "evidence": "Repair states a replacement rule and a fresh transfer application."
+        }
+      },
+      "notes": ""
+    },
+    {
+      "question_id": "Q4",
+      "stable_id": "ISS51-Q4",
+      "template_id": "QRT-MODEL-D2",
+      "intended_cohort": "D3",
+      "cohort_match": "EASIER_THAN_COHORT",
+      "competition_extension": false,
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 0,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        }
+      },
+      "demand": {
+        "primary": "MODEL",
+        "secondary": []
+      },
+      "verified_answer": "A(x)=(x+4)(x+2)-x^2=6x+8 for x>0; at x=1 both routes give 14 cm^2.",
+      "X": "Assume two quadratic component areas must leave a quadratic result.",
+      "Y": "SIMULATED OWNER PRESET: foundational factorisation/substitution knowledge is demonstrated; named higher-order bridge remains uncertain.",
+      "Y_capability_ref": null,
+      "Z": "Translate whole area and cut-out area separately; simplify only after the physical subtraction is correct.",
+      "W": "Translate whole area and cut-out area separately; simplify only after the physical subtraction is correct.",
+      "hints": [
+        "Name which supplied condition should be converted first before doing algebra.",
+        "Translate whole area and cut-out area separately; simplify only after the physical subtraction is correct.",
+        "Use the original conditions or a second representation to check the result."
+      ],
+      "representation": {
+        "applicability": "NOT_APPLICABLE",
+        "reason": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+      },
+      "misconception": {
+        "M1": "Assume two quadratic component areas must leave a quadratic result.",
+        "M2": "Use a changed-case probe to separate a held rule error from a one-off slip.",
+        "M3": "Leading terms can cancel exactly when component polynomials are combined."
+      },
+      "repair": {
+        "clarify": "Restate exactly what the condition licenses before calculating.",
+        "connect": "Translate whole area and cut-out area separately; simplify only after the physical subtraction is correct.",
+        "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+        "rule": "Leading terms can cancel exactly when component polynomials are combined.",
+        "check": "At x=1, 15-1=14=6(1)+8.",
+        "probe": "A frame has outer area (x+5)(x+1) and an x-by-x cut-out. Predict the degree after simplification.",
+        "pattern": "Leading terms can cancel exactly when component polynomials are combined.",
+        "transfer": "Construct one changed cut-out where the x^2 terms cancel and one where they do not.",
+        "wrong_idea": "Assume two quadratic component areas must leave a quadratic result."
+      },
+      "independent_check": "At x=1, 15-1=14=6(1)+8.",
+      "review": {
+        "H1": {
+          "id": "H1",
+          "verdict": "PASS",
+          "evidence": "First support rung orients without giving the decisive answer."
+        },
+        "H2": {
+          "id": "H2",
+          "verdict": "PASS",
+          "evidence": "Later support adds one bridge at a time and remains method-level."
+        },
+        "H3": {
+          "id": "H3",
+          "verdict": "PASS",
+          "evidence": "Complete working remains post-attempt in the governed solution reveal."
+        },
+        "S1": {
+          "id": "S1",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "S2": {
+          "id": "S2",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "The source item can be attempted symbolically; changed-case teaching carries the useful representation."
+        },
+        "S3": {
+          "id": "S3",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "No decorative source figure is substituted for the learner's requested construction."
+        },
+        "P1": {
+          "id": "P1",
+          "verdict": "PASS",
+          "evidence": "Answer was independently solved from the exact supplied givens and conditions."
+        },
+        "P2": {
+          "id": "P2",
+          "verdict": "PASS",
+          "evidence": "An expansion, substitution, exact-sign or structural second check is recorded."
+        },
+        "P3": {
+          "id": "P3",
+          "verdict": "PASS",
+          "evidence": "Degree/domain/exception conditions are explicit; finite samples are not used as identity proof."
+        },
+        "M1": {
+          "id": "M1",
+          "verdict": "PASS",
+          "evidence": "A concrete tempting wrong route is recorded."
+        },
+        "M2": {
+          "id": "M2",
+          "verdict": "PASS",
+          "evidence": "A changed-case prediction-and-reason probe is used after attempted work; it does not certify mastery."
+        },
+        "M3": {
+          "id": "M3",
+          "verdict": "PASS",
+          "evidence": "Repair states a replacement rule and a fresh transfer application."
+        }
+      },
+      "notes": ""
+    },
+    {
+      "question_id": "Q5",
+      "stable_id": "ISS51-Q5",
+      "template_id": "QRT-REPRESENT-D2",
+      "intended_cohort": "D3",
+      "cohort_match": "EASIER_THAN_COHORT",
+      "competition_extension": false,
+      "difficulty": {
+        "band": "D2",
+        "score": 5,
+        "components": {
+          "concept_model_selection": 0,
+          "representation_translation": 2,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        }
+      },
+      "demand": {
+        "primary": "REPRESENT",
+        "secondary": []
+      },
+      "verified_answer": "p(x)=(x-1)(x-2)(x-3); signs are -,0,+,0,-,0,+ across the ordered intervals/zeros.",
+      "X": "Sketch a cubic from memory and read signs from the shape without verifying factors.",
+      "Y": "SIMULATED OWNER PRESET: foundational factorisation/substitution knowledge is demonstrated; named higher-order bridge remains uncertain.",
+      "Y_capability_ref": null,
+      "Z": "Partition the real line at 1,2,3 and multiply the signs of the individual factors on each interval.",
+      "W": "Partition the real line at 1,2,3 and multiply the signs of the individual factors on each interval.",
+      "hints": [
+        "Name which supplied condition should be converted first before doing algebra.",
+        "Partition the real line at 1,2,3 and multiply the signs of the individual factors on each interval.",
+        "Use the original conditions or a second representation to check the result."
+      ],
+      "representation": {
+        "applicability": "NOT_APPLICABLE",
+        "reason": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+      },
+      "misconception": {
+        "M1": "Sketch a cubic from memory and read signs from the shape without verifying factors.",
+        "M2": "Use a changed-case probe to separate a held rule error from a one-off slip.",
+        "M3": "Each interval sign is the product of the factor signs; zeros are separate boundary entries."
+      },
+      "repair": {
+        "clarify": "Restate exactly what the condition licenses before calculating.",
+        "connect": "Partition the real line at 1,2,3 and multiply the signs of the individual factors on each interval.",
+        "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+        "rule": "Each interval sign is the product of the factor signs; zeros are separate boundary entries.",
+        "check": "Exact tests at 0,3/2,5/2,4 give -,+,-,+.",
+        "probe": "For g(x)=(x+1)(x-2)(x-5), build only the factor-sign rows before drawing anything.",
+        "pattern": "Each interval sign is the product of the factor signs; zeros are separate boundary entries.",
+        "transfer": "Repeat with one squared factor and compare the sign behaviour at that zero.",
+        "wrong_idea": "Sketch a cubic from memory and read signs from the shape without verifying factors."
+      },
+      "independent_check": "Exact tests at 0,3/2,5/2,4 give -,+,-,+.",
+      "review": {
+        "H1": {
+          "id": "H1",
+          "verdict": "PASS",
+          "evidence": "First support rung orients without giving the decisive answer."
+        },
+        "H2": {
+          "id": "H2",
+          "verdict": "PASS",
+          "evidence": "Later support adds one bridge at a time and remains method-level."
+        },
+        "H3": {
+          "id": "H3",
+          "verdict": "PASS",
+          "evidence": "Complete working remains post-attempt in the governed solution reveal."
+        },
+        "S1": {
+          "id": "S1",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "S2": {
+          "id": "S2",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "The source item can be attempted symbolically; changed-case teaching carries the useful representation."
+        },
+        "S3": {
+          "id": "S3",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "No decorative source figure is substituted for the learner's requested construction."
+        },
+        "P1": {
+          "id": "P1",
+          "verdict": "PASS",
+          "evidence": "Answer was independently solved from the exact supplied givens and conditions."
+        },
+        "P2": {
+          "id": "P2",
+          "verdict": "PASS",
+          "evidence": "An expansion, substitution, exact-sign or structural second check is recorded."
+        },
+        "P3": {
+          "id": "P3",
+          "verdict": "PASS",
+          "evidence": "Degree/domain/exception conditions are explicit; finite samples are not used as identity proof."
+        },
+        "M1": {
+          "id": "M1",
+          "verdict": "PASS",
+          "evidence": "A concrete tempting wrong route is recorded."
+        },
+        "M2": {
+          "id": "M2",
+          "verdict": "PASS",
+          "evidence": "A changed-case prediction-and-reason probe is used after attempted work; it does not certify mastery."
+        },
+        "M3": {
+          "id": "M3",
+          "verdict": "PASS",
+          "evidence": "Repair states a replacement rule and a fresh transfer application."
+        }
+      },
+      "notes": ""
+    },
+    {
+      "question_id": "Q6",
+      "stable_id": "ISS51-Q6",
+      "template_id": "QRT-SYNTHESIZE-D3",
+      "intended_cohort": "D3",
+      "cohort_match": "MATCH",
+      "competition_extension": false,
+      "difficulty": {
+        "band": "D3",
+        "score": 6,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        }
+      },
+      "demand": {
+        "primary": "SYNTHESIZE",
+        "secondary": []
+      },
+      "verified_answer": "p(x)=x(x-1)(x+1)=x^3-x.",
+      "X": "Assume the third zero is 0 merely because ±1 are symmetric.",
+      "Y": "SIMULATED OWNER PRESET: foundational factorisation/substitution knowledge is demonstrated; named higher-order bridge remains uncertain.",
+      "Y_capability_ref": null,
+      "Z": "Use the two forced factors and monicity, keep one unknown linear factor, then use p(2)=6.",
+      "W": "Use the two forced factors and monicity, keep one unknown linear factor, then use p(2)=6.",
+      "hints": [
+        "Name which supplied condition should be converted first before doing algebra.",
+        "Use the two forced factors and monicity, keep one unknown linear factor, then use p(2)=6.",
+        "Use the original conditions or a second representation to check the result."
+      ],
+      "representation": {
+        "applicability": "NOT_APPLICABLE",
+        "reason": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+      },
+      "misconception": {
+        "M1": "Assume the third zero is 0 merely because ±1 are symmetric.",
+        "M2": "Use a changed-case probe to separate a held rule error from a one-off slip.",
+        "M3": "Known zeros determine factors; an unfixed cubic factor still needs the extra condition."
+      },
+      "repair": {
+        "clarify": "Restate exactly what the condition licenses before calculating.",
+        "connect": "Use the two forced factors and monicity, keep one unknown linear factor, then use p(2)=6.",
+        "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+        "rule": "Known zeros determine factors; an unfixed cubic factor still needs the extra condition.",
+        "check": "x^3-x gives p(1)=0, p(-1)=0 and p(2)=6.",
+        "probe": "A monic cubic has zeros ±2 and f(3)=15. Determine the remaining factor instead of guessing it.",
+        "pattern": "Known zeros determine factors; an unfixed cubic factor still needs the extra condition.",
+        "transfer": "Repeat with two different roots and one function value, then verify by expansion.",
+        "wrong_idea": "Assume the third zero is 0 merely because ±1 are symmetric."
+      },
+      "independent_check": "x^3-x gives p(1)=0, p(-1)=0 and p(2)=6.",
+      "review": {
+        "H1": {
+          "id": "H1",
+          "verdict": "PASS",
+          "evidence": "First support rung orients without giving the decisive answer."
+        },
+        "H2": {
+          "id": "H2",
+          "verdict": "PASS",
+          "evidence": "Later support adds one bridge at a time and remains method-level."
+        },
+        "H3": {
+          "id": "H3",
+          "verdict": "PASS",
+          "evidence": "Complete working remains post-attempt in the governed solution reveal."
+        },
+        "S1": {
+          "id": "S1",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "S2": {
+          "id": "S2",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "The source item can be attempted symbolically; changed-case teaching carries the useful representation."
+        },
+        "S3": {
+          "id": "S3",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "No decorative source figure is substituted for the learner's requested construction."
+        },
+        "P1": {
+          "id": "P1",
+          "verdict": "PASS",
+          "evidence": "Answer was independently solved from the exact supplied givens and conditions."
+        },
+        "P2": {
+          "id": "P2",
+          "verdict": "PASS",
+          "evidence": "An expansion, substitution, exact-sign or structural second check is recorded."
+        },
+        "P3": {
+          "id": "P3",
+          "verdict": "PASS",
+          "evidence": "Degree/domain/exception conditions are explicit; finite samples are not used as identity proof."
+        },
+        "M1": {
+          "id": "M1",
+          "verdict": "PASS",
+          "evidence": "A concrete tempting wrong route is recorded."
+        },
+        "M2": {
+          "id": "M2",
+          "verdict": "PASS",
+          "evidence": "A changed-case prediction-and-reason probe is used after attempted work; it does not certify mastery."
+        },
+        "M3": {
+          "id": "M3",
+          "verdict": "PASS",
+          "evidence": "Repair states a replacement rule and a fresh transfer application."
+        }
+      },
+      "notes": ""
+    },
+    {
+      "question_id": "Q7",
+      "stable_id": "ISS51-Q7",
+      "template_id": "QRT-JUSTIFY-D4",
+      "intended_cohort": "D3",
+      "cohort_match": "HARDER_THAN_COHORT",
+      "competition_extension": false,
+      "difficulty": {
+        "band": "D4",
+        "score": 8,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        }
+      },
+      "demand": {
+        "primary": "JUSTIFY",
+        "secondary": []
+      },
+      "verified_answer": "Only p(x)=(x^2-1)r(x) follows, for a nonzero real polynomial r. Counterexample: (x^2-1)(x+2). Adding deg p≤2 forces r to be a nonzero constant.",
+      "X": "Jump from two known zeros directly to equality with a quadratic.",
+      "Y": "SIMULATED OWNER PRESET: foundational factorisation/substitution knowledge is demonstrated; named higher-order bridge remains uncertain.",
+      "Y_capability_ref": null,
+      "Z": "Separate divisibility from equality, falsify the stronger claim with a higher-degree example, then identify the missing degree bound.",
+      "W": "Separate divisibility from equality, falsify the stronger claim with a higher-degree example, then identify the missing degree bound.",
+      "hints": [
+        "Name which supplied condition should be converted first before doing algebra.",
+        "Separate divisibility from equality, falsify the stronger claim with a higher-degree example, then identify the missing degree bound.",
+        "Use the original conditions or a second representation to check the result."
+      ],
+      "representation": {
+        "applicability": "NOT_APPLICABLE",
+        "reason": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+      },
+      "misconception": {
+        "M1": "Jump from two known zeros directly to equality with a quadratic.",
+        "M2": "Use a changed-case probe to separate a held rule error from a one-off slip.",
+        "M3": "Known distinct zeros force corresponding factors; they do not cap the degree."
+      },
+      "repair": {
+        "clarify": "Restate exactly what the condition licenses before calculating.",
+        "connect": "Separate divisibility from equality, falsify the stronger claim with a higher-degree example, then identify the missing degree bound.",
+        "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+        "rule": "Known distinct zeros force corresponding factors; they do not cap the degree.",
+        "check": "The counterexample expands to x^3+2x^2-x-2 and is not a constant multiple of x^2-1.",
+        "probe": "If a nonzero polynomial has zeros 0 and 2, state the strongest factor conclusion without a degree bound and give a cubic counterexample.",
+        "pattern": "Known distinct zeros force corresponding factors; they do not cap the degree.",
+        "transfer": "Generalize to three prescribed zeros and state the degree bound that forces a constant multiple.",
+        "wrong_idea": "Jump from two known zeros directly to equality with a quadratic."
+      },
+      "independent_check": "The counterexample expands to x^3+2x^2-x-2 and is not a constant multiple of x^2-1.",
+      "review": {
+        "H1": {
+          "id": "H1",
+          "verdict": "PASS",
+          "evidence": "First support rung orients without giving the decisive answer."
+        },
+        "H2": {
+          "id": "H2",
+          "verdict": "PASS",
+          "evidence": "Later support adds one bridge at a time and remains method-level."
+        },
+        "H3": {
+          "id": "H3",
+          "verdict": "PASS",
+          "evidence": "Complete working remains post-attempt in the governed solution reveal."
+        },
+        "S1": {
+          "id": "S1",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "S2": {
+          "id": "S2",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "The source item can be attempted symbolically; changed-case teaching carries the useful representation."
+        },
+        "S3": {
+          "id": "S3",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "No decorative source figure is substituted for the learner's requested construction."
+        },
+        "P1": {
+          "id": "P1",
+          "verdict": "PASS",
+          "evidence": "Answer was independently solved from the exact supplied givens and conditions."
+        },
+        "P2": {
+          "id": "P2",
+          "verdict": "PASS",
+          "evidence": "An expansion, substitution, exact-sign or structural second check is recorded."
+        },
+        "P3": {
+          "id": "P3",
+          "verdict": "PASS",
+          "evidence": "Degree/domain/exception conditions are explicit; finite samples are not used as identity proof."
+        },
+        "M1": {
+          "id": "M1",
+          "verdict": "PASS",
+          "evidence": "A concrete tempting wrong route is recorded."
+        },
+        "M2": {
+          "id": "M2",
+          "verdict": "PASS",
+          "evidence": "A changed-case prediction-and-reason probe is used after attempted work; it does not certify mastery."
+        },
+        "M3": {
+          "id": "M3",
+          "verdict": "PASS",
+          "evidence": "Repair states a replacement rule and a fresh transfer application."
+        }
+      },
+      "notes": ""
+    },
+    {
+      "question_id": "Q8",
+      "stable_id": "ISS51-Q8",
+      "template_id": "QRT-JUSTIFY-D4",
+      "intended_cohort": "D3",
+      "cohort_match": "HARDER_THAN_COHORT",
+      "competition_extension": true,
+      "difficulty": {
+        "band": "D4",
+        "score": 9,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 2,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 2
+        }
+      },
+      "demand": {
+        "primary": "JUSTIFY",
+        "secondary": []
+      },
+      "verified_answer": "True. Let r=p-q. Then deg r≤2 and the three agreement inputs are three distinct zeros. If r were nonzero this contradicts the root bound; hence r is the zero polynomial and p=q everywhere.",
+      "X": "Say every degree-at-most-two polynomial has at most two zeros, thereby falsely excluding the zero polynomial.",
+      "Y": "SIMULATED OWNER PRESET: foundational factorisation/substitution knowledge is demonstrated; named higher-order bridge remains uncertain.",
+      "Y_capability_ref": null,
+      "Z": "Construct r=p-q so equality becomes zero information; invoke the root bound only under a nonzero assumption; then interpret the zero-polynomial case.",
+      "W": "Construct r=p-q so equality becomes zero information; invoke the root bound only under a nonzero assumption; then interpret the zero-polynomial case.",
+      "hints": [
+        "Translate each agreement p(t)=q(t) into a statement about p(t)-q(t).",
+        "Construct r=p-q so equality becomes zero information; invoke the root bound only under a nonzero assumption; then interpret the zero-polynomial case.",
+        "Before using the root bound, state the hypothesis it requires about the difference polynomial."
+      ],
+      "representation": {
+        "applicability": "NOT_APPLICABLE",
+        "reason": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+      },
+      "misconception": {
+        "M1": "Say every degree-at-most-two polynomial has at most two zeros, thereby falsely excluding the zero polynomial.",
+        "M2": "Use a changed-case probe to separate a held rule error from a one-off slip.",
+        "M3": "Convert agreement to zeros of a difference polynomial, apply the zero bound conditionally on nonzero, then interpret h≡0."
+      },
+      "repair": {
+        "clarify": "Restate exactly what the condition licenses before calculating.",
+        "connect": "Construct r=p-q so equality becomes zero information; invoke the root bound only under a nonzero assumption; then interpret the zero-polynomial case.",
+        "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+        "rule": "Convert agreement to zeros of a difference polynomial, apply the zero bound conditionally on nonzero, then interpret h≡0.",
+        "check": "The proof is global: three r-zeros plus deg r≤2 contradict nonzero r; no extra sampling is used.",
+        "probe": "Suppose f,g have degree at most one and agree at two distinct inputs. Let h=f-g and predict whether h can be nonzero.",
+        "pattern": "Convert agreement to zeros of a difference polynomial, apply the zero bound conditionally on nonzero, then interpret h≡0.",
+        "transfer": "Use the same method for degree at most three with four agreement inputs.",
+        "wrong_idea": "Say every degree-at-most-two polynomial has at most two zeros, thereby falsely excluding the zero polynomial."
+      },
+      "independent_check": "The proof is global: three r-zeros plus deg r≤2 contradict nonzero r; no extra sampling is used.",
+      "review": {
+        "H1": {
+          "id": "H1",
+          "verdict": "PASS",
+          "evidence": "First support rung orients without giving the decisive answer."
+        },
+        "H2": {
+          "id": "H2",
+          "verdict": "PASS",
+          "evidence": "Later support adds one bridge at a time and remains method-level."
+        },
+        "H3": {
+          "id": "H3",
+          "verdict": "PASS",
+          "evidence": "Complete working remains post-attempt in the governed solution reveal."
+        },
+        "S1": {
+          "id": "S1",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "S2": {
+          "id": "S2",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "The source item can be attempted symbolically; changed-case teaching carries the useful representation."
+        },
+        "S3": {
+          "id": "S3",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "No decorative source figure is substituted for the learner's requested construction."
+        },
+        "P1": {
+          "id": "P1",
+          "verdict": "PASS",
+          "evidence": "Answer was independently solved from the exact supplied givens and conditions."
+        },
+        "P2": {
+          "id": "P2",
+          "verdict": "PASS",
+          "evidence": "An expansion, substitution, exact-sign or structural second check is recorded."
+        },
+        "P3": {
+          "id": "P3",
+          "verdict": "PASS",
+          "evidence": "Degree/domain/exception conditions are explicit; finite samples are not used as identity proof."
+        },
+        "M1": {
+          "id": "M1",
+          "verdict": "PASS",
+          "evidence": "A concrete tempting wrong route is recorded."
+        },
+        "M2": {
+          "id": "M2",
+          "verdict": "PASS",
+          "evidence": "A changed-case prediction-and-reason probe is used after attempted work; it does not certify mastery."
+        },
+        "M3": {
+          "id": "M3",
+          "verdict": "PASS",
+          "evidence": "Repair states a replacement rule and a fresh transfer application."
+        }
+      },
+      "notes": "Hardest target by repository toughest_concept rule: conceptual score 4 ties Q7, then total score 9 beats Q7 score 8."
+    },
+    {
+      "question_id": "Q9",
+      "stable_id": "ISS51-Q9",
+      "template_id": "QRT-SYNTHESIZE-D2",
+      "intended_cohort": "D3",
+      "cohort_match": "EASIER_THAN_COHORT",
+      "competition_extension": false,
+      "difficulty": {
+        "band": "D2",
+        "score": 5,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        }
+      },
+      "demand": {
+        "primary": "SYNTHESIZE",
+        "secondary": []
+      },
+      "verified_answer": "1 is a zero iff a=1; degree<3 iff a=1; at a=1 the polynomial is 2x^2-2x, so the family is never the zero polynomial.",
+      "X": "Set the leading coefficient to zero and conclude the whole polynomial is zero.",
+      "Y": "SIMULATED OWNER PRESET: foundational factorisation/substitution knowledge is demonstrated; named higher-order bridge remains uncertain.",
+      "Y_capability_ref": null,
+      "Z": "Solve the root condition by evaluation, the degree condition by the leading coefficient, then compare them and inspect all coefficients.",
+      "W": "Solve the root condition by evaluation, the degree condition by the leading coefficient, then compare them and inspect all coefficients.",
+      "hints": [
+        "Name which supplied condition should be converted first before doing algebra.",
+        "Solve the root condition by evaluation, the degree condition by the leading coefficient, then compare them and inspect all coefficients.",
+        "Use the original conditions or a second representation to check the result."
+      ],
+      "representation": {
+        "applicability": "NOT_APPLICABLE",
+        "reason": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+      },
+      "misconception": {
+        "M1": "Set the leading coefficient to zero and conclude the whole polynomial is zero.",
+        "M2": "Use a changed-case probe to separate a held rule error from a one-off slip.",
+        "M3": "Degree drop kills only the leading coefficient; the zero polynomial requires every coefficient to vanish."
+      },
+      "repair": {
+        "clarify": "Restate exactly what the condition licenses before calculating.",
+        "connect": "Solve the root condition by evaluation, the degree condition by the leading coefficient, then compare them and inspect all coefficients.",
+        "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+        "rule": "Degree drop kills only the leading coefficient; the zero polynomial requires every coefficient to vanish.",
+        "check": "At a=1, 2x^2-2x is nonzero; moreover the x coefficient is always -2.",
+        "probe": "For f_b=(b-2)x^3+(b+2)x^2+5x, compare degree<3 with the stronger zero-polynomial condition.",
+        "pattern": "Degree drop kills only the leading coefficient; the zero polynomial requires every coefficient to vanish.",
+        "transfer": "Create a family where the root and degree-drop conditions do not coincide.",
+        "wrong_idea": "Set the leading coefficient to zero and conclude the whole polynomial is zero."
+      },
+      "independent_check": "At a=1, 2x^2-2x is nonzero; moreover the x coefficient is always -2.",
+      "review": {
+        "H1": {
+          "id": "H1",
+          "verdict": "PASS",
+          "evidence": "First support rung orients without giving the decisive answer."
+        },
+        "H2": {
+          "id": "H2",
+          "verdict": "PASS",
+          "evidence": "Later support adds one bridge at a time and remains method-level."
+        },
+        "H3": {
+          "id": "H3",
+          "verdict": "PASS",
+          "evidence": "Complete working remains post-attempt in the governed solution reveal."
+        },
+        "S1": {
+          "id": "S1",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "S2": {
+          "id": "S2",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "The source item can be attempted symbolically; changed-case teaching carries the useful representation."
+        },
+        "S3": {
+          "id": "S3",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "No decorative source figure is substituted for the learner's requested construction."
+        },
+        "P1": {
+          "id": "P1",
+          "verdict": "PASS",
+          "evidence": "Answer was independently solved from the exact supplied givens and conditions."
+        },
+        "P2": {
+          "id": "P2",
+          "verdict": "PASS",
+          "evidence": "An expansion, substitution, exact-sign or structural second check is recorded."
+        },
+        "P3": {
+          "id": "P3",
+          "verdict": "PASS",
+          "evidence": "Degree/domain/exception conditions are explicit; finite samples are not used as identity proof."
+        },
+        "M1": {
+          "id": "M1",
+          "verdict": "PASS",
+          "evidence": "A concrete tempting wrong route is recorded."
+        },
+        "M2": {
+          "id": "M2",
+          "verdict": "PASS",
+          "evidence": "A changed-case prediction-and-reason probe is used after attempted work; it does not certify mastery."
+        },
+        "M3": {
+          "id": "M3",
+          "verdict": "PASS",
+          "evidence": "Repair states a replacement rule and a fresh transfer application."
+        }
+      },
+      "notes": ""
+    },
+    {
+      "question_id": "Q10",
+      "stable_id": "ISS51-Q10",
+      "template_id": "QRT-MODEL-D3",
+      "intended_cohort": "D3",
+      "cohort_match": "MATCH",
+      "competition_extension": true,
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 2,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        }
+      },
+      "demand": {
+        "primary": "MODEL",
+        "secondary": []
+      },
+      "verified_answer": "For p the real zeros are -2,-1,1,2. For q there are no real zeros. With y=x^2, y≥0; q gives y=-2, which is inadmissible.",
+      "X": "Treat y as unrestricted real and accept y=-2 for q.",
+      "Y": "SIMULATED OWNER PRESET: foundational factorisation/substitution knowledge is demonstrated; named higher-order bridge remains uncertain.",
+      "Y_capability_ref": null,
+      "Z": "Set y=x^2 and carry y≥0 through solving, filtering and mapping back to real x.",
+      "W": "Set y=x^2 and carry y≥0 through solving, filtering and mapping back to real x.",
+      "hints": [
+        "Name which supplied condition should be converted first before doing algebra.",
+        "Set y=x^2 and carry y≥0 through solving, filtering and mapping back to real x.",
+        "Use the original conditions or a second representation to check the result."
+      ],
+      "representation": {
+        "applicability": "NOT_APPLICABLE",
+        "reason": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+      },
+      "misconception": {
+        "M1": "Treat y as unrestricted real and accept y=-2 for q.",
+        "M2": "Use a changed-case probe to separate a held rule error from a one-off slip.",
+        "M3": "An auxiliary substitution inherits its image/domain; roots outside it do not correspond to admissible original-variable solutions."
+      },
+      "repair": {
+        "clarify": "Restate exactly what the condition licenses before calculating.",
+        "connect": "Set y=x^2 and carry y≥0 through solving, filtering and mapping back to real x.",
+        "way": "Use a changed case that preserves the same bridge while changing the numbers or degree.",
+        "rule": "An auxiliary substitution inherits its image/domain; roots outside it do not correspond to admissible original-variable solutions.",
+        "check": "p(±1)=p(±2)=0; independently q=(x^2+2)^2>0 for all real x.",
+        "probe": "For r=x^4+3x^2-4, set y=x^2, list y-roots first, then filter by the real-x image.",
+        "pattern": "An auxiliary substitution inherits its image/domain; roots outside it do not correspond to admissible original-variable solutions.",
+        "transfer": "Try y=x^2 on x^4+x^2+1=0 and explain the real-zero conclusion.",
+        "wrong_idea": "Treat y as unrestricted real and accept y=-2 for q."
+      },
+      "independent_check": "p(±1)=p(±2)=0; independently q=(x^2+2)^2>0 for all real x.",
+      "review": {
+        "H1": {
+          "id": "H1",
+          "verdict": "PASS",
+          "evidence": "First support rung orients without giving the decisive answer."
+        },
+        "H2": {
+          "id": "H2",
+          "verdict": "PASS",
+          "evidence": "Later support adds one bridge at a time and remains method-level."
+        },
+        "H3": {
+          "id": "H3",
+          "verdict": "PASS",
+          "evidence": "Complete working remains post-attempt in the governed solution reveal."
+        },
+        "S1": {
+          "id": "S1",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "A Core2 pre-attempt diagram would be decorative or would disclose a requested decision; the reusable representation is taught on a changed case in Core1A."
+        },
+        "S2": {
+          "id": "S2",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "The source item can be attempted symbolically; changed-case teaching carries the useful representation."
+        },
+        "S3": {
+          "id": "S3",
+          "verdict": "WAIVED_NOT_APPLICABLE",
+          "evidence": "No decorative source figure is substituted for the learner's requested construction."
+        },
+        "P1": {
+          "id": "P1",
+          "verdict": "PASS",
+          "evidence": "Answer was independently solved from the exact supplied givens and conditions."
+        },
+        "P2": {
+          "id": "P2",
+          "verdict": "PASS",
+          "evidence": "An expansion, substitution, exact-sign or structural second check is recorded."
+        },
+        "P3": {
+          "id": "P3",
+          "verdict": "PASS",
+          "evidence": "Degree/domain/exception conditions are explicit; finite samples are not used as identity proof."
+        },
+        "M1": {
+          "id": "M1",
+          "verdict": "PASS",
+          "evidence": "A concrete tempting wrong route is recorded."
+        },
+        "M2": {
+          "id": "M2",
+          "verdict": "PASS",
+          "evidence": "A changed-case prediction-and-reason probe is used after attempted work; it does not certify mastery."
+        },
+        "M3": {
+          "id": "M3",
+          "verdict": "PASS",
+          "evidence": "Repair states a replacement rule and a fresh transfer application."
+        }
+      },
+      "notes": ""
+    }
+  ]
+}
