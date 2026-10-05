@@ -1,6 +1,7 @@
 # ISS50 Candidate Review — Execution-Agent Handoff
 
 **Issue:** #50  
+**Candidate PR:** [#63](https://github.com/reallaksh19/Grade9v3.5/pull/63)  
 **Round:** POLYNOMIAL-STRESS-V1  
 **Launch commit:** `91719ad8df2bfc06c6a481590d2e24c510c24835`  
 **Academic/input head:** `df528411b244b924447a675a2deadb3032a2e32b`  
