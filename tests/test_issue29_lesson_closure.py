@@ -73,6 +73,7 @@ class LessonClosure(unittest.TestCase):
         m.setdefault('extensions',{})['grade9v3:question_repairs']=[repair]
         html=render_core.core1a(ctx,m)
         self.assertIn('data-g9-alignment-probe',html)
+        self.assertNotIn('Look along the fixed C-N axis.',html)
         self.assertNotIn('href="core2.html#'+question['id']+'"',html)
         self.assertNotIn('AUTHOR_LEARNING_REPAIR',[g['duty'] for g in ctx.gaps])
         foreign=copy.deepcopy(question);foreign['id']='FOREIGN-WORKED-PROBE'
@@ -90,4 +91,3 @@ class LessonClosure(unittest.TestCase):
             problems=render_core.pdf_publication_problems(folder)
             self.assertTrue(any('links core1a.pdf, which is not there' in p for p in problems), problems)
 if __name__=='__main__':unittest.main()
-

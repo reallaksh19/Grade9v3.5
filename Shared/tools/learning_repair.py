@@ -71,13 +71,13 @@ def card(repair, question_id, role='CORE2', return_href=None):
 def alignment_probe(prefix):
     """End-on projection: rotate a test direction about a fixed reference axis.
 
-    The toy energy family demonstrates non-uniqueness; it is never a formamide calculation.
+    The toy energy family demonstrates non-uniqueness; it is not a physical energy calculation.
     """
     p=escape(prefix,quote=True)
     return (f'<section data-g9-alignment-probe><h4>Keep alignment separate from total energy</h4>'
-      '<p>Look along the fixed C-N axis. The two centres project to the same origin. '
-      'The solid donor direction turns relative to the dashed carbonyl direction. '
-      'This is a direction diagram, not a measured orbital or overlap integral.</p>'
+      '<p>Look along the fixed reference axis. The two centres project to the same origin. '
+      'The solid test direction turns relative to the dashed reference direction. '
+      'This is a direction diagram, not a measured field or coupling integral.</p>'
       f'<label for="{p}-theta">Relative angle θ (degrees)</label><input id="{p}-theta" data-g9-theta type="range" min="0" max="90" step="15" value="0">'
       f'<label for="{p}-other">Independent toy energy contribution c</label><input id="{p}-other" data-g9-other type="range" min="-2" max="2" step="0.5" value="0">'
       '<svg viewBox="0 0 360 360" role="img" aria-label="Relative direction comparator">'
