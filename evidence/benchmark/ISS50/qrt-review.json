@@ -626,6 +626,26 @@
     "band": "D3",
     "score": 7,
     "learner_relative_reason": "The simulated preset is uncertain about parameter cancellation and zero-polynomial boundaries; Q10 also requires checking the hypothesis of the usual zero bound.",
-    "interaction": "Core1A uses a four-stage parameter branch construction and a changed-case prediction/compare repair with h_b(x)=b(x-2)^2."
+    "interaction": "Core1A uses a four-stage parameter branch construction and a changed-case prediction/compare repair with h_b(x)=b(x-2)^2.",
+    "interaction_evidence": {
+      "core1a_representation": "REP-MATH-POLY-PARAMETER-BRANCH",
+      "construction_ref": "CU-MATH-POLY-EXCEPTION",
+      "repair_target": "repair-ISS50-Q10",
+      "changed_case": "h_b(x)=b(x-2)^2",
+      "commit_before_compare": true,
+      "diagnosis_scope": "The rendered card states that the comparison pattern does not diagnose the learner or certify mastery."
+    }
+  },
+  "render_evidence": {
+    "workflow_run_id": 37329563177,
+    "artifact_id": 11354285398,
+    "render_digest": "844ec8ad4361d2e1",
+    "semantic_digest": "99620fa2883f97c7",
+    "reference_depth_gaps": 0,
+    "subject_authority_findings": 0,
+    "core2_denominator_order": "PASS_10_OF_10",
+    "protected_initial_page": "PASS",
+    "browser_audit": "PASS_CORE1A_CORE2",
+    "pdf_review": "NOT_RUN"
   }
 }
