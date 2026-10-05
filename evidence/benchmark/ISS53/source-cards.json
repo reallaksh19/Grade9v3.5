@@ -1,0 +1,102 @@
+{
+  "schema": "source-cards/v1",
+  "subject": "Mathematics",
+  "topic": "Polynomials",
+  "subtopic": "Polynomials in One Variable with Real Coefficients",
+  "benchmark_issue": 53,
+  "agent": "Independent Agent B",
+  "cards": [
+    {
+      "card_id": "EV-MATH-POLY-DEF-001",
+      "kind": "CANONICAL_DEFINITION",
+      "claim": "A polynomial in one variable x with real coefficients is an algebraic expression of the form a_n x^n + a_{n-1} x^{n-1} + ... + a_1 x + a_0, where every exponent n is a non-negative integer (whole number) and each coefficient a_i is a real number. If a power of x does not appear explicitly, its coefficient is recorded as 0.",
+      "quote": "An algebraic expression p(x) = a_n x^n + a_{n-1} x^{n-1} + ... + a_1 x + a_0, where a_0, a_1, ..., a_n are real numbers and all the exponents of x are whole numbers, is called a polynomial in x.",
+      "source": "NCERT Class IX Mathematics (Chapter 2: Polynomials), Section 2.1 'Polynomials in One Variable'",
+      "authority": "NCERT / CBSE Curriculum Grade 9",
+      "verified_questions": [
+        "Q1",
+        "Q2",
+        "Q5"
+      ]
+    },
+    {
+      "card_id": "EV-MATH-POLY-DEG-002",
+      "kind": "CANONICAL_DEFINITION",
+      "claim": "The degree of a non-zero polynomial in one variable is the highest exponent of the variable with a non-zero coefficient. A non-zero constant real number c has degree 0, while the degree of the zero polynomial is undefined.",
+      "quote": "The highest power of the variable in a polynomial is called the degree of the polynomial. The degree of a non-zero constant polynomial is zero.",
+      "source": "NCERT Class IX Mathematics (Chapter 2: Polynomials), Section 2.1 'Polynomials in One Variable'",
+      "authority": "NCERT / CBSE Curriculum Grade 9",
+      "verified_questions": [
+        "Q1",
+        "Q2"
+      ]
+    },
+    {
+      "card_id": "EV-MATH-POLY-VAL-003",
+      "kind": "COMPUTATIONAL_RULE",
+      "claim": "The value of a polynomial p(x) at x = k is obtained by substituting k in place of x throughout the expression and evaluating using arithmetic order of operations with brackets: p(k) = a_n k^n + ... + a_0.",
+      "quote": "If p(x) is a polynomial in x, and if k is any real number, then the real value obtained by replacing x by k in p(x), is called the value of p(x) at x = k, and is denoted by p(k).",
+      "source": "NCERT Class IX Mathematics (Chapter 2: Polynomials), Section 2.2 'Zeroes of a Polynomial'",
+      "authority": "NCERT / CBSE Curriculum Grade 9",
+      "verified_questions": [
+        "Q3"
+      ]
+    },
+    {
+      "card_id": "EV-MATH-POLY-LIN-004",
+      "kind": "CANONICAL_THEOREM",
+      "claim": "A linear polynomial in one variable has the general form p(x) = ax + b, where a, b are real numbers and a != 0. Its constant term is p(0) = b and its zero is the unique root of ax + b = 0, giving x = -b/a. Given a fixed constant term and a fixed zero, the pair of coefficients (a, b) is uniquely determined.",
+      "quote": "A polynomial of degree one is called a linear polynomial. A linear polynomial has one and only one zero. In general, if k is a zero of p(x) = ax + b, then p(k) = ak + b = 0, i.e., k = -b/a.",
+      "source": "NCERT Class IX Mathematics (Chapter 2: Polynomials), Section 2.2 'Zeroes of a Polynomial'",
+      "authority": "NCERT / CBSE Curriculum Grade 9",
+      "verified_questions": [
+        "Q10"
+      ]
+    },
+    {
+      "card_id": "EV-MATH-POLY-OPS-005",
+      "kind": "COMPUTATIONAL_RULE",
+      "claim": "Addition of polynomials is performed by grouping like terms—terms possessing identical powers of the variable—and combining their numerical coefficients using the distributive property. The result is conventionally written in descending powers of the variable.",
+      "quote": "To add polynomials, we arrange the terms in descending powers and combine like terms by adding their coefficients.",
+      "source": "NCERT Class IX Mathematics (Chapter 2: Polynomials) & RD Sharma Class IX Mathematics, Chapter 6",
+      "authority": "NCERT / National Curriculum Framework",
+      "verified_questions": [
+        "Q4"
+      ]
+    },
+    {
+      "card_id": "EV-MATH-POLY-ID-006",
+      "kind": "CANONICAL_IDENTITY",
+      "claim": "Algebraic identities are equalities that hold for all real values of the variables. For binomial squares, (x + a)^2 = x^2 + 2ax + a^2 by distributivity; omitting the middle cross-term 2ax violates the distributive property. For differences of squares, x^2 - a^2 = (x - a)(x + a), where the cross-terms cancel: +ax - ax = 0.",
+      "quote": "Identity I: (x + y)^2 = x^2 + 2xy + y^2. Identity III: x^2 - y^2 = (x - y)(x + y). An algebraic identity is an algebraic equation that is true for all values of the variables occurring in it.",
+      "source": "NCERT Class IX Mathematics (Chapter 2: Polynomials), Section 2.5 'Algebraic Identities'",
+      "authority": "NCERT / CBSE Curriculum Grade 9",
+      "verified_questions": [
+        "Q6",
+        "Q8"
+      ]
+    },
+    {
+      "card_id": "EV-MATH-POLY-GEO-007",
+      "kind": "CANONICAL_MODEL",
+      "claim": "The product of two linear binomials representing length and width of a rectangle models the total two-dimensional surface area enclosed by the rectangle. If dimensions are in centimetres, the polynomial represents area in square centimetres (cm^2) for valid non-negative parameters x >= 0.",
+      "quote": "Area of a rectangle = length * width. Geometrically, (x + a)(x + b) = x^2 + (a + b)x + ab represents the sum of the areas of four sub-rectangles composing the larger rectangle.",
+      "source": "NCERT Class IX Mathematics (Chapter 2: Polynomials), Section 2.5 & CBSE Mathematics Exemplar",
+      "authority": "NCERT / CBSE Curriculum Grade 9",
+      "verified_questions": [
+        "Q7"
+      ]
+    },
+    {
+      "card_id": "EV-MATH-POLY-AXIOM-008",
+      "kind": "AXIOMATIC_FOUNDATION",
+      "claim": "In the real number field (R, +, *), the distributive axiom asserts that for all real numbers a, b, c, a*(b + c) = a*b + a*c. Consequently, x*(x + 1) = x^2 + x is an algebraic identity holding universally across all x in R, which cannot be rigorously established by finite numerical substitutions.",
+      "quote": "An identity in a polynomial ring R[x] is an equality of polynomials. Because multiplication distributes over addition in R, x(x + 1) = x^2 + x holds identically for all elements of R.",
+      "source": "Birkhoff & Mac Lane, 'A Survey of Modern Algebra', Chapter 3 / Serge Lang, 'Algebra', Chapter 2",
+      "authority": "Abstract Algebra / Field Axioms",
+      "verified_questions": [
+        "Q9"
+      ]
+    }
+  ]
+}

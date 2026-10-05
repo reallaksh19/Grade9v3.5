@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="100%" height="100%" role="img" aria-labelledby="svg-coeff-title svg-coeff-desc">
+  <title id="svg-coeff-title">Polynomial Positional Coefficient Table and Zero Entry</title>
+  <desc id="svg-coeff-desc">Positional table showing powers 3, 2, 1, 0 of a polynomial in one variable, highlighting that an omitted power must be recorded with coefficient 0 to maintain structural alignment.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .border { stroke: #cbd5e1; stroke-width: 1.5; }
+      .header-bg { fill: #e2e8f0; }
+      .text-title { font-family: system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 700; fill: #0f172a; }
+      .text-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #475569; }
+      .text-header { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 600; fill: #1e293b; text-anchor: middle; }
+      .text-cell { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; fill: #334155; text-anchor: middle; }
+      .text-bold { font-weight: 700; fill: #0f172a; }
+      .highlight-row { fill: #fef3c7; }
+      .highlight-text { fill: #b45309; font-weight: 700; }
+      .grid-line { stroke: #e2e8f0; stroke-width: 1; }
+      .badge-accent { fill: #dbeafe; stroke: #3b82f6; stroke-width: 1; }
+      .badge-text { font-family: system-ui, sans-serif; font-size: 12px; fill: #1d4ed8; font-weight: 600; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="360" rx="8" class="bg border"/>
+
+  <!-- Static Canvas Title -->
+  <text x="30" y="32" class="text-title">Positional Coefficient Architecture: p(x) = 5x³ − 2x + 7</text>
+  <text x="30" y="52" class="text-sub">Every power k ∈ {3, 2, 1, 0} must have a determined scalar coefficient aₖ</text>
+
+  <!-- Stage 1: Power Inventory & Expression Terms -->
+  <g data-g9-stage-id="COEFF-STAGE-1">
+    <rect x="30" y="70" width="540" height="50" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+    <text x="45" y="92" class="text-sub">Given Expression:</text>
+    <text x="170" y="94" font-family="monospace" font-size="16px" font-weight="700" fill="#2563eb">p(x) = 5x³ + [?] − 2x + 7</text>
+    <text x="45" y="112" class="text-sub">Power set present: degree 3 (cubic), power 1 (linear), power 0 (constant 7). Power 2 is omitted.</text>
+  </g>
+
+  <!-- Stage 2: Tabular Powers with Zero-Entry -->
+  <g data-g9-stage-id="COEFF-STAGE-2">
+    <!-- Table Header -->
+    <rect x="30" y="135" width="540" height="30" class="header-bg"/>
+    <text x="100" y="155" class="text-header">Power (k)</text>
+    <text x="210" y="155" class="text-header">Monomial Form</text>
+    <text x="340" y="155" class="text-header">Coefficient (aₖ)</text>
+    <text x="475" y="155" class="text-header">Positional Role</text>
+
+    <!-- Table Rows -->
+    <!-- Row 3 -->
+    <rect x="30" y="165" width="540" height="30" fill="#ffffff" class="border"/>
+    <text x="100" y="185" class="text-cell text-bold">3</text>
+    <text x="210" y="185" class="text-cell">5 · x³</text>
+    <text x="340" y="185" class="text-cell text-bold" fill="#2563eb">5</text>
+    <text x="475" y="185" class="text-cell">Leading Term (deg = 3)</text>
+
+    <!-- Row 2: Crucial Zero Entry -->
+    <rect x="30" y="195" width="540" height="30" class="highlight-row border"/>
+    <text x="100" y="215" class="text-cell text-bold">2</text>
+    <text x="210" y="215" class="text-cell highlight-text">0 · x²</text>
+    <text x="340" y="215" class="text-cell highlight-text">0</text>
+    <text x="475" y="215" class="text-cell highlight-text">Zero Entry (0 · x² = 0)</text>
+
+    <!-- Row 1 -->
+    <rect x="30" y="225" width="540" height="30" fill="#ffffff" class="border"/>
+    <text x="100" y="245" class="text-cell text-bold">1</text>
+    <text x="210" y="245" class="text-cell">(−2) · x¹</text>
+    <text x="340" y="245" class="text-cell text-bold" fill="#dc2626">−2</text>
+    <text x="475" y="245" class="text-cell">Linear Term</text>
+
+    <!-- Row 0 -->
+    <rect x="30" y="255" width="540" height="30" fill="#f8fafc" class="border"/>
+    <text x="100" y="275" class="text-cell text-bold">0</text>
+    <text x="210" y="275" class="text-cell">7 · x⁰</text>
+    <text x="340" y="275" class="text-cell text-bold">7</text>
+    <text x="475" y="275" class="text-cell">Constant Term</text>
+  </g>
+
+  <!-- Stage 3: Complete Reconstruction & Addition Alignment -->
+  <g data-g9-stage-id="COEFF-STAGE-3">
+    <rect x="30" y="295" width="540" height="50" rx="6" fill="#ecfdf5" stroke="#10b981"/>
+    <text x="45" y="315" font-family="system-ui, sans-serif" font-size="13px" font-weight="700" fill="#047857">Reconstruction Check &amp; Index Alignment:</text>
+    <text x="45" y="335" font-family="monospace" font-size="13px" fill="#065f46">∑ aₖ xᵏ = 5x³ + 0x² + (−2)x + 7 = 5x³ − 2x + 7 (zero contributes 0 to sum, holds position for operations)</text>
+  </g>
+</svg>

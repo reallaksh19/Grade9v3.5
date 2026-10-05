@@ -1,0 +1,1432 @@
+{
+  "schema_version": "0.2.0",
+  "package_id": "LIB-MATH-09-POLYNOMIALS-ISSUE53",
+  "title": "Polynomials in One Variable with Real Coefficients",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Mathematics",
+  "scope_summary": "Grade 9 Mathematics curriculum on polynomials in one variable: definitions, degree, coefficients, operations, algebraic identities, area models, and linear polynomial zeroes.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-OWNER-ISSUE53-POLY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Issue #53 owner-supplied Grade 9 Mathematics Polynomials benchmark questions",
+      "origin": "AUTHORED",
+      "locator": "https://github.com/reallaksh19/Grade9v3.5/issues/53",
+      "edition": "Owner prompt captured 2026-10-05",
+      "section": "CORE PROMPT — VERBATIM OWNER INPUT / THE 10 QUESTIONS",
+      "last_checked": "2026-10-05",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Owner-supplied text; no exam, textbook, year or official-answer identity claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK",
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "COMPETITION"
+      ],
+      "selection_reason": "Exact custody surface for the ten questions used by the Issue #53 run.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-MATH-09-POLYNOMIALS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE53-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomials in One Variable with Real Coefficients",
+      "topic": "Polynomials",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Core difficulty involves positional power alignment with explicit zero entries, algebraic identity expansion without omitting cross-terms, and synthesizing unique linear polynomials from constraints.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [],
+      "primary_representation_ref": "REP-MATH-POLY-COEFF-TABLE"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-MATH-POLY-TERMS-COEFFS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE53-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Inventory polynomial degree, leading coefficient, constant term, and missing coefficients in one variable; represent terms in positional tables with explicit zero entries and perform like-term addition",
+      "success_criterion": "Accurately state degree, leading coefficient, and constant; place missing powers as coefficient 0; add polynomials by grouping like terms in descending order",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-POLY-DEFINITION-CLASSIFICATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE53-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Evaluate algebraic expressions against defining criteria of polynomials in one variable with real coefficients (non-negative integer exponents, real coefficients) and compute polynomial values at specific points",
+      "success_criterion": "Identify non-negative integer exponents W = {0, 1, 2, ...}; state degrees of valid polynomials and failed conditions for rejected expressions; evaluate p(k) with brackets",
+      "prerequisite_refs": [
+        "CAP-MATH-POLY-TERMS-COEFFS"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-POLY-IDENTITIES-AND-CONSTRUCTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE53-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Apply standard algebraic identities (square of binomial, difference of squares), geometric area models, universal algebraic proofs, and synthesize unique linear polynomials from constraints",
+      "success_criterion": "Expand products using distributivity without omitting cross-terms; factorise difference of squares; model rectangular area with physical units; construct and prove uniqueness of linear polynomials",
+      "prerequisite_refs": [
+        "CAP-MATH-POLY-TERMS-COEFFS",
+        "CAP-MATH-POLY-DEFINITION-CLASSIFICATION"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-MATH-POLY-TERMS-COEFFS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE53-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomial definition, terms, coefficient tables, and like-term addition",
+      "bucket_id": "BUCKET-MATH-09-POLYNOMIALS",
+      "primary_capability_ref": "CAP-MATH-POLY-TERMS-COEFFS",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners must record omitted powers as coefficient 0 and group terms by identical exponents.",
+      "entry_assumptions": [
+        "Integer arithmetic, signed-number operations, powers."
+      ],
+      "inferential_jump": "When a power of the variable does not appear in a polynomial, its coefficient is 0, contributing 0 to the sum while preserving positional alignment.",
+      "teaching_path": [
+        {
+          "id": "TERMS-T1",
+          "role": "DECLARE",
+          "action": "Identify polynomial degree as the highest power with non-zero coefficient, and identify leading and constant terms.",
+          "why_valid": "Axiomatic polynomial definitions.",
+          "inputs": [],
+          "output": "identified degree and main terms"
+        },
+        {
+          "id": "TERMS-T2",
+          "role": "TRANSFORM",
+          "action": "Decompose polynomial into tabular rows for each power, inserting coefficient 0 for missing terms.",
+          "why_valid": "Zero times any power contributes zero to the value.",
+          "inputs": [],
+          "output": "complete positional table with explicit zero entries"
+        },
+        {
+          "id": "TERMS-T3",
+          "role": "VERIFY",
+          "action": "Add polynomials by grouping like terms having identical exponents and combining coefficients via distributivity.",
+          "why_valid": "Only like terms share a common variable factor.",
+          "inputs": [],
+          "output": "verified polynomial sum in descending order"
+        }
+      ],
+      "relation_refs": [
+        "REL-MATH-POLY-STANDARD-FORM"
+      ],
+      "representation_refs": [
+        "REP-MATH-POLY-COEFF-TABLE"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-POLY-TERMS"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A missing term has no coefficient or is undefined rather than coefficient 0.",
+          "diagnostic_prompt": "What number multiplied by x^2 leaves the polynomial value unchanged?",
+          "repair": "0 * x^2 = 0, so the omitted power is present with coefficient 0."
+        }
+      ],
+      "exit_task": {
+        "prompt": "For p(x) = 7x^4 - 3x + 1, list the coefficients of x^4, x^3, x^2, x^1, and x^0.",
+        "source_ref": "SRC-OWNER-ISSUE53-POLY",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Coefficients: x^4 is 7; x^3 is 0; x^2 is 0; x^1 is -3; x^0 is 1.",
+          "reasoning": [
+            "Powers 3 and 2 do not appear explicitly.",
+            "Missing powers are assigned coefficient 0."
+          ],
+          "check": "Reconstruction: 7x^4 + 0x^3 + 0x^2 - 3x + 1 = 7x^4 - 3x + 1.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task checks coefficient assignment with explicit zero entries."
+        }
+      },
+      "research_contribution": "Q1, Q4, and Q5 establish positional coefficient alignment and like-term operations.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Can a term with x^2 be added to 5x^3 - 2x + 7 without changing its value?",
+          "defensible_answer": "Yes, by adding 0x^2, since 0 times x^2 equals 0."
+        },
+        "attempt": {
+          "produces": "A coefficient table inventorying powers 3, 2, 1, 0.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Assigns coefficient 0 to power 2.",
+              "evidence_of": "Understands null zero-value entry in polynomials."
+            }
+          ],
+          "accepted": [
+            "Coefficient of x^2 is 0."
+          ],
+          "rejected": [
+            "Coefficient of x^2 is none or undefined."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What is the highest power present with a non-zero coefficient?",
+              "why_this_ask": "Defines degree."
+            },
+            {
+              "ask": "How do we represent omitted powers in positional arithmetic?",
+              "why_this_ask": "Establishes explicit zero coefficient entry."
+            }
+          ],
+          "differs_from_teaching_path": "Starts from degree identification rather than general polynomial definition."
+        },
+        "boundary_test": {
+          "prompt": "What is the degree of a non-zero constant polynomial like -5?",
+          "answer": "Degree 0, since -5 = -5x^0.",
+          "confirms": "Constant polynomials possess degree 0."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MATH-TERMS-COEFFS",
+          "decision": "Record missing powers with coefficient 0 and group like terms by exponent",
+          "step_refs": [
+            "TERMS-T1",
+            "TERMS-T2",
+            "TERMS-T3"
+          ],
+          "representation_ref": "REP-MATH-POLY-COEFF-TABLE",
+          "reveal_stage_refs": [
+            "COEFF-STAGE-1",
+            "COEFF-STAGE-2",
+            "COEFF-STAGE-3"
+          ],
+          "bank_anchor_ref": "OWN-ISSUE53-POLY-01",
+          "crux_question_refs": [
+            "OWN-ISSUE53-POLY-01",
+            "OWN-ISSUE53-POLY-04",
+            "OWN-ISSUE53-POLY-05"
+          ],
+          "crux_step_ref": "TERMS-T2",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "CHECK: Reconstruct polynomial from table: sum a_k x^k matches original.",
+              "role": "CHECK"
+            },
+            {
+              "statement": "APPLY: Add 2x^2 + 3x - 5 and -x^2 + 4x + 2 by combining coefficients of like powers.",
+              "role": "APPLY"
+            },
+            {
+              "statement": "CONNECT: Connect zero entry to null contribution 0 * x^2 = 0.",
+              "role": "CONNECT"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "Missing power in a polynomial? Insert coefficient 0.",
+        "result": "0 * x^k = 0 preserves value and column alignment.",
+        "representation_ref": "REP-MATH-POLY-COEFF-TABLE"
+      }
+    },
+    {
+      "id": "MIC-MATH-POLY-DEFINITION-CLASSIFICATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE53-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomial classification, exponent conditions, and evaluation at a point",
+      "bucket_id": "BUCKET-MATH-09-POLYNOMIALS",
+      "primary_capability_ref": "CAP-MATH-POLY-DEFINITION-CLASSIFICATION",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners must verify that all exponents of the variable are non-negative integers W = {0, 1, 2, ...}.",
+      "entry_assumptions": [
+        "Exponent rules, index notation (negative and fractional exponents)."
+      ],
+      "inferential_jump": "An expression is a polynomial if and only if all powers of the variable are whole numbers; reciprocals (x^-1) and radicals (x^1/2) fail this condition.",
+      "teaching_path": [
+        {
+          "id": "DEF-T1",
+          "role": "DECLARE",
+          "action": "State the defining criterion: every exponent of x must be a non-negative integer {0, 1, 2, ...}.",
+          "why_valid": "Formal polynomial definition over R.",
+          "inputs": [],
+          "output": "polynomial criterion"
+        },
+        {
+          "id": "DEF-T2",
+          "role": "TRANSFORM",
+          "action": "Rewrite candidate expressions in power form and evaluate exponents against W.",
+          "why_valid": "Index laws convert reciprocals and radicals into exponents.",
+          "inputs": [],
+          "output": "evaluated exponent set"
+        },
+        {
+          "id": "DEF-T3",
+          "role": "VERIFY",
+          "action": "Evaluate polynomial at an input point using bracketed substitution and order of operations.",
+          "why_valid": "Evaluation p(k) follows standard arithmetic precedence.",
+          "inputs": [],
+          "output": "evaluated polynomial value"
+        }
+      ],
+      "relation_refs": [
+        "REL-MATH-POLY-STANDARD-FORM"
+      ],
+      "representation_refs": [
+        "REP-MATH-POLY-EXPONENT-CLASSIFICATION"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-POLY-DEFINITIONS"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A constant like -5 is not a polynomial because no variable is visible, or 1/x is a polynomial because power of x in denominator is 1.",
+          "diagnostic_prompt": "What is the exponent of x when 1/x is written in index form x^n?",
+          "repair": "1/x = x^-1 has negative exponent -1 not in W; constant -5 = -5x^0 has valid whole-number exponent 0."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Determine whether x^3 - 4/x^2 + 5 is a polynomial in x. Justify your answer.",
+        "source_ref": "SRC-OWNER-ISSUE53-POLY",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "No, it is not a polynomial. In index form, 4/x^2 = 4x^-2, which has a negative exponent (-2), violating the non-negative integer exponent condition.",
+          "reasoning": [
+            "Exponents of x are 3, -2, 0.",
+            "-2 is not a whole number."
+          ],
+          "check": "Condition failed: negative exponent -2.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task assesses polynomial defining condition verification."
+        }
+      },
+      "research_contribution": "Q2 and Q3 establish boundary conditions for polynomial classification and evaluation.",
+      "prerequisite_refs": [
+        "CAP-MATH-POLY-TERMS-COEFFS"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Is sqrt(x) + 1 a polynomial in x?",
+          "defensible_answer": "No, because sqrt(x) has fractional exponent 1/2, which is not a whole number."
+        },
+        "attempt": {
+          "produces": "Classification of expressions into polynomials and non-polynomials with reason.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Identifies negative and fractional exponents as non-polynomial.",
+              "evidence_of": "Understands exponent constraint."
+            }
+          ],
+          "accepted": [
+            "Rejected due to negative or fractional power."
+          ],
+          "rejected": [
+            "Claiming 1/x is polynomial because power is 1."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What is the defining condition on exponents for a polynomial?",
+              "why_this_ask": "Grounds classification in axioms."
+            },
+            {
+              "ask": "How do you rewrite 1/x and sqrt(x) in exponent form?",
+              "why_this_ask": "Exposes non-integer and negative powers."
+            }
+          ],
+          "differs_from_teaching_path": "Starts from radical and reciprocal forms rather than standard definition."
+        },
+        "boundary_test": {
+          "prompt": "Is (x^2 - 1)/(x - 1) a polynomial in x?",
+          "answer": "No; rational expressions with variable denominators are rational functions, not polynomials in x (undefined at x=1).",
+          "confirms": "Domain and algebraic form boundaries."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MATH-POLY-DEF",
+          "decision": "Check all exponents against non-negative integers {0, 1, 2, ...} and evaluate with brackets",
+          "step_refs": [
+            "DEF-T1",
+            "DEF-T2",
+            "DEF-T3"
+          ],
+          "representation_ref": "REP-MATH-POLY-EXPONENT-CLASSIFICATION",
+          "reveal_stage_refs": [
+            "EXP-STAGE-1",
+            "EXP-STAGE-2",
+            "EXP-STAGE-3"
+          ],
+          "bank_anchor_ref": "OWN-ISSUE53-POLY-02",
+          "crux_question_refs": [
+            "OWN-ISSUE53-POLY-02",
+            "OWN-ISSUE53-POLY-03"
+          ],
+          "crux_step_ref": "DEF-T2",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "CHECK: Verify all exponents of 3x^2 - 2x + 1 belong to {0, 1, 2}.",
+              "role": "CHECK"
+            },
+            {
+              "statement": "APPLY: Substitute x=2 into p(x) with brackets: (2)^2 - 3(2) + 4 = 2.",
+              "role": "APPLY"
+            },
+            {
+              "statement": "CONNECT: Connect constant -5 to non-zero constant polynomial of degree 0.",
+              "role": "CONNECT"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "Is it a polynomial? Check every exponent.",
+        "result": "Exponents must be whole numbers {0, 1, 2, ...}; coefficients must be real.",
+        "representation_ref": "REP-MATH-POLY-EXPONENT-CLASSIFICATION"
+      }
+    },
+    {
+      "id": "MIC-MATH-POLY-IDENTITIES-AND-CONSTRUCTION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE53-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Algebraic identities, geometric area models, universal proof, and linear construction",
+      "bucket_id": "BUCKET-MATH-09-POLYNOMIALS",
+      "primary_capability_ref": "CAP-MATH-POLY-IDENTITIES-AND-CONSTRUCTION",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Learners must handle distributive cross-terms in identities, geometric 2D area models, universal deductive proof vs point substitution, and synthesizing unique linear polynomials from constraints.",
+      "entry_assumptions": [
+        "Distributive property, basic factoring, linear equations."
+      ],
+      "inferential_jump": "Identities hold for all real numbers due to algebraic field axioms; linear polynomials are uniquely fixed by two independent constraints (constant term and zero).",
+      "teaching_path": [
+        {
+          "id": "ID-T1",
+          "role": "DECLARE",
+          "action": "Apply distributive law to expand binomial products without omitting cross-terms: (a+b)^2 = a^2 + 2ab + b^2.",
+          "why_valid": "Distributivity generates all pairwise term products.",
+          "inputs": [],
+          "output": "expanded identity with cross-terms"
+        },
+        {
+          "id": "ID-T2",
+          "role": "TRANSFORM",
+          "action": "Model polynomial products geometrically as decomposed 2D rectangular area in cm^2.",
+          "why_valid": "Geometric area model visualizes cross-terms as area rectangles.",
+          "inputs": [],
+          "output": "geometric area model"
+        },
+        {
+          "id": "ID-T3",
+          "role": "TRANSFORM",
+          "action": "Prove universal equality across R using field axioms rather than empirical point checks.",
+          "why_valid": "Deductive proof holds unconditionally across infinite real domain.",
+          "inputs": [],
+          "output": "universal algebraic proof"
+        },
+        {
+          "id": "ID-T4",
+          "role": "VERIFY",
+          "action": "Synthesize linear polynomial p(x) = ax + b from constant term and zero, and prove uniqueness.",
+          "why_valid": "System of linear coefficient equations has unique non-zero solution.",
+          "inputs": [],
+          "output": "unique synthesized linear polynomial"
+        }
+      ],
+      "relation_refs": [
+        "REL-MATH-POLY-SQUARE-IDENTITY",
+        "REL-MATH-POLY-DIFF-SQUARES",
+        "REL-MATH-POLY-LINEAR-ROOT",
+        "REL-MATH-POLY-RECT-AREA"
+      ],
+      "representation_refs": [
+        "REP-MATH-POLY-AREA-MODEL",
+        "REP-MATH-POLY-LINEAR-ZERO"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-POLY-IDENTITIES",
+        "FAM-MATH-POLY-LINEAR"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "(a+b)^2 = a^2 + b^2 omitting the middle cross-term 2ab, or assuming point substitution proves an identity universally.",
+          "diagnostic_prompt": "Evaluate (1+3)^2 versus 1^2 + 3^2, or ask if x^2 = x holding at x=0, 1 makes it an identity.",
+          "repair": "Distributivity produces two middle terms ab + ba = 2ab; point checks do not establish universal validity."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Construct a linear polynomial whose constant term is -6 and whose zero is 3. Prove that it is unique.",
+        "source_ref": "SRC-OWNER-ISSUE53-POLY",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Linear polynomial: p(x) = 2x - 6. Constant term p(0) = b = -6; zero at 3 gives 3a - 6 = 0 => 3a = 6 => a = 2 (non-zero). Unique because linear equation 3a - 6 = 0 has exactly one root in R.",
+          "reasoning": [
+            "Form p(x) = ax + b with a != 0.",
+            "Constant term fixes b = -6.",
+            "Zero condition gives 3a - 6 = 0 => a = 2.",
+            "Unique solution to linear equation in a."
+          ],
+          "check": "p(0) = -6 and p(3) = 2(3) - 6 = 0; degree is 1.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task assesses linear polynomial synthesis and uniqueness proof."
+        }
+      },
+      "research_contribution": "Q6, Q7, Q8, Q9, and Q10 establish the progression from identity mechanics to universal proof and linear synthesis.",
+      "prerequisite_refs": [
+        "CAP-MATH-POLY-TERMS-COEFFS",
+        "CAP-MATH-POLY-DEFINITION-CLASSIFICATION"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Can more than one linear polynomial have constant term 2 and zero 1?",
+          "defensible_answer": "No; any linear polynomial has form ax + b, and these two conditions uniquely fix b = 2 and a = -2."
+        },
+        "attempt": {
+          "produces": "Synthesized polynomial p(x) = -2x + 2 with checks and uniqueness proof.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Solves for both coefficients and proves uniqueness.",
+              "evidence_of": "Understands linear polynomial constraints."
+            }
+          ],
+          "accepted": [
+            "p(x) = -2x + 2, unique linear polynomial."
+          ],
+          "rejected": [
+            "Claiming multiple polynomials exist.",
+            "Constructing a quadratic."
+          ]
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What is the general form of a linear polynomial?",
+              "why_this_ask": "Fixes two degrees of freedom (a, b)."
+            },
+            {
+              "ask": "How does the constant term determine b?",
+              "why_this_ask": "p(0) = b."
+            },
+            {
+              "ask": "How does the zero condition determine a?",
+              "why_this_ask": "p(1) = a + b = 0."
+            }
+          ],
+          "differs_from_teaching_path": "Starts from inverse constraint matching rather than forward expansion."
+        },
+        "boundary_test": {
+          "prompt": "What if the required zero was at x = 0 with constant term 2?",
+          "answer": "Impossible for any polynomial, since p(0) cannot simultaneously equal 2 and 0.",
+          "confirms": "Consistency of polynomial conditions."
+        }
+      },
+      "construction_units": [
+        {
+          "id": "CU-MATH-POLY-IDENTITIES-CONSTRUCTION",
+          "decision": "Expand identities with cross-terms, model 2D area in cm^2, and synthesize unique linear polynomials",
+          "step_refs": [
+            "ID-T1",
+            "ID-T2",
+            "ID-T3",
+            "ID-T4"
+          ],
+          "representation_ref": "REP-MATH-POLY-AREA-MODEL",
+          "reveal_stage_refs": [
+            "AREA-STAGE-1",
+            "AREA-STAGE-2",
+            "AREA-STAGE-3"
+          ],
+          "bank_anchor_ref": "OWN-ISSUE53-POLY-10",
+          "crux_question_refs": [
+            "OWN-ISSUE53-POLY-06",
+            "OWN-ISSUE53-POLY-07",
+            "OWN-ISSUE53-POLY-08",
+            "OWN-ISSUE53-POLY-09",
+            "OWN-ISSUE53-POLY-10"
+          ],
+          "crux_step_ref": "ID-T4",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": [
+            {
+              "statement": "CHECK: Expand (x+3)^2 = x^2 + 6x + 9, identifying middle term 6x.",
+              "role": "CHECK"
+            },
+            {
+              "statement": "APPLY: Rectangle area (x+3)(x+1) = x^2 + 4x + 3 cm^2 with length cm * width cm = cm^2.",
+              "role": "APPLY"
+            },
+            {
+              "statement": "CONNECT: Verify p(x) = -2x + 2: p(0)=2, p(1)=0, deg 1, unique.",
+              "role": "CONNECT"
+            }
+          ]
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "Two constraints on a linear polynomial? Set p(x) = ax + b.",
+        "result": "Constant term fixes b; zero fixes a; solution is unique.",
+        "representation_ref": "REP-MATH-POLY-LINEAR-ZERO"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-MATH-POLY-STANDARD-FORM",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE53-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "p(x) = a_n x^n + a_{n-1} x^{n-1} + ... + a_1 x + a_0",
+      "meaning": "Standard polynomial form in one variable x as a finite sum of terms whose exponents are non-negative integers.",
+      "symbols": [
+        {
+          "symbol": "x",
+          "meaning": "variable",
+          "unit_or_domain": "real numbers R"
+        },
+        {
+          "symbol": "n",
+          "meaning": "degree of the polynomial",
+          "unit_or_domain": "non-negative integers W = {0, 1, 2, ...}"
+        },
+        {
+          "symbol": "a_n",
+          "meaning": "leading coefficient",
+          "unit_or_domain": "non-zero real numbers R \\ {0}"
+        },
+        {
+          "symbol": "a_0",
+          "meaning": "constant term",
+          "unit_or_domain": "real numbers R"
+        }
+      ],
+      "conditions": [
+        "n in W",
+        "a_n != 0 for degree n"
+      ],
+      "derivation": [
+        {
+          "id": "STD-D1",
+          "role": "DECLARE",
+          "action": "State the general form of a single-variable polynomial.",
+          "why_valid": "Axiomatic polynomial ring definition over R.",
+          "inputs": [],
+          "output": "polynomial formula"
+        }
+      ],
+      "limits": [
+        "Zero polynomial has undefined degree."
+      ],
+      "checks": [
+        "Verify non-negative integer exponents for all terms."
+      ],
+      "gate_relation_ref": null
+    },
+    {
+      "id": "REL-MATH-POLY-SQUARE-IDENTITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE53-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "(a + b)^2 = a^2 + 2ab + b^2",
+      "meaning": "Expansion of a binomial square via the distributive law yields four terms combining to three distinct terms with cross-term 2ab.",
+      "symbols": [
+        {
+          "symbol": "a",
+          "meaning": "first term",
+          "unit_or_domain": "real numbers R"
+        },
+        {
+          "symbol": "b",
+          "meaning": "second term",
+          "unit_or_domain": "real numbers R"
+        }
+      ],
+      "conditions": [
+        "Holds for all a, b in R"
+      ],
+      "derivation": [
+        {
+          "id": "SQR-D1",
+          "role": "TRANSFORM",
+          "action": "Expand (a+b)(a+b) = a^2 + ab + ba + b^2.",
+          "why_valid": "Distributive property of multiplication over addition.",
+          "inputs": [],
+          "output": "four term sum"
+        },
+        {
+          "id": "SQR-D2",
+          "role": "TRANSFORM",
+          "action": "Combine middle terms ab + ba = 2ab.",
+          "why_valid": "Commutative property of multiplication in R.",
+          "inputs": [],
+          "output": "a^2 + 2ab + b^2"
+        }
+      ],
+      "limits": [
+        "Does not equate to a^2 + b^2 unless 2ab = 0."
+      ],
+      "checks": [
+        "Check with numerical values e.g. a=1, b=3: (4)^2 = 16 = 1 + 6 + 9."
+      ],
+      "gate_relation_ref": null
+    },
+    {
+      "id": "REL-MATH-POLY-DIFF-SQUARES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE53-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "a^2 - b^2 = (a - b)(a + b)",
+      "meaning": "Difference of two squares factors into the product of conjugate binomials whose cross-terms cancel.",
+      "symbols": [
+        {
+          "symbol": "a",
+          "meaning": "first term",
+          "unit_or_domain": "real numbers R"
+        },
+        {
+          "symbol": "b",
+          "meaning": "second term",
+          "unit_or_domain": "real numbers R"
+        }
+      ],
+      "conditions": [
+        "Holds for all a, b in R"
+      ],
+      "derivation": [
+        {
+          "id": "DIF-D1",
+          "role": "TRANSFORM",
+          "action": "Multiply (a-b)(a+b) = a^2 + ab - ba - b^2.",
+          "why_valid": "Distributive property in R.",
+          "inputs": [],
+          "output": "four term sum"
+        },
+        {
+          "id": "DIF-D2",
+          "role": "TRANSFORM",
+          "action": "Cancel additive inverse terms +ab - ba = 0.",
+          "why_valid": "Commutative and inverse properties in R.",
+          "inputs": [],
+          "output": "a^2 - b^2"
+        }
+      ],
+      "limits": [
+        "Requires difference of squares, not sum of squares over R."
+      ],
+      "checks": [
+        "Verify by multiplying factors back: +ab - ab = 0."
+      ],
+      "gate_relation_ref": null
+    },
+    {
+      "id": "REL-MATH-POLY-LINEAR-ROOT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE53-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "p(x) = ax + b, a != 0, zero at x = -b/a",
+      "meaning": "A linear polynomial has constant term p(0)=b and a unique zero at x = -b/a.",
+      "symbols": [
+        {
+          "symbol": "a",
+          "meaning": "leading coefficient",
+          "unit_or_domain": "non-zero real numbers R \\ {0}"
+        },
+        {
+          "symbol": "b",
+          "meaning": "constant term",
+          "unit_or_domain": "real numbers R"
+        },
+        {
+          "symbol": "x",
+          "meaning": "zero of polynomial",
+          "unit_or_domain": "real numbers R"
+        }
+      ],
+      "conditions": [
+        "a != 0"
+      ],
+      "derivation": [
+        {
+          "id": "LIN-D1",
+          "role": "TRANSFORM",
+          "action": "Solve ax + b = 0 for x.",
+          "why_valid": "Subtract b and divide by non-zero a.",
+          "inputs": [],
+          "output": "x = -b/a"
+        }
+      ],
+      "limits": [
+        "If a = 0, the polynomial is constant and has either no zero (b != 0) or infinitely many zeroes (b = 0)."
+      ],
+      "checks": [
+        "Substitute zero back: a(-b/a) + b = -b + b = 0."
+      ],
+      "gate_relation_ref": null
+    },
+    {
+      "id": "REL-MATH-POLY-RECT-AREA",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE53-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "Area(x) = (x + a)(x + b) = x^2 + (a + b)x + ab",
+      "meaning": "Physical rectangular area is modeled by the product of length and width binomials in cm^2.",
+      "symbols": [
+        {
+          "symbol": "x",
+          "meaning": "variable dimension parameter",
+          "unit_or_domain": "non-negative real numbers x >= 0"
+        },
+        {
+          "symbol": "a",
+          "meaning": "length offset",
+          "unit_or_domain": "real numbers R"
+        },
+        {
+          "symbol": "b",
+          "meaning": "width offset",
+          "unit_or_domain": "real numbers R"
+        },
+        {
+          "symbol": "Area",
+          "meaning": "enclosed rectangular area",
+          "unit_or_domain": "square centimetres cm^2"
+        }
+      ],
+      "conditions": [
+        "x >= 0",
+        "length > 0",
+        "width > 0"
+      ],
+      "derivation": [
+        {
+          "id": "REC-D1",
+          "role": "DECLARE",
+          "action": "Apply rectangular area formula Area = length * width.",
+          "why_valid": "Definition of 2D Euclidean area.",
+          "inputs": [],
+          "output": "Area product formula"
+        },
+        {
+          "id": "REC-D2",
+          "role": "TRANSFORM",
+          "action": "Expand (x+a)(x+b) = x^2 + (a+b)x + ab.",
+          "why_valid": "Distributive law for polynomial products.",
+          "inputs": [],
+          "output": "decomposed area sum"
+        }
+      ],
+      "limits": [
+        "Requires non-negative side lengths."
+      ],
+      "checks": [
+        "Check dimensions cm * cm = cm^2."
+      ],
+      "gate_relation_ref": null
+    }
+  ],
+  "representations": [
+    {
+      "id": "REP-MATH-POLY-COEFF-TABLE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "CUMULATIVE"
+      },
+      "kind": "TABLE_OF_VALUES",
+      "purpose": "Positional table of polynomial terms displaying powers 3, 2, 1, 0 with explicit zero entries.",
+      "required_elements": [
+        "Power Inventory",
+        "Tabular Zero Entry",
+        "Reconstruction Check"
+      ],
+      "relation_refs": [
+        "REL-MATH-POLY-STANDARD-FORM",
+        "REL-MATH-POLY-SQUARE-IDENTITY"
+      ],
+      "read_order": [
+        "Examine given polynomial powers and identify present and omitted exponents.",
+        "Align coefficients by power row, inserting 0 for omitted power 2.",
+        "Confirm polynomial reconstruction and index-aligned operations."
+      ],
+      "instance_constraints": [
+        "Pre-attempt stages must orient without disclosing the final target answer W."
+      ],
+      "accessibility": [
+        "The SVG has an accessible name, title and description.",
+        "Text labels duplicate any line-style meaning."
+      ],
+      "misleading_alternatives": [
+        "Treating missing terms as non-existent rather than coefficient 0.",
+        "Omitting cross-terms when squaring binomials."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS53/assets/poly-coeff-table.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "Power row k=2 with entry 0",
+          "symbol": "0 · x²",
+          "in_words": "explicit zero entry for omitted quadratic term"
+        },
+        {
+          "element": "Leading power row k=3",
+          "symbol": "5 · x³",
+          "in_words": "highest power determining polynomial degree 3"
+        },
+        {
+          "element": "Constant power row k=0",
+          "symbol": "7 · x⁰",
+          "in_words": "constant term independent of variable x"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "COEFF-STAGE-1",
+          "label": "Power Inventory",
+          "purpose": "Examine given polynomial powers and identify present and omitted exponents.",
+          "visible_elements": [
+            "Power Inventory"
+          ]
+        },
+        {
+          "id": "COEFF-STAGE-2",
+          "label": "Tabular Zero Entry",
+          "purpose": "Align coefficients by power row, inserting 0 for omitted power 2.",
+          "visible_elements": [
+            "Tabular Zero Entry"
+          ]
+        },
+        {
+          "id": "COEFF-STAGE-3",
+          "label": "Reconstruction Check",
+          "purpose": "Confirm polynomial reconstruction and index-aligned operations.",
+          "visible_elements": [
+            "Reconstruction Check"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-MATH-POLY-EXPONENT-CLASSIFICATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "CUMULATIVE"
+      },
+      "kind": "TABLE_OF_VALUES",
+      "purpose": "Visual framework checking whole-number exponents in polynomials versus non-polynomial expressions and computing values at input points.",
+      "required_elements": [
+        "Whole Number Exponent Domain W",
+        "Excluded Exponent Forms",
+        "Point Evaluation Precedence"
+      ],
+      "relation_refs": [
+        "REL-MATH-POLY-STANDARD-FORM",
+        "REL-MATH-POLY-SQUARE-IDENTITY"
+      ],
+      "read_order": [
+        "Evaluate exponents against the whole-number domain W = {0, 1, 2, ...}.",
+        "Identify non-polynomial expressions with negative or fractional exponents.",
+        "Evaluate polynomial values at input points with bracketed substitution."
+      ],
+      "instance_constraints": [
+        "Pre-attempt stages must orient without disclosing the final target answer W."
+      ],
+      "accessibility": [
+        "The SVG has an accessible name, title and description.",
+        "Text labels duplicate any line-style meaning."
+      ],
+      "misleading_alternatives": [
+        "Treating missing terms as non-existent rather than coefficient 0.",
+        "Omitting cross-terms when squaring binomials."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS53/assets/poly-exponent-classification.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "Whole number exponent set",
+          "symbol": "W = {0, 1, 2, ...}",
+          "in_words": "defining requirement for single-variable polynomials"
+        },
+        {
+          "element": "Negative and fractional exponents",
+          "symbol": "x^-2, x^(1/2)",
+          "in_words": "conditions that violate polynomial criteria"
+        },
+        {
+          "element": "Evaluated polynomial value",
+          "symbol": "p(2) = 9",
+          "in_words": "computed numerical output through substitution"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "EXP-STAGE-1",
+          "label": "Whole Number Exponent Domain W",
+          "purpose": "Evaluate exponents against the whole-number domain W = {0, 1, 2, ...}.",
+          "visible_elements": [
+            "Whole Number Exponent Domain W"
+          ]
+        },
+        {
+          "id": "EXP-STAGE-2",
+          "label": "Excluded Exponent Forms",
+          "purpose": "Identify non-polynomial expressions with negative or fractional exponents.",
+          "visible_elements": [
+            "Excluded Exponent Forms"
+          ]
+        },
+        {
+          "id": "EXP-STAGE-3",
+          "label": "Point Evaluation Precedence",
+          "purpose": "Evaluate polynomial values at input points with bracketed substitution.",
+          "visible_elements": [
+            "Point Evaluation Precedence"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-MATH-POLY-AREA-MODEL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "CUMULATIVE"
+      },
+      "kind": "AREA_MODEL",
+      "purpose": "2D geometric area decomposition illustrating polynomial multiplication, cross-terms, and identity expansions.",
+      "required_elements": [
+        "Rectangle Frame",
+        "Decomposed Area Sub-regions",
+        "Combined Like Terms & Identity Contrast"
+      ],
+      "relation_refs": [
+        "REL-MATH-POLY-STANDARD-FORM",
+        "REL-MATH-POLY-SQUARE-IDENTITY"
+      ],
+      "read_order": [
+        "Define outer dimensions length (x+3) and width (x+1).",
+        "Subdivide area into x^2, 3x, 1x, and 3 sub-rectangles.",
+        "Synthesize total area x^2+4x+3 cm^2 and contrast with (x+3)^2 error."
+      ],
+      "instance_constraints": [
+        "Pre-attempt stages must orient without disclosing the final target answer W."
+      ],
+      "accessibility": [
+        "The SVG has an accessible name, title and description.",
+        "Text labels duplicate any line-style meaning."
+      ],
+      "misleading_alternatives": [
+        "Treating missing terms as non-existent rather than coefficient 0.",
+        "Omitting cross-terms when squaring binomials."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS53/assets/poly-area-model.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "Square sub-region",
+          "symbol": "x²",
+          "in_words": "area formed by multiplying dimension x by x"
+        },
+        {
+          "element": "Rectangular side strips",
+          "symbol": "3x + 1x",
+          "in_words": "cross-term areas combining to 4x"
+        },
+        {
+          "element": "Unit squares block",
+          "symbol": "3",
+          "in_words": "constant corner area formed by 3 times 1"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "AREA-STAGE-1",
+          "label": "Rectangle Frame",
+          "purpose": "Define outer dimensions length (x+3) and width (x+1).",
+          "visible_elements": [
+            "Rectangle Frame"
+          ]
+        },
+        {
+          "id": "AREA-STAGE-2",
+          "label": "Decomposed Area Sub-regions",
+          "purpose": "Subdivide area into x^2, 3x, 1x, and 3 sub-rectangles.",
+          "visible_elements": [
+            "Decomposed Area Sub-regions"
+          ]
+        },
+        {
+          "id": "AREA-STAGE-3",
+          "label": "Combined Like Terms & Identity Contrast",
+          "purpose": "Synthesize total area x^2+4x+3 cm^2 and contrast with (x+3)^2 error.",
+          "visible_elements": [
+            "Combined Like Terms & Identity Contrast"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-MATH-POLY-LINEAR-ZERO",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "CUMULATIVE"
+      },
+      "kind": "COORDINATE_GRAPH",
+      "purpose": "Cartesian coordinate plane illustrating constant term y-intercept, zero x-intercept, and uniqueness of linear line.",
+      "required_elements": [
+        "Constant Term Point",
+        "Zero Root Point",
+        "Unique Linear Polynomial"
+      ],
+      "relation_refs": [
+        "REL-MATH-POLY-STANDARD-FORM",
+        "REL-MATH-POLY-SQUARE-IDENTITY"
+      ],
+      "read_order": [
+        "Plot y-intercept (0, 2) corresponding to constant term p(0)=2.",
+        "Plot x-intercept (1, 0) corresponding to zero p(1)=0.",
+        "Draw straight line y = -2x + 2 and prove uniqueness of linear polynomial."
+      ],
+      "instance_constraints": [
+        "Pre-attempt stages must orient without disclosing the final target answer W."
+      ],
+      "accessibility": [
+        "The SVG has an accessible name, title and description.",
+        "Text labels duplicate any line-style meaning."
+      ],
+      "misleading_alternatives": [
+        "Treating missing terms as non-existent rather than coefficient 0.",
+        "Omitting cross-terms when squaring binomials."
+      ],
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS53/assets/poly-linear-zero.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "Y-axis intercept point (0, 2)",
+          "symbol": "p(0) = 2",
+          "in_words": "constant term fixes the vertical intercept of the linear line"
+        },
+        {
+          "element": "X-axis intercept point (1, 0)",
+          "symbol": "p(1) = 0",
+          "in_words": "zero of the polynomial fixes the horizontal root on the x-axis"
+        },
+        {
+          "element": "Unique straight line slope",
+          "symbol": "m = -2",
+          "in_words": "slope uniquely fixed by the two constraint points yielding y = -2x + 2"
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "LIN-STAGE-1",
+          "label": "Constant Term Point",
+          "purpose": "Plot y-intercept (0, 2) corresponding to constant term p(0)=2.",
+          "visible_elements": [
+            "Constant Term Point"
+          ]
+        },
+        {
+          "id": "LIN-STAGE-2",
+          "label": "Zero Root Point",
+          "purpose": "Plot x-intercept (1, 0) corresponding to zero p(1)=0.",
+          "visible_elements": [
+            "Zero Root Point"
+          ]
+        },
+        {
+          "id": "LIN-STAGE-3",
+          "label": "Unique Linear Polynomial",
+          "purpose": "Draw straight line y = -2x + 2 and prove uniqueness of linear polynomial.",
+          "visible_elements": [
+            "Unique Linear Polynomial"
+          ]
+        }
+      ]
+    }
+  ],
+  "question_families": [
+    {
+      "id": "FAM-MATH-POLY-TERMS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE53-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomial Degree, Terms, and Like-Term Operations",
+      "capability_refs": [
+        "CAP-MATH-POLY-TERMS-COEFFS"
+      ],
+      "solution_structure": [
+        "Identify the highest power of variable x with a non-zero coefficient to find degree.",
+        "Record leading coefficient from the highest degree term, and constant term independent of x.",
+        "Record any missing power between 0 and degree as coefficient 0.",
+        "Add polynomials by grouping like terms possessing identical powers of x and combining coefficients."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Distinguish monomial powers and recognise explicit zero entry for missing terms.",
+        "representation_translation": "Translate standard algebraic polynomial expressions into power-indexed tables.",
+        "reasoning_steps": "Inventory terms, group like powers, combine coefficients via distributivity.",
+        "novelty": "Missing powers and negative coefficients as potential points of confusion."
+      },
+      "safe_variations": [
+        "Vary degree, leading coefficient, and positions of missing powers."
+      ],
+      "transfer_boundaries": [
+        "Negative or fractional powers do not form polynomials."
+      ],
+      "common_wrong_routes": [
+        "Omit missing terms from tables or combine unlike powers."
+      ],
+      "item_refs": [
+        "OWN-ISSUE53-POLY-01",
+        "OWN-ISSUE53-POLY-04",
+        "OWN-ISSUE53-POLY-05"
+      ]
+    },
+    {
+      "id": "FAM-MATH-POLY-DEFINITIONS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE53-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomial Definitions and Point Evaluation",
+      "capability_refs": [
+        "CAP-MATH-POLY-DEFINITION-CLASSIFICATION"
+      ],
+      "solution_structure": [
+        "Check all exponents of variable x against non-negative integers W = {0, 1, 2, ...}.",
+        "Identify defining condition violations for reciprocals (negative powers) and radicals (fractional powers).",
+        "State degree as 0 for non-zero constant polynomials.",
+        "Evaluate polynomial at a given real value using explicit bracket substitution and arithmetic precedence."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Apply the formal definition of polynomial in one variable with real coefficients.",
+        "representation_translation": "Rewrite reciprocal 1/x as x^-1 and radical sqrt(x) as x^(1/2).",
+        "reasoning_steps": "Convert to index form, test exponents against W, determine degrees or identify failed conditions.",
+        "novelty": "Constants lacking visible variables and reciprocal powers in denominators."
+      },
+      "safe_variations": [
+        "Test polynomials of various degrees against non-polynomial algebraic expressions."
+      ],
+      "transfer_boundaries": [
+        "Rational expressions and multivariable expressions require separate definitions."
+      ],
+      "common_wrong_routes": [
+        "Reject constants or accept reciprocals because variable has power 1 in denominator."
+      ],
+      "item_refs": [
+        "OWN-ISSUE53-POLY-02",
+        "OWN-ISSUE53-POLY-03"
+      ]
+    },
+    {
+      "id": "FAM-MATH-POLY-IDENTITIES",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE53-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Algebraic Identities, Area Models, and Universal Proof",
+      "capability_refs": [
+        "CAP-MATH-POLY-IDENTITIES-AND-CONSTRUCTION"
+      ],
+      "solution_structure": [
+        "Expand binomial squares using the distributive property without omitting cross-terms: (a+b)^2 = a^2 + 2ab + b^2.",
+        "Model rectangular areas as decomposed products in cm^2 for non-negative parameter x >= 0.",
+        "Factorise difference of squares a^2 - b^2 into conjugate binomials (a-b)(a+b) and verify cancellation.",
+        "Deduce universal algebraic equality across R using field axioms rather than empirical point checks."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Select appropriate algebraic identity or geometric area model.",
+        "representation_translation": "Connect symbolic products with subdivided 2D rectangular areas.",
+        "reasoning_steps": "Expand pairwise products, combine like terms, attach compound physical units.",
+        "novelty": "Refuting the common error (a+b)^2 = a^2 + b^2 and proving identities across infinite domains."
+      },
+      "safe_variations": [
+        "Vary constants in binomial factors and rectangular dimensions."
+      ],
+      "transfer_boundaries": [
+        "Cubic identities and trinomial expansions belong to advanced units."
+      ],
+      "common_wrong_routes": [
+        "Square terms individually omitting cross-terms, or treat sample substitution as proof."
+      ],
+      "item_refs": [
+        "OWN-ISSUE53-POLY-06",
+        "OWN-ISSUE53-POLY-07",
+        "OWN-ISSUE53-POLY-08",
+        "OWN-ISSUE53-POLY-09"
+      ]
+    },
+    {
+      "id": "FAM-MATH-POLY-LINEAR",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE53-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Linear Polynomial Synthesis and Zeroes",
+      "capability_refs": [
+        "CAP-MATH-POLY-IDENTITIES-AND-CONSTRUCTION"
+      ],
+      "solution_structure": [
+        "Express general linear polynomial as p(x) = ax + b with leading coefficient a != 0.",
+        "Use constant term condition p(0) = b to fix b.",
+        "Use zero condition p(x_0) = 0 to establish linear equation ax_0 + b = 0 and solve for a.",
+        "Verify both conditions and prove uniqueness from the unique solvability of linear equation in R."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Inverse problem: synthesize polynomial from structural conditions.",
+        "representation_translation": "Translate constant term to y-intercept (0, b) and zero to x-intercept (x_0, 0).",
+        "reasoning_steps": "Set up coefficient system, solve for a and b, verify conditions, prove uniqueness.",
+        "novelty": "Synthesizing an object from properties and establishing formal uniqueness."
+      },
+      "safe_variations": [
+        "Vary required constant terms and zero roots."
+      ],
+      "transfer_boundaries": [
+        "Higher-degree polynomials with multiple zeroes require the Factor Theorem."
+      ],
+      "common_wrong_routes": [
+        "Construct a non-linear polynomial or assume multiple polynomials exist."
+      ],
+      "item_refs": [
+        "OWN-ISSUE53-POLY-10"
+      ]
+    }
+  ],
+  "questions": [],
+  "data": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {},
+  "application_contexts": []
+}
