@@ -1,3 +1,5 @@
+# Core prompt — VERBATIM / DO NOT MODIFY
+
 ## A — Question set Q1–Q10
 
 Grade 9 Mathematics: polynomials in one variable with real coefficients. Competition/advanced extensions are explicitly marked; no calculus or complex-number prerequisite is assumed. Preserve stated domains and degree bounds.
