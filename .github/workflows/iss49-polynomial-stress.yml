@@ -97,6 +97,7 @@ jobs:
           mkdir -p evidence/benchmark/ISS49/runtime
           test -f /tmp/iss49/quality-gate.json && cp /tmp/iss49/quality-gate.json evidence/benchmark/ISS49/runtime/quality-gate.json || true
           test -f /tmp/iss49/browser-audit.json && cp /tmp/iss49/browser-audit.json evidence/benchmark/ISS49/runtime/browser-audit.json || true
+          test -f /tmp/iss49-baseline/quality-gate.json && cp /tmp/iss49-baseline/quality-gate.json evidence/benchmark/ISS49/runtime/baseline-quality-gate.json || true
           git rev-parse HEAD > evidence/benchmark/ISS49/runtime/tested-head.txt
           printf '%s\n' "$GITHUB_RUN_ID" > evidence/benchmark/ISS49/runtime/workflow-run-id.txt
 
