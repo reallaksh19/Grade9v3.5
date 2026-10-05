@@ -1,0 +1,144 @@
+{
+  "schema": "core1a-workflow-reproduction/v1",
+  "functional_basis": "f52b85180aa1ad9eabaa8bea09ca2545770561fe",
+  "workflow_sha256": "4e82b42c60fbcc881cfd5b65e3279328f84ad5a63ddd3ed7a76159135c3648cd",
+  "repair": "Copy modern-learner.css and the two declared scripts into both temporary sites; missing dependency observations preserved as initial-* reports. Existing workflow criteria and browser enforcement remain unchanged.",
+  "rows": [
+    {
+      "slug": "phy-kin-2d-motion",
+      "workflow_layout_matrix": "PASS",
+      "viewports": 6,
+      "failures": [],
+      "enforced_full_core1a_contract": "PASS",
+      "render_report": {
+        "manifest": "products\\physics\\phy-kin-2d-motion.manifest.json",
+        "render_digest": "8ebb33b3d2bc5380",
+        "all_gap_count": 2,
+        "core1a_gaps": [],
+        "hashes": {
+          "core1.html": "ce5de279b9678d3fb8416c8ea81d65593c653ee1310fb9763c4c6af22f305aa5",
+          "core1a.html": "de9e2f4fa66f2ca1975cbf45969e5e5efff25a5204ebba7e496a2bb42652b9a3",
+          "core1b.html": "20ac63add2c6ff3f64cc6bd89468745cdc4a26f30e893c9ae18876e126b53912",
+          "core2.html": "82f2621ea9c4c31d098fd77323d776a15782d5f8dae4c15c3ca35296eb587682",
+          "core2a.html": "5b22a5f40195118b5ff29a97ab6aaa26acc4bd34b4120194ff46172464c4af70",
+          "core2b.html": "0f934df981d1400cb0b10b8731d1462ad310d3f52a2db7e5b85883f65df31f4c",
+          "index.html": "c9e07b928904da10ffedacb34265419206049b202544554272b4dcdfdb73b33d"
+        },
+        "derivation_bridge_present": true
+      },
+      "audit_sha256": "6a097b078ff7a1cf8edddb4a0c19edbeb777c2c9543ce0f6b8de7b03cfcde2dd"
+    },
+    {
+      "slug": "phy-kin-1d-motion",
+      "workflow_layout_matrix": "PASS",
+      "viewports": 6,
+      "failures": [],
+      "enforced_full_core1a_contract": "FAIL:12 existing no-worked-explanation/stage-keyboard findings; existing workflow treats this as a derivation layout witness, not the complete authored prototype.",
+      "render_report": {
+        "manifest": "products\\physics\\phy-kin-1d-motion.manifest.json",
+        "render_digest": "1664a9335e974a3d",
+        "all_gap_count": 101,
+        "core1a_gaps": [
+          {
+            "duty": "AUTHOR_WORKED_ANCHOR",
+            "record": "CU-PHY-KIN-DISTANCE-DISPLACEMENT-1",
+            "detail": "no worked anchor",
+            "core": "CORE1A",
+            "product": "PRODUCT-PHY-KIN-1D-MOTION"
+          },
+          {
+            "duty": "AUTHOR_INDEPENDENT_CHECK",
+            "record": "CU-PHY-KIN-DISTANCE-DISPLACEMENT-1",
+            "detail": "no independent check",
+            "core": "CORE1A",
+            "product": "PRODUCT-PHY-KIN-1D-MOTION"
+          },
+          {
+            "duty": "AUTHOR_WORKED_ANCHOR",
+            "record": "CU-PHY-KIN-ZERO-V-NONZERO-A-1",
+            "detail": "no worked anchor",
+            "core": "CORE1A",
+            "product": "PRODUCT-PHY-KIN-1D-MOTION"
+          },
+          {
+            "duty": "AUTHOR_INDEPENDENT_CHECK",
+            "record": "CU-PHY-KIN-ZERO-V-NONZERO-A-1",
+            "detail": "no independent check",
+            "core": "CORE1A",
+            "product": "PRODUCT-PHY-KIN-1D-MOTION"
+          },
+          {
+            "duty": "AUTHOR_WORKED_ANCHOR",
+            "record": "CU-PHY-KIN-AVERAGE-RATES-1",
+            "detail": "no worked anchor",
+            "core": "CORE1A",
+            "product": "PRODUCT-PHY-KIN-1D-MOTION"
+          },
+          {
+            "duty": "AUTHOR_INDEPENDENT_CHECK",
+            "record": "CU-PHY-KIN-AVERAGE-RATES-1",
+            "detail": "no independent check",
+            "core": "CORE1A",
+            "product": "PRODUCT-PHY-KIN-1D-MOTION"
+          },
+          {
+            "duty": "AUTHOR_CONSTRUCTION_UNITS",
+            "record": "MIC-PHY-KIN-CONSTANT-ACCELERATION",
+            "detail": "no construction units",
+            "core": "CORE1A",
+            "product": "PRODUCT-PHY-KIN-1D-MOTION"
+          },
+          {
+            "duty": "AUTHOR_WORKED_ANCHOR",
+            "record": "CU-PHY-KIN-UNIFORM-CIRCULAR-MOTION-1",
+            "detail": "no worked anchor",
+            "core": "CORE1A",
+            "product": "PRODUCT-PHY-KIN-1D-MOTION"
+          },
+          {
+            "duty": "AUTHOR_INDEPENDENT_CHECK",
+            "record": "CU-PHY-KIN-UNIFORM-CIRCULAR-MOTION-1",
+            "detail": "no independent check",
+            "core": "CORE1A",
+            "product": "PRODUCT-PHY-KIN-1D-MOTION"
+          },
+          {
+            "duty": "AUTHOR_WORKED_ANCHOR",
+            "record": "CU-PHY-KIN-MOTION-GRAPHS-1",
+            "detail": "no worked anchor",
+            "core": "CORE1A",
+            "product": "PRODUCT-PHY-KIN-1D-MOTION"
+          },
+          {
+            "duty": "AUTHOR_INDEPENDENT_CHECK",
+            "record": "CU-PHY-KIN-MOTION-GRAPHS-1",
+            "detail": "no independent check",
+            "core": "CORE1A",
+            "product": "PRODUCT-PHY-KIN-1D-MOTION"
+          },
+          {
+            "duty": "AUTHOR_CONSTRUCTION_UNITS",
+            "record": "MIC-PHY-KIN-CIRCULAR-DYNAMICS-ROLE",
+            "detail": "no construction units",
+            "core": "CORE1A",
+            "product": "PRODUCT-PHY-KIN-1D-MOTION"
+          }
+        ],
+        "hashes": {
+          "core1.html": "f4ab721c37e6f8da28b2ba4994399a0a880872110a3b1e71b9bde4615eb6d58b",
+          "core1a.html": "0c46f6ad7bdfbe82e4f5b78752439817e58765c1bf95b1b390d86ef5afec3583",
+          "core1b.html": "ae67736e285d42e0c3ac60a27c41f2e03fe6734bfbbe250619c5c727580fbc57",
+          "core2.html": "7eb8f381654923f3ad4cea7f0f3d08da56d3220ac425ce9ba64883b99109d8ec",
+          "core2a.html": "51dc43e121559c0ed25b1ffb16cf4743467820bae6d06e23df1c5902fbab868e",
+          "core2b.html": "beeccfeb00c2c54e4924e8537b87e7632b0b8ffa8e4b395703882701290edc34",
+          "index.html": "061470b1c31a48ceca1467486ca292de9d90b87ece0cfd6c58ce7b18dde0c909"
+        },
+        "derivation_bridge_present": true,
+        "scope": "Workflow derivation layout witness; authored content gaps are retained, as in the existing workflow."
+      },
+      "audit_sha256": "a91969e1099b238e4311362b468c7936e7b0a9e09f0e186c86fceeb48e9fa954"
+    }
+  ],
+  "full_workflow_status": "NOT_RUN_ON_GITHUB_AT_PUBLICATION_TIME",
+  "generated_architecture_limit": "Independent full-suite manifest/sweep findings remain; local Pages mirror check separately PASS."
+}

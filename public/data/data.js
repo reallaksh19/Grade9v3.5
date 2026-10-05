@@ -277,10 +277,27 @@ window.GRADE9V3 = {
           "external_prerequisites": [],
           "concepts": [
             "A rational solution is a single exact number; writing it as a fraction is not an unfinished answer.",
-            "A truncated decimal is a different number from the exact rational it approximates, however many digits are kept."
+            "A decimal approximation that changes the exact rational value is a different number; an exact terminating decimal is another notation for the same rational."
           ],
           "misconceptions": [
             "A fraction should be converted to a decimal to give the real answer."
+          ]
+        },
+        {
+          "gate_id": "MATH-EQ-CANDIDATE-EXTENDED-RELATIONS",
+          "title": "Declared-domain equality operations and real-plane line boundaries",
+          "grade": 9,
+          "chapter": "Linear Equations",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "NOT_IN_JEE",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [],
+          "concepts": [
+            "Reversible operations preserve the declared solution set; real-plane line equations include either single zero coefficient but exclude both zero."
+          ],
+          "misconceptions": [
+            "Either zero coefficient prevents a real-plane line."
           ]
         }
       ],
@@ -521,11 +538,11 @@ window.GRADE9V3 = {
             {
               "id": "REL-MATH-EXACTNESS",
               "expression": "x exact  =>  a*x + b = c holds exactly",
-              "meaning": "Only the exact rational reproduces the statement without residue; every truncated decimal leaves one.",
+              "meaning": "For a nonzero linear coefficient, the residual is a times the error in the candidate value. An exact terminating decimal is an exact rational too; only a changed value introduces a nonzero residual.",
               "conditions": [
-                "Substituting a truncated decimal does not satisfy the statement exactly.",
-                "Rounding is a presentation choice made after the mathematics, never during it.",
-                "The residue may be small, but it is not zero."
+                "The linear coefficient a is non-zero and all arithmetic is exact over the rationals.",
+                "The decimal approximation differs numerically from the exact solution.",
+                "Rounding is a presentation choice made after the mathematics, never during it."
               ]
             },
             {
@@ -940,8 +957,8 @@ window.GRADE9V3 = {
               "teaching_path": [
                 {
                   "id": "LEQ4-1",
-                  "action": "Write the equation in the form ax + by + c = 0 and check that a and b are both non-zero.",
-                  "why_valid": "That form with a ≠ 0 and b ≠ 0 is what makes it a linear equation in two variables.",
+                  "action": "Write the equation in the form ax + by + c = 0 and check that a and b are not both zero.",
+                  "why_valid": "Either individual coefficient may be zero. Both zero would yield an entire-plane identity or empty contradiction rather than a line.",
                   "role": "DECLARE",
                   "output": "3x + 4y = 12 becomes 3x + 4y − 12 = 0, with a = 3, b = 4, c = −12.",
                   "inputs": []
@@ -1047,10 +1064,11 @@ window.GRADE9V3 = {
             {
               "id": "REL-MAT-LEQ-03-REDUCED-OUTCOMES",
               "expression": "If reducing removes the variable: a false statement (e.g. 6 = 5) ⇒ no solution (contradiction); a true statement (e.g. 6 = 6) ⇒ every value is a solution (identity)",
-              "meaning": "An equation that is false for all values of the variable has no solution and is called a contradiction; one that is true for any value is an identity, and its solution is all real numbers.",
+              "meaning": "After reversible reduction, a false constant equality has no admissible solutions; a true constant equality admits every value in the declared domain.",
               "conditions": [
                 "The variable terms on the two sides cancel completely during reduction.",
-                "The verdict is read from the variable-free statement that remains, not from a value of x."
+                "The verdict is read from the variable-free statement that remains, not from a value of x.",
+                "Every reduction preserves the original admissible domain and solution set."
               ]
             },
             {
@@ -1060,26 +1078,28 @@ window.GRADE9V3 = {
               "conditions": [
                 "Every term inside a bracket is multiplied by the factor in front of it, sign included.",
                 "Both whole sides are multiplied by the LCM, including terms that have no denominator, even when fractions appear on one side only.",
-                "Like terms are combined within one side; terms cross the equality sign only by a balanced operation."
+                "Like terms are combined within one side; terms cross the equality sign only by a balanced operation.",
+                "Denominators are non-zero constant integers; the domain is declared before clearing them."
               ]
             },
             {
               "id": "REL-MAT-LEQ-04-STRAIGHT-LINE",
               "expression": "y = ax + b (a straight line with slope a)",
-              "meaning": "A linear relationship between two variables x and y is represented by a straight line y = ax + b, and the slope of this line is a.",
+              "meaning": "The form y = ax + b describes every nonvertical line in the real Cartesian plane, including horizontal lines with a = 0. A vertical line x = k has no slope in this form.",
               "conditions": [
-                "x and y are linearly related.",
+                "x and y are real coordinates in the Cartesian plane.",
+                "The line is nonvertical; the coefficient of y in the general form is non-zero.",
                 "The letters a and b here name slope and constant; they differ from the a and b of ax + by + c = 0."
               ]
             },
             {
               "id": "REL-MAT-LEQ-04-TWO-VARIABLE-FORM",
-              "expression": "ax + by + c = 0, where a, b, c are real numbers, a ≠ 0 and b ≠ 0; a solution is a pair (x₀, y₀) with ax₀ + by₀ + c = 0",
+              "expression": "ax + by + c = 0, where a, b, c are real numbers and a and b are not both zero; a solution is a pair (x₀, y₀) with ax₀ + by₀ + c = 0",
               "meaning": "A linear equation in two variables has infinitely many solutions; its graph is a straight line, and every point on that line represents a solution.",
               "conditions": [
-                "a and b are both non-zero; otherwise the statement is not a linear equation in two variables in this sense.",
+                "a and b are not both zero; either individual coefficient may be zero.",
                 "a, b and c are real numbers.",
-                "Solutions are pairs of values located on the Cartesian plane; read on a number line, an equation in one variable has a single solution instead."
+                "The graph claim uses the real Cartesian plane and ordered real pairs."
               ]
             }
           ],

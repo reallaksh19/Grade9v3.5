@@ -15,8 +15,8 @@ class WebBlueprintProjectionTests(unittest.TestCase):
     def test_projection_delivery_is_role_driven_and_subject_neutral(self):
         expected = {
             "CORE1": "BP-CORE1-ORIENTATION@1.1.0",
-            "CORE2": "BP-CORE2-SOURCE-QUESTION@1.5.0",
-            "CORE1A": "BP-CORE1A-CONSTRUCTION@1.4.0",
+            "CORE2": "BP-CORE2-SOURCE-QUESTION@1.9.0",
+            "CORE1A": "BP-CORE1A-CONSTRUCTION@1.7.0",
             "CORE1B": "BP-CORE1B-RECONSTRUCTION@1.1.0",
             "CORE2A": "BP-CORE2A-SUPPORTED-APPLICATION@1.1.0",
             "CORE2B": "BP-CORE2B-TRANSFER@1.1.0",

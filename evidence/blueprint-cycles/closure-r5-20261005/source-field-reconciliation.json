@@ -1,0 +1,38 @@
+{
+  "schema": "reviewed-source-field-reconciliation/v1",
+  "canonical_sha256": "39989bdf0dc76f6abc057b47f79f3cccf9b7d0a0fe9502d8f270f6b36fbb3538",
+  "scope": "General mathematics meaning fields; no authenticated NCERT transcription, source-question status upgrade or learner publication.",
+  "verified_primary_pages": [
+    {
+      "url": "https://openstax.org/books/elementary-algebra-2e/pages/4-2-graph-linear-equations-in-two-variables",
+      "supports": "Vertical x=constant and horizontal y=constant equations are valid real-plane lines; at least one coefficient must be nonzero.",
+      "method": "Primary page retrieved and read in this round; explicit algebraic branches below are author proofs."
+    },
+    {
+      "url": "https://openstax.org/books/elementary-algebra-2e/pages/4-4-understand-slope-of-a-line",
+      "supports": "Horizontal slope is zero; vertical slope is undefined. A solved-for-y description requires its y coefficient to be nonzero.",
+      "method": "Primary page retrieved and read in this round."
+    }
+  ],
+  "authored_branch_proofs": [
+    {
+      "claim": "Ax+By+C=0, (A,B) not both zero",
+      "proof": "B!=0 gives y=-(A/B)x-C/B with arbitrary real x; B=0 requires A!=0 and gives x=-C/A with arbitrary real y. A=B=0 is instead identity or contradiction."
+    },
+    {
+      "claim": "Identity keeps the declared domain",
+      "proof": "A reversible reduction to 0=0 is true for every admissible x in that domain; 0=c with c!=0 is false for all. The domain is not expanded from rationals to reals by the reduction."
+    },
+    {
+      "claim": "Exact decimal notation can be a solution",
+      "proof": "For exact solution s of ax=b, residual at q is a(q-s). 2*(1/2)=1, so decimal0.5 is exact; 3*(333/1000)-1=-1/1000."
+    },
+    {
+      "claim": "Clear only specified nonzero constant integer denominators",
+      "proof": "Their positive LCM is nonzero, so multiplying by it has an inverse. Variable denominators need separate original-domain exclusions."
+    }
+  ],
+  "old_evidence_cards": "Existing both-nonzero, contextual-real-domain and old rewritten-field cards remain quarantined; they are not automatically remapped or accepted as NCERT evidence.",
+  "independent_crossread": "review-matrix-subjects.json source_card_remapping and review-matrix-subjects.rereview.json source_field_review retain field-level agreement/limits.",
+  "owner_source_acceptance": "NOT_GRANTED"
+}

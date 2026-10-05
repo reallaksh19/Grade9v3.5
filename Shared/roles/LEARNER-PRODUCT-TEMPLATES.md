@@ -197,7 +197,7 @@ it is never permission for an agent to invent a page architecture.
         "RANDOM_BLANK_DELETION",
         "UNANSWERED_PROMPT"
       ],
-      "web_blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0"
+      "web_blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.7.0"
     },
     "CORE1B": {
       "learner_job": "Reconstruct the same inferential truth before seeing the completed route.",
@@ -328,7 +328,7 @@ it is never permission for an agent to invent a page architecture.
         "GENERATED_OFFICIAL_IDENTITY",
         "RECONSTRUCTED_WORDING_PRESENTED_AS_ORIGINAL"
       ],
-      "web_blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0"
+      "web_blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.9.0"
     },
     "CORE2A": {
       "learner_job": "Learn a familiar question-family application route with pedagogical support and complete closure.",

@@ -1,6 +1,7 @@
 """The blueprint is the page's source: its components, columns and depths decide what the renderer builds, what the
 gate fails and what an author is scaffolded and asked for. Each test changes or reads the blueprint, not a copy of it."""
 from __future__ import annotations
+from tests.test_issue29_lesson_closure import OwnedHTML
 
 import copy
 import json
@@ -156,7 +157,7 @@ class Reporting(unittest.TestCase):
             render_core.component_body(ctx, "CORE2", {"NOT_A_COMPONENT": "x"}, "attempt")
 
     def test_the_gate_rule_reads_the_registry_not_a_copy_of_it(self):
-        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.9.0",
                 "units": [{"id": "Q", "components": [{"id": "STEM", "items": None, "unit": None},
                                                      {"id": "HINT_LADDER", "items": 1, "unit": None}]}]}
         problems = quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {})
@@ -171,7 +172,7 @@ class Reporting(unittest.TestCase):
                              quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {}))
 
     def test_a_per_unit_component_is_expected_once_for_each_construction_unit(self):
-        page = {"role": "CORE1A", "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0",
+        page = {"role": "CORE1A", "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.7.0",
                 "units": [{"id": "MIC", "construction_units": ["CU-1", "CU-2"],
                            "components": [{"id": "STAGED_VISUAL", "items": 3, "unit": "CU-1"}]}]}
         problems = quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {})
@@ -218,7 +219,7 @@ class ReferenceDepth(unittest.TestCase):
         self.assertEqual(ctx.waived, [])
 
     def test_the_gate_holds_a_deep_question_to_its_band_and_skips_what_the_record_waived(self):
-        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.9.0",
                 "units": [{"id": "Q", "metadata": [{"kind": "question-difficulty", "ref": "D3", "value": "D3",
                                                    "display_name": "Difficulty", "label": "D3"}],
                            "components": [{"id": "HINT_LADDER", "items": 3, "unit": None}],
@@ -255,13 +256,14 @@ class Core1aBenchmark(unittest.TestCase):
         self.assertIn('data-g9-component="QUICK_CHECK"', self.html)
         self.assertIn("Now you do one", self.html)
 
-    def test_worked_examples_require_prediction_before_each_step_is_revealed(self):
-        self.assertIn("Before opening each step, say what you would do next.", self.html)
-        worked = re.findall(r'<details class="g9-worked-step" data-g9-worked-predict[^>]*>', self.html)
+    def test_worked_teaching_is_visible_and_precedes_the_fresh_attempt(self):
+        tree = OwnedHTML(self.html)
+        worked = tree.with_attr('data-g9-watch-step')
         self.assertTrue(worked)
-        self.assertTrue(all(" open" not in tag for tag in worked))
-        self.assertRegex(self.html, r"Predict step 1, then reveal")
-        self.assertIn('data-g9-secondary="worked-result"', self.html)
+        self.assertTrue(all(not any(a['tag']=='details' for a in node['ancestors']) for node in worked))
+        self.assertNotIn('data-g9-worked-predict', self.html)
+        self.assertIn('data-g9-block="worked_check"', self.html)
+        self.assertLess(self.html.index('data-g9-watch-step'), self.html.index('data-g9-component="EXIT_RECALL"'))
 
     def test_the_independent_checks_are_a_numbered_triad_that_names_each_items_job(self):
         triad = render_core._quick_check([{"statement": "Substitute back", "role": "CHECK"},
@@ -378,8 +380,8 @@ class Core1aBenchmark(unittest.TestCase):
         self.assertEqual(by_id["EQUATIONS"]["level"], "EXPECTED")
         self.assertTrue(self.blueprint["interaction_policy"]["progressive_support"])
         self.assertEqual(self.blueprint["interaction_policy"]["secondary_reference_default"], "COLLAPSED")
-        self.assertEqual(self.blueprint["interaction_policy"]["worked_example_step_policy"], "PREDICT_THEN_REVEAL")
-        self.assertEqual(by_id["WORKED_EXAMPLE"]["presentation"], "PREDICT_REVEAL_WORKED_CARD")
+        self.assertEqual(self.blueprint["interaction_policy"]["worked_example_step_policy"], "SHOW_ALL")
+        self.assertEqual(by_id["WORKED_EXAMPLE"]["presentation"], "WORKED_CARD")
 
 
 class Tablet(unittest.TestCase):
@@ -398,14 +400,16 @@ class Tablet(unittest.TestCase):
             self.assertGreaterEqual(promise["figure_min_text_css_px"], 14)
             self.assertLessEqual(promise["identity_max_px"], 200)
 
-    def test_the_key_step_and_what_the_learner_needs_open_the_first_unit_beside_the_figure_not_above_it(self):
-        article = re.search(r"<article .*?</article>", self.core1a, re.S).group(0)
-        split = article.index("g9-split")
-        for marker in ('data-g9-component="KEY_STEP"', 'data-g9-component="MODEL_CONTRACT"'):
-            self.assertGreater(article.index(marker), split, marker)
-        self.assertEqual(article.count('data-g9-component="KEY_STEP"'), 1)
-        self.assertLess(article.index('data-g9-component="UNIT_HEADER"'), article.index('data-g9-component="KEY_STEP"'))
-        self.assertLess(article.index('data-g9-component="KEY_STEP"'), article.index('data-g9-component="MODEL_CONTRACT"'))
+    def test_conditions_precede_construction_and_the_key_step_follows_its_adjacent_visual(self):
+        tree=OwnedHTML(self.core1a)
+        unit=tree.with_attr('data-g9-cu')[0]
+        markers=[r['attrs']['data-g9-component'] for r in tree.with_attr('data-g9-component') if unit in r['ancestors']]
+        self.assertLess(markers.index('MODEL_CONTRACT'), markers.index('CONSTRUCTION_STEPS'))
+        self.assertLess(markers.index('CONSTRUCTION_STEPS'), markers.index('STAGED_VISUAL'))
+        self.assertLess(markers.index('STAGED_VISUAL'), markers.index('KEY_STEP'))
+        self.assertLess(markers.index('KEY_STEP'), markers.index('WORKED_EXAMPLE'))
+        self.assertEqual(markers.count('KEY_STEP'), 1)
+        self.assertFalse(any('g9-split' in r['attrs'].get('class','') for r in tree.rows if unit in r['ancestors']))
 
     def test_a_concept_with_one_section_has_no_route_to_itself(self):
         one = {"construction_units": [{"id": "CU-A", "decision": "Only"}]}

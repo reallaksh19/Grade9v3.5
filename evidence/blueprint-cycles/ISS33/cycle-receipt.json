@@ -1,0 +1,80 @@
+{
+  "issue": 33,
+  "band_cohort": "D2",
+  "round": "BLUEPRINT_CORRECTION_R2",
+  "status": "CANDIDATE",
+  "renderer": "render_core/2",
+  "registry_version": "1.14.0",
+  "render_digest": "a6d439f43bd6a14b",
+  "source_bank_sha256": "d844574fc13a46ec88661ef334447e7e41818e68997d7fa97da7d13013109091",
+  "source_package_sha256": "29080f75440f43709705483dcb19629eb80712dff903088a6e21dac671398803",
+  "source_manifest_sha256": "d4879d3af6b1797207487590b35d97ad83f9e2721644b0f48ac2a0987f7cca23",
+  "stems_and_custody_preserved": true,
+  "package_schema": "PASS",
+  "registry_schema": "PASS",
+  "selection": "PASS",
+  "learning_repair_errors": {},
+  "owner_bank_basic": [],
+  "owner_bank_reference_findings": [],
+  "render_gaps": [],
+  "advisories": [
+    {
+      "component": "STAGED_VISUAL",
+      "record": "CU-HYB-ORBITAL-INVENTORY-Q2",
+      "detail": "STAGED_VISUAL has 2 of the 3 stages the reference page has for a D2 question",
+      "core": "CORE1A",
+      "product": "EVIDENCE-CHEM-ISS33-HYB-A-BLUEPRINT-CYCLE-R2"
+    },
+    {
+      "component": "STAGED_VISUAL",
+      "record": "CU-HYB-ORBITAL-INVENTORY-Q7",
+      "detail": "STAGED_VISUAL has 2 of the 3 stages the reference page has for a D2 question",
+      "core": "CORE1A",
+      "product": "EVIDENCE-CHEM-ISS33-HYB-A-BLUEPRINT-CYCLE-R2"
+    },
+    {
+      "component": "STAGED_VISUAL",
+      "record": "CU-HYB-ORBITAL-INVENTORY",
+      "detail": "STAGED_VISUAL has 2 of the 3 stages the reference page has for a D2 question",
+      "core": "CORE1A",
+      "product": "EVIDENCE-CHEM-ISS33-HYB-A-BLUEPRINT-CYCLE-R2"
+    }
+  ],
+  "page_hashes": {
+    "core1a.html": "43e5c435c4c23461303d846d6ecf9527d3641d47ebab46a63bd276901fa3b47f",
+    "core2.html": "d76e96b592271e9fddd2b005299d9e6f8caa62d6c876562c1604aad8b5b4a5d6",
+    "index.html": "2323b97fd732b4221d9f5ce117d5b637fc0e6db9454decb9945ab4183123147d"
+  },
+  "browser": "NOT_RUN",
+  "all_12_facets_independently_certified": false,
+  "golden": false,
+  "observation": "LOCAL_EXECUTION + ARTIFACT_INSPECTION",
+  "oracle": "IMPLEMENTATION_COUPLED plus separate academic correction data",
+  "render_basis": {
+    "source_commit": "59cfb081a96b6d15ad9c5a6ded771b2dce00091d",
+    "authority_sha256": {
+      "Shared/tools/render_core.py": "66010d8d8930f35b81f51d80e6630b16b936fdb71c185b8ce6883b14494f949d",
+      "Shared/tools/core2_v2.py": "ceeb0c50e65f7967f6890ac7f14c6c3a63ca9f3be8d8f2728da98ffe55d580ef",
+      "Shared/tools/learning_repair.py": "484868e026ef966adfd607ad5dcd4dee2bb7f16777ac211bfeead56c0a6b4b8c",
+      "Shared/tools/learner_metadata.py": "5db2d1b0cee736a375a9da2acca786b61f5abc6c1f49da221b6606391c3416e5",
+      "Shared/web/interactive-page-blueprints.v1.json": "ea76bbcae595b93d0d8c5cc8548e8d8c76250447f42fe89a5a0f86e1877551df",
+      "public/css/modern-learner.css": "1534437082327a575623b4044949de0bee500dfa095cad2f0236f846b5fd73c6",
+      "public/css/tablet-12-7.css": "a8d2f54184818bf4fa3f5acdb61e6efc2c8103e475b0bb4a4c0747d8898455ab",
+      "public/js/display-controls.js": "2121a1e242220e38cb93dc6e900ee0d0c223b1eab4d32a07398fd632a7d3de1e",
+      "public/js/site-header.js": "72a1f89b975c36ea8fb0b0c4170f47533dc9e49e59c4120cd90c6383128922f2"
+    },
+    "authority_byte_policy": "UTF8_TEXT_LF",
+    "canonical_input_sha256": {
+      "evidence/blueprint-cycles/ISS33/inputs/owner.bank.json": "ff928164abc94380edd9df24916d3d62169c0abce496f1d37060dfa6a49ce8a9",
+      "evidence/blueprint-cycles/ISS33/inputs/package.v1.json": "848eed0eb7496a69e19bfad10f76b895a578cb926fee135f65b46e282c958223",
+      "evidence/blueprint-cycles/ISS33/inputs/product.manifest.json": "4bf8114dec35f0b593e9b45f4d1da7159f3e297a35639b62b8db2889e8fb82ef"
+    },
+    "source_commit_role": "Checkout basis; actual tested authority and corrected inputs are bound by SHA256.",
+    "custody_baseline": "1facd846101c74a69389f9cc6df5b7dbfebd5bea",
+    "source_question_custody_unchanged": true,
+    "legacy_source_hashes": "Retained from predecessor receipt; not used as corrected-input digests.",
+    "observation": "NEW_LOCAL_EXECUTION",
+    "method": "PRODUCTION_RENDERER_API_WITH_LOCAL_SCHEMA_RESOLVER",
+    "historical_artifact_snapshot": "46e91c9ec4285e14ca0db469eda281ff31df596a"
+  }
+}
