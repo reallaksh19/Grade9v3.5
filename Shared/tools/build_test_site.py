@@ -26,6 +26,10 @@ from Shared.tools import matrix_conformance, product_coverage, render_core  # no
 esc = render_core.esc
 TEST_ROOT = REPO / "TEST"
 PUBLIC_TEST = REPO / "public" / "test"
+CORE_CONTRACT = TEST_ROOT / "adapter" / "CoreContracts.json"
+QUALITY_VOCABULARY = TEST_ROOT / "adapter" / "QualityVocabulary.json"
+FIXTURE_MANIFEST = TEST_ROOT / "question-bank" / "fixtures" / "pr61-math-42.fixture.json"
+PACKAGE_SCHEMA = REPO / "Shared" / "library" / "package.schema.json"
 NAV = (("index.html", "TEST"), ("atlas/index.html", "Atlas"), ("rungs/index.html", "Rungs"), ("deployments/index.html", "Deployments"))
 ROLE_PAGES = (("index.html", "Product index"), ("core2.html", "Core2"), ("core1a.html", "Core1A"), ("core1.html", "Core1"),
               ("core1b.html", "Core1B"), ("core2a.html", "Core2A"), ("core2b.html", "Core2B"))
@@ -34,6 +38,115 @@ BANNER = "TEST sandbox · drafts only · not reviewed, not accepted, not curricu
 
 def _json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _relative(path: Path) -> str:
+    try:
+        return path.relative_to(REPO).as_posix()
+    except ValueError:
+        return path.as_posix()
+
+
+def _core_contract_state() -> dict:
+    contract = _json(CORE_CONTRACT)
+    if contract.get("subject") != "TEST":
+        raise ValueError(f"{_relative(CORE_CONTRACT)} must declare subject TEST")
+
+    products = contract.get("learner_products")
+    if not isinstance(products, dict) or not products:
+        raise ValueError(f"{_relative(CORE_CONTRACT)} must declare learner_products")
+
+    roles = []
+    for core, row in products.items():
+        if not isinstance(row, dict) or not row.get("role") or not row.get("production"):
+            raise ValueError(f"{_relative(CORE_CONTRACT)} learner product {core} is incomplete")
+        roles.append({"core": core, "role": row["role"], "production": row["production"]})
+
+    release_authority = contract.get("release_authority")
+    if not isinstance(release_authority, str) or not release_authority:
+        raise ValueError(f"{_relative(CORE_CONTRACT)} must declare release_authority")
+
+    validators = contract.get("validator_catalogue")
+    if not isinstance(validators, list):
+        raise ValueError(f"{_relative(CORE_CONTRACT)} validator_catalogue must be a list")
+
+    return {
+        "path": _relative(CORE_CONTRACT),
+        "package_schema_path": _relative(PACKAGE_SCHEMA),
+        "schema_version": contract.get("schema_version"),
+        "contract_version": contract.get("contract_version"),
+        "subject": contract["subject"],
+        "roles": roles,
+        "release_authority": release_authority,
+        "validator_catalogue": list(validators),
+    }
+
+
+def _quality_vocabulary_state() -> dict:
+    vocabulary = _json(QUALITY_VOCABULARY)
+    if vocabulary.get("subject") != "TEST":
+        raise ValueError(f"{_relative(QUALITY_VOCABULARY)} must declare subject TEST")
+    if vocabulary.get("schema") != "quality-vocabulary/v1":
+        raise ValueError(f"{_relative(QUALITY_VOCABULARY)} must use quality-vocabulary/v1")
+    purpose = vocabulary.get("purpose")
+    if not isinstance(purpose, str) or not purpose:
+        raise ValueError(f"{_relative(QUALITY_VOCABULARY)} must declare purpose")
+
+    return {
+        "path": _relative(QUALITY_VOCABULARY),
+        "schema": vocabulary["schema"],
+        "subject": vocabulary["subject"],
+        "purpose": purpose,
+        "shared_quality_contract_path": "Shared/quality/learner-quality.v1.json",
+    }
+
+
+def _fixture_state() -> dict:
+    fixture = _json(FIXTURE_MANIFEST)
+    if fixture.get("subject") != "TEST":
+        raise ValueError(f"{_relative(FIXTURE_MANIFEST)} must declare subject TEST")
+    if fixture.get("authority_status") != "UNVERIFIED_SANDBOX_FIXTURE":
+        raise ValueError(f"{_relative(FIXTURE_MANIFEST)} must remain UNVERIFIED_SANDBOX_FIXTURE")
+    if fixture.get("question_count") != 42:
+        raise ValueError(f"{_relative(FIXTURE_MANIFEST)} must freeze exactly 42 coordinates")
+
+    topic_counts = fixture.get("topic_counts")
+    if not isinstance(topic_counts, dict) or len(topic_counts) != 7 or set(topic_counts.values()) != {6}:
+        raise ValueError(f"{_relative(FIXTURE_MANIFEST)} must contain seven topic buckets of six coordinates")
+
+    excluded = fixture.get("excluded_provider_head")
+    if not isinstance(excluded, dict) or excluded.get("excluded_placeholder_records") != 168:
+        raise ValueError(f"{_relative(FIXTURE_MANIFEST)} must exclude the 168 placeholder additions")
+
+    return {
+        "path": _relative(FIXTURE_MANIFEST),
+        "fixture_id": fixture.get("fixture_id"),
+        "authority_status": fixture["authority_status"],
+        "question_count": fixture["question_count"],
+        "topic_counts": dict(topic_counts),
+        "excluded_provider_head": {
+            "commit": excluded.get("commit"),
+            "excluded_placeholder_records": excluded["excluded_placeholder_records"],
+            "disposition": excluded.get("disposition"),
+        },
+    }
+
+
+def dashboard_state() -> dict:
+    """Pure TEST dashboard view-model. Source files are authority; this is projection data only."""
+    core = _core_contract_state()
+    fixture = _fixture_state()
+    return {
+        "core_contract": core,
+        "quality_vocabulary": _quality_vocabulary_state(),
+        "fixture": fixture,
+        "safety": {
+            "release_authority": core["release_authority"],
+            "fixture_authority_status": fixture["authority_status"],
+            "excluded_placeholder_records": fixture["excluded_provider_head"]["excluded_placeholder_records"],
+            "fixture_scope": "TEST_ONLY_NOT_CANONICAL",
+        },
+    }
 
 
 # ------------------------------------------------------------------ repository state
@@ -124,9 +237,59 @@ def link(href: str, label: str) -> str:
     return f'<a href="{esc(href)}">{esc(label)}</a>'
 
 
+def core_contract_card(core: dict) -> str:
+    roles = "".join(
+        f'<li><strong>{esc(row["core"])}</strong> · {esc(row["role"])} · {esc(row["production"])}</li>'
+        for row in core["roles"]
+    )
+    validators = core["validator_catalogue"]
+    validator_state = f'{len(validators)} declared' if validators else 'none declared for TEST'
+    version = " / ".join(
+        x for x in (core.get("schema_version"), core.get("contract_version")) if x
+    )
+    return card(
+        "core-contract",
+        "production core contract schema roles release authority validators",
+        '<h2>Production Core contract basis</h2>'
+        f'<p class="g9-prov">Package schema: <code>{esc(core["package_schema_path"])}</code><br>'
+        f'Core contract: <code>{esc(core["path"])}</code>'
+        f'{" · version " + esc(version) if version else ""}</p>'
+        f'<ul>{roles}</ul>'
+        f'<p><strong>Release authority:</strong> <code>{esc(core["release_authority"])}</code></p>'
+        f'<p><strong>Validator catalogue:</strong> {esc(validator_state)}</p>'
+        '<p class="g9-prov">Projection only; this panel does not grant acceptance or release.</p>',
+    )
+
+
+def fixture_boundary_card(fixture: dict, safety: dict) -> str:
+    topics = "".join(
+        f'<li>{esc(topic)} · {esc(count)} coordinate(s)</li>'
+        for topic, count in sorted(fixture["topic_counts"].items())
+    )
+    excluded = fixture["excluded_provider_head"]
+    commit = excluded.get("commit") or "unknown provider head"
+    disposition = excluded.get("disposition") or "HOLD"
+    return card(
+        "fixture-boundary",
+        "fixture boundary sandbox unverified coordinates hold excluded not canonical search",
+        '<h2>TEST fixture boundary</h2>'
+        f'<p><strong>{esc(fixture["question_count"])}</strong> TEST-only coordinate(s) · '
+        f'<code>{esc(fixture["fixture_id"])}</code></p>'
+        f'<p><strong>Authority:</strong> <code>{esc(fixture["authority_status"])}</code></p>'
+        f'<ul>{topics}</ul>'
+        f'<p><strong>Excluded provider additions:</strong> '
+        f'{esc(excluded["excluded_placeholder_records"])} placeholder record(s) · '
+        f'<code>{esc(commit)}</code> · {esc(disposition)}.</p>'
+        f'<p class="g9-prov">Scope: <code>{esc(safety["fixture_scope"])}</code>. '
+        'This fixture is not canonical, not learner-searchable, and not acceptance evidence. '
+        'It is not a source-verification claim. Question text and answers are deliberately not projected here.</p>',
+    )
+
+
 # ------------------------------------------------------------------ pages
 
 def hub_page() -> str:
+    state = dashboard_state()
     deployed = products()
     pages = interactive_pages()
     counts = source_counts()
@@ -149,6 +312,8 @@ def hub_page() -> str:
         'accepted or curriculum, and <code>accept_product.py</code> refuses TEST.</p>'
         '<p class="g9-prov">A gap count of 0 means the depth check found nothing missing. It counts what is absent, '
         'not how good it is, and it does not say the content has been reviewed.</p>'
+        + core_contract_card(state["core_contract"])
+        + fixture_boundary_card(state["fixture"], state["safety"])
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
         + stage(2, "Core1A", "Concept construction for the same topic", core1a)
         + stage(3, "Explorer", "A guided page on the toughest concept of the same question set", inter)
