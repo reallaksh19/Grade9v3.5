@@ -257,6 +257,133 @@ class Issue69SubjectNeutrality(unittest.TestCase):
             new_gaps,
         )
 
+    def test_core1a_unit_worked_example_waiver_projects_without_empty_panel(self):
+        manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(manifest)
+        ctx.held_to = "REFERENCE"
+        microtopic = copy.deepcopy(next(
+            row for row in ctx.selection_rows["microtopics"]
+            if row["id"] == "MIC-PHY-KIN-PROJECTILE-MODEL"
+        ))
+        unit = microtopic["construction_units"][0]
+        unit.pop("worked_anchor_ref", None)
+        unit.pop("bank_anchor_ref", None)
+        microtopic.setdefault("extensions", {})["grade9v3:lesson_anchors"] = {}
+        reason = "this construction proceeds directly to reduced-support application"
+        unit.setdefault("extensions", {})["grade9v3:component_waivers"] = {
+            "WORKED_EXAMPLE": reason,
+        }
+
+        before_gaps = len(ctx.gaps)
+        before_waived = len(ctx.waived)
+        html = render_core.core1a(ctx, microtopic)
+        new_gaps = ctx.gaps[before_gaps:]
+        new_waived = ctx.waived[before_waived:]
+
+        self.assertFalse(
+            [
+                gap for gap in new_gaps
+                if gap["record"] == unit["id"] and gap.get("component") == "WORKED_EXAMPLE"
+            ],
+            new_gaps,
+        )
+        self.assertIn('data-g9-component-waiver="WORKED_EXAMPLE"', html)
+        self.assertIn(f'data-g9-component-unit="{unit["id"]}"', html)
+        self.assertIn(render_core.esc(reason), html)
+        self.assertIn(
+            ("WORKED_EXAMPLE", unit["id"], reason),
+            [(row["component"], row["record"], row["reason"]) for row in new_waived],
+        )
+
+        start = html.index(f'id="{unit["id"]}"')
+        next_start = html.index(f'id="{microtopic["construction_units"][1]["id"]}"', start)
+        self.assertNotIn('data-g9-block="worked_anchor"', html[start:next_start])
+
+    def test_core1a_unit_staged_visual_waiver_projects_without_decorative_figure(self):
+        manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(manifest)
+        ctx.held_to = "REFERENCE"
+        microtopic = copy.deepcopy(next(
+            row for row in ctx.selection_rows["microtopics"]
+            if row["id"] == "MIC-PHY-KIN-PROJECTILE-MODEL"
+        ))
+        unit = microtopic["construction_units"][1]
+        unit.pop("representation_ref", None)
+        reason = "no representation adds semantic information for this construction"
+        unit.setdefault("extensions", {})["grade9v3:component_waivers"] = {
+            "STAGED_VISUAL": reason,
+        }
+
+        before_gaps = len(ctx.gaps)
+        before_waived = len(ctx.waived)
+        html = render_core.core1a(ctx, microtopic)
+        new_gaps = ctx.gaps[before_gaps:]
+        new_waived = ctx.waived[before_waived:]
+
+        self.assertFalse(
+            [
+                gap for gap in new_gaps
+                if gap["record"] == unit["id"] and gap.get("component") == "STAGED_VISUAL"
+            ],
+            new_gaps,
+        )
+        self.assertIn('data-g9-component-waiver="STAGED_VISUAL"', html)
+        self.assertIn(f'data-g9-component-unit="{unit["id"]}"', html)
+        self.assertIn(
+            ("STAGED_VISUAL", unit["id"], reason),
+            [(row["component"], row["record"], row["reason"]) for row in new_waived],
+        )
+
+        start = html.index(f'id="{unit["id"]}"')
+        next_start = html.index(f'id="{microtopic["construction_units"][2]["id"]}"', start)
+        self.assertNotIn('data-g9-figure', html[start:next_start])
+
+    def test_core1a_unit_waiver_does_not_leak_to_another_construction(self):
+        manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(manifest)
+        ctx.held_to = "REFERENCE"
+        microtopic = copy.deepcopy(next(
+            row for row in ctx.selection_rows["microtopics"]
+            if row["id"] == "MIC-PHY-KIN-PROJECTILE-MODEL"
+        ))
+        first, second = microtopic["construction_units"][:2]
+        for unit in (first, second):
+            unit.pop("worked_anchor_ref", None)
+            unit.pop("bank_anchor_ref", None)
+        microtopic.setdefault("extensions", {})["grade9v3:lesson_anchors"] = {}
+        first.setdefault("extensions", {})["grade9v3:component_waivers"] = {
+            "WORKED_EXAMPLE": "first construction intentionally has no worked example",
+        }
+
+        before_gaps = len(ctx.gaps)
+        before_waived = len(ctx.waived)
+        render_core.core1a(ctx, microtopic)
+        new_gaps = ctx.gaps[before_gaps:]
+        new_waived = ctx.waived[before_waived:]
+
+        self.assertIn(
+            ("WORKED_EXAMPLE", first["id"]),
+            [(row["component"], row["record"]) for row in new_waived],
+        )
+        self.assertNotIn(
+            ("WORKED_EXAMPLE", second["id"]),
+            [(row["component"], row["record"]) for row in new_waived],
+        )
+        self.assertFalse(
+            [
+                gap for gap in new_gaps
+                if gap["record"] == first["id"] and gap.get("component") == "WORKED_EXAMPLE"
+            ],
+            new_gaps,
+        )
+        self.assertTrue(
+            [
+                gap for gap in new_gaps
+                if gap["record"] == second["id"] and gap.get("component") == "WORKED_EXAMPLE"
+            ],
+            new_gaps,
+        )
+
     def test_render_core_has_no_academic_subject_literal_comparison(self):
         path = REPO / "Shared" / "tools" / "render_core.py"
         tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
