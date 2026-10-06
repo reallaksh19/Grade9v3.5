@@ -210,6 +210,52 @@ class Issue69SubjectNeutrality(unittest.TestCase):
         self.assertNotIn("1-2-3 quick check", one)
         self.assertEqual(one.count("<li "), 1)
 
+    def test_toughest_target_requires_crux_binding_not_source_question_as_worked_example(self):
+        manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(manifest)
+        toughest = ctx.toughest()
+        self.assertTrue(toughest)
+        microtopic = copy.deepcopy(next(
+            row for row in ctx.selection_rows["microtopics"]
+            if row["id"] == toughest["microtopic_ref"]
+        ))
+        builders = [
+            unit for unit in microtopic.get("construction_units") or []
+            if toughest["question_ref"] in (unit.get("crux_question_refs") or [])
+        ]
+        self.assertTrue(builders)
+
+        for unit in builders:
+            unit.pop("bank_anchor_ref", None)
+            unit.pop("worked_anchor_ref", None)
+        extensions = microtopic.setdefault("extensions", {})
+        extensions["grade9v3:lesson_anchors"] = {}
+
+        before = len(ctx.gaps)
+        render_core._toughest_unit_gaps(
+            ctx, microtopic, microtopic["construction_units"], toughest
+        )
+        new_gaps = ctx.gaps[before:]
+        self.assertFalse(
+            [gap for gap in new_gaps if gap["duty"] == "AUTHOR_TOUGHEST_CONCEPT"],
+            new_gaps,
+        )
+
+        for unit in builders:
+            unit["crux_question_refs"] = [
+                ref for ref in unit.get("crux_question_refs") or []
+                if ref != toughest["question_ref"]
+            ]
+        before = len(ctx.gaps)
+        render_core._toughest_unit_gaps(
+            ctx, microtopic, microtopic["construction_units"], toughest
+        )
+        new_gaps = ctx.gaps[before:]
+        self.assertTrue(
+            [gap for gap in new_gaps if gap["duty"] == "AUTHOR_TOUGHEST_CONCEPT"],
+            new_gaps,
+        )
+
     def test_render_core_has_no_academic_subject_literal_comparison(self):
         path = REPO / "Shared" / "tools" / "render_core.py"
         tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
