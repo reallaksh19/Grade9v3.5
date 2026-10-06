@@ -18,23 +18,29 @@ class TestThemeAndOwnerIsolation(unittest.TestCase):
                     html_files.append(Path(root) / f)
         return html_files
 
-    def test_zero_test_links_in_learner_surfaces(self):
-        """Crawl all .html files in public/ (except public/test/) and assert zero occurrences of href=".../test/..." or >TEST<."""
+    def test_only_the_owner_authorized_test_hub_link_reaches_learner_navigation(self):
+        """TEST is visible only as the explicit #68 lab-tab entry; deeper sandbox/owner links stay isolated."""
+        allowed = {
+            "index.html": ["test/index.html"],
+            "physics/index.html": ["../test/index.html"],
+            "chemistry/index.html": ["../test/index.html"],
+            "mathematics/index.html": ["../test/index.html"],
+        }
         files = self.get_learner_html_files()
         if not files:
-            return # No files to test yet
+            return
         for filepath in files:
             content = filepath.read_text(encoding="utf-8")
-            
-            # Check for links to /test/
-            test_links = re.findall(r'href=["\'][^"\']*?/test/[^"\']*?["\']', content, re.IGNORECASE)
-            self.assertEqual(len(test_links), 0, f"Found test links in {filepath}: {test_links}")
-            
-            # Check for >TEST< text
-            test_text = re.findall(r'>TEST<', content)
-            self.assertEqual(len(test_text), 0, f"Found >TEST< text in {filepath}")
-            
-            # Ensure no legacy authoring acronyms are leaking in breadcrumbs
+            relative = filepath.relative_to(PUBLIC_DIR).as_posix()
+            test_links = re.findall(r'href=["\']([^"\']*test/[^"\']*)["\']', content, re.IGNORECASE)
+            self.assertEqual(test_links, allowed.get(relative, []), f"Unexpected TEST links in {filepath}: {test_links}")
+
+            if relative in allowed:
+                self.assertIn(">TEST · LAB</a>", content, f"Missing sandbox-labelled TEST navigation in {filepath}")
+            else:
+                self.assertNotIn(">TEST · LAB</a>", content, f"TEST lab navigation leaked into {filepath}")
+
+            self.assertNotIn(">TEST<", content, f"Unlabelled TEST text found in {filepath}")
             self.assertNotIn(">CORE1A<", content, f"Legacy CORE1A breadcrumb found in {filepath}")
             self.assertNotIn(">CORE2<", content, f"Legacy CORE2 breadcrumb found in {filepath}")
 

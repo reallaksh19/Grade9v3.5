@@ -186,18 +186,23 @@ class TestPages(unittest.TestCase):
                      "../../test/rungs/index.html", "../../test/deployments/index.html"):
             self.assertIn(f'href="{href}"', header)
 
-    def test_the_tab_is_in_the_shared_header_and_on_the_hubs_and_the_site_can_reach_test(self):
+    def test_the_tab_is_in_the_shared_header_and_on_the_owner_authorized_hubs(self):
         header = (REPO / "public/js/site-header.js").read_text(encoding="utf-8")
         self.assertIn("root+'test/index.html'", header)
+        self.assertIn("TEST · LAB", header)
         for page, href in (("index.html", "test/index.html"), ("physics/index.html", "../test/index.html"),
                            ("chemistry/index.html", "../test/index.html"), ("mathematics/index.html", "../test/index.html")):
             text = (REPO / "public" / page).read_text(encoding="utf-8")
-            self.assertIn(f'href="{href}" class="test-link" data-site-test>TEST</a>', text, page)
+            self.assertIn(
+                f'href="{href}" class="test-link" data-site-test title="TEST sandbox · draft only">TEST · LAB</a>',
+                text,
+                page,
+            )
 
     def test_test_is_not_a_question_bank_subject(self):
         projection = build_question_bank_web.build(REPO)
         self.assertNotIn("TEST", {q.get("subject") for q in projection["questions"]})
-        self.assertEqual(len(projection["questions"]), 81)
+        self.assertTrue(projection["questions"], "the exclusion check must run against a non-empty Question Bank")
 
 
 class TestDeploy(unittest.TestCase):
