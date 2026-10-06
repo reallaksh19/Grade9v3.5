@@ -46,6 +46,28 @@ class Registry(unittest.TestCase):
             cls = "g9-c-" + name.lower().replace("_", "-")
             self.assertTrue(re.search(r"\." + re.escape(cls) + r"(?![\w-])", rules), f"{name} has no .{cls} rule")
 
+    def test_shared_solution_authoring_is_subject_neutral_and_not_band_counted(self):
+        core2 = next(b for b in REGISTRY["blueprints"] if b["id"] == "BP-CORE2-SOURCE-QUESTION")
+        solution = next(c for c in core2["components"] if c["id"] == "SOLUTION_STEPS")
+        for key in ("min_items", "target_items", "target_items_by_band", "band_source"):
+            self.assertNotIn(key, solution)
+        self.assertEqual(len(solution["authoring"]["skeleton"]["answer"]["reasoning_route"]), 1)
+        hint = solution["authoring"]["hint"].lower()
+        for leaked in (
+            "vsepr", "allene", "torsion", "orbital-basis", "hybridisation",
+            "hybridization", "delocalised pi", "polynomial", "projectile",
+        ):
+            with self.subTest(leaked=leaked):
+                self.assertNotIn(leaked, hint)
+        self.assertIn("difficulty band never sets the move count", hint)
+        self.assertIn("subject-specific repair rules belong", hint)
+
+    def test_subject_demand_adapters_do_not_define_competing_qrt_template_ids(self):
+        for subject in ("Chemistry", "Mathematics", "Physics"):
+            adapter = json.loads((REPO / subject / "adapter" / "DemandReview.json").read_text(encoding="utf-8"))
+            payload = json.dumps(adapter, sort_keys=True)
+            self.assertNotRegex(payload, r'"QRT-[A-Z]+-D[1-4]"', subject)
+
     def test_learner_text_in_components_never_drops_below_the_blueprint_floor(self):
         floor = REGISTRY["shell"]["typography_policy"]["minimum_learner_text_css_px"]
         base = REGISTRY["shell"]["typography_policy"]["base_text_css_px"]
@@ -188,7 +210,7 @@ class Reporting(unittest.TestCase):
             render_core.component_body(ctx, "CORE2", {"NOT_A_COMPONENT": "x"}, "attempt")
 
     def test_the_gate_rule_reads_the_registry_not_a_copy_of_it(self):
-        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.10.0",
+        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.11.0",
                 "units": [{"id": "Q", "components": [{"id": "STEM", "items": None, "unit": None},
                                                      {"id": "ATTEMPT", "items": None, "unit": None}]}]}
         expected = quality_contract.OPS["blueprint_components"](page, {"level": "EXPECTED"}, {})
@@ -253,7 +275,7 @@ class ReferenceDepth(unittest.TestCase):
         self.assertEqual(ctx.waived, [])
 
     def test_the_gate_does_not_turn_difficulty_band_into_hint_depth(self):
-        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.10.0",
+        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.11.0",
                 "units": [{"id": "Q", "metadata": [{"kind": "question-difficulty", "ref": "D4", "value": "D4",
                                                    "display_name": "Difficulty", "label": "D4"}],
                            "components": [{"id": "HINT_LADDER", "items": 1, "unit": None}]}]}

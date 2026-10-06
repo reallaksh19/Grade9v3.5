@@ -29,6 +29,8 @@ jobs:
             tests.test_high_likelihood_scenario_matrix_contract
       - name: Representation instance binding contract
         run: python3 -m unittest tests.test_representation_binding_contract
+      - name: Issue69 subject-neutrality contract
+        run: python3 -m unittest tests.test_issue69_subject_neutrality
       - name: Core2 staged support contract
         run: python3 -m unittest tests.test_staged_support_repair
       - name: Informational platform code tests

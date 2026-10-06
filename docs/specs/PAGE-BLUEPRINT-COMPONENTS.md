@@ -3,7 +3,7 @@
 Generated from `Shared/web/interactive-page-blueprints.v1.json` by `Shared/tools/blueprint_spec.py`. Do not edit.
 To change what a page shows, change the blueprint; the renderer, the quality gate and the owner-bank scaffold follow.
 
-Registry 1.16.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
+Registry 1.17.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
 
 Depth: min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source (for a Core1A construction unit, the hardest band among the bank questions it names in crux_question_refs). Between the floor and the reference depth the renderer says so as an advisory.
 
@@ -82,13 +82,13 @@ Browser audit (`tools/site-audit/core-page-audit.mjs --profile tablet-12.7`): me
 
 **Evidence.** A digest is taken over the bytes of a file, so the bytes must be the same on every machine. Line endings: LF (`.gitattributes`). Text is LF in every working tree (`* text=auto eol=lf`). A file already committed with CRLF keeps its bytes, so no recorded digest moves; a new file is LF.
 
-## BP-CORE2-SOURCE-QUESTION@1.10.0 (CORE2)
+## BP-CORE2-SOURCE-QUESTION@1.11.0 (CORE2)
 
 Learner job: Preserve the authentic source-question decision and an observable learner commitment before any assistance that completes or materially narrows protected work. Safe orientation may be available before commitment; learner-requested and post-attempt support remain provenance-explicit and state-bound; diagnosis and full solution remain distinct.
 
 Theme: opens light, and the learner can switch.
 
-Layout: from 980 px wide, the primary column is 42% and the support column 57.99999999999999%. Narrower, everything is one column, primary first.
+Layout: from 980 px wide, the primary column is 42% and the support column 58%. Narrower, everything is one column, primary first.
 
 | Slot | Column | Kept |
 |---|---|---|
@@ -127,12 +127,12 @@ Required: a page without it is a gap, and the quality gate fails it.
 - The reference page: selected_question_bank_TABLET_STUDY: the 'Teacher solution · complete derivation' disclosure
 - Record fields: `answer`
 
-**SOLUTION_STEPS** · slot `solution`, inside SOLUTION · STEP_LIST · at least 2 item(s); the reference has D1 3, D2 3, D3 4, D4 4 by difficulty band
+**SOLUTION_STEPS** · slot `solution`, inside SOLUTION · STEP_LIST
 
-- The learner gets: Show the working as numbered moves: what is done, why it is valid, what it gives.
+- The learner gets: Show the working as the ordered moves actually needed by this question: what is done, why it is valid here, and what state or result it establishes.
 - The reference page: selected_question_bank_TABLET_STUDY: three or four numbered steps with a bold lead and the reason (geometry, balance, Newton II, eliminate)
 - Record fields: `answer.reasoning_route`, `answer.crux_move_ref`
-- To author it: Write answer.reasoning_route[]: 3 moves for a D1 or D2 question, 4 for a D3 or D4. Each move has id, kind (DECIDE, REPRESENT, CONNECT, TRANSFORM or VERIFY), action (what is done), why_valid (the physical or logical reason this step is allowed; not 'this follows from the model'), inputs and output. Set crux_move_ref to the id of the move a learner is most likely to miss. Delete the move the band does not need. D1 repair: Keep neighbour/domain, bond-component and orbital-basis inventories distinct. A pi component is not axial density; VSEPR is qualitative. Each action needs its actual local warrant and output, rather than a generic assertion that the source/model permits it. D2 repair: Close the valence-basis ledger: hybrid outputs plus residual functions equal the independent inputs, with no double use. Nuclear shape excludes lone-pair vertices. A geometry drawing does not uniquely measure an orbital basis. D3 repair: Contributors are bookkeeping alternatives, not switching structures. Count the occupied delocalised pi space, not only a drawn double bond. Orthogonal p directions constrain allene terminal planes; Pauli is not a blanket one-bond-per-orbital ban. D4 repair: Separate local counts, occupancy, adjacency, alignment and empirical evidence. A supplied overlap factor is not total energy. Preserve formal electron inventory under torsion; strength, barrier and unique basis require specified further evidence.
+- To author it: Write answer.reasoning_route[] with as many moves as the actual dependency structure requires; difficulty band never sets the move count. Each move has id, kind (DECIDE, REPRESENT, CONNECT, TRANSFORM or VERIFY), action, why_valid, inputs and output. Set crux_move_ref to the one existing move whose success most directly decides the question. Each why_valid states the local warrant rather than a generic claim that a model or source permits the step. When material, make applicability conditions, model assumptions, representation invariants, bookkeeping boundaries, or empirical-versus-model limits explicit. Subject-specific repair rules belong in governed subject/record authority, not this Shared blueprint.
 
 **ANSWER** · slot `solution`, inside SOLUTION · ANSWER_BOX
 

@@ -64,7 +64,7 @@ test('retained PR65 Core2 render still carries the active STAGE_SUPPORT split', 
     new URL('../evidence/staged-repair/ISS29-set-b/rendered/core2.html', import.meta.url), 'utf8');
   const blueprint = registry.blueprints.find(row => row.id === 'BP-CORE2-SOURCE-QUESTION');
   assert.ok(blueprint);
-  assert.equal(blueprint.version, '1.10.0');
+  assert.equal(blueprint.version, '1.11.0');
   const expected = splitLayoutExpectation(blueprint.responsive_policy);
   assert.deepEqual(expected, {
     primaryFraction: 0.42,
