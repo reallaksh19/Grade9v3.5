@@ -598,13 +598,14 @@ class Core2V2RoundTripStateContract(unittest.TestCase):
         start = js.index("function saveCore2State")
         end = js.index("function restoreCore2State")
         save = js[start:end]
-        self.assertIn("JSON.stringify({attempted:!!a.dataset.attempted,fields,ladders,reveals})", save)
+        self.assertIn("JSON.stringify({attempted:!!a.dataset.attempted,assisted:!!a.dataset.g9Assisted,assistance,fields,ladders,reveals})", save)
         self.assertNotIn("innerHTML", save)
         self.assertNotIn("textContent", save)
 
     def test_restore_replays_attempt_fields_support_depth_and_commitment(self):
         js = render_core.JS
         self.assertIn("while(rungCount(l)<count&&nextRung(l)){}", js)
+        self.assertIn("if(state.assisted){a.dataset.g9Assisted='1'", js)
         self.assertIn("if(state.attempted){a.dataset.attempted='1';materialise(a)}", js)
         self.assertIn("el.type==='checkbox'||el.type==='radio'", js)
         self.assertIn("state.reveals||[]", js)
@@ -612,11 +613,19 @@ class Core2V2RoundTripStateContract(unittest.TestCase):
 
     def test_concept_round_trip_marks_only_the_exact_origin_question(self):
         js = render_core.JS
-        self.assertIn("saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef)", js)
+        self.assertIn("markAssistance(a,'CONCEPT_NAV');saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef)", js)
         self.assertIn("store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit)", js)
         self.assertIn("const active=!!key&&store.get(key)===link.dataset.g9QuestionRef", js)
         self.assertIn("link.dataset.g9ReturnLink=''", js)
         self.assertIn("store.remove(key);refreshReturnLinks()", js)
+
+    def test_assistance_events_mark_the_question_as_supported(self):
+        js = render_core.JS
+        self.assertIn("markAssistance(a,'HINT_LADDER')", js)
+        self.assertIn("markAssistance(a,'WRONG_ROUTE')", js)
+        self.assertIn("markAssistance(a,'CONCEPT_NAV')", js)
+        self.assertIn("a.dataset.g9Assisted='1'", js)
+        self.assertIn("a.dataset.g9Assistance=Array.from(kinds).join(',')", js)
 
     def test_storage_failure_is_non_blocking(self):
         js = render_core.JS
