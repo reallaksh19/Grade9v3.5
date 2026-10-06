@@ -1,0 +1,69 @@
+{
+  "schema_version": "grade9v3-phase-d-physics-representation-binding-v1",
+  "issue": 109,
+  "subunit": "D01.5",
+  "result": "PASS_WITH_Q33_VISUAL_NA",
+  "q33": {
+    "id": "PYQ-PHY-IITJEE-2011-P2-Q33",
+    "figure_refs": [],
+    "representation_roles": {},
+    "finding": "NO_QUESTION_OWNED_VISUAL_REQUIRED_OR_INVENTED"
+  },
+  "concept_representation": {
+    "representation_id": "REP-KIN-2D-SHARED-CLOCK",
+    "status": "CANDIDATE",
+    "scene_instance_id": "SCENE-KIN-2D-SHARED-CLOCK-PORTABLE-01",
+    "owner": {
+      "microtopic_ref": "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS",
+      "question_ref": null,
+      "exactly_one_owner": true
+    },
+    "cores": [
+      "CORE1A",
+      "CORE1B"
+    ],
+    "datum_refs": [
+      "DAT-KIN-2D-SHARED-T2",
+      "DAT-KIN-2D-MIXED-T3"
+    ],
+    "resolved_data": [
+      {
+        "id": "DAT-KIN-2D-SHARED-T2",
+        "value": 2,
+        "unit": "s",
+        "meaning": "Canonical shared sample time for the authored shared-clock reconstruction witness."
+      },
+      {
+        "id": "DAT-KIN-2D-MIXED-T3",
+        "value": 3,
+        "unit": "s",
+        "meaning": "Contrasting y-component sample time used only to expose the canonical mixed-time non-simultaneous state."
+      }
+    ],
+    "rendered_asset_refs": [
+      "Physics/assets/representations/REP-KIN-2D-SHARED-CLOCK.svg"
+    ],
+    "asset_blob_sha": "538bc8efcd421f8ef1f5d4f91a9b95bba1d506a4",
+    "scene_kind": "SHARED_CLOCK_2D",
+    "frame": "One physical particle in one declared x-y frame; every component sample remains attached to its own sample time.",
+    "caption": "Same-time x and y samples may reconstruct one simultaneous particle state; mixed-time samples are non-simultaneous and must be rejected."
+  },
+  "generic_contract_evidence": {
+    "workflow": "learner-platform-code-tests",
+    "run_id": 37547629741,
+    "code_job_id": 112555330926,
+    "representation_instance_binding_step": "PASS",
+    "browser_job_id": 112555330571,
+    "shared_tablet_rendered_audit": "PASS",
+    "rule": "wrong owner, missing datum, missing asset or wrong role fail closed under the existing generic representation-binding contract"
+  },
+  "qualification": [
+    "Q33 is correctly a no-picture question; no decorative question-owned scene is fabricated.",
+    "The same selected product qualifies representation binding through the shared-clock Core1A concept.",
+    "The scene has exactly one semantic owner: the shared-clock microtopic.",
+    "Every datum_ref resolves to a canonical package datum.",
+    "The governed SVG asset exists and is content-addressed by Git blob identity.",
+    "Generic representation-binding tests prove wrong owner/data/asset/role fail closed without Physics-specific Shared logic."
+  ],
+  "no_shared_patch": true
+}
