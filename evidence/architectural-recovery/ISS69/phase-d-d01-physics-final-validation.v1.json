@@ -1,0 +1,36 @@
+{
+  "schema_version": "grade9v3-phase-d-physics-final-validation-v1",
+  "issue": 109,
+  "subunit": "D01.6",
+  "result": "PASS_DELTA_NO_NEW_GUARDRAIL_FAILURES",
+  "qualification_branch": "qual/iss69-d01-physics",
+  "phase_c_base": "59751b52e4911a132abb8c3956583a75b3cbcab7",
+  "evidence_head": "2b96819bc2056180028be6e0edb4ad107adaab5b",
+  "focused_validation": {
+    "workflow": "learner-platform-code-tests",
+    "result": "PASS",
+    "note": "Dedicated Physics qualification, active-product render and browser-state lanes passed on the D01 evidence chain."
+  },
+  "broad_guardrail_delta": {
+    "base_run_id": 37545939587,
+    "base_job_id": 112549846745,
+    "d01_run_id": 37548722018,
+    "d01_job_id": 112558865185,
+    "base_unique_failure_or_error_tests": 112,
+    "d01_unique_failure_or_error_tests": 112,
+    "added_failure_or_error_tests": [],
+    "removed_failure_or_error_tests": [],
+    "signature_identical": true,
+    "disposition": "INHERITED_BASELINE_NOT_D01_REGRESSION"
+  },
+  "known_inherited_blockers": [
+    "#108 governed generated-artifact regeneration: committed Core-learning projection still carries Core1A 1.7.0 while active authority is 1.8.0.",
+    "Existing Phase-C assurance/guardrail debt outside the D01 Physics evidence/tests write surface remains open."
+  ],
+  "acceptance_boundary": {
+    "independent_rendered_acceptance": "DEFERRED_TO_D05_ISS113",
+    "merge_to_main": "NOT_GRANTED",
+    "golden_or_publication": "NOT_GRANTED"
+  },
+  "no_shared_patch": true
+}

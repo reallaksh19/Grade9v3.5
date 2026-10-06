@@ -1,0 +1,73 @@
+{
+  "schema_version": "grade9v3-phase-d-physics-core2-attempt-support-v1",
+  "issue": 109,
+  "subunit": "D01.4",
+  "result": "PASS_STATIC_SUPPORT_CONTRACT_AND_BROWSER_ATTEMPT_BOUNDARY",
+  "witness_id": "PYQ-PHY-IITJEE-2011-P2-Q33",
+  "source_bank_blob": "bc22e1610552803e1ee8ccfc167f2a69ebbbd032",
+  "support_contract": {
+    "source_hint_count": 0,
+    "authored_scaffold_count": 3,
+    "scaffolds": [
+      {
+        "source": "scaffolds[0]",
+        "support_kind": "REPRESENT",
+        "reveals": "CONCEPT",
+        "supports_move_ref": "PYQ-PHY-IITJEE-2011-P2-Q33-MOVE-1",
+        "text": "Use the vertical return-to-launch-height condition to find the one common catch time."
+      },
+      {
+        "source": "scaffolds[1]",
+        "support_kind": "CONNECT",
+        "reveals": "METHOD",
+        "supports_move_ref": "PYQ-PHY-IITJEE-2011-P2-Q33-MOVE-2",
+        "text": "Write ball-minus-train horizontal displacement over that same interval."
+      },
+      {
+        "source": "scaffolds[2]",
+        "support_kind": "EXECUTE",
+        "reveals": "METHOD",
+        "supports_move_ref": "PYQ-PHY-IITJEE-2011-P2-Q33-MOVE-3",
+        "text": "Set the relative displacement equal to the boy's 1.15 m motion."
+      }
+    ],
+    "answer_crux_move_ref": "PYQ-PHY-IITJEE-2011-P2-Q33-MOVE-2",
+    "answer_summary": "5 m/s^2."
+  },
+  "static_contract_evidence": {
+    "test_file": "tests/test_phase_d_physics_qualification.py",
+    "assertions": [
+      "Q33 pre-solution support is authored support, not source-hint custody.",
+      "All three scaffolds bind one-to-one to the three authored reasoning-route moves.",
+      "No pre-solution scaffold is marked ANSWER.",
+      "The rendered Q33 contains an explicit learner attempt control and an inert solution payload gated by attempt.",
+      "The rendered Q33 contains three inert support payloads; this is structural evidence, not a claim that the generic browser audit selected Q33 for progressive-support interaction."
+    ]
+  },
+  "execution_evidence": {
+    "workflow": "learner-platform-code-tests",
+    "run_id": 37548451531,
+    "tested_head": "a7c70adfcd16200b0e5dbdab30a9e2dc3f035a7b",
+    "code_job_id": 112558000023,
+    "browser_job_id": 112558000274,
+    "steps": {
+      "Informational platform code tests": "PASS",
+      "Render real Motion-in-2D product": "PASS",
+      "Shared tablet rendered audit": "PASS",
+      "Core2 v2 local HTTP interaction audit": "PASS"
+    },
+    "browser_verified": [
+      "The active generated Core2 product renders attempt controls with gated disclosures closed initially.",
+      "The generic Core2 interaction audit passes four viewports, reload persistence, PAGES and SINGLE_FILE state round trips, and URL-bound storage-failure fallback.",
+      "The browser job reports no page errors for the active generated Core2 product."
+    ],
+    "browser_not_applicable_for_selected_witness": [
+      "keyboard progressive support",
+      "progressive support request",
+      "bounded authored-support disclosure persistence",
+      "SINGLE_FILE progressive support"
+    ],
+    "interpretation": "Q33-specific progressive-support structure is qualified by the dedicated static D01 tests. The generic browser lane did not select a production witness for those progressive-support interactions, so those browser claims remain NOT_APPLICABLE rather than being promoted to PASS."
+  },
+  "no_shared_patch": true
+}
