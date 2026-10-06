@@ -2077,11 +2077,11 @@ def core2(ctx: Ctx, q: dict) -> str:
                                    items=figures.count("<figure ")),
         }, "representation"),
         "support": component_body(ctx, "CORE2", {
-            "TRAP": part("TRAP", secondary_disclosure(
-                "Common wrong route · open if you want a warning",
+            "TRAP": part("TRAP", reveal(
+                "Common wrong route · after your attempt",
                 block("common_wrong_route", '<p>' + question_text(ctx, q, "common_wrong_route", wrong_route) + '</p>'
                       if isinstance(wrong_route, str) and wrong_route.strip() else "", title="Common wrong route"),
-                "core2-wrong-route",
+                ref=f"CORE2-{rid}-wrong-route",
             )),
             "HINT_LADDER": part("HINT_LADDER", _core2_support(ctx, q) + _core2_after_attempt_support(ctx, q),
                                 items=_core2_support_rungs(q)),
