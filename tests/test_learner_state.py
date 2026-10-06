@@ -152,6 +152,9 @@ class LearnerState(unittest.TestCase):
         self.assertTrue(evidence["source_visible_after"])
         self.assertTrue(evidence["search_excludes_protected"])
         self.assertTrue(evidence["progressive_hints"])
+        self.assertTrue(evidence["after_attempt_wrong_route"])
+        self.assertTrue(evidence["concept_round_trip"])
+        self.assertTrue(evidence["assistance_persisted"])
         self.assertTrue(evidence["staged_figure"])
         self.assertEqual(evidence["typed_controls"],
                          ["single_choice", "multiple_choice", "true_false", "numeric", "short_text",
