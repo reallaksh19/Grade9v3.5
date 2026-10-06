@@ -12,7 +12,10 @@ import re
 from pathlib import Path
 from urllib.parse import urlparse
 
-from Shared.tools import question_difficulty
+try:
+    from Shared.tools import question_difficulty
+except ModuleNotFoundError:  # Script entry point: python Shared/tools/<tool>.py
+    import question_difficulty  # type: ignore
 
 ROOT = Path(__file__).resolve().parents[2]
 BANK_SCHEMA = ROOT / "Shared/library/competitive-exam-bank.schema.json"
