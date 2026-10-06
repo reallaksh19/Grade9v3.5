@@ -9,7 +9,10 @@ import json
 from pathlib import Path
 from typing import Any
 
-from Shared.tools import question_difficulty
+try:
+    from Shared.tools import question_difficulty
+except ModuleNotFoundError:  # Script entry point: python Shared/tools/<tool>.py
+    import question_difficulty  # type: ignore
 
 REPO = Path(__file__).resolve().parents[2]
 VOCAB_PATH = REPO / "Shared" / "vocabularies" / "cognitive-demand.v1.json"
