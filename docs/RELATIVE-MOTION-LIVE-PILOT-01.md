@@ -116,8 +116,11 @@ python3 Shared/tools/study_session.py attempt \
 
 If the misconception is not yet confirmed, omit `--misconception-index`.
 
-Only after the diagnostic prompt confirms a specific canonical misconception should the
-corresponding index be supplied for repair.
+Only after presenting the canonical diagnostic prompt and recording the learner response
+should the corresponding index be supplied. Misconception-specific repair additionally
+requires `--diagnostic-response`, `--diagnosis CONFIRMED`, and a non-empty
+`--diagnostic-basis`. If the evidence is ambiguous, use `INDETERMINATE`; the runtime stays
+in diagnosis rather than pretending the misconception is confirmed.
 
 For an independent correct attempt:
 

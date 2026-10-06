@@ -499,8 +499,15 @@
         "basis": {
           "enum": [
             "AUTHOR_ONLY",
-            "RENDERED"
-          ]
+            "RENDERED",
+            "INDEPENDENT_RENDERED"
+          ],
+          "description": "Review evidence basis. RENDERED proves review of the bound artifact but does not imply reviewer independence; INDEPENDENT_RENDERED additionally declares an independently governed reviewer identity."
+        },
+        "reviewer_ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Stable declared reviewer identity/reference. Required for INDEPENDENT_RENDERED. This field records provenance; schema validation does not prove social or organizational independence."
         },
         "artifact_ref": {
           "type": "string",
@@ -596,10 +603,27 @@
               }
             }
           }
+        },
+        {
+          "if": {
+            "properties": {
+              "basis": {
+                "const": "INDEPENDENT_RENDERED"
+              }
+            },
+            "required": [
+              "basis"
+            ]
+          },
+          "then": {
+            "required": [
+              "reviewer_ref"
+            ]
+          }
         }
       ],
       "additionalProperties": true,
-      "description": "Canonical pipeline review. Missing basis preserves legacy rendered semantics; explicit author-only assessments cannot satisfy a post-render review."
+      "description": "Canonical pipeline review. Missing basis preserves legacy rendered semantics. AUTHOR_ONLY cannot satisfy post-render review. RENDERED is exact-artifact review with independence unspecified; INDEPENDENT_RENDERED additionally records an independently governed reviewer reference."
     }
   },
   "required": [
@@ -904,6 +928,16 @@
       "type": "array",
       "items": {
         "$ref": "#/$defs/semanticReview"
+      }
+    },
+    "review_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "independent_rendered_review_required": {
+          "type": "boolean",
+          "description": "Opt-in acceptance requirement. When true, every question needs an INDEPENDENT_RENDERED review in addition to exact-artifact binding. Absent/false preserves legacy post-render review semantics."
+        }
       }
     },
     "validation": {

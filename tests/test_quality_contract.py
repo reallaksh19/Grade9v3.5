@@ -57,6 +57,13 @@ class Contract(unittest.TestCase):
         self.assertGreaterEqual(len(r2["grammar_rules"]), 7)
 
 
+    def test_layout_rule_keeps_legacy_id_but_uses_blueprint_semantics(self):
+        rule = next(r for r in quality_contract.contract()["rules"] if r["id"] == "PAGE-STAGE-SUPPORT")
+        self.assertEqual(rule["check"], {"op": "rendered_flag", "field": "stage_support_layout"})
+        self.assertIn("selected blueprint", rule["text"].lower())
+        self.assertNotIn("0.68/0.32", rule["text"])
+
+
 class SubjectNeutral(unittest.TestCase):
     """Phase 1 exit: Mathematics and Chemistry units fit the contract without a schema change."""
 

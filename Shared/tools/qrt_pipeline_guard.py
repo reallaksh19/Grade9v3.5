@@ -225,17 +225,25 @@ def validate_artifacts_and_reviews(run: dict[str, Any]) -> list[str]:
             problems.append(f"RENDERED_ARTIFACT_HEAD_MISMATCH: {aid}")
 
     review_by_question: dict[str, dict[str, Any]] = {}
+    independent_reviewed_questions: set[str] = set()
     for review in run.get("reviews") or []:
         if not isinstance(review, dict):
             continue
-        if review.get("basis") == "AUTHOR_ONLY":
+        basis = review.get("basis", "RENDERED")
+        if basis == "AUTHOR_ONLY":
             continue  # Retain author assessments without promoting them to post-render evidence.
-        if review.get("basis", "RENDERED") != "RENDERED":
+        if basis not in {"RENDERED", "INDEPENDENT_RENDERED"}:
             problems.append(f"REVIEW_BASIS_INVALID: {review.get('question_ref')}")
             continue
         qid = str(review.get("question_ref") or "")
         if qid:
             review_by_question[qid] = review
+        if basis == "INDEPENDENT_RENDERED":
+            reviewer_ref = str(review.get("reviewer_ref") or "").strip()
+            if not reviewer_ref:
+                problems.append(f"INDEPENDENT_REVIEWER_REF_MISSING: {qid}")
+            elif qid:
+                independent_reviewed_questions.add(qid)
         aid = str(review.get("artifact_ref") or "")
         artifact = artifacts.get(aid)
         if not artifact:
@@ -262,9 +270,17 @@ def validate_artifacts_and_reviews(run: dict[str, Any]) -> list[str]:
             if verdict in {"PARTLY", "NO"} and not str(row.get("fix") or "").strip():
                 problems.append(f"QRT_FIX_MISSING: {qid}:{ask}")
 
+    require_independent = bool(
+        (run.get("review_requirements") or {}).get("independent_rendered_review_required")
+    )
     for question in run.get("questions") or []:
-        if isinstance(question, dict) and str(question.get("id") or "") not in review_by_question:
+        if not isinstance(question, dict):
+            continue
+        qid = str(question.get("id") or "")
+        if qid not in review_by_question:
             problems.append(f"POST_RENDER_QRT_REVIEW_MISSING: {question.get('id')}")
+        if require_independent and qid not in independent_reviewed_questions:
+            problems.append(f"INDEPENDENT_RENDERED_QRT_REVIEW_MISSING: {question.get('id')}")
     return problems
 
 

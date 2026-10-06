@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import hashlib
+import tempfile
 import unittest
+from pathlib import Path
 
 from Shared.tools import qrt_pipeline_guard as guard
 
@@ -193,6 +195,93 @@ class QRTPipelineGuardTests(unittest.TestCase):
         run = self.base_run()
         run["validation"]["overall"] = "PASS"
         self.assertIn("AGGREGATE_SELF_CERTIFICATION_FORBIDDEN", guard.validate_validation_layers(run))
+
+    def _rendered_review_fixture(self, folder: str, *, basis: str = "RENDERED"):
+        run = self.base_run()
+        path = Path(folder) / "page.html"
+        path.write_text("<p>Exact rendered output</p>", encoding="utf-8")
+        sha = guard.sha256_file(path)
+        artifact = {
+            "id": "CORE2",
+            "path": "page.html",
+            "sha256": sha,
+            "head_sha": run["run_identity"]["head_sha"],
+        }
+        review = {
+            "question_ref": "Q1",
+            "basis": basis,
+            "artifact_ref": "CORE2",
+            "artifact_sha256": sha,
+            "judgements": {
+                ask: {"verdict": "YES", "evidence": f"rendered evidence for {ask}"}
+                for ask in guard.ASKS
+            },
+        }
+        run["rendered_artifacts"] = [artifact]
+        run["reviews"] = [review]
+        return run, path
+
+    def test_author_only_review_cannot_satisfy_rendered_or_independent_acceptance(self):
+        run = self.base_run()
+        run["reviews"] = [{
+            "question_ref": "Q1",
+            "basis": "AUTHOR_ONLY",
+            "judgements": {
+                "S1": {"verdict": "YES", "evidence": "author assessment only"}
+            },
+        }]
+        run["review_requirements"] = {"independent_rendered_review_required": True}
+        problems = guard.validate_artifacts_and_reviews(run)
+        self.assertIn("POST_RENDER_QRT_REVIEW_MISSING: Q1", problems)
+        self.assertIn("INDEPENDENT_RENDERED_QRT_REVIEW_MISSING: Q1", problems)
+
+    def test_rendered_review_cannot_satisfy_opt_in_independent_acceptance(self):
+        with tempfile.TemporaryDirectory() as folder:
+            original_repo = guard.REPO
+            try:
+                guard.REPO = Path(folder)
+                run, _ = self._rendered_review_fixture(folder, basis="RENDERED")
+                run["reviews"][0]["reviewer_ref"] = "reviewer:author"
+                run["review_requirements"] = {"independent_rendered_review_required": True}
+                self.assertEqual(
+                    guard.validate_artifacts_and_reviews(run),
+                    ["INDEPENDENT_RENDERED_QRT_REVIEW_MISSING: Q1"],
+                )
+            finally:
+                guard.REPO = original_repo
+
+    def test_independent_rendered_review_requires_reviewer_and_satisfies_opt_in_requirement(self):
+        with tempfile.TemporaryDirectory() as folder:
+            original_repo = guard.REPO
+            try:
+                guard.REPO = Path(folder)
+                run, _ = self._rendered_review_fixture(folder, basis="INDEPENDENT_RENDERED")
+                run["review_requirements"] = {"independent_rendered_review_required": True}
+                self.assertIn(
+                    "INDEPENDENT_REVIEWER_REF_MISSING: Q1",
+                    guard.validate_artifacts_and_reviews(run),
+                )
+                run["reviews"][0]["reviewer_ref"] = "reviewer:independent-1"
+                self.assertEqual(guard.validate_artifacts_and_reviews(run), [])
+            finally:
+                guard.REPO = original_repo
+
+    def test_changed_rendered_bytes_invalidate_preexisting_review_evidence(self):
+        with tempfile.TemporaryDirectory() as folder:
+            original_repo = guard.REPO
+            try:
+                guard.REPO = Path(folder)
+                run, path = self._rendered_review_fixture(folder, basis="INDEPENDENT_RENDERED")
+                run["reviews"][0]["reviewer_ref"] = "reviewer:independent-1"
+                run["review_requirements"] = {"independent_rendered_review_required": True}
+                self.assertEqual(guard.validate_artifacts_and_reviews(run), [])
+                path.write_text("<p>Changed rendered output</p>", encoding="utf-8")
+                self.assertIn(
+                    "RENDERED_ARTIFACT_DIGEST_MISMATCH: CORE2",
+                    guard.validate_artifacts_and_reviews(run),
+                )
+            finally:
+                guard.REPO = original_repo
 
     def test_partly_or_no_review_requires_fix_and_all_12_asks(self):
         run = self.base_run()

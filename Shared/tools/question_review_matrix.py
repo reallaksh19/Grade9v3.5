@@ -9,6 +9,11 @@ import json
 from pathlib import Path
 from typing import Any
 
+try:
+    from Shared.tools import question_difficulty
+except ModuleNotFoundError:  # Script entry point: python Shared/tools/<tool>.py
+    import question_difficulty  # type: ignore
+
 REPO = Path(__file__).resolve().parents[2]
 VOCAB_PATH = REPO / "Shared" / "vocabularies" / "cognitive-demand.v1.json"
 MATRIX_PATH = REPO / "Shared" / "quality" / "question-demand-matrix.v1.json"
@@ -216,20 +221,26 @@ def canonical_digest(value: Any) -> str:
     return "sha256:" + hashlib.sha256(material).hexdigest()
 
 
-def _question_band(question: dict[str, Any]) -> str:
+def _question_difficulty(question: dict[str, Any]) -> dict[str, Any]:
     direct = question.get("difficulty")
     analysis = ((question.get("extensions") or {}).get("grade9v3:analysis") or {})
     difficulty = direct if isinstance(direct, dict) else analysis.get("difficulty")
-    band = difficulty.get("band") if isinstance(difficulty, dict) else None
-    if band not in BANDS:
-        raise QRTContractError(f"QUESTION_DIFFICULTY_MISSING_OR_INVALID: {question.get('id', '<unknown>')}")
-    return band
+    qid = str(question.get("id") or "<unknown>")
+    try:
+        return question_difficulty.derive(difficulty, question_ref=qid)
+    except question_difficulty.DifficultyContractError as exc:
+        raise QRTContractError(str(exc)) from exc
+
+
+def _question_band(question: dict[str, Any]) -> str:
+    return str(_question_difficulty(question)["band"])
 
 
 def _question_demand(question: dict[str, Any]) -> dict[str, Any]:
     extension = ((question.get("extensions") or {}).get("grade9v3:cognitive_demand"))
+    qid = str(question.get("id") or "<unknown>")
     if not isinstance(extension, dict):
-        raise QRTContractError(f"COGNITIVE_DEMAND_MISSING: {question.get('id', '<unknown>')}")
+        raise QRTContractError(f"COGNITIVE_DEMAND_MISSING: {qid}")
     primary = extension.get("primary")
     if primary not in DEMANDS:
         raise QRTContractError(f"COGNITIVE_DEMAND_INVALID: {primary!r}")
@@ -239,7 +250,26 @@ def _question_demand(question: dict[str, Any]) -> dict[str, Any]:
     basis = extension.get("basis")
     if not isinstance(basis, str) or not basis.strip():
         raise QRTContractError("COGNITIVE_DEMAND_BASIS_MISSING")
-    return {"primary": primary, "secondary": secondary, "basis": basis}
+
+    answer = question.get("answer") if isinstance(question.get("answer"), dict) else {}
+    crux_ref = answer.get("crux_move_ref")
+    if not isinstance(crux_ref, str) or not crux_ref.strip():
+        raise QRTContractError(f"COGNITIVE_DEMAND_CRUX_MOVE_MISSING: {qid}")
+    crux_move = _reasoning_move(question, crux_ref)
+    if not crux_move:
+        raise QRTContractError(f"COGNITIVE_DEMAND_CRUX_MOVE_UNRESOLVED: {qid}:{crux_ref}")
+    action = crux_move.get("action")
+    if not isinstance(action, str) or not action.strip():
+        raise QRTContractError(f"COGNITIVE_DEMAND_CRUX_MOVE_ACTION_MISSING: {qid}:{crux_ref}")
+
+    return {
+        "primary": primary,
+        "secondary": secondary,
+        "basis": basis,
+        "primary_move_ref": crux_ref,
+        "primary_move_kind": crux_move.get("kind"),
+        "primary_move_action": action,
+    }
 
 
 def _analysis(question: dict[str, Any]) -> dict[str, Any]:
@@ -336,7 +366,8 @@ def resolve_slots(question: dict[str, Any], profile: dict[str, Any], template: d
 
 def resolve_review(question: dict[str, Any], profile: dict[str, Any], matrix: dict[str, Any], vocab: dict[str, Any]) -> dict[str, Any]:
     demand = _question_demand(question)
-    band = _question_band(question)
+    difficulty = _question_difficulty(question)
+    band = str(difficulty["band"])
     template = next(row for row in compile_templates(matrix, vocab)
                     if row["demand"] == demand["primary"] and row["band"] == band)
     slots = resolve_slots(question, profile, template)
@@ -358,12 +389,16 @@ def resolve_review(question: dict[str, Any], profile: dict[str, Any], matrix: di
         "classification": {
             "demand": demand,
             "band": band,
+            "requested_band": difficulty.get("requested_band"),
+            "difficulty_score": difficulty["score"],
         },
         "basis_digests": {
             "question": canonical_digest(question),
             "profile": canonical_digest(profile),
             "matrix": canonical_digest(matrix),
             "vocabulary": canonical_digest(vocab),
+            "difficulty_metadata": canonical_digest(question_difficulty.metadata()),
+            "primary_move": canonical_digest(_reasoning_move(question, demand["primary_move_ref"])),
         },
         "slots": slots,
         "review": review,

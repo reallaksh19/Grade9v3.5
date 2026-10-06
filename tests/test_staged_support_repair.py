@@ -111,6 +111,63 @@ class StagedSupportRepair(unittest.TestCase):
         self.assertIn("p_0(x)", completed)
         self.assertEqual(q["scaffolds"], original["scaffolds"])
 
+    def test_explicit_after_attempt_support_is_separate_from_solution_only_support(self):
+        ctx = replay.context()
+        q = ctx.bank[2]
+        plan = q["extensions"][core2_v2.SUPPORT_PLAN_KEY]
+        protected = plan["protected_move_refs"]
+        completion = next(item for item in plan["support_completions"]
+                          if protected[0] in item["completed_move_refs"])
+        completion["availability"] = "AFTER_ATTEMPT"
+
+        after_rows = core2_v2.after_attempt_support(q)
+        self.assertIn(completion["support_ref"], [row["source"] for row in after_rows])
+        self.assertNotIn(completion["support_ref"],
+                         [row["source"] for row in core2_v2.post_solution_support(q)])
+
+        rendered_after = render_core._core2_after_attempt_support(ctx, q)
+        rendered_solution_only = render_core._core2_completed_support(ctx, q)
+        marker = f'data-g9-support-source="{completion["support_ref"]}"'
+        self.assertIn('data-requires-attempt', rendered_after)
+        self.assertIn(marker, rendered_after)
+        self.assertNotIn(marker, rendered_solution_only)
+
+    def test_explicit_post_solution_preserves_legacy_protected_support_boundary(self):
+        q, _, _ = replay.adopt(replay.cases()[2])
+        plan = q["extensions"][core2_v2.SUPPORT_PLAN_KEY]
+        protected = plan["protected_move_refs"]
+        completion = next(item for item in plan["support_completions"]
+                          if protected[0] in item["completed_move_refs"])
+        legacy_post = [row["source"] for row in core2_v2.post_solution_support(q)]
+        completion["availability"] = "POST_SOLUTION"
+        self.assertEqual([row["source"] for row in core2_v2.post_solution_support(q)], legacy_post)
+
+    def test_pre_attempt_safe_cannot_claim_completion_of_protected_work(self):
+        q, _, _ = replay.adopt(replay.cases()[2])
+        plan = q["extensions"][core2_v2.SUPPORT_PLAN_KEY]
+        protected = plan["protected_move_refs"]
+        completion = next(item for item in plan["support_completions"]
+                          if protected[0] in item["completed_move_refs"])
+        completion["availability"] = "PRE_ATTEMPT_SAFE"
+        with self.assertRaisesRegex(core2_v2.Core2SupportProjectionError, "cannot be PRE_ATTEMPT_SAFE"):
+            core2_v2.project_support(q)
+
+    def test_visual_stage_can_unlock_after_attempt_without_entering_solution_only_payload(self):
+        ctx = replay.context()
+        q = ctx.bank[0]
+        plan = q["extensions"][core2_v2.SUPPORT_PLAN_KEY]
+        stage = plan["visuals"][0]["stages"][-1]
+        stage["completed_move_refs"] = plan["protected_move_refs"]
+        stage["availability"] = "AFTER_ATTEMPT"
+        binding = core2_v2.visual_support(q, plan["visuals"][0]["representation_ref"])
+        self.assertIn(stage["stage_ref"], binding["after_attempt_stage_refs"])
+        self.assertNotIn(stage["stage_ref"], binding["pre_attempt_stage_refs"])
+        self.assertNotIn(stage["stage_ref"], binding["post_solution_stage_refs"])
+        self.assertIn(f'data-g9-stage-id="{stage["stage_ref"]}"',
+                      render_core._core2_question_figures(ctx, q, "AFTER_ATTEMPT"))
+        self.assertNotIn(f'data-g9-stage-id="{stage["stage_ref"]}"',
+                         render_core._core2_question_figures(ctx, q, "POST_SOLUTION"))
+
     def test_completed_figures_remain_in_the_existing_attempted_solution_payload(self):
         ctx = replay.context()
         output = render_core.core2(ctx, ctx.bank[2])
@@ -208,6 +265,72 @@ class ReviewBasis(unittest.TestCase):
             self.assertEqual(guard.validate_artifacts_and_reviews(run), [])
             review["artifact_sha256"] = "sha256:" + "0" * 64
             self.assertIn("REVIEW_NOT_BOUND_TO_RENDERED_BYTES: Q:A", guard.validate_artifacts_and_reviews(run))
+
+    def test_independent_rendered_review_requires_declared_reviewer(self):
+        review = {
+            "question_ref": "Q",
+            "basis": "INDEPENDENT_RENDERED",
+            "artifact_ref": "A",
+            "artifact_sha256": "sha256:" + "a" * 64,
+            "judgements": {ask: {"verdict": "YES", "evidence": "Rendered evidence."} for ask in guard.ASKS},
+        }
+        self.assertTrue(list(self.check.iter_errors(review)))
+        review["reviewer_ref"] = "reviewer:independent-1"
+        self.assertEqual(list(self.check.iter_errors(review)), [])
+
+    def test_rendered_self_review_does_not_satisfy_opt_in_independent_requirement(self):
+        with tempfile.TemporaryDirectory() as folder, patch.object(guard, "REPO", Path(folder)):
+            path = Path(folder) / "page.html"
+            path.write_text("<p>Actual rendered output</p>", encoding="utf-8")
+            sha = guard.sha256_file(path)
+            artifact = {"id": "A", "path": "page.html", "sha256": sha, "head_sha": "a" * 40}
+            review = {
+                "question_ref": "Q",
+                "basis": "RENDERED",
+                "artifact_ref": "A",
+                "artifact_sha256": sha,
+                "reviewer_ref": "reviewer:author",
+                "judgements": {ask: {"verdict": "YES", "evidence": "Rendered page location."} for ask in guard.ASKS},
+            }
+            run = {
+                "run_identity": {"head_sha": "a" * 40},
+                "questions": [{"id": "Q"}],
+                "rendered_artifacts": [artifact],
+                "reviews": [review],
+                "review_requirements": {"independent_rendered_review_required": True},
+            }
+            self.assertEqual(
+                guard.validate_artifacts_and_reviews(run),
+                ["INDEPENDENT_RENDERED_QRT_REVIEW_MISSING: Q"],
+            )
+
+    def test_independent_rendered_review_satisfies_opt_in_requirement_and_keeps_byte_binding(self):
+        with tempfile.TemporaryDirectory() as folder, patch.object(guard, "REPO", Path(folder)):
+            path = Path(folder) / "page.html"
+            path.write_text("<p>Actual rendered output</p>", encoding="utf-8")
+            sha = guard.sha256_file(path)
+            artifact = {"id": "A", "path": "page.html", "sha256": sha, "head_sha": "a" * 40}
+            review = {
+                "question_ref": "Q",
+                "basis": "INDEPENDENT_RENDERED",
+                "reviewer_ref": "reviewer:independent-1",
+                "artifact_ref": "A",
+                "artifact_sha256": sha,
+                "judgements": {ask: {"verdict": "YES", "evidence": "Rendered page location."} for ask in guard.ASKS},
+            }
+            run = {
+                "run_identity": {"head_sha": "a" * 40},
+                "questions": [{"id": "Q"}],
+                "rendered_artifacts": [artifact],
+                "reviews": [review],
+                "review_requirements": {"independent_rendered_review_required": True},
+            }
+            self.assertEqual(guard.validate_artifacts_and_reviews(run), [])
+            review["artifact_sha256"] = "sha256:" + "0" * 64
+            self.assertIn(
+                "REVIEW_NOT_BOUND_TO_RENDERED_BYTES: Q:A",
+                guard.validate_artifacts_and_reviews(run),
+            )
 
     def test_missing_facet_unknown_verdict_and_evidenceless_yes_are_structural_errors(self):
         review = {"question_ref": "Q", "basis": "RENDERED", "artifact_ref": "A", "artifact_sha256": "sha256:" + "a" * 64,

@@ -35,6 +35,7 @@ RESULTS = {"CORRECT", "INCORRECT", "UNDECIDABLE"}
 ERROR_STAGES = {"CONCEPT", "SETUP", "EXECUTION", "CARELESS", "UNKNOWN"}
 HELP_LEVELS = {"NONE", "HINT", "WORKED_EXAMPLE", "SOLUTION", "UNKNOWN"}
 INDEPENDENT_HELP = {"NONE"}
+DIAGNOSIS_STATES = {"CONFIRMED", "REFUTED", "INDETERMINATE"}
 
 
 def subject_records(subject: str, repo: Path = REPO) -> dict:
@@ -207,6 +208,70 @@ def _step_repair(records: dict, repair_ref: str) -> dict | None:
                     "route": "CORE1B_THEN_CORE1A",
                 }
     return None
+
+
+def diagnostic_evidence_for(records: dict, failed_capability_ref: str | None,
+                            misconception_index: int, observed_response: str,
+                            diagnosis: str, basis: str) -> tuple[dict | None, str | None]:
+    """Build evidence against the canonical diagnostic prompt; never infer the diagnosis."""
+    if not failed_capability_ref:
+        return None, "DIAGNOSTIC_EVIDENCE_FAILED_CAPABILITY_REQUIRED"
+    microtopics = microtopics_for_capability(records, failed_capability_ref)
+    if len(microtopics) != 1:
+        return None, "DIAGNOSTIC_EVIDENCE_MICROTOPIC_AMBIGUOUS"
+    misconceptions = list(microtopics[0].get("misconceptions", []))
+    if not isinstance(misconception_index, int) or not 0 <= misconception_index < len(misconceptions):
+        return None, "DIAGNOSTIC_EVIDENCE_MISCONCEPTION_INVALID"
+    if diagnosis not in DIAGNOSIS_STATES:
+        return None, "DIAGNOSTIC_EVIDENCE_DIAGNOSIS_INVALID"
+    if not isinstance(observed_response, str) or not observed_response.strip():
+        return None, "DIAGNOSTIC_EVIDENCE_RESPONSE_MISSING"
+    if not isinstance(basis, str) or not basis.strip():
+        return None, "DIAGNOSTIC_EVIDENCE_BASIS_MISSING"
+    probe = misconceptions[misconception_index].get("diagnostic_prompt")
+    if not isinstance(probe, str) or not probe.strip():
+        return None, "DIAGNOSTIC_EVIDENCE_PROBE_MISSING"
+    return {
+        "misconception_index": misconception_index,
+        "probe": probe,
+        "observed_response": observed_response.strip(),
+        "diagnosis": diagnosis,
+        "basis": basis.strip(),
+    }, None
+
+
+def _validate_diagnostic_evidence(records: dict, failed_capability_ref: str | None,
+                                  raw: object) -> tuple[dict | None, list[dict]]:
+    if raw is None:
+        return None, []
+    if not isinstance(raw, dict):
+        return None, [{
+            "point": "DIAGNOSTIC_EVIDENCE_INVALID",
+            "detail": "evaluation.diagnostic_evidence must be an object",
+        }]
+    index = raw.get("misconception_index")
+    evidence, error = diagnostic_evidence_for(
+        records,
+        failed_capability_ref,
+        index,
+        raw.get("observed_response"),
+        raw.get("diagnosis"),
+        raw.get("basis"),
+    )
+    if error:
+        return None, [{"point": error, "detail": "diagnostic evidence does not satisfy the confirmation contract"}]
+    if raw.get("probe") != evidence["probe"]:
+        return None, [{
+            "point": "DIAGNOSTIC_EVIDENCE_PROBE_MISMATCH",
+            "detail": "diagnostic evidence must bind to the exact canonical diagnostic_prompt",
+        }]
+    unknown = set(raw) - {"misconception_index", "probe", "observed_response", "diagnosis", "basis"}
+    if unknown:
+        return None, [{
+            "point": "DIAGNOSTIC_EVIDENCE_UNKNOWN_FIELD",
+            "detail": f"unexpected diagnostic evidence fields: {', '.join(sorted(unknown))}",
+        }]
+    return evidence, []
 
 
 def repair_for(records: dict, question: dict, failed_capability_ref: str | None,
@@ -433,6 +498,19 @@ def run(request: dict, repo: Path = REPO) -> dict:
     if result == "INCORRECT" and not failed and len(candidates) == 1:
         failed = candidates[0]
 
+    diagnostic_evidence, diagnostic_findings = _validate_diagnostic_evidence(
+        records, failed, evaluation.get("diagnostic_evidence")
+    )
+    findings.extend(diagnostic_findings)
+    if evaluation.get("misconception_index") is not None and diagnostic_evidence is None:
+        findings.append({
+            "point": "DIAGNOSTIC_EVIDENCE_REQUIRED",
+            "detail": (
+                "misconception_index is only a hypothesis selector; misconception-specific "
+                "repair requires canonical probe/response evidence and an explicit diagnosis"
+            ),
+        })
+
     observation = observation_draft(request, question, failed)
     review = (
         review_schedule.schedule(observation, transfer=bool(question.get("transfer")))
@@ -446,6 +524,7 @@ def run(request: dict, repo: Path = REPO) -> dict:
         "candidate_capabilities": candidates,
         "observation_draft": observation,
         "review": review,
+        "diagnostic_evidence": diagnostic_evidence,
         "findings": findings,
     }
 
@@ -495,7 +574,9 @@ def run(request: dict, repo: Path = REPO) -> dict:
                 "hint": hint,
                 "passed": not findings,
             }
-        if question.get("_worksheet_mapping") and evaluation.get("misconception_index") is None:
+        if question.get("_worksheet_mapping") and (
+            diagnostic_evidence is None or diagnostic_evidence["diagnosis"] != "CONFIRMED"
+        ):
             # The transient worksheet row truthfully carries no canonical hint ladder.
             # Diagnose from governed misconception prompts rather than fabricating a hint
             # just to keep the retry cadence symmetrical with canonical questions.
@@ -506,11 +587,29 @@ def run(request: dict, repo: Path = REPO) -> dict:
                 "passed": not findings,
             }
 
+    diagnostic_claim_present = (
+        evaluation.get("diagnostic_evidence") is not None
+        or evaluation.get("misconception_index") is not None
+    )
+    if diagnostic_claim_present and (
+        diagnostic_evidence is None or diagnostic_evidence["diagnosis"] != "CONFIRMED"
+    ):
+        return {
+            **base,
+            "next_action": "DIAGNOSE",
+            "diagnostic_options": diagnostic_options(records, [failed]),
+            "passed": not findings,
+        }
+
     repair = repair_for(
         records,
         question,
         failed,
-        evaluation.get("misconception_index"),
+        (
+            diagnostic_evidence["misconception_index"]
+            if diagnostic_evidence is not None
+            else None
+        ),
     )
     if repair is None:
         return {

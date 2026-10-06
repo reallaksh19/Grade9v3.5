@@ -5,7 +5,7 @@ Runs on a render_core product directory:
 1. Reads the pages (data-g9-* markers) into a learner observation and judges it against the
    learner quality contract (Shared/quality/learner-quality.v1.json).
 2. Measures the rendered pages in Chromium (tools/site-audit/core-page-audit.mjs) for the
-   RENDERED rules (touch targets, stage-support layout), unless --static.
+   RENDERED rules (touch targets, selected blueprint layout policy), unless --static.
 3. Checks continuity across the Cores:
    - Core1A and Core1B cover the same units;
    - every Core2B lineage link and every repair link resolves to a rendered unit.
