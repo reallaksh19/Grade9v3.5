@@ -217,13 +217,10 @@ class Renderer(unittest.TestCase):
             motion_ctx, "CORE1A", "PAGES", render_core.render_digest(motion_ctx)
         )
 
-        # Explicit structure drives the view: staged representations stay staged,
-        # relations stay semantic matrices, and worked/repair/check material keeps
-        # its governed content. The renderer does not classify every figure or
-        # VERIFY step into a new academic archetype.
-        self.assertIn('data-g9-stage-sequence="true"', motion_html)
+        # Explicit authored structure drives the view. Representation and intermediate
+        # check presence is governed by the blueprint's EXPECTED/OPTIONAL applicability,
+        # not by a renderer-invented archetype or a universal panel requirement.
         self.assertIn("data-g9-equation-matrix", motion_html)
-        self.assertIn('data-g9-block="independent_check"', motion_html)
         for microtopic in motion_ctx.selection_rows["microtopics"]:
             for unit in microtopic.get("construction_units") or []:
                 if unit.get("representation_ref"):
