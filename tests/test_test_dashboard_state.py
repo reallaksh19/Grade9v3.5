@@ -67,6 +67,43 @@ class TestTestDashboardState(unittest.TestCase):
         ):
             self.assertNotIn(forbidden, serialized)
 
+    def test_hub_renders_core_contract_panel_from_dashboard_state_only(self):
+        page = build_test_site.hub_page()
+        start = page.index('data-g9-unit="core-contract"')
+        end = page.index("</article>", start)
+        panel = page[start:end]
+
+        self.assertIn("Production Core contract basis", panel)
+        self.assertIn("Shared/library/package.schema.json", panel)
+        self.assertIn("TEST/adapter/CoreContracts.json", panel)
+        self.assertIn("NOT_GRANTED_BY_ANY_MACHINE_CHECK", panel)
+        self.assertIn("Validator catalogue:", panel)
+        self.assertIn("none declared for TEST", panel)
+        self.assertIn("Projection only; this panel does not grant acceptance or release.", panel)
+
+        for core in sorted(EXPECTED_CORES):
+            self.assertEqual(panel.count(f"<strong>{core}</strong>"), 1, panel)
+
+        for forbidden in (
+            "42",
+            "168",
+            "UNVERIFIED_SANDBOX_FIXTURE",
+            "HOLD",
+            "NCERT",
+            "CBSE",
+        ):
+            self.assertNotIn(forbidden, panel)
+
+        for href in (
+            "atlas/index.html",
+            "rungs/index.html",
+            "deployments/index.html",
+        ):
+            self.assertIn(f'href="{href}"', page)
+
+        for heading in ("1. Core2", "2. Core1A", "3. Explorer"):
+            self.assertIn(heading, page)
+
     def test_wrong_subject_core_contract_fails_loudly(self):
         contract = json.loads(build_test_site.CORE_CONTRACT.read_text(encoding="utf-8"))
         contract["subject"] = "Mathematics"
