@@ -8,7 +8,7 @@ import unittest
 from pathlib import Path
 
 from Shared.library import core1a_construction
-from Shared.tools import blueprint_spec, render_core
+from Shared.tools import blueprint_spec, owner_bank, render_core
 from tests.test_core1a_construction import fixture as core1a_fixture
 
 
@@ -383,6 +383,27 @@ class Issue69SubjectNeutrality(unittest.TestCase):
             ],
             new_gaps,
         )
+
+    def test_core2_trap_is_owned_by_support_not_attempt(self):
+        manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(manifest)
+        question = next(
+            row for row in ctx.selection_rows["core2"]
+            if (((row.get("extensions") or {}).get(owner_bank.ANALYSIS_KEY) or {}).get("common_wrong_route"))
+        )
+
+        html = render_core.core2(ctx, question)
+        attempt_at = html.index('data-blueprint-slot="attempt"')
+        representation_at = html.index('data-blueprint-slot="representation"', attempt_at)
+        support_at = html.index('data-blueprint-slot="support"', representation_at)
+        solution_at = html.index('data-blueprint-slot="solution"', support_at)
+        attempt = html[attempt_at:representation_at]
+        support = html[support_at:solution_at]
+
+        self.assertNotIn('data-g9-component="TRAP"', attempt)
+        self.assertNotIn('data-g9-block="common_wrong_route"', attempt)
+        self.assertIn('data-g9-component="TRAP"', support)
+        self.assertIn('data-g9-block="common_wrong_route"', support)
 
     def test_render_core_has_no_academic_subject_literal_comparison(self):
         path = REPO / "Shared" / "tools" / "render_core.py"
