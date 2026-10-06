@@ -225,6 +225,27 @@ class PhaseDPhysicsDemandCruxQualification(unittest.TestCase):
         )
         self.assertTrue((REPO / rep["rendered_asset_refs"][0]).is_file())
 
+    def test_legacy_product_review_is_not_current_for_committed_render_snapshot(self):
+        review = json.loads(
+            (REPO / "products/verification/phy-kin-2d-motion.review.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        core1a = (REPO / "standalone/core1a-motion-in-a-plane-tablet.html").read_text(
+            encoding="utf-8"
+        )
+        core2 = (REPO / "standalone/core2-motion-in-a-plane-tablet.html").read_text(
+            encoding="utf-8"
+        )
+
+        import re
+        d1 = re.search(r'data-g9-render-digest="([^"]+)"', core1a).group(1)
+        d2 = re.search(r'data-g9-render-digest="([^"]+)"', core2).group(1)
+        self.assertEqual(d1, d2)
+        self.assertEqual(d1, "8ee8ed7c8c4f5344")
+        self.assertEqual(review["render_digest"], "5e64f1570dc30ee2")
+        self.assertNotEqual(review["render_digest"], d1)
+
     def test_secondary_demand_is_question_owned_not_manifest_owned(self):
         self.assertEqual(
             self.question["secondary_capability_refs"],
