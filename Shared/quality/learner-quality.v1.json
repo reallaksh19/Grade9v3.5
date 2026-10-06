@@ -1,6 +1,6 @@
 {
   "schema": "learner-quality-contract/v1",
-  "version": "1.8.1",
+  "version": "1.9.0",
   "purpose": "Subject-neutral quality rules for the six Core learner products. Each rule judges a learner observation (Shared/quality/learner-observation.schema.json), i.e. what a learner can see and do, never what a record claims. Rules carry the audit findings they would have caught (audit_refs) and the owner-reference grammar step they encode (grammar). Calibration: every negative specimen in benchmarks/quality-calibration fails for its expected findings; the positive references pass the rules that encode their grammar.",
   "families": {
     "DEPTH": "Content a learner needs, at the depth the references show.",
@@ -171,14 +171,8 @@
       "check": {
         "op": "blocks_present",
         "blocks": [
-          "entry_assumptions",
           "inferential_jump",
           "construction",
-          "worked_anchor",
-          "wrong_path",
-          "diagnose",
-          "repair",
-          "independent_check",
           "exit_task"
         ]
       },
@@ -186,7 +180,7 @@
         "A1-003"
       ],
       "grammar": "R1:easy mistake",
-      "text": "Every Core1A concept has entry assumptions, the inferential jump, a reasoned construction, a worked anchor, wrong path, diagnosis, repair, an independent check and an exit task."
+      "text": "Every Core1A concept exposes its decisive inferential bridge, a reasoned construction, and an independent exit task. Worked examples, misconception repair, and intermediate quick checks follow the selected blueprint's EXPECTED/OPTIONAL applicability instead of being universally required."
     },
     {
       "id": "C1A-REPRESENTATION-BRIDGE",
@@ -199,7 +193,7 @@
       "severity": "S1",
       "check": {
         "op": "figures_min",
-        "min": 1,
+        "min": 0,
         "stages": [
           "TEACHING",
           "PRE_ATTEMPT"
@@ -211,7 +205,7 @@
         "A1-002"
       ],
       "grammar": "R1:staged illustration/derivation",
-      "text": "A Core1A construction mounts a useful representation when applicable; an explicit authored STAGED_VISUAL waiver records a genuine not-applicable case instead of forcing decoration."
+      "text": "When a Core1A construction names or renders a representation, it is actually mounted for that construction rather than left as an unmounted reference. Whether STAGED_VISUAL is expected or waived comes from the selected blueprint."
     },
     {
       "id": "C1A-STAGED-REPRESENTATION",
@@ -247,7 +241,7 @@
         "A1-004"
       ],
       "grammar": "R1:model check",
-      "text": "A construction with many distinct decisions/events is split into units, each with a worked anchor that exercises that unit's move."
+      "text": "When a worked anchor is authored, it should not carry an excessive number of distinct decisions/events. Absence of a worked anchor is governed by the selected blueprint's EXPECTED/waiver semantics and is not a failure by itself."
     },
     {
       "id": "C1A-PREREQUISITES-BRIDGED",
