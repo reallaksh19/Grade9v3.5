@@ -554,11 +554,17 @@ Return at least:
   "failed_capability_ref": null,
   "error_stage": "UNKNOWN",
   "misconception_index": null,
+  "diagnostic_evidence": null,
   "next_action": "HINT"
 }
 ~~~
 
 Never invent failed_capability_ref when evidence cannot distinguish among several required capabilities.
+
+A misconception index is only a hypothesis selector. Misconception-specific repair requires
+the canonical diagnostic prompt plus an observed response, an explicit
+`CONFIRMED | REFUTED | INDETERMINATE` evaluator conclusion, and a non-empty basis.
+Only `CONFIRMED` may enter the misconception-specific repair path.
 
 ## 7.4 Feedback escalation
 
@@ -574,8 +580,11 @@ wrong again
     → HINT_2 structural
       → RETRY
 
-wrong again / misconception confidently matched
-    → REPAIR
+wrong again
+    → DIAGNOSE with canonical probe
+      → INDETERMINATE / REFUTED: stay in DIAGNOSE
+      → CONFIRMED with recorded response + basis
+        → REPAIR
       → Core1B/Core1A
       → FRESH_VERIFY
 ~~~
