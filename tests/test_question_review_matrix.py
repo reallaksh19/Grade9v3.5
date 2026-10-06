@@ -164,6 +164,8 @@ class QuestionReviewMatrixTests(unittest.TestCase):
         question["difficulty"]["requested_band"] = "D4"
         result = qrt.resolve_review(question, self.synthetic_profile(), self.matrix, self.vocab)
         self.assertEqual(result["classification"]["band"], "D3")
+        self.assertEqual(result["classification"]["requested_band"], "D4")
+        self.assertEqual(result["classification"]["difficulty_score"], 6)
         self.assertEqual(result["template_id"], "QRT-REPRESENT-D3")
         self.assertEqual(question["difficulty"]["requested_band"], "D4")
 
