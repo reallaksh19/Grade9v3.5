@@ -19,6 +19,14 @@ jobs:
         run: pip install --quiet jsonschema pypdf
       - name: Diagnostic evidence contract
         run: python3 -m unittest tests.test_diagnostic_evidence_contract
+      - name: U09 diagnostic caller migration
+        run: |
+          python3 -m unittest \
+            tests.test_feedback \
+            tests.test_study_session \
+            tests.test_neetprep_relative_motion_pilot \
+            tests.test_c6_examside_motion_in_plane \
+            tests.test_high_likelihood_scenario_matrix_contract
       - name: Representation instance binding contract
         run: python3 -m unittest tests.test_representation_binding_contract
       - name: Core2 staged support contract
