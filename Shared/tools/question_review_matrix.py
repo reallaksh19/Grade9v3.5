@@ -221,16 +221,19 @@ def canonical_digest(value: Any) -> str:
     return "sha256:" + hashlib.sha256(material).hexdigest()
 
 
-def _question_band(question: dict[str, Any]) -> str:
+def _question_difficulty(question: dict[str, Any]) -> dict[str, Any]:
     direct = question.get("difficulty")
     analysis = ((question.get("extensions") or {}).get("grade9v3:analysis") or {})
     difficulty = direct if isinstance(direct, dict) else analysis.get("difficulty")
     qid = str(question.get("id") or "<unknown>")
     try:
-        derived = question_difficulty.derive(difficulty, question_ref=qid)
+        return question_difficulty.derive(difficulty, question_ref=qid)
     except question_difficulty.DifficultyContractError as exc:
         raise QRTContractError(str(exc)) from exc
-    return str(derived["band"])
+
+
+def _question_band(question: dict[str, Any]) -> str:
+    return str(_question_difficulty(question)["band"])
 
 
 def _question_demand(question: dict[str, Any]) -> dict[str, Any]:
@@ -343,7 +346,8 @@ def resolve_slots(question: dict[str, Any], profile: dict[str, Any], template: d
 
 def resolve_review(question: dict[str, Any], profile: dict[str, Any], matrix: dict[str, Any], vocab: dict[str, Any]) -> dict[str, Any]:
     demand = _question_demand(question)
-    band = _question_band(question)
+    difficulty = _question_difficulty(question)
+    band = str(difficulty["band"])
     template = next(row for row in compile_templates(matrix, vocab)
                     if row["demand"] == demand["primary"] and row["band"] == band)
     slots = resolve_slots(question, profile, template)
@@ -365,6 +369,8 @@ def resolve_review(question: dict[str, Any], profile: dict[str, Any], matrix: di
         "classification": {
             "demand": demand,
             "band": band,
+            "requested_band": difficulty.get("requested_band"),
+            "difficulty_score": difficulty["score"],
         },
         "basis_digests": {
             "question": canonical_digest(question),
