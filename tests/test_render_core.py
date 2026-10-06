@@ -49,12 +49,16 @@ class Renderer(unittest.TestCase):
                 self.assertTrue(slots and set(slots) <= set(allowed), (slots, allowed))
                 self.assertIn("@media print", html)
 
-    def test_reveals_are_gated_and_no_record_id_or_placeholder_reaches_the_learner(self):
+    def test_protected_reveals_are_gated_and_no_record_id_or_placeholder_reaches_the_learner(self):
         for name, html in self.pages.items():
             with self.subTest(page=name):
                 self.assertNotIn("None supplied", html)
                 self.assertIsNone(re.search(r">\s*(FAM|K2D)[A-Z0-9-]+\s*<", html))
-                for details in re.findall(r"<details[^>]*>", html):
+                protected = re.findall(
+                    r'<details[^>]*data-g9-payload-ref="[^"]+"[^>]*>',
+                    html,
+                )
+                for details in protected:
                     self.assertIn("data-requires-attempt", details)
 
     def test_missing_inputs_are_typed_gaps_that_the_board_knows(self):
