@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "registry_version": "1.15.0",
+  "registry_version": "1.16.0",
   "shell": {
     "id": "G9-TABLET-SHELL-V1",
     "fixed_header": true,
@@ -366,12 +366,12 @@
     },
     {
       "id": "BP-CORE2-SOURCE-QUESTION",
-      "version": "1.9.0",
+      "version": "1.10.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE2"
       ],
-      "learner_job": "Preserve authentic assessment demand while allowing bounded, provenance-explicit help that advances the learner without becoming a Question Clinic.",
+      "learner_job": "Preserve the authentic source-question decision and an observable learner commitment before any assistance that completes or materially narrows protected work. Safe orientation may be available before commitment; learner-requested and post-attempt support remain provenance-explicit and state-bound; diagnosis and full solution remain distinct.",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "QUESTION_READER",
       "slots": [
@@ -468,7 +468,9 @@
         "AUTHORED_SCAFFOLD_PRESENTED_AS_SOURCE_HINT",
         "ANSWER_REVEALED_BY_PRE_SOLUTION_SUPPORT",
         "GENERIC_FILLER_SUPPORT_TO_MEET_RUNG_COUNT",
-        "CORE2_COLLAPSED_INTO_QUESTION_CLINIC"
+        "CORE2_COLLAPSED_INTO_QUESTION_CLINIC",
+        "CLOSED_DISCLOSURE_AS_SEMANTIC_PROTECTION",
+        "UNTRACKED_PRE_ATTEMPT_ASSISTANCE"
       ],
       "components": [
         {
@@ -560,16 +562,17 @@
         },
         {
           "id": "TRAP",
-          "slot": "attempt",
-          "level": "EXPECTED",
+          "slot": "support",
+          "level": "OPTIONAL",
           "presentation": "CALLOUT_WARN",
-          "purpose": "Name the tempting wrong route so the learner can watch for it.",
+          "purpose": "Offer a question-specific wrong-route warning only as assistance whose disclosure boundary preserves the learner-owned decision. A closed panel is not protection: if naming the wrong route would narrow or complete protected work, it is not pre-attempt-safe and belongs in typed after-attempt or solution support.",
           "benchmark": "selected_question_bank_TABLET_STUDY: the 'Common wrong route.' box",
           "source": [
-            "extensions.grade9v3:analysis.common_wrong_route"
+            "extensions.grade9v3:analysis.common_wrong_route",
+            "extensions.grade9v3:core2_support_plan"
           ],
           "authoring": {
-            "hint": "One sentence naming the wrong route learners take and why it tempts. It must not give the answer or the right route.",
+            "hint": "Treat common_wrong_route as an authored support hypothesis, not a diagnosis. It may appear before commitment only when the warning is genuinely PRE_ATTEMPT_SAFE relative to protected_move_refs. If the warning identifies the winning model, decisive exclusion, warrant, or other protected work, author it in typed question support and bind its availability through grade9v3:core2_support_plan as AFTER_ATTEMPT or POST_SOLUTION. Collapsed/closed presentation never makes otherwise unsafe content safe.",
             "skeleton": {
               "extensions": {
                 "grade9v3:analysis": {
@@ -616,18 +619,17 @@
         {
           "id": "HINT_LADDER",
           "slot": "support",
-          "level": "REQUIRED",
+          "level": "EXPECTED",
           "presentation": "LADDER",
-          "purpose": "Let the learner ask for help one rung at a time; every rung says what it is for and whose words it carries.",
+          "purpose": "Provide only the question-specific support the learner needs, one requestable step at a time, with provenance and an explicit disclosure boundary when support completes or materially narrows protected work.",
           "benchmark": "selected_question_bank_TABLET_STUDY: 'Hint ladder · reveal only what you need', five rungs on a hard question (represent / first move, connect, crux, equation / formal model, assembly checkpoint) with SOURCE and EXPANSION pills",
           "source": [
             "scaffolds",
             "hints",
             "hint_ladder"
           ],
-          "min_items": 2,
           "authoring": {
-            "hint": "Author question-specific scaffolds for the semantic jobs the resolved QRT requires: clarify the learner-relative obstacle, connect to demonstrated knowledge, and open the route toward the crux while preserving the learner-owned move. Add further rungs only when they do useful work. The 3-rung D1/D2 and 5-rung D3/D4 values are reference depth, not semantic pass counts; never create filler merely to reach a number. Each rung keeps typed support_kind/reveals/learner_stage and a supports_move_ref, and pre-solution support must not reveal the answer.",
+            "hint": "Author question-specific support for the semantic jobs the resolved QRT requires: clarify the learner-relative obstacle, connect to demonstrated knowledge, represent relevant givens, or open a route toward the crux while preserving the learner-owned move. Rung count is not a quality target. Each support row keeps typed support_kind/reveals/learner_stage/supports_move_ref. If a row completes or materially narrows a protected move, declare it in grade9v3:core2_support_plan with AFTER_ATTEMPT or POST_SOLUTION availability; only support proven safe relative to protected_move_refs may be PRE_ATTEMPT_SAFE. Do not add filler to reach a number.",
             "skeleton": {
               "scaffolds": [
                 {
@@ -673,14 +675,6 @@
               ]
             }
           },
-          "target_items": 3,
-          "target_items_by_band": {
-            "D1": 3,
-            "D2": 3,
-            "D3": 5,
-            "D4": 5
-          },
-          "band_source": "extensions.grade9v3:analysis.difficulty.band",
           "compact_order": 80
         },
         {
@@ -688,13 +682,17 @@
           "slot": "support",
           "level": "OPTIONAL",
           "presentation": "LINK_LIST",
-          "purpose": "Land on the exact construction unit; question-specific repair includes a return link. Record the help as assisted, not independent success.",
+          "purpose": "Let the learner deliberately leave the source question for the exact Core1A construction or repair, preserve origin/return context, and record the current question as assisted rather than independent.",
           "benchmark": "selected_question_bank_TABLET_STUDY: concept links beside the hints (the Core1A cross-link)",
           "source": [
+            "extensions.grade9v3:learning_repair.construction_ref",
             "primary_capability_ref",
             "secondary_capability_refs"
           ],
-          "compact_order": 90
+          "compact_order": 90,
+          "authoring": {
+            "hint": "Prefer an exact learning_repair.construction_ref when authored; otherwise resolve the capability to the exact construction that teaches the missing bridge. Opening concept help is learner-requested assistance: preserve the source/return anchor and do not count the same-question retry as independent transfer. A fresh changed item may later provide independent evidence."
+          }
         },
         {
           "id": "SOLUTION",
@@ -811,12 +809,12 @@
           "level": "OPTIONAL",
           "presentation": "CHECK_BOX",
           "benchmark": "Issue #32 Q1/Q4 observed hint and representation defects; Issue #31 repeated reject-the-rule checks, correction cycle R2.",
-          "purpose": "After the source attempt, elicit a changed-case prediction and reason before showing a diagnostic pattern, bounded replacement rule, fresh application and exact repair link.",
+          "purpose": "After learner evidence warrants diagnosis, distinguish a misconception hypothesis from a slip/alternative route, show a bounded repair only when confirmed, then require a fresh verification before treating the repair as successful.",
           "source": [
             "extensions.grade9v3:learning_repair"
           ],
           "authoring": {
-            "hint": "Use question-specific paired/changed cases that separate the predicted misconception from a slip. Preserve uncertainty; do not grade free response by keyword or declare mastery. Optional for legacy records; when authored, question/crux/target validation remains mandatory. New semantic review must still adjudicate M1–M3."
+            "hint": "An authored wrong_idea/diagnostic_prompt is a hypothesis, not a learner diagnosis. Use the typed diagnostic-evidence contract: canonical hypothesis + discriminating probe + observed learner response + evaluator basis. Only complete CONFIRMED evidence may select misconception-specific repair; INDETERMINATE, REFUTED, invalid, or bare-index claims remain non-confirming. Preserve uncertainty and require fresh verification after repair; do not grade free response by keyword or declare mastery."
           }
         }
       ],
