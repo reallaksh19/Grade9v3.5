@@ -274,7 +274,7 @@ class Renderer(unittest.TestCase):
         self.assertIn('data-g9-block="source_identity"', core2)
         self.assertNotIn('data-g9-block="inferential_jump"', core2)
 
-    def test_core1a_companion_support_follows_each_unit_in_compact_dom_order(self):
+    def test_core1a_companion_support_is_adjacent_only_when_the_unit_authors_it(self):
         repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
         ctx = render_core.context(repo_manifest)
         html = render_core.page(ctx, "CORE1A", "PAGES", render_core.render_digest(ctx))
@@ -289,27 +289,62 @@ class Renderer(unittest.TestCase):
         units = projectile["construction_units"]
         for index, unit in enumerate(units):
             primary_at = article.index(f'id="{unit["id"]}"')
-            support_at = article.index(f'data-g9-support-for="{unit["id"]}"')
             next_boundary = (
                 article.index(f'id="{units[index + 1]["id"]}"')
                 if index + 1 < len(units)
                 else article.index('data-g9-block="exit_task"')
             )
-            self.assertLess(primary_at, support_at)
-            self.assertLess(support_at, next_boundary)
-
-            construction_slot = article.rfind(
-                'data-blueprint-slot="construction"', 0, primary_at
+            marker = f'data-g9-support-for="{unit["id"]}"'
+            has_support = bool(
+                render_core._misconceptions(projectile, unit)
+                or [row for row in unit.get("independent_checks") or [] if row.get("statement")]
             )
-            support_slot = article.rfind(
-                'data-blueprint-slot="repair_closure"', 0, support_at
-            )
-            self.assertGreaterEqual(construction_slot, 0)
-            self.assertGreater(support_slot, construction_slot)
+            segment = article[primary_at:next_boundary]
+            if has_support:
+                self.assertIn(marker, segment)
+                support_at = article.index(marker, primary_at, next_boundary)
+                self.assertLess(primary_at, support_at)
+                construction_slot = article.rfind(
+                    'data-blueprint-slot="construction"', 0, primary_at
+                )
+                support_slot = article.rfind(
+                    'data-blueprint-slot="repair_closure"', 0, support_at
+                )
+                self.assertGreaterEqual(construction_slot, 0)
+                self.assertGreater(support_slot, construction_slot)
+            else:
+                self.assertNotIn(marker, segment)
 
-        # Teaching and its adjacent repair stay in one continuous reading pane.
+        # Teaching and any adjacent optional support stay in one continuous reading pane.
         self.assertNotIn('class="g9-split', article)
-        self.assertEqual(next(row for row in ctx.blueprints["blueprints"] if "CORE1A" in row["core_roles"])["responsive_policy"]["expanded"], "SINGLE_PANE")
+        self.assertEqual(
+            next(row for row in ctx.blueprints["blueprints"] if "CORE1A" in row["core_roles"])
+            ["responsive_policy"]["expanded"],
+            "SINGLE_PANE",
+        )
+
+    def test_core1a_unit_with_no_repair_or_quick_check_gets_no_empty_support_wrapper(self):
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(repo_manifest)
+        microtopic = copy.deepcopy(ctx.selection_rows["microtopics"][0])
+        microtopic["misconceptions"] = []
+        for unit in microtopic.get("construction_units") or []:
+            unit["misconception_indexes"] = []
+            unit["independent_checks"] = []
+
+        html = render_core.core1a(ctx, microtopic)
+        for unit in microtopic.get("construction_units") or []:
+            self.assertNotIn(f'data-g9-support-for="{unit["id"]}"', html)
+        self.assertIn('data-g9-block="exit_task"', html)
+
+    def test_core1a_quick_check_does_not_imply_three_items(self):
+        html = render_core._quick_check([
+            {"role": "CHECK", "statement": "State the invariant once."},
+        ])
+        self.assertIn("Quick check", html)
+        self.assertNotIn("1-2-3 quick check", html)
+        self.assertEqual(html.count("<li "), 1)
+
 
     def test_core1a_relation_matrix_preserves_equation_meaning_and_validity_semantics(self):
         repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
@@ -433,6 +468,29 @@ class Renderer(unittest.TestCase):
         renderer_source = (REPO / "Shared/tools/render_core.py").read_text(encoding="utf-8")
         self.assertNotIn(target["id"], renderer_source)
         self.assertNotIn("Trajectory-equation derivation as a first-slice requirement.", article)
+
+    def test_toughest_target_must_bind_the_crux_but_need_not_be_the_worked_example(self):
+        repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(repo_manifest)
+        toughest = ctx.toughest()
+        self.assertTrue(toughest)
+        microtopic = copy.deepcopy(next(
+            row for row in ctx.selection_rows["microtopics"]
+            if row["id"] == toughest["microtopic_ref"]
+        ))
+        builders = [
+            unit for unit in microtopic.get("construction_units") or []
+            if toughest["question_ref"] in (unit.get("crux_question_refs") or [])
+        ]
+        self.assertTrue(builders, "fixture must already bind the toughest question to a construction")
+        for unit in builders:
+            unit.pop("bank_anchor_ref", None)
+            unit.pop("worked_anchor_ref", None)
+
+        before = len(ctx.gaps)
+        render_core._toughest_unit_gaps(ctx, microtopic, microtopic["construction_units"], toughest)
+        new = ctx.gaps[before:]
+        self.assertFalse([gap for gap in new if gap["duty"] == "AUTHOR_TOUGHEST_CONCEPT"], new)
 
     def test_core2a_and_core2b_repairs_return_to_exact_core1a_construction_unit_when_owned(self):
         repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
