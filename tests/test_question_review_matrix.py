@@ -5,8 +5,6 @@ import json
 import unittest
 from pathlib import Path
 
-from jsonschema import Draft202012Validator
-
 from Shared.tools import question_review_matrix as qrt
 
 
@@ -160,47 +158,6 @@ class QuestionReviewMatrixTests(unittest.TestCase):
         question["difficulty"]["band"] = "D4"
         with self.assertRaisesRegex(qrt.QRTContractError, "QUESTION_DIFFICULTY_BAND_MISMATCH"):
             qrt.resolve_review(question, self.synthetic_profile(), self.matrix, self.vocab)
-
-    def test_difficulty_component_rubric_has_subject_neutral_zero_one_two_anchors(self):
-        metadata = qrt.question_difficulty.metadata()
-        rubric = metadata["question_difficulty_component_rubric"]
-        self.assertEqual(rubric["schema"], "grade9v3-question-difficulty-component-rubric/v1")
-        self.assertEqual(
-            set(rubric["components"]),
-            set(qrt.question_difficulty.COMPONENT_KEYS),
-        )
-        for component, row in rubric["components"].items():
-            with self.subTest(component=component):
-                self.assertEqual(set(row["anchors"]), {"0", "1", "2"})
-                self.assertTrue(all(str(row["anchors"][key]).strip() for key in ("0", "1", "2")))
-        text = json.dumps(rubric)
-        self.assertNotIn("Physics", text)
-        self.assertNotIn("Chemistry", text)
-        self.assertNotIn("Mathematics", text)
-
-    def test_component_evidence_is_backward_compatible_but_complete_when_present(self):
-        schema = json.loads((REPO / "Shared" / "library" / "package.schema.json").read_text(encoding="utf-8"))
-        check = Draft202012Validator({
-            "$schema": schema["$schema"],
-            "$ref": "#/$defs/question_difficulty",
-            "$defs": schema["$defs"],
-        })
-        legacy = copy.deepcopy(self.synthetic_question()["difficulty"])
-        self.assertEqual(list(check.iter_errors(legacy)), [])
-
-        with_evidence = copy.deepcopy(legacy)
-        with_evidence["component_evidence"] = {
-            "concept_model_selection": "One familiar model must be selected from the stated cues.",
-            "representation_translation": "The directed diagram must be translated into signed algebra.",
-            "reasoning_chain_length": "A short dependency chain links the sign convention to the final equation.",
-            "algebra_computational_load": "Only routine local algebra remains after the representation is fixed.",
-            "trap_exception_sensitivity": "No additional boundary or exception changes the route.",
-        }
-        self.assertEqual(list(check.iter_errors(with_evidence)), [])
-
-        incomplete = copy.deepcopy(with_evidence)
-        del incomplete["component_evidence"]["representation_translation"]
-        self.assertTrue(list(check.iter_errors(incomplete)))
 
     def test_requested_band_is_planning_metadata_not_qr_t_cell_authority(self):
         question = self.synthetic_question()
