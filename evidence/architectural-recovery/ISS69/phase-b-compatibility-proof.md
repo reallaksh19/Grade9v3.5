@@ -9,17 +9,19 @@ Exact material frontier: `fix/iss69-phase-b-subject-neutrality@30f92d267e4e329d2
 - role-template binding: `CORE2 -> BP-CORE2-SOURCE-QUESTION@1.11.0`
 - generated `docs/specs/PAGE-BLUEPRINT-COMPONENTS.md` names `1.11.0` and reflects the subject-neutral `SOLUTION_STEPS` authoring contract.
 
-## Exact-head CI
+## CI evidence boundary
 
-### blueprint-v2-render-snapshots
+### blueprint-v2-render-snapshots is NOT exact-head evidence
 
-Job `112375137217`: **SUCCESS**.
+The workflow's `Materialize current main authority` step runs:
 
-Relevant successful steps:
-- Render blueprint-v2 Physics snapshots.
-- Verify Motion2D Core2 denominator and order.
+`git worktree add --detach /tmp/g9-main origin/main`
 
-### code-tests responsibility lanes
+and all snapshot rendering uses `working-directory: /tmp/g9-main`.
+
+Therefore its green result is a **main-baseline snapshot only**. It must not be cited as proof of this Phase-B branch. Earlier Phase-B wording that called this exact-head evidence is superseded by this correction.
+
+### branch-exact code-tests responsibility lanes
 
 Job `112375137197`:
 
@@ -40,12 +42,13 @@ No B02 change touches `render_core.py`, support-plan schema, diagnostic evidence
 
 B02 neutralization does not regress #66 semantic-contract invariants.
 
-The exact-head evidence supports:
-- subject-neutral solution authoring authority: PASS;
-- blueprint snapshot rendering/denominator: PASS;
+The branch-exact evidence supports:
+- subject-neutral solution authoring authority: direct contract readback PASS;
 - typed diagnostic evidence contract: PASS;
 - diagnostic caller migration: PASS;
 - representation instance binding: PASS;
 - staged-support semantic logic: unchanged up to the known renderer placement seam.
+
+Snapshot-render/denominator behavior for the Phase-B head remains **not yet proven by the snapshot job**, because that job intentionally renders `origin/main`.
 
 The whole repository is **not** claimed green. The TRAP projection seam remains explicitly owned by PHASE-C, and broad pre-existing guardrail/assurance failures remain separate.
