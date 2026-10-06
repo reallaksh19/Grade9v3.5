@@ -4,7 +4,7 @@ import json
 import unittest
 from pathlib import Path
 
-from Shared.tools import render_core
+from Shared.tools import core2_v2, render_core
 
 
 REPO = Path(__file__).resolve().parents[1]
@@ -150,6 +150,47 @@ class PhaseDPhysicsDemandCruxQualification(unittest.TestCase):
         source = (REPO / "Shared/tools/render_core.py").read_text(encoding="utf-8")
         self.assertNotIn("MIC-PHY-KIN-PROJECTILE-MODEL", source)
         self.assertNotIn(WITNESS, source)
+
+    def test_core2_witness_support_is_authored_safe_and_bound_to_reasoning_moves(self):
+        source, authored = core2_v2.split_pre_solution_support(self.question)
+        self.assertEqual(source, [])
+        self.assertEqual(len(authored), 3)
+        self.assertEqual(
+            [row["source"] for row in authored],
+            ["scaffolds[0]", "scaffolds[1]", "scaffolds[2]"],
+        )
+        self.assertEqual(
+            [row["support_kind"] for row in authored],
+            ["REPRESENT", "CONNECT", "EXECUTE"],
+        )
+        self.assertEqual(
+            [row["supports_move_ref"] for row in authored],
+            [move["id"] for move in self.question["answer"]["reasoning_route"]],
+        )
+        self.assertTrue(
+            all(row["provenance"] == core2_v2.AUTHORED_CORE2_SUPPORT for row in authored)
+        )
+        self.assertTrue(all(row["reveals"] != "ANSWER" for row in authored))
+
+    def test_core2_witness_renders_real_attempt_and_gated_solution_payload(self):
+        ctx = render_core.context(MANIFEST)
+        question = next(q for q in ctx.selection_rows["core2"] if q["id"] == WITNESS)
+        html = render_core.core2(ctx, question)
+
+        self.assertIn("Attempt first", html)
+        self.assertIn('data-g9-attempt-box', html)
+        self.assertIn('data-g9-commit', html)
+        self.assertIn(
+            f'data-g9-payload-ref="CORE2-{WITNESS}-solution"',
+            html,
+        )
+        self.assertIn(
+            f'<template data-g9-payload="CORE2-{WITNESS}-solution">',
+            html,
+        )
+        self.assertIn('data-requires-attempt', html)
+        self.assertEqual(html.count('template data-g9-rung-payload='), 3)
+        self.assertNotIn('data-g9-support-reveals="ANSWER"', html)
 
     def test_secondary_demand_is_question_owned_not_manifest_owned(self):
         self.assertEqual(
