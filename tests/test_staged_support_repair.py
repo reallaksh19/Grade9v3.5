@@ -209,6 +209,72 @@ class ReviewBasis(unittest.TestCase):
             review["artifact_sha256"] = "sha256:" + "0" * 64
             self.assertIn("REVIEW_NOT_BOUND_TO_RENDERED_BYTES: Q:A", guard.validate_artifacts_and_reviews(run))
 
+    def test_independent_rendered_review_requires_declared_reviewer(self):
+        review = {
+            "question_ref": "Q",
+            "basis": "INDEPENDENT_RENDERED",
+            "artifact_ref": "A",
+            "artifact_sha256": "sha256:" + "a" * 64,
+            "judgements": {ask: {"verdict": "YES", "evidence": "Rendered evidence."} for ask in guard.ASKS},
+        }
+        self.assertTrue(list(self.check.iter_errors(review)))
+        review["reviewer_ref"] = "reviewer:independent-1"
+        self.assertEqual(list(self.check.iter_errors(review)), [])
+
+    def test_rendered_self_review_does_not_satisfy_opt_in_independent_requirement(self):
+        with tempfile.TemporaryDirectory() as folder, patch.object(guard, "REPO", Path(folder)):
+            path = Path(folder) / "page.html"
+            path.write_text("<p>Actual rendered output</p>", encoding="utf-8")
+            sha = guard.sha256_file(path)
+            artifact = {"id": "A", "path": "page.html", "sha256": sha, "head_sha": "a" * 40}
+            review = {
+                "question_ref": "Q",
+                "basis": "RENDERED",
+                "artifact_ref": "A",
+                "artifact_sha256": sha,
+                "reviewer_ref": "reviewer:author",
+                "judgements": {ask: {"verdict": "YES", "evidence": "Rendered page location."} for ask in guard.ASKS},
+            }
+            run = {
+                "run_identity": {"head_sha": "a" * 40},
+                "questions": [{"id": "Q"}],
+                "rendered_artifacts": [artifact],
+                "reviews": [review],
+                "review_requirements": {"independent_rendered_review_required": True},
+            }
+            self.assertEqual(
+                guard.validate_artifacts_and_reviews(run),
+                ["INDEPENDENT_RENDERED_QRT_REVIEW_MISSING: Q"],
+            )
+
+    def test_independent_rendered_review_satisfies_opt_in_requirement_and_keeps_byte_binding(self):
+        with tempfile.TemporaryDirectory() as folder, patch.object(guard, "REPO", Path(folder)):
+            path = Path(folder) / "page.html"
+            path.write_text("<p>Actual rendered output</p>", encoding="utf-8")
+            sha = guard.sha256_file(path)
+            artifact = {"id": "A", "path": "page.html", "sha256": sha, "head_sha": "a" * 40}
+            review = {
+                "question_ref": "Q",
+                "basis": "INDEPENDENT_RENDERED",
+                "reviewer_ref": "reviewer:independent-1",
+                "artifact_ref": "A",
+                "artifact_sha256": sha,
+                "judgements": {ask: {"verdict": "YES", "evidence": "Rendered page location."} for ask in guard.ASKS},
+            }
+            run = {
+                "run_identity": {"head_sha": "a" * 40},
+                "questions": [{"id": "Q"}],
+                "rendered_artifacts": [artifact],
+                "reviews": [review],
+                "review_requirements": {"independent_rendered_review_required": True},
+            }
+            self.assertEqual(guard.validate_artifacts_and_reviews(run), [])
+            review["artifact_sha256"] = "sha256:" + "0" * 64
+            self.assertIn(
+                "REVIEW_NOT_BOUND_TO_RENDERED_BYTES: Q:A",
+                guard.validate_artifacts_and_reviews(run),
+            )
+
     def test_missing_facet_unknown_verdict_and_evidenceless_yes_are_structural_errors(self):
         review = {"question_ref": "Q", "basis": "RENDERED", "artifact_ref": "A", "artifact_sha256": "sha256:" + "a" * 64,
                   "judgements": {ask: {"verdict": "YES", "evidence": "Actual location"} for ask in guard.ASKS}}
