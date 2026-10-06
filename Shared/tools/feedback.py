@@ -587,7 +587,13 @@ def run(request: dict, repo: Path = REPO) -> dict:
                 "passed": not findings,
             }
 
-    if diagnostic_evidence is None or diagnostic_evidence["diagnosis"] != "CONFIRMED":
+    diagnostic_claim_present = (
+        evaluation.get("diagnostic_evidence") is not None
+        or evaluation.get("misconception_index") is not None
+    )
+    if diagnostic_claim_present and (
+        diagnostic_evidence is None or diagnostic_evidence["diagnosis"] != "CONFIRMED"
+    ):
         return {
             **base,
             "next_action": "DIAGNOSE",
@@ -599,7 +605,11 @@ def run(request: dict, repo: Path = REPO) -> dict:
         records,
         question,
         failed,
-        diagnostic_evidence["misconception_index"],
+        (
+            diagnostic_evidence["misconception_index"]
+            if diagnostic_evidence is not None
+            else None
+        ),
     )
     if repair is None:
         return {
