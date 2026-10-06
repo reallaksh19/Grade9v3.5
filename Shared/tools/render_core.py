@@ -1952,26 +1952,50 @@ def _core2_bound_figures(ctx: Ctx, q: dict, refs: list[str], stage: str) -> str:
                 if stage == "PRE_ATTEMPT":
                     output.append(figure(ctx, ref, stage, "CORE2", q["id"], first_stage_only=True))
                 continue
-            allowed = (binding["pre_attempt_stage_refs"] if stage == "PRE_ATTEMPT"
-                       else [item["stage_ref"] for item in binding["stages"]])
+            if stage == "PRE_ATTEMPT":
+                allowed = binding["pre_attempt_stage_refs"]
+                render_stage = "PRE_ATTEMPT"
+            elif stage == "AFTER_ATTEMPT":
+                allowed = binding["after_attempt_stage_refs"]
+                render_stage = "POST_ATTEMPT"
+            else:
+                allowed = binding["post_solution_stage_refs"]
+                render_stage = "POST_ATTEMPT"
             if not allowed:
-                continue  # Stages completing protected work belong with the answer.
-            output.append(figure(ctx, ref, stage, "CORE2", q["id"], allowed=allowed,
+                continue
+            output.append(figure(ctx, ref, render_stage, "CORE2", q["id"], allowed=allowed,
                                  instance_ref=binding["instance_ref"], owner_ref=q["id"]))
     except core2_v2.Core2SupportProjectionError as exc:
         ctx.gap("AUTHOR_CORE2_SUPPORT", q["id"], str(exc), "CORE2")
     return "".join(output)
 
 
-def _core2_completed_support(ctx: Ctx, q: dict) -> str:
-    """Keep deferred help available inside the existing attempted-solution payload."""
+def _core2_after_attempt_support(ctx: Ctx, q: dict) -> str:
+    """Support unlocked by commitment without bundling it into the full solution."""
     if core2_v2.SUPPORT_PLAN_KEY not in (q.get("extensions") or {}):
         return ""
     try:
-        rows = [row for row in core2_v2.project_support(q) if not row["eligible_pre_solution"]]
+        rows = core2_v2.after_attempt_support(q)
         text = "".join(_core2_support_rung(ctx, q, row, number, post_solution=True)
                        for number, row in enumerate(rows, 1))
-        figures = _core2_question_figures(ctx, q, "POST_ATTEMPT")
+        figures = _core2_question_figures(ctx, q, "AFTER_ATTEMPT")
+    except core2_v2.Core2SupportProjectionError as exc:
+        ctx.gap("AUTHOR_CORE2_SUPPORT", q["id"], str(exc), "CORE2")
+        return ""
+    body = block("after_attempt_support", (f"<ol>{text}</ol>" if text else "") + figures,
+                 title="Support after your attempt") if text or figures else ""
+    return reveal("More support after your attempt", body, ref=f'CORE2-{q["id"]}-after-attempt') if body else ""
+
+
+def _core2_completed_support(ctx: Ctx, q: dict) -> str:
+    """Keep solution-only support inside the existing attempted-solution payload."""
+    if core2_v2.SUPPORT_PLAN_KEY not in (q.get("extensions") or {}):
+        return ""
+    try:
+        rows = core2_v2.post_solution_support(q)
+        text = "".join(_core2_support_rung(ctx, q, row, number, post_solution=True)
+                       for number, row in enumerate(rows, 1))
+        figures = _core2_question_figures(ctx, q, "POST_SOLUTION")
     except core2_v2.Core2SupportProjectionError as exc:
         ctx.gap("AUTHOR_CORE2_SUPPORT", q["id"], str(exc), "CORE2")
         return ""
@@ -2047,7 +2071,8 @@ def core2(ctx: Ctx, q: dict) -> str:
                                    items=figures.count("<figure ")),
         }, "representation"),
         "support": component_body(ctx, "CORE2", {
-            "HINT_LADDER": part("HINT_LADDER", _core2_support(ctx, q), items=_core2_support_rungs(q)),
+            "HINT_LADDER": part("HINT_LADDER", _core2_support(ctx, q) + _core2_after_attempt_support(ctx, q),
+                                items=_core2_support_rungs(q)),
             "CONCEPT_NAV": part("CONCEPT_NAV", _core2_concept_navigation(ctx, q)),
         }, "support"),
         "solution": component_body(ctx, "CORE2", {
