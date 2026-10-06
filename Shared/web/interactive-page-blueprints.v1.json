@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "registry_version": "1.14.0",
+  "registry_version": "1.15.0",
   "shell": {
     "id": "G9-TABLET-SHELL-V1",
     "fixed_header": true,
@@ -826,12 +826,12 @@
     },
     {
       "id": "BP-CORE1A-CONSTRUCTION",
-      "version": "1.7.0",
+      "version": "1.8.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE1A"
       ],
-      "learner_job": "Build the concept in a coherent construction with its adjacent representation, summarize the key insight, study a visible worked explanation, then attempt a fresh changed case. References and diagnosis remain requestable; protected source questions are not the default teaching anchor.",
+      "learner_job": "Build a reusable concept by constructing the decisive bridge, using an adjacent representation when it materially helps, summarizing the key insight, and then independently retrieving, explaining, or applying it in a changed case. Worked examples, completion, comparison, quick checks, and repair are conditional teaching operators rather than mandatory panels; protected source questions are not the default teaching anchor.",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "READING_CONSTRUCTION",
       "slots": [
@@ -917,7 +917,9 @@
       "forbidden": [
         "PAGE_LOCAL_ACADEMIC_TRUTH",
         "HOVER_ONLY_ESSENTIAL_INFORMATION",
-        "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        "ATTEMPT_FIRST_AS_PRIMARY_MODE",
+        "FABRICATED_MISCONCEPTION_REPAIR",
+        "BAND_AS_PANEL_COUNT"
       ],
       "components": [
         {
@@ -1004,16 +1006,8 @@
           ],
           "min_items": 2,
           "authoring": {
-            "hint": "Each construction unit lists step_refs naming 2 or more teaching_path steps; each step has action, why_valid and output written for this unit, none repeated from another unit. A unit that builds the crux of a D3 or D4 question (it names that question in crux_question_refs) needs 4 steps, and its last step is the move that question turns on. D1 repair: Teach construction and its selected visual before summarizing the insight. Every source question needs an exact construction bridge; an exit uses a changed case with a concrete expected result, not a repeated worked input. D2 repair: Maintain a question-specific orbital allocation, conditions and independent changed check. Multiple questions may share a concept; a broad section label does not prove that each requested operation was constructed. D3 repair: Preserve atom-local roles and every relevant electron/charge invariant through representations. Separate a supplied equivalence observation from the model label and from a unique physical orbital/charge claim. D4 repair: Use explicit model assumptions, a counterfactual or independently changed contribution, and an applicability stopping condition. Diagnosis compares a changed-case response with uncertain patterns; it does not assign mastery or a misconception from opening help."
+            "hint": "Each construction unit names at least 2 teaching_path steps, and every authored step states the action, why it is valid, and the state/output it establishes. Choose additional steps only when the inferential burden requires them; difficulty band does not prescribe a panel count. A unit that builds a question crux binds the actual crux_question_refs and crux_step_ref so the decisive bridge is taught explicitly. Preserve representation invariants, model boundaries, applicability conditions, and changed-case transfer when those are material to the concept; do not import subject-specific repair rules into the shared blueprint."
           },
-          "target_items": 3,
-          "target_items_by_band": {
-            "D1": 3,
-            "D2": 3,
-            "D3": 4,
-            "D4": 4
-          },
-          "band_source": "crux_question_refs",
           "compact_order": 60
         },
         {
@@ -1029,17 +1023,9 @@
           ],
           "min_items": 2,
           "authoring": {
-            "hint": "First decide whether a staged visual has a real semantic job for this construction. When it does, representation_ref names a package representation with an authored accessible SVG and at least 2 data-g9-stage-id groups; reveal_stages names the useful build-up. The reference depth is 3 stages (4 for a D3/D4 crux), not a semantic pass count. When a visual is genuinely not applicable, waive STAGED_VISUAL with a written reason instead of drawing decoration."
+            "hint": "First decide whether a staged visual has a real semantic job for this construction. When it does, representation_ref names an accessible representation and reveal_stages contains only the stages needed to construct the correspondence or mechanism. Stage count follows the representation, not the question's D-band. When a visual is genuinely not applicable, waive STAGED_VISUAL with a written reason instead of drawing decoration."
           },
           "duty": "STAGE_REPRESENTATION",
-          "target_items": 3,
-          "target_items_by_band": {
-            "D1": 3,
-            "D2": 3,
-            "D3": 4,
-            "D4": 4
-          },
-          "band_source": "crux_question_refs",
           "compact_order": 70
         },
         {
@@ -1093,9 +1079,9 @@
         {
           "id": "WORKED_EXAMPLE",
           "slot": "construction",
-          "level": "REQUIRED",
+          "level": "EXPECTED",
           "presentation": "WORKED_CARD",
-          "purpose": "Show a coherent worked explanation with an explicit warrant and output at each authored move.",
+          "purpose": "When a completed instance materially helps the learner consolidate the constructed idea, show a coherent worked explanation with explicit warrants and outputs. A concept may instead proceed from construction directly to reduced-support independent application when that better preserves the learning job.",
           "benchmark": "core1a-motion-in-a-plane-tablet: the worked card",
           "repeat": "PER_CONSTRUCTION_UNIT",
           "source": [
@@ -1103,18 +1089,17 @@
             "construction_units[].bank_anchor_ref",
             "extensions.grade9v3:lesson_anchors"
           ],
-          "duty": "AUTHOR_WORKED_ANCHOR",
           "authoring": {
-            "hint": "Use the microtopic extension grade9v3:lesson_anchors keyed by construction unit. Name target_question_ref, target_crux_move_ref and construction_ref, with a new stem, reasoned answer and independent check. The target must resolve to this product bank; a hardest-target unit must bind that precise question. Preserve the legacy worked/bank-anchor path where no extension is authored."
+            "hint": "Use a lesson anchor or other mapped worked instance when seeing a completed route materially helps this construction. Bind any hardest-target bridge to the precise target question/crux/construction, but do not require the protected source question itself to become the teaching anchor. If a worked example would merely replay the construction or leak the next independent task, author an explicit applicability waiver instead."
           },
           "compact_order": 110
         },
         {
           "id": "TRAP_REPAIR",
           "slot": "repair_closure",
-          "level": "REQUIRED",
+          "level": "OPTIONAL",
           "presentation": "DISCLOSURE_TRAP_CARD",
-          "purpose": "Keep mistake clinics closed initially. Diagnose using discriminating changed cases, establish a bounded replacement rule, and return to a fresh application.",
+          "purpose": "When there is an evidence-supported confusable model or recurring wrong route worth distinguishing, offer a requestable mistake clinic with a discriminating probe, bounded replacement rule, and fresh application. Do not manufacture a misconception or repair panel merely to complete the page.",
           "benchmark": "core1a-motion-in-a-plane-tablet: the easy-mistake card with diagnostic and repair",
           "repeat": "PER_CONSTRUCTION_UNIT",
           "source": [
@@ -1123,26 +1108,24 @@
           ],
           "min_items": 1,
           "authoring": {
-            "hint": "misconceptions[] holds wrong_idea, diagnostic_prompt and repair for this concept; each construction unit names the ones that apply in misconception_indexes."
+            "hint": "Author misconception rows only when a plausible wrong idea is materially relevant to this construction. Each row carries wrong_idea, a diagnostic_prompt that can distinguish the hypothesis from a slip/alternative route, and a bounded repair. A construction unit names only the rows that actually apply; absence of a justified misconception is valid and requires no filler."
           },
           "compact_order": 120
         },
         {
           "id": "QUICK_CHECK",
           "slot": "repair_closure",
-          "level": "REQUIRED",
-          "presentation": "TRIAD",
-          "purpose": "Let the learner test the idea three ways before moving on: recall it, use it on a small case, and say where it leads next.",
+          "level": "OPTIONAL",
+          "presentation": "CHECK_BOX",
+          "purpose": "When a compact checkpoint materially helps consolidation before the independent exit, ask one or more question-specific checks that retrieve, apply, connect, compare, or explain the concept without imposing a fixed role count.",
           "benchmark": "core1a-motion-in-a-plane-tablet: the 1-2-3 quick check (CHECK, APPLY, CONNECT)",
           "repeat": "PER_CONSTRUCTION_UNIT",
           "source": [
             "construction_units[].independent_checks"
           ],
           "min_items": 1,
-          "duty": "AUTHOR_INDEPENDENT_CHECK",
-          "target_items": 3,
           "authoring": {
-            "hint": "Each construction unit lists three independent_checks, each with a role: CHECK (a question that recalls the idea), APPLY (a small case to work with numbers or a picture given in the question) and CONNECT (one sentence saying which idea this leads to next). Each statement is specific to the unit."
+            "hint": "independent_checks[] is optional intermediate evidence. Author only the checks that add a distinct learner job for this unit; CHECK/APPLY/CONNECT are available roles, not a mandatory triad. Do not duplicate the mandatory EXIT_RECALL or create filler to reach a number."
           },
           "compact_order": 130
         },
