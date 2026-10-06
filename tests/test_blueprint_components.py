@@ -116,20 +116,20 @@ class Realisation(unittest.TestCase):
 
 
 class Reporting(unittest.TestCase):
-    def test_a_required_component_that_is_absent_or_below_its_floor_is_a_gap_that_names_it(self):
+    def test_a_required_component_that_is_absent_is_a_gap_that_names_it(self):
         ctx = ctx_with(REGISTRY)
-        self.assertEqual(render_core.component(ctx, "CORE2", "HINT_LADDER", "", "Q1", items=0), "")
-        render_core.component(ctx, "CORE2", "HINT_LADDER", "<p>x</p>", "Q2", items=1)
-        self.assertEqual([(g["duty"], g["record"], g["component"]) for g in ctx.gaps],
-                         [("AUTHOR_COMPONENT", "Q1", "HINT_LADDER"), ("AUTHOR_COMPONENT", "Q2", "HINT_LADDER")])
-        self.assertIn("1 of the 2 rungs", ctx.gaps[1]["detail"])
+        self.assertEqual(render_core.component(ctx, "CORE2", "ATTEMPT", "", "Q1"), "")
+        self.assertEqual(
+            [(g["duty"], g["record"], g["component"]) for g in ctx.gaps],
+            [("AUTHOR_COMPONENT", "Q1", "ATTEMPT")],
+        )
 
-    def test_between_the_floor_and_the_reference_depth_is_an_advisory_not_a_gap(self):
+    def test_core2_hint_depth_is_semantic_not_a_rung_count_quota(self):
         ctx = ctx_with(REGISTRY)
-        marked = render_core.component(ctx, "CORE2", "HINT_LADDER", "<p>x</p>", "Q", items=2)
+        marked = render_core.component(ctx, "CORE2", "HINT_LADDER", "<p>x</p>", "Q", items=1, band="D4")
         self.assertIn('data-g9-component="HINT_LADDER"', marked)
         self.assertEqual(ctx.gaps, [])
-        self.assertEqual([a["component"] for a in ctx.advisories], ["HINT_LADDER"])
+        self.assertEqual(ctx.advisories, [])
 
     def test_an_expected_component_that_is_absent_is_an_advisory_and_an_optional_one_is_silent(self):
         ctx = ctx_with(REGISTRY)
@@ -144,6 +144,31 @@ class Reporting(unittest.TestCase):
         render_core.component(ctx, "CORE1A", "WORKED_EXAMPLE", "", "CU-1")
         self.assertEqual(len(ctx.gaps), 1)
 
+    def test_core1a_conditional_operators_are_not_manufactured_to_satisfy_reference_authoring(self):
+        ctx = ctx_with(REGISTRY)
+        ctx.held_to = "REFERENCE"
+
+        render_core.component(ctx, "CORE1A", "TRAP_REPAIR", "", "CU-1")
+        render_core.component(ctx, "CORE1A", "QUICK_CHECK", "", "CU-1")
+        self.assertEqual(ctx.gaps, [])
+        self.assertEqual(ctx.advisories, [])
+
+        worked = render_core.component(
+            ctx, "CORE1A", "WORKED_EXAMPLE", "", "CU-1",
+            waivers={"WORKED_EXAMPLE": "construction proceeds directly to reduced-support application"},
+        )
+        visual = render_core.component(
+            ctx, "CORE1A", "STAGED_VISUAL", "", "CU-1",
+            waivers={"STAGED_VISUAL": "no representation adds semantic information for this unit"},
+        )
+        self.assertIn('data-g9-component-waiver="WORKED_EXAMPLE"', worked)
+        self.assertIn('data-g9-component-waiver="STAGED_VISUAL"', visual)
+        self.assertEqual(ctx.gaps, [])
+        self.assertEqual(
+            [(row["component"], row["record"]) for row in ctx.waived],
+            [("WORKED_EXAMPLE", "CU-1"), ("STAGED_VISUAL", "CU-1")],
+        )
+
     def test_without_a_blueprint_the_renderer_neither_wraps_nor_reports(self):
         ctx = ctx_with({})
         self.assertEqual(render_core.component(ctx, "CORE2", "HINT_LADDER", "<p>x</p>", "Q", items=0), "<p>x</p>")
@@ -151,28 +176,32 @@ class Reporting(unittest.TestCase):
 
     def test_the_order_inside_a_slot_is_the_blueprints_and_an_undeclared_part_is_refused(self):
         ctx = ctx_with(REGISTRY)
-        body = render_core.component_body(ctx, "CORE2", {"CONDITIONS": "c", "STEM": "s", "ATTEMPT": "a", "TRAP": "t"}, "attempt")
-        self.assertEqual(body, "scta")      # STEM, CONDITIONS, TRAP, ATTEMPT: the order the blueprint lists them in
+        attempt = render_core.component_body(ctx, "CORE2", {"CONDITIONS": "c", "STEM": "s", "ATTEMPT": "a"}, "attempt")
+        support = render_core.component_body(
+            ctx, "CORE2", {"TRAP": "t", "HINT_LADDER": "h", "CONCEPT_NAV": "n"}, "support"
+        )
+        self.assertEqual(attempt, "sca")
+        self.assertEqual(support, "thn")
+        with self.assertRaises(KeyError):
+            render_core.component_body(ctx, "CORE2", {"TRAP": "t"}, "attempt")
         with self.assertRaises(KeyError):
             render_core.component_body(ctx, "CORE2", {"NOT_A_COMPONENT": "x"}, "attempt")
 
     def test_the_gate_rule_reads_the_registry_not_a_copy_of_it(self):
-        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.9.0",
+        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.10.0",
                 "units": [{"id": "Q", "components": [{"id": "STEM", "items": None, "unit": None},
-                                                     {"id": "HINT_LADDER", "items": 1, "unit": None}]}]}
-        problems = quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {})
-        self.assertIn("Q: HINT_LADDER has 1 of the 2 it needs", problems)
-        self.assertIn("Q: ATTEMPT is absent", problems)
-        self.assertFalse([p for p in problems if "STEM" in p])
+                                                     {"id": "ATTEMPT", "items": None, "unit": None}]}]}
+        expected = quality_contract.OPS["blueprint_components"](page, {"level": "EXPECTED"}, {})
+        self.assertTrue([p for p in expected if "HINT_LADDER" in p], expected)
         raised = copy.deepcopy(REGISTRY)
         next(c for b in raised["blueprints"] if b["id"] == "BP-CORE2-SOURCE-QUESTION"
-             for c in b["components"] if c["id"] == "HINT_LADDER")["min_items"] = 1
+             for c in b["components"] if c["id"] == "HINT_LADDER")["level"] = "OPTIONAL"
         with patch.object(blueprints, "load_registry", return_value=raised):
-            self.assertNotIn("Q: HINT_LADDER has 1 of the 2 it needs",
-                             quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {}))
+            expected = quality_contract.OPS["blueprint_components"](page, {"level": "EXPECTED"}, {})
+            self.assertFalse([p for p in expected if "HINT_LADDER" in p], expected)
 
     def test_a_per_unit_component_is_expected_once_for_each_construction_unit(self):
-        page = {"role": "CORE1A", "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.7.0",
+        page = {"role": "CORE1A", "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.8.0",
                 "units": [{"id": "MIC", "construction_units": ["CU-1", "CU-2"],
                            "components": [{"id": "STAGED_VISUAL", "items": 3, "unit": "CU-1"}]}]}
         problems = quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {})
@@ -189,28 +218,33 @@ class ReferenceDepth(unittest.TestCase):
         ctx.held_to = held_to
         return ctx
 
-    def test_the_depth_a_ladder_is_held_to_follows_the_questions_band(self):
+    def test_hint_count_does_not_change_with_difficulty_band(self):
         ctx = self.ctx("REFERENCE")
-        render_core.component(ctx, "CORE2", "HINT_LADDER", "<p>x</p>", "Q-EASY", items=3, band="D1")
-        render_core.component(ctx, "CORE2", "HINT_LADDER", "<p>x</p>", "Q-HARD", items=3, band="D3")
-        self.assertEqual([(g["record"], g["component"]) for g in ctx.gaps], [("Q-HARD", "HINT_LADDER")])
-        self.assertIn("3 of the 5 rungs the reference page has for a D3 question", ctx.gaps[0]["detail"])
-
-    def test_the_same_shortfall_is_only_an_advisory_for_an_official_product(self):
-        ctx = self.ctx("FLOOR")
-        render_core.component(ctx, "CORE2", "HINT_LADDER", "<p>x</p>", "Q-HARD", items=3, band="D3")
+        render_core.component(ctx, "CORE2", "HINT_LADDER", "<p>x</p>", "Q-EASY", items=1, band="D1")
+        render_core.component(ctx, "CORE2", "HINT_LADDER", "<p>x</p>", "Q-HARD", items=1, band="D4")
         self.assertEqual(ctx.gaps, [])
-        self.assertEqual([a["record"] for a in ctx.advisories], ["Q-HARD"])
+        self.assertEqual(ctx.advisories, [])
 
-    def test_an_expected_component_is_a_gap_for_new_authoring_until_the_record_waives_it_with_a_reason(self):
+    def test_an_expected_hint_lane_is_a_gap_for_new_authoring_until_waived_with_reason(self):
         ctx = self.ctx("REFERENCE")
-        render_core.component(ctx, "CORE2", "TRAP", "", "Q1")
-        self.assertEqual([(g["record"], g["component"]) for g in ctx.gaps], [("Q1", "TRAP")])
-        marked = render_core.component(ctx, "CORE2", "TRAP", "", "Q2", waivers={"TRAP": "no tempting route"})
+        render_core.component(ctx, "CORE2", "HINT_LADDER", "", "Q1")
+        self.assertEqual([(g["record"], g["component"]) for g in ctx.gaps], [("Q1", "HINT_LADDER")])
+        marked = render_core.component(
+            ctx, "CORE2", "HINT_LADDER", "", "Q2",
+            waivers={"HINT_LADDER": "the question has no useful safe scaffold before solution"},
+        )
         self.assertEqual(len(ctx.gaps), 1, "a waiver is not a gap")
-        self.assertIn('data-g9-component-waiver="TRAP"', marked)
-        self.assertIn("no tempting route", marked)
-        self.assertEqual([(w["record"], w["component"], w["reason"]) for w in ctx.waived], [("Q2", "TRAP", "no tempting route")])
+        self.assertIn('data-g9-component-waiver="HINT_LADDER"', marked)
+        self.assertEqual(
+            [(w["record"], w["component"]) for w in ctx.waived],
+            [("Q2", "HINT_LADDER")],
+        )
+
+    def test_optional_wrong_route_warning_is_silent_when_not_authored(self):
+        ctx = self.ctx("REFERENCE")
+        render_core.component(ctx, "CORE2", "TRAP", "", "Q")
+        self.assertEqual(ctx.gaps, [])
+        self.assertEqual(ctx.advisories, [])
 
     def test_a_required_component_cannot_be_waived(self):
         ctx = self.ctx("REFERENCE")
@@ -218,16 +252,15 @@ class ReferenceDepth(unittest.TestCase):
         self.assertEqual([g["component"] for g in ctx.gaps], ["ATTEMPT"])
         self.assertEqual(ctx.waived, [])
 
-    def test_the_gate_holds_a_deep_question_to_its_band_and_skips_what_the_record_waived(self):
-        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.9.0",
-                "units": [{"id": "Q", "metadata": [{"kind": "question-difficulty", "ref": "D3", "value": "D3",
-                                                   "display_name": "Difficulty", "label": "D3"}],
-                           "components": [{"id": "HINT_LADDER", "items": 3, "unit": None}],
-                           "waived": {"TRAP": "no tempting route"}}]}
+    def test_the_gate_does_not_turn_difficulty_band_into_hint_depth(self):
+        page = {"role": "CORE2", "blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.10.0",
+                "units": [{"id": "Q", "metadata": [{"kind": "question-difficulty", "ref": "D4", "value": "D4",
+                                                   "display_name": "Difficulty", "label": "D4"}],
+                           "components": [{"id": "HINT_LADDER", "items": 1, "unit": None}]}]}
         depth = quality_contract.OPS["blueprint_components"](page, {"level": "DEPTH"}, {})
-        self.assertTrue([p for p in depth if "HINT_LADDER" in p], depth)
+        self.assertFalse([p for p in depth if "HINT_LADDER" in p], depth)
         expected = quality_contract.OPS["blueprint_components"](page, {"level": "EXPECTED"}, {})
-        self.assertFalse([p for p in expected if "TRAP" in p], expected)
+        self.assertFalse([p for p in expected if "HINT_LADDER" in p], expected)
 
 
 class Core1aBenchmark(unittest.TestCase):
@@ -373,15 +406,26 @@ class Core1aBenchmark(unittest.TestCase):
         self.assertTrue(stages)
         self.assertEqual(len(described), sum(stages), "every stage of every figure is a button with its own description")
 
-    def test_the_blueprint_asks_for_three_steps_and_three_stages_as_the_reference_has(self):
+    def test_core1a_blueprint_uses_semantic_minima_not_band_panel_quotas(self):
         by_id = {c["id"]: c for c in blueprints.components(self.blueprint)}
-        self.assertEqual((by_id["CONSTRUCTION_STEPS"]["target_items"], by_id["STAGED_VISUAL"]["target_items"]), (3, 3))
-        self.assertEqual(by_id["QUICK_CHECK"]["presentation"], "TRIAD")
-        self.assertEqual(by_id["EQUATIONS"]["level"], "EXPECTED")
+        self.assertEqual(by_id["CONSTRUCTION_STEPS"]["min_items"], 2)
+        self.assertNotIn("target_items", by_id["CONSTRUCTION_STEPS"])
+        self.assertNotIn("target_items_by_band", by_id["CONSTRUCTION_STEPS"])
+        self.assertEqual(by_id["STAGED_VISUAL"]["level"], "EXPECTED")
+        self.assertNotIn("target_items_by_band", by_id["STAGED_VISUAL"])
+        self.assertEqual(by_id["WORKED_EXAMPLE"]["level"], "EXPECTED")
+        self.assertNotIn("duty", by_id["WORKED_EXAMPLE"])
+        self.assertEqual(by_id["TRAP_REPAIR"]["level"], "OPTIONAL")
+        self.assertEqual(by_id["QUICK_CHECK"]["level"], "OPTIONAL")
+        self.assertEqual(by_id["QUICK_CHECK"]["presentation"], "CHECK_BOX")
+        self.assertNotIn("target_items", by_id["QUICK_CHECK"])
+        self.assertEqual(by_id["EXIT_RECALL"]["level"], "REQUIRED")
+        self.assertNotIn("D1 repair:", by_id["CONSTRUCTION_STEPS"]["authoring"]["hint"])
+        self.assertNotIn("D4 repair:", by_id["CONSTRUCTION_STEPS"]["authoring"]["hint"])
         self.assertTrue(self.blueprint["interaction_policy"]["progressive_support"])
         self.assertEqual(self.blueprint["interaction_policy"]["secondary_reference_default"], "COLLAPSED")
         self.assertEqual(self.blueprint["interaction_policy"]["worked_example_step_policy"], "SHOW_ALL")
-        self.assertEqual(by_id["WORKED_EXAMPLE"]["presentation"], "WORKED_CARD")
+
 
 
 class Tablet(unittest.TestCase):

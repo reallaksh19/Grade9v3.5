@@ -3,7 +3,7 @@
 Generated from `Shared/web/interactive-page-blueprints.v1.json` by `Shared/tools/blueprint_spec.py`. Do not edit.
 To change what a page shows, change the blueprint; the renderer, the quality gate and the owner-bank scaffold follow.
 
-Registry 1.14.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
+Registry 1.16.0. Levels: **REQUIRED**: The page is a gap while the component is absent or has fewer than min_items: the renderer records a typed gap that names the record to author, and the rendered-page gate fails the product. **EXPECTED**: A learner should see it. Its absence is an advisory that names the record field to author, never a silent omission, and never a reason to invent content. **OPTIONAL**: Shown when the record has it.
 
 Depth: min_items is the floor below which a component does not count as present. target_items is the depth of the reference page, and target_items_by_band gives it by the difficulty band the record declares at band_source (for a Core1A construction unit, the hardest band among the bank questions it names in crux_question_refs). Between the floor and the reference depth the renderer says so as an advisory.
 
@@ -82,13 +82,13 @@ Browser audit (`tools/site-audit/core-page-audit.mjs --profile tablet-12.7`): me
 
 **Evidence.** A digest is taken over the bytes of a file, so the bytes must be the same on every machine. Line endings: LF (`.gitattributes`). Text is LF in every working tree (`* text=auto eol=lf`). A file already committed with CRLF keeps its bytes, so no recorded digest moves; a new file is LF.
 
-## BP-CORE2-SOURCE-QUESTION@1.9.0 (CORE2)
+## BP-CORE2-SOURCE-QUESTION@1.10.0 (CORE2)
 
-Learner job: Preserve authentic assessment demand while allowing bounded, provenance-explicit help that advances the learner without becoming a Question Clinic.
+Learner job: Preserve the authentic source-question decision and an observable learner commitment before any assistance that completes or materially narrows protected work. Safe orientation may be available before commitment; learner-requested and post-attempt support remain provenance-explicit and state-bound; diagnosis and full solution remain distinct.
 
 Theme: opens light, and the learner can switch.
 
-Layout: from 980 px wide, the primary column is 42% and the support column 58%. Narrower, everything is one column, primary first.
+Layout: from 980 px wide, the primary column is 42% and the support column 57.99999999999999%. Narrower, everything is one column, primary first.
 
 | Slot | Column | Kept |
 |---|---|---|
@@ -120,13 +120,6 @@ Required: a page without it is a gap, and the quality gate fails it.
 - The learner gets: Ask for a typed commitment before any answer or working opens.
 - The reference page: selected_question_bank_TABLET_STUDY: the options cards; the commit step is this app's own attempt-first rule
 - Record fields: `response`, `options`
-
-**HINT_LADDER** · slot `support` · LADDER · at least 2 item(s); the reference has D1 3, D2 3, D3 5, D4 5 by difficulty band
-
-- The learner gets: Let the learner ask for help one rung at a time; every rung says what it is for and whose words it carries.
-- The reference page: selected_question_bank_TABLET_STUDY: 'Hint ladder · reveal only what you need', five rungs on a hard question (represent / first move, connect, crux, equation / formal model, assembly checkpoint) with SOURCE and EXPANSION pills
-- Record fields: `scaffolds`, `hints`, `hint_ladder`
-- To author it: Author question-specific scaffolds for the semantic jobs the resolved QRT requires: clarify the learner-relative obstacle, connect to demonstrated knowledge, and open the route toward the crux while preserving the learner-owned move. Add further rungs only when they do useful work. The 3-rung D1/D2 and 5-rung D3/D4 values are reference depth, not semantic pass counts; never create filler merely to reach a number. Each rung keeps typed support_kind/reveals/learner_stage and a supports_move_ref, and pre-solution support must not reveal the answer.
 
 **SOLUTION** · slot `solution` · DISCLOSURE
 
@@ -165,19 +158,19 @@ Expected: an official page missing it carries an advisory naming the field to au
 - Record fields: `conditions`
 - To author it: List each stated condition (a constraint or assumption the question gives) as one entry of conditions[]. Never list a method or a result there.
 
-**TRAP** · slot `attempt` · CALLOUT_WARN
-
-- The learner gets: Name the tempting wrong route so the learner can watch for it.
-- The reference page: selected_question_bank_TABLET_STUDY: the 'Common wrong route.' box
-- Record fields: `extensions.grade9v3:analysis.common_wrong_route`
-- To author it: One sentence naming the wrong route learners take and why it tempts. It must not give the answer or the right route.
-
 **REPRESENTATION** · slot `representation` · VISUAL_CARD · at least 1 item(s)
 
 - The learner gets: Show a question-aligned representation only when it materially helps the learner interpret, translate or reason about the question; otherwise preserve the explicit applicability waiver.
 - The reference page: selected_question_bank_TABLET_STUDY: the 'Representation' card with the question-aligned schematic
 - Record fields: `figure_refs`, `extensions.grade9v3:core2_visual_review`
 - To author it: Decide representation applicability from the question's semantic review. If useful, add an accessible authored SVG drawn only from the question data and name it in figure_refs. If a figure would be decorative or would leak protected work, waive REPRESENTATION with a written reason. To correct a legacy authored visual while preserving frozen question refs, bind core2_visual_review to the exact question and replaced refs, with a rationale and question-owned authored refs. Authentic SOURCE_FIGURE resources cannot be superseded. A third stage needs a reason if it would perform the learner decision.
+
+**HINT_LADDER** · slot `support` · LADDER
+
+- The learner gets: Provide only the question-specific support the learner needs, one requestable step at a time, with provenance and an explicit disclosure boundary when support completes or materially narrows protected work.
+- The reference page: selected_question_bank_TABLET_STUDY: 'Hint ladder · reveal only what you need', five rungs on a hard question (represent / first move, connect, crux, equation / formal model, assembly checkpoint) with SOURCE and EXPANSION pills
+- Record fields: `scaffolds`, `hints`, `hint_ladder`
+- To author it: Author question-specific support for the semantic jobs the resolved QRT requires: clarify the learner-relative obstacle, connect to demonstrated knowledge, represent relevant givens, or open a route toward the crux while preserving the learner-owned move. Rung count is not a quality target. Each support row keeps typed support_kind/reveals/learner_stage/supports_move_ref. If a row completes or materially narrows a protected move, declare it in grade9v3:core2_support_plan with AFTER_ATTEMPT or POST_SOLUTION availability; only support proven safe relative to protected_move_refs may be PRE_ATTEMPT_SAFE. Do not add filler to reach a number.
 
 **CHECK** · slot `solution`, inside SOLUTION · CHECK_BOX
 
@@ -197,22 +190,30 @@ Optional: shown when the record has it.
 - Record fields: `extensions.grade9v3:source_custody.paper_url`, `extensions.grade9v3:source_custody.authority_class`, `extensions.grade9v3:source_custody.source_status`
 - To author it: Nothing to write: the page links the paper when the question's source custody is an official exam organizer archive, verified (source_status PYQ_VERIFIED_PARENT), and paper_url is an https link to a PDF. An owner-supplied question has no source file and shows no link; never put a link in the record to make the icon appear.
 
+**TRAP** · slot `support` · CALLOUT_WARN
+
+- The learner gets: Offer a question-specific wrong-route warning only as assistance whose disclosure boundary preserves the learner-owned decision. A closed panel is not protection: if naming the wrong route would narrow or complete protected work, it is not pre-attempt-safe and belongs in typed after-attempt or solution support.
+- The reference page: selected_question_bank_TABLET_STUDY: the 'Common wrong route.' box
+- Record fields: `extensions.grade9v3:analysis.common_wrong_route`, `extensions.grade9v3:core2_support_plan`
+- To author it: Treat common_wrong_route as an authored support hypothesis, not a diagnosis. It may appear before commitment only when the warning is genuinely PRE_ATTEMPT_SAFE relative to protected_move_refs. If the warning identifies the winning model, decisive exclusion, warrant, or other protected work, author it in typed question support and bind its availability through grade9v3:core2_support_plan as AFTER_ATTEMPT or POST_SOLUTION. Collapsed/closed presentation never makes otherwise unsafe content safe.
+
 **CONCEPT_NAV** · slot `support` · LINK_LIST
 
-- The learner gets: Land on the exact construction unit; question-specific repair includes a return link. Record the help as assisted, not independent success.
+- The learner gets: Let the learner deliberately leave the source question for the exact Core1A construction or repair, preserve origin/return context, and record the current question as assisted rather than independent.
 - The reference page: selected_question_bank_TABLET_STUDY: concept links beside the hints (the Core1A cross-link)
-- Record fields: `primary_capability_ref`, `secondary_capability_refs`
+- Record fields: `extensions.grade9v3:learning_repair.construction_ref`, `primary_capability_ref`, `secondary_capability_refs`
+- To author it: Prefer an exact learning_repair.construction_ref when authored; otherwise resolve the capability to the exact construction that teaches the missing bridge. Opening concept help is learner-requested assistance: preserve the source/return anchor and do not count the same-question retry as independent transfer. A fresh changed item may later provide independent evidence.
 
 **DIAGNOSTIC_REPAIR** · slot `solution`, inside SOLUTION · CHECK_BOX
 
-- The learner gets: After the source attempt, elicit a changed-case prediction and reason before showing a diagnostic pattern, bounded replacement rule, fresh application and exact repair link.
+- The learner gets: After learner evidence warrants diagnosis, distinguish a misconception hypothesis from a slip/alternative route, show a bounded repair only when confirmed, then require a fresh verification before treating the repair as successful.
 - The reference page: Issue #32 Q1/Q4 observed hint and representation defects; Issue #31 repeated reject-the-rule checks, correction cycle R2.
 - Record fields: `extensions.grade9v3:learning_repair`
-- To author it: Use question-specific paired/changed cases that separate the predicted misconception from a slip. Preserve uncertainty; do not grade free response by keyword or declare mastery. Optional for legacy records; when authored, question/crux/target validation remains mandatory. New semantic review must still adjudicate M1–M3.
+- To author it: An authored wrong_idea/diagnostic_prompt is a hypothesis, not a learner diagnosis. Use the typed diagnostic-evidence contract: canonical hypothesis + discriminating probe + observed learner response + evaluator basis. Only complete CONFIRMED evidence may select misconception-specific repair; INDETERMINATE, REFUTED, invalid, or bare-index claims remain non-confirming. Preserve uncertainty and require fresh verification after repair; do not grade free response by keyword or declare mastery.
 
-## BP-CORE1A-CONSTRUCTION@1.7.0 (CORE1A)
+## BP-CORE1A-CONSTRUCTION@1.8.0 (CORE1A)
 
-Learner job: Build the concept in a coherent construction with its adjacent representation, summarize the key insight, study a visible worked explanation, then attempt a fresh changed case. References and diagnosis remain requestable; protected source questions are not the default teaching anchor.
+Learner job: Build a reusable concept by constructing the decisive bridge, using an adjacent representation when it materially helps, summarizing the key insight, and then independently retrieving, explaining, or applying it in a changed case. Worked examples, completion, comparison, quick checks, and repair are conditional teaching operators rather than mandatory panels; protected source questions are not the default teaching anchor.
 
 Theme: opens light, and the learner can switch.
 
@@ -240,12 +241,12 @@ Required: a page without it is a gap, and the quality gate fails it.
 - The reference page: core1a-motion-in-a-plane-tablet: the concept-card header with number, decision and unit id
 - Record fields: `construction_units[].decision`
 
-**CONSTRUCTION_STEPS** · slot `construction`, once per construction unit · STEP_CARDS · at least 2 item(s); the reference has D1 3, D2 3, D3 4, D4 4 by difficulty band
+**CONSTRUCTION_STEPS** · slot `construction`, once per construction unit · STEP_CARDS · at least 2 item(s)
 
 - The learner gets: Build the idea in steps; every step says what is done, why it is valid and what state it gives.
 - The reference page: core1a-motion-in-a-plane-tablet: step cards (action, why physically valid, state output)
 - Record fields: `construction_units[].step_refs`, `teaching_path`
-- To author it: Each construction unit lists step_refs naming 2 or more teaching_path steps; each step has action, why_valid and output written for this unit, none repeated from another unit. A unit that builds the crux of a D3 or D4 question (it names that question in crux_question_refs) needs 4 steps, and its last step is the move that question turns on. D1 repair: Teach construction and its selected visual before summarizing the insight. Every source question needs an exact construction bridge; an exit uses a changed case with a concrete expected result, not a repeated worked input. D2 repair: Maintain a question-specific orbital allocation, conditions and independent changed check. Multiple questions may share a concept; a broad section label does not prove that each requested operation was constructed. D3 repair: Preserve atom-local roles and every relevant electron/charge invariant through representations. Separate a supplied equivalence observation from the model label and from a unique physical orbital/charge claim. D4 repair: Use explicit model assumptions, a counterfactual or independently changed contribution, and an applicability stopping condition. Diagnosis compares a changed-case response with uncertain patterns; it does not assign mastery or a misconception from opening help.
+- To author it: Each construction unit names at least 2 teaching_path steps, and every authored step states the action, why it is valid, and the state/output it establishes. Choose additional steps only when the inferential burden requires them; difficulty band does not prescribe a panel count. A unit that builds a question crux binds the actual crux_question_refs and crux_step_ref so the decisive bridge is taught explicitly. Preserve representation invariants, model boundaries, applicability conditions, and changed-case transfer when those are material to the concept; do not import subject-specific repair rules into the shared blueprint.
 
 **KEY_STEP** · slot `construction` · BANNER
 
@@ -253,27 +254,6 @@ Required: a page without it is a gap, and the quality gate fails it.
 - The reference page: core1a-motion-in-a-plane-tablet: the inferential-leap banner
 - Record fields: `inferential_jump`
 - To author it: inferential_jump: one or two sentences naming the step a learner does not make unaided and why it is not obvious.
-
-**WORKED_EXAMPLE** · slot `construction`, once per construction unit · WORKED_CARD
-
-- The learner gets: Show a coherent worked explanation with an explicit warrant and output at each authored move.
-- The reference page: core1a-motion-in-a-plane-tablet: the worked card
-- Record fields: `construction_units[].worked_anchor_ref`, `construction_units[].bank_anchor_ref`, `extensions.grade9v3:lesson_anchors`
-- To author it: Use the microtopic extension grade9v3:lesson_anchors keyed by construction unit. Name target_question_ref, target_crux_move_ref and construction_ref, with a new stem, reasoned answer and independent check. The target must resolve to this product bank; a hardest-target unit must bind that precise question. Preserve the legacy worked/bank-anchor path where no extension is authored.
-
-**TRAP_REPAIR** · slot `repair_closure`, once per construction unit · DISCLOSURE_TRAP_CARD · at least 1 item(s)
-
-- The learner gets: Keep mistake clinics closed initially. Diagnose using discriminating changed cases, establish a bounded replacement rule, and return to a fresh application.
-- The reference page: core1a-motion-in-a-plane-tablet: the easy-mistake card with diagnostic and repair
-- Record fields: `misconceptions`, `construction_units[].misconception_indexes`
-- To author it: misconceptions[] holds wrong_idea, diagnostic_prompt and repair for this concept; each construction unit names the ones that apply in misconception_indexes.
-
-**QUICK_CHECK** · slot `repair_closure`, once per construction unit · TRIAD · at least 1 item(s) (the reference has 3)
-
-- The learner gets: Let the learner test the idea three ways before moving on: recall it, use it on a small case, and say where it leads next.
-- The reference page: core1a-motion-in-a-plane-tablet: the 1-2-3 quick check (CHECK, APPLY, CONNECT)
-- Record fields: `construction_units[].independent_checks`
-- To author it: Each construction unit lists three independent_checks, each with a role: CHECK (a question that recalls the idea), APPLY (a small case to work with numbers or a picture given in the question) and CONNECT (one sentence saying which idea this leads to next). Each statement is specific to the unit.
 
 **EXIT_RECALL** · slot `repair_closure` · RECALL_CARD
 
@@ -292,12 +272,12 @@ Expected: an official page missing it carries an advisory naming the field to au
 - Record fields: `entry_assumptions`, `prerequisite_refs`
 - To author it: List in entry_assumptions[] each thing a learner must already be able to do before this concept, one per entry and specific to this concept.
 
-**STAGED_VISUAL** · slot `construction`, once per construction unit · STAGED_VISUAL · at least 2 item(s); the reference has D1 3, D2 3, D3 4, D4 4 by difficulty band
+**STAGED_VISUAL** · slot `construction`, once per construction unit · STAGED_VISUAL · at least 2 item(s)
 
 - The learner gets: When a spatial or mechanism representation materially helps the construction, show it as a picture that builds stage by stage. A construction with no useful visual is explicitly waived by the authored record; no decorative figure is invented.
 - The reference page: core1a-motion-in-a-plane-tablet: the rail's staged visual with stage buttons
 - Record fields: `construction_units[].representation_ref`
-- To author it: First decide whether a staged visual has a real semantic job for this construction. When it does, representation_ref names a package representation with an authored accessible SVG and at least 2 data-g9-stage-id groups; reveal_stages names the useful build-up. The reference depth is 3 stages (4 for a D3/D4 crux), not a semantic pass count. When a visual is genuinely not applicable, waive STAGED_VISUAL with a written reason instead of drawing decoration.
+- To author it: First decide whether a staged visual has a real semantic job for this construction. When it does, representation_ref names an accessible representation and reveal_stages contains only the stages needed to construct the correspondence or mechanism. Stage count follows the representation, not the question's D-band. When a visual is genuinely not applicable, waive STAGED_VISUAL with a written reason instead of drawing decoration.
 
 **EQUATIONS** · slot `construction`, once per construction unit · DISCLOSURE_EQUATION_CARD
 
@@ -305,6 +285,13 @@ Expected: an official page missing it carries an advisory naming the field to au
 - The reference page: core1a-motion-in-a-plane-tablet: the equation card of every concept card (definition and validity scope)
 - Record fields: `construction_units[].relation_refs`, `relation_refs`
 - To author it: Each construction unit names the microtopic's relations it uses in construction_units[].relation_refs; each relation record needs its expression, meaning and conditions. A subject that declares no gates writes gate_relation_ref: null.
+
+**WORKED_EXAMPLE** · slot `construction`, once per construction unit · WORKED_CARD
+
+- The learner gets: When a completed instance materially helps the learner consolidate the constructed idea, show a coherent worked explanation with explicit warrants and outputs. A concept may instead proceed from construction directly to reduced-support independent application when that better preserves the learning job.
+- The reference page: core1a-motion-in-a-plane-tablet: the worked card
+- Record fields: `construction_units[].worked_anchor_ref`, `construction_units[].bank_anchor_ref`, `extensions.grade9v3:lesson_anchors`
+- To author it: Use a lesson anchor or other mapped worked instance when seeing a completed route materially helps this construction. Bind any hardest-target bridge to the precise target question/crux/construction, but do not require the protected source question itself to become the teaching anchor. If a worked example would merely replay the construction or leak the next independent task, author an explicit applicability waiver instead.
 
 ### Optional components
 
@@ -328,6 +315,20 @@ Optional: shown when the record has it.
 - The reference page: Issue #37 Q9 and #38 Q2/Q9 correction cycle: absent continuous model-boundary construction.
 - Record fields: `extensions.grade9v3:question_repairs`
 - To author it: Opt in with a question/crux/construction-bound MODEL_SCOPE_PROBE repair record. Declare axis, independent variables, toy versus physical outputs and a static fallback. Do not infer applicability from the demand label.
+
+**TRAP_REPAIR** · slot `repair_closure`, once per construction unit · DISCLOSURE_TRAP_CARD · at least 1 item(s)
+
+- The learner gets: When there is an evidence-supported confusable model or recurring wrong route worth distinguishing, offer a requestable mistake clinic with a discriminating probe, bounded replacement rule, and fresh application. Do not manufacture a misconception or repair panel merely to complete the page.
+- The reference page: core1a-motion-in-a-plane-tablet: the easy-mistake card with diagnostic and repair
+- Record fields: `misconceptions`, `construction_units[].misconception_indexes`
+- To author it: Author misconception rows only when a plausible wrong idea is materially relevant to this construction. Each row carries wrong_idea, a diagnostic_prompt that can distinguish the hypothesis from a slip/alternative route, and a bounded repair. A construction unit names only the rows that actually apply; absence of a justified misconception is valid and requires no filler.
+
+**QUICK_CHECK** · slot `repair_closure`, once per construction unit · CHECK_BOX · at least 1 item(s)
+
+- The learner gets: When a compact checkpoint materially helps consolidation before the independent exit, ask one or more question-specific checks that retrieve, apply, connect, compare, or explain the concept without imposing a fixed role count.
+- The reference page: core1a-motion-in-a-plane-tablet: the 1-2-3 quick check (CHECK, APPLY, CONNECT)
+- Record fields: `construction_units[].independent_checks`
+- To author it: independent_checks[] is optional intermediate evidence. Author only the checks that add a distinct learner job for this unit; CHECK/APPLY/CONNECT are available roles, not a mandatory triad. Do not duplicate the mandatory EXIT_RECALL or create filler to reach a number.
 
 **PRACTICE_LINKS** · slot `repair_closure` · CHIPS
 
