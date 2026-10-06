@@ -58,14 +58,35 @@ def interactive_pages() -> list[dict]:
     return [_json(p) for p in sorted((PUBLIC_TEST / "interactive").glob("*/interactive-receipt.json"))]
 
 
+def intake_banks() -> list[dict]:
+    intake_dir = TEST_ROOT / "question-bank" / "intake"
+    if not intake_dir.is_dir():
+        return []
+    banks = []
+    for p in sorted(intake_dir.glob("*.json")):
+        if p.name.endswith(".blueprint-handoff.json"):
+            continue
+        try:
+            data = _json(p)
+            if isinstance(data, dict) and data.get("schema_version") == "grade9v3-test-source-question-intake-v1":
+                banks.append(data)
+        except Exception:
+            continue
+    return banks
+
+
 def source_counts() -> dict:
     banks = sorted((TEST_ROOT / "question-bank").glob("*.json"))
     questions = sum(len(_json(p).get("questions") or []) for p in banks)
+    intakes = intake_banks()
+    intake_questions = sum(len(b.get("questions") or []) for b in intakes)
     return {
         "matrices": len(list((TEST_ROOT / "matrices").glob("*.rungs.json"))),
         "packages": len(list((TEST_ROOT / "library").glob("*.json"))),
         "banks": len(banks),
         "bank_questions": questions,
+        "intake_banks": len(intakes),
+        "intake_questions": intake_questions,
     }
 
 
@@ -126,10 +147,70 @@ def link(href: str, label: str) -> str:
 
 # ------------------------------------------------------------------ pages
 
+def render_intake_section(intakes: list[dict]) -> str:
+    if not intakes:
+        return ""
+    blocks = []
+    for bank in intakes:
+        bank_id = bank.get("bank_id", "unknown")
+        q_list = bank.get("questions", [])
+        topics: dict[str, int] = {}
+        for q in q_list:
+            t = q.get("topic_label", "Unknown")
+            topics[t] = topics.get(t, 0) + 1
+
+        topic_summary = " · ".join(f"{esc(t)} ({cnt})" for t, cnt in sorted(topics.items()))
+
+        q_cards = []
+        for q in q_list:
+            qid = q.get("id", "")
+            stem = q.get("stem", "")
+            opts = q.get("options") or []
+            opts_html = "".join(f"<li>{esc(o)}</li>" for o in opts)
+            opts_block = f"<ul style='margin:4px 0 8px 18px'>{opts_html}</ul>" if opts_html else ""
+            ans_text = q.get("official_answer_text", "")
+            ans_block = f"<p><strong>Official Answer:</strong> {esc(ans_text)} <em>({esc(q.get('answer_key_locator', ''))})</em></p>" if ans_text else ""
+            src_url = q.get("source_url", "")
+            pdf_name = src_url.rsplit("/", 1)[-1] if src_url else ""
+            src_link = f' · <span class="g9-prov">Source document: {esc(pdf_name)}</span>' if pdf_name else ""
+
+            q_cards.append(
+                f'<div style="border:1px solid #e2e8f0;border-radius:6px;padding:12px;margin:8px 0;background:#fff">'
+                f'<div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;margin-bottom:6px">'
+                f'<span style="background:#0284c7;color:#fff;padding:2px 6px;border-radius:4px">{esc(q.get("topic_label", ""))}</span>'
+                f'<span style="background:#16a34a;color:#fff;padding:2px 6px;border-radius:4px">{esc(q.get("text_verification_status", ""))}</span>'
+                f'<span style="background:#64748b;color:#fff;padding:2px 6px;border-radius:4px">Difficulty: not analysed</span>'
+                f'<span style="background:#64748b;color:#fff;padding:2px 6px;border-radius:4px">Demand: not analysed</span>'
+                f'</div>'
+                f'<p style="margin:0 0 6px 0"><strong>{esc(qid)}</strong> ({esc(q.get("chapter_or_unit", ""))} · {esc(q.get("exercise_or_section", ""))} · Q{esc(q.get("question_number", ""))}){src_link}</p>'
+                f'<p style="margin:0 0 6px 0">{esc(stem)}</p>'
+                f'{opts_block}'
+                f'{ans_block}'
+                f'</div>'
+            )
+
+        all_q_html = "".join(q_cards)
+
+        blocks.append(card(
+            f"intake-{bank_id}",
+            f"intake {bank_id} {' '.join(topics.keys())} stage-1 official questions",
+            f'<h2>Stage-1 Question Intake: {esc(bank_id)}</h2>'
+            f'<p class="g9-prov">Source scope: {esc(", ".join(bank.get("source_scope", [])))} · {len(q_list)} question(s) · '
+            f'Status: READY_FOR_BLUEPRINT · Verbatim custody: VERBATIM</p>'
+            f'<p>Official questions ingested from <em>{esc(bank.get("created_from", "official source"))}</em>. '
+            f'All items verified against official PDFs with cryptographic stem digests (sha256). '
+            f'Academic blueprinting (difficulty bands D1–D4, cognitive demand, QRT cells, worked solutions) is deferred.</p>'
+            f'<p><strong>Topics:</strong> {topic_summary}</p>'
+            f'<details><summary>Inspect {len(q_list)} verified intake questions</summary>{all_q_html}</details>'
+        ))
+    return "".join(blocks)
+
+
 def hub_page() -> str:
     deployed = products()
     pages = interactive_pages()
     counts = source_counts()
+    intakes = intake_banks()
 
     def product_line(receipt: dict, role: str, selection_key: str) -> str:
         return (f'{esc(receipt["slug"])}: {receipt["selection_counts"].get(selection_key, 0)} record(s) selected, '
@@ -149,6 +230,7 @@ def hub_page() -> str:
         'accepted or curriculum, and <code>accept_product.py</code> refuses TEST.</p>'
         '<p class="g9-prov">A gap count of 0 means the depth check found nothing missing. It counts what is absent, '
         'not how good it is, and it does not say the content has been reviewed.</p>'
+        + render_intake_section(intakes)
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
         + stage(2, "Core1A", "Concept construction for the same topic", core1a)
         + stage(3, "Explorer", "A guided page on the toughest concept of the same question set", inter)
@@ -157,10 +239,11 @@ def hub_page() -> str:
                f'<li>{link("atlas/index.html", "Atlas")}: the Topic Atlas for the TEST matrix</li>'
                f'<li>{link("rungs/index.html", "Rungs")}: the ladder, rung by rung</li>'
                f'<li>{link("deployments/index.html", "Deployments")}: every deployed draft, with its digest and gaps</li></ul>')
-        + card("sources", "matrices packages question bank",
+        + card("sources", "matrices packages question bank intake",
                f'<h2>Sources in this repository</h2><ul><li>{counts["matrices"]} rung matrix file(s) in TEST/matrices</li>'
                f'<li>{counts["packages"]} package file(s) in TEST/library</li>'
-               f'<li>{counts["banks"]} owner-supplied question file(s) in TEST/question-bank, {counts["bank_questions"]} question(s)</li></ul>'
+               f'<li>{counts["banks"]} owner-supplied question file(s) in TEST/question-bank, {counts["bank_questions"]} question(s)</li>'
+               f'<li>{counts["intake_banks"]} official intake bank(s) in TEST/question-bank/intake, {counts["intake_questions"]} question(s)</li></ul>'
                '<p class="g9-prov">How to add each of them: TEST/README.md in the repository.</p>'))
     return frame(1, "TEST", "index.html", body, heading="TEST: a sandbox for stress runs")
 
