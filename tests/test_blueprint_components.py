@@ -129,12 +129,24 @@ class Realisation(unittest.TestCase):
         self.assertNotIn(" open", disclosure.group(0))
         self.assertIn("Need a hint? · guided support", article)
 
-    def test_wrong_route_warning_is_collapsed_by_default(self):
+    def test_wrong_route_warning_is_attempt_gated_not_pre_rendered(self):
         article = re.search(r"<article .*?</article>", self.html["CORE2"], re.S).group(0)
-        disclosure = re.search(r'<details class="g9-secondary-disclosure" data-g9-secondary="core2-wrong-route"[^>]*>', article)
+        disclosure = re.search(
+            r'<details[^>]*data-g9-payload-ref="[^"]+-wrong-route"[^>]*>',
+            article,
+        )
         self.assertIsNotNone(disclosure)
+        self.assertIn("data-requires-attempt", disclosure.group(0))
         self.assertNotIn(" open", disclosure.group(0))
-        self.assertIn("Common wrong route · open if you want a warning", article)
+
+        live_article = re.sub(
+            r'<template data-g9-payload="[^"]+">.*?</template>',
+            "",
+            article,
+            flags=re.S,
+        )
+        self.assertNotIn('data-g9-block="common_wrong_route"', live_article)
+        self.assertIn("Common wrong route · after your attempt", article)
 
 
 class Reporting(unittest.TestCase):
