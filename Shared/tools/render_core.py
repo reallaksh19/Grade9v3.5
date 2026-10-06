@@ -2068,12 +2068,6 @@ def core2(ctx: Ctx, q: dict) -> str:
             "STEM": part("STEM", '<div class="g9-eyebrow">Attempt first</div>'
                          + block("stem", '<p>' + question_text(ctx, q, "stem", q["stem"]) + '</p>')),
             "CONDITIONS": part("CONDITIONS", block("conditions", f'<ul>{conditions}</ul>' if conditions else "", title="Conditions")),
-            "TRAP": part("TRAP", secondary_disclosure(
-                "Common wrong route · open if you want a warning",
-                block("common_wrong_route", '<p>' + question_text(ctx, q, "common_wrong_route", wrong_route) + '</p>'
-                      if isinstance(wrong_route, str) and wrong_route.strip() else "", title="Common wrong route"),
-                "core2-wrong-route",
-            )),
             "ATTEMPT": part("ATTEMPT", attempt_box("Your answer", response_for(q), q.get("options"), rid,
                                                    option_html=options if options else None)),
         }, "attempt"),
@@ -2083,6 +2077,12 @@ def core2(ctx: Ctx, q: dict) -> str:
                                    items=figures.count("<figure ")),
         }, "representation"),
         "support": component_body(ctx, "CORE2", {
+            "TRAP": part("TRAP", secondary_disclosure(
+                "Common wrong route · open if you want a warning",
+                block("common_wrong_route", '<p>' + question_text(ctx, q, "common_wrong_route", wrong_route) + '</p>'
+                      if isinstance(wrong_route, str) and wrong_route.strip() else "", title="Common wrong route"),
+                "core2-wrong-route",
+            )),
             "HINT_LADDER": part("HINT_LADDER", _core2_support(ctx, q) + _core2_after_attempt_support(ctx, q),
                                 items=_core2_support_rungs(q)),
             "CONCEPT_NAV": part("CONCEPT_NAV", _core2_concept_navigation(ctx, q)),
