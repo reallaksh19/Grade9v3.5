@@ -186,7 +186,9 @@ if (await keyboardConcept.count()) {
     keyboardPage.waitForURL(url => url.pathname.endsWith('/core1a.html') && url.hash === `#${conceptRef}`),
     keyboardConcept.press('Enter'),
   ]);
-  check(keyboardPage.url().includes(`core1a.html#${conceptRef}`), `keyboard concept navigation landed at ${keyboardPage.url()}`);
+  const keyboardUrl = new URL(keyboardPage.url());
+  check(keyboardUrl.pathname.endsWith('/core1a.html') && keyboardUrl.hash === `#${conceptRef}`,
+    `keyboard concept navigation landed at ${keyboardPage.url()}`);
 }
 check(keyboardErrors.length === 0, `keyboard runtime leaked page error(s): ${keyboardErrors.join(' | ')}`);
 await keyboardContext.close();
@@ -209,11 +211,11 @@ await makeAttempt(box);
 await box.locator('[data-g9-commit]').click();
 check(await article.getAttribute('data-attempted') === '1', 'witness did not record learner commitment');
 
-const firstSupportButton = article.locator('[data-g9-next-rung]:not([disabled])').first();
+const firstSupportButton = article.locator('[data-g9-next-rung]:not([disabled]):visible').first();
 check(await firstSupportButton.count() === 1, 'witness has no progressive support button');
 if (await firstSupportButton.count()) await firstSupportButton.click();
 
-const authoredSupportButton = article.locator('[data-g9-support-group="AUTHORED_CORE2_PROMPT_REVEAL"] [data-g9-next-rung]:not([disabled])').first();
+const authoredSupportButton = article.locator('[data-g9-support-group="AUTHORED_CORE2_PROMPT_REVEAL"] [data-g9-next-rung]:not([disabled]):visible').first();
 if (await authoredSupportButton.count()) await authoredSupportButton.click();
 const supportReveal = article.locator('details[data-g9-support-reveal]').first();
 const hasBoundedDisclosure = await supportReveal.count() === 1;
