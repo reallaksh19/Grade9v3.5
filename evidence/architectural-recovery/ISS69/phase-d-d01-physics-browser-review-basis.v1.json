@@ -2,47 +2,61 @@
   "schema_version": "grade9v3-phase-d-physics-browser-review-basis-v1",
   "issue": 109,
   "subunit": "D01.6",
-  "result": "PASS_CURRENT_BROWSER_LEGACY_REVIEW_REJECTED",
+  "result": "PASS_CURRENT_TECHNICAL_BROWSER_BASIS_INDEPENDENT_REVIEW_DEFERRED",
   "current_browser_basis": {
     "workflow": "learner-platform-code-tests",
-    "run_id": 37547629741,
-    "browser_job_id": 112555330571,
-    "tested_head": "1b7b2b063acf887169a0fd7321d9cf7c0b332600",
-    "steps": {
-      "Render real Motion-in-2D product": "PASS",
-      "Shared tablet rendered audit": "PASS",
-      "Physics tablet standalone local HTTP audits": "PASS",
-      "Core2 v2 local HTTP interaction audit": "PASS"
+    "run_id": 37548451531,
+    "browser_job_id": 112558000274,
+    "code_job_id": 112558000023,
+    "snapshot_job_id": 112558000248,
+    "tested_head": "a7c70adfcd16200b0e5dbdab30a9e2dc3f035a7b",
+    "active_generated_product": {
+      "core1a_blueprint": "BP-CORE1A-CONSTRUCTION@1.8.0",
+      "core2_blueprint": "BP-CORE2-SOURCE-QUESTION@1.11.0",
+      "core1a": {
+        "overflow_landscape": 0,
+        "overflow_portrait": 0,
+        "errors": 0,
+        "smallest_figure_text_css_px": {
+          "tablet-1366-landscape": 25,
+          "tablet-1440-landscape": 25.3,
+          "tablet-854-portrait": 15.5,
+          "tablet-900-portrait": 16.3
+        }
+      },
+      "core2": {
+        "overflow_landscape": 0,
+        "overflow_portrait": 0,
+        "errors": 0,
+        "attempts": 15,
+        "gated_disclosures": 30
+      }
     },
-    "product_source_blobs": {
-      "bank": "bc22e1610552803e1ee8ccfc167f2a69ebbbd032",
-      "manifest": "2ded3bdb9efab8143145ca098f5c41b7b5a989cc",
-      "renderer": "675cbceb373b4489584a0774a8297666de46618c"
-    },
-    "round_trip": [
-      "Core2 Q33 real attempt and commit",
-      "progressive support request",
-      "state persistence across reload",
-      "exact Core2 to Core1A concept navigation",
-      "return to exact Core2 question",
-      "keyboard support/concept activation",
-      "no browser page errors"
+    "successful_steps": [
+      "Render real Motion-in-2D product",
+      "Shared tablet rendered audit",
+      "Physics tablet standalone local HTTP audits",
+      "Core2 v2 local HTTP interaction audit"
+    ],
+    "generic_core2_interaction_result": "PASS: four viewports, visible keyboard/support controls, reload persistence, PAGES + SINGLE_FILE exact state round trips, URL-bound storage-failure fallback.",
+    "progressive_support_notes": [
+      "keyboard progressive support: NOT_APPLICABLE for selected witness",
+      "progressive support request: NOT_APPLICABLE for selected production witness",
+      "bounded authored-support disclosure persistence: NOT_APPLICABLE for selected production witness",
+      "SINGLE_FILE progressive support: NOT_APPLICABLE for selected witness"
     ]
   },
-  "committed_render_snapshot_basis": {
-    "core1a_blob": "10c41d0fdf7bb087b4d79dd46c691db4d76e6a08",
-    "core2_blob": "811b130a48e37199a3e5a040b93ab89e1f9db0bf",
-    "core1a_render_digest": "8ee8ed7c8c4f5344",
-    "core2_render_digest": "8ee8ed7c8c4f5344",
-    "same_digest": true
+  "legacy_standalone_disposition": {
+    "finding": "The repository also audits committed standalone Motion-in-2D files that still identify Core1A 1.4.0 / Core2 1.5.0. They are compatibility observations, not the active recovered-blueprint acceptance basis.",
+    "acceptance_use": "EXCLUDED_FROM_D01_CURRENT_BLUEPRINT_ACCEPTANCE",
+    "reason": "D01 current qualification is bound to the freshly rendered active 1.8.0/1.11.0 product in the same browser job."
   },
   "legacy_review": {
     "path": "products/verification/phy-kin-2d-motion.review.json",
     "blob": "4b4fe31524795102702c9de2a0c022b0d7db9680",
     "reviewed_at": "2026-09-27",
-    "render_digest": "5e64f1570dc30ee2",
-    "current_snapshot_digest": "8ee8ed7c8c4f5344",
-    "disposition": "STALE_DO_NOT_USE_AS_CURRENT_ACCEPTANCE"
+    "disposition": "STALE_DO_NOT_USE_AS_CURRENT_ACCEPTANCE",
+    "reason": "It predates the recovered active blueprints and is not bound to the current rendered bytes/dependencies."
   },
   "downstream_acceptance_handoff": {
     "issue": 113,
@@ -50,10 +64,17 @@
     "required": "Bind independent reviewer provenance to exact current rendered bytes/dependencies before any accepted coverage claim.",
     "status": "DEFERRED_TO_D05"
   },
+  "post_test_evidence_write_boundary": {
+    "scope": "Evidence JSON only",
+    "learner_artifact_dependencies_changed": false,
+    "shared_runtime_changed": false,
+    "note": "Subsequent evidence-only commits do not retroactively turn the technical browser run into an independent academic/rendered acceptance claim."
+  },
   "qualification": [
-    "Current technical browser evidence is exact to the branch-head Physics product source bytes used by the successful CI render.",
-    "The legacy 2026-09-27 product review is not reused as current evidence because its render digest differs from the committed current standalone render digest.",
-    "D01 makes no independent academic acceptance claim; fresh independent review is owned by #113."
+    "The active recovered Physics product rendered under Core1A 1.8.0 and Core2 1.11.0 with zero reported overflow and zero page errors across the four tablet viewports recorded by the shared audit.",
+    "Current technical browser evidence is separated from legacy standalone compatibility observations.",
+    "Browser NOT_APPLICABLE outcomes are preserved instead of promoted to PASS.",
+    "D01 makes no independent academic acceptance claim; fresh independent review remains owned by #113."
   ],
   "no_shared_patch": true
 }
