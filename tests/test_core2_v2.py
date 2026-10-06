@@ -683,6 +683,13 @@ class Core2V2RoundTripStateContract(unittest.TestCase):
         self.assertIn('data-g9-render-digest="digest-123"', rendered)
         self.assertIn('data-g9-unit="Q-1" data-g9-kind="QUESTION" data-g9-role="CORE2"', rendered)
 
+    def test_browser_audit_uses_visible_support_controls_and_url_bound_return_fallback(self):
+        source = (REPO / "tools" / "site-audit" / "core2-v2-browser-audit.mjs").read_text(encoding="utf-8")
+        self.assertIn("[data-g9-next-rung]:not([disabled]):visible", source)
+        self.assertIn("storage-blocked path lost URL-bound exact return state", source)
+        self.assertIn("Return to question", source)
+        self.assertNotIn("storage-blocked path falsely claims saved return state", source)
+
     def test_state_runtime_is_valid_javascript(self):
         node = shutil.which("node")
         if not node:
