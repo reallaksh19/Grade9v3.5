@@ -127,9 +127,10 @@ class StagedSupportRepair(unittest.TestCase):
 
         rendered_after = render_core._core2_after_attempt_support(ctx, q)
         rendered_solution_only = render_core._core2_completed_support(ctx, q)
+        marker = f'data-g9-support-source="{completion["support_ref"]}"'
         self.assertIn('data-requires-attempt', rendered_after)
-        self.assertIn("p_0(x)", rendered_after)
-        self.assertNotIn("p_0(x)", rendered_solution_only)
+        self.assertIn(marker, rendered_after)
+        self.assertNotIn(marker, rendered_solution_only)
 
     def test_explicit_post_solution_preserves_legacy_protected_support_boundary(self):
         q, _, _ = replay.adopt(replay.cases()[2])
