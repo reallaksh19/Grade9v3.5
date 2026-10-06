@@ -142,7 +142,7 @@ class Core1AConstructionAudit(unittest.TestCase):
         question["exposure"] = [{"core": "CORE1A", "role": "PLANNED_WORKED_ANCHOR"}]
         question["answer"]["reasoning"] = []
         row = self.row(micro, rep, relation, question)
-        self.assertIn("WORKED_CONCEPTUAL_ANCHOR_INCOMPLETE", row["finding_codes"])
+        self.assertIn("WORKED_CONCEPTUAL_ANCHOR_MISSING", row["finding_codes"])
 
     def test_relation_owned_concept_requires_an_independent_relation_check(self):
         micro, rep, relation, question = fixture()
