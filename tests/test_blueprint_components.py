@@ -46,6 +46,28 @@ class Registry(unittest.TestCase):
             cls = "g9-c-" + name.lower().replace("_", "-")
             self.assertTrue(re.search(r"\." + re.escape(cls) + r"(?![\w-])", rules), f"{name} has no .{cls} rule")
 
+    def test_shared_solution_authoring_is_subject_neutral_and_not_band_counted(self):
+        core2 = next(b for b in REGISTRY["blueprints"] if b["id"] == "BP-CORE2-SOURCE-QUESTION")
+        solution = next(c for c in core2["components"] if c["id"] == "SOLUTION_STEPS")
+        for key in ("min_items", "target_items", "target_items_by_band", "band_source"):
+            self.assertNotIn(key, solution)
+        self.assertEqual(len(solution["authoring"]["skeleton"]["answer"]["reasoning_route"]), 1)
+        hint = solution["authoring"]["hint"].lower()
+        for leaked in (
+            "vsepr", "allene", "torsion", "orbital-basis", "hybridisation",
+            "hybridization", "delocalised pi", "polynomial", "projectile",
+        ):
+            with self.subTest(leaked=leaked):
+                self.assertNotIn(leaked, hint)
+        self.assertIn("difficulty band never sets the move count", hint)
+        self.assertIn("subject-specific repair rules belong", hint)
+
+    def test_subject_demand_adapters_do_not_define_competing_qrt_template_ids(self):
+        for subject in ("Chemistry", "Mathematics", "Physics"):
+            adapter = json.loads((REPO / subject / "adapter" / "DemandReview.json").read_text(encoding="utf-8"))
+            payload = json.dumps(adapter, sort_keys=True)
+            self.assertNotRegex(payload, r'"QRT-[A-Z]+-D[1-4]"', subject)
+
     def test_learner_text_in_components_never_drops_below_the_blueprint_floor(self):
         floor = REGISTRY["shell"]["typography_policy"]["minimum_learner_text_css_px"]
         base = REGISTRY["shell"]["typography_policy"]["base_text_css_px"]
