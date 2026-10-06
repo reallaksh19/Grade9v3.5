@@ -2,7 +2,7 @@
   "schema_version": "grade9v3-phase-d-physics-core2-attempt-support-v1",
   "issue": 109,
   "subunit": "D01.4",
-  "result": "PASS_BROWSER_EXECUTED",
+  "result": "PASS_STATIC_SUPPORT_CONTRACT_AND_BROWSER_ATTEMPT_BOUNDARY",
   "witness_id": "PYQ-PHY-IITJEE-2011-P2-Q33",
   "source_bank_blob": "bc22e1610552803e1ee8ccfc167f2a69ebbbd032",
   "support_contract": {
@@ -34,33 +34,40 @@
     "answer_crux_move_ref": "PYQ-PHY-IITJEE-2011-P2-Q33-MOVE-2",
     "answer_summary": "5 m/s^2."
   },
-  "renderer_contract": [
-    "Core2 renders an explicit Attempt first stem and a typed learner commitment control.",
-    "Solution, wrong-route and after-attempt disclosures use data-requires-attempt payload gates.",
-    "Pre-solution authored support is stored in inert template payloads and materializes only when the learner requests a rung.",
-    "Q33 has no source-hint lane; its three pre-solution support rows remain explicitly authored scaffolds and none reveals ANSWER."
-  ],
+  "static_contract_evidence": {
+    "test_file": "tests/test_phase_d_physics_qualification.py",
+    "assertions": [
+      "Q33 pre-solution support is authored support, not source-hint custody.",
+      "All three scaffolds bind one-to-one to the three authored reasoning-route moves.",
+      "No pre-solution scaffold is marked ANSWER.",
+      "The rendered Q33 contains an explicit learner attempt control and an inert solution payload gated by attempt.",
+      "The rendered Q33 contains three inert support payloads; this is structural evidence, not a claim that the generic browser audit selected Q33 for progressive-support interaction."
+    ]
+  },
   "execution_evidence": {
     "workflow": "learner-platform-code-tests",
-    "run_id": 37547629741,
-    "browser_job_id": 112555330571,
-    "exact_branch_head_tested": "1b7b2b063acf887169a0fd7321d9cf7c0b332600",
+    "run_id": 37548451531,
+    "tested_head": "a7c70adfcd16200b0e5dbdab30a9e2dc3f035a7b",
+    "code_job_id": 112558000023,
+    "browser_job_id": 112558000274,
     "steps": {
+      "Informational platform code tests": "PASS",
       "Render real Motion-in-2D product": "PASS",
       "Shared tablet rendered audit": "PASS",
-      "Physics tablet standalone local HTTP audits": "PASS",
       "Core2 v2 local HTTP interaction audit": "PASS"
     },
-    "browser_contract_blob": "c35fded96b06de93692078e8cc769e19b90722b2",
-    "browser_checks": [
-      "initial materialized support rung count is zero while inert support payloads exist",
-      "gated disclosures are not open before learner attempt",
-      "learner input is populated and commit marks the witness attempted",
-      "progressive support can be requested by pointer and keyboard",
-      "attempt/support state survives raw reload",
-      "exact Core2 to Core1A concept navigation and return-to-question round trip works",
-      "page errors remain empty"
-    ]
+    "browser_verified": [
+      "The active generated Core2 product renders attempt controls with gated disclosures closed initially.",
+      "The generic Core2 interaction audit passes four viewports, reload persistence, PAGES and SINGLE_FILE state round trips, and URL-bound storage-failure fallback.",
+      "The browser job reports no page errors for the active generated Core2 product."
+    ],
+    "browser_not_applicable_for_selected_witness": [
+      "keyboard progressive support",
+      "progressive support request",
+      "bounded authored-support disclosure persistence",
+      "SINGLE_FILE progressive support"
+    ],
+    "interpretation": "Q33-specific progressive-support structure is qualified by the dedicated static D01 tests. The generic browser lane did not select a production witness for those progressive-support interactions, so those browser claims remain NOT_APPLICABLE rather than being promoted to PASS."
   },
   "no_shared_patch": true
 }
