@@ -27,6 +27,26 @@ class LearnerState(unittest.TestCase):
         q = bank["questions"][0]
         q["options"] = ["7/3", "2.33", "3"]
         q["extensions"]["grade9v3:source_format"] = "SINGLE_CORRECT"
+        fixture_pkg = json.loads(Path(m["package_refs"][0]).read_text(encoding="utf-8"))
+        fixture_microtopic = next(x for x in fixture_pkg["microtopics"] if x["id"] == "MIC-MATH-CONSTRAINT")
+        construction_ref = fixture_microtopic["construction_units"][0]["id"]
+        q["extensions"].setdefault("grade9v3:analysis", {})["common_wrong_route"] = (
+            "Treat the printed decimal 2.33 as exact instead of checking the original equation."
+        )
+        q["extensions"]["grade9v3:learning_repair"] = {
+            "question_ref": q["id"],
+            "construction_ref": construction_ref,
+            "crux_move_ref": q["answer"]["crux_move_ref"],
+            "clarify": "The equation asks for an exact value of x.",
+            "connect": "Undo the last operation while preserving equality.",
+            "way": "Subtract 2 from both sides before dividing by 3.",
+            "rule": "Equivalent reversible operations preserve the solution set.",
+            "check": "Substitute the exact fraction into the original equation.",
+            "probe": "If 4x + 1 = 9, which operation should be undone first and why?",
+            "pattern": "Undo the outermost reversible operation first.",
+            "transfer": "Apply the same rule when the constants and coefficient change.",
+            "wrong_idea": "A rounded decimal from a printed key can be treated as the exact solution.",
+        }
         q["hints"] = [
             {"text": "Try an inverse operation.", "reveals": "CONCEPT"},
             {"text": "Remove the added 2 first.", "reveals": "METHOD"},
