@@ -186,16 +186,18 @@ class TestPages(unittest.TestCase):
                      "../../test/rungs/index.html", "../../test/deployments/index.html"):
             self.assertIn(f'href="{href}"', header)
 
-    def test_the_tab_is_runtime_injected_while_learner_html_stays_test_free(self):
+    def test_the_tab_is_in_the_shared_header_and_on_the_owner_authorized_hubs(self):
         header = (REPO / "public/js/site-header.js").read_text(encoding="utf-8")
         self.assertIn("root+'test/index.html'", header)
         self.assertIn("TEST · LAB", header)
-        self.assertIn("data-site-test", header.replace("dataset.siteTest", "data-site-test"))
         for page, href in (("index.html", "test/index.html"), ("physics/index.html", "../test/index.html"),
                            ("chemistry/index.html", "../test/index.html"), ("mathematics/index.html", "../test/index.html")):
             text = (REPO / "public" / page).read_text(encoding="utf-8")
-            self.assertNotIn(f'href="{href}"', text, page)
-            self.assertIn("js/site-header.js", text, page)
+            self.assertIn(
+                f'href="{href}" class="test-link" data-site-test title="TEST sandbox · draft only">TEST · LAB</a>',
+                text,
+                page,
+            )
 
     def test_test_is_not_a_question_bank_subject(self):
         projection = build_question_bank_web.build(REPO)
