@@ -48,7 +48,7 @@ test('retained PR65 Core1A browser facts satisfy the active SINGLE_PANE blueprin
     new URL('../evidence/staged-repair/ISS29-set-b/browser/core1a-layout-facts.json', import.meta.url), 'utf8'));
   const blueprint = registry.blueprints.find(row => row.id === 'BP-CORE1A-CONSTRUCTION');
   assert.ok(blueprint);
-  assert.equal(blueprint.version, '1.7.0');
+  assert.equal(blueprint.version, '1.8.0');
   assert.equal(splitLayoutExpectation(blueprint.responsive_policy), null);
   assert.equal(matchesBlueprintLayout(
     blueprint.responsive_policy,
@@ -64,7 +64,7 @@ test('retained PR65 Core2 render still carries the active STAGE_SUPPORT split', 
     new URL('../evidence/staged-repair/ISS29-set-b/rendered/core2.html', import.meta.url), 'utf8');
   const blueprint = registry.blueprints.find(row => row.id === 'BP-CORE2-SOURCE-QUESTION');
   assert.ok(blueprint);
-  assert.equal(blueprint.version, '1.9.0');
+  assert.equal(blueprint.version, '1.10.0');
   const expected = splitLayoutExpectation(blueprint.responsive_policy);
   assert.deepEqual(expected, {
     primaryFraction: 0.42,
