@@ -54,6 +54,25 @@ jobs:
           pip install --quiet jsonschema pypdf
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
+      - name: ISS66 staged support browser-state replay
+        run: |
+          python3 tests/iss66_support_state_fixture.py --out /tmp/iss66-support.html
+          python3 -m http.server 8766 --directory /tmp >/tmp/iss66-support-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          python3 - <<'PY'
+          import socket, time
+          for _ in range(50):
+              try:
+                  with socket.create_connection(("127.0.0.1", 8766), timeout=0.2):
+                      break
+              except OSError:
+                  time.sleep(0.1)
+          else:
+              raise SystemExit("ISS66 support fixture server did not start")
+          PY
+          node tests/iss66_support_state_browser.mjs http://127.0.0.1:8766/iss66-support.html
+
       - name: Render real Motion-in-2D product
         run: |
           rm -rf /tmp/g9-core2-v2-site
