@@ -1,0 +1,57 @@
+{
+  "schema": "custody-receipt/v1",
+  "issue": 55,
+  "title": "Polynomial Stress Test V1 (Grade 9 Mathematics, Cohort D3)",
+  "agent": "B",
+  "round": 1,
+  "status": "CANDIDATE",
+  "subject": "Mathematics",
+  "grade": 9,
+  "cohort": "D3",
+  "topic": "Polynomials in one variable with real coefficients",
+  "launch_commit": "91719ad8df2bfc06c6a481590d2e24c510c24835",
+  "core_prompt_sha256": "b1a2b54b267d765e9f8665787f292c78b61c49a5b306987aa00d6e6440d66fd5",
+  "source_custody": {
+    "source_status": "OWNER_SUPPLIED_RAW_INPUT",
+    "stems_preserved_verbatim": true,
+    "source_cards_sha256": "38aa87d9f87998048297bbfdd49a0608ce8318a535c391cc89339c36c93a262b",
+    "question_ledger_sha256": "383691e623eefaefe5828f89193807072813af57274a79c72734695844141a6e",
+    "blind_execution": "Set B executed independently with zero inspection of Set A (#51) work"
+  },
+  "canonical_inputs": {
+    "package_sha256": "21b3e79452e11c8777016cb7272f13cb84358c134dee6988a2c1d801742a77c7",
+    "owner_bank_sha256": "fbd648fc73af4489992f03627a8f57a52f791a38637d9ed24d5c169ac17b3a91",
+    "product_manifest_sha256": "0f494e770e0b7daa599c19c4e48cfb56e6c8575a3ab89b1b3c2a36d75d559d09",
+    "qrt_review_sha256": "ca2f20a9b5cd1f677908706122c5a445bcfee4299f2cd84500f7e4a3191566f7"
+  },
+  "rendered_outputs": {
+    "renderer": "render_core/2",
+    "renderer_version": "render_core/2",
+    "render_digest": "4955b9ff4d01b10a",
+    "pages": {
+      "core1a.html": "043e7e996bd409865fe35fd9329147d25d61fbc39a4f830841eb5bce6ce0a7c0",
+      "core2.html": "ab9948e9e5d7bef3407c571229b02de094df9d69835015d9f5d8c09197d82803",
+      "index.html": "091261cd792da5d4d3c1f2807171fe4ab93e7b65984884ae7f329d9ffb2f286a"
+    }
+  },
+  "verification_verdict": {
+    "package_schema": "PASS (0 errors, Draft 2020-12)",
+    "owner_bank_check": "PASS (OK)",
+    "render_gaps": "PASS (0 depth gaps, 0 subject-authority findings)",
+    "render_build": "PASS (3 pages written)",
+    "quality_gate_static": "PASS (0 findings)",
+    "quality_gate_browser": "MEASURED (touch targets 0/97 Core2, 0/144 Core1A, minFont 14px, 0 overflow, 10 accessible SVGs)"
+  },
+  "hardest_target": {
+    "microtopic_id": "MIC-MATH-POLY-IDENTITY-DEGREE-BOUND",
+    "demand": "JUSTIFY D3",
+    "crux": "Difference polynomial d(x) = p(x) - q(x) has 3 zeros, contradicting root bound for non-zero polynomials of degree <= 2 and forcing d(x) = 0 everywhere."
+  },
+  "authority_sha256": {
+    "Shared/tools/render_core.py": "66010d8d8930f35b81f51d80e6630b16b936fdb71c185b8ce6883b14494f949d",
+    "Shared/tools/core2_v2.py": "ceeb0c50e65f7967f6890ac7f14c6c3a63ca9f3be8d8f2728da98ffe55d580ef",
+    "Shared/tools/learning_repair.py": "484868e026ef966adfd607ad5dcd4dee2bb7f16777ac211bfeead56c0a6b4b8c",
+    "Shared/tools/learner_metadata.py": "5db2d1b0cee736a375a9da2acca786b61f5abc6c1f49da221b6606391c3416e5",
+    "Shared/web/interactive-page-blueprints.v1.json": "ea76bbcae595b93d0d8c5cc8548e8d8c76250447f42fe89a5a0f86e1877551df"
+  }
+}

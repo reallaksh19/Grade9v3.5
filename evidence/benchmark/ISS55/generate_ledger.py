@@ -1,0 +1,505 @@
+#!/usr/bin/env python3
+"""Generate question-ledger.json for Issue 55 (Grade 9 Mathematics Polynomial Stress Test V1 Set B)."""
+import json
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+
+q_hashes = {
+    'Q1': '94f268bc6eea8fb6e609ca16e6049704dfecf7f8f90879b7523bf3c850ad710a',
+    'Q2': 'd4c6832b4f236530f3957623c44969b259a48c830bc474bd733ec21aeab30006',
+    'Q3': 'd06c869ae2ec7e7fb99b013d08ba909200604fd8e4cd10218801d15a6d25c6a4',
+    'Q4': 'c69d164257c1d46ae27224b3ce56f50eaf44c551245053bc556f618389557e54',
+    'Q5': 'a7dfdf5250c082fa75c67c3809ea3a847c46f9e05a70519402840899cb7a0f16',
+    'Q6': '9714848900038ecf1a396e3cc46832eba3ca37d008b26134483118fe4f09d3cf',
+    'Q7': 'e684c25740d6e712abea060f1ff44c8d51a2599b1ec023303cdf500d95930411',
+    'Q8': '6bf73df2112471ca91f9ade296632344139cc10614c05afe86c36df89c8cddf1',
+    'Q9': '7a382847a75e2ee382b7e18612950193be5a878fa83b463792cb7312e577a6cc',
+    'Q10': 'e459fc38bd0c80def0cd563cbc06c42c72b10bb31da595b53777a582d73dac95'
+}
+
+items = [
+    {
+        'question_id': 'Q1',
+        'stable_id': 'OWN-ISS55-POLY-01',
+        'intake_sha256': q_hashes['Q1'],
+        'capability_ref': 'CAP-MATH-POLY-FACTOR-PARAMETER',
+        'family_ref': 'FAM-MATH-POLY-CUBIC-FACTORISATION',
+        'representation_ref': 'REP-MATH-POLY-GROUPING-ALGEBRA',
+        'difficulty': {
+            'band': 'D3',
+            'score': 6,
+            'components': {
+                'concept_model_selection': 1,
+                'representation_translation': 1,
+                'reasoning_chain_length': 2,
+                'algebra_computational_load': 1,
+                'trap_exception_sensitivity': 1
+            },
+            'basis': 'Multi-step coordinate application of Factor Theorem to determine unknown parameter k, complete factoring by grouping, and independent verification of all zeros.'
+        },
+        'demand': {'primary': 'APPLY', 'secondary': ['EXPLAIN', 'JUSTIFY']},
+        'qrt_cell': 'QRT-APPLY-D3',
+        'X': 'Applying the factor theorem to determine an unknown linear-coefficient parameter k and completing the full real factorisation of the resulting cubic.',
+        'Y': 'Demonstrated basic factor theorem (p(c) = 0 iff (x - c) divides p(x)) and quadratic factoring.',
+        'Z': 'Set p_k(3)=0 to find k=0, factor x^3-3x^2-4x+12 by grouping into (x^2-4)(x-3)=(x-2)(x+2)(x-3), and extract zeros {-2, 2, 3}.',
+        'W': 'The parameter value k=0, complete factorisation (x-2)(x+2)(x-3), distinct real zeros {-2, 2, 3}, and independent check of complete polynomial.',
+        'verified_answer': 'By the Factor Theorem, x - 3 is a factor implies p_k(3) = 0. We compute p_k(3) = 3^3 - 3(3^2) + (k-4)(3) + 12 = 27 - 27 + 3k - 12 + 12 = 3k = 0, which yields k = 0. Substituting k = 0 gives p_0(x) = x^3 - 3x^2 - 4x + 12. Factorising by grouping: p_0(x) = x^2(x - 3) - 4(x - 3) = (x^2 - 4)(x - 3) = (x - 2)(x + 2)(x - 3). The distinct real zeros are x = -2, 2, 3. Independent check: evaluating p_0 at the newly found zeros gives p_0(2) = 8 - 12 - 8 + 12 = 0 and p_0(-2) = -8 - 12 + 8 + 12 = 0. Expanding (x^2 - 4)(x - 3) = x^3 - 3x^2 - 4x + 12 confirms the complete polynomial with constant term (-2)(2)(-3) = 12.',
+        'solution_route': [
+            ['DECIDE', 'Apply Factor Theorem: p_k(3) = 0 yields 3k = 0, so k = 0.', 'A binomial (x - c) divides p(x) if and only if p(c) = 0.', 'k = 0'],
+            ['REPRESENT', 'Substitute k = 0 to establish explicit cubic p_0(x) = x^3 - 3x^2 - 4x + 12.', 'All coefficients must be explicit real constants before factorisation.', 'p_0(x) = x^3 - 3x^2 - 4x + 12'],
+            ['TRANSFORM', 'Factor by grouping: x^2(x - 3) - 4(x - 3) = (x^2 - 4)(x - 3) = (x - 2)(x + 2)(x - 3).', 'Common binomial factor (x - 3) and difference of squares x^2 - 4.', '(x - 2)(x + 2)(x - 3) with roots {-2, 2, 3}'],
+            ['VERIFY', 'Check roots x = 2 and x = -2 directly in p_0(x) and verify expansion.', 'Independent check must test the non-given roots in the original polynomial.', 'p_0(2) = 0, p_0(-2) = 0, expansion verified']
+        ],
+        'hints': [
+            'Start by applying the Factor Theorem: what does (x - 3) being a factor tell you about the value p_k(3)?',
+            'Set p_k(3) = 0 and solve for k, then write down the numerical polynomial p_0(x).',
+            'Group the terms in pairs: notice that x^3 - 3x^2 and -4x + 12 both share a common binomial factor.',
+            'Factor x^2 - 4 as a difference of two squares to find the complete linear factorisation.',
+            'Checkpoint: check the newly found zeros x = 2 and x = -2 in the original polynomial to verify the complete cubic.'
+        ],
+        'misconception': {
+            'M1': 'Assuming k - 4 = 0 without evaluating at x = 3, or only re-verifying x = 3 during the check.',
+            'M2': 'Ask the learner to compute p_4(3). Is x = 3 actually a zero when k = 4?',
+            'M3': 'Substitute the root into the complete polynomial to solve for parameters, and check all resulting zeros independently.'
+        },
+        'independent_check': 'Direct substitution: p_0(2) = 8 - 12 - 8 + 12 = 0 and p_0(-2) = -8 - 12 + 8 + 12 = 0. Expanding (x - 2)(x + 2)(x - 3) = (x^2 - 4)(x - 3) = x^3 - 3x^2 - 4x + 12 confirms identity.',
+        'pre_render_semantic_review': 'AUTHORED; exact-render H1-M3 verdict pending'
+    },
+    {
+        'question_id': 'Q2',
+        'stable_id': 'OWN-ISS55-POLY-02',
+        'intake_sha256': q_hashes['Q2'],
+        'capability_ref': 'CAP-MATH-POLY-MULTIPLICITY-SIGN',
+        'family_ref': 'FAM-MATH-POLY-ZERO-MULTIPLICITY',
+        'representation_ref': 'REP-MATH-POLY-SIGN-TEST',
+        'difficulty': {
+            'band': 'D3',
+            'score': 7,
+            'components': {
+                'concept_model_selection': 2,
+                'representation_translation': 1,
+                'reasoning_chain_length': 2,
+                'algebra_computational_load': 1,
+                'trap_exception_sensitivity': 1
+            },
+            'basis': 'Refuting a student claim by factorising into repeated linear factors, distinguishing distinct zeros from multiplicity, and using nearby test points to deduce local sign constancy vs change.'
+        },
+        'demand': {'primary': 'EXPLAIN', 'secondary': ['JUSTIFY', 'REPRESENT']},
+        'qrt_cell': 'QRT-EXPLAIN-D3',
+        'X': 'Why a cubic polynomial can have fewer than three distinct real zeros and how repeated factors dictate local sign behavior across zeros.',
+        'Y': 'Demonstrated factor theorem, rational root test, and polynomial value calculation.',
+        'Z': 'Factor p(x) = (x-1)^2(x-2), identify zeros {1, 2} with multiplicities 2 and 1, and compute test values at x=0, 1.5, 3.',
+        'W': 'The refutation of the student claim, the distinction between distinct roots and root multiplicity, and numerical proof that sign does not change across x=1 but changes across x=2.',
+        'verified_answer': 'Factorising p(x) = x^3 - 4x^2 + 5x - 2: p(1) = 1 - 4 + 5 - 2 = 0, so x - 1 is a factor. Dividing gives x^2 - 3x + 2 = (x - 1)(x - 2). Thus p(x) = (x - 1)^2(x - 2). The distinct real zeros are x = 1 (multiplicity 2) and x = 2 (multiplicity 1). There are only two distinct real zeros, refuting the claim that every cubic must have three distinct real zeros. Testing nearby values: at x = 0, p(0) = (0-1)^2(0-2) = -2 < 0. At x = 1.5, p(1.5) = (0.5)^2(-0.5) = -0.125 < 0. At x = 3, p(3) = (2^2)(1) = 4 > 0. Because p(0) < 0 and p(1.5) < 0, the sign does NOT change at x = 1. Because p(1.5) < 0 and p(3) > 0, the sign DOES change at x = 2. Factor principle: even power (x - 1)^2 >= 0 preserves sign; odd power (x - 2)^1 changes sign.',
+        'solution_route': [
+            ['DECIDE', 'Find rational root x = 1 and factor: p(x) = (x - 1)(x^2 - 3x + 2) = (x - 1)^2(x - 2).', 'Sum of coefficients equals 0, giving rational root x = 1.', 'p(x) = (x - 1)^2(x - 2)'],
+            ['CONNECT', 'Distinguish distinct zeros from multiplicity: {1, 2} has cardinality 2.', 'A repeated factor (x - 1)^2 gives a single zero of multiplicity 2.', 'Claim refuted: only 2 distinct zeros'],
+            ['TRANSFORM', 'Compute exact test values around zeros: p(0) = -2, p(1.5) = -0.125, p(3) = 4.', 'Evaluating in adjacent open intervals establishes function signs.', 'Negative at 0, negative at 1.5, positive at 3'],
+            ['VERIFY', 'Conclude sign constancy at x = 1 and sign change at x = 2 based on factor parity.', 'Squared factor (x - 1)^2 is non-negative everywhere; linear factor (x - 2) changes sign.', 'Sign does not change at 1; sign changes at 2']
+        ],
+        'hints': [
+            'Test x = 1 to see if (x - 1) is a factor of p(x).',
+            'Divide by (x - 1) and factor the quotient quadratic to check if any factor repeats.',
+            'Distinguish the number of distinct zeros (the set of roots) from the degree of the polynomial.',
+            'Evaluate p(x) at points on either side of each root: test at x = 0, x = 1.5, and x = 3.',
+            'Checkpoint: compute p(0), p(1.5), and p(3). Does p(x) change sign as x crosses 1? Does it change sign as x crosses 2?'
+        ],
+        'misconception': {
+            'M1': 'Assuming degree equals the number of distinct zeros, or that a graph must cross the axis at every zero.',
+            'M2': 'Ask the learner what value (x - 1)^2 takes for x = 0.9 and x = 1.1. Can a square ever be negative?',
+            'M3': 'Degree bounds the total roots counted with multiplicity; sign changes occur only at roots of odd multiplicity.'
+        },
+        'independent_check': 'Since (x - 1)^2 >= 0 for all real x, the sign of p(x) for x != 1 matches the sign of (x - 2). Since x - 2 < 0 for all x < 2, p(x) is negative on both (-inf, 1) and (1, 2), proving no sign change at x = 1.',
+        'pre_render_semantic_review': 'AUTHORED; exact-render H1-M3 verdict pending'
+    },
+    {
+        'question_id': 'Q3',
+        'stable_id': 'OWN-ISS55-POLY-03',
+        'intake_sha256': q_hashes['Q3'],
+        'capability_ref': 'CAP-MATH-POLY-INTERPOLATION-DEGREE-BOUND',
+        'family_ref': 'FAM-MATH-POLY-DATA-SUFFICIENCY',
+        'representation_ref': 'REP-MATH-POLY-QUADRATIC-COEFFICIENTS',
+        'difficulty': {
+            'band': 'D3',
+            'score': 7,
+            'components': {
+                'concept_model_selection': 2,
+                'representation_translation': 1,
+                'reasoning_chain_length': 2,
+                'algebra_computational_load': 1,
+                'trap_exception_sensitivity': 1
+            },
+            'basis': 'Constructing a unique quadratic from three points, evaluating a fourth point to expose incompatibility, and analyzing whether degree bound or data validity must be reconsidered.'
+        },
+        'demand': {'primary': 'JUSTIFY', 'secondary': ['MODEL', 'APPLY']},
+        'qrt_cell': 'QRT-JUSTIFY-D3',
+        'X': 'Constructing the unique quadratic from three points and using polynomial uniqueness to adjudicate whether a fourth record is compatible with the degree bound.',
+        'Y': 'Demonstrated solution of 3-variable linear systems for polynomial coefficients.',
+        'Z': 'Solve p(x) = ax^2 + bx + c = x^2 + x + 1 from p(0)=1, p(1)=3, p(2)=7; test p(3)=13 != 14.',
+        'W': 'Constructed p(x) = x^2 + x + 1, incompatibility decision (13 != 14), and dual explanation of reconsidering degree bound (requires cubic) vs record accuracy.',
+        'verified_answer': 'Let p(x) = ax^2 + bx + c with degree <= 2. From p(0) = 1, we get c = 1. Then p(1) = a + b + 1 = 3 implies a + b = 2. From p(2) = 4a + 2b + 1 = 7, we get 4a + 2b = 6, or 2a + b = 3. Subtracting yields a = 1, which gives b = 1. The unique quadratic is p(x) = x^2 + x + 1. Evaluating at x = 3 gives p(3) = 3^2 + 3 + 1 = 13. However, the fourth record claims p(3) = 14. Because three distinct points uniquely determine a polynomial of degree at most two, no degree <= 2 polynomial can pass through all four points. Hence the four records are NOT compatible with the degree bound. If the four data points are exact, the degree bound must be reconsidered and relaxed to at least degree 3. Alternatively, if the degree bound <= 2 is physically fixed, the fourth record p(3) = 14 is erroneous and must be corrected.',
+        'solution_route': [
+            ['REPRESENT', 'Express p(x) = ax^2 + bx + c and set up equations from p(0)=1, p(1)=3, p(2)=7.', 'A polynomial of degree at most 2 has 3 parameters.', 'c = 1, a + b = 2, 4a + 2b = 6'],
+            ['TRANSFORM', 'Solve the system: a = 1, b = 1, c = 1 to obtain p(x) = x^2 + x + 1.', 'Triangular elimination yields unique coefficients.', 'p(x) = x^2 + x + 1'],
+            ['DECIDE', 'Evaluate p(3) = 3^2 + 3 + 1 = 13 and compare with 14.', 'The unique model predicts a single value at x = 3.', 'p(3) = 13 != 14'],
+            ['VERIFY', 'Conclude incompatibility and state the two possible reconsiderations.', 'By polynomial uniqueness, 3 points fix a quadratic; a 4th conflicting point forces deg >= 3 or revising data.', 'Incompatible; reconsider degree bound (needs cubic) or record accuracy']
+        ],
+        'hints': [
+            'Write p(x) = ax^2 + bx + c. What does p(0) = 1 tell you immediately about c?',
+            'Use p(1) = 3 and p(2) = 7 to write two linear equations for a and b, then solve for both.',
+            'Compute p(3) using your quadratic polynomial. Does it match the recorded value 14?',
+            'Consider polynomial uniqueness: how many points are needed to fix a quadratic completely?',
+            'Checkpoint: by the uniqueness of polynomial interpolation, can any quadratic pass through all four points? What two things could be questioned?'
+        ],
+        'misconception': {
+            'M1': 'Assuming any four points can be fit by a quadratic, or concluding the math is broken rather than separating model assumption from data validity.',
+            'M2': 'Ask the learner how many points determine a line. Can three arbitrary points always lie on a single line?',
+            'M3': 'A polynomial of degree <= n is uniquely fixed by n + 1 points; a conflicting (n + 2)-th point invalidates the degree bound or the point itself.'
+        },
+        'independent_check': 'Finite difference check: y = [1, 3, 7, 14]. First differences: Delta y = [2, 4, 7]. Second differences: Delta^2 y = [2, 3]. Because second differences are not constant, the sequence cannot be quadratic.',
+        'pre_render_semantic_review': 'AUTHORED; exact-render H1-M3 verdict pending'
+    },
+    {
+        'question_id': 'Q4',
+        'stable_id': 'OWN-ISS55-POLY-04',
+        'intake_sha256': q_hashes['Q4'],
+        'capability_ref': 'CAP-MATH-POLY-GEOMETRIC-AREA-DEGREE',
+        'family_ref': 'FAM-MATH-POLY-DEGREE-CANCELLATION',
+        'representation_ref': 'REP-MATH-POLY-GEOMETRIC-CARD-CUTOUT',
+        'difficulty': {
+            'band': 'D3',
+            'score': 6,
+            'components': {
+                'concept_model_selection': 1,
+                'representation_translation': 2,
+                'reasoning_chain_length': 1,
+                'algebra_computational_load': 1,
+                'trap_exception_sensitivity': 1
+            },
+            'basis': 'Translating physical card dimensions to algebraic areas, subtracting to find remaining area, explaining degree reduction via cancellation, and validating at an admissible value.'
+        },
+        'demand': {'primary': 'MODEL', 'secondary': ['EXPLAIN', 'APPLY']},
+        'qrt_cell': 'QRT-MODEL-D3',
+        'X': 'Formulating the remaining-area polynomial from outer rectangle and inner square dimensions and explaining why degree drops upon subtraction.',
+        'Y': 'Demonstrated geometric area formulas (rectangle and square) and binomial expansion.',
+        'Z': 'Form A_outer = x^2 + 6x + 8, A_inner = x^2, subtract to find A_rem = 6x + 8, and explain leading term cancellation.',
+        'W': 'The polynomial A(x) = 6x + 8, the explanation of degree 1 due to 1 - 1 = 0 on x^2, and numerical check at admissible x=2.',
+        'verified_answer': 'Outer rectangle area: A_outer(x) = (x + 4)(x + 2) = x^2 + 6x + 8 cm^2 (degree 2). Inner square cutout area: A_inner(x) = x^2 cm^2 (degree 2). Remaining area polynomial: A_rem(x) = A_outer(x) - A_inner(x) = (x^2 + 6x + 8) - x^2 = 6x + 8 cm^2. Degree explanation: both component areas have degree 2 with identical leading coefficient +1 for x^2. When subtracting, the quadratic terms cancel: x^2 - x^2 = 0x^2. The highest power of x with a non-zero coefficient in the remaining polynomial is x^1, so deg(A_rem) = 1, which is strictly less than the degrees of the component areas. Admissible value check at x = 2 (valid since x > 0 and inner square fits inside outer card): geometric calculation: outer area = (2+4)(2+2) = 6 * 4 = 24 cm^2; inner cutout = 2^2 = 4 cm^2; remaining area = 24 - 4 = 20 cm^2. Model evaluation: A_rem(2) = 6(2) + 8 = 12 + 8 = 20 cm^2. The model matches exactly.',
+        'solution_route': [
+            ['REPRESENT', 'Express outer area (x + 4)(x + 2) and inner area x^2 as polynomials in x.', 'Rectangle area is length * width; square area is side^2.', 'A_outer = x^2 + 6x + 8, A_inner = x^2'],
+            ['TRANSFORM', 'Subtract inner area from outer area: (x^2 + 6x + 8) - x^2 = 6x + 8.', 'Remaining area is total area minus removed area.', 'A_rem(x) = 6x + 8'],
+            ['DECIDE', 'Explain degree drop from 2 to 1 via cancellation of x^2 terms.', 'Leading terms have equal coefficients (+1) which cancel upon subtraction.', 'Degree is 1 because x^2 coefficient is 0'],
+            ['VERIFY', 'Test at admissible value x = 2: geometric 24 - 4 = 20 cm^2 vs formula 6(2) + 8 = 20 cm^2.', 'Admissible value must satisfy x > 0 and geometric feasibility.', 'Both equal 20 cm^2']
+        ],
+        'hints': [
+            'Write down the algebraic formula for the area of the outer rectangle and the inner square.',
+            'Expand the product (x + 4)(x + 2) and subtract x^2.',
+            'Look at the highest power of x that remains in your answer. Why did the x^2 term disappear?',
+            'Identify the degree of the outer area, inner area, and remaining area.',
+            'Checkpoint: pick a specific positive number such as x = 2, calculate both areas geometrically, and verify against your polynomial.'
+        ],
+        'misconception': {
+            'M1': 'Believing that subtracting two degree-2 polynomials must always yield a degree-2 polynomial, or expanding (x+4)(x+2) incorrectly.',
+            'M2': 'Ask what the degree of (x^2 + 3x) - x^2 is. Does the degree have to stay 2 when the quadratic terms cancel?',
+            'M3': 'The degree of a difference of polynomials drops whenever their leading terms have equal coefficients.'
+        },
+        'independent_check': 'At x = 1: outer area is 5 * 3 = 15 cm^2, cutout is 1 cm^2, remaining is 14 cm^2. Formula gives 6(1) + 8 = 14 cm^2. At x = 3: outer is 7 * 5 = 35 cm^2, cutout is 9 cm^2, remaining is 26 cm^2. Formula gives 6(3) + 8 = 26 cm^2. Matches across multiple values.',
+        'pre_render_semantic_review': 'AUTHORED; exact-render H1-M3 verdict pending'
+    },
+    {
+        'question_id': 'Q5',
+        'stable_id': 'OWN-ISS55-POLY-05',
+        'intake_sha256': q_hashes['Q5'],
+        'capability_ref': 'CAP-MATH-POLY-SIGN-CHART-RIGOR',
+        'family_ref': 'FAM-MATH-POLY-FACTOR-SIGNS',
+        'representation_ref': 'REP-MATH-POLY-SIGN-TABLE',
+        'difficulty': {
+            'band': 'D3',
+            'score': 7,
+            'components': {
+                'concept_model_selection': 1,
+                'representation_translation': 2,
+                'reasoning_chain_length': 2,
+                'algebra_computational_load': 1,
+                'trap_exception_sensitivity': 1
+            },
+            'basis': 'Factoring a cubic into linear factors, partitioning R into open intervals and zero boundary points, and building a rigorous sign chart based on factor sign parity.'
+        },
+        'demand': {'primary': 'REPRESENT', 'secondary': ['EXPLAIN', 'APPLY']},
+        'qrt_cell': 'QRT-REPRESENT-D3',
+        'X': 'Constructing a complete, rigorous sign chart for a cubic polynomial from its factored representation covering all real intervals and boundary zeros.',
+        'Y': 'Demonstrated factor theorem and real number multiplication sign rules.',
+        'Z': 'Factor p(x) = (x-1)(x-2)(x-3), partition R into 7 regions, tabulate factor signs, and deduce overall sign from parity of negative factors.',
+        'W': 'Factored form (x-1)(x-2)(x-3), the complete 7-column sign chart with zeros, and rigorous justification via factor signs and continuity.',
+        'verified_answer': 'Factoring p(x) = x^3 - 6x^2 + 11x - 6: testing x = 1 gives 1 - 6 + 11 - 6 = 0, so x - 1 is a factor. Dividing yields x^2 - 5x + 6 = (x - 2)(x - 3). Thus p(x) = (x - 1)(x - 2)(x - 3), with real zeros at x = 1, 2, 3. The real line is partitioned into 7 regions: (-inf, 1), {1}, (1, 2), {2}, (2, 3), {3}, (3, inf). Sign chart: on (-inf, 1): (x-1)<0, (x-2)<0, (x-3)<0 -> product is negative (-). At x = 1: p(1) = 0. On (1, 2): (x-1)>0, (x-2)<0, (x-3)<0 -> product is positive (+). At x = 2: p(2) = 0. On (2, 3): (x-1)>0, (x-2)>0, (x-3)<0 -> product is negative (-). At x = 3: p(3) = 0. On (3, inf): (x-1)>0, (x-2)>0, (x-3)>0 -> product is positive (+). Rigor explanation: a linear factor (x - c) changes sign strictly at x = c. The sign of a product of non-zero real numbers is positive if the count of negative factors is even, and negative if odd. Because polynomials are continuous, the sign cannot change between zeros, so the chart is rigorously deduced from factor signs rather than an unverified sketch.',
+        'solution_route': [
+            ['DECIDE', 'Factor p(x): test rational roots to obtain (x - 1)(x - 2)(x - 3).', 'Roots 1, 2, 3 divide the cubic into linear factors.', '(x - 1)(x - 2)(x - 3)'],
+            ['REPRESENT', 'Partition real numbers into 7 regions: 4 intervals and 3 boundary zeros.', 'Roots define all potential sign-change locations.', '(-inf, 1), 1, (1, 2), 2, (2, 3), 3, (3, inf)'],
+            ['TRANSFORM', 'Evaluate the sign of each linear factor in each region.', 'Linear factor (x - c) is negative for x < c and positive for x > c.', 'Signs tabulated for all 3 factors across all 7 regions'],
+            ['VERIFY', 'Deduce product sign by multiplying factor signs and explain continuity warrant.', 'Parity of negative factors determines product sign; sign cannot change within open intervals between zeros.', 'Product signs: -, 0, +, 0, -, 0, +']
+        ],
+        'hints': [
+            'Factor p(x) = x^3 - 6x^2 + 11x - 6 completely into three linear factors.',
+            'Use the zeros x = 1, 2, 3 to split the real number line into four open intervals.',
+            'In each interval, determine whether (x - 1), (x - 2), and (x - 3) are positive or negative.',
+            'Count how many negative factors appear in each interval to find the sign of the product.',
+            'Checkpoint: count the number of negative factors in each interval to find the sign of p(x), and do not forget to include the exact zeros.'
+        ],
+        'misconception': {
+            'M1': 'Sketching a wave without checking which intervals are positive or negative, or missing the boundary zeros.',
+            'M2': 'Ask the learner what the sign of p(0) is. How does the product of three negative numbers behave?',
+            'M3': 'A sign chart is deduced by counting negative factors across intervals partitioned by real zeros.'
+        },
+        'independent_check': 'Sample evaluation: p(0) = -6 < 0; p(1.5) = (0.5)(-0.5)(-1.5) = +0.375 > 0; p(2.5) = (1.5)(0.5)(-0.5) = -0.375 < 0; p(4) = (3)(2)(1) = +6 > 0. All match chart.',
+        'pre_render_semantic_review': 'AUTHORED; exact-render H1-M3 verdict pending'
+    },
+    {
+        'question_id': 'Q6',
+        'stable_id': 'OWN-ISS55-POLY-06',
+        'intake_sha256': q_hashes['Q6'],
+        'capability_ref': 'CAP-MATH-POLY-FACTOR-VALUE-CONSTRUCTION',
+        'family_ref': 'FAM-MATH-POLY-CUBIC-CONSTRUCTION',
+        'representation_ref': 'REP-MATH-POLY-MONIC-FACTOR-MODEL',
+        'difficulty': {
+            'band': 'D3',
+            'score': 6,
+            'components': {
+                'concept_model_selection': 1,
+                'representation_translation': 1,
+                'reasoning_chain_length': 2,
+                'algebra_computational_load': 1,
+                'trap_exception_sensitivity': 1
+            },
+            'basis': 'Synthesizing monic cubic degree, two zero conditions, and one value condition into a unique polynomial, then validating via an independent algebraic method.'
+        },
+        'demand': {'primary': 'SYNTHESIZE', 'secondary': ['MODEL', 'APPLY']},
+        'qrt_cell': 'QRT-SYNTHESIZE-D3',
+        'X': 'Constructing a monic cubic polynomial by synthesizing factor information from two zeros with a non-zero value constraint, and validating via an independent construction method.',
+        'Y': 'Demonstrated factor theorem, monic polynomial definition, and basic equation solving.',
+        'Z': 'Represent p(x) = (x^2 - 1)(x - r), solve p(2) = 3(2 - r) = 6 to find r = 0, expanding to p(x) = x^3 - x.',
+        'W': 'Constructed polynomial p(x) = x^3 - x, and independent verification using standard polynomial form x^3 + ax^2 + bx + c.',
+        'verified_answer': 'By the Factor Theorem, p(1) = 0 and p(-1) = 0 imply that (x - 1) and (x + 1) are factors. Their product is (x - 1)(x + 1) = x^2 - 1. Because p is a monic cubic (degree 3 with leading coefficient 1), it must take the form p(x) = (x^2 - 1)(x - r) for some real root r. Using the remaining value condition p(2) = 6: p(2) = (2^2 - 1)(2 - r) = 3(2 - r) = 6, which gives 2 - r = 2, so r = 0. Therefore, p(x) = (x^2 - 1)(x - 0) = x(x^2 - 1) = x^3 - x. Independent check via standard form: write p(x) = x^3 + ax^2 + bx + c. The conditions yield: (1) p(1) = 1 + a + b + c = 0 => a + b + c = -1; (2) p(-1) = -1 + a - b + c = 0 => a - b + c = 1; (3) p(2) = 8 + 4a + 2b + c = 6 => 4a + 2b + c = -2. Subtracting (2) from (1) gives 2b = -2 => b = -1. Adding (1) and (2) gives 2a + 2c = 0 => c = -a. Substituting b = -1 and c = -a into (3) gives 4a - 2 - a = -2 => 3a = 0 => a = 0, so c = 0. Thus p(x) = x^3 - x, confirming the exact same polynomial.',
+        'solution_route': [
+            ['REPRESENT', 'Form factor model using zeros x = 1, -1 and monic cubic property: p(x) = (x^2 - 1)(x - r).', 'Monic cubic with two known zeros has one remaining undetermined root r.', 'p(x) = (x^2 - 1)(x - r)'],
+            ['TRANSFORM', 'Apply value condition p(2) = 6: 3(2 - r) = 6 => r = 0, giving p(x) = x^3 - x.', 'Value condition uniquely determines the third root r.', 'r = 0, p(x) = x^3 - x'],
+            ['CONNECT', 'Set up an independent linear system using standard form x^3 + ax^2 + bx + c.', 'An independent check should construct the polynomial from coefficients without using factor ansatz.', 'Linear system for a, b, c'],
+            ['VERIFY', 'Solve system: a = 0, b = -1, c = 0 to confirm p(x) = x^3 - x.', 'Both methods arrive at the identical polynomial.', 'p(x) = x^3 - x confirmed']
+        ],
+        'hints': [
+            'What does monic cubic tell you about the leading coefficient and degree?',
+            'What quadratic factor is formed by the product of (x - 1) and (x + 1)?',
+            'Write p(x) = (x^2 - 1)(x - r) and substitute x = 2 to solve for r using p(2) = 6.',
+            'Multiply out your factors to express the polynomial in standard form.',
+            'Checkpoint: for an independent check, write p(x) = x^3 + ax^2 + bx + c and solve the system of 3 equations for a, b, and c.'
+        ],
+        'misconception': {
+            'M1': 'Assuming p(x) must be a quadratic c(x^2 - 1), ignoring that a cubic requires three linear factors.',
+            'M2': 'Ask what the degree of (x^2 - 1) is. Can a quadratic polynomial satisfy the definition of a cubic polynomial?',
+            'M3': 'A cubic polynomial must have 3 roots (counting multiplicity); two given zeros leave a third root factor (x - r) to be found.'
+        },
+        'independent_check': 'Direct evaluation: p(1) = 1 - 1 = 0, p(-1) = -1 - (-1) = 0, p(2) = 8 - 2 = 6, and leading coefficient is 1. All conditions satisfied.',
+        'pre_render_semantic_review': 'AUTHORED; exact-render H1-M3 verdict pending'
+    },
+    {
+        'question_id': 'Q7',
+        'stable_id': 'OWN-ISS55-POLY-07',
+        'intake_sha256': q_hashes['Q7'],
+        'capability_ref': 'CAP-MATH-POLY-FACTOR-DIVISIBILITY-DEGREE',
+        'family_ref': 'FAM-MATH-POLY-DEGREE-SUFFICIENCY',
+        'representation_ref': 'REP-MATH-POLY-COUNTEREXAMPLE-QUARTIC',
+        'difficulty': {
+            'band': 'D3',
+            'score': 7,
+            'components': {
+                'concept_model_selection': 2,
+                'representation_translation': 1,
+                'reasoning_chain_length': 2,
+                'algebra_computational_load': 0,
+                'trap_exception_sensitivity': 2
+            },
+            'basis': 'Distinguishing necessary implications of zero data from unwarranted degree assumptions, constructing a valid higher-degree counterexample, and stating the exact degree bound condition.'
+        },
+        'demand': {'primary': 'JUSTIFY', 'secondary': ['EXPLAIN', 'MODEL']},
+        'qrt_cell': 'QRT-JUSTIFY-D3',
+        'X': 'Justifying what logically follows from zero conditions without a degree bound, refuting an unwarranted degree-2 assumption via counterexample, and stating the necessary constraint.',
+        'Y': 'Demonstrated Factor Theorem (x - c divides p(x) if p(c) = 0) and polynomial multiplication.',
+        'Z': 'Derive p(x) = (x^2 - 1)q(x) where q(x) is non-zero; construct counterexample x^4 - 1; identify degree bound deg(p) <= 2.',
+        'W': 'The true implication p(x) = (x^2 - 1)q(x), the explicit counterexample x^4 - 1, and the necessary extra condition deg(p) = 2 (or deg(p) <= 2).',
+        'verified_answer': 'What really follows without a degree bound: by the Factor Theorem, p(1) = 0 implies (x - 1) divides p(x), and p(-1) = 0 implies (x + 1) divides p(x). Because (x - 1) and (x + 1) are coprime linear polynomials, their product (x^2 - 1) divides p(x). Thus, what strictly follows is p(x) = (x^2 - 1)q(x) for some nonzero real polynomial q(x). The quotient q(x) is not constrained to be a constant. Counterexample to unwarranted claim: the student claimed p(x) must equal c(x^2 - 1) for a constant c. Consider p(x) = x^4 - 1 = (x^2 - 1)(x^2 + 1). Here p(1) = 1 - 1 = 0 and p(-1) = 1 - 1 = 0. Furthermore, because x^2 + 1 > 0 for all real x, -1 and 1 are the only real zeros of p(x). However, deg(p) = 4, so p(x) cannot be written as c(x^2 - 1) for any constant c. (Another counterexample is p(x) = (x^2 - 1)^2). Extra condition: the required condition is a degree bound: deg(p) = 2 (or deg(p) <= 2). If p is quadratic with two distinct zeros -1 and 1, then the quotient q(x) must have degree 0, meaning q(x) = c is a non-zero constant, making p(x) = c(x^2 - 1) valid.',
+        'solution_route': [
+            ['DECIDE', 'Apply Factor Theorem: zeros 1 and -1 imply (x^2 - 1) divides p(x).', 'Coprime linear factors multiply to form a quadratic factor.', 'p(x) = (x^2 - 1)q(x) for some non-zero polynomial q(x)'],
+            ['CONNECT', 'Identify student fallacy: assuming q(x) must be a degree-0 constant.', 'Without a degree bound, q(x) can be any non-zero polynomial in R[x].', 'Unwarranted assumption: deg(p) = 2'],
+            ['REPRESENT', 'Construct counterexample: p(x) = x^4 - 1 = (x^2 - 1)(x^2 + 1).', 'Zeros are 1 and -1, but degree is 4, which is not c(x^2 - 1).', 'Counterexample x^4 - 1 established'],
+            ['VERIFY', 'Specify the missing condition: deg(p) = 2 (or deg(p) <= 2).', 'A degree bound forces q(x) to have degree 0, making it a constant c.', 'Condition: deg(p) = 2']
+        ],
+        'hints': [
+            'If a polynomial has zeros at 1 and -1, what polynomial must divide it?',
+            'Does divisibility by (x^2 - 1) force the quotient to be a constant number, or could it be another polynomial?',
+            'Can you construct a degree-4 polynomial that has zeros at 1 and -1 but is not a constant multiple of (x^2 - 1)?',
+            'Check whether your degree-4 counterexample introduces any other real zeros or only non-real factors.',
+            'Checkpoint: what condition on the degree of p would force the quotient to be a constant c?'
+        ],
+        'misconception': {
+            'M1': 'Assuming knowing all real zeros completely fixes the polynomial up to a scalar, ignoring higher degree or non-real factors.',
+            'M2': 'Ask what the zeros of x^4 - 1 are. Does it have zeros at 1 and -1? Is it equal to c(x^2 - 1)?',
+            'M3': 'Zeros determine factors, but degree determines the number of factors; without a degree bound, the quotient q(x) can be non-constant.'
+        },
+        'independent_check': 'Degree of product: deg(p) = 2 + deg(q). For any polynomial q(x) with deg(q) >= 1, p(x) = (x^2 - 1)q(x) satisfies p(1)=0 and p(-1)=0 with deg(p) > 2, disproving the student claim for all non-constant q.',
+        'pre_render_semantic_review': 'AUTHORED; exact-render H1-M3 verdict pending'
+    },
+    {
+        'question_id': 'Q8',
+        'stable_id': 'OWN-ISS55-POLY-08',
+        'intake_sha256': q_hashes['Q8'],
+        'capability_ref': 'CAP-MATH-POLY-IDENTITY-THEOREM-DEGREE',
+        'family_ref': 'FAM-MATH-POLY-POLYNOMIAL-IDENTITY',
+        'representation_ref': 'REP-MATH-POLY-DIFFERENCE-POLYNOMIAL',
+        'difficulty': {
+            'band': 'D3',
+            'score': 7,
+            'components': {
+                'concept_model_selection': 2,
+                'representation_translation': 1,
+                'reasoning_chain_length': 2,
+                'algebra_computational_load': 0,
+                'trap_exception_sensitivity': 2
+            },
+            'basis': 'Formal proof of polynomial identity for degree <= 2 via difference polynomial d(x) = p(x) - q(x), applying root bound theorem by contradiction, and distinguishing non-zero polynomials from the zero polynomial.'
+        },
+        'demand': {'primary': 'JUSTIFY', 'secondary': ['EXPLAIN', 'SYNTHESIZE']},
+        'qrt_cell': 'QRT-JUSTIFY-D3',
+        'X': 'Proving that two polynomials of degree at most two agreeing at three distinct inputs agree everywhere, using the difference polynomial and root bounds.',
+        'Y': 'Demonstrated polynomial subtraction and definition of polynomial zeros.',
+        'Z': 'Form d(x) = p(x) - q(x); observe deg(d) <= 2 and d(x_1)=d(x_2)=d(x_3)=0; show d(x) must be identically zero.',
+        'W': 'The complete proof by contradiction that p(x) = q(x) everywhere, and explicit distinction between non-zero polynomials of degree <= 2 and the zero polynomial.',
+        'verified_answer': 'Proof that they agree everywhere: let p and q have degree at most two, and suppose p(x_i) = q(x_i) for three distinct real inputs x_1, x_2, x_3. Define the difference polynomial d(x) = p(x) - q(x). Since p and q have degree at most two, d(x) is either a polynomial of degree at most two, or d(x) is the zero polynomial. At the three inputs: d(x_1) = p(x_1) - q(x_1) = 0, d(x_2) = p(x_2) - q(x_2) = 0, and d(x_3) = p(x_3) - q(x_3) = 0. Thus d(x) has at least three distinct real zeros. We are given that a NONZERO polynomial of degree at most two has at most two distinct real zeros. If d(x) were non-zero, having three distinct zeros would directly contradict this fact. Therefore, d(x) cannot be a non-zero polynomial; it must be the identically zero polynomial: d(x) = 0 for all real x. Consequently, p(x) - q(x) = 0, so p(x) = q(x) for all x in R. They agree everywhere. Distinction: a non-zero polynomial of degree <= 2 has at least one non-zero coefficient, has a well-defined degree in {0, 1, 2}, and can have at most 2 zeros. In contrast, the zero polynomial has all coefficients zero; its degree is undefined or -inf, and every real number is a zero, giving it infinitely many zeros. Conflating the two would incorrectly apply the "at most 2 zeros" theorem to the zero polynomial.',
+        'solution_route': [
+            ['REPRESENT', 'Define difference polynomial d(x) = p(x) - q(x) and evaluate at the 3 inputs.', 'Agreement at inputs x_i implies d(x_i) = 0.', 'd(x_1) = 0, d(x_2) = 0, d(x_3) = 0'],
+            ['CONNECT', 'Bound the degree of d(x): deg(d) <= 2, unless d is the zero polynomial.', 'The difference of two polynomials of degree <= 2 cannot have degree exceeding 2.', 'deg(d) <= 2 or d is zero polynomial'],
+            ['TRANSFORM', 'Apply the root bound theorem by contradiction: a non-zero polynomial of degree <= 2 has at most 2 zeros.', 'Having 3 distinct zeros contradicts d(x) being non-zero.', 'd(x) must be the identically zero polynomial'],
+            ['VERIFY', 'Conclude p(x) = q(x) everywhere and distinguish non-zero polynomial from zero polynomial.', 'Zero polynomial has all zero coefficients and infinite roots; non-zero polynomial has at most 2 roots.', 'Agrees everywhere; distinction articulated']
+        ],
+        'hints': [
+            'Define the difference polynomial d(x) = p(x) - q(x). What is its value at the three given points?',
+            'What is the maximum degree d(x) could have if it is not the zero polynomial?',
+            'If d(x) were non-zero, how many zeros could it have at most according to the given theorem?',
+            'Contrast the number of zeros of a non-zero quadratic with the number of zeros of the zero polynomial.',
+            'Checkpoint: why does the statement "has at most two zeros" not apply to the polynomial 0(x) = 0?'
+        ],
+        'misconception': {
+            'M1': 'Assuming that because a quadratic has at most 2 zeros, two quadratics can never agree at 3 points, or claiming the zero polynomial has degree 0.',
+            'M2': 'Ask what the value of 0(x) is at x = 1, 2, 3, 4. Does 0(x) have only two zeros?',
+            'M3': 'The theorem bounds zeros of non-zero polynomials; three zeros in a degree <= 2 difference forces the difference to be the zero polynomial.'
+        },
+        'independent_check': 'Vandermonde determinant: the system of 3 linear equations for the coefficients of d(x) has a non-zero Vandermonde determinant since x_1, x_2, x_3 are distinct, forcing all coefficients to be zero.',
+        'pre_render_semantic_review': 'AUTHORED; exact-render H1-M3 verdict pending'
+    },
+    {
+        'question_id': 'Q9',
+        'stable_id': 'OWN-ISS55-POLY-09',
+        'intake_sha256': q_hashes['Q9'],
+        'capability_ref': 'CAP-MATH-POLY-PARAMETER-DEGREE-ZERO',
+        'family_ref': 'FAM-MATH-POLY-PARAMETER-FAMILIES',
+        'representation_ref': 'REP-MATH-POLY-PARAMETER-COEFFICIENT-ANALYSIS',
+        'difficulty': {
+            'band': 'D3',
+            'score': 7,
+            'components': {
+                'concept_model_selection': 1,
+                'representation_translation': 1,
+                'reasoning_chain_length': 2,
+                'algebra_computational_load': 1,
+                'trap_exception_sensitivity': 2
+            },
+            'basis': 'Solving parameter conditions for zero existence and leading coefficient vanishing, explaining their mathematical connection, and proving that the family can never become the zero polynomial.'
+        },
+        'demand': {'primary': 'EXPLAIN', 'secondary': ['APPLY', 'JUSTIFY']},
+        'qrt_cell': 'QRT-EXPLAIN-D3',
+        'X': 'Determining parameter values for root existence and degree collapse, explaining their mathematical relationship and testing for the zero polynomial.',
+        'Y': 'Demonstrated polynomial evaluation and definition of polynomial degree.',
+        'Z': 'Solve p_a(1) = 2a - 2 = 0 -> a = 1; solve leading coeff a - 1 = 0 -> a = 1; check if coeff of x (-2) can vanish.',
+        'W': 'a=1 for 1 is a zero, a=1 for deg < 3, explanation of why both occur at a=1, and proof that family can never be the zero polynomial due to constant linear term -2x.',
+        'verified_answer': '1. Parameter value for which 1 is a zero: p_a(1) = (a - 1)(1)^3 + (a + 1)(1)^2 - 2(1) = a - 1 + a + 1 - 2 = 2a - 2. Setting p_a(1) = 0 gives 2a - 2 = 0 => a = 1. 2. Parameter value for which degree is less than 3: the highest power term is (a - 1)x^3. The degree is less than 3 iff the coefficient of x^3 vanishes: a - 1 = 0 => a = 1. When a = 1, p_1(x) = 2x^2 - 2x, which has degree 2. 3. How the conditions relate: both conditions hold simultaneously at a = 1. However, their algebraic meanings are distinct: p_a(1) = 0 requires the sum of all coefficients to vanish, whereas deg(p_a) < 3 requires only the leading cubic coefficient to vanish. At a = 1, the leading coefficient vanishes, and the remaining quadratic terms 2x^2 - 2x evaluate at x = 1 to 2 - 2 = 0, so 1 happens to be a root of the reduced polynomial as well. 4. Can the family ever become the zero polynomial? For p_a(x) to be the zero polynomial, all coefficients must simultaneously be 0. We inspect: coeff(x^3) = a - 1 = 0 => a = 1; coeff(x^2) = a + 1 = 0 => a = -1; coeff(x) = -2. The coefficient of x is the constant -2, which does not depend on a and is never zero (-2 != 0). Moreover, a cannot equal 1 and -1 simultaneously. Therefore, no parameter value a can make all coefficients zero. The family can NEVER become the zero polynomial.',
+        'solution_route': [
+            ['DECIDE', 'Evaluate p_a(1) = 2a - 2 and set to 0: a = 1.', 'A number c is a zero iff p(c) evaluates to 0.', 'a = 1 for 1 is a zero'],
+            ['TRANSFORM', 'Set cubic coefficient to 0: a - 1 = 0 => a = 1.', 'Degree is less than 3 iff leading coefficient vanishes.', 'a = 1 for deg < 3'],
+            ['CONNECT', 'Explain relationship: both hold at a = 1; sum of coefficients vanishing coincides with leading coefficient vanishing.', 'Sum of coefficients equals leading coeff plus remaining terms which also vanish at x = 1.', 'Conceptual relationship articulated'],
+            ['VERIFY', 'Check all coefficients for zero polynomial: coeff(x) = -2 != 0.', 'Zero polynomial requires all coefficients to be 0 simultaneously.', 'Never the zero polynomial']
+        ],
+        'hints': [
+            'Substitute x = 1 into p_a(x) and simplify the expression in terms of a.',
+            'Which term determines whether the degree is 3? What value of a makes its coefficient zero?',
+            'Compare the equations you solved in parts 1 and 2. What happens to the polynomial when a = 1?',
+            'Look at the linear term -2x. Does its coefficient depend on the parameter a?',
+            'Checkpoint: look at the coefficient of x. Does it depend on a? Can it ever be zero?'
+        ],
+        'misconception': {
+            'M1': 'Assuming that when degree drops the polynomial must become zero, or concluding that a = 1 makes the whole polynomial vanish.',
+            'M2': 'Ask the learner to write down p_1(x). Is 2x^2 - 2x equal to the zero polynomial?',
+            'M3': 'A vanishing leading coefficient reduces degree; the zero polynomial requires all coefficients to vanish simultaneously.'
+        },
+        'independent_check': 'At a = 1, p_1(x) = 2x^2 - 2x = 2x(x - 1), which has degree 2 and roots at x = 0, 1. The derivative at 0 is p_a\'(0) = -2 for all a, so p_a(x) is non-zero for all a.',
+        'pre_render_semantic_review': 'AUTHORED; exact-render H1-M3 verdict pending'
+    },
+    {
+        'question_id': 'Q10',
+        'stable_id': 'OWN-ISS55-POLY-10',
+        'intake_sha256': q_hashes['Q10'],
+        'capability_ref': 'CAP-MATH-POLY-CHANGE-OF-VARIABLE-DOMAIN',
+        'family_ref': 'FAM-MATH-POLY-BIQUADRATIC-EQUATIONS',
+        'representation_ref': 'REP-MATH-POLY-SUBSTITUTION-MAPPING',
+        'difficulty': {
+            'band': 'D3',
+            'score': 7,
+            'components': {
+                'concept_model_selection': 2,
+                'representation_translation': 1,
+                'reasoning_chain_length': 2,
+                'algebra_computational_load': 0,
+                'trap_exception_sensitivity': 2
+            },
+            'basis': 'Selecting auxiliary substitution u = x^2, enforcing domain condition u >= 0 over reals, solving quadratics, rejecting negative roots, and explaining why unrestricted variables produce false real roots.'
+        },
+        'demand': {'primary': 'JUSTIFY', 'secondary': ['APPLY', 'EXPLAIN']},
+        'qrt_cell': 'QRT-JUSTIFY-D3',
+        'X': 'Finding real zeros of biquadratic polynomials via substitution u = x^2, justifying the domain condition u >= 0, and explaining the danger of unrestricted variables.',
+        'Y': 'Demonstrated solving quadratic equations and definition of real square root.',
+        'Z': 'Substitute u = x^2 >= 0; solve p -> u in {1, 4} -> x in {+/-1, +/-2}; solve q -> u = -2 (rejected); explain root mapping.',
+        'W': 'The real zeros of p(x) are {-2, -1, 1, 2}; q(x) has no real zeros; the condition u >= 0; and explanation of how unrestricted u creates false real roots.',
+        'verified_answer': '1. Change of variable: both polynomials contain only even powers of x (x^4 and x^2). Let u = x^2. 2. Condition imposed: because x must be real (x in R), the square of any real number is non-negative: x^2 >= 0, so u >= 0. Only non-negative roots u >= 0 yield real zeros x = +/-sqrt(u). A negative root u < 0 yields no real zeros. 3. Real zeros of p(x) = x^4 - 5x^2 + 4: substitute u = x^2: u^2 - 5u + 4 = 0 <=> (u - 1)(u - 4) = 0 => u = 1 or u = 4. Both satisfy u >= 0. For u = 1: x^2 = 1 => x = +/-1. For u = 4: x^2 = 4 => x = +/-2. Accepted real zeros of p(x): {-2, -1, 1, 2}. Check: p(+/-1) = 1 - 5 + 4 = 0; p(+/-2) = 16 - 20 + 4 = 0. All verified. 4. Real zeros of q(x) = x^4 + 4x^2 + 4: substitute u = x^2: u^2 + 4u + 4 = 0 <=> (u + 2)^2 = 0 => u = -2. Check condition: u = -2 < 0, which violates u >= 0. Because x^2 = -2 has no real solution, q(x) has NO real zeros. Check: for all real x, x^4 >= 0 and 4x^2 >= 0, so q(x) = (x^2 + 2)^2 >= 4 > 0 everywhere. 5. Why treating u as unrestricted real number misleads: if u is treated as unrestricted, a student might take u = -2 and claim x = +/-sqrt(-2), falsely asserting real zeros exist or confusing real zeros with non-real complex numbers. Over R, square roots of negative numbers do not exist. Furthermore, root multiplicity does not transfer linearly: each u > 0 gives two real zeros, u = 0 gives one real zero, and u < 0 gives zero real zeros. Unrestricted substitution blinds the solver to this non-linear mapping.',
+        'solution_route': [
+            ['REPRESENT', 'Substitute u = x^2 and state restriction u >= 0 for real x.', 'Squares of real numbers are non-negative.', 'u = x^2 with domain u >= 0'],
+            ['TRANSFORM', 'Solve p(x): u^2 - 5u + 4 = 0 => u = 1, 4. Both satisfy u >= 0, yielding x = +/-1, +/-2.', 'Both roots in u are positive.', 'p(x) has real zeros {-2, -1, 1, 2}'],
+            ['DECIDE', 'Solve q(x): u^2 + 4u + 4 = 0 => u = -2. Fails u >= 0, so no real zeros.', 'Negative u has no real square root.', 'q(x) has no real zeros'],
+            ['VERIFY', 'Explain why unrestricted substitution misleads: creates non-existent real roots and ignores root count branching.', 'Over reals, u < 0 produces no x values; each u > 0 produces two x values.', 'Rigorous justification completed']
+        ],
+        'hints': [
+            'Notice that both polynomials contain only x^4 and x^2. What substitution converts them into quadratics?',
+            'If x is a real number, what values can u = x^2 possibly take? State this restriction clearly.',
+            'Solve the quadratic equations for u, and check each solution against your restriction.',
+            'For each admissible u >= 0, solve x^2 = u to find the corresponding real values of x.',
+            'Checkpoint: why does u = -2 produce no real zeros for q(x)? Can x^2 ever be negative for real x?'
+        ],
+        'misconception': {
+            'M1': 'Treating u as unrestricted and claiming q(x) has real zeros at +/-sqrt(-2), or assuming every root in u yields 2 roots in x.',
+            'M2': 'Ask the learner: if x^2 = -2, can you find any point on the real number line where this is true?',
+            'M3': 'Substituted variables inherit domain constraints from the transforming function; for u = x^2, u must be >= 0 over reals.'
+        },
+        'independent_check': 'Factoring directly: p(x) = (x^2 - 1)(x^2 - 4) = (x - 1)(x + 1)(x - 2)(x + 2), yielding zeros +/-1, +/-2. For q(x) = (x^2 + 2)^2: since x^2 >= 0, x^2 + 2 >= 2, so (x^2 + 2)^2 >= 4 > 0, proving q(x) is strictly positive for all real x.',
+        'pre_render_semantic_review': 'AUTHORED; exact-render H1-M3 verdict pending'
+    }
+]
+
+ledger = {
+    'schema': 'issue55-question-ledger/v1',
+    'issue': 55,
+    'round': 'POLYNOMIAL-STRESS-V1',
+    'cohort': 'D3',
+    'run_set': 'B',
+    'items': items
+}
+
+ledger_file = HERE / 'question-ledger.json'
+ledger_file.write_text(json.dumps(ledger, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+print('Successfully wrote question-ledger.json with', len(items), 'items.')
