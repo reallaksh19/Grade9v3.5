@@ -1,0 +1,1378 @@
+{
+  "schema_version": "0.2.0",
+  "package_id": "EVIDENCE-LIB-MATH-ISSUE56-POLY",
+  "title": "Polynomials in One Variable with Real Coefficients \u2014 D4 Issue #56 Candidate Specimen",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "Mathematics",
+  "scope_summary": "Grade 9 Mathematics foundation with advanced competition extensions covering polynomials in one variable with real coefficients across ten owner-supplied benchmark questions.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-OWNER-ISSUE56-POLY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Issue #56 owner-supplied Grade 9 Mathematics advanced competition benchmark questions",
+      "origin": "AUTHORED",
+      "locator": "https://github.com/reallaksh19/Grade9v3.5/issues/56",
+      "edition": "Owner benchmark prompt captured 2026-10-05",
+      "section": "A \u2014 Question set Q1\u2013Q10",
+      "last_checked": "2026-10-05",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Owner-supplied benchmark input; coordinator-drafted under owner pilot; no official exam identity claimed.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK",
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [],
+      "entry_capabilities": [],
+      "depth": [
+        "COMPETITION"
+      ],
+      "selection_reason": "Verbatim benchmark custody for Issue #56 questions.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-MATH-09-POLY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomials in One Variable with Real Coefficients",
+      "topic": "Polynomials",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Synthesizing root multiplicity parity, minimal degree proofs, parameter bifurcations, and degree-bounded interpolation requires advanced topological and algebraic reasoning.",
+      "depth_overlay": "ADVANCED",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [],
+      "primary_representation_ref": "REP-MATH-POLY-SIGN-PARITY"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-MATH-POLY-INTERPOLATION-COSET",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Evaluate degree bounds, polynomial identity theorem, interpolation uniqueness, and unbounded polynomial cosets",
+      "success_criterion": "Distinguish unique interpolant under degree bound from affine coset modulo vanishing product when bound is removed",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-POLY-ROOT-SIGN-PARITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Translate sign variations across zeros into multiplicity parity, minimal degree bounds, and discriminant conditions",
+      "success_criterion": "Deduce root multiplicities from sign behavior, apply IVT sign trapping, and prove minimal degree completeness",
+      "prerequisite_refs": [
+        "CAP-MATH-POLY-INTERPOLATION-COSET"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-POLY-PARAMETER-BIFURCATIONS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Classify degree drops, root coincidences, and geometric cubic models under parameter and domain variations",
+      "success_criterion": "Identify exceptional parameter values for degree drops and root merges, evaluate geometric cubic volumes against quadratic fits, and preserve rational domains",
+      "prerequisite_refs": [
+        "CAP-MATH-POLY-ROOT-SIGN-PARITY"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-POLY-GEOM-MODEL-CRITIQUE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Derive physical polynomial models from geometric constraints and discriminate against empirical overfitting",
+      "success_criterion": "Derive V(x) = x(10-2x)^2 on (0, 5) and identify discriminating inputs exposing quadratic fit divergence",
+      "prerequisite_refs": [
+        "CAP-MATH-POLY-PARAMETER-BIFURCATIONS"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-POLY-DOMAIN-VS-EXTENSION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Preserve natural rational domains under factoring and distinguish removable singularity extensions",
+      "success_criterion": "Enforce domain restrictions x != a, identify lack of zero at a = 1, and define continuous extension",
+      "prerequisite_refs": [
+        "CAP-MATH-POLY-PARAMETER-BIFURCATIONS"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MATH-POLY-EVEN-SYMMETRY-MODAL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Deduce zeros, degree lower bounds, and uniqueness from even symmetry and evaluate modal claims",
+      "success_criterion": "Reflect zeros to +/-1, +/-2, fix p(x) = (x^2-1)(x^2-4) under deg <= 4, and reassess under unbounded degree",
+      "prerequisite_refs": [
+        "CAP-MATH-POLY-PARAMETER-BIFURCATIONS"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-MATH-POLY-INTERPOLATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomial Interpolation, Degree Bounds, and Vanishing Cosets",
+      "bucket_id": "BUCKET-MATH-09-POLY",
+      "primary_capability_ref": "CAP-MATH-POLY-INTERPOLATION-COSET",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Establishing when finite point agreement guarantees polynomial identity requires coordinating degree bounds with algebraic cosets.",
+      "entry_assumptions": [
+        "Evaluating polynomials at integer inputs.",
+        "Factor Theorem for finding linear factors (x - r)."
+      ],
+      "inferential_jump": "Agreement of polynomials at k inputs proves identity if and only if their degrees are strictly less than k; otherwise, solutions form an infinite coset parameterized by the product of linear factors.",
+      "teaching_path": [
+        {
+          "id": "INTERP-T1",
+          "role": "DECLARE",
+          "action": "Inspect finite data sample points and formulate a candidate interpolating polynomial.",
+          "why_valid": "Evaluation identifies a low-degree polynomial that matches the given sample points.",
+          "inputs": [],
+          "output": "candidate polynomial"
+        },
+        {
+          "id": "INTERP-T2",
+          "role": "TRANSFORM",
+          "action": "Form the difference polynomial d(x) = p(x) - q(x) and count its distinct zeros.",
+          "why_valid": "Each agreement point x_i is a root of the difference polynomial d(x_i) = 0.",
+          "inputs": [],
+          "output": "factored difference polynomial with known roots"
+        },
+        {
+          "id": "INTERP-T3",
+          "role": "TRANSFORM",
+          "action": "Apply the degree bound: if deg(d) < number of distinct roots, d(x) is identically zero.",
+          "why_valid": "A non-zero polynomial of degree n can have at most n roots by the Fundamental Theorem of Algebra.",
+          "inputs": [],
+          "output": "uniqueness proof under degree bound"
+        },
+        {
+          "id": "INTERP-T4",
+          "role": "TRANSFORM",
+          "action": "Remove the degree bound and express the general solution as an affine coset modulo the vanishing product.",
+          "why_valid": "Any polynomial vanishing on the sample set is an arbitrary polynomial multiple of the vanishing product.",
+          "inputs": [],
+          "output": "affine coset characterization"
+        }
+      ],
+      "construction_units": [
+        {
+          "id": "CU-MATH-POLY-INTERPOLATION",
+          "decision": "Determine when finite data uniquely determine a polynomial and characterize all solutions when the degree bound is removed",
+          "step_refs": [
+            "INTERP-T1",
+            "INTERP-T2",
+            "INTERP-T3",
+            "INTERP-T4"
+          ],
+          "representation_ref": "REP-MATH-POLY-INTERPOLATION-COSET",
+          "reveal_stage_refs": [
+            "INTERP-1",
+            "INTERP-2",
+            "INTERP-3",
+            "INTERP-4"
+          ],
+          "crux_question_refs": [
+            "OWN-ISSUE56-POLY-01",
+            "OWN-ISSUE56-POLY-08",
+            "OWN-ISSUE56-POLY-10"
+          ],
+          "crux_step_ref": "INTERP-T3",
+          "bank_anchor_ref": "OWN-ISSUE56-POLY-01",
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [
+            {
+              "statement": "CHECK: Prove why 4 points uniquely fix a cubic polynomial but leave a quartic polynomial underdetermined.",
+              "role": "CHECK"
+            },
+            {
+              "statement": "APPLY: If p and q have degree <= 3 and agree at -1, 0, 1 with p(2)-q(2)=12, find p(3)-q(3).",
+              "role": "APPLY"
+            },
+            {
+              "statement": "CONNECT: Refute the heuristic that agreement at 3 inputs always proves an identity.",
+              "role": "CONNECT"
+            }
+          ]
+        }
+      ],
+      "relation_refs": [
+        "REL-MATH-POLY-IDENTITY"
+      ],
+      "representation_refs": [
+        "REP-MATH-POLY-INTERPOLATION-COSET"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-POLYNOMIAL-STRESS"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A polynomial matching n data points is always unique without requiring a degree bound.",
+          "diagnostic_prompt": "If p(x) fits 4 data points, does that automatically mean p(x) must be a quadratic or cubic?",
+          "repair": "Uniqueness requires deg(p) <= n - 1; without a degree bound, infinitely many higher-degree polynomials match the same points."
+        },
+        {
+          "wrong_idea": "Agreement at three points proves that two functions are identical.",
+          "diagnostic_prompt": "Can two different degree-3 polynomials agree at three distinct values?",
+          "repair": "Agreement at 3 points proves identity only for polynomials of degree at most 2. For degree 3, they differ by c*(x-x1)(x-x2)(x-3)."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Polynomials f and g have degree at most 3. They agree at x = 1, 2, 3, and f(4) - g(4) = 18. Find f(0) - g(0).",
+        "source_ref": "SRC-OWNER-ISSUE56-POLY",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Let d(x) = f(x) - g(x). Since deg(d) <= 3 and d vanishes at 1, 2, 3, d(x) = c(x-1)(x-2)(x-3). At x = 4: d(4) = c(3)(2)(1) = 6c = 18 => c = 3. Therefore d(x) = 3(x-1)(x-2)(x-3). At x = 0: f(0) - g(0) = d(0) = 3(-1)(-2)(-3) = -18.",
+          "reasoning": [
+            "Difference polynomial has degree <= 3 and roots 1, 2, 3.",
+            "Evaluating at x = 4 fixes leading coefficient c = 3.",
+            "Evaluating at x = 0 gives d(0) = -18."
+          ],
+          "check": "Verify d(4) = 3(3)(2)(1) = 18. d(0) = 3(-1)(-2)(-3) = -18.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task verifies degree-bounded difference interpolation."
+        }
+      },
+      "research_contribution": "Addresses Q1, Q8, and Q10 on polynomial interpolation uniqueness, difference polynomials, and qualified decision procedures.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "If a polynomial matches four data points, is it unique without a degree bound?",
+          "defensible_answer": "No, without a degree bound there is an infinite family of solutions."
+        },
+        "attempt": {
+          "produces": "Interpolation difference analysis.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Identifies that uniqueness requires degree <= 3 for 4 points.",
+              "evidence_of": "Applies polynomial identity theorem."
+            },
+            {
+              "criterion": "Constructs the vanishing product x(x-1)(x-2)(x-3).",
+              "evidence_of": "Represents polynomial cosets."
+            }
+          ],
+          "accepted": [
+            "Difference d(x) = x(x-1)(x-2)(x-3)q(x) satisfies all four data points for any polynomial q(x)."
+          ],
+          "rejected": [
+            "p(x) = x^2 + 1 is the only polynomial that can ever fit these points."
+          ],
+          "task": {
+            "prompt": "Characterize all polynomials passing through (0,1), (1,2), (2,5), (3,10).",
+            "givens": [
+              "Data points (0,1), (1,2), (2,5), (3,10)",
+              "No degree bound"
+            ],
+            "representation_ref": "REP-MATH-POLY-INTERPOLATION-COSET"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What polynomial of degree 4 vanishes at all four data x-coordinates 0, 1, 2, 3?",
+              "why_this_ask": "Isolates the degree-4 vanishing product that generates the null space of evaluations."
+            },
+            {
+              "ask": "If a quartic polynomial p(x) matches the four points, how does p(x) relate to the quadratic interpolant x^2 + 1?",
+              "why_this_ask": "Forces realization that p(x) - (x^2 + 1) must be a multiple of the vanishing product."
+            }
+          ],
+          "differs_from_teaching_path": "Learners explore the non-uniqueness of unconstrained interpolants constructively via the null space rather than beginning with the degree-bounded uniqueness theorem."
+        },
+        "boundary_test": {
+          "prompt": "Suppose five data points are given. What is the maximum degree a polynomial can have while still being guaranteed unique by the data?",
+          "confirms": "Confirms mastery of the degree bound n - 1 versus the number of points n.",
+          "answer": "Degree at most 4. By the Fundamental Theorem of Algebra, two distinct polynomials of degree <= 4 can agree at at most 4 points unless they are identical."
+        }
+      }
+    },
+    {
+      "id": "MIC-MATH-POLY-ROOT-SIGN-PARITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Root Multiplicity Parity, Sign Trapping, and Minimal Degree",
+      "bucket_id": "BUCKET-MATH-09-POLY",
+      "primary_capability_ref": "CAP-MATH-POLY-ROOT-SIGN-PARITY",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Hardest target in the cohort: proving minimal degree requires coordinating IVT sign trapping, root multiplicity parity, and irreducible quadratic discriminant constraints.",
+      "entry_assumptions": [
+        "Factor Theorem and definition of root multiplicity.",
+        "Continuity of real polynomials."
+      ],
+      "inferential_jump": "A real polynomial changes sign across a real root if and only if its multiplicity is odd; if a polynomial is positive on both sides of an isolated zero, the root must have even multiplicity (at least 2), and any quadratic factor with no real roots maintains a strictly constant sign.",
+      "teaching_path": [
+        {
+          "id": "ROOT-T1",
+          "role": "DECLARE",
+          "action": "Connect sign variation across zeros to multiplicity parity: odd multiplicity crosses the axis; even multiplicity is tangent without sign change.",
+          "why_valid": "Near root r of multiplicity m, p(x) ~ k(x-r)^m, whose sign flips iff m is odd.",
+          "inputs": [],
+          "output": "multiplicity parity criteria"
+        },
+        {
+          "id": "ROOT-T2",
+          "role": "TRANSFORM",
+          "action": "Apply the Intermediate Value Theorem to trap root signs: positive values on both sides of a zero force even multiplicity to prevent intermediate zeros.",
+          "why_valid": "If a simple zero changed sign between two positive evaluations, IVT would force another zero, violating given root count.",
+          "inputs": [],
+          "output": "IVT sign-trapping constraint"
+        },
+        {
+          "id": "ROOT-T3",
+          "role": "TRANSFORM",
+          "action": "Evaluate quadratic factor irreducibility: an irreducible quadratic has negative discriminant and constant sign on R.",
+          "why_valid": "If Delta = b^2 - 4ac < 0, ax^2 + bx + c never vanishes and has the constant sign of a.",
+          "inputs": [],
+          "output": "constant-sign quadratic constraint"
+        },
+        {
+          "id": "ROOT-T4",
+          "role": "TRANSFORM",
+          "action": "Construct explicit minimal-degree polynomial satisfying all constraints and prove all smaller degrees impossible.",
+          "why_valid": "Systematic elimination of degrees 0, 1, 2, 3, 4 establishes degree 5 as the exact minimal degree.",
+          "inputs": [],
+          "output": "minimal degree proof and verified specimen"
+        }
+      ],
+      "construction_units": [
+        {
+          "id": "CU-MATH-POLY-ROOT-SIGN-PARITY",
+          "decision": "Deduce root multiplicities from sign behavior across zeros, prove degrees 1-4 impossible via IVT and quadratic sign constraints, and construct a verified degree-5 polynomial",
+          "step_refs": [
+            "ROOT-T1",
+            "ROOT-T2",
+            "ROOT-T3",
+            "ROOT-T4"
+          ],
+          "representation_ref": "REP-MATH-POLY-SIGN-PARITY",
+          "reveal_stage_refs": [
+            "PARITY-1",
+            "PARITY-2",
+            "PARITY-3",
+            "PARITY-4"
+          ],
+          "crux_question_refs": [
+            "OWN-ISSUE56-POLY-03",
+            "OWN-ISSUE56-POLY-02",
+            "OWN-ISSUE56-POLY-09"
+          ],
+          "crux_step_ref": "ROOT-T3",
+          "bank_anchor_ref": "OWN-ISSUE56-POLY-03",
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [
+            {
+              "statement": "CHECK: Prove why p(0)=1>0, p(2)=1>0, and p(1)=0 prevents 1 from being a root of multiplicity 1.",
+              "role": "CHECK"
+            },
+            {
+              "statement": "APPLY: If p is monic with distinct real zeros strictly +/-1 and p(0)=1, prove no irreducible quadratic factor can be present.",
+              "role": "APPLY"
+            },
+            {
+              "statement": "CONNECT: Verify that 3x^2 - 10x + 12 has discriminant -44 < 0 and is strictly positive on all of R.",
+              "role": "CONNECT"
+            }
+          ]
+        }
+      ],
+      "relation_refs": [
+        "REL-MATH-ROOT-PARITY",
+        "REL-MATH-PARAM-DISCRIMINANT"
+      ],
+      "representation_refs": [
+        "REP-MATH-POLY-SIGN-PARITY"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-POLYNOMIAL-STRESS"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Every zero of a polynomial must be a simple zero (multiplicity 1).",
+          "diagnostic_prompt": "Can a polynomial touch the x-axis and turn around without crossing it?",
+          "repair": "A root has even multiplicity (2, 4, ...) when the curve is tangent to the axis without crossing; crossing with sign change occurs only for odd multiplicities."
+        },
+        {
+          "wrong_idea": "Any four given values can always be fitted by a degree 3 or degree 4 polynomial with prescribed real zeros.",
+          "diagnostic_prompt": "If a quadratic factor has no real roots, can it change sign between x = 0 and x = 2?",
+          "repair": "An irreducible quadratic has constant sign across all real numbers. When multiplied by (x^2 - 1), it forces p(0) and p(2) to have opposite signs, making degree 4 impossible."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Find the least possible degree of a real polynomial with zeros strictly at x = 2, which satisfies p(1) = 3 and p(3) = 3. Exhibit one such polynomial.",
+        "source_ref": "SRC-OWNER-ISSUE56-POLY",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Least possible degree is 2. Since p(1) = 3 > 0 and p(3) = 3 > 0 with zero at 2, mult(2) must be even (mult >= 2) to avoid crossing 0 and creating intermediate roots. At degree 2, p(x) = c(x - 2)^2. Setting p(1) = c(1-2)^2 = c = 3 gives p(x) = 3(x - 2)^2. Check p(3) = 3(3-2)^2 = 3. Only zero is x = 2.",
+          "reasoning": [
+            "Sign preservation at 1 and 3 requires even multiplicity at 2.",
+            "Minimum even multiplicity is 2.",
+            "p(x) = 3(x - 2)^2 works cleanly."
+          ],
+          "check": "p(2) = 0, p(1) = 3, p(3) = 3. Degree is 2.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task verifies minimal degree under sign preservation."
+        }
+      },
+      "research_contribution": "Addresses Q2, Q3, and Q9 on root multiplicity parity, IVT sign trapping, and complete monic polynomial characterization.",
+      "prerequisite_refs": [
+        "CAP-MATH-POLY-INTERPOLATION-COSET"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "Can a polynomial of degree 4 have real roots only at -1 and 1 and satisfy p(0)=1, p(2)=1?",
+          "defensible_answer": "No, because any irreducible quadratic maintains constant sign, forcing p(0) and p(2) to have opposite signs."
+        },
+        "attempt": {
+          "produces": "Degree 5 minimal degree proof.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Eliminates degree 3 via IVT sign trapping at 1.",
+              "evidence_of": "Applies continuity to root multiplicity."
+            },
+            {
+              "criterion": "Eliminates degree 4 by showing quadratic factor has constant sign.",
+              "evidence_of": "Coordinates factor sign with evaluation values."
+            }
+          ],
+          "accepted": [
+            "Degree 5 is the least degree; explicit polynomial (1/12)(x-1)^2(x+1)(3x^2-10x+12) satisfies all conditions."
+          ],
+          "rejected": [
+            "Degree 3 or 4 is sufficient by Lagrange interpolation."
+          ],
+          "task": {
+            "prompt": "Prove that degree 4 is impossible for Q3.",
+            "givens": [
+              "Real zeros strictly +/-1",
+              "p(0) = 1, p(2) = 1"
+            ],
+            "representation_ref": "REP-MATH-POLY-SIGN-PARITY"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What is the sign of the product (x+1)(x-1) on the interval between 0 and 2?",
+              "why_this_ask": "Exposes that (0+1)(0-1) = -1 < 0 while (2+1)(2-1) = 3 > 0, flipping sign across x = 1."
+            },
+            {
+              "ask": "Can an irreducible quadratic factor Q(x) with Delta < 0 change sign between x = 0 and x = 2 to compensate?",
+              "why_this_ask": "Demonstrates that Q(x) has strictly constant sign on all real numbers, making degree 4 impossible."
+            }
+          ],
+          "differs_from_teaching_path": "Learners discover the obstruction to degree 4 by testing factor sign behavior directly at the evaluation points rather than through general discriminant theorems."
+        },
+        "boundary_test": {
+          "prompt": "Can a polynomial with real roots only at -1 and 1 satisfy p(0) = -1 and p(2) = 3 with degree 2?",
+          "confirms": "Confirms understanding of how signs at test points constrain the leading coefficient and root parity.",
+          "answer": "Yes; p(x) = x^2 - 1 has degree 2, zeros at +/-1, p(0) = -1, and p(2) = 3."
+        }
+      }
+    },
+    {
+      "id": "MIC-MATH-POLY-PARAM-REPRESENTATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Parameter Bifurcations, Geometric Modeling, and Domain Preservation",
+      "bucket_id": "BUCKET-MATH-09-POLY",
+      "primary_capability_ref": "CAP-MATH-POLY-PARAMETER-BIFURCATIONS",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Requires coordinating algebraic parameter case splits with physical geometric modeling and rigorous function domain constraints.",
+      "entry_assumptions": [
+        "Algebraic grouping and factoring of polynomial expressions.",
+        "Geometric formulas for rectangular box volume."
+      ],
+      "inferential_jump": "A parameter variation can cause leading terms to vanish (dropping the degree) or roots to collide (changing multiplicities); an empirical fit matching sample points may violate geometric domain constraints.",
+      "teaching_path": [
+        {
+          "id": "PARAM-T1",
+          "role": "DECLARE",
+          "action": "Group and factor polynomial expressions with parameters to isolate fixed zeros and variable factors.",
+          "why_valid": "Factoring F_a(x) into x(x+2)[(a-1)x^2 + (a+2)] isolates fixed roots 0, -2 and parameter-dependent quadratic.",
+          "inputs": [],
+          "output": "factored parameter family"
+        },
+        {
+          "id": "PARAM-T2",
+          "role": "TRANSFORM",
+          "action": "Identify critical parameter values where the leading coefficient vanishes (degree drop) or roots coincide (multiplicity increase).",
+          "why_valid": "Leading coefficient a-1=0 drops degree from 4 to 2 at a=1; roots merge at a=-2 (triple zero) and a=2/5 (double zero at -2).",
+          "inputs": [],
+          "output": "classified parameter boundaries"
+        },
+        {
+          "id": "PARAM-T3",
+          "role": "TRANSFORM",
+          "action": "Derive geometric polynomial models from physical constraints and evaluate non-degenerate domains.",
+          "why_valid": "Folded box has V(x) = x(10-2x)^2 on (0, 5); fitted quadratic Q(x) produces unphysical negative volumes.",
+          "inputs": [],
+          "output": "geometric model vs empirical fit critique"
+        },
+        {
+          "id": "PARAM-T4",
+          "role": "TRANSFORM",
+          "action": "Enforce domain preservation for rational expressions under algebraic cancellation.",
+          "why_valid": "Cancelling (x-a)/(x-a) preserves domain restriction x != a; extending to R is a separate mathematical operation.",
+          "inputs": [],
+          "output": "domain preservation and extension distinction"
+        }
+      ],
+      "construction_units": [
+        {
+          "id": "CU-MATH-POLY-PARAM-REPRESENTATION",
+          "decision": "Classify degree drops and root coincidences under parameter variation, critique empirical polynomial fits against geometric physics, and enforce domain preservation",
+          "step_refs": [
+            "PARAM-T1",
+            "PARAM-T2",
+            "PARAM-T3",
+            "PARAM-T4"
+          ],
+          "representation_ref": "REP-MATH-POLY-PARAM-BIFURCATION",
+          "reveal_stage_refs": [
+            "PARAM-1",
+            "PARAM-2",
+            "PARAM-3",
+            "PARAM-4"
+          ],
+          "crux_question_refs": [
+            "OWN-ISSUE56-POLY-04",
+            "OWN-ISSUE56-POLY-05",
+            "OWN-ISSUE56-POLY-06",
+            "OWN-ISSUE56-POLY-07"
+          ],
+          "crux_step_ref": "PARAM-T2",
+          "bank_anchor_ref": "OWN-ISSUE56-POLY-04",
+          "misconception_indexes": [
+            0,
+            1
+          ],
+          "independent_checks": [
+            {
+              "statement": "CHECK: Show why F_a(x) drops from degree 4 to degree 2 at a = 1.",
+              "role": "CHECK"
+            },
+            {
+              "statement": "APPLY: At x = 3 cm, calculate physical box volume V(3) versus analyst quadratic Q(3).",
+              "role": "APPLY"
+            },
+            {
+              "statement": "CONNECT: Explain why R_1(x) = (x-1)^2/(x-1) has no real zeros on its original domain.",
+              "role": "CONNECT"
+            }
+          ]
+        }
+      ],
+      "relation_refs": [
+        "REL-MATH-PARAM-DISCRIMINANT",
+        "REL-MATH-BOX-VOLUME"
+      ],
+      "representation_refs": [
+        "REP-MATH-POLY-PARAM-BIFURCATION",
+        "REP-MATH-POLY-BOX-VOLUME"
+      ],
+      "question_family_refs": [
+        "FAM-MATH-POLYNOMIAL-STRESS"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "The largest printed exponent is always the degree of a polynomial.",
+          "diagnostic_prompt": "What is the degree of (a - 1)x^4 + 3x^2 when a = 1?",
+          "repair": "The degree is the highest exponent with a non-zero coefficient. If a parameter causes the leading coefficient to vanish, the degree drops."
+        },
+        {
+          "wrong_idea": "Cancelling common factors in a rational expression makes it a polynomial function on all real numbers.",
+          "diagnostic_prompt": "Is (x^2 - 1)/(x - 1) defined at x = 1?",
+          "repair": "Algebraic cancellation is valid only on the original domain where the denominator is non-zero. A removable singularity requires a continuous extension."
+        }
+      ],
+      "exit_task": {
+        "prompt": "For what real value of k does G_k(x) = (k^2 - 4)x^3 + (k - 2)x^2 + 5x - 1 have degree 1? Explain.",
+        "source_ref": "SRC-OWNER-ISSUE56-POLY",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Degree 1 requires the coefficients of x^3 and x^2 to vanish simultaneously, while the coefficient of x is non-zero (5 != 0). k^2 - 4 = 0 => k = 2 or -2. k - 2 = 0 => k = 2. Both vanish simultaneously if and only if k = 2. At k = 2, G_2(x) = 5x - 1, which has degree 1.",
+          "reasoning": [
+            "Coefficient of x^3 must be zero: k in {2, -2}.",
+            "Coefficient of x^2 must be zero: k = 2.",
+            "Common solution is k = 2."
+          ],
+          "check": "At k = 2: G_2(x) = 0*x^3 + 0*x^2 + 5x - 1 = 5x - 1 (degree 1). At k = -2: G_-2(x) = -4x^2 + 5x - 1 (degree 2).",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task assesses parameter degree drop."
+        }
+      },
+      "research_contribution": "Addresses Q4, Q5, Q6, and Q7 on parameter bifurcations, cubic geometric box modeling, rational domain preservation, and even symmetry.",
+      "prerequisite_refs": [
+        "CAP-MATH-POLY-ROOT-SIGN-PARITY"
+      ],
+      "lineage": [],
+      "elicitation": {
+        "predict": {
+          "prompt": "What is the degree of F_a(x) when a = 1?",
+          "defensible_answer": "Degree 2, because both x^4 and x^3 coefficients vanish."
+        },
+        "attempt": {
+          "produces": "Parameter bifurcation analysis.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "Identifies degree drop at a = 1.",
+              "evidence_of": "Recognizes vanishing leading coefficient."
+            },
+            {
+              "criterion": "Identifies root coincidences at a = -2 and a = 2/5.",
+              "evidence_of": "Accounts for multiplicity changes."
+            }
+          ],
+          "accepted": [
+            "F_a factors as x(x+2)[(a-1)x^2 + (a+2)]; degree drops to 2 at a=1; roots coincide at a=-2 (triple root at 0) and a=2/5 (double root at -2)."
+          ],
+          "rejected": [
+            "F_a always has degree 4 and 4 distinct zeros."
+          ],
+          "task": {
+            "prompt": "Classify all exceptional values of a for F_a(x).",
+            "givens": [
+              "F_a(x) = (a-1)x^4 + 2(a-1)x^3 + (a+2)x^2 + 2(a+2)x"
+            ],
+            "representation_ref": "REP-MATH-POLY-PARAM-BIFURCATION"
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "What happens to the degree of F_a(x) = (a-1)x^4 + 2(a-1)x^3 + (a+2)x^2 + 2(a+2)x when a = 1?",
+              "why_this_ask": "Exposes the coefficient of x^4 and x^3 becoming 0 simultaneously, dropping the degree to 2."
+            },
+            {
+              "ask": "Under what condition does the quadratic factor (a-1)x^2 + (a+2) share a root with x(x+2)?",
+              "why_this_ask": "Leads the learner to substitute x = 0 and x = -2 into the quadratic factor to discover parameter bifurcations."
+            }
+          ],
+          "differs_from_teaching_path": "Learners isolate root collisions and degree drops by direct substitution into factored sub-expressions rather than abstract discriminant formulas."
+        },
+        "boundary_test": {
+          "prompt": "For what value of a does the quadratic factor (a-1)x^2 + (a+2) have no real roots?",
+          "confirms": "Confirms ability to solve parameter inequalities for root existence.",
+          "answer": "When -(a+2)/(a-1) < 0, which occurs for a > 1 or a < -2."
+        }
+      }
+    }
+  ],
+  "representations": [
+    {
+      "id": "REP-MATH-POLY-INTERPOLATION-COSET",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "CONCEPT_FIGURE",
+      "purpose": "Staged mathematical graph showing four sample points, unique degree-2 interpolant x^2+1, degree-4 vanishing polynomial, and higher-degree coset family.",
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS56/assets/poly-interpolation-coset.svg"
+      ],
+      "reveal_stages": [
+        {
+          "id": "INTERP-1",
+          "label": "Four sample observation points",
+          "purpose": "Plots the four exact data points (0,1), (1,2), (2,5), (3,10) on Cartesian axes.",
+          "visible_elements": [
+            "Four sample observation points",
+            "Plots data points (0,1), (1,2), (2,5), (3,10)"
+          ]
+        },
+        {
+          "id": "INTERP-2",
+          "label": "Unique degree <= 3 interpolant",
+          "purpose": "Draws the unique parabola p(x) = x^2 + 1 passing through all four points under the degree bound.",
+          "visible_elements": [
+            "Unique degree <= 3 interpolant",
+            "Draws parabola p(x) = x^2 + 1"
+          ]
+        },
+        {
+          "id": "INTERP-3",
+          "label": "Degree-4 vanishing product",
+          "purpose": "Illustrates V(x) = x(x-1)(x-2)(x-3) vanishing at all four sample inputs.",
+          "visible_elements": [
+            "Degree-4 vanishing product",
+            "Illustrates V(x) = x(x-1)(x-2)(x-3)"
+          ]
+        },
+        {
+          "id": "INTERP-4",
+          "label": "Unbounded degree coset family",
+          "purpose": "Shows an oscillating higher-degree polynomial x^2 + 1 + x(x-1)(x-2)(x-3)q(x) matching the same points.",
+          "visible_elements": [
+            "Unbounded degree coset family",
+            "Shows higher-degree polynomial matching same points"
+          ]
+        }
+      ],
+      "required_elements": [
+        "Cartesian axes with coordinate scale",
+        "distinct data points",
+        "quadratic curve",
+        "oscillating coset curve"
+      ],
+      "read_order": [
+        "sample points",
+        "quadratic curve",
+        "vanishing product",
+        "coset variation"
+      ],
+      "instance_constraints": [
+        "Stages orient without performing protected student calculations."
+      ],
+      "accessibility": [
+        "Role img with title and detailed description.",
+        "High contrast colors and dashed lines for secondary curves."
+      ],
+      "misleading_alternatives": [
+        "Assuming four points force a unique polynomial without degree restriction."
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "relation_refs": [
+        "REL-MATH-POLY-IDENTITY"
+      ]
+    },
+    {
+      "id": "REP-MATH-POLY-SIGN-PARITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "CONCEPT_FIGURE",
+      "purpose": "Staged diagram illustrating sign change across simple odd-multiplicity roots versus sign preservation at even-multiplicity roots.",
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS56/assets/poly-sign-multiplicity.svg"
+      ],
+      "reveal_stages": [
+        {
+          "id": "PARITY-1",
+          "label": "Odd multiplicity crossing",
+          "purpose": "Shows curve crossing axis with sign flip at odd multiplicity roots.",
+          "visible_elements": [
+            "Odd multiplicity crossing",
+            "Shows curve crossing axis with sign flip"
+          ]
+        },
+        {
+          "id": "PARITY-2",
+          "label": "Even multiplicity tangent",
+          "purpose": "Shows curve tangent to axis with sign preservation at even multiplicity roots.",
+          "visible_elements": [
+            "Even multiplicity tangent",
+            "Shows curve tangent to axis with sign preservation"
+          ]
+        },
+        {
+          "id": "PARITY-3",
+          "label": "Benchmark polynomial p(x) = x^2(x^2 - 4)",
+          "purpose": "Illustrates zeros at -2, 0, 2 with sign changes across +/-2 and same negative sign near 0.",
+          "visible_elements": [
+            "Benchmark polynomial p(x) = x^2(x^2 - 4)",
+            "Illustrates zeros at -2, 0, 2"
+          ]
+        },
+        {
+          "id": "PARITY-4",
+          "label": "Multiplicity parity synthesis",
+          "purpose": "Synthesizes degree saturation 1 + 1 + 2 = 4 and uniqueness of the polynomial.",
+          "visible_elements": [
+            "Multiplicity parity synthesis",
+            "Synthesizes degree saturation"
+          ]
+        }
+      ],
+      "required_elements": [
+        "horizontal axis",
+        "crossing curve",
+        "tangent curve",
+        "quartic curve with labeled roots"
+      ],
+      "read_order": [
+        "odd root crossing",
+        "even root tangent",
+        "quartic benchmark",
+        "parity synthesis"
+      ],
+      "instance_constraints": [
+        "Visuals represent topological sign variation without leaking answer scaling."
+      ],
+      "accessibility": [
+        "Clear color coding, explicit +/- sign labels, high vector resolution."
+      ],
+      "misleading_alternatives": [
+        "Assuming all zeros cross the axis."
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "relation_refs": [
+        "REL-MATH-ROOT-PARITY"
+      ]
+    },
+    {
+      "id": "REP-MATH-POLY-PARAM-BIFURCATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "CONCEPT_FIGURE",
+      "purpose": "Bifurcation map of F_a(x) = x(x+2)[(a-1)x^2 + (a+2)] as parameter a varies across real values.",
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS56/assets/poly-parameter-bifurcation.svg"
+      ],
+      "reveal_stages": [
+        {
+          "id": "PARAM-1",
+          "label": "Real parameter line",
+          "purpose": "Displays parameter line a in R with marked critical points a = -2, 2/5, 1.",
+          "visible_elements": [
+            "Real parameter line",
+            "Displays critical points a = -2, 2/5, 1"
+          ]
+        },
+        {
+          "id": "PARAM-2",
+          "label": "Degree drop at a = 1",
+          "purpose": "Shows leading coefficient vanishing, dropping degree from 4 to 2.",
+          "visible_elements": [
+            "Degree drop at a = 1",
+            "Shows leading coefficient vanishing"
+          ]
+        },
+        {
+          "id": "PARAM-3",
+          "label": "Triple root at a = -2",
+          "purpose": "Shows quadratic factor collapsing to -3x^2, merging with root 0 to form triple zero.",
+          "visible_elements": [
+            "Triple root at a = -2",
+            "Shows quadratic factor collapsing to -3x^2"
+          ]
+        },
+        {
+          "id": "PARAM-4",
+          "label": "Double root at a = 2/5",
+          "purpose": "Shows quadratic roots x = +/-2, where -2 coincides with existing root to form double zero.",
+          "visible_elements": [
+            "Double root at a = 2/5",
+            "Shows quadratic roots x = +/-2"
+          ]
+        }
+      ],
+      "required_elements": [
+        "parameter axis",
+        "critical points",
+        "bifurcation annotations",
+        "root count intervals"
+      ],
+      "read_order": [
+        "parameter line",
+        "degree drop",
+        "triple root",
+        "double root"
+      ],
+      "instance_constraints": [
+        "Focuses on parameter structure without computing individual problem subparts."
+      ],
+      "accessibility": [
+        "High contrast text, distinct marker colors, accessible description."
+      ],
+      "misleading_alternatives": [
+        "Assuming the printed degree 4 never drops."
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "relation_refs": [
+        "REL-MATH-PARAM-DISCRIMINANT"
+      ]
+    },
+    {
+      "id": "REP-MATH-POLY-BOX-VOLUME",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "CONCEPT_FIGURE",
+      "purpose": "Comparison of physical cubic volume model V(x) = 4x^3 - 40x^2 + 100x and analyst empirical quadratic fit Q(x) = -28x^2 + 92x.",
+      "rendered_asset_refs": [
+        "evidence/benchmark/ISS56/assets/poly-box-volume-model.svg"
+      ],
+      "reveal_stages": [
+        {
+          "id": "BOX-1",
+          "label": "Folded box sheet geometry",
+          "purpose": "Shows 10x10 sheet with corners of side x cut out, base 10-2x, and height x.",
+          "visible_elements": [
+            "Folded box sheet geometry",
+            "Shows 10x10 sheet with corners cut out"
+          ]
+        },
+        {
+          "id": "BOX-2",
+          "label": "Physical cubic volume curve",
+          "purpose": "Illustrates V(x) = x(10-2x)^2 on non-degenerate domain (0, 5) with peak at x = 5/3.",
+          "visible_elements": [
+            "Physical cubic volume curve",
+            "Illustrates V(x) = x(10-2x)^2"
+          ]
+        },
+        {
+          "id": "BOX-3",
+          "label": "Analyst empirical quadratic fit",
+          "purpose": "Plots Q(x) matching at 0, 1, 2 but showing spurious zero at x = 23/7 cm.",
+          "visible_elements": [
+            "Analyst empirical quadratic fit",
+            "Plots Q(x) matching at 0, 1, 2"
+          ]
+        },
+        {
+          "id": "BOX-4",
+          "label": "Divergence at discriminating input",
+          "purpose": "Highlights massive divergence at x = 3 cm: V(3) = 48 cm^3 vs Q(3) = 24 cm^3, and negative volume beyond 23/7.",
+          "visible_elements": [
+            "Divergence at discriminating input",
+            "Highlights divergence at x = 3 cm"
+          ]
+        }
+      ],
+      "required_elements": [
+        "sheet cut diagram",
+        "cubic curve",
+        "quadratic curve",
+        "discriminating input marker"
+      ],
+      "read_order": [
+        "sheet geometry",
+        "cubic curve",
+        "quadratic fit",
+        "divergence comparison"
+      ],
+      "instance_constraints": [
+        "Illustrates modeling conflict without preempting learner calculations."
+      ],
+      "accessibility": [
+        "Clear geometric diagrams, high contrast labels, distinct colors for models."
+      ],
+      "misleading_alternatives": [
+        "Believing a 3-point fit proves model correctness."
+      ],
+      "scene_instances": [],
+      "correspondence": [],
+      "relation_refs": [
+        "REL-MATH-BOX-VOLUME"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "id": "REL-MATH-POLY-IDENTITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "p(x) - q(x) = \\prod_{i=1}^k (x - x_i) \\cdot r(x)",
+      "meaning": "If polynomials p and q agree at k distinct inputs, their difference is divisible by the degree-k vanishing product; if deg(p-q) < k, then p = q identically.",
+      "symbols": [
+        {
+          "symbol": "k",
+          "meaning": "number of distinct agreement points",
+          "unit_or_domain": "positive integer"
+        }
+      ],
+      "conditions": [
+        "p, q are polynomials with real coefficients.",
+        "Points x_1, ..., x_k are pairwise distinct."
+      ],
+      "derivation": [
+        {
+          "id": "DERIV-ID-1",
+          "role": "DECLARE",
+          "action": "Define d(x) = p(x) - q(x).",
+          "why_valid": "Difference of polynomials is a polynomial.",
+          "inputs": [],
+          "output": "difference polynomial"
+        },
+        {
+          "id": "DERIV-ID-2",
+          "role": "TRANSFORM",
+          "action": "Apply Factor Theorem at each agreement point x_i.",
+          "why_valid": "d(x_i) = 0 implies (x - x_i) divides d(x).",
+          "inputs": [],
+          "output": "product of linear factors divides d(x)"
+        },
+        {
+          "id": "DERIV-ID-3",
+          "role": "VERIFY",
+          "action": "Compare degree of d with k: if deg(d) < k, d(x) = 0 identically.",
+          "why_valid": "A nonzero polynomial of degree < k cannot have k roots.",
+          "inputs": [],
+          "output": "uniqueness criterion"
+        }
+      ],
+      "limits": [
+        "Does not hold for general transcendental functions.",
+        "Requires exact agreement without rounding error."
+      ],
+      "checks": [
+        "Verify that with 4 points, a cubic is unique while a quartic has a free parameter."
+      ],
+      "gate_relation_ref": "REL-MATH-POLY-IDENTITY"
+    },
+    {
+      "id": "REL-MATH-ROOT-PARITY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "\\lim_{x \\to r^+} \\operatorname{sgn}(p(x)) = (-1)^m \\lim_{x \\to r^-} \\operatorname{sgn}(p(x))",
+      "meaning": "A polynomial changes sign across an isolated real root r if and only if its multiplicity m is odd; if m is even, the sign is preserved.",
+      "symbols": [
+        {
+          "symbol": "m",
+          "meaning": "multiplicity of root r",
+          "unit_or_domain": "positive integer"
+        }
+      ],
+      "conditions": [
+        "p(x) is a real polynomial.",
+        "r is an isolated root."
+      ],
+      "derivation": [
+        {
+          "id": "DERIV-PAR-1",
+          "role": "DECLARE",
+          "action": "Write p(x) = (x - r)^m g(x) with g(r) != 0.",
+          "why_valid": "Definition of root multiplicity m.",
+          "inputs": [],
+          "output": "factored form near r"
+        },
+        {
+          "id": "DERIV-PAR-2",
+          "role": "TRANSFORM",
+          "action": "Evaluate sign of (x - r)^m as x passes through r.",
+          "why_valid": "(x - r)^m changes sign iff m is odd.",
+          "inputs": [],
+          "output": "sign variation rule"
+        },
+        {
+          "id": "DERIV-PAR-3",
+          "role": "VERIFY",
+          "action": "Since g(r) != 0, g(x) maintains constant sign in a neighborhood of r.",
+          "why_valid": "Continuity of polynomials.",
+          "inputs": [],
+          "output": "topological parity theorem"
+        }
+      ],
+      "limits": [
+        "Applies to isolated real zeros.",
+        "Requires real coefficients."
+      ],
+      "checks": [
+        "Verify x^2 does not change sign across 0; x^3 changes sign across 0."
+      ],
+      "gate_relation_ref": "REL-MATH-ROOT-PARITY"
+    },
+    {
+      "id": "REL-MATH-PARAM-DISCRIMINANT",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "\\Delta = b^2 - 4ac < 0 \\implies ax^2 + bx + c \\text{ has constant sign on } \\mathbb{R}",
+      "meaning": "A real quadratic with negative discriminant has no real roots and maintains a constant non-zero sign across all real numbers.",
+      "symbols": [
+        {
+          "symbol": "\\Delta",
+          "meaning": "quadratic discriminant b^2 - 4ac",
+          "unit_or_domain": "real number"
+        }
+      ],
+      "conditions": [
+        "a != 0, a, b, c in R.",
+        "Discriminant strictly negative."
+      ],
+      "derivation": [
+        {
+          "id": "DERIV-DISC-1",
+          "role": "DECLARE",
+          "action": "Complete the square: ax^2 + bx + c = a(x + b/(2a))^2 - Delta/(4a).",
+          "why_valid": "Algebraic identity.",
+          "inputs": [],
+          "output": "completed square form"
+        },
+        {
+          "id": "DERIV-DISC-2",
+          "role": "TRANSFORM",
+          "action": "If Delta < 0, -Delta/(4a) has the same sign as a.",
+          "why_valid": "-Delta > 0, so (-Delta)/(4a) has sign of a.",
+          "inputs": [],
+          "output": "strictly non-zero sum"
+        },
+        {
+          "id": "DERIV-DISC-3",
+          "role": "VERIFY",
+          "action": "Conclude expression has the same sign as a for all real x.",
+          "why_valid": "Square is non-negative, offset is strictly positive in sign of a.",
+          "inputs": [],
+          "output": "constant sign property"
+        }
+      ],
+      "limits": [
+        "Applies only to quadratics (degree 2)."
+      ],
+      "checks": [
+        "Verify x^2 + bx - 1 has Delta = b^2 + 4 > 0, always possessing real roots."
+      ],
+      "gate_relation_ref": "REL-MATH-PARAM-DISCRIMINANT"
+    },
+    {
+      "id": "REL-MATH-BOX-VOLUME",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "expression": "V(x) = x(L - 2x)^2 = 4x^3 - 4Lx^2 + L^2 x",
+      "meaning": "Volume of an open box formed by cutting corner squares of side x from an L x L square sheet, valid on physical domain 0 < x < L/2.",
+      "symbols": [
+        {
+          "symbol": "L",
+          "meaning": "side length of square sheet",
+          "unit_or_domain": "positive real length"
+        },
+        {
+          "symbol": "x",
+          "meaning": "side length of corner cut",
+          "unit_or_domain": "positive real length (0 < x < L/2)"
+        }
+      ],
+      "conditions": [
+        "L > 0.",
+        "0 < x < L/2 for non-degenerate box."
+      ],
+      "derivation": [
+        {
+          "id": "DERIV-BOX-1",
+          "role": "DECLARE",
+          "action": "Identify height of folded box as x.",
+          "why_valid": "Folding flaps creates height equal to corner cutout.",
+          "inputs": [],
+          "output": "height = x"
+        },
+        {
+          "id": "DERIV-BOX-2",
+          "role": "TRANSFORM",
+          "action": "Compute base dimensions: length = width = L - 2x.",
+          "why_valid": "Cutting two corners of size x reduces length by 2x.",
+          "inputs": [],
+          "output": "base = (L - 2x)^2"
+        },
+        {
+          "id": "DERIV-BOX-3",
+          "role": "VERIFY",
+          "action": "Multiply base area by height to obtain cubic volume formula.",
+          "why_valid": "Volume of rectangular cuboid is base area times height.",
+          "inputs": [],
+          "output": "cubic volume formula"
+        }
+      ],
+      "limits": [
+        "Sheet thickness is ignored.",
+        "Valid only on interval (0, L/2)."
+      ],
+      "checks": [
+        "For L = 10: V(0) = 0, V(1) = 64, V(2) = 72, V(5) = 0."
+      ],
+      "gate_relation_ref": "REL-MATH-BOX-VOLUME"
+    }
+  ],
+  "question_families": [
+    {
+      "id": "FAM-MATH-POLYNOMIAL-STRESS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-OWNER-ISSUE56-POLY"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomials in One Variable with Real Coefficients \u2014 Competition Stress Family",
+      "capability_refs": [
+        "CAP-MATH-POLY-INTERPOLATION-COSET",
+        "CAP-MATH-POLY-ROOT-SIGN-PARITY",
+        "CAP-MATH-POLY-PARAMETER-BIFURCATIONS",
+        "CAP-MATH-POLY-GEOM-MODEL-CRITIQUE",
+        "CAP-MATH-POLY-DOMAIN-VS-EXTENSION",
+        "CAP-MATH-POLY-EVEN-SYMMETRY-MODAL"
+      ],
+      "solution_structure": [
+        "State exact givens and identify degree bounds and domain restrictions.",
+        "Factor expressions or form differences to expose root structures.",
+        "Apply multiplicity parity, IVT, and discriminant constraints to bound degrees.",
+        "Synthesize unique solutions or characterize infinite cosets with model boundaries."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Choose between degree-bounded uniqueness, affine cosets, multiplicity parity, and physical cubic modeling.",
+        "representation_translation": "Translate sign behaviors and geometric box cuts into algebraic polynomial constraints.",
+        "reasoning_steps": "Givens, root factoring, degree bounding, IVT/discriminant test, unique/coset synthesis.",
+        "novelty": "Minimal degree 5 proof, parameter bifurcation at a=2/5, rational cancellation domain fallacy."
+      },
+      "safe_variations": [
+        "Vary numerical values while preserving topological sign trapping and degree bounds."
+      ],
+      "transfer_boundaries": [
+        "Do not apply finite interpolation uniqueness without degree bounds.",
+        "Do not cancel rational factors without preserving domain restrictions."
+      ],
+      "common_wrong_routes": [
+        "Claiming interpolation uniqueness without degree bounds.",
+        "Assuming all roots are simple roots (multiplicity 1).",
+        "Equating rational expressions to polynomials across all real numbers."
+      ],
+      "item_refs": [
+        "OWN-ISSUE56-POLY-01",
+        "OWN-ISSUE56-POLY-02",
+        "OWN-ISSUE56-POLY-03",
+        "OWN-ISSUE56-POLY-04",
+        "OWN-ISSUE56-POLY-05",
+        "OWN-ISSUE56-POLY-06",
+        "OWN-ISSUE56-POLY-07",
+        "OWN-ISSUE56-POLY-08",
+        "OWN-ISSUE56-POLY-09",
+        "OWN-ISSUE56-POLY-10"
+      ]
+    }
+  ],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "data": [],
+  "application_contexts": [],
+  "extensions": {}
+}
