@@ -3004,7 +3004,7 @@ def _single_file_fragment(page_html: str, role: str) -> str:
     def cross_link(m: re.Match[str]) -> str:
         target_role = file_to_role.get(m.group(1))
         return f'href="#g9-{target_role}--{m.group(2)}"' if target_role else m.group(0)
-    fragment = re.sub(r'href="(core\w+\.html)#([^"]+)"', cross_link, fragment)
+    fragment = re.sub(r'href="(core\w+\.html)(?:\?[^"#]*)?#([^"]+)"', cross_link, fragment)
     for old in local_anchor_ids:
         fragment = fragment.replace(f'href="#{old}"', f'href="#g9-{role}--{old}"')
     fragment = re.sub(
