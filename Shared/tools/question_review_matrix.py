@@ -371,6 +371,7 @@ def resolve_review(question: dict[str, Any], profile: dict[str, Any], matrix: di
             "profile": canonical_digest(profile),
             "matrix": canonical_digest(matrix),
             "vocabulary": canonical_digest(vocab),
+            "difficulty_metadata": canonical_digest(question_difficulty._metadata()),
         },
         "slots": slots,
         "review": review,
