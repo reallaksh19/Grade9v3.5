@@ -1,10 +1,18 @@
 // Reconcile the measured layout with the selected blueprint; no new acceptance layer.
 export function splitLayoutExpectation(policy) {
-  if (policy?.expanded !== 'STAGE_SUPPORT' || !policy.support_fraction) return null;
+  if (policy?.expanded !== 'STAGE_SUPPORT') return null;
+  const primary = Number(policy.primary_fraction);
+  const support = Number(policy.support_fraction);
+  const minPx = policy.expanded_min_px == null ? 1100 : Number(policy.expanded_min_px);
+  if (
+    !Number.isFinite(primary) || !Number.isFinite(support) || !Number.isFinite(minPx)
+    || primary <= 0 || support <= 0 || minPx <= 0
+    || Math.abs((primary + support) - 1) > 1e-6
+  ) return null;
   return {
-    primaryFraction: policy.primary_fraction,
-    supportFraction: policy.support_fraction,
-    minPx: policy.expanded_min_px || 1100,
+    primaryFraction: primary,
+    supportFraction: support,
+    minPx,
   };
 }
 
