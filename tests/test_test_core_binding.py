@@ -4,6 +4,8 @@ import json
 import unittest
 from pathlib import Path
 
+from Shared.tools import build_web_data, check_subjects
+
 
 REPO = Path(__file__).resolve().parents[1]
 
@@ -43,6 +45,28 @@ class TestTestProductionCoreBinding(unittest.TestCase):
             "NOT_GRANTED_BY_ANY_MACHINE_CHECK",
         )
         self.assertEqual(contract["validator_catalogue"], [])
+
+    def test_generic_subject_discovery_includes_test(self):
+        checked_subjects = {path.name for path in check_subjects.subjects(REPO)}
+
+        self.assertIn("TEST", checked_subjects)
+        self.assertIn("TEST", build_web_data.subjects())
+
+    def test_test_quality_vocabulary_is_subject_data_not_a_parallel_contract(self):
+        vocabulary = json.loads(
+            (REPO / "TEST/adapter/QualityVocabulary.json").read_text(encoding="utf-8")
+        )
+        shared_contract = REPO / "Shared/quality/learner-quality.v1.json"
+
+        self.assertEqual(vocabulary["subject"], "TEST")
+        self.assertEqual(vocabulary["schema"], "quality-vocabulary/v1")
+        self.assertIn(str(shared_contract.relative_to(REPO)), vocabulary["purpose"])
+        self.assertTrue(shared_contract.is_file())
+        self.assertEqual(
+            list((REPO / "TEST").rglob("learner-quality*.json")),
+            [],
+            "TEST may provide subject vocabulary but must not fork learner-quality authority",
+        )
 
 
 if __name__ == "__main__":
