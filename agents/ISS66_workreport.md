@@ -9,7 +9,7 @@
 - Launch integration head: `2b11f2143cf9fd96be44014bab57d4f1f53bad37`
 - Implementation branch: `feat/iss66-blueprint-semantic-contracts`
 - Denominator: 10 declared units
-- Current state after U01: P10% / E10% (1/10 complete and successor-safe evidenced)
+- Current state after U02: P20% / E20% (2/10 complete and successor-safe evidenced)
 
 ## Chronology
 
@@ -40,6 +40,29 @@ Negative knowledge:
 - no topic-specific widget schema from one candidate proposal;
 - no claim that schemas alone determine academically correct classification.
 
+### U02 — presentation authority — COMPLETE + EVIDENCED
+
+Evidence:
+- `evidence/blueprint-schema/ISS66/u02-presentation-authority.md`
+- draft PR #67;
+- candidate workflow `learner-platform-code-tests` run `37420067363`.
+
+Change:
+- retained legacy `PAGE-STAGE-SUPPORT` rule id and `stage_support_layout` observation key for v1 compatibility;
+- corrected the quality/schema contract wording so that the field means “matches the selected blueprint responsive policy”;
+- added a regression preventing restoration of the universal 0.68/0.32 Core1A claim.
+
+Validation:
+- candidate `code-tests`: SUCCESS;
+- existing blueprint layout observation regressions: SUCCESS;
+- blueprint-v2 render snapshots: SUCCESS;
+- the separate Core2 browser lane still fails before browser audit because the Motion-in-2D render has two gaps; the exact integration-basis lane fails the same step with the same two-gap/exit-2 result, so U02 does not relabel it as a candidate regression;
+- historical merged-head Core1A browser evidence reaches the layout audit successfully and fails instead on the separately recorded 7px phone/200%-zoom overflow.
+
+Decision:
+- no new layout field or second authority was added;
+- the legacy observation field is a compatibility alias over blueprint-aware measurement.
+
 ## Next substantial unit
 
-**U02 — Presentation authority.** Verify the merged PR #65 behavior against the declared #66 acceptance criteria using exact active blueprint/audit/tests. Make no production change if the current code already satisfies the unit.
+**U03 — Review provenance & artifact binding.** Preserve existing AUTHOR_ONLY/RENDERED byte binding, then add the smallest explicit reviewer-independence identity/requirement that lets a rendered self-review remain evidence without satisfying an independent-review acceptance requirement.
