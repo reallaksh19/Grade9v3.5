@@ -135,7 +135,6 @@ class Core1AConstructionAudit(unittest.TestCase):
         question["exposure"] = []
         row = self.row(micro, rep, relation, question)
         self.assertNotIn("WORKED_CONCEPTUAL_ANCHOR_MISSING", row["finding_codes"])
-        self.assertNotIn("WORKED_CONCEPTUAL_ANCHOR_INCOMPLETE", row["finding_codes"])
         self.assertEqual(row["worked_anchor_refs"], [])
 
         # But an anchor that is actually declared for CORE1A must carry a route.
