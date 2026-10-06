@@ -9,6 +9,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+from Shared.tools import question_difficulty
+
 REPO = Path(__file__).resolve().parents[2]
 VOCAB_PATH = REPO / "Shared" / "vocabularies" / "cognitive-demand.v1.json"
 MATRIX_PATH = REPO / "Shared" / "quality" / "question-demand-matrix.v1.json"
@@ -220,10 +222,12 @@ def _question_band(question: dict[str, Any]) -> str:
     direct = question.get("difficulty")
     analysis = ((question.get("extensions") or {}).get("grade9v3:analysis") or {})
     difficulty = direct if isinstance(direct, dict) else analysis.get("difficulty")
-    band = difficulty.get("band") if isinstance(difficulty, dict) else None
-    if band not in BANDS:
-        raise QRTContractError(f"QUESTION_DIFFICULTY_MISSING_OR_INVALID: {question.get('id', '<unknown>')}")
-    return band
+    qid = str(question.get("id") or "<unknown>")
+    try:
+        derived = question_difficulty.derive(difficulty, question_ref=qid)
+    except question_difficulty.DifficultyContractError as exc:
+        raise QRTContractError(str(exc)) from exc
+    return str(derived["band"])
 
 
 def _question_demand(question: dict[str, Any]) -> dict[str, Any]:
