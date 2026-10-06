@@ -33,6 +33,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install schema validator
+        run: pip install --quiet jsonschema
+
       - name: Intake policy
         run: python Shared/tools/authoring_intake.py check
 
