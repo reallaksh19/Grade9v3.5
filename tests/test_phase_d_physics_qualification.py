@@ -4,6 +4,8 @@ import json
 import unittest
 from pathlib import Path
 
+from Shared.tools import render_core
+
 
 REPO = Path(__file__).resolve().parents[1]
 BANK = REPO / "Physics/library/exam-bank/competitive-exam-question-bank.v2.json"
@@ -105,6 +107,49 @@ class PhaseDPhysicsDemandCruxQualification(unittest.TestCase):
         self.assertGreaterEqual(difficulty["score"], score_range["min"])
         self.assertLessEqual(difficulty["score"], score_range["max"])
         self.assertTrue(difficulty["basis"].strip())
+
+    def test_core1a_projectile_uses_the_active_generic_construction_blueprint(self):
+        ctx = render_core.context(MANIFEST)
+        blueprint = next(
+            row for row in ctx.blueprints["blueprints"]
+            if row["id"] == "BP-CORE1A-CONSTRUCTION" and row["status"] == "ACTIVE"
+        )
+        self.assertEqual(blueprint["version"], "1.8.0")
+        self.assertEqual(blueprint["responsive_policy"]["expanded"], "SINGLE_PANE")
+        required = {row["id"] for row in blueprint["components"] if row["level"] == "REQUIRED"}
+        self.assertTrue(
+            {"CONCEPT_HEADER", "UNIT_HEADER", "CONSTRUCTION_STEPS", "KEY_STEP", "EXIT_RECALL"}
+            <= required
+        )
+
+    def test_core1a_projectile_renders_all_authored_construction_units_without_core1a_gaps(self):
+        ctx = render_core.context(MANIFEST)
+        html = render_core.page(ctx, "CORE1A", "PAGES", render_core.render_digest(ctx))
+        target = next(
+            m for m in ctx.selection_rows["microtopics"]
+            if m["id"] == "MIC-PHY-KIN-PROJECTILE-MODEL"
+        )
+        self.assertEqual(len(target["construction_units"]), 3)
+
+        for unit in target["construction_units"]:
+            self.assertGreaterEqual(len(unit["step_refs"]), 2)
+            self.assertTrue(unit["representation_ref"])
+            self.assertGreaterEqual(len(unit["reveal_stage_refs"]), 2)
+            self.assertTrue(unit["worked_anchor_ref"])
+            self.assertTrue(unit["independent_checks"])
+            self.assertIn(f'id="{unit["id"]}"', html)
+            self.assertIn(render_core.esc(unit["decision"]), html)
+            for step_ref in unit["step_refs"]:
+                self.assertIn(f'data-g9-step="{step_ref}"', html)
+
+        self.assertIn(render_core.esc(target["inferential_jump"]), html)
+        self.assertIn(render_core.esc(target["exit_task"]["prompt"]), html)
+        self.assertFalse([gap for gap in ctx.gaps if gap["core"] == "CORE1A"])
+
+    def test_generic_renderer_has_no_physics_projectile_or_witness_special_case(self):
+        source = (REPO / "Shared/tools/render_core.py").read_text(encoding="utf-8")
+        self.assertNotIn("MIC-PHY-KIN-PROJECTILE-MODEL", source)
+        self.assertNotIn(WITNESS, source)
 
     def test_secondary_demand_is_question_owned_not_manifest_owned(self):
         self.assertEqual(
