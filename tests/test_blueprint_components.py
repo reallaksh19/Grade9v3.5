@@ -373,15 +373,26 @@ class Core1aBenchmark(unittest.TestCase):
         self.assertTrue(stages)
         self.assertEqual(len(described), sum(stages), "every stage of every figure is a button with its own description")
 
-    def test_the_blueprint_asks_for_three_steps_and_three_stages_as_the_reference_has(self):
+    def test_core1a_blueprint_uses_semantic_minima_not_band_panel_quotas(self):
         by_id = {c["id"]: c for c in blueprints.components(self.blueprint)}
-        self.assertEqual((by_id["CONSTRUCTION_STEPS"]["target_items"], by_id["STAGED_VISUAL"]["target_items"]), (3, 3))
-        self.assertEqual(by_id["QUICK_CHECK"]["presentation"], "TRIAD")
-        self.assertEqual(by_id["EQUATIONS"]["level"], "EXPECTED")
+        self.assertEqual(by_id["CONSTRUCTION_STEPS"]["min_items"], 2)
+        self.assertNotIn("target_items", by_id["CONSTRUCTION_STEPS"])
+        self.assertNotIn("target_items_by_band", by_id["CONSTRUCTION_STEPS"])
+        self.assertEqual(by_id["STAGED_VISUAL"]["level"], "EXPECTED")
+        self.assertNotIn("target_items_by_band", by_id["STAGED_VISUAL"])
+        self.assertEqual(by_id["WORKED_EXAMPLE"]["level"], "EXPECTED")
+        self.assertNotIn("duty", by_id["WORKED_EXAMPLE"])
+        self.assertEqual(by_id["TRAP_REPAIR"]["level"], "OPTIONAL")
+        self.assertEqual(by_id["QUICK_CHECK"]["level"], "OPTIONAL")
+        self.assertEqual(by_id["QUICK_CHECK"]["presentation"], "CHECK_BOX")
+        self.assertNotIn("target_items", by_id["QUICK_CHECK"])
+        self.assertEqual(by_id["EXIT_RECALL"]["level"], "REQUIRED")
+        self.assertNotIn("D1 repair:", by_id["CONSTRUCTION_STEPS"]["authoring"]["hint"])
+        self.assertNotIn("D4 repair:", by_id["CONSTRUCTION_STEPS"]["authoring"]["hint"])
         self.assertTrue(self.blueprint["interaction_policy"]["progressive_support"])
         self.assertEqual(self.blueprint["interaction_policy"]["secondary_reference_default"], "COLLAPSED")
         self.assertEqual(self.blueprint["interaction_policy"]["worked_example_step_policy"], "SHOW_ALL")
-        self.assertEqual(by_id["WORKED_EXAMPLE"]["presentation"], "WORKED_CARD")
+
 
 
 class Tablet(unittest.TestCase):
