@@ -9,7 +9,7 @@
 - Launch integration head: `2b11f2143cf9fd96be44014bab57d4f1f53bad37`
 - Implementation branch: `feat/iss66-blueprint-semantic-contracts`
 - Denominator: 10 declared units
-- Current state after U03: P30% / E30% (3/10 complete and successor-safe evidenced)
+- Current state after U04: P40% / E40% (4/10 complete and successor-safe evidenced)
 
 ## Chronology
 
@@ -83,6 +83,24 @@ Regressions prove:
 - independent rendered review satisfies it only with reviewer identity;
 - artifact digest binding remains mandatory after the stronger provenance claim.
 
+### U04 — difficulty/QRT derivation — COMPLETE + EVIDENCED
+
+Evidence:
+- `evidence/blueprint-schema/ISS66/u04-difficulty-qrt-derivation.md`
+- code head `813fbea92f0ebd6f2c4c6e089a2ae90ffc5f2e70`
+- qrt-pipeline-hardening run `37421354520`: SUCCESS
+- pass1-question-bank-contract run `37421354534`: SUCCESS
+
+Change:
+- centralized score→band derivation in `Shared/tools/question_difficulty.py`, sourced from the existing learner-question metadata vocabulary;
+- QRT resolution now verifies component sum, stored score and stored band before selecting a cell;
+- package/exam schemas distinguish optional planning `requested_band` from derived `band`;
+- QRT resolution records requested band, derived score and a digest of the difficulty-range authority;
+- competitive exam validation reuses the same derivation instead of a second hard-coded map.
+
+Boundary:
+- primary cognitive demand remains a semantic academic classification with a written basis; software does not fabricate it from score/components.
+
 ## Next substantial unit
 
-**U04 — Difficulty/QRT derivation.** Separate requested cohort/band metadata from derived difficulty, make the five-component score-to-band rule canonical/replayable, and stop QRT selection from trusting a contradictory stored band without evidence.
+**U05 — Protected act & support eligibility.** Reuse the existing core2_support_plan/reasoning-move mechanism, then determine the smallest shared learner-owned decision identity/state vocabulary needed to make hint/visual/solution eligibility coherent without a duplicate support system.
