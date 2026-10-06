@@ -1324,13 +1324,20 @@ def _core1a_path_bridge(ctx: Ctx, m: dict, steps: dict[str, dict]) -> tuple[str,
         + "</section>"
     )
     wrong = _misconceptions(m, None)
-    support = (
-        f'<section class="g9-cu-support" data-g9-support-for="{esc(m["id"])}">'
-        f'<h3>{esc(m["title"])}</h3>'
-        + block("wrong_path", items(row["wrong_idea"] for row in wrong), title="A tempting wrong path")
+    trap = (
+        block("wrong_path", items(row["wrong_idea"] for row in wrong), title="A tempting wrong path")
         + block("diagnose", items(row["diagnostic_prompt"] for row in wrong), title="Diagnose")
         + block("repair", items(row["repair"] for row in wrong), title="Repair")
-        + "</section>"
+    )
+    trap_component = component(
+        ctx, "CORE1A", "TRAP_REPAIR",
+        secondary_disclosure("Mistake clinic · diagnose and repair", trap, "core1a-trap-repair"),
+        m["id"], items=len(wrong), waivers=blueprints_api.waivers_of(m),
+    )
+    support = (
+        f'<section class="g9-cu-support" data-g9-support-for="{esc(m["id"])}">'
+        f'<h3>{esc(m["title"])}</h3>{trap_component}</section>'
+        if trap_component else ""
     )
     return primary, support
 
@@ -1339,13 +1346,15 @@ _TRIAD_ROLE = {"CHECK": "Check", "APPLY": "Apply", "CONNECT": "Connect"}
 
 
 def _quick_check(checks: list[dict]) -> str:
-    """The unit's independent checks as the 1-2-3 quick check: each item carries the job it does when it declares one."""
+    """Render whichever intermediate checks are actually authored; role labels are optional metadata."""
     rows = "".join(
         f'<li data-g9-triad-role="{esc(c.get("role") or "")}"><span class="g9-triad-head">'
         f'{n} · {esc(_TRIAD_ROLE.get(c.get("role") or "", "Check"))}</span>'
         f'<span class="g9-triad-text">{esc(c["statement"])}</span></li>'
-        for n, c in enumerate(checks, 1))
-    return block("independent_check", f'<ol class="g9-triad">{rows}</ol>' if rows else "", title="1-2-3 quick check")
+        for n, c in enumerate(checks, 1)
+    )
+    # Keep the legacy CSS hook for compatible styling; it no longer implies three items.
+    return block("independent_check", f'<ol class="g9-triad">{rows}</ol>' if rows else "", title="Quick check")
 
 
 def _stages_of(figure_html: str) -> int:
@@ -1441,9 +1450,14 @@ def core1a(ctx: Ctx, m: dict) -> str:
                         f"({', '.join(sorted(bank_by_id)[:4])}...)", "CORE1A", component="WORKED_EXAMPLE")
             anchor_html = _core1a_worked_anchor(anchor_q, ctx, owner=True) if anchor_q else ""
         else:
-            anchor_q = questions.get(u.get("worked_anchor_ref") or "")
-            if not anchor_q:
-                ctx.gap("AUTHOR_WORKED_ANCHOR", u["id"], "no worked anchor", "CORE1A")
+            worked_ref = u.get("worked_anchor_ref")
+            anchor_q = questions.get(worked_ref) if worked_ref else None
+            if worked_ref and not anchor_q:
+                ctx.gap(
+                    "AUTHOR_WORKED_ANCHOR", u["id"],
+                    f"worked_anchor_ref {worked_ref} does not resolve to a question",
+                    "CORE1A", component="WORKED_EXAMPLE",
+                )
             anchor_html = _core1a_worked_anchor(anchor_q) if anchor_q else ""
         crux_refs = [ref for ref in u.get("crux_question_refs") or [] if isinstance(ref, str)]
         crux_questions = [bank_by_id[ref] for ref in crux_refs if ref in bank_by_id]
@@ -1459,8 +1473,6 @@ def core1a(ctx: Ctx, m: dict) -> str:
                     component="QUESTION_BRIDGE")
         check_rows = [c for c in u.get("independent_checks") or [] if c.get("statement")]
         checks = [c["statement"] for c in check_rows]
-        if not checks:
-            ctx.gap("AUTHOR_INDEPENDENT_CHECK", u["id"], "no independent check", "CORE1A")
         wrong = _misconceptions(m, u)
         title = decision or (f"Construction step {n + 1} of {len(units)}" if len(units) > 1 else "Construction")
         unit_head = (f'<div class="g9-unit-head"><span class="g9-unit-no" aria-hidden="true">{n + 1}</span>'
@@ -1516,23 +1528,22 @@ def core1a(ctx: Ctx, m: dict) -> str:
         trap = (block("wrong_path", items(row["wrong_idea"] for row in wrong), title="A tempting wrong path")
                 + block("diagnose", items(row["diagnostic_prompt"] for row in wrong), title="Diagnose")
                 + block("repair", items(row["repair"] for row in wrong), title="Repair"))
+        support_body = component_body(ctx, "CORE1A", {
+            "TRAP_REPAIR": unit_part("TRAP_REPAIR", secondary_disclosure(
+                "Mistake clinic · diagnose and repair",
+                trap,
+                "core1a-trap-repair",
+            ), items=len(wrong)),
+            "QUICK_CHECK": unit_part("QUICK_CHECK", _quick_check(check_rows), items=len(checks)),
+        }, "repair_closure")
         support = (
             f'<section class="g9-cu-support" data-g9-support-for="{esc(u["id"])}">'
-            f"<h3>{esc(support_label)}</h3>"
-            + component_body(ctx, "CORE1A", {
-                "TRAP_REPAIR": unit_part("TRAP_REPAIR", secondary_disclosure(
-                    "Mistake clinic · diagnose and repair",
-                    trap,
-                    "core1a-trap-repair",
-                ), items=len(wrong)),
-                "QUICK_CHECK": unit_part("QUICK_CHECK", _quick_check(check_rows), items=len(checks)),
-            }, "repair_closure")
-            + "</section>"
+            f"<h3>{esc(support_label)}</h3>{support_body}</section>"
+            if support_body else ""
         )
-        # Each complete construction is followed by its requestable repair and independent check.
         rows += compose(ctx, "CORE1A", {
             "construction": construction,
-            "repair_closure": support,
+            **({"repair_closure": support} if support else {}),
         })
 
     if toughest and m["id"] == toughest["microtopic_ref"]:
@@ -1549,30 +1560,26 @@ def core1a(ctx: Ctx, m: dict) -> str:
 
 
 def _toughest_unit_gaps(ctx: Ctx, m: dict, units: list[dict], toughest: dict) -> None:
-    """New authoring must build the toughest question's concept, not only name it.
+    """Require the toughest target to bind to the construction that teaches its decisive move.
 
-    The unit that builds it names the question in crux_question_refs, works it through as its example (bank_anchor_ref), and
-    takes the depth of the question's band (the steps and the stages), so the concept book is built for the question a
-    learner is most likely to fail."""
+    The source question itself does not have to become the worked example. The ordinary
+    Core1A unit validation separately checks that a bound crux_step_ref belongs to the
+    unit's teaching path.
+    """
     ref, label = toughest["question_ref"], toughest["label"]
     move = (toughest.get("crux_move") or {}).get("action")
-    why = (f"{label} is the toughest question in this set ({toughest['band']}, {toughest['score']}/10, "
-           f"{toughest['conceptual']}/4 conceptual) and belongs to this concept")
+    why = (
+        f"{label} is the toughest question in this set ({toughest['band']}, {toughest['score']}/10, "
+        f"{toughest['conceptual']}/4 conceptual) and belongs to this concept"
+    )
     builders = [u for u in units if ref in (u.get("crux_question_refs") or [])]
     if not builders:
-        ctx.gap("AUTHOR_TOUGHEST_CONCEPT", m["id"],
-                f"{why}, but no construction unit builds toward it: name {ref} in crux_question_refs on the unit whose steps lead to "
-                + (f"the move a learner misses ({move!r}), " if move else "the move the question turns on, ")
-                + f"and set that unit's bank_anchor_ref to {ref}", "CORE1A", component="QUESTION_BRIDGE")
-        return
-    for u in builders:
-        novel = ((m.get("extensions") or {}).get("grade9v3:lesson_anchors") or {}).get(u["id"])
-        bank_by_id = {q['id']: q for q in ctx.bank if isinstance(q, dict) and q.get('id')}
-        valid = not learning_repair.anchor_problems(novel, bank_by_id, u['id'], ref) if novel is not None else u.get('bank_anchor_ref') == ref
-        if not valid:
-            ctx.gap("AUTHOR_TOUGHEST_CONCEPT", u["id"],
-                    f"{why}; this unit builds toward it but its worked example is not {label}: set bank_anchor_ref to {ref} so the "
-                    "unit walks through the question itself", "CORE1A", component="WORKED_EXAMPLE")
+        ctx.gap(
+            "AUTHOR_TOUGHEST_CONCEPT", m["id"],
+            f"{why}, but no construction unit builds toward it: name {ref} in crux_question_refs on the unit whose steps lead to "
+            + (f"the move a learner misses ({move!r})" if move else "the move the question turns on"),
+            "CORE1A", component="QUESTION_BRIDGE",
+        )
 
 
 def core1b(ctx: Ctx, m: dict) -> str:
