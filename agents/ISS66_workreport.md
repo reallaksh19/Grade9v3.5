@@ -9,7 +9,7 @@
 - Launch integration head: `2b11f2143cf9fd96be44014bab57d4f1f53bad37`
 - Implementation branch: `feat/iss66-blueprint-semantic-contracts`
 - Denominator: 10 declared units
-- Current state after U02: P20% / E20% (2/10 complete and successor-safe evidenced)
+- Current state after U03: P30% / E30% (3/10 complete and successor-safe evidenced)
 
 ## Chronology
 
@@ -63,6 +63,26 @@ Decision:
 - no new layout field or second authority was added;
 - the legacy observation field is a compatibility alias over blueprint-aware measurement.
 
+### U03 — review provenance & artifact binding — COMPLETE + EVIDENCED
+
+Evidence:
+- `evidence/blueprint-schema/ISS66/u03-review-provenance.md`
+- code head `75ba8a45a009a0205d1d65363301ed6538e9d014`
+- qrt-pipeline-hardening run `37420573268`: SUCCESS
+- learner-platform-code-tests run `37420573263`: code-tests + blueprint snapshot jobs SUCCESS
+
+Change:
+- extended semantic review basis with `INDEPENDENT_RENDERED`;
+- independent rendered review requires a declared `reviewer_ref`;
+- added optional run-level `review_requirements.independent_rendered_review_required`;
+- legacy/missing-basis rendered reviews remain valid ordinary exact-artifact reviews;
+- opt-in independent requirement is enforced by the existing QRT guard without becoming a universal publication gate.
+
+Regressions prove:
+- rendered self-review remains evidence but does not satisfy the opt-in independent requirement;
+- independent rendered review satisfies it only with reviewer identity;
+- artifact digest binding remains mandatory after the stronger provenance claim.
+
 ## Next substantial unit
 
-**U03 — Review provenance & artifact binding.** Preserve existing AUTHOR_ONLY/RENDERED byte binding, then add the smallest explicit reviewer-independence identity/requirement that lets a rendered self-review remain evidence without satisfying an independent-review acceptance requirement.
+**U04 — Difficulty/QRT derivation.** Separate requested cohort/band metadata from derived difficulty, make the five-component score-to-band rule canonical/replayable, and stop QRT selection from trusting a contradictory stored band without evidence.
