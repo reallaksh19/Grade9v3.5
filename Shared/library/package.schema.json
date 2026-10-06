@@ -3468,7 +3468,17 @@
             "D2",
             "D3",
             "D4"
-          ]
+          ],
+          "description": "Derived D-band. Must match the component sum through Shared/vocabularies/learner-question-metadata.v1.json; consumers must not treat an intended cohort as authority for this field."
+        },
+        "requested_band": {
+          "enum": [
+            "D1",
+            "D2",
+            "D3",
+            "D4"
+          ],
+          "description": "Optional planning/stress-cohort target. It may differ from band and is never used to select the QRT cell."
         },
         "score": {
           "type": "integer",
