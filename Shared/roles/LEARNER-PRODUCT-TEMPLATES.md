@@ -334,7 +334,7 @@ it is never permission for an agent to invent a page architecture.
         "CLOSED_DISCLOSURE_AS_SEMANTIC_PROTECTION",
         "UNTRACKED_PRE_ATTEMPT_ASSISTANCE"
       ],
-      "web_blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.10.0"
+      "web_blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.11.0"
     },
     "CORE2A": {
       "learner_job": "Learn a familiar question-family application route with pedagogical support and complete closure.",
