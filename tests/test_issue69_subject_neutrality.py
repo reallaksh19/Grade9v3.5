@@ -210,6 +210,19 @@ class Issue69SubjectNeutrality(unittest.TestCase):
         self.assertNotIn("1-2-3 quick check", one)
         self.assertEqual(one.count("<li "), 1)
 
+    def test_core1a_repair_can_render_without_a_quick_check(self):
+        manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(manifest)
+        microtopic = copy.deepcopy(ctx.selection_rows["microtopics"][0])
+        self.assertTrue(microtopic.get("misconceptions"))
+        for unit in microtopic.get("construction_units") or []:
+            unit["independent_checks"] = []
+
+        html = render_core.core1a(ctx, microtopic)
+        self.assertIn('data-g9-block="wrong_path"', html)
+        self.assertNotIn('data-g9-block="independent_check"', html)
+        self.assertIn('data-g9-block="exit_task"', html)
+
     def test_toughest_target_requires_crux_binding_not_source_question_as_worked_example(self):
         manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
         ctx = render_core.context(manifest)
