@@ -1,0 +1,83 @@
+{
+  "schema": "iss66-classification-replay/v1",
+  "issue": 66,
+  "purpose": "Replay frozen #50/#54 and #51/#55 classification evidence against ISS66 U04B/U04C admission requirements without rewriting historical candidate claims.",
+  "admission_requirements": {
+    "component_evidence": "All five difficulty components have question-specific evidence against the canonical 0/1/2 rubric.",
+    "canonical_crux": "answer.crux_move_ref resolves inside answer.reasoning_route[].",
+    "normalized_demand_basis": "grade9v3:cognitive_demand carries primary/secondary/basis and is bound by the QRT resolver to the canonical crux."
+  },
+  "cohorts": [
+    {
+      "issue": 50,
+      "set": "A",
+      "intended_band": "D2",
+      "frozen_head": "a58eebee28112080393cc47e4295862efc43dbed",
+      "questions": 10,
+      "component_evidence": 0,
+      "canonical_crux": 0,
+      "normalized_demand_basis": 0,
+      "replay_status": "REPLAY_REQUIRED_UNDER_EVIDENCED",
+      "note": "question-ledger preserves component scores and primary demand but not canonical answer route/crux; no U04B component evidence."
+    },
+    {
+      "issue": 54,
+      "set": "B",
+      "intended_band": "D2",
+      "frozen_head": "3d17905ebee4ac6cf39057ac05d49947b1b50430",
+      "questions": 10,
+      "component_evidence": 0,
+      "canonical_crux": 10,
+      "normalized_demand_basis": 0,
+      "replay_status": "REPLAY_REQUIRED_UNDER_EVIDENCED",
+      "note": "question-ledger has answer routes/crux refs, but no U04B component evidence and no normalized crux-bound demand basis."
+    },
+    {
+      "issue": 51,
+      "set": "A",
+      "intended_band": "D3",
+      "frozen_head": "b94ede24c7ba64ed36ba5f137b65d95816164599",
+      "questions": 10,
+      "component_evidence": 0,
+      "canonical_crux": 10,
+      "normalized_demand_basis": 0,
+      "replay_status": "REPLAY_REQUIRED_UNDER_EVIDENCED",
+      "note": "owner bank has canonical routes/crux refs and legacy analysis.cognitive_demand, but no per-component evidence or normalized demand basis."
+    },
+    {
+      "issue": 55,
+      "set": "B",
+      "intended_band": "D3",
+      "frozen_head": "91951abc430ff50ae526110488d9b12e27e30af5",
+      "questions": 10,
+      "component_evidence": 0,
+      "canonical_crux": 10,
+      "normalized_demand_basis": 0,
+      "replay_status": "REPLAY_REQUIRED_UNDER_EVIDENCED",
+      "note": "owner bank has canonical routes/crux refs and legacy analysis.cognitive_demand, but no per-component evidence or normalized demand basis."
+    }
+  ],
+  "pair_findings": {
+    "d2": {
+      "pair": [
+        50,
+        54
+      ],
+      "prior_disagreement": "Q6 and Q10 demonstrate material band divergence; Q10 also differs in primary demand.",
+      "new_contract_result": "NOT_ADJUDICABLE_YET",
+      "reason": "Neither frozen run satisfies the U04B evidence admission shape; #50 evidence lane also lacks canonical crux binding."
+    },
+    "d3": {
+      "pair": [
+        51,
+        55
+      ],
+      "prior_disagreement": "Q8 converges on JUSTIFY but differs D4 vs D3; multiple other items differ in band/demand.",
+      "new_contract_result": "NOT_ADJUDICABLE_YET",
+      "reason": "Both frozen banks have crux routes, but neither has per-component evidence or normalized demand basis. Crux selections themselves also differ on some matched items, so replay must re-author evidence rather than compare labels alone."
+    }
+  },
+  "adjudication_state_decision": "NO_SHARED_ADJUDICATION_STATE_ADDED",
+  "rationale": "The U04D gate only adds shared adjudication machinery when two independently admissible classifications under the same evidence contract still disagree. No frozen cohort currently meets that admission bar.",
+  "next_use": "Treat #50/#54 and #51/#55 as calibration fixtures requiring fresh evidence authoring under U04B/U04C before their classifications can be compared for adjudication."
+}
