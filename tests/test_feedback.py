@@ -862,10 +862,11 @@ class LearningLoopScenarioScanner(unittest.TestCase):
             shown_hint_indices=[0, 1],
             help_used="HINT",
             evaluation={"diagnostic_evidence": confirmed_diagnostic_evidence(
-                self.SUBJECT,
-                "CAP-MATH-ISOLATE",
-                "I would change only one side of the equation.",
-                "The canonical probe response repeats the one-sided-operation misconception.",
+                "Example",
+                "CAP-A",
+                "I used the wrong structural rule instead of preserving the required relation.",
+                "The canonical probe response directly repeats the authored misconception.",
+                root=self.repo,
             )},
         )
 
@@ -920,10 +921,11 @@ class LearningLoopScenarioScanner(unittest.TestCase):
             shown_hint_indices=[0, 1],
             help_used="HINT",
             evaluation={"diagnostic_evidence": confirmed_diagnostic_evidence(
-                self.SUBJECT,
-                "CAP-MATH-ISOLATE",
-                "I would change only one side of the equation.",
-                "The canonical probe response repeats the one-sided-operation misconception.",
+                "Example",
+                "CAP-A",
+                "I used the wrong structural rule instead of preserving the required relation.",
+                "The canonical probe response directly repeats the authored misconception.",
+                root=self.repo,
             )},
         )
         self.assertEqual(third["next_action"], "REPAIR")
