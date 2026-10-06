@@ -531,14 +531,32 @@ class Renderer(unittest.TestCase):
         self.assertTrue(blueprint["interaction_policy"]["progressive_support"])
         self.assertIn("ATTEMPT_FIRST_AS_PRIMARY_MODE", blueprint["forbidden"])
 
+        # The only retained 68/32 ratio is a local bucket-orientation card.
+        # Core1A's page layout is selected from its blueprint and remains one pane.
         self.assertIn("@media (min-width:1100px)", render_core.CSS)
-        self.assertIn("grid-template-columns:.68fr .32fr", render_core.CSS)
+        self.assertIn(
+            ".g9-bucket-orientation-grid{display:grid;grid-template-columns:.68fr .32fr",
+            render_core.CSS,
+        )
+        self.assertNotIn(
+            'article[data-g9-role="CORE1A"] .g9-split{display:grid;',
+            render_core.layout_css(ctx.blueprints),
+        )
         self.assertIn("min-height:var(--g9-touch-min)", render_core.CSS)
         self.assertIn("overflow-x:auto", render_core.CSS)
         self.assertIn(".g9-stage-controls{display:grid;gap:8px;max-width:100%}", render_core.CSS)
         self.assertIn(".g9-stage-chip[aria-pressed=true]", render_core.CSS)
         self.assertIn("[data-g9-concept-route] a,[data-g9-section-route] a{display:flex;width:100%;max-width:100%;min-width:0", render_core.CSS)
         self.assertIn("overflow-wrap:anywhere", render_core.CSS)
+        self.assertIn(
+            ".blueprint-slot,.g9-component,.g9-cu,.g9-cu-support,[data-g9-block],details,fieldset{min-width:0;max-width:100%;box-sizing:border-box}",
+            render_core.CSS,
+        )
+        self.assertIn("fieldset{min-inline-size:0}", render_core.CSS)
+        self.assertIn(
+            ".g9-cu-support>h3{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:normal;overflow-wrap:anywhere}",
+            render_core.COMPONENT_CSS,
+        )
         self.assertIn("[data-g9-meta-item]{display:inline-flex;flex-wrap:wrap", render_core.CSS)
         self.assertIn('data-g9-equation-matrix', html)
 
