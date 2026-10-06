@@ -261,6 +261,31 @@ def core_contract_card(core: dict) -> str:
     )
 
 
+def fixture_boundary_card(fixture: dict, safety: dict) -> str:
+    topics = "".join(
+        f'<li>{esc(topic)} · {esc(count)} coordinate(s)</li>'
+        for topic, count in sorted(fixture["topic_counts"].items())
+    )
+    excluded = fixture["excluded_provider_head"]
+    provider = excluded.get("commit") or "unknown provider head"
+    disposition = excluded.get("disposition") or "HOLD"
+    return card(
+        "fixture-boundary",
+        "sandbox fixture denominator topics unverified hold excluded not canonical not searchable",
+        '<h2>TEST fixture boundary</h2>'
+        f'<p><strong>{esc(fixture["question_count"])} TEST-only coordinates</strong> · '
+        f'<code>{esc(fixture["fixture_id"])}</code></p>'
+        f'<p><strong>Authority:</strong> <code>{esc(fixture["authority_status"])}</code></p>'
+        f'<ul>{topics}</ul>'
+        f'<p><strong>Excluded provider head:</strong> <code>{esc(provider)}</code><br>'
+        f'<strong>Placeholder records excluded:</strong> {esc(excluded["excluded_placeholder_records"])} · '
+        f'<strong>Disposition:</strong> {esc(disposition)}</p>'
+        '<p class="g9-prov">Sandbox coordinates only: not canonical, not learner-searchable, '
+        'not acceptance evidence, and not a source-verification claim.</p>'
+        f'<p class="g9-prov">Fixture scope: <code>{esc(safety["fixture_scope"])}</code>.</p>',
+    )
+
+
 # ------------------------------------------------------------------ pages
 
 def hub_page() -> str:
@@ -288,6 +313,7 @@ def hub_page() -> str:
         '<p class="g9-prov">A gap count of 0 means the depth check found nothing missing. It counts what is absent, '
         'not how good it is, and it does not say the content has been reviewed.</p>'
         + core_contract_card(state["core_contract"])
+        + fixture_boundary_card(state["fixture"], state["safety"])
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
         + stage(2, "Core1A", "Concept construction for the same topic", core1a)
         + stage(3, "Explorer", "A guided page on the toughest concept of the same question set", inter)
