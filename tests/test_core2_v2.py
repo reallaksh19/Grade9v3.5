@@ -583,13 +583,18 @@ class Core2V2RendererContract(unittest.TestCase):
 
     def test_single_file_rewrite_keeps_cross_core_join_exact(self):
         page = (
-            '<main><article id="MIC-A">'
+            '<main><article id="MIC-A"><section id="CU-A">'
             '<a data-g9-practice-link href="core2.html#Q-JOIN">Practice</a>'
-            '</article></main>'
+            '<a data-g9-concept-link data-g9-question-ref="Q-JOIN" data-g9-concept-ref="MIC-A" '
+            'href="core1a.html?g9-return=Q-JOIN&amp;g9-concept=MIC-A#CU-A">Concept</a>'
+            '</section></article></main>'
         )
         fragment = render_core._single_file_fragment(page, "CORE1A")
         self.assertIn('id="g9-CORE1A--MIC-A"', fragment)
+        self.assertIn('id="g9-CORE1A--CU-A"', fragment)
         self.assertIn('href="#g9-CORE2--Q-JOIN"', fragment)
+        self.assertIn('href="#g9-CORE1A--CU-A"', fragment)
+        self.assertNotIn('core1a.html?g9-return=', fragment)
 
 
 class Core2V2RoundTripStateContract(unittest.TestCase):
