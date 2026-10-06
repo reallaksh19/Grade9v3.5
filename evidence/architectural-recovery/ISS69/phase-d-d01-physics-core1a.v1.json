@@ -1,0 +1,92 @@
+{
+  "schema_version": "grade9v3-phase-d-physics-core1a-construction-v1",
+  "issue": 109,
+  "subunit": "D01.3",
+  "result": "PASS_SOURCE_CONTRACT",
+  "product_manifest": "products/physics/phy-kin-2d-motion.manifest.json",
+  "subject_package_blob": "04c51ee0a987c31cf0ad907fd355393a19f2a024",
+  "renderer_blob": "675cbceb373b4489584a0774a8297666de46618c",
+  "blueprint_registry_blob": "7b48d6d955e16582034d90c7d2e7a3606b648266",
+  "active_blueprint": {
+    "id": "BP-CORE1A-CONSTRUCTION",
+    "version": "1.8.0",
+    "layout_family": "READING_CONSTRUCTION",
+    "expanded": "SINGLE_PANE",
+    "required_components": [
+      "CONCEPT_HEADER",
+      "UNIT_HEADER",
+      "CONSTRUCTION_STEPS",
+      "KEY_STEP",
+      "EXIT_RECALL"
+    ]
+  },
+  "microtopic": {
+    "id": "MIC-PHY-KIN-PROJECTILE-MODEL",
+    "title": "Select the gravity-only projectile model before using projectile consequences",
+    "inferential_jump": "After release in the ideal near-Earth model, projectile motion is not a new set of laws: it is the same component kinematics with a_x=0 and a_y=-g (for +y upward).",
+    "construction_units": [
+      {
+        "id": "CU-PHY-KIN-PROJECTILE-MODEL-1",
+        "decision": "Decide from what acts after release whether the gravity-only model applies, and only then put a_x = 0 and a_y = −g into the component equations.",
+        "step_refs": [
+          "K2D3-1",
+          "K2D3-2"
+        ],
+        "representation_ref": "REP-KIN-2D-BALCONY-8-6",
+        "reveal_stage_refs": [
+          "VIS-KIN-2D-BALCONY-V0",
+          "VIS-KIN-2D-BALCONY-V1",
+          "VIS-KIN-2D-BALCONY-V2",
+          "VIS-KIN-2D-BALCONY-V3"
+        ],
+        "worked_anchor_ref": "Q-PHY-KIN-PROJ-1A-MODEL-01",
+        "independent_check_count": 2
+      },
+      {
+        "id": "CU-PHY-KIN-PROJECTILE-MODEL-2",
+        "decision": "Name the requested event as a component condition before solving for its time: v_y = 0 at the apex, Δy = 0 at a return to launch height.",
+        "step_refs": [
+          "K2D3-3",
+          "K2D3-4",
+          "K2D3-5"
+        ],
+        "representation_ref": "REP-KIN-2D-LEVEL-APEX-RETURN",
+        "reveal_stage_refs": [
+          "VIS-KIN-2D-LEVEL-V0",
+          "VIS-KIN-2D-LEVEL-V1",
+          "VIS-KIN-2D-LEVEL-V2",
+          "VIS-KIN-2D-LEVEL-V3"
+        ],
+        "worked_anchor_ref": "Q-PHY-KIN-PROJ-1A-EVENTS-01",
+        "independent_check_count": 2
+      },
+      {
+        "id": "CU-PHY-KIN-PROJECTILE-MODEL-3",
+        "decision": "Write the landing event from the actual drop while keeping the actual u_y, then read every requested quantity at that one event time.",
+        "step_refs": [
+          "K2D3-6",
+          "K2D3-7"
+        ],
+        "representation_ref": "REP-KIN-2D-ROOF-UNEQUAL-LANDING",
+        "reveal_stage_refs": [
+          "VIS-KIN-2D-ROOF-V0",
+          "VIS-KIN-2D-ROOF-V1",
+          "VIS-KIN-2D-ROOF-V2",
+          "VIS-KIN-2D-ROOF-V3"
+        ],
+        "worked_anchor_ref": "Q-PHY-KIN-PROJ-1A-UNEQUAL-01",
+        "independent_check_count": 2
+      }
+    ],
+    "exit_task_prompt": "A stone is launched horizontally from a cliff with speed u. With +y upward and air resistance neglected, write its component acceleration, velocity and displacement relations after release and explain why one common t is used."
+  },
+  "qualification": [
+    "The active Core1A blueprint is subject-neutral BP-CORE1A-CONSTRUCTION@1.8.0.",
+    "The Physics projectile microtopic supplies three authored construction units rather than relying on a renderer fallback.",
+    "Every construction unit has at least two canonical teaching_path step refs, a representation ref, staged reveal refs, a worked anchor and independent checks.",
+    "The generic renderer constructs unit sections from construction_units[] and teaching_path data.",
+    "The renderer source contains neither the Physics projectile microtopic id nor the Q33 witness id as a special case.",
+    "Focused qualification tests render the real product through render_core and require zero Core1A gaps."
+  ],
+  "no_shared_patch": true
+}
