@@ -3270,6 +3270,10 @@
           "type": "string",
           "pattern": "^CU-[A-Z0-9-]+$"
         },
+        "extensions": {
+          "type": "object",
+          "description": "Namespaced unit-level extensions. Repeated blueprint applicability may use extensions['grade9v3:component_waivers'] with the same {COMPONENT_ID: reason} contract as a top-level record."
+        },
         "decision": {
           "type": "string",
           "minLength": 1,
