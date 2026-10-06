@@ -192,6 +192,39 @@ class PhaseDPhysicsDemandCruxQualification(unittest.TestCase):
         self.assertEqual(html.count('template data-g9-rung-payload='), 3)
         self.assertNotIn('data-g9-support-reveals="ANSWER"', html)
 
+    def test_q33_is_honestly_no_picture_instead_of_getting_a_decorative_case(self):
+        self.assertEqual(self.question.get("figure_refs") or [], [])
+        self.assertFalse(self.question.get("representation_roles"))
+        self.assertNotIn("grade9v3:core2_support_plan", self.question["extensions"])
+
+    def test_shared_clock_scene_has_one_owner_resolved_data_and_real_asset(self):
+        rep = next(
+            r for r in self.package["representations"]
+            if r["id"] == "REP-KIN-2D-SHARED-CLOCK"
+        )
+        scene = next(
+            row for row in rep["scene_instances"]
+            if row["id"] == "SCENE-KIN-2D-SHARED-CLOCK-PORTABLE-01"
+        )
+        self.assertEqual(scene["microtopic_ref"], "MIC-PHY-KIN-2D-INDEPENDENT-COMPONENTS")
+        self.assertNotIn("question_ref", scene)
+        self.assertEqual(scene["cores"], ["CORE1A", "CORE1B"])
+
+        data = {row["id"]: row for row in self.package["data"]}
+        self.assertEqual(
+            scene["datum_refs"],
+            ["DAT-KIN-2D-SHARED-T2", "DAT-KIN-2D-MIXED-T3"],
+        )
+        self.assertTrue(all(ref in data for ref in scene["datum_refs"]))
+        self.assertEqual(data["DAT-KIN-2D-SHARED-T2"]["value"], 2)
+        self.assertEqual(data["DAT-KIN-2D-MIXED-T3"]["value"], 3)
+
+        self.assertEqual(
+            rep["rendered_asset_refs"],
+            ["Physics/assets/representations/REP-KIN-2D-SHARED-CLOCK.svg"],
+        )
+        self.assertTrue((REPO / rep["rendered_asset_refs"][0]).is_file())
+
     def test_secondary_demand_is_question_owned_not_manifest_owned(self):
         self.assertEqual(
             self.question["secondary_capability_refs"],
