@@ -466,9 +466,24 @@
     renderSearch();
   }
 
+  function ensureTestNav() {
+    const navs = document.querySelectorAll('.g9-header-nav, header.site-nav .nav-links');
+    navs.forEach(nav => {
+      if (nav.querySelector('[data-site-test]')) return;
+      const link = document.createElement('a');
+      link.href = root + 'test/index.html';
+      link.className = 'test-link';
+      link.dataset.siteTest = '';
+      link.title = 'TEST sandbox · draft only';
+      link.textContent = 'TEST · LAB';
+      nav.appendChild(link);
+    });
+  }
+
   // 4. Bind universal triggers
   function bindTriggers() {
     initLegacyHeader();
+    ensureTestNav();
 
     document.querySelectorAll('[data-g9-action="search"], .g9-search-trigger, .g9-search-btn').forEach(btn => {
       btn.onclick = openSearch;
