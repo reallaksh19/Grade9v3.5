@@ -1,0 +1,46 @@
+{
+  "schema_version": "grade9v3-phase-d-physics-demand-crux-v1",
+  "issue": 109,
+  "subunit": "D01.1",
+  "frozen_runtime_authority": "eeb2223402351c4e6537c94c0d189e1279681187",
+  "evidence_branch_base": "59751b52e4911a132abb8c3956583a75b3cbcab7",
+  "specimen": {
+    "product_manifest": "products/physics/phy-kin-2d-motion.manifest.json",
+    "product_manifest_blob": "2ded3bdb9efab8143145ca098f5c41b7b5a989cc",
+    "source_bank": "Physics/library/exam-bank/competitive-exam-question-bank.v2.json",
+    "source_bank_blob": "bc22e1610552803e1ee8ccfc167f2a69ebbbd032",
+    "subject_package": "Physics/library/phy-kin-2d-motion.v1.json",
+    "subject_package_blob": "04c51ee0a987c31cf0ad907fd355393a19f2a024",
+    "witness_id": "PYQ-PHY-IITJEE-2011-P2-Q33"
+  },
+  "result": "PASS",
+  "primary_demand": {
+    "question_primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+    "capability_action": "Recognize and solve an ideal near-Earth projectile as a special two-dimensional constant-acceleration state.",
+    "microtopic_ref": "MIC-PHY-KIN-PROJECTILE-MODEL",
+    "microtopic_primary_capability_ref": "CAP-KIN-PROJECTILE-MODEL",
+    "product_manifest_behavior": "ID_SELECTION_ONLY_NO_SET_LEVEL_PRIMARY_OVERRIDE",
+    "secondary_capability_refs": [
+      "CAP-KIN-2D-INDEPENDENT-COMPONENTS",
+      "CAP-KIN-2D-CONSTANT-ACCELERATION"
+    ]
+  },
+  "crux_binding": {
+    "stable_crux_move": "Use the vertical projectile event to get time, then include the train's accelerated displacement in the relative x equation.",
+    "crux_move_ref": "PYQ-PHY-IITJEE-2011-P2-Q33-MOVE-2",
+    "crux_route_kind": "CONNECT",
+    "crux_route_action": "Relative horizontal displacement in the accelerating train is (10 cos60)T - (1/2)aT^2.",
+    "difficult_move_index": 1,
+    "scaffold_support_kind": "CONNECT",
+    "scaffold_supports_move_ref": "PYQ-PHY-IITJEE-2011-P2-Q33-MOVE-2",
+    "scaffold_text": "Write ball-minus-train horizontal displacement over that same interval."
+  },
+  "qualification": [
+    "The canonical question retains one primary capability owner independent of product selection.",
+    "The selected Motion-2D microtopic declares the same primary capability as the question.",
+    "The question-specific stable crux is not inferred from difficulty or set-level scope; it is bound by crux_move_ref to a concrete reasoning move.",
+    "The scaffold that exposes the connection targets the same crux move reference.",
+    "Secondary capabilities remain meaningful supporting demand; the architecture does not require one capability reference for every reasoning step."
+  ],
+  "no_shared_patch": true
+}
