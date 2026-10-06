@@ -552,8 +552,14 @@ class Core2V2RendererContract(unittest.TestCase):
         ctx, _microtopic_a, _microtopic_b, question = self._join_ctx()
         rendered = render_core._core2_concept_navigation(ctx, question)
         self.assertIn('data-g9-block="concept_navigation"', rendered)
-        self.assertIn('href="core1a.html#MIC-B"', rendered)
-        self.assertIn('href="core1a.html#MIC-A"', rendered)
+        self.assertIn(
+            'href="core1a.html?g9-return=Q-JOIN&amp;g9-concept=MIC-B#MIC-B"',
+            rendered,
+        )
+        self.assertIn(
+            'href="core1a.html?g9-return=Q-JOIN&amp;g9-concept=MIC-A#MIC-A"',
+            rendered,
+        )
         self.assertLess(rendered.index("MIC-B"), rendered.index("MIC-A"))
         self.assertNotIn("Hidden source hint", rendered)
 
@@ -615,9 +621,16 @@ class Core2V2RoundTripStateContract(unittest.TestCase):
         js = render_core.JS
         self.assertIn("markAssistance(a,'CONCEPT_NAV');saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef)", js)
         self.assertIn("store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit)", js)
-        self.assertIn("const active=!!key&&store.get(key)===link.dataset.g9QuestionRef", js)
+        self.assertIn("const navParams=new URLSearchParams(location.search)", js)
+        self.assertIn("const navReturn=navParams.get('g9-return')", js)
+        self.assertIn("const navConcept=navParams.get('g9-concept')", js)
+        self.assertIn(
+            "const routed=navReturn===link.dataset.g9QuestionRef&&navConcept===link.dataset.g9ConceptRef",
+            js,
+        )
+        self.assertIn("const active=stored||routed", js)
         self.assertIn("link.dataset.g9ReturnLink=''", js)
-        self.assertIn("store.remove(key);refreshReturnLinks()", js)
+        self.assertIn("if(key&&store.get(key)===link.dataset.g9QuestionRef)store.remove(key)", js)
 
     def test_assistance_events_mark_the_question_as_supported(self):
         js = render_core.JS
@@ -631,10 +644,15 @@ class Core2V2RoundTripStateContract(unittest.TestCase):
         js = render_core.JS
         self.assertIn("catch(e){return null}", js)
         self.assertIn("catch(e){return false}", js)
-        # The static exact links remain the navigation authority when storage is unavailable.
+        # The static URLs remain the navigation authority when storage is unavailable.
+        # Core2 -> Core1A carries exact origin/return state in the URL itself.
         ctx, microtopic_a, _microtopic_b, question = Core2V2RendererContract._join_ctx()
         self.assertIn('href="core2.html#Q-JOIN"', render_core._core1a_practice_navigation(ctx, microtopic_a))
-        self.assertIn('href="core1a.html#MIC-B"', render_core._core2_concept_navigation(ctx, question))
+        self.assertIn(
+            'href="core1a.html?g9-return=Q-JOIN&amp;g9-concept=MIC-B#MIC-B"',
+            render_core._core2_concept_navigation(ctx, question),
+        )
+        self.assertIn("const navParams=new URLSearchParams(location.search)", js)
 
     def test_rendered_page_exposes_digest_scope_and_role_on_the_question_article(self):
         question = Core2V2RendererContract._question()
