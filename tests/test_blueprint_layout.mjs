@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { matchesBlueprintLayout, splitLayoutExpectation } from '../tools/site-audit/layout-observation.mjs';
 
 test('a measured single pane satisfies the Core1A policy even without column CSS', () => {
@@ -38,4 +39,38 @@ test('stage-support policy derives its split expectation from the blueprint', ()
     supportFraction: 0.58,
     minPx: 980,
   });
+});
+
+test('retained PR65 Core1A browser facts satisfy the active SINGLE_PANE blueprint', () => {
+  const registry = JSON.parse(fs.readFileSync(
+    new URL('../Shared/web/interactive-page-blueprints.v1.json', import.meta.url), 'utf8'));
+  const facts = JSON.parse(fs.readFileSync(
+    new URL('../evidence/staged-repair/ISS29-set-b/browser/core1a-layout-facts.json', import.meta.url), 'utf8'));
+  const blueprint = registry.blueprints.find(row => row.id === 'BP-CORE1A-CONSTRUCTION');
+  assert.ok(blueprint);
+  assert.equal(blueprint.version, '1.7.0');
+  assert.equal(splitLayoutExpectation(blueprint.responsive_policy), null);
+  assert.equal(matchesBlueprintLayout(
+    blueprint.responsive_policy,
+    false,
+    {articleCount: facts.articleCount, columnCounts: facts.columnCounts},
+  ), true);
+});
+
+test('retained PR65 Core2 render still carries the active STAGE_SUPPORT split', () => {
+  const registry = JSON.parse(fs.readFileSync(
+    new URL('../Shared/web/interactive-page-blueprints.v1.json', import.meta.url), 'utf8'));
+  const html = fs.readFileSync(
+    new URL('../evidence/staged-repair/ISS29-set-b/rendered/core2.html', import.meta.url), 'utf8');
+  const blueprint = registry.blueprints.find(row => row.id === 'BP-CORE2-SOURCE-QUESTION');
+  assert.ok(blueprint);
+  assert.equal(blueprint.version, '1.9.0');
+  const expected = splitLayoutExpectation(blueprint.responsive_policy);
+  assert.deepEqual(expected, {
+    primaryFraction: 0.42,
+    supportFraction: 0.58,
+    minPx: 980,
+  });
+  assert.match(html, /grid-template-columns:minmax\(0,42fr\) minmax\(0,58fr\)/);
+  assert.equal(matchesBlueprintLayout(blueprint.responsive_policy, true, null), true);
 });
