@@ -447,6 +447,13 @@ class Issue69SubjectNeutrality(unittest.TestCase):
         self.assertNotIn('data-requires-attempt', support)
         self.assertNotIn('data-g9-block="common_wrong_route"', support)
 
+    def test_motion2d_floor_render_is_gap_free_for_browser_replay(self):
+        manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        _pages, gaps, _digest, _advisories, _waived = render_core.build_report(
+            manifest, mode="PAGES", held_to="FLOOR"
+        )
+        self.assertEqual(gaps, [], json.dumps(gaps, indent=2, sort_keys=True))
+
     def test_render_core_has_no_academic_subject_literal_comparison(self):
         path = REPO / "Shared" / "tools" / "render_core.py"
         tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
