@@ -17,7 +17,7 @@ import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
-import { matchesBlueprintLayout } from './layout-observation.mjs';
+import { matchesBlueprintLayout, splitLayoutExpectation } from './layout-observation.mjs';
 
 const require = createRequire(import.meta.url);
 let playwright;
@@ -136,8 +136,11 @@ for (const file of files) {
     const minTarget = bp ? bp.touch_policy.minimum_target_css_px : 48;
     // The expanded layout is the blueprint's own: its fractions and the width it starts at.
     const policy = bp ? bp.responsive_policy : null;
+    const layoutExpectation = splitLayoutExpectation(policy);
     const pct = x => Number((x * 100).toFixed(4));
-    const expectedColumns = policy && policy.support_fraction ? { primary: pct(policy.primary_fraction), support: pct(policy.support_fraction) } : null;
+    const expectedColumns = layoutExpectation
+      ? { primary: pct(layoutExpectation.primaryFraction), support: pct(layoutExpectation.supportFraction) }
+      : null;
     const expectedTablet = policy && policy.tablet_12_7 ? policy.tablet_12_7 : null;
     const r = await page.evaluate(({ minTarget, expectedColumns, expectedTablet }) => {
       const visible = el => {
@@ -456,8 +459,9 @@ for (const file of files) {
       };
     }, { minTarget, expectedColumns, expectedTablet });
     r.stageSupportLayout = matchesBlueprintLayout(policy, r.stageSupportLayout, r.singlePaneLayout);
-    r.expectedLayout = policy && policy.support_fraction
-      ? { supportFraction: policy.support_fraction, minPx: policy.expanded_min_px || 1100 } : null;
+    r.expectedLayout = layoutExpectation
+      ? { supportFraction: layoutExpectation.supportFraction, minPx: layoutExpectation.minPx }
+      : null;
     r.externalRequests = [...new Set(requests)];
     if (profile === 'core1a-spec' && file === 'core1a.html') {
       r.interaction = {
