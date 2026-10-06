@@ -26,7 +26,7 @@ class DifficultyContractError(ValueError):
     """Raised when authored difficulty evidence and its derived projection disagree."""
 
 
-def _metadata() -> dict[str, Any]:
+def metadata() -> dict[str, Any]:
     value = json.loads(METADATA_PATH.read_text(encoding="utf-8"))
     if value.get("schema") != "grade9v3-learner-question-metadata/v1":
         raise DifficultyContractError("QUESTION_DIFFICULTY_METADATA_SCHEMA_INVALID")
@@ -34,7 +34,7 @@ def _metadata() -> dict[str, Any]:
 
 
 def score_ranges() -> dict[str, dict[str, int]]:
-    ranges = (_metadata().get("question_difficulty_score_ranges") or {})
+    ranges = (metadata().get("question_difficulty_score_ranges") or {})
     if tuple(ranges) != BANDS:
         raise DifficultyContractError("QUESTION_DIFFICULTY_SCORE_RANGES_INVALID")
     expected_next = 0
