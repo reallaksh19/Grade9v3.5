@@ -41,7 +41,10 @@ def _json(path: Path):
 
 
 def _relative(path: Path) -> str:
-    return path.relative_to(REPO).as_posix()
+    try:
+        return path.relative_to(REPO).as_posix()
+    except ValueError:
+        return path.as_posix()
 
 
 def _core_contract_state() -> dict:
