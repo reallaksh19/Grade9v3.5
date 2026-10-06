@@ -70,6 +70,42 @@ class PhaseDPhysicsDemandCruxQualification(unittest.TestCase):
         self.assertEqual(supports[0]["support_kind"], "CONNECT")
         self.assertIn("ball-minus-train horizontal displacement", supports[0]["text"])
 
+    def test_difficulty_score_is_exact_sum_of_the_five_canonical_components(self):
+        difficulty = self.question["extensions"]["grade9v3:analysis"]["difficulty"]
+        expected = {
+            "concept_model_selection",
+            "representation_translation",
+            "reasoning_chain_length",
+            "algebra_computational_load",
+            "trap_exception_sensitivity",
+        }
+        self.assertEqual(set(difficulty["components"]), expected)
+        self.assertTrue(
+            all(
+                isinstance(value, int) and not isinstance(value, bool) and 0 <= value <= 2
+                for value in difficulty["components"].values()
+            )
+        )
+        self.assertEqual(
+            difficulty["score"],
+            sum(difficulty["components"].values()),
+        )
+        self.assertEqual(difficulty["score"], 7)
+
+    def test_recorded_d3_band_is_derived_from_the_active_score_range(self):
+        difficulty = self.question["extensions"]["grade9v3:analysis"]["difficulty"]
+        vocabulary = json.loads(
+            (REPO / "Shared/vocabularies/learner-question-metadata.v1.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        score_range = vocabulary["question_difficulty_score_ranges"][difficulty["band"]]
+        self.assertEqual(difficulty["band"], "D3")
+        self.assertEqual(score_range, {"min": 6, "max": 7})
+        self.assertGreaterEqual(difficulty["score"], score_range["min"])
+        self.assertLessEqual(difficulty["score"], score_range["max"])
+        self.assertTrue(difficulty["basis"].strip())
+
     def test_secondary_demand_is_question_owned_not_manifest_owned(self):
         self.assertEqual(
             self.question["secondary_capability_refs"],
