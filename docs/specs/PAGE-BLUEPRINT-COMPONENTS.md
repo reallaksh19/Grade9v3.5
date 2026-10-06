@@ -88,7 +88,7 @@ Learner job: Preserve the authentic source-question decision and an observable l
 
 Theme: opens light, and the learner can switch.
 
-Layout: from 980 px wide, the primary column is 42% and the support column 57.99999999999999%. Narrower, everything is one column, primary first.
+Layout: from 980 px wide, the primary column is 42% and the support column 58%. Narrower, everything is one column, primary first.
 
 | Slot | Column | Kept |
 |---|---|---|
