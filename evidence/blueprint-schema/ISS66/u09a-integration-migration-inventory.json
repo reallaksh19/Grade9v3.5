@@ -1,0 +1,227 @@
+{
+  "schema": "iss66-u09a-integration-migration-inventory/v1",
+  "issue": 66,
+  "task": "U09A",
+  "protocol_ref": "reallaksh19/Common@e6b3eaf9c2d070bb97f362fc42288612c86753ef:skills/engineering-pr-delivery-v3.2",
+  "basis_head": "f88b8031755c50db8a7709a9147ec2af368c10e4",
+  "scope": "Shared contract deltas introduced or hardened by U02-U07; legacy compatibility paths; retained fixtures; pre-migration data/caller scan.",
+  "contracts": [
+    {
+      "unit": "U02",
+      "area": "presentation/layout authority",
+      "production_authorities": [
+        "tools/site-audit/layout-observation.mjs",
+        "tools/site-audit/core-page-audit.mjs"
+      ],
+      "change": "Audit expectation derives split layout only from blueprint responsive_policy.expanded == STAGE_SUPPORT; retained fractions cannot force a split for SINGLE_PANE.",
+      "compatibility": {
+        "kind": "behavior-preserving for declared blueprint modes",
+        "legacy_path": "STAGE_SUPPORT keeps support_fraction/minPx split expectation; SINGLE_PANE ignores historical fractions for split expectation.",
+        "migration_required": false
+      },
+      "retained_fixtures": [
+        "tests/test_blueprint_layout.mjs",
+        "evidence/staged-repair/ISS29-set-b/browser/core1a-layout-facts.json",
+        "evidence/staged-repair/ISS29-set-b/rendered/core2.html"
+      ],
+      "notes": "No blueprint registry/schema, renderer layout generation, learner-quality rule, or subject record changed."
+    },
+    {
+      "unit": "U03",
+      "area": "review provenance / rendered-byte binding",
+      "production_authorities": [],
+      "reused_authorities": [
+        "Shared/quality/qrt-pipeline-run.schema.json",
+        "Shared/tools/qrt_pipeline_guard.py"
+      ],
+      "change": "No production contract change; existing AUTHOR_ONLY / RENDERED / INDEPENDENT_RENDERED basis and artifact SHA binding were only moved into focused regression coverage.",
+      "compatibility": {
+        "kind": "no runtime/schema migration",
+        "legacy_path": "Legacy rendered reviews continue existing semantics; opt-in independent_rendered_review_required adds stricter acceptance only when explicitly enabled.",
+        "migration_required": false
+      },
+      "retained_fixtures": [
+        "tests/test_qrt_pipeline_guard.py"
+      ],
+      "notes": "Dependency-fingerprint expansion remains deferred."
+    },
+    {
+      "unit": "U04",
+      "area": "difficulty evidence and QRT demand/crux binding",
+      "production_authorities": [
+        "Shared/vocabularies/learner-question-metadata.v1.json",
+        "Shared/library/package.schema.json",
+        "Shared/vocabularies/cognitive-demand.v1.json",
+        "Shared/tools/question_review_matrix.py"
+      ],
+      "changes": [
+        "learner-question-metadata vocabulary 1.0.0 -> 1.1.0 adds subject-neutral 0/1/2 difficulty-component rubric.",
+        "package schema adds optional difficulty.component_evidence requiring all five component evidence strings when present.",
+        "cognitive-demand vocabulary 1.0.0 -> 1.1.0 states primary demand classifies answer.crux_move_ref.",
+        "QRT resolver requires crux_move_ref to resolve inside answer.reasoning_route[] and derives primary_move_ref/kind/action plus a primary_move basis digest."
+      ],
+      "compatibility": {
+        "kind": "mixed",
+        "legacy_path": [
+          "Difficulty component_evidence is optional; legacy difficulty records remain schema-valid.",
+          "Packages without a normalized grade9v3:cognitive_demand claim are unaffected until QRT classification is requested.",
+          "A cognitive-demand claim entering QRT must now have a resolvable canonical crux; floating legacy claims fail closed instead of being silently accepted."
+        ],
+        "migration_required": "only for records/callers that need new-contract QRT adjudication and lack crux/evidence; no bulk package migration justified."
+      },
+      "retained_fixtures": [
+        "tests/test_difficulty_contract.py",
+        "tests/test_demand_move_binding.py",
+        "tests/test_question_review_matrix.py",
+        "evidence/blueprint-schema/ISS66/u04d-matched-classification-replay.json"
+      ],
+      "data_scan": {
+        "canonical_library_json_files": 23,
+        "questions_scanned": 250,
+        "difficulty_records_with_analysis": 81,
+        "difficulty_records_with_component_evidence": 0,
+        "difficulty_records_without_component_evidence": 81,
+        "normalized_cognitive_demand_primary_records": 0,
+        "conclusion": "81 legacy difficulty records remain valid by design; there is no canonical normalized-demand record requiring crux migration in the scanned live subject libraries."
+      }
+    },
+    {
+      "unit": "U05",
+      "area": "protected work / support disclosure availability",
+      "production_authorities": [
+        "Shared/library/package.schema.json",
+        "Shared/tools/core2_v2.py",
+        "Shared/tools/render_core.py"
+      ],
+      "changes": [
+        "Optional availability on core2_support_plan.support_completions[] and visual stages[].",
+        "Allowed states PRE_ATTEMPT_SAFE / AFTER_ATTEMPT / POST_SOLUTION.",
+        "Projection exposes pre_solution_support / after_attempt_support / post_solution_support and pre/after/post visual stage refs.",
+        "Renderer adds commitment-gated 'More support after your attempt' separately from full 'Answer and working'."
+      ],
+      "compatibility": {
+        "kind": "backward-compatible default",
+        "legacy_path": [
+          "Omitted availability + protected completion => POST_SOLUTION.",
+          "Omitted availability + reveals=ANSWER => POST_SOLUTION.",
+          "Other omitted availability => PRE_ATTEMPT_SAFE.",
+          "eligible_pre_solution remains as a compatibility projection of PRE_ATTEMPT_SAFE."
+        ],
+        "migration_required": false,
+        "adoption_rule": "Add availability only when an author needs behavior different from the legacy default, especially AFTER_ATTEMPT."
+      },
+      "retained_fixtures": [
+        "tests/fixtures/staged_set_b/cases.json",
+        "tools/staged_set_b_replay.py",
+        "tests/test_staged_support_repair.py",
+        "tests/iss66_support_state_fixture.py",
+        "tests/iss66_support_state_browser.mjs"
+      ],
+      "data_scan": {
+        "canonical_questions_with_core2_support_plan": 0,
+        "conclusion": "No live canonical subject-library support plan requires migration; staged fixtures intentionally prove omitted-field legacy behavior."
+      }
+    },
+    {
+      "unit": "U06",
+      "area": "representation scene-instance ownership",
+      "production_authorities": [
+        "Shared/library/package.schema.json"
+      ],
+      "change": "scene_instance owner choice changes anyOf -> oneOf for existing microtopic_ref vs question_ref.",
+      "compatibility": {
+        "kind": "strictness increase without field replacement",
+        "legacy_path": [
+          "microtopic_ref-only remains valid.",
+          "question_ref-only remains valid.",
+          "both-owner and ownerless instances are now invalid."
+        ],
+        "migration_required": "only if a stored scene instance carries both or neither owner ref."
+      },
+      "retained_fixtures": [
+        "tests/test_representation_binding_contract.py",
+        "tests/fixtures/staged_set_b/cases.json",
+        "tools/staged_set_b_replay.py",
+        "golden/units/G-MATH-LINEAR-CONSTRAINT/records.json",
+        "tests/fixtures/render/thin-kin-2d-motion.v1.json"
+      ],
+      "data_scan": {
+        "canonical_scene_instances": 10,
+        "canonical_question_only": 0,
+        "canonical_microtopic_only": 10,
+        "canonical_both": 0,
+        "canonical_neither": 0,
+        "additional_retained_scene_instances_checked": [
+          "golden/units/G-MATH-LINEAR-CONSTRAINT/records.json: microtopic-only valid",
+          "tests/fixtures/render/thin-kin-2d-motion.v1.json: microtopic-only valid",
+          "staged Set B adopted cases: question-only valid"
+        ],
+        "conclusion": "No stored retained/canonical scene instance found requiring owner-cardinality migration."
+      }
+    },
+    {
+      "unit": "U07",
+      "area": "diagnostic evidence before misconception repair",
+      "production_authorities": [
+        "Shared/quality/diagnostic-evidence.schema.json",
+        "Shared/tools/feedback.py",
+        "Shared/tools/study_session.py"
+      ],
+      "changes": [
+        "New diagnostic evidence record: misconception_index + canonical probe + observed_response + diagnosis + evaluator basis.",
+        "Diagnosis states CONFIRMED / REFUTED / INDETERMINATE.",
+        "Bare misconception_index no longer selects MISCONCEPTION_REPAIR.",
+        "Only complete CONFIRMED evidence may enter misconception-specific repair; REFUTED/INDETERMINATE remain DIAGNOSE.",
+        "study_session API/CLI retains misconception_index but adds diagnostic_response / diagnosis / diagnostic_basis."
+      ],
+      "compatibility": {
+        "kind": "syntactic compatibility with deliberate semantic tightening",
+        "legacy_path": "misconception_index is still accepted as a hypothesis selector, but old callers that expected immediate repair must now supply discriminating evidence.",
+        "migration_required": true
+      },
+      "retained_fixtures": [
+        "tests/test_diagnostic_evidence_contract.py",
+        "tests/fixtures/study_session/relative-motion.worksheet.json"
+      ],
+      "migration_candidates": [
+        "tests/test_feedback.py — multiple bare-index calls still assert REPAIR.",
+        "tests/test_study_session.py — confirmed-misconception test passes only misconception_index but asserts REPAIR.",
+        "tests/test_neetprep_relative_motion_pilot.py — bare-index repair expectations.",
+        "tests/test_c6_examside_motion_in_plane.py — bare-index repair expectation.",
+        "docs/DRY-RUN-PHYSICS-RELATIVE-MOTION-Q4.md — documents bare misconception_index -> repair.",
+        "docs/HIGH-LIKELIHOOD-LEARNING-SCENARIOS.md — runtime field list omits diagnostic evidence fields.",
+        "docs/CORE-IMPLEMENTATION-PLAN-WORKSHEET-STUDY-FEEDBACK.md — runtime example predates typed diagnostic evidence."
+      ],
+      "migration_rule": "Migrate only callers that semantically mean CONFIRMED. Preserve at least one explicit bare-index regression proving it remains DIAGNOSE."
+    }
+  ],
+  "validation_lanes": {
+    "qrt_hardening": [
+      "tests.test_difficulty_contract",
+      "tests.test_demand_move_binding",
+      "tests.test_qrt_pipeline_guard"
+    ],
+    "learner_quality": [
+      "Diagnostic evidence contract",
+      "Representation instance binding contract",
+      "Core2 staged support contract",
+      "Existing blueprint layout observation regressions"
+    ]
+  },
+  "branch_state_observation": {
+    "head_used_for_inventory": "f88b8031755c50db8a7709a9147ec2af368c10e4",
+    "learner_platform_code_tests_run": 37446718351,
+    "code_tests_job": 112213230793,
+    "dedicated_iss66_steps": "SUCCESS",
+    "informational_suite": "190 tests; 7 failures, 1 error, 1 skip; known broader repository failures remain and are not treated as U09 migration proof."
+  },
+  "u09b_plan": [
+    "Migrate legacy diagnostic callers/tests/docs that assert bare-index confirmation to explicit diagnostic evidence.",
+    "Keep negative regression that bare misconception_index alone returns DIAGNOSE.",
+    "Do not bulk-add difficulty component_evidence to 81 legacy records.",
+    "Do not bulk-add support availability where legacy defaults already preserve behavior.",
+    "Do not rewrite scene ownership records; scans found no invalid retained/canonical instance.",
+    "Do not modify U03 review schema/guard or U02 blueprint records."
+  ],
+  "decision": "U09A_COMPLETE_INVENTORY_ONLY_NO_PRODUCTION_EDIT"
+}
