@@ -17,6 +17,8 @@ jobs:
           python-version: "3.11"
       - name: Install test dependencies
         run: pip install --quiet jsonschema pypdf
+      - name: Diagnostic evidence contract
+        run: python3 -m unittest tests.test_diagnostic_evidence_contract
       - name: Representation instance binding contract
         run: python3 -m unittest tests.test_representation_binding_contract
       - name: Core2 staged support contract
