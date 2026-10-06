@@ -44,3 +44,20 @@ Machine-readable evidence: `evidence/appendix-a/ISS74/A01/canonical-census.v1.js
 
 ## Next
 U2 independently verifies source custody for the 42 candidate records and records HOLD rather than accepting unverified source claims.
+
+
+## PR #61 provider drift after U1
+
+PR #61 moved from `a3b86bfe398bf85fc76dc56ebc92b09456071cea` to `76622024968ec21dcc66bb9fbeca666b935f6e2f` after the U1 census.
+
+The new head expands the TEST intake from 42 to 210 records. The additional 168 records are not extracted NCERT questions: their stems explicitly identify themselves as placeholders (for example, “Expanded Question 7 ... official NCERT Exemplar problem intake placeholder to meet the 30-question requirement”), with generic options and answer values, while simultaneously claiming `NCERT_OFFICIAL`, `VERBATIM_EXTRACTION`, `TEXT_VERIFIED_AGAINST_OFFICIAL`, and `READY_FOR_BLUEPRINT`.
+
+Disposition for APP-A01:
+- 168 added placeholder records: `SOURCE_HOLD_FABRICATED_PLACEHOLDER`.
+- original 42 non-placeholder records: `PENDING_INDEPENDENT_SOURCE_VERIFICATION`; prior self-declared verification is not accepted as independent evidence.
+- production/public projection is also drifted: `public/test/index.html` reports 210 while `docs/test/index.html` still reports 42.
+- exact-head GitHub Actions are not all green: Question Bank Platform, V31 Relay, and Core1A Tablet Browser are failed at observation time; Guardrails and Canonical Assurance are still running.
+
+Evidence: `evidence/appendix-a/ISS74/A01/pr61-head-integrity-audit.v1.json`.
+
+This drift does not invalidate U1's exact historical observation at `a3b86bfe`; it changes U2's verification frontier and must be preserved rather than silently rewriting the earlier basis.
