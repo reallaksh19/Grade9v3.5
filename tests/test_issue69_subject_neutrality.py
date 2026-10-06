@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import ast
+import copy
 import json
 import re
 import unittest
 from pathlib import Path
 
 from Shared.library import core1a_construction
-from Shared.tools import blueprint_spec
+from Shared.tools import blueprint_spec, render_core
 from tests.test_core1a_construction import fixture as core1a_fixture
 
 
@@ -138,6 +139,27 @@ class Issue69SubjectNeutrality(unittest.TestCase):
             questions=[question],
         )
         self.assertIn("WORKED_CONCEPTUAL_ANCHOR_MISSING", row["finding_codes"])
+
+    def test_core1a_renderer_does_not_fabricate_optional_companion_support(self):
+        manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(manifest)
+        microtopic = copy.deepcopy(ctx.selection_rows["microtopics"][0])
+        microtopic["misconceptions"] = []
+        for unit in microtopic.get("construction_units") or []:
+            unit["misconception_indexes"] = []
+            unit["independent_checks"] = []
+
+        html = render_core.core1a(ctx, microtopic)
+        for unit in microtopic.get("construction_units") or []:
+            self.assertNotIn(f'data-g9-support-for="{unit["id"]}"', html)
+        self.assertIn('data-g9-block="exit_task"', html)
+
+        one = render_core._quick_check([
+            {"role": "CHECK", "statement": "State the invariant once."},
+        ])
+        self.assertIn("Quick check", one)
+        self.assertNotIn("1-2-3 quick check", one)
+        self.assertEqual(one.count("<li "), 1)
 
     def test_render_core_has_no_academic_subject_literal_comparison(self):
         path = REPO / "Shared" / "tools" / "render_core.py"
