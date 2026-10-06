@@ -173,6 +173,22 @@ class Issue69SubjectNeutrality(unittest.TestCase):
             new_gaps,
         )
 
+    def test_core1a_renderer_does_not_require_per_unit_quick_checks(self):
+        manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(manifest)
+        microtopic = copy.deepcopy(ctx.selection_rows["microtopics"][0])
+        for unit in microtopic.get("construction_units") or []:
+            unit["independent_checks"] = []
+
+        before = len(ctx.gaps)
+        html = render_core.core1a(ctx, microtopic)
+        new_gaps = ctx.gaps[before:]
+        self.assertFalse(
+            [gap for gap in new_gaps if gap["duty"] == "AUTHOR_INDEPENDENT_CHECK"],
+            new_gaps,
+        )
+        self.assertIn('data-g9-block="exit_task"', html)
+
     def test_core1a_renderer_does_not_fabricate_optional_companion_support(self):
         manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
         ctx = render_core.context(manifest)
