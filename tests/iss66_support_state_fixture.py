@@ -2,6 +2,10 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
+import sys
+
+REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO))
 
 from Shared.tools import core2_v2, render_core
 from tools import staged_set_b_replay as replay
