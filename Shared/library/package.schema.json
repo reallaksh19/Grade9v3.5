@@ -455,26 +455,71 @@
     "response": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "description": "An honest self-learner's commitment control, not a grading or anti-cheating rule.",
       "properties": {
         "type": {
-          "enum": ["single_choice", "multiple_choice", "true_false", "numeric", "short_text", "free_response", "multipart", "match"]
+          "enum": [
+            "single_choice",
+            "multiple_choice",
+            "true_false",
+            "numeric",
+            "short_text",
+            "free_response",
+            "multipart",
+            "match"
+          ]
         },
         "parts": {
           "type": "array",
           "items": {
             "oneOf": [
-              {"type": "string", "minLength": 1},
-              {"type": "object", "additionalProperties": false, "required": ["label"],
-               "properties": {"label": {"type": "string", "minLength": 1},
-                              "type": {"enum": ["numeric", "short_text", "free_response"]}}}
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "label"
+                ],
+                "properties": {
+                  "label": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "type": {
+                    "enum": [
+                      "numeric",
+                      "short_text",
+                      "free_response"
+                    ]
+                  }
+                }
+              }
             ]
           }
         },
-        "match_left": {"type": "array", "items": {"type": "string", "minLength": 1}},
-        "match_right": {"type": "array", "items": {"type": "string", "minLength": 1}},
-        "paper_ok": {"type": "boolean"}
+        "match_left": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "match_right": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "paper_ok": {
+          "type": "boolean"
+        }
       }
     },
     "answer": {
@@ -560,15 +605,38 @@
         "source_key": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["state"],
+          "required": [
+            "state"
+          ],
           "properties": {
-            "state": {"enum": ["PRESENT", "ABSENT", "AMBIGUOUS"]},
-            "value": {"type": "string", "minLength": 1},
-            "card": {"type": "string", "minLength": 1}
+            "state": {
+              "enum": [
+                "PRESENT",
+                "ABSENT",
+                "AMBIGUOUS"
+              ]
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1
+            },
+            "card": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         },
-        "key_relation": {"enum": ["MATCHES_KEY", "CONFLICTS_WITH_KEY", "NO_KEY"]},
-        "key_conflict_explanation": {"type": "string", "minLength": 1},
+        "key_relation": {
+          "enum": [
+            "MATCHES_KEY",
+            "CONFLICTS_WITH_KEY",
+            "NO_KEY"
+          ]
+        },
+        "key_conflict_explanation": {
+          "type": "string",
+          "minLength": 1
+        },
         "rubric": {
           "type": "array",
           "items": {
@@ -3526,6 +3594,40 @@
         "basis": {
           "type": "string",
           "minLength": 1
+        },
+        "component_evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Optional question-specific evidence for the five authored 0–2 difficulty components. When present, every component must be justified against Shared/vocabularies/learner-question-metadata.v1.json question_difficulty_component_rubric. Omission preserves legacy records; acceptance policy may require it for newly adjudicated classifications.",
+          "required": [
+            "concept_model_selection",
+            "representation_translation",
+            "reasoning_chain_length",
+            "algebra_computational_load",
+            "trap_exception_sensitivity"
+          ],
+          "properties": {
+            "concept_model_selection": {
+              "type": "string",
+              "minLength": 1
+            },
+            "representation_translation": {
+              "type": "string",
+              "minLength": 1
+            },
+            "reasoning_chain_length": {
+              "type": "string",
+              "minLength": 1
+            },
+            "algebra_computational_load": {
+              "type": "string",
+              "minLength": 1
+            },
+            "trap_exception_sensitivity": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
         }
       }
     },
