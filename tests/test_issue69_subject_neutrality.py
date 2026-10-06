@@ -140,6 +140,39 @@ class Issue69SubjectNeutrality(unittest.TestCase):
         )
         self.assertIn("WORKED_CONCEPTUAL_ANCHOR_MISSING", row["finding_codes"])
 
+    def test_core1a_renderer_does_not_create_a_manual_gap_for_absent_worked_example(self):
+        manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(manifest)
+        microtopic = copy.deepcopy(ctx.selection_rows["microtopics"][0])
+        extensions = microtopic.setdefault("extensions", {})
+        extensions["grade9v3:lesson_anchors"] = {}
+        for unit in microtopic.get("construction_units") or []:
+            unit.pop("bank_anchor_ref", None)
+            unit.pop("worked_anchor_ref", None)
+
+        before = len(ctx.gaps)
+        render_core.core1a(ctx, microtopic)
+        new_gaps = ctx.gaps[before:]
+        self.assertFalse(
+            [gap for gap in new_gaps if gap["duty"] == "AUTHOR_WORKED_ANCHOR"],
+            new_gaps,
+        )
+
+        # Absence is valid, but an explicitly authored bad reference is still invalid.
+        first = microtopic["construction_units"][0]
+        first["worked_anchor_ref"] = "Q-NOT-A-REAL-QUESTION"
+        before = len(ctx.gaps)
+        render_core.core1a(ctx, microtopic)
+        new_gaps = ctx.gaps[before:]
+        self.assertTrue(
+            [
+                gap for gap in new_gaps
+                if gap["duty"] == "AUTHOR_WORKED_ANCHOR"
+                and gap["record"] == first["id"]
+            ],
+            new_gaps,
+        )
+
     def test_core1a_renderer_does_not_fabricate_optional_companion_support(self):
         manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
         ctx = render_core.context(manifest)
