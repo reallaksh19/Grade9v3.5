@@ -6,7 +6,9 @@ on:
       - "Shared/quality/qrt-pipeline-run.schema.json"
       - "Shared/library/package.schema.json"
       - "Shared/vocabularies/learner-question-metadata.v1.json"
+      - "Shared/vocabularies/cognitive-demand.v1.json"
       - "tests/test_difficulty_contract.py"
+      - "tests/test_demand_move_binding.py"
       - "Shared/tools/authoring_intake.py"
       - "Shared/tools/qrt_pipeline_guard.py"
       - "Shared/tools/qrt_pipeline_precheck.py"
@@ -45,7 +47,8 @@ jobs:
             tests.test_authoring_intake \
             tests.test_qrt_pipeline_guard \
             tests.test_qrt_content_self_audit \
-            tests.test_difficulty_contract
+            tests.test_difficulty_contract \
+            tests.test_demand_move_binding
 
       - name: Chromium audit script syntax
         run: node --check tools/site-audit/interactive-page-audit.mjs
