@@ -261,6 +261,31 @@ def core_contract_card(core: dict) -> str:
     )
 
 
+def fixture_boundary_card(fixture: dict, safety: dict) -> str:
+    topics = "".join(
+        f'<li>{esc(topic)} · {esc(count)} coordinate(s)</li>'
+        for topic, count in fixture["topic_counts"].items()
+    )
+    excluded = fixture["excluded_provider_head"]
+    commit = excluded.get("commit") or "unknown provider head"
+    disposition = excluded.get("disposition") or "HOLD"
+    return card(
+        "fixture-boundary",
+        "fixture boundary sandbox unverified coordinates hold excluded not canonical search",
+        '<h2>TEST fixture boundary</h2>'
+        f'<p><strong>{esc(fixture["question_count"])}</strong> TEST-only coordinate(s) · '
+        f'<code>{esc(fixture["fixture_id"])}</code></p>'
+        f'<p><strong>Authority:</strong> <code>{esc(fixture["authority_status"])}</code></p>'
+        f'<ul>{topics}</ul>'
+        f'<p><strong>Excluded provider additions:</strong> '
+        f'{esc(excluded["excluded_placeholder_records"])} placeholder record(s) · '
+        f'<code>{esc(commit)}</code> · {esc(disposition)}.</p>'
+        f'<p class="g9-prov">Scope: <code>{esc(safety["fixture_scope"])}</code>. '
+        'This fixture is not canonical, not learner-searchable, and not acceptance evidence. '
+        'Question text and answers are deliberately not projected here.</p>',
+    )
+
+
 # ------------------------------------------------------------------ pages
 
 def hub_page() -> str:
@@ -288,6 +313,7 @@ def hub_page() -> str:
         '<p class="g9-prov">A gap count of 0 means the depth check found nothing missing. It counts what is absent, '
         'not how good it is, and it does not say the content has been reviewed.</p>'
         + core_contract_card(state["core_contract"])
+        + fixture_boundary_card(state["fixture"], state["safety"])
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
         + stage(2, "Core1A", "Concept construction for the same topic", core1a)
         + stage(3, "Explorer", "A guided page on the toughest concept of the same question set", inter)
