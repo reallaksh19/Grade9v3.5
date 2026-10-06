@@ -237,9 +237,34 @@ def link(href: str, label: str) -> str:
     return f'<a href="{esc(href)}">{esc(label)}</a>'
 
 
+def core_contract_card(core: dict) -> str:
+    roles = "".join(
+        f'<li><strong>{esc(row["core"])}</strong> · {esc(row["role"])} · {esc(row["production"])}</li>'
+        for row in core["roles"]
+    )
+    validators = core["validator_catalogue"]
+    validator_state = f'{len(validators)} declared' if validators else 'none declared for TEST'
+    version = " / ".join(
+        x for x in (core.get("schema_version"), core.get("contract_version")) if x
+    )
+    return card(
+        "core-contract",
+        "production core contract schema roles release authority validators",
+        '<h2>Production Core contract basis</h2>'
+        f'<p class="g9-prov">Package schema: <code>{esc(core["package_schema_path"])}</code><br>'
+        f'Core contract: <code>{esc(core["path"])}</code>'
+        f'{" · version " + esc(version) if version else ""}</p>'
+        f'<ul>{roles}</ul>'
+        f'<p><strong>Release authority:</strong> <code>{esc(core["release_authority"])}</code></p>'
+        f'<p><strong>Validator catalogue:</strong> {esc(validator_state)}</p>'
+        '<p class="g9-prov">Projection only; this panel does not grant acceptance or release.</p>',
+    )
+
+
 # ------------------------------------------------------------------ pages
 
 def hub_page() -> str:
+    state = dashboard_state()
     deployed = products()
     pages = interactive_pages()
     counts = source_counts()
@@ -262,6 +287,7 @@ def hub_page() -> str:
         'accepted or curriculum, and <code>accept_product.py</code> refuses TEST.</p>'
         '<p class="g9-prov">A gap count of 0 means the depth check found nothing missing. It counts what is absent, '
         'not how good it is, and it does not say the content has been reviewed.</p>'
+        + core_contract_card(state["core_contract"])
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
         + stage(2, "Core1A", "Concept construction for the same topic", core1a)
         + stage(3, "Explorer", "A guided page on the toughest concept of the same question set", inter)
