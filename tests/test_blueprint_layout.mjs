@@ -28,6 +28,31 @@ test('single-pane policy never creates a split expectation even with retained fr
     expanded_min_px: 1100,
   }), null);
 });
+test('missing or malformed split policy fails closed instead of assuming a ratio', () => {
+  assert.equal(splitLayoutExpectation(null), null);
+  assert.equal(matchesBlueprintLayout(
+    null, false, {articleCount: 1, columnCounts: [1]},
+  ), false);
+
+  assert.equal(splitLayoutExpectation({
+    expanded: 'STAGE_SUPPORT',
+    support_fraction: 0.58,
+    expanded_min_px: 980,
+  }), null);
+  assert.equal(splitLayoutExpectation({
+    expanded: 'STAGE_SUPPORT',
+    primary_fraction: 0.50,
+    support_fraction: 0.58,
+    expanded_min_px: 980,
+  }), null);
+  assert.equal(splitLayoutExpectation({
+    expanded: 'STAGE_SUPPORT',
+    primary_fraction: 0.42,
+    support_fraction: 0.58,
+    expanded_min_px: -1,
+  }), null);
+});
+
 test('stage-support policy derives its split expectation from the blueprint', () => {
   assert.deepEqual(splitLayoutExpectation({
     expanded: 'STAGE_SUPPORT',
