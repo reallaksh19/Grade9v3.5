@@ -1,0 +1,197 @@
+{
+  "schema_version": "grade9v3-test-readiness-gate-v1",
+  "issue": 90,
+  "parent_issue": 83,
+  "protocol_ref": "reallaksh19/Common@011431ba424fe84b24e0eb1dab71b264b948cb1f:skills/engineering-pr-delivery-v3.2",
+  "candidate": {
+    "commit": "068f0a9a83328783d0ce335a27240ad493fc5aa0",
+    "branch": "test/106-readiness-candidate",
+    "assembly_issue": 106,
+    "assembly_pr": 107,
+    "dashboard_material_head": "19ac69516234ac7a6a8177c4ccfc89d32f0b3348"
+  },
+  "classification": {
+    "technical_infrastructure": "READY_WITH_EVIDENCE_HOLD",
+    "academic_or_canonical_promotion": "DEFERRED",
+    "machine_acceptance": "NOT_GRANTED",
+    "reason": "TEST infrastructure and isolation checks pass on the exact candidate head, but browser viewport/tab-order evidence remains unavailable and the 42-coordinate fixture is explicitly unverified/noncanonical."
+  },
+  "t1_technical_integrity": {
+    "status": "PASS",
+    "checks": [
+      {
+        "id": "T1a",
+        "status": "PASS",
+        "detail": "CoreContracts, QualityVocabulary, fixture manifest and production package schema parse as JSON."
+      },
+      {
+        "id": "T1b",
+        "status": "PASS",
+        "detail": "Production package schema allows TEST; exact six Core roles are present and COMPILED; release_authority is NOT_GRANTED_BY_ANY_MACHINE_CHECK; TEST validator catalogue is empty."
+      },
+      {
+        "id": "T1c",
+        "status": "PASS",
+        "detail": "TEST public/docs hub, Atlas, Rungs and Deployments pairs are byte-identical by Git blob identity."
+      },
+      {
+        "id": "T1d",
+        "status": "PASS_STATIC",
+        "detail": "Authorized TEST home links exist on root/Physics/Chemistry/Mathematics hubs; shared header injects TEST home on deeper pages and deduplicates static links; TEST runtime target files exist."
+      },
+      {
+        "id": "T1e",
+        "status": "PASS",
+        "detail": "TEST hub/Atlas/Rungs/Deployments retain sandbox-draft markers and explicit draft/non-accepted treatment."
+      },
+      {
+        "id": "T1f",
+        "status": "PASS",
+        "detail": "No machine check grants TEST release or acceptance."
+      }
+    ]
+  },
+  "t2_layout_accessibility": {
+    "status": "HOLD",
+    "passed_static": [
+      "single H1 and ordered H2 hierarchy",
+      "main/nav/footer landmarks and labelled breadcrumb",
+      "header and breadcrumb flex wrapping",
+      "body overflow-wrap: break-word",
+      "main max-width and border-box containment",
+      "article/direct-child min-width:0",
+      "focus-visible 3px outline with 2px offset",
+      "48px minimum touch target",
+      "responsive max-width:899px media rule",
+      "table/figure horizontal overflow containment",
+      "no root-absolute or javascript: links",
+      "sandbox/draft/non-accepted copy visible"
+    ],
+    "hold": {
+      "reason_class": "PROVIDER",
+      "reason": "No connected browser surface is available in this chat; screenshot-based Product Design audit requires Work mode.",
+      "missing_evidence": [
+        "desktop screenshot",
+        "tablet portrait screenshot",
+        "tablet landscape screenshot",
+        "measured scrollWidth/clientWidth",
+        "observed keyboard tab sequence"
+      ]
+    }
+  },
+  "t3_runtime_deploy_integrity": {
+    "status": "PASS_WITH_NA",
+    "checks": [
+      {
+        "id": "T3a",
+        "status": "PASS_STATIC",
+        "detail": "public/test/index.html exists and contains Core-contract + fixture-boundary dashboard cards."
+      },
+      {
+        "id": "T3b",
+        "status": "N_A",
+        "detail": "No TEST product deployment exists yet; Core2/Core1A destination verification is required when a product is deployed."
+      },
+      {
+        "id": "T3c",
+        "status": "PASS_STATIC",
+        "detail": "TEST Atlas page exists, is draft, binds subjects.TEST.matrices, and truthfully reports no TEST rung matrix yet."
+      },
+      {
+        "id": "T3d",
+        "status": "PASS_STATIC",
+        "detail": "TEST Rungs page exists, is draft, and truthfully reports an empty matrix state."
+      },
+      {
+        "id": "T3e",
+        "status": "PASS_STATIC",
+        "detail": "TEST Deployments page exists, is draft, and truthfully reports nothing deployed yet."
+      },
+      {
+        "id": "T3f",
+        "status": "PASS",
+        "detail": "All 42 fixture IDs are absent from learner search and canonical QB search; TEST subject and TEST owner-resource tokens are absent."
+      },
+      {
+        "id": "T3g",
+        "status": "N_A",
+        "detail": "No TEST deployment receipt exists for a changed product; stale-receipt validation becomes applicable on first deployment."
+      }
+    ]
+  },
+  "t4_evidence": {
+    "status": "PASS_PENDING_RATCHET",
+    "exact_git_head": "068f0a9a83328783d0ce335a27240ad493fc5aa0",
+    "source_blobs": {
+      "TEST/adapter/CoreContracts.json": "2f44a2babc7be8a04737aad1d9ffd744a93f6ab2",
+      "TEST/adapter/QualityVocabulary.json": "0703a71558822f4ec1d9bd96a98edb87785a7b7b",
+      "TEST/question-bank/fixtures/pr61-math-42.fixture.json": "9a831cdea6bb9f19c270969217c1ce8bbe8fa390",
+      "Shared/library/package.schema.json": "4aa588ef3ce00254d0202bba2bf23f7aae5e8c84",
+      "Shared/tools/build_test_site.py": "375fb659d7771c5df79b86d1b97eb966c56704db"
+    },
+    "generated_blobs": {
+      "public/test/index.html": "89436cae89ca01a82ce366298d66dc4d413278fb",
+      "docs/test/index.html": "89436cae89ca01a82ce366298d66dc4d413278fb",
+      "public/test/atlas/index.html": "2ce46d18d996b4f8bc9b75f4855a3c6d41ccd818",
+      "docs/test/atlas/index.html": "2ce46d18d996b4f8bc9b75f4855a3c6d41ccd818",
+      "public/test/rungs/index.html": "434c1ae630a4b599d1a5af992c74b9a40ed80d2b",
+      "docs/test/rungs/index.html": "434c1ae630a4b599d1a5af992c74b9a40ed80d2b",
+      "public/test/deployments/index.html": "2fa88f24841881deba849288e3d2a222fda4c173",
+      "docs/test/deployments/index.html": "2fa88f24841881deba849288e3d2a222fda4c173"
+    },
+    "navigation_blobs": {
+      "public/index.html": "04b96b6125fa7ea2ee20c8bdc79f14df1fa5394c",
+      "docs/index.html": "04b96b6125fa7ea2ee20c8bdc79f14df1fa5394c",
+      "public/physics/index.html": "df3f2bfef78f946732deb5bf64d2e698cbc72446",
+      "docs/physics/index.html": "df3f2bfef78f946732deb5bf64d2e698cbc72446",
+      "public/chemistry/index.html": "1db288b100c24318254621f534f41937f0abbdb5",
+      "docs/chemistry/index.html": "1db288b100c24318254621f534f41937f0abbdb5",
+      "public/mathematics/index.html": "5ed1160fde43ad9cc19c9282c019225837590260",
+      "docs/mathematics/index.html": "5ed1160fde43ad9cc19c9282c019225837590260",
+      "public/js/site-header.js": "340ee9b20b276c76e14005ee277549f376678b29",
+      "docs/js/site-header.js": "340ee9b20b276c76e14005ee277549f376678b29"
+    },
+    "search_and_qb_nonmutation_blobs": {
+      "public/data/search-index.v1.json": "b2877c4b0bd00fb1f8cc934b3bdda507da50c3aa",
+      "public/data/learner-search-index.v1.json": "dc71720727c497c349f5fc346f460b01e7874929",
+      "artifacts/question-bank/lineage.json": "9ccb31614099500a7edec7f8a5c32d006d27508b",
+      "artifacts/question-bank/build-receipt.json": "a6667a23af386c36b51d73c5cf87256064f7151f"
+    },
+    "regression_contract_blobs": {
+      "tests/test_test_area.py": "4f1e3eedbbacaad79676f1a7ffb054cfb399495a",
+      "tests/test_test_core_binding.py": "7446d389a61a9a5672d8754f45c3b9a473038bb0",
+      "tests/test_test_dashboard_state.py": "88a17bdc5914d4ea921ed6857839d99467d7a542",
+      "tests/test_theme_and_owner_isolation.py": "5b7906e0bf719c5f4ec154dd1e63730ae418dc6f"
+    },
+    "final_candidate_ratchet": {
+      "workflow_run_id": 37544245667,
+      "job_id": 112544308016,
+      "status": "IN_PROGRESS",
+      "head_enumeration": "PASS",
+      "base_enumeration": "IN_PROGRESS",
+      "compare": "PENDING"
+    }
+  },
+  "t5_promotion_handoff": {
+    "status": "DEFERRED",
+    "prospective_target_subject": "Mathematics",
+    "fixture_disposition": {
+      "artifact": "FIXTURE-PR61-MATH-42",
+      "disposition": "DEFERRED",
+      "reason": "Coordinate fixture is UNVERIFIED_SANDBOX_FIXTURE and cannot be promoted as CBSE/NCERT or canonical question content without independent custody/source verification."
+    },
+    "deployed_product_dispositions": [],
+    "canonical_paths": [
+      "Mathematics/question-bank/** for verified canonical question records",
+      "established subject resource/discovery authority for learner resources",
+      "question_bank_platform.py and existing canonical producers for learner Question Bank/search projections"
+    ],
+    "rules": [
+      "Do not copy TEST wholesale into Mathematics.",
+      "No fabricated exam/year/paper identity.",
+      "Search visibility is produced only after canonical admission.",
+      "Each promoted product requires ACCEPTED, DEFERRED or REJECTED disposition under the owning promotion protocol.",
+      "If deleting TEST after promotion breaks production, promotion is incomplete."
+    ]
+  }
+}
