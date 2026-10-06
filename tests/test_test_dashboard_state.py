@@ -104,6 +104,42 @@ class TestTestDashboardState(unittest.TestCase):
         for heading in ("1. Core2", "2. Core1A", "3. Explorer"):
             self.assertIn(heading, page)
 
+    def test_hub_renders_fixture_boundary_without_importing_question_authority(self):
+        state = build_test_site.dashboard_state()
+        page = build_test_site.hub_page()
+        start = page.index('data-g9-unit="fixture-boundary"')
+        end = page.index("</article>", start)
+        panel = page[start:end]
+
+        self.assertIn("TEST fixture boundary", panel)
+        self.assertIn(">42</strong> TEST-only coordinate(s)", panel)
+        self.assertIn("UNVERIFIED_SANDBOX_FIXTURE", panel)
+        self.assertIn("168 placeholder record(s)", panel)
+        self.assertIn("SOURCE_HOLD_FABRICATED_PLACEHOLDER", panel)
+        self.assertIn("TEST_ONLY_NOT_CANONICAL", panel)
+        self.assertIn("not canonical", panel)
+        self.assertIn("not learner-searchable", panel)
+        self.assertIn("not acceptance evidence", panel)
+
+        for topic, count in state["fixture"]["topic_counts"].items():
+            self.assertIn(topic, panel)
+            self.assertIn(f"{count} coordinate(s)", panel)
+
+        for forbidden in (
+            "TEXT_VERIFIED_AGAINST_OFFICIAL",
+            "READY_FOR_BLUEPRINT",
+            "official_answer_text",
+            "question_refs",
+            "VERBATIM_EXTRACTION",
+        ):
+            self.assertNotIn(forbidden, panel)
+
+        core_start = page.index('data-g9-unit="core-contract"')
+        core_end = page.index("</article>", core_start)
+        core_panel = page[core_start:core_end]
+        for fixture_only in ("42", "168", "UNVERIFIED_SANDBOX_FIXTURE", "placeholder"):
+            self.assertNotIn(fixture_only, core_panel)
+
     def test_wrong_subject_core_contract_fails_loudly(self):
         contract = json.loads(build_test_site.CORE_CONTRACT.read_text(encoding="utf-8"))
         contract["subject"] = "Mathematics"
