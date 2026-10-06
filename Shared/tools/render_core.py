@@ -1483,8 +1483,13 @@ def core1a(ctx: Ctx, m: dict) -> str:
         relation_matrix = (_core1a_relation_matrix(ctx, m, unit_relations) if unit_relations is not None
                            else (_core1a_relation_matrix(ctx, m) if n == 0 else ""))
 
+        unit_waivers = {**waivers, **blueprints_api.waivers_of(u)}
+
         def unit_part(cid: str, body: str, items: int | None = None, band: str | None = None) -> str:
-            return component(ctx, "CORE1A", cid, body, u["id"], items=items, unit=u["id"], band=band, waivers=waivers)
+            return component(
+                ctx, "CORE1A", cid, body, u["id"], items=items, unit=u["id"],
+                band=band, waivers=unit_waivers,
+            )
 
         figure_html = figure(ctx, u.get("representation_ref"), "TEACHING", "CORE1A", u["id"])
         probes = [r for r in (m.get('extensions') or {}).get('grade9v3:question_repairs', [])
