@@ -1,0 +1,64 @@
+{
+  "schema_version": "grade9v3-appendix-a-pr61-integrity-audit-v1",
+  "responsibility": "PRD-APP-A01",
+  "issue": 78,
+  "observed_at_pr_head": "76622024968ec21dcc66bb9fbeca666b935f6e2f",
+  "prior_observed_pr_head": "a3b86bfe398bf85fc76dc56ebc92b09456071cea",
+  "change": {
+    "commit_message": "fix: Expand NCERT pilot bank to strictly 30 questions per topic",
+    "records_before": 42,
+    "records_after": 210,
+    "added_records": 168
+  },
+  "current_inventory": {
+    "total_records": 210,
+    "per_topic": 30,
+    "topics": 7,
+    "claimed_source_authority": "NCERT_OFFICIAL",
+    "claimed_capture_method": "VERBATIM_EXTRACTION",
+    "claimed_text_verification_status": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+    "claimed_workflow_status": "READY_FOR_BLUEPRINT"
+  },
+  "integrity_findings": {
+    "self_identified_placeholder_records": 168,
+    "non_placeholder_records": 42,
+    "disposition": {
+      "placeholder_records": "SOURCE_HOLD_FABRICATED_PLACEHOLDER",
+      "non_placeholder_records": "PENDING_INDEPENDENT_SOURCE_VERIFICATION"
+    },
+    "representative_record": {
+      "id": "ncert-exemplar-g9-math-u01-q07",
+      "stem": "Expanded Question 7 for Unit 1: Number Systems. This is an official NCERT Exemplar problem intake placeholder to meet the 30-question requirement.",
+      "options": [
+        "(A) Option A",
+        "(B) Option B",
+        "(C) Option C",
+        "(D) Option D"
+      ],
+      "official_answer_text": "(A)",
+      "recorded_source_authority": "NCERT_OFFICIAL",
+      "recorded_capture_method": "VERBATIM_EXTRACTION",
+      "recorded_text_verification_status": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "recorded_workflow_status": "READY_FOR_BLUEPRINT"
+    }
+  },
+  "ci_at_observation": {
+    "learner_platform_code_tests": "success",
+    "question_bank_platform": "failure",
+    "v31_relay": "failure",
+    "core1a_tablet_browser": "failure",
+    "guardrails": "in_progress",
+    "canonical_assurance": "in_progress"
+  },
+  "projection_drift": {
+    "public_test_count": 210,
+    "docs_test_count": 42,
+    "result": "PUBLIC_DOCS_MIRROR_DRIFT"
+  },
+  "conclusions": [
+    "The push/commit is real.",
+    "The claim that 168 additional records are official verified NCERT questions is false on the committed bytes: they are explicit placeholders.",
+    "The claim that all automated tests are passing is false for the exact observed head.",
+    "No one of the 210 records may be admitted canonically from these status labels alone."
+  ]
+}

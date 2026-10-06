@@ -1,0 +1,114 @@
+{
+  "schema_version": "grade9v3-appendix-a-canonical-census-v1",
+  "responsibility": "PRD-APP-A01",
+  "issue": 78,
+  "parent_phase_issue": 74,
+  "programme_issue": 69,
+  "protocol_ref": "reallaksh19/Common@44c779bafdabe20637270f6e34a3b865f584a26e:skills/engineering-pr-delivery-v3.2",
+  "observed_base": {
+    "ref": "main",
+    "commit": "9059848c2d2ea757b765a01c66841c8906cd7875"
+  },
+  "canonical_question_bank": {
+    "build_id": "sha256:f38e051a752e159e7b33c56eae8d4e81872f5a8458b2c8970dfccf746b7facee",
+    "total_questions": 310,
+    "by_subject": {
+      "SUBJECT-PHYSICS": 166,
+      "SUBJECT-CHEMISTRY": 126,
+      "SUBJECT-MATHEMATICS": 18
+    },
+    "mathematics": {
+      "projected_count": 18,
+      "canonical_source_path": "Mathematics/library/linear-equations.v1.json",
+      "canonical_source_blob_sha": "3c5d3010fab846b6a3cd5d53daa52e3cd410dfca",
+      "published_question_count_in_source": 18,
+      "question_ids": [
+        "Q-MAT-LEQ-01-EXEMPLAR8-Q6",
+        "Q-MAT-LEQ-01-EXEMPLAR8-Q17",
+        "Q-MAT-LEQ-01-EXEMPLAR8-Q20",
+        "Q-MAT-LEQ-02-NCERT8-EX2-1-Q1",
+        "Q-MAT-LEQ-02-NCERT8-EX2-1-Q2",
+        "Q-MAT-LEQ-02-NCERT8-EX2-1-Q3",
+        "Q-MAT-LEQ-02-NCERT8-EX2-1-Q5",
+        "Q-MAT-LEQ-02-EXEMPLAR9-4-1-Q16",
+        "Q-MAT-LEQ-03-NCERT8-EX2-2-Q7",
+        "Q-MAT-LEQ-03-NCERT8-EX2-2-Q9",
+        "Q-MAT-LEQ-03-NCERT8-EX2-2-Q10",
+        "Q-MAT-LEQ-03-EXEMPLAR8-Q58",
+        "Q-MAT-LEQ-03-EXEMPLAR8-Q61",
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q1",
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3",
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q11",
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-2-Q1",
+        "Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7"
+      ],
+      "custody_summary": {
+        "source_status": [
+          "NCERT_AUTHENTIC"
+        ],
+        "authority_class": [
+          "CURRICULAR_STANDARD"
+        ],
+        "wording_custody": [
+          "FAITHFUL_NCERT"
+        ]
+      }
+    },
+    "evidence": {
+      "build_receipt": {
+        "path": "artifacts/question-bank/build-receipt.json",
+        "blob_sha": "a6667a23af386c36b51d73c5cf87256064f7151f"
+      },
+      "lineage": {
+        "path": "artifacts/question-bank/lineage.json",
+        "blob_sha": "9ccb31614099500a7edec7f8a5c32d006d27508b"
+      }
+    }
+  },
+  "pr61_stage1_candidate_inventory": {
+    "status": "CANDIDATE_INPUT_ONLY_NOT_CANONICAL",
+    "ref": "a3b86bfe398bf85fc76dc56ebc92b09456071cea",
+    "path": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+    "blob_sha": "fd91c83444ad7a063830857fb627eb5713694c2b",
+    "question_count": 42,
+    "source_scope_claimed": [
+      "NCERT_OFFICIAL"
+    ],
+    "topic_counts": {
+      "Number System": 6,
+      "Polynomials": 6,
+      "Coordinate Geometry": 6,
+      "Linear Equations in Two Variables": 6,
+      "Introduction to Euclid’s Geometry": 6,
+      "Lines and Angles": 6,
+      "Surface Areas and Volumes": 6
+    },
+    "workflow_statuses": [
+      "READY_FOR_BLUEPRINT"
+    ],
+    "text_verification_statuses": [
+      "TEXT_VERIFIED_AGAINST_OFFICIAL"
+    ],
+    "admission_rule": "No record is canonical or production-searchable solely because PR #61 labels it READY_FOR_BLUEPRINT/TEXT_VERIFIED."
+  },
+  "iss55_regression_fixture": {
+    "status": "REGRESSION_ONLY_NON_CBSE",
+    "ref": "a3b86bfe398bf85fc76dc56ebc92b09456071cea",
+    "path": "evidence/benchmark/ISS55/generated/owner.bank.json",
+    "blob_sha": "cdea3d3b5749015ee6f6af3ad1b2cebd1c32b9ba",
+    "bank_id": "iss55-poly",
+    "question_count": 10,
+    "schema_version": "grade9v3-owner-supplied-bank-v1",
+    "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+    "drafted_by": "COORDINATING_AGENT",
+    "official_exam_or_pyq": false,
+    "admission_rule": "Must not be relabelled or admitted as CBSE/NCERT source material."
+  },
+  "u1_findings": [
+    "The current canonical platform denominator is 310 questions.",
+    "Only 18 current canonical questions are Mathematics; all project from Mathematics/library/linear-equations.v1.json.",
+    "The PR #61 42-item NCERT-claimed TEST intake is outside the canonical 310-question population.",
+    "The #55 ten-question polynomial bank is OWNER_SUPPLIED_RAW_INPUT and is regression evidence only."
+  ],
+  "next_unit": "U2_PROVENANCE_CUSTODY_VERIFICATION"
+}
