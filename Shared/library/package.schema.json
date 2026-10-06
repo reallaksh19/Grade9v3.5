@@ -3659,6 +3659,14 @@
                   "type": "string",
                   "minLength": 1
                 }
+              },
+              "availability": {
+                "enum": [
+                  "PRE_ATTEMPT_SAFE",
+                  "AFTER_ATTEMPT",
+                  "POST_SOLUTION"
+                ],
+                "description": "Optional disclosure boundary for this authored completion. PRE_ATTEMPT_SAFE is allowed before commitment, AFTER_ATTEMPT becomes available after a valid learner commitment without revealing the full solution, and POST_SOLUTION stays inside the solution disclosure. Omission preserves legacy behavior."
               }
             },
             "required": [
@@ -3698,6 +3706,14 @@
                         "type": "string",
                         "minLength": 1
                       }
+                    },
+                    "availability": {
+                      "enum": [
+                        "PRE_ATTEMPT_SAFE",
+                        "AFTER_ATTEMPT",
+                        "POST_SOLUTION"
+                      ],
+                      "description": "Optional disclosure boundary for this authored completion. PRE_ATTEMPT_SAFE is allowed before commitment, AFTER_ATTEMPT becomes available after a valid learner commitment without revealing the full solution, and POST_SOLUTION stays inside the solution disclosure. Omission preserves legacy behavior."
                     }
                   },
                   "required": [
@@ -3723,7 +3739,7 @@
         "protected_move_refs"
       ],
       "additionalProperties": false,
-      "description": "Opt-in links to existing question reasoning moves, support rows and bound visual stages. A completed protected move is delivered with the attempted solution. Unlisted support retains its existing reveal semantics; authors must record completion honestly."
+      "description": "Opt-in links to existing question reasoning moves, support rows and bound visual stages. Availability may distinguish pre-attempt-safe, after-attempt support, and solution-only disclosure. Omitted availability preserves legacy behavior: support completing protected work remains solution-only. Unlisted support retains its existing reveal semantics; authors must record completion honestly."
     }
   }
 }
