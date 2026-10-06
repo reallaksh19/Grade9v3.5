@@ -405,6 +405,48 @@ class Issue69SubjectNeutrality(unittest.TestCase):
         self.assertIn('data-g9-component="TRAP"', support)
         self.assertIn('data-g9-block="common_wrong_route"', support)
 
+    def test_core2_wrong_route_is_inert_until_commitment(self):
+        manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(manifest)
+        question = next(
+            row for row in ctx.selection_rows["core2"]
+            if (((row.get("extensions") or {}).get(owner_bank.ANALYSIS_KEY) or {}).get("common_wrong_route"))
+        )
+        wrong_route = ((question.get("extensions") or {}).get(owner_bank.ANALYSIS_KEY) or {})["common_wrong_route"]
+
+        html = render_core.core2(ctx, question)
+        support_at = html.index('data-blueprint-slot="support"')
+        solution_at = html.index('data-blueprint-slot="solution"', support_at)
+        support = html[support_at:solution_at]
+        self.assertIn('data-g9-component="TRAP"', support)
+        self.assertIn('data-requires-attempt', support)
+        self.assertIn(f'data-g9-payload-ref="CORE2-{question["id"]}-wrong-route"', support)
+
+        live_support = re.sub(
+            r'<template data-g9-payload="[^"]+">.*?</template>',
+            '',
+            support,
+            flags=re.S,
+        )
+        self.assertNotIn('data-g9-block="common_wrong_route"', live_support)
+        self.assertNotIn(render_core.esc(wrong_route), live_support)
+        self.assertIn('data-g9-block="common_wrong_route"', support)
+        self.assertIn(render_core.esc(wrong_route), support)
+
+    def test_core2_pre_attempt_safe_hint_lane_remains_separate_from_wrong_route(self):
+        manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
+        ctx = render_core.context(manifest)
+        question = next(
+            row for row in ctx.selection_rows["core2"]
+            if render_core._core2_support(ctx, row)
+            and (((row.get("extensions") or {}).get(owner_bank.ANALYSIS_KEY) or {}).get("common_wrong_route"))
+        )
+
+        support = render_core._core2_support(ctx, question)
+        self.assertTrue(support)
+        self.assertNotIn('data-requires-attempt', support)
+        self.assertNotIn('data-g9-block="common_wrong_route"', support)
+
     def test_render_core_has_no_academic_subject_literal_comparison(self):
         path = REPO / "Shared" / "tools" / "render_core.py"
         tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
