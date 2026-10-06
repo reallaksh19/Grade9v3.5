@@ -5,6 +5,8 @@ import unittest
 from collections import Counter
 from pathlib import Path
 
+from Shared.tools import build_learner_search_index, build_question_bank_web
+
 
 REPO = Path(__file__).resolve().parents[1]
 FIXTURE = REPO / "TEST/question-bank/fixtures/pr61-math-42.fixture.json"
@@ -30,6 +32,22 @@ class TestTestFixtureBoundary(unittest.TestCase):
             self.doc["excluded_provider_head"]["excluded_placeholder_records"],
             168,
         )
+
+    def test_fixture_ids_are_absent_from_canonical_question_bank(self):
+        fixture_ids = {row["id"] for row in self.doc["question_refs"]}
+        projection = build_question_bank_web.build(REPO)
+        canonical_ids = {row["id"] for row in projection["questions"]}
+
+        self.assertTrue(fixture_ids.isdisjoint(canonical_ids))
+        self.assertNotIn("TEST", {row.get("subject") for row in projection["questions"]})
+        self.assertTrue(projection["questions"], "isolation must be checked against a non-empty Question Bank")
+
+    def test_fixture_ids_are_absent_from_learner_search(self):
+        fixture_ids = {row["id"] for row in self.doc["question_refs"]}
+        documents, _manifest = build_learner_search_index.build_search_documents(REPO)
+        search_ids = {row["id"] for row in documents}
+
+        self.assertTrue(fixture_ids.isdisjoint(search_ids))
 
     def test_fixture_rows_carry_coordinates_only(self):
         allowed = {"id", "topic_label", "original_identifier"}
