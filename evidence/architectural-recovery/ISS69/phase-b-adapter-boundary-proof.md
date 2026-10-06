@@ -78,8 +78,26 @@ The Phase-B Core2 binding changed from 1.10.0 to 1.11.0, so the role contract wa
 
 Generated-spec floating formatting was also corrected from a manual JS artifact (`57.99999999999999%`) to the repository generator's `58%`.
 
-## CI status boundary
+## Branch-exact CI result
 
-The standalone B03 regression file is intentionally independent of renderer imports. The repository guardrails workflow runs `python3 -m unittest discover -s tests -p "test_*.py" -v` later in the job even when earlier guardrail steps fail.
+Exact head: `ecc579e6c68f9750f5044d258b2c828e57852ddb`  
+Fast workflow job: `112380169256`
 
-Phase-B final handoff should cite that exact execution when it becomes available; until then, the direct authority checks above are the evidence frontier.
+Branch-exact step results:
+
+- Diagnostic evidence contract: **SUCCESS**
+- U09 diagnostic caller migration: **SUCCESS**
+- Representation instance binding contract: **SUCCESS**
+- Issue69 subject-neutrality contract: **SUCCESS**
+- Core2 staged support contract: **FAIL**, at the already-classified downstream renderer seam:
+  `KeyError: 'CORE2: TRAP not declared in attempt of BP-CORE2-SOURCE-QUESTION'`
+
+The Issue69 step executes `python3 -m unittest tests.test_issue69_subject_neutrality`. At this exact head that file proves:
+
+- all three DemandReview adapters use the same seven demands and own no `QRT-` identity;
+- adapters own no page/product-policy keys;
+- `render_core.py` has no academic subject-literal comparison;
+- role contract 1.4 resolves to the active registry rows (Core1A 1.8.0 / Core2 1.11.0);
+- `docs/specs/PAGE-BLUEPRINT-COMPONENTS.md` is byte-equal to `blueprint_spec.render(registry)`.
+
+This is the branch-exact evidence frontier for B03. The later TRAP failure is PHASE-C work and does not invalidate these passed contracts.
