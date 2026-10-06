@@ -168,7 +168,7 @@ keyboardPage.on('pageerror', error => keyboardErrors.push(error.message));
 await keyboardPage.setViewportSize({ width: 1366, height: 854 });
 await keyboardPage.goto(`${base}core2.html#${WITNESS}`, { waitUntil: 'load' });
 const keyboardArticle = keyboardPage.locator(`#${WITNESS}`);
-const keyboardSupport = keyboardArticle.locator('[data-g9-next-rung]:not([disabled])').first();
+const keyboardSupport = keyboardArticle.locator('[data-g9-next-rung]:not([disabled]):visible').first();
 check(await keyboardSupport.count() === 1, 'keyboard witness has no progressive support button');
 if (await keyboardSupport.count()) {
   await keyboardSupport.focus();
@@ -291,7 +291,7 @@ let singleBox = singleArticle.locator('[data-g9-attempt-box]');
 await makeAttempt(singleBox);
 await singleBox.locator('[data-g9-commit]').click();
 check(await singleArticle.getAttribute('data-attempted') === '1', 'SINGLE_FILE witness did not record learner commitment');
-const singleSupportButton = singleArticle.locator('[data-g9-next-rung]:not([disabled])').first();
+const singleSupportButton = singleArticle.locator('[data-g9-next-rung]:not([disabled]):visible').first();
 check(await singleSupportButton.count() === 1, 'SINGLE_FILE witness has no progressive support button');
 if (await singleSupportButton.count()) await singleSupportButton.click();
 const singleRungCount = await singleArticle.locator('.slot-support li[data-g9-rung]').count();
@@ -333,7 +333,8 @@ check(await singleArticle.locator('.slot-support li[data-g9-rung]').count() === 
 check(singleErrors.length === 0, `SINGLE_FILE runtime leaked page error(s): ${singleErrors.join(' | ')}`);
 await singleContext.close();
 
-// Storage failure must degrade to ordinary exact navigation, not break the product.
+// Storage failure must preserve exact URL-bound return navigation. localStorage is only
+// a compatibility fallback; query-bound g9-return/g9-concept is the primary PAGES contract.
 const blockedContext = await browser.newContext();
 await blockedContext.addInitScript(() => {
   for (const method of ['getItem', 'setItem', 'removeItem']) {
@@ -357,15 +358,18 @@ if (await blockedConcept.count()) {
     blockedConcept.click(),
   ]);
   const ordinaryPractice = blocked.locator(`[data-g9-practice-link][data-g9-question-ref="${WITNESS}"][data-g9-concept-ref="${blockedConceptRef}"]`);
-  check(await ordinaryPractice.count() === 1, 'storage-blocked Core1A page lost ordinary exact practice link');
+  check(await ordinaryPractice.count() === 1, 'storage-blocked Core1A page lost exact practice link');
   if (await ordinaryPractice.count()) {
-    const falselyMarkedReturn = await ordinaryPractice.evaluate(el => el.hasAttribute('data-g9-return-link'));
-    check(!falselyMarkedReturn, 'storage-blocked path falsely claims saved return state');
+    const urlBoundReturn = await ordinaryPractice.evaluate(el => el.hasAttribute('data-g9-return-link'));
+    const returnLabel = (await ordinaryPractice.textContent()).trim();
+    check(urlBoundReturn, 'storage-blocked path lost URL-bound exact return state');
+    check(returnLabel.startsWith('Return to question'),
+      `storage-blocked exact return link was not relabelled: ${returnLabel}`);
     await Promise.all([
       blocked.waitForURL(url => url.pathname.endsWith('/core2.html') && url.hash === `#${WITNESS}`),
       ordinaryPractice.click(),
     ]);
-    check(blocked.url().includes(`core2.html#${WITNESS}`), 'storage-blocked ordinary practice link did not return to exact question');
+    check(blocked.url().includes(`core2.html#${WITNESS}`), 'storage-blocked URL-bound return did not reach exact question');
   }
 }
 check(blockedErrors.length === 0, `storage-blocked runtime leaked page error(s): ${blockedErrors.join(' | ')}`);
@@ -378,4 +382,4 @@ if (failures.length) {
   process.exit(1);
 }
 for (const note of notes) console.log(`Core2-v2 browser audit NOTE: ${note}`);
-console.log(`Core2-v2 browser audit PASS: ${TABLET_VIEWPORTS.length} viewport(s), keyboard support/navigation, reload persistence, PAGES + SINGLE_FILE exact state round trips, storage-failure fallback.`);
+console.log(`Core2-v2 browser audit PASS: ${TABLET_VIEWPORTS.length} viewport(s), visible keyboard/support controls, reload persistence, PAGES + SINGLE_FILE exact state round trips, URL-bound storage-failure fallback.`);
