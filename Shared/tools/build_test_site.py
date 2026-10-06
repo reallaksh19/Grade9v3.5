@@ -264,7 +264,7 @@ def core_contract_card(core: dict) -> str:
 def fixture_boundary_card(fixture: dict, safety: dict) -> str:
     topics = "".join(
         f'<li>{esc(topic)} · {esc(count)} coordinate(s)</li>'
-        for topic, count in fixture["topic_counts"].items()
+        for topic, count in sorted(fixture["topic_counts"].items())
     )
     excluded = fixture["excluded_provider_head"]
     commit = excluded.get("commit") or "unknown provider head"
@@ -282,7 +282,7 @@ def fixture_boundary_card(fixture: dict, safety: dict) -> str:
         f'<code>{esc(commit)}</code> · {esc(disposition)}.</p>'
         f'<p class="g9-prov">Scope: <code>{esc(safety["fixture_scope"])}</code>. '
         'This fixture is not canonical, not learner-searchable, and not acceptance evidence. '
-        'Question text and answers are deliberately not projected here.</p>',
+        'It is not a source-verification claim. Question text and answers are deliberately not projected here.</p>',
     )
 
 

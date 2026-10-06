@@ -120,8 +120,9 @@ class TestTestDashboardState(unittest.TestCase):
         self.assertIn("not canonical", panel)
         self.assertIn("not learner-searchable", panel)
         self.assertIn("not acceptance evidence", panel)
+        self.assertIn("not a source-verification claim", panel)
 
-        for topic, count in state["fixture"]["topic_counts"].items():
+        for topic, count in sorted(state["fixture"]["topic_counts"].items()):
             self.assertIn(topic, panel)
             self.assertIn(f"{count} coordinate(s)", panel)
 
@@ -131,6 +132,8 @@ class TestTestDashboardState(unittest.TestCase):
             "official_answer_text",
             "question_refs",
             "VERBATIM_EXTRACTION",
+            "NCERT_OFFICIAL",
+            "CBSE_OFFICIAL",
         ):
             self.assertNotIn(forbidden, panel)
 
