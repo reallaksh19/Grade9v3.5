@@ -1,0 +1,49 @@
+{
+  "schema_version": "grade9v3-phase-d-physics-difficulty-v1",
+  "issue": 109,
+  "subunit": "D01.2",
+  "witness_id": "PYQ-PHY-IITJEE-2011-P2-Q33",
+  "source_bank_blob": "bc22e1610552803e1ee8ccfc167f2a69ebbbd032",
+  "vocabulary_path": "Shared/vocabularies/learner-question-metadata.v1.json",
+  "vocabulary_blob": "ef48260d85b2cf89b460fde40f52c5401fd90488",
+  "result": "PASS",
+  "recorded": {
+    "band": "D3",
+    "score": 7,
+    "components": {
+      "concept_model_selection": 2,
+      "representation_translation": 2,
+      "reasoning_chain_length": 1,
+      "algebra_computational_load": 1,
+      "trap_exception_sensitivity": 1
+    },
+    "basis": "Combines a projectile event clock with accelerated relative horizontal displacement."
+  },
+  "derivation": {
+    "component_keys": [
+      "algebra_computational_load",
+      "concept_model_selection",
+      "reasoning_chain_length",
+      "representation_translation",
+      "trap_exception_sensitivity"
+    ],
+    "component_sum": 7,
+    "allowed_component_range": [
+      0,
+      2
+    ],
+    "band_range": {
+      "min": 6,
+      "max": 7
+    },
+    "derived_band": "D3"
+  },
+  "qualification": [
+    "All five canonical difficulty components are present.",
+    "Every component is an integer in the allowed 0..2 range.",
+    "Recorded score equals the exact component sum.",
+    "Recorded D3 band is derived from the active 6..7 score range.",
+    "Difficulty basis is present and describes the combined model/representation burden."
+  ],
+  "no_shared_patch": true
+}
