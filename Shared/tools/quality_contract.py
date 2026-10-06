@@ -110,7 +110,12 @@ def _reveal_stages(unit, check, ctx):
 def _decisions(unit, check, ctx):
     limit = _threshold(check, "max", ctx["contract"])
     decisions, anchors = unit.get("decisions", 0), max(unit.get("worked_anchors", 0), 0)
-    if decisions and (anchors == 0 or decisions / anchors > limit):
+    # WORKED_EXAMPLE is EXPECTED/waivable, not REQUIRED. This legacy calibration
+    # rule judges only an anchor that actually exists; blueprint_components owns
+    # presence/applicability and therefore absence cannot be turned into debt here.
+    if anchors == 0:
+        return []
+    if decisions and decisions / anchors > limit:
         return [f"{decisions} decisions carried by {anchors} worked anchor(s); at most {limit} per anchor"]
     return []
 

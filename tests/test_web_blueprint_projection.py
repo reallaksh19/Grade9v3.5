@@ -4,7 +4,7 @@ import json
 import unittest
 from pathlib import Path
 
-from Shared.tools import core_template_contract
+from Shared.tools import build_core_learning_data, core_template_contract
 from Shared.tools.core_learning_projection_adapter import _web_delivery
 
 
@@ -28,6 +28,15 @@ class WebBlueprintProjectionTests(unittest.TestCase):
         for core in core_template_contract.ROLE_ORDER:
             blueprint = core_template_contract.resolve_web_blueprint_for_core(core)
             self.assertIn(core, blueprint["core_roles"])
+
+    def test_committed_core_learning_data_matches_the_governed_generator(self):
+        path = REPO / "public/core-learning/data.js"
+        expected = build_core_learning_data.rendered_file()["public/core-learning/data.js"]
+        self.assertEqual(
+            path.read_bytes(),
+            expected,
+            "generated Core-learning data is stale; run python3 Shared/tools/build_manifest.py",
+        )
 
     def test_generated_projection_blueprint_is_invariant_across_subject_rows(self):
         path = REPO / "public/core-learning/data.js"

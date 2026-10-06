@@ -64,6 +64,19 @@ class Contract(unittest.TestCase):
         self.assertNotIn("0.68/0.32", rule["text"])
 
 
+    def test_core1a_legacy_quality_rules_do_not_reintroduce_optional_operators(self):
+        rules = {r["id"]: r for r in quality_contract.contract()["rules"]}
+        self.assertEqual(
+            rules["C1A-BLOCKS"]["check"]["blocks"],
+            ["inferential_jump", "construction", "exit_task"],
+        )
+        self.assertNotIn("worked_anchor", rules["C1A-BLOCKS"]["check"]["blocks"])
+        self.assertNotIn("wrong_path", rules["C1A-BLOCKS"]["check"]["blocks"])
+        self.assertNotIn("independent_check", rules["C1A-BLOCKS"]["check"]["blocks"])
+        self.assertEqual(rules["C1A-REPRESENTATION-BRIDGE"]["check"]["min"], 0)
+        self.assertIn("selected blueprint", rules["C1A-REPRESENTATION-BRIDGE"]["text"].lower())
+        self.assertIn("not a failure by itself", rules["C1A-ANCHOR-PER-DECISION"]["text"])
+
 class SubjectNeutral(unittest.TestCase):
     """Phase 1 exit: Mathematics and Chemistry units fit the contract without a schema change."""
 
@@ -156,6 +169,13 @@ class CatchesDegradedUnits(unittest.TestCase):
         unit["decisions"], unit["worked_anchors"] = 7, 1
         unit["prerequisites_bridged"] = unit["prerequisites_bridged"][:1]
         self.assertTrue({"C1A-ANCHOR-PER-DECISION", "C1A-PREREQUISITES-BRIDGED"} <= rules_failed(obs))
+
+
+    def test_absent_worked_anchor_is_not_density_debt(self):
+        obs = load("chem-core1a-mole-concept.observation.json")
+        unit = obs["pages"][0]["units"][0]
+        unit["decisions"], unit["worked_anchors"] = 7, 0
+        self.assertNotIn("C1A-ANCHOR-PER-DECISION", rules_failed(obs))
 
 
 if __name__ == "__main__":

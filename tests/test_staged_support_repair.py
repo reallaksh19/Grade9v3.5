@@ -170,8 +170,14 @@ class StagedSupportRepair(unittest.TestCase):
 
     def test_completed_figures_remain_in_the_existing_attempted_solution_payload(self):
         ctx = replay.context()
-        output = render_core.core2(ctx, ctx.bank[2])
-        payload = re.search(r'<template data-g9-payload="[^"]+">(.*?)</template>', output, re.S)
+        q = ctx.bank[2]
+        output = render_core.core2(ctx, q)
+        solution_ref = f'CORE2-{q["id"]}-solution'
+        payload = re.search(
+            rf'<template data-g9-payload="{re.escape(solution_ref)}">(.*?)</template>',
+            output,
+            re.S,
+        )
         self.assertIsNotNone(payload)
         self.assertIn('data-g9-stage-id="WORKED"', payload.group(1))
         outside = output[:payload.start()] + output[payload.end():]
