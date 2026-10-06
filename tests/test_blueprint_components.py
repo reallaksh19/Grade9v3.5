@@ -144,6 +144,31 @@ class Reporting(unittest.TestCase):
         render_core.component(ctx, "CORE1A", "WORKED_EXAMPLE", "", "CU-1")
         self.assertEqual(len(ctx.gaps), 1)
 
+    def test_core1a_conditional_operators_are_not_manufactured_to_satisfy_reference_authoring(self):
+        ctx = ctx_with(REGISTRY)
+        ctx.held_to = "REFERENCE"
+
+        render_core.component(ctx, "CORE1A", "TRAP_REPAIR", "", "CU-1")
+        render_core.component(ctx, "CORE1A", "QUICK_CHECK", "", "CU-1")
+        self.assertEqual(ctx.gaps, [])
+        self.assertEqual(ctx.advisories, [])
+
+        worked = render_core.component(
+            ctx, "CORE1A", "WORKED_EXAMPLE", "", "CU-1",
+            waivers={"WORKED_EXAMPLE": "construction proceeds directly to reduced-support application"},
+        )
+        visual = render_core.component(
+            ctx, "CORE1A", "STAGED_VISUAL", "", "CU-1",
+            waivers={"STAGED_VISUAL": "no representation adds semantic information for this unit"},
+        )
+        self.assertIn('data-g9-component-waiver="WORKED_EXAMPLE"', worked)
+        self.assertIn('data-g9-component-waiver="STAGED_VISUAL"', visual)
+        self.assertEqual(ctx.gaps, [])
+        self.assertEqual(
+            [(row["component"], row["record"]) for row in ctx.waived],
+            [("WORKED_EXAMPLE", "CU-1"), ("STAGED_VISUAL", "CU-1")],
+        )
+
     def test_without_a_blueprint_the_renderer_neither_wraps_nor_reports(self):
         ctx = ctx_with({})
         self.assertEqual(render_core.component(ctx, "CORE2", "HINT_LADDER", "<p>x</p>", "Q", items=0), "<p>x</p>")
