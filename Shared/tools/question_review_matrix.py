@@ -238,8 +238,9 @@ def _question_band(question: dict[str, Any]) -> str:
 
 def _question_demand(question: dict[str, Any]) -> dict[str, Any]:
     extension = ((question.get("extensions") or {}).get("grade9v3:cognitive_demand"))
+    qid = str(question.get("id") or "<unknown>")
     if not isinstance(extension, dict):
-        raise QRTContractError(f"COGNITIVE_DEMAND_MISSING: {question.get('id', '<unknown>')}")
+        raise QRTContractError(f"COGNITIVE_DEMAND_MISSING: {qid}")
     primary = extension.get("primary")
     if primary not in DEMANDS:
         raise QRTContractError(f"COGNITIVE_DEMAND_INVALID: {primary!r}")
@@ -249,7 +250,26 @@ def _question_demand(question: dict[str, Any]) -> dict[str, Any]:
     basis = extension.get("basis")
     if not isinstance(basis, str) or not basis.strip():
         raise QRTContractError("COGNITIVE_DEMAND_BASIS_MISSING")
-    return {"primary": primary, "secondary": secondary, "basis": basis}
+
+    answer = question.get("answer") if isinstance(question.get("answer"), dict) else {}
+    crux_ref = answer.get("crux_move_ref")
+    if not isinstance(crux_ref, str) or not crux_ref.strip():
+        raise QRTContractError(f"COGNITIVE_DEMAND_CRUX_MOVE_MISSING: {qid}")
+    crux_move = _reasoning_move(question, crux_ref)
+    if not crux_move:
+        raise QRTContractError(f"COGNITIVE_DEMAND_CRUX_MOVE_UNRESOLVED: {qid}:{crux_ref}")
+    action = crux_move.get("action")
+    if not isinstance(action, str) or not action.strip():
+        raise QRTContractError(f"COGNITIVE_DEMAND_CRUX_MOVE_ACTION_MISSING: {qid}:{crux_ref}")
+
+    return {
+        "primary": primary,
+        "secondary": secondary,
+        "basis": basis,
+        "primary_move_ref": crux_ref,
+        "primary_move_kind": crux_move.get("kind"),
+        "primary_move_action": action,
+    }
 
 
 def _analysis(question: dict[str, Any]) -> dict[str, Any]:
@@ -378,6 +398,7 @@ def resolve_review(question: dict[str, Any], profile: dict[str, Any], matrix: di
             "matrix": canonical_digest(matrix),
             "vocabulary": canonical_digest(vocab),
             "difficulty_metadata": canonical_digest(question_difficulty.metadata()),
+            "primary_move": canonical_digest(_reasoning_move(question, demand["primary_move_ref"])),
         },
         "slots": slots,
         "review": review,
