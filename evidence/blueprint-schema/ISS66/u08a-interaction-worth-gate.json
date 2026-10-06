@@ -1,0 +1,120 @@
+{
+  "schema": "iss66-interaction-worth-gate/v1",
+  "issue": 66,
+  "task": "U08A",
+  "purpose": "Replay builder proposals from stress tests #49-#56 and distinguish repeated UI gesture from a reusable subject-neutral learner-action contract.",
+  "worth_gate": {
+    "independent_recurrence": "The same learner-owned action must recur in at least two independently executed frozen runs.",
+    "semantic_convergence": "The proposals must agree on what learner state is authored/captured, not merely on a visual control such as a slider.",
+    "subject_neutrality": "The primitive must be specifiable without polynomial/rational-function/domain-specific semantics.",
+    "learner_ownership": "The primitive must capture or expose a learner action/observation rather than only animate authored presentation.",
+    "existing_composition_gap": "Existing staged visuals, attempt controls, prediction/compare repair, representations and interactive_idea design records must be insufficient for the recurring need.",
+    "protection_and_fallback": "A reusable contract must admit protected-state, accessibility, print/no-JS and restoration rules without topic-specific exceptions.",
+    "evidence_breadth": "Recurrence confined to one benchmark/topic family is insufficient for permanent shared runtime/schema cost unless the same semantic contract is independently demonstrated across distinct task families."
+  },
+  "proposals": [
+    {
+      "issue": 49,
+      "proposal": "record-configured bounded-parameter probe",
+      "learner_action": "vary a bounded authored parameter, make a prediction/reason, compare derived readouts",
+      "category": "NUMERIC_PROBE_EXPLORATION",
+      "subject_specific_name": false,
+      "shared_code_changed": false,
+      "disposition": "CANDIDATE_SIGNAL"
+    },
+    {
+      "issue": 50,
+      "proposal": "COORDINATE_PLOT_RESPONSE",
+      "learner_action": "enter/edit a value table and learner-owned plotted points",
+      "category": "STRUCTURED_RESPONSE_CAPTURE",
+      "subject_specific_name": false,
+      "shared_code_changed": false,
+      "disposition": "DISTINCT_ACTION"
+    },
+    {
+      "issue": 51,
+      "proposal": "BLUEPRINT_DRIVEN_LAYOUT_CONSISTENCY",
+      "learner_action": null,
+      "category": "PLATFORM_LAYOUT",
+      "subject_specific_name": false,
+      "shared_code_changed": false,
+      "disposition": "NOT_INTERACTION"
+    },
+    {
+      "issue": 52,
+      "proposal": null,
+      "learner_action": null,
+      "category": "NO_FROZEN_BUILDER_EVIDENCE_IN_PARENT_REPLAY",
+      "subject_specific_name": null,
+      "shared_code_changed": false,
+      "disposition": "ASYMMETRIC_EVIDENCE"
+    },
+    {
+      "issue": 53,
+      "proposal": "POLYNOMIAL_COEFFICIENT_GRID_INTERACTOR",
+      "learner_action": "fill missing polynomial coefficient/power slots and verify alignment",
+      "category": "TOPIC_SPECIFIC_STRUCTURED_RESPONSE",
+      "subject_specific_name": true,
+      "shared_code_changed": false,
+      "disposition": "NO_SHARED_SCHEMA"
+    },
+    {
+      "issue": 54,
+      "proposal": "rational-domain-inspector",
+      "learner_action": "move an x probe and observe original/simplified function evaluation at an excluded point",
+      "category": "NUMERIC_PROBE_EXPLORATION",
+      "subject_specific_name": true,
+      "shared_code_changed": false,
+      "disposition": "RELATED_GESTURE_DIFFERENT_SEMANTICS"
+    },
+    {
+      "issue": 55,
+      "proposal": "layout-policy reconciliation + PAGES asset packaging",
+      "learner_action": null,
+      "category": "PLATFORM_LAYOUT_PACKAGING",
+      "subject_specific_name": false,
+      "shared_code_changed": false,
+      "disposition": "NOT_INTERACTION"
+    },
+    {
+      "issue": 56,
+      "proposal": "CONTINUOUS_PARAMETER_SCRUBBER",
+      "learner_action": "vary an authored parameter continuously and observe representation state/critical ticks",
+      "category": "NUMERIC_PROBE_EXPLORATION",
+      "subject_specific_name": false,
+      "shared_code_changed": false,
+      "disposition": "CANDIDATE_SIGNAL"
+    }
+  ],
+  "recurring_cluster": {
+    "category": "NUMERIC_PROBE_EXPLORATION",
+    "issues": [
+      49,
+      54,
+      56
+    ],
+    "passes": {
+      "independent_recurrence": true,
+      "semantic_convergence": false,
+      "subject_neutrality": false,
+      "learner_ownership": true,
+      "existing_composition_gap": false,
+      "protection_and_fallback": true,
+      "evidence_breadth": false
+    },
+    "notes": [
+      "#49 needs bounded parameter + prediction/reason + derived readouts.",
+      "#54 probes an independent variable at a domain exclusion and compares two function evaluations; its proposed contract embeds rational-function/domain semantics.",
+      "#56 varies a model parameter continuously to animate representation state and marked bifurcation ticks.",
+      "The commonality is a numeric range control, not a shared learner-state or evaluation contract.",
+      "All three arise inside the same polynomial stress-test family; cross-subject reuse is asserted, not independently demonstrated.",
+      "#49 itself reports the existing typed prediction/compare repair is already sufficient for the frozen learner product."
+    ]
+  },
+  "decision": "NO_SHARED_INTERACTION_PRIMITIVE_YET",
+  "next_evidence_needed": [
+    "At least one distinct task family or subject independently requiring the same semantic numeric-probe contract.",
+    "A concrete case where existing staged visual + attempt/prediction/compare composition cannot honestly represent the learner action.",
+    "Convergent authored state fields across those independent cases, not only convergent slider/range UI."
+  ]
+}
