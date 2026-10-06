@@ -6,7 +6,9 @@ import re
 import unittest
 from pathlib import Path
 
+from Shared.library import core1a_construction
 from Shared.tools import blueprint_spec
+from tests.test_core1a_construction import fixture as core1a_fixture
 
 
 REPO = Path(__file__).resolve().parents[1]
@@ -109,6 +111,33 @@ class Issue69SubjectNeutrality(unittest.TestCase):
             REPO / "docs" / "specs" / "PAGE-BLUEPRINT-COMPONENTS.md"
         ).read_text(encoding="utf-8")
         self.assertEqual(generated, blueprint_spec.render(registry))
+
+    def test_core1a_audit_does_not_make_repair_or_worked_anchor_universal(self):
+        micro, rep, relation, question = core1a_fixture()
+        micro["misconceptions"] = []
+        question["exposure"] = []
+        row = core1a_construction.audit_microtopic(
+            "Test",
+            "Test/library/test.json",
+            micro,
+            representations={rep["id"]: rep},
+            relations={relation["id"]: relation},
+            questions=[question],
+        )
+        self.assertNotIn("MISCONCEPTION_REPAIR_MISSING", row["finding_codes"])
+        self.assertNotIn("WORKED_CONCEPTUAL_ANCHOR_MISSING", row["finding_codes"])
+
+        question["exposure"] = [{"core": "CORE1A", "role": "PLANNED_WORKED_ANCHOR"}]
+        question["answer"]["reasoning"] = []
+        row = core1a_construction.audit_microtopic(
+            "Test",
+            "Test/library/test.json",
+            micro,
+            representations={rep["id"]: rep},
+            relations={relation["id"]: relation},
+            questions=[question],
+        )
+        self.assertIn("WORKED_CONCEPTUAL_ANCHOR_MISSING", row["finding_codes"])
 
     def test_render_core_has_no_academic_subject_literal_comparison(self):
         path = REPO / "Shared" / "tools" / "render_core.py"
