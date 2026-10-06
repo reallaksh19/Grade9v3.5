@@ -219,37 +219,25 @@ class Issue69SubjectNeutrality(unittest.TestCase):
             row for row in ctx.selection_rows["microtopics"]
             if row["id"] == toughest["microtopic_ref"]
         ))
-        builders = [
-            unit for unit in microtopic.get("construction_units") or []
-            if toughest["question_ref"] in (unit.get("crux_question_refs") or [])
-        ]
-        self.assertTrue(builders)
-
-        for unit in builders:
-            unit.pop("bank_anchor_ref", None)
-            unit.pop("worked_anchor_ref", None)
-        extensions = microtopic.setdefault("extensions", {})
-        extensions["grade9v3:lesson_anchors"] = {}
+        units = microtopic.get("construction_units") or []
+        self.assertTrue(units)
+        builder = units[0]
+        builder["crux_question_refs"] = [toughest["question_ref"]]
+        builder.pop("bank_anchor_ref", None)
+        builder.pop("worked_anchor_ref", None)
+        microtopic.setdefault("extensions", {})["grade9v3:lesson_anchors"] = {}
 
         before = len(ctx.gaps)
-        render_core._toughest_unit_gaps(
-            ctx, microtopic, microtopic["construction_units"], toughest
-        )
+        render_core._toughest_unit_gaps(ctx, microtopic, units, toughest)
         new_gaps = ctx.gaps[before:]
         self.assertFalse(
             [gap for gap in new_gaps if gap["duty"] == "AUTHOR_TOUGHEST_CONCEPT"],
             new_gaps,
         )
 
-        for unit in builders:
-            unit["crux_question_refs"] = [
-                ref for ref in unit.get("crux_question_refs") or []
-                if ref != toughest["question_ref"]
-            ]
+        builder["crux_question_refs"] = []
         before = len(ctx.gaps)
-        render_core._toughest_unit_gaps(
-            ctx, microtopic, microtopic["construction_units"], toughest
-        )
+        render_core._toughest_unit_gaps(ctx, microtopic, units, toughest)
         new_gaps = ctx.gaps[before:]
         self.assertTrue(
             [gap for gap in new_gaps if gap["duty"] == "AUTHOR_TOUGHEST_CONCEPT"],
