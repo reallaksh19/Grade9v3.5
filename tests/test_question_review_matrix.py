@@ -144,6 +144,40 @@ class QuestionReviewMatrixTests(unittest.TestCase):
         self.assertIn(result["slots"]["X"]["text"], result["review"]["H1"]["question"])
         self.assertIn(result["slots"]["Y"]["text"], result["review"]["H2"]["question"])
 
+    def test_difficulty_band_is_derived_from_component_evidence(self):
+        question = self.synthetic_question()
+        result = qrt.resolve_review(question, self.synthetic_profile(), self.matrix, self.vocab)
+        self.assertEqual(result["classification"]["band"], "D3")
+        self.assertIn("difficulty_metadata", result["basis_digests"])
+
+        question["difficulty"]["score"] = 7
+        with self.assertRaisesRegex(qrt.QRTContractError, "QUESTION_DIFFICULTY_SCORE_MISMATCH"):
+            qrt.resolve_review(question, self.synthetic_profile(), self.matrix, self.vocab)
+
+        question = self.synthetic_question()
+        question["difficulty"]["band"] = "D4"
+        with self.assertRaisesRegex(qrt.QRTContractError, "QUESTION_DIFFICULTY_BAND_MISMATCH"):
+            qrt.resolve_review(question, self.synthetic_profile(), self.matrix, self.vocab)
+
+    def test_requested_band_is_planning_metadata_not_qr_t_cell_authority(self):
+        question = self.synthetic_question()
+        question["difficulty"]["requested_band"] = "D4"
+        result = qrt.resolve_review(question, self.synthetic_profile(), self.matrix, self.vocab)
+        self.assertEqual(result["classification"]["band"], "D3")
+        self.assertEqual(result["template_id"], "QRT-REPRESENT-D3")
+        self.assertEqual(question["difficulty"]["requested_band"], "D4")
+
+    def test_shared_difficulty_ranges_cover_zero_through_ten_once(self):
+        self.assertEqual(
+            qrt.question_difficulty.score_band_map(),
+            {
+                0: "D1", 1: "D1", 2: "D1",
+                3: "D2", 4: "D2", 5: "D2",
+                6: "D3", 7: "D3",
+                8: "D4", 9: "D4", 10: "D4",
+            },
+        )
+
     def test_percentage_never_routes_or_changes_slots(self):
         low = qrt.resolve_review(self.synthetic_question(), self.synthetic_profile(30), self.matrix, self.vocab)
         high = qrt.resolve_review(self.synthetic_question(), self.synthetic_profile(80), self.matrix, self.vocab)
