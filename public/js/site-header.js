@@ -18,6 +18,17 @@
     const nav = header.querySelector('.nav-links');
 
     if (brand && nav) {
+      if (!nav.querySelector('[data-site-test]')) {
+        const t = document.createElement('a');
+        t.href = root+'test/index.html';
+        t.textContent = 'TEST';
+        t.className = 'test-link';
+        t.dataset.siteTest = '';
+        if (location.pathname.includes('/test/')) t.classList.add('active');
+        const q = nav.querySelector('[data-site-question-bank]');
+        if (q) nav.insertBefore(t, q.nextSibling);
+        else nav.appendChild(t);
+      }
       if (!header.querySelector('.site-leading')) {
         const leading = document.createElement('div');
         leading.className = 'site-leading';

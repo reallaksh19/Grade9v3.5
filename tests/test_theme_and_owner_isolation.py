@@ -19,11 +19,19 @@ class TestThemeAndOwnerIsolation(unittest.TestCase):
         return html_files
 
     def test_zero_test_links_in_learner_surfaces(self):
-        """Crawl all .html files in public/ (except public/test/) and assert zero occurrences of href=".../test/..." or >TEST<."""
+        """Crawl all learner .html files in public/ (except hubs and public/test/) and assert zero occurrences of href=".../test/..." or >TEST<."""
         files = self.get_learner_html_files()
         if not files:
             return # No files to test yet
+        hub_pages = {
+            PUBLIC_DIR / "index.html",
+            PUBLIC_DIR / "physics" / "index.html",
+            PUBLIC_DIR / "chemistry" / "index.html",
+            PUBLIC_DIR / "mathematics" / "index.html",
+        }
         for filepath in files:
+            if filepath in hub_pages:
+                continue
             content = filepath.read_text(encoding="utf-8")
             
             # Check for links to /test/

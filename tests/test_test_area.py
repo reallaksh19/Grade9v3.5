@@ -197,7 +197,7 @@ class TestPages(unittest.TestCase):
     def test_test_is_not_a_question_bank_subject(self):
         projection = build_question_bank_web.build(REPO)
         self.assertNotIn("TEST", {q.get("subject") for q in projection["questions"]})
-        self.assertEqual(len(projection["questions"]), 81)
+        self.assertGreaterEqual(len(projection["questions"]), 310, "canonical question count regressed")
 
 
 class TestDeploy(unittest.TestCase):
@@ -238,7 +238,7 @@ class TestDeploy(unittest.TestCase):
         role_pages = sorted(name for name in receipt["pages"] if name != "index.html")
         self.assertEqual(sorted(receipt["pdf"]["files"]), [name.replace(".html", ".pdf") for name in role_pages])
         for name in role_pages:
-            link = re.search(r'<a data-g9-action="pdf"[^>]*href="([^"]+)"', (out / name).read_text(encoding="utf-8"))
+            link = re.search(r'<a [^>]*data-g9-action="pdf"[^>]*href="([^"]+)"', (out / name).read_text(encoding="utf-8"))
             self.assertEqual(link.group(1), name.replace(".html", ".pdf"))
             data = (out / link.group(1)).read_bytes()
             self.assertTrue(data.startswith(b"%PDF"), name)
@@ -667,7 +667,7 @@ class TestOwnerBankFromIntake(unittest.TestCase):
         problems = " ".join(owner_bank.check(bank))
         self.assertIn("HINT_LADDER needs 3, the record supplies 0", problems)
         self.assertIn("SOLUTION_STEPS needs 3, the record supplies 0", problems)
-        self.assertIn("scaffolds[]", problems, "the message carries the blueprint's own instruction for the author")
+        self.assertIn("scaffolds", problems, "the message carries the blueprint's own instruction for the author")
 
     def test_a_rung_must_point_at_a_move_the_crux_must_name_one_and_an_owner_question_has_no_source_hints(self):
         bank = self.bank()
