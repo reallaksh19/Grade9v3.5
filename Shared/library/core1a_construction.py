@@ -259,7 +259,7 @@ def audit_microtopic(
         reasoning = (question.get("answer") or {}).get("reasoning") or []
         if not isinstance(reasoning, list) or not reasoning:
             findings.append(_finding(
-                "WORKED_CONCEPTUAL_ANCHOR_INCOMPLETE",
+                "WORKED_CONCEPTUAL_ANCHOR_MISSING",
                 "A mapped CORE1A worked anchor has no completed answer.reasoning[] route.",
                 question.get("id") or ref,
             ))
