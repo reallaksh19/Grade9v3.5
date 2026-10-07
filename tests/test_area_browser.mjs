@@ -92,7 +92,7 @@ for (const width of [390, 1280]) {
   if (facts.duplicateReview !== 1) failures.push(`question bank @${width}: expected one duplicate-review card, got ${facts.duplicateReview}`);
   if (facts.overflow > 1) failures.push(`question bank @${width}: ${facts.overflow}px wider than the screen`);
 
-  await tab.locator('#tqbUnit').selectOption({ label: /Unit 2: Polynomials/ }).catch(() => {});
+  await tab.locator('#tqbUnit').selectOption('Unit 2: Polynomials');
   await tab.waitForTimeout(50);
   const visiblePolynomials = await tab.locator('[data-g9-test-question]:not([hidden])').count();
   if (visiblePolynomials !== 30) failures.push(`question bank @${width}: Unit 2 filter shows ${visiblePolynomials}, expected 30`);
