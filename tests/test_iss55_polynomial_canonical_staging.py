@@ -4,6 +4,7 @@ import unittest
 from pathlib import Path
 
 from Shared.tools import question_bank_platform
+from Shared.library import intake
 
 REPO = Path(__file__).resolve().parents[1]
 PACKAGE = REPO / "Mathematics/library/polynomials.v1.json"
@@ -49,6 +50,14 @@ class TestIss55PolynomialCanonicalStaging(unittest.TestCase):
                 False,
                 q["id"],
             )
+
+    def test_package_passes_library_intake(self):
+        report = intake.check(self.package)
+        self.assertEqual(
+            [f"{row['point']}: {row['detail']}" for row in report["findings"]][:10],
+            [],
+        )
+        self.assertTrue(report["admitted"])
 
     def test_non_admitted_candidate_does_not_influence_qb_titles(self):
         titles = question_bank_platform.load_subtopic_titles(REPO)
