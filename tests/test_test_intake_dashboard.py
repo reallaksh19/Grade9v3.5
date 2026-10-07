@@ -95,6 +95,31 @@ class TestTestIntakeDashboard(unittest.TestCase):
         self.assertTrue(banks[0][0].name.endswith(".v1.json"))
         self.assertNotIn("blueprint-handoff", banks[0][0].name)
 
+    def test_hub_projects_exact_verified_records_and_hides_answer_keys(self):
+        page = build_test_site.hub_page()
+        self.assertIn('data-g9-unit="question-intake"', page)
+        self.assertEqual(page.count("data-g9-intake-record"), 6)
+        self.assertIn("Every rational number is", page)
+        self.assertIn("printed page 2", page)
+        self.assertIn("PDF index 1", page)
+        self.assertIn("NCERT_OFFICIAL", page)
+        self.assertIn("READY_FOR_BLUEPRINT", page)
+        self.assertIn("Official answer:</strong> available (key not projected)", page)
+        self.assertIn("https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep201.pdf", page)
+        for forbidden in ('answer_key', 'worked_solution', 'difficulty', 'qrt', 'accepted'):
+            self.assertNotIn(forbidden, page)
+
+    def test_hub_embeds_test_only_search_and_filter_controls(self):
+        page = build_test_site.hub_page()
+        self.assertIn('data-g9-test-search-index', page)
+        self.assertIn('"scope": "TEST_ONLY_SANDBOX"', page)
+        self.assertIn('data-g9-test-intake-query', page)
+        self.assertIn('data-g9-test-intake-topic', page)
+        self.assertIn('data-g9-test-intake-source', page)
+        self.assertIn('data-g9-test-intake-status', page)
+        self.assertIn('min-height:48px', page)
+        self.assertNotIn("learner-search-index.v1.json", page)
+
 
 if __name__ == "__main__":
     unittest.main()
