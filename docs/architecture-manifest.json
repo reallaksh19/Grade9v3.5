@@ -6,20 +6,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 506,
-  "relation_count": 543,
+  "component_count": 507,
+  "relation_count": 546,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 56,
     "TEST": 248,
-    "TOOLING": 148,
+    "TOOLING": 149,
     "WEB": 16,
     "WEB_CONTRACT": 8,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:558548d3c31f85ec1bec01a7e980e371338d5db67cb67db9b8f5a058600f5112",
+  "digest": "sha256:52ca024eaeda63bed5c1d7d6965680ca7437cb8b6d25d1d915f5a0921778c837",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -697,8 +697,8 @@
       "path": "Shared/tools/build_learner_ui.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 46421,
-      "sha256": "266e564ea328086a5d333a77d71681e91df07a508bcdb02f8ec46b0b940ad4e4"
+      "bytes": 46722,
+      "sha256": "6609820a49459d53797f6eeeef2372e8be41fd501f661492e9dedc0d05a56436"
     },
     {
       "path": "Shared/tools/build_manifest.py",
@@ -771,11 +771,18 @@
       "sha256": "fb8e65eace43c0cabf719b4faf40f22cf473521403c9b6f433e4207b4a7d5de9"
     },
     {
+      "path": "Shared/tools/build_test_question_bank.py",
+      "role": "TOOLING",
+      "role_description": "Guardrails and generators",
+      "bytes": 12072,
+      "sha256": "a9d0b8a0617034d33ce4002b77de125af5c0f1b7ff51456522947a36d92e57a8"
+    },
+    {
       "path": "Shared/tools/build_test_site.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 22479,
-      "sha256": "893f95e88a1edcd54a663a8c58b1eaa9455fbc9e8da778c52a084dc258617760"
+      "bytes": 37288,
+      "sha256": "d636a909f01c24f9d5def30bd7516286f22d73bd3439287028318b596bde2b0c"
     },
     {
       "path": "Shared/tools/build_web_data.py",
@@ -1264,8 +1271,8 @@
       "path": "Shared/tools/question_bank_platform.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 49922,
-      "sha256": "5e77d8c5c68b88734e9eca400794f872332f2800de7ca017fbcf0c6d46ab93ee"
+      "bytes": 50523,
+      "sha256": "7dba25797e483afcac437de01b0f94ba84bf4abf4da89fd2f65f2e620dc1e700"
     },
     {
       "path": "Shared/tools/question_bank_scale.py",
@@ -1600,8 +1607,8 @@
       "path": "Shared/web/atlas-sandbox-transform.v1.json",
       "role": "WEB_CONTRACT",
       "role_description": "Subject-neutral interactive page blueprint contracts",
-      "bytes": 4344,
-      "sha256": "d49c9d76eb6cfb883689bcea0da0f6ed0a391926062d6f2df9c4f887045d39b0"
+      "bytes": 5336,
+      "sha256": "a2c47194b9dc26f75d7fe43a4d2543428e62e1b7f1fdf6ef6e4394bd43c4ae2a"
     },
     {
       "path": "Shared/web/explorer-model.js",
@@ -1691,8 +1698,8 @@
       "path": "public/core-learning/data.js",
       "role": "WEB",
       "role_description": "Static Core learner host and generated projection data",
-      "bytes": 2487113,
-      "sha256": "6f76eb67446bf47e1cac616a691220dd9df3f821011684328cb4537eb33dc4a1"
+      "bytes": 2496229,
+      "sha256": "bfca9a8ecae534a82a4c3ff001c0b51c5826e0ecd023a9b0da954c5430d7a809"
     },
     {
       "path": "public/core-learning/index.html",
@@ -2181,8 +2188,8 @@
       "path": "tests/test_area_browser.mjs",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 11391,
-      "sha256": "746a66c28f2e5830784743a34a6fbbb6dfe886c610c930f95fda00901b69f253"
+      "bytes": 12112,
+      "sha256": "cbe1cb5524d31b872980fe0884704f155f1917746599e24b98f0ade3c1a449e1"
     },
     {
       "path": "tests/test_assurance_acceptance.py",
@@ -2773,6 +2780,13 @@
       "sha256": "1a7b007403e843edb2d55cf6c44699e31a2964123bc7ad6ac1d8850590a49ba6"
     },
     {
+      "path": "tests/test_iss55_polynomial_canonical_staging.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 3686,
+      "sha256": "65b0c0ed106d036e4ccf060030228b6adc5598a14dc5675a4b4f726dc86cf9c3"
+    },
+    {
       "path": "tests/test_issue124_horse_cart_explorer.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -2967,27 +2981,6 @@
       "role_description": "Executable checks",
       "bytes": 4109,
       "sha256": "ad952efce08143f53c1525cfd3ef55252852798d5259e0ab60ca7e591a860e8e"
-    },
-    {
-      "path": "tests/test_phase_d_freeze_handoff.py",
-      "role": "TEST",
-      "role_description": "Executable checks",
-      "bytes": 7931,
-      "sha256": "2e19e615a8f143ce417da041a1ab0cd5d7bf8af839f229eee63f7fe05ec93034"
-    },
-    {
-      "path": "tests/test_phase_e_authority_ledger.py",
-      "role": "TEST",
-      "role_description": "Executable checks",
-      "bytes": 9924,
-      "sha256": "a8a74f6e696f2182c13c2a899801f2f4d724bd42b2ed107f25012e65ca831a02"
-    },
-    {
-      "path": "tests/test_phase_e_final_qualification.py",
-      "role": "TEST",
-      "role_description": "Executable checks",
-      "bytes": 7249,
-      "sha256": "cfb08e7e72a3df2a0202a2b95db0b9f1ea880f219b6bee75ae19593af0f5dc71"
     },
     {
       "path": "tests/test_physics_practice_content_quality.py",
@@ -3350,15 +3343,29 @@
       "path": "tests/test_test_area.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 48340,
-      "sha256": "d45fe612a70379794ddf11ef57e1997d94a9e6cf12e103b21e18cc29cb195617"
+      "bytes": 53332,
+      "sha256": "c5ebd574477cc04c84d34eec186cd5a481ecc3bc3b17762ee98ab86dd258d2b5"
+    },
+    {
+      "path": "tests/test_test_question_bank.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 5733,
+      "sha256": "a6566370cd8d5db2f637cafdb2ed291e1aa10e05e36b609e014b964ec720040f"
+    },
+    {
+      "path": "tests/test_test_question_bank_browser.mjs",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 6028,
+      "sha256": "cf61e85e2de4dc97c472944d6f43eae1e82511840ad1ac0931bdd25bdb355da3"
     },
     {
       "path": "tests/test_theme_and_owner_isolation.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 3662,
-      "sha256": "be62314d71e78337030a9b550f3ac1def162b34df32dc19de40f60eced221b53"
+      "bytes": 4244,
+      "sha256": "5a1a9bd256c75a9ad84ec3b710a8360db1d511dc72bed73c04320286c04fd5e1"
     },
     {
       "path": "tests/test_tools.py",
@@ -3483,8 +3490,8 @@
       "path": "tools/data.js",
       "role": "WEB",
       "role_description": "Browsable surfaces over generated data",
-      "bytes": 2336920,
-      "sha256": "afadb1739741e3f981fb9bc3aa3a61998502af395f0f5c0ce3f938cfe58e2148"
+      "bytes": 2428512,
+      "sha256": "62c0d539eab2cdd79c28d37a2a1a8408105d9a00378a83fdcb656c05d602a89a"
     },
     {
       "path": "tools/index.html",
@@ -3963,6 +3970,11 @@
     {
       "from": "Shared/tools/build_search_index.py",
       "to": "Shared.contracts",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "Shared/tools/build_test_site.py",
+      "to": "Shared.library.resolve",
       "kind": "IMPORTS"
     },
     {
@@ -5506,6 +5518,16 @@
       "kind": "IMPORTS"
     },
     {
+      "from": "tests/test_iss55_polynomial_canonical_staging.py",
+      "to": "Shared.library",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_iss55_polynomial_canonical_staging.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
       "from": "tests/test_issue212_atlas_index.py",
       "to": "Shared.contracts",
       "kind": "IMPORTS"
@@ -5722,11 +5744,6 @@
     },
     {
       "from": "tests/test_pages_site.py",
-      "to": "Shared.tools",
-      "kind": "IMPORTS"
-    },
-    {
-      "from": "tests/test_phase_e_final_qualification.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
@@ -6157,6 +6174,11 @@
     },
     {
       "from": "tests/test_test_area.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_test_question_bank.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
