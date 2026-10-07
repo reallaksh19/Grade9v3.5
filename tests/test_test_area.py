@@ -135,6 +135,16 @@ class TestPages(unittest.TestCase):
             self.assertIn(f"OWN-ISS55-POLY-{number:02d}", page)
         self.assertIn("Inspect answer / verification evidence", page)
 
+    def test_committed_polynomial_core2_source_renders_through_current_renderer(self):
+        manifest = REPO / "TEST/products/iss55-poly.manifest.json"
+        pages, gaps, _digest, _advisories, _waived = render_core.build_report(manifest, "PAGES", held_to="REFERENCE")
+        self.assertIn("core2.html", pages)
+        core2 = pages["core2.html"]
+        for number in range(1, 11):
+            self.assertIn(f"OWN-ISS55-POLY-{number:02d}", core2)
+        self.assertNotIn("Official past paper", core2)
+        self.assertTrue(all(gap.get("core") == "CORE2" for gap in gaps), gaps)
+
 
     def test_a_rung_matrix_that_breaks_the_matrix_schema_says_so_on_the_rungs_page_and_in_the_build(self):
         board = {"matrix_id": "MX-BAD", "subject": "TEST", "topic": "Vectors", "subtopic": "Sums",
