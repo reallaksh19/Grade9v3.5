@@ -146,6 +146,10 @@ class PhaseDMathematicsQualification(unittest.TestCase):
         self.assertIn("data-g9-tablet-shell", core2)
         self.assertIn(f'data-g9-render-digest="{digest}"', core1a)
         self.assertIn(f'data-g9-render-digest="{digest}"', core2)
+        self.assertIn(
+            "qualification-fixture-source",
+            {name for name, _digest in ctx.authority_hashes},
+        )
 
 
 if __name__ == "__main__":
