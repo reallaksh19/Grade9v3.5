@@ -640,7 +640,7 @@ a { color: inherit; text-decoration: none; }
 """
 
 
-def render_shell(title: str, content: str, breadcrumbs: list[tuple[str, str]] = None, rel_root: str = "", extra_header_actions: str = "") -> str:
+def render_shell(title: str, content: str, breadcrumbs: list[tuple[str, str]] = None, rel_root: str = "", extra_header_actions: str = "", include_test: bool = False) -> str:
     crumbs_html = ""
     if breadcrumbs:
         items = []
@@ -659,6 +659,9 @@ def render_shell(title: str, content: str, breadcrumbs: list[tuple[str, str]] = 
 </nav>
 """
 
+    test_header_attr = " data-site-test-entry" if include_test else ""
+    test_link = (f\'<a href="{rel_root}test/index.html" class="test-link" data-site-test>TEST</a>\' if include_test else "")
+
     return f"""<!doctype html>
 <html lang="en" data-g9-shell>
 <head>
@@ -668,7 +671,7 @@ def render_shell(title: str, content: str, breadcrumbs: list[tuple[str, str]] = 
   <link rel="stylesheet" href="{rel_root}css/modern-learner.css">
 </head>
 <body>
-  <header class="g9-shell-header">
+  <header class="g9-shell-header"{test_header_attr}>
     <div class="g9-header-inner">
       <a class="g9-brand" href="{rel_root}index.html">
         <span class="logo-icon">⚡</span>
@@ -682,6 +685,7 @@ def render_shell(title: str, content: str, breadcrumbs: list[tuple[str, str]] = 
         <a href="{rel_root}mathematics/index.html">Mathematics</a>
         <a href="{rel_root}question-bank/index.html">Question Bank</a>
         <a href="{rel_root}atlas/index.html">Atlas &amp; Rungs</a>
+        {test_link}
       </nav>
       <div class="g9-header-actions">
         {extra_header_actions}
@@ -766,7 +770,7 @@ def generate_home(registry: list[dict], rel_root: str = "") -> str:
     <span>Authoring & Intake: <a href="raw-intake/index.html" style="color: inherit; text-decoration: underline;">Question Intake Workbench</a></span>
   </div>
 """
-    return render_shell("Home", content, rel_root=rel_root)
+    return render_shell("Home", content, rel_root=rel_root, include_test=True)
 
 
 SUBJECT_EXPLORERS = {
@@ -1212,7 +1216,7 @@ def generate_subject_hub(subject: str, registry: list[dict], bundles: list[dict]
 
   {''.join(sections_html)}
 """
-    return render_shell(f"{subject} Hub", content, breadcrumbs=crumbs, rel_root=rel_root)
+    return render_shell(f"{subject} Hub", content, breadcrumbs=crumbs, rel_root=rel_root, include_test=True)
 
 
 def generate_topic_workspace(topic_id: str, topic_title: str, subject: str, bundles: list[dict], rel_root: str = "") -> str:
