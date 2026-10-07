@@ -1,0 +1,52 @@
+name: test-130-regenerate
+
+on:
+  push:
+    branches:
+      - "test/130-intake-dashboard"
+    paths:
+      - ".github/workflows/test-130-regenerate.yml"
+      - "Shared/tools/build_test_site.py"
+      - "TEST/question-bank/intake/**"
+      - "tests/test_test_intake_dashboard.py"
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: test/130-intake-dashboard
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet jsonschema
+      - name: Regenerate governed TEST hub only
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from Shared.tools import build_pages_site, build_test_site
+          repo = Path.cwd()
+          public_target = repo / "public" / "test" / "index.html"
+          docs_target = repo / "docs" / "test" / "index.html"
+          payload = build_test_site.hub_page().encode("utf-8")
+          public_target.parent.mkdir(parents=True, exist_ok=True)
+          docs_target.parent.mkdir(parents=True, exist_ok=True)
+          public_target.write_bytes(payload)
+          docs_target.write_bytes(build_pages_site._public_payload("test/index.html", payload))
+          PY
+      - name: Commit governed TEST outputs
+        run: |
+          if git diff --quiet -- public/test/index.html docs/test/index.html; then
+            echo "TEST generated outputs already current"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/test/index.html docs/test/index.html
+          git commit -m "build(test): regenerate intake dashboard"
+          git push origin HEAD:test/130-intake-dashboard
