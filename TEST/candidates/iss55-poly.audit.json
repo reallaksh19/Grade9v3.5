@@ -9,7 +9,7 @@
   },
   "target_subject": "Mathematics",
   "target_topic": "Polynomials",
-  "state": "LAYOUT_PASS",
+  "state": "CONTENT_PASS",
   "sources": [
     "TEST/question-bank/iss55-poly.json",
     "TEST/library/iss55-poly.v1.json",
@@ -50,13 +50,17 @@
       "detail": "Current TEST deployment renders all 10 Core2 questions with zero renderer gaps. Dedicated tablet browser audit succeeded at PR #182 predecessor head 03428a8f93000e41110c3d50190ac2251a1ce4a6 with zero horizontal overflow, zero external fetches, zero JS errors, and 10/10 accessible SVGs. Shared renderer telemetry still reports PAGE-SHELL and small-control/font debt; that is tracked separately from candidate layout acceptance."
     },
     "content_review": {
+      "status": "PASS",
+      "detail": "10/10 verbatim question stems were reviewed without alteration. Model answers and independent checks are mathematically consistent; D3 scores (6-7) match the repository band contract and cognitive-demand labels are coherent. Seven questions now use their exact question-specific capability as primary while retaining the broader TEST concept bridge as secondary; three authored lesson anchors (Q1, Q9, Q10) were repaired so their prompts match their attached solutions."
+    },
+    "owner_acceptance": {
       "status": "PENDING",
-      "detail": "Technical checks do not constitute academic/owner acceptance of the 10 questions, solutions or classifications."
+      "detail": "No canonical Mathematics promotion is self-certified by this TEST review. Owner acceptance of the exact reconciled canonical identities/output remains required."
     }
   },
   "promotion": {
     "status": "BLOCKED",
     "target": "Mathematics",
-    "reason": "Academic/content review and canonical Mathematics identity reconciliation are still required; technical, package, rung, Atlas, search and candidate layout checks pass."
+    "reason": "Canonical Mathematics identity reconciliation and owner acceptance are still required; custody, technical, package, rungs, Atlas, search, layout and academic content review pass."
   }
 }
