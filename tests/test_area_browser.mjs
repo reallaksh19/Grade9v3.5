@@ -17,6 +17,7 @@ catch { playwright = require(path.join(execFileSync('npm', ['root', '-g']).toStr
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'public');
 const PAGES = ['test/index.html', 'test/atlas/index.html', 'test/rungs/index.html', 'test/deployments/index.html'];
 const WIDTHS = [320, 390, 768, 1024, 1280, 1920];
+const ATLAS_ONLY = process.argv.includes('--atlas-only');
 const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.woff2': 'font/woff2' };
 
 const server = http.createServer((req, res) => {
@@ -143,6 +144,7 @@ for (const [width, height] of [[1366, 854], [854, 1366]]) {
 }
 
 // The tab: from the portal and from each subject hub, one tap reaches the TEST hub, and the hub reaches the other pages.
+if (!ATLAS_ONLY) {
 for (const from of ['index.html', 'physics/index.html', 'chemistry/index.html', 'mathematics/index.html']) {
   const { context, tab, problems } = await open(390, from);
   const link = tab.locator('a[data-site-test]').first();
@@ -162,6 +164,7 @@ for (const from of ['index.html', 'physics/index.html', 'chemistry/index.html', 
   for (const problem of problems) failures.push(`${from}: ${problem}`);
   await context.close();
 }
+}
 
 await browser.close();
 server.close();
@@ -171,4 +174,6 @@ if (failures.length) {
   console.log(`\nFAIL: ${failures.length} problem(s) in ${checked} checks`);
   process.exit(1);
 }
-console.log(`PASS: the TEST pages hold at ${WIDTHS.length} widths, the Atlas shows its empty state and renders a TEST matrix, and the tab is reachable (${checked} checks)`);
+console.log(ATLAS_ONLY
+  ? `PASS: the TEST pages hold at ${WIDTHS.length} widths and the Atlas shows its empty state and renders a TEST matrix (${checked} checks)`
+  : `PASS: the TEST pages hold at ${WIDTHS.length} widths, the Atlas shows its empty state and renders a TEST matrix, and the tab is reachable (${checked} checks)`);
