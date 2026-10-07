@@ -60,6 +60,14 @@ class TestIss55PolynomialCanonicalStaging(unittest.TestCase):
         )
         self.assertTrue(report["admitted"])
 
+    def test_cruxes_are_application_moves_not_verification(self):
+        allowed = {"REPRESENT", "DECIDE", "CONNECT", "TRANSFORM"}
+        for q in self.package["questions"]:
+            route = {move["id"]: move for move in q["answer"]["reasoning_route"]}
+            crux = q["answer"]["crux_move_ref"]
+            self.assertIn(crux, route, q["id"])
+            self.assertIn(route[crux]["kind"], allowed, q["id"])
+
     def test_non_admitted_candidate_does_not_influence_qb_titles(self):
         titles = question_bank_platform.load_subtopic_titles(REPO)
         for q in self.package["questions"]:
