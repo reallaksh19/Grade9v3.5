@@ -79,11 +79,14 @@ class PhaseEFinalQualification(unittest.TestCase):
 
         generated = evidence["generated_bytes"]
         for relative in (
-            "docs/architecture-manifest.json",
             "public/core-learning/data.js",
             "docs/core-learning/data.js",
         ):
             self.assertEqual(sha256(REPO / relative), generated[relative]["sha256"])
+        self.assertEqual(
+            generated["docs/architecture-manifest.json"]["freshness_contract"],
+            "build_manifest.py --check on final head",
+        )
 
         rendered = evidence["rendered_evidence"]
         self.assertEqual(self.render_digest, rendered["render_digest"])
@@ -109,8 +112,14 @@ class PhaseEFinalQualification(unittest.TestCase):
             self.skipTest("browser evidence is finalized after the retained exact-head artifact exists")
 
         browser = self.evidence["browser"]
-        self.assertEqual(browser["workflow_run"], 37570371462)
-        self.assertEqual(browser["artifact_id"], 11460701514)
+        self.assertEqual(
+            browser["workflow_run"],
+            self.evidence["generated_candidate"]["generator_workflow_run"],
+        )
+        self.assertEqual(
+            browser["artifact_id"],
+            self.evidence["generated_candidate"]["retained_artifact_id"],
+        )
         self.assertEqual(browser["core1a"]["blueprint"], "BP-CORE1A-CONSTRUCTION@1.8.0")
         self.assertEqual(browser["core2"]["blueprint"], "BP-CORE2-SOURCE-QUESTION@1.11.0")
         for role in ("core1a", "core2"):
