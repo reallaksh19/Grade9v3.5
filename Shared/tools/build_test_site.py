@@ -326,6 +326,8 @@ def frame(depth: int, title: str, current: str, body: str, heading: str | None =
     root = "../" * depth
     home = root + "index.html"
     header = render_core.shell_header(home, root + "question-bank/index.html")
+    for subject_slug in ("physics", "chemistry", "mathematics"):
+        header = header.replace(f"../../../{subject_slug}/index.html", f"{root}{subject_slug}/index.html")
     crumbs = "".join(
         f'<a href="{esc("../" * (depth - 1) + path if depth > 1 else path)}"{" aria-current=page" if path == current else ""}>{esc(label)}</a>'
         for path, label in NAV)
