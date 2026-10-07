@@ -1,0 +1,55 @@
+name: test-130-regenerate
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/test-130-regenerate.yml"
+      - "Shared/tools/build_test_site.py"
+      - "TEST/question-bank/intake/**"
+      - "tests/test_test_intake_dashboard.py"
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'test/130-intake-dashboard'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet jsonschema
+      - name: Regenerate TEST public pages
+        run: python3 Shared/tools/build_test_site.py
+      - name: Apply governed Pages transform to TEST subtree
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from Shared.tools import build_pages_site
+          repo = Path.cwd()
+          public = repo / "public"
+          docs = repo / "docs"
+          for source in sorted((public / "test").rglob("*")):
+              if not source.is_file():
+                  continue
+              rel = source.relative_to(public).as_posix()
+              target = docs / rel
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_bytes(build_pages_site._public_payload(rel, source.read_bytes()))
+          PY
+      - name: Commit governed TEST outputs
+        run: |
+          if git diff --quiet -- public/test docs/test; then
+            echo "TEST generated outputs already current"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/test docs/test
+          git commit -m "build(test): regenerate intake dashboard"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
