@@ -54,6 +54,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Pre-generate governed closure for exact integrated source tree
+        run: |
+          python3 Shared/tools/build_question_bank_web.py
+          python3 Shared/tools/build_question_bank_platform.py --write
+          python3 Shared/tools/build_manifest.py
+          python3 Shared/tools/build_pages_site.py
       - name: Question Bank contract and growth falsifiers
         run: python3 -m unittest tests.test_question_bank_web tests.test_question_bank_platform tests.test_question_bank_platform_runtime tests.test_ncert_polynomial_admission
       - name: Progressive browser data service
