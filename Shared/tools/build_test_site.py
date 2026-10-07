@@ -429,6 +429,70 @@ def fixture_boundary_card(fixture: dict, safety: dict) -> str:
     )
 
 
+def intake_card(state: dict) -> str:
+    """Render validated Stage-1 intake records and an embedded TEST-only discovery index."""
+    def options(values: dict[str, int]) -> str:
+        return "".join(
+            f'<option value="{esc(value)}">{esc(value)} · {count}</option>'
+            for value, count in values.items()
+        )
+
+    records = []
+    for row in state["records"]:
+        loc = row["source_locator"]
+        answer_note = "available (key not projected)" if row["official_answer_available"] else "not available"
+        records.append(
+            f'<section id="intake-{esc(row["id"])}" data-g9-intake-record data-g9-intake-id="{esc(row["id"])}" '
+            f'data-g9-intake-topic="{esc(row["topic_label"])}" data-g9-intake-source="{esc(row["source"]["authority"])}" '
+            f'data-g9-intake-status="{esc(row["workflow_status"])}" style="border-top:1px solid var(--border);padding:12px 0">'
+            f'<h3>{esc(row["original_identifier"])}</h3>'
+            f'<p>{esc(row["stem"])}</p>'
+            f'<p class="g9-prov"><strong>{esc(row["subject"])}</strong> · Grade {esc(row["grade"])} · '
+            f'{esc(row["topic_label"])}{(" · " + esc(row["subtopic_label"])) if row["subtopic_label"] else ""} · '
+            f'{esc(row["question_type"])}</p>'
+            f'<p><strong>Source:</strong> {esc(row["source"]["authority"])} · {esc(row["source"]["kind"])} · '
+            f'{esc(row["source"]["title"])} · printed page {esc(loc["printed_page"])} · PDF index {esc(loc["pdf_page_index"])} · '
+            f'{link(row["source"]["url"], "Official source ↗")}</p>'
+            f'<p><strong>Custody:</strong> {esc(row["source_verification_status"])} · {esc(row["text_verification_status"])} · '
+            f'<strong>Workflow:</strong> {esc(row["workflow_status"])} · <strong>Official answer:</strong> {esc(answer_note)}</p>'
+            f'<p class="g9-prov">Stem digest: <code>{esc(row["stem_sha256"])}</code> · '
+            f'evidence <code>{esc(row["verification_evidence_ref"])}</code></p></section>'
+        )
+
+    index_json = json.dumps(intake_search_index(state), ensure_ascii=False, sort_keys=True).replace("<", "\\u003c")
+    rows = "".join(records) or '<p data-g9-intake-empty>No validated Stage-1 intake records yet.</p>'
+    body = (
+        '<h2>Question intake</h2>'
+        f'<p><strong>{state["record_count"]}</strong> validated TEST intake record(s) · '
+        f'{state["ready_for_blueprint"]} READY_FOR_BLUEPRINT · {state["hold_count"]} HOLD.</p>'
+        '<p class="g9-prov">This is TEST-only source custody. READY_FOR_BLUEPRINT is a downstream-analysis handoff, not academic acceptance or learner publication.</p>'
+        '<div data-g9-test-intake>'
+        '<div data-g9-test-intake-controls style="display:flex;flex-wrap:wrap;gap:8px;align-items:end">'
+        '<label>Search TEST intake<br><input data-g9-test-intake-query type="search" aria-label="Search TEST intake" style="min-height:48px;min-width:220px"></label>'
+        f'<label>Topic<br><select data-g9-test-intake-topic style="min-height:48px"><option value="">All topics</option>{options(state["by_topic"])}</select></label>'
+        f'<label>Source<br><select data-g9-test-intake-source style="min-height:48px"><option value="">All sources</option>{options(state["by_source"])}</select></label>'
+        f'<label>Status<br><select data-g9-test-intake-status style="min-height:48px"><option value="">All statuses</option>{options(state["by_status"])}</select></label>'
+        f'<p data-g9-test-intake-count aria-live="polite" style="min-height:48px;display:flex;align-items:center">{state["record_count"]} shown</p></div>'
+        f'<script type="application/json" data-g9-test-search-index>{index_json}</script>{rows}</div>'
+        '<script>(()=>{const root=document.querySelector("[data-g9-test-intake]");if(!root)return;'
+        'const data=JSON.parse(root.querySelector("[data-g9-test-search-index]").textContent);'
+        'const docs=new Map(data.documents.map(d=>[d.id,d]));const cards=[...root.querySelectorAll("[data-g9-intake-record]")];'
+        'const q=root.querySelector("[data-g9-test-intake-query]"),topic=root.querySelector("[data-g9-test-intake-topic]"),'
+        'source=root.querySelector("[data-g9-test-intake-source]"),status=root.querySelector("[data-g9-test-intake-status]"),'
+        'count=root.querySelector("[data-g9-test-intake-count]");const apply=()=>{const needle=q.value.trim().toLowerCase();let shown=0;'
+        'for(const card of cards){const doc=docs.get(card.dataset.g9IntakeId);const ok=(!needle||doc.search_text.includes(needle))&&'
+        '(!topic.value||doc.topic_label===topic.value)&&(!source.value||doc.source_authority===source.value)&&'
+        '(!status.value||doc.workflow_status===status.value);card.hidden=!ok;if(ok)shown+=1;}count.textContent=`${shown} shown`;};'
+        'for(const control of [q,topic,source,status]){control.addEventListener("input",apply);control.addEventListener("change",apply);}apply();})();</script>'
+    )
+    return card(
+        "question-intake",
+        "question intake verified source workflow hold ready sandbox search " +
+        " ".join(state["by_topic"]) + " " + " ".join(state["by_source"]) + " " + " ".join(state["by_status"]),
+        body,
+    )
+
+
 # ------------------------------------------------------------------ pages
 
 def hub_page() -> str:
@@ -457,6 +521,7 @@ def hub_page() -> str:
         'not how good it is, and it does not say the content has been reviewed.</p>'
         + core_contract_card(state["core_contract"])
         + fixture_boundary_card(state["fixture"], state["safety"])
+        + intake_card(intake_state())
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
         + stage(2, "Core1A", "Concept construction for the same topic", core1a)
         + stage(3, "Explorer", "A guided page on the toughest concept of the same question set", inter)
