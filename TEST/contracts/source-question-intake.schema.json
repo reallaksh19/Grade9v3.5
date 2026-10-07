@@ -1,0 +1,386 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/TEST/contracts/source-question-intake.schema.json",
+  "title": "TEST Stage-1 official-source question intake",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "bank_id",
+    "subject",
+    "grade",
+    "source_scope",
+    "created_from",
+    "documents",
+    "questions"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "grade9v3-test-source-question-intake-v1"
+    },
+    "bank_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "subject": {
+      "enum": [
+        "Mathematics",
+        "Physics",
+        "Chemistry"
+      ]
+    },
+    "grade": {
+      "type": "integer",
+      "enum": [
+        9,
+        10,
+        11
+      ]
+    },
+    "source_scope": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "NCERT_OFFICIAL",
+          "CBSE_OFFICIAL"
+        ]
+      }
+    },
+    "created_from": {
+      "type": "string",
+      "minLength": 1
+    },
+    "documents": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/document"
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/question"
+      }
+    }
+  },
+  "$defs": {
+    "document": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "authority",
+        "kind",
+        "role",
+        "title",
+        "url",
+        "verified_on",
+        "verification_evidence_ref"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "authority": {
+          "enum": [
+            "NCERT_OFFICIAL",
+            "CBSE_OFFICIAL"
+          ]
+        },
+        "kind": {
+          "enum": [
+            "TEXTBOOK",
+            "EXEMPLAR",
+            "SAMPLE_PAPER",
+            "BOARD_PAPER",
+            "OFFICIAL_PRACTICE"
+          ]
+        },
+        "role": {
+          "enum": [
+            "QUESTION_SOURCE",
+            "ANSWER_KEY"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "edition_or_year": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verified_on": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "verification_evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "chapter_or_unit",
+        "exercise_or_section",
+        "question_number",
+        "printed_page",
+        "pdf_page_index"
+      ],
+      "properties": {
+        "chapter_or_unit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exercise_or_section": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question_number": {
+          "type": "string",
+          "minLength": 1
+        },
+        "printed_page": {
+          "type": [
+            "integer",
+            "string"
+          ]
+        },
+        "pdf_page_index": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "answer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "document_ref",
+        "exercise_or_section",
+        "question_number",
+        "answer_key",
+        "verification_evidence_ref"
+      ],
+      "properties": {
+        "document_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exercise_or_section": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question_number": {
+          "type": "string",
+          "minLength": 1
+        },
+        "answer_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verification_evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "original_identifier",
+        "stem",
+        "stem_sha256",
+        "source_document_ref",
+        "source_locator",
+        "capture_method",
+        "wording_custody",
+        "source_verification_status",
+        "text_verification_status",
+        "verification_evidence_ref",
+        "subject",
+        "grade",
+        "topic_label",
+        "question_type",
+        "official_answer_available",
+        "workflow_status"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_-]+$"
+        },
+        "original_identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stem": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stem_sha256": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "source_document_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_locator": {
+          "$ref": "#/$defs/locator"
+        },
+        "capture_method": {
+          "enum": [
+            "VERBATIM_EXTRACTION",
+            "OFFICIAL_PDF_VERIFIED_TRANSCRIPTION"
+          ]
+        },
+        "wording_custody": {
+          "const": "VERBATIM"
+        },
+        "source_verification_status": {
+          "enum": [
+            "CAPTURED_UNVERIFIED",
+            "SOURCE_VERIFIED_OFFICIAL",
+            "SOURCE_HOLD",
+            "IDENTITY_HOLD"
+          ]
+        },
+        "text_verification_status": {
+          "enum": [
+            "CAPTURED_UNVERIFIED",
+            "TEXT_VERIFIED_AGAINST_OFFICIAL",
+            "TEXT_HOLD"
+          ]
+        },
+        "verification_evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subject": {
+          "enum": [
+            "Mathematics",
+            "Physics",
+            "Chemistry"
+          ]
+        },
+        "grade": {
+          "type": "integer",
+          "enum": [
+            9,
+            10,
+            11
+          ]
+        },
+        "topic_label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subtopic_label": {
+          "type": "string"
+        },
+        "question_type": {
+          "enum": [
+            "MULTIPLE_CHOICE",
+            "SHORT_ANSWER",
+            "LONG_ANSWER",
+            "ASSERTION_REASON",
+            "TRUE_FALSE"
+          ]
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "subparts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "official_answer_available": {
+          "type": "boolean"
+        },
+        "official_answer": {
+          "$ref": "#/$defs/answer"
+        },
+        "workflow_status": {
+          "enum": [
+            "CAPTURED",
+            "SOURCE_VERIFIED",
+            "TEXT_VERIFIED",
+            "LABELLED",
+            "TEST_VISIBLE",
+            "READY_FOR_BLUEPRINT",
+            "SOURCE_HOLD",
+            "TEXT_HOLD",
+            "IDENTITY_HOLD",
+            "DUPLICATE_REVIEW",
+            "TOPIC_HOLD"
+          ]
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "official_answer_available": {
+                "const": true
+              }
+            },
+            "required": [
+              "official_answer_available"
+            ]
+          },
+          "then": {
+            "required": [
+              "official_answer"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "official_answer_available": {
+                "const": false
+              }
+            },
+            "required": [
+              "official_answer_available"
+            ]
+          },
+          "then": {
+            "not": {
+              "required": [
+                "official_answer"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}
