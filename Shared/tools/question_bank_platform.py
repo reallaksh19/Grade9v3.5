@@ -570,6 +570,10 @@ def load_subtopic_titles(repo: Path) -> dict[str, dict]:
         # TEST is a sandbox authority, never canonical Question Bank naming authority.
         if package.get("subject") == "TEST":
             continue
+        # A canonical package that has not opted any question into the Question Bank
+        # must not change production QB topic/subtopic naming merely by being staged.
+        if not any(_package_qbank_config(package, q) is not None for q in package.get("questions") or []):
+            continue
         for microtopic in package.get("microtopics") or []:
             ref, title = microtopic.get("primary_capability_ref"), microtopic.get("title")
             if isinstance(ref, str) and ref and isinstance(title, str) and title.strip():
