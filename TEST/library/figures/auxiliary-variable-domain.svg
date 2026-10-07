@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Biquadratic change of variable and domain restriction mapping" font-family="system-ui, sans-serif" font-size="20">
+  <title>Biquadratic change of variable and domain restriction mapping</title>
+  <desc>Four staged panels: transformation u = x^2, real domain constraint u >= 0, root branching for p(x) with positive roots, and rejection of negative root u = -2 for q(x).</desc>
+  <g data-g9-stage-id="POLY-SUBST-1">
+    <text x="40" y="45" font-weight="700" font-size="24">1 · Change of variable for biquadratic polynomials</text>
+    <text x="60" y="80">Given polynomials contain only even powers: p(x) = x⁴ - 5x² + 4,  q(x) = x⁴ + 4x² + 4</text>
+    <text x="60" y="110">Substitute auxiliary variable:  u = x²  →  convert quartic to quadratic in u</text>
+  </g>
+  <g data-g9-stage-id="POLY-SUBST-2">
+    <text x="40" y="165" font-weight="700" font-size="24">2 · Essential domain restriction: u ≥ 0</text>
+    <text x="60" y="200">For any real number x ∈ ℝ, its square is non-negative: x² ≥ 0  ⇒  u ≥ 0.</text>
+    <text x="60" y="230">• If u &gt; 0: produces TWO real zeros: x = ±√u</text>
+    <text x="60" y="260">• If u = 0: produces ONE real zero: x = 0</text>
+    <text x="60" y="290">• If u &lt; 0: produces ZERO real zeros (√u is non-real)</text>
+  </g>
+  <g data-g9-stage-id="POLY-SUBST-3">
+    <text x="40" y="340" font-weight="700" font-size="24">3 · Solving p(x): u² - 5u + 4 = 0  ⇒  u = 1 or u = 4</text>
+    <text x="60" y="375">Both u = 1 and u = 4 satisfy u ≥ 0:  x = ±√1 = ±1,  and  x = ±√4 = ±2.</text>
+    <text x="60" y="405">Four accepted real zeros for p(x):  {-2, -1, 1, 2}.</text>
+  </g>
+  <g data-g9-stage-id="POLY-SUBST-4">
+    <text x="40" y="455" font-weight="700" font-size="24">4 · Solving q(x): (u + 2)² = 0  ⇒  u = -2  (REJECTED: violates u ≥ 0)</text>
+    <text x="60" y="490">q(x) has NO real zeros! Unrestricted u would falsely create imaginary ±√-2 as real roots.</text>
+  </g>
+</svg>
