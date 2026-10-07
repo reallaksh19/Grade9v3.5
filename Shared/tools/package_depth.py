@@ -29,7 +29,7 @@ from Shared.tools.package_migrate import package_paths, max_decisions  # noqa: E
 # duty kind -> (role that fixes it, contract rules the gap fails)
 DUTIES = {
     "AUTHOR_TYPED_MATH": ("AUTHOR", []),
-    "AUTHOR_CONSTRUCTION_UNITS": ("AUTHOR", ["C1A-ANCHOR-PER-DECISION"]),
+    "AUTHOR_CONSTRUCTION_UNITS": ("AUTHOR", ["BP-COMPONENTS-REQUIRED", "C1A-BLOCKS"]),
     "AUTHOR_WORKED_ANCHOR": ("AUTHOR", ["C1A-BLOCKS", "C1A-ANCHOR-PER-DECISION"]),
     "AUTHOR_INDEPENDENT_CHECK": ("AUTHOR", ["C1A-BLOCKS", "C2A-BLOCKS"]),
     "MOUNT_REPRESENTATION": ("AUTHOR", ["C1A-REPRESENTATION-BRIDGE", "C1B-REPRESENTATION"]),
@@ -94,18 +94,18 @@ def package_duties(pkg: dict, rel: str, taught: set[str], limit: int) -> list[di
         steps = len(m.get("teaching_path") or [])
         if not units:
             add("AUTHOR_CONSTRUCTION_UNITS", m["id"],
-                f"teaching_path has {steps} decisions (> {limit}); split into units, each with its own anchor")
+                f"teaching_path has {steps} step(s) but no construction unit")
         for u in units:
             if u.get("migrated_from"):
                 add("REVIEW_MIGRATED_UNIT", u["id"], f"derived from {u['migrated_from']}; an author confirms the decision text and unit boundary")
-            if not (u.get("worked_anchor_ref") or u.get("bank_anchor_ref")):
-                add("AUTHOR_WORKED_ANCHOR", u["id"], "no CORE1A question exercises this unit's move")
-            if not u.get("independent_checks"):
-                add("AUTHOR_INDEPENDENT_CHECK", u["id"], "no independent check for this unit")
-            if not u.get("representation_ref"):
-                add("MOUNT_REPRESENTATION", u["id"], "unit names no representation")
-            elif u["representation_ref"] not in reps:
-                add("MOUNT_REPRESENTATION", u["id"], f"{u['representation_ref']} is not a representation of this package")
+
+            # Core1A presence/applicability is owned by the active blueprint:
+            # WORKED_EXAMPLE and STAGED_VISUAL are EXPECTED/waivable, while
+            # QUICK_CHECK is OPTIONAL. Their absence is therefore not a hard
+            # package-depth duty. Authored references still have to resolve.
+            representation_ref = u.get("representation_ref")
+            if representation_ref and representation_ref not in reps:
+                add("MOUNT_REPRESENTATION", u["id"], f"{representation_ref} is not a representation of this package")
         if not m.get("compact_anchor"):
             add("AUTHOR_COMPACT_ANCHOR", m["id"], "no compact anchor for the Core1 map")
         if not m.get("relation_refs"):

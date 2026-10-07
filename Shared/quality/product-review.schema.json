@@ -3,24 +3,72 @@
   "$id": "https://grade9v3.local/product-review.schema.json",
   "title": "Independent coaching review of an exact learner render",
   "type": "object",
-  "required": ["schema", "product", "reviewer", "reviewer_session", "reviewed_at",
-               "render_digest", "read_first", "strengths", "findings", "previous_findings", "overall"],
+  "required": [
+    "schema",
+    "product",
+    "reviewer",
+    "reviewer_session",
+    "reviewed_at",
+    "render_digest",
+    "read_first",
+    "strengths",
+    "findings",
+    "previous_findings",
+    "overall"
+  ],
   "properties": {
-    "schema": {"const": "product-review/v2"},
-    "product": {"type": "string", "minLength": 1},
-    "reviewer": {"type": "string", "minLength": 1},
-    "reviewer_session": {"type": "string", "minLength": 1},
-    "reviewed_at": {"type": "string", "format": "date"},
-    "render_digest": {"type": "string", "pattern": "^[0-9a-f]{16}$"},
-    "read_first": {"type": "array", "items": {"type": "string"}},
+    "schema": {
+      "const": "product-review/v2"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewer_session": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "render_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{16}$"
+    },
+    "read_first": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "strengths": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["record", "technique", "note", "golden_candidate"],
+        "required": [
+          "record",
+          "technique",
+          "note",
+          "golden_candidate"
+        ],
         "properties": {
-          "record": {"type": "string"}, "technique": {"type": "string"},
-          "note": {"type": "string"}, "golden_candidate": {"type": "boolean"}
+          "record": {
+            "type": "string"
+          },
+          "technique": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "golden_candidate": {
+            "type": "boolean"
+          }
         }
       }
     },
@@ -28,16 +76,74 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "severity", "kind", "record", "page",
-                     "learner_impact", "detail", "suggested_fix"],
+        "required": [
+          "id",
+          "severity",
+          "kind",
+          "record",
+          "page",
+          "learner_impact",
+          "detail",
+          "suggested_fix"
+        ],
         "properties": {
-          "id": {"type": "string"},
-          "severity": {"enum": ["S0", "S1", "S2", "S3"]},
-          "kind": {"enum": ["content", "figure", "renderer", "source"]},
-          "record": {"type": "string"}, "page": {"type": "string"},
-          "learner_impact": {"type": "string"}, "detail": {"type": "string"},
-          "suggested_fix": {"type": "string"},
-          "anti_pattern": {"type": ["string", "null"]}
+          "id": {
+            "type": "string"
+          },
+          "severity": {
+            "enum": [
+              "S0",
+              "S1",
+              "S2",
+              "S3"
+            ]
+          },
+          "kind": {
+            "enum": [
+              "content",
+              "figure",
+              "renderer",
+              "source"
+            ]
+          },
+          "record": {
+            "type": "string"
+          },
+          "page": {
+            "type": "string"
+          },
+          "learner_impact": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "suggested_fix": {
+            "type": "string"
+          },
+          "anti_pattern": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "asks": {
+            "enum": [
+              "H1",
+              "H2",
+              "H3",
+              "S1",
+              "S2",
+              "S3",
+              "P1",
+              "P2",
+              "P3",
+              "M1",
+              "M2",
+              "M3"
+            ],
+            "description": "Optional quality-by-objective ask that this finding answers."
+          }
         }
       }
     },
@@ -45,23 +151,71 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "status"],
+        "required": [
+          "id",
+          "status"
+        ],
         "properties": {
-          "id": {"type": "string"},
-          "status": {"enum": ["FIXED", "OPEN", "WONT_FIX"]},
-          "note": {"type": "string"}
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "FIXED",
+              "OPEN",
+              "WONT_FIX"
+            ]
+          },
+          "note": {
+            "type": "string"
+          }
         }
       }
     },
     "overall": {
       "type": "object",
-      "required": ["teaches_at_reference_depth", "recommendation", "summary"],
+      "required": [
+        "teaches_at_reference_depth",
+        "recommendation",
+        "summary"
+      ],
       "properties": {
-        "teaches_at_reference_depth": {"enum": ["yes", "partly", "no"]},
-        "recommendation": {"enum": ["accept", "accept_with_notes", "revise"]},
-        "summary": {"type": "string"}
+        "teaches_at_reference_depth": {
+          "enum": [
+            "yes",
+            "partly",
+            "no"
+          ]
+        },
+        "recommendation": {
+          "enum": [
+            "accept",
+            "accept_with_notes",
+            "revise"
+          ]
+        },
+        "summary": {
+          "type": "string"
+        }
       }
     },
-    "anti_pattern_proposal": {"type": ["object", "null"]}
+    "anti_pattern_proposal": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "profile_ref": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Optional learner profile used for quality-by-objective review; traceability only and never a routing score."
+    }
   }
 }

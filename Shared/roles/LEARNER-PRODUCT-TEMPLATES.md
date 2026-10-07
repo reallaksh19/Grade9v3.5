@@ -35,17 +35,18 @@ All six products may use these primitives when the role needs them:
 - **Closure block** — model response, rubric, answer, or explicit criteria that let the
   learner close the work without a live tutor.
 
-A primitive is not mandatory merely because it exists. Each role below specifies its own
-required order.
+A primitive is not mandatory merely because it exists. The ordered anatomy below defines the
+available role grammar and relative order; the active versioned web blueprint decides which
+components are REQUIRED, EXPECTED/waivable, or OPTIONAL for a concrete learner page.
 
 ## Six-role matrix
 
 | Core | Learner job | Defining reveal rule | Typical closure |
 |---|---|---|---|
 | Core1 | Orient to the semantic map | No hard inference is taught in full | orientation check |
-| Core1A | Receive the completed conceptual construction | Difficult inference is fully revealed and explained | exit task + checked model response |
+| Core1A | Construct the decisive conceptual bridge | Difficult inference is taught directly when needed; worked/repair/check operators are conditional | independent exit + checked model response |
 | Core1B | Reconstruct the same conceptual truth | Predict/attempt precede reconstruction and answer | rubric/model response + boundary test |
-| Core2 | Encounter the source assessment demand with custody intact | Source hints/answer retain source order and identity | source answer/rubric |
+| Core2 | Encounter the source assessment demand with custody intact | Assistance is state-bound; protected work is not disclosed merely because a panel is closed | source answer/rubric |
 | Core2A | Learn a familiar application route with support | Familiar crux is teachable and may be revealed | full solution + independent check |
 | Core2B | Make a changed transfer decision | Protected decision is not disclosed before commitment | full rubric + changed-demand review + repair |
 
@@ -58,13 +59,14 @@ specifications and canonical library.
 Each role also carries one versioned `web_blueprint_ref`. That reference is presentation/delivery
 authority only: it selects the subject-neutral interactive-page blueprint that must render the
 ordered blocks. It does not move scientific, mathematical, chemical, question, source-custody or
-learner-evidence truth into the webpage layer. A missing or incompatible blueprint reference is
+learner-evidence truth into the webpage layer. Its coarse visibility vocabulary does not override
+blueprint/support-plan disclosure states such as PRE_ATTEMPT_SAFE, AFTER_ATTEMPT, or POST_SOLUTION. A missing or incompatible blueprint reference is
 resolved from the Core's registered blueprint in `Shared/web/interactive-page-blueprints.v1.json`;
 it is never permission for an agent to invent a page architecture.
 
 ```core-templates
 {
-  "version": "1.2",
+  "version": "1.4",
   "roles": {
     "CORE1": {
       "learner_job": "Orient to the bucket without replacing detailed teaching.",
@@ -128,7 +130,7 @@ it is never permission for an agent to invent a page architecture.
       "web_blueprint_ref": "BP-CORE1-ORIENTATION@1.1.0"
     },
     "CORE1A": {
-      "learner_job": "Receive a complete declarative construction of the microtopic's inferential truth.",
+      "learner_job": "Receive a complete conceptual construction of the decisive bridge, with worked/repair/check operators used when they materially support that learning job.",
       "ordered_blocks": [
         {
           "id": "identity_entry_assumptions",
@@ -188,16 +190,17 @@ it is never permission for an agent to invent a page architecture.
         "microtopic.inferential_jump",
         "microtopic.teaching_path[]",
         "microtopic.representation_refs[]",
-        "microtopic.misconceptions[]",
         "microtopic.exit_task"
       ],
       "withheld_pre_attempt": [],
       "forbidden": [
         "ATTEMPT_FIRST_AS_PRIMARY_MODE",
         "RANDOM_BLANK_DELETION",
-        "UNANSWERED_PROMPT"
+        "UNANSWERED_PROMPT",
+        "FABRICATED_MISCONCEPTION_REPAIR",
+        "BAND_AS_PANEL_COUNT"
       ],
-      "web_blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.4.0"
+      "web_blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.8.0"
     },
     "CORE1B": {
       "learner_job": "Reconstruct the same inferential truth before seeing the completed route.",
@@ -264,7 +267,7 @@ it is never permission for an agent to invent a page architecture.
       "web_blueprint_ref": "BP-CORE1B-RECONSTRUCTION@1.1.0"
     },
     "CORE2": {
-      "learner_job": "Preserve and expose the authentic assessment demand with source custody intact.",
+      "learner_job": "Encounter the authentic source assessment demand with custody intact, preserving the learner-owned decision before any assistance that completes or materially narrows it.",
       "ordered_blocks": [
         {
           "id": "source_identity_provenance",
@@ -321,14 +324,17 @@ it is never permission for an agent to invent a page architecture.
       ],
       "withheld_pre_attempt": [
         "SOURCE_ANSWER",
-        "ANSWER_REVEALING_SOURCE_HINT"
+        "ANSWER_REVEALING_SOURCE_HINT",
+        "PROTECTED_MOVE_COMPLETING_SUPPORT"
       ],
       "forbidden": [
         "AUTHORED_SCAFFOLD_PRESENTED_AS_SOURCE_HINT",
         "GENERATED_OFFICIAL_IDENTITY",
-        "RECONSTRUCTED_WORDING_PRESENTED_AS_ORIGINAL"
+        "RECONSTRUCTED_WORDING_PRESENTED_AS_ORIGINAL",
+        "CLOSED_DISCLOSURE_AS_SEMANTIC_PROTECTION",
+        "UNTRACKED_PRE_ATTEMPT_ASSISTANCE"
       ],
-      "web_blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0"
+      "web_blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.11.0"
     },
     "CORE2A": {
       "learner_job": "Learn a familiar question-family application route with pedagogical support and complete closure.",

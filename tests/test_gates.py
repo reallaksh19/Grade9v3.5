@@ -391,6 +391,11 @@ def _eq_prescribed_no_binding(data):
     gate(data, "MATH-EQ-EXACT-SOLUTION")["curriculum"]["scope_class"] = "PRESCRIBED"
 
 
+@mutates("FAL-EQ-EXTENDED-PRESCRIBED-NO-BINDING")
+def _eq_extended_prescribed_no_binding(data):
+    gate(data, "MATH-EQ-CANDIDATE-EXTENDED-RELATIONS")["curriculum"]["scope_class"] = "PRESCRIBED"
+
+
 def registries():
     """Every subject's gate registries, with that subject's adapter and bindings."""
     import importlib

@@ -277,10 +277,27 @@ window.GRADE9V3 = {
           "external_prerequisites": [],
           "concepts": [
             "A rational solution is a single exact number; writing it as a fraction is not an unfinished answer.",
-            "A truncated decimal is a different number from the exact rational it approximates, however many digits are kept."
+            "A decimal approximation that changes the exact rational value is a different number; an exact terminating decimal is another notation for the same rational."
           ],
           "misconceptions": [
             "A fraction should be converted to a decimal to give the real answer."
+          ]
+        },
+        {
+          "gate_id": "MATH-EQ-CANDIDATE-EXTENDED-RELATIONS",
+          "title": "Declared-domain equality operations and real-plane line boundaries",
+          "grade": 9,
+          "chapter": "Linear Equations",
+          "scope_class": "OWNER_EXTENSION",
+          "tier": "NOT_IN_JEE",
+          "scope_state": "ACTIVE",
+          "prerequisites": [],
+          "external_prerequisites": [],
+          "concepts": [
+            "Reversible operations preserve the declared solution set; real-plane line equations include either single zero coefficient but exclude both zero."
+          ],
+          "misconceptions": [
+            "Either zero coefficient prevents a real-plane line."
           ]
         }
       ],
@@ -521,11 +538,11 @@ window.GRADE9V3 = {
             {
               "id": "REL-MATH-EXACTNESS",
               "expression": "x exact  =>  a*x + b = c holds exactly",
-              "meaning": "Only the exact rational reproduces the statement without residue; every truncated decimal leaves one.",
+              "meaning": "For a nonzero linear coefficient, the residual is a times the error in the candidate value. An exact terminating decimal is an exact rational too; only a changed value introduces a nonzero residual.",
               "conditions": [
-                "Substituting a truncated decimal does not satisfy the statement exactly.",
-                "Rounding is a presentation choice made after the mathematics, never during it.",
-                "The residue may be small, but it is not zero."
+                "The linear coefficient a is non-zero and all arithmetic is exact over the rationals.",
+                "The decimal approximation differs numerically from the exact solution.",
+                "Rounding is a presentation choice made after the mathematics, never during it."
               ]
             },
             {
@@ -940,8 +957,8 @@ window.GRADE9V3 = {
               "teaching_path": [
                 {
                   "id": "LEQ4-1",
-                  "action": "Write the equation in the form ax + by + c = 0 and check that a and b are both non-zero.",
-                  "why_valid": "That form with a ≠ 0 and b ≠ 0 is what makes it a linear equation in two variables.",
+                  "action": "Write the equation in the form ax + by + c = 0 and check that a and b are not both zero.",
+                  "why_valid": "Either individual coefficient may be zero. Both zero would yield an entire-plane identity or empty contradiction rather than a line.",
                   "role": "DECLARE",
                   "output": "3x + 4y = 12 becomes 3x + 4y − 12 = 0, with a = 3, b = 4, c = −12.",
                   "inputs": []
@@ -1047,10 +1064,11 @@ window.GRADE9V3 = {
             {
               "id": "REL-MAT-LEQ-03-REDUCED-OUTCOMES",
               "expression": "If reducing removes the variable: a false statement (e.g. 6 = 5) ⇒ no solution (contradiction); a true statement (e.g. 6 = 6) ⇒ every value is a solution (identity)",
-              "meaning": "An equation that is false for all values of the variable has no solution and is called a contradiction; one that is true for any value is an identity, and its solution is all real numbers.",
+              "meaning": "After reversible reduction, a false constant equality has no admissible solutions; a true constant equality admits every value in the declared domain.",
               "conditions": [
                 "The variable terms on the two sides cancel completely during reduction.",
-                "The verdict is read from the variable-free statement that remains, not from a value of x."
+                "The verdict is read from the variable-free statement that remains, not from a value of x.",
+                "Every reduction preserves the original admissible domain and solution set."
               ]
             },
             {
@@ -1060,26 +1078,28 @@ window.GRADE9V3 = {
               "conditions": [
                 "Every term inside a bracket is multiplied by the factor in front of it, sign included.",
                 "Both whole sides are multiplied by the LCM, including terms that have no denominator, even when fractions appear on one side only.",
-                "Like terms are combined within one side; terms cross the equality sign only by a balanced operation."
+                "Like terms are combined within one side; terms cross the equality sign only by a balanced operation.",
+                "Denominators are non-zero constant integers; the domain is declared before clearing them."
               ]
             },
             {
               "id": "REL-MAT-LEQ-04-STRAIGHT-LINE",
               "expression": "y = ax + b (a straight line with slope a)",
-              "meaning": "A linear relationship between two variables x and y is represented by a straight line y = ax + b, and the slope of this line is a.",
+              "meaning": "The form y = ax + b describes every nonvertical line in the real Cartesian plane, including horizontal lines with a = 0. A vertical line x = k has no slope in this form.",
               "conditions": [
-                "x and y are linearly related.",
+                "x and y are real coordinates in the Cartesian plane.",
+                "The line is nonvertical; the coefficient of y in the general form is non-zero.",
                 "The letters a and b here name slope and constant; they differ from the a and b of ax + by + c = 0."
               ]
             },
             {
               "id": "REL-MAT-LEQ-04-TWO-VARIABLE-FORM",
-              "expression": "ax + by + c = 0, where a, b, c are real numbers, a ≠ 0 and b ≠ 0; a solution is a pair (x₀, y₀) with ax₀ + by₀ + c = 0",
+              "expression": "ax + by + c = 0, where a, b, c are real numbers and a and b are not both zero; a solution is a pair (x₀, y₀) with ax₀ + by₀ + c = 0",
               "meaning": "A linear equation in two variables has infinitely many solutions; its graph is a straight line, and every point on that line represents a solution.",
               "conditions": [
-                "a and b are both non-zero; otherwise the statement is not a linear equation in two variables in this sense.",
+                "a and b are not both zero; either individual coefficient may be zero.",
                 "a, b and c are real numbers.",
-                "Solutions are pairs of values located on the Cartesian plane; read on a number line, an equation in one variable has a single solution instead."
+                "The graph claim uses the real Cartesian plane and ordered real pairs."
               ]
             }
           ],
@@ -1344,6 +1364,796 @@ window.GRADE9V3 = {
               {
                 "kind": "FIGURE_AUTHORING",
                 "representation": "REP-MAT-LEQ-04-SOLUTION-LINE",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              }
+            ]
+          }
+        },
+        {
+          "id": "BUCKET-MAT-POLYNOMIALS",
+          "title": "Polynomial Algebra and Degree Constraints — Issue #55 Candidate",
+          "topic": "Polynomials in one variable with real coefficients",
+          "badge": "HARD",
+          "status": "CANDIDATE",
+          "prerequisites": [],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-MAT-POLY-IDENTITY-DEGREE-BOUND",
+              "title": "Degree-Bounded Polynomial Identity and Difference Polynomials",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "The decisive inference requires transforming agreement at points into roots of a difference polynomial and applying root bound theorems.",
+              "entry_assumptions": [
+                "Demonstrated evaluating polynomial values at given inputs.",
+                "Demonstrated setting up and solving linear systems for coefficients.",
+                "Demonstrated the factor theorem for linear factors."
+              ],
+              "inferential_jump": "Prove that two polynomials of degree at most two agreeing at three points agree everywhere by forming d(x) = p(x) - q(x) and showing d(x) must be identically zero.",
+              "teaching_path": [
+                {
+                  "id": "IDENT-T1",
+                  "action": "Define difference polynomial d(x) = p(x) - q(x) when p and q agree at given points.",
+                  "why_valid": "Agreement p(x_i) = q(x_i) implies d(x_i) = 0 for all agreement points.",
+                  "role": "DECLARE",
+                  "output": "d(x_i) = 0 for each agreement input",
+                  "inputs": [
+                    "polynomials p(x) and q(x) with common values"
+                  ]
+                },
+                {
+                  "id": "IDENT-T2",
+                  "action": "Bound the degree of the difference: deg(d) <= max(deg p, deg q), unless d is the zero polynomial.",
+                  "why_valid": "Subtracting polynomials of degree <= 2 cannot produce terms of degree higher than 2.",
+                  "role": "TRANSFORM",
+                  "output": "deg(d) <= 2 or d(x) = 0 identically",
+                  "inputs": [
+                    "deg(p) <= 2 and deg(q) <= 2"
+                  ]
+                },
+                {
+                  "id": "IDENT-T3",
+                  "action": "Apply the root bound theorem by contradiction: a non-zero polynomial of degree <= 2 has at most 2 zeros.",
+                  "why_valid": "Having 3 distinct roots directly contradicts d(x) being a non-zero polynomial of degree <= 2.",
+                  "role": "TRANSFORM",
+                  "output": "d(x) cannot be a non-zero polynomial",
+                  "inputs": [
+                    "d(x) has 3 distinct zeros"
+                  ]
+                },
+                {
+                  "id": "IDENT-T4",
+                  "action": "Conclude d(x) is identically zero and distinguish non-zero polynomials from the zero polynomial.",
+                  "why_valid": "All coefficients of d(x) must vanish, establishing p(x) = q(x) for all x in R.",
+                  "role": "VERIFY",
+                  "output": "p(x) = q(x) everywhere",
+                  "inputs": [
+                    "d(x) is identically zero"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Assuming a polynomial of degree <= 2 cannot agree with another at 3 points, or confusing a zero polynomial with degree 0.",
+                  "diagnostic_prompt": "What is the value of 0(x) at x = 1, 2, 3, 4? Does 0(x) have only two zeros, or infinitely many zeros?",
+                  "repair": "The theorem 'at most n zeros' applies strictly to NON-ZERO polynomials. When a degree <= n difference has n + 1 zeros, it forces the difference to be the zero polynomial."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two quadratics p and q agree at inputs -1, 0, and 2. What can be concluded about their values at x = 100?",
+                "source_ref": "SRC-MAT-POLY-ISS55-OWNER",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "By the polynomial identity theorem for degree <= 2, their difference d(x) has 3 zeros and must be identically zero, so p(100) = q(100).",
+                  "reasoning": [
+                    "Form the difference polynomial d(x) = p(x) - q(x).",
+                    "deg(d) <= 2 because deg(p) <= 2 and deg(q) <= 2.",
+                    "d(-1) = 0, d(0) = 0, and d(2) = 0 provide 3 distinct zeros.",
+                    "A non-zero polynomial of degree <= 2 has at most 2 zeros.",
+                    "Therefore, d(x) is identically zero, so p(x) = q(x) for all x, including x = 100."
+                  ],
+                  "check": "Verify that (p - q) is zero by testing the degree bound against root count.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "Conceptual polynomial identity proof; no numeric oracle required."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-MAT-POLY-SIGN-MULTIPLICITY",
+              "title": "Interval Sign Charts and Root Multiplicity",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "Deducing polynomial sign requires tracking parity of linear factors across partitioned intervals and respecting even vs odd multiplicity.",
+              "entry_assumptions": [
+                "Demonstrated factoring quadratics and cubics over integers.",
+                "Demonstrated locating zeros on a real number line."
+              ],
+              "inferential_jump": "Construct a rigorous sign chart for a factored polynomial by partitioning the real line at its zeros and determining interval signs from the parity of negative factors.",
+              "teaching_path": [
+                {
+                  "id": "SIGN-T1",
+                  "action": "Factor the polynomial into linear factors and locate all real zeros.",
+                  "why_valid": "Continuous polynomials can only change sign at real zeros.",
+                  "role": "DECLARE",
+                  "output": "factored form and set of real zeros",
+                  "inputs": [
+                    "polynomial in standard form"
+                  ]
+                },
+                {
+                  "id": "SIGN-T2",
+                  "action": "Partition the real line into open intervals separated by the zeros.",
+                  "why_valid": "Zeros serve as strict boundary points where polynomial evaluates to 0.",
+                  "role": "TRANSFORM",
+                  "output": "disjoint open intervals spanning R",
+                  "inputs": [
+                    "real zeros in ascending order"
+                  ]
+                },
+                {
+                  "id": "SIGN-T3",
+                  "action": "Determine the sign of each linear factor across all intervals.",
+                  "why_valid": "Factor (x - c) is negative for x < c and positive for x > c.",
+                  "role": "TRANSFORM",
+                  "output": "tabulation of factor signs",
+                  "inputs": [
+                    "linear factors and open intervals"
+                  ]
+                },
+                {
+                  "id": "SIGN-T4",
+                  "action": "Compute the product sign by counting negative factors and mark boundary zeros.",
+                  "why_valid": "An odd count of negative factors produces a negative product; an even count produces positive.",
+                  "role": "VERIFY",
+                  "output": "complete sign profile across R",
+                  "inputs": [
+                    "factor signs per interval"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Sketching a curve through roots without checking interval signs, or assuming roots always alternate sign regardless of multiplicity.",
+                  "diagnostic_prompt": "What is the sign of (x - 2)^2 when x = 1 and when x = 3? Does a squared factor change sign across its root?",
+                  "repair": "Signs across intervals are determined by counting negative factors; factors of even multiplicity preserve sign, while factors of odd multiplicity alternate sign."
+                }
+              ],
+              "exit_task": {
+                "prompt": "For p(x) = (x - 1)^2 (x - 4), what is the sign of p(x) for x in (1, 4)?",
+                "source_ref": "SRC-MAT-POLY-ISS55-OWNER",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "For x in (1, 4), (x - 1)^2 is positive (+) and (x - 4) is negative (-), so p(x) is negative (-).",
+                  "reasoning": [
+                    "(x - 1)^2 > 0 for all x != 1 because square of real number is non-negative.",
+                    "For x < 4, (x - 4) < 0.",
+                    "Product of positive and negative is negative."
+                  ],
+                  "check": "Test point x = 2: p(2) = (1)^2 (-2) = -2 < 0.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "Conceptual sign determination; no numerical oracle required."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-MAT-POLY-AUXILIARY-DOMAIN",
+              "title": "Auxiliary Variable Substitution and Real Domain Constraints",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "Transformations with auxiliary variables must enforce domain restrictions; negative roots in u must be rejected over the real numbers.",
+              "entry_assumptions": [
+                "Demonstrated quadratic formula and factoring techniques.",
+                "Demonstrated properties of real squares."
+              ],
+              "inferential_jump": "Solve biquadratic polynomials by transforming with u = x^2 while strictly enforcing the real domain condition u >= 0 to reject spurious or non-real roots.",
+              "teaching_path": [
+                {
+                  "id": "SUBST-T1",
+                  "action": "Identify algebraic symmetry or even powers in biquadratic polynomials and introduce u = x^2.",
+                  "why_valid": "All powers of x are even, so x^4 = (x^2)^2 and x^2 = u.",
+                  "role": "DECLARE",
+                  "output": "quadratic equation in u",
+                  "inputs": [
+                    "biquadratic polynomial"
+                  ]
+                },
+                {
+                  "id": "SUBST-T2",
+                  "action": "State and enforce the essential domain restriction: u >= 0 for all real x.",
+                  "why_valid": "The square of any real number is non-negative; negative u has no real square root.",
+                  "role": "TRANSFORM",
+                  "output": "admissible domain u >= 0",
+                  "inputs": [
+                    "substitution definition u = x^2"
+                  ]
+                },
+                {
+                  "id": "SUBST-T3",
+                  "action": "Solve the quadratic equation in u and test each solution against u >= 0.",
+                  "why_valid": "Only solutions satisfying u >= 0 can be mapped back to real x via x = +/- sqrt(u).",
+                  "role": "TRANSFORM",
+                  "output": "filtered set of non-negative u values",
+                  "inputs": [
+                    "roots of quadratic in u"
+                  ]
+                },
+                {
+                  "id": "SUBST-T4",
+                  "action": "Map accepted u to real zeros and expose why unrestricted substitution misleads.",
+                  "why_valid": "Each u > 0 gives 2 real roots, u = 0 gives 1 real root, and u < 0 gives 0 real roots.",
+                  "role": "VERIFY",
+                  "output": "complete set of real zeros in x",
+                  "inputs": [
+                    "accepted u values"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Treating u as an unrestricted real number and claiming negative u yields real zeros, or assuming every root in u produces 2 real roots in x.",
+                  "diagnostic_prompt": "If a quadratic in u gives u = -4, what is x? Does any real number satisfy x^2 = -4?",
+                  "repair": "Substitutions inherit the range of the transforming function: for u = x^2 over R, u must be >= 0. Negative roots in u yield zero real roots in x."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A biquadratic polynomial transforms into (u + 3)(u - 9) = 0 where u = x^2. What are its real zeros?",
+                "source_ref": "SRC-MAT-POLY-ISS55-OWNER",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The root u = -3 is rejected because u >= 0. The root u = 9 gives x^2 = 9 => x = +/- 3. The only real zeros are {-3, 3}.",
+                  "reasoning": [
+                    "u = x^2 >= 0 for all real x.",
+                    "u + 3 = 0 gives u = -3 < 0, which has no real solution for x^2 = -3.",
+                    "u - 9 = 0 gives u = 9 >= 0, so x^2 = 9 => x = +/- 3."
+                  ],
+                  "check": "Substitute x = 3 and x = -3 into the original polynomial: each yields (9+3)(9-9) = 12 * 0 = 0.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "Conceptual domain filtering proof; no numerical oracle required."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-MAT-POLY-FORM-DEGREE",
+              "title": "Polynomial Form and Degree",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Correct classification depends on exponent form, zero coefficients, and the exceptional zero-polynomial case.",
+              "entry_assumptions": [
+                "Can read powers of x and distinguish a coefficient from an exponent."
+              ],
+              "inferential_jump": "Move from the surface form of an expression to the simplified exponent structure that determines whether it is a polynomial and, if non-zero, its degree.",
+              "teaching_path": [
+                {
+                  "id": "POLY-FD-T1",
+                  "action": "Rewrite variable factors using explicit exponents and simplify algebraically where the source convention permits.",
+                  "why_valid": "Polynomial classification is determined by the exponents that remain after valid algebraic simplification.",
+                  "role": "DECLARE",
+                  "output": "simplified exponent form",
+                  "inputs": [
+                    "algebraic expression"
+                  ]
+                },
+                {
+                  "id": "POLY-FD-T2",
+                  "action": "Reject negative or fractional variable exponents; for a polynomial, find the largest exponent whose coefficient is non-zero.",
+                  "why_valid": "A polynomial in one variable has non-negative integer exponents, and zero-coefficient terms are absent from the polynomial.",
+                  "role": "TRANSFORM",
+                  "output": "classification and degree",
+                  "inputs": [
+                    "simplified exponent form"
+                  ]
+                },
+                {
+                  "id": "POLY-FD-T3",
+                  "action": "Handle the zero polynomial separately instead of assigning it the degree of a written zero term.",
+                  "why_valid": "The zero polynomial has no highest non-zero term, so its degree is not defined in the NCERT convention.",
+                  "role": "VERIFY",
+                  "output": "checked result",
+                  "inputs": [
+                    "classification and degree"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A written term such as 0x^5 makes the degree 5, or the zero polynomial has degree 0.",
+                  "diagnostic_prompt": "Does 0x^5 contribute a non-zero term, and what highest non-zero term exists in the zero polynomial?",
+                  "repair": "Degree is controlled only by non-zero terms; the zero polynomial has no such term."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Why is an expression containing 1/x not a polynomial in x?",
+                "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Because 1/x is x^(-1), whose exponent is negative.",
+                  "reasoning": [
+                    "Rewrite 1/x as x^(-1).",
+                    "A polynomial in x requires every variable exponent to be a non-negative integer."
+                  ],
+                  "check": "The exponent -1 violates the polynomial exponent condition.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit task is a conceptual classification claim with no computed numerical result."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-MAT-POLY-EVALUATION",
+              "title": "Polynomial Evaluation by Substitution",
+              "badge": "EASY",
+              "status": "CANDIDATE",
+              "badge_reason": "The main demand is consistent substitution followed by exact simplification.",
+              "entry_assumptions": [
+                "Can substitute a number or expression for a variable and simplify arithmetic exactly."
+              ],
+              "inferential_jump": "Treat p(a) as the value obtained by replacing every x in p(x) with the same input a before simplifying.",
+              "teaching_path": [
+                {
+                  "id": "POLY-EV-T1",
+                  "action": "Replace every occurrence of x by the stated input, keeping parentheses around signed or radical inputs.",
+                  "why_valid": "Function evaluation means applying the polynomial expression to one specified input consistently.",
+                  "role": "DECLARE",
+                  "output": "substituted expression",
+                  "inputs": [
+                    "p(x) and input a"
+                  ]
+                },
+                {
+                  "id": "POLY-EV-T2",
+                  "action": "Evaluate powers and products before combining the resulting terms.",
+                  "why_valid": "Standard algebraic order preserves the exact value of the substituted expression.",
+                  "role": "TRANSFORM",
+                  "output": "simplified value",
+                  "inputs": [
+                    "substituted expression"
+                  ]
+                },
+                {
+                  "id": "POLY-EV-T3",
+                  "action": "Check the substitution against the original polynomial so no occurrence of x was missed.",
+                  "why_valid": "Every x in p(x) must receive the same input for p(a) to be evaluated correctly.",
+                  "role": "VERIFY",
+                  "output": "checked value",
+                  "inputs": [
+                    "simplified value"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Only the first occurrence of x is replaced, or a negative input is substituted without parentheses.",
+                  "diagnostic_prompt": "When x = -1, what does x^2 become before multiplication by its coefficient?",
+                  "repair": "Substitute the same parenthesized input everywhere, then evaluate powers."
+                }
+              ],
+              "exit_task": {
+                "prompt": "What does the notation p(a) instruct you to do to p(x)?",
+                "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Replace every x in p(x) by a, then simplify.",
+                  "reasoning": [
+                    "The input a takes the place of the variable x throughout the polynomial.",
+                    "After substitution, ordinary algebra gives the value p(a)."
+                  ],
+                  "check": "The procedure uses one consistent input in every term.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit task asks for the evaluation procedure rather than a numerical value."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-MAT-POLY-ZEROS-BASIC",
+              "title": "Zeros of Elementary Polynomials",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners must connect the definition p(c)=0 to solving or checking a candidate, including the zero-polynomial edge case.",
+              "entry_assumptions": [
+                "Can solve a simple linear equation and substitute a candidate into a polynomial."
+              ],
+              "inferential_jump": "Translate the word zero into the equation p(c)=0, then solve or verify that equation rather than looking for a zero coefficient.",
+              "teaching_path": [
+                {
+                  "id": "POLY-ZR-T1",
+                  "action": "Translate 'c is a zero of p' into p(c) = 0.",
+                  "why_valid": "A zero is defined as an input at which the polynomial's value is zero.",
+                  "role": "DECLARE",
+                  "output": "equation p(c)=0",
+                  "inputs": [
+                    "polynomial p and candidate/input c"
+                  ]
+                },
+                {
+                  "id": "POLY-ZR-T2",
+                  "action": "Solve the resulting elementary equation or factor the polynomial when that is shorter.",
+                  "why_valid": "Any solution of p(x)=0 is a zero of the polynomial.",
+                  "role": "TRANSFORM",
+                  "output": "candidate zero or zeros",
+                  "inputs": [
+                    "equation p(x)=0"
+                  ]
+                },
+                {
+                  "id": "POLY-ZR-T3",
+                  "action": "Substitute the candidate back into p(x).",
+                  "why_valid": "Direct evaluation confirms that the polynomial value is exactly zero.",
+                  "role": "VERIFY",
+                  "output": "verified zero",
+                  "inputs": [
+                    "candidate zero"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A zero of a polynomial is a coefficient equal to zero rather than an input whose polynomial value is zero.",
+                  "diagnostic_prompt": "For p(x)=2x+5, which number c makes p(c)=0?",
+                  "repair": "Set the whole polynomial equal to zero and solve for the input."
+                }
+              ],
+              "exit_task": {
+                "prompt": "What condition must a real number c satisfy to be a zero of p(x)?",
+                "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "It must satisfy p(c) = 0.",
+                  "reasoning": [
+                    "Evaluate the polynomial at the proposed input c.",
+                    "The input is a zero exactly when that evaluation equals zero."
+                  ],
+                  "check": "This is the defining condition for a polynomial zero.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit task states the defining condition rather than computing a particular zero."
+                }
+              },
+              "prerequisites": []
+            }
+          ],
+          "relations": [],
+          "questions": [
+            {
+              "id": "Q-MAT-POLY-ISS55-01",
+              "stem": "The polynomial $p_k(x)=x^3-3x^2+(k-4)x+12$ has factor $x-3$. Determine $k$, obtain a complete real factorisation and list the distinct real zeros. Give an independent check of the complete polynomial, not only the initially supplied factor.",
+              "origin": "AUTHORED",
+              "answer": "k = 0; p_0(x) = (x - 2)(x + 2)(x - 3), so the distinct real zeros are -2, 2 and 3. Direct substitution at x = 2 and x = -2, together with expansion, verifies the complete factorisation."
+            },
+            {
+              "id": "Q-MAT-POLY-ISS55-02",
+              "stem": "A student claims that a cubic must have three distinct real zeros. Test this against $p(x)=x^3-4x^2+5x-2$ by factorising it. Distinguish distinct zeros from repeated factors, and use exact nearby test values to decide whether the sign changes at each zero.",
+              "origin": "AUTHORED",
+              "answer": "p(x) = (x - 1)^2(x - 2), so the distinct real zeros are 1 and 2. Exact tests give p(0) = -2, p(1.5) = -0.125 and p(3) = 4: the sign does not change at the repeated zero 1, but it does change at 2."
+            },
+            {
+              "id": "Q-MAT-POLY-ISS55-03",
+              "stem": "A real polynomial $p$ has degree at most two and satisfies $p(0)=1$, $p(1)=3$ and $p(2)=7$. Construct it from these data. A further exact record claims $p(3)=14$: decide whether all four records are compatible with the degree bound and explain what has to be reconsidered if they are not.",
+              "origin": "AUTHORED",
+              "answer": "The first three values determine p(x) = x^2 + x + 1, hence p(3) = 13. Therefore the record p(3) = 14 is incompatible with degree at most 2: either that record is wrong or the degree bound must be relaxed."
+            },
+            {
+              "id": "Q-MAT-POLY-ISS55-04",
+              "stem": "A rectangular card has outer dimensions $(x+4)$ cm by $(x+2)$ cm. A square of side $x$ cm is cut out from its interior, with $x>0$. Construct the remaining-area polynomial and explain how its degree can differ from the degrees of the two component areas. Check your model at one admissible value.",
+              "origin": "AUTHORED",
+              "answer": "The remaining area is A_rem(x) = (x + 4)(x + 2) - x^2 = 6x + 8 cm^2, of degree 1 because the quadratic terms cancel. At x = 2, geometry gives 24 - 4 = 20 cm^2 and the polynomial gives 6(2) + 8 = 20 cm^2."
+            },
+            {
+              "id": "Q-MAT-POLY-ISS55-05",
+              "stem": "For $p(x)=x^3-6x^2+11x-6$, create a factored representation and a sign chart covering all real $x$, including the zeros. Explain how the chart follows from the signs of the individual factors rather than from an unverified sketch.",
+              "origin": "AUTHORED",
+              "answer": "p(x) = (x - 1)(x - 2)(x - 3). Its sign chart is negative on (-inf,1), zero at 1, positive on (1,2), zero at 2, negative on (2,3), zero at 3 and positive on (3,inf); factor signs and continuity justify every interval."
+            },
+            {
+              "id": "Q-MAT-POLY-ISS55-06",
+              "stem": "A monic cubic $p$ satisfies $p(1)=0$, $p(-1)=0$ and $p(2)=6$. Construct $p$ by coordinating the factor information and the remaining value condition. Check the result by an approach different from the one used to construct it.",
+              "origin": "AUTHORED",
+              "answer": "p(x) = x(x^2 - 1) = x^3 - x. The roots +/-1 and monicity give p(x) = (x^2 - 1)(x - r), and p(2) = 6 gives r = 0. Solving the coefficient system independently confirms a = 0, b = -1 and c = 0."
+            },
+            {
+              "id": "Q-MAT-POLY-ISS55-07",
+              "stem": "A student knows only that a nonzero real polynomial has zeros $-1$ and $1$, and concludes that it must equal $c(x^2-1)$ for some nonzero constant $c$. Decide what really follows without a degree bound, give a counterexample to any unwarranted part, and identify the extra condition that makes the stated form valid.",
+              "origin": "AUTHORED",
+              "answer": "Only (x^2 - 1) dividing p(x) follows, so p(x) = (x^2 - 1)q(x). The counterexample x^4 - 1 shows q need not be constant. If p is nonzero with degree at most 2, q is constant and p(x) = c(x^2 - 1)."
+            },
+            {
+              "id": "Q-MAT-POLY-ISS55-08",
+              "stem": "Two real polynomials $p$ and $q$ each have degree at most two and agree at three distinct real inputs. Prove or disprove that they agree everywhere. You may use the fact that a nonzero polynomial of degree at most two has at most two distinct real zeros; distinguish that fact from a claim about the zero polynomial.",
+              "origin": "AUTHORED",
+              "answer": "Let d(x) = p(x) - q(x). It has degree at most 2 unless it is the zero polynomial, and the three agreements give three distinct zeros of d. A nonzero polynomial of degree at most 2 cannot have three distinct zeros, so d is identically zero and p = q everywhere."
+            },
+            {
+              "id": "Q-MAT-POLY-ISS55-09",
+              "stem": "For $p_a(x)=(a-1)x^3+(a+1)x^2-2x$, determine the parameter values for which $1$ is a zero and the parameter values for which the degree is less than three. Explain how the two conditions relate and whether the family can ever become the zero polynomial.",
+              "origin": "AUTHORED",
+              "answer": "Both conditions occur only at a = 1: p_a(1) = 2a - 2 = 0 and deg(p_a) < 3 exactly when a - 1 = 0. Then p_1(x) = 2x^2 - 2x. The family is never the zero polynomial because the coefficient of x is always -2."
+            },
+            {
+              "id": "Q-MAT-POLY-ISS55-10",
+              "stem": "Find all real zeros of $p(x)=x^4-5x^2+4$ and $q(x)=x^4+4x^2+4$ by choosing a useful change of variable. State the condition imposed by that change of variable, check each accepted real zero, and explain why treating the new variable as an unrestricted real number can mislead. This is a competition extension; no general quartic formula is required.",
+              "origin": "AUTHORED",
+              "answer": "Set u = x^2 with u >= 0. For p, (u - 1)(u - 4) = 0 gives x = +/-1, +/-2, all verified by substitution. For q, (u + 2)^2 = 0 gives u = -2, which is inadmissible for real x, so q has no real zeros."
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q01",
+              "stem": "Which of the following is a polynomial?",
+              "origin": "ORIGINAL",
+              "answer": "(C) x² + 3x^(3/2)/√x"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q02",
+              "stem": "√2 is a polynomial of degree",
+              "origin": "ORIGINAL",
+              "answer": "(B) 0"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q03",
+              "stem": "Degree of the polynomial 4x⁴ + 0x³ + 0x⁵ + 5x + 7 is",
+              "origin": "ORIGINAL",
+              "answer": "(A) 4"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q04",
+              "stem": "Degree of the zero polynomial is",
+              "origin": "ORIGINAL",
+              "answer": "(D) Not defined"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q05",
+              "stem": "If p(x) = x² - 2√2x + 1, then p(2√2) is equal to",
+              "origin": "ORIGINAL",
+              "answer": "(B) 1"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q06",
+              "stem": "The value of the polynomial 5x - 4x² + 3, when x = -1 is",
+              "origin": "ORIGINAL",
+              "answer": "(A) -6"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q07",
+              "stem": "If p(x) = x + 3, then p(x) + p(-x) is equal to",
+              "origin": "ORIGINAL",
+              "answer": "(D) 6"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q08",
+              "stem": "Zero of the zero polynomial is",
+              "origin": "ORIGINAL",
+              "answer": "(C) Any real number"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q09",
+              "stem": "Zero of the polynomial p(x) = 2x + 5 is",
+              "origin": "ORIGINAL",
+              "answer": "(B) -5/2"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q10",
+              "stem": "One of the zeroes of the polynomial 2x² + 7x - 4 is",
+              "origin": "ORIGINAL",
+              "answer": "(B) 1/2"
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "CAP-MAT-POLY-CHANGE-OF-VARIABLE-DOMAIN",
+              "action": "Solve biquadratic polynomials via substitution while enforcing real domain constraints.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-EVALUATE-BASIC",
+              "action": "Evaluate a polynomial at a stated input by substitution and algebraic simplification.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-FACTOR-DIVISIBILITY-DEGREE",
+              "action": "Deduce factor divisibility from roots and bound degree to avoid unwarranted forms.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-FACTOR-PARAMETER",
+              "action": "Determine polynomial parameters via factor theorem and real factorization.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-FACTOR-VALUE-CONSTRUCTION",
+              "action": "Construct monic polynomials from zeros and value constraints.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-FORM-DEGREE-BASIC",
+              "action": "Recognize polynomial expressions and determine degree using non-zero coefficients and the zero-polynomial exception.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-GEOMETRIC-AREA-DEGREE",
+              "action": "Model geometric area and explain degree reduction via leading term cancellation.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-IDENTITY-THEOREM-DEGREE",
+              "action": "Prove polynomial identity for bounded degree via difference polynomials and root bounds.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-INTERPOLATION-DEGREE-BOUND",
+              "action": "Evaluate polynomial uniqueness and degree compatibility from point data.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-MULTIPLICITY-SIGN",
+              "action": "Distinguish root multiplicity from zero counts and analyze local sign change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-PARAMETER-DEGREE-ZERO",
+              "action": "Analyze parameter families for root conditions, degree reduction, and zero polynomial impossibility.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-SIGN-CHART-RIGOR",
+              "action": "Construct rigorous sign charts from linear factor signs partitioned across real intervals.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-ZERO-BASIC",
+              "action": "Determine and verify zeros of elementary polynomials from the condition p(x) = 0.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 66,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1"
+            ],
+            "atoms": 0,
+            "questions": 13,
+            "obligations": 2,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1A",
+                "detail": "no teaching route claims this product for this bucket's microtopics"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1B",
+                "detail": "no teaching route claims this product for this bucket's microtopics"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-POLY-IDENTITY-DEGREE-BOUND",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-POLY-SIGN-MULTIPLICITY",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-POLY-AUXILIARY-DOMAIN",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-POLY-FORM-DEGREE",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-POLY-EVALUATION",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-POLY-ZEROS-BASIC",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MAT-POLY-COUNTEREXAMPLE-QUARTIC",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MAT-POLY-DIFFERENCE-POLYNOMIAL",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MAT-POLY-GEOMETRIC-CARD-CUTOUT",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MAT-POLY-GROUPING-ALGEBRA",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MAT-POLY-MONIC-FACTOR-MODEL",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MAT-POLY-PARAMETER-COEFFICIENT-ANALYSIS",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MAT-POLY-QUADRATIC-COEFFICIENTS",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MAT-POLY-SIGN-TABLE",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MAT-POLY-SIGN-TEST",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MAT-POLY-SUBSTITUTION-MAPPING",
                 "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
               }
             ]
@@ -1904,7 +2714,12 @@ window.GRADE9V3 = {
         {
           "package_id": "LIB-MATH-LINEAR-EQUATIONS",
           "status": "CANDIDATE",
-          "admitted": false
+          "admitted": true
+        },
+        {
+          "package_id": "LIB-MATH-POLYNOMIALS",
+          "status": "CANDIDATE",
+          "admitted": true
         }
       ],
       "library_available": true,
@@ -40765,27 +41580,1276 @@ window.GRADE9V3 = {
         }
       },
       "gates": [],
-      "buckets": [],
-      "matrices": [],
-      "packages": [],
-      "library_available": false,
+      "buckets": [
+        {
+          "id": "BUCKET-MATH-POLY-STRESS-ISS55",
+          "title": "Polynomial Algebra and Degree Constraints — Issue #55 Candidate",
+          "topic": "Polynomials in one variable with real coefficients",
+          "badge": "HARD",
+          "status": "CANDIDATE",
+          "prerequisites": [],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-MATH-POLY-IDENTITY-DEGREE-BOUND",
+              "title": "Degree-Bounded Polynomial Identity and Difference Polynomials",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "The decisive inference requires transforming agreement at points into roots of a difference polynomial and applying root bound theorems.",
+              "entry_assumptions": [
+                "Demonstrated evaluating polynomial values at given inputs.",
+                "Demonstrated setting up and solving linear systems for coefficients.",
+                "Demonstrated the factor theorem for linear factors."
+              ],
+              "inferential_jump": "Prove that two polynomials of degree at most two agreeing at three points agree everywhere by forming d(x) = p(x) - q(x) and showing d(x) must be identically zero.",
+              "teaching_path": [
+                {
+                  "id": "IDENT-T1",
+                  "action": "Define difference polynomial d(x) = p(x) - q(x) when p and q agree at given points.",
+                  "why_valid": "Agreement p(x_i) = q(x_i) implies d(x_i) = 0 for all agreement points.",
+                  "role": "DECLARE",
+                  "output": "d(x_i) = 0 for each agreement input",
+                  "inputs": [
+                    "polynomials p(x) and q(x) with common values"
+                  ]
+                },
+                {
+                  "id": "IDENT-T2",
+                  "action": "Bound the degree of the difference: deg(d) <= max(deg p, deg q), unless d is the zero polynomial.",
+                  "why_valid": "Subtracting polynomials of degree <= 2 cannot produce terms of degree higher than 2.",
+                  "role": "TRANSFORM",
+                  "output": "deg(d) <= 2 or d(x) = 0 identically",
+                  "inputs": [
+                    "deg(p) <= 2 and deg(q) <= 2"
+                  ]
+                },
+                {
+                  "id": "IDENT-T3",
+                  "action": "Apply the root bound theorem by contradiction: a non-zero polynomial of degree <= 2 has at most 2 zeros.",
+                  "why_valid": "Having 3 distinct roots directly contradicts d(x) being a non-zero polynomial of degree <= 2.",
+                  "role": "TRANSFORM",
+                  "output": "d(x) cannot be a non-zero polynomial",
+                  "inputs": [
+                    "d(x) has 3 distinct zeros"
+                  ]
+                },
+                {
+                  "id": "IDENT-T4",
+                  "action": "Conclude d(x) is identically zero and distinguish non-zero polynomials from the zero polynomial.",
+                  "why_valid": "All coefficients of d(x) must vanish, establishing p(x) = q(x) for all x in R.",
+                  "role": "VERIFY",
+                  "output": "p(x) = q(x) everywhere",
+                  "inputs": [
+                    "d(x) is identically zero"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Assuming a polynomial of degree <= 2 cannot agree with another at 3 points, or confusing a zero polynomial with degree 0.",
+                  "diagnostic_prompt": "What is the value of 0(x) at x = 1, 2, 3, 4? Does 0(x) have only two zeros, or infinitely many zeros?",
+                  "repair": "The theorem 'at most n zeros' applies strictly to NON-ZERO polynomials. When a degree <= n difference has n + 1 zeros, it forces the difference to be the zero polynomial."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Two quadratics p and q agree at inputs -1, 0, and 2. What can be concluded about their values at x = 100?",
+                "source_ref": "SRC-OWNER-ISS55-POLYNOMIALS",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "By the polynomial identity theorem for degree <= 2, their difference d(x) has 3 zeros and must be identically zero, so p(100) = q(100).",
+                  "reasoning": [
+                    "Form the difference polynomial d(x) = p(x) - q(x).",
+                    "deg(d) <= 2 because deg(p) <= 2 and deg(q) <= 2.",
+                    "d(-1) = 0, d(0) = 0, and d(2) = 0 provide 3 distinct zeros.",
+                    "A non-zero polynomial of degree <= 2 has at most 2 zeros.",
+                    "Therefore, d(x) is identically zero, so p(x) = q(x) for all x, including x = 100."
+                  ],
+                  "check": "Verify that (p - q) is zero by testing the degree bound against root count.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "Conceptual polynomial identity proof; no numeric oracle required."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-MATH-POLY-SIGN-MULTIPLICITY",
+              "title": "Interval Sign Charts and Root Multiplicity",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "Deducing polynomial sign requires tracking parity of linear factors across partitioned intervals and respecting even vs odd multiplicity.",
+              "entry_assumptions": [
+                "Demonstrated factoring quadratics and cubics over integers.",
+                "Demonstrated locating zeros on a real number line."
+              ],
+              "inferential_jump": "Construct a rigorous sign chart for a factored polynomial by partitioning the real line at its zeros and determining interval signs from the parity of negative factors.",
+              "teaching_path": [
+                {
+                  "id": "SIGN-T1",
+                  "action": "Factor the polynomial into linear factors and locate all real zeros.",
+                  "why_valid": "Continuous polynomials can only change sign at real zeros.",
+                  "role": "DECLARE",
+                  "output": "factored form and set of real zeros",
+                  "inputs": [
+                    "polynomial in standard form"
+                  ]
+                },
+                {
+                  "id": "SIGN-T2",
+                  "action": "Partition the real line into open intervals separated by the zeros.",
+                  "why_valid": "Zeros serve as strict boundary points where polynomial evaluates to 0.",
+                  "role": "TRANSFORM",
+                  "output": "disjoint open intervals spanning R",
+                  "inputs": [
+                    "real zeros in ascending order"
+                  ]
+                },
+                {
+                  "id": "SIGN-T3",
+                  "action": "Determine the sign of each linear factor across all intervals.",
+                  "why_valid": "Factor (x - c) is negative for x < c and positive for x > c.",
+                  "role": "TRANSFORM",
+                  "output": "tabulation of factor signs",
+                  "inputs": [
+                    "linear factors and open intervals"
+                  ]
+                },
+                {
+                  "id": "SIGN-T4",
+                  "action": "Compute the product sign by counting negative factors and mark boundary zeros.",
+                  "why_valid": "An odd count of negative factors produces a negative product; an even count produces positive.",
+                  "role": "VERIFY",
+                  "output": "complete sign profile across R",
+                  "inputs": [
+                    "factor signs per interval"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Sketching a curve through roots without checking interval signs, or assuming roots always alternate sign regardless of multiplicity.",
+                  "diagnostic_prompt": "What is the sign of (x - 2)^2 when x = 1 and when x = 3? Does a squared factor change sign across its root?",
+                  "repair": "Signs across intervals are determined by counting negative factors; factors of even multiplicity preserve sign, while factors of odd multiplicity alternate sign."
+                }
+              ],
+              "exit_task": {
+                "prompt": "For p(x) = (x - 1)^2 (x - 4), what is the sign of p(x) for x in (1, 4)?",
+                "source_ref": "SRC-OWNER-ISS55-POLYNOMIALS",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "For x in (1, 4), (x - 1)^2 is positive (+) and (x - 4) is negative (-), so p(x) is negative (-).",
+                  "reasoning": [
+                    "(x - 1)^2 > 0 for all x != 1 because square of real number is non-negative.",
+                    "For x < 4, (x - 4) < 0.",
+                    "Product of positive and negative is negative."
+                  ],
+                  "check": "Test point x = 2: p(2) = (1)^2 (-2) = -2 < 0.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "Conceptual sign determination; no numerical oracle required."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-MATH-POLY-AUXILIARY-DOMAIN",
+              "title": "Auxiliary Variable Substitution and Real Domain Constraints",
+              "badge": "HARD",
+              "status": "CANDIDATE",
+              "badge_reason": "Transformations with auxiliary variables must enforce domain restrictions; negative roots in u must be rejected over the real numbers.",
+              "entry_assumptions": [
+                "Demonstrated quadratic formula and factoring techniques.",
+                "Demonstrated properties of real squares."
+              ],
+              "inferential_jump": "Solve biquadratic polynomials by transforming with u = x^2 while strictly enforcing the real domain condition u >= 0 to reject spurious or non-real roots.",
+              "teaching_path": [
+                {
+                  "id": "SUBST-T1",
+                  "action": "Identify algebraic symmetry or even powers in biquadratic polynomials and introduce u = x^2.",
+                  "why_valid": "All powers of x are even, so x^4 = (x^2)^2 and x^2 = u.",
+                  "role": "DECLARE",
+                  "output": "quadratic equation in u",
+                  "inputs": [
+                    "biquadratic polynomial"
+                  ]
+                },
+                {
+                  "id": "SUBST-T2",
+                  "action": "State and enforce the essential domain restriction: u >= 0 for all real x.",
+                  "why_valid": "The square of any real number is non-negative; negative u has no real square root.",
+                  "role": "TRANSFORM",
+                  "output": "admissible domain u >= 0",
+                  "inputs": [
+                    "substitution definition u = x^2"
+                  ]
+                },
+                {
+                  "id": "SUBST-T3",
+                  "action": "Solve the quadratic equation in u and test each solution against u >= 0.",
+                  "why_valid": "Only solutions satisfying u >= 0 can be mapped back to real x via x = +/- sqrt(u).",
+                  "role": "TRANSFORM",
+                  "output": "filtered set of non-negative u values",
+                  "inputs": [
+                    "roots of quadratic in u"
+                  ]
+                },
+                {
+                  "id": "SUBST-T4",
+                  "action": "Map accepted u to real zeros and expose why unrestricted substitution misleads.",
+                  "why_valid": "Each u > 0 gives 2 real roots, u = 0 gives 1 real root, and u < 0 gives 0 real roots.",
+                  "role": "VERIFY",
+                  "output": "complete set of real zeros in x",
+                  "inputs": [
+                    "accepted u values"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Treating u as an unrestricted real number and claiming negative u yields real zeros, or assuming every root in u produces 2 real roots in x.",
+                  "diagnostic_prompt": "If a quadratic in u gives u = -4, what is x? Does any real number satisfy x^2 = -4?",
+                  "repair": "Substitutions inherit the range of the transforming function: for u = x^2 over R, u must be >= 0. Negative roots in u yield zero real roots in x."
+                }
+              ],
+              "exit_task": {
+                "prompt": "A biquadratic polynomial transforms into (u + 3)(u - 9) = 0 where u = x^2. What are its real zeros?",
+                "source_ref": "SRC-OWNER-ISS55-POLYNOMIALS",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "The root u = -3 is rejected because u >= 0. The root u = 9 gives x^2 = 9 => x = +/- 3. The only real zeros are {-3, 3}.",
+                  "reasoning": [
+                    "u = x^2 >= 0 for all real x.",
+                    "u + 3 = 0 gives u = -3 < 0, which has no real solution for x^2 = -3.",
+                    "u - 9 = 0 gives u = 9 >= 0, so x^2 = 9 => x = +/- 3."
+                  ],
+                  "check": "Substitute x = 3 and x = -3 into the original polynomial: each yields (9+3)(9-9) = 12 * 0 = 0.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "Conceptual domain filtering proof; no numerical oracle required."
+                }
+              },
+              "prerequisites": []
+            }
+          ],
+          "relations": [],
+          "questions": [],
+          "capabilities": [
+            {
+              "id": "CAP-MATH-POLY-CHANGE-OF-VARIABLE-DOMAIN",
+              "action": "Solve biquadratic polynomials via substitution while enforcing real domain constraints.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MATH-POLY-FACTOR-DIVISIBILITY-DEGREE",
+              "action": "Deduce factor divisibility from roots and bound degree to avoid unwarranted forms.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MATH-POLY-FACTOR-PARAMETER",
+              "action": "Determine polynomial parameters via factor theorem and real factorization.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MATH-POLY-GEOMETRIC-AREA-DEGREE",
+              "action": "Model geometric area and explain degree reduction via leading term cancellation.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MATH-POLY-IDENTITY-THEOREM-DEGREE",
+              "action": "Prove polynomial identity for bounded degree via difference polynomials and root bounds.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MATH-POLY-INTERPOLATION-DEGREE-BOUND",
+              "action": "Evaluate polynomial uniqueness and degree compatibility from point data.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MATH-POLY-MULTIPLICITY-SIGN",
+              "action": "Distinguish root multiplicity from zero counts and analyze local sign change.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MATH-POLY-PARAMETER-DEGREE-ZERO",
+              "action": "Analyze parameter families for root conditions, degree reduction, and zero polynomial impossibility.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MATH-POLY-SIGN-CHART-RIGOR",
+              "action": "Construct rigorous sign charts from linear factor signs partitioned across real intervals.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 34,
+          "compile_preview": {
+            "compilable": true,
+            "supported_products": [
+              "CORE1"
+            ],
+            "atoms": 0,
+            "questions": 0,
+            "obligations": 2,
+            "authoring_requirements": [
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2",
+                "detail": "the bucket has no reviewed/curated source-derived question with resolved question-level custody; authored practice does not become Core2"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1A",
+                "detail": "no teaching route claims this product for this bucket's microtopics"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE1B",
+                "detail": "no teaching route claims this product for this bucket's microtopics"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2A",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "PRODUCT_UNSUPPORTED",
+                "core": "CORE2B",
+                "detail": "the library holds no question exposed to this product for this bucket"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MATH-POLY-IDENTITY-DEGREE-BOUND",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MATH-POLY-SIGN-MULTIPLICITY",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MATH-POLY-AUXILIARY-DOMAIN",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MATH-POLY-COUNTEREXAMPLE-QUARTIC",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MATH-POLY-DIFFERENCE-POLYNOMIAL",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MATH-POLY-GEOMETRIC-CARD-CUTOUT",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MATH-POLY-GROUPING-ALGEBRA",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MATH-POLY-MONIC-FACTOR-MODEL",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MATH-POLY-PARAMETER-COEFFICIENT-ANALYSIS",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MATH-POLY-QUADRATIC-COEFFICIENTS",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MATH-POLY-SIGN-TABLE",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MATH-POLY-SIGN-TEST",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              },
+              {
+                "kind": "FIGURE_AUTHORING",
+                "representation": "REP-MATH-POLY-SUBSTITUTION-MAPPING",
+                "detail": "the representation states what a figure of this kind must show but holds no scene instance; a figure must be authored"
+              }
+            ]
+          }
+        }
+      ],
+      "matrices": [
+        {
+          "matrix_id": "MATRIX-TEST-ISS55-POLY",
+          "subject": "TEST",
+          "bucket_id": "BUCKET-MATH-POLY-STRESS-ISS55",
+          "topic": "Polynomials",
+          "subtopic": "Issue #55 polynomial reasoning stress set",
+          "axis_note": "ladder_position orders this TEST matrix only; it is a sandbox learning sequence, not canonical curriculum order.",
+          "family": {
+            "invariant_demand": "Choose the algebraic model that preserves the relevant domain and structural constraints, then justify the conclusion with an independent check rather than pattern matching.",
+            "difficult_move": "Recognising which structural constraint controls the problem: multiplicity parity, auxiliary-variable domain, or a degree/root-count bound.",
+            "independent_check": "Verify the result in the original polynomial setting: test interval signs, substitute mapped roots, or compare the original polynomials at and beyond the supplied values as appropriate.",
+            "support_ladder": [
+              {
+                "level": "high",
+                "handed_over": "The controlling structural constraint and the first representation change are supplied."
+              },
+              {
+                "level": "medium",
+                "handed_over": "The relevant representation is supplied, but the controlling constraint must be identified and applied."
+              },
+              {
+                "level": "low",
+                "handed_over": "Only the original polynomial task and the requirement for an independent check are supplied."
+              }
+            ]
+          },
+          "rungs": [
+            {
+              "rung": "R1",
+              "ladder_position": 20,
+              "default_entry_eligible": true,
+              "microtopic_ref": "MIC-MATH-POLY-SIGN-MULTIPLICITY",
+              "ceiling": [
+                "root multiplicity",
+                "interval sign chart",
+                "factor sign",
+                "sign change"
+              ],
+              "must_contain": [
+                "A factored real polynomial whose zeros partition the real line into intervals.",
+                "At least one repeated zero so the learner must distinguish multiplicity from a sign change."
+              ],
+              "controlled_variation": [
+                {
+                  "phase": 1,
+                  "vary": "the multiplicity parity of one real zero",
+                  "hold": "the remaining factors and interval partition",
+                  "notice": "odd multiplicity changes sign while even multiplicity preserves sign"
+                },
+                {
+                  "phase": 2,
+                  "vary": "the test point chosen inside an interval",
+                  "hold": "the factorisation and interval",
+                  "notice": "the product sign is constant within an interval containing no zero"
+                }
+              ],
+              "microtopic": {
+                "id": "MIC-MATH-POLY-SIGN-MULTIPLICITY",
+                "title": "Interval Sign Charts and Root Multiplicity",
+                "intrinsic_badge": "HARD",
+                "badge_reason": "Deducing polynomial sign requires tracking parity of linear factors across partitioned intervals and respecting even vs odd multiplicity.",
+                "entry_assumptions": [
+                  "Demonstrated factoring quadratics and cubics over integers.",
+                  "Demonstrated locating zeros on a real number line."
+                ],
+                "inferential_jump": "Construct a rigorous sign chart for a factored polynomial by partitioning the real line at its zeros and determining interval signs from the parity of negative factors.",
+                "misconceptions": [
+                  {
+                    "wrong_idea": "Sketching a curve through roots without checking interval signs, or assuming roots always alternate sign regardless of multiplicity.",
+                    "diagnostic_prompt": "What is the sign of (x - 2)^2 when x = 1 and when x = 3? Does a squared factor change sign across its root?",
+                    "repair": "Signs across intervals are determined by counting negative factors; factors of even multiplicity preserve sign, while factors of odd multiplicity alternate sign."
+                  }
+                ],
+                "exit_task": {
+                  "prompt": "For p(x) = (x - 1)^2 (x - 4), what is the sign of p(x) for x in (1, 4)?",
+                  "source_ref": "SRC-OWNER-ISS55-POLYNOMIALS",
+                  "answer": {
+                    "kind": "MODEL_RESPONSE",
+                    "summary": "For x in (1, 4), (x - 1)^2 is positive (+) and (x - 4) is negative (-), so p(x) is negative (-).",
+                    "reasoning": [
+                      "(x - 1)^2 > 0 for all x != 1 because square of real number is non-negative.",
+                      "For x < 4, (x - 4) < 0.",
+                      "Product of positive and negative is negative."
+                    ],
+                    "check": "Test point x = 2: p(2) = (1)^2 (-2) = -2 < 0.",
+                    "acceptable_alternatives": [],
+                    "subpart_answers": [],
+                    "verification_status": "CHECKED_BY_AUTHOR"
+                  },
+                  "oracle": {
+                    "no_numeric_claim": "Conceptual sign determination; no numerical oracle required."
+                  }
+                },
+                "elicitation": {
+                  "predict": {
+                    "prompt": "Predict whether a repeated root of multiplicity 2 causes the graph of p(x) to cross the x-axis or touch and turn around.",
+                    "defensible_answer": "It touches and turns around without changing sign because (x - r)^2 is non-negative on both sides."
+                  },
+                  "attempt": {
+                    "produces": "An interval table showing signs of individual factors and overall product sign.",
+                    "closure": "RUBRIC",
+                    "rubric": [
+                      {
+                        "criterion": "Partitions real line correctly at zeros.",
+                        "evidence_of": "Domain structuring."
+                      },
+                      {
+                        "criterion": "Evaluates factor signs and deduces product parity.",
+                        "evidence_of": "Rigorous algebraic calculation."
+                      }
+                    ],
+                    "accepted": [
+                      "Tables that list factor signs and compute product parity algebraically."
+                    ],
+                    "rejected": [
+                      "Drawing a wavy curve without tabulating factor signs."
+                    ],
+                    "task": {
+                      "prompt": "Construct a sign chart for p(x) = (x + 1)(x - 2)^2 (x - 5) across all real intervals.",
+                      "givens": [],
+                      "representation_ref": "REP-MATH-POLY-SIGN-TABLE"
+                    }
+                  },
+                  "reconstruct": {
+                    "route": [
+                      {
+                        "ask": "Where can the polynomial potentially change sign?",
+                        "why_this_ask": "Only at real zeros."
+                      },
+                      {
+                        "ask": "How do linear factors behave on either side of their root?",
+                        "why_this_ask": "They change from negative to positive."
+                      },
+                      {
+                        "ask": "How does an even power affect sign changes?",
+                        "why_this_ask": "Even powers remain non-negative, preventing sign change."
+                      }
+                    ],
+                    "differs_from_teaching_path": "Reconstruction works from individual factor properties to overall product rather than declaring the intervals first."
+                  },
+                  "boundary_test": {
+                    "prompt": "What happens to the sign chart if an irreducible quadratic factor like (x^2 + 1) is present?",
+                    "answer": "Since x^2 + 1 > 0 for all real x, it contributes a positive sign across all intervals without adding any boundary zeros.",
+                    "confirms": "Learner handles non-linear factors that introduce no real roots."
+                  }
+                },
+                "prerequisite_refs": [],
+                "teaching_path": [
+                  {
+                    "id": "SIGN-T1",
+                    "role": "DECLARE",
+                    "action": "Factor the polynomial into linear factors and locate all real zeros.",
+                    "why_valid": "Continuous polynomials can only change sign at real zeros.",
+                    "output": "factored form and set of real zeros",
+                    "inputs": [
+                      "polynomial in standard form"
+                    ]
+                  },
+                  {
+                    "id": "SIGN-T2",
+                    "role": "TRANSFORM",
+                    "action": "Partition the real line into open intervals separated by the zeros.",
+                    "why_valid": "Zeros serve as strict boundary points where polynomial evaluates to 0.",
+                    "output": "disjoint open intervals spanning R",
+                    "inputs": [
+                      "real zeros in ascending order"
+                    ]
+                  },
+                  {
+                    "id": "SIGN-T3",
+                    "role": "TRANSFORM",
+                    "action": "Determine the sign of each linear factor across all intervals.",
+                    "why_valid": "Factor (x - c) is negative for x < c and positive for x > c.",
+                    "output": "tabulation of factor signs",
+                    "inputs": [
+                      "linear factors and open intervals"
+                    ]
+                  },
+                  {
+                    "id": "SIGN-T4",
+                    "role": "VERIFY",
+                    "action": "Compute the product sign by counting negative factors and mark boundary zeros.",
+                    "why_valid": "An odd count of negative factors produces a negative product; an even count produces positive.",
+                    "output": "complete sign profile across R",
+                    "inputs": [
+                      "factor signs per interval"
+                    ]
+                  }
+                ]
+              },
+              "capability": {
+                "id": "CAP-MATH-POLY-SIGN-CHART-RIGOR",
+                "action": "Construct rigorous sign charts from linear factor signs partitioned across real intervals.",
+                "success_criterion": "Partitions R at zeros, evaluates signs of individual factors, and deduces product sign from negative factor parity.",
+                "prerequisite_refs": [],
+                "acceptance_status": "CANDIDATE"
+              },
+              "questions": [],
+              "activities": []
+            },
+            {
+              "rung": "R2",
+              "ladder_position": 60,
+              "default_entry_eligible": true,
+              "microtopic_ref": "MIC-MATH-POLY-AUXILIARY-DOMAIN",
+              "ceiling": [
+                "auxiliary variable",
+                "biquadratic",
+                "domain restriction",
+                "back-substitution"
+              ],
+              "must_contain": [
+                "A substitution such as u = x^2 with the real-domain condition u >= 0 stated explicitly.",
+                "At least one algebraic root in the auxiliary variable that must be rejected before mapping back to x."
+              ],
+              "controlled_variation": [
+                {
+                  "phase": 1,
+                  "vary": "the sign of an auxiliary-variable root",
+                  "hold": "the substitution u = x^2 and real domain",
+                  "notice": "a negative u-root is algebraically valid for the transformed equation but inadmissible for real x"
+                },
+                {
+                  "phase": 2,
+                  "vary": "the accepted non-negative u value",
+                  "hold": "the back-substitution rule x^2 = u",
+                  "notice": "positive u normally maps to two real x-values while u = 0 maps to one"
+                }
+              ],
+              "microtopic": {
+                "id": "MIC-MATH-POLY-AUXILIARY-DOMAIN",
+                "title": "Auxiliary Variable Substitution and Real Domain Constraints",
+                "intrinsic_badge": "HARD",
+                "badge_reason": "Transformations with auxiliary variables must enforce domain restrictions; negative roots in u must be rejected over the real numbers.",
+                "entry_assumptions": [
+                  "Demonstrated quadratic formula and factoring techniques.",
+                  "Demonstrated properties of real squares."
+                ],
+                "inferential_jump": "Solve biquadratic polynomials by transforming with u = x^2 while strictly enforcing the real domain condition u >= 0 to reject spurious or non-real roots.",
+                "misconceptions": [
+                  {
+                    "wrong_idea": "Treating u as an unrestricted real number and claiming negative u yields real zeros, or assuming every root in u produces 2 real roots in x.",
+                    "diagnostic_prompt": "If a quadratic in u gives u = -4, what is x? Does any real number satisfy x^2 = -4?",
+                    "repair": "Substitutions inherit the range of the transforming function: for u = x^2 over R, u must be >= 0. Negative roots in u yield zero real roots in x."
+                  }
+                ],
+                "exit_task": {
+                  "prompt": "A biquadratic polynomial transforms into (u + 3)(u - 9) = 0 where u = x^2. What are its real zeros?",
+                  "source_ref": "SRC-OWNER-ISS55-POLYNOMIALS",
+                  "answer": {
+                    "kind": "MODEL_RESPONSE",
+                    "summary": "The root u = -3 is rejected because u >= 0. The root u = 9 gives x^2 = 9 => x = +/- 3. The only real zeros are {-3, 3}.",
+                    "reasoning": [
+                      "u = x^2 >= 0 for all real x.",
+                      "u + 3 = 0 gives u = -3 < 0, which has no real solution for x^2 = -3.",
+                      "u - 9 = 0 gives u = 9 >= 0, so x^2 = 9 => x = +/- 3."
+                    ],
+                    "check": "Substitute x = 3 and x = -3 into the original polynomial: each yields (9+3)(9-9) = 12 * 0 = 0.",
+                    "acceptable_alternatives": [],
+                    "subpart_answers": [],
+                    "verification_status": "CHECKED_BY_AUTHOR"
+                  },
+                  "oracle": {
+                    "no_numeric_claim": "Conceptual domain filtering proof; no numerical oracle required."
+                  }
+                },
+                "elicitation": {
+                  "predict": {
+                    "prompt": "Predict how many real roots a biquadratic polynomial can have if its transformed quadratic in u has one positive and one negative root.",
+                    "defensible_answer": "Exactly two real roots, from x = +/- sqrt(u_pos); the negative u root yields no real roots."
+                  },
+                  "attempt": {
+                    "produces": "An algebraic derivation showing substitution, domain restriction u >= 0, root filtering, and real root extraction.",
+                    "closure": "RUBRIC",
+                    "rubric": [
+                      {
+                        "criterion": "States domain restriction u >= 0.",
+                        "evidence_of": "Domain awareness."
+                      },
+                      {
+                        "criterion": "Filters negative u values and solves x = +/- sqrt(u).",
+                        "evidence_of": "Correct root mapping."
+                      }
+                    ],
+                    "accepted": [
+                      "Solutions that explicitly state u >= 0 and reject negative values."
+                    ],
+                    "rejected": [
+                      "Solutions that produce imaginary roots or claim 4 real roots when u has negative values."
+                    ],
+                    "task": {
+                      "prompt": "Solve x^4 - 3x^2 - 4 = 0 over real numbers using substitution.",
+                      "givens": [],
+                      "representation_ref": "REP-MATH-POLY-SUBSTITUTION-MAPPING"
+                    }
+                  },
+                  "reconstruct": {
+                    "route": [
+                      {
+                        "ask": "What substitution transforms the 4th degree equation to a quadratic?",
+                        "why_this_ask": "u = x^2 simplifies the degree."
+                      },
+                      {
+                        "ask": "What restriction does real x impose on u?",
+                        "why_this_ask": "Squares of real numbers cannot be negative."
+                      },
+                      {
+                        "ask": "How many real x solutions arise from u > 0, u = 0, and u < 0?",
+                        "why_this_ask": "Distinguishes the three preimage cases."
+                      }
+                    ],
+                    "differs_from_teaching_path": "Reconstruction emphasizes the square root mapping as a filter rather than a mere procedural step."
+                  },
+                  "boundary_test": {
+                    "prompt": "What if both roots in u are negative, such as u = -1 and u = -4?",
+                    "answer": "The polynomial has no real zeros; the real root set is empty.",
+                    "confirms": "Learner correctly concludes zero real roots when all auxiliary roots violate the domain constraint."
+                  }
+                },
+                "prerequisite_refs": [],
+                "teaching_path": [
+                  {
+                    "id": "SUBST-T1",
+                    "role": "DECLARE",
+                    "action": "Identify algebraic symmetry or even powers in biquadratic polynomials and introduce u = x^2.",
+                    "why_valid": "All powers of x are even, so x^4 = (x^2)^2 and x^2 = u.",
+                    "output": "quadratic equation in u",
+                    "inputs": [
+                      "biquadratic polynomial"
+                    ]
+                  },
+                  {
+                    "id": "SUBST-T2",
+                    "role": "TRANSFORM",
+                    "action": "State and enforce the essential domain restriction: u >= 0 for all real x.",
+                    "why_valid": "The square of any real number is non-negative; negative u has no real square root.",
+                    "output": "admissible domain u >= 0",
+                    "inputs": [
+                      "substitution definition u = x^2"
+                    ]
+                  },
+                  {
+                    "id": "SUBST-T3",
+                    "role": "TRANSFORM",
+                    "action": "Solve the quadratic equation in u and test each solution against u >= 0.",
+                    "why_valid": "Only solutions satisfying u >= 0 can be mapped back to real x via x = +/- sqrt(u).",
+                    "output": "filtered set of non-negative u values",
+                    "inputs": [
+                      "roots of quadratic in u"
+                    ]
+                  },
+                  {
+                    "id": "SUBST-T4",
+                    "role": "VERIFY",
+                    "action": "Map accepted u to real zeros and expose why unrestricted substitution misleads.",
+                    "why_valid": "Each u > 0 gives 2 real roots, u = 0 gives 1 real root, and u < 0 gives 0 real roots.",
+                    "output": "complete set of real zeros in x",
+                    "inputs": [
+                      "accepted u values"
+                    ]
+                  }
+                ]
+              },
+              "capability": {
+                "id": "CAP-MATH-POLY-CHANGE-OF-VARIABLE-DOMAIN",
+                "action": "Solve biquadratic polynomials via substitution while enforcing real domain constraints.",
+                "success_criterion": "Substitutes u = x^2 with constraint u >= 0, solves for u, rejects negative roots, and maps to real zeros.",
+                "prerequisite_refs": [],
+                "acceptance_status": "CANDIDATE"
+              },
+              "questions": [],
+              "activities": []
+            },
+            {
+              "rung": "R3",
+              "ladder_position": 100,
+              "default_entry_eligible": true,
+              "microtopic_ref": "MIC-MATH-POLY-IDENTITY-DEGREE-BOUND",
+              "ceiling": [
+                "difference polynomial",
+                "degree bound",
+                "root bound",
+                "polynomial identity"
+              ],
+              "must_contain": [
+                "Two bounded-degree polynomials compared by forming their difference.",
+                "Enough distinct shared values to force the difference polynomial to be zero, with the zero-polynomial exception stated."
+              ],
+              "controlled_variation": [
+                {
+                  "phase": 1,
+                  "vary": "the number of distinct shared values",
+                  "hold": "the degree bound on the difference polynomial",
+                  "notice": "the identity conclusion becomes forced only when the root count exceeds the possible roots of a non-zero difference polynomial"
+                },
+                {
+                  "phase": 2,
+                  "vary": "whether the difference polynomial is assumed non-zero or zero",
+                  "hold": "the same shared values and degree bound",
+                  "notice": "the contradiction eliminates only the non-zero case, leaving the zero polynomial and hence identity"
+                }
+              ],
+              "microtopic": {
+                "id": "MIC-MATH-POLY-IDENTITY-DEGREE-BOUND",
+                "title": "Degree-Bounded Polynomial Identity and Difference Polynomials",
+                "intrinsic_badge": "HARD",
+                "badge_reason": "The decisive inference requires transforming agreement at points into roots of a difference polynomial and applying root bound theorems.",
+                "entry_assumptions": [
+                  "Demonstrated evaluating polynomial values at given inputs.",
+                  "Demonstrated setting up and solving linear systems for coefficients.",
+                  "Demonstrated the factor theorem for linear factors."
+                ],
+                "inferential_jump": "Prove that two polynomials of degree at most two agreeing at three points agree everywhere by forming d(x) = p(x) - q(x) and showing d(x) must be identically zero.",
+                "misconceptions": [
+                  {
+                    "wrong_idea": "Assuming a polynomial of degree <= 2 cannot agree with another at 3 points, or confusing a zero polynomial with degree 0.",
+                    "diagnostic_prompt": "What is the value of 0(x) at x = 1, 2, 3, 4? Does 0(x) have only two zeros, or infinitely many zeros?",
+                    "repair": "The theorem 'at most n zeros' applies strictly to NON-ZERO polynomials. When a degree <= n difference has n + 1 zeros, it forces the difference to be the zero polynomial."
+                  }
+                ],
+                "exit_task": {
+                  "prompt": "Two quadratics p and q agree at inputs -1, 0, and 2. What can be concluded about their values at x = 100?",
+                  "source_ref": "SRC-OWNER-ISS55-POLYNOMIALS",
+                  "answer": {
+                    "kind": "MODEL_RESPONSE",
+                    "summary": "By the polynomial identity theorem for degree <= 2, their difference d(x) has 3 zeros and must be identically zero, so p(100) = q(100).",
+                    "reasoning": [
+                      "Form the difference polynomial d(x) = p(x) - q(x).",
+                      "deg(d) <= 2 because deg(p) <= 2 and deg(q) <= 2.",
+                      "d(-1) = 0, d(0) = 0, and d(2) = 0 provide 3 distinct zeros.",
+                      "A non-zero polynomial of degree <= 2 has at most 2 zeros.",
+                      "Therefore, d(x) is identically zero, so p(x) = q(x) for all x, including x = 100."
+                    ],
+                    "check": "Verify that (p - q) is zero by testing the degree bound against root count.",
+                    "acceptable_alternatives": [],
+                    "subpart_answers": [],
+                    "verification_status": "CHECKED_BY_AUTHOR"
+                  },
+                  "oracle": {
+                    "no_numeric_claim": "Conceptual polynomial identity proof; no numeric oracle required."
+                  }
+                },
+                "elicitation": {
+                  "predict": {
+                    "prompt": "Predict whether two quadratics agreeing at 3 distinct points can have different values at any other real number.",
+                    "defensible_answer": "No; two quadratics agreeing at 3 distinct points must be identical everywhere."
+                  },
+                  "attempt": {
+                    "produces": "A written proof using difference polynomial d(x) = p(x) - q(x) and root bound contradiction.",
+                    "closure": "RUBRIC",
+                    "rubric": [
+                      {
+                        "criterion": "Defines difference polynomial d(x) and identifies 3 zeros.",
+                        "evidence_of": "Algebraic model selection."
+                      },
+                      {
+                        "criterion": "Applies non-zero root bound to establish contradiction.",
+                        "evidence_of": "Warranted deduction."
+                      }
+                    ],
+                    "accepted": [
+                      "Proofs that construct d(x) = p(x) - q(x) and conclude d(x) = 0 identically via root bound."
+                    ],
+                    "rejected": [
+                      "Assuming without proof that 3 points uniquely determine a quadratic without degree bound justification."
+                    ],
+                    "task": {
+                      "prompt": "Two polynomials p(x) and q(x) of degree at most 2 satisfy p(-1)=q(-1), p(0)=q(0), and p(2)=q(2). Prove that p(100) = q(100).",
+                      "givens": [],
+                      "representation_ref": "REP-MATH-POLY-DIFFERENCE-POLYNOMIAL"
+                    }
+                  },
+                  "reconstruct": {
+                    "route": [
+                      {
+                        "ask": "What auxiliary polynomial converts points of agreement into roots?",
+                        "why_this_ask": "Difference polynomial d(x) = p(x) - q(x) standardizes agreement to finding zeros."
+                      },
+                      {
+                        "ask": "What is the maximum degree of d(x) if it is non-zero?",
+                        "why_this_ask": "Degree bounds constrain the number of possible roots."
+                      },
+                      {
+                        "ask": "How many distinct roots does d(x) possess?",
+                        "why_this_ask": "Direct counting of known agreement points."
+                      },
+                      {
+                        "ask": "Which theorem prevents a non-zero polynomial of degree <= 2 from having 3 roots?",
+                        "why_this_ask": "Root bound theorem for non-zero polynomials."
+                      }
+                    ],
+                    "differs_from_teaching_path": "Reconstruction starts from the learner's observation of point agreement and builds backward to the contradiction."
+                  },
+                  "boundary_test": {
+                    "prompt": "Would the conclusion still follow if deg(p) <= 3 and deg(q) <= 3 while agreeing at only 3 points?",
+                    "answer": "No; a non-zero cubic difference can possess 3 distinct roots without being the identically zero polynomial.",
+                    "confirms": "The learner relies on the strict inequality between root count and degree bound rather than memorizing agreement."
+                  }
+                },
+                "prerequisite_refs": [],
+                "teaching_path": [
+                  {
+                    "id": "IDENT-T1",
+                    "role": "DECLARE",
+                    "action": "Define difference polynomial d(x) = p(x) - q(x) when p and q agree at given points.",
+                    "why_valid": "Agreement p(x_i) = q(x_i) implies d(x_i) = 0 for all agreement points.",
+                    "output": "d(x_i) = 0 for each agreement input",
+                    "inputs": [
+                      "polynomials p(x) and q(x) with common values"
+                    ]
+                  },
+                  {
+                    "id": "IDENT-T2",
+                    "role": "TRANSFORM",
+                    "action": "Bound the degree of the difference: deg(d) <= max(deg p, deg q), unless d is the zero polynomial.",
+                    "why_valid": "Subtracting polynomials of degree <= 2 cannot produce terms of degree higher than 2.",
+                    "output": "deg(d) <= 2 or d(x) = 0 identically",
+                    "inputs": [
+                      "deg(p) <= 2 and deg(q) <= 2"
+                    ]
+                  },
+                  {
+                    "id": "IDENT-T3",
+                    "role": "TRANSFORM",
+                    "action": "Apply the root bound theorem by contradiction: a non-zero polynomial of degree <= 2 has at most 2 zeros.",
+                    "why_valid": "Having 3 distinct roots directly contradicts d(x) being a non-zero polynomial of degree <= 2.",
+                    "output": "d(x) cannot be a non-zero polynomial",
+                    "inputs": [
+                      "d(x) has 3 distinct zeros"
+                    ]
+                  },
+                  {
+                    "id": "IDENT-T4",
+                    "role": "VERIFY",
+                    "action": "Conclude d(x) is identically zero and distinguish non-zero polynomials from the zero polynomial.",
+                    "why_valid": "All coefficients of d(x) must vanish, establishing p(x) = q(x) for all x in R.",
+                    "output": "p(x) = q(x) everywhere",
+                    "inputs": [
+                      "d(x) is identically zero"
+                    ]
+                  }
+                ]
+              },
+              "capability": {
+                "id": "CAP-MATH-POLY-IDENTITY-THEOREM-DEGREE",
+                "action": "Prove polynomial identity for bounded degree via difference polynomials and root bounds.",
+                "success_criterion": "Forms d(x) = p(x) - q(x), deduces d(x) has 3 zeros, contradicts root bound for non-zero polynomials, and concludes identity.",
+                "prerequisite_refs": [],
+                "acceptance_status": "CANDIDATE"
+              },
+              "questions": [],
+              "activities": []
+            }
+          ]
+        }
+      ],
+      "packages": [
+        {
+          "package_id": "TEST-LIB-ISS55-POLY",
+          "status": "CANDIDATE",
+          "admitted": false
+        }
+      ],
+      "library_available": true,
       "atlas_index_contract_version": "2.0",
-      "atlas_index": [],
-      "visual_targets": {},
-      "findings": [],
-      "coverage": {
-        "rung_count": 0,
-        "availability": {
-          "mapping": {},
-          "core": {},
-          "representation": {},
-          "activity": {},
-          "locator": {},
-          "portable_package": {},
-          "standalone": {}
+      "atlas_index": [
+        {
+          "matrix_id": "MATRIX-TEST-ISS55-POLY",
+          "rung": "R1",
+          "ladder_position": 20,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-MATH-POLY-SIGN-MULTIPLICITY",
+          "capability_ref": "CAP-MATH-POLY-SIGN-CHART-RIGOR",
+          "teaching_step_refs": [
+            "SIGN-T1",
+            "SIGN-T2",
+            "SIGN-T3",
+            "SIGN-T4"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [
+            "REP-MATH-POLY-SIGN-TABLE",
+            "REP-MATH-POLY-SIGN-TEST",
+            "REP-MATH-POLY-GEOMETRIC-CARD-CUTOUT"
+          ],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-TEST-ISS55-POLY/R1",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-MATH-POLY-SIGN-MULTIPLICITY",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-MATH-POLY-SIGN-MULTIPLICITY",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-MATH-POLY-SIGN-CHART-RIGOR",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-MATH-POLY-SIGN-MULTIPLICITY",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "MIC-MATH-POLY-SIGN-MULTIPLICITY",
+              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+            }
+          ]
         },
-        "finding_counts": {},
-        "matrices": []
+        {
+          "matrix_id": "MATRIX-TEST-ISS55-POLY",
+          "rung": "R2",
+          "ladder_position": 60,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-MATH-POLY-AUXILIARY-DOMAIN",
+          "capability_ref": "CAP-MATH-POLY-CHANGE-OF-VARIABLE-DOMAIN",
+          "teaching_step_refs": [
+            "SUBST-T1",
+            "SUBST-T2",
+            "SUBST-T3",
+            "SUBST-T4"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [
+            "REP-MATH-POLY-SUBSTITUTION-MAPPING",
+            "REP-MATH-POLY-GROUPING-ALGEBRA",
+            "REP-MATH-POLY-MONIC-FACTOR-MODEL",
+            "REP-MATH-POLY-PARAMETER-COEFFICIENT-ANALYSIS"
+          ],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-TEST-ISS55-POLY/R2",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-MATH-POLY-AUXILIARY-DOMAIN",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-MATH-POLY-AUXILIARY-DOMAIN",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-MATH-POLY-CHANGE-OF-VARIABLE-DOMAIN",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-MATH-POLY-AUXILIARY-DOMAIN",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "MIC-MATH-POLY-AUXILIARY-DOMAIN",
+              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+            }
+          ]
+        },
+        {
+          "matrix_id": "MATRIX-TEST-ISS55-POLY",
+          "rung": "R3",
+          "ladder_position": 100,
+          "default_entry_eligible": true,
+          "microtopic_ref": "MIC-MATH-POLY-IDENTITY-DEGREE-BOUND",
+          "capability_ref": "CAP-MATH-POLY-IDENTITY-THEOREM-DEGREE",
+          "teaching_step_refs": [
+            "IDENT-T1",
+            "IDENT-T2",
+            "IDENT-T3",
+            "IDENT-T4"
+          ],
+          "microtopic_prerequisite_refs": [],
+          "capability_prerequisite_refs": [],
+          "representation_refs": [
+            "REP-MATH-POLY-DIFFERENCE-POLYNOMIAL",
+            "REP-MATH-POLY-QUADRATIC-COEFFICIENTS",
+            "REP-MATH-POLY-COUNTEREXAMPLE-QUARTIC"
+          ],
+          "activity_refs": [],
+          "core_projection_refs": [],
+          "core_availability": {
+            "status": "AVAILABLE",
+            "code": null,
+            "detail": null
+          },
+          "availability": {
+            "mapping": "READY",
+            "core": "UNAVAILABLE",
+            "representation": "READY",
+            "activity": "UNAVAILABLE",
+            "locator": "UNAVAILABLE",
+            "portable_package": "UNAVAILABLE",
+            "standalone": "UNAVAILABLE"
+          },
+          "provenance": {
+            "microtopic_ref": {
+              "record_ref": "MATRIX-TEST-ISS55-POLY/R3",
+              "field": "microtopic_ref"
+            },
+            "capability_ref": {
+              "record_ref": "MIC-MATH-POLY-IDENTITY-DEGREE-BOUND",
+              "field": "primary_capability_ref"
+            },
+            "microtopic_prerequisite_refs": {
+              "record_ref": "MIC-MATH-POLY-IDENTITY-DEGREE-BOUND",
+              "field": "prerequisite_refs"
+            },
+            "capability_prerequisite_refs": {
+              "record_ref": "CAP-MATH-POLY-IDENTITY-THEOREM-DEGREE",
+              "field": "prerequisite_refs"
+            },
+            "representation_refs": {
+              "record_ref": "MIC-MATH-POLY-IDENTITY-DEGREE-BOUND",
+              "field": "representation_refs"
+            },
+            "activity_refs": []
+          },
+          "findings": [
+            {
+              "code": "CORE_PROJECTION_UNAVAILABLE",
+              "ref": "MIC-MATH-POLY-IDENTITY-DEGREE-BOUND",
+              "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+            }
+          ]
+        }
+      ],
+      "visual_targets": {},
+      "findings": [
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "MIC-MATH-POLY-SIGN-MULTIPLICITY",
+          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "MIC-MATH-POLY-AUXILIARY-DOMAIN",
+          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+        },
+        {
+          "code": "CORE_PROJECTION_UNAVAILABLE",
+          "ref": "MIC-MATH-POLY-IDENTITY-DEGREE-BOUND",
+          "detail": "Issue #211 bucket is available but no Core projection is explicitly bound to this microtopic."
+        }
+      ],
+      "coverage": {
+        "rung_count": 3,
+        "availability": {
+          "mapping": {
+            "READY": 3
+          },
+          "core": {
+            "UNAVAILABLE": 3
+          },
+          "representation": {
+            "READY": 3
+          },
+          "activity": {
+            "UNAVAILABLE": 3
+          },
+          "locator": {
+            "UNAVAILABLE": 3
+          },
+          "portable_package": {
+            "UNAVAILABLE": 3
+          },
+          "standalone": {
+            "UNAVAILABLE": 3
+          }
+        },
+        "finding_counts": {
+          "CORE_PROJECTION_UNAVAILABLE": 3
+        },
+        "matrices": [
+          {
+            "matrix_id": "MATRIX-TEST-ISS55-POLY",
+            "rung_count": 3,
+            "availability": {
+              "mapping": {
+                "READY": 3
+              },
+              "core": {
+                "UNAVAILABLE": 3
+              },
+              "representation": {
+                "READY": 3
+              },
+              "activity": {
+                "UNAVAILABLE": 3
+              },
+              "locator": {
+                "UNAVAILABLE": 3
+              },
+              "portable_package": {
+                "UNAVAILABLE": 3
+              },
+              "standalone": {
+                "UNAVAILABLE": 3
+              }
+            },
+            "finding_counts": {
+              "CORE_PROJECTION_UNAVAILABLE": 3
+            }
+          }
+        ]
       }
     }
   }

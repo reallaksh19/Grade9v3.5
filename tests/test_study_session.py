@@ -671,6 +671,9 @@ class StudySessionRunner(unittest.TestCase):
             failed_capability_ref="CAP-RELATIVE-V",
             error_stage="CONCEPT",
             misconception_index=0,
+            diagnostic_response="I subtracted the speed magnitudes without preserving the directed relative-velocity relation.",
+            diagnosis="CONFIRMED",
+            diagnostic_basis="The response to the canonical diagnostic prompt repeats the targeted scalar-order misconception.",
             response_summary="Used scalar speed difference.",
         )
         self.assertTrue(report["passed"], report["findings"])

@@ -1,6 +1,6 @@
 {
   "schema": "grade9v3-learner-question-metadata/v1",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "concept_difficulty": {
     "EASY": "Easy concept",
     "MEDIUM": "Medium concept",
@@ -68,5 +68,52 @@
     "source": "Source",
     "provenance": "Provenance",
     "transfer-dimension": "Transfer"
+  },
+  "question_difficulty_component_rubric": {
+    "schema": "grade9v3-question-difficulty-component-rubric/v1",
+    "version": "1.0.0",
+    "scoring_rule": "Score each dimension independently from the learner-owned work required by the exact question before support. Use the highest anchor fully supported by question-specific evidence; do not score the intended cohort, topic prestige, answer length, or another dimension twice.",
+    "components": {
+      "concept_model_selection": {
+        "label": "Concept / model selection",
+        "anchors": {
+          "0": "The governing concept, model, or procedure is supplied or uniquely determined; the learner makes no material selection among plausible alternatives.",
+          "1": "The learner must identify or confirm one familiar concept, model, strategy, or applicability condition from the givens, but the viable route is otherwise clear.",
+          "2": "The learner must choose or formulate the governing concept, model, or strategy among plausible alternatives; that selection is a decisive part of the solution."
+        }
+      },
+      "representation_translation": {
+        "label": "Representation translation",
+        "anchors": {
+          "0": "No representation change is required, or all required information remains in the representation already supplied.",
+          "1": "The learner makes one direct, familiar translation or construction between representations while preserving an evident correspondence or invariant.",
+          "2": "The learner must construct, coordinate, or translate representations where preserving scale, sign, structure, entities, or another invariant is itself a decisive reasoning step."
+        }
+      },
+      "reasoning_chain_length": {
+        "label": "Reasoning chain",
+        "anchors": {
+          "0": "The solution requires one meaningful relation, decision, or operation with no dependent reasoning chain beyond immediate execution.",
+          "1": "The solution requires a short ordered chain with one material dependency or bridge between otherwise familiar steps.",
+          "2": "The solution requires multiple dependent steps whose ordering, bridge quantity, or intermediate conclusion must be coordinated for the route to work."
+        }
+      },
+      "algebra_computational_load": {
+        "label": "Algebra / computational load",
+        "anchors": {
+          "0": "Arithmetic or symbolic manipulation is absent, trivial, or incidental to the learner-owned reasoning.",
+          "1": "The solution requires routine multi-operation algebra or numerical work that is material but local and procedurally standard.",
+          "2": "The solution requires extended, multi-case, or error-sensitive symbolic or numerical work whose execution materially contributes to the task difficulty."
+        }
+      },
+      "trap_exception_sensitivity": {
+        "label": "Trap / exception sensitivity",
+        "anchors": {
+          "0": "No substantive hidden condition, boundary, exception, converse, sign, or domain issue must be noticed beyond explicit standard assumptions.",
+          "1": "One plausible condition, boundary, sign, domain, or exception check can alter the route or result, but it is familiar and local.",
+          "2": "A boundary, exception, degenerate case, converse, domain restriction, or similar qualification is decisive; ignoring it leaves a plausible but materially wrong route or conclusion."
+        }
+      }
+    }
   }
 }
