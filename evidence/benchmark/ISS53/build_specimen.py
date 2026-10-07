@@ -246,7 +246,7 @@ relations = [
         ],
         "limits": ["Zero polynomial has undefined degree."],
         "checks": ["Verify non-negative integer exponents for all terms."],
-        "gate_relation_ref": None
+        "gate_relation_ref": REL_STD
     },
     {
         **base(REL_SQR),
@@ -263,7 +263,7 @@ relations = [
         ],
         "limits": ["Does not equate to a^2 + b^2 unless 2ab = 0."],
         "checks": ["Check with numerical values e.g. a=1, b=3: (4)^2 = 16 = 1 + 6 + 9."],
-        "gate_relation_ref": None
+        "gate_relation_ref": REL_SQR
     },
     {
         **base(REL_DIF),
@@ -280,7 +280,7 @@ relations = [
         ],
         "limits": ["Requires difference of squares, not sum of squares over R."],
         "checks": ["Verify by multiplying factors back: +ab - ab = 0."],
-        "gate_relation_ref": None
+        "gate_relation_ref": REL_DIF
     },
     {
         **base(REL_LIN),
@@ -297,7 +297,7 @@ relations = [
         ],
         "limits": ["If a = 0, the polynomial is constant and has either no zero (b != 0) or infinitely many zeroes (b = 0)."],
         "checks": ["Substitute zero back: a(-b/a) + b = -b + b = 0."],
-        "gate_relation_ref": None
+        "gate_relation_ref": REL_LIN
     },
     {
         **base(REL_REC),
@@ -316,7 +316,7 @@ relations = [
         ],
         "limits": ["Requires non-negative side lengths."],
         "checks": ["Check dimensions cm * cm = cm^2."],
-        "gate_relation_ref": None
+        "gate_relation_ref": REL_REC
     }
 ]
 
