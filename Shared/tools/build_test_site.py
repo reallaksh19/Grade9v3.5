@@ -21,7 +21,8 @@ REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
-from Shared.tools import matrix_conformance, product_coverage, render_core  # noqa: E402
+from Shared.library.resolve import build_index  # noqa: E402
+from Shared.tools import atlas_index, build_web_data, matrix_conformance, product_coverage, render_core  # noqa: E402
 
 esc = render_core.esc
 TEST_ROOT = REPO / "TEST"
@@ -424,6 +425,35 @@ def deployments_page() -> str:
 
 
 ATLAS_TRANSFORM = REPO / "Shared" / "web" / "atlas-sandbox-transform.v1.json"
+
+
+def atlas_subject_payload() -> dict:
+    """Build only the TEST subject's Atlas read model.
+
+    Production data.js stays untouched. Core destinations are intentionally unavailable until
+    a TEST product is actually deployed; the Atlas can still inspect the package/matrix mapping.
+    """
+    packages = [_json(p) for p in sorted((TEST_ROOT / "library").glob("*.json"))]
+    records = build_index(packages) if packages else {}
+    empty_core = {"bucket_availability": [], "core_projections": []}
+    entry = {
+        "matrices": build_web_data.matrix_summary("TEST", records),
+        "library_available": bool(packages),
+    }
+    entry.update(atlas_index.build_subject_index("TEST", matrices(), records, empty_core))
+    return entry
+
+
+def atlas_data_script() -> str:
+    """Inline TEST-local Atlas projection without mutating production data/search."""
+    payload = json.dumps(atlas_subject_payload(), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    return ("<script data-g9-test-atlas-data>"
+            "window.GRADE9V3=window.GRADE9V3||{subjects:{}};"
+            "window.GRADE9V3.subjects=window.GRADE9V3.subjects||{};"
+            f"window.GRADE9V3.subjects.TEST={payload};"
+            "</script>")
+
+
 ATLAS_INIT = """<script>
   window.addEventListener('DOMContentLoaded', () => {
     const matrices = ((window.GRADE9V3 && window.GRADE9V3.subjects && window.GRADE9V3.subjects.TEST) || {}).matrices || [];
@@ -460,7 +490,11 @@ def atlas_page() -> str:
     end = text.index("</script>", init) + len("</script>")
     if transform["init"]["call"] not in text[init:end]:
         raise ValueError("the Topic Atlas template changed: its init call moved")
-    return text[:init] + ATLAS_INIT + text[end:]
+    text = text[:init] + ATLAS_INIT + text[end:]
+    marker = '<script src="../../data/data.js"></script>'
+    if text.count(marker) != 1:
+        raise ValueError("the Topic Atlas template changed: its global data script moved")
+    return text.replace(marker, marker + "\n" + atlas_data_script(), 1)
 
 
 def render_all() -> dict[str, str]:
