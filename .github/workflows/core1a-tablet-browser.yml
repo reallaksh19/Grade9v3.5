@@ -1,5 +1,8 @@
 name: core1a-tablet-browser
 
+permissions:
+  contents: write
+
 # Rendered validation for the governed Core1A Concept Book contract.
 # This workflow never publishes learner output; it builds into /tmp and uploads measurements only.
 on:
@@ -195,6 +198,19 @@ jobs:
             mkdir -p "/tmp/core1a-spec/generated-preview/repo/$(dirname "$file")"
             cp "$file" "/tmp/core1a-spec/generated-preview/repo/$file"
           done < /tmp/core1a-spec/generated-preview/changed-files.txt
+
+      - name: Commit governed generated Core closure
+        if: github.event_name == 'push' && github.ref == 'refs/heads/integration/iss191-clean-core-recovery' && steps.generated_checks.outcome == 'failure'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             docs/architecture-manifest.json             docs/core-learning/data.js             docs/data/data.js             docs/tools/data.js             public/core-learning/data.js             public/data/data.js             tools/data.js
+          if git diff --cached --quiet; then
+            echo "Generated Core closure already current"
+          else
+            git commit -m "ISS191 U5: refresh governed Core generated closure"
+            git push origin HEAD:integration/iss191-clean-core-recovery
+          fi
 
       - name: Upload measurement evidence
         if: always()
