@@ -45,6 +45,9 @@ def qualification_question(package: dict) -> dict:
         "secondary": ["REPRESENT"],
         "basis": "The decisive move is selecting the solution model appropriate to the setting, not executing the one-variable algebra."
     }
+    extensions["grade9v3:provenance_class"] = "ORIGINAL"
+    analysis["learner_question_type"] = "constructed_response"
+    analysis["exam_source_badge"] = "NCERT Exemplar · Class IX Mathematics"
 
     # The source item has no source-given figure. The qualification intentionally
     # does not turn the Core1A teaching figure into a pre-attempt Core2 clue.
