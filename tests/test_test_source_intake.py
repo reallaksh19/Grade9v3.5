@@ -4,6 +4,7 @@ import copy
 import unittest
 from pathlib import Path
 
+from Shared.tools import build_learner_search_index, build_question_bank_web
 from TEST.tools import source_intake
 
 
@@ -150,6 +151,27 @@ class TestTestSourceIntake(unittest.TestCase):
         for q in bank["questions"]:
             for forbidden in ("difficulty", "qrt", "capability", "crux", "accepted", "worked_solution"):
                 self.assertNotIn(forbidden, q)
+
+    def test_committed_handoff_is_deterministic_and_stays_out_of_canonical_surfaces(self):
+        repo = Path(__file__).resolve().parents[1]
+        pilot_path = repo / "TEST/question-bank/intake/ncert-exemplar-g9-number-systems-pilot.v1.json"
+        handoff_path = repo / "TEST/question-bank/intake/ncert-exemplar-g9-number-systems-pilot.v1.blueprint-handoff.json"
+
+        bank = source_intake.load(pilot_path)
+        committed_handoff = source_intake.load(handoff_path)
+        expected_handoff = source_intake.handoff(bank)
+        self.assertEqual(committed_handoff, expected_handoff)
+        self.assertEqual(len(committed_handoff), 6)
+
+        intake_ids = {row["intake_question_ref"] for row in committed_handoff}
+        projection = build_question_bank_web.build(repo)
+        canonical_ids = {row["id"] for row in projection["questions"]}
+        self.assertTrue(intake_ids.isdisjoint(canonical_ids))
+        self.assertNotIn("TEST", {row.get("subject") for row in projection["questions"]})
+
+        search_documents, _manifest = build_learner_search_index.build_search_documents(repo)
+        search_ids = {row["id"] for row in search_documents}
+        self.assertTrue(intake_ids.isdisjoint(search_ids))
 
 
 if __name__ == "__main__":
