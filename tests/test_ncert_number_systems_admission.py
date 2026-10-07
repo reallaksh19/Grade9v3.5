@@ -67,14 +67,28 @@ class TestNcertNumberSystemsAdmission(unittest.TestCase):
         self.assertEqual(q7["options"], source_q7["options"])
 
     def test_remaining_ncert_intake_is_not_admitted_by_source_identity(self):
-        admitted_source_ids = {
+        package_admitted = {
             q["extensions"]["grade9v3:lineage"]["source_question_id"]
             for q in self.package["questions"]
             if (q.get("extensions") or {}).get("grade9v3:question_bank", {}).get("include") is True
         }
+        self.assertEqual(package_admitted, set(SOURCE_IDS))
+
+        admitted_source_ids = set()
+        for path in sorted((REPO / "Mathematics/library").glob("*.v1.json")):
+            package = json.loads(path.read_text(encoding="utf-8"))
+            for q in package.get("questions", []):
+                extensions = q.get("extensions") or {}
+                if extensions.get("grade9v3:question_bank", {}).get("include") is not True:
+                    continue
+                lineage = extensions.get("grade9v3:lineage") or {}
+                source_id = lineage.get("source_question_id")
+                if source_id:
+                    admitted_source_ids.add(source_id)
+
         all_ncert_ids = {q["id"] for q in self.source["questions"]}
-        self.assertEqual(admitted_source_ids, set(SOURCE_IDS))
-        self.assertEqual(len(all_ncert_ids - admitted_source_ids), 200)
+        self.assertEqual(len(admitted_source_ids & all_ncert_ids), 39)
+        self.assertEqual(len(all_ncert_ids - admitted_source_ids), 171)
 
     def test_package_stays_structurally_admissible(self):
         report = intake.check(self.package)
