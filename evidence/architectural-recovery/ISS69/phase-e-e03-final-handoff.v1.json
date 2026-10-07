@@ -346,8 +346,7 @@
     "ACCEPTED_QRT_COVERAGE": "0/28"
   },
   "exact_head_validation": {
-    "state": "READY_FOR_FINAL_EXACT_HEAD_CI",
-    "exclusive_surface_candidate_sha": "b212635bf6898cd2c8678cca8761e7ba85f8801a",
+    "state": "FINAL_EXACT_HEAD_CI_REQUIRED_AFTER_EXCLUSIVE_SURFACE_FIX",
     "manifest_restore": {
       "head_sha": "825092e377b925b75213ddc5a6c08e125109d52e",
       "current_manifest_blob": "96989a309b035bf8fac3753350431dd9ff948c49",
@@ -359,9 +358,11 @@
         ".github/workflows/phase-e-final-handoff.yml",
         "evidence/architectural-recovery/ISS69/phase-e-e03-final-handoff.v1.json"
       ],
-      "plan_authority_maintenance": [
-        "evidence/architectural-recovery/ISS69/phase-e-delp-execution-graph.v32.json"
-      ],
+      "predecessor_graph": {
+        "path": "evidence/architectural-recovery/ISS69/phase-e-delp-execution-graph.v32.json",
+        "blob": "97da2406ca59326894552ebdf0a4be3d4475ad0c",
+        "disposition": "BYTE_IDENTICAL_TO_E02_PREDECESSOR_NOT_E03_OWNED"
+      },
       "product_runtime_generated_files_changed": []
     },
     "size_budget": {
@@ -370,6 +371,10 @@
       "hard_loc": 1500,
       "result": "WITHIN_TARGET"
     },
-    "requirement": "Final human evidence head must pass phase-e-final-handoff, E01 successor authority workflow, learner-platform tests, and exact broad/canonical comparison versus E02 with zero new failing identifiers."
+    "requirement": "Final E03 head must contain only the owned workflow/evidence delta and must pass phase-e-final-handoff plus exact broad/canonical comparison versus E02 with zero new failing identifiers/findings.",
+    "plan_authority_comments": [
+      6031893324,
+      6032048245
+    ]
   }
 }
