@@ -16,9 +16,15 @@ HERE = Path(__file__).resolve().parent
 OUT = HERE / "generated"
 OUT.mkdir(parents=True, exist_ok=True)
 
-# Load QRT review
+# Historical candidate QRT evidence is retained for answer/hint provenance.
 qrt_path = HERE / "qrt-review.json"
 QRT = json.loads(qrt_path.read_text(encoding="utf-8"))
+
+# Current academic authority for this repair wave.  This file deliberately
+# supersedes historical classification/acceptance claims without rewriting them.
+reanalysis_path = HERE / "academic-reanalysis.v1.json"
+REANALYSIS = json.loads(reanalysis_path.read_text(encoding="utf-8"))
+ACADEMIC = {row["q"]: row for row in REANALYSIS["rows"]}
 
 # Load verbatim stems from owner-core-prompt.md
 core_text = (HERE / "owner-core-prompt.md").read_text(encoding="utf-8")
@@ -83,10 +89,10 @@ FAMILY = {
     "Q1": FAM_TERMS, "Q2": FAM_DEF, "Q3": FAM_DEF, "Q4": FAM_TERMS, "Q5": FAM_TERMS,
     "Q6": FAM_ID,    "Q7": FAM_ID,  "Q8": FAM_ID,  "Q9": FAM_ID,    "Q10": FAM_LIN,
 }
-FIGURE = {
-    "Q1": REP_COEFF, "Q2": REP_EXP,   "Q3": REP_EXP,   "Q4": REP_COEFF, "Q5": REP_COEFF,
-    "Q6": REP_AREA,  "Q7": REP_AREA,  "Q8": REP_AREA,  "Q9": REP_AREA,  "Q10": REP_LIN,
-}
+# The supplied source questions contain no source-given figures.  Authored
+# representations are therefore not attached to the independent Core2 attempt.
+# Exact-case teaching representations are owned by Core1A / post-attempt support.
+QUESTION_FIGURES = {f"Q{i}": [] for i in range(1, 11)}
 
 def base(record_id: str, source: bool = True) -> dict:
     return {
@@ -773,6 +779,7 @@ for qid in [f"Q{i}" for i in range(1, 11)]:
     crux_id = CRUX_REF[qid]
 
     qrt_item = next(it for it in QRT["items"] if it["question_id"] == qid)
+    academic = ACADEMIC[qid]
     hints = list(qrt_item["hints"])
 
     move_rows = []
@@ -806,11 +813,9 @@ for qid in [f"Q{i}" for i in range(1, 11)]:
         "id": BANK_IDS[qid],
         "original_identifier": qid,
         "stem": stem,
-        "conditions": [
-            "Polynomials in one variable with real coefficients; no calculus or complex numbers assumed; preserve stated domains and degree bounds."
-        ],
+        "conditions": list(academic["conditions"]),
         "family_ref": FAMILY[qid],
-        "figure_refs": [FIGURE[qid]],
+        "figure_refs": list(QUESTION_FIGURES[qid]),
         "answer": {
             "kind": "EXACT",
             "summary": qrt_item["verified_answer"],
@@ -831,21 +836,33 @@ for qid in [f"Q{i}" for i in range(1, 11)]:
             "grade9v3:analysis": {
                 "learner_question_type": "constructed_response",
                 "difficulty": {
-                    "band": qrt_item["difficulty"]["band"],
-                    "score": qrt_item["difficulty"]["score"],
-                    "components": qrt_item["difficulty"]["components"],
-                    "basis": f"{qrt_item['X']} Decisive move: {qrt_item['Z']}. Total score {qrt_item['difficulty']['score']} -> {qrt_item['difficulty']['band']}."
+                    "band": academic["difficulty"]["band"],
+                    "score": academic["difficulty"]["score"],
+                    "components": academic["difficulty"]["components"],
+                    "basis": (
+                        f"Fresh ISS29/N2 reanalysis. Protected work: {academic['W']} "
+                        f"Total score {academic['difficulty']['score']} -> {academic['difficulty']['band']}."
+                    )
                 },
                 "common_wrong_route": qrt_item["misconception"]["M1"],
-                "expected_time_seconds": 90 if qrt_item["difficulty"]["band"] == "D1" else 150 if qrt_item["difficulty"]["band"] == "D2" else 240,
-                "cognitive_demand": qrt_item["demand"]["primary"],
-                "stable_crux_move": qrt_item["Z"]
+                "expected_time_seconds": 90 if academic["difficulty"]["band"] == "D1" else 150 if academic["difficulty"]["band"] == "D2" else 240,
+                "cognitive_demand": academic["demand"]["primary"],
+                "stable_crux_move": academic["W"]
             },
             "grade9v3:math_spans": [],
+            "grade9v3:core2_support_plan": {
+                "protected_move_refs": [crux_id]
+            },
             "grade9v3:component_waivers": {
-                "TRAP": f"The decisive misconception ({qrt_item['misconception']['M1']}) is taught directly in the concept unit and addressed in hint 1 and the solution.",
-                "CONDITIONS": "The question specifies all boundary conditions within the stem.",
-                "CHECK": f"Independent check is integrated: {qrt_item['independent_check']}"
+                "TRAP": (
+                    "No misconception-specific repair is pre-authorized from the source question alone. "
+                    "The authored wrong-route hypothesis remains reviewer evidence until diagnostic evidence is CONFIRMED."
+                ),
+                "REPRESENTATION": (
+                    "No authored visual is attached to the independent Core2 attempt. "
+                    "Exact-case representations are learner-requested/post-attempt support or Core1A teaching."
+                ),
+                "CHECK": f"Post-solution author check is available: {qrt_item['independent_check']}"
             }
         }
     }
