@@ -49,7 +49,7 @@ class CoreTemplateContractTests(unittest.TestCase):
         report = core_template_contract.audit(REPO / "Shared" / "roles" / "LEARNER-PRODUCT-TEMPLATES.md")
         self.assertTrue(report["passed"], report["findings"])
         self.assertEqual(report["roles_checked"], 6)
-        self.assertEqual(report["contract_version"], "1.2")
+        self.assertEqual(report["contract_version"], "1.4")
 
     def test_core1b_attempt_precedes_reconstruction(self):
         roles = core_template_contract.load_contract(
@@ -71,6 +71,22 @@ class CoreTemplateContractTests(unittest.TestCase):
             "PROTECTED_MOVE_DISCLOSED_PRE_ATTEMPT",
             core2b["forbidden"],
         )
+
+    def test_core1a_optional_repair_and_core2_protected_assistance_are_explicit(self):
+        roles = core_template_contract.load_contract(
+            REPO / "Shared" / "roles" / "LEARNER-PRODUCT-TEMPLATES.md"
+        )["roles"]
+        core1a = roles["CORE1A"]
+        self.assertNotIn("microtopic.misconceptions[]", core1a["required_inputs"])
+        self.assertIn("FABRICATED_MISCONCEPTION_REPAIR", core1a["forbidden"])
+        self.assertIn("BAND_AS_PANEL_COUNT", core1a["forbidden"])
+        self.assertEqual(core1a["web_blueprint_ref"], "BP-CORE1A-CONSTRUCTION@1.8.0")
+
+        core2 = roles["CORE2"]
+        self.assertIn("PROTECTED_MOVE_COMPLETING_SUPPORT", core2["withheld_pre_attempt"])
+        self.assertIn("CLOSED_DISCLOSURE_AS_SEMANTIC_PROTECTION", core2["forbidden"])
+        self.assertIn("UNTRACKED_PRE_ATTEMPT_ASSISTANCE", core2["forbidden"])
+        self.assertEqual(core2["web_blueprint_ref"], "BP-CORE2-SOURCE-QUESTION@1.11.0")
 
     def test_source_hints_and_authored_scaffolds_are_not_collapsed(self):
         roles = core_template_contract.load_contract(

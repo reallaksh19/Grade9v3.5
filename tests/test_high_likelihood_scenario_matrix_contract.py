@@ -31,6 +31,10 @@ SESSION_ONLY_KEYS = {
     "attempted_question_refs",
     "failed_capability_ref",
     "misconception_index",
+    "diagnostic_response",
+    "diagnosis",
+    "diagnostic_basis",
+    "diagnostic_evidence",
     "learner_state",
     "knowledge_percentage",
 }

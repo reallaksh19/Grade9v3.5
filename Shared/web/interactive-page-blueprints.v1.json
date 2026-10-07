@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "registry_version": "1.9.0",
+  "registry_version": "1.17.0",
   "shell": {
     "id": "G9-TABLET-SHELL-V1",
     "fixed_header": true,
@@ -366,12 +366,12 @@
     },
     {
       "id": "BP-CORE2-SOURCE-QUESTION",
-      "version": "1.5.0",
+      "version": "1.11.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE2"
       ],
-      "learner_job": "Preserve authentic assessment demand while allowing bounded, provenance-explicit help that advances the learner without becoming a Question Clinic.",
+      "learner_job": "Preserve the authentic source-question decision and an observable learner commitment before any assistance that completes or materially narrows protected work. Safe orientation may be available before commitment; learner-requested and post-attempt support remain provenance-explicit and state-bound; diagnosis and full solution remain distinct.",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "QUESTION_READER",
       "slots": [
@@ -468,7 +468,9 @@
         "AUTHORED_SCAFFOLD_PRESENTED_AS_SOURCE_HINT",
         "ANSWER_REVEALED_BY_PRE_SOLUTION_SUPPORT",
         "GENERIC_FILLER_SUPPORT_TO_MEET_RUNG_COUNT",
-        "CORE2_COLLAPSED_INTO_QUESTION_CLINIC"
+        "CORE2_COLLAPSED_INTO_QUESTION_CLINIC",
+        "CLOSED_DISCLOSURE_AS_SEMANTIC_PROTECTION",
+        "UNTRACKED_PRE_ATTEMPT_ASSISTANCE"
       ],
       "components": [
         {
@@ -484,7 +486,7 @@
             "extensions.grade9v3:source_custody"
           ],
           "authoring": {
-            "hint": "Identity comes from the question's custody. An owner-supplied question shows 'Owner-supplied question' and carries no exam, year or paper."
+            "hint": "Identity comes from the question's custody. An owner-supplied question shows 'Owner-supplied question' and carries no exam, year or paper. Question-bound grade9v3:attempt_labels may supply neutral concept/family labels where titles settle the assessed act. Preserve canonical refs and show detailed titles only in the protected solution."
           },
           "compact_order": 10
         },
@@ -510,14 +512,14 @@
           "slot": "identity",
           "level": "EXPECTED",
           "presentation": "DISCLOSURE_GRID",
-          "purpose": "Show the difficulty band, its score and about how long the question should take, with the five reasons behind it folded away until asked.",
+          "purpose": "Show the author-estimated band, score, time and five component scores. Protect the free-text rationale with the answer and working until the learner commits an attempt.",
           "benchmark": "selected_question_bank_TABLET_STUDY: the D-pill and the 'Why this difficulty?' grid",
           "source": [
             "extensions.grade9v3:analysis.difficulty",
             "extensions.grade9v3:analysis.expected_time_seconds"
           ],
           "authoring": {
-            "hint": "Fill extensions['grade9v3:analysis'].difficulty: five components (each 0 to 2), score (their sum), band for that score, basis (one sentence); and expected_time_seconds, your estimate of the time a prepared learner needs. They are your estimates and are shown as estimates.",
+            "hint": "Fill extensions['grade9v3:analysis'].difficulty: five components (each 0 to 2), score (their sum), band for that score, basis (one sentence); and expected_time_seconds, your estimate of the time a prepared learner needs. They are your estimates and are shown as estimates. The basis may discuss the answer route, so it belongs only to the protected post-attempt solution. Never expose it in the initial difficulty grid.",
             "skeleton": {
               "extensions": {
                 "grade9v3:analysis": {
@@ -560,16 +562,17 @@
         },
         {
           "id": "TRAP",
-          "slot": "attempt",
-          "level": "EXPECTED",
+          "slot": "support",
+          "level": "OPTIONAL",
           "presentation": "CALLOUT_WARN",
-          "purpose": "Name the tempting wrong route so the learner can watch for it.",
+          "purpose": "Offer a question-specific wrong-route warning only as assistance whose disclosure boundary preserves the learner-owned decision. A closed panel is not protection: if naming the wrong route would narrow or complete protected work, it is not pre-attempt-safe and belongs in typed after-attempt or solution support.",
           "benchmark": "selected_question_bank_TABLET_STUDY: the 'Common wrong route.' box",
           "source": [
-            "extensions.grade9v3:analysis.common_wrong_route"
+            "extensions.grade9v3:analysis.common_wrong_route",
+            "extensions.grade9v3:core2_support_plan"
           ],
           "authoring": {
-            "hint": "One sentence naming the wrong route learners take and why it tempts. It must not give the answer or the right route.",
+            "hint": "Treat common_wrong_route as an authored support hypothesis, not a diagnosis. It may appear before commitment only when the warning is genuinely PRE_ATTEMPT_SAFE relative to protected_move_refs. If the warning identifies the winning model, decisive exclusion, warrant, or other protected work, author it in typed question support and bind its availability through grade9v3:core2_support_plan as AFTER_ATTEMPT or POST_SOLUTION. Collapsed/closed presentation never makes otherwise unsafe content safe.",
             "skeleton": {
               "extensions": {
                 "grade9v3:analysis": {
@@ -598,14 +601,15 @@
           "slot": "representation",
           "level": "EXPECTED",
           "presentation": "VISUAL_CARD",
-          "purpose": "Show the situation as a picture drawn only from what the question states; every question in the benchmark has one.",
+          "purpose": "Show a question-aligned representation only when it materially helps the learner interpret, translate or reason about the question; otherwise preserve the explicit applicability waiver.",
           "benchmark": "selected_question_bank_TABLET_STUDY: the 'Representation' card with the question-aligned schematic",
           "source": [
-            "figure_refs"
+            "figure_refs",
+            "extensions.grade9v3:core2_visual_review"
           ],
           "min_items": 1,
           "authoring": {
-            "hint": "Add a representation to the package with an authored SVG (role=img, aria-labelledby or aria-label, <title> and <desc>) drawn only from the question's own data (labels at least 14 units high in a viewBox no wider than 440 units, so they read on a tablet), then name its id in figure_refs. Every question gets one; a classification or a pure-number question can show the quantities as a labelled diagram. If a question truly has nothing to draw, say so in extensions['grade9v3:component_waivers'] with the reason.",
+            "hint": "Decide representation applicability from the question's semantic review. If useful, add an accessible authored SVG drawn only from the question data and name it in figure_refs. If a figure would be decorative or would leak protected work, waive REPRESENTATION with a written reason. To correct a legacy authored visual while preserving frozen question refs, bind core2_visual_review to the exact question and replaced refs, with a rationale and question-owned authored refs. Authentic SOURCE_FIGURE resources cannot be superseded. A third stage needs a reason if it would perform the learner decision.",
             "skeleton": {
               "figure_refs": []
             }
@@ -615,18 +619,17 @@
         {
           "id": "HINT_LADDER",
           "slot": "support",
-          "level": "REQUIRED",
+          "level": "EXPECTED",
           "presentation": "LADDER",
-          "purpose": "Let the learner ask for help one rung at a time; every rung says what it is for and whose words it carries.",
-          "benchmark": "selected_question_bank_TABLET_STUDY: 'Hint ladder \u00b7 reveal only what you need', five rungs on a hard question (represent / first move, connect, crux, equation / formal model, assembly checkpoint) with SOURCE and EXPANSION pills",
+          "purpose": "Provide only the question-specific support the learner needs, one requestable step at a time, with provenance and an explicit disclosure boundary when support completes or materially narrows protected work.",
+          "benchmark": "selected_question_bank_TABLET_STUDY: 'Hint ladder · reveal only what you need', five rungs on a hard question (represent / first move, connect, crux, equation / formal model, assembly checkpoint) with SOURCE and EXPANSION pills",
           "source": [
             "scaffolds",
             "hints",
             "hint_ladder"
           ],
-          "min_items": 2,
           "authoring": {
-            "hint": "Write scaffolds[], one rung per job, in the order a learner meets them: a D1 or D2 question needs 3 (REPRESENTATION, KEY_CONCEPT, CRUX), a D3 or D4 question 5 (then FORMAL_MODEL, which gives the relation to use, and CHECKPOINT, which gives an intermediate result to compare against). Each has text (the hint), prompt (a question that makes the learner do the step), support_kind (REPRESENT, CONNECT or EXECUTE), reveals (CONCEPT or METHOD; ANSWER is held back until the solution), learner_stage and supports_move_ref (the id of the move it prepares). A rung must teach something specific to this question and must not repeat another rung or state the answer. Delete the rungs the question's band does not need.",
+            "hint": "Author question-specific support for the semantic jobs the resolved QRT requires: clarify the learner-relative obstacle, connect to demonstrated knowledge, represent relevant givens, or open a route toward the crux while preserving the learner-owned move. Rung count is not a quality target. Each support row keeps typed support_kind/reveals/learner_stage/supports_move_ref. If a row completes or materially narrows a protected move, declare it in grade9v3:core2_support_plan with AFTER_ATTEMPT or POST_SOLUTION availability; only support proven safe relative to protected_move_refs may be PRE_ATTEMPT_SAFE. Do not add filler to reach a number.",
             "skeleton": {
               "scaffolds": [
                 {
@@ -672,14 +675,6 @@
               ]
             }
           },
-          "target_items": 3,
-          "target_items_by_band": {
-            "D1": 3,
-            "D2": 3,
-            "D3": 5,
-            "D4": 5
-          },
-          "band_source": "extensions.grade9v3:analysis.difficulty.band",
           "compact_order": 80
         },
         {
@@ -687,13 +682,17 @@
           "slot": "support",
           "level": "OPTIONAL",
           "presentation": "LINK_LIST",
-          "purpose": "Send the learner back to the concept page for the idea the question uses.",
+          "purpose": "Let the learner deliberately leave the source question for the exact Core1A construction or repair, preserve origin/return context, and record the current question as assisted rather than independent.",
           "benchmark": "selected_question_bank_TABLET_STUDY: concept links beside the hints (the Core1A cross-link)",
           "source": [
+            "extensions.grade9v3:learning_repair.construction_ref",
             "primary_capability_ref",
             "secondary_capability_refs"
           ],
-          "compact_order": 90
+          "compact_order": 90,
+          "authoring": {
+            "hint": "Prefer an exact learning_repair.construction_ref when authored; otherwise resolve the capability to the exact construction that teaches the missing bridge. Opening concept help is learner-requested assistance: preserve the source/return anchor and do not count the same-question retry as independent transfer. A fresh changed item may later provide independent evidence."
+          }
         },
         {
           "id": "SOLUTION",
@@ -701,7 +700,7 @@
           "level": "REQUIRED",
           "presentation": "DISCLOSURE",
           "purpose": "Open the full working only after an attempt.",
-          "benchmark": "selected_question_bank_TABLET_STUDY: the 'Teacher solution \u00b7 complete derivation' disclosure",
+          "benchmark": "selected_question_bank_TABLET_STUDY: the 'Teacher solution · complete derivation' disclosure",
           "source": [
             "answer"
           ],
@@ -712,16 +711,15 @@
           "slot": "solution",
           "level": "REQUIRED",
           "presentation": "STEP_LIST",
-          "purpose": "Show the working as numbered moves: what is done, why it is valid, what it gives.",
+          "purpose": "Show the working as the ordered moves actually needed by this question: what is done, why it is valid here, and what state or result it establishes.",
           "benchmark": "selected_question_bank_TABLET_STUDY: three or four numbered steps with a bold lead and the reason (geometry, balance, Newton II, eliminate)",
           "parent": "SOLUTION",
           "source": [
             "answer.reasoning_route",
             "answer.crux_move_ref"
           ],
-          "min_items": 2,
           "authoring": {
-            "hint": "Write answer.reasoning_route[]: 3 moves for a D1 or D2 question, 4 for a D3 or D4. Each move has id, kind (DECIDE, REPRESENT, CONNECT, TRANSFORM or VERIFY), action (what is done), why_valid (the physical or logical reason this step is allowed; not 'this follows from the model'), inputs and output. Set crux_move_ref to the id of the move a learner is most likely to miss. Delete the move the band does not need.",
+            "hint": "Write answer.reasoning_route[] with as many moves as the actual dependency structure requires; difficulty band never sets the move count. Each move has id, kind (DECIDE, REPRESENT, CONNECT, TRANSFORM or VERIFY), action, why_valid, inputs and output. Set crux_move_ref to the one existing move whose success most directly decides the question. Each why_valid states the local warrant rather than a generic claim that a model or source permits the step. When material, make applicability conditions, model assumptions, representation invariants, bookkeeping boundaries, or empirical-versus-model limits explicit. Subject-specific repair rules belong in governed subject/record authority, not this Shared blueprint.",
             "skeleton": {
               "answer": {
                 "reasoning_route": [
@@ -732,44 +730,12 @@
                     "why_valid": "",
                     "inputs": [],
                     "output": ""
-                  },
-                  {
-                    "id": "{qid}-MOVE-2",
-                    "kind": "REPRESENT",
-                    "action": "",
-                    "why_valid": "",
-                    "inputs": [],
-                    "output": ""
-                  },
-                  {
-                    "id": "{qid}-MOVE-3",
-                    "kind": "TRANSFORM",
-                    "action": "",
-                    "why_valid": "",
-                    "inputs": [],
-                    "output": ""
-                  },
-                  {
-                    "id": "{qid}-MOVE-4",
-                    "kind": "VERIFY",
-                    "action": "",
-                    "why_valid": "",
-                    "inputs": [],
-                    "output": ""
                   }
                 ],
                 "crux_move_ref": ""
               }
             }
-          },
-          "target_items": 3,
-          "target_items_by_band": {
-            "D1": 3,
-            "D2": 3,
-            "D3": 4,
-            "D4": 4
-          },
-          "band_source": "extensions.grade9v3:analysis.difficulty.band"
+          }
         },
         {
           "id": "ANSWER",
@@ -795,12 +761,27 @@
             "answer.check"
           ],
           "authoring": {
-            "hint": "One sentence that tests the result independently: a limiting case, a unit check or a special value.",
+            "hint": "Use a changed case, conservation ledger, counterexample or independent operation with expected result. Repeating the wrong rule as a rejection is not an independent check.",
             "skeleton": {
               "answer": {
                 "check": ""
               }
             }
+          }
+        },
+        {
+          "id": "DIAGNOSTIC_REPAIR",
+          "slot": "solution",
+          "parent": "SOLUTION",
+          "level": "OPTIONAL",
+          "presentation": "CHECK_BOX",
+          "benchmark": "Issue #32 Q1/Q4 observed hint and representation defects; Issue #31 repeated reject-the-rule checks, correction cycle R2.",
+          "purpose": "After learner evidence warrants diagnosis, distinguish a misconception hypothesis from a slip/alternative route, show a bounded repair only when confirmed, then require a fresh verification before treating the repair as successful.",
+          "source": [
+            "extensions.grade9v3:learning_repair"
+          ],
+          "authoring": {
+            "hint": "An authored wrong_idea/diagnostic_prompt is a hypothesis, not a learner diagnosis. Use the typed diagnostic-evidence contract: canonical hypothesis + discriminating probe + observed learner response + evaluator basis. Only complete CONFIRMED evidence may select misconception-specific repair; INDETERMINATE, REFUTED, invalid, or bare-index claims remain non-confirming. Preserve uncertainty and require fresh verification after repair; do not grade free response by keyword or declare mastery."
           }
         }
       ],
@@ -810,12 +791,12 @@
     },
     {
       "id": "BP-CORE1A-CONSTRUCTION",
-      "version": "1.4.0",
+      "version": "1.8.0",
       "status": "ACTIVE",
       "core_roles": [
         "CORE1A"
       ],
-      "learner_job": "Reveal and explain the complete conceptual construction at intrinsic subtopic depth, then connect the concept to selected authentic questions that exercise its canonical capability.",
+      "learner_job": "Build a reusable concept by constructing the decisive bridge, using an adjacent representation when it materially helps, summarizing the key insight, and then independently retrieving, explaining, or applying it in a changed case. Worked examples, completion, comparison, quick checks, and repair are conditional teaching operators rather than mandatory panels; protected source questions are not the default teaching anchor.",
       "shell_ref": "G9-TABLET-SHELL-V1",
       "layout_family": "READING_CONSTRUCTION",
       "slots": [
@@ -834,18 +815,11 @@
           "accepts_blocks": [
             "inferential_jump",
             "completed_construction",
-            "worked_conceptual_anchor"
-          ],
-          "required": true,
-          "column": "PRIMARY"
-        },
-        {
-          "id": "representation",
-          "accepts_blocks": [
+            "worked_conceptual_anchor",
             "representation_bridge"
           ],
           "required": true,
-          "column": "SUPPORT"
+          "column": "FULL"
         },
         {
           "id": "repair_closure",
@@ -858,13 +832,15 @@
             "practice_navigation"
           ],
           "required": true,
-          "column": "SUPPORT"
+          "column": "FULL"
         }
       ],
       "interaction_policy": {
         "attempt_before_reveal": "FROM_PROJECTION",
-        "progressive_support": false,
-        "solution_policy": "FROM_PROJECTION"
+        "progressive_support": true,
+        "solution_policy": "FROM_PROJECTION",
+        "secondary_reference_default": "COLLAPSED",
+        "worked_example_step_policy": "SHOW_ALL"
       },
       "representation_policy": {
         "preferred_mount_modes": [
@@ -876,12 +852,12 @@
       },
       "responsive_policy": {
         "compact": "SINGLE_PANE",
-        "medium": "STACKED_SUPPORT",
-        "expanded": "STAGE_SUPPORT",
+        "medium": "SINGLE_PANE",
+        "expanded": "SINGLE_PANE",
         "primary_fraction": 0.6,
         "support_fraction": 0.4,
         "expanded_min_px": 1100,
-        "support_sticky": true,
+        "support_sticky": false,
         "tablet_12_7": {
           "reference_viewport": {
             "width": 1366,
@@ -889,7 +865,7 @@
           },
           "identity_max_px": 190,
           "figure_min_text_css_px": 14,
-          "support_scrolls_inside": true
+          "support_scrolls_inside": false
         }
       },
       "touch_policy": {
@@ -906,7 +882,9 @@
       "forbidden": [
         "PAGE_LOCAL_ACADEMIC_TRUTH",
         "HOVER_ONLY_ESSENTIAL_INFORMATION",
-        "ATTEMPT_FIRST_AS_PRIMARY_MODE"
+        "ATTEMPT_FIRST_AS_PRIMARY_MODE",
+        "FABRICATED_MISCONCEPTION_REPAIR",
+        "BAND_AS_PANEL_COUNT"
       ],
       "components": [
         {
@@ -946,26 +924,11 @@
           "compact_order": 30
         },
         {
-          "id": "KEY_STEP",
-          "slot": "construction",
-          "level": "REQUIRED",
-          "presentation": "BANNER",
-          "purpose": "Name the one step learners cannot infer on their own.",
-          "benchmark": "core1a-motion-in-a-plane-tablet: the inferential-leap banner",
-          "source": [
-            "inferential_jump"
-          ],
-          "authoring": {
-            "hint": "inferential_jump: one or two sentences naming the step a learner does not make unaided and why it is not obvious."
-          },
-          "compact_order": 40
-        },
-        {
           "id": "MODEL_CONTRACT",
           "slot": "construction",
           "level": "EXPECTED",
-          "presentation": "TILE",
-          "purpose": "Say what the learner must already hold and what model is assumed.",
+          "presentation": "DISCLOSURE_TILE",
+          "purpose": "Keep prerequisites available without competing with the construction; collapsed by default.",
           "benchmark": "core1a-motion-in-a-plane-tablet: the 'Model contract & assumptions' tile",
           "source": [
             "entry_assumptions",
@@ -974,14 +937,14 @@
           "authoring": {
             "hint": "List in entry_assumptions[] each thing a learner must already be able to do before this concept, one per entry and specific to this concept."
           },
-          "compact_order": 50
+          "compact_order": 40
         },
         {
           "id": "QUESTION_BRIDGE",
           "slot": "construction",
           "level": "OPTIONAL",
-          "presentation": "CALLOUT_INFO",
-          "purpose": "Say which source question this unit builds toward and the move a learner most often misses in it, so the concept is taught for that question and not only named after it.",
+          "presentation": "DISCLOSURE_INFO",
+          "purpose": "Keep question-set rationale available on demand without interrupting the learning path.",
           "benchmark": "core1a-motion-in-a-plane-tablet: each concept card is built around the inferential leap the practice questions need",
           "repeat": "PER_CONSTRUCTION_UNIT",
           "source": [
@@ -990,9 +953,9 @@
             "answer.crux_move_ref"
           ],
           "authoring": {
-            "hint": "Write crux_question_refs on a construction unit: the ids of the bank questions whose crux the unit builds, and crux_step_ref: the one of its step_refs that builds the move those questions turn on (the page marks that step). The toughest question of the set (the deploy names it) must be named by a unit of the concept it belongs to; that unit's steps must lead to the move the question turns on, and its worked example is that question (bank_anchor_ref). A unit that only shares the question's topic does not build its crux, and a step that mentions the idea in passing is not the step that builds it: draw the whole idea (for a sum of two vectors, every angle and not only the right angle)."
+            "hint": "Name actual crux_question_refs and crux_step_ref. The hardest-target unit must teach that precise bridge through its worked instance; a distinct lesson anchor must explicitly bind the target question, its actual crux move and this construction unit. A shared topic alone is insufficient."
           },
-          "compact_order": 60
+          "compact_order": 50
         },
         {
           "id": "CONSTRUCTION_STEPS",
@@ -1008,24 +971,65 @@
           ],
           "min_items": 2,
           "authoring": {
-            "hint": "Each construction unit lists step_refs naming 2 or more teaching_path steps; each step has action, why_valid and output written for this unit, none repeated from another unit. A unit that builds the crux of a D3 or D4 question (it names that question in crux_question_refs) needs 4 steps, and its last step is the move that question turns on."
+            "hint": "Each construction unit names at least 2 teaching_path steps, and every authored step states the action, why it is valid, and the state/output it establishes. Choose additional steps only when the inferential burden requires them; difficulty band does not prescribe a panel count. A unit that builds a question crux binds the actual crux_question_refs and crux_step_ref so the decisive bridge is taught explicitly. Preserve representation invariants, model boundaries, applicability conditions, and changed-case transfer when those are material to the concept; do not import subject-specific repair rules into the shared blueprint."
           },
-          "target_items": 3,
-          "target_items_by_band": {
-            "D1": 3,
-            "D2": 3,
-            "D3": 4,
-            "D4": 4
+          "compact_order": 60
+        },
+        {
+          "id": "STAGED_VISUAL",
+          "slot": "construction",
+          "level": "EXPECTED",
+          "presentation": "STAGED_VISUAL",
+          "purpose": "When a spatial or mechanism representation materially helps the construction, show it as a picture that builds stage by stage. A construction with no useful visual is explicitly waived by the authored record; no decorative figure is invented.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the rail's staged visual with stage buttons",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "construction_units[].representation_ref"
+          ],
+          "min_items": 2,
+          "authoring": {
+            "hint": "First decide whether a staged visual has a real semantic job for this construction. When it does, representation_ref names an accessible representation and reveal_stages contains only the stages needed to construct the correspondence or mechanism. Stage count follows the representation, not the question's D-band. When a visual is genuinely not applicable, waive STAGED_VISUAL with a written reason instead of drawing decoration."
           },
-          "band_source": "crux_question_refs",
+          "duty": "STAGE_REPRESENTATION",
+          "compact_order": 70
+        },
+        {
+          "id": "MODEL_SCOPE_PROBE",
+          "slot": "construction",
+          "level": "OPTIONAL",
+          "presentation": "CHECK_BOX",
+          "repeat": "PER_CONSTRUCTION_UNIT",
+          "source": [
+            "extensions.grade9v3:question_repairs"
+          ],
+          "purpose": "When explicitly authored, make bounded parameter/countermodel construction visible beside the staged visual; keep diagnostic help separately closed.",
+          "benchmark": "Issue #37 Q9 and #38 Q2/Q9 correction cycle: absent continuous model-boundary construction.",
+          "authoring": {
+            "hint": "Opt in with a question/crux/construction-bound MODEL_SCOPE_PROBE repair record. Declare axis, independent variables, toy versus physical outputs and a static fallback. Do not infer applicability from the demand label."
+          },
           "compact_order": 80
+        },
+        {
+          "id": "KEY_STEP",
+          "slot": "construction",
+          "level": "REQUIRED",
+          "presentation": "BANNER",
+          "purpose": "Name the one step learners cannot infer on their own.",
+          "benchmark": "core1a-motion-in-a-plane-tablet: the inferential-leap banner",
+          "source": [
+            "inferential_jump"
+          ],
+          "authoring": {
+            "hint": "inferential_jump: one or two sentences naming the step a learner does not make unaided and why it is not obvious."
+          },
+          "compact_order": 90
         },
         {
           "id": "EQUATIONS",
           "slot": "construction",
           "level": "EXPECTED",
-          "presentation": "EQUATION_CARD",
-          "purpose": "Put the relations a unit uses beside their meaning and when they hold.",
+          "presentation": "DISCLOSURE_EQUATION_CARD",
+          "purpose": "Keep formulas, meaning and validity conditions available as on-demand reference rather than a mandatory reading detour.",
           "benchmark": "core1a-motion-in-a-plane-tablet: the equation card of every concept card (definition and validity scope)",
           "source": [
             "construction_units[].relation_refs",
@@ -1035,58 +1039,32 @@
             "hint": "Each construction unit names the microtopic's relations it uses in construction_units[].relation_refs; each relation record needs its expression, meaning and conditions. A subject that declares no gates writes gate_relation_ref: null."
           },
           "repeat": "PER_CONSTRUCTION_UNIT",
-          "compact_order": 90
+          "compact_order": 100
         },
         {
           "id": "WORKED_EXAMPLE",
           "slot": "construction",
-          "level": "REQUIRED",
+          "level": "EXPECTED",
           "presentation": "WORKED_CARD",
-          "purpose": "Walk one authentic question through the construction.",
+          "purpose": "When a completed instance materially helps the learner consolidate the constructed idea, show a coherent worked explanation with explicit warrants and outputs. A concept may instead proceed from construction directly to reduced-support independent application when that better preserves the learning job.",
           "benchmark": "core1a-motion-in-a-plane-tablet: the worked card",
           "repeat": "PER_CONSTRUCTION_UNIT",
           "source": [
             "construction_units[].worked_anchor_ref",
-            "construction_units[].bank_anchor_ref"
+            "construction_units[].bank_anchor_ref",
+            "extensions.grade9v3:lesson_anchors"
           ],
-          "duty": "AUTHOR_WORKED_ANCHOR",
           "authoring": {
-            "hint": "worked_anchor_ref names a question of the package that exercises exactly this unit's move. For the unit that builds toward a question of the product's bank (an owner-supplied question), set bank_anchor_ref to that question's id instead: the page then walks through the Owner's own question with its verified route, and nothing is copied into the package."
+            "hint": "Use a lesson anchor or other mapped worked instance when seeing a completed route materially helps this construction. Bind any hardest-target bridge to the precise target question/crux/construction, but do not require the protected source question itself to become the teaching anchor. If a worked example would merely replay the construction or leak the next independent task, author an explicit applicability waiver instead."
           },
-          "compact_order": 100
-        },
-        {
-          "id": "STAGED_VISUAL",
-          "slot": "representation",
-          "level": "REQUIRED",
-          "presentation": "STAGED_VISUAL",
-          "purpose": "Show the idea as a picture that builds up stage by stage, with controls to step through it.",
-          "benchmark": "core1a-motion-in-a-plane-tablet: the rail's staged visual with stage buttons",
-          "repeat": "PER_CONSTRUCTION_UNIT",
-          "source": [
-            "construction_units[].representation_ref"
-          ],
-          "min_items": 2,
-          "authoring": {
-            "hint": "representation_ref names a representation of the package with an authored SVG that has 2 or more groups marked data-g9-stage-id and reveal_stages naming them (3 stages is the reference, 4 for a unit that builds the crux of a D3 or D4 question). Draw each unit's own picture; do not reuse one figure on many units. Draw it in a viewBox no wider than 440 units with every label at least 14 units high, so the labels read on a tablet."
-          },
-          "duty": "STAGE_REPRESENTATION",
-          "target_items": 3,
-          "target_items_by_band": {
-            "D1": 3,
-            "D2": 3,
-            "D3": 4,
-            "D4": 4
-          },
-          "band_source": "crux_question_refs",
-          "compact_order": 70
+          "compact_order": 110
         },
         {
           "id": "TRAP_REPAIR",
           "slot": "repair_closure",
-          "level": "REQUIRED",
-          "presentation": "TRAP_CARD",
-          "purpose": "Show the mistake learners make here, how to notice it and how to repair it.",
+          "level": "OPTIONAL",
+          "presentation": "DISCLOSURE_TRAP_CARD",
+          "purpose": "When there is an evidence-supported confusable model or recurring wrong route worth distinguishing, offer a requestable mistake clinic with a discriminating probe, bounded replacement rule, and fresh application. Do not manufacture a misconception or repair panel merely to complete the page.",
           "benchmark": "core1a-motion-in-a-plane-tablet: the easy-mistake card with diagnostic and repair",
           "repeat": "PER_CONSTRUCTION_UNIT",
           "source": [
@@ -1095,40 +1073,38 @@
           ],
           "min_items": 1,
           "authoring": {
-            "hint": "misconceptions[] holds wrong_idea, diagnostic_prompt and repair for this concept; each construction unit names the ones that apply in misconception_indexes."
+            "hint": "Author misconception rows only when a plausible wrong idea is materially relevant to this construction. Each row carries wrong_idea, a diagnostic_prompt that can distinguish the hypothesis from a slip/alternative route, and a bounded repair. A construction unit names only the rows that actually apply; absence of a justified misconception is valid and requires no filler."
           },
-          "compact_order": 110
+          "compact_order": 120
         },
         {
           "id": "QUICK_CHECK",
           "slot": "repair_closure",
-          "level": "REQUIRED",
-          "presentation": "TRIAD",
-          "purpose": "Let the learner test the idea three ways before moving on: recall it, use it on a small case, and say where it leads next.",
+          "level": "OPTIONAL",
+          "presentation": "CHECK_BOX",
+          "purpose": "When a compact checkpoint materially helps consolidation before the independent exit, ask one or more question-specific checks that retrieve, apply, connect, compare, or explain the concept without imposing a fixed role count.",
           "benchmark": "core1a-motion-in-a-plane-tablet: the 1-2-3 quick check (CHECK, APPLY, CONNECT)",
           "repeat": "PER_CONSTRUCTION_UNIT",
           "source": [
             "construction_units[].independent_checks"
           ],
           "min_items": 1,
-          "duty": "AUTHOR_INDEPENDENT_CHECK",
-          "target_items": 3,
           "authoring": {
-            "hint": "Each construction unit lists three independent_checks, each with a role: CHECK (a question that recalls the idea), APPLY (a small case to work with numbers or a picture given in the question) and CONNECT (one sentence saying which idea this leads to next). Each statement is specific to the unit."
+            "hint": "independent_checks[] is optional intermediate evidence. Author only the checks that add a distinct learner job for this unit; CHECK/APPLY/CONNECT are available roles, not a mandatory triad. Do not duplicate the mandatory EXIT_RECALL or create filler to reach a number."
           },
-          "compact_order": 120
+          "compact_order": 130
         },
         {
           "id": "EXIT_RECALL",
           "slot": "repair_closure",
           "level": "REQUIRED",
           "presentation": "RECALL_CARD",
-          "purpose": "Ask for the idea back with less support, then show a model answer.",
+          "purpose": "Require an independent attempt with less support after the construction and worked example.",
           "benchmark": "core1a-motion-in-a-plane-tablet: the active-recall attempt",
           "source": [
             "exit_task"
           ],
-          "compact_order": 130
+          "compact_order": 140
         },
         {
           "id": "PRACTICE_LINKS",
@@ -1140,7 +1116,7 @@
           "source": [
             "practice"
           ],
-          "compact_order": 140
+          "compact_order": 150
         },
         {
           "id": "INTERACTIVE_BRIDGE",
@@ -1152,7 +1128,7 @@
           "source": [
             "concept_bundle.interactive"
           ],
-          "compact_order": 145
+          "compact_order": 160
         },
         {
           "id": "LEARNING_TRANSITIONS",
@@ -1164,7 +1140,7 @@
           "source": [
             "concept_bundle"
           ],
-          "compact_order": 150
+          "compact_order": 170
         }
       ],
       "presentation_policy": {

@@ -14,9 +14,14 @@ import re
 
 SOURCE_HINT = "SOURCE_HINT"
 AUTHORED_CORE2_SUPPORT = "AUTHORED_CORE2_PROMPT_REVEAL"
+SUPPORT_PLAN_KEY = "grade9v3:core2_support_plan"
 LEARNER_STAGES = {"KEY_CONCEPT", "REPRESENTATION", "FIRST_MOVE", "CRUX", "FORMAL_MODEL", "CHECKPOINT", "OTHER"}
 _REVEAL_ORDER = {"CONCEPT": 0, "METHOD": 1, "ANSWER": 2}
 _REF = re.compile(r"^(hints|scaffolds)\[(\d+)\]$")
+PRE_ATTEMPT_SAFE = "PRE_ATTEMPT_SAFE"
+AFTER_ATTEMPT = "AFTER_ATTEMPT"
+POST_SOLUTION = "POST_SOLUTION"
+SUPPORT_AVAILABILITY = {PRE_ATTEMPT_SAFE, AFTER_ATTEMPT, POST_SOLUTION}
 
 # The Core2-v2 amendment names these as the preferred learner progression.
 # Existing canonical reasoning_move.kind remains the authoring authority; this
@@ -150,20 +155,152 @@ def _order(question: dict, rows: dict[str, dict]) -> list[str]:
     return ordered
 
 
+def _availability(explicit: str | None, *, reveals: str, completed: list[str],
+                  protected: set[str], where: str) -> str:
+    if explicit is not None and explicit not in SUPPORT_AVAILABILITY:
+        raise Core2SupportProjectionError(f"{where} has invalid availability {explicit!r}")
+    completes_protected = bool(protected.intersection(completed))
+    if explicit == PRE_ATTEMPT_SAFE and completes_protected:
+        raise Core2SupportProjectionError(f"{where} cannot be PRE_ATTEMPT_SAFE while completing protected work")
+    if reveals == "ANSWER" and explicit in {PRE_ATTEMPT_SAFE, AFTER_ATTEMPT}:
+        raise Core2SupportProjectionError(f"{where} revealing ANSWER must be POST_SOLUTION")
+    if explicit is not None:
+        return explicit
+    if reveals == "ANSWER" or completes_protected:
+        return POST_SOLUTION
+    return PRE_ATTEMPT_SAFE
+
+
 def project_support(question: dict) -> list[dict]:
     rows = _rows(question)
     rows.update(_inline_rows(question))
+    plan = support_plan(question, rows)
+    completions = {item["support_ref"]: item for item in plan.get("support_completions", [])}
+    protected = set(plan.get("protected_move_refs", []))
     projected = []
     for order, ref in enumerate(_order(question, rows), 1):
         row = dict(rows[ref])
         row["order"] = order
-        row["eligible_pre_solution"] = row["reveals"] != "ANSWER"
+        completion = completions.get(ref, {})
+        completed = completion.get("completed_move_refs", [])
+        row["completed_move_refs"] = completed
+        row["availability"] = _availability(
+            completion.get("availability"),
+            reveals=row["reveals"],
+            completed=completed,
+            protected=protected,
+            where=f"support completion {ref!r}",
+        )
+        row["eligible_pre_solution"] = row["availability"] == PRE_ATTEMPT_SAFE
         projected.append(row)
     return projected
 
 
+def support_plan(question: dict, rows: dict | None = None) -> dict:
+    """Resolve an adopted plan against existing question moves; legacy records stay unchanged.
+
+    Completion is an authored fact, not guessed from a METHOD/ANSWER label or prose.
+    Schema-shaped input still needs its references resolved against this exact question.
+    """
+    plan = (question.get("extensions") or {}).get(SUPPORT_PLAN_KEY)
+    if plan is None:
+        return {}
+    if not isinstance(plan, dict):
+        raise Core2SupportProjectionError("core2_support_plan must be an object")
+    moves = {move.get("id") for move in (question.get("answer") or {}).get("reasoning_route", [])}
+    protected = plan.get("protected_move_refs")
+    if (not isinstance(protected, list) or not protected
+            or any(not isinstance(ref, str) or ref not in moves for ref in protected)):
+        raise Core2SupportProjectionError("protected_move_refs must name this question's reasoning moves")
+    if rows is None:
+        rows = _rows(question)
+        rows.update(_inline_rows(question))
+    for name in ("support_completions", "visuals"):
+        if not isinstance(plan.get(name, []), list) or any(not isinstance(item, dict) for item in plan.get(name, [])):
+            raise Core2SupportProjectionError(f"{name} must be an array of objects")
+    seen = set()
+    for item in plan.get("support_completions", []):
+        ref = item.get("support_ref")
+        completed = item.get("completed_move_refs")
+        availability = item.get("availability")
+        if not isinstance(ref, str) or ref not in rows or ref in seen:
+            raise Core2SupportProjectionError(f"unknown or duplicate support completion {ref!r}")
+        if not isinstance(completed, list) or any(not isinstance(move, str) or move not in moves for move in completed):
+            raise Core2SupportProjectionError(f"support completion {ref!r} names an unknown reasoning move")
+        if availability is not None and availability not in SUPPORT_AVAILABILITY:
+            raise Core2SupportProjectionError(f"support completion {ref!r} has invalid availability {availability!r}")
+        _availability(availability, reveals=rows[ref]["reveals"], completed=completed,
+                      protected=set(protected), where=f"support completion {ref!r}")
+        seen.add(ref)
+    seen = set()
+    for visual in plan.get("visuals", []):
+        ref = visual.get("representation_ref")
+        if (not isinstance(ref, str) or not ref or ref in seen
+                or not isinstance(visual.get("instance_ref"), str) or not visual["instance_ref"]):
+            raise Core2SupportProjectionError("visuals must name unique representations and their case instances")
+        seen.add(ref)
+        if not isinstance(visual.get("stages"), list) or any(not isinstance(item, dict) for item in visual["stages"]):
+            raise Core2SupportProjectionError(f"visual {ref!r} stages must be an array of objects")
+        stages = set()
+        for item in visual.get("stages", []):
+            stage_ref = item.get("stage_ref")
+            completed = item.get("completed_move_refs")
+            availability = item.get("availability")
+            if not isinstance(stage_ref, str) or not stage_ref or stage_ref in stages:
+                raise Core2SupportProjectionError(f"duplicate or absent visual stage for {ref!r}")
+            if not isinstance(completed, list) or any(not isinstance(move, str) or move not in moves for move in completed):
+                raise Core2SupportProjectionError(f"visual stage {stage_ref!r} names an unknown reasoning move")
+            if availability is not None and availability not in SUPPORT_AVAILABILITY:
+                raise Core2SupportProjectionError(f"visual stage {stage_ref!r} has invalid availability {availability!r}")
+            _availability(availability, reveals="METHOD", completed=completed, protected=set(protected),
+                          where=f"visual stage {stage_ref!r}")
+            stages.add(stage_ref)
+        if not stages:
+            raise Core2SupportProjectionError(f"visual {ref!r} needs its actual stage references")
+    return plan
+
+
+def visual_support(question: dict, representation_ref: str) -> dict | None:
+    """The selected instance and stage refs permitted at each authored disclosure boundary."""
+    plan = support_plan(question)
+    protected = set(plan.get("protected_move_refs", []))
+    for visual in plan.get("visuals", []):
+        if visual["representation_ref"] == representation_ref:
+            by_state = {PRE_ATTEMPT_SAFE: [], AFTER_ATTEMPT: [], POST_SOLUTION: []}
+            for item in visual["stages"]:
+                state = _availability(
+                    item.get("availability"),
+                    reveals="METHOD",
+                    completed=item["completed_move_refs"],
+                    protected=protected,
+                    where=f"visual stage {item['stage_ref']!r}",
+                )
+                by_state[state].append(item["stage_ref"])
+            return {
+                **visual,
+                "pre_attempt_stage_refs": by_state[PRE_ATTEMPT_SAFE],
+                "after_attempt_stage_refs": by_state[AFTER_ATTEMPT],
+                "post_solution_stage_refs": by_state[POST_SOLUTION],
+            }
+    return None
+
+
+def support_at(question: dict, availability: str) -> list[dict]:
+    if availability not in SUPPORT_AVAILABILITY:
+        raise Core2SupportProjectionError(f"invalid support availability {availability!r}")
+    return [row for row in project_support(question) if row["availability"] == availability]
+
+
 def pre_solution_support(question: dict) -> list[dict]:
-    return [row for row in project_support(question) if row["eligible_pre_solution"]]
+    return support_at(question, PRE_ATTEMPT_SAFE)
+
+
+def after_attempt_support(question: dict) -> list[dict]:
+    return support_at(question, AFTER_ATTEMPT)
+
+
+def post_solution_support(question: dict) -> list[dict]:
+    return support_at(question, POST_SOLUTION)
 
 
 def split_pre_solution_support(question: dict) -> tuple[list[dict], list[dict]]:

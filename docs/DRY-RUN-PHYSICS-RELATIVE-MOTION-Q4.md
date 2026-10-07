@@ -127,6 +127,9 @@ Explicit attribution:
 failed_capability_ref = CAP-VEC-RESULTANT-CONSTRAINT
 error_stage = CONCEPT
 misconception_index = 0
+diagnostic_response = "I applied the directly-opposite condition to the swimmer vector instead of the ground-relative resultant."
+diagnosis = CONFIRMED
+diagnostic_basis = "The response to the canonical probe places the constraint on the wrong vector."
 ```
 
 Expected:

@@ -552,8 +552,14 @@ class Core2V2RendererContract(unittest.TestCase):
         ctx, _microtopic_a, _microtopic_b, question = self._join_ctx()
         rendered = render_core._core2_concept_navigation(ctx, question)
         self.assertIn('data-g9-block="concept_navigation"', rendered)
-        self.assertIn('href="core1a.html#MIC-B"', rendered)
-        self.assertIn('href="core1a.html#MIC-A"', rendered)
+        self.assertIn(
+            'href="core1a.html?g9-return=Q-JOIN&amp;g9-concept=MIC-B#MIC-B"',
+            rendered,
+        )
+        self.assertIn(
+            'href="core1a.html?g9-return=Q-JOIN&amp;g9-concept=MIC-A#MIC-A"',
+            rendered,
+        )
         self.assertLess(rendered.index("MIC-B"), rendered.index("MIC-A"))
         self.assertNotIn("Hidden source hint", rendered)
 
@@ -577,13 +583,18 @@ class Core2V2RendererContract(unittest.TestCase):
 
     def test_single_file_rewrite_keeps_cross_core_join_exact(self):
         page = (
-            '<main><article id="MIC-A">'
+            '<main><article id="MIC-A"><section id="CU-A">'
             '<a data-g9-practice-link href="core2.html#Q-JOIN">Practice</a>'
-            '</article></main>'
+            '<a data-g9-concept-link data-g9-question-ref="Q-JOIN" data-g9-concept-ref="MIC-A" '
+            'href="core1a.html?g9-return=Q-JOIN&amp;g9-concept=MIC-A#CU-A">Concept</a>'
+            '</section></article></main>'
         )
         fragment = render_core._single_file_fragment(page, "CORE1A")
         self.assertIn('id="g9-CORE1A--MIC-A"', fragment)
+        self.assertIn('id="g9-CORE1A--CU-A"', fragment)
         self.assertIn('href="#g9-CORE2--Q-JOIN"', fragment)
+        self.assertIn('href="#g9-CORE1A--CU-A"', fragment)
+        self.assertNotIn('core1a.html?g9-return=', fragment)
 
 
 class Core2V2RoundTripStateContract(unittest.TestCase):
@@ -598,13 +609,14 @@ class Core2V2RoundTripStateContract(unittest.TestCase):
         start = js.index("function saveCore2State")
         end = js.index("function restoreCore2State")
         save = js[start:end]
-        self.assertIn("JSON.stringify({attempted:!!a.dataset.attempted,fields,ladders,reveals})", save)
+        self.assertIn("JSON.stringify({attempted:!!a.dataset.attempted,assisted:!!a.dataset.g9Assisted,assistance,fields,ladders,reveals})", save)
         self.assertNotIn("innerHTML", save)
         self.assertNotIn("textContent", save)
 
     def test_restore_replays_attempt_fields_support_depth_and_commitment(self):
         js = render_core.JS
         self.assertIn("while(rungCount(l)<count&&nextRung(l)){}", js)
+        self.assertIn("if(state.assisted){a.dataset.g9Assisted='1'", js)
         self.assertIn("if(state.attempted){a.dataset.attempted='1';materialise(a)}", js)
         self.assertIn("el.type==='checkbox'||el.type==='radio'", js)
         self.assertIn("state.reveals||[]", js)
@@ -612,20 +624,40 @@ class Core2V2RoundTripStateContract(unittest.TestCase):
 
     def test_concept_round_trip_marks_only_the_exact_origin_question(self):
         js = render_core.JS
-        self.assertIn("saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef)", js)
+        self.assertIn("markAssistance(a,'CONCEPT_NAV');saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef)", js)
         self.assertIn("store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit)", js)
-        self.assertIn("const active=!!key&&store.get(key)===link.dataset.g9QuestionRef", js)
+        self.assertIn("const navParams=new URLSearchParams(location.search)", js)
+        self.assertIn("const navReturn=navParams.get('g9-return')", js)
+        self.assertIn("const navConcept=navParams.get('g9-concept')", js)
+        self.assertIn(
+            "const routed=navReturn===link.dataset.g9QuestionRef&&navConcept===link.dataset.g9ConceptRef",
+            js,
+        )
+        self.assertIn("const active=stored||routed", js)
         self.assertIn("link.dataset.g9ReturnLink=''", js)
-        self.assertIn("store.remove(key);refreshReturnLinks()", js)
+        self.assertIn("if(key&&store.get(key)===link.dataset.g9QuestionRef)store.remove(key)", js)
+
+    def test_assistance_events_mark_the_question_as_supported(self):
+        js = render_core.JS
+        self.assertIn("markAssistance(a,'HINT_LADDER')", js)
+        self.assertIn("markAssistance(a,'WRONG_ROUTE')", js)
+        self.assertIn("markAssistance(a,'CONCEPT_NAV')", js)
+        self.assertIn("a.dataset.g9Assisted='1'", js)
+        self.assertIn("a.dataset.g9Assistance=Array.from(kinds).join(',')", js)
 
     def test_storage_failure_is_non_blocking(self):
         js = render_core.JS
         self.assertIn("catch(e){return null}", js)
         self.assertIn("catch(e){return false}", js)
-        # The static exact links remain the navigation authority when storage is unavailable.
+        # The static URLs remain the navigation authority when storage is unavailable.
+        # Core2 -> Core1A carries exact origin/return state in the URL itself.
         ctx, microtopic_a, _microtopic_b, question = Core2V2RendererContract._join_ctx()
         self.assertIn('href="core2.html#Q-JOIN"', render_core._core1a_practice_navigation(ctx, microtopic_a))
-        self.assertIn('href="core1a.html#MIC-B"', render_core._core2_concept_navigation(ctx, question))
+        self.assertIn(
+            'href="core1a.html?g9-return=Q-JOIN&amp;g9-concept=MIC-B#MIC-B"',
+            render_core._core2_concept_navigation(ctx, question),
+        )
+        self.assertIn("const navParams=new URLSearchParams(location.search)", js)
 
     def test_rendered_page_exposes_digest_scope_and_role_on_the_question_article(self):
         question = Core2V2RendererContract._question()
@@ -655,6 +687,13 @@ class Core2V2RoundTripStateContract(unittest.TestCase):
         self.assertIn('data-g9-product="PRODUCT-STATE"', rendered)
         self.assertIn('data-g9-render-digest="digest-123"', rendered)
         self.assertIn('data-g9-unit="Q-1" data-g9-kind="QUESTION" data-g9-role="CORE2"', rendered)
+
+    def test_browser_audit_uses_visible_support_controls_and_url_bound_return_fallback(self):
+        source = (REPO / "tools" / "site-audit" / "core2-v2-browser-audit.mjs").read_text(encoding="utf-8")
+        self.assertIn("[data-g9-next-rung]:not([disabled]):visible", source)
+        self.assertIn("storage-blocked path lost URL-bound exact return state", source)
+        self.assertIn("Return to question", source)
+        self.assertNotIn("storage-blocked path falsely claims saved return state", source)
 
     def test_state_runtime_is_valid_javascript(self):
         node = shutil.which("node")

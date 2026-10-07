@@ -109,12 +109,20 @@ python3 Shared/tools/study_session.py attempt \
   --failed-capability CAP-RELATIVE-V \
   --error-stage CONCEPT \
   --misconception-index 0 \
+  --diagnostic-response "<what the learner said/did on the canonical diagnostic prompt>" \
+  --diagnosis CONFIRMED \
+  --diagnostic-basis "<why that probe response supports this diagnosis>" \
   --when 2026-09-18 \
   --readable
 ```
 
+A bare `--misconception-index` is only a hypothesis selector and is not enough to confirm a
+misconception. The runtime requires the canonical diagnostic prompt, an observed response,
+an explicit `CONFIRMED | REFUTED | INDETERMINATE` evaluator conclusion and a non-empty basis
+before misconception-specific repair. `INDETERMINATE` and `REFUTED` remain in diagnosis.
+
 The result may include a canonical repair, a fresh verification question or exit task, an
-observation draft, and a review date.
+observation draft, diagnostic evidence, and a review date.
 
 ## Safety / anti-drift rules
 

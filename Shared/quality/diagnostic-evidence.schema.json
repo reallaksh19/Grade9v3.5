@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "grade9v3-diagnostic-evidence/v1",
+  "title": "Diagnostic evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "misconception_index",
+    "probe",
+    "observed_response",
+    "diagnosis",
+    "basis"
+  ],
+  "properties": {
+    "misconception_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "probe": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The exact canonical diagnostic_prompt presented for this misconception hypothesis."
+    },
+    "observed_response": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Factual learner response or behavior observed after the discriminating probe."
+    },
+    "diagnosis": {
+      "enum": ["CONFIRMED", "REFUTED", "INDETERMINATE"]
+    },
+    "basis": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Evaluator basis for the diagnosis over the recorded probe response; not an automatic semantic grade."
+    }
+  }
+}

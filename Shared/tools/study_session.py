@@ -908,6 +908,9 @@ def attempt(mapping: dict, question_id: str, *, result: str,
             attempt_number: int = 1, shown_hint_indices: list[int] | None = None,
             attempted_question_refs: list[str] | None = None,
             misconception_index: int | None = None,
+            diagnostic_response: str | None = None,
+            diagnosis: str | None = None,
+            diagnostic_basis: str | None = None,
             response_summary: str | None = None,
             session_ref: str | None = None,
             repo: Path = REPO) -> dict:
@@ -953,6 +956,27 @@ def attempt(mapping: dict, question_id: str, *, result: str,
         evaluation["failed_capability_ref"] = failed_capability_ref
     if misconception_index is not None:
         evaluation["misconception_index"] = misconception_index
+        if diagnostic_response is not None or diagnosis is not None or diagnostic_basis is not None:
+            records = feedback.subject_records(mapping.get("subject"), repo)
+            evidence, evidence_error = feedback.diagnostic_evidence_for(
+                records,
+                failed_capability_ref,
+                misconception_index,
+                diagnostic_response,
+                diagnosis,
+                diagnostic_basis,
+            )
+            if evidence is not None:
+                evaluation["diagnostic_evidence"] = evidence
+            else:
+                evaluation["diagnostic_evidence"] = {
+                    "misconception_index": misconception_index,
+                    "probe": "",
+                    "observed_response": diagnostic_response or "",
+                    "diagnosis": diagnosis or "",
+                    "basis": diagnostic_basis or "",
+                    "_input_error": evidence_error,
+                }
 
     request = {
         "subject": mapping.get("subject"),
@@ -1231,6 +1255,9 @@ def main() -> int:
     p_attempt.add_argument("--shown-hint", action="append", type=int, default=[])
     p_attempt.add_argument("--attempted-question", action="append", default=[])
     p_attempt.add_argument("--misconception-index", type=int)
+    p_attempt.add_argument("--diagnostic-response")
+    p_attempt.add_argument("--diagnosis", choices=sorted(feedback.DIAGNOSIS_STATES))
+    p_attempt.add_argument("--diagnostic-basis")
     p_attempt.add_argument("--response-summary")
     p_attempt.add_argument("--session-ref")
     p_attempt.add_argument("--readable", action="store_true")
@@ -1263,6 +1290,9 @@ def main() -> int:
         shown_hint_indices=args.shown_hint,
         attempted_question_refs=args.attempted_question,
         misconception_index=args.misconception_index,
+        diagnostic_response=args.diagnostic_response,
+        diagnosis=args.diagnosis,
+        diagnostic_basis=args.diagnostic_basis,
         response_summary=args.response_summary,
         session_ref=args.session_ref,
     )

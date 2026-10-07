@@ -181,12 +181,8 @@ def audit_microtopic(
             ref,
         ))
 
-    if not misconceptions:
-        findings.append(_finding(
-            "MISCONCEPTION_REPAIR_MISSING",
-            "No plausible wrong path with diagnostic and repair is authored.",
-            ref,
-        ))
+    # Misconception/repair is a conditional teaching operator. Absence is valid;
+    # when a row is authored, its diagnostic claim must still be structurally complete.
     for row in misconceptions:
         if (
             not isinstance(row, dict)
@@ -243,20 +239,30 @@ def audit_microtopic(
         for item in (microtopic.get("question_family_refs") or [])
         if isinstance(item, str) and item
     }
-    worked_anchor_refs = sorted(
-        question["id"]
+    worked_candidates = [
+        question
         for question in questions
         if isinstance(question, dict)
         and _question_family_ref(question) in family_refs
-        and _is_core1a_worked_anchor(question)
+        and any(
+            isinstance(row, dict) and row.get("core") == "CORE1A"
+            for row in (question.get("exposure") or [])
+        )
+    ]
+    worked_anchor_refs = sorted(
+        question["id"]
+        for question in worked_candidates
+        if _is_core1a_worked_anchor(question)
         and isinstance(question.get("id"), str)
     )
-    if not worked_anchor_refs:
-        findings.append(_finding(
-            "WORKED_CONCEPTUAL_ANCHOR_MISSING",
-            "No mapped question is exposed to CORE1A with a completed answer.reasoning[] route.",
-            ref,
-        ))
+    for question in worked_candidates:
+        reasoning = (question.get("answer") or {}).get("reasoning") or []
+        if not isinstance(reasoning, list) or not reasoning:
+            findings.append(_finding(
+                "WORKED_CONCEPTUAL_ANCHOR_MISSING",
+                "A mapped CORE1A worked anchor has no completed answer.reasoning[] route.",
+                question.get("id") or ref,
+            ))
 
     badge = microtopic.get("intrinsic_badge")
     research = microtopic.get("research_contribution")
@@ -284,7 +290,7 @@ def audit_microtopic(
         "findings": findings,
         "manual_review_obligations": [
             "TEACHING_PATH_ACTUALLY_CONSTRUCTS_INFERENTIAL_JUMP",
-            "WORKED_ANCHOR_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
+            "WORKED_ANCHOR_IF_PRESENT_ILLUMINATES_CONCEPT_NOT_APPLICATION_DRILL",
             "REPRESENTATION_BRIDGE_IS_SEMANTICALLY_BIDIRECTIONAL",
         ],
     }
@@ -331,7 +337,7 @@ def audit(repo: Path) -> dict:
             "crux": "microtopic.inferential_jump",
             "structural_gate_only": True,
             "manual_review_required": True,
-            "worked_anchor_mechanism": "question exposure CORE1A + answer.reasoning[]",
+            "worked_anchor_mechanism": "optional mapped question exposure CORE1A + answer.reasoning[] when a worked anchor is used",
         },
         "summary": {
             "microtopic_count": len(rows),
