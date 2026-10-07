@@ -27,7 +27,7 @@ from Shared.tools import atlas_index, build_test_question_bank, build_web_data, 
 esc = render_core.esc
 TEST_ROOT = REPO / "TEST"
 PUBLIC_TEST = REPO / "public" / "test"
-NAV = (("index.html", "TEST"), ("question-bank/index.html", "Question Bank"), ("atlas/index.html", "Atlas"), ("rungs/index.html", "Rungs"), ("deployments/index.html", "Deployments"))
+NAV = (("index.html", "TEST"), ("atlas/index.html", "Atlas"), ("rungs/index.html", "Rungs"), ("deployments/index.html", "Deployments"))
 ROLE_PAGES = (("index.html", "Product index"), ("core2.html", "Core2"), ("core1a.html", "Core1A"), ("core1.html", "Core1"),
               ("core1b.html", "Core1B"), ("core2a.html", "Core2A"), ("core2b.html", "Core2B"))
 BANNER = "TEST sandbox · drafts only · not reviewed, not accepted, not curriculum"
