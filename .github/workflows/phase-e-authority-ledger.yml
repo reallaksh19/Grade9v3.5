@@ -1,0 +1,55 @@
+name: phase-e-authority-ledger
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/phase-e-authority-ledger.yml"
+      - "evidence/architectural-recovery/ISS69/phase-e-delp-execution-graph.v32.json"
+      - "evidence/architectural-recovery/ISS69/phase-e-e01-authority-ledger.v1.json"
+      - "tests/test_phase_e_authority_ledger.py"
+  workflow_dispatch:
+
+jobs:
+  authority-ledger:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run E01 authority ledger contracts
+        run: python3 -m unittest tests.test_phase_e_authority_ledger
+      - name: Verify declared E01 write surface
+        shell: bash
+        run: |
+          BASE="${{ github.event.pull_request.base.sha }}"
+          if [ -z "$BASE" ]; then
+            git fetch origin qual/iss69-d06-freeze-handoff
+            BASE="$(git merge-base origin/qual/iss69-d06-freeze-handoff HEAD)"
+          fi
+          python3 - "$BASE" <<'PY'
+          import subprocess, sys
+          base = sys.argv[1]
+          allowed = {
+              ".github/workflows/phase-e-authority-ledger.yml",
+              "evidence/architectural-recovery/ISS69/phase-e-delp-execution-graph.v32.json",
+              "evidence/architectural-recovery/ISS69/phase-e-e01-authority-ledger.v1.json",
+              "tests/test_phase_e_authority_ledger.py",
+          }
+          changed = {
+              line.strip()
+              for line in subprocess.check_output(
+                  ["git", "diff", "--name-only", f"{base}...HEAD"], text=True
+              ).splitlines()
+              if line.strip()
+          }
+          unexpected = sorted(changed - allowed)
+          present = sorted(changed & allowed)
+          if unexpected:
+              raise SystemExit(f"OUT_OF_SCOPE_E01_WRITE: {unexpected}")
+          if not present:
+              raise SystemExit("E01 diff unexpectedly empty")
+          print("E01 write surface:", *sorted(changed), sep="\n- ")
+          PY
