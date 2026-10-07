@@ -1,0 +1,200 @@
+{
+  "schema": "grade9v3-test-derived-question-bank-v1",
+  "bank_id": "TEST-NCERT-EXEMPLAR-G9-NS-Q1",
+  "version": "0.1.0",
+  "subject": "TEST",
+  "authority_model": "SOURCE_LINKED_DERIVATIVE",
+  "source_intake_ref": "TEST/question-bank/intake/ncert-exemplar-g9-number-systems-pilot.v1.json",
+  "questions": [
+    {
+      "id": "Q-TEST-NCERT-NS-Q1",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "NCERT-EXEMPLAR-G9-MATH-U01",
+        "NCERT-EXEMPLAR-G9-MATH-ANSWERS"
+      ],
+      "evidence_refs": [
+        "github:reallaksh19/Grade9v3.5#129:6029049531",
+        "github:reallaksh19/Grade9v3.5#129:6028932600"
+      ],
+      "extensions": {
+        "grade9v3:provenance_class": "CURRICULAR_VERIFIED",
+        "grade9v3:source_custody": {
+          "authority_class": "CURRICULAR_STANDARD",
+          "source_status": "NCERT_AUTHENTIC",
+          "wording_custody": "VERBATIM",
+          "exam": "NCERT Exemplar",
+          "paper": "Mathematics Class IX · Unit 1: Number Systems",
+          "question_number": "1",
+          "source_document_ref": "NCERT-EXEMPLAR-G9-MATH-U01",
+          "source_document_title": "NCERT Exemplar Problems — Mathematics Class IX, Unit 1: Number Systems",
+          "source_url": "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep201.pdf",
+          "source_locator": {
+            "chapter_or_unit": "Unit 1: Number Systems",
+            "exercise_or_section": "Exercise 1.1",
+            "question_number": "1",
+            "printed_page": 2,
+            "pdf_page_index": 1
+          },
+          "text_verification_status": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+          "verification_evidence_ref": "github:reallaksh19/Grade9v3.5#129:6029049531",
+          "answer_key_document_ref": "NCERT-EXEMPLAR-G9-MATH-ANSWERS",
+          "answer_key_url": "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep2an.pdf",
+          "answer_key_evidence_ref": "github:reallaksh19/Grade9v3.5#129:6028932600"
+        },
+        "grade9v3:analysis": {
+          "topic": "Number System",
+          "concept_bucket": "BUCKET-TEST-MATH-NS-RATIONAL",
+          "exam_source_badge": "NCERT Exemplar · Class IX Mathematics · Unit 1 · Exercise 1.1 Q1",
+          "original_question_type": "single_correct_mcq",
+          "learner_question_type": "single_correct_mcq",
+          "difficulty": {
+            "band": "D1",
+            "score": 1,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 0,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "Recognize the set inclusion Q ⊂ R and reject narrower sets that do not contain every rational number."
+          },
+          "expected_time_seconds": 45,
+          "common_wrong_route": "Choosing integer, whole or natural because familiar examples of rational numbers happen to lie in those narrower sets.",
+          "stable_crux_move": "Use the universal set-inclusion claim: every rational number is a real number, while not every rational number is integer, whole or natural.",
+          "transfer_profile": {
+            "core2b_candidate": false,
+            "dimension": null,
+            "classification": "SAME_FAMILY_VARIATION"
+          }
+        },
+        "grade9v3:authored_overlay": {
+          "authority": "AGENT_AUTHORED_SANDBOX",
+          "fields": [
+            "grade9v3:analysis",
+            "answer.summary",
+            "answer.reasoning",
+            "answer.reasoning_route",
+            "answer.check",
+            "scaffolds"
+          ]
+        }
+      },
+      "origin": "SOURCE",
+      "origin_ref": "ncert-exemplar-g9-math-u01-q01",
+      "original_identifier": "Unit 1 Ex 1.1 Q1",
+      "stem": "Every rational number is",
+      "stem_sha256": "sha256:40010d207519d386d5d2a6519c39745ee59de121105642b68c4f398a002cb3f6",
+      "subparts": [],
+      "options": [
+        "(A) a natural number",
+        "(B) an integer",
+        "(C) a real number",
+        "(D) a whole number"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "response": {
+        "type": "single_choice"
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "(C) a real number.",
+        "reasoning": [
+          "A rational number is, by definition, a number that can be written as p/q with integers p and q and q non-zero; every such number is a real number.",
+          "The narrower sets do not contain every rational number: for example, 1/2 is rational but is not an integer, whole number or natural number.",
+          "Therefore the only option true for every rational number is (C) a real number."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-TEST-NCERT-NS-Q1-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Read the word every as a set-inclusion claim about all rational numbers.",
+            "why_valid": "A universal multiple-choice statement is true only if every member of the source set belongs to the chosen target set.",
+            "inputs": [
+              "Every rational number is …"
+            ],
+            "output": "Test which option names a set containing all rational numbers."
+          },
+          {
+            "id": "Q-TEST-NCERT-NS-Q1-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Use Q ⊂ R and contrast it with the narrower natural, whole and integer sets.",
+            "why_valid": "Every rational number is real, but rationals such as 1/2 are outside the natural, whole and integer sets.",
+            "inputs": [
+              "Q ⊂ R",
+              "1/2 is rational"
+            ],
+            "output": "Only the real-number option survives the universal claim."
+          },
+          {
+            "id": "Q-TEST-NCERT-NS-Q1-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Check the surviving statement against a non-integer rational example.",
+            "why_valid": "A counterexample rejects a universal statement; 1/2 rejects A, B and D but not C.",
+            "inputs": [
+              "1/2"
+            ],
+            "output": "Option (C) is consistent with every rational number."
+          }
+        ],
+        "crux_move_ref": "Q-TEST-NCERT-NS-Q1-MOVE-2",
+        "check": "Use 1/2: it is rational and real, but not natural, whole or integer.",
+        "acceptable_alternatives": [
+          "Option C",
+          "a real number"
+        ],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "source_key": {
+          "state": "PRESENT",
+          "value": "(C)",
+          "authority": "NCERT_OFFICIAL",
+          "document_ref": "NCERT-EXEMPLAR-G9-MATH-ANSWERS",
+          "verification_evidence_ref": "github:reallaksh19/Grade9v3.5#129:6028932600"
+        },
+        "key_relation": "MATCHES_KEY"
+      },
+      "primary_capability_ref": "CAP-TEST-MATH-NS-RATIONAL-CLASSIFY",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-TEST-MATH-NS-RATIONAL-CLASSIFY",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2",
+          "role": "SOURCE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Focus on the word every. You need a set that contains all rational numbers, not just some familiar examples.",
+          "prompt": "Which option claims the broadest guaranteed membership?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "learner_stage": "KEY_CONCEPT",
+          "supports_move_ref": "Q-TEST-NCERT-NS-Q1-MOVE-1"
+        },
+        {
+          "text": "Use 1/2 as a boundary example: it is rational but not an integer, whole number or natural number.",
+          "prompt": "Which three options fail on this one rational number?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "FIRST_MOVE",
+          "supports_move_ref": "Q-TEST-NCERT-NS-Q1-MOVE-2"
+        },
+        {
+          "text": "Now use the inclusion Q ⊂ R: every rational number belongs to the real numbers.",
+          "prompt": "Which remaining option states that inclusion?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "learner_stage": "CRUX",
+          "supports_move_ref": "Q-TEST-NCERT-NS-Q1-MOVE-2"
+        }
+      ]
+    }
+  ]
+}
