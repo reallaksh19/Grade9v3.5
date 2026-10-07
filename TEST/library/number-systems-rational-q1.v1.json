@@ -1,0 +1,372 @@
+{
+  "schema_version": "0.2.0",
+  "package_id": "LIB-TEST-MATH-NS-RATIONAL-Q1",
+  "title": "TEST Rational-number classification micro-package",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "TEST",
+  "scope_summary": "One bounded authored teaching slice for classifying rational numbers against natural, whole, integer and real sets, built only to support the verified NCERT Exemplar Q1 derivative in the TEST sandbox.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-TEST-AUTHORED-NS-RATIONAL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "authority": "AGENT_AUTHORED_SANDBOX"
+      },
+      "title": "TEST-authored Rational Numbers teaching support",
+      "origin": "AUTHORED",
+      "locator": "TEST/library/number-systems-rational-q1.v1.json",
+      "edition": "0.1.0",
+      "section": "Rational-number set inclusion and boundary examples",
+      "last_checked": "2026-10-07",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Author-created TEST sandbox teaching material; not NCERT wording.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [
+        "CAP-TEST-MATH-NS-RATIONAL-CLASSIFY"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Provides only the minimum authored concept support needed to teach toward the verified source question without altering its source custody.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-TEST-MATH-NS-RATIONAL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-AUTHORED-NS-RATIONAL"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "authority": "AGENT_AUTHORED_SANDBOX"
+      },
+      "title": "Rational numbers in the real-number system",
+      "topic": "Number System",
+      "intrinsic_badge": "EASY",
+      "badge_reason": "The bounded demand is recognizing a universal set-inclusion statement and using one counterexample to reject narrower sets.",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": []
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-TEST-MATH-NS-RATIONAL-CLASSIFY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-AUTHORED-NS-RATIONAL"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "authority": "AGENT_AUTHORED_SANDBOX"
+      },
+      "action": "Classify a rational number by using set inclusion and boundary counterexamples to distinguish rational, real, integer, whole and natural membership.",
+      "success_criterion": "Correctly states that every rational number is real and can reject integer, whole or natural as universal supersets by giving a rational counterexample such as 1/2.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-TEST-MATH-NS-RATIONAL-INCLUSION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-AUTHORED-NS-RATIONAL"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "authority": "AGENT_AUTHORED_SANDBOX"
+      },
+      "title": "Use rational-number set inclusion and a boundary example",
+      "bucket_id": "BUCKET-TEST-MATH-NS-RATIONAL",
+      "primary_capability_ref": "CAP-TEST-MATH-NS-RATIONAL-CLASSIFY",
+      "intrinsic_badge": "EASY",
+      "badge_reason": "The key move is conceptual rather than computational: interpret “every” as set inclusion, then test narrower alternatives with a rational counterexample.",
+      "entry_assumptions": [
+        "Can recognize a fraction such as 1/2 as a rational number."
+      ],
+      "inferential_jump": "A universal membership claim can be settled by combining the inclusion Q ⊂ R with one rational counterexample that lies outside the narrower natural, whole and integer sets.",
+      "teaching_path": [
+        {
+          "id": "NSR-1",
+          "role": "DECLARE",
+          "action": "Read “every rational number is …” as a claim that the entire rational set must sit inside the chosen set.",
+          "why_valid": "The word every makes the statement universal, so the chosen target set must contain all rational numbers.",
+          "inputs": [
+            "the universal word every"
+          ],
+          "output": "a set-inclusion test rather than an example-matching test"
+        },
+        {
+          "id": "NSR-2",
+          "role": "TRANSFORM",
+          "action": "Use 1/2 as a boundary example to test the natural, whole and integer choices.",
+          "why_valid": "One counterexample is enough to disprove a universal set-membership statement.",
+          "inputs": [
+            "1/2 is rational"
+          ],
+          "output": "natural, whole and integer are rejected as universal supersets of the rationals"
+        },
+        {
+          "id": "NSR-3",
+          "role": "VERIFY",
+          "action": "Check the remaining real-number claim against the inclusion Q ⊂ R.",
+          "why_valid": "Every rational number is a real number, so the universal statement holds.",
+          "inputs": [
+            "Q ⊂ R"
+          ],
+          "output": "real number is the valid universal classification"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-TEST-MATH-NS-RATIONAL-CLASSIFY"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A familiar rational example being an integer means every rational number is an integer.",
+          "diagnostic_prompt": "Does 1/2 belong to the integers, whole numbers or natural numbers?",
+          "repair": "Use 1/2 as a counterexample: it is rational but belongs to none of those three narrower sets."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Explain why 3/4 is a real number but not an integer, whole number or natural number.",
+        "source_ref": "SRC-TEST-AUTHORED-NS-RATIONAL",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "3/4 is rational and therefore real, but it is not an integer, whole number or natural number.",
+          "reasoning": [
+            "3/4 is a ratio of integers with non-zero denominator, so it is rational.",
+            "Every rational number is real.",
+            "3/4 is not an integer, so it is also not whole or natural."
+          ],
+          "check": "The classification must include rational and real while excluding integer, whole and natural.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task is a set-membership explanation, not a computed numerical claim."
+        }
+      },
+      "research_contribution": "Provides the smallest authored explanatory bridge needed to support the verified source question while keeping source wording and authored pedagogy separate.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "construction_units": [
+        {
+          "id": "CU-TEST-MATH-NS-RATIONAL-CLASSIFY-1",
+          "decision_from": "inferential_jump",
+          "step_refs": [
+            "NSR-1",
+            "NSR-2",
+            "NSR-3"
+          ],
+          "worked_anchor_ref": "Q-TEST-AUTHORED-NS-RATIONAL-BOUNDARY-01",
+          "bank_anchor_ref": "Q-TEST-NCERT-NS-Q1",
+          "crux_question_refs": [
+            "Q-TEST-NCERT-NS-Q1"
+          ],
+          "crux_step_ref": "NSR-2",
+          "misconception_indexes": [
+            0
+          ],
+          "independent_checks": []
+        }
+      ]
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [
+    {
+      "id": "FAM-TEST-MATH-NS-RATIONAL-CLASSIFY",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-AUTHORED-NS-RATIONAL"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "authority": "AGENT_AUTHORED_SANDBOX"
+      },
+      "title": "Rational-number set-classification practice",
+      "capability_refs": [
+        "CAP-TEST-MATH-NS-RATIONAL-CLASSIFY"
+      ],
+      "solution_structure": [
+        "Interpret the universal membership claim.",
+        "Use a boundary rational number to reject narrower sets.",
+        "Confirm the surviving claim with Q ⊂ R."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Choose set inclusion rather than arithmetic calculation as the governing model.",
+        "representation_translation": "Translate verbal membership language into nested number-set relations.",
+        "reasoning_steps": "Move from universal claim to counterexample test to final inclusion check.",
+        "novelty": "Vary the rational example or the candidate target sets without changing the inclusion logic."
+      },
+      "safe_variations": [
+        "Replace 1/2 with another non-integer rational such as 3/4.",
+        "Ask which listed sets must contain every rational number."
+      ],
+      "transfer_boundaries": [
+        "Do not infer integer, whole or natural membership merely because some rationals lie in those sets.",
+        "Do not treat irrational-number classification as the same family; it changes the source set."
+      ],
+      "common_wrong_routes": [
+        "Choose integer because many familiar rational examples are integers.",
+        "Choose whole or natural without testing a non-integer rational."
+      ],
+      "item_refs": [
+        "Q-TEST-AUTHORED-NS-RATIONAL-BOUNDARY-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-TEST-AUTHORED-NS-RATIONAL-BOUNDARY-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-AUTHORED-NS-RATIONAL"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "authority": "AGENT_AUTHORED_SANDBOX"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-TEST-AUTHORED-NS-RATIONAL",
+      "original_identifier": "AUTHOR-NS-RATIONAL-BOUNDARY-01",
+      "stem": "Classify 3/4 among the natural, whole, integer, rational and real number sets. Explain one boundary example or set-inclusion fact that justifies your classification.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "Use standard school definitions of the listed number sets."
+      ],
+      "figure_refs": [],
+      "response": {
+        "type": "short_text"
+      },
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "3/4 is rational and real, but not integer, whole or natural.",
+        "reasoning": [
+          "3/4 is a ratio of two integers with non-zero denominator, so it is rational.",
+          "Every rational number is real.",
+          "Because 3/4 is not an integer, it is not whole or natural."
+        ],
+        "reasoning_route": [
+          {
+            "id": "QAUTH-NS-1",
+            "kind": "REPRESENT",
+            "action": "Treat 3/4 as an example whose set memberships must be checked.",
+            "why_valid": "The prompt asks for classification across nested number sets.",
+            "inputs": [
+              "3/4"
+            ],
+            "output": "test rational membership first"
+          },
+          {
+            "id": "QAUTH-NS-2",
+            "kind": "CONNECT",
+            "action": "Use the definition of rational number and Q ⊂ R.",
+            "why_valid": "3/4 is a ratio of integers and every rational is real.",
+            "inputs": [
+              "3/4",
+              "Q ⊂ R"
+            ],
+            "output": "rational and real"
+          },
+          {
+            "id": "QAUTH-NS-3",
+            "kind": "VERIFY",
+            "action": "Check whether 3/4 is an integer.",
+            "why_valid": "Whole and natural numbers are integer subsets, so non-integer status excludes all three.",
+            "inputs": [
+              "3/4 is not an integer"
+            ],
+            "output": "not integer, whole or natural"
+          }
+        ],
+        "crux_move_ref": "QAUTH-NS-2",
+        "check": "A correct response includes rational and real, excludes integer/whole/natural, and gives a set-membership reason.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-TEST-MATH-NS-RATIONAL-CLASSIFY",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-TEST-MATH-NS-RATIONAL-CLASSIFY",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [
+        {
+          "text": "Start by asking whether 3/4 can be written as p/q with integers p and q≠0.",
+          "reveals": "CONCEPT"
+        },
+        {
+          "text": "After deciding it is rational, use the nesting of number sets to decide which broader set must also contain it.",
+          "reveals": "METHOD"
+        }
+      ],
+      "scaffolds": [
+        {
+          "text": "Write two columns: sets that contain 3/4 and sets that do not.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "QAUTH-NS-1"
+        },
+        {
+          "text": "Use Q ⊂ R after you establish rational membership.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "QAUTH-NS-2"
+        }
+      ],
+      "learner_question_type": "constructed_response",
+      "difficulty": {
+        "band": "D1",
+        "score": 2,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "basis": "One set-inclusion decision plus one boundary check; no algebraic computation is required."
+      }
+    }
+  ],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "authority": "AGENT_AUTHORED_SANDBOX"
+  },
+  "data": []
+}
