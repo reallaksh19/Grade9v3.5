@@ -74,6 +74,18 @@
     }
   }
 
+  function ensureTestLink() {
+    const header = document.querySelector('header.g9-shell-header[data-site-test-entry]');
+    const nav = header && header.querySelector('.g9-header-nav');
+    if (!nav || nav.querySelector('a[data-site-test]')) return;
+    const link = document.createElement('a');
+    link.href = root+'test/index.html';
+    link.className = 'test-link';
+    link.setAttribute('data-site-test', '');
+    link.textContent = 'TEST';
+    nav.appendChild(link);
+  }
+
   // 2. Global search dialog
   const dialog = document.createElement('dialog');
   dialog.className = 'g9-search-dialog';
@@ -469,6 +481,7 @@
   // 4. Bind universal triggers
   function bindTriggers() {
     initLegacyHeader();
+    ensureTestLink();
 
     document.querySelectorAll('[data-g9-action="search"], .g9-search-trigger, .g9-search-btn').forEach(btn => {
       btn.onclick = openSearch;

@@ -1,27 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Geometric card cutout area model and degree cancellation" font-family="system-ui, sans-serif" font-size="20">
   <title>Geometric card cutout area model and degree cancellation</title>
-  <desc>Four staged panels: rectangular card dimensions (x+4) by (x+2), inner cutout of side x, quadratic term cancellation x^2 - x^2 = 0, and numerical check at x=2.</desc>
+  <desc>Four staged panels: rectangular card dimensions, an inner square cutout, cancellation of the quadratic terms, and a numerical check.</desc>
   <g data-g9-stage-id="POLY-AREA-1">
-    <text x="40" y="45" font-weight="700" font-size="24">1 · Rectangular card with interior square cutout</text>
-    <!-- Outer rectangle -->
+    <text x="40" y="45" font-weight="700" font-size="24">1 · Rectangle with square cutout</text>
     <rect x="80" y="70" width="320" height="200" fill="none" stroke="currentColor" stroke-width="4"/>
     <text x="210" y="60" text-anchor="middle">width: x + 4</text>
-    <text x="60" y="175" text-anchor="end">height: x + 2</text>
-    <!-- Inner square cutout -->
+    <text x="420" y="175">height: x + 2</text>
     <rect x="180" y="120" width="100" height="100" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-width="3" stroke-dasharray="6,4"/>
     <text x="230" y="175" text-anchor="middle">cutout: x × x</text>
   </g>
   <g data-g9-stage-id="POLY-AREA-2">
     <text x="40" y="315" font-weight="700" font-size="24">2 · Component area polynomials</text>
-    <text x="60" y="350">Outer card area:  A_outer(x) = (x + 4)(x + 2) = x² + 6x + 8 cm²  (degree 2)</text>
-    <text x="60" y="380">Inner cutout area: A_inner(x) = x² cm²  (degree 2)</text>
+    <text x="60" y="350">A_outer(x) = (x + 4)(x + 2) = x² + 6x + 8 cm²</text>
+    <text x="60" y="380">A_inner(x) = x² cm²; both component areas have degree 2.</text>
   </g>
   <g data-g9-stage-id="POLY-AREA-3">
     <text x="40" y="425" font-weight="700" font-size="24">3 · Subtraction and degree drop</text>
-    <text x="60" y="455">A_rem(x) = (x² + 6x + 8) - x² = (1 - 1)x² + 6x + 8 = 6x + 8 cm²  (degree 1)</text>
-    <text x="60" y="480" font-style="italic">Degree drops from 2 to 1 because leading quadratic coefficients cancel to zero.</text>
+    <text x="60" y="455">A_rem(x) = (x² + 6x + 8) - x² = 6x + 8 cm².</text>
+    <text x="60" y="482">The x² terms cancel, so the remaining polynomial has degree 1.</text>
   </g>
   <g data-g9-stage-id="POLY-AREA-4">
-    <text x="40" y="510" font-weight="700" font-size="24">4 · Check at admissible value x = 2: 24 - 4 = 20 cm² == 6(2) + 8 = 20 cm²</text>
+    <text x="40" y="510" font-weight="700" font-size="24">4 · Numerical check at x = 2</text>
+    <text x="420" y="510">24 - 4 = 20 cm² = 6(2) + 8.</text>
   </g>
 </svg>
