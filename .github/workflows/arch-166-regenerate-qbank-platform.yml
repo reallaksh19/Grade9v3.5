@@ -31,8 +31,8 @@ jobs:
           platform = build_question_bank_platform.build(Path.cwd())
           assert platform["catalog"]["counts"]["questions"] == 310
           assert all(row.get("label") != "TEST" for row in platform["catalog"].get("subjects", []))
-          assert all(row.get("subject") != "TEST" for row in platform["questions"].get("questions", []))
-          assert all(row.get("subject") != "TEST" for row in platform["search"].get("documents", []) if row.get("kind") == "question")
+          assert all(row.get("subject_ref") != "SUBJECT-TEST" for row in platform["summaries"].get("questions", []))
+          assert all(row.get("subject_ref") != "SUBJECT-TEST" for row in platform["search"].get("documents", []) if row.get("kind") == "question")
           PY
           python3 Shared/tools/build_pages_site.py
       - name: Refuse unexpected write surface
