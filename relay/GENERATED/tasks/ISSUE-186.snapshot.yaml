@@ -1,0 +1,32 @@
+schema_version: relay-v3.1-task-snapshot
+authority: DERIVED_READ_MODEL
+source_protocol: V3_1
+identity:
+  work_package: ISSUE-186-TEST-QBANK
+  ep: ISSUE-186-PROVIDER-VIEW
+  issue: 186
+  delivery_vehicle: 187
+purpose:
+  programme_outcome: Launch the complete NCERT Exemplar Grade 9 Mathematics intake in TEST before academic enrichment or production admission.
+  current_goal: Make all 210 parked questions browseable in a dedicated TEST Question Bank with explicit source-verification and academic-validation boundaries.
+  task_outcome: A generated TEST-only 210-question browser where every record is UNVALIDATED, source verification remains separately visible, and production Question Bank/search stay isolated.
+  why_this_task_exists: Owner explicitly requested Question Bank visibility first, validation before production admission, and Atlas/rungs/UI enrichment afterward.
+parent_issue:
+  repository: reallaksh19/Grade9v3.5
+  number: 186
+  title: "TEST Question Bank: launch 210 NCERT Exemplar questions"
+  state: OPEN
+  url: https://github.com/reallaksh19/Grade9v3.5/issues/186
+delivery:
+  relationship: PRIMARY
+  pr: 187
+  head: 1942bf88966469f4d84eb7b98ed592549a6a7491
+  branch: feat/test-ncert-question-bank-210
+material:
+  base: 8a46f75927ccd540a5f7891640c34c5c58b13127
+  current_head: 1942bf88966469f4d84eb7b98ed592549a6a7491
+execution:
+  lifecycle: ACTIVE
+  branch: feat/test-ncert-question-bank-210
+next:
+  immediate_action: Complete exact-head CI and browser verification, repair any findings, then deliver the bounded PR without production admission.
