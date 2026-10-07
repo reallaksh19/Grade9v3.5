@@ -1,11 +1,11 @@
 {
   "authority": "EVIDENCE_ONLY_NO_SILENT_DELETION",
-  "build_id": "sha256:ad696129e2f8d6641a9fec3830628931b32b356da487b8fb7792c6b81351fc3e",
-  "evidence_count": 27,
+  "build_id": "sha256:d1b22a3164fa8e3d32c34f2d1f303d66fa094bbfb42102c18bd39bdf4a9ddc06",
+  "evidence_count": 31,
   "evidence_counts": {
-    "NEAR_DUPLICATE": 1,
+    "NEAR_DUPLICATE": 2,
     "SOURCE_COLLISION": 1,
-    "VARIANT": 25
+    "VARIANT": 28
   },
   "groups": [
     {
@@ -248,6 +248,35 @@
         "Q-MAT-LEQ-04-EXEMPLAR9-4-1-Q3",
         "Q-MAT-LEQ-04-EXEMPLAR9-4-2-Q1",
         "Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7"
+      ],
+      "reason": "explicit_family_ref"
+    },
+    {
+      "classification": "VARIANT",
+      "family_ref": "FAM-MAT-NUMSYS-DECIMAL-CHARACTER",
+      "member_ids": [
+        "Q-MAT-NUMSYS-NCERT9-EX11-Q03",
+        "Q-MAT-NUMSYS-NCERT9-EX11-Q05",
+        "Q-MAT-NUMSYS-NCERT9-EX11-Q07",
+        "Q-MAT-NUMSYS-NCERT9-EX11-Q09"
+      ],
+      "reason": "explicit_family_ref"
+    },
+    {
+      "classification": "VARIANT",
+      "family_ref": "FAM-MAT-NUMSYS-DENSITY-INTERVAL",
+      "member_ids": [
+        "Q-MAT-NUMSYS-NCERT9-EX11-Q02",
+        "Q-MAT-NUMSYS-NCERT9-EX11-Q08"
+      ],
+      "reason": "explicit_family_ref"
+    },
+    {
+      "classification": "VARIANT",
+      "family_ref": "FAM-MAT-NUMSYS-SET-CLASSIFY",
+      "member_ids": [
+        "Q-MAT-NUMSYS-NCERT9-EX11-Q01",
+        "Q-MAT-NUMSYS-NCERT9-EX11-Q06"
       ],
       "reason": "explicit_family_ref"
     },
@@ -540,15 +569,23 @@
   ],
   "near_duplicate_coverage": {
     "complete": false,
-    "records": 339,
+    "records": 349,
     "records_whose_shingles_were_all_skipped": 0,
-    "records_with_shingles": 339,
+    "records_with_shingles": 349,
     "records_with_truncated_candidates": 47,
-    "shingle_buckets": 910,
+    "shingle_buckets": 915,
     "shingle_buckets_skipped_as_too_common": 0
   },
-  "question_count": 339,
+  "question_count": 349,
   "relationships": [
+    {
+      "classification": "NEAR_DUPLICATE",
+      "left_id": "Q-MAT-NUMSYS-NCERT9-EX11-Q06",
+      "reason": "stem_token_jaccard",
+      "right_id": "Q-MAT-NUMSYS-NCERT9-EX11-Q07",
+      "score": 1.0,
+      "shared_shingles": 4
+    },
     {
       "classification": "NEAR_DUPLICATE",
       "left_id": "Q-MAT-POLY-NCERT9-EX21-Q04",
