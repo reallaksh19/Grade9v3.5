@@ -1,0 +1,299 @@
+{
+  "schema_version": "grade9v3-phase-e-authority-ledger-v1",
+  "issue": 115,
+  "phase": "E01",
+  "programme_issue": 69,
+  "protocol_ref": "reallaksh19/Common@46916f4828090c1f32cf2856186b0b00defdbea3:skills/engineering-pr-delivery-v3.2",
+  "base_handoff": {
+    "issue": 114,
+    "pr": 127,
+    "head_sha": "c4da59c56be1e148b8dfdb22654d9fb5e1a08541",
+    "evidence_path": "evidence/architectural-recovery/ISS69/phase-d-d06-freeze-handoff.v1.json",
+    "evidence_blob": "7299b41ba36143ebda7faea3a59f1946171fdb96",
+    "delp_graph_path": "evidence/architectural-recovery/ISS69/phase-d-delp-execution-graph.v32.json",
+    "delp_graph_blob": "1a57a072e0f4cf2e00a5c728ec8fb931bae140bd"
+  },
+  "authority_graph": {
+    "product_intent": [
+      {
+        "authority": "ISSUE",
+        "ref": "#29",
+        "role": "Core1A/Core2 product and academic intent"
+      },
+      {
+        "authority": "ISSUE",
+        "ref": "#69",
+        "role": "blueprint-first architectural recovery and integration programme"
+      }
+    ],
+    "semantic_contract": {
+      "authority": "BRANCH_HANDOFF",
+      "issue": 66,
+      "ref": "feat/iss66-blueprint-semantic-contracts",
+      "head_sha": "794f98fecc8323ca50b874fb11794ea48e77726a",
+      "retained_invariants": [
+        "derived difficulty is distinct from requested band",
+        "primary demand binds to the canonical crux",
+        "one primary demand plus derived band selects one canonical QRT cell",
+        "author-only review cannot satisfy independent rendered acceptance",
+        "support eligibility/protected work is stateful and declarative",
+        "representations bind to exact role/owner/case/data/asset",
+        "misconception-specific repair requires CONFIRMED diagnostic evidence"
+      ]
+    },
+    "blueprint_registry": {
+      "path": "Shared/web/interactive-page-blueprints.v1.json",
+      "blob": "7b48d6d955e16582034d90c7d2e7a3606b648266",
+      "registry_version": "1.17.0",
+      "active_core_authorities": [
+        {
+          "id": "BP-CORE1A-CONSTRUCTION",
+          "version": "1.8.0",
+          "role": "CORE1A"
+        },
+        {
+          "id": "BP-CORE2-SOURCE-QUESTION",
+          "version": "1.11.0",
+          "role": "CORE2"
+        }
+      ],
+      "uniqueness": "EXACTLY_ONE_ACTIVE_BLUEPRINT_PER_CORE_ROLE"
+    },
+    "package_schema": {
+      "path": "Shared/library/package.schema.json",
+      "blob": "a9cdf31d6ae46d00ac227791264231f05d453725",
+      "id": "urn:common:v3b:microtopic-library:0.1.0",
+      "role": "record shape and fail-closed structural contract"
+    },
+    "qrt": {
+      "matrix_path": "Shared/quality/question-demand-matrix.v1.json",
+      "matrix_blob": "3779a53ae7d20efbb4644bc3f9243909e93dc145",
+      "templates_path": "Shared/quality/question-demand-templates.v1.json",
+      "templates_blob": "e2409aef11ae7d98444593bfbe1a38eb00c97cef",
+      "compiler_path": "Shared/tools/question_review_matrix.py",
+      "compiler_blob": "42a51307d8d0f4b5254c610f7fefd62e27a09cd5",
+      "difficulty_path": "Shared/tools/question_difficulty.py",
+      "difficulty_blob": "5219d99603d7de6c2d1e07294d19d4508a5c312e",
+      "canonical_demands": [
+        "RETRIEVE",
+        "EXPLAIN",
+        "APPLY",
+        "MODEL",
+        "REPRESENT",
+        "SYNTHESIZE",
+        "JUSTIFY"
+      ],
+      "canonical_bands": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "canonical_template_count": 28,
+      "namespace": "QRT-<DEMAND>-<BAND>",
+      "competing_template_namespaces": "FORBIDDEN_AS_AUTHORITY"
+    },
+    "projection": {
+      "renderer_path": "Shared/tools/render_core.py",
+      "renderer_blob": "675cbceb373b4489584a0774a8297666de46618c",
+      "renderer_role": "SOLE_PRODUCTION_CORE_RENDERER_COMPOSITION_ONLY",
+      "core2_projection_path": "Shared/tools/core2_v2.py",
+      "core2_projection_blob": "2b85159bbab9e6ae46907d00d926785e73986427",
+      "learner_metadata_path": "Shared/tools/learner_metadata.py",
+      "learner_metadata_blob": "95766e283ce66404b8d514c92a6b84909ea58d4c"
+    },
+    "review_and_adapter_contracts": {
+      "qrt_pipeline_schema": {
+        "path": "Shared/quality/qrt-pipeline-run.schema.json",
+        "blob": "a4c25153ca5fa53a67b17565b15076215ebd7c9a"
+      },
+      "adapter_schema": {
+        "path": "Shared/quality/demand-review-adapter.schema.json",
+        "blob": "5287d51d51ea08a9ae9ee40eee16d7b8b6b61aa8"
+      },
+      "subjects": [
+        {
+          "subject": "Physics",
+          "demand_adapter": {
+            "path": "Physics/adapter/DemandReview.json",
+            "blob": "03ab1f96443e85f86d909b5dc15afcbe77086181"
+          },
+          "core_contract": {
+            "path": "Physics/adapter/CoreContracts.json",
+            "blob": "0018603fc63afed1546e37e5134c1f0ef99712af"
+          }
+        },
+        {
+          "subject": "Mathematics",
+          "demand_adapter": {
+            "path": "Mathematics/adapter/DemandReview.json",
+            "blob": "6a6891837f2364af01d86299254ca2708b1867a9"
+          },
+          "core_contract": {
+            "path": "Mathematics/adapter/CoreContracts.json",
+            "blob": "2819841de6855b5807deda26eb03046660192901"
+          }
+        },
+        {
+          "subject": "Chemistry",
+          "demand_adapter": {
+            "path": "Chemistry/adapter/DemandReview.json",
+            "blob": "596b97a8b6941d75428cedba9daa0929d494d00b"
+          },
+          "core_contract": {
+            "path": "Chemistry/adapter/CoreContracts.json",
+            "blob": "7b19e1900b78c87fb8ccf806adf0c8fea4af053d"
+          }
+        }
+      ],
+      "boundary": "SUBJECT_SEMANTICS_IN_ADAPTERS_AND_RECORDS_NOT_SHARED_SPECIAL_CASES"
+    }
+  },
+  "compatibility_ledger": [
+    {
+      "id": "ACTIVE_CORE1A_1_8",
+      "class": "CURRENT_AUTHORITY",
+      "state": "SUPPORTED",
+      "authority_ref": "BP-CORE1A-CONSTRUCTION@1.8.0"
+    },
+    {
+      "id": "ACTIVE_CORE2_1_11",
+      "class": "CURRENT_AUTHORITY",
+      "state": "SUPPORTED",
+      "authority_ref": "BP-CORE2-SOURCE-QUESTION@1.11.0"
+    },
+    {
+      "id": "LEGACY_STANDALONE_BLUEPRINTS",
+      "class": "LEGACY_COMPATIBILITY",
+      "state": "OBSERVABLE_NOT_AUTHORITY",
+      "examples": [
+        "BP-CORE1A-CONSTRUCTION@1.4.0",
+        "BP-CORE2-SOURCE-QUESTION@1.5.0"
+      ],
+      "rule": "legacy standalone receipts/pages may be observed for compatibility but cannot certify current recovered blueprints"
+    },
+    {
+      "id": "STALE_CORE_LEARNING_GENERATED_1_7",
+      "class": "GENERATED_MIGRATION",
+      "state": "OPEN_BLOCKS_E02",
+      "issue": 108,
+      "files": [
+        "public/core-learning/data.js",
+        "docs/core-learning/data.js"
+      ],
+      "observed_stale_ref": "BP-CORE1A-CONSTRUCTION@1.7.0",
+      "required_ref": "BP-CORE1A-CONSTRUCTION@1.8.0",
+      "repair_authority": "Shared/tools/build_manifest.py",
+      "manual_edit": "FORBIDDEN"
+    },
+    {
+      "id": "HISTORICAL_ALT_QRT_NAMESPACE",
+      "class": "HISTORICAL_NEGATIVE",
+      "state": "NONCANONICAL",
+      "pattern": "TMPL-CHEM-G11-*",
+      "canonical_replacement": "QRT-<DEMAND>-<BAND>"
+    },
+    {
+      "id": "HISTORICAL_49_56_CLASSIFICATIONS",
+      "class": "HISTORICAL_REPLAY",
+      "state": "REPLAY_REQUIRED_NONACCEPTING",
+      "issues": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ]
+    }
+  ],
+  "predecessor_lineage": {
+    "issue66": {
+      "head_sha": "794f98fecc8323ca50b874fb11794ea48e77726a"
+    },
+    "phase_a": {
+      "issue": 70,
+      "head_sha": "a587052b9f61dd39b5e3098fd8fd538a383cf433"
+    },
+    "phase_b": {
+      "issue": 71,
+      "head_sha": "d1bb38b44a5626a3930cc28b8b9d164b39c73b55"
+    },
+    "phase_c_source_runtime": {
+      "issue": 72,
+      "head_sha": "59751b52e4911a132abb8c3956583a75b3cbcab7",
+      "generated_completion_issue": 108
+    },
+    "phase_d": {
+      "issue": 73,
+      "freeze_issue": 114,
+      "freeze_head_sha": "c4da59c56be1e148b8dfdb22654d9fb5e1a08541",
+      "child_heads": [
+        {
+          "phase": "D01",
+          "issue": 109,
+          "pr": 119,
+          "head_sha": "5bd77489859ea9671c9e577d7db87e5dc4fd5870"
+        },
+        {
+          "phase": "D02",
+          "issue": 110,
+          "pr": 124,
+          "head_sha": "319362e26980f803d752de9b68a1dbbe4d6a0c36"
+        },
+        {
+          "phase": "D03",
+          "issue": 111,
+          "pr": 120,
+          "head_sha": "7b6cd3c4bfd8d6ad9c40983c43709bced296c53b"
+        },
+        {
+          "phase": "D04",
+          "issue": 112,
+          "pr": 121,
+          "head_sha": "33db3f2c83fc53358c41081f62a2ab76acabb633"
+        },
+        {
+          "phase": "D05",
+          "issue": 113,
+          "pr": 126,
+          "head_sha": "f1b6f53d77872062e231592b1e4b3fb66d2f8ba7"
+        }
+      ]
+    },
+    "appendix_a": {
+      "issue": 74,
+      "readiness_pr": 118,
+      "head_sha": "3b1ebeac97ed73252298ef472cd446f0bd6ce385",
+      "technical_browser_state": "COMPLETE",
+      "promotion_release": "SEPARATE_NOT_GRANTED"
+    }
+  },
+  "phase_d_imported_facts": {
+    "shared_production_files_changed": [],
+    "accepted_rows": 0,
+    "accepted_cells": 0,
+    "total_cells": 28,
+    "unsupported_cells": 28,
+    "independent_acceptance_granted": false,
+    "merge_or_publication_granted": false,
+    "inherited_guardrail_failure_signature_count": 112
+  },
+  "phase_e_gate_state": {
+    "e01": "ADMISSIBLE_AFTER_D06",
+    "e02": "BLOCKED_UNTIL_E01_AND_ISS108_GENERATED_FRESHNESS",
+    "e03": "BLOCKED_UNTIL_E01_AND_E02",
+    "issue108": {
+      "state": "OPEN_BLOCKS_E02",
+      "generated_regeneration_required": true
+    }
+  },
+  "non_grants": {
+    "merge_to_main": false,
+    "golden_promotion": false,
+    "learner_publication": false,
+    "learning_effectiveness": false
+  }
+}
