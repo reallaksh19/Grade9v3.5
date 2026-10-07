@@ -9,13 +9,15 @@
   },
   "target_subject": "Mathematics",
   "target_topic": "Polynomials",
-  "state": "IDENTITY_RECONCILED",
+  "state": "PROMOTION_READY",
   "sources": [
     "TEST/question-bank/iss55-poly.json",
     "TEST/library/iss55-poly.v1.json",
     "TEST/products/iss55-poly.manifest.json",
     "TEST/matrices/iss55-poly.rungs.json",
-    "TEST/candidates/iss55-poly.canonical-reconciliation.json"
+    "TEST/candidates/iss55-poly.canonical-reconciliation.json",
+    "Mathematics/library/polynomials.v1.json",
+    "TEST/candidates/iss55-poly.canonical-staging.json"
   ],
   "question_counts": {
     "total": 10,
@@ -56,20 +58,20 @@
     },
     "owner_acceptance": {
       "status": "PENDING",
-      "detail": "No canonical Mathematics promotion is self-certified by this TEST review. Owner acceptance of the exact reconciled canonical identities/output remains required."
+      "detail": "Owner acceptance of this exact staged Mathematics candidate remains required before any REVIEWED/CURATED transition or production Question Bank admission."
     },
     "canonical_identity": {
       "status": "PASS",
       "detail": "Current Mathematics canonical library has no Polynomials package and no colliding ISS55 identities. Stable target is SUBJECT-MATHEMATICS / TOPIC-MATHEMATICS-POLYNOMIALS with Mathematics/library/polynomials.v1.json (LIB-MATH-POLYNOMIALS). All 38 active TEST package records map to collision-free MAT-namespaced canonical ids, and the 10 owner questions map to Q-MAT-POLY-ISS55-01..10 with stem digests and lineage preserved."
     },
     "canonical_staging": {
-      "status": "PENDING",
-      "detail": "The reconciled records have not yet been materialized as package-shaped Mathematics candidate questions. Staging must preserve TEST custody, add the package-question contract fields, and keep Question Bank admission disabled until owner acceptance."
+      "status": "PASS",
+      "detail": "Staged Mathematics/library/polynomials.v1.json as LIB-MATH-POLYNOMIALS with 10 CANDIDATE questions, 4 local figures, preserved owner/verbatim lineage, zero production Question Bank opt-ins, library-intake/reference-integrity/application-crux conformance, and exact package blob dc7e4633b9e296f1c00bf22a2ec0d407137e4e72."
     }
   },
   "promotion": {
-    "status": "BLOCKED",
+    "status": "READY",
     "target": "Mathematics",
-    "reason": "Canonical identity reconciliation passes. Remaining gates are canonical candidate staging and owner acceptance of the exact staged conversion before Question Bank admission."
+    "reason": "Technical/layout/content/identity/staging checks pass. Candidate is ready for Owner decision on the exact staged Mathematics package; production Question Bank admission remains disabled until acceptance."
   }
 }

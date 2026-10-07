@@ -570,6 +570,12 @@ def load_subtopic_titles(repo: Path) -> dict[str, dict]:
         # TEST is a sandbox authority, never canonical Question Bank naming authority.
         if package.get("subject") == "TEST":
             continue
+        # Explicit canonical staging is non-publishing authority. Keep staged packages
+        # out of production QB naming until the staging record says they are admitted.
+        extensions = package.get("extensions") or {}
+        staging = extensions.get("grade9v3:canonical_staging") if isinstance(extensions, Mapping) else None
+        if isinstance(staging, Mapping) and staging.get("question_bank_admitted") is False:
+            continue
         for microtopic in package.get("microtopics") or []:
             ref, title = microtopic.get("primary_capability_ref"), microtopic.get("title")
             if isinstance(ref, str) and ref and isinstance(title, str) and title.strip():
