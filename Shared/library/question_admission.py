@@ -8,7 +8,7 @@ Those are properties of one record and need no knowledge of a subject (the scope
 The registry's `component_policy.admission` names the points; this module is where they are checked, and intake calls it. Every point
 that blocks was measured against every question the library held before it (0 refused) and against the 244 records of pull request 375.
 
-  QUESTION_STEM           the learner-visible question has words enough to ask something; a short source lead-in may be completed by options/conditions/subparts
+  QUESTION_STEM           the learner-visible prompt has words enough to ask something; a short source lead-in may be completed by options/subparts, not padded by givens
   QUESTION_STEM_COMPLETE  the stem ends where a sentence ends (a stem cut off mid-sentence asks half a question)            said
   QUESTION_OPTIONS        an option has text; a letter standing for itself ('(A) A') is a choice with nothing to choose
   QUESTION_GIVENS         a number a hint relies on is in the stem, the options or the conditions                              said
@@ -159,12 +159,17 @@ def findings(package: dict) -> Iterator[dict]:
 
         stem = row.get("stem") if isinstance(row.get("stem"), str) else ""
         words = stem.split()
-        visible_words = _question_text(row).split()
-        if len(words) < STEM_MIN_WORDS and len(visible_words) < STEM_MIN_WORDS:
+        options_for_prompt = [o for o in row.get("options") or [] if isinstance(o, str)]
+        subparts_for_prompt = [
+            str(s.get("text", s)) if isinstance(s, dict) else str(s)
+            for s in row.get("subparts") or []
+        ]
+        prompt_words = " ".join([stem, *options_for_prompt, *subparts_for_prompt]).split()
+        if len(words) < STEM_MIN_WORDS and len(prompt_words) < STEM_MIN_WORDS:
             yield found(
                 "QUESTION_STEM",
-                f"the stem is {len(words)} word(s) and the complete learner-visible question is "
-                f"{len(visible_words)} word(s); it does not ask anything",
+                f"the stem is {len(words)} word(s) and the stem plus options/subparts is "
+                f"{len(prompt_words)} word(s); it does not ask anything",
             )
         else:
             own, solution = _sentences(stem), set(_solution_text(row))
