@@ -22,7 +22,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.library.resolve import build_index  # noqa: E402
-from Shared.tools import atlas_index, build_web_data, matrix_conformance, product_coverage, render_core  # noqa: E402
+from Shared.tools import atlas_index, build_test_question_bank, build_web_data, matrix_conformance, product_coverage, render_core  # noqa: E402
 
 esc = render_core.esc
 TEST_ROOT = REPO / "TEST"
@@ -389,6 +389,7 @@ def hub_page() -> str:
         + stage(3, "Explorer", "A guided page on the toughest concept of the same question set", inter)
         + card("places", "atlas rungs deployments",
                '<h2>Where things are</h2><ul>'
+               f'<li>{link("question-bank/index.html", "Question Bank")}: parked source questions, explicitly unvalidated for academic admission</li>'
                f'<li>{link("atlas/index.html", "Atlas")}: the Topic Atlas for the TEST matrix</li>'
                f'<li>{link("rungs/index.html", "Rungs")}: the ladder, rung by rung</li>'
                f'<li>{link("deployments/index.html", "Deployments")}: every deployed draft, with its digest and gaps</li></ul>')
@@ -588,8 +589,14 @@ def atlas_page() -> str:
     return text.replace(marker, marker + "\n" + atlas_data_script(), 1)
 
 
+def question_bank_page() -> str:
+    return build_test_question_bank.render_page(REPO)
+
+
 def render_all() -> dict[str, str]:
-    return {"index.html": hub_page(), "atlas/index.html": atlas_page(), "rungs/index.html": rungs_page(),
+    return {"index.html": hub_page(), "question-bank/index.html": question_bank_page(),
+            "question-bank/questions.js": build_test_question_bank.render_data(REPO),
+            "atlas/index.html": atlas_page(), "rungs/index.html": rungs_page(),
             "deployments/index.html": deployments_page()}
 
 

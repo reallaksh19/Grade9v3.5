@@ -17,6 +17,8 @@ jobs:
           python-version: "3.11"
       - name: Install test dependencies
         run: pip install --quiet jsonschema pypdf
+      - name: TEST Question Bank regressions
+        run: python3 -m unittest tests.test_test_question_bank
       - name: Informational platform code tests
         continue-on-error: true
         run: >-
@@ -30,6 +32,23 @@ jobs:
           tests.test_core2_v2_motion2d
           tests.test_core2_v2_quality
           tests.test_core2_v2_boundaries
+
+
+  test-question-bank-browser-audit:
+    # Blocking technical evidence for the TEST-only NCERT intake browser.
+    # Passing this does not admit or publish any question to the production Question Bank.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install TEST Question Bank browser dependencies
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Audit 210-question TEST Question Bank
+        run: node tests/test_test_question_bank_browser.mjs
 
   core2-v2-browser-audit:
     # Rendered acceptance evidence only. This job is deliberately non-gating;
