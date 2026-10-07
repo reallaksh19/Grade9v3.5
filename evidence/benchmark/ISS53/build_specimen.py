@@ -837,6 +837,7 @@ for qid in [f"Q{i}" for i in range(1, 11)]:
                 "learner_question_type": "constructed_response",
                 "difficulty": {
                     "band": academic["difficulty"]["band"],
+                    "requested_band": "D1",
                     "score": academic["difficulty"]["score"],
                     "components": academic["difficulty"]["components"],
                     "basis": (
