@@ -1,0 +1,40 @@
+{
+  "schema_version": "grade9v3-test-canonical-staging-v1",
+  "candidate_id": "ISS55-POLY",
+  "staging_basis_commit": "99518ff5a2a9f684c264fb71936d4d85b73b29a9",
+  "target": {
+    "subject": "Mathematics",
+    "package_path": "Mathematics/library/polynomials.v1.json",
+    "package_id": "LIB-MATH-POLYNOMIALS",
+    "package_git_blob_sha": "50012e048249e8c97fd04d245f6cd38f1964199b"
+  },
+  "source": {
+    "test_package": "TEST/library/iss55-poly.v1.json",
+    "owner_bank": "TEST/question-bank/iss55-poly.json",
+    "reconciliation": "TEST/candidates/iss55-poly.canonical-reconciliation.json"
+  },
+  "counts": {
+    "questions": 10,
+    "resources": 4,
+    "buckets": 1,
+    "capabilities": 10,
+    "microtopics": 3,
+    "representations": 10,
+    "question_families": 10,
+    "figures": 4
+  },
+  "checks": {
+    "package_schema": "PASS",
+    "canonical_ids_unique": "PASS",
+    "verbatim_stems_preserved": "PASS",
+    "owner_custody_preserved": "PASS",
+    "test_asset_dependencies": "PASS_NONE",
+    "production_question_bank_opt_ins": 0
+  },
+  "authority_boundary": {
+    "record_status": "CANDIDATE",
+    "owner_acceptance": "PENDING",
+    "production_question_bank_admission": false,
+    "note": "This is a canonical Mathematics staging candidate only. It does not grant REVIEWED/CURATED status and does not publish the 10 questions."
+  }
+}
