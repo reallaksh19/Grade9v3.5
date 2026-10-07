@@ -76,6 +76,10 @@ class PhaseEFinalQualification(unittest.TestCase):
         evidence = self.evidence
         self.assertEqual(evidence["schema_version"], "grade9v3-phase-e-e02-final-qualification-v1")
         self.assertEqual(evidence["result"], "PASS_TECHNICAL_EXACT_HEAD_WITH_INHERITED_DEBT")
+        self.assertEqual(
+            evidence["base"]["head_sha"],
+            "eef2debe87d1d3f60cbd8cd4ca9445f58f631a74",
+        )
 
         generated = evidence["generated_bytes"]
         for relative in (
