@@ -1,0 +1,34 @@
+name: qb-pages-manifest-q11-q20
+
+on:
+  push:
+    branches:
+      - feat/admit-ncert-poly-q11-q20
+    paths:
+      - ".github/workflows/qb-pages-manifest-q11-q20.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Refresh Pages manifest
+        run: python3 Shared/tools/build_pages_site.py || true
+      - name: Commit Pages manifest only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/.pages-manifest.json
+          if git diff --cached --quiet; then
+            echo "Pages manifest already current"
+          else
+            git commit -m "chore(pages): refresh Question Bank mirror manifest"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
