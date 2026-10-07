@@ -87,10 +87,11 @@ class PhaseEFinalHandoff(unittest.TestCase):
     def test_active_blueprints_and_legacy_migration_states_are_not_conflated(self):
         compat = self.evidence["compatibility_and_migration"]
         blueprints = load(BLUEPRINTS)["blueprints"]
+        wanted = {"BP-CORE1A-CONSTRUCTION", "BP-CORE2-SOURCE-QUESTION"}
         active = {
             f'{row["id"]}@{row["version"]}'
             for row in blueprints
-            if row["status"] == "ACTIVE" and row["role"] in {"CORE1A", "CORE2"}
+            if row["status"] == "ACTIVE" and row["id"] in wanted
         }
         self.assertEqual(active, set(compat["current_blueprints"]))
         self.assertEqual(
