@@ -29,7 +29,9 @@ jobs:
         run: |
           python3 Shared/tools/build_test_site.py
           CHANGED="$(git diff --name-only -- public/test)"
-          test "$CHANGED" = "public/test/atlas/index.html"
+          printf '%s\n' "$CHANGED"
+          test -n "$CHANGED"
+          exit 1
       - name: Mirror Atlas through Pages publication transform
         run: |
           python3 - <<'PY'
