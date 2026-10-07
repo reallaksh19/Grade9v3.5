@@ -88,8 +88,8 @@ for (const width of [390, 1280]) {
   }));
   checked += 1;
   if (facts.cards !== 210) failures.push(`question bank @${width}: expected 210 cards, got ${facts.cards}`);
-  if (facts.validated !== 10) failures.push(`question bank @${width}: expected 10 VALIDATED cards, got ${facts.validated}`);
-  if (facts.unvalidated !== 200) failures.push(`question bank @${width}: expected 200 UNVALIDATED cards, got ${facts.unvalidated}`);
+  if (facts.validated !== 20) failures.push(`question bank @${width}: expected 20 VALIDATED cards, got ${facts.validated}`);
+  if (facts.unvalidated !== 190) failures.push(`question bank @${width}: expected 190 UNVALIDATED cards, got ${facts.unvalidated}`);
   if (facts.sourceVerified !== 210) failures.push(`question bank @${width}: expected 210 source-verified cards, got ${facts.sourceVerified}`);
   if (facts.duplicateReview !== 1) failures.push(`question bank @${width}: expected one duplicate-review card, got ${facts.duplicateReview}`);
   if (facts.overflow > 1) failures.push(`question bank @${width}: ${facts.overflow}px wider than the screen`);
