@@ -1,0 +1,362 @@
+{
+  "schema_version": "grade9v3-phase-d-acceptance-synthesis-v1",
+  "issue": 113,
+  "phase": "D05",
+  "base_head": "59751b52e4911a132abb8c3956583a75b3cbcab7",
+  "admission_contract": {
+    "fresh_normalized_primary_classification_required": true,
+    "derived_five_component_difficulty_required": true,
+    "exact_current_rendered_binding_required": true,
+    "independent_rendered_reviewer_required": true,
+    "historical_replay_rows_excluded": true,
+    "self_review_never_upgrades_to_independent": true
+  },
+  "matrix": {
+    "bands": [
+      "D1",
+      "D2",
+      "D3",
+      "D4"
+    ],
+    "demands": [
+      "RETRIEVE",
+      "EXPLAIN",
+      "APPLY",
+      "MODEL",
+      "REPRESENT",
+      "SYNTHESIZE",
+      "JUSTIFY"
+    ],
+    "total_cells": 28
+  },
+  "candidates": [
+    {
+      "subject": "Physics",
+      "question_ref": "PYQ-PHY-IITJEE-2011-P2-Q33",
+      "qualification_issue": 109,
+      "qualification_pr": 119,
+      "qualification_head": "5bd77489859ea9671c9e577d7db87e5dc4fd5870",
+      "technical_qualification": "PASS",
+      "primary_classification": {
+        "status": "NOT_FRESH_NORMALIZED_U04C",
+        "demand": null,
+        "reason": "D01 proves primary capability/crux ownership but does not author a normalized grade9v3:cognitive_demand record for Q33."
+      },
+      "difficulty": {
+        "band": "D3",
+        "score": 7,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 2,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "evidence_status": "DERIVED_AND_TECHNICALLY_VERIFIED"
+      },
+      "rendered_binding": {
+        "status": "CURRENT_EPHEMERAL_BROWSER_RUN_NO_RETAINED_REVIEW_BUNDLE",
+        "workflow": "learner-platform-code-tests",
+        "run_id": 37549575252,
+        "browser_job_id": 112561603042,
+        "head_sha": "5bd77489859ea9671c9e577d7db87e5dc4fd5870",
+        "retained_artifact_id": null,
+        "retained_artifact_sha256": null,
+        "note": "Current browser execution passed, but the exact generated branch render is not retained as a D05-reviewable artifact bundle."
+      },
+      "independent_review": {
+        "status": "MISSING",
+        "basis": null,
+        "reviewer_ref": null
+      },
+      "accepted": false,
+      "rejection_reasons": [
+        "FRESH_NORMALIZED_PRIMARY_CLASSIFICATION_MISSING",
+        "EXACT_REVIEWABLE_RENDERED_BYTES_NOT_RETAINED",
+        "INDEPENDENT_RENDERED_REVIEW_MISSING"
+      ]
+    },
+    {
+      "subject": "Mathematics",
+      "question_ref": "Q-MAT-LEQ-04-EXEMPLAR9-4-3-Q7",
+      "qualification_issue": 110,
+      "qualification_pr": 124,
+      "qualification_head": "319362e26980f803d752de9b68a1dbbe4d6a0c36",
+      "technical_qualification": "PASS",
+      "primary_classification": {
+        "status": "FRESH_NORMALIZED_CANDIDATE",
+        "demand": "MODEL",
+        "qrt_template": "QRT-MODEL-D2",
+        "crux_move_ref": "Q37-DEC",
+        "basis": "The decisive learner-owned act is choosing the solution model for the setting: one coordinate on the number line versus an ordered pair on the plane."
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 5,
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "evidence_status": "DERIVED_AND_TECHNICALLY_VERIFIED"
+      },
+      "rendered_binding": {
+        "status": "CURRENT_RETAINED_CI_ARTIFACT",
+        "workflow": "phase-d-mathematics-qualification",
+        "run_id": 37552812417,
+        "job_id": 112572040530,
+        "head_sha": "319362e26980f803d752de9b68a1dbbe4d6a0c36",
+        "render_digest": "cefc1bef095953e4",
+        "retained_artifact_id": 11453291234,
+        "retained_artifact_sha256": "daefa80440192f57e6ce1460c1f409b604d0648eb45adf1c88db4384b071898f",
+        "retention_days": 14,
+        "render_findings": [],
+        "renderer_gaps": []
+      },
+      "independent_review": {
+        "status": "MISSING",
+        "basis": null,
+        "reviewer_ref": null
+      },
+      "accepted": false,
+      "rejection_reasons": [
+        "INDEPENDENT_RENDERED_REVIEW_MISSING"
+      ]
+    },
+    {
+      "subject": "Chemistry",
+      "question_ref": "OWN-ISSUE32-HYBRID-02",
+      "qualification_issue": 111,
+      "qualification_pr": 120,
+      "qualification_head": "7b6cd3c4bfd8d6ad9c40983c43709bced296c53b",
+      "technical_qualification": "PASS",
+      "primary_classification": {
+        "status": "LEGACY_ANALYSIS_SHAPE_NOT_FRESH_U04C",
+        "demand": "EXPLAIN",
+        "qrt_template": "QRT-EXPLAIN-D2",
+        "crux_move_ref": "OWN-ISSUE32-HYBRID-02-MOVE-2",
+        "reason": "The frozen ISS32 evidence fixture is technically replayed but its cognitive demand remains in legacy grade9v3:analysis shape and QRT status is CORRECTION_CANDIDATE."
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 0
+        },
+        "evidence_status": "DERIVED_AND_TECHNICALLY_VERIFIED"
+      },
+      "rendered_binding": {
+        "status": "CURRENT_RETAINED_CI_ARTIFACT_WITH_REVIEW_REQUIRED_FINDING",
+        "workflow": "phase-d-chemistry-qualification",
+        "run_id": 37551000541,
+        "job_id": 112566180857,
+        "head_sha": "7b6cd3c4bfd8d6ad9c40983c43709bced296c53b",
+        "retained_artifact_id": 11453065602,
+        "retained_artifact_sha256": "7e472b79a79572b90ed27c865939ce62a754653a65942b3904b753c2f06c44d5",
+        "retention_days": 14,
+        "render_findings": [
+          {
+            "surface": "CORE1A",
+            "finding": "minimum learner-visible text measured at 11 CSS px",
+            "status": "REVIEW_REQUIRED"
+          }
+        ]
+      },
+      "independent_review": {
+        "status": "MISSING",
+        "basis": null,
+        "reviewer_ref": null
+      },
+      "accepted": false,
+      "rejection_reasons": [
+        "FRESH_NORMALIZED_PRIMARY_CLASSIFICATION_MISSING",
+        "CURRENT_RENDERED_FINDING_REVIEW_REQUIRED",
+        "INDEPENDENT_RENDERED_REVIEW_MISSING"
+      ]
+    }
+  ],
+  "historical_exclusions": {
+    "negative_fixture_issue": 112,
+    "qualification_pr": 121,
+    "qualification_head": "33db3f2c83fc53358c41081f62a2ab76acabb633",
+    "issues": [
+      32,
+      34,
+      36,
+      38,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56
+    ],
+    "accepted_rows_contributed": 0,
+    "status": "EXCLUDED_FROM_ACCEPTED_COVERAGE",
+    "reason": "Historical candidate/replay-required rows do not satisfy fresh normalized independent-rendered admission."
+  },
+  "accepted_rows": [],
+  "coverage": {
+    "accepted_row_count": 0,
+    "accepted_cell_count": 0,
+    "total_cells": 28,
+    "accepted_cells": [],
+    "unsupported_cell_count": 28,
+    "unsupported_cells": [
+      {
+        "band": "D1",
+        "demand": "RETRIEVE",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D1",
+        "demand": "EXPLAIN",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D1",
+        "demand": "APPLY",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D1",
+        "demand": "MODEL",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D1",
+        "demand": "REPRESENT",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D1",
+        "demand": "SYNTHESIZE",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D1",
+        "demand": "JUSTIFY",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D2",
+        "demand": "RETRIEVE",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D2",
+        "demand": "EXPLAIN",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D2",
+        "demand": "APPLY",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D2",
+        "demand": "MODEL",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D2",
+        "demand": "REPRESENT",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D2",
+        "demand": "SYNTHESIZE",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D2",
+        "demand": "JUSTIFY",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D3",
+        "demand": "RETRIEVE",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D3",
+        "demand": "EXPLAIN",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D3",
+        "demand": "APPLY",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D3",
+        "demand": "MODEL",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D3",
+        "demand": "REPRESENT",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D3",
+        "demand": "SYNTHESIZE",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D3",
+        "demand": "JUSTIFY",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D4",
+        "demand": "RETRIEVE",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D4",
+        "demand": "EXPLAIN",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D4",
+        "demand": "APPLY",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D4",
+        "demand": "MODEL",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D4",
+        "demand": "REPRESENT",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D4",
+        "demand": "SYNTHESIZE",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      },
+      {
+        "band": "D4",
+        "demand": "JUSTIFY",
+        "reason": "NO_INDEPENDENTLY_ACCEPTED_FRESH_ROW"
+      }
+    ]
+  },
+  "result": "COMPLETE_SYNTHESIS_ZERO_ACCEPTED_ROWS",
+  "release_boundary": {
+    "independent_acceptance_granted": false,
+    "merge_or_publication_granted": false,
+    "phase_d_technical_qualification_can_coexist_with_zero_accepted_coverage": true
+  }
+}

@@ -1,0 +1,23 @@
+name: phase-d-acceptance-synthesis
+
+on:
+  pull_request:
+    paths:
+      - "evidence/architectural-recovery/ISS69/phase-d-d05-acceptance-synthesis.v1.json"
+      - "tests/test_phase_d_acceptance_synthesis.py"
+      - "Shared/tools/question_difficulty.py"
+      - "Shared/tools/question_review_matrix.py"
+      - "Shared/vocabularies/learner-question-metadata.v1.json"
+      - ".github/workflows/phase-d-acceptance-synthesis.yml"
+  workflow_dispatch:
+
+jobs:
+  acceptance-synthesis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run D05 acceptance synthesis contract
+        run: python3 -m unittest tests.test_phase_d_acceptance_synthesis
