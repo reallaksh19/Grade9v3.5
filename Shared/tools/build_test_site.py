@@ -595,6 +595,7 @@ def question_bank_page() -> str:
 
 def render_all() -> dict[str, str]:
     return {"index.html": hub_page(), "question-bank/index.html": question_bank_page(),
+            "question-bank/questions.js": build_test_question_bank.render_data(REPO),
             "atlas/index.html": atlas_page(), "rungs/index.html": rungs_page(),
             "deployments/index.html": deployments_page()}
 
