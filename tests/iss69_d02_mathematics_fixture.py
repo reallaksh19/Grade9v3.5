@@ -82,6 +82,10 @@ def qualification_package() -> tuple[dict, dict, dict]:
     target_unit = next(u for u in microtopic["construction_units"] if u["id"] == TARGET_UNIT)
     target_unit["crux_question_refs"] = [WITNESS]
     target_unit["crux_step_ref"] = "LEQ4-3"
+    # D2 Core1A requires a two-step construction. Reuse the immediately
+    # adjacent canonical teaching-path step; do not author a new step.
+    if "LEQ4-4" not in target_unit["step_refs"]:
+        target_unit["step_refs"] = [*target_unit["step_refs"], "LEQ4-4"]
     manifest = {
         "schema": "product-manifest/v1",
         "product_id": "ISS69-D02-MATHEMATICS-QUALIFICATION",
