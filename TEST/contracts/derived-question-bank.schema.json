@@ -1,0 +1,283 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "grade9v3-test-derived-question-bank-v1",
+  "title": "Grade9V3 TEST source-linked derived question bank",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "bank_id",
+    "version",
+    "subject",
+    "authority_model",
+    "source_intake_ref",
+    "questions"
+  ],
+  "properties": {
+    "schema": {
+      "const": "grade9v3-test-derived-question-bank-v1"
+    },
+    "bank_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject": {
+      "const": "TEST"
+    },
+    "authority_model": {
+      "const": "SOURCE_LINKED_DERIVATIVE"
+    },
+    "source_intake_ref": {
+      "type": "string",
+      "pattern": "^TEST/question-bank/intake/.+\\.json$"
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/question"
+      }
+    }
+  },
+  "$defs": {
+    "question": {
+      "type": "object",
+      "required": [
+        "id",
+        "version",
+        "status",
+        "source_refs",
+        "evidence_refs",
+        "extensions",
+        "origin",
+        "origin_ref",
+        "original_identifier",
+        "stem",
+        "stem_sha256",
+        "subparts",
+        "options",
+        "conditions",
+        "figure_refs",
+        "response",
+        "answer",
+        "primary_capability_ref",
+        "secondary_capability_refs",
+        "family_ref",
+        "adaptation",
+        "exposure",
+        "hints",
+        "scaffolds"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "CANDIDATE",
+            "REVIEWED",
+            "CURATED"
+          ]
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "evidence_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "origin": {
+          "const": "SOURCE"
+        },
+        "origin_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "original_identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stem": {
+          "type": "string",
+          "minLength": 1
+        },
+        "stem_sha256": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "subparts": {
+          "type": "array"
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "figure_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "response": {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "properties": {
+            "type": {
+              "const": "single_choice"
+            }
+          }
+        },
+        "primary_capability_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "secondary_capability_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "family_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "adaptation": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "exposure": {
+          "type": "array",
+          "minItems": 1
+        },
+        "hints": {
+          "type": "array"
+        },
+        "scaffolds": {
+          "type": "array",
+          "minItems": 3
+        },
+        "answer": {
+          "type": "object",
+          "required": [
+            "kind",
+            "summary",
+            "reasoning",
+            "reasoning_route",
+            "crux_move_ref",
+            "check",
+            "verification_status",
+            "source_key"
+          ]
+        },
+        "extensions": {
+          "type": "object",
+          "required": [
+            "grade9v3:provenance_class",
+            "grade9v3:source_custody",
+            "grade9v3:analysis",
+            "grade9v3:authored_overlay"
+          ],
+          "properties": {
+            "grade9v3:provenance_class": {
+              "const": "CURRICULAR_VERIFIED"
+            },
+            "grade9v3:source_custody": {
+              "type": "object",
+              "required": [
+                "authority_class",
+                "source_status",
+                "wording_custody",
+                "source_document_ref",
+                "source_document_title",
+                "source_url",
+                "source_locator",
+                "text_verification_status",
+                "verification_evidence_ref",
+                "answer_key_document_ref",
+                "answer_key_url",
+                "answer_key_evidence_ref"
+              ],
+              "properties": {
+                "authority_class": {
+                  "const": "CURRICULAR_STANDARD"
+                },
+                "source_status": {
+                  "const": "NCERT_AUTHENTIC"
+                },
+                "wording_custody": {
+                  "const": "VERBATIM"
+                }
+              }
+            },
+            "grade9v3:analysis": {
+              "type": "object",
+              "required": [
+                "exam_source_badge",
+                "learner_question_type",
+                "difficulty",
+                "expected_time_seconds",
+                "common_wrong_route",
+                "stable_crux_move",
+                "transfer_profile"
+              ]
+            },
+            "grade9v3:authored_overlay": {
+              "type": "object",
+              "required": [
+                "authority",
+                "fields"
+              ],
+              "properties": {
+                "authority": {
+                  "const": "AGENT_AUTHORED_SANDBOX"
+                },
+                "fields": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string"
+                  },
+                  "uniqueItems": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
