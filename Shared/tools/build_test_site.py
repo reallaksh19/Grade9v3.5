@@ -22,6 +22,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.tools import matrix_conformance, product_coverage, render_core  # noqa: E402
+from TEST.tools import source_intake  # noqa: E402
 
 esc = render_core.esc
 TEST_ROOT = REPO / "TEST"
@@ -29,6 +30,7 @@ PUBLIC_TEST = REPO / "public" / "test"
 CORE_CONTRACT = TEST_ROOT / "adapter" / "CoreContracts.json"
 QUALITY_VOCABULARY = TEST_ROOT / "adapter" / "QualityVocabulary.json"
 FIXTURE_MANIFEST = TEST_ROOT / "question-bank" / "fixtures" / "pr61-math-42.fixture.json"
+INTAKE_DIR = TEST_ROOT / "question-bank" / "intake"
 PACKAGE_SCHEMA = REPO / "Shared" / "library" / "package.schema.json"
 NAV = (("index.html", "TEST"), ("atlas/index.html", "Atlas"), ("rungs/index.html", "Rungs"), ("deployments/index.html", "Deployments"))
 ROLE_PAGES = (("index.html", "Product index"), ("core2.html", "Core2"), ("core1a.html", "Core1A"), ("core1.html", "Core1"),
@@ -132,6 +134,142 @@ def _fixture_state() -> dict:
     }
 
 
+HOLD_STATES = {"SOURCE_HOLD", "TEXT_HOLD", "IDENTITY_HOLD", "DUPLICATE_REVIEW", "TOPIC_HOLD"}
+
+
+def intake_banks() -> list[tuple[Path, dict]]:
+    """Validated Stage-1 intake banks only; generated handoffs are projections, never source authority."""
+    banks = []
+    for path in sorted(INTAKE_DIR.glob("*.v1.json")):
+        bank = _json(path)
+        problems = source_intake.findings(bank)
+        if problems:
+            detail = "; ".join(problems[:5])
+            raise ValueError(f"{_relative(path)} failed Stage-1 intake validation: {detail}")
+        banks.append((path, bank))
+    return banks
+
+
+def intake_state() -> dict:
+    """Pure TEST intake view-model assembled only from validated Stage-1 source banks."""
+    bank_rows = []
+    records = []
+    seen_ids: dict[str, str] = {}
+    seen_instances: dict[tuple, str] = {}
+
+    for path, bank in intake_banks():
+        documents = {row["id"]: row for row in bank["documents"]}
+        ready = sum(1 for q in bank["questions"] if q["workflow_status"] == source_intake.READY)
+        bank_rows.append({
+            "path": _relative(path),
+            "bank_id": bank["bank_id"],
+            "subject": bank["subject"],
+            "grade": bank["grade"],
+            "question_count": len(bank["questions"]),
+            "ready_for_blueprint": ready,
+        })
+
+        for q in bank["questions"]:
+            qid = q["id"]
+            if qid in seen_ids:
+                raise ValueError(f"{qid}: duplicate TEST intake id across {seen_ids[qid]} and {_relative(path)}")
+            seen_ids[qid] = _relative(path)
+
+            doc = documents[q["source_document_ref"]]
+            loc = q["source_locator"]
+            instance = (
+                doc["url"],
+                loc["chapter_or_unit"],
+                loc["exercise_or_section"],
+                str(loc["question_number"]),
+                loc["printed_page"],
+            )
+            if instance in seen_instances:
+                raise ValueError(f"{qid}: duplicate TEST source instance also used by {seen_instances[instance]}")
+            seen_instances[instance] = qid
+
+            records.append({
+                "id": qid,
+                "bank_id": bank["bank_id"],
+                "bank_path": _relative(path),
+                "original_identifier": q["original_identifier"],
+                "stem": q["stem"],
+                "stem_sha256": q["stem_sha256"],
+                "subject": q["subject"],
+                "grade": q["grade"],
+                "topic_label": q["topic_label"],
+                "subtopic_label": q.get("subtopic_label") or "",
+                "question_type": q["question_type"],
+                "source": {
+                    "document_ref": q["source_document_ref"],
+                    "authority": doc["authority"],
+                    "kind": doc["kind"],
+                    "title": doc["title"],
+                    "url": doc["url"],
+                },
+                "source_locator": dict(loc),
+                "source_verification_status": q["source_verification_status"],
+                "text_verification_status": q["text_verification_status"],
+                "workflow_status": q["workflow_status"],
+                "verification_evidence_ref": q["verification_evidence_ref"],
+                "official_answer_available": bool(q["official_answer_available"]),
+            })
+
+    records.sort(key=lambda row: row["id"])
+
+    def counts(field: str) -> dict[str, int]:
+        out: dict[str, int] = {}
+        for row in records:
+            value = str(row[field])
+            out[value] = out.get(value, 0) + 1
+        return dict(sorted(out.items()))
+
+    return {
+        "banks": bank_rows,
+        "bank_count": len(bank_rows),
+        "record_count": len(records),
+        "ready_for_blueprint": sum(1 for row in records if row["workflow_status"] == source_intake.READY),
+        "hold_count": sum(1 for row in records if row["workflow_status"] in HOLD_STATES),
+        "by_topic": counts("topic_label"),
+        "by_source": dict(sorted({
+            authority: sum(1 for row in records if row["source"]["authority"] == authority)
+            for authority in {row["source"]["authority"] for row in records}
+        }.items())),
+        "by_status": counts("workflow_status"),
+        "records": records,
+    }
+
+
+def intake_search_index(state: dict | None = None) -> dict:
+    """Sandbox-only search projection. It is not consumed by the global learner header/search index."""
+    state = state or intake_state()
+    documents = []
+    for row in state["records"]:
+        terms = [
+            row["id"], row["original_identifier"], row["stem"], row["subject"], str(row["grade"]),
+            row["topic_label"], row["subtopic_label"], row["question_type"],
+            row["source"]["authority"], row["source"]["kind"], row["source"]["title"],
+            row["source_verification_status"], row["text_verification_status"], row["workflow_status"],
+        ]
+        documents.append({
+            "id": row["id"],
+            "href": f'#intake-{row["id"]}',
+            "stem": row["stem"],
+            "topic_label": row["topic_label"],
+            "subtopic_label": row["subtopic_label"],
+            "source_authority": row["source"]["authority"],
+            "source_kind": row["source"]["kind"],
+            "workflow_status": row["workflow_status"],
+            "search_text": " ".join(str(term) for term in terms if term).lower(),
+        })
+    return {
+        "schema_version": "grade9v3-test-intake-search-index-v1",
+        "scope": "TEST_ONLY_SANDBOX",
+        "document_count": len(documents),
+        "documents": documents,
+    }
+
+
 def dashboard_state() -> dict:
     """Pure TEST dashboard view-model. Source files are authority; this is projection data only."""
     core = _core_contract_state()
@@ -188,6 +326,8 @@ def frame(depth: int, title: str, current: str, body: str, heading: str | None =
     root = "../" * depth
     home = root + "index.html"
     header = render_core.shell_header(home, root + "question-bank/index.html")
+    for subject_slug in ("physics", "chemistry", "mathematics"):
+        header = header.replace(f"../../../{subject_slug}/index.html", f"{root}{subject_slug}/index.html")
     crumbs = "".join(
         f'<a href="{esc("../" * (depth - 1) + path if depth > 1 else path)}"{" aria-current=page" if path == current else ""}>{esc(label)}</a>'
         for path, label in NAV)
@@ -291,6 +431,70 @@ def fixture_boundary_card(fixture: dict, safety: dict) -> str:
     )
 
 
+def intake_card(state: dict) -> str:
+    """Render validated Stage-1 intake records and an embedded TEST-only discovery index."""
+    def options(values: dict[str, int]) -> str:
+        return "".join(
+            f'<option value="{esc(value)}">{esc(value)} · {count}</option>'
+            for value, count in values.items()
+        )
+
+    records = []
+    for row in state["records"]:
+        loc = row["source_locator"]
+        answer_note = "available (key not projected)" if row["official_answer_available"] else "not available"
+        records.append(
+            f'<section id="intake-{esc(row["id"])}" data-g9-intake-record data-g9-intake-id="{esc(row["id"])}" '
+            f'data-g9-intake-topic="{esc(row["topic_label"])}" data-g9-intake-source="{esc(row["source"]["authority"])}" '
+            f'data-g9-intake-status="{esc(row["workflow_status"])}" style="border-top:1px solid var(--border);padding:12px 0">'
+            f'<h3>{esc(row["original_identifier"])}</h3>'
+            f'<p>{esc(row["stem"])}</p>'
+            f'<p class="g9-prov"><strong>{esc(row["subject"])}</strong> · Grade {esc(row["grade"])} · '
+            f'{esc(row["topic_label"])}{(" · " + esc(row["subtopic_label"])) if row["subtopic_label"] else ""} · '
+            f'{esc(row["question_type"])}</p>'
+            f'<p><strong>Source:</strong> {esc(row["source"]["authority"])} · {esc(row["source"]["kind"])} · '
+            f'{esc(row["source"]["title"])} · printed page {esc(loc["printed_page"])} · PDF index {esc(loc["pdf_page_index"])} · '
+            f'source URL retained in Stage-1 authority <code>{esc(row["source"]["document_ref"])}</code></p>'
+            f'<p><strong>Custody:</strong> {esc(row["source_verification_status"])} · {esc(row["text_verification_status"])} · '
+            f'<strong>Workflow:</strong> {esc(row["workflow_status"])} · <strong>Official answer:</strong> {esc(answer_note)}</p>'
+            f'<p class="g9-prov">Stem digest: <code>{esc(row["stem_sha256"])}</code> · '
+            f'evidence <code>{esc(row["verification_evidence_ref"])}</code></p></section>'
+        )
+
+    index_json = json.dumps(intake_search_index(state), ensure_ascii=False, sort_keys=True).replace("<", "\\u003c")
+    rows = "".join(records) or '<p data-g9-intake-empty>No validated Stage-1 intake records yet.</p>'
+    body = (
+        '<h2>Question intake</h2>'
+        f'<p><strong>{state["record_count"]}</strong> validated TEST intake record(s) · '
+        f'{state["ready_for_blueprint"]} READY_FOR_BLUEPRINT · {state["hold_count"]} HOLD.</p>'
+        '<p class="g9-prov">This is TEST-only source custody. READY_FOR_BLUEPRINT is a downstream-analysis handoff, not academic acceptance or learner publication.</p>'
+        '<div data-g9-test-intake>'
+        '<div data-g9-test-intake-controls style="display:flex;flex-wrap:wrap;gap:8px;align-items:end">'
+        '<label>Search TEST intake<br><input data-g9-test-intake-query type="search" aria-label="Search TEST intake" style="min-height:48px;min-width:220px"></label>'
+        f'<label>Topic<br><select data-g9-test-intake-topic style="min-height:48px"><option value="">All topics</option>{options(state["by_topic"])}</select></label>'
+        f'<label>Source<br><select data-g9-test-intake-source style="min-height:48px"><option value="">All sources</option>{options(state["by_source"])}</select></label>'
+        f'<label>Status<br><select data-g9-test-intake-status style="min-height:48px"><option value="">All statuses</option>{options(state["by_status"])}</select></label>'
+        f'<p data-g9-test-intake-count aria-live="polite" style="min-height:48px;display:flex;align-items:center">{state["record_count"]} shown</p></div>'
+        f'<script type="application/json" data-g9-test-search-index>{index_json}</script>{rows}</div>'
+        '<script>(()=>{const root=document.querySelector("[data-g9-test-intake]");if(!root)return;'
+        'const data=JSON.parse(root.querySelector("[data-g9-test-search-index]").textContent);'
+        'const docs=new Map(data.documents.map(d=>[d.id,d]));const cards=[...root.querySelectorAll("[data-g9-intake-record]")];'
+        'const q=root.querySelector("[data-g9-test-intake-query]"),topic=root.querySelector("[data-g9-test-intake-topic]"),'
+        'source=root.querySelector("[data-g9-test-intake-source]"),status=root.querySelector("[data-g9-test-intake-status]"),'
+        'count=root.querySelector("[data-g9-test-intake-count]");const apply=()=>{const needle=q.value.trim().toLowerCase();let shown=0;'
+        'for(const card of cards){const doc=docs.get(card.dataset.g9IntakeId);const ok=(!needle||doc.search_text.includes(needle))&&'
+        '(!topic.value||doc.topic_label===topic.value)&&(!source.value||doc.source_authority===source.value)&&'
+        '(!status.value||doc.workflow_status===status.value);card.hidden=!ok;if(ok)shown+=1;}count.textContent=`${shown} shown`;};'
+        'for(const control of [q,topic,source,status]){control.addEventListener("input",apply);control.addEventListener("change",apply);}apply();})();</script>'
+    )
+    return card(
+        "question-intake",
+        "question intake verified source workflow hold ready sandbox search " +
+        " ".join(state["by_topic"]) + " " + " ".join(state["by_source"]) + " " + " ".join(state["by_status"]),
+        body,
+    )
+
+
 # ------------------------------------------------------------------ pages
 
 def hub_page() -> str:
@@ -319,6 +523,7 @@ def hub_page() -> str:
         'not how good it is, and it does not say the content has been reviewed.</p>'
         + core_contract_card(state["core_contract"])
         + fixture_boundary_card(state["fixture"], state["safety"])
+        + intake_card(intake_state())
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
         + stage(2, "Core1A", "Concept construction for the same topic", core1a)
         + stage(3, "Explorer", "A guided page on the toughest concept of the same question set", inter)

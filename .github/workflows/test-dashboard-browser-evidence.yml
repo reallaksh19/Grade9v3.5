@@ -6,6 +6,9 @@ on:
       - ".github/workflows/test-dashboard-browser-evidence.yml"
       - "tests/test_area_browser.mjs"
       - "tests/test_dashboard_browser_evidence.mjs"
+      - "Shared/tools/build_test_site.py"
+      - "TEST/question-bank/intake/**"
+      - "tests/test_test_intake_dashboard.py"
       - "public/test/**"
       - "public/js/site-header.js"
       - "public/index.html"
@@ -17,6 +20,9 @@ on:
       - ".github/workflows/test-dashboard-browser-evidence.yml"
       - "tests/test_area_browser.mjs"
       - "tests/test_dashboard_browser_evidence.mjs"
+      - "Shared/tools/build_test_site.py"
+      - "TEST/question-bank/intake/**"
+      - "tests/test_test_intake_dashboard.py"
       - "public/test/**"
       - "public/js/site-header.js"
       - "public/index.html"
@@ -34,9 +40,33 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install --quiet jsonschema
+
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+
+
+      - name: Committed TEST hub matches its producer
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from Shared.tools import build_pages_site, build_test_site
+          repo = Path.cwd()
+          payload = build_test_site.hub_page().encode("utf-8")
+          public = (repo / "public/test/index.html").read_bytes()
+          docs = (repo / "docs/test/index.html").read_bytes()
+          if public != payload:
+              raise SystemExit("public/test/index.html is stale against build_test_site.hub_page()")
+          expected_docs = build_pages_site._public_payload("test/index.html", payload)
+          if docs != expected_docs:
+              raise SystemExit("docs/test/index.html is stale against governed Pages transform")
+          print("TEST hub public/docs projection is current")
+          PY
 
       - name: Install Playwright Chromium
         run: |
