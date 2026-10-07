@@ -389,7 +389,8 @@ def hub_page() -> str:
         + stage(3, "Explorer", "A guided page on the toughest concept of the same question set", inter)
         + card("places", "atlas rungs deployments",
                '<h2>Where things are</h2><ul>'
-               f'<li>{link("question-bank/index.html", "Question Bank")}: parked source questions, explicitly unvalidated for academic admission</li>'\n               f'<li>{link("atlas/index.html", "Atlas")}: the Topic Atlas for the TEST matrix</li>'
+               f'<li>{link("question-bank/index.html", "Question Bank")}: parked source questions, explicitly unvalidated for academic admission</li>'
+               f'<li>{link("atlas/index.html", "Atlas")}: the Topic Atlas for the TEST matrix</li>'
                f'<li>{link("rungs/index.html", "Rungs")}: the ladder, rung by rung</li>'
                f'<li>{link("deployments/index.html", "Deployments")}: every deployed draft, with its digest and gaps</li></ul>')
         + card("sources", "matrices packages question bank intake",
@@ -588,8 +589,13 @@ def atlas_page() -> str:
     return text.replace(marker, marker + "\n" + atlas_data_script(), 1)
 
 
+def question_bank_page() -> str:
+    return build_test_question_bank.render_page(REPO)
+
+
 def render_all() -> dict[str, str]:
-    return {"index.html": hub_page(), "atlas/index.html": atlas_page(), "rungs/index.html": rungs_page(),
+    return {"index.html": hub_page(), "question-bank/index.html": question_bank_page(),
+            "atlas/index.html": atlas_page(), "rungs/index.html": rungs_page(),
             "deployments/index.html": deployments_page()}
 
 
