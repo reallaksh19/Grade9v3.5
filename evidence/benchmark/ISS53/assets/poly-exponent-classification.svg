@@ -1,58 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 380" width="100%" height="100%" role="img" aria-labelledby="svg-exp-title svg-exp-desc">
-  <title id="svg-exp-title">Polynomial Exponent Classification and Evaluation</title>
-  <desc id="svg-exp-desc">Visual framework for checking whole-number exponents in polynomials versus non-polynomial expressions and computing values at input points.</desc>
-  <defs>
-    <style>
-      .bg { fill: #f8fafc; }
-      .border { stroke: #cbd5e1; stroke-width: 1.5; }
-      .header-bg { fill: #e2e8f0; }
-      .text-title { font-family: system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 700; fill: #0f172a; }
-      .text-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #475569; }
-      .text-header { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; font-weight: 600; fill: #1e293b; }
-      .text-cell { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #334155; }
-      .text-bold { font-weight: 700; fill: #0f172a; }
-      .valid-card { fill: #ecfdf5; stroke: #10b981; stroke-width: 1.5; }
-      .invalid-card { fill: #fef2f2; stroke: #ef4444; stroke-width: 1.5; }
-      .eval-card { fill: #eff6ff; stroke: #3b82f6; stroke-width: 1.5; }
-      .valid-badge { fill: #047857; font-weight: 700; }
-      .invalid-badge { fill: #b91c1c; font-weight: 700; }
-    </style>
-  </defs>
-
-  <!-- Background -->
-  <rect width="620" height="380" rx="8" class="bg border"/>
-
-  <!-- Static Canvas Title -->
-  <text x="25" y="30" class="text-title">Defining Criterion: Exponents of Variable x Must Belong to W = {0, 1, 2, ...}</text>
-  <text x="25" y="48" class="text-sub">Every exponent must be a whole number; coefficients may be any real numbers</text>
-
-  <!-- Stage 1: Whole Number Exponents Criterion & Valid Polynomials -->
-  <g data-g9-stage-id="EXP-STAGE-1">
-    <rect x="25" y="65" width="570" height="85" rx="6" class="valid-card"/>
-    <text x="40" y="88" font-family="system-ui, sans-serif" font-size="14px" font-weight="700" fill="#065f46">Valid Polynomial Expressions (All Exponents in W)</text>
-    <text x="40" y="110" font-family="monospace" font-size="14px" font-weight="700" fill="#047857">p(x) = 3x² − 2x + 1</text>
-    <text x="260" y="110" class="text-cell">→ Powers are 2, 1, 0. Since {2, 1, 0} ⊆ W, this is a polynomial (deg 2).</text>
-    <text x="40" y="132" font-family="monospace" font-size="14px" font-weight="700" fill="#047857">q(x) = −5 = −5x⁰</text>
-    <text x="260" y="132" class="text-cell">→ Power is 0 ∈ W. Non-zero constant polynomial of degree 0.</text>
-  </g>
-
-  <!-- Stage 2: Excluded Non-Polynomial Forms (Negative & Fractional Exponents) -->
-  <g data-g9-stage-id="EXP-STAGE-2">
-    <rect x="25" y="165" width="570" height="105" rx="6" class="invalid-card"/>
-    <text x="40" y="188" font-family="system-ui, sans-serif" font-size="14px" font-weight="700" fill="#991b1b">Excluded Non-Polynomial Expressions (Violate W Condition)</text>
-    <text x="40" y="212" font-family="monospace" font-size="13px" font-weight="700" fill="#b91c1c">x³ − 4/x² + 5 = x³ − 4x⁻² + 5</text>
-    <text x="320" y="212" class="text-cell">Exponent −2 ∉ W (negative integer: fails condition).</text>
-    <text x="40" y="236" font-family="monospace" font-size="13px" font-weight="700" fill="#b91c1c">√(x) + 1 = x^(1/2) + 1</text>
-    <text x="320" y="236" class="text-cell">Exponent 1/2 ∉ W (fractional power: fails condition).</text>
-    <text x="40" y="258" font-family="monospace" font-size="13px" font-weight="700" fill="#b91c1c">(x² − 1)/(x − 1)</text>
-    <text x="320" y="258" class="text-cell">Rational expression with variable in denominator.</text>
-  </g>
-
-  <!-- Stage 3: Point Evaluation Using Bracketed Precedence -->
-  <g data-g9-stage-id="EXP-STAGE-3">
-    <rect x="25" y="285" width="570" height="75" rx="6" class="eval-card"/>
-    <text x="40" y="308" font-family="system-ui, sans-serif" font-size="14px" font-weight="700" fill="#1e40af">Evaluation Precedence at Input Point x = k:</text>
-    <text x="40" y="330" font-family="monospace" font-size="13px" font-weight="600" fill="#1d4ed8">p(k) = aₙ(k)ⁿ + ... + a₁(k) + a₀</text>
-    <text x="40" y="348" font-family="system-ui, sans-serif" font-size="12px" fill="#334155">Example: For p(x) = 3x² − 2x + 1 at x = 2: p(2) = 3(2)² − 2(2) + 1 = 3(4) − 4 + 1 = 12 − 4 + 1 = 9.</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="t d">
+<title id="t">Changed-anchor exponent criterion and substitution</title>
+<desc id="d">Authored examples distinguish non-negative integer exponents from negative or fractional exponents, then show bracketed substitution on a different polynomial.</desc>
+<rect width="640" height="360" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="24" y="32" font-family="system-ui" font-size="18" font-weight="700">Polynomial criterion: every exponent of x is 0, 1, 2, …</text>
+<g data-g9-stage-id="EXP-STAGE-1">
+  <text x="24" y="70" font-family="system-ui" font-size="14">Changed valid examples:</text>
+  <text x="50" y="96" font-family="monospace">2x⁴ − x + 3  → exponents {4,1,0}</text>
+  <text x="50" y="121" font-family="monospace">8 = 8x⁰        → exponent {0}</text>
+</g>
+<g data-g9-stage-id="EXP-STAGE-2">
+  <text x="24" y="160" font-family="system-ui" font-size="14">Changed boundary examples:</text>
+  <text x="50" y="186" font-family="monospace">2/x + 1 = 2x⁻¹ + 1  → negative exponent</text>
+  <text x="50" y="211" font-family="monospace">x^(2/3) + 4          → fractional exponent</text>
+</g>
+<g data-g9-stage-id="EXP-STAGE-3">
+  <text x="24" y="252" font-family="system-ui" font-size="14" font-weight="700">Separate skill: bracketed substitution</text>
+  <text x="50" y="280" font-family="monospace">s(x)=2x²+x−1, x=3</text>
+  <text x="50" y="305" font-family="monospace">s(3)=2(3)²+(3)−1</text>
+  <text x="50" y="330" font-family="system-ui" font-size="13">Brackets preserve the multiplication and power structure before arithmetic.</text>
+</g>
 </svg>
