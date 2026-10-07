@@ -1388,7 +1388,7 @@
             <button type="button" class="btn outline" onclick="window.ATLAS.openPromptComposer()">
               Build from a question set ↗
             </button>
-            <a href="../../../tools/run-builder/index.html" class="btn outline" target="_blank">
+            <a href="../../tools/run-builder/index.html" class="btn outline" target="_blank">
               Open Run Builder ↗
             </a>
           </div>
