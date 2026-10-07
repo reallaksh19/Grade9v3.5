@@ -1,0 +1,61 @@
+name: test-dashboard-browser-evidence
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/test-dashboard-browser-evidence.yml"
+      - "tests/test_area_browser.mjs"
+      - "tests/test_dashboard_browser_evidence.mjs"
+      - "public/test/**"
+      - "public/js/site-header.js"
+      - "public/index.html"
+      - "public/physics/index.html"
+      - "public/chemistry/index.html"
+      - "public/mathematics/index.html"
+  push:
+    paths:
+      - ".github/workflows/test-dashboard-browser-evidence.yml"
+      - "tests/test_area_browser.mjs"
+      - "tests/test_dashboard_browser_evidence.mjs"
+      - "public/test/**"
+      - "public/js/site-header.js"
+      - "public/index.html"
+      - "public/physics/index.html"
+      - "public/chemistry/index.html"
+      - "public/mathematics/index.html"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-dashboard-browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Existing TEST area browser contract (informational)
+        id: test-area-browser
+        continue-on-error: true
+        run: node tests/test_area_browser.mjs
+
+      - name: Dashboard screenshots, overflow and keyboard order
+        if: always()
+        run: node tests/test_dashboard_browser_evidence.mjs /tmp/test-dashboard-browser-evidence
+
+      - name: Upload TEST dashboard browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-dashboard-browser-evidence
+          path: /tmp/test-dashboard-browser-evidence
+          if-no-files-found: error
