@@ -1,9 +1,9 @@
-// Local artifact exercise, not a CI workflow. Requires a real Chromium installation.
+// Real-browser TEST sandbox audit. Runs in learner-platform-code-tests and can also be run locally:
 //   node tests/test_area_browser.mjs
 // Opens the TEST area's own pages in a real browser at phone, tablet and desktop widths and checks what a
 // static read cannot: no script error, nothing fetched from another host, no sideways scroll, the draft label
-// and the way to the portal are on screen and tappable, the Atlas shows an honest empty state, and once a
-// matrix exists under TEST the same Atlas engine renders it. The TEST tab is reached from the portal.
+// and the way to the portal are on screen and tappable, and the real TEST polynomial matrix renders through
+// the shared Atlas engine. The TEST tab is reached from the portal.
 import { createRequire } from 'node:module';
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
