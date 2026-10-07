@@ -9,13 +9,14 @@
   },
   "target_subject": "Mathematics",
   "target_topic": "Polynomials",
-  "state": "IDENTITY_RECONCILED",
+  "state": "QA_IN_PROGRESS",
   "sources": [
     "TEST/question-bank/iss55-poly.json",
     "TEST/library/iss55-poly.v1.json",
     "TEST/products/iss55-poly.manifest.json",
     "TEST/matrices/iss55-poly.rungs.json",
-    "TEST/candidates/iss55-poly.canonical-reconciliation.json"
+    "TEST/candidates/iss55-poly.canonical-reconciliation.json",
+    "TEST/candidates/iss55-poly.reconciliation.json"
   ],
   "question_counts": {
     "total": 10,
@@ -51,8 +52,8 @@
       "detail": "Current TEST deployment renders all 10 Core2 questions with zero renderer gaps. Dedicated tablet browser audit succeeded at PR #182 predecessor head 03428a8f93000e41110c3d50190ac2251a1ce4a6 with zero horizontal overflow, zero external fetches, zero JS errors, and 10/10 accessible SVGs. Shared renderer telemetry still reports PAGE-SHELL and small-control/font debt; that is tracked separately from candidate layout acceptance."
     },
     "content_review": {
-      "status": "PASS",
-      "detail": "10/10 verbatim question stems were reviewed without alteration. Model answers and independent checks are mathematically consistent; D3 scores (6-7) match the repository band contract and cognitive-demand labels are coherent. Seven questions now use their exact question-specific capability as primary while retaining the broader TEST concept bridge as secondary; three authored lesson anchors (Q1, Q9, Q10) were repaired so their prompts match their attached solutions."
+      "status": "PENDING",
+      "detail": "Formal independent academic review remains required. Repository review authority requires a reviewer distinct from the authoring actor, originals inspected, PASS evidence, exact record digests and promotion receipts."
     },
     "owner_acceptance": {
       "status": "PENDING",
@@ -60,16 +61,20 @@
     },
     "canonical_identity": {
       "status": "PASS",
-      "detail": "Current Mathematics canonical library has no Polynomials package and no colliding ISS55 identities. Stable target is SUBJECT-MATHEMATICS / TOPIC-MATHEMATICS-POLYNOMIALS with Mathematics/library/polynomials.v1.json (LIB-MATH-POLYNOMIALS). All 38 active TEST package records map to collision-free MAT-namespaced canonical ids, and the 10 owner questions map to Q-MAT-POLY-ISS55-01..10 with stem digests and lineage preserved."
+      "detail": "Current canonical Mathematics has no polynomial library package/question bank, and exact-stem checks resolve only to TEST. All 10 are reconciled as DISTINCT and require new canonical ids if admitted."
     },
     "canonical_staging": {
       "status": "PENDING",
       "detail": "The reconciled records have not yet been materialized as package-shaped Mathematics candidate questions. Staging must preserve TEST custody, add the package-question contract fields, and keep Question Bank admission disabled until owner acceptance."
+    },
+    "math_consistency": {
+      "status": "PASS",
+      "detail": "All 10 model responses and independent checks were re-derived for mathematical consistency. This is a coordinating-agent sanity check, not the repository's digest-bound independent review authority."
     }
   },
   "promotion": {
     "status": "BLOCKED",
     "target": "Mathematics",
-    "reason": "Canonical identity reconciliation passes. Remaining gates are canonical candidate staging and owner acceptance of the exact staged conversion before Question Bank admission."
+    "reason": "Technical/layout, mathematical consistency and canonical identity reconciliation pass. Formal independent review receipts and Owner acceptance are still required before canonical promotion."
   }
 }
