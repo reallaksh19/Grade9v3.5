@@ -32,4 +32,4 @@ jobs:
         run: cmp public/js/topic-atlas.js docs/js/topic-atlas.js
 
       - name: TEST Atlas empty/populated tablet contract
-        run: node tests/test_area_browser.mjs
+        run: node tests/test_area_browser.mjs --atlas-only
