@@ -8,7 +8,7 @@ Those are properties of one record and need no knowledge of a subject (the scope
 The registry's `component_policy.admission` names the points; this module is where they are checked, and intake calls it. Every point
 that blocks was measured against every question the library held before it (0 refused) and against the 244 records of pull request 375.
 
-  QUESTION_STEM           the stem has words enough to ask something, and is not made of sentences that its own hints or solution say
+  QUESTION_STEM           the learner-visible question has words enough to ask something; a short source lead-in may be completed by options/conditions/subparts
   QUESTION_STEM_COMPLETE  the stem ends where a sentence ends (a stem cut off mid-sentence asks half a question)            said
   QUESTION_OPTIONS        an option has text; a letter standing for itself ('(A) A') is a choice with nothing to choose
   QUESTION_GIVENS         a number a hint relies on is in the stem, the options or the conditions                              said
@@ -159,14 +159,22 @@ def findings(package: dict) -> Iterator[dict]:
 
         stem = row.get("stem") if isinstance(row.get("stem"), str) else ""
         words = stem.split()
-        if len(words) < STEM_MIN_WORDS:
-            yield found("QUESTION_STEM", f"the stem is {len(words)} word(s); it does not ask anything")
+        visible_words = _question_text(row).split()
+        if len(words) < STEM_MIN_WORDS and len(visible_words) < STEM_MIN_WORDS:
+            yield found(
+                "QUESTION_STEM",
+                f"the stem is {len(words)} word(s) and the complete learner-visible question is "
+                f"{len(visible_words)} word(s); it does not ask anything",
+            )
         else:
             own, solution = _sentences(stem), set(_solution_text(row))
             echoed = [s for s in own if s in solution]
             if own and 2 * len(echoed) >= len(own):
                 yield found("QUESTION_STEM", f"{len(echoed)} of {len(own)} stem sentences are sentences of its own hints or solution; the stem says what the answer says")
-            if not STEM_END.search(stem.rstrip()):
+            # A short official MCQ lead-in can be completed by its choices. Applying
+            # sentence-end heuristics to that fragment would call truthful source
+            # custody "cut off" merely because the grammatical completion is an option.
+            if len(words) >= STEM_MIN_WORDS and not STEM_END.search(stem.rstrip()):
                 yield found("QUESTION_STEM_COMPLETE", f"the stem ends '...{stem.rstrip()[-30:]}', which is not where a sentence ends")
 
         options = [o for o in row.get("options") or [] if isinstance(o, str)]
