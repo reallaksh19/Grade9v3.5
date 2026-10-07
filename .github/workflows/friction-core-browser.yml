@@ -173,6 +173,7 @@ jobs:
           mkdir -p /tmp/friction-core-site/question-bank
           cp public/index.html /tmp/friction-core-site/index.html
           cp public/question-bank/index.html /tmp/friction-core-site/question-bank/index.html
+          cp -R public/css public/js public/physics public/chemistry public/mathematics public/topics /tmp/friction-core-site/
           python3 blueprint-1.9/Shared/tools/standalone_conformance.py \
             /tmp/friction-core-site/products/physics/phy-nlm-friction/core1a.html \
             /tmp/friction-core-site/products/physics/phy-nlm-friction/core2.html \
