@@ -80,6 +80,7 @@ for (const width of [390, 1280]) {
     .catch(() => failures.push(`question bank @${width}: 210 cards never materialized`));
   const facts = await tab.evaluate(() => ({
     cards: document.querySelectorAll('[data-g9-test-question]').length,
+    validated: document.querySelectorAll('[data-g9-validation="VALIDATED"]').length,
     unvalidated: document.querySelectorAll('[data-g9-validation="UNVALIDATED"]').length,
     sourceVerified: document.querySelectorAll('[data-g9-source-verification="SOURCE VERIFIED"]').length,
     duplicateReview: document.querySelectorAll('[data-g9-review="DUPLICATE_REVIEW"]').length,
@@ -87,7 +88,8 @@ for (const width of [390, 1280]) {
   }));
   checked += 1;
   if (facts.cards !== 210) failures.push(`question bank @${width}: expected 210 cards, got ${facts.cards}`);
-  if (facts.unvalidated !== 210) failures.push(`question bank @${width}: expected 210 UNVALIDATED cards, got ${facts.unvalidated}`);
+  if (facts.validated !== 20) failures.push(`question bank @${width}: expected 20 VALIDATED cards, got ${facts.validated}`);
+  if (facts.unvalidated !== 190) failures.push(`question bank @${width}: expected 190 UNVALIDATED cards, got ${facts.unvalidated}`);
   if (facts.sourceVerified !== 210) failures.push(`question bank @${width}: expected 210 source-verified cards, got ${facts.sourceVerified}`);
   if (facts.duplicateReview !== 1) failures.push(`question bank @${width}: expected one duplicate-review card, got ${facts.duplicateReview}`);
   if (facts.overflow > 1) failures.push(`question bank @${width}: ${facts.overflow}px wider than the screen`);

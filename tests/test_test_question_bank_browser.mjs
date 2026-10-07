@@ -50,20 +50,22 @@ for (const width of [320, 390, 768, 1280]) {
     return {
       cards: cards.length,
       unique: new Set(cards.map(card => card.dataset.g9TestQuestion)).size,
+      validated: cards.filter(card => card.dataset.g9Validation === 'VALIDATED').length,
       unvalidated: cards.filter(card => card.dataset.g9Validation === 'UNVALIDATED').length,
       sourceVerified: cards.filter(card => card.dataset.g9SourceVerification === 'SOURCE VERIFIED').length,
       duplicateReview: cards.filter(card => card.dataset.g9Review === 'DUPLICATE_REVIEW').length,
       types: Object.fromEntries(['MULTIPLE_CHOICE','SHORT_ANSWER','TRUE_FALSE'].map(type => [type, cards.filter(card => card.dataset.type === type).length])),
       overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
       banner: (document.querySelector('[data-g9-test-banner]') || {}).textContent || '',
-      boundary: document.body.innerText.includes('Nothing on this page is in the production Question Bank.'),
+      boundary: document.body.innerText.includes('Production admission is governed separately.'),
       small,
     };
   });
 
   const where = `TEST Question Bank @${width}`;
   if (facts.cards !== 210 || facts.unique !== 210) failures.push(`${where}: card denominator/uniqueness is ${facts.cards}/${facts.unique}, expected 210/210`);
-  if (facts.unvalidated !== 210) failures.push(`${where}: ${facts.unvalidated}/210 UNVALIDATED`);
+  if (facts.validated !== 20) failures.push(`${where}: ${facts.validated}/20 VALIDATED`);
+  if (facts.unvalidated !== 190) failures.push(`${where}: ${facts.unvalidated}/190 UNVALIDATED`);
   if (facts.sourceVerified !== 210) failures.push(`${where}: ${facts.sourceVerified}/210 SOURCE VERIFIED`);
   if (facts.duplicateReview !== 1) failures.push(`${where}: ${facts.duplicateReview} duplicate-review cards, expected 1`);
   if (facts.types.MULTIPLE_CHOICE !== 125 || facts.types.SHORT_ANSWER !== 45 || facts.types.TRUE_FALSE !== 40) {
@@ -97,4 +99,4 @@ if (failures.length) {
   console.log(`FAIL: ${failures.length} TEST Question Bank browser problem(s)`);
   process.exit(1);
 }
-console.log('PASS: TEST Question Bank renders 210 source-verified, academically UNVALIDATED questions with correct filters, isolation, touch targets and no narrow overflow');
+console.log('PASS: TEST Question Bank renders 210 source-verified questions with 20 VALIDATED / 190 UNVALIDATED, correct filters, touch targets and no narrow overflow');
