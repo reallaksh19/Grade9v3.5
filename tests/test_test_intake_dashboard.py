@@ -100,7 +100,7 @@ class TestTestIntakeDashboard(unittest.TestCase):
         start = page.index('data-g9-unit="question-intake"')
         end = page.index("</article>", start)
         panel = page[start:end]
-        self.assertEqual(panel.count("data-g9-intake-record"), 6)
+        self.assertEqual(panel.count(' data-g9-intake-record data-g9-intake-id='), 6)
         self.assertIn("Every rational number is", panel)
         self.assertIn("printed page 2", panel)
         self.assertIn("PDF index 1", panel)
@@ -123,6 +123,14 @@ class TestTestIntakeDashboard(unittest.TestCase):
         self.assertIn('data-g9-test-intake-status', page)
         self.assertIn('min-height:48px', page)
         self.assertNotIn("learner-search-index.v1.json", page)
+
+    def test_test_shell_subject_links_respect_page_depth(self):
+        hub = build_test_site.hub_page()
+        nested = build_test_site.frame(2, "Nested", "rungs/index.html", "<p>body</p>")
+        for subject in ("physics", "chemistry", "mathematics"):
+            self.assertIn(f'href="../{subject}/index.html"', hub)
+            self.assertIn(f'href="../../{subject}/index.html"', nested)
+        self.assertNotIn('href="../../../physics/index.html"', hub)
 
 
 if __name__ == "__main__":
