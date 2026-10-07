@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Polynomial identity theorem and difference polynomial proof" font-family="system-ui, sans-serif" font-size="20">
+  <title>Polynomial identity theorem and difference polynomial proof</title>
+  <desc>Four staged panels: two quadratics agreeing at three distinct points, the difference polynomial d(x) having three zeros, contradiction with the degree bound on non-zero polynomials, and deduction of the zero polynomial.</desc>
+  <g data-g9-stage-id="POLY-IDENT-1">
+    <text x="40" y="45" font-weight="700" font-size="24">1 · Three points of agreement</text>
+    <text x="60" y="80">Two polynomials deg(p) ≤ 2 and deg(q) ≤ 2 agree at x₁, x₂, x₃: p(xᵢ) = q(xᵢ)</text>
+    <line x1="80" y1="120" x2="820" y2="120" stroke="currentColor" stroke-width="2"/>
+    <circle cx="240" cy="120" r="6" fill="currentColor"/><text x="235" y="150">x₁</text>
+    <circle cx="480" cy="120" r="6" fill="currentColor"/><text x="475" y="150">x₂</text>
+    <circle cx="720" cy="120" r="6" fill="currentColor"/><text x="715" y="150">x₃</text>
+  </g>
+  <g data-g9-stage-id="POLY-IDENT-2">
+    <text x="40" y="195" font-weight="700" font-size="24">2 · Define difference polynomial d(x) = p(x) - q(x)</text>
+    <text x="60" y="230">• d(x) has degree at most two: deg(d) ≤ 2 (or d is zero polynomial).</text>
+    <text x="60" y="260">• d(x) evaluates to zero at three inputs: d(x₁) = 0, d(x₂) = 0, d(x₃) = 0.</text>
+  </g>
+  <g data-g9-stage-id="POLY-IDENT-3">
+    <text x="40" y="315" font-weight="700" font-size="24">3 · Contradiction for non-zero polynomials</text>
+    <text x="60" y="350">Theorem: A NON-ZERO polynomial of degree ≤ 2 has AT MOST TWO distinct zeros.</text>
+    <text x="60" y="380">If d(x) were non-zero, having 3 distinct zeros would contradict the theorem!</text>
+  </g>
+  <g data-g9-stage-id="POLY-IDENT-4">
+    <text x="40" y="435" font-weight="700" font-size="24">4 · Conclusion: d(x) ≡ 0 identically, so p(x) = q(x) everywhere</text>
+    <text x="60" y="470" font-style="italic">Distinction: zero polynomial 0(x) has all zero coefficients and infinite zeros;</text>
+    <text x="60" y="495" font-style="italic">the "at most two zeros" bound applies strictly to non-zero polynomials.</text>
+  </g>
+</svg>
