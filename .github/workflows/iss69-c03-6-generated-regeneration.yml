@@ -1,0 +1,149 @@
+name: iss69-c03-6-generated-regeneration
+
+on:
+  push:
+    branches:
+      - fix/iss69-c03-6-generated-regeneration
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    if: ${{ !contains(github.event.head_commit.message, '[iss69-generated-refresh]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/iss69-c03-6-generated-regeneration
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install generator dependencies
+        run: python -m pip install --quiet jsonschema pypdf
+
+      - name: Pin accepted Phase-C source/runtime basis
+        run: |
+          set -euo pipefail
+          BASE=59751b52e4911a132abb8c3956583a75b3cbcab7
+          git merge-base --is-ancestor "$BASE" HEAD
+          unexpected="$(git diff --name-only "$BASE"...HEAD | grep -v '^\.github/workflows/iss69-c03-6-generated-regeneration\.yml$' || true)"
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected pre-regeneration delta from accepted Phase-C base:"
+            printf '%s\n' "$unexpected"
+            exit 1
+          fi
+
+      - name: Run governed generators
+        run: |
+          set -euo pipefail
+          python3 Shared/tools/build_manifest.py
+          python3 Shared/tools/build_pages_site.py
+
+      - name: Enforce generated write surface
+        run: |
+          set -euo pipefail
+          mapfile -t changed < <(git status --porcelain --untracked-files=all | sed -E 's/^.. //')
+          printf 'Generated working-tree changes:\n'
+          printf '  %s\n' "${changed[@]}"
+          if [ "${#changed[@]}" -eq 0 ]; then
+            echo "Generator produced no tracked working-tree changes."
+          fi
+          bad=()
+          for path in "${changed[@]}"; do
+            case "$path" in
+              docs/architecture-manifest.json|              tools/data.js|              public/data/data.js|              public/core-learning/*|              public/js/core-learning/*|              standalone/core-learning/*|              docs/.pages-manifest.json|              docs/data/data.js|              docs/core-learning/*|              docs/js/core-learning/*|              docs/tools/data.js)
+                ;;
+              *)
+                bad+=("$path")
+                ;;
+            esac
+          done
+          if [ "${#bad[@]}" -ne 0 ]; then
+            echo "Generator touched undeclared path(s):"
+            printf '  %s\n' "${bad[@]}"
+            exit 1
+          fi
+
+      - name: Verify deterministic freshness and active authority
+        run: |
+          set -euo pipefail
+          python3 Shared/tools/build_manifest.py --check
+          python3 Shared/tools/build_pages_site.py --check
+          python3 - <<'PY'
+          from pathlib import Path
+          public = Path("public/core-learning/data.js")
+          docs = Path("docs/core-learning/data.js")
+          text = public.read_text(encoding="utf-8")
+          assert "BP-CORE1A-CONSTRUCTION@1.8.0" in text, "Core1A 1.8.0 missing from generated projection"
+          assert "BP-CORE2-SOURCE-QUESTION@1.11.0" in text, "Core2 1.11.0 missing from generated projection"
+          assert "BP-CORE1A-CONSTRUCTION@1.7.0" not in text, "stale Core1A 1.7.0 remains in generated projection"
+          assert public.read_bytes() == docs.read_bytes(), "public/docs Core-learning data mirror mismatch"
+          registry = Path("publication/derived-artifacts/derived-artifact-index.v1.json")
+          assert registry.is_file(), "derived artifact registry was not generated"
+          print("generated authority and mirror checks: PASS")
+          PY
+
+      - name: Run focused generator and Pages tests
+        run: |
+          set -euo pipefail
+          python3 -m unittest tests.test_tools tests.test_pages_site
+
+      - name: Commit generated outputs
+        id: commit
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+
+          staged="$(git diff --cached --name-only)"
+          bad=()
+          while IFS= read -r path; do
+            [ -z "$path" ] && continue
+            case "$path" in
+              docs/architecture-manifest.json|              tools/data.js|              public/data/data.js|              public/core-learning/*|              public/js/core-learning/*|              standalone/core-learning/*|              docs/.pages-manifest.json|              docs/data/data.js|              docs/core-learning/*|              docs/js/core-learning/*|              docs/tools/data.js)
+                ;;
+              *)
+                bad+=("$path")
+                ;;
+            esac
+          done <<< "$staged"
+          if [ "${#bad[@]}" -ne 0 ]; then
+            echo "Refusing to commit undeclared path(s):"
+            printf '  %s\n' "${bad[@]}"
+            exit 1
+          fi
+
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git commit -m "[iss69-generated-refresh] Regenerate governed Core-learning artifacts"
+          sha="$(git rev-parse HEAD)"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          git push origin HEAD:fix/iss69-c03-6-generated-regeneration
+
+      - name: Record generated evidence
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p build/iss69-c03-6
+          git status --short > build/iss69-c03-6/status.txt
+          git diff --name-status 59751b52e4911a132abb8c3956583a75b3cbcab7..HEAD > build/iss69-c03-6/base-delta.txt
+          sha256sum             public/core-learning/data.js             docs/core-learning/data.js             docs/architecture-manifest.json             > build/iss69-c03-6/digests.sha256
+          cp publication/derived-artifacts/derived-artifact-index.v1.json build/iss69-c03-6/derived-artifact-index.v1.json
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: iss69-c03-6-generated-regeneration
+          path: build/iss69-c03-6
+          if-no-files-found: error
+          retention-days: 30
