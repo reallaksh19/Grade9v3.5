@@ -307,6 +307,15 @@
       "location": "main",
       "reason": "Navigation and status for a sandbox subject, not learner teaching content: every learner page it links to is rendered by render_core.py, and a page it reports is labelled an unaccepted draft",
       "phase3_action": "Fold into a render_core site-page mode if Phase 3 makes one; until then it adds no learner-page generator"
+    },
+    {
+      "path": "Shared/tools/build_test_question_bank.py",
+      "kind": "PYTHON_HTML",
+      "classification": "OUT_OF_SCOPE",
+      "renders": "The TEST sandbox's parked-question review browser and its TEST-only data projection; every question remains explicitly unvalidated and outside production Question Bank authority",
+      "location": "main",
+      "reason": "QA/review navigation for sandbox intake material, not canonical learner teaching content or production publication",
+      "phase3_action": "Keep as TEST-only QA projection unless the production Question Bank later exposes a governed preview mode; it must not become a second canonical learner-page renderer"
     }
   ]
 }

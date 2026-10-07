@@ -127,6 +127,52 @@ class TestPages(unittest.TestCase):
     def test_committed_pages_are_what_the_generator_writes(self):
         self.assertEqual(build_test_site.check(), [])
 
+    def test_candidate_qa_registry_is_visible_and_both_candidates_remain_promotion_blocked(self):
+        audits = build_test_site.candidate_audits()
+        self.assertEqual({row["candidate_id"] for row in audits}, {"ISS55-POLY", "NCERT-EXEMPLAR-G9-MATH-210"})
+        self.assertEqual({row["promotion"]["status"] for row in audits}, {"BLOCKED"})
+        by_id = {row["candidate_id"]: row for row in audits}
+        self.assertEqual(by_id["ISS55-POLY"]["state"], "TECH_PASS")
+        self.assertEqual(by_id["NCERT-EXEMPLAR-G9-MATH-210"]["state"], "QA_IN_PROGRESS")
+        hub = (REPO / "public/test/index.html").read_text(encoding="utf-8")
+        self.assertIn("QA candidate: Issue #55 polynomial stress set", hub)
+        self.assertIn("QA candidate: NCERT Exemplar Grade 9 Mathematics", hub)
+        self.assertIn("2 candidate QA record(s) in TEST/candidates", hub)
+
+    def test_test_search_index_covers_parked_questions_without_becoming_canonical_search(self):
+        rows = build_test_site.test_search_index()
+        self.assertEqual(len(rows), 220)
+        self.assertEqual(len([r for r in rows if r["kind"] == "OFFICIAL_INTAKE"]), 210)
+        self.assertEqual(len([r for r in rows if r["kind"] == "OWNER_SUPPLIED"]), 10)
+        self.assertEqual(len({r["id"] for r in rows}), 220)
+        hub = (REPO / "public/test/index.html").read_text(encoding="utf-8")
+        self.assertIn('id="g9-test-search-index"', hub)
+        self.assertIn("TEST-only search index: 220 parked question(s); production search untouched", hub)
+        canonical = (REPO / "public/data/search-index.v1.json").read_text(encoding="utf-8")
+        learner = (REPO / "public/data/learner-search-index.v1.json").read_text(encoding="utf-8")
+        for row in rows:
+            self.assertNotIn(str(row["id"]), canonical)
+            self.assertNotIn(str(row["id"]), learner)
+
+    def test_owner_question_banks_are_visible_as_test_only_previews(self):
+        page = (REPO / "public/test/index.html").read_text(encoding="utf-8")
+        self.assertIn("Owner Question Bank: iss55-poly", page)
+        self.assertIn("10 question(s) · owner-supplied custody · TEST-only preview · not accepted", page)
+        for number in range(1, 11):
+            self.assertIn(f"OWN-ISS55-POLY-{number:02d}", page)
+        self.assertIn("Inspect answer / verification evidence", page)
+
+    def test_committed_polynomial_core2_source_renders_through_current_renderer(self):
+        manifest = REPO / "TEST/products/iss55-poly.manifest.json"
+        pages, gaps, _digest, _advisories, _waived = render_core.build_report(manifest, "PAGES", held_to="REFERENCE")
+        self.assertIn("core2.html", pages)
+        core2 = pages["core2.html"]
+        for number in range(1, 11):
+            self.assertIn(f"OWN-ISS55-POLY-{number:02d}", core2)
+        self.assertNotIn("Official past paper", core2)
+        self.assertTrue(all(gap.get("core") == "CORE2" for gap in gaps), gaps)
+
+
     def test_a_rung_matrix_that_breaks_the_matrix_schema_says_so_on_the_rungs_page_and_in_the_build(self):
         board = {"matrix_id": "MX-BAD", "subject": "TEST", "topic": "Vectors", "subtopic": "Sums",
                  "rungs": [{"rung": "R1", "ladder_position": 110, "microtopic_ref": "MIC-X"}]}
@@ -159,6 +205,9 @@ class TestPages(unittest.TestCase):
     def test_the_atlas_is_bound_to_test_and_keeps_no_trace_of_laws_of_motion(self):
         atlas = (REPO / "public/test/atlas/index.html").read_text(encoding="utf-8")
         self.assertIn("subjects.TEST", atlas)
+        self.assertIn('data-g9-test-atlas-data', atlas)
+        self.assertIn("MATRIX-TEST-ISS55-POLY", atlas)
+        self.assertIn("MIC-MATH-POLY-IDENTITY-DEGREE-BOUND", atlas)
         for leftover in ("MATRIX-PHY-NLM-FIRST-LAW", "Laws of Motion", "phy-nlm-first-law", "NLM Topic Atlas"):
             self.assertNotIn(leftover, atlas)
         self.assertNotIn("\\n<script", atlas, "the template's literal backslash-n is fixed in the copy")
@@ -198,6 +247,33 @@ class TestPages(unittest.TestCase):
         projection = build_question_bank_web.build(REPO)
         self.assertNotIn("TEST", {q.get("subject") for q in projection["questions"]})
         self.assertEqual(len(projection["questions"]), 81)
+
+
+    def test_polynomial_bank_uses_exact_primary_capabilities_and_keeps_concept_bridges_secondary(self):
+        bank = json.loads((REPO / "TEST/question-bank/iss55-poly.json").read_text(encoding="utf-8"))
+        expected = {
+            "OWN-ISS55-POLY-01": ("CAP-MATH-POLY-FACTOR-PARAMETER", "CAP-MATH-POLY-CHANGE-OF-VARIABLE-DOMAIN"),
+            "OWN-ISS55-POLY-02": ("CAP-MATH-POLY-MULTIPLICITY-SIGN", "CAP-MATH-POLY-SIGN-CHART-RIGOR"),
+            "OWN-ISS55-POLY-03": ("CAP-MATH-POLY-INTERPOLATION-DEGREE-BOUND", "CAP-MATH-POLY-IDENTITY-THEOREM-DEGREE"),
+            "OWN-ISS55-POLY-04": ("CAP-MATH-POLY-GEOMETRIC-AREA-DEGREE", "CAP-MATH-POLY-SIGN-CHART-RIGOR"),
+            "OWN-ISS55-POLY-06": ("CAP-MATH-POLY-FACTOR-VALUE-CONSTRUCTION", "CAP-MATH-POLY-CHANGE-OF-VARIABLE-DOMAIN"),
+            "OWN-ISS55-POLY-07": ("CAP-MATH-POLY-FACTOR-DIVISIBILITY-DEGREE", "CAP-MATH-POLY-IDENTITY-THEOREM-DEGREE"),
+            "OWN-ISS55-POLY-09": ("CAP-MATH-POLY-PARAMETER-DEGREE-ZERO", "CAP-MATH-POLY-CHANGE-OF-VARIABLE-DOMAIN"),
+        }
+        rows = {q["id"]: q for q in bank["questions"]}
+        for qid, (primary, bridge) in expected.items():
+            self.assertEqual(rows[qid]["primary_capability_ref"], primary)
+            self.assertIn(bridge, rows[qid].get("secondary_capability_refs", []))
+
+        package = json.loads((REPO / "TEST/library/iss55-poly.v1.json").read_text(encoding="utf-8"))
+        anchors = {
+            a["target_question_ref"]: a
+            for mic in package["microtopics"]
+            for a in ((mic.get("extensions") or {}).get("grade9v3:lesson_anchors") or {}).values()
+        }
+        self.assertIn("(k - 4)x + 12", anchors["OWN-ISS55-POLY-01"]["stem"])
+        self.assertIn("(a - 1)x^3 + (a + 1)x^2 - 2x", anchors["OWN-ISS55-POLY-09"]["stem"])
+        self.assertIn("x^4 + 4x^2 + 4", anchors["OWN-ISS55-POLY-10"]["stem"])
 
 
 class TestDeploy(unittest.TestCase):

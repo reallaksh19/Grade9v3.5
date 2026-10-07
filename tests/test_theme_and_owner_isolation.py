@@ -19,22 +19,31 @@ class TestThemeAndOwnerIsolation(unittest.TestCase):
         return html_files
 
     def test_zero_test_links_in_learner_surfaces(self):
-        """Crawl all .html files in public/ (except public/test/) and assert zero occurrences of href=".../test/..." or >TEST<."""
+        """TEST navigation is allowed only on the portal and subject hubs; learner topic/Core surfaces remain isolated."""
         files = self.get_learner_html_files()
         if not files:
-            return # No files to test yet
+            return
+        test_entry_pages = {
+            "index.html": 'href="test/index.html" class="test-link" data-site-test>TEST</a>',
+            "physics/index.html": 'href="../test/index.html" class="test-link" data-site-test>TEST</a>',
+            "chemistry/index.html": 'href="../test/index.html" class="test-link" data-site-test>TEST</a>',
+            "mathematics/index.html": 'href="../test/index.html" class="test-link" data-site-test>TEST</a>',
+        }
         for filepath in files:
             content = filepath.read_text(encoding="utf-8")
-            
-            # Check for links to /test/
-            test_links = re.findall(r'href=["\'][^"\']*?/test/[^"\']*?["\']', content, re.IGNORECASE)
+            relative = filepath.relative_to(PUBLIC_DIR).as_posix()
+            scan = content
+            if relative in test_entry_pages:
+                allowed = test_entry_pages[relative]
+                self.assertEqual(content.count(allowed), 1, f"Expected one TEST entry link in {filepath}")
+                scan = content.replace(allowed, "", 1)
+
+            test_links = re.findall(r'href=["\'][^"\']*?/test/[^"\']*?["\']', scan, re.IGNORECASE)
             self.assertEqual(len(test_links), 0, f"Found test links in {filepath}: {test_links}")
-            
-            # Check for >TEST< text
-            test_text = re.findall(r'>TEST<', content)
+
+            test_text = re.findall(r'>TEST<', scan)
             self.assertEqual(len(test_text), 0, f"Found >TEST< text in {filepath}")
-            
-            # Ensure no legacy authoring acronyms are leaking in breadcrumbs
+
             self.assertNotIn(">CORE1A<", content, f"Legacy CORE1A breadcrumb found in {filepath}")
             self.assertNotIn(">CORE2<", content, f"Legacy CORE2 breadcrumb found in {filepath}")
 

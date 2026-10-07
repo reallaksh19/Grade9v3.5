@@ -1,0 +1,139 @@
+{
+  "matrix_id": "MATRIX-TEST-ISS55-POLY",
+  "subject": "TEST",
+  "bucket_id": "BUCKET-MATH-POLY-STRESS-ISS55",
+  "topic": "Polynomials",
+  "subtopic": "Issue #55 polynomial reasoning stress set",
+  "axis_note": "ladder_position orders this TEST matrix only; it is a sandbox learning sequence, not canonical curriculum order.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 20,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-MATH-POLY-SIGN-MULTIPLICITY",
+      "ceiling": [
+        "root multiplicity",
+        "interval sign chart",
+        "factor sign",
+        "sign change"
+      ],
+      "must_contain": [
+        "A factored real polynomial whose zeros partition the real line into intervals.",
+        "At least one repeated zero so the learner must distinguish multiplicity from a sign change."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the multiplicity parity of one real zero",
+          "hold": "the remaining factors and interval partition",
+          "notice": "odd multiplicity changes sign while even multiplicity preserves sign"
+        },
+        {
+          "phase": 2,
+          "vary": "the test point chosen inside an interval",
+          "hold": "the factorisation and interval",
+          "notice": "the product sign is constant within an interval containing no zero"
+        }
+      ]
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 60,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-MATH-POLY-AUXILIARY-DOMAIN",
+      "ceiling": [
+        "auxiliary variable",
+        "biquadratic",
+        "domain restriction",
+        "back-substitution"
+      ],
+      "must_contain": [
+        "A substitution such as u = x^2 with the real-domain condition u >= 0 stated explicitly.",
+        "At least one algebraic root in the auxiliary variable that must be rejected before mapping back to x."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the sign of an auxiliary-variable root",
+          "hold": "the substitution u = x^2 and real domain",
+          "notice": "a negative u-root is algebraically valid for the transformed equation but inadmissible for real x"
+        },
+        {
+          "phase": 2,
+          "vary": "the accepted non-negative u value",
+          "hold": "the back-substitution rule x^2 = u",
+          "notice": "positive u normally maps to two real x-values while u = 0 maps to one"
+        }
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 100,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-MATH-POLY-IDENTITY-DEGREE-BOUND",
+      "ceiling": [
+        "difference polynomial",
+        "degree bound",
+        "root bound",
+        "polynomial identity"
+      ],
+      "must_contain": [
+        "Two bounded-degree polynomials compared by forming their difference.",
+        "Enough distinct shared values to force the difference polynomial to be zero, with the zero-polynomial exception stated."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "the number of distinct shared values",
+          "hold": "the degree bound on the difference polynomial",
+          "notice": "the identity conclusion becomes forced only when the root count exceeds the possible roots of a non-zero difference polynomial"
+        },
+        {
+          "phase": 2,
+          "vary": "whether the difference polynomial is assumed non-zero or zero",
+          "hold": "the same shared values and degree bound",
+          "notice": "the contradiction eliminates only the non-zero case, leaving the zero polynomial and hence identity"
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Choose the algebraic model that preserves the relevant domain and structural constraints, then justify the conclusion with an independent check rather than pattern matching.",
+    "difficult_move": "Recognising which structural constraint controls the problem: multiplicity parity, auxiliary-variable domain, or a degree/root-count bound.",
+    "independent_check": "Verify the result in the original polynomial setting: test interval signs, substitute mapped roots, or compare the original polynomials at and beyond the supplied values as appropriate.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "The controlling structural constraint and the first representation change are supplied."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The relevant representation is supplied, but the controlling constraint must be identified and applied."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the original polynomial task and the requirement for an independent check are supplied."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "model_choice",
+      "changed_demand": "A polynomial problem offers several plausible transformations and the learner must choose the one whose domain and structural assumptions remain valid.",
+      "information_not_handed_over": "which transformation preserves the relevant constraint",
+      "repair_to": "R2"
+    },
+    {
+      "dimension": "representation_translation",
+      "changed_demand": "The learner must move between factor form, interval signs, an auxiliary variable, or a difference polynomial without losing the meaning of the original variable.",
+      "information_not_handed_over": "which features of the original polynomial must remain invariant across the representation change",
+      "repair_to": "R1"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "A multi-step uniqueness argument requires forming a difference polynomial, applying a degree bound, and handling the zero-polynomial exception explicitly.",
+      "information_not_handed_over": "the contradiction route from root count to the zero-polynomial conclusion",
+      "repair_to": "R3"
+    }
+  ]
+}

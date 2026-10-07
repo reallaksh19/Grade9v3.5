@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "grade9v3-test-candidate-audit-v1",
+  "title": "Grade9V3 TEST candidate audit",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "candidate_id",
+    "target_subject",
+    "state",
+    "sources",
+    "checks",
+    "promotion"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "grade9v3-test-candidate-audit-v1"
+    },
+    "candidate_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "origin": {
+      "type": "object"
+    },
+    "target_subject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_topic": {
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "PARKED",
+        "QA_IN_PROGRESS",
+        "TECH_PASS",
+        "PROMOTION_READY",
+        "PROMOTED",
+        "NEEDS_FIX"
+      ]
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "question_counts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "checks": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "status",
+          "detail"
+        ],
+        "properties": {
+          "status": {
+            "enum": [
+              "PASS",
+              "PENDING",
+              "BLOCKED",
+              "NOT_APPLICABLE"
+            ]
+          },
+          "detail": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "promotion": {
+      "type": "object",
+      "required": [
+        "status",
+        "target"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "BLOCKED",
+            "READY",
+            "PROMOTED"
+          ]
+        },
+        "target": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
