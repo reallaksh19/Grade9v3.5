@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import unittest
+from pathlib import Path
 
 from TEST.tools import source_intake
 
@@ -134,6 +135,21 @@ class TestTestSourceIntake(unittest.TestCase):
         problems = "\n".join(source_intake.findings(bank))
         self.assertIn("difficulty", problems)
         self.assertIn("Additional properties are not allowed", problems)
+
+    def test_committed_pilot_is_exact_six_verified_records_with_corrected_locators(self):
+        repo = Path(__file__).resolve().parents[1]
+        path = repo / "TEST/question-bank/intake/ncert-exemplar-g9-number-systems-pilot.v1.json"
+        bank = source_intake.load(path)
+        self.assertEqual(source_intake.findings(bank), [])
+        self.assertEqual(source_intake.report(bank)["total_questions"], 6)
+        self.assertEqual(source_intake.report(bank)["ready_for_blueprint"], 6)
+        self.assertEqual([q["source_locator"]["printed_page"] for q in bank["questions"]], [2, 3, 3, 3, 3, 3])
+        self.assertEqual([q["source_locator"]["pdf_page_index"] for q in bank["questions"]], [1, 2, 2, 2, 2, 2])
+        self.assertFalse(any("edition_or_year" in doc for doc in bank["documents"]))
+        self.assertEqual([q["official_answer"]["answer_key"] for q in bank["questions"]], ["(C)", "(C)", "(D)", "(D)", "(D)", "(C)"])
+        for q in bank["questions"]:
+            for forbidden in ("difficulty", "qrt", "capability", "crux", "accepted", "worked_solution"):
+                self.assertNotIn(forbidden, q)
 
 
 if __name__ == "__main__":
