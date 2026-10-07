@@ -190,6 +190,18 @@ def _bank_question_metadata(question: dict, vocabulary: dict[str, Any]) -> dict:
     if provenance not in vocabulary["provenance"]:
         raise LearnerMetadataError(f"METADATA_PROVENANCE_INVALID: {question['id']}:{provenance}")
     source_status = custody.get("source_status")
+    curricular_verified = (
+        custody.get("authority_class") == "CURRICULAR_STANDARD"
+        and source_status == "NCERT_AUTHENTIC"
+    )
+    if provenance == "CURRICULAR_VERIFIED" and not curricular_verified:
+        raise LearnerMetadataError(
+            f"METADATA_PROVENANCE_SOURCE_CONTRADICTION: {question['id']}:{provenance}:{source_status}"
+        )
+    if curricular_verified and provenance != "CURRICULAR_VERIFIED":
+        raise LearnerMetadataError(
+            f"METADATA_PROVENANCE_SOURCE_CONTRADICTION: {question['id']}:{provenance}:{source_status}"
+        )
     if provenance in {"PYQ_VERIFIED", "PYQ_ADAPTED"} and not (
         isinstance(source_status, str) and source_status.startswith("PYQ_VERIFIED")
     ):
