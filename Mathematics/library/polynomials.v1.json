@@ -8100,9 +8100,9 @@
         "kind": "EXACT",
         "summary": "(C) 3abc",
         "reasoning": [
-          "Use the identity a³+b³+c³-3abc=(a+b+c)(a²+b²+c²-ab-bc-ca). identity with factor a+b+c.",
-          "Substitute a+b+c=0 into the identity. a³+b³+c³=3abc.",
-          "Match the resulting cubic sum to the listed choices. option C."
+          "The given condition is a+b+c=0, and the symmetric cubic identity gives a³+b³+c³-3abc=(a+b+c)(a²+b²+c²-ab-bc-ca).",
+          "Because a+b+c is 0, the product on the right is 0, so the cubic sum a³+b³+c³ is equal to 3abc.",
+          "Therefore the expression asked for in the question is equal to option (C), 3abc."
         ],
         "reasoning_route": [
           {
@@ -8554,9 +8554,9 @@
         "kind": "EXACT",
         "summary": "5",
         "reasoning": [
-          "Identify the non-zero term with the greatest exponent. leading term x⁵.",
-          "Read the exponent of the leading term x⁵. degree 5.",
-          "Check that no term has an exponent greater than 5. degree confirmed."
+          "For the polynomial x⁵-x⁴+3, degree is determined by the greatest exponent belonging to a non-zero term.",
+          "The leading non-zero term is x⁵, so the degree of this polynomial is 5.",
+          "The remaining terms have powers 4 and 0, so no term exceeds degree 5."
         ],
         "reasoning_route": [
           {
@@ -8875,7 +8875,7 @@
           ],
           "question_number": "Ex 2.3 Q2(i)",
           "common_wrong_route": "Reporting the exponent 2 instead of the numerical factor multiplying x².",
-          "stable_crux_move": "Rewrite x² as 1·x²."
+          "stable_crux_move": "Expose the implicit positive unit multiplier in the term x²."
         }
       },
       "origin": "ORIGINAL",
@@ -8890,9 +8890,9 @@
         "kind": "EXACT",
         "summary": "1",
         "reasoning": [
-          "Locate the x² term in 2+x²+x. term x².",
-          "Rewrite x² as 1·x². coefficient 1.",
-          "Separate the coefficient from the exponent. coefficient confirmed."
+          "In 2+x²+x, the requested x² term is positive and appears without a written numerical multiplier.",
+          "Expose the implicit positive unit multiplier: x²=(+1)·x², so the coefficient of x² is 1.",
+          "Multiplying +1 by x² recovers the original positive x² term, confirming the coefficient."
         ],
         "reasoning_route": [
           {
@@ -8908,12 +8908,12 @@
           {
             "id": "Q-MAT-POLY-NCERT9-EX23-Q02-I-MOVE-2",
             "kind": "TRANSFORM",
-            "action": "Rewrite x² as 1·x².",
-            "why_valid": "An unwritten numerical factor of a positive term is 1.",
+            "action": "Expose the implicit positive unit multiplier in the term x².",
+            "why_valid": "A positive x² term with no written numeral is exactly (+1)·x².",
             "inputs": [
               "term x²"
             ],
-            "output": "coefficient 1"
+            "output": "coefficient +1"
           },
           {
             "id": "Q-MAT-POLY-NCERT9-EX23-Q02-I-MOVE-3",
@@ -8946,7 +8946,7 @@
           "supports_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q02-I-MOVE-1"
         },
         {
-          "text": "Rewrite x² as 1·x².",
+          "text": "Expose the implicit positive unit multiplier in the term x².",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "supports_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q02-I-MOVE-2"
@@ -8987,7 +8987,7 @@
           ],
           "question_number": "Ex 2.3 Q2(ii)",
           "common_wrong_route": "Ignoring the minus sign and reporting the coefficient of -x² as +1.",
-          "stable_crux_move": "Rewrite -x² as (-1)·x²."
+          "stable_crux_move": "Carry the written minus sign into the implicit unit multiplier of -x²."
         }
       },
       "origin": "ORIGINAL",
@@ -9002,9 +9002,9 @@
         "kind": "EXACT",
         "summary": "-1",
         "reasoning": [
-          "Locate the x² term in 2-x²+x³. term -x².",
-          "Rewrite -x² as (-1)·x². coefficient -1.",
-          "Check the sign by multiplying (-1) by x². coefficient confirmed."
+          "In 2-x²+x³, the requested x² term is -x², so its sign must be part of the coefficient.",
+          "Carry the minus sign into the implicit unit multiplier: -x²=(-1)·x², giving coefficient -1.",
+          "Multiplying -1 by x² reproduces the original negative x² term, confirming the signed coefficient."
         ],
         "reasoning_route": [
           {
@@ -9020,8 +9020,8 @@
           {
             "id": "Q-MAT-POLY-NCERT9-EX23-Q02-II-MOVE-2",
             "kind": "TRANSFORM",
-            "action": "Rewrite -x² as (-1)·x².",
-            "why_valid": "The omitted magnitude is 1 and the written minus sign makes the factor negative.",
+            "action": "Carry the written minus sign into the implicit unit multiplier of -x².",
+            "why_valid": "The term -x² means a unit magnitude with negative sign, namely (-1)·x².",
             "inputs": [
               "term -x²"
             ],
@@ -9058,7 +9058,7 @@
           "supports_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q02-II-MOVE-1"
         },
         {
-          "text": "Rewrite -x² as (-1)·x².",
+          "text": "Carry the written minus sign into the implicit unit multiplier of -x².",
           "support_kind": "EXECUTE",
           "reveals": "METHOD",
           "supports_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q02-II-MOVE-2"
