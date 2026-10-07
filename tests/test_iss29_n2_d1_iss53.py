@@ -15,6 +15,7 @@ GENERATED = ISS53 / "generated"
 SCHEMA = json.loads((REPO / "Shared" / "library" / "package.schema.json").read_text(encoding="utf-8"))
 
 from Shared.tools import owner_bank, question_difficulty  # noqa: E402
+from Shared.library import authority  # noqa: E402
 
 
 EXPECTED = {
@@ -114,6 +115,22 @@ class Issue29N2D1ISS53(unittest.TestCase):
         self.assertNotIn("(x + 3)", square)
         self.assertNotIn("(0, 2)", linear)
         self.assertNotIn("(1, 0)", linear)
+
+    def test_polynomial_relations_bind_to_mathematics_subject_authority(self) -> None:
+        gates = authority.gate_relations(REPO / "Mathematics")
+        expected = {
+            "REL-MATH-POLY-STANDARD-FORM",
+            "REL-MATH-POLY-SQUARE-IDENTITY",
+            "REL-MATH-POLY-DIFF-SQUARES",
+            "REL-MATH-POLY-LINEAR-ROOT",
+            "REL-MATH-POLY-RECT-AREA",
+        }
+        self.assertTrue(expected.issubset(gates))
+        self.assertEqual(authority.findings(self.package, gates), [])
+        registry = json.loads((REPO / "Mathematics" / "gates" / "polynomials.v1.json").read_text(encoding="utf-8"))
+        gate = registry["gates"][0]
+        self.assertEqual(gate["curriculum"]["scope_class"], "OWNER_EXTENSION")
+        self.assertIn("Independent mathematical/pedagogical acceptance remains pending", registry["provenance"]["review_status"])
 
     def test_historical_acceptance_is_not_carried_forward(self) -> None:
         for row in self.reanalysis["rows"]:
