@@ -138,8 +138,8 @@ def render(out: Path) -> dict[str, str]:
     digest = render_core.render_digest(ctx)
     out.mkdir(parents=True, exist_ok=True)
     pages = {
-        "core1a.html": render_core.page(ctx, "CORE1A", "PAGES", digest),
-        "core2.html": render_core.page(ctx, "CORE2", "PAGES", digest)
+        "core1a.html": render_core.page(ctx, "CORE1A", "SINGLE_FILE", digest),
+        "core2.html": render_core.page(ctx, "CORE2", "SINGLE_FILE", digest)
     }
     for name, html in pages.items():
         (out / name).write_text(html, encoding="utf-8")
