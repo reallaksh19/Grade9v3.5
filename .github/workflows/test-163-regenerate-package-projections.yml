@@ -45,6 +45,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tools/data.js public/data/data.js public/test docs/data/data.js docs/test docs/.pages-manifest.json
+          git add tools/data.js public/data/data.js public/test docs/data/data.js docs/tools/data.js docs/test docs/.pages-manifest.json
           git commit -m "build(test): project minimal Rational Numbers package"
           git push origin HEAD:test/163-minimal-package
