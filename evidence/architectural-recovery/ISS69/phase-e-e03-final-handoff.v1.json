@@ -131,7 +131,7 @@
     "conclusion": "No post-D05 evidence satisfies the independent rendered-review condition, so accepted 4x7 coverage remains 0/28. Unsupported cells are preserved rather than inferred, relabelled or backfilled from technical qualification.",
     "unsupported_status": "UNSUPPORTED_NO_CURRENT_INDEPENDENT_RENDERED_ACCEPTANCE"
   },
-  "status": "MODULES_A_B_C_COMPLETE_FINAL_HUMAN_HEAD_CI_PENDING",
+  "status": "MODULES_A_B_C_COMPLETE_FINAL_EXACT_HEAD_CI_PENDING",
   "frontier": {
     "semantic_contract": {
       "issue": 66,
@@ -346,24 +346,30 @@
     "ACCEPTED_QRT_COVERAGE": "0/28"
   },
   "exact_head_validation": {
-    "state": "READY_FOR_FINAL_HUMAN_HEAD_CI",
-    "manifest_refreshed_head_sha": "aa6105dc442297b2ce83e9367e4956fc0a5468e4",
-    "dedicated_workflow": {
-      "run_id": 37579045297,
-      "refresh_job_id": 112654317160,
-      "qualify_job_id": 112654608115,
-      "result": "PASS",
-      "contract_tests": "7/7",
-      "manifest_freshness": "PASS",
-      "declared_surface_only": "PASS"
+    "state": "READY_FOR_FINAL_EXACT_HEAD_CI",
+    "exclusive_surface_candidate_sha": "b212635bf6898cd2c8678cca8761e7ba85f8801a",
+    "manifest_restore": {
+      "head_sha": "825092e377b925b75213ddc5a6c08e125109d52e",
+      "current_manifest_blob": "96989a309b035bf8fac3753350431dd9ff948c49",
+      "e02_manifest_blob": "96989a309b035bf8fac3753350431dd9ff948c49",
+      "result": "IDENTICAL_TO_E02_PREDECESSOR"
+    },
+    "write_surface": {
+      "leaf_owned": [
+        ".github/workflows/phase-e-final-handoff.yml",
+        "evidence/architectural-recovery/ISS69/phase-e-e03-final-handoff.v1.json"
+      ],
+      "plan_authority_maintenance": [
+        "evidence/architectural-recovery/ISS69/phase-e-delp-execution-graph.v32.json"
+      ],
+      "product_runtime_generated_files_changed": []
     },
     "size_budget": {
-      "reviewable_semantic_control_loc": 650,
+      "reviewable_semantic_control_loc": 558,
       "target_loc": 700,
       "hard_loc": 1500,
-      "generated_mechanical_loc": 13,
       "result": "WITHIN_TARGET"
     },
-    "requirement": "This evidence-only human commit must pass the dedicated E03 contract and be reconciled against the E02 exact-head broad/canonical failure sets with zero new failing test IDs before final TASK_RESULT publication."
+    "requirement": "Final human evidence head must pass phase-e-final-handoff, E01 successor authority workflow, learner-platform tests, and exact broad/canonical comparison versus E02 with zero new failing identifiers."
   }
 }
