@@ -1,0 +1,30 @@
+name: phase-d-historical-negative-qualification
+
+on:
+  pull_request:
+    paths:
+      - "tests/test_phase_d_historical_negative_replay.py"
+      - "evidence/blueprint-cycles/ISS32/**"
+      - "evidence/blueprint-cycles/ISS34/**"
+      - "evidence/blueprint-cycles/ISS36/**"
+      - "evidence/blueprint-cycles/ISS38/**"
+      - "evidence/blueprint-schema/ISS66/u10a-eight-run-integrated-replay.json"
+      - "Shared/tools/question_review_matrix.py"
+      - "Shared/tools/qrt_pipeline_guard.py"
+      - "Shared/tools/render_core.py"
+      - "Shared/quality/qrt-pipeline-run.schema.json"
+      - ".github/workflows/phase-d-historical-negative-qualification.yml"
+  workflow_dispatch:
+
+jobs:
+  historical-negative-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install qualification dependencies
+        run: pip install --quiet jsonschema pypdf
+      - name: Run historical negative falsifiers
+        run: python3 -m unittest tests.test_phase_d_historical_negative_replay
