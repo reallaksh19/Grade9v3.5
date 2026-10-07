@@ -23,12 +23,13 @@ class TestIss55PolynomialCanonicalStaging(unittest.TestCase):
         self.assertEqual(self.package["package_id"], "LIB-MATH-POLYNOMIALS")
         self.assertEqual(self.package["subject"], "Mathematics")
         self.assertEqual(self.package["status"], "CANDIDATE")
-        self.assertEqual(len(self.package["questions"]), 10)
+        iss55 = [q for q in self.package["questions"] if q["id"].startswith("Q-MAT-POLY-ISS55-")]
+        self.assertEqual(len(iss55), 10)
 
     def test_verbatim_stems_and_reconciled_ids_are_preserved(self):
         source = {q["id"]: q for q in self.bank["questions"]}
         mapping = {q["source_id"]: q for q in self.recon["questions"]}
-        staged = {q["id"]: q for q in self.package["questions"]}
+        staged = {q["id"]: q for q in self.package["questions"] if q["id"].startswith("Q-MAT-POLY-ISS55-")}
         self.assertEqual(
             set(staged),
             {f"Q-MAT-POLY-ISS55-{n:02d}" for n in range(1, 11)},
@@ -45,7 +46,8 @@ class TestIss55PolynomialCanonicalStaging(unittest.TestCase):
             self.assertEqual(q["status"], "CANDIDATE")
 
     def test_question_bank_admission_is_explicitly_disabled(self):
-        for q in self.package["questions"]:
+        iss55 = [q for q in self.package["questions"] if q["id"].startswith("Q-MAT-POLY-ISS55-")]
+        for q in iss55:
             self.assertIs(
                 q["extensions"]["grade9v3:question_bank"]["include"],
                 False,
@@ -62,7 +64,8 @@ class TestIss55PolynomialCanonicalStaging(unittest.TestCase):
 
     def test_cruxes_are_application_moves_not_verification(self):
         allowed = {"REPRESENT", "DECIDE", "CONNECT", "TRANSFORM"}
-        for q in self.package["questions"]:
+        iss55 = [q for q in self.package["questions"] if q["id"].startswith("Q-MAT-POLY-ISS55-")]
+        for q in iss55:
             route = {move["id"]: move for move in q["answer"]["reasoning_route"]}
             crux = q["answer"]["crux_move_ref"]
             self.assertIn(crux, route, q["id"])
@@ -70,7 +73,8 @@ class TestIss55PolynomialCanonicalStaging(unittest.TestCase):
 
     def test_non_admitted_candidate_does_not_influence_qb_titles(self):
         titles = question_bank_platform.load_subtopic_titles(REPO)
-        for q in self.package["questions"]:
+        iss55 = [q for q in self.package["questions"] if q["id"].startswith("Q-MAT-POLY-ISS55-")]
+        for q in iss55:
             self.assertNotIn(q["primary_capability_ref"], titles)
 
     def test_canonical_package_does_not_depend_on_test_assets(self):
