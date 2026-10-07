@@ -35,7 +35,7 @@ def _schema_findings(bank: dict) -> list[str]:
     schema = load(SCHEMA)
     return [
         "schema " + "/".join(str(x) for x in error.absolute_path) + ": " + error.message
-        for error in sorted(Draft202012Validator(schema).iter_errors(bank), key=lambda e: list(e.absolute_path))
+        for error in sorted(Draft202012Validator(schema).iter_errors(bank), key=lambda e: tuple(str(x) for x in e.absolute_path))
     ]
 
 
