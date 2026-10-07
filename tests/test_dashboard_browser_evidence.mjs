@@ -80,6 +80,7 @@ for (const profile of profiles) {
   await page.goto(`${base}/test/index.html`, { waitUntil: 'networkidle' });
   await page.waitForSelector('[data-g9-unit="core-contract"]');
   await page.waitForSelector('[data-g9-unit="fixture-boundary"]');
+  await page.waitForSelector('[data-g9-unit="question-intake"]');
 
   const metrics = await page.evaluate(() => {
     const rect = (selector) => {
@@ -102,6 +103,8 @@ for (const profile of profiles) {
       bannerText: banner ? banner.textContent.trim() : '',
       coreCard: rect('[data-g9-unit="core-contract"]'),
       fixtureCard: rect('[data-g9-unit="fixture-boundary"]'),
+      intakeRecordCount: document.querySelectorAll('[data-g9-intake-record]').length,
+      intakeSearchScope: JSON.parse(document.querySelector('[data-g9-test-search-index]').textContent).scope,
       smallControls: [...document.querySelectorAll('a[href], button, input, select, textarea, summary, [role=button]')]
         .filter((el) => {
           const r = el.getBoundingClientRect();
@@ -128,6 +131,26 @@ for (const profile of profiles) {
   const screenshot = path.join(outDir, `${profile.id}.png`);
   await page.screenshot({ path: screenshot, fullPage: true });
 
+  const intakeFilter = await page.evaluate(() => {
+    const root = document.querySelector('[data-g9-test-intake]');
+    const query = root.querySelector('[data-g9-test-intake-query]');
+    const source = root.querySelector('[data-g9-test-intake-source]');
+    const records = [...root.querySelectorAll('[data-g9-intake-record]')];
+    const shown = () => records.filter((row) => !row.hidden).length;
+    query.value = 'irrational';
+    query.dispatchEvent(new Event('input', { bubbles: true }));
+    const queryShown = shown();
+    const queryCountText = root.querySelector('[data-g9-test-intake-count]').textContent.trim();
+    query.value = '';
+    query.dispatchEvent(new Event('input', { bubbles: true }));
+    source.value = 'NCERT_OFFICIAL';
+    source.dispatchEvent(new Event('change', { bubbles: true }));
+    const sourceShown = shown();
+    source.value = '';
+    source.dispatchEvent(new Event('change', { bubbles: true }));
+    return { queryShown, queryCountText, sourceShown, resetShown: shown() };
+  });
+
   await page.evaluate(() => {
     if (document.activeElement && document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
@@ -137,7 +160,7 @@ for (const profile of profiles) {
 
   const focusOrder = [];
   const seen = new Set();
-  for (let i = 0; i < 40; i += 1) {
+  for (let i = 0; i < 80; i += 1) {
     await page.keyboard.press('Tab');
     const focused = await page.evaluate(() => {
       const el = document.activeElement;
@@ -191,6 +214,7 @@ for (const profile of profiles) {
     ...profile,
     metrics,
     screenshot: path.basename(screenshot),
+    intakeFilter,
     focusOrder,
     pageErrors: errors,
     failedRequests,
@@ -205,6 +229,10 @@ for (const profile of profiles) {
     failures.push(`${profile.id}: sandbox draft banner is not visibly present`);
   }
   if (!metrics.coreCard || !metrics.fixtureCard) failures.push(`${profile.id}: dashboard cards missing`);
+  if (metrics.intakeRecordCount !== 6) failures.push(`${profile.id}: expected 6 intake records, saw ${metrics.intakeRecordCount}`);
+  if (metrics.intakeSearchScope !== 'TEST_ONLY_SANDBOX') failures.push(`${profile.id}: TEST-only intake search scope is not isolated`);
+  if (intakeFilter.queryShown !== 3 || intakeFilter.queryCountText !== '3 shown') failures.push(`${profile.id}: intake query filter did not isolate 3 irrational-number records`);
+  if (intakeFilter.sourceShown !== 6 || intakeFilter.resetShown !== 6) failures.push(`${profile.id}: intake source/reset filter state is wrong`);
   if (errors.length) failures.push(`${profile.id}: page errors: ${errors.join('; ')}`);
   if (failedRequests.length) failures.push(`${profile.id}: failed requests: ${failedRequests.join(', ')}`);
   if (focusOrder.length < 4) failures.push(`${profile.id}: only ${focusOrder.length} keyboard focus target(s) observed`);
