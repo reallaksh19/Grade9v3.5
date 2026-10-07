@@ -1233,7 +1233,7 @@
         "grade9v3:lesson_anchors": {
           "CU-MIC-MATH-POLY-AUXILIARY-DOMAIN-Q10": {
             "id": "ANCHOR-CU-MIC-MATH-POLY-AUXILIARY-DOMAIN-Q10",
-            "stem": "Solve the biquadratic equations x^4 - 5x^2 + 4 = 0 and x^4 + x^2 - 2 = 0 over real numbers using substitution u = x^2 >= 0.",
+            "stem": "Solve x^4 - 5x^2 + 4 = 0 and x^4 + 4x^2 + 4 = 0 over the reals using u = x^2 with its required domain restriction.",
             "answer": {
               "summary": "1. Change of variable: both polynomials contain only even powers of x (x^4 and x^2). Let u = x^2. 2. Condition imposed: because x must be real (x in R), the square of any real number is non-negative: x^2 >= 0, so u >= 0. Only non-negative roots u >= 0 yield real zeros x = +/-sqrt(u). A negative root u < 0 yields no real zeros. 3. Real zeros of p(x) = x^4 - 5x^2 + 4: substitute u = x^2: u^2 - 5u + 4 = 0 <=> (u - 1)(u - 4) = 0 => u = 1 or u = 4. Both satisfy u >= 0. For u = 1: x^2 = 1 => x = +/-1. For u = 4: x^2 = 4 => x = +/-2. Accepted real zeros of p(x): {-2, -1, 1, 2}. Check: p(+/-1) = 1 - 5 + 4 = 0; p(+/-2) = 16 - 20 + 4 = 0. All verified. 4. Real zeros of q(x) = x^4 + 4x^2 + 4: substitute u = x^2: u^2 + 4u + 4 = 0 <=> (u + 2)^2 = 0 => u = -2. Check condition: u = -2 < 0, which violates u >= 0. Because x^2 = -2 has no real solution, q(x) has NO real zeros. Check: for all real x, x^4 >= 0 and 4x^2 >= 0, so q(x) = (x^2 + 2)^2 >= 4 > 0 everywhere. 5. Why treating u as unrestricted real number misleads: if u is treated as unrestricted, a student might take u = -2 and claim x = +/-sqrt(-2), falsely asserting real zeros exist or confusing real zeros with non-real complex numbers. Over R, square roots of negative numbers do not exist. Furthermore, root multiplicity does not transfer linearly: each u > 0 gives two real zeros, u = 0 gives one real zero, and u < 0 gives zero real zeros. Unrestricted substitution blinds the solver to this non-linear mapping.",
               "reasoning": [
@@ -1250,7 +1250,7 @@
           },
           "CU-MIC-MATH-POLY-AUXILIARY-DOMAIN-Q1": {
             "id": "ANCHOR-CU-MIC-MATH-POLY-AUXILIARY-DOMAIN-Q1",
-            "stem": "In p(x) = x^3 - 3x^2 - 4x + k, determine k so that (x - 3) is a factor, and find all real zeros by grouping.",
+            "stem": "For p_k(x) = x^3 - 3x^2 + (k - 4)x + 12, determine k so that (x - 3) is a factor, then factor the resulting cubic completely and verify the new zeros.",
             "answer": {
               "summary": "By the Factor Theorem, x - 3 is a factor implies p_k(3) = 0. We compute p_k(3) = 3^3 - 3(3^2) + (k-4)(3) + 12 = 27 - 27 + 3k - 12 + 12 = 3k = 0, which yields k = 0. Substituting k = 0 gives p_0(x) = x^3 - 3x^2 - 4x + 12. Factorising by grouping: p_0(x) = x^2(x - 3) - 4(x - 3) = (x^2 - 4)(x - 3) = (x - 2)(x + 2)(x - 3). The distinct real zeros are x = -2, 2, 3. Independent check: evaluating p_0 at the newly found zeros gives p_0(2) = 8 - 12 - 8 + 12 = 0 and p_0(-2) = -8 - 12 + 8 + 12 = 0. Expanding (x^2 - 4)(x - 3) = x^3 - 3x^2 - 4x + 12 confirms the complete polynomial with constant term (-2)(2)(-3) = 12.",
               "reasoning": [
@@ -1284,7 +1284,7 @@
           },
           "CU-MIC-MATH-POLY-AUXILIARY-DOMAIN-Q9": {
             "id": "ANCHOR-CU-MIC-MATH-POLY-AUXILIARY-DOMAIN-Q9",
-            "stem": "For the family p_a(x) = (a - 1)x^2 - 2x + a, determine a so that x = 1 is a root, examine degree reduction, and determine if p_a(x) can be the zero polynomial.",
+            "stem": "For p_a(x) = (a - 1)x^3 + (a + 1)x^2 - 2x, determine when x = 1 is a zero, when the degree drops below three, and whether the family can ever be the zero polynomial.",
             "answer": {
               "summary": "1. Parameter value for which 1 is a zero: p_a(1) = (a - 1)(1)^3 + (a + 1)(1)^2 - 2(1) = a - 1 + a + 1 - 2 = 2a - 2. Setting p_a(1) = 0 gives 2a - 2 = 0 => a = 1. 2. Parameter value for which degree is less than 3: the highest power term is (a - 1)x^3. The degree is less than 3 iff the coefficient of x^3 vanishes: a - 1 = 0 => a = 1. When a = 1, p_1(x) = 2x^2 - 2x, which has degree 2. 3. How the conditions relate: both conditions hold simultaneously at a = 1. However, their algebraic meanings are distinct: p_a(1) = 0 requires the sum of all coefficients to vanish, whereas deg(p_a) < 3 requires only the leading cubic coefficient to vanish. At a = 1, the leading coefficient vanishes, and the remaining quadratic terms 2x^2 - 2x evaluate at x = 1 to 2 - 2 = 0, so 1 happens to be a root of the reduced polynomial as well. 4. Can the family ever become the zero polynomial? For p_a(x) to be the zero polynomial, all coefficients must simultaneously be 0. We inspect: coeff(x^3) = a - 1 = 0 => a = 1; coeff(x^2) = a + 1 = 0 => a = -1; coeff(x) = -2. The coefficient of x is the constant -2, which does not depend on a and is never zero (-2 != 0). Moreover, a cannot equal 1 and -1 simultaneously. Therefore, no parameter value a can make all coefficients zero. The family can NEVER become the zero polynomial.",
               "reasoning": [
