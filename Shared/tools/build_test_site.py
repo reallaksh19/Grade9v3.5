@@ -21,7 +21,7 @@ REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
-from Shared.tools import matrix_conformance, product_coverage, render_core  # noqa: E402
+from Shared.tools import build_web_data, matrix_conformance, product_coverage, render_core  # noqa: E402
 
 esc = render_core.esc
 TEST_ROOT = REPO / "TEST"
@@ -424,6 +424,24 @@ def deployments_page() -> str:
 
 
 ATLAS_TRANSFORM = REPO / "Shared" / "web" / "atlas-sandbox-transform.v1.json"
+
+
+def atlas_data_script() -> str:
+    """TEST-local Atlas projection.
+
+    The production data.js remains the authority for production subjects. TEST overlays only
+    window.GRADE9V3.subjects.TEST in this page, so sandbox package/matrix changes cannot make
+    canonical learner data stale or searchable.
+    """
+    entry = build_web_data.build()["subjects"].get("TEST", {})
+    payload = json.dumps(entry, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    return ("<script data-g9-test-atlas-data>"
+            "window.GRADE9V3=window.GRADE9V3||{subjects:{}};"
+            "window.GRADE9V3.subjects=window.GRADE9V3.subjects||{};"
+            f"window.GRADE9V3.subjects.TEST={payload};"
+            "</script>")
+
+
 ATLAS_INIT = """<script>
   window.addEventListener('DOMContentLoaded', () => {
     const matrices = ((window.GRADE9V3 && window.GRADE9V3.subjects && window.GRADE9V3.subjects.TEST) || {}).matrices || [];
@@ -460,7 +478,11 @@ def atlas_page() -> str:
     end = text.index("</script>", init) + len("</script>")
     if transform["init"]["call"] not in text[init:end]:
         raise ValueError("the Topic Atlas template changed: its init call moved")
-    return text[:init] + ATLAS_INIT + text[end:]
+    text = text[:init] + ATLAS_INIT + text[end:]
+    marker = '<script src="../../data/data.js"></script>'
+    if text.count(marker) != 1:
+        raise ValueError("the Topic Atlas template changed: its global data script moved")
+    return text.replace(marker, marker + "\n" + atlas_data_script(), 1)
 
 
 def render_all() -> dict[str, str]:
