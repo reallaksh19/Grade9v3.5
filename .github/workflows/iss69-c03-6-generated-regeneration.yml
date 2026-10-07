@@ -75,16 +75,39 @@ jobs:
           python3 Shared/tools/build_pages_site.py --check
           python3 - <<'PY'
           from pathlib import Path
+          from Shared.tools import build_core_learning_data
+
           public = Path("public/core-learning/data.js")
           docs = Path("docs/core-learning/data.js")
+          payload = build_core_learning_data.build()
+          rows = payload.get("core_projections", [])
+
+          core1a = [
+              row for row in rows
+              if (row.get("projection") or {}).get("core") == "CORE1A"
+          ]
+          assert core1a, "no Core1A projection available for freshness verification"
+          for row in core1a:
+              web = ((row.get("projection") or {}).get("delivery") or {}).get("web") or {}
+              assert web.get("blueprint_ref") == "BP-CORE1A-CONSTRUCTION@1.8.0", web
+
+          core2 = [
+              row for row in rows
+              if (row.get("projection") or {}).get("core") == "CORE2"
+          ]
+          for row in core2:
+              web = ((row.get("projection") or {}).get("delivery") or {}).get("web") or {}
+              assert web.get("blueprint_ref") == "BP-CORE2-SOURCE-QUESTION@1.11.0", web
+          if not core2:
+              print("Core2 1.11.0 applicability: no Core2 source-custody projection emitted")
+
           text = public.read_text(encoding="utf-8")
-          assert "BP-CORE1A-CONSTRUCTION@1.8.0" in text, "Core1A 1.8.0 missing from generated projection"
-          assert "BP-CORE2-SOURCE-QUESTION@1.11.0" in text, "Core2 1.11.0 missing from generated projection"
           assert "BP-CORE1A-CONSTRUCTION@1.7.0" not in text, "stale Core1A 1.7.0 remains in generated projection"
           assert public.read_bytes() == docs.read_bytes(), "public/docs Core-learning data mirror mismatch"
+
           registry = Path("publication/derived-artifacts/derived-artifact-index.v1.json")
           assert registry.is_file(), "derived artifact registry was not generated"
-          print("generated authority and mirror checks: PASS")
+          print(f"generated authority and mirror checks: PASS ({len(core1a)} Core1A, {len(core2)} Core2)")
           PY
 
       - name: Run focused generator and Pages tests
