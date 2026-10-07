@@ -91,6 +91,36 @@ def owner_banks() -> list[dict]:
     return banks
 
 
+def test_search_index() -> list[dict]:
+    """TEST-only derived index over parked question sources."""
+    rows: list[dict] = []
+    for bank in intake_banks():
+        for q in bank.get("questions", []):
+            rows.append({
+                "id": q.get("id"), "bank_id": bank.get("bank_id"), "kind": "OFFICIAL_INTAKE",
+                "topic": q.get("topic_label"), "subtopic": q.get("subtopic_label"), "stem": q.get("stem"),
+                "status": q.get("workflow_status"), "difficulty": None, "demand": None,
+            })
+    for bank in owner_banks():
+        for q in bank.get("questions", []):
+            analysis = (q.get("extensions") or {}).get("grade9v3:analysis") or {}
+            difficulty = analysis.get("difficulty") or {}
+            demand = analysis.get("cognitive_demand") or {}
+            rows.append({
+                "id": q.get("id"), "bank_id": bank.get("bank_id"), "kind": "OWNER_SUPPLIED",
+                "topic": analysis.get("topic"), "subtopic": analysis.get("concept_bucket"), "stem": q.get("stem"),
+                "status": (q.get("answer") or {}).get("verification_status"),
+                "difficulty": difficulty.get("band"),
+                "demand": demand.get("primary") if isinstance(demand, dict) else demand,
+            })
+    return sorted(rows, key=lambda row: (str(row.get("bank_id") or ""), str(row.get("id") or "")))
+
+
+def search_index_script(rows: list[dict]) -> str:
+    payload = json.dumps(rows, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    return f'<script type="application/json" id="g9-test-search-index">{payload}</script>'
+
+
 def source_counts() -> dict:
     banks = sorted((TEST_ROOT / "question-bank").glob("*.json"))
     questions = sum(len(_json(p).get("questions") or []) for p in banks)
@@ -256,7 +286,12 @@ def render_intake_section(intakes: list[dict]) -> str:
 
         blocks.append(card(
             f"intake-{bank_id}",
-            f"intake {bank_id} {' '.join(topics.keys())} stage-1 official questions",
+            " ".join([
+                "intake", str(bank_id), *topics.keys(), "stage-1 official questions",
+                *(str(q.get("id", "")) for q in q_list),
+                *(str(q.get("stem", "")) for q in q_list),
+                *(str(q.get("subtopic_label", "")) for q in q_list),
+            ]),
             f'<h2>Stage-1 Question Intake: {esc(bank_id)}</h2>'
             f'<p class="g9-prov">Source scope: {esc(", ".join(bank.get("source_scope", [])))} · {len(q_list)} question(s) · '
             f'Status: READY_FOR_BLUEPRINT · Verbatim custody: VERBATIM</p>'
@@ -275,6 +310,7 @@ def hub_page() -> str:
     counts = source_counts()
     intakes = intake_banks()
     owner = owner_banks()
+    search_rows = test_search_index()
 
     def product_line(receipt: dict, role: str, selection_key: str) -> str:
         return (f'{esc(receipt["slug"])}: {receipt["selection_counts"].get(selection_key, 0)} record(s) selected, '
@@ -308,8 +344,10 @@ def hub_page() -> str:
                f'<h2>Sources in this repository</h2><ul><li>{counts["matrices"]} rung matrix file(s) in TEST/matrices</li>'
                f'<li>{counts["packages"]} package file(s) in TEST/library</li>'
                f'<li>{counts["banks"]} owner-supplied question file(s) in TEST/question-bank, {counts["bank_questions"]} question(s)</li>'
-               f'<li>{counts["intake_banks"]} official intake bank(s) in TEST/question-bank/intake, {counts["intake_questions"]} question(s)</li></ul>'
-               '<p class="g9-prov">How to add each of them: TEST/README.md in the repository.</p>'))
+               f'<li>{counts["intake_banks"]} official intake bank(s) in TEST/question-bank/intake, {counts["intake_questions"]} question(s)</li>'
+               f'<li>TEST-only search index: {len(search_rows)} parked question(s); production search untouched</li></ul>'
+               '<p class="g9-prov">How to add each of them: TEST/README.md in the repository.</p>')
+        + search_index_script(search_rows))
     return frame(1, "TEST", "index.html", body, heading="TEST: a sandbox for stress runs")
 
 
