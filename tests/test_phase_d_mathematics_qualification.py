@@ -106,6 +106,18 @@ class PhaseDMathematicsQualification(unittest.TestCase):
         self.assertEqual(html.count("template data-g9-rung-payload="), 3)
         self.assertNotIn('data-g9-support-reveals="ANSWER"', html)
         self.assertNotIn('data-g9-figure', html)
+        self.assertFalse(
+            [gap for gap in ctx.gaps if gap["duty"] == "AUTHOR_LEARNER_METADATA"],
+            ctx.gaps,
+        )
+        self.assertEqual(
+            self.question["extensions"]["grade9v3:provenance_class"],
+            "ORIGINAL",
+        )
+        self.assertEqual(
+            self.question["extensions"]["grade9v3:analysis"]["exam_source_badge"],
+            "NCERT Exemplar · Class IX Mathematics",
+        )
 
     def test_d02_5_concept_detour_targets_exact_construction_and_preserves_question_return(self):
         ctx = fixture.context()
