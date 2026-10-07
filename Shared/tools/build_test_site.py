@@ -21,7 +21,8 @@ REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
-from Shared.tools import build_web_data, matrix_conformance, product_coverage, render_core  # noqa: E402
+from Shared.library.resolve import build_index  # noqa: E402
+from Shared.tools import atlas_index, build_web_data, matrix_conformance, product_coverage, render_core  # noqa: E402
 
 esc = render_core.esc
 TEST_ROOT = REPO / "TEST"
@@ -426,15 +427,26 @@ def deployments_page() -> str:
 ATLAS_TRANSFORM = REPO / "Shared" / "web" / "atlas-sandbox-transform.v1.json"
 
 
-def atlas_data_script() -> str:
-    """TEST-local Atlas projection.
+def atlas_subject_payload() -> dict:
+    """Build only the TEST subject's Atlas read model.
 
-    The production data.js remains the authority for production subjects. TEST overlays only
-    window.GRADE9V3.subjects.TEST in this page, so sandbox package/matrix changes cannot make
-    canonical learner data stale or searchable.
+    Production data.js stays untouched. Core destinations are intentionally unavailable until
+    a TEST product is actually deployed; the Atlas can still inspect the package/matrix mapping.
     """
-    entry = build_web_data.build()["subjects"].get("TEST", {})
-    payload = json.dumps(entry, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    packages = [_json(p) for p in sorted((TEST_ROOT / "library").glob("*.json"))]
+    records = build_index(packages) if packages else {}
+    empty_core = {"bucket_availability": [], "core_projections": []}
+    entry = {
+        "matrices": build_web_data.matrix_summary("TEST", records),
+        "library_available": bool(packages),
+    }
+    entry.update(atlas_index.build_subject_index("TEST", matrices(), records, empty_core))
+    return entry
+
+
+def atlas_data_script() -> str:
+    """Inline TEST-local Atlas projection without mutating production data/search."""
+    payload = json.dumps(atlas_subject_payload(), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     return ("<script data-g9-test-atlas-data>"
             "window.GRADE9V3=window.GRADE9V3||{subjects:{}};"
             "window.GRADE9V3.subjects=window.GRADE9V3.subjects||{};"
