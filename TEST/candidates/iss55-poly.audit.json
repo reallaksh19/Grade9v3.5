@@ -9,12 +9,13 @@
   },
   "target_subject": "Mathematics",
   "target_topic": "Polynomials",
-  "state": "CONTENT_PASS",
+  "state": "IDENTITY_RECONCILED",
   "sources": [
     "TEST/question-bank/iss55-poly.json",
     "TEST/library/iss55-poly.v1.json",
     "TEST/products/iss55-poly.manifest.json",
-    "TEST/matrices/iss55-poly.rungs.json"
+    "TEST/matrices/iss55-poly.rungs.json",
+    "TEST/candidates/iss55-poly.canonical-reconciliation.json"
   ],
   "question_counts": {
     "total": 10,
@@ -56,11 +57,19 @@
     "owner_acceptance": {
       "status": "PENDING",
       "detail": "No canonical Mathematics promotion is self-certified by this TEST review. Owner acceptance of the exact reconciled canonical identities/output remains required."
+    },
+    "canonical_identity": {
+      "status": "PASS",
+      "detail": "Current Mathematics canonical library has no Polynomials package and no colliding ISS55 identities. Stable target is SUBJECT-MATHEMATICS / TOPIC-MATHEMATICS-POLYNOMIALS with Mathematics/library/polynomials.v1.json (LIB-MATH-POLYNOMIALS). All 38 active TEST package records map to collision-free MAT-namespaced canonical ids, and the 10 owner questions map to Q-MAT-POLY-ISS55-01..10 with stem digests and lineage preserved."
+    },
+    "canonical_staging": {
+      "status": "PENDING",
+      "detail": "The reconciled records have not yet been materialized as package-shaped Mathematics candidate questions. Staging must preserve TEST custody, add the package-question contract fields, and keep Question Bank admission disabled until owner acceptance."
     }
   },
   "promotion": {
     "status": "BLOCKED",
     "target": "Mathematics",
-    "reason": "Canonical Mathematics identity reconciliation and owner acceptance are still required; custody, technical, package, rungs, Atlas, search, layout and academic content review pass."
+    "reason": "Canonical identity reconciliation passes. Remaining gates are canonical candidate staging and owner acceptance of the exact staged conversion before Question Bank admission."
   }
 }
