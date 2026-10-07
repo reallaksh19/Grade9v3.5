@@ -22,12 +22,12 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.library.resolve import build_index  # noqa: E402
-from Shared.tools import atlas_index, build_web_data, matrix_conformance, product_coverage, render_core  # noqa: E402
+from Shared.tools import atlas_index, build_test_question_bank, build_web_data, matrix_conformance, product_coverage, render_core  # noqa: E402
 
 esc = render_core.esc
 TEST_ROOT = REPO / "TEST"
 PUBLIC_TEST = REPO / "public" / "test"
-NAV = (("index.html", "TEST"), ("atlas/index.html", "Atlas"), ("rungs/index.html", "Rungs"), ("deployments/index.html", "Deployments"))
+NAV = (("index.html", "TEST"), ("question-bank/index.html", "Question Bank"), ("atlas/index.html", "Atlas"), ("rungs/index.html", "Rungs"), ("deployments/index.html", "Deployments"))
 ROLE_PAGES = (("index.html", "Product index"), ("core2.html", "Core2"), ("core1a.html", "Core1A"), ("core1.html", "Core1"),
               ("core1b.html", "Core1B"), ("core2a.html", "Core2A"), ("core2b.html", "Core2B"))
 BANNER = "TEST sandbox · drafts only · not reviewed, not accepted, not curriculum"
@@ -389,7 +389,7 @@ def hub_page() -> str:
         + stage(3, "Explorer", "A guided page on the toughest concept of the same question set", inter)
         + card("places", "atlas rungs deployments",
                '<h2>Where things are</h2><ul>'
-               f'<li>{link("atlas/index.html", "Atlas")}: the Topic Atlas for the TEST matrix</li>'
+               f'<li>{link("question-bank/index.html", "Question Bank")}: parked source questions, explicitly unvalidated for academic admission</li>'\n               f'<li>{link("atlas/index.html", "Atlas")}: the Topic Atlas for the TEST matrix</li>'
                f'<li>{link("rungs/index.html", "Rungs")}: the ladder, rung by rung</li>'
                f'<li>{link("deployments/index.html", "Deployments")}: every deployed draft, with its digest and gaps</li></ul>')
         + card("sources", "matrices packages question bank intake",
