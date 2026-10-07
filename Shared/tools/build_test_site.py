@@ -75,6 +75,21 @@ def intake_banks() -> list[dict]:
     return banks
 
 
+def owner_banks() -> list[dict]:
+    bank_dir = TEST_ROOT / "question-bank"
+    if not bank_dir.is_dir():
+        return []
+    banks = []
+    for p in sorted(bank_dir.glob("*.json")):
+        try:
+            data = _json(p)
+            if isinstance(data, dict) and data.get("schema_version") == "grade9v3-owner-supplied-bank-v1":
+                banks.append(data)
+        except Exception:
+            continue
+    return banks
+
+
 def source_counts() -> dict:
     banks = sorted((TEST_ROOT / "question-bank").glob("*.json"))
     questions = sum(len(_json(p).get("questions") or []) for p in banks)
@@ -147,6 +162,53 @@ def link(href: str, label: str) -> str:
 
 # ------------------------------------------------------------------ pages
 
+def render_owner_bank_section(banks: list[dict]) -> str:
+    if not banks:
+        return ""
+    blocks = []
+    for bank in banks:
+        bank_id = bank.get("bank_id", "unknown")
+        q_list = bank.get("questions", [])
+        q_cards = []
+        search_bits = ["owner bank", str(bank_id)]
+        for q in q_list:
+            qid = str(q.get("id", ""))
+            stem = str(q.get("stem", ""))
+            analysis = (q.get("extensions") or {}).get("grade9v3:analysis") or {}
+            difficulty = analysis.get("difficulty") or {}
+            demand = analysis.get("cognitive_demand") or {}
+            primary = demand.get("primary") if isinstance(demand, dict) else demand
+            secondary = demand.get("secondary", []) if isinstance(demand, dict) else []
+            demand_text = ", ".join([str(x) for x in [primary, *secondary] if x])
+            answer = q.get("answer") or {}
+            summary = str(answer.get("summary", ""))
+            verification = str(answer.get("verification_status", ""))
+            custody = (q.get("extensions") or {}).get("grade9v3:source_custody") or {}
+            search_bits.extend([qid, stem, str(analysis.get("topic", "")), str(analysis.get("concept_bucket", ""))])
+            q_cards.append(
+                f'<div style="border:1px solid #e2e8f0;border-radius:6px;padding:12px;margin:8px 0;background:#fff">'
+                f'<div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;margin-bottom:6px">'
+                f'<span style="background:#7c3aed;color:#fff;padding:2px 6px;border-radius:4px">{esc(difficulty.get("band", "UNRATED"))} · score {esc(difficulty.get("score", ""))}</span>'
+                f'<span style="background:#0369a1;color:#fff;padding:2px 6px;border-radius:4px">Demand: {esc(demand_text or "not analysed")}</span>'
+                f'<span style="background:#16a34a;color:#fff;padding:2px 6px;border-radius:4px">{esc(verification or "NOT_RUN")}</span>'
+                f'</div>'
+                f'<p style="margin:0 0 6px 0"><strong>{esc(qid)}</strong> · {esc(q.get("original_identifier", ""))} · '
+                f'<span class="g9-prov">{esc(custody.get("authority_class", "OWNER_SUPPLIED_RAW_INPUT"))} · {esc(custody.get("wording_custody", "VERBATIM"))}</span></p>'
+                f'<p style="margin:0 0 6px 0">{esc(stem)}</p>'
+                f'<details><summary>Inspect answer / verification evidence</summary><p>{esc(summary)}</p></details>'
+                f'</div>'
+            )
+        blocks.append(card(
+            f"owner-bank-{bank_id}",
+            " ".join(search_bits),
+            f'<h2>Owner Question Bank: {esc(bank_id)}</h2>'
+            f'<p class="g9-prov">{len(q_list)} question(s) · owner-supplied custody · TEST-only preview · not accepted</p>'
+            f'<p>This is the parked Core2 source bank. Inspect wording, difficulty/demand classification, answer reasoning and layout here before a TEST product is built.</p>'
+            f'<details><summary>Inspect {len(q_list)} owner questions</summary>{"".join(q_cards)}</details>'
+        ))
+    return "".join(blocks)
+
+
 def render_intake_section(intakes: list[dict]) -> str:
     if not intakes:
         return ""
@@ -211,6 +273,7 @@ def hub_page() -> str:
     pages = interactive_pages()
     counts = source_counts()
     intakes = intake_banks()
+    owner = owner_banks()
 
     def product_line(receipt: dict, role: str, selection_key: str) -> str:
         return (f'{esc(receipt["slug"])}: {receipt["selection_counts"].get(selection_key, 0)} record(s) selected, '
@@ -231,6 +294,7 @@ def hub_page() -> str:
         '<p class="g9-prov">A gap count of 0 means the depth check found nothing missing. It counts what is absent, '
         'not how good it is, and it does not say the content has been reviewed.</p>'
         + render_intake_section(intakes)
+        + render_owner_bank_section(owner)
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
         + stage(2, "Core1A", "Concept construction for the same topic", core1a)
         + stage(3, "Explorer", "A guided page on the toughest concept of the same question set", inter)

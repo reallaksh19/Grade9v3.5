@@ -127,6 +127,15 @@ class TestPages(unittest.TestCase):
     def test_committed_pages_are_what_the_generator_writes(self):
         self.assertEqual(build_test_site.check(), [])
 
+    def test_owner_question_banks_are_visible_as_test_only_previews(self):
+        page = (REPO / "public/test/index.html").read_text(encoding="utf-8")
+        self.assertIn("Owner Question Bank: iss55-poly", page)
+        self.assertIn("10 question(s) · owner-supplied custody · TEST-only preview · not accepted", page)
+        for number in range(1, 11):
+            self.assertIn(f"OWN-ISS55-POLY-{number:02d}", page)
+        self.assertIn("Inspect answer / verification evidence", page)
+
+
     def test_a_rung_matrix_that_breaks_the_matrix_schema_says_so_on_the_rungs_page_and_in_the_build(self):
         board = {"matrix_id": "MX-BAD", "subject": "TEST", "topic": "Vectors", "subtopic": "Sums",
                  "rungs": [{"rung": "R1", "ladder_position": 110, "microtopic_ref": "MIC-X"}]}
