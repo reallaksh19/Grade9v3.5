@@ -30,23 +30,25 @@ jobs:
           python3 Shared/tools/build_test_site.py
           CHANGED="$(git diff --name-only -- public/test)"
           printf '%s\n' "$CHANGED"
-          test -n "$CHANGED"
-          exit 1
+          EXPECTED="$(printf '%s\n' public/test/atlas/index.html public/test/deployments/index.html public/test/rungs/index.html)"
+          test "$CHANGED" = "$EXPECTED"
       - name: Mirror Atlas through Pages publication transform
         run: |
           python3 - <<'PY'
           from pathlib import Path
           from Shared.tools import build_pages_site
           repo = Path.cwd()
-          public = repo / "public/test/atlas/index.html"
-          docs = repo / "docs/test/atlas/index.html"
-          docs.write_bytes(build_pages_site._public_payload("test/atlas/index.html", public.read_bytes()))
+          for relative in ("test/atlas/index.html", "test/deployments/index.html", "test/rungs/index.html"):
+              public = repo / "public" / relative
+              docs = repo / "docs" / relative
+              docs.write_bytes(build_pages_site._public_payload(relative, public.read_bytes()))
           PY
           python3 Shared/tools/build_test_site.py --check
       - name: Commit governed outputs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/test/atlas/index.html docs/test/atlas/index.html
+          git add public/test/atlas/index.html public/test/deployments/index.html public/test/rungs/index.html \
+            docs/test/atlas/index.html docs/test/deployments/index.html docs/test/rungs/index.html
           git commit -m "build(test): regenerate Atlas from current template"
           git push origin HEAD:fix/144-test-atlas-generator
