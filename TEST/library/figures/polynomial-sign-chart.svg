@@ -1,11 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Polynomial sign chart derivation across real intervals" font-family="system-ui, sans-serif" font-size="20">
   <title>Polynomial sign chart derivation across real intervals</title>
-  <desc>Four staged panels: factoring cubic into linear components, partitioning the real number line at zeros x=1, 2, 3, tabulating factor signs, and evaluating product sign from negative factor parity.</desc>
+  <desc>Four staged panels: factoring a cubic, partitioning the real line at three zeros, tabulating factor signs, and deriving the product sign from negative-factor parity.</desc>
   <g data-g9-stage-id="POLY-SIGN-1">
     <text x="40" y="45" font-weight="700" font-size="24">1 · Factored form and real zeros</text>
     <text x="60" y="85">p(x) = x³ - 6x² + 11x - 6 = (x - 1)(x - 2)(x - 3)</text>
     <line x1="80" y1="120" x2="820" y2="120" stroke="currentColor" stroke-width="3"/>
-    <!-- Zero markers -->
     <circle cx="280" cy="120" r="6" fill="currentColor"/>
     <text x="275" y="150" font-weight="700">1</text>
     <circle cx="480" cy="120" r="6" fill="currentColor"/>
@@ -18,20 +17,22 @@
     <text x="740" y="105" font-style="italic">(3, ∞)</text>
   </g>
   <g data-g9-stage-id="POLY-SIGN-2">
-    <text x="40" y="200" font-weight="700" font-size="24">2 · Individual factor signs across regions</text>
-    <text x="60" y="235">Linear factor (x - c) is negative for x &lt; c, zero at x = c, positive for x &gt; c.</text>
-    <text x="80" y="270">• (x - 1):  -  |  0  |  +  |  +  |  +  |  +  |  +</text>
-    <text x="80" y="300">• (x - 2):  -  |  -  |  -  |  0  |  +  |  +  |  +</text>
-    <text x="80" y="330">• (x - 3):  -  |  -  |  -  |  -  |  -  |  0  |  +</text>
+    <text x="40" y="195" font-weight="700" font-size="24">2 · Individual factor signs</text>
+    <text x="60" y="230">For (x - c): negative left of c; zero at c;</text>
+    <text x="60" y="258">positive right of c.</text>
+    <text x="80" y="292">• (x - 1):  -  |  0  |  +  |  +  |  +  |  +  |  +</text>
+    <text x="80" y="322">• (x - 2):  -  |  -  |  -  |  0  |  +  |  +  |  +</text>
+    <text x="80" y="352">• (x - 3):  -  |  -  |  -  |  -  |  -  |  0  |  +</text>
   </g>
   <g data-g9-stage-id="POLY-SIGN-3">
-    <text x="40" y="380" font-weight="700" font-size="24">3 · Product sign from negative factor count (parity)</text>
-    <text x="60" y="415">(-∞, 1): 3 negatives → NEGATIVE (-)</text>
-    <text x="440" y="415">(1, 2): 2 negatives → POSITIVE (+)</text>
-    <text x="60" y="445">(2, 3): 1 negative → NEGATIVE (-)</text>
-    <text x="440" y="445">(3, ∞): 0 negatives → POSITIVE (+)</text>
+    <text x="40" y="398" font-weight="700" font-size="24">3 · Product sign from factor parity</text>
+    <text x="60" y="430">(-∞, 1): 3 negatives → NEGATIVE (-)</text>
+    <text x="440" y="430">(1, 2): 2 negatives → POSITIVE (+)</text>
+    <text x="60" y="460">(2, 3): 1 negative → NEGATIVE (-)</text>
+    <text x="440" y="460">(3, ∞): 0 negatives → POSITIVE (+)</text>
   </g>
   <g data-g9-stage-id="POLY-SIGN-4">
-    <text x="40" y="495" font-weight="700" font-size="24">4 · Rigorous sign chart: -, 0, +, 0, -, 0, + (deduced from algebra, not sketch)</text>
+    <text x="40" y="495" font-weight="700" font-size="24">4 · Final sign chart from factor parity</text>
+    <text x="60" y="518">(-∞,1): −; 1: 0; (1,2): +; 2: 0; (2,3): −; 3: 0; (3,∞): +</text>
   </g>
 </svg>
