@@ -1,5 +1,8 @@
 name: question-bank-platform
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: ["**"]
@@ -58,9 +61,31 @@ jobs:
       - name: Legacy browser projection remains current
         run: python3 Shared/tools/build_question_bank_web.py --check
       - name: Committed shared Question Bank platform artifacts are current
-        run: python3 Shared/tools/build_question_bank_platform.py --check
+        run: |
+          python3 Shared/tools/build_question_bank_platform.py --write
+          python3 Shared/tools/build_question_bank_platform.py --check
       - name: Pages mirror is current and internally linked
-        run: python3 Shared/tools/build_pages_site.py --check
+        run: |
+          python3 Shared/tools/build_pages_site.py
+          python3 Shared/tools/build_pages_site.py --check
+      - name: Core publication projections are current
+        run: |
+          python3 Shared/tools/build_manifest.py
+          python3 Shared/tools/build_manifest.py --check
+          python3 Shared/tools/build_pages_site.py
+          python3 Shared/tools/build_pages_site.py --check
+      - name: Commit governed generated closure on branch push
+        if: github.event_name == 'push'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No governed generated closure changes to commit"
+          else
+            git commit -m "ISS191 U4: refresh governed generated closure"
+            git push origin HEAD:integration/iss191-clean-core-recovery
+          fi
       - name: Lineage explain witness
         run: python3 Shared/tools/build_question_bank_platform.py --explain PYQ-CHEM-IITJEE-2008-P1-Q66
       - name: Measure 5000-question scale fixture
