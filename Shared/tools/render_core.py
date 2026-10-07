@@ -1472,6 +1472,12 @@ def _custody(q: dict) -> str:
     if cust.get("authority_class") == "OWNER_SUPPLIED_RAW_INPUT":
         # CORE2.md: a question the owner supplied is custody in its own right and is shown as supplied, with no exam identity.
         return "Owner-supplied question" + (", verbatim" if cust.get("wording_custody") == "VERBATIM" else "")
+    if (cust.get("authority_class") == "CURRICULAR_STANDARD" and cust.get("source_status") == "NCERT_AUTHENTIC"):
+        wording = {
+            "FAITHFUL_NCERT": "faithful NCERT wording",
+            "VERBATIM": "verbatim",
+        }.get(cust.get("wording_custody"), "")
+        return "Verified curricular source" + (f", {wording}" if wording else "")
     if (cust.get("authority_class") != "OFFICIAL_EXAM_ORGANIZER_ARCHIVE"
             or cust.get("source_status") != "PYQ_VERIFIED_PARENT"
             or not cust.get("paper_url")):

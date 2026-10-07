@@ -59,6 +59,33 @@ class ProductBlueprintSafety(unittest.TestCase):
             "paper_url": "https://example.org/paper.pdf",
         }}}), "Official past paper")
 
+    def test_verified_curricular_standard_custody_is_labelled_truthfully(self):
+        base = {"authority_class": "CURRICULAR_STANDARD", "source_status": "NCERT_AUTHENTIC"}
+        faithful = {"extensions": {"grade9v3:source_custody": {**base, "wording_custody": "FAITHFUL_NCERT"}}}
+        verbatim = {"extensions": {"grade9v3:source_custody": {**base, "wording_custody": "VERBATIM"}}}
+        unverified = {"extensions": {"grade9v3:source_custody": {
+            "authority_class": "CURRICULAR_STANDARD",
+            "source_status": "CAPTURED_UNVERIFIED",
+            "wording_custody": "VERBATIM",
+        }}}
+        self.assertEqual(render_core._custody(faithful), "Verified curricular source, faithful NCERT wording")
+        self.assertEqual(render_core._custody(verbatim), "Verified curricular source, verbatim")
+        self.assertEqual(render_core._custody(unverified), "Source unverified")
+
+    def test_existing_owner_and_past_paper_custody_labels_do_not_move(self):
+        owner = {"extensions": {"grade9v3:source_custody": {
+            "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+            "wording_custody": "VERBATIM",
+        }}}
+        past_paper = {"extensions": {"grade9v3:source_custody": {
+            "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+            "source_status": "PYQ_VERIFIED_PARENT",
+            "paper_url": "https://example.org/paper.pdf",
+            "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT",
+        }}}
+        self.assertEqual(render_core._custody(owner), "Owner-supplied question, verbatim")
+        self.assertEqual(render_core._custody(past_paper), "Official past paper, faithful restatement of the original")
+
     def test_renderer_cannot_write_directly_to_public(self):
         target = REPO / "public" / "blueprint-safety-probe"
         self.assertFalse(target.exists())
