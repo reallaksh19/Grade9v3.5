@@ -1,91 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="100%" height="100%" role="img" aria-labelledby="svg-area-title svg-area-desc">
-  <title id="svg-area-title">Geometric Area Decomposition and Identity Expansion Model</title>
-  <desc id="svg-area-desc">2D geometric area model demonstrating polynomial multiplication for length (x+3) and width (x+1), visually showing why cross-terms arise and cannot be omitted.</desc>
-  <defs>
-    <style>
-      .bg { fill: #f8fafc; }
-      .border { stroke: #cbd5e1; stroke-width: 1.5; }
-      .text-title { font-family: system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 700; fill: #0f172a; }
-      .text-sub { font-family: system-ui, -apple-system, sans-serif; font-size: 13px; fill: #475569; }
-      .dim-label { font-family: system-ui, sans-serif; font-size: 14px; font-weight: 700; fill: #1e293b; text-anchor: middle; }
-      .cell-x2 { fill: #dbeafe; stroke: #2563eb; stroke-width: 1.5; }
-      .cell-x { fill: #e0e7ff; stroke: #4f46e5; stroke-width: 1.5; }
-      .cell-const { fill: #fef3c7; stroke: #d97706; stroke-width: 1.5; }
-      .area-label { font-family: system-ui, sans-serif; font-size: 14px; font-weight: 700; fill: #1e293b; text-anchor: middle; }
-      .area-sub { font-family: system-ui, sans-serif; font-size: 11px; fill: #475569; text-anchor: middle; }
-      .error-box { fill: #fee2e2; stroke: #ef4444; stroke-width: 1; }
-      .error-text { font-family: system-ui, sans-serif; font-size: 12px; fill: #991b1b; }
-      .correct-box { fill: #dcfce7; stroke: #22c55e; stroke-width: 1; }
-      .correct-text { font-family: system-ui, sans-serif; font-size: 12px; fill: #166534; font-weight: 600; }
-    </style>
-  </defs>
-
-  <!-- Background -->
-  <rect width="600" height="360" rx="8" class="bg border"/>
-
-  <!-- Canvas Header -->
-  <text x="30" y="30" class="text-title">Area Model: (x + 3)(x + 1) = x² + 4x + 3 cm²</text>
-  <text x="30" y="48" class="text-sub">Physical multiplication decomposes into 4 independent sub-regions across length and width</text>
-
-  <!-- Stage 1: Rectangle Dimensions & Outer Frame -->
-  <g data-g9-stage-id="AREA-STAGE-1">
-    <!-- Dimension indicators -->
-    <text x="140" y="80" class="dim-label">x</text>
-    <text x="250" y="80" class="dim-label">+ 3</text>
-    <text x="40" y="160" class="dim-label">x</text>
-    <text x="40" y="240" class="dim-label">+ 1</text>
-    <!-- Total width bracket -->
-    <path d="M 70 88 L 310 88" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4"/>
-    <text x="190" y="70" class="dim-label" fill="#2563eb">Length = (x + 3) cm</text>
-    <!-- Total height bracket -->
-    <path d="M 60 95 L 60 275" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4"/>
-    <text x="35" y="105" class="dim-label" fill="#2563eb">Width = (x + 1) cm</text>
-  </g>
-
-  <!-- Stage 2: Subdivided Area Decomposition -->
-  <g data-g9-stage-id="AREA-STAGE-2">
-    <!-- Sub-region 1: x * x = x^2 -->
-    <rect x="70" y="95" width="140" height="130" class="cell-x2"/>
-    <text x="140" y="160" class="area-label">x²</text>
-    <text x="140" y="180" class="area-sub">(x · x)</text>
-
-    <!-- Sub-region 2: 3 * x = 3x -->
-    <rect x="210" y="95" width="100" height="130" class="cell-x"/>
-    <text x="260" y="160" class="area-label">3x</text>
-    <text x="260" y="180" class="area-sub">(3 · x)</text>
-
-    <!-- Sub-region 3: x * 1 = 1x -->
-    <rect x="70" y="225" width="140" height="50" class="cell-x"/>
-    <text x="140" y="252" class="area-label">1x</text>
-    <text x="140" y="267" class="area-sub">(1 · x)</text>
-
-    <!-- Sub-region 4: 3 * 1 = 3 -->
-    <rect x="210" y="225" width="100" height="50" class="cell-const"/>
-    <text x="260" y="252" class="area-label">3</text>
-    <text x="260" y="267" class="area-sub">(3 · 1)</text>
-  </g>
-
-  <!-- Stage 3: Like Terms Synthesis and Identity Misconception Contrast -->
-  <g data-g9-stage-id="AREA-STAGE-3">
-    <!-- Summary on right side -->
-    <rect x="330" y="95" width="240" height="85" rx="6" class="correct-box"/>
-    <text x="340" y="115" class="correct-text">Combined 2D Area Sum:</text>
-    <text x="340" y="135" font-family="monospace" font-size="13px" font-weight="700" fill="#14532d">x² + (3x + 1x) + 3</text>
-    <text x="340" y="155" font-family="monospace" font-size="14px" font-weight="700" fill="#15803d">= x² + 4x + 3 cm²</text>
-    <text x="340" y="172" font-family="system-ui, sans-serif" font-size="11px" fill="#166534">Represents total enclosed surface area (x ≥ 0).</text>
-
-    <!-- Identity Contrast: (x+3)^2 vs x^2 + 9 -->
-    <rect x="330" y="190" width="240" height="85" rx="6" class="error-box"/>
-    <text x="340" y="210" class="error-text" font-weight="700">Identity Error Diagnosis (Q6):</text>
-    <text x="340" y="228" font-family="monospace" font-size="12px" fill="#b91c1c">Student: (x+3)² = x² + 9</text>
-    <text x="340" y="246" font-family="system-ui, sans-serif" font-size="11px" fill="#991b1b">Omits 2 middle strips: 3x + 3x = +6x !</text>
-    <text x="340" y="264" font-family="monospace" font-size="12px" font-weight="700" fill="#15803d">Correct: (x+3)² = x² + 6x + 9</text>
-
-    <!-- Bottom summary banner -->
-    <rect x="70" y="290" width="500" height="45" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
-    <text x="85" y="315" font-family="system-ui, sans-serif" font-size="12px" fill="#334155">
-      <tspan font-weight="700" fill="#0f172a">Governing Law: </tspan>
-      Distributivity guarantees all pairwise cross-terms exist. (a+b)(c+d) = ac + ad + bc + bd.
-    </text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 350" role="img" aria-labelledby="t d">
+<title id="t">Changed-anchor binomial square construction</title>
+<desc id="d">An authored square of side x plus two is partitioned into x squared, two rectangles of area two x, and a square of area four, showing where both cross terms arise.</desc>
+<rect width="620" height="350" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+<text x="24" y="32" font-family="system-ui" font-size="18" font-weight="700">Authored square: side (x + 2)</text>
+<g data-g9-stage-id="AREA-STAGE-1">
+  <text x="24" y="64" font-family="system-ui" font-size="14">A square uses the same binomial for both dimensions.</text>
+  <rect x="60" y="88" width="220" height="220" fill="#fff" stroke="#64748b" stroke-width="2"/>
+  <line x1="220" y1="88" x2="220" y2="308" stroke="#64748b"/><line x1="60" y1="248" x2="280" y2="248" stroke="#64748b"/>
+  <text x="140" y="80" font-family="monospace">x</text><text x="247" y="80" font-family="monospace">2</text>
+  <text x="43" y="170" font-family="monospace">x</text><text x="43" y="285" font-family="monospace">2</text>
+</g>
+<g data-g9-stage-id="AREA-STAGE-2">
+  <text x="140" y="172" text-anchor="middle" font-family="monospace" font-size="18">x²</text>
+  <text x="250" y="172" text-anchor="middle" font-family="monospace" font-size="18">2x</text>
+  <text x="140" y="282" text-anchor="middle" font-family="monospace" font-size="18">2x</text>
+  <text x="250" y="282" text-anchor="middle" font-family="monospace" font-size="18">4</text>
+</g>
+<g data-g9-stage-id="AREA-STAGE-3">
+  <text x="330" y="120" font-family="system-ui" font-size="14" font-weight="700">Four regions, not two</text>
+  <text x="330" y="155" font-family="monospace" font-size="15">x² + 2x + 2x + 4</text>
+  <text x="330" y="185" font-family="monospace" font-size="15">= x² + 4x + 4</text>
+  <text x="330" y="225" font-family="system-ui" font-size="13">The middle term comes from two cross rectangles.</text>
+</g>
 </svg>
