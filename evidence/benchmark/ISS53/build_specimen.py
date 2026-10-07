@@ -49,6 +49,7 @@ for line in lines:
 print("Parsed stems count:", len(STEMS))
 
 SRC = "SRC-OWNER-ISSUE53-POLY"
+SRC_PRACTICE = "SRC-AUTHORED-ISS29-N2-D1-PRACTICE"
 BUCKET = "BUCKET-MATH-09-POLYNOMIALS"
 
 CAP_TERMS = "CAP-MATH-POLY-TERMS-COEFFS"
@@ -163,6 +164,26 @@ resource = {
     "entry_capabilities": [],
     "depth": ["COMPETITION"],
     "selection_reason": "Exact custody surface for the ten questions used by the Issue #53 run.",
+    "fallback": [],
+}
+
+practice_resource = {
+    **base(SRC_PRACTICE, source=False),
+    "title": "ISS29 N2-D1 authored practice and transfer items",
+    "origin": "AUTHORED",
+    "locator": "https://github.com/reallaksh19/Grade9v3.5/issues/168",
+    "edition": "N2-D1 repair wave, 2026-10-07",
+    "section": "Authored Core1A examples, exit tasks, and changed-case transfer",
+    "last_checked": "2026-10-07",
+    "access_status": "FULL_ITEM_INSPECTED",
+    "rights_status": "Repository-authored practice; not CBSE/NCERT/PYQ and not owner-source question text.",
+    "snapshot_ref": None,
+    "snapshot_digest": None,
+    "role": ["AUTHOR_CREATED"],
+    "supports_claims": [],
+    "entry_capabilities": [],
+    "depth": ["FOUNDATION"],
+    "selection_reason": "Keep teaching and transfer anchors distinct from the protected owner-supplied source questions.",
     "fallback": [],
 }
 
@@ -409,7 +430,7 @@ microtopics = [
         ],
         "exit_task": {
             "prompt": "For p(x) = 7x^4 - 3x + 1, list the coefficients of x^4, x^3, x^2, x^1, and x^0.",
-            "source_ref": SRC,
+            "source_ref": SRC_PRACTICE,
             "answer": model_answer("Coefficients: x^4 is 7; x^3 is 0; x^2 is 0; x^1 is -3; x^0 is 1.", ["Powers 3 and 2 do not appear explicitly.", "Missing powers are assigned coefficient 0."], "Reconstruction: 7x^4 + 0x^3 + 0x^2 - 3x + 1 = 7x^4 - 3x + 1."),
             "oracle": {"no_numeric_claim": "The task checks coefficient assignment with explicit zero entries."}
         },
@@ -417,7 +438,7 @@ microtopics = [
         "prerequisite_refs": [],
         "lineage": [],
         "elicitation": {
-            "predict": {"prompt": "Can a term with x^2 be added to 5x^3 - 2x + 7 without changing its value?", "defensible_answer": "Yes, by adding 0x^2, since 0 times x^2 equals 0."},
+            "predict": {"prompt": "Can a term with x^2 be added to the authored example 6x^3 - x + 4 without changing its value?", "defensible_answer": "Yes, by adding 0x^2, since 0 times x^2 equals 0."},
             "attempt": {
                 "produces": "A coefficient table inventorying powers 3, 2, 1, 0.",
                 "closure": "RUBRIC",
@@ -432,7 +453,7 @@ microtopics = [
                 ],
                 "differs_from_teaching_path": "Starts from degree identification rather than general polynomial definition."
             },
-            "boundary_test": {"prompt": "What is the degree of a non-zero constant polynomial like -5?", "answer": "Degree 0, since -5 = -5x^0.", "confirms": "Constant polynomials possess degree 0."}
+            "boundary_test": {"prompt": "What is the degree of a non-zero constant polynomial like 11?", "answer": "Degree 0, since 11 = 11x^0.", "confirms": "Constant polynomials possess degree 0."}
         },
         "construction_units": [
             {
@@ -441,13 +462,13 @@ microtopics = [
                 "step_refs": ["TERMS-T1", "TERMS-T2", "TERMS-T3"],
                 "representation_ref": REP_COEFF,
                 "reveal_stage_refs": ["COEFF-STAGE-1", "COEFF-STAGE-2", "COEFF-STAGE-3"],
-                "bank_anchor_ref": BANK_IDS["Q1"],
+                "bank_anchor_ref": None,
                 "crux_question_refs": [BANK_IDS["Q1"], BANK_IDS["Q4"], BANK_IDS["Q5"]],
                 "crux_step_ref": "TERMS-T2",
                 "misconception_indexes": [0],
                 "independent_checks": [
                     {"statement": "CHECK: Reconstruct polynomial from table: sum a_k x^k matches original.", "role": "CHECK"},
-                    {"statement": "APPLY: Add 2x^2 + 3x - 5 and -x^2 + 4x + 2 by combining coefficients of like powers.", "role": "APPLY"},
+                    {"statement": "APPLY: Add 3x^2 + 2x - 4 and -x^2 + 5x + 1 by combining coefficients of like powers.", "role": "APPLY"},
                     {"statement": "CONNECT: Connect zero entry to null contribution 0 * x^2 = 0.", "role": "CONNECT"}
                 ]
             }
@@ -473,14 +494,14 @@ microtopics = [
         "question_family_refs": [FAM_DEF],
         "misconceptions": [
             misconception(
-                "A constant like -5 is not a polynomial because no variable is visible, or 1/x is a polynomial because power of x in denominator is 1.",
-                "What is the exponent of x when 1/x is written in index form x^n?",
-                "1/x = x^-1 has negative exponent -1 not in W; constant -5 = -5x^0 has valid whole-number exponent 0."
+                "A non-zero constant may be rejected because no variable is visible, or a reciprocal may be accepted by reading only the denominator's written power.",
+                "For the changed examples 2/x and 8, rewrite each using a power of x before classifying it.",
+                "2/x = 2x^-1 has a negative exponent, while 8 = 8x^0 has exponent 0; classify from the rewritten exponent, not surface appearance."
             )
         ],
         "exit_task": {
             "prompt": "Determine whether x^3 - 4/x^2 + 5 is a polynomial in x. Justify your answer.",
-            "source_ref": SRC,
+            "source_ref": SRC_PRACTICE,
             "answer": model_answer("No, it is not a polynomial. In index form, 4/x^2 = 4x^-2, which has a negative exponent (-2), violating the non-negative integer exponent condition.", ["Exponents of x are 3, -2, 0.", "-2 is not a whole number."], "Condition failed: negative exponent -2."),
             "oracle": {"no_numeric_claim": "The task assesses polynomial defining condition verification."}
         },
@@ -488,7 +509,7 @@ microtopics = [
         "prerequisite_refs": [CAP_TERMS],
         "lineage": [],
         "elicitation": {
-            "predict": {"prompt": "Is sqrt(x) + 1 a polynomial in x?", "defensible_answer": "No, because sqrt(x) has fractional exponent 1/2, which is not a whole number."},
+            "predict": {"prompt": "Is x^(2/3) + 4 a polynomial in x?", "defensible_answer": "No, because exponent 2/3 is not a non-negative integer."},
             "attempt": {
                 "produces": "Classification of expressions into polynomials and non-polynomials with reason.",
                 "closure": "RUBRIC",
@@ -499,7 +520,7 @@ microtopics = [
             "reconstruct": {
                 "route": [
                     {"ask": "What is the defining condition on exponents for a polynomial?", "why_this_ask": "Grounds classification in axioms."},
-                    {"ask": "How do you rewrite 1/x and sqrt(x) in exponent form?", "why_this_ask": "Exposes non-integer and negative powers."}
+                    {"ask": "How do you rewrite a reciprocal and a fractional power in exponent form?", "why_this_ask": "Exposes negative and non-integer powers without replaying a protected source item."}
                 ],
                 "differs_from_teaching_path": "Starts from radical and reciprocal forms rather than standard definition."
             },
@@ -512,14 +533,14 @@ microtopics = [
                 "step_refs": ["DEF-T1", "DEF-T2", "DEF-T3"],
                 "representation_ref": REP_EXP,
                 "reveal_stage_refs": ["EXP-STAGE-1", "EXP-STAGE-2", "EXP-STAGE-3"],
-                "bank_anchor_ref": BANK_IDS["Q2"],
+                "bank_anchor_ref": None,
                 "crux_question_refs": [BANK_IDS["Q2"], BANK_IDS["Q3"]],
                 "crux_step_ref": "DEF-T2",
                 "misconception_indexes": [0],
                 "independent_checks": [
-                    {"statement": "CHECK: Verify all exponents of 3x^2 - 2x + 1 belong to {0, 1, 2}.", "role": "CHECK"},
-                    {"statement": "APPLY: Substitute x=2 into p(x) with brackets: (2)^2 - 3(2) + 4 = 2.", "role": "APPLY"},
-                    {"statement": "CONNECT: Connect constant -5 to non-zero constant polynomial of degree 0.", "role": "CONNECT"}
+                    {"statement": "CHECK: Verify all exponents of 2x^4 - x + 3 belong to the non-negative integers.", "role": "CHECK"},
+                    {"statement": "APPLY: For t(x)=x^2+2x-3, substitute x=4 with brackets before arithmetic.", "role": "APPLY"},
+                    {"statement": "CONNECT: Connect constant 8 to a non-zero constant polynomial of degree 0.", "role": "CONNECT"}
                 ]
             }
         ],
@@ -552,7 +573,7 @@ microtopics = [
         ],
         "exit_task": {
             "prompt": "Construct a linear polynomial whose constant term is -6 and whose zero is 3. Prove that it is unique.",
-            "source_ref": SRC,
+            "source_ref": SRC_PRACTICE,
             "answer": model_answer("Linear polynomial: p(x) = 2x - 6. Constant term p(0) = b = -6; zero at 3 gives 3a - 6 = 0 => 3a = 6 => a = 2 (non-zero). Unique because linear equation 3a - 6 = 0 has exactly one root in R.", ["Form p(x) = ax + b with a != 0.", "Constant term fixes b = -6.", "Zero condition gives 3a - 6 = 0 => a = 2.", "Unique solution to linear equation in a."], "p(0) = -6 and p(3) = 2(3) - 6 = 0; degree is 1."),
             "oracle": {"no_numeric_claim": "The task assesses linear polynomial synthesis and uniqueness proof."}
         },
@@ -697,7 +718,7 @@ package = {
     "subject": "Mathematics",
     "scope_summary": "Grade 9 Mathematics curriculum on polynomials in one variable: definitions, degree, coefficients, operations, algebraic identities, area models, and linear polynomial zeroes.",
     "curriculum_mappings": [],
-    "resources": [resource],
+    "resources": [resource, practice_resource],
     "buckets": [bucket],
     "capabilities": capabilities,
     "microtopics": microtopics,
