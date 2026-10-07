@@ -55,14 +55,11 @@ class PhaseEFinalHandoff(unittest.TestCase):
         self.assertEqual(coverage["coverage_fraction"], "0/28")
         self.assertEqual(coverage["accepted_rows"], [])
         self.assertEqual(coverage["accepted_cells"], [])
+        self.assertEqual(set(coverage["unsupported_cells"]), expected)
         self.assertEqual(
-            {row["cell"] for row in coverage["unsupported_cells"]},
-            expected,
+            coverage["unsupported_status"],
+            "UNSUPPORTED_NO_CURRENT_INDEPENDENT_RENDERED_ACCEPTANCE",
         )
-        self.assertTrue(all(
-            row["status"] == "UNSUPPORTED_NO_CURRENT_INDEPENDENT_RENDERED_ACCEPTANCE"
-            for row in coverage["unsupported_cells"]
-        ))
 
     def test_current_e01_e02_and_phase_d_evidence_blobs_are_pinned_exactly(self):
         frontier = self.evidence["frontier"]
