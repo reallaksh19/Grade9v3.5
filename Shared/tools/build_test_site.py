@@ -452,7 +452,7 @@ def intake_card(state: dict) -> str:
             f'{esc(row["question_type"])}</p>'
             f'<p><strong>Source:</strong> {esc(row["source"]["authority"])} · {esc(row["source"]["kind"])} · '
             f'{esc(row["source"]["title"])} · printed page {esc(loc["printed_page"])} · PDF index {esc(loc["pdf_page_index"])} · '
-            f'{link(row["source"]["url"], "Official source ↗")}</p>'
+            f'source URL retained in Stage-1 authority <code>{esc(row["source"]["document_ref"])}</code></p>'
             f'<p><strong>Custody:</strong> {esc(row["source_verification_status"])} · {esc(row["text_verification_status"])} · '
             f'<strong>Workflow:</strong> {esc(row["workflow_status"])} · <strong>Official answer:</strong> {esc(answer_note)}</p>'
             f'<p class="g9-prov">Stem digest: <code>{esc(row["stem_sha256"])}</code> · '
