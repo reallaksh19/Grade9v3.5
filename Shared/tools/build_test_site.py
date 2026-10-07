@@ -76,6 +76,21 @@ def intake_banks() -> list[dict]:
     return banks
 
 
+def candidate_audits() -> list[dict]:
+    audit_dir = TEST_ROOT / "candidates"
+    if not audit_dir.is_dir():
+        return []
+    rows = []
+    for path in sorted(audit_dir.glob("*.audit.json")):
+        try:
+            data = _json(path)
+            if isinstance(data, dict) and data.get("schema_version") == "grade9v3-test-candidate-audit-v1":
+                rows.append(data)
+        except Exception:
+            continue
+    return rows
+
+
 def owner_banks() -> list[dict]:
     bank_dir = TEST_ROOT / "question-bank"
     if not bank_dir.is_dir():
@@ -192,6 +207,41 @@ def link(href: str, label: str) -> str:
 
 
 # ------------------------------------------------------------------ pages
+
+def render_candidate_audit_section(audits: list[dict]) -> str:
+    if not audits:
+        return ""
+    cards = []
+    rank = {"PASS": 0, "NOT_APPLICABLE": 1, "PENDING": 2, "BLOCKED": 3}
+    for audit in audits:
+        checks = audit.get("checks") or {}
+        ordered = sorted(checks.items(), key=lambda item: (rank.get((item[1] or {}).get("status"), 9), item[0]))
+        rows = "".join(
+            f'<tr><td>{esc(name.replace("_", " ").title())}</td>'
+            f'<td><strong>{esc((result or {}).get("status", "PENDING"))}</strong></td>'
+            f'<td>{esc((result or {}).get("detail", ""))}</td></tr>'
+            for name, result in ordered
+        )
+        counts = " · ".join(f"{esc(k.replace('_', ' '))}: {esc(v)}" for k, v in (audit.get("question_counts") or {}).items())
+        promotion = audit.get("promotion") or {}
+        origin = audit.get("origin") or {}
+        origin_text = f'PR #{origin.get("pr")}' if origin.get("pr") else origin.get("type", "TEST")
+        cards.append(card(
+            f'candidate-{audit.get("candidate_id", "unknown")}',
+            f'{audit.get("candidate_id", "")} {audit.get("title", "")} {audit.get("state", "")} '
+            + " ".join(str((r or {}).get("status", "")) for r in checks.values()),
+            f'<h2>QA candidate: {esc(audit.get("title") or audit.get("candidate_id"))}</h2>'
+            f'<p class="g9-prov">{esc(audit.get("candidate_id"))} · {esc(origin_text)} · target {esc(audit.get("target_subject"))}'
+            f'{(" / " + esc(audit.get("target_topic"))) if audit.get("target_topic") else ""}</p>'
+            f'<p><strong>Lifecycle state:</strong> {esc(audit.get("state"))} · '
+            f'<strong>Promotion:</strong> {esc(promotion.get("status", "BLOCKED"))} → {esc(promotion.get("target", ""))}</p>'
+            f'{f"<p>{counts}</p>" if counts else ""}'
+            f'<div class="g9-table-scroll"><table><thead><tr><th>Check</th><th>Status</th><th>Evidence / next action</th></tr></thead>'
+            f'<tbody>{rows}</tbody></table></div>'
+            f'<p class="g9-prov">Promotion reason: {esc(promotion.get("reason", ""))}</p>'
+        ))
+    return "".join(cards)
+
 
 def render_owner_bank_section(banks: list[dict]) -> str:
     if not banks:
@@ -311,6 +361,7 @@ def hub_page() -> str:
     intakes = intake_banks()
     owner = owner_banks()
     search_rows = test_search_index()
+    audits = candidate_audits()
 
     def product_line(receipt: dict, role: str, selection_key: str) -> str:
         return (f'{esc(receipt["slug"])}: {receipt["selection_counts"].get(selection_key, 0)} record(s) selected, '
@@ -330,6 +381,7 @@ def hub_page() -> str:
         'accepted or curriculum, and <code>accept_product.py</code> refuses TEST.</p>'
         '<p class="g9-prov">A gap count of 0 means the depth check found nothing missing. It counts what is absent, '
         'not how good it is, and it does not say the content has been reviewed.</p>'
+        + render_candidate_audit_section(audits)
         + render_intake_section(intakes)
         + render_owner_bank_section(owner)
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
@@ -345,6 +397,7 @@ def hub_page() -> str:
                f'<li>{counts["packages"]} package file(s) in TEST/library</li>'
                f'<li>{counts["banks"]} owner-supplied question file(s) in TEST/question-bank, {counts["bank_questions"]} question(s)</li>'
                f'<li>{counts["intake_banks"]} official intake bank(s) in TEST/question-bank/intake, {counts["intake_questions"]} question(s)</li>'
+               f'<li>{len(audits)} candidate QA record(s) in TEST/candidates</li>'
                f'<li>TEST-only search index: {len(search_rows)} parked question(s); production search untouched</li></ul>'
                '<p class="g9-prov">How to add each of them: TEST/README.md in the repository.</p>')
         + search_index_script(search_rows))
