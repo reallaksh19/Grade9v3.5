@@ -1,0 +1,70 @@
+{
+  "schema_version": "grade9v3-phase-d-chemistry-qualification-v1",
+  "issue": 111,
+  "phase": "D03",
+  "result": "ARCHITECTURE_QUALIFIED_RENDERED_FINDING_RETAINED",
+  "base_head": "59751b52e4911a132abb8c3956583a75b3cbcab7",
+  "qualification_head": "bac36bb27f07c6f0dc38778ea0c5f927f64410f6",
+  "specimen": {
+    "lineage": "evidence/blueprint-cycles/ISS32",
+    "authority_use": "EVIDENCE_FIXTURE_ONLY",
+    "custody": "OWNER_SUPPLIED_RAW_INPUT",
+    "source_claim": "NOT_OFFICIAL_CHEMISTRY_SOURCE_AUTHORITY"
+  },
+  "focused_run": {
+    "workflow": "phase-d-chemistry-qualification",
+    "run_id": 37549796598,
+    "job_id": 112562295947,
+    "tests": {
+      "count": 6,
+      "result": "PASS"
+    },
+    "render": {
+      "core1a": {
+        "blueprint": "BP-CORE1A-CONSTRUCTION@1.8.0",
+        "overflow_landscape": 0,
+        "overflow_portrait": 0,
+        "errors": 0,
+        "min_font_css_px": 11,
+        "svg_count": 10,
+        "a11y_svg_count": 10
+      },
+      "core2": {
+        "blueprint": "BP-CORE2-SOURCE-QUESTION@1.11.0",
+        "overflow_landscape": 0,
+        "overflow_portrait": 0,
+        "errors": 0,
+        "min_font_css_px": 14.45,
+        "attempts": 10,
+        "gated": 20,
+        "svg_count": 10,
+        "a11y_svg_count": 10
+      }
+    }
+  },
+  "rendered_findings": [
+    {
+      "severity": "REVIEW_REQUIRED",
+      "surface": "CORE1A",
+      "finding": "Shared tablet audit measured minimum learner-visible text at 11 CSS px in the frozen ISS32 fixture.",
+      "disposition": "RETAIN_AS_CURRENT_RENDERED_FINDING_NOT_ARCHITECTURE_PATCH",
+      "next_owner": "D05 independent acceptance synthesis"
+    }
+  ],
+  "guardrail_delta": {
+    "phase_c_base_run_id": 37545939587,
+    "phase_c_base_job_id": 112549846745,
+    "d03_run_id": 37549796506,
+    "d03_job_id": 112562295429,
+    "base_unique_failure_or_error_tests": 112,
+    "d03_unique_failure_or_error_tests": 112,
+    "added": [],
+    "removed": [],
+    "disposition": "NO_NEW_BROAD_GUARDRAIL_REGRESSION"
+  },
+  "acceptance_boundary": {
+    "independent_acceptance": "DEFERRED_TO_D05_ISS113",
+    "shared_production_change": false,
+    "merge_or_publication": "NOT_GRANTED"
+  }
+}
