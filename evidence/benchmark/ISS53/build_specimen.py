@@ -61,7 +61,8 @@ MIC_ID    = "MIC-MATH-POLY-IDENTITIES-AND-CONSTRUCTION"
 
 REP_COEFF = "REP-MATH-POLY-COEFF-TABLE"
 REP_EXP   = "REP-MATH-POLY-EXPONENT-CLASSIFICATION"
-REP_AREA  = "REP-MATH-POLY-AREA-MODEL"
+REP_AREA  = "REP-MATH-POLY-SQUARE-CONSTRUCTION"
+REP_RECT  = "REP-MATH-POLY-RECTANGLE-AREA"
 REP_LIN   = "REP-MATH-POLY-LINEAR-ZERO"
 
 REL_STD = "REL-MATH-POLY-STANDARD-FORM"
@@ -127,7 +128,13 @@ def representation(record_id: str, kind: str, purpose: str, asset: str, stages: 
         "kind": kind,
         "purpose": purpose,
         "required_elements": [s[1] for s in stages],
-        "relation_refs": [REL_STD, REL_SQR],
+        "relation_refs": {
+            REP_COEFF: [REL_STD],
+            REP_EXP: [REL_STD],
+            REP_AREA: [REL_SQR],
+            REP_RECT: [REL_REC],
+            REP_LIN: [REL_LIN],
+        }.get(record_id, []),
         "read_order": [s[2] for s in stages],
         "instance_constraints": ["Pre-attempt stages must orient without disclosing the final target answer W."],
         "accessibility": ["The SVG has an accessible name, title and description.", "Text labels duplicate any line-style meaning."],
@@ -296,7 +303,7 @@ representations = [
     representation(
         REP_COEFF,
         "TABLE_OF_VALUES",
-        "Positional table of polynomial terms displaying powers 3, 2, 1, 0 with explicit zero entries.",
+        "Changed authored coefficient-table example displaying powers 3, 2, 1, 0 with an explicit zero entry.",
         "evidence/benchmark/ISS53/assets/poly-coeff-table.svg",
         [
             ("COEFF-STAGE-1", "Power Inventory", "Examine given polynomial powers and identify present and omitted exponents."),
@@ -304,15 +311,15 @@ representations = [
             ("COEFF-STAGE-3", "Reconstruction Check", "Confirm polynomial reconstruction and index-aligned operations.")
         ],
         [
-            {"element": "Power row k=2 with entry 0", "symbol": "0 · x²", "in_words": "explicit zero entry for omitted quadratic term"},
-            {"element": "Leading power row k=3", "symbol": "5 · x³", "in_words": "highest power determining polynomial degree 3"},
-            {"element": "Constant power row k=0", "symbol": "7 · x⁰", "in_words": "constant term independent of variable x"}
+            {"element": "Power row k=2 with entry 0", "symbol": "0 · x²", "in_words": "explicit zero entry for the omitted quadratic term"},
+            {"element": "Leading power row k=3", "symbol": "6 · x³", "in_words": "changed-anchor leading term of degree 3"},
+            {"element": "Constant power row k=0", "symbol": "4 · x⁰", "in_words": "changed-anchor constant term"}
         ]
     ),
     representation(
         REP_EXP,
         "TABLE_OF_VALUES",
-        "Visual framework checking whole-number exponents in polynomials versus non-polynomial expressions and computing values at input points.",
+        "Changed authored examples for the non-negative-integer exponent criterion plus a separate bracketed-substitution example.",
         "evidence/benchmark/ISS53/assets/poly-exponent-classification.svg",
         [
             ("EXP-STAGE-1", "Whole Number Exponent Domain W", "Evaluate exponents against the whole-number domain W = {0, 1, 2, ...}."),
@@ -320,9 +327,9 @@ representations = [
             ("EXP-STAGE-3", "Point Evaluation Precedence", "Evaluate polynomial values at input points with bracketed substitution.")
         ],
         [
-            {"element": "Whole number exponent set", "symbol": "W = {0, 1, 2, ...}", "in_words": "defining requirement for single-variable polynomials"},
-            {"element": "Negative and fractional exponents", "symbol": "x^-2, x^(1/2)", "in_words": "conditions that violate polynomial criteria"},
-            {"element": "Evaluated polynomial value", "symbol": "p(2) = 9", "in_words": "computed numerical output through substitution"}
+            {"element": "Whole-number exponent set", "symbol": "{0, 1, 2, ...}", "in_words": "defining exponent requirement for a polynomial in x"},
+            {"element": "Changed boundary powers", "symbol": "x^-1, x^(2/3)", "in_words": "negative or fractional exponents violate the criterion"},
+            {"element": "Bracketed substitution", "symbol": "s(3)=2(3)^2+(3)-1", "in_words": "replace every occurrence of the variable before arithmetic"}
         ]
     ),
     representation(
