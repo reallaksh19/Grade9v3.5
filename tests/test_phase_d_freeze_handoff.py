@@ -8,12 +8,63 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 EVIDENCE = REPO / "evidence/architectural-recovery/ISS69/phase-d-d06-freeze-handoff.v1.json"
+GRAPH = REPO / "evidence/architectural-recovery/ISS69/phase-d-delp-execution-graph.v32.json"
 
 
 class PhaseDFreezeHandoff(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.record = json.loads(EVIDENCE.read_text(encoding="utf-8"))
+        cls.graph = json.loads(GRAPH.read_text(encoding="utf-8"))
+
+
+    def test_phase_d_delp_decomposition_is_bounded_verifiable_and_collision_safe(self):
+        graph = self.graph
+        self.assertEqual(graph["schema"], "relay-v3.2-delp-execution-graph")
+        programme = graph["programme"]
+        self.assertEqual(
+            programme["engineering_protocol_ref"],
+            "reallaksh19/Common@46916f4828090c1f32cf2856186b0b00defdbea3:skills/engineering-pr-delivery-v3.2",
+        )
+        policy = programme["decomposition_policy"]
+        self.assertEqual(policy["mode"], "ENFORCED")
+        leaves = [node for node in graph["nodes"] if node["kind"] == "LEAF"]
+        self.assertEqual({node["ref"].split("#")[-1] for node in leaves}, {"109", "110", "111", "112", "113", "114"})
+
+        refs = {node["ref"] for node in graph["nodes"]}
+        seen_surfaces = {}
+        for node in leaves:
+            with self.subTest(leaf=node["ref"]):
+                units = node["units"]
+                self.assertGreaterEqual(len(units), policy["units"]["min"])
+                self.assertLessEqual(len(units), policy["units"]["max"])
+                total = sum(unit["weight"] for unit in units)
+                self.assertTrue(all(unit["outcome"].strip() and unit["verify"].strip() for unit in units))
+                self.assertTrue(all(unit["weight"] * 100 <= total * policy["units"]["max_share_percent"] for unit in units))
+
+                budget = node["size_budget"]
+                limit = policy["leaf_budget"]
+                self.assertLessEqual(budget["target_loc"], limit["target_loc"])
+                self.assertLessEqual(budget["hard_loc"], limit["hard_loc"])
+                self.assertLessEqual(budget["target_minutes"], limit["target_minutes"])
+                self.assertLessEqual(budget["hard_minutes"], limit["hard_minutes"])
+                self.assertTrue(node["outcome"].strip())
+                self.assertTrue(node["write_surface"])
+                self.assertTrue(all(dep in refs for dep in node.get("depends_on", [])))
+
+                for path in node["write_surface"]:
+                    owner = seen_surfaces.get(path)
+                    if owner is not None:
+                        ordered = owner in node.get("depends_on", []) or node["ref"] in next(
+                            row for row in leaves if row["ref"] == owner
+                        ).get("depends_on", [])
+                        self.assertTrue(ordered, f"overlapping write surface without dependency: {path}")
+                    seen_surfaces[path] = node["ref"]
+
+        d05 = next(node for node in leaves if node["ref"].endswith("#113"))
+        d06 = next(node for node in leaves if node["ref"].endswith("#114"))
+        self.assertEqual({dep.split("#")[-1] for dep in d05["depends_on"]}, {"109", "110", "111", "112"})
+        self.assertEqual({dep.split("#")[-1] for dep in d06["depends_on"]}, {"109", "110", "111", "112", "113"})
 
     def test_exact_child_pr_inventory_is_complete_and_shared_neutral(self):
         rows = self.record["child_prs"]
