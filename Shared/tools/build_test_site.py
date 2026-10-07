@@ -22,6 +22,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.tools import matrix_conformance, product_coverage, render_core  # noqa: E402
+from TEST.tools import source_intake  # noqa: E402
 
 esc = render_core.esc
 TEST_ROOT = REPO / "TEST"
@@ -29,6 +30,7 @@ PUBLIC_TEST = REPO / "public" / "test"
 CORE_CONTRACT = TEST_ROOT / "adapter" / "CoreContracts.json"
 QUALITY_VOCABULARY = TEST_ROOT / "adapter" / "QualityVocabulary.json"
 FIXTURE_MANIFEST = TEST_ROOT / "question-bank" / "fixtures" / "pr61-math-42.fixture.json"
+INTAKE_DIR = TEST_ROOT / "question-bank" / "intake"
 PACKAGE_SCHEMA = REPO / "Shared" / "library" / "package.schema.json"
 NAV = (("index.html", "TEST"), ("atlas/index.html", "Atlas"), ("rungs/index.html", "Rungs"), ("deployments/index.html", "Deployments"))
 ROLE_PAGES = (("index.html", "Product index"), ("core2.html", "Core2"), ("core1a.html", "Core1A"), ("core1.html", "Core1"),
@@ -129,6 +131,142 @@ def _fixture_state() -> dict:
             "excluded_placeholder_records": excluded["excluded_placeholder_records"],
             "disposition": excluded.get("disposition"),
         },
+    }
+
+
+HOLD_STATES = {"SOURCE_HOLD", "TEXT_HOLD", "IDENTITY_HOLD", "DUPLICATE_REVIEW", "TOPIC_HOLD"}
+
+
+def intake_banks() -> list[tuple[Path, dict]]:
+    """Validated Stage-1 intake banks only; generated handoffs are projections, never source authority."""
+    banks = []
+    for path in sorted(INTAKE_DIR.glob("*.v1.json")):
+        bank = _json(path)
+        problems = source_intake.findings(bank)
+        if problems:
+            detail = "; ".join(problems[:5])
+            raise ValueError(f"{_relative(path)} failed Stage-1 intake validation: {detail}")
+        banks.append((path, bank))
+    return banks
+
+
+def intake_state() -> dict:
+    """Pure TEST intake view-model assembled only from validated Stage-1 source banks."""
+    bank_rows = []
+    records = []
+    seen_ids: dict[str, str] = {}
+    seen_instances: dict[tuple, str] = {}
+
+    for path, bank in intake_banks():
+        documents = {row["id"]: row for row in bank["documents"]}
+        ready = sum(1 for q in bank["questions"] if q["workflow_status"] == source_intake.READY)
+        bank_rows.append({
+            "path": _relative(path),
+            "bank_id": bank["bank_id"],
+            "subject": bank["subject"],
+            "grade": bank["grade"],
+            "question_count": len(bank["questions"]),
+            "ready_for_blueprint": ready,
+        })
+
+        for q in bank["questions"]:
+            qid = q["id"]
+            if qid in seen_ids:
+                raise ValueError(f"{qid}: duplicate TEST intake id across {seen_ids[qid]} and {_relative(path)}")
+            seen_ids[qid] = _relative(path)
+
+            doc = documents[q["source_document_ref"]]
+            loc = q["source_locator"]
+            instance = (
+                doc["url"],
+                loc["chapter_or_unit"],
+                loc["exercise_or_section"],
+                str(loc["question_number"]),
+                loc["printed_page"],
+            )
+            if instance in seen_instances:
+                raise ValueError(f"{qid}: duplicate TEST source instance also used by {seen_instances[instance]}")
+            seen_instances[instance] = qid
+
+            records.append({
+                "id": qid,
+                "bank_id": bank["bank_id"],
+                "bank_path": _relative(path),
+                "original_identifier": q["original_identifier"],
+                "stem": q["stem"],
+                "stem_sha256": q["stem_sha256"],
+                "subject": q["subject"],
+                "grade": q["grade"],
+                "topic_label": q["topic_label"],
+                "subtopic_label": q.get("subtopic_label") or "",
+                "question_type": q["question_type"],
+                "source": {
+                    "document_ref": q["source_document_ref"],
+                    "authority": doc["authority"],
+                    "kind": doc["kind"],
+                    "title": doc["title"],
+                    "url": doc["url"],
+                },
+                "source_locator": dict(loc),
+                "source_verification_status": q["source_verification_status"],
+                "text_verification_status": q["text_verification_status"],
+                "workflow_status": q["workflow_status"],
+                "verification_evidence_ref": q["verification_evidence_ref"],
+                "official_answer_available": bool(q["official_answer_available"]),
+            })
+
+    records.sort(key=lambda row: row["id"])
+
+    def counts(field: str) -> dict[str, int]:
+        out: dict[str, int] = {}
+        for row in records:
+            value = str(row[field])
+            out[value] = out.get(value, 0) + 1
+        return dict(sorted(out.items()))
+
+    return {
+        "banks": bank_rows,
+        "bank_count": len(bank_rows),
+        "record_count": len(records),
+        "ready_for_blueprint": sum(1 for row in records if row["workflow_status"] == source_intake.READY),
+        "hold_count": sum(1 for row in records if row["workflow_status"] in HOLD_STATES),
+        "by_topic": counts("topic_label"),
+        "by_source": dict(sorted({
+            authority: sum(1 for row in records if row["source"]["authority"] == authority)
+            for authority in {row["source"]["authority"] for row in records}
+        }.items())),
+        "by_status": counts("workflow_status"),
+        "records": records,
+    }
+
+
+def intake_search_index(state: dict | None = None) -> dict:
+    """Sandbox-only search projection. It is not consumed by the global learner header/search index."""
+    state = state or intake_state()
+    documents = []
+    for row in state["records"]:
+        terms = [
+            row["id"], row["original_identifier"], row["stem"], row["subject"], str(row["grade"]),
+            row["topic_label"], row["subtopic_label"], row["question_type"],
+            row["source"]["authority"], row["source"]["kind"], row["source"]["title"],
+            row["source_verification_status"], row["text_verification_status"], row["workflow_status"],
+        ]
+        documents.append({
+            "id": row["id"],
+            "href": f'#intake-{row["id"]}',
+            "stem": row["stem"],
+            "topic_label": row["topic_label"],
+            "subtopic_label": row["subtopic_label"],
+            "source_authority": row["source"]["authority"],
+            "source_kind": row["source"]["kind"],
+            "workflow_status": row["workflow_status"],
+            "search_text": " ".join(str(term) for term in terms if term).lower(),
+        })
+    return {
+        "schema_version": "grade9v3-test-intake-search-index-v1",
+        "scope": "TEST_ONLY_SANDBOX",
+        "document_count": len(documents),
+        "documents": documents,
     }
 
 
