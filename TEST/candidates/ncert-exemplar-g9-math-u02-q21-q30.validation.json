@@ -1,0 +1,177 @@
+{
+  "schema_version": "grade9v3-test-question-validation-v1",
+  "candidate_id": "NCERT-EXEMPLAR-G9-MATH-210",
+  "source_bank": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+  "scope": "Unit 2 Polynomials intake Q21-Q30 · Ex 2.1 Q21; Ex 2.2 Q1 and Q2(i)/(ii)/(iv); Ex 2.3 Q1(i)-(iii) and Q2(i)-(ii)",
+  "validation_kind": "ACADEMIC_ANSWER_AND_STRUCTURE",
+  "validated_at": "2026-10-07",
+  "authority_boundary": {
+    "production_question_bank_admission": false,
+    "atlas_rungs_enrichment": false,
+    "note": "This receipt records source reconciliation and independent academic checks only. PASS does not itself publish a question; HOLD explicitly blocks admission pending wording/key reconciliation."
+  },
+  "records": [
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q21",
+      "original_identifier": "Unit 2 Ex 2.1 Q21",
+      "stem_sha256": "sha256:6271c4031bed057ba695fa102f07827848b4a0eea9046dc7549e55012240aea8",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "(C) 3abc",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q21",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "(C) 3abc",
+        "reasoning": [
+          "Use a³+b³+c³-3abc=(a+b+c)(a²+b²+c²-ab-bc-ca). Since a+b+c=0, the left side is 0, so a³+b³+c³=3abc."
+        ],
+        "admission_eligible": true
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q22",
+      "original_identifier": "Unit 2 Ex 2.2 Q1",
+      "stem_sha256": "sha256:fffdba33381adf38255d833dec0f8ceb9dcdf51b9f60dfb139be4adaab1c52cd",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "Polynomials: (iii) and (iv) because the exponent of the variable after simplification in each of these is a whole number.",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.2 Q1",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "Polynomials: (iii) and (iv) because the exponent of the variable after simplification in each of these is a whole number.",
+        "reasoning": [
+          "1/x=x^(-1) has a negative exponent and √x+2=x^(1/2)+2 has a fractional exponent, so neither is a polynomial in x. The expression x²+2x+1 has non-negative integer exponents, and the non-zero constant 1 is a constant polynomial."
+        ],
+        "admission_eligible": true
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q23",
+      "original_identifier": "Unit 2 Ex 2.2 Q2(i)",
+      "stem_sha256": "sha256:3026606c9f62a66b259f6b3451f99b774e840a67d59df070834c5837823fb89d",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "False, because a binomial has exactly two terms.",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.2 Q2(i)",
+      "academic_validation": {
+        "status": "HOLD",
+        "independent_result": "True as written: a binomial has exactly two non-zero terms, therefore it also has at most two terms.",
+        "reasoning": [
+          "Under the standard definition, a binomial has exactly two non-zero terms. Any object with exactly two terms necessarily has no more than two terms, so the statement 'A binomial can have at most two terms' is true in its ordinary logical meaning.",
+          "The official answer says False because a binomial has exactly two terms; that justification does not logically negate 'at most two' and therefore conflicts with the wording being validated."
+        ],
+        "admission_eligible": false,
+        "convention_note": "Official-source wording/key conflict. Do not admit this record until the intended statement is clarified or the key/wording is reconciled while preserving source custody."
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q24",
+      "original_identifier": "Unit 2 Ex 2.2 Q2(ii)",
+      "stem_sha256": "sha256:d95d6f8e037909f585610714eb073492724faceb0c4e6ca82c35a5a9e6c30085",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "False, x³ + x + 1 is a polynomial but not a binomial.",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.2 Q2(ii)",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "False, x³ + x + 1 is a polynomial but not a binomial.",
+        "reasoning": [
+          "A polynomial may have one, two, three, or more non-zero terms. The polynomial x³+x+1 has three terms, so it is not a binomial and is a direct counterexample to the statement."
+        ],
+        "admission_eligible": true
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q25",
+      "original_identifier": "Unit 2 Ex 2.2 Q2(iv)",
+      "stem_sha256": "sha256:6f8eea336a2e9aa98b4a3a108cd463b5d80ecd16012dd29cd8edad4c90b9c113",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "False, a quadratic polynomial can have up to two zeroes.",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.2 Q2(iv)",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "False, a quadratic polynomial can have up to two zeroes.",
+        "reasoning": [
+          "The statement is disproved by x²-1=(x-1)(x+1), which has two distinct real zeros, 1 and -1. More generally a non-zero quadratic can have up to two real zeros."
+        ],
+        "admission_eligible": true
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q26",
+      "original_identifier": "Unit 2 Ex 2.3 Q1(i)",
+      "stem_sha256": "sha256:99c41148bf2d50c2041953fc668d7b2b0497e69938d9dd82398b15342b89f908",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "5",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.3 Q1(i)",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "5",
+        "reasoning": [
+          "The highest power with a non-zero coefficient in x⁵-x⁴+3 is x⁵, so the degree is 5."
+        ],
+        "admission_eligible": true
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q27",
+      "original_identifier": "Unit 2 Ex 2.3 Q1(ii)",
+      "stem_sha256": "sha256:6dd44bc22e5321ec1dfff326e670d1cd15b4122c0b883d7d23f7333859586447",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "8",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.3 Q1(ii)",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "8",
+        "reasoning": [
+          "In 2-y²-y³+2y⁸, the largest exponent attached to a non-zero term is 8, so the degree is 8."
+        ],
+        "admission_eligible": true
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q28",
+      "original_identifier": "Unit 2 Ex 2.3 Q1(iii)",
+      "stem_sha256": "sha256:de2b0e22b035308542ab58cf76b670996914b20f2d2b1abd7ebc694903510650",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "0",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.3 Q1(iii)",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "0",
+        "reasoning": [
+          "The non-zero constant polynomial 2 can be written as 2x⁰, so its degree is 0."
+        ],
+        "admission_eligible": true
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q29",
+      "original_identifier": "Unit 2 Ex 2.3 Q2(i)",
+      "stem_sha256": "sha256:8e151f1ae4421859b01be9269083634985b120e94e089bc0477c5c1eab19ae01",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "1",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.3 Q2(i)",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "1",
+        "reasoning": [
+          "The x² term is x²=1·x², so its coefficient is 1."
+        ],
+        "admission_eligible": true
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q30",
+      "original_identifier": "Unit 2 Ex 2.3 Q2(ii)",
+      "stem_sha256": "sha256:46c998e899b1e63900ff2d3ac66cb4b70f4168b3796cd7bdd57f5bd08b1e42f9",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "-1",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.3 Q2(ii)",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "-1",
+        "reasoning": [
+          "The x² term is -x²=(-1)·x², so its coefficient is -1."
+        ],
+        "admission_eligible": true
+      }
+    }
+  ]
+}
