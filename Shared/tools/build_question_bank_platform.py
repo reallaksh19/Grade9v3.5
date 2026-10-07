@@ -109,7 +109,7 @@ def _trace_canonical_sources(platform: dict, browser: dict) -> None:
 def build(repo: Path = REPO) -> dict:
     browser = build_question_bank_web.build(repo)
     resources, resource_basis = load_resources(repo)
-    return build_from_projection(browser, resources, resource_basis, load_subtopic_titles(repo))
+    return build_from_projection(browser, resources, resource_basis, load_subtopic_titles(repo, browser.get("questions", [])))
 
 
 def build_from_projection(browser: dict, resources: list[dict] = (), resource_basis: list[dict] = (),

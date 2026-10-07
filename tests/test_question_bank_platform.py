@@ -374,6 +374,37 @@ class QuestionBankPlatformTest(unittest.TestCase):
             titles = qbp.load_subtopic_titles(Path(tmp))
         self.assertEqual(titles, {"CAP-A": {"title": "Sole owner", "source_ref": "MIC-1"}})
 
+    def test_noncanonical_package_cannot_perturb_canonical_title_identity(self):
+        browser = {"questions": [question("BIO-Q1", "A", subject="Biology", topic_ref="T1")]}
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            bio = root / "Biology" / "library"
+            bio.mkdir(parents=True)
+            (bio / "canonical.json").write_text(json.dumps({
+                "subject": "Biology",
+                "microtopics": [{"id": "MIC-BIO", "title": "Canonical cells", "primary_capability_ref": "CAP-BIO-CELL"}],
+            }), encoding="utf-8")
+            before_titles = qbp.load_subtopic_titles(root, browser["questions"])
+            before = qbp.assemble_platform(browser, subtopic_titles=before_titles)
+
+            test_lib = root / "TEST" / "library"
+            test_lib.mkdir(parents=True)
+            (test_lib / "sandbox.json").write_text(json.dumps({
+                "subject": "TEST",
+                "microtopics": [
+                    {"id": "MIC-TEST-OTHER", "title": "Sandbox only", "primary_capability_ref": "CAP-TEST-OTHER"},
+                    {"id": "MIC-TEST-HIJACK", "title": "Wrong subject claim", "primary_capability_ref": "CAP-BIO-CELL"},
+                ],
+            }), encoding="utf-8")
+            after_titles = qbp.load_subtopic_titles(root, browser["questions"])
+            after = qbp.assemble_platform(browser, subtopic_titles=after_titles)
+
+        self.assertEqual(after_titles, before_titles)
+        self.assertEqual(before_titles, {"CAP-BIO-CELL": {"title": "Canonical cells", "source_ref": "MIC-BIO"}})
+        self.assertEqual(after["build_id"], before["build_id"])
+        self.assertEqual(after["catalog"], before["catalog"])
+        self.assertEqual(after["search"], before["search"])
+
     def test_live_subtopic_labels_come_from_records_and_the_rest_are_marked(self):
         platform = build_question_bank_platform.build(ROOT)
         titles = qbp.load_subtopic_titles(ROOT)
