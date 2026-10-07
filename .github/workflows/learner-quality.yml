@@ -121,15 +121,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
       - name: Install TEST browser dependencies
         run: |
+          pip install --quiet jsonschema pypdf
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
+      - name: Render current ISS55 polynomial TEST draft
+        run: |
+          python3 Shared/tools/deploy_test.py product TEST/products/iss55-poly.manifest.json
+          python3 Shared/tools/deploy_test.py pages
+      - name: Audit polynomial Core2 TEST draft
+        run: |
+          node tools/site-audit/core-page-audit.mjs             public/test/products/iss55-poly             --profile tablet-12.7             --json /tmp/iss55-poly-core2-audit.json
       - name: Audit TEST hub, Atlas, rungs and deployments
         run: node tests/test_area_browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-iss55-poly-current-render
+          path: |
+            public/test/products/iss55-poly
+            /tmp/iss55-poly-core2-audit.json
+          if-no-files-found: error
+          retention-days: 7
 
   blueprint-v2-render-snapshots:
     # Regenerate review snapshots from the live merged blueprint-v2 authority on main.
