@@ -234,7 +234,12 @@ def card(ident: str, search: str, inner: str) -> str:
 
 
 def link(href: str, label: str) -> str:
-    return f'<a href="{esc(href)}">{esc(label)}</a>'
+    return (
+        f'<a data-g9-test-action href="{esc(href)}" '
+        'style="display:inline-flex;align-items:center;min-height:48px;min-width:48px;'
+        'padding:0 4px;vertical-align:middle">'
+        f'{esc(label)}</a>'
+    )
 
 
 def core_contract_card(core: dict) -> str:
