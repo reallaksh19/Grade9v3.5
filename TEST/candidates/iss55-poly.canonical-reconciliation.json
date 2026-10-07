@@ -1,0 +1,170 @@
+{
+  "schema_version": "grade9v3-test-canonical-reconciliation-v1",
+  "candidate_id": "ISS55-POLY",
+  "basis_head": "51c49d1e0a4de840c02071fa67b18cd3a8da8565",
+  "target": {
+    "subject": "Mathematics",
+    "subject_ref": "SUBJECT-MATHEMATICS",
+    "topic": "Polynomials",
+    "topic_ref": "TOPIC-MATHEMATICS-POLYNOMIALS",
+    "package_path": "Mathematics/library/polynomials.v1.json",
+    "package_id": "LIB-MATH-POLYNOMIALS"
+  },
+  "canonical_snapshot": {
+    "mathematics_library_files": [
+      "Mathematics/library/linear-equations.v1.json"
+    ],
+    "polynomials_package_present": false,
+    "admitted_mathematics_questions": 18
+  },
+  "collision_check": {
+    "status": "PASS",
+    "compared_against": "current Mathematics/library canonical records",
+    "collision_count": 0,
+    "collisions": []
+  },
+  "source_boundary": {
+    "owner_bank_path": "TEST/question-bank/iss55-poly.json",
+    "owner_bank_file_kind": "grade9v3-owner-supplied-bank-v1",
+    "owner_bank_canonical_destination_allowed": false,
+    "reason": "Shared/tools/owner_bank.py currently declares this file kind TEST-only; canonical admission must be package-shaped and must not move or relabel the TEST custody source.",
+    "immutable_provenance": true
+  },
+  "conversion_contract": {
+    "canonical_question_shape": "Shared/library/package.schema.json#$defs/question",
+    "pre_acceptance_status": "CANDIDATE",
+    "pre_acceptance_question_bank_include": false,
+    "preserve_verbatim_stem": true,
+    "preserve_owner_custody": true,
+    "required_added_fields": [
+      "version",
+      "status",
+      "source_refs",
+      "evidence_refs",
+      "origin",
+      "origin_ref",
+      "subparts",
+      "options",
+      "adaptation",
+      "exposure"
+    ],
+    "admission_metadata_after_owner_acceptance": {
+      "grade9v3:question_bank.include": true,
+      "topic_ref": "TOPIC-MATHEMATICS-POLYNOMIALS",
+      "subject_ref": "SUBJECT-MATHEMATICS"
+    }
+  },
+  "questions": [
+    {
+      "source_id": "OWN-ISS55-POLY-01",
+      "canonical_id": "Q-MAT-POLY-ISS55-01",
+      "original_identifier": "Q1",
+      "primary_capability_ref": "CAP-MATH-POLY-FACTOR-PARAMETER",
+      "family_ref": "FAM-MATH-POLY-CUBIC-FACTORISATION",
+      "stem_sha256": "sha256:94f268bc6eea8fb6e609ca16e6049704dfecf7f8f90879b7523bf3c850ad710a",
+      "custody": "OWNER_SUPPLIED_RAW_INPUT",
+      "identity_status": "NEW_CANONICAL_ID"
+    },
+    {
+      "source_id": "OWN-ISS55-POLY-02",
+      "canonical_id": "Q-MAT-POLY-ISS55-02",
+      "original_identifier": "Q2",
+      "primary_capability_ref": "CAP-MATH-POLY-MULTIPLICITY-SIGN",
+      "family_ref": "FAM-MATH-POLY-ZERO-MULTIPLICITY",
+      "stem_sha256": "sha256:d4c6832b4f236530f3957623c44969b259a48c830bc474bd733ec21aeab30006",
+      "custody": "OWNER_SUPPLIED_RAW_INPUT",
+      "identity_status": "NEW_CANONICAL_ID"
+    },
+    {
+      "source_id": "OWN-ISS55-POLY-03",
+      "canonical_id": "Q-MAT-POLY-ISS55-03",
+      "original_identifier": "Q3",
+      "primary_capability_ref": "CAP-MATH-POLY-INTERPOLATION-DEGREE-BOUND",
+      "family_ref": "FAM-MATH-POLY-DATA-SUFFICIENCY",
+      "stem_sha256": "sha256:d06c869ae2ec7e7fb99b013d08ba909200604fd8e4cd10218801d15a6d25c6a4",
+      "custody": "OWNER_SUPPLIED_RAW_INPUT",
+      "identity_status": "NEW_CANONICAL_ID"
+    },
+    {
+      "source_id": "OWN-ISS55-POLY-04",
+      "canonical_id": "Q-MAT-POLY-ISS55-04",
+      "original_identifier": "Q4",
+      "primary_capability_ref": "CAP-MATH-POLY-GEOMETRIC-AREA-DEGREE",
+      "family_ref": "FAM-MATH-POLY-DEGREE-CANCELLATION",
+      "stem_sha256": "sha256:c69d164257c1d46ae27224b3ce56f50eaf44c551245053bc556f618389557e54",
+      "custody": "OWNER_SUPPLIED_RAW_INPUT",
+      "identity_status": "NEW_CANONICAL_ID"
+    },
+    {
+      "source_id": "OWN-ISS55-POLY-05",
+      "canonical_id": "Q-MAT-POLY-ISS55-05",
+      "original_identifier": "Q5",
+      "primary_capability_ref": "CAP-MATH-POLY-SIGN-CHART-RIGOR",
+      "family_ref": "FAM-MATH-POLY-FACTOR-SIGNS",
+      "stem_sha256": "sha256:a7dfdf5250c082fa75c67c3809ea3a847c46f9e05a70519402840899cb7a0f16",
+      "custody": "OWNER_SUPPLIED_RAW_INPUT",
+      "identity_status": "NEW_CANONICAL_ID"
+    },
+    {
+      "source_id": "OWN-ISS55-POLY-06",
+      "canonical_id": "Q-MAT-POLY-ISS55-06",
+      "original_identifier": "Q6",
+      "primary_capability_ref": "CAP-MATH-POLY-FACTOR-VALUE-CONSTRUCTION",
+      "family_ref": "FAM-MATH-POLY-CUBIC-CONSTRUCTION",
+      "stem_sha256": "sha256:9714848900038ecf1a396e3cc46832eba3ca37d008b26134483118fe4f09d3cf",
+      "custody": "OWNER_SUPPLIED_RAW_INPUT",
+      "identity_status": "NEW_CANONICAL_ID"
+    },
+    {
+      "source_id": "OWN-ISS55-POLY-07",
+      "canonical_id": "Q-MAT-POLY-ISS55-07",
+      "original_identifier": "Q7",
+      "primary_capability_ref": "CAP-MATH-POLY-FACTOR-DIVISIBILITY-DEGREE",
+      "family_ref": "FAM-MATH-POLY-DEGREE-SUFFICIENCY",
+      "stem_sha256": "sha256:e684c25740d6e712abea060f1ff44c8d51a2599b1ec023303cdf500d95930411",
+      "custody": "OWNER_SUPPLIED_RAW_INPUT",
+      "identity_status": "NEW_CANONICAL_ID"
+    },
+    {
+      "source_id": "OWN-ISS55-POLY-08",
+      "canonical_id": "Q-MAT-POLY-ISS55-08",
+      "original_identifier": "Q8",
+      "primary_capability_ref": "CAP-MATH-POLY-IDENTITY-THEOREM-DEGREE",
+      "family_ref": "FAM-MATH-POLY-POLYNOMIAL-IDENTITY",
+      "stem_sha256": "sha256:6bf73df2112471ca91f9ade296632344139cc10614c05afe86c36df89c8cddf1",
+      "custody": "OWNER_SUPPLIED_RAW_INPUT",
+      "identity_status": "NEW_CANONICAL_ID"
+    },
+    {
+      "source_id": "OWN-ISS55-POLY-09",
+      "canonical_id": "Q-MAT-POLY-ISS55-09",
+      "original_identifier": "Q9",
+      "primary_capability_ref": "CAP-MATH-POLY-PARAMETER-DEGREE-ZERO",
+      "family_ref": "FAM-MATH-POLY-PARAMETER-FAMILIES",
+      "stem_sha256": "sha256:7a382847a75e2ee382b7e18612950193be5a878fa83b463792cb7312e577a6cc",
+      "custody": "OWNER_SUPPLIED_RAW_INPUT",
+      "identity_status": "NEW_CANONICAL_ID"
+    },
+    {
+      "source_id": "OWN-ISS55-POLY-10",
+      "canonical_id": "Q-MAT-POLY-ISS55-10",
+      "original_identifier": "Q10",
+      "primary_capability_ref": "CAP-MATH-POLY-CHANGE-OF-VARIABLE-DOMAIN",
+      "family_ref": "FAM-MATH-POLY-BIQUADRATIC-EQUATIONS",
+      "stem_sha256": "sha256:e459fc38bd0c80def0cd563cbc06c42c72b10bb31da595b53777a582d73dac95",
+      "custody": "OWNER_SUPPLIED_RAW_INPUT",
+      "identity_status": "NEW_CANONICAL_ID"
+    }
+  ],
+  "result": {
+    "status": "RECONCILED",
+    "canonical_identity_ready": true,
+    "staging_ready": true,
+    "publication_ready": false,
+    "remaining": [
+      "stage canonical candidate package without QB admission",
+      "owner accepts exact staged conversion",
+      "enable canonical Question Bank admission and rebuild projections"
+    ]
+  }
+}
