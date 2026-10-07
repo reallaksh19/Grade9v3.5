@@ -137,6 +137,7 @@ def context() -> render_core.Ctx:
             "core2b": []
         },
         authority_hashes=[
+            ("qualification-fixture-source", render_core._file_sha256(Path(__file__))),
             ("qualification-package-source", render_core._file_sha256(PACKAGE_PATH)),
             ("qualification-visual", render_core._file_sha256(REPO / QUALIFICATION_ASSET)),
             ("blueprints", render_core._file_sha256(BLUEPRINTS_PATH))
