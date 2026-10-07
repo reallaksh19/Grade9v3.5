@@ -1,0 +1,375 @@
+{
+  "schema_version": "grade9v3-phase-d-freeze-handoff-v1",
+  "issue": 114,
+  "phase": "D06",
+  "parent_issue": 73,
+  "programme_issue": 69,
+  "frozen_phase_c_base": "59751b52e4911a132abb8c3956583a75b3cbcab7",
+  "result": "PHASE_D_RESPONSIBILITY_COMPLETE_PHASE_E_BLOCKED_BY_ISS108",
+  "child_prs": [
+    {
+      "pr": 119,
+      "title": "[PHASE-D][D01][DRAFT] Physics qualification replay — #109",
+      "phase": "D01",
+      "head_sha": "5bd77489859ea9671c9e577d7db87e5dc4fd5870",
+      "base_ref": "fix/iss69-phase-c-runtime-alignment",
+      "base_sha": "59751b52e4911a132abb8c3956583a75b3cbcab7",
+      "draft": true,
+      "mergeable": true,
+      "files": [
+        "evidence/architectural-recovery/ISS69/phase-d-d01-physics-browser-review-basis.v1.json",
+        "evidence/architectural-recovery/ISS69/phase-d-d01-physics-core1a.v1.json",
+        "evidence/architectural-recovery/ISS69/phase-d-d01-physics-core2-attempt-support.v1.json",
+        "evidence/architectural-recovery/ISS69/phase-d-d01-physics-demand-crux.v1.json",
+        "evidence/architectural-recovery/ISS69/phase-d-d01-physics-difficulty.v1.json",
+        "evidence/architectural-recovery/ISS69/phase-d-d01-physics-final-validation.v1.json",
+        "evidence/architectural-recovery/ISS69/phase-d-d01-physics-representation-binding.v1.json",
+        "tests/test_phase_d_physics_qualification.py"
+      ]
+    },
+    {
+      "pr": 124,
+      "title": "[PHASE-D][D02][DRAFT] Mathematics cross-subject qualification — #110",
+      "phase": "D02",
+      "head_sha": "319362e26980f803d752de9b68a1dbbe4d6a0c36",
+      "base_ref": "fix/iss69-phase-c-runtime-alignment",
+      "base_sha": "59751b52e4911a132abb8c3956583a75b3cbcab7",
+      "draft": true,
+      "mergeable": true,
+      "files": [
+        ".github/workflows/phase-d-mathematics-qualification.yml",
+        "evidence/architectural-recovery/ISS69/d02/REP-MAT-LEQ-04-SOLUTION-LINE.qualification.svg",
+        "tests/iss69_d02_mathematics_fixture.py",
+        "tests/test_phase_d_mathematics_qualification.py"
+      ]
+    },
+    {
+      "pr": 120,
+      "title": "[PHASE-D][D03][DRAFT] Chemistry qualification replay — #111",
+      "phase": "D03",
+      "head_sha": "7b6cd3c4bfd8d6ad9c40983c43709bced296c53b",
+      "base_ref": "fix/iss69-phase-c-runtime-alignment",
+      "base_sha": "59751b52e4911a132abb8c3956583a75b3cbcab7",
+      "draft": true,
+      "mergeable": true,
+      "files": [
+        ".github/workflows/phase-d-chemistry-qualification.yml",
+        "evidence/architectural-recovery/ISS69/phase-d-d03-chemistry-final-validation.v1.json",
+        "tests/test_phase_d_chemistry_qualification.py"
+      ]
+    },
+    {
+      "pr": 121,
+      "title": "[PHASE-D][D04][DRAFT] Historical negative-fixture replay — #112",
+      "phase": "D04",
+      "head_sha": "33db3f2c83fc53358c41081f62a2ab76acabb633",
+      "base_ref": "fix/iss69-phase-c-runtime-alignment",
+      "base_sha": "59751b52e4911a132abb8c3956583a75b3cbcab7",
+      "draft": true,
+      "mergeable": true,
+      "files": [
+        ".github/workflows/phase-d-historical-negative-qualification.yml",
+        "evidence/architectural-recovery/ISS69/phase-d-d04-historical-negative-final-validation.v1.json",
+        "tests/test_phase_d_historical_negative_replay.py"
+      ]
+    },
+    {
+      "pr": 126,
+      "title": "[PHASE-D][D05][DRAFT] Independent acceptance synthesis — #113",
+      "phase": "D05",
+      "head_sha": "f1b6f53d77872062e231592b1e4b3fb66d2f8ba7",
+      "base_ref": "fix/iss69-phase-c-runtime-alignment",
+      "base_sha": "59751b52e4911a132abb8c3956583a75b3cbcab7",
+      "draft": true,
+      "mergeable": true,
+      "files": [
+        ".github/workflows/phase-d-acceptance-synthesis.yml",
+        "evidence/architectural-recovery/ISS69/phase-d-d05-acceptance-synthesis.v1.json",
+        "tests/test_phase_d_acceptance_synthesis.py"
+      ]
+    }
+  ],
+  "shared_production_files_changed": [],
+  "neutrality_result": "PASS_NO_PHASE_D_SHARED_PRODUCTION_DELTA",
+  "render_receipts": [
+    {
+      "phase": "D01",
+      "subject": "Physics",
+      "qualification_pr": 119,
+      "head_sha": "5bd77489859ea9671c9e577d7db87e5dc4fd5870",
+      "workflow": "learner-platform-code-tests",
+      "workflow_run_id": 37549575252,
+      "job_id": 112561603042,
+      "binding": "CURRENT_EPHEMERAL_BROWSER_RUN_NO_RETAINED_REVIEW_BUNDLE",
+      "artifact_id": null,
+      "artifact_sha256": null,
+      "active_blueprints": [
+        "BP-CORE1A-CONSTRUCTION@1.8.0",
+        "BP-CORE2-SOURCE-QUESTION@1.11.0"
+      ],
+      "browser_result": "PASS_CURRENT_TECHNICAL_BROWSER_BASIS",
+      "acceptance_use": "TECHNICAL_ONLY_NOT_INDEPENDENT_RENDERED_ACCEPTANCE"
+    },
+    {
+      "phase": "D02",
+      "subject": "Mathematics",
+      "qualification_pr": 124,
+      "head_sha": "319362e26980f803d752de9b68a1dbbe4d6a0c36",
+      "workflow": "phase-d-mathematics-qualification",
+      "workflow_run_id": 37552812417,
+      "job_id": 112572040530,
+      "binding": "CURRENT_RETAINED_CI_ARTIFACT",
+      "render_digest": "cefc1bef095953e4",
+      "artifact_id": 11453291234,
+      "artifact_sha256": "daefa80440192f57e6ce1460c1f409b604d0648eb45adf1c88db4384b071898f",
+      "active_blueprints": [
+        "BP-CORE1A-CONSTRUCTION@1.8.0",
+        "BP-CORE2-SOURCE-QUESTION@1.11.0"
+      ],
+      "renderer_gaps": [],
+      "horizontal_overflow_px": {
+        "core1a_landscape": 0,
+        "core1a_portrait": 0,
+        "core2_landscape": 0,
+        "core2_portrait": 0
+      },
+      "page_errors": {
+        "core1a": 0,
+        "core2": 0
+      },
+      "minimum_visible_font_css_px": {
+        "core1a": 14,
+        "core2": 14
+      },
+      "acceptance_use": "CURRENT_REVIEWABLE_BYTES_BUT_NO_INDEPENDENT_REVIEWER"
+    },
+    {
+      "phase": "D03",
+      "subject": "Chemistry",
+      "qualification_pr": 120,
+      "head_sha": "7b6cd3c4bfd8d6ad9c40983c43709bced296c53b",
+      "workflow": "phase-d-chemistry-qualification",
+      "workflow_run_id": 37551000541,
+      "job_id": 112566180857,
+      "binding": "CURRENT_RETAINED_CI_ARTIFACT",
+      "artifact_id": 11453065602,
+      "artifact_sha256": "7e472b79a79572b90ed27c865939ce62a754653a65942b3904b753c2f06c44d5",
+      "active_blueprints": [
+        "BP-CORE1A-CONSTRUCTION@1.8.0",
+        "BP-CORE2-SOURCE-QUESTION@1.11.0"
+      ],
+      "horizontal_overflow_px": {
+        "core1a_landscape": 0,
+        "core1a_portrait": 0,
+        "core2_landscape": 0,
+        "core2_portrait": 0
+      },
+      "page_errors": {
+        "core1a": 0,
+        "core2": 0
+      },
+      "minimum_visible_font_css_px": {
+        "core1a": 11,
+        "core2": 14.45
+      },
+      "rendered_findings": [
+        {
+          "id": "D03_CORE1A_MIN_TEXT_11PX",
+          "status": "REVIEW_REQUIRED",
+          "detail": "Current shared tablet audit measured minimum learner-visible Core1A text at 11 CSS px in the frozen ISS32 Chemistry evidence fixture."
+        }
+      ],
+      "acceptance_use": "CURRENT_REVIEWABLE_BYTES_WITH_OPEN_RENDERED_FINDING_AND_NO_INDEPENDENT_REVIEWER"
+    }
+  ],
+  "broad_guardrail_deltas": [
+    {
+      "phase": "D01",
+      "head_sha": "5bd77489859ea9671c9e577d7db87e5dc4fd5870",
+      "base_run_id": 37545939587,
+      "base_job_id": 112549846745,
+      "head_run_id": 37549575246,
+      "head_job_id": 112561603157,
+      "base_unique_failure_or_error_tests": 112,
+      "head_unique_failure_or_error_tests": 112,
+      "added": [],
+      "removed": [],
+      "signature_identical": true
+    },
+    {
+      "phase": "D02",
+      "head_sha": "319362e26980f803d752de9b68a1dbbe4d6a0c36",
+      "base_run_id": 37545939587,
+      "base_job_id": 112549846745,
+      "head_run_id": 37552812441,
+      "head_job_id": 112572040814,
+      "base_unique_failure_or_error_tests": 112,
+      "head_unique_failure_or_error_tests": 112,
+      "added": [],
+      "removed": [],
+      "signature_identical": true
+    },
+    {
+      "phase": "D03",
+      "head_sha": "7b6cd3c4bfd8d6ad9c40983c43709bced296c53b",
+      "base_run_id": 37545939587,
+      "base_job_id": 112549846745,
+      "head_run_id": 37551000743,
+      "head_job_id": 112566181603,
+      "base_unique_failure_or_error_tests": 112,
+      "head_unique_failure_or_error_tests": 112,
+      "added": [],
+      "removed": [],
+      "signature_identical": true
+    },
+    {
+      "phase": "D04",
+      "head_sha": "33db3f2c83fc53358c41081f62a2ab76acabb633",
+      "base_run_id": 37545939587,
+      "base_job_id": 112549846745,
+      "head_run_id": 37551001410,
+      "head_job_id": 112566183611,
+      "base_unique_failure_or_error_tests": 112,
+      "head_unique_failure_or_error_tests": 112,
+      "added": [],
+      "removed": [],
+      "signature_identical": true
+    },
+    {
+      "phase": "D05",
+      "head_sha": "f1b6f53d77872062e231592b1e4b3fb66d2f8ba7",
+      "base_run_id": 37545939587,
+      "base_job_id": 112549846745,
+      "head_run_id": 37553061612,
+      "head_job_id": 112572841373,
+      "base_unique_failure_or_error_tests": 112,
+      "head_unique_failure_or_error_tests": 112,
+      "added": [],
+      "removed": [],
+      "signature_identical": true
+    }
+  ],
+  "focused_validation": [
+    {
+      "phase": "D01",
+      "workflow": "learner-platform-code-tests",
+      "run_id": 37549575252,
+      "result": "SUCCESS"
+    },
+    {
+      "phase": "D02",
+      "workflow": "phase-d-mathematics-qualification",
+      "run_id": 37552812417,
+      "job_id": 112572040530,
+      "result": "SUCCESS",
+      "tests": "6/6"
+    },
+    {
+      "phase": "D03",
+      "workflow": "phase-d-chemistry-qualification",
+      "run_id": 37551000541,
+      "job_id": 112566180857,
+      "result": "SUCCESS",
+      "tests": "6/6"
+    },
+    {
+      "phase": "D04",
+      "workflow": "phase-d-historical-negative-qualification",
+      "run_id": 37551001426,
+      "result": "SUCCESS",
+      "tests": "8/8"
+    },
+    {
+      "phase": "D05",
+      "workflow": "phase-d-acceptance-synthesis",
+      "run_id": 37553061695,
+      "job_id": 112572841858,
+      "result": "SUCCESS",
+      "tests": "7/7"
+    }
+  ],
+  "acceptance_summary": {
+    "source_issue": 113,
+    "source_pr": 126,
+    "source_head_sha": "f1b6f53d77872062e231592b1e4b3fb66d2f8ba7",
+    "accepted_row_count": 0,
+    "accepted_cell_count": 0,
+    "total_cell_count": 28,
+    "unsupported_cell_count": 28,
+    "independently_reviewed_current_rows": 0,
+    "independent_acceptance_granted": false,
+    "merge_or_publication_granted": false,
+    "interpretation": "Technical cross-subject qualification and negative replay pass, but no current row satisfies fresh normalized classification + exact rendered binding + independent rendered reviewer provenance simultaneously."
+  },
+  "returned_findings": [
+    {
+      "id": "ISS108_GENERATED_ARTIFACT_DRIFT",
+      "issue": 108,
+      "status": "OPEN_BLOCKS_PHASE_E_FINAL",
+      "owner": "Phase C / Phase E integration",
+      "detail": "Governed Core-learning generated bytes remain stale relative to active Core1A 1.8.0; regeneration through the governed generator is required before Phase-E final integration."
+    },
+    {
+      "id": "PHASE_C_BASELINE_GUARDRAIL_DEBT",
+      "status": "INHERITED_NOT_PHASE_D_REGRESSION",
+      "detail": "Phase-C base and every D01-D05 child share the same 112 unique broad guardrail failure/error test signatures."
+    },
+    {
+      "id": "D01_RENDER_BYTES_NOT_RETAINED",
+      "issue": 109,
+      "status": "TECHNICAL_BROWSER_PASS_REVIEW_BINDING_UNAVAILABLE",
+      "detail": "Physics current browser execution is successful, but its exact generated qualification bytes were not retained as a D05-reviewable CI artifact bundle."
+    },
+    {
+      "id": "D03_CORE1A_MIN_TEXT_11PX",
+      "issue": 111,
+      "status": "REVIEW_REQUIRED",
+      "detail": "Chemistry current tablet audit measured minimum Core1A learner-visible text at 11 CSS px."
+    },
+    {
+      "id": "D05_INDEPENDENT_REVIEW_MISSING",
+      "issue": 113,
+      "status": "ZERO_ACCEPTED_ROWS",
+      "detail": "No Phase-D candidate carries independent rendered reviewer provenance; accepted 4x7 coverage remains 0/28."
+    },
+    {
+      "id": "APPENDIX_A_PROMOTION_AUTHORITY_SEPARATE",
+      "issue": 74,
+      "status": "TECHNICAL_BROWSER_COMPLETE_PROMOTION_SEPARATE",
+      "detail": "Appendix-A TEST/browser evidence is now technically complete including #100, but canonical Mathematics/CBSE promotion, release and publication remain separate decisions."
+    }
+  ],
+  "appendix_a_disposition": {
+    "technical_stream": "COMPLETE",
+    "browser_evidence_issue_100": "COMPLETE_BROWSER_PASS",
+    "shared_architecture_patch": false,
+    "promotion_or_release_granted": false,
+    "interpretation": "Non-blocking for Phase-D technical responsibility; Phase-E must retain promotion/release separation."
+  },
+  "phase_e_handoff": {
+    "issue": 75,
+    "phase_d_responsibility_complete": true,
+    "exact_child_prs": [
+      119,
+      124,
+      120,
+      121,
+      126
+    ],
+    "blocking_issues": [
+      108
+    ],
+    "accepted_coverage": "0/28",
+    "inherited_guardrail_signature_count": 112,
+    "appendix_a": "TECHNICAL_BROWSER_COMPLETE_PROMOTION_SEPARATE",
+    "merge_to_main_granted": false,
+    "golden_promotion_granted": false,
+    "learner_publication_granted": false,
+    "learning_effectiveness_claimed": false
+  },
+  "task_result": {
+    "RESULT_SCOPE": "RESPONSIBILITY",
+    "COVERAGE": "architectural recovery programme #69 / Phase D",
+    "RESPONSIBILITY_COMPLETE": "YES"
+  }
+}
