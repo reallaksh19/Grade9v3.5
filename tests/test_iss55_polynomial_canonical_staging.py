@@ -40,7 +40,8 @@ class TestIss55PolynomialCanonicalStaging(unittest.TestCase):
                 q["extensions"]["grade9v3:source_custody"]["text_sha256"],
                 row["stem_sha256"],
             )
-            self.assertEqual(q["origin_ref"], source_id)
+            self.assertEqual(q["origin_ref"], "SRC-MAT-POLY-ISS55-OWNER")
+            self.assertEqual(q["extensions"]["grade9v3:lineage"]["source_question_id"], source_id)
             self.assertEqual(q["status"], "CANDIDATE")
 
     def test_question_bank_admission_is_explicitly_disabled(self):
