@@ -178,6 +178,9 @@ class TestPages(unittest.TestCase):
     def test_the_atlas_is_bound_to_test_and_keeps_no_trace_of_laws_of_motion(self):
         atlas = (REPO / "public/test/atlas/index.html").read_text(encoding="utf-8")
         self.assertIn("subjects.TEST", atlas)
+        self.assertIn('data-g9-test-atlas-data', atlas)
+        self.assertIn("MATRIX-TEST-ISS55-POLY", atlas)
+        self.assertIn("MIC-MATH-POLY-IDENTITY-DEGREE-BOUND", atlas)
         for leftover in ("MATRIX-PHY-NLM-FIRST-LAW", "Laws of Motion", "phy-nlm-first-law", "NLM Topic Atlas"):
             self.assertNotIn(leftover, atlas)
         self.assertNotIn("\\n<script", atlas, "the template's literal backslash-n is fixed in the copy")
