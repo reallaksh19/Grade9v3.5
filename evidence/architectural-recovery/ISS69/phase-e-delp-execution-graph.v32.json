@@ -54,6 +54,16 @@
       "nodes": [
         "reallaksh19/Grade9v3.5#116"
       ]
+    },
+    {
+      "id": "ISS69-E03-ARCH-MANIFEST-MECHANICAL-20261007",
+      "kind": "POLICY_CHANGE",
+      "reason": "The declared E03 unittest lives under tests/**, which is indexed by Shared/tools/build_manifest.py. Add the Phase-E graph as plan-authority surface and docs/architecture-manifest.json as generated/mechanical output so E03 does not introduce freshness debt.",
+      "owner_authorized": true,
+      "owner_basis": "Active-session continuation under owner-directed engineering-pr-delivery-v3.2 after E03 test/manifest dependency was discovered.",
+      "nodes": [
+        "reallaksh19/Grade9v3.5#117"
+      ]
     }
   ],
   "nodes": [
@@ -209,7 +219,9 @@
       "write_surface": [
         ".github/workflows/phase-e-final-handoff.yml",
         "evidence/architectural-recovery/ISS69/phase-e-e03-final-handoff.v1.json",
-        "tests/test_phase_e_final_handoff.py"
+        "tests/test_phase_e_final_handoff.py",
+        "evidence/architectural-recovery/ISS69/phase-e-delp-execution-graph.v32.json",
+        "docs/architecture-manifest.json"
       ],
       "depends_on": [
         "reallaksh19/Grade9v3.5#115",
