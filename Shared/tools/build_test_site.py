@@ -21,7 +21,7 @@ REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
-from Shared.tools import matrix_conformance, product_coverage, render_core  # noqa: E402
+from Shared.tools import matrix_conformance, owner_bank, product_coverage, render_core  # noqa: E402
 from TEST.tools import source_intake  # noqa: E402
 
 esc = render_core.esc
@@ -31,6 +31,7 @@ CORE_CONTRACT = TEST_ROOT / "adapter" / "CoreContracts.json"
 QUALITY_VOCABULARY = TEST_ROOT / "adapter" / "QualityVocabulary.json"
 FIXTURE_MANIFEST = TEST_ROOT / "question-bank" / "fixtures" / "pr61-math-42.fixture.json"
 INTAKE_DIR = TEST_ROOT / "question-bank" / "intake"
+DERIVED_BANK_SCHEMA = "grade9v3-test-derived-question-bank-v1"
 PACKAGE_SCHEMA = REPO / "Shared" / "library" / "package.schema.json"
 NAV = (("index.html", "TEST"), ("atlas/index.html", "Atlas"), ("rungs/index.html", "Rungs"), ("deployments/index.html", "Deployments"))
 ROLE_PAGES = (("index.html", "Product index"), ("core2.html", "Core2"), ("core1a.html", "Core1A"), ("core1.html", "Core1"),
@@ -310,13 +311,31 @@ def interactive_pages() -> list[dict]:
 
 
 def source_counts() -> dict:
-    banks = sorted((TEST_ROOT / "question-bank").glob("*.json"))
-    questions = sum(len(_json(p).get("questions") or []) for p in banks)
+    counts = {
+        "owner_banks": 0,
+        "owner_questions": 0,
+        "derived_banks": 0,
+        "derived_questions": 0,
+        "other_banks": 0,
+        "other_questions": 0,
+    }
+    for path in sorted((TEST_ROOT / "question-bank").glob("*.json")):
+        bank = _json(path)
+        questions = bank.get("questions") or []
+        if not isinstance(questions, list):
+            raise ValueError(f"{_relative(path)} questions must be a list")
+        if owner_bank.is_owner_bank(bank):
+            kind = "owner"
+        elif bank.get("schema_version") == DERIVED_BANK_SCHEMA:
+            kind = "derived"
+        else:
+            kind = "other"
+        counts[f"{kind}_banks"] += 1
+        counts[f"{kind}_questions"] += len(questions)
     return {
         "matrices": len(list((TEST_ROOT / "matrices").glob("*.rungs.json"))),
         "packages": len(list((TEST_ROOT / "library").glob("*.json"))),
-        "banks": len(banks),
-        "bank_questions": questions,
+        **counts,
     }
 
 
@@ -535,7 +554,9 @@ def hub_page() -> str:
         + card("sources", "matrices packages question bank",
                f'<h2>Sources in this repository</h2><ul><li>{counts["matrices"]} rung matrix file(s) in TEST/matrices</li>'
                f'<li>{counts["packages"]} package file(s) in TEST/library</li>'
-               f'<li>{counts["banks"]} owner-supplied question file(s) in TEST/question-bank, {counts["bank_questions"]} question(s)</li></ul>'
+               f'<li>{counts["owner_banks"]} owner-supplied question file(s), {counts["owner_questions"]} question(s)</li>'
+               f'<li>{counts["derived_banks"]} source-linked derivative question file(s), {counts["derived_questions"]} question(s)</li>'
+               f'<li>{counts["other_banks"]} other TEST question file(s), {counts["other_questions"]} question(s)</li></ul>'
                '<p class="g9-prov">How to add each of them: TEST/README.md in the repository.</p>'))
     return frame(1, "TEST", "index.html", body, heading="TEST: a sandbox for stress runs")
 
