@@ -1,11 +1,11 @@
 {
   "schema_version": "0.2.0",
   "package_id": "LIB-MATH-POLYNOMIALS",
-  "title": "Polynomial Algebra and Degree Constraints — ISS55 canonical candidate",
-  "version": "0.1.0",
+  "title": "Polynomial Algebra and Degree Constraints",
+  "version": "0.2.0",
   "status": "CANDIDATE",
   "subject": "Mathematics",
-  "scope_summary": "Canonical Mathematics staging candidate derived from the reviewed ISS55 TEST polynomial set. All records remain CANDIDATE; the 10 owner-supplied stems retain verbatim custody and production Question Bank admission is explicitly disabled pending Owner acceptance.",
+  "scope_summary": "Canonical Mathematics Polynomials package with two authority-distinct subsets: 10 reviewed NCERT Exemplar foundation questions admitted to the production Question Bank after source-bound independent validation, and 10 owner-supplied ISS55 competition questions staged as CANDIDATE with production Question Bank admission disabled pending Owner acceptance.",
   "curriculum_mappings": [],
   "resources": [
     {
@@ -138,6 +138,40 @@
         "COMPETITION"
       ],
       "selection_reason": "Pedagogical warrant for competition extensions in Q2, Q4, Q5, Q9, and Q10.",
+      "fallback": []
+    },
+    {
+      "id": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "NCERT Exemplar Problems-Solutions Mathematics Class IX — Unit 2 Polynomials",
+      "origin": "WEB",
+      "locator": "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep202.pdf",
+      "edition": "2023-24",
+      "section": "Unit 2: Polynomials · Exercise 2.1 Q1-Q10 and official answers",
+      "last_checked": "2026-10-07",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Official NCERT curricular source; repository stores source-bound question text, answer locators and validation evidence only.",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK",
+        "CURRICULUM",
+        "SCIENTIFIC_CHECK"
+      ],
+      "supports_claims": [
+        "Polynomial expressions use non-negative integer exponents after the NCERT-prescribed simplification.",
+        "The degree of a non-zero polynomial is the highest exponent with non-zero coefficient; the zero polynomial has undefined degree.",
+        "Polynomial values are obtained by substitution and zeros satisfy p(c) = 0."
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "FOUNDATION"
+      ],
+      "selection_reason": "Direct official source for the ten Grade 9 NCERT Exemplar Polynomials questions validated in Issue #188 / PR #189.",
       "fallback": []
     }
   ],
@@ -336,6 +370,54 @@
       "extensions": {},
       "action": "Solve biquadratic polynomials via substitution while enforcing real domain constraints.",
       "success_criterion": "Substitutes u = x^2 with constraint u >= 0, solves for u, rejects negative roots, and maps to real zeros.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MAT-POLY-FORM-DEGREE-BASIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Recognize polynomial expressions and determine degree using non-zero coefficients and the zero-polynomial exception.",
+      "success_criterion": "Classifies an expression by exponent form, ignores zero-coefficient terms when finding degree, and states that the zero polynomial has no defined degree.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MAT-POLY-EVALUATE-BASIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Evaluate a polynomial at a stated input by substitution and algebraic simplification.",
+      "success_criterion": "Substitutes the input consistently into every occurrence of the variable and simplifies to the correct value or expression.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MAT-POLY-ZERO-BASIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Determine and verify zeros of elementary polynomials from the condition p(x) = 0.",
+      "success_criterion": "Uses p(c)=0 to identify or check a zero, including the special case that every real number is a zero of the zero polynomial.",
       "prerequisite_refs": [],
       "curriculum_mappings": [],
       "external_provider": null,
@@ -1611,6 +1693,261 @@
         "result": "Solve biquadratic polynomials by transforming with u = x^2 while strictly enforcing the real domain condition u >= 0 to reject spurious or non-real roots.",
         "representation_ref": "REP-MAT-POLY-SUBSTITUTION-MAPPING"
       }
+    },
+    {
+      "id": "MIC-MAT-POLY-FORM-DEGREE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomial Form and Degree",
+      "bucket_id": "BUCKET-MAT-POLYNOMIALS",
+      "primary_capability_ref": "CAP-MAT-POLY-FORM-DEGREE-BASIC",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Correct classification depends on exponent form, zero coefficients, and the exceptional zero-polynomial case.",
+      "entry_assumptions": [
+        "Can read powers of x and distinguish a coefficient from an exponent."
+      ],
+      "inferential_jump": "Move from the surface form of an expression to the simplified exponent structure that determines whether it is a polynomial and, if non-zero, its degree.",
+      "teaching_path": [
+        {
+          "id": "POLY-FD-T1",
+          "role": "DECLARE",
+          "action": "Rewrite variable factors using explicit exponents and simplify algebraically where the source convention permits.",
+          "why_valid": "Polynomial classification is determined by the exponents that remain after valid algebraic simplification.",
+          "inputs": [
+            "algebraic expression"
+          ],
+          "output": "simplified exponent form"
+        },
+        {
+          "id": "POLY-FD-T2",
+          "role": "TRANSFORM",
+          "action": "Reject negative or fractional variable exponents; for a polynomial, find the largest exponent whose coefficient is non-zero.",
+          "why_valid": "A polynomial in one variable has non-negative integer exponents, and zero-coefficient terms are absent from the polynomial.",
+          "inputs": [
+            "simplified exponent form"
+          ],
+          "output": "classification and degree"
+        },
+        {
+          "id": "POLY-FD-T3",
+          "role": "VERIFY",
+          "action": "Handle the zero polynomial separately instead of assigning it the degree of a written zero term.",
+          "why_valid": "The zero polynomial has no highest non-zero term, so its degree is not defined in the NCERT convention.",
+          "inputs": [
+            "classification and degree"
+          ],
+          "output": "checked result"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-MAT-POLY-FORM-DEGREE"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A written term such as 0x^5 makes the degree 5, or the zero polynomial has degree 0.",
+          "diagnostic_prompt": "Does 0x^5 contribute a non-zero term, and what highest non-zero term exists in the zero polynomial?",
+          "repair": "Degree is controlled only by non-zero terms; the zero polynomial has no such term."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Why is an expression containing 1/x not a polynomial in x?",
+        "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Because 1/x is x^(-1), whose exponent is negative.",
+          "reasoning": [
+            "Rewrite 1/x as x^(-1).",
+            "A polynomial in x requires every variable exponent to be a non-negative integer."
+          ],
+          "check": "The exponent -1 violates the polynomial exponent condition.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit task is a conceptual classification claim with no computed numerical result."
+        }
+      },
+      "research_contribution": "Provides the foundational form/degree mapping needed by the validated NCERT Exemplar admission subset.",
+      "prerequisite_refs": [],
+      "lineage": []
+    },
+    {
+      "id": "MIC-MAT-POLY-EVALUATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomial Evaluation by Substitution",
+      "bucket_id": "BUCKET-MAT-POLYNOMIALS",
+      "primary_capability_ref": "CAP-MAT-POLY-EVALUATE-BASIC",
+      "intrinsic_badge": "EASY",
+      "badge_reason": "The main demand is consistent substitution followed by exact simplification.",
+      "entry_assumptions": [
+        "Can substitute a number or expression for a variable and simplify arithmetic exactly."
+      ],
+      "inferential_jump": "Treat p(a) as the value obtained by replacing every x in p(x) with the same input a before simplifying.",
+      "teaching_path": [
+        {
+          "id": "POLY-EV-T1",
+          "role": "DECLARE",
+          "action": "Replace every occurrence of x by the stated input, keeping parentheses around signed or radical inputs.",
+          "why_valid": "Function evaluation means applying the polynomial expression to one specified input consistently.",
+          "inputs": [
+            "p(x) and input a"
+          ],
+          "output": "substituted expression"
+        },
+        {
+          "id": "POLY-EV-T2",
+          "role": "TRANSFORM",
+          "action": "Evaluate powers and products before combining the resulting terms.",
+          "why_valid": "Standard algebraic order preserves the exact value of the substituted expression.",
+          "inputs": [
+            "substituted expression"
+          ],
+          "output": "simplified value"
+        },
+        {
+          "id": "POLY-EV-T3",
+          "role": "VERIFY",
+          "action": "Check the substitution against the original polynomial so no occurrence of x was missed.",
+          "why_valid": "Every x in p(x) must receive the same input for p(a) to be evaluated correctly.",
+          "inputs": [
+            "simplified value"
+          ],
+          "output": "checked value"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-MAT-POLY-EVALUATION"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Only the first occurrence of x is replaced, or a negative input is substituted without parentheses.",
+          "diagnostic_prompt": "When x = -1, what does x^2 become before multiplication by its coefficient?",
+          "repair": "Substitute the same parenthesized input everywhere, then evaluate powers."
+        }
+      ],
+      "exit_task": {
+        "prompt": "What does the notation p(a) instruct you to do to p(x)?",
+        "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Replace every x in p(x) by a, then simplify.",
+          "reasoning": [
+            "The input a takes the place of the variable x throughout the polynomial.",
+            "After substitution, ordinary algebra gives the value p(a)."
+          ],
+          "check": "The procedure uses one consistent input in every term.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit task asks for the evaluation procedure rather than a numerical value."
+        }
+      },
+      "research_contribution": "Provides the foundational evaluation mapping used by the validated NCERT Exemplar admission subset.",
+      "prerequisite_refs": [],
+      "lineage": []
+    },
+    {
+      "id": "MIC-MAT-POLY-ZEROS-BASIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Zeros of Elementary Polynomials",
+      "bucket_id": "BUCKET-MAT-POLYNOMIALS",
+      "primary_capability_ref": "CAP-MAT-POLY-ZERO-BASIC",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Learners must connect the definition p(c)=0 to solving or checking a candidate, including the zero-polynomial edge case.",
+      "entry_assumptions": [
+        "Can solve a simple linear equation and substitute a candidate into a polynomial."
+      ],
+      "inferential_jump": "Translate the word zero into the equation p(c)=0, then solve or verify that equation rather than looking for a zero coefficient.",
+      "teaching_path": [
+        {
+          "id": "POLY-ZR-T1",
+          "role": "DECLARE",
+          "action": "Translate 'c is a zero of p' into p(c) = 0.",
+          "why_valid": "A zero is defined as an input at which the polynomial's value is zero.",
+          "inputs": [
+            "polynomial p and candidate/input c"
+          ],
+          "output": "equation p(c)=0"
+        },
+        {
+          "id": "POLY-ZR-T2",
+          "role": "TRANSFORM",
+          "action": "Solve the resulting elementary equation or factor the polynomial when that is shorter.",
+          "why_valid": "Any solution of p(x)=0 is a zero of the polynomial.",
+          "inputs": [
+            "equation p(x)=0"
+          ],
+          "output": "candidate zero or zeros"
+        },
+        {
+          "id": "POLY-ZR-T3",
+          "role": "VERIFY",
+          "action": "Substitute the candidate back into p(x).",
+          "why_valid": "Direct evaluation confirms that the polynomial value is exactly zero.",
+          "inputs": [
+            "candidate zero"
+          ],
+          "output": "verified zero"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-MAT-POLY-ZEROS-BASIC"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A zero of a polynomial is a coefficient equal to zero rather than an input whose polynomial value is zero.",
+          "diagnostic_prompt": "For p(x)=2x+5, which number c makes p(c)=0?",
+          "repair": "Set the whole polynomial equal to zero and solve for the input."
+        }
+      ],
+      "exit_task": {
+        "prompt": "What condition must a real number c satisfy to be a zero of p(x)?",
+        "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "It must satisfy p(c) = 0.",
+          "reasoning": [
+            "Evaluate the polynomial at the proposed input c.",
+            "The input is a zero exactly when that evaluation equals zero."
+          ],
+          "check": "This is the defining condition for a polynomial zero.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The exit task states the defining condition rather than computing a particular zero."
+        }
+      },
+      "research_contribution": "Provides the foundational zero-definition mapping used by the validated NCERT Exemplar admission subset.",
+      "prerequisite_refs": [],
+      "lineage": []
     }
   ],
   "relations": [],
@@ -2834,6 +3171,124 @@
       ],
       "item_refs": [
         "Q-MAT-POLY-ISS55-10"
+      ]
+    },
+    {
+      "id": "FAM-MAT-POLY-FORM-DEGREE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomial form and degree classification",
+      "capability_refs": [
+        "CAP-MAT-POLY-FORM-DEGREE-BASIC"
+      ],
+      "solution_structure": [
+        "Simplify exponent form",
+        "Apply polynomial-definition or degree rule",
+        "Check exceptional zero-coefficient/zero-polynomial cases"
+      ],
+      "demand_dimensions": {
+        "model_choice": "low",
+        "representation_translation": "low",
+        "reasoning_steps": "one to two",
+        "novelty": "foundational classification"
+      },
+      "safe_variations": [
+        "Change coefficients or reorder terms without changing the governing exponent rule."
+      ],
+      "transfer_boundaries": [
+        "Does not cover multivariable degree or advanced factor/identity arguments."
+      ],
+      "common_wrong_routes": [
+        "Treating zero-coefficient terms as degree-bearing; overlooking negative or fractional exponents."
+      ],
+      "item_refs": [
+        "Q-MAT-POLY-NCERT9-EX21-Q01",
+        "Q-MAT-POLY-NCERT9-EX21-Q02",
+        "Q-MAT-POLY-NCERT9-EX21-Q03",
+        "Q-MAT-POLY-NCERT9-EX21-Q04"
+      ]
+    },
+    {
+      "id": "FAM-MAT-POLY-EVALUATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Polynomial evaluation at a stated input",
+      "capability_refs": [
+        "CAP-MAT-POLY-EVALUATE-BASIC"
+      ],
+      "solution_structure": [
+        "Substitute the stated input everywhere",
+        "Simplify powers/products",
+        "Combine terms and check"
+      ],
+      "demand_dimensions": {
+        "model_choice": "low",
+        "representation_translation": "low",
+        "reasoning_steps": "two",
+        "novelty": "foundational substitution"
+      },
+      "safe_variations": [
+        "Vary the polynomial coefficients and exact input while keeping direct evaluation as the required method."
+      ],
+      "transfer_boundaries": [
+        "Does not by itself assess interpolation, factor theorem, or general function composition."
+      ],
+      "common_wrong_routes": [
+        "Missing one occurrence of the variable; losing the sign of a negative input."
+      ],
+      "item_refs": [
+        "Q-MAT-POLY-NCERT9-EX21-Q05",
+        "Q-MAT-POLY-NCERT9-EX21-Q06",
+        "Q-MAT-POLY-NCERT9-EX21-Q07"
+      ]
+    },
+    {
+      "id": "FAM-MAT-POLY-ZEROS-BASIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Elementary polynomial zeros",
+      "capability_refs": [
+        "CAP-MAT-POLY-ZERO-BASIC"
+      ],
+      "solution_structure": [
+        "Set p(x)=0 or test the option",
+        "Solve/factor the elementary polynomial",
+        "Substitute to verify"
+      ],
+      "demand_dimensions": {
+        "model_choice": "low",
+        "representation_translation": "low",
+        "reasoning_steps": "one to three",
+        "novelty": "foundational zero condition"
+      },
+      "safe_variations": [
+        "Vary linear/quadratic coefficients while retaining exact real zeros and direct verification."
+      ],
+      "transfer_boundaries": [
+        "Does not cover multiplicity/sign charts or higher-degree factor sufficiency."
+      ],
+      "common_wrong_routes": [
+        "Confusing a zero input with a zero coefficient; failing to verify an option."
+      ],
+      "item_refs": [
+        "Q-MAT-POLY-NCERT9-EX21-Q08",
+        "Q-MAT-POLY-NCERT9-EX21-Q09",
+        "Q-MAT-POLY-NCERT9-EX21-Q10"
       ]
     }
   ],
@@ -4661,11 +5116,1293 @@
         },
         "basis": "Selecting auxiliary substitution u = x^2, enforcing domain condition u >= 0 over reals, solving quadratics, rejecting negative roots, and explaining why unrestricted variables produce false real roots."
       }
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q01",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q01"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q1",
+          "text_sha256": "sha256:e9cf2f9dd0b4ccdd828e671580c65aed68b09405a1eda4c0f54561b9e24a3175"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q01",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json",
+          "source_text_sha256": "sha256:e9cf2f9dd0b4ccdd828e671580c65aed68b09405a1eda4c0f54561b9e24a3175"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 3
+          },
+          "expected_time_seconds": 90,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-FORM-DEGREE-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q1",
+          "common_wrong_route": "Rejecting option C because its unsimplified display contains fractional powers, without applying the NCERT simplification convention.",
+          "stable_crux_move": "Simplify 3x^(3/2)/sqrt(x) to 3x under the NCERT algebraic-expression convention."
+        },
+        "grade9v3:validation_note": "The PASS follows the NCERT Exemplar convention of classifying the simplified algebraic expression. The simplification is not being asserted here as equality of total real-valued functions at x = 0, where the unsimplified denominator sqrt(x) is zero."
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q1",
+      "stem": "Which of the following is a polynomial?",
+      "subparts": [],
+      "options": [
+        "(A) x²/2 - 2/x²",
+        "(B) √(2x) - 1",
+        "(C) x² + 3x^(3/2)/√x",
+        "(D) (x - 1)/(x + 1)"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(C) x² + 3x^(3/2)/√x",
+        "reasoning": [
+          "Compare the exponent structure of each option after valid algebraic rewriting. Option C is the only candidate that can simplify to polynomial form..",
+          "Simplify 3x^(3/2)/sqrt(x) to 3x under the NCERT algebraic-expression convention. x² + 3x.",
+          "Check that the other options retain x^(-2), x^(1/2), or a variable denominator. Only option C remains.."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q01-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Compare the exponent structure of each option after valid algebraic rewriting.",
+            "why_valid": "Polynomial terms must have non-negative integer variable exponents after the source-prescribed simplification.",
+            "inputs": [
+              "the four options"
+            ],
+            "output": "Option C is the only candidate that can simplify to polynomial form."
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q01-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Simplify 3x^(3/2)/sqrt(x) to 3x under the NCERT algebraic-expression convention.",
+            "why_valid": "Subtracting exponents gives x^(3/2-1/2)=x.",
+            "inputs": [
+              "option C"
+            ],
+            "output": "x² + 3x"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q01-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Check that the other options retain x^(-2), x^(1/2), or a variable denominator.",
+            "why_valid": "Those forms violate the one-variable polynomial exponent/form condition.",
+            "inputs": [
+              "options A, B and D"
+            ],
+            "output": "Only option C remains."
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q01-MOVE-2",
+        "check": "Option C simplifies to x² + 3x under NCERT's convention; A, B and D retain non-polynomial forms.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-FORM-DEGREE-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-FORM-DEGREE",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Compare the exponent structure of each option after valid algebraic rewriting.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q01-MOVE-1"
+        },
+        {
+          "text": "Simplify 3x^(3/2)/sqrt(x) to 3x under the NCERT algebraic-expression convention.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q01-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q02",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q02"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q2",
+          "text_sha256": "sha256:627a863a58c1f737a8ec90567d45497ed6091979977777e9a6b851ad42a9ad03"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q02",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json",
+          "source_text_sha256": "sha256:627a863a58c1f737a8ec90567d45497ed6091979977777e9a6b851ad42a9ad03"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 1
+          },
+          "expected_time_seconds": 45,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-FORM-DEGREE-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q2",
+          "common_wrong_route": "Treating an irrational coefficient as an irrational exponent.",
+          "stable_crux_move": "Recognize sqrt(2) as a non-zero constant coefficient, not a power of x."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q2",
+      "stem": "√2 is a polynomial of degree",
+      "subparts": [],
+      "options": [
+        "(A) 2",
+        "(B) 0",
+        "(C) 1",
+        "(D) 1/2"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(B) 0",
+        "reasoning": [
+          "Recognize sqrt(2) as a non-zero constant coefficient, not a power of x. a non-zero constant polynomial.",
+          "Write sqrt(2) as sqrt(2)·x^0. degree 0.",
+          "Confirm that no positive power of x appears. option B."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q02-MOVE-1",
+            "kind": "CONNECT",
+            "action": "Recognize sqrt(2) as a non-zero constant coefficient, not a power of x.",
+            "why_valid": "Polynomial coefficients may be real numbers; degree depends on the exponent of the variable.",
+            "inputs": [
+              "sqrt(2)"
+            ],
+            "output": "a non-zero constant polynomial"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q02-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Write sqrt(2) as sqrt(2)·x^0.",
+            "why_valid": "Any non-zero constant equals itself times x^0.",
+            "inputs": [
+              "constant polynomial"
+            ],
+            "output": "degree 0"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q02-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Confirm that no positive power of x appears.",
+            "why_valid": "The largest exponent with non-zero coefficient is 0.",
+            "inputs": [
+              "sqrt(2)·x^0"
+            ],
+            "output": "option B"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q02-MOVE-1",
+        "check": "sqrt(2)=sqrt(2)·x^0, so the degree is 0.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-FORM-DEGREE-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-FORM-DEGREE",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Recognize sqrt(2) as a non-zero constant coefficient, not a power of x.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q02-MOVE-1"
+        },
+        {
+          "text": "Write sqrt(2) as sqrt(2)·x^0.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q02-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q03",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q03"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q3",
+          "text_sha256": "sha256:acf970e82ea78d3e0962ee2961e90547822df1945cf6a0093512c9373be69bd7"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q03",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json",
+          "source_text_sha256": "sha256:acf970e82ea78d3e0962ee2961e90547822df1945cf6a0093512c9373be69bd7"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 1
+          },
+          "expected_time_seconds": 45,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-FORM-DEGREE-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q3",
+          "common_wrong_route": "Reading the written x^5 exponent without noticing its coefficient is zero.",
+          "stable_crux_move": "Discard terms whose coefficient is zero when identifying the degree."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q3",
+      "stem": "Degree of the polynomial 4x⁴ + 0x³ + 0x⁵ + 5x + 7 is",
+      "subparts": [],
+      "options": [
+        "(A) 4",
+        "(B) 5",
+        "(C) 3",
+        "(D) 7"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(A) 4",
+        "reasoning": [
+          "Discard terms whose coefficient is zero when identifying the degree. non-zero terms 4x^4, 5x, 7.",
+          "Choose the greatest exponent among the remaining non-zero terms. degree 4.",
+          "Check that no non-zero x^5 term remains. option A."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q03-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Discard terms whose coefficient is zero when identifying the degree.",
+            "why_valid": "A zero coefficient contributes no term to the polynomial.",
+            "inputs": [
+              "0x^3 and 0x^5"
+            ],
+            "output": "non-zero terms 4x^4, 5x, 7"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q03-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Choose the greatest exponent among the remaining non-zero terms.",
+            "why_valid": "The degree of a non-zero polynomial is its highest non-zero exponent.",
+            "inputs": [
+              "4x^4, 5x, 7"
+            ],
+            "output": "degree 4"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q03-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Check that no non-zero x^5 term remains.",
+            "why_valid": "0x^5 is identically zero.",
+            "inputs": [
+              "original expression"
+            ],
+            "output": "option A"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q03-MOVE-1",
+        "check": "The x^5 coefficient is 0, so the highest non-zero power is x^4.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-FORM-DEGREE-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-FORM-DEGREE",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Discard terms whose coefficient is zero when identifying the degree.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q03-MOVE-1"
+        },
+        {
+          "text": "Choose the greatest exponent among the remaining non-zero terms.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q03-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q04",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q04"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q4",
+          "text_sha256": "sha256:43f7d6ff7a197201b8c538375778d52ee7e2906cd987cba60eaaa94a07d14416"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q04",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json",
+          "source_text_sha256": "sha256:43f7d6ff7a197201b8c538375778d52ee7e2906cd987cba60eaaa94a07d14416"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 2
+          },
+          "expected_time_seconds": 60,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-FORM-DEGREE-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q4",
+          "common_wrong_route": "Assigning degree 0 because the polynomial's value is written as 0.",
+          "stable_crux_move": "Treat the zero polynomial as the exceptional case rather than as a constant with a non-zero coefficient."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q4",
+      "stem": "Degree of the zero polynomial is",
+      "subparts": [],
+      "options": [
+        "(A) 0",
+        "(B) 1",
+        "(C) Any natural number",
+        "(D) Not defined"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(D) Not defined",
+        "reasoning": [
+          "Recall that degree is read from the highest term with non-zero coefficient. no non-zero term exists.",
+          "Treat the zero polynomial as the exceptional case rather than as a constant with a non-zero coefficient. degree not defined.",
+          "Match the exceptional-case statement to the options. option D."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q04-MOVE-1",
+            "kind": "CONNECT",
+            "action": "Recall that degree is read from the highest term with non-zero coefficient.",
+            "why_valid": "The definition of degree requires a non-zero term whose exponent can be maximal.",
+            "inputs": [
+              "zero polynomial"
+            ],
+            "output": "no non-zero term exists"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q04-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Treat the zero polynomial as the exceptional case rather than as a constant with a non-zero coefficient.",
+            "why_valid": "There is no highest exponent among non-zero terms because there are none.",
+            "inputs": [
+              "absence of non-zero terms"
+            ],
+            "output": "degree not defined"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q04-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Match the exceptional-case statement to the options.",
+            "why_valid": "NCERT states the zero polynomial's degree is not defined.",
+            "inputs": [
+              "options"
+            ],
+            "output": "option D"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q04-MOVE-2",
+        "check": "The zero polynomial has no highest non-zero term, so its degree is not defined.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-FORM-DEGREE-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-FORM-DEGREE",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Recall that degree is read from the highest term with non-zero coefficient.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q04-MOVE-1"
+        },
+        {
+          "text": "Treat the zero polynomial as the exceptional case rather than as a constant with a non-zero coefficient.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q04-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q05",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q05"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q5",
+          "text_sha256": "sha256:10c33f397767b5dd584b33dcbe1571188c09ff872732d69ba97102c2e73cb879"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q05",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json",
+          "source_text_sha256": "sha256:10c33f397767b5dd584b33dcbe1571188c09ff872732d69ba97102c2e73cb879"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 3
+          },
+          "expected_time_seconds": 90,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-EVALUATE-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q5",
+          "common_wrong_route": "Squaring only the 2 and not sqrt(2), or mishandling the product of radicals.",
+          "stable_crux_move": "Evaluate the two radical products exactly."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q5",
+      "stem": "If p(x) = x² - 2√2x + 1, then p(2√2) is equal to",
+      "subparts": [],
+      "options": [
+        "(A) 0",
+        "(B) 1",
+        "(C) 4√2",
+        "(D) 8√2 + 1"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(B) 1",
+        "reasoning": [
+          "Substitute x=2sqrt(2) into every x in p(x). (2sqrt(2))² - 2sqrt(2)(2sqrt(2)) + 1.",
+          "Evaluate the two radical products exactly. 8 - 8 + 1 = 1.",
+          "Combine the terms and compare with the options. option B."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q05-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Substitute x=2sqrt(2) into every x in p(x).",
+            "why_valid": "p(a) means the same input a replaces every occurrence of x.",
+            "inputs": [
+              "p(x)=x²-2sqrt(2)x+1"
+            ],
+            "output": "(2sqrt(2))² - 2sqrt(2)(2sqrt(2)) + 1"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q05-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Evaluate the two radical products exactly.",
+            "why_valid": "(2sqrt(2))²=8 and 2sqrt(2)·2sqrt(2)=8.",
+            "inputs": [
+              "substituted expression"
+            ],
+            "output": "8 - 8 + 1 = 1"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q05-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Combine the terms and compare with the options.",
+            "why_valid": "Exact simplification gives the polynomial value.",
+            "inputs": [
+              "8-8+1"
+            ],
+            "output": "option B"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q05-MOVE-2",
+        "check": "p(2sqrt(2))=8-8+1=1.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-EVALUATE-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-EVALUATION",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Substitute x=2sqrt(2) into every x in p(x).",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q05-MOVE-1"
+        },
+        {
+          "text": "Evaluate the two radical products exactly.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q05-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q06",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q06"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q6",
+          "text_sha256": "sha256:d1f9ab971075dd4795abafbb0e7a9163deb032e79470daae63d2198ebcef5643"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q06",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json",
+          "source_text_sha256": "sha256:d1f9ab971075dd4795abafbb0e7a9163deb032e79470daae63d2198ebcef5643"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 1
+          },
+          "expected_time_seconds": 45,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-EVALUATE-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q6",
+          "common_wrong_route": "Forgetting that (-1)²=1 or losing the negative coefficient on -4x².",
+          "stable_crux_move": "Evaluate the power first and simplify the terms."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q6",
+      "stem": "The value of the polynomial 5x - 4x² + 3, when x = -1 is",
+      "subparts": [],
+      "options": [
+        "(A) -6",
+        "(B) 6",
+        "(C) 2",
+        "(D) -2"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(A) -6",
+        "reasoning": [
+          "Substitute x=-1 with parentheses into 5x-4x²+3. 5(-1)-4(-1)²+3.",
+          "Evaluate the power first and simplify the terms. -6.",
+          "Compare -6 with the choices. option A."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q06-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Substitute x=-1 with parentheses into 5x-4x²+3.",
+            "why_valid": "A negative input must replace x consistently before powers are evaluated.",
+            "inputs": [
+              "x=-1"
+            ],
+            "output": "5(-1)-4(-1)²+3"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q06-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Evaluate the power first and simplify the terms.",
+            "why_valid": "(-1)²=1, so the expression is -5-4+3.",
+            "inputs": [
+              "substituted expression"
+            ],
+            "output": "-6"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q06-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Compare -6 with the choices.",
+            "why_valid": "The exact evaluation matches only option A.",
+            "inputs": [
+              "-6"
+            ],
+            "output": "option A"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q06-MOVE-2",
+        "check": "5(-1)-4(1)+3=-6.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-EVALUATE-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-EVALUATION",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Substitute x=-1 with parentheses into 5x-4x²+3.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q06-MOVE-1"
+        },
+        {
+          "text": "Evaluate the power first and simplify the terms.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q06-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q07",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q07"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q7",
+          "text_sha256": "sha256:a086cd2210982163be7dfbdad7fc9cfa1c9ce00ff867163a6b315519ea65bb9a"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q07",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json",
+          "source_text_sha256": "sha256:a086cd2210982163be7dfbdad7fc9cfa1c9ce00ff867163a6b315519ea65bb9a"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 2
+          },
+          "expected_time_seconds": 60,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-EVALUATE-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q7",
+          "common_wrong_route": "Using p(-x)=x+3 instead of replacing x by -x.",
+          "stable_crux_move": "Evaluate p(-x) by replacing x with -x in p(x)=x+3."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q7",
+      "stem": "If p(x) = x + 3, then p(x) + p(-x) is equal to",
+      "subparts": [],
+      "options": [
+        "(A) 3",
+        "(B) 2x",
+        "(C) 0",
+        "(D) 6"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(D) 6",
+        "reasoning": [
+          "Evaluate p(-x) by replacing x with -x in p(x)=x+3. p(-x)=-x+3.",
+          "Add p(x) and p(-x). 6.",
+          "Check that the result is independent of x. option D."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q07-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Evaluate p(-x) by replacing x with -x in p(x)=x+3.",
+            "why_valid": "The input of the polynomial is -x, so p(-x)=-x+3.",
+            "inputs": [
+              "p(x)=x+3"
+            ],
+            "output": "p(-x)=-x+3"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q07-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Add p(x) and p(-x).",
+            "why_valid": "Like terms x and -x cancel.",
+            "inputs": [
+              "(x+3)+(-x+3)"
+            ],
+            "output": "6"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q07-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Check that the result is independent of x.",
+            "why_valid": "The x terms cancel for every x.",
+            "inputs": [
+              "6"
+            ],
+            "output": "option D"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q07-MOVE-1",
+        "check": "(x+3)+(-x+3)=6.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-EVALUATE-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-EVALUATION",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Evaluate p(-x) by replacing x with -x in p(x)=x+3.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q07-MOVE-1"
+        },
+        {
+          "text": "Add p(x) and p(-x).",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q07-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q08",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q08"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q8",
+          "text_sha256": "sha256:b5938b0629df8a8997e888b2d33677048dd9800d29fe6b23b2b93ccc41637dbc"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q08",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json",
+          "source_text_sha256": "sha256:b5938b0629df8a8997e888b2d33677048dd9800d29fe6b23b2b93ccc41637dbc"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 2
+          },
+          "expected_time_seconds": 60,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-ZERO-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q8",
+          "common_wrong_route": "Thinking the zero polynomial has only the single zero x=0.",
+          "stable_crux_move": "Apply the fact that the zero polynomial evaluates to 0 at every real input."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q8",
+      "stem": "Zero of the zero polynomial is",
+      "subparts": [],
+      "options": [
+        "(A) 0",
+        "(B) 1",
+        "(C) Any real number",
+        "(D) Not defined"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(C) Any real number",
+        "reasoning": [
+          "Use the definition: c is a zero when p(c)=0. p(c)=0 for any real c.",
+          "Apply the fact that the zero polynomial evaluates to 0 at every real input. every real number is a zero.",
+          "Match that statement to the options. option C."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q08-MOVE-1",
+            "kind": "CONNECT",
+            "action": "Use the definition: c is a zero when p(c)=0.",
+            "why_valid": "Zeros are inputs that make the polynomial value zero.",
+            "inputs": [
+              "zero polynomial p"
+            ],
+            "output": "p(c)=0 for any real c"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q08-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Apply the fact that the zero polynomial evaluates to 0 at every real input.",
+            "why_valid": "Its value is identically zero, so every real input satisfies the zero condition.",
+            "inputs": [
+              "p(c)=0 for all real c"
+            ],
+            "output": "every real number is a zero"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q08-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Match that statement to the options.",
+            "why_valid": "Option C states the complete real zero set.",
+            "inputs": [
+              "options"
+            ],
+            "output": "option C"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q08-MOVE-2",
+        "check": "For the zero polynomial, p(c)=0 for every real c.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-ZERO-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-ZEROS-BASIC",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Use the definition: c is a zero when p(c)=0.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q08-MOVE-1"
+        },
+        {
+          "text": "Apply the fact that the zero polynomial evaluates to 0 at every real input.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q08-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q09",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q09"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q9",
+          "text_sha256": "sha256:a14fd2d6137b869c653f9eeb158eb14a41b894a6e1b113918623aab13326efc9"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q09",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json",
+          "source_text_sha256": "sha256:a14fd2d6137b869c653f9eeb158eb14a41b894a6e1b113918623aab13326efc9"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 1
+          },
+          "expected_time_seconds": 45,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-ZERO-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q9",
+          "common_wrong_route": "Solving 2x+5=0 with the wrong sign.",
+          "stable_crux_move": "Solve the linear equation."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q9",
+      "stem": "Zero of the polynomial p(x) = 2x + 5 is",
+      "subparts": [],
+      "options": [
+        "(A) -2/5",
+        "(B) -5/2",
+        "(C) 2/5",
+        "(D) 5/2"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(B) -5/2",
+        "reasoning": [
+          "Set p(x)=0 to find a zero. 2x+5=0.",
+          "Solve the linear equation. x=-5/2.",
+          "Substitute -5/2 into 2x+5. option B."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q09-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Set p(x)=0 to find a zero.",
+            "why_valid": "A zero is an input where the polynomial value is zero.",
+            "inputs": [
+              "p(x)=2x+5"
+            ],
+            "output": "2x+5=0"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q09-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Solve the linear equation.",
+            "why_valid": "Subtract 5 and divide by the non-zero coefficient 2.",
+            "inputs": [
+              "2x=-5"
+            ],
+            "output": "x=-5/2"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q09-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Substitute -5/2 into 2x+5.",
+            "why_valid": "2(-5/2)+5=-5+5=0.",
+            "inputs": [
+              "x=-5/2"
+            ],
+            "output": "option B"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q09-MOVE-2",
+        "check": "2(-5/2)+5=0.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-ZERO-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-ZEROS-BASIC",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Set p(x)=0 to find a zero.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q09-MOVE-1"
+        },
+        {
+          "text": "Solve the linear equation.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q09-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q10",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q10"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q10",
+          "text_sha256": "sha256:f7f2590fcb64a90fe599a3c5112137d435e48036f44a182efd1ead40197640f4"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q10",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json",
+          "source_text_sha256": "sha256:f7f2590fcb64a90fe599a3c5112137d435e48036f44a182efd1ead40197640f4"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 2
+          },
+          "expected_time_seconds": 75,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-ZERO-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q10",
+          "common_wrong_route": "Testing candidates arithmetically with a sign error or choosing -1/2 instead of 1/2.",
+          "stable_crux_move": "Set the quadratic equal to zero and look for a factorization."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q10",
+      "stem": "One of the zeroes of the polynomial 2x² + 7x - 4 is",
+      "subparts": [],
+      "options": [
+        "(A) 2",
+        "(B) 1/2",
+        "(C) -1/2",
+        "(D) -2"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(B) 1/2",
+        "reasoning": [
+          "Set the quadratic equal to zero and look for a factorization. (2x-1)(x+4)=0.",
+          "Read the zeros from the two linear factors. x=1/2 or x=-4.",
+          "Substitute x=1/2 into the original polynomial. option B."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q10-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Set the quadratic equal to zero and look for a factorization.",
+            "why_valid": "A zero must solve 2x²+7x-4=0.",
+            "inputs": [
+              "2x²+7x-4"
+            ],
+            "output": "(2x-1)(x+4)=0"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q10-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Read the zeros from the two linear factors.",
+            "why_valid": "A product is zero when at least one factor is zero.",
+            "inputs": [
+              "(2x-1)(x+4)=0"
+            ],
+            "output": "x=1/2 or x=-4"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q10-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Substitute x=1/2 into the original polynomial.",
+            "why_valid": "2(1/4)+7/2-4=1/2+7/2-4=0.",
+            "inputs": [
+              "x=1/2"
+            ],
+            "output": "option B"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q10-MOVE-1",
+        "check": "2(1/2)²+7(1/2)-4=0, so 1/2 is a zero.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-ZERO-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-ZEROS-BASIC",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Set the quadratic equal to zero and look for a factorization.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q10-MOVE-1"
+        },
+        {
+          "text": "Read the zeros from the two linear factors.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q10-MOVE-2"
+        }
+      ]
     }
   ],
   "teaching_routes": [],
   "practice_profiles": [],
-  "evidence": [],
+  "evidence": [
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q01",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q01",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q1, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q1: source digest and official answer reconciled; independent result (C) x² + 3x^(3/2)/√x.",
+      "result": "PASS",
+      "producer": "Issue #188 / PR #189 validator for Unit 2 Ex 2.1 Q1",
+      "independence": "For Unit 2 Ex 2.1 Q1, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "The PASS follows the NCERT Exemplar convention of classifying the simplified algebraic expression. The simplification is not being asserted here as equality of total real-valued functions at x = 0, where the unsimplified denominator sqrt(x) is zero."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q02",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q02",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q2, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q2: source digest and official answer reconciled; independent result (B) 0.",
+      "result": "PASS",
+      "producer": "Issue #188 / PR #189 validator for Unit 2 Ex 2.1 Q2",
+      "independence": "For Unit 2 Ex 2.1 Q2, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q2 evidence validates source identity and answer correctness only; Atlas, rung, representation and pedagogical enrichment are outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q03",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q03",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q3, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q3: source digest and official answer reconciled; independent result (A) 4.",
+      "result": "PASS",
+      "producer": "Issue #188 / PR #189 validator for Unit 2 Ex 2.1 Q3",
+      "independence": "For Unit 2 Ex 2.1 Q3, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q3 evidence validates source identity and answer correctness only; Atlas, rung, representation and pedagogical enrichment are outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q04",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q04",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q4, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q4: source digest and official answer reconciled; independent result (D) Not defined.",
+      "result": "PASS",
+      "producer": "Issue #188 / PR #189 validator for Unit 2 Ex 2.1 Q4",
+      "independence": "For Unit 2 Ex 2.1 Q4, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q4 evidence validates source identity and answer correctness only; Atlas, rung, representation and pedagogical enrichment are outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q05",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q05",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q5, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q5: source digest and official answer reconciled; independent result (B) 1.",
+      "result": "PASS",
+      "producer": "Issue #188 / PR #189 validator for Unit 2 Ex 2.1 Q5",
+      "independence": "For Unit 2 Ex 2.1 Q5, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q5 evidence validates source identity and answer correctness only; Atlas, rung, representation and pedagogical enrichment are outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q06",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q06",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q6, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q6: source digest and official answer reconciled; independent result (A) -6.",
+      "result": "PASS",
+      "producer": "Issue #188 / PR #189 validator for Unit 2 Ex 2.1 Q6",
+      "independence": "For Unit 2 Ex 2.1 Q6, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q6 evidence validates source identity and answer correctness only; Atlas, rung, representation and pedagogical enrichment are outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q07",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q07",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q7, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q7: source digest and official answer reconciled; independent result (D) 6.",
+      "result": "PASS",
+      "producer": "Issue #188 / PR #189 validator for Unit 2 Ex 2.1 Q7",
+      "independence": "For Unit 2 Ex 2.1 Q7, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q7 evidence validates source identity and answer correctness only; Atlas, rung, representation and pedagogical enrichment are outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q08",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q08",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q8, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q8: source digest and official answer reconciled; independent result (C) Any real number.",
+      "result": "PASS",
+      "producer": "Issue #188 / PR #189 validator for Unit 2 Ex 2.1 Q8",
+      "independence": "For Unit 2 Ex 2.1 Q8, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q8 evidence validates source identity and answer correctness only; Atlas, rung, representation and pedagogical enrichment are outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q09",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q09",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q9, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q9: source digest and official answer reconciled; independent result (B) -5/2.",
+      "result": "PASS",
+      "producer": "Issue #188 / PR #189 validator for Unit 2 Ex 2.1 Q9",
+      "independence": "For Unit 2 Ex 2.1 Q9, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q9 evidence validates source identity and answer correctness only; Atlas, rung, representation and pedagogical enrichment are outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q10",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q10",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q10, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q10: source digest and official answer reconciled; independent result (B) 1/2.",
+      "result": "PASS",
+      "producer": "Issue #188 / PR #189 validator for Unit 2 Ex 2.1 Q10",
+      "independence": "For Unit 2 Ex 2.1 Q10, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q10 evidence validates source identity and answer correctness only; Atlas, rung, representation and pedagogical enrichment are outside this admission slice."
+    }
+  ],
   "known_issues": [],
   "extensions": {
     "grade9v3:authoring_specimen": {
@@ -4684,7 +6421,43 @@
       "source_bank": "TEST/question-bank/iss55-poly.json",
       "reconciliation": "TEST/candidates/iss55-poly.canonical-reconciliation.json",
       "question_bank_admitted": false,
-      "owner_acceptance": "PENDING"
+      "owner_acceptance": "PENDING",
+      "staging_scope": "ISS55_ONLY"
+    },
+    "grade9v3:question_bank_admission": {
+      "candidate_id": "NCERT-EXEMPLAR-G9-MATH-210",
+      "source_bank": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+      "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json",
+      "admission_scope": "UNIT2_EX2_1_Q1_Q10_ONLY",
+      "admitted_question_refs": [
+        "Q-MAT-POLY-NCERT9-EX21-Q01",
+        "Q-MAT-POLY-NCERT9-EX21-Q02",
+        "Q-MAT-POLY-NCERT9-EX21-Q03",
+        "Q-MAT-POLY-NCERT9-EX21-Q04",
+        "Q-MAT-POLY-NCERT9-EX21-Q05",
+        "Q-MAT-POLY-NCERT9-EX21-Q06",
+        "Q-MAT-POLY-NCERT9-EX21-Q07",
+        "Q-MAT-POLY-NCERT9-EX21-Q08",
+        "Q-MAT-POLY-NCERT9-EX21-Q09",
+        "Q-MAT-POLY-NCERT9-EX21-Q10"
+      ],
+      "atlas_rungs_enrichment": false
+    },
+    "grade9v3:question_bank": {
+      "include": false,
+      "question_type": "single_choice",
+      "topic_label": "Polynomials",
+      "topic_ref": "TOPIC-MATHEMATICS-POLYNOMIALS",
+      "subject_ref": "SUBJECT-MATHEMATICS",
+      "exam": "NCERT Exemplar",
+      "year": 2024,
+      "paper": "Class IX Mathematics · Unit 2 Polynomials",
+      "source_status": "NCERT_AUTHENTIC",
+      "authority_class": "CURRICULAR_STANDARD",
+      "wording_custody": "VERBATIM",
+      "paper_url": "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep202.pdf",
+      "answer_key_url": "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep202.pdf",
+      "last_checked": "2026-10-07"
     }
   },
   "data": []

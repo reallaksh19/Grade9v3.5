@@ -29,25 +29,31 @@ class TestTestQuestionBank(unittest.TestCase):
         cls.questions = cls.bank["questions"]
         cls.ids = {row["id"] for row in cls.questions}
 
-    def test_projection_contains_all_210_as_academically_unvalidated(self):
+    def test_projection_contains_all_210_with_per_question_validation(self):
         projection = build_test_question_bank.payload(REPO)
         rows = [q for bank in projection["banks"] for q in bank["questions"]]
         self.assertEqual(len(rows), 210)
         self.assertEqual(len({q["id"] for q in rows}), 210)
-        self.assertEqual(projection["academic_validation_status"], "UNVALIDATED")
+        self.assertEqual(projection["academic_validation_status"], "PER_QUESTION")
+        self.assertEqual(projection["validation_counts"], {"UNVALIDATED": 200, "VALIDATED": 10})
         self.assertEqual(
             sum(q["text_verification_status"] == "TEXT_VERIFIED_AGAINST_OFFICIAL" for q in rows),
             210,
         )
+        self.assertEqual(sum(q["academic_validation_status"] == "VALIDATED" for q in rows), 10)
+        self.assertEqual(sum(q["academic_validation_status"] == "UNVALIDATED" for q in rows), 200)
+        validated = {q["id"] for q in rows if q["academic_validation_status"] == "VALIDATED"}
+        self.assertEqual(validated, {f"ncert-exemplar-g9-math-u02-q{number:02d}" for number in range(1, 11)})
         self.assertEqual(sum(q["workflow_status"] == "DUPLICATE_REVIEW" for q in rows), 1)
 
     def test_shell_makes_source_and_academic_states_distinct(self):
         page = build_test_question_bank.render_page(REPO)
         self.assertIn("SOURCE VERIFIED", page)
         self.assertIn("UNVALIDATED", page)
+        self.assertIn("VALIDATED", page)
         self.assertIn("DUPLICATE REVIEW", page)
         self.assertIn("questions.js", page)
-        self.assertIn("Nothing on this page is in the production Question Bank.", page)
+        self.assertIn("Production admission is governed separately.", page)
         self.assertIn('data-g9-test="sandbox-draft"', page)
         self.assertNotRegex(page, r"https?://")
 
@@ -57,7 +63,7 @@ class TestTestQuestionBank(unittest.TestCase):
         self.assertEqual(DOCS_PAGE.read_bytes(), PUBLIC_PAGE.read_bytes())
         self.assertEqual(DOCS_DATA.read_bytes(), PUBLIC_DATA.read_bytes())
 
-    def test_all_210_remain_out_of_production_question_bank_and_search(self):
+    def test_source_intake_ids_remain_out_of_production_question_bank_and_search(self):
         production = build_question_bank_web.build(REPO)
         production_ids = {q["id"] for q in production["questions"]}
         self.assertFalse(self.ids & production_ids)
