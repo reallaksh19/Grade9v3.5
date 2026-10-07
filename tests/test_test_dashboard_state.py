@@ -180,6 +180,55 @@ class TestTestDashboardState(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "must use quality-vocabulary/v1"):
                     build_test_site.dashboard_state()
 
+    def test_source_counts_separate_owner_derived_and_other_banks(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            bank_dir = root / "question-bank"
+            bank_dir.mkdir(parents=True)
+            (bank_dir / "owner.json").write_text(json.dumps({
+                "schema_version": "grade9v3-owner-supplied-bank-v1",
+                "questions": [{"id": "OWNER-1"}],
+            }), encoding="utf-8")
+            (bank_dir / "derived.json").write_text(json.dumps({
+                "schema_version": build_test_site.DERIVED_BANK_SCHEMA,
+                "questions": [{"id": "DERIVED-1"}, {"id": "DERIVED-2"}],
+            }), encoding="utf-8")
+            (bank_dir / "other.json").write_text(json.dumps({
+                "schema_version": "unknown-test-bank-v1",
+                "questions": [{"id": "OTHER-1"}],
+            }), encoding="utf-8")
+            with mock.patch.object(build_test_site, "TEST_ROOT", root):
+                counts = build_test_site.source_counts()
+
+        self.assertEqual(counts["owner_banks"], 1)
+        self.assertEqual(counts["owner_questions"], 1)
+        self.assertEqual(counts["derived_banks"], 1)
+        self.assertEqual(counts["derived_questions"], 2)
+        self.assertEqual(counts["other_banks"], 1)
+        self.assertEqual(counts["other_questions"], 1)
+
+    def test_sources_card_reports_bank_classes_without_conflating_authority(self):
+        counts = {
+            "matrices": 0,
+            "packages": 0,
+            "owner_banks": 1,
+            "owner_questions": 2,
+            "derived_banks": 1,
+            "derived_questions": 1,
+            "other_banks": 1,
+            "other_questions": 3,
+        }
+        with mock.patch.object(build_test_site, "source_counts", return_value=counts):
+            page = build_test_site.hub_page()
+        start = page.index('data-g9-unit="sources"')
+        end = page.index("</article>", start)
+        panel = page[start:end]
+
+        self.assertIn("1 owner-supplied question file(s), 2 question(s)", panel)
+        self.assertIn("1 source-linked derivative question file(s), 1 question(s)", panel)
+        self.assertIn("1 other TEST question file(s), 3 question(s)", panel)
+        self.assertNotIn("1 owner-supplied question file(s) in TEST/question-bank, 6 question(s)", panel)
+
 
 if __name__ == "__main__":
     unittest.main()
