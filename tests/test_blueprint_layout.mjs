@@ -70,7 +70,7 @@ test('retained PR65 Core1A browser facts satisfy the active SINGLE_PANE blueprin
   const registry = JSON.parse(fs.readFileSync(
     new URL('../Shared/web/interactive-page-blueprints.v1.json', import.meta.url), 'utf8'));
   const facts = JSON.parse(fs.readFileSync(
-    new URL('../evidence/staged-repair/ISS29-set-b/browser/core1a-layout-facts.json', import.meta.url), 'utf8'));
+    new URL('./fixtures/retained_pr65/core1a-layout-facts.json', import.meta.url), 'utf8'));
   const blueprint = registry.blueprints.find(row => row.id === 'BP-CORE1A-CONSTRUCTION');
   assert.ok(blueprint);
   assert.equal(blueprint.version, '1.8.0');
@@ -86,7 +86,7 @@ test('retained PR65 Core2 render still carries the active STAGE_SUPPORT split', 
   const registry = JSON.parse(fs.readFileSync(
     new URL('../Shared/web/interactive-page-blueprints.v1.json', import.meta.url), 'utf8'));
   const html = fs.readFileSync(
-    new URL('../evidence/staged-repair/ISS29-set-b/rendered/core2.html', import.meta.url), 'utf8');
+    new URL('./fixtures/retained_pr65/core2.html', import.meta.url), 'utf8');
   const blueprint = registry.blueprints.find(row => row.id === 'BP-CORE2-SOURCE-QUESTION');
   assert.ok(blueprint);
   assert.equal(blueprint.version, '1.11.0');
