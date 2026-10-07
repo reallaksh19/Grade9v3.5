@@ -1,0 +1,437 @@
+{
+  "schema": "relay-v3.2-delp-execution-graph",
+  "programme": {
+    "id": "ISS69-PHASE-D",
+    "root": "reallaksh19/Grade9v3.5#73",
+    "repository": "reallaksh19/Grade9v3.5",
+    "fact_authors": [
+      "reallaksh19"
+    ],
+    "total_weight": 1800,
+    "decomposition_policy": {
+      "mode": "ENFORCED",
+      "units": {
+        "min": 3,
+        "max": 8,
+        "max_share_percent": 40
+      },
+      "leaf_budget": {
+        "target_loc": 700,
+        "hard_loc": 1500,
+        "target_minutes": 15,
+        "hard_minutes": 20
+      },
+      "min_leaf_target_loc": 1,
+      "require": {
+        "outcome": true,
+        "verify": true,
+        "write_surface": true,
+        "size_budget": true
+      }
+    }
+  },
+  "plan_updates": [
+    {
+      "id": "ISS69-PHASE-D-V32-ALIGNMENT-20261007",
+      "kind": "POLICY_CHANGE",
+      "reason": "Owner directed Phase-D execution to follow Common engineering-pr-delivery-v3.2 and require proper bounded module decomposition. Legacy hand-authored progress/title comments remain historical and are not projection authority.",
+      "owner_authorized": true,
+      "owner_basis": "User instruction in active execution session on 2026-10-07: follow Common engineering-pr-delivery-v3.2 and ensure proper decomposition of modules.",
+      "nodes": [
+        "reallaksh19/Grade9v3.5#109",
+        "reallaksh19/Grade9v3.5#110",
+        "reallaksh19/Grade9v3.5#111",
+        "reallaksh19/Grade9v3.5#112",
+        "reallaksh19/Grade9v3.5#113",
+        "reallaksh19/Grade9v3.5#114"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "ref": "reallaksh19/Grade9v3.5#73",
+      "kind": "ROOT",
+      "reserve_weight": 0
+    },
+    {
+      "ref": "reallaksh19/Grade9v3.5#109",
+      "kind": "LEAF",
+      "parent": "reallaksh19/Grade9v3.5#73",
+      "weight": 300,
+      "responsibility_id": "ISS69-D01-PHYSICS",
+      "primary_pr": "reallaksh19/Grade9v3.5#119",
+      "critical": true,
+      "work_class": "PRODUCT",
+      "outcome": "Physics qualifies the recovered generic Core1A/Core2 architecture without a Physics-specific Shared production branch.",
+      "size_budget": {
+        "target_loc": 700,
+        "hard_loc": 1500,
+        "target_minutes": 15,
+        "hard_minutes": 20
+      },
+      "write_surface": [
+        "evidence/architectural-recovery/ISS69/phase-d-d01-physics-browser-review-basis.v1.json",
+        "evidence/architectural-recovery/ISS69/phase-d-d01-physics-core1a.v1.json",
+        "evidence/architectural-recovery/ISS69/phase-d-d01-physics-core2-attempt-support.v1.json",
+        "evidence/architectural-recovery/ISS69/phase-d-d01-physics-demand-crux.v1.json",
+        "evidence/architectural-recovery/ISS69/phase-d-d01-physics-difficulty.v1.json",
+        "evidence/architectural-recovery/ISS69/phase-d-d01-physics-final-validation.v1.json",
+        "evidence/architectural-recovery/ISS69/phase-d-d01-physics-representation-binding.v1.json",
+        "tests/test_phase_d_physics_qualification.py"
+      ],
+      "units": [
+        {
+          "id": "D01.1",
+          "weight": 1,
+          "outcome": "Primary demand and exact crux binding qualify.",
+          "verify": "python3 -m unittest tests.test_phase_d_physics_qualification"
+        },
+        {
+          "id": "D01.2",
+          "weight": 1,
+          "outcome": "Five-component difficulty derives the recorded band.",
+          "verify": "python3 -m unittest tests.test_phase_d_physics_qualification"
+        },
+        {
+          "id": "D01.3",
+          "weight": 1,
+          "outcome": "Core1A renders the recovered construction contract.",
+          "verify": "python3 -m unittest tests.test_phase_d_physics_qualification"
+        },
+        {
+          "id": "D01.4",
+          "weight": 1,
+          "outcome": "Core2 attempt and assistance timing remain protected.",
+          "verify": "python3 -m unittest tests.test_phase_d_physics_qualification"
+        },
+        {
+          "id": "D01.5",
+          "weight": 1,
+          "outcome": "Representation owner/case/data/asset binding fails closed.",
+          "verify": "python3 -m unittest tests.test_phase_d_physics_qualification"
+        },
+        {
+          "id": "D01.6",
+          "weight": 1,
+          "outcome": "Current browser/render evidence is exact and stale evidence is excluded.",
+          "verify": "learner-platform-code-tests exact-head workflow evidence"
+        }
+      ]
+    },
+    {
+      "ref": "reallaksh19/Grade9v3.5#110",
+      "kind": "LEAF",
+      "parent": "reallaksh19/Grade9v3.5#73",
+      "weight": 300,
+      "responsibility_id": "ISS69-D02-MATHEMATICS",
+      "primary_pr": "reallaksh19/Grade9v3.5#124",
+      "critical": true,
+      "work_class": "PRODUCT",
+      "outcome": "A truthfully sourced Mathematics specimen qualifies the recovered architecture without using #55 or changing canonical package bytes.",
+      "size_budget": {
+        "target_loc": 700,
+        "hard_loc": 1500,
+        "target_minutes": 15,
+        "hard_minutes": 20
+      },
+      "write_surface": [
+        ".github/workflows/phase-d-mathematics-qualification.yml",
+        "evidence/architectural-recovery/ISS69/d02/REP-MAT-LEQ-04-SOLUTION-LINE.qualification.svg",
+        "tests/iss69_d02_mathematics_fixture.py",
+        "tests/test_phase_d_mathematics_qualification.py"
+      ],
+      "units": [
+        {
+          "id": "D02.1",
+          "weight": 1,
+          "outcome": "NCERT custody remains truthful and canonical bytes stay untouched.",
+          "verify": "python3 -m unittest tests.test_phase_d_mathematics_qualification"
+        },
+        {
+          "id": "D02.2",
+          "weight": 1,
+          "outcome": "Fresh demand/crux/difficulty resolves canonically.",
+          "verify": "python3 -m unittest tests.test_phase_d_mathematics_qualification"
+        },
+        {
+          "id": "D02.3",
+          "weight": 1,
+          "outcome": "Core1A uses an exact qualification construction and owned visual.",
+          "verify": "python3 -m unittest tests.test_phase_d_mathematics_qualification"
+        },
+        {
+          "id": "D02.4",
+          "weight": 1,
+          "outcome": "Core2 authentic attempt/support remains bounded.",
+          "verify": "python3 -m unittest tests.test_phase_d_mathematics_qualification"
+        },
+        {
+          "id": "D02.5",
+          "weight": 1,
+          "outcome": "Concept detour returns to the exact source question.",
+          "verify": "python3 -m unittest tests.test_phase_d_mathematics_qualification"
+        },
+        {
+          "id": "D02.6",
+          "weight": 1,
+          "outcome": "Current rendered/browser evidence is retained and exact.",
+          "verify": "phase-d-mathematics-qualification workflow"
+        }
+      ]
+    },
+    {
+      "ref": "reallaksh19/Grade9v3.5#111",
+      "kind": "LEAF",
+      "parent": "reallaksh19/Grade9v3.5#73",
+      "weight": 300,
+      "responsibility_id": "ISS69-D03-CHEMISTRY",
+      "primary_pr": "reallaksh19/Grade9v3.5#120",
+      "critical": true,
+      "work_class": "PRODUCT",
+      "outcome": "Chemistry qualifies through subject-neutral Shared contracts while scientific semantics remain in Chemistry adapters/records.",
+      "size_budget": {
+        "target_loc": 700,
+        "hard_loc": 1500,
+        "target_minutes": 15,
+        "hard_minutes": 20
+      },
+      "write_surface": [
+        ".github/workflows/phase-d-chemistry-qualification.yml",
+        "evidence/architectural-recovery/ISS69/phase-d-d03-chemistry-final-validation.v1.json",
+        "tests/test_phase_d_chemistry_qualification.py"
+      ],
+      "units": [
+        {
+          "id": "D03.1",
+          "weight": 1,
+          "outcome": "Custody, demand and crux bind correctly.",
+          "verify": "python3 -m unittest tests.test_phase_d_chemistry_qualification"
+        },
+        {
+          "id": "D03.2",
+          "weight": 1,
+          "outcome": "Chemistry-specific semantics remain adapter/record-owned.",
+          "verify": "python3 -m unittest tests.test_phase_d_chemistry_qualification"
+        },
+        {
+          "id": "D03.3",
+          "weight": 1,
+          "outcome": "Core1A uses recovered construction contracts.",
+          "verify": "python3 -m unittest tests.test_phase_d_chemistry_qualification"
+        },
+        {
+          "id": "D03.4",
+          "weight": 1,
+          "outcome": "Core2 preserves attempt/support and diagnostic uncertainty.",
+          "verify": "python3 -m unittest tests.test_phase_d_chemistry_qualification"
+        },
+        {
+          "id": "D03.5",
+          "weight": 1,
+          "outcome": "Species/case representation binding remains correct.",
+          "verify": "python3 -m unittest tests.test_phase_d_chemistry_qualification"
+        },
+        {
+          "id": "D03.6",
+          "weight": 1,
+          "outcome": "Fresh render/browser evidence is retained with findings explicit.",
+          "verify": "phase-d-chemistry-qualification workflow"
+        }
+      ]
+    },
+    {
+      "ref": "reallaksh19/Grade9v3.5#112",
+      "kind": "LEAF",
+      "parent": "reallaksh19/Grade9v3.5#73",
+      "weight": 400,
+      "responsibility_id": "ISS69-D04-NEGATIVE-REPLAY",
+      "primary_pr": "reallaksh19/Grade9v3.5#121",
+      "critical": true,
+      "work_class": "GATE",
+      "outcome": "Known historical bad-agent behaviors are explicit falsifiers that current generic contracts reject for the intended semantic reasons.",
+      "size_budget": {
+        "target_loc": 700,
+        "hard_loc": 1500,
+        "target_minutes": 15,
+        "hard_minutes": 20
+      },
+      "write_surface": [
+        ".github/workflows/phase-d-historical-negative-qualification.yml",
+        "evidence/architectural-recovery/ISS69/phase-d-d04-historical-negative-final-validation.v1.json",
+        "tests/test_phase_d_historical_negative_replay.py"
+      ],
+      "units": [
+        {
+          "id": "D04.1",
+          "weight": 1,
+          "outcome": "#32 protected-W hint leakage is rejected.",
+          "verify": "python3 -m unittest tests.test_phase_d_historical_negative_replay"
+        },
+        {
+          "id": "D04.2",
+          "weight": 1,
+          "outcome": "#32 wrong-case/species representation is rejected.",
+          "verify": "python3 -m unittest tests.test_phase_d_historical_negative_replay"
+        },
+        {
+          "id": "D04.3",
+          "weight": 1,
+          "outcome": "#34 alternate QRT authority cannot substitute.",
+          "verify": "python3 -m unittest tests.test_phase_d_historical_negative_replay"
+        },
+        {
+          "id": "D04.4",
+          "weight": 1,
+          "outcome": "#36 count quotas cannot establish semantic sufficiency.",
+          "verify": "python3 -m unittest tests.test_phase_d_historical_negative_replay"
+        },
+        {
+          "id": "D04.5",
+          "weight": 1,
+          "outcome": "#38 invented facets/cross-question crux fail.",
+          "verify": "python3 -m unittest tests.test_phase_d_historical_negative_replay"
+        },
+        {
+          "id": "D04.6",
+          "weight": 1,
+          "outcome": "#49–#56 remain replay-required and non-accepting.",
+          "verify": "phase-d-historical-negative-qualification workflow"
+        }
+      ]
+    },
+    {
+      "ref": "reallaksh19/Grade9v3.5#113",
+      "kind": "LEAF",
+      "parent": "reallaksh19/Grade9v3.5#73",
+      "weight": 300,
+      "responsibility_id": "ISS69-D05-ACCEPTANCE",
+      "primary_pr": "reallaksh19/Grade9v3.5#126",
+      "critical": true,
+      "work_class": "GATE",
+      "outcome": "Fresh accepted QRT coverage is computed only from exact independently reviewed current rows, with unsupported cells reported honestly.",
+      "size_budget": {
+        "target_loc": 700,
+        "hard_loc": 1500,
+        "target_minutes": 15,
+        "hard_minutes": 20
+      },
+      "write_surface": [
+        ".github/workflows/phase-d-acceptance-synthesis.yml",
+        "evidence/architectural-recovery/ISS69/phase-d-d05-acceptance-synthesis.v1.json",
+        "tests/test_phase_d_acceptance_synthesis.py"
+      ],
+      "depends_on": [
+        "reallaksh19/Grade9v3.5#109",
+        "reallaksh19/Grade9v3.5#110",
+        "reallaksh19/Grade9v3.5#111",
+        "reallaksh19/Grade9v3.5#112"
+      ],
+      "units": [
+        {
+          "id": "D05.1",
+          "weight": 1,
+          "outcome": "Fresh candidate classifications are collected without legacy promotion.",
+          "verify": "python3 -m unittest tests.test_phase_d_acceptance_synthesis"
+        },
+        {
+          "id": "D05.2",
+          "weight": 1,
+          "outcome": "Difficulty evidence is re-derived from five components.",
+          "verify": "python3 -m unittest tests.test_phase_d_acceptance_synthesis"
+        },
+        {
+          "id": "D05.3",
+          "weight": 1,
+          "outcome": "Rendered evidence binds to exact current bytes/dependencies.",
+          "verify": "python3 -m unittest tests.test_phase_d_acceptance_synthesis"
+        },
+        {
+          "id": "D05.4",
+          "weight": 1,
+          "outcome": "Independent reviewer provenance is required rather than inferred.",
+          "verify": "python3 -m unittest tests.test_phase_d_acceptance_synthesis"
+        },
+        {
+          "id": "D05.5",
+          "weight": 1,
+          "outcome": "Accepted 4x7 coverage counts accepted rows only.",
+          "verify": "python3 -m unittest tests.test_phase_d_acceptance_synthesis"
+        },
+        {
+          "id": "D05.6",
+          "weight": 1,
+          "outcome": "Unsupported cells are enumerated without relabeling.",
+          "verify": "phase-d-acceptance-synthesis workflow"
+        }
+      ]
+    },
+    {
+      "ref": "reallaksh19/Grade9v3.5#114",
+      "kind": "LEAF",
+      "parent": "reallaksh19/Grade9v3.5#73",
+      "weight": 200,
+      "responsibility_id": "ISS69-D06-FREEZE",
+      "primary_pr": "reallaksh19/Grade9v3.5#127",
+      "critical": true,
+      "work_class": "GATE",
+      "outcome": "Phase D freezes an exact multi-PR source/evidence frontier and hands Phase E explicit findings/non-grants without merging child branches.",
+      "size_budget": {
+        "target_loc": 700,
+        "hard_loc": 1500,
+        "target_minutes": 15,
+        "hard_minutes": 20
+      },
+      "write_surface": [
+        ".github/workflows/phase-d-freeze-handoff.yml",
+        "evidence/architectural-recovery/ISS69/phase-d-d06-freeze-handoff.v1.json",
+        "evidence/architectural-recovery/ISS69/phase-d-delp-execution-graph.v32.json",
+        "tests/test_phase_d_freeze_handoff.py"
+      ],
+      "depends_on": [
+        "reallaksh19/Grade9v3.5#109",
+        "reallaksh19/Grade9v3.5#110",
+        "reallaksh19/Grade9v3.5#111",
+        "reallaksh19/Grade9v3.5#112",
+        "reallaksh19/Grade9v3.5#113"
+      ],
+      "units": [
+        {
+          "id": "D06.1",
+          "weight": 1,
+          "outcome": "Exact child PR heads and changed-file inventories are frozen.",
+          "verify": "python3 -m unittest tests.test_phase_d_freeze_handoff"
+        },
+        {
+          "id": "D06.2",
+          "weight": 1,
+          "outcome": "No Phase-D child contains a Shared production delta.",
+          "verify": "python3 -m unittest tests.test_phase_d_freeze_handoff"
+        },
+        {
+          "id": "D06.3",
+          "weight": 1,
+          "outcome": "Current rendered/browser receipts distinguish retained from ephemeral evidence.",
+          "verify": "python3 -m unittest tests.test_phase_d_freeze_handoff"
+        },
+        {
+          "id": "D06.4",
+          "weight": 1,
+          "outcome": "D05 accepted/failing/unsupported matrix summary is imported exactly.",
+          "verify": "python3 -m unittest tests.test_phase_d_freeze_handoff"
+        },
+        {
+          "id": "D06.5",
+          "weight": 1,
+          "outcome": "Returned architecture findings remain explicit and unresolved where appropriate.",
+          "verify": "python3 -m unittest tests.test_phase_d_freeze_handoff"
+        },
+        {
+          "id": "D06.6",
+          "weight": 1,
+          "outcome": "Phase-E handoff preserves blockers, non-grants and exact protocol provenance.",
+          "verify": "phase-d-freeze-handoff workflow"
+        }
+      ]
+    }
+  ]
+}
