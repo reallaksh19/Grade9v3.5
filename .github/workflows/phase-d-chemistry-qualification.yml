@@ -1,0 +1,54 @@
+name: phase-d-chemistry-qualification
+
+on:
+  pull_request:
+    paths:
+      - "tests/test_phase_d_chemistry_qualification.py"
+      - "evidence/blueprint-cycles/ISS32/**"
+      - "Chemistry/adapter/**"
+      - "Shared/tools/render_core.py"
+      - "Shared/tools/core2_v2.py"
+      - "Shared/web/interactive-page-blueprints.v1.json"
+      - ".github/workflows/phase-d-chemistry-qualification.yml"
+  workflow_dispatch:
+
+jobs:
+  chemistry-qualification:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install qualification dependencies
+        run: |
+          pip install --quiet jsonschema pypdf
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Run Chemistry qualification contracts
+        run: python3 -m unittest tests.test_phase_d_chemistry_qualification
+      - name: Render ISS32 through active production renderer
+        run: |
+          rm -rf /tmp/iss69-d03-chemistry
+          python3 Shared/tools/render_core.py build \
+            --manifest evidence/blueprint-cycles/ISS32/inputs/product.manifest.json \
+            --out /tmp/iss69-d03-chemistry \
+            --mode PAGES
+      - name: Audit current rendered Chemistry pages
+        run: |
+          node tools/site-audit/core-page-audit.mjs \
+            /tmp/iss69-d03-chemistry \
+            --profile tablet-12.7 \
+            --http-root /tmp/iss69-d03-chemistry \
+            --json /tmp/iss69-d03-chemistry-audit.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: iss69-d03-chemistry-qualification
+          path: |
+            /tmp/iss69-d03-chemistry
+            /tmp/iss69-d03-chemistry-audit.json
+          if-no-files-found: error
+          retention-days: 14
