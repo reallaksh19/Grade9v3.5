@@ -102,6 +102,26 @@ for (const profile of profiles) {
       bannerText: banner ? banner.textContent.trim() : '',
       coreCard: rect('[data-g9-unit="core-contract"]'),
       fixtureCard: rect('[data-g9-unit="fixture-boundary"]'),
+      smallControls: [...document.querySelectorAll('a[href], button, input, select, textarea, summary, [role=button]')]
+        .filter((el) => {
+          const r = el.getBoundingClientRect();
+          const style = getComputedStyle(el);
+          return r.width > 0 && r.height > 0 && style.display !== 'none' && style.visibility !== 'hidden';
+        })
+        .filter((el) => {
+          const r = el.getBoundingClientRect();
+          return Math.min(r.width, r.height) < 47.5;
+        })
+        .map((el) => {
+          const r = el.getBoundingClientRect();
+          return {
+            tag: el.tagName.toLowerCase(),
+            label: (el.getAttribute('aria-label') || el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 100),
+            href: el.getAttribute('href'),
+            width: Math.round(r.width * 10) / 10,
+            height: Math.round(r.height * 10) / 10,
+          };
+        }),
     };
   });
 
@@ -178,6 +198,9 @@ for (const profile of profiles) {
   report.profiles.push(result);
 
   if (metrics.overflow > 1) failures.push(`${profile.id}: horizontal overflow ${metrics.overflow}px`);
+  if (metrics.smallControls.length) {
+    failures.push(`${profile.id}: controls under 48px: ${metrics.smallControls.map((x) => `${x.tag} "${x.label}" ${x.width}x${x.height}`).join('; ')}`);
+  }
   if (!metrics.bannerVisible || !/not accepted/.test(metrics.bannerText)) {
     failures.push(`${profile.id}: sandbox draft banner is not visibly present`);
   }
