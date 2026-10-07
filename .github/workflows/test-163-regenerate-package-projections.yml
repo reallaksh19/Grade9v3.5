@@ -31,7 +31,24 @@ jobs:
         run: |
           changed="$(git diff --name-only)"
           printf '%s\n' "$changed"
-          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^(tools/data\.js|public/data/data\.js|public/test/.*|docs/data/data\.js|docs/test/.*|docs/\.pages-manifest\.json)$' || true)"
+          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^(tools/data\.js|public/data/data\.js|public/test/.*|docs/data/data\.js|docs/tools/data\.js|docs/test/.*|docs/\.pages-manifest\.json)
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected generated changes:" >&2
+            printf '%s\n' "$unexpected" >&2
+            exit 1
+          fi
+      - name: Commit governed generated outputs
+        run: |
+          if git diff --quiet; then
+            echo "Generated outputs already current"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/data.js public/data/data.js public/test docs/data/data.js docs/tools/data.js docs/test docs/.pages-manifest.json
+          git commit -m "build(test): project minimal Rational Numbers package"
+          git push origin HEAD:test/163-minimal-package
+ || true)"
           if [ -n "$unexpected" ]; then
             echo "Unexpected generated changes:" >&2
             printf '%s\n' "$unexpected" >&2
