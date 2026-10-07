@@ -1,8 +1,5 @@
 name: learner-platform-code-tests
 
-permissions:
-  contents: write
-
 # Informational code regression signal. Content findings never decide publication.
 on:
   push:
@@ -20,19 +17,6 @@ jobs:
           python-version: "3.11"
       - name: Install test dependencies
         run: pip install --quiet jsonschema pypdf
-      - name: ISS191 one-shot M3 ledger amendment
-        if: github.event_name == 'push' && github.ref == 'refs/heads/integration/iss191-clean-core-recovery'
-        run: |
-          python3 Shared/tools/migrate_math_linear.py --amend             MIC-MAT-LEQ-04-TWO-VARIABLES-LINE-OF-SOLUTIONS             REL-MATH-EXACTNESS             REL-MAT-LEQ-03-REDUCTION             REL-MAT-LEQ-03-REDUCED-OUTCOMES             REL-MAT-LEQ-04-TWO-VARIABLE-FORM             REL-MAT-LEQ-04-STRAIGHT-LINE             --reason "Issue #29 academic-support repair d8262dc changed these six canonical records after the M3 fold"
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add Mathematics/units/linear-equations/M3-MIGRATION.json
-          if git diff --cached --quiet; then
-            echo "M3 ledger already current"
-          else
-            git commit -m "ISS191 U5: amend M3 ledger for Issue 29 academic repairs"
-            git push origin HEAD:integration/iss191-clean-core-recovery
-          fi
       - name: Diagnostic evidence contract
         run: python3 -m unittest tests.test_diagnostic_evidence_contract
       - name: U09 diagnostic caller migration
