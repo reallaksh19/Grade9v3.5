@@ -1,0 +1,45 @@
+name: topic-atlas-browser
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/topic-atlas-browser.yml"
+      - "public/js/topic-atlas.js"
+      - "docs/js/topic-atlas.js"
+      - "public/test/atlas/index.html"
+      - "tests/test_area_browser.mjs"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  atlas-browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Topic Atlas Pages projection is current
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from Shared.tools import build_pages_site
+
+          public = Path("public/js/topic-atlas.js").read_bytes()
+          expected = build_pages_site._public_payload("js/topic-atlas.js", public)
+          actual = Path("docs/js/topic-atlas.js").read_bytes()
+          if actual != expected:
+              raise SystemExit("docs/js/topic-atlas.js is not the governed Pages projection of public/js/topic-atlas.js")
+          PY
+
+      - name: TEST Atlas empty/populated tablet contract
+        run: node tests/test_area_browser.mjs --atlas-only
