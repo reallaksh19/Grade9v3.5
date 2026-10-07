@@ -81,7 +81,7 @@ class PhaseDChemistryQualification(unittest.TestCase):
         self.assertEqual(self.adapter["subject"], "Chemistry")
         self.assertIn("Chemistry/adapter/CoreContracts.json", self.adapter["basis_refs"])
         self.assertIn("EXPLAIN", self.adapter["demands"])
-        self.assertIn("representation level", self.contracts["subject_specific_notes"]["representation_triplet"].lower())
+        self.assertIn("which level it is operating at", self.contracts["subject_specific_notes"]["representation_triplet"].lower())
 
         shared_renderer = (REPO / "Shared/tools/render_core.py").read_text(encoding="utf-8")
         for token in ("OWN-ISSUE32-HYBRID-02", "OWN-ISSUE32-HYBRID-04", "HCHO", "NH3"):
