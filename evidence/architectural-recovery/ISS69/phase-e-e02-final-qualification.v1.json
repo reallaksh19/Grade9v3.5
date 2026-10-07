@@ -12,22 +12,18 @@
   },
   "generated_candidate": {
     "branch": "integration/iss69-e02-final-qualification",
-    "generated_head_sha": "7472dfc4300f43163cadbdef0ea4d2574836f51a",
-    "generator_workflow_run": 37570813527,
-    "regenerate_job": 112628771888,
-    "qualify_job": 112630584143,
-    "retained_artifact_id": 11460539604,
-    "artifact_zip_sha256": "a15542588cfecd599779de1eb925380aea340c26f8fcc9ba781bc407f7407b11"
+    "generated_head_sha": "ffa08aceef0ae30f8cf6fe28f5f110a42271282f",
+    "generator_workflow_run": 37572087497,
+    "regenerate_job": 112632753149,
+    "qualify_job": 112633113067,
+    "retained_artifact_id": 11461611411,
+    "artifact_zip_sha256": "5718a3d655e4016ad40f57339163f042959336b27d5ae4ef3d75ec59c49f7afe"
   },
   "generated_bytes": {
     "docs/architecture-manifest.json": {
-      "freshness_contract": "build_manifest.py --check on final head",
-      "candidate_observation": {
-        "head_sha": "7472dfc4300f43163cadbdef0ea4d2574836f51a",
-        "blob": "f706f866cec5f12b5e370f86f192e35744ce7781",
-        "sha256": "3046ca695e05c4d45e445b0e721363cb4d274f81d5e9b9c96bfeea2a3c913732"
-      },
-      "note": "The architecture manifest includes tests/**, so its exact bytes legitimately change when the E02 test changes. Final freshness is therefore a live --check gate, not a self-referential evidence hash."
+      "blob": "38923b3faa60ad7d782fae72fd0a89f8598f0a4e",
+      "sha256": "b7f9d0390484db2377c0f00f223aa789332b30805d54d5fed753c8a7727ffb28",
+      "freshness_contract": "build_manifest.py --check on final head"
     },
     "public/core-learning/data.js": {
       "blob": "27804b2a44f0ce4a8918ea330aa9f7c43a71ba42",
@@ -64,9 +60,9 @@
     "render_receipt_sha256": "b4868f361d3179514de0ae2ef56fa8bdf93755308cda005c55dcb0b013eb7f9f"
   },
   "browser": {
-    "workflow_run": 37570813527,
-    "job_id": 112630584143,
-    "artifact_id": 11460539604,
+    "workflow_run": 37572087497,
+    "job_id": 112633113067,
+    "artifact_id": 11461611411,
     "viewports": [
       "tablet-1366-landscape",
       "tablet-1440-landscape",
@@ -108,8 +104,8 @@
     "rule": "A review receipt is current only for the render digest it actually reviewed."
   },
   "broad_ci": {
-    "state": "PENDING_FINAL_EVIDENCE_HEAD",
-    "requirement": "Final human-authored evidence head must pass exact test-ID delta or add no failures versus the verified predecessor; inherited absolute debt remains visible."
+    "state": "READY_FOR_FINAL_EVIDENCE_HEAD_CI",
+    "requirement": "This evidence-only commit triggers the final human-authored exact-head guardrail/canonical/learner-platform runs. E02.2 is VERIFIED only after exact test-ID/no-new-failure reconciliation."
   },
   "non_grants": {
     "merge_to_main": false,
@@ -118,5 +114,22 @@
     "independent_academic_acceptance": false,
     "learning_effectiveness": false
   },
-  "evidence_binding_note": "The retained browser/render artifact is bound by immutable input blobs and live re-render assertions. Final-head broad CI is recorded separately and may update without changing learner bytes."
+  "evidence_binding_note": "The retained browser/render artifact is bound by immutable input blobs and live re-render assertions. Final-head broad CI is recorded separately and may update without changing learner bytes.",
+  "final_dedicated_qualification": {
+    "head_sha": "ffa08aceef0ae30f8cf6fe28f5f110a42271282f",
+    "tests": {
+      "phase_e_final_qualification": {
+        "run": 6,
+        "result": "PASS",
+        "skips": 0
+      },
+      "manifest_webdata_pages": {
+        "run": 19,
+        "result": "PASS"
+      }
+    },
+    "generator_freshness": "PASS",
+    "browser_layout": "PASS",
+    "core2_state_round_trip": "PASS"
+  }
 }
