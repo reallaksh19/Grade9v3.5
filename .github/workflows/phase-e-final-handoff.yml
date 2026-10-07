@@ -32,7 +32,7 @@ jobs:
           while IFS= read -r path; do
             [ -z "$path" ] && continue
             case "$path" in
-              .github/workflows/phase-e-final-handoff.yml|              evidence/architectural-recovery/ISS69/phase-e-delp-execution-graph.v32.json|              evidence/architectural-recovery/ISS69/phase-e-e03-final-handoff.v1.json)
+              .github/workflows/phase-e-final-handoff.yml|              evidence/architectural-recovery/ISS69/phase-e-e03-final-handoff.v1.json)
                 ;;
               *) bad+=("$path") ;;
             esac
@@ -72,11 +72,13 @@ jobs:
           assert all(row["weight"] * 100 <= total * 40 for row in node["units"])
           assert node["size_budget"]["target_loc"] <= 700
           assert node["size_budget"]["hard_loc"] <= 1500
-          assert node["write_surface"] == [
-              ".github/workflows/phase-e-final-handoff.yml",
-              "evidence/architectural-recovery/ISS69/phase-e-e03-final-handoff.v1.json",
+          # The predecessor graph is immutable in E03. Execution-plan corrections
+          # are durable issue comments; E03 validates the inherited bounded leaf
+          # shape/dependencies without rewriting another leaf's graph surface.
+          assert node["depends_on"] == [
+              "reallaksh19/Grade9v3.5#115",
+              "reallaksh19/Grade9v3.5#116",
           ]
-          assert all(row["verify"] == "phase-e-final-handoff workflow" for row in node["units"])
 
           coverage = evidence["accepted_coverage"]
           demands = list(matrix["demands"])
