@@ -54,26 +54,6 @@
       "nodes": [
         "reallaksh19/Grade9v3.5#116"
       ]
-    },
-    {
-      "id": "ISS69-E03-ARCH-MANIFEST-MECHANICAL-20261007",
-      "kind": "POLICY_CHANGE",
-      "reason": "The declared E03 unittest lives under tests/**, which is indexed by Shared/tools/build_manifest.py. Add the Phase-E graph as plan-authority surface and docs/architecture-manifest.json as generated/mechanical output so E03 does not introduce freshness debt.",
-      "owner_authorized": true,
-      "owner_basis": "Active-session continuation under owner-directed engineering-pr-delivery-v3.2 after E03 test/manifest dependency was discovered.",
-      "nodes": [
-        "reallaksh19/Grade9v3.5#117"
-      ]
-    },
-    {
-      "id": "ISS69-E03-EXCLUSIVE-SURFACE-CORRECTION-20261007",
-      "kind": "POLICY_CHANGE",
-      "reason": "Phase-E leaf write surfaces are exclusive. E03 therefore validates final evidence inline in its owned workflow, does not own the shared Phase-E graph as a leaf surface, does not add tests/** that would force generated-manifest overlap, and leaves docs/architecture-manifest.json byte-identical to the E02 predecessor.",
-      "owner_authorized": true,
-      "owner_basis": "Active-session owner instruction to decompose and continue under engineering-pr-delivery-v3.2 after E01 successor validation exposed the collision.",
-      "nodes": [
-        "reallaksh19/Grade9v3.5#117"
-      ]
     }
   ],
   "nodes": [
@@ -228,7 +208,8 @@
       },
       "write_surface": [
         ".github/workflows/phase-e-final-handoff.yml",
-        "evidence/architectural-recovery/ISS69/phase-e-e03-final-handoff.v1.json"
+        "evidence/architectural-recovery/ISS69/phase-e-e03-final-handoff.v1.json",
+        "tests/test_phase_e_final_handoff.py"
       ],
       "depends_on": [
         "reallaksh19/Grade9v3.5#115",
@@ -239,25 +220,25 @@
           "id": "E03.1",
           "weight": 1,
           "outcome": "Accepted fresh 4x7 coverage is recomputed from current admissible rows only.",
-          "verify": "phase-e-final-handoff workflow"
+          "verify": "python3 -m unittest tests.test_phase_e_final_handoff"
         },
         {
           "id": "E03.2",
           "weight": 1,
           "outcome": "Unsupported cells and limitations remain explicit.",
-          "verify": "phase-e-final-handoff workflow"
+          "verify": "python3 -m unittest tests.test_phase_e_final_handoff"
         },
         {
           "id": "E03.3",
           "weight": 1,
           "outcome": "Exact PR/material/evidence frontier is frozen.",
-          "verify": "phase-e-final-handoff workflow"
+          "verify": "python3 -m unittest tests.test_phase_e_final_handoff"
         },
         {
           "id": "E03.4",
           "weight": 1,
           "outcome": "Compatibility/migration references point to E01/E02 exact evidence.",
-          "verify": "phase-e-final-handoff workflow"
+          "verify": "python3 -m unittest tests.test_phase_e_final_handoff"
         },
         {
           "id": "E03.5",
