@@ -44,6 +44,16 @@
         "reallaksh19/Grade9v3.5#116",
         "reallaksh19/Grade9v3.5#117"
       ]
+    },
+    {
+      "id": "ISS69-E02-FINAL-GENERATED-WRITE-SURFACE-20261007",
+      "kind": "POLICY_CHANGE",
+      "reason": "E02 final exact-head qualification must regenerate governed derived artifacts on the final integration tree itself after #108 proved the regeneration path. This expands only the declared mechanical write surface; unit shares and Phase-E denominator are unchanged.",
+      "owner_authorized": true,
+      "owner_basis": "Active-session continuation under the Owner-directed V3.2 protocol after #108 exact-head VERIFIED handoff.",
+      "nodes": [
+        "reallaksh19/Grade9v3.5#116"
+      ]
     }
   ],
   "nodes": [
@@ -126,7 +136,18 @@
       "write_surface": [
         ".github/workflows/phase-e-final-qualification.yml",
         "evidence/architectural-recovery/ISS69/phase-e-e02-final-qualification.v1.json",
-        "tests/test_phase_e_final_qualification.py"
+        "tests/test_phase_e_final_qualification.py",
+        "docs/architecture-manifest.json",
+        "tools/data.js",
+        "public/data/data.js",
+        "public/core-learning/",
+        "public/js/core-learning/",
+        "standalone/core-learning/",
+        "docs/.pages-manifest.json",
+        "docs/data/data.js",
+        "docs/core-learning/",
+        "docs/js/core-learning/",
+        "docs/tools/data.js"
       ],
       "depends_on": [
         "reallaksh19/Grade9v3.5#115"
