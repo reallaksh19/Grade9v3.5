@@ -33,7 +33,7 @@
       "units": [
         "E03.5"
       ],
-      "state": "NOT_STARTED"
+      "state": "COMPLETE"
     }
   },
   "accepted_coverage": {
@@ -242,7 +242,7 @@
     ],
     "conclusion": "No post-D05 evidence satisfies the independent rendered-review condition, so accepted 4x7 coverage remains 0/28. Unsupported cells are preserved rather than inferred, relabelled or backfilled from technical qualification."
   },
-  "status": "MODULES_A_B_COMPLETE_MODULE_C_PENDING",
+  "status": "MODULES_A_B_C_COMPLETE_PENDING_EXACT_HEAD_VALIDATION",
   "frontier": {
     "semantic_contract": {
       "issue": 66,
@@ -411,5 +411,53 @@
         "blob": "d085a83853abe58297df6d731be2901bfde5d5ff"
       }
     }
+  },
+  "programme_result": {
+    "result": "ARCHITECTURAL_RECOVERY_RESPONSIBILITY_COMPLETE_WITH_EXPLICIT_LIMITATIONS",
+    "interpretation": "The #69 architectural-recovery responsibility has completed its declared recovery, qualification, compatibility, generated-freshness and handoff work. This is not a claim that academic 4x7 acceptance, release, publication or learning effectiveness has been achieved."
+  },
+  "limitations": [
+    {
+      "id": "UNSUPPORTED_QRT_COVERAGE",
+      "state": "28_CELLS_UNSUPPORTED",
+      "detail": "Accepted current independently reviewed coverage remains 0/28; all cells require future independently reviewed current rows before they can count."
+    },
+    {
+      "id": "INHERITED_REPOSITORY_DEBT",
+      "state": "109_NOT_NEW",
+      "detail": "E02 exact-ID comparison fixed three generated freshness failures and retained 109 inherited failing/error test IDs with zero new failures."
+    },
+    {
+      "id": "INDEPENDENT_ACADEMIC_ACCEPTANCE",
+      "state": "NOT_GRANTED",
+      "detail": "Technical cross-subject, render and browser qualification does not substitute for independent rendered academic review."
+    },
+    {
+      "id": "APPENDIX_A_PROMOTION",
+      "state": "SEPARATE_NOT_GRANTED",
+      "detail": "Appendix-A TEST browser evidence is complete, but canonical Mathematics/CBSE promotion, release and publication remain separate decisions."
+    },
+    {
+      "id": "OPEN_DRAFT_PRS",
+      "state": "NOT_MERGED_BY_E03",
+      "detail": "Recovery/integration/application PRs remain separate reviewable material; E03 does not merge them or imply main contains their bytes."
+    }
+  ],
+  "non_grants": {
+    "merge_to_main": false,
+    "golden_promotion": false,
+    "learner_publication": false,
+    "independent_academic_acceptance": false,
+    "learning_effectiveness": false
+  },
+  "task_result": {
+    "RESULT_SCOPE": "RESPONSIBILITY",
+    "COVERAGE": "architectural recovery programme #69",
+    "RESPONSIBILITY_COMPLETE": "YES",
+    "ACCEPTED_QRT_COVERAGE": "0/28"
+  },
+  "exact_head_validation": {
+    "state": "PENDING_FINAL_WORKFLOW_AND_STANDARD_CI",
+    "requirement": "Regenerate docs/architecture-manifest.json through Shared/tools/build_manifest.py after adding the E03 test, then pass the dedicated E03 contract and reconcile standard exact-head CI without adding a new failure."
   }
 }
