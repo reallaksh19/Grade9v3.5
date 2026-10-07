@@ -1138,7 +1138,7 @@
                         <div style="margin-bottom:6px;padding:6px 8px;background:var(--bg);border:1px solid var(--border);border-radius:4px;">
                           <div style="display:flex;justify-content:space-between;align-items:center;">
                             <strong style="font-size:11px;font-family:var(--font-mono);color:var(--accent);">${escapeHtml(q.id)}</strong>
-                            <a href="../../question-bank/index.html?q=${encodeURIComponent(q.id)}#${encodeURIComponent(q.id)}" style="font-size:11px;color:var(--accent);text-decoration:none;" target="_blank">Open in Question Bank &nearr;</a>
+                            <a href="../../question-bank/index.html?q=${encodeURIComponent(q.id)}#${encodeURIComponent(q.id)}" style="display:inline-flex;align-items:center;min-height:48px;min-width:48px;padding:0 8px;font-size:14px;line-height:1.35;color:var(--accent);text-decoration:none;" target="_blank">Open in Question Bank &nearr;</a>
                           </div>
                           ${q.stem ? `<div style="font-size:11px;color:var(--text-muted);margin-top:2px;">${escapeHtml(q.stem)}</div>` : ''}
                         </div>
