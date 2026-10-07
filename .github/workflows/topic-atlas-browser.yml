@@ -28,8 +28,18 @@ jobs:
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
 
-      - name: Topic Atlas public/docs runtime parity
-        run: cmp public/js/topic-atlas.js docs/js/topic-atlas.js
+      - name: Topic Atlas Pages projection is current
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from Shared.tools import build_pages_site
+
+          public = Path("public/js/topic-atlas.js").read_bytes()
+          expected = build_pages_site._public_payload("js/topic-atlas.js", public)
+          actual = Path("docs/js/topic-atlas.js").read_bytes()
+          if actual != expected:
+              raise SystemExit("docs/js/topic-atlas.js is not the governed Pages projection of public/js/topic-atlas.js")
+          PY
 
       - name: TEST Atlas empty/populated tablet contract
         run: node tests/test_area_browser.mjs --atlas-only
