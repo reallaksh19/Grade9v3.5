@@ -25,6 +25,7 @@ VALIDATION_RECEIPTS = [
     REPO / "TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json",
 ]
 NUMBER_SYSTEMS_VALIDATION = REPO / "TEST/candidates/ncert-exemplar-g9-math-u01-q01-q10.validation.json"
+NUMBER_SYSTEMS_VALIDATION_Q11_Q20 = REPO / "TEST/candidates/ncert-exemplar-g9-math-u01-q11-q20.validation.json"
 
 
 class TestTestQuestionBank(unittest.TestCase):
@@ -40,18 +41,18 @@ class TestTestQuestionBank(unittest.TestCase):
         self.assertEqual(len(rows), 210)
         self.assertEqual(len({q["id"] for q in rows}), 210)
         self.assertEqual(projection["academic_validation_status"], "PER_QUESTION")
-        self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 170, "VALIDATED": 39})
+        self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 160, "VALIDATED": 49})
         self.assertEqual(
             sum(q["text_verification_status"] == "TEXT_VERIFIED_AGAINST_OFFICIAL" for q in rows),
             210,
         )
-        self.assertEqual(sum(q["academic_validation_status"] == "VALIDATED" for q in rows), 39)
-        self.assertEqual(sum(q["academic_validation_status"] == "UNVALIDATED" for q in rows), 170)
+        self.assertEqual(sum(q["academic_validation_status"] == "VALIDATED" for q in rows), 49)
+        self.assertEqual(sum(q["academic_validation_status"] == "UNVALIDATED" for q in rows), 160)
         self.assertEqual(sum(q["academic_validation_status"] == "HOLD" for q in rows), 1)
         validated = {q["id"] for q in rows if q["academic_validation_status"] == "VALIDATED"}
         expected_validated = {f"ncert-exemplar-g9-math-u02-q{number:02d}" for number in range(1, 31)}
         expected_validated.remove("ncert-exemplar-g9-math-u02-q23")
-        expected_validated |= {f"ncert-exemplar-g9-math-u01-q{number:02d}" for number in range(1, 11)}
+        expected_validated |= {f"ncert-exemplar-g9-math-u01-q{number:02d}" for number in range(1, 21)}
         self.assertEqual(validated, expected_validated)
         held = {q["id"] for q in rows if q["academic_validation_status"] == "HOLD"}
         self.assertEqual(held, {"ncert-exemplar-g9-math-u02-q23"})
@@ -170,6 +171,33 @@ class TestTestQuestionBank(unittest.TestCase):
         q7_validation = rows[6]["academic_validation"]
         self.assertIn("stem-only digest collision", q7_validation["convention_note"])
         self.assertIn("not duplicate items", q7_validation["convention_note"])
+        self.assertFalse(receipt["authority_boundary"]["production_question_bank_admission"])
+        self.assertFalse(receipt["authority_boundary"]["atlas_rungs_enrichment"])
+
+    def test_number_systems_q11_q20_validation_receipt_is_source_bound_and_non_publishing(self):
+        schema = json.loads(VALIDATION_SCHEMA.read_text(encoding="utf-8"))
+        receipt = json.loads(NUMBER_SYSTEMS_VALIDATION_Q11_Q20.read_text(encoding="utf-8"))
+        errors = sorted(Draft202012Validator(schema).iter_errors(receipt), key=lambda e: list(e.path))
+        self.assertEqual([error.message for error in errors], [])
+
+        expected_ids = [f"ncert-exemplar-g9-math-u01-q{number:02d}" for number in range(11, 21)]
+        rows = receipt["records"]
+        self.assertEqual([row["source_id"] for row in rows], expected_ids)
+        source = {row["id"]: row for row in self.questions}
+
+        for row in rows:
+            original = source[row["source_id"]]
+            self.assertEqual(row["original_identifier"], original["original_identifier"])
+            self.assertEqual(row["stem_sha256"], original["stem_sha256"])
+            self.assertEqual(row["source_text_verification"], original["text_verification_status"])
+            self.assertEqual(row["official_answer_text"], original["official_answer_text"])
+            self.assertEqual(row["official_answer_locator"], original["answer_key_locator"])
+            validation = row["academic_validation"]
+            self.assertEqual(validation["status"], "PASS")
+            self.assertTrue(validation["admission_eligible"])
+            self.assertEqual(validation["independent_result"], original["official_answer_text"])
+            self.assertTrue(validation["reasoning"])
+
         self.assertFalse(receipt["authority_boundary"]["production_question_bank_admission"])
         self.assertFalse(receipt["authority_boundary"]["atlas_rungs_enrichment"])
 
