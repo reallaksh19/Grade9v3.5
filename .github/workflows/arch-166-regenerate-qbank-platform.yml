@@ -1,0 +1,60 @@
+name: arch-166-regenerate-qbank-platform
+
+on:
+  push:
+    branches:
+      - "fix/166-qbank-platform-test-isolation"
+    paths:
+      - ".github/workflows/arch-166-regenerate-qbank-platform.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/166-qbank-platform-test-isolation
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet jsonschema
+      - name: Rebuild canonical Question Bank platform
+        run: |
+          python3 Shared/tools/build_question_bank_platform.py --write
+          python3 - <<'PY'
+          from pathlib import Path
+          from Shared.tools import build_question_bank_platform
+          platform = build_question_bank_platform.build(Path.cwd())
+          assert platform["catalog"]["counts"]["questions"] == 310
+          assert all(row.get("label") != "TEST" for row in platform["catalog"].get("subjects", []))
+          assert all(row.get("subject") != "TEST" for row in platform["questions"].get("questions", []))
+          assert all(row.get("subject") != "TEST" for row in platform["search"].get("documents", []) if row.get("kind") == "question")
+          PY
+          python3 Shared/tools/build_pages_site.py
+      - name: Refuse unexpected write surface
+        run: |
+          changed="$(git diff --name-only)"
+          printf '%s\n' "$changed"
+          unexpected="$(printf '%s\n' "$changed" | grep -Ev '^(public/data/question-bank-(catalog|search|questions|resources|manifest)\.js|public/data/question-bank-details/.*\.js|artifacts/question-bank/(dedup-report|lineage|build-receipt)\.json|docs/data/question-bank-(catalog|search|questions|resources|manifest)\.js|docs/data/question-bank-details/.*\.js|docs/\.pages-manifest\.json)$' || true)"
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected generated changes:" >&2
+            printf '%s\n' "$unexpected" >&2
+            exit 1
+          fi
+      - name: Commit governed artifacts
+        run: |
+          if git diff --quiet; then
+            echo "Question Bank artifacts already current"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/question-bank-catalog.js public/data/question-bank-search.js public/data/question-bank-questions.js public/data/question-bank-resources.js public/data/question-bank-manifest.js public/data/question-bank-details
+          git add artifacts/question-bank/dedup-report.json artifacts/question-bank/lineage.json artifacts/question-bank/build-receipt.json
+          git add docs/data/question-bank-catalog.js docs/data/question-bank-search.js docs/data/question-bank-questions.js docs/data/question-bank-resources.js docs/data/question-bank-manifest.js docs/data/question-bank-details docs/.pages-manifest.json
+          git commit -m "build(qbank): scope platform artifacts to canonical demand"
+          git push origin HEAD:fix/166-qbank-platform-test-isolation
