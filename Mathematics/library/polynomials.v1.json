@@ -2,10 +2,10 @@
   "schema_version": "0.2.0",
   "package_id": "LIB-MATH-POLYNOMIALS",
   "title": "Polynomial Algebra and Degree Constraints",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "status": "CANDIDATE",
   "subject": "Mathematics",
-  "scope_summary": "Canonical Mathematics Polynomials package with 20 reviewed NCERT Exemplar foundation questions admitted to the production Question Bank after source-bound independent validation, plus 10 owner-supplied ISS55 competition questions staged as CANDIDATE with production Question Bank admission disabled pending Owner acceptance.",
+  "scope_summary": "Canonical Mathematics Polynomials package with 29 independently validated NCERT Exemplar Unit 2 questions admitted to the production Question Bank; source record Ex 2.2 Q2(i) remains held for an official wording/key conflict, and 10 owner-supplied ISS55 competition questions remain CANDIDATE with production admission disabled pending Owner acceptance.",
   "curriculum_mappings": [],
   "resources": [
     {
@@ -472,6 +472,24 @@
       "success_criterion": "Chooses an appropriate identity, performs the algebra without sign or coefficient loss, and verifies the resulting expression or value.",
       "prerequisite_refs": [
         "CAP-MAT-POLY-EVALUATE-BASIC"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MAT-POLY-COEFFICIENT-BASIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Identify the coefficient of a specified power in an elementary polynomial, including implicit +1 and -1 coefficients.",
+      "success_criterion": "Locates the requested power, reads the complete signed numerical multiplier, and distinguishes that coefficient from the exponent.",
+      "prerequisite_refs": [
+        "CAP-MAT-POLY-FORM-DEGREE-BASIC"
       ],
       "curriculum_mappings": [],
       "external_provider": null,
@@ -2263,6 +2281,93 @@
         "MIC-MAT-POLY-EVALUATION"
       ],
       "lineage": []
+    },
+    {
+      "id": "MIC-MAT-POLY-COEFFICIENT-BASIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Coefficients of Polynomial Terms",
+      "bucket_id": "BUCKET-MAT-POLYNOMIALS",
+      "primary_capability_ref": "CAP-MAT-POLY-COEFFICIENT-BASIC",
+      "intrinsic_badge": "EASY",
+      "badge_reason": "The task is direct once the learner distinguishes the signed numerical multiplier from the exponent.",
+      "entry_assumptions": [
+        "Can identify a term such as x² or -x² inside a polynomial expression."
+      ],
+      "inferential_jump": "Move from a requested power to its complete signed multiplier, including the implicit coefficients +1 and -1.",
+      "teaching_path": [
+        {
+          "id": "POLY-COEF-T1",
+          "role": "CONNECT",
+          "action": "Locate the term containing the requested power of the variable.",
+          "why_valid": "Only that term determines the coefficient being asked for.",
+          "inputs": [
+            "polynomial and requested power"
+          ],
+          "output": "target term"
+        },
+        {
+          "id": "POLY-COEF-T2",
+          "role": "TRANSFORM",
+          "action": "Write the target term as a signed number multiplied by the requested power.",
+          "why_valid": "The coefficient is exactly that signed numerical multiplier, including an implicit magnitude of 1.",
+          "inputs": [
+            "target term"
+          ],
+          "output": "explicit multiplier times variable power"
+        },
+        {
+          "id": "POLY-COEF-T3",
+          "role": "VERIFY",
+          "action": "Multiply the stated coefficient by the requested power to recover the original term.",
+          "why_valid": "Recovering the original term checks both the magnitude and the sign.",
+          "inputs": [
+            "coefficient and requested power"
+          ],
+          "output": "checked coefficient"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-MAT-POLY-COEFFICIENT-BASIC"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "The exponent is the coefficient, or an omitted coefficient is zero.",
+          "diagnostic_prompt": "In -x², what signed number multiplied by x² reproduces the term?",
+          "repair": "Write -x²=(-1)x²; the coefficient is -1 while 2 is the exponent."
+        }
+      ],
+      "exit_task": {
+        "prompt": "What is the coefficient of x³ in 4-x+7x³?",
+        "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "7",
+          "reasoning": [
+            "Locate the x³ term, which is 7x³.",
+            "The signed number multiplying x³ is 7, so the coefficient is 7."
+          ],
+          "check": "7·x³ reproduces the target term 7x³.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The target term explicitly displays its numerical coefficient."
+        }
+      },
+      "research_contribution": "Adds the foundational coefficient-identification mapping required by validated NCERT Exemplar Unit 2 Ex 2.3 Q2(i)-(ii).",
+      "prerequisite_refs": [
+        "MIC-MAT-POLY-FORM-DEGREE"
+      ],
+      "lineage": []
     }
   ],
   "relations": [],
@@ -3525,7 +3630,12 @@
         "Q-MAT-POLY-NCERT9-EX21-Q01",
         "Q-MAT-POLY-NCERT9-EX21-Q02",
         "Q-MAT-POLY-NCERT9-EX21-Q03",
-        "Q-MAT-POLY-NCERT9-EX21-Q04"
+        "Q-MAT-POLY-NCERT9-EX21-Q04",
+        "Q-MAT-POLY-NCERT9-EX22-Q01",
+        "Q-MAT-POLY-NCERT9-EX22-Q02-II",
+        "Q-MAT-POLY-NCERT9-EX23-Q01-I",
+        "Q-MAT-POLY-NCERT9-EX23-Q01-II",
+        "Q-MAT-POLY-NCERT9-EX23-Q01-III"
       ]
     },
     {
@@ -3603,7 +3713,8 @@
       "item_refs": [
         "Q-MAT-POLY-NCERT9-EX21-Q08",
         "Q-MAT-POLY-NCERT9-EX21-Q09",
-        "Q-MAT-POLY-NCERT9-EX21-Q10"
+        "Q-MAT-POLY-NCERT9-EX21-Q10",
+        "Q-MAT-POLY-NCERT9-EX22-Q02-IV"
       ]
     },
     {
@@ -3721,7 +3832,46 @@
         "Q-MAT-POLY-NCERT9-EX21-Q17",
         "Q-MAT-POLY-NCERT9-EX21-Q18",
         "Q-MAT-POLY-NCERT9-EX21-Q19",
-        "Q-MAT-POLY-NCERT9-EX21-Q20"
+        "Q-MAT-POLY-NCERT9-EX21-Q20",
+        "Q-MAT-POLY-NCERT9-EX21-Q21"
+      ]
+    },
+    {
+      "id": "FAM-MAT-POLY-COEFFICIENT-BASIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Coefficient identification in elementary polynomials",
+      "capability_refs": [
+        "CAP-MAT-POLY-COEFFICIENT-BASIC"
+      ],
+      "solution_structure": [
+        "Locate the requested power",
+        "Expose its signed numerical multiplier",
+        "Verify the term by multiplication"
+      ],
+      "demand_dimensions": {
+        "model_choice": "low",
+        "representation_translation": "low",
+        "reasoning_steps": "one to two",
+        "novelty": "foundational coefficient reading"
+      },
+      "safe_variations": [
+        "Change the requested power, reorder terms, or use an explicit/implicit signed coefficient."
+      ],
+      "transfer_boundaries": [
+        "Does not cover coefficient comparison in polynomial identities or systems of coefficient equations."
+      ],
+      "common_wrong_routes": [
+        "Reporting the exponent instead of the coefficient; dropping the sign; treating an implicit ±1 coefficient as zero."
+      ],
+      "item_refs": [
+        "Q-MAT-POLY-NCERT9-EX23-Q02-I",
+        "Q-MAT-POLY-NCERT9-EX23-Q02-II"
       ]
     }
   ],
@@ -7895,6 +8045,1025 @@
           "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q20-MOVE-2"
         }
       ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q21",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q21"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q21",
+          "text_sha256": "sha256:6271c4031bed057ba695fa102f07827848b4a0eea9046dc7549e55012240aea8"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q21",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json",
+          "source_text_sha256": "sha256:6271c4031bed057ba695fa102f07827848b4a0eea9046dc7549e55012240aea8"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 3
+          },
+          "expected_time_seconds": 75,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-IDENTITIES-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q21",
+          "common_wrong_route": "Trying to expand or solve for a, b, and c separately instead of using the symmetric cubic identity with a+b+c=0.",
+          "stable_crux_move": "Substitute a+b+c=0 into the identity."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q21",
+      "stem": "If a + b + c = 0, then a³ + b³ + c³ is equal to",
+      "subparts": [],
+      "options": [
+        "(A) 0",
+        "(B) abc",
+        "(C) 3abc",
+        "(D) 2abc"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(C) 3abc",
+        "reasoning": [
+          "The given condition is a+b+c=0, and the symmetric cubic identity gives a³+b³+c³-3abc=(a+b+c)(a²+b²+c²-ab-bc-ca).",
+          "Because a+b+c is 0, the product on the right is 0, so the cubic sum a³+b³+c³ is equal to 3abc.",
+          "Therefore the expression asked for in the question is equal to option (C), 3abc."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q21-MOVE-1",
+            "kind": "CONNECT",
+            "action": "Use the identity a³+b³+c³-3abc=(a+b+c)(a²+b²+c²-ab-bc-ca).",
+            "why_valid": "This identity directly contains both the given sum a+b+c and the target cubic sum.",
+            "inputs": [
+              "given condition a+b+c=0"
+            ],
+            "output": "identity with factor a+b+c"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q21-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Substitute a+b+c=0 into the identity.",
+            "why_valid": "The entire right-hand product is zero, so a³+b³+c³-3abc=0.",
+            "inputs": [
+              "identity and given zero sum"
+            ],
+            "output": "a³+b³+c³=3abc"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q21-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Match the resulting cubic sum to the listed choices.",
+            "why_valid": "The derived value is exactly 3abc.",
+            "inputs": [
+              "derived equality"
+            ],
+            "output": "option C"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q21-MOVE-2",
+        "check": "With a+b+c=0, the symmetric cubic identity reduces to a³+b³+c³=3abc.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-IDENTITIES-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-IDENTITIES-BASIC",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Use the identity a³+b³+c³-3abc=(a+b+c)(a²+b²+c²-ab-bc-ca).",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q21-MOVE-1"
+        },
+        {
+          "text": "Substitute a+b+c=0 into the identity.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q21-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX22-Q01",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX22-Q01"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.2 Q1",
+          "text_sha256": "sha256:fffdba33381adf38255d833dec0f8ceb9dcdf51b9f60dfb139be4adaab1c52cd"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q22",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json",
+          "source_text_sha256": "sha256:fffdba33381adf38255d833dec0f8ceb9dcdf51b9f60dfb139be4adaab1c52cd"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 3
+          },
+          "expected_time_seconds": 120,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-FORM-DEGREE-BASIC"
+          ],
+          "question_number": "Ex 2.2 Q1",
+          "common_wrong_route": "Treating every algebraic expression containing x as a polynomial without checking whether the exponents are non-negative integers.",
+          "stable_crux_move": "Apply the one-variable polynomial exponent rule to all four expressions."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.2 Q1",
+      "stem": "Which of the following expressions are polynomials? Justify your answer: (i) 1/x (ii) √x + 2 (iii) x² + 2x + 1 (iv) 1",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "Polynomials: (iii) and (iv) because the exponent of the variable after simplification in each of these is a whole number.",
+        "reasoning": [
+          "Rewrite 1/x as x^(-1) and √x as x^(1/2). explicit negative and fractional exponents.",
+          "Apply the one-variable polynomial exponent rule to all four expressions. only (iii) and (iv) are polynomials.",
+          "Check that every retained expression has only whole-number exponents of the variable. classification confirmed."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX22-Q01-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Rewrite 1/x as x^(-1) and √x as x^(1/2).",
+            "why_valid": "Polynomial classification depends on the exponents of the variable after valid simplification.",
+            "inputs": [
+              "expressions (i) and (ii)"
+            ],
+            "output": "explicit negative and fractional exponents"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX22-Q01-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Apply the one-variable polynomial exponent rule to all four expressions.",
+            "why_valid": "Negative or fractional powers are excluded; x²+2x+1 has non-negative integer powers, and 1 is a constant polynomial.",
+            "inputs": [
+              "four simplified expressions"
+            ],
+            "output": "only (iii) and (iv) are polynomials"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX22-Q01-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Check that every retained expression has only whole-number exponents of the variable.",
+            "why_valid": "The retained quadratic and constant satisfy the definition exactly.",
+            "inputs": [
+              "expressions (iii) and (iv)"
+            ],
+            "output": "classification confirmed"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX22-Q01-MOVE-2",
+        "check": "1/x=x^(-1) and √x=x^(1/2) fail the exponent rule; x²+2x+1 and 1 satisfy it.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-FORM-DEGREE-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-FORM-DEGREE",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "constructed_response",
+      "scaffolds": [
+        {
+          "text": "Rewrite 1/x as x^(-1) and √x as x^(1/2).",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX22-Q01-MOVE-1"
+        },
+        {
+          "text": "Apply the one-variable polynomial exponent rule to all four expressions.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX22-Q01-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX22-Q02-II",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX22-Q02-II"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.2 Q2(ii)",
+          "text_sha256": "sha256:d95d6f8e037909f585610714eb073492724faceb0c4e6ca82c35a5a9e6c30085"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q24",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json",
+          "source_text_sha256": "sha256:d95d6f8e037909f585610714eb073492724faceb0c4e6ca82c35a5a9e6c30085"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 1
+          },
+          "expected_time_seconds": 45,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-FORM-DEGREE-BASIC"
+          ],
+          "question_number": "Ex 2.2 Q2(ii)",
+          "common_wrong_route": "Confusing the general class 'polynomial' with the special two-term subclass 'binomial'.",
+          "stable_crux_move": "Use x³+x+1 as a counterexample."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.2 Q2(ii)",
+      "stem": "State whether the following statement is True or False? Justify your answer: Every polynomial is a binomial.",
+      "subparts": [],
+      "options": [
+        "True",
+        "False"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "False, x³ + x + 1 is a polynomial but not a binomial.",
+        "reasoning": [
+          "Recall that a binomial is a polynomial with exactly two non-zero terms. binomial is only one polynomial type.",
+          "Use x³+x+1 as a counterexample. statement is false.",
+          "Check the counterexample satisfies the polynomial definition. false answer confirmed."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX22-Q02-II-MOVE-1",
+            "kind": "CONNECT",
+            "action": "Recall that a binomial is a polynomial with exactly two non-zero terms.",
+            "why_valid": "Being a polynomial does not force a polynomial to have exactly two terms.",
+            "inputs": [
+              "statement about every polynomial"
+            ],
+            "output": "binomial is only one polynomial type"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX22-Q02-II-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Use x³+x+1 as a counterexample.",
+            "why_valid": "It is a polynomial with three non-zero terms, so it is not a binomial.",
+            "inputs": [
+              "x³+x+1"
+            ],
+            "output": "statement is false"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX22-Q02-II-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Check the counterexample satisfies the polynomial definition.",
+            "why_valid": "Its exponents 3, 1, and 0 are all non-negative integers.",
+            "inputs": [
+              "counterexample"
+            ],
+            "output": "false answer confirmed"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX22-Q02-II-MOVE-2",
+        "check": "x³+x+1 is a three-term polynomial, so 'Every polynomial is a binomial' is false.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-FORM-DEGREE-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-FORM-DEGREE",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Recall that a binomial is a polynomial with exactly two non-zero terms.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX22-Q02-II-MOVE-1"
+        },
+        {
+          "text": "Use x³+x+1 as a counterexample.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX22-Q02-II-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX22-Q02-IV",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX22-Q02-IV"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.2 Q2(iv)",
+          "text_sha256": "sha256:6f8eea336a2e9aa98b4a3a108cd463b5d80ecd16012dd29cd8edad4c90b9c113"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q25",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json",
+          "source_text_sha256": "sha256:6f8eea336a2e9aa98b4a3a108cd463b5d80ecd16012dd29cd8edad4c90b9c113"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 3
+          },
+          "expected_time_seconds": 60,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-ZERO-BASIC"
+          ],
+          "question_number": "Ex 2.2 Q2(iv)",
+          "common_wrong_route": "Generalizing from a linear polynomial and assuming every polynomial can have only one zero.",
+          "stable_crux_move": "Factor x²-1 as (x-1)(x+1)."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.2 Q2(iv)",
+      "stem": "State whether the following statement is True or False? Justify your answer: A polynomial cannot have more than one zero.",
+      "subparts": [],
+      "options": [
+        "True",
+        "False"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "False, a quadratic polynomial can have up to two zeroes.",
+        "reasoning": [
+          "Test the claim with a quadratic that factors into two distinct linear factors. candidate x²-1.",
+          "Factor x²-1 as (x-1)(x+1). zeros 1 and -1.",
+          "Use the two distinct zeros to reject the statement. false answer confirmed."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX22-Q02-IV-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Test the claim with a quadratic that factors into two distinct linear factors.",
+            "why_valid": "A single counterexample is enough to disprove the universal statement.",
+            "inputs": [
+              "claim about polynomial zeros"
+            ],
+            "output": "candidate x²-1"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX22-Q02-IV-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Factor x²-1 as (x-1)(x+1).",
+            "why_valid": "The factored form shows two distinct values make the polynomial zero.",
+            "inputs": [
+              "x²-1"
+            ],
+            "output": "zeros 1 and -1"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX22-Q02-IV-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Use the two distinct zeros to reject the statement.",
+            "why_valid": "A polynomial can therefore have more than one zero; a quadratic can have up to two real zeros.",
+            "inputs": [
+              "two zeros"
+            ],
+            "output": "false answer confirmed"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX22-Q02-IV-MOVE-2",
+        "check": "x²-1 has the two real zeros 1 and -1, so the statement is false.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-ZERO-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-ZEROS-BASIC",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Test the claim with a quadratic that factors into two distinct linear factors.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX22-Q02-IV-MOVE-1"
+        },
+        {
+          "text": "Factor x²-1 as (x-1)(x+1).",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX22-Q02-IV-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX23-Q01-I",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX23-Q01-I"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.3 Q1(i)",
+          "text_sha256": "sha256:99c41148bf2d50c2041953fc668d7b2b0497e69938d9dd82398b15342b89f908"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q26",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json",
+          "source_text_sha256": "sha256:99c41148bf2d50c2041953fc668d7b2b0497e69938d9dd82398b15342b89f908"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 1
+          },
+          "expected_time_seconds": 40,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-FORM-DEGREE-BASIC"
+          ],
+          "question_number": "Ex 2.3 Q1(i)",
+          "common_wrong_route": "Reading the number of terms instead of the highest non-zero exponent when finding degree.",
+          "stable_crux_move": "Identify the non-zero term with the greatest exponent."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.3 Q1(i)",
+      "stem": "Find the degree of the polynomial: x⁵ - x⁴ + 3",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "5",
+        "reasoning": [
+          "For the polynomial x⁵-x⁴+3, degree is determined by the greatest exponent belonging to a non-zero term.",
+          "The leading non-zero term is x⁵, so the degree of this polynomial is 5.",
+          "The remaining terms have powers 4 and 0, so no term exceeds degree 5."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX23-Q01-I-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Identify the non-zero term with the greatest exponent.",
+            "why_valid": "The degree of a non-zero polynomial is the highest exponent whose coefficient is non-zero.",
+            "inputs": [
+              "x⁵-x⁴+3"
+            ],
+            "output": "leading term x⁵"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX23-Q01-I-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Read the exponent of the leading term x⁵.",
+            "why_valid": "The exponent is 5.",
+            "inputs": [
+              "leading term x⁵"
+            ],
+            "output": "degree 5"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX23-Q01-I-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Check that no term has an exponent greater than 5.",
+            "why_valid": "The other exponents are 4 and 0, so 5 is maximal.",
+            "inputs": [
+              "all terms"
+            ],
+            "output": "degree confirmed"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q01-I-MOVE-1",
+        "check": "The highest non-zero power in x⁵-x⁴+3 is x⁵, so the degree is 5.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-FORM-DEGREE-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-FORM-DEGREE",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "constructed_response",
+      "scaffolds": [
+        {
+          "text": "Identify the non-zero term with the greatest exponent.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q01-I-MOVE-1"
+        },
+        {
+          "text": "Read the exponent of the leading term x⁵.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q01-I-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX23-Q01-II",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX23-Q01-II"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.3 Q1(ii)",
+          "text_sha256": "sha256:6dd44bc22e5321ec1dfff326e670d1cd15b4122c0b883d7d23f7333859586447"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q27",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json",
+          "source_text_sha256": "sha256:6dd44bc22e5321ec1dfff326e670d1cd15b4122c0b883d7d23f7333859586447"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 1
+          },
+          "expected_time_seconds": 40,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-FORM-DEGREE-BASIC"
+          ],
+          "question_number": "Ex 2.3 Q1(ii)",
+          "common_wrong_route": "Stopping at y³ because the terms are not written in descending order.",
+          "stable_crux_move": "Scan all non-zero terms instead of relying on their written order."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.3 Q1(ii)",
+      "stem": "Find the degree of the polynomial: 2 - y² - y³ + 2y⁸",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "8",
+        "reasoning": [
+          "Scan all non-zero terms instead of relying on their written order. highest-power term 2y⁸.",
+          "Read the exponent of 2y⁸. degree 8.",
+          "Compare 8 with the other exponents 0, 2, and 3. degree confirmed."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX23-Q01-II-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Scan all non-zero terms instead of relying on their written order.",
+            "why_valid": "Degree depends on the greatest exponent, not on which term appears first.",
+            "inputs": [
+              "2-y²-y³+2y⁸"
+            ],
+            "output": "highest-power term 2y⁸"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX23-Q01-II-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Read the exponent of 2y⁸.",
+            "why_valid": "Its exponent is 8.",
+            "inputs": [
+              "2y⁸"
+            ],
+            "output": "degree 8"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX23-Q01-II-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Compare 8 with the other exponents 0, 2, and 3.",
+            "why_valid": "Eight is the greatest exponent present.",
+            "inputs": [
+              "all exponents"
+            ],
+            "output": "degree confirmed"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q01-II-MOVE-1",
+        "check": "The highest non-zero power in 2-y²-y³+2y⁸ is y⁸, so the degree is 8.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-FORM-DEGREE-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-FORM-DEGREE",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "constructed_response",
+      "scaffolds": [
+        {
+          "text": "Scan all non-zero terms instead of relying on their written order.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q01-II-MOVE-1"
+        },
+        {
+          "text": "Read the exponent of 2y⁸.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q01-II-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX23-Q01-III",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX23-Q01-III"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.3 Q1(iii)",
+          "text_sha256": "sha256:de2b0e22b035308542ab58cf76b670996914b20f2d2b1abd7ebc694903510650"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q28",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json",
+          "source_text_sha256": "sha256:de2b0e22b035308542ab58cf76b670996914b20f2d2b1abd7ebc694903510650"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 1
+          },
+          "expected_time_seconds": 35,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-FORM-DEGREE-BASIC"
+          ],
+          "question_number": "Ex 2.3 Q1(iii)",
+          "common_wrong_route": "Confusing a non-zero constant polynomial with the zero polynomial and saying its degree is undefined.",
+          "stable_crux_move": "Use the exponent of its non-zero term as the degree."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.3 Q1(iii)",
+      "stem": "Find the degree of the polynomial: 2",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "0",
+        "reasoning": [
+          "Write the non-zero constant polynomial 2 as 2x⁰. 2x⁰.",
+          "Use the exponent of its non-zero term as the degree. degree 0.",
+          "Distinguish this from the zero polynomial. degree confirmed."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX23-Q01-III-MOVE-1",
+            "kind": "REPRESENT",
+            "action": "Write the non-zero constant polynomial 2 as 2x⁰.",
+            "why_valid": "A non-zero constant is a polynomial whose only variable exponent is zero.",
+            "inputs": [
+              "constant 2"
+            ],
+            "output": "2x⁰"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX23-Q01-III-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Use the exponent of its non-zero term as the degree.",
+            "why_valid": "The only non-zero term has exponent 0.",
+            "inputs": [
+              "2x⁰"
+            ],
+            "output": "degree 0"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX23-Q01-III-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Distinguish this from the zero polynomial.",
+            "why_valid": "The polynomial is 2, not 0, so the special undefined-degree case does not apply.",
+            "inputs": [
+              "constant polynomial 2"
+            ],
+            "output": "degree confirmed"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q01-III-MOVE-2",
+        "check": "Because 2=2x⁰ is non-zero, its degree is 0.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-FORM-DEGREE-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-FORM-DEGREE",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "constructed_response",
+      "scaffolds": [
+        {
+          "text": "Write the non-zero constant polynomial 2 as 2x⁰.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q01-III-MOVE-1"
+        },
+        {
+          "text": "Use the exponent of its non-zero term as the degree.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q01-III-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX23-Q02-I",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX23-Q02-I"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.3 Q2(i)",
+          "text_sha256": "sha256:8e151f1ae4421859b01be9269083634985b120e94e089bc0477c5c1eab19ae01"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q29",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json",
+          "source_text_sha256": "sha256:8e151f1ae4421859b01be9269083634985b120e94e089bc0477c5c1eab19ae01"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 1
+          },
+          "expected_time_seconds": 35,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-COEFFICIENT-BASIC"
+          ],
+          "question_number": "Ex 2.3 Q2(i)",
+          "common_wrong_route": "Reporting the exponent 2 instead of the numerical factor multiplying x².",
+          "stable_crux_move": "Expose the implicit positive unit multiplier in the term x²."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.3 Q2(i)",
+      "stem": "Write the coefficient of x² in the following: 2 + x² + x",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "1",
+        "reasoning": [
+          "In 2+x²+x, the requested x² term is positive and appears without a written numerical multiplier.",
+          "Expose the implicit positive unit multiplier: x²=(+1)·x², so the coefficient of x² is 1.",
+          "Multiplying +1 by x² recovers the original positive x² term, confirming the coefficient."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX23-Q02-I-MOVE-1",
+            "kind": "CONNECT",
+            "action": "Locate the x² term in 2+x²+x.",
+            "why_valid": "A coefficient is the numerical factor multiplying the specified variable power.",
+            "inputs": [
+              "polynomial 2+x²+x"
+            ],
+            "output": "term x²"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX23-Q02-I-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Expose the implicit positive unit multiplier in the term x².",
+            "why_valid": "A positive x² term with no written numeral is exactly (+1)·x².",
+            "inputs": [
+              "term x²"
+            ],
+            "output": "coefficient +1"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX23-Q02-I-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Separate the coefficient from the exponent.",
+            "why_valid": "The exponent is 2, while the coefficient multiplying x² is 1.",
+            "inputs": [
+              "1·x²"
+            ],
+            "output": "coefficient confirmed"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q02-I-MOVE-2",
+        "check": "In 2+x²+x, the x² term is 1·x², so its coefficient is 1.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-COEFFICIENT-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-COEFFICIENT-BASIC",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "constructed_response",
+      "scaffolds": [
+        {
+          "text": "Locate the x² term in 2+x²+x.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q02-I-MOVE-1"
+        },
+        {
+          "text": "Expose the implicit positive unit multiplier in the term x².",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q02-I-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX23-Q02-II",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX23-Q02-II"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.3 Q2(ii)",
+          "text_sha256": "sha256:46c998e899b1e63900ff2d3ac66cb4b70f4168b3796cd7bdd57f5bd08b1e42f9"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q30",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json",
+          "source_text_sha256": "sha256:46c998e899b1e63900ff2d3ac66cb4b70f4168b3796cd7bdd57f5bd08b1e42f9"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 1
+          },
+          "expected_time_seconds": 35,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-COEFFICIENT-BASIC"
+          ],
+          "question_number": "Ex 2.3 Q2(ii)",
+          "common_wrong_route": "Ignoring the minus sign and reporting the coefficient of -x² as +1.",
+          "stable_crux_move": "Carry the written minus sign into the implicit unit multiplier of -x²."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.3 Q2(ii)",
+      "stem": "Write the coefficient of x² in the following: 2 - x² + x³",
+      "subparts": [],
+      "options": [],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "-1",
+        "reasoning": [
+          "In 2-x²+x³, the requested x² term is -x², so its sign must be part of the coefficient.",
+          "Carry the minus sign into the implicit unit multiplier: -x²=(-1)·x², giving coefficient -1.",
+          "Multiplying -1 by x² reproduces the original negative x² term, confirming the signed coefficient."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX23-Q02-II-MOVE-1",
+            "kind": "CONNECT",
+            "action": "Locate the x² term in 2-x²+x³.",
+            "why_valid": "A coefficient includes the sign of the numerical factor multiplying the specified power.",
+            "inputs": [
+              "polynomial 2-x²+x³"
+            ],
+            "output": "term -x²"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX23-Q02-II-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Carry the written minus sign into the implicit unit multiplier of -x².",
+            "why_valid": "The term -x² means a unit magnitude with negative sign, namely (-1)·x².",
+            "inputs": [
+              "term -x²"
+            ],
+            "output": "coefficient -1"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX23-Q02-II-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Check the sign by multiplying (-1) by x².",
+            "why_valid": "The product reproduces -x² exactly.",
+            "inputs": [
+              "(-1)·x²"
+            ],
+            "output": "coefficient confirmed"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q02-II-MOVE-2",
+        "check": "In 2-x²+x³, the x² term is (-1)·x², so its coefficient is -1.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-COEFFICIENT-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-COEFFICIENT-BASIC",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "constructed_response",
+      "scaffolds": [
+        {
+          "text": "Locate the x² term in 2-x²+x³.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q02-II-MOVE-1"
+        },
+        {
+          "text": "Carry the written minus sign into the implicit unit multiplier of -x².",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX23-Q02-II-MOVE-2"
+        }
+      ]
     }
   ],
   "teaching_routes": [],
@@ -8119,6 +9288,105 @@
       "producer": "Issue #196 / PR #197 validator for Unit 2 Ex 2.1 Q20",
       "independence": "For Unit 2 Ex 2.1 Q20, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
       "limitation": "Unit 2 Ex 2.1 Q20 evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q21",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q21",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Ex 2.1 Q21, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json.",
+      "observation": "Ex 2.1 Q21: source digest and official answer reconciled; independent result (C) 3abc.",
+      "result": "PASS",
+      "producer": "Issue #202 / PR #203 validator for Ex 2.1 Q21",
+      "independence": "For Ex 2.1 Q21, the official NCERT answer was reconciled separately from the recorded independent check.",
+      "limitation": "Ex 2.1 Q21 evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX22-Q01",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX22-Q01",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Ex 2.2 Q1, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json.",
+      "observation": "Ex 2.2 Q1: source digest and official answer reconciled; independent result Polynomials: (iii) and (iv) because the exponent of the variable after simplification in each of these is a whole number..",
+      "result": "PASS",
+      "producer": "Issue #202 / PR #203 validator for Ex 2.2 Q1",
+      "independence": "For Ex 2.2 Q1, the official NCERT answer was reconciled separately from the recorded independent check.",
+      "limitation": "Ex 2.2 Q1 evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX22-Q02-II",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX22-Q02-II",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Ex 2.2 Q2(ii), bound to TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json.",
+      "observation": "Ex 2.2 Q2(ii): source digest and official answer reconciled; independent result False, x³ + x + 1 is a polynomial but not a binomial..",
+      "result": "PASS",
+      "producer": "Issue #202 / PR #203 validator for Ex 2.2 Q2(ii)",
+      "independence": "For Ex 2.2 Q2(ii), the official NCERT answer was reconciled separately from the recorded independent check.",
+      "limitation": "Ex 2.2 Q2(ii) evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX22-Q02-IV",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX22-Q02-IV",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Ex 2.2 Q2(iv), bound to TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json.",
+      "observation": "Ex 2.2 Q2(iv): source digest and official answer reconciled; independent result False, a quadratic polynomial can have up to two zeroes..",
+      "result": "PASS",
+      "producer": "Issue #202 / PR #203 validator for Ex 2.2 Q2(iv)",
+      "independence": "For Ex 2.2 Q2(iv), the official NCERT answer was reconciled separately from the recorded independent check.",
+      "limitation": "Ex 2.2 Q2(iv) evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX23-Q01-I",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX23-Q01-I",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Ex 2.3 Q1(i), bound to TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json.",
+      "observation": "Ex 2.3 Q1(i): source digest and official answer reconciled; independent result 5.",
+      "result": "PASS",
+      "producer": "Issue #202 / PR #203 validator for Ex 2.3 Q1(i)",
+      "independence": "For Ex 2.3 Q1(i), the official NCERT answer was reconciled separately from the recorded independent check.",
+      "limitation": "Ex 2.3 Q1(i) evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX23-Q01-II",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX23-Q01-II",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Ex 2.3 Q1(ii), bound to TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json.",
+      "observation": "Ex 2.3 Q1(ii): source digest and official answer reconciled; independent result 8.",
+      "result": "PASS",
+      "producer": "Issue #202 / PR #203 validator for Ex 2.3 Q1(ii)",
+      "independence": "For Ex 2.3 Q1(ii), the official NCERT answer was reconciled separately from the recorded independent check.",
+      "limitation": "Ex 2.3 Q1(ii) evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX23-Q01-III",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX23-Q01-III",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Ex 2.3 Q1(iii), bound to TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json.",
+      "observation": "Ex 2.3 Q1(iii): source digest and official answer reconciled; independent result 0.",
+      "result": "PASS",
+      "producer": "Issue #202 / PR #203 validator for Ex 2.3 Q1(iii)",
+      "independence": "For Ex 2.3 Q1(iii), the official NCERT answer was reconciled separately from the recorded independent check.",
+      "limitation": "Ex 2.3 Q1(iii) evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX23-Q02-I",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX23-Q02-I",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Ex 2.3 Q2(i), bound to TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json.",
+      "observation": "Ex 2.3 Q2(i): source digest and official answer reconciled; independent result 1.",
+      "result": "PASS",
+      "producer": "Issue #202 / PR #203 validator for Ex 2.3 Q2(i)",
+      "independence": "For Ex 2.3 Q2(i), the official NCERT answer was reconciled separately from the recorded independent check.",
+      "limitation": "Ex 2.3 Q2(i) evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX23-Q02-II",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX23-Q02-II",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Ex 2.3 Q2(ii), bound to TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json.",
+      "observation": "Ex 2.3 Q2(ii): source digest and official answer reconciled; independent result -1.",
+      "result": "PASS",
+      "producer": "Issue #202 / PR #203 validator for Ex 2.3 Q2(ii)",
+      "independence": "For Ex 2.3 Q2(ii), the official NCERT answer was reconciled separately from the recorded independent check.",
+      "limitation": "Ex 2.3 Q2(ii) evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
     }
   ],
   "known_issues": [],
@@ -8147,9 +9415,10 @@
       "source_bank": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
       "validation_refs": [
         "TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json",
-        "TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json"
+        "TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json",
+        "TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json"
       ],
-      "admission_scope": "UNIT2_EX2_1_Q1_Q20_ONLY",
+      "admission_scope": "UNIT2_VALIDATED_Q1_Q30_EXCEPT_Q23_HOLD",
       "admitted_question_refs": [
         "Q-MAT-POLY-NCERT9-EX21-Q01",
         "Q-MAT-POLY-NCERT9-EX21-Q02",
@@ -8170,7 +9439,23 @@
         "Q-MAT-POLY-NCERT9-EX21-Q17",
         "Q-MAT-POLY-NCERT9-EX21-Q18",
         "Q-MAT-POLY-NCERT9-EX21-Q19",
-        "Q-MAT-POLY-NCERT9-EX21-Q20"
+        "Q-MAT-POLY-NCERT9-EX21-Q20",
+        "Q-MAT-POLY-NCERT9-EX21-Q21",
+        "Q-MAT-POLY-NCERT9-EX22-Q01",
+        "Q-MAT-POLY-NCERT9-EX22-Q02-II",
+        "Q-MAT-POLY-NCERT9-EX22-Q02-IV",
+        "Q-MAT-POLY-NCERT9-EX23-Q01-I",
+        "Q-MAT-POLY-NCERT9-EX23-Q01-II",
+        "Q-MAT-POLY-NCERT9-EX23-Q01-III",
+        "Q-MAT-POLY-NCERT9-EX23-Q02-I",
+        "Q-MAT-POLY-NCERT9-EX23-Q02-II"
+      ],
+      "excluded_source_refs": [
+        {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q23",
+          "status": "HOLD",
+          "reason": "Official wording/key conflict: 'at most two terms' is logically compatible with 'exactly two terms', so the official False key cannot be admitted without reconciliation."
+        }
       ],
       "atlas_rungs_enrichment": false
     },
