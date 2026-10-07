@@ -249,6 +249,33 @@ class TestPages(unittest.TestCase):
         self.assertEqual(len(projection["questions"]), 81)
 
 
+    def test_polynomial_bank_uses_exact_primary_capabilities_and_keeps_concept_bridges_secondary(self):
+        bank = json.loads((REPO / "TEST/question-bank/iss55-poly.json").read_text(encoding="utf-8"))
+        expected = {
+            "OWN-ISS55-POLY-01": ("CAP-MATH-POLY-FACTOR-PARAMETER", "CAP-MATH-POLY-CHANGE-OF-VARIABLE-DOMAIN"),
+            "OWN-ISS55-POLY-02": ("CAP-MATH-POLY-MULTIPLICITY-SIGN", "CAP-MATH-POLY-SIGN-CHART-RIGOR"),
+            "OWN-ISS55-POLY-03": ("CAP-MATH-POLY-INTERPOLATION-DEGREE-BOUND", "CAP-MATH-POLY-IDENTITY-THEOREM-DEGREE"),
+            "OWN-ISS55-POLY-04": ("CAP-MATH-POLY-GEOMETRIC-AREA-DEGREE", "CAP-MATH-POLY-SIGN-CHART-RIGOR"),
+            "OWN-ISS55-POLY-06": ("CAP-MATH-POLY-FACTOR-VALUE-CONSTRUCTION", "CAP-MATH-POLY-CHANGE-OF-VARIABLE-DOMAIN"),
+            "OWN-ISS55-POLY-07": ("CAP-MATH-POLY-FACTOR-DIVISIBILITY-DEGREE", "CAP-MATH-POLY-IDENTITY-THEOREM-DEGREE"),
+            "OWN-ISS55-POLY-09": ("CAP-MATH-POLY-PARAMETER-DEGREE-ZERO", "CAP-MATH-POLY-CHANGE-OF-VARIABLE-DOMAIN"),
+        }
+        rows = {q["id"]: q for q in bank["questions"]}
+        for qid, (primary, bridge) in expected.items():
+            self.assertEqual(rows[qid]["primary_capability_ref"], primary)
+            self.assertIn(bridge, rows[qid].get("secondary_capability_refs", []))
+
+        package = json.loads((REPO / "TEST/library/iss55-poly.v1.json").read_text(encoding="utf-8"))
+        anchors = {
+            a["target_question_ref"]: a
+            for mic in package["microtopics"]
+            for a in ((mic.get("extensions") or {}).get("grade9v3:lesson_anchors") or {}).values()
+        }
+        self.assertIn("(k - 4)x + 12", anchors["OWN-ISS55-POLY-01"]["stem"])
+        self.assertIn("(a - 1)x^3 + (a + 1)x^2 - 2x", anchors["OWN-ISS55-POLY-09"]["stem"])
+        self.assertIn("x^4 + 4x^2 + 4", anchors["OWN-ISS55-POLY-10"]["stem"])
+
+
 class TestDeploy(unittest.TestCase):
     def setUp(self):
         self.fixture = Fixture()
