@@ -18,23 +18,36 @@ class TestThemeAndOwnerIsolation(unittest.TestCase):
                     html_files.append(Path(root) / f)
         return html_files
 
-    def test_zero_test_links_in_learner_surfaces(self):
-        """Crawl all .html files in public/ (except public/test/) and assert zero occurrences of href=".../test/..." or >TEST<."""
+    def test_only_the_authorized_test_home_lab_links_reach_learner_hubs(self):
+        """#68 permits one TEST-home lab link on four hubs; every other TEST link stays isolated."""
+        allowed = {
+            PUBLIC_DIR / "index.html": "test/index.html",
+            PUBLIC_DIR / "physics" / "index.html": "../test/index.html",
+            PUBLIC_DIR / "chemistry" / "index.html": "../test/index.html",
+            PUBLIC_DIR / "mathematics" / "index.html": "../test/index.html",
+        }
         files = self.get_learner_html_files()
         if not files:
-            return # No files to test yet
+            return
+
         for filepath in files:
             content = filepath.read_text(encoding="utf-8")
-            
-            # Check for links to /test/
-            test_links = re.findall(r'href=["\'][^"\']*?/test/[^"\']*?["\']', content, re.IGNORECASE)
-            self.assertEqual(len(test_links), 0, f"Found test links in {filepath}: {test_links}")
-            
-            # Check for >TEST< text
-            test_text = re.findall(r'>TEST<', content)
-            self.assertEqual(len(test_text), 0, f"Found >TEST< text in {filepath}")
-            
-            # Ensure no legacy authoring acronyms are leaking in breadcrumbs
+            test_links = re.findall(r'href=["\']([^"\']*test/[^"\']*)["\']', content, re.IGNORECASE)
+            expected = [allowed[filepath]] if filepath in allowed else []
+            self.assertEqual(test_links, expected, f"Unexpected TEST links in {filepath}: {test_links}")
+
+            if filepath in allowed:
+                self.assertIn(
+                    'class="test-link" data-site-test title="TEST sandbox · draft only">TEST · LAB</a>',
+                    content,
+                    filepath,
+                )
+
+            # Authoring-only TEST sub-surfaces must never leak into ordinary learner HTML.
+            for forbidden in ("test/atlas/", "test/rungs/", "test/deployments/", "test/products/", "test/interactive/"):
+                self.assertNotIn(forbidden, content.lower(), f"Leaked {forbidden} in {filepath}")
+
+            # Ensure no legacy authoring acronyms are leaking in breadcrumbs.
             self.assertNotIn(">CORE1A<", content, f"Legacy CORE1A breadcrumb found in {filepath}")
             self.assertNotIn(">CORE2<", content, f"Legacy CORE2 breadcrumb found in {filepath}")
 
