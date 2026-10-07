@@ -1154,7 +1154,7 @@ def _core1a_interactive_bridge(ctx: Ctx, m: dict) -> str:
         for it in interactives:
             ep = it.get("entrypoint", "")
             title = it.get("title", "Interactive Explorer")
-            rel_href = urljoin(portal_root, ep)
+            rel_href = _portal_href(portal_root, ep)
             cards.append(
                 f'<aside class="g9-interactive-bridge" data-g9-interactive-bridge>'
                 f'<span class="g9-pill g9-pill-interactive">Try Visually</span>'
@@ -2643,7 +2643,7 @@ def pdf_control(href: str, accessible_name: str = PDF_ACCESSIBLE_NAME) -> str:
 def shell_header(home_href: str, question_bank_href: str, pdf_href: str | None = None, pdf_name: str = PDF_ACCESSIBLE_NAME, portal_root: str | None = None) -> str:
     """The shared tablet-shell header. Used by every rendered page."""
     pdf_btn = f'<a class="g9-header-btn g9-pdf-link" data-g9-action="pdf" data-g9-pdf-link aria-label="{esc(pdf_name)}" href="{esc(pdf_href)}" title="{esc(pdf_name)}">PDF</a>' if pdf_href else ""
-    subjects = ''.join(f'<a href="{esc(urljoin(portal_root, name.lower()+"/index.html"))}">{name}</a>'
+    subjects = ''.join(f'<a href="{esc(_portal_href(portal_root, name.lower()+"/index.html"))}">{name}</a>'
                        for name in ('Physics','Chemistry','Mathematics')) if portal_root else ''
     qb_link = f'<a href="{esc(question_bank_href)}">Question Bank</a>' if question_bank_href != home_href else ''
     return (f'<header class="g9-shell-header" data-g9-shell-header><div class="g9-header-inner">'
@@ -2680,6 +2680,14 @@ def _portal_root(manifest: dict, mode: str) -> str | None:
     parent = home.rsplit('/', 1)[0]+'/' if '/' in home else None
     return parent
 
+def _portal_href(portal_root: str | None, target: str) -> str | None:
+    """Resolve a site-root-relative target without urljoin collapsing ../../../ prefixes."""
+    if not portal_root:
+        return None
+    if target.startswith(("http://", "https://", "//", "#")):
+        return target
+    return f"{portal_root}{target.lstrip('/')}"
+
 
 def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
     m = ctx.manifest
@@ -2696,7 +2704,7 @@ def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
     portal_root = _portal_root(m, mode)
     header = shell_header(home_href, qb_href, pdf_href, pdf_name, portal_root)
     subject = m.get("subject", "")
-    subject_href = urljoin(portal_root, subject.lower()+"/index.html") if portal_root else None
+    subject_href = _portal_href(portal_root, subject.lower()+"/index.html") if portal_root else None
     concept = next(iter(ctx.selection_rows.get("microtopics", [])), {})
     selected_questions = ctx.selection_rows.get("core2", [])
     cap_ref = concept.get("primary_capability_ref") or (selected_questions[0].get("primary_capability_ref") if selected_questions else None)
@@ -2709,10 +2717,10 @@ def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
         if bundle.get("interactive"):
             entry = bundle["interactive"][0].get("entrypoint")
             if entry:
-                explore_btn = f'<a class="g9-triad-btn g9-btn-explore" href="{esc(urljoin(portal_root,entry))}">⚡ Try visually</a>'
+                explore_btn = f'<a class="g9-triad-btn g9-btn-explore" href="{esc(_portal_href(portal_root, entry))}">⚡ Try visually</a>'
         topic_ref = bundle.get("topic_ref")
         if topic_ref:
-            topic_href = urljoin(portal_root, "topics/"+topic_ref.split(".")[-1]+"/index.html")
+            topic_href = _portal_href(portal_root, "topics/"+topic_ref.split(".")[-1]+"/index.html")
     subject_label = f'<a href="{esc(subject_href)}">{esc(subject)}</a>' if subject_href else esc(subject)
     topic_label = f'<a href="{esc(topic_href)}">{esc(m.get("title", ""))}</a>' if topic_href else esc(m.get("title", ""))
     triad_context = f'<div class="g9-triad-context">{subject_label} / {topic_label} / <span aria-current="page">{esc(current_role)}</span></div>'
