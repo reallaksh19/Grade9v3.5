@@ -100,7 +100,7 @@
           "required": ["small_targets", "stage_support_layout"],
           "properties": {
             "small_targets": {"type": "integer", "minimum": 0},
-            "stage_support_layout": {"type": "boolean"},
+            "stage_support_layout": {"type": "boolean", "description": "Legacy v1 field name retained for compatibility. True means the rendered expanded layout matches the selected blueprint responsive policy; SINGLE_PANE therefore passes without a split and STAGE_SUPPORT passes only when its declared split is observed."},
             "min_font_px": {"type": "number"},
             "metadata_missing_units": {"type": "integer", "minimum": 0},
             "search_corpus_missing_units": {"type": "integer", "minimum": 0},

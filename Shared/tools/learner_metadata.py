@@ -340,6 +340,17 @@ def project(role: str, record: dict, packages: list[dict], vocabulary: dict[str,
         })
 
     out.update({"family": family, **metadata})
+    if role == "CORE2":
+        labels = (record.get("extensions") or {}).get("grade9v3:attempt_labels")
+        if labels is not None:
+            if (not isinstance(labels, dict) or labels.get("question_ref") != record["id"]
+                    or set(labels) - {"question_ref", "concept", "family"}
+                    or any(not isinstance(labels.get(k), str) or not labels[k].strip()
+                           for k in ("concept", "family"))):
+                raise LearnerMetadataError(f"METADATA_ATTEMPT_LABELS_INVALID: {record['id']}")
+            for item in items:
+                if item["kind"] in {"concept", "family"}:
+                    item["value"] = item["label"] = labels[item["kind"]]
     return out
 
 

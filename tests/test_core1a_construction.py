@@ -127,8 +127,18 @@ class Core1AConstructionAudit(unittest.TestCase):
         row = self.row(micro, rep, relation, question)
         self.assertIn("REPRESENTATION_SCENE_BINDING_MISSING", row["finding_codes"])
 
-    def test_worked_anchor_requires_core1a_exposure_and_full_reasoning(self):
+    def test_worked_anchor_is_optional_but_if_authored_must_be_complete(self):
         micro, rep, relation, question = fixture()
+
+        # No mapped CORE1A worked anchor is valid: the blueprint treats it as
+        # expected/waivable rather than universal structural debt.
+        question["exposure"] = []
+        row = self.row(micro, rep, relation, question)
+        self.assertNotIn("WORKED_CONCEPTUAL_ANCHOR_MISSING", row["finding_codes"])
+        self.assertEqual(row["worked_anchor_refs"], [])
+
+        # But an anchor that is actually declared for CORE1A must carry a route.
+        question["exposure"] = [{"core": "CORE1A", "role": "PLANNED_WORKED_ANCHOR"}]
         question["answer"]["reasoning"] = []
         row = self.row(micro, rep, relation, question)
         self.assertIn("WORKED_CONCEPTUAL_ANCHOR_MISSING", row["finding_codes"])
@@ -138,6 +148,13 @@ class Core1AConstructionAudit(unittest.TestCase):
         relation["checks"] = []
         row = self.row(micro, rep, relation, question)
         self.assertIn("RELATION_CHECK_MISSING", row["finding_codes"])
+
+    def test_misconception_repair_is_optional_but_authored_rows_must_be_complete(self):
+        micro, rep, relation, question = fixture()
+        micro["misconceptions"] = []
+        row = self.row(micro, rep, relation, question)
+        self.assertNotIn("MISCONCEPTION_REPAIR_MISSING", row["finding_codes"])
+        self.assertNotIn("MISCONCEPTION_REPAIR_INCOMPLETE", row["finding_codes"])
 
     def test_misconception_diagnostic_repair_is_one_complete_claim(self):
         micro, rep, relation, question = fixture()

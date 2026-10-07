@@ -65,14 +65,14 @@ class Core2V2TabletRailContract(unittest.TestCase):
         self.assertIn('article[data-g9-role="CORE2"] .g9-split{display:grid;'
                       'grid-template-columns:minmax(0,42fr) minmax(0,58fr)', self.css)
 
-    def test_core1a_layout_is_its_own_blueprints_with_a_sticky_support_column_that_scrolls_inside_itself(self):
+    def test_core1a_continuous_lesson_keeps_core2_rail_policy_separate(self):
         core1a = next(bp for bp in self.registry["blueprints"] if "CORE1A" in bp["core_roles"])
-        self.assertTrue(core1a["responsive_policy"]["support_sticky"])
-        self.assertTrue(core1a["responsive_policy"]["tablet_12_7"]["support_scrolls_inside"])
-        self.assertIn('article[data-g9-role="CORE1A"] .g9-split{display:grid;'
-                      'grid-template-columns:minmax(0,60fr) minmax(0,40fr)', self.css)
-        self.assertIn('article[data-g9-role="CORE1A"] .g9-split:not(.g9-split-support-only)>.g9-col-support{position:sticky;top:80px;'
-                      'max-height:calc(100vh - 96px);overflow-y:auto', self.css)
+        self.assertEqual(core1a["responsive_policy"]["expanded"], "SINGLE_PANE")
+        self.assertFalse(core1a["responsive_policy"]["support_sticky"])
+        self.assertFalse(core1a["responsive_policy"]["tablet_12_7"]["support_scrolls_inside"])
+        self.assertTrue(all(slot["column"] == "FULL" for slot in core1a["slots"]))
+        self.assertNotIn('article[data-g9-role="CORE1A"] .g9-split{display:grid;', self.css)
+        self.assertIn('article[data-g9-role="CORE2"] .g9-split{display:grid;', self.css)
 
     def test_below_the_breakpoint_one_column_follows_the_blueprints_compact_order_not_the_column_each_part_sits_in(self):
         compact = self.css.split("@media (max-width:979px){")[1].split("@media print")[0]

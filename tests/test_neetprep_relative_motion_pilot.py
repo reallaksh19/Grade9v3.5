@@ -120,6 +120,9 @@ class NeetprepRelativeMotionPilot(unittest.TestCase):
             failed_capability_ref="CAP-RELATIVE-V",
             error_stage="CONCEPT",
             misconception_index=0,
+            diagnostic_response="I reversed the relative-velocity subtraction because I treated the order as interchangeable.",
+            diagnosis="CONFIRMED",
+            diagnostic_basis="The canonical probe response explicitly repeats the targeted relative-velocity order error.",
             response_summary="Used the wrong relative-velocity subtraction order.",
         )
         self.assertTrue(report["passed"], report["findings"])
@@ -192,6 +195,15 @@ class RelativeMotionQ4DryRun(unittest.TestCase):
             failed_capability_ref="CAP-VEC-RESULTANT-CONSTRAINT",
             error_stage="CONCEPT",
             misconception_index=0,
+            diagnostic_response=(
+                "I applied the directly-opposite condition to the swimmer vector "
+                "instead of the ground-relative resultant."
+            ),
+            diagnosis="CONFIRMED",
+            diagnostic_basis=(
+                "The canonical diagnostic response places the opposite-direction constraint "
+                "on the wrong vector, matching the authored misconception."
+            ),
             response_summary=(
                 "Applied the directly-opposite condition to the swimmer vector "
                 "instead of the ground-relative resultant."

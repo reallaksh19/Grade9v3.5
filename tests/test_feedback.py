@@ -13,6 +13,21 @@ sys.path.insert(0, str(REPO))
 from Shared.tools import feedback  # noqa: E402
 
 
+def confirmed_diagnostic_evidence(subject, capability_ref, observed_response, basis, *, root=REPO, index=0):
+    records = feedback.subject_records(subject, root)
+    evidence, error = feedback.diagnostic_evidence_for(
+        records,
+        capability_ref,
+        index,
+        observed_response,
+        "CONFIRMED",
+        basis,
+    )
+    if error:
+        raise AssertionError(error)
+    return evidence
+
+
 class FeedbackRuntime(unittest.TestCase):
     SUBJECT = "Mathematics"
     QUESTION = "Q-MATH-LINEAR-01"
@@ -64,7 +79,12 @@ class FeedbackRuntime(unittest.TestCase):
             attempt_number=2,
             shown_hint_indices=[0, 1],
             help_used="HINT",
-            evaluation={"misconception_index": 0},
+            evaluation={"diagnostic_evidence": confirmed_diagnostic_evidence(
+                self.SUBJECT,
+                "CAP-MATH-ISOLATE",
+                "I would change only one side of the equation.",
+                "The canonical probe response repeats the one-sided-operation misconception.",
+            )},
         ))
         self.assertEqual(report["next_action"], "REPAIR")
         self.assertNotIn("hint", report)
@@ -75,7 +95,12 @@ class FeedbackRuntime(unittest.TestCase):
             attempt_number=3,
             shown_hint_indices=[0, 1],
             help_used="HINT",
-            evaluation={"misconception_index": 0},
+            evaluation={"diagnostic_evidence": confirmed_diagnostic_evidence(
+                self.SUBJECT,
+                "CAP-MATH-ISOLATE",
+                "I would change only one side of the equation.",
+                "The canonical probe response repeats the one-sided-operation misconception.",
+            )},
         ))
         self.assertEqual(report["next_action"], "REPAIR")
         self.assertEqual(report["repair"]["microtopic_ref"], "MIC-MATH-EQUIVALENT-OPS")
@@ -93,7 +118,12 @@ class FeedbackRuntime(unittest.TestCase):
             shown_hint_indices=[0, 1],
             help_used="HINT",
             attempted_question_refs=[self.QUESTION, "Q-MATH-LINEAR-2B-01"],
-            evaluation={"misconception_index": 0},
+            evaluation={"diagnostic_evidence": confirmed_diagnostic_evidence(
+                self.SUBJECT,
+                "CAP-MATH-ISOLATE",
+                "I would change only one side of the equation.",
+                "The canonical probe response repeats the one-sided-operation misconception.",
+            )},
         ))
         verification = report["after_repair"]["verification"]
         self.assertEqual(verification["kind"], "EXIT_TASK")
@@ -325,7 +355,13 @@ class FeedbackRuntime(unittest.TestCase):
                     "result": "INCORRECT",
                     "failed_capability_ref": "CAP-CHOICE",
                     "error_stage": "CONCEPT",
-                    "misconception_index": 0,
+                    "diagnostic_evidence": confirmed_diagnostic_evidence(
+                        "Example",
+                        "CAP-CHOICE",
+                        "I chose the model without checking the invariant relation.",
+                        "The response to the canonical probe repeats the wrong structural rule.",
+                        root=root,
+                    ),
                 },
             }
             report = feedback.run(request, root)
@@ -475,7 +511,12 @@ class FeedbackRuntime(unittest.TestCase):
                 "result": "INCORRECT",
                 "failed_capability_ref": row["primary_capability_ref"],
                 "error_stage": "CONCEPT",
-                "misconception_index": 0,
+                "diagnostic_evidence": confirmed_diagnostic_evidence(
+                    fixture["subject"],
+                    row["primary_capability_ref"],
+                    "Velocity zero means the acceleration must also be zero.",
+                    "The response to the canonical probe explicitly repeats the targeted apex misconception.",
+                ),
             },
         })
         self.assertEqual(report["next_action"], "REPAIR")
@@ -820,7 +861,13 @@ class LearningLoopScenarioScanner(unittest.TestCase):
             attempt_number=3,
             shown_hint_indices=[0, 1],
             help_used="HINT",
-            evaluation={"misconception_index": 0},
+            evaluation={"diagnostic_evidence": confirmed_diagnostic_evidence(
+                "Example",
+                "CAP-A",
+                "I used the wrong structural rule instead of preserving the required relation.",
+                "The canonical probe response directly repeats the authored misconception.",
+                root=self.repo,
+            )},
         )
 
         reports["VERIFY"] = self.scan(
@@ -873,7 +920,13 @@ class LearningLoopScenarioScanner(unittest.TestCase):
             attempt_number=3,
             shown_hint_indices=[0, 1],
             help_used="HINT",
-            evaluation={"misconception_index": 0},
+            evaluation={"diagnostic_evidence": confirmed_diagnostic_evidence(
+                "Example",
+                "CAP-A",
+                "I used the wrong structural rule instead of preserving the required relation.",
+                "The canonical probe response directly repeats the authored misconception.",
+                root=self.repo,
+            )},
         )
         self.assertEqual(third["next_action"], "REPAIR")
         self.assertEqual(third["after_repair"]["next_action"], "VERIFY")
@@ -905,7 +958,13 @@ class LearningLoopScenarioScanner(unittest.TestCase):
                 "result": "INCORRECT",
                 "failed_capability_ref": "CAP-A",
                 "error_stage": "CONCEPT",
-                "misconception_index": 0,
+                "diagnostic_evidence": confirmed_diagnostic_evidence(
+                    "Example",
+                    "CAP-A",
+                    "I chose the model without preserving the invariant relation.",
+                    "The canonical probe response directly matches the authored structural misconception.",
+                    root=self.repo,
+                ),
             },
         )
         self.assertEqual(second["next_action"], "REPAIR")
@@ -939,7 +998,13 @@ class LearningLoopScenarioScanner(unittest.TestCase):
                 "result": "INCORRECT",
                 "failed_capability_ref": "CAP-A",
                 "error_stage": "CONCEPT",
-                "misconception_index": 0,
+                "diagnostic_evidence": confirmed_diagnostic_evidence(
+                    "Example",
+                    "CAP-A",
+                    "I used the wrong structural rule instead of preserving the required relation.",
+                    "The canonical probe response directly repeats the authored misconception.",
+                    root=self.repo,
+                ),
             },
         )
         self.assertEqual(diagnosed["next_action"], "REPAIR")

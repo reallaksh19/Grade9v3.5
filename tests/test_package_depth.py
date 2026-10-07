@@ -88,6 +88,24 @@ class Duties(unittest.TestCase):
         after = {(d["duty"], d["record"]) for d in self.duties(fixed)}
         self.assertEqual(before - after, {("AUTHOR_FAILURE_SIGNAL", q["id"])})
 
+    def test_core1a_optional_operator_absence_is_not_a_depth_duty(self):
+        pkg = copy.deepcopy(self.pkg)
+        unit = pkg["microtopics"][0]["construction_units"][0]
+        unit.pop("worked_anchor_ref", None)
+        unit.pop("bank_anchor_ref", None)
+        unit["independent_checks"] = []
+        unit.pop("representation_ref", None)
+
+        duties = {(d["duty"], d["record"]) for d in self.duties(pkg)}
+        self.assertNotIn(("AUTHOR_WORKED_ANCHOR", unit["id"]), duties)
+        self.assertNotIn(("AUTHOR_INDEPENDENT_CHECK", unit["id"]), duties)
+        self.assertNotIn(("MOUNT_REPRESENTATION", unit["id"]), duties)
+
+        # An authored representation reference is still an integrity claim and must resolve.
+        unit["representation_ref"] = "REP-NOT-IN-PACKAGE"
+        duties = {(d["duty"], d["record"]) for d in self.duties(pkg)}
+        self.assertIn(("MOUNT_REPRESENTATION", unit["id"]), duties)
+
     def test_cross_subject_prerequisite_resolves_or_becomes_a_bridge_duty(self):
         pkg = copy.deepcopy(self.pkg)
         m = pkg["microtopics"][0]

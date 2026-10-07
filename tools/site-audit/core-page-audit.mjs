@@ -17,6 +17,7 @@ import { execSync } from 'node:child_process';
 import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
+import { matchesBlueprintLayout, splitLayoutExpectation } from './layout-observation.mjs';
 
 const require = createRequire(import.meta.url);
 let playwright;
@@ -129,17 +130,24 @@ for (const file of files) {
       ? origin + '/' + path.relative(httpRoot, path.join(dir, file)).split(path.sep).map(encodeURIComponent).join('/')
       : 'file://' + path.join(dir, file);
     await page.goto(pageUrl);
+    await page.waitForTimeout(200); // let the shared display stylesheet settle before measuring text
     const bpId = await page.evaluate(() => document.body.dataset.blueprintRef || null);
     const bp = blueprints.blueprints.find(b => `${b.id}@${b.version}` === bpId);
     const minTarget = bp ? bp.touch_policy.minimum_target_css_px : 48;
     // The expanded layout is the blueprint's own: its fractions and the width it starts at.
     const policy = bp ? bp.responsive_policy : null;
+    const layoutExpectation = splitLayoutExpectation(policy);
     const pct = x => Number((x * 100).toFixed(4));
-    const expectedColumns = policy && policy.support_fraction ? { primary: pct(policy.primary_fraction), support: pct(policy.support_fraction) } : null;
+    const expectedColumns = layoutExpectation
+      ? { primary: pct(layoutExpectation.primaryFraction), support: pct(layoutExpectation.supportFraction) }
+      : null;
     const expectedTablet = policy && policy.tablet_12_7 ? policy.tablet_12_7 : null;
     const r = await page.evaluate(({ minTarget, expectedColumns, expectedTablet }) => {
-      const visible = el => { const b = el.getBoundingClientRect(); return b.width > 0 && b.height > 0; };
-      const controls = [...document.querySelectorAll('a[href],button,summary,textarea,input,select')].filter(visible);
+      const visible = el => {
+        const b = el.getBoundingClientRect();
+        return b.width > 0 && b.height > 0 && el.checkVisibility({ visibilityProperty: true, contentVisibilityAuto: true });
+      };
+      const controls = [...document.querySelectorAll('a[href],button,summary,textarea,input,select,[tabindex="0"]')].filter(visible);
       // Inline text links inside a paragraph, list item or table cell are exempt (WCAG 2.5.8), as in tablet-audit.mjs.
       const small = controls.filter(el => { const b = el.getBoundingClientRect(); return Math.min(b.width, b.height) < minTarget && el.tagName !== 'TEXTAREA' && !(el.tagName === 'A' && el.closest('p,li,td')); });
       const texts = [...document.querySelectorAll('body *')].filter(el => el.childElementCount === 0 && el.textContent.trim() && visible(el));
@@ -168,6 +176,7 @@ for (const file of files) {
         smallTargets: small.length,
         smallTargetSample: small.slice(0, 3).map(el => el.tagName.toLowerCase() + ' ' + Math.round(el.getBoundingClientRect().height) + 'px "' + el.textContent.trim().slice(0, 20) + '"'),
         minFontPx: minFont,
+        minHtmlFontPx: Math.min(...texts.filter(el => !el.closest("svg")).map(el => parseFloat(getComputedStyle(el).fontSize))),
         minFontSample: minFontElements.slice(0, 3).map(el => el.tagName.toLowerCase() + ' ' + (el.textContent || '').trim().slice(0, 30)),
         contentWidthPx: (() => {
           const main = document.querySelector('main');
@@ -185,6 +194,80 @@ for (const file of files) {
         landmarks: { main: document.querySelectorAll('main').length, nav: document.querySelectorAll('nav').length, header: document.querySelectorAll('header').length, footer: document.querySelectorAll('footer').length },
         svg: figs.length,
         svgAccessible: figs.filter(s => s.querySelector('title') || s.getAttribute('aria-label') || s.getAttribute('aria-labelledby')).length,
+        progressiveLearning: (() => {
+          const secondary = [...document.querySelectorAll('details.g9-secondary-disclosure')].filter(visible);
+          const worked = [...document.querySelectorAll('details[data-g9-worked-predict]')].filter(visible);
+          const keySteps = [...document.querySelectorAll('[data-g9-component="KEY_STEP"]')].filter(visible);
+          const exitTasks = [...document.querySelectorAll('[data-g9-component="EXIT_RECALL"]')].filter(visible);
+          const core2Hints = [...document.querySelectorAll('details[data-g9-secondary="core2-hints"]')].filter(visible);
+          const core2WrongRoutes = [...document.querySelectorAll('details[data-g9-secondary="core2-wrong-route"]')].filter(visible);
+          return {
+            secondaryDisclosures: secondary.length,
+            secondaryOpenByDefault: secondary.filter(el => el.open).length,
+            workedVisibleSteps: [...document.querySelectorAll("[data-g9-watch-step]")].filter(visible).length,
+            workedPredictSteps: worked.length,
+            workedPredictOpenByDefault: worked.filter(el => el.open).length,
+            keyStepInsideDisclosure: keySteps.filter(el => !!el.closest('details')).length,
+            exitRecallCount: exitTasks.length,
+            core2HintDisclosures: core2Hints.length,
+            core2HintOpenByDefault: core2Hints.filter(el => el.open).length,
+            core2WrongRouteDisclosures: core2WrongRoutes.length,
+            core2WrongRouteOpenByDefault: core2WrongRoutes.filter(el => el.open).length,
+          };
+        })(),
+        stagedSvg: (() => {
+          const staged = [...document.querySelectorAll('figure[data-g9-stage-mode]')].filter(visible);
+          const violations = [];
+          const samples = [];
+          for (const figure of staged) {
+            const mode = figure.dataset.g9StageMode || 'cumulative';
+            const chips = [...figure.querySelectorAll('[data-g9-stage-goto]')];
+            const groups = [...figure.querySelectorAll('svg [data-g9-stage-id]')];
+            if (chips.length < 2 || groups.length < 2) continue;
+            const snapshot = () => {
+              const visibleGroups = groups.filter(group => getComputedStyle(group).display !== 'none');
+              const structural = visibleGroups.reduce((count, group) =>
+                count + group.querySelectorAll('path,line,rect,circle,ellipse,polygon,polyline').length, 0);
+              const sizes=[...figure.querySelectorAll('svg text')].filter(visible).map(label=>{
+                const m=label.getScreenCTM(); return m ? parseFloat(getComputedStyle(label).fontSize)*Math.hypot(m.a,m.b):Infinity;
+              });
+              return { visibleGroups: visibleGroups.length, structural, smallestTextPx:sizes.length?Math.min(...sizes):null };
+            };
+            const progression = [];
+            chips.forEach((chip, index) => {
+              chip.click();
+              progression.push({ stage: index + 1, ...snapshot() });
+            });
+            if (chips[0]) chips[0].click();
+            if (mode === 'cumulative') {
+              for (let index = 0; index < progression.length; index += 1) {
+              const current = progression[index];
+              if (current.smallestTextPx !== null && current.smallestTextPx < 13.95) {
+                violations.push((figure.dataset.g9Representation || figure.dataset.g9Fig || 'figure')+
+                  ': stage '+current.stage+' label '+current.smallestTextPx.toFixed(2)+'px < 14px');
+              }
+                const previous = index ? progression[index - 1] : null;
+                if (current.visibleGroups < index + 1) {
+                  violations.push((figure.dataset.g9Representation || figure.dataset.g9Fig || 'figure') +
+                    ': stage ' + current.stage + ' shows ' + current.visibleGroups + ' group(s); cumulative reveal needs at least ' + (index + 1));
+                }
+                if (previous && current.structural < previous.structural) {
+                  violations.push((figure.dataset.g9Representation || figure.dataset.g9Fig || 'figure') +
+                    ': structural geometry fell from ' + previous.structural + ' to ' + current.structural + ' at stage ' + current.stage);
+                }
+              }
+            } else if (mode === 'replace') {
+              progression.forEach(current => {
+                if (current.visibleGroups !== 1) {
+                  violations.push((figure.dataset.g9Representation || figure.dataset.g9Fig || 'figure') +
+                    ': replacement stage ' + current.stage + ' shows ' + current.visibleGroups + ' stage groups');
+                }
+              });
+            }
+            samples.push({ representation: figure.dataset.g9Representation || null, mode, progression });
+          }
+          return { figures: staged.length, violations, samples: samples.slice(0, 6) };
+        })(),
         disclosures: document.querySelectorAll('details').length,
         attemptFields: document.querySelectorAll('textarea').length,
         gatedDisclosures: [...document.querySelectorAll('details')].filter(d => d.hasAttribute('data-requires-attempt') || d.querySelector('summary[aria-disabled="true"]')).length,
@@ -213,6 +296,14 @@ for (const file of files) {
           const min = key => rows.reduce((m, row) => row[key] === null ? m : (m === null ? row[key] : Math.min(m, row[key])), null);
           return { articles: rows.length, identityMaxPx: max('identityPx'), supportOffsetMaxPx: max('supportOffsetPx'),
                    smallestFigureTextPx: min('smallestFigureTextPx'), worstIdentity: rows.sort((a, b) => (b.identityPx || 0) - (a.identityPx || 0))[0] || null };
+        })(),
+        singlePaneLayout: (() => {
+          const articles = [...document.querySelectorAll('main article[data-g9-unit]')].filter(visible);
+          const containers = articles.flatMap(article => [article, ...article.querySelectorAll('.g9-split')].filter(visible));
+          return {articleCount: articles.length, columnCounts: containers.map(container => {
+            const columns = getComputedStyle(container).gridTemplateColumns;
+            return columns === 'none' ? 1 : columns.trim().split(/\s+/).length;
+          })};
         })(),
         stageSupportLayout: !!expectedColumns && new RegExp(`grid-template-columns:\\s*minmax\\(0(?:px)?,\\s*${expectedColumns.primary}fr\\)\\s*minmax\\(0(?:px)?,\\s*${expectedColumns.support}fr\\)`).test(sheetText),
         core1aLayout: (() => {
@@ -367,8 +458,10 @@ for (const file of files) {
         })(),
       };
     }, { minTarget, expectedColumns, expectedTablet });
-    r.expectedLayout = policy && policy.support_fraction
-      ? { supportFraction: policy.support_fraction, minPx: policy.expanded_min_px || 1100 } : null;
+    r.stageSupportLayout = matchesBlueprintLayout(policy, r.stageSupportLayout, r.singlePaneLayout);
+    r.expectedLayout = layoutExpectation
+      ? { supportFraction: layoutExpectation.supportFraction, minPx: layoutExpectation.minPx }
+      : null;
     r.externalRequests = [...new Set(requests)];
     if (profile === 'core1a-spec' && file === 'core1a.html') {
       r.interaction = {
@@ -497,6 +590,7 @@ if (enforce && profile === 'core1a-spec') {
         failures.push(`core1a.html ${vp.name}: missing viewport result`);
         continue;
       }
+      if (row.minHtmlFontPx < 13.95) failures.push(`${vp.name}: visible HTML text ${row.minHtmlFontPx}px below 14px`);
       if (row.horizontalOverflowPx !== 0) failures.push(`${vp.name}: page overflow ${row.horizontalOverflowPx}px`);
       if (row.smallTargets !== 0) failures.push(`${vp.name}: ${row.smallTargets} controls below 48px`);
       if (row.controlGeometry.minGapPx != null && row.controlGeometry.minGapPx < 8) {
@@ -506,6 +600,12 @@ if (enforce && profile === 'core1a-spec') {
         failures.push(`${vp.name}: ${row.tableContainment.tablesOutsideLocalScroller} table(s) outside local scroller`);
       }
       if (row.svg !== row.svgAccessible) failures.push(`${vp.name}: accessible SVG ${row.svgAccessible}/${row.svg}`);
+      if (row.stagedSvg?.violations?.length) failures.push(`${vp.name}: staged SVG progression: ${row.stagedSvg.violations.join(' | ')}`);
+      if (row.progressiveLearning.secondaryOpenByDefault !== 0) failures.push(`${vp.name}: secondary Core1A disclosures open by default=${row.progressiveLearning.secondaryOpenByDefault}`);
+      if (row.progressiveLearning.workedVisibleSteps < 1) failures.push(`${vp.name}: no visible coherent worked explanation`);
+      if (row.progressiveLearning.workedPredictOpenByDefault !== 0) failures.push(`${vp.name}: worked-example steps open by default=${row.progressiveLearning.workedPredictOpenByDefault}`);
+      if (row.progressiveLearning.keyStepInsideDisclosure !== 0) failures.push(`${vp.name}: key step is hidden inside a disclosure`);
+      if (row.progressiveLearning.exitRecallCount < 1) failures.push(`${vp.name}: no less-supported independent close`);
       if (row.anchorSafety.riskyAnchors !== 0) failures.push(`${vp.name}: ${row.anchorSafety.riskyAnchors} sticky-obscured anchor(s)`);
       if (row.focusProbe.focusFailures !== 0 || row.focusProbe.visibleFocus !== row.focusProbe.candidates) {
         failures.push(`${vp.name}: focus ${row.focusProbe.visibleFocus}/${row.focusProbe.candidates}, failures=${row.focusProbe.focusFailures}`);
@@ -513,7 +613,9 @@ if (enforce && profile === 'core1a-spec') {
       if (row.externalRequests.length !== 0) failures.push(`${vp.name}: external request(s): ${row.externalRequests.join(', ')}`);
       const layout = row.core1aLayout;
       const want = row.expectedLayout;
-      if (!want) failures.push(`${vp.name}: the page's blueprint declares no two-column layout to check against`);
+      if (!want) {
+        if (row.core1aLayout.expandedCount !== 0) failures.push(`${vp.name}: integrated lesson unexpectedly split into columns`);
+      }
       else if (vp.width >= want.minPx) {
         if (layout.expandedCount !== layout.articleCount) failures.push(`${vp.name}: expanded layout ${layout.expandedCount}/${layout.articleCount}`);
         for (const sample of layout.samples) {
@@ -558,8 +660,23 @@ if (enforce && profile === 'tablet-12.7') {
     for (const vp of TABLET_12_7_VIEWPORTS) {
       const row = r.viewports[vp.name];
       if (!row) { failures.push(`${file} ${vp.name}: missing viewport result`); continue; }
+      if (row.minHtmlFontPx < 13.95) failures.push(`${file} ${vp.name}: visible HTML text ${row.minHtmlFontPx}px below 14px`);
       if (row.horizontalOverflowPx !== 0) failures.push(`${file} ${vp.name}: page overflow ${row.horizontalOverflowPx}px`);
       if (row.smallTargets !== 0) failures.push(`${file} ${vp.name}: ${row.smallTargets} controls below 48px`);
+      if (row.stagedSvg?.violations?.length) failures.push(`${file} ${vp.name}: staged SVG progression: ${row.stagedSvg.violations.join(' | ')}`);
+      if (file === 'core1a.html') {
+        if (row.progressiveLearning.secondaryOpenByDefault !== 0) failures.push(`${file} ${vp.name}: secondary disclosures open by default=${row.progressiveLearning.secondaryOpenByDefault}`);
+        if (row.progressiveLearning.workedVisibleSteps < 1) failures.push(`${file} ${vp.name}: no visible coherent worked explanation`);
+        if (row.progressiveLearning.workedPredictOpenByDefault !== 0) failures.push(`${file} ${vp.name}: worked-example steps open by default=${row.progressiveLearning.workedPredictOpenByDefault}`);
+        if (row.progressiveLearning.keyStepInsideDisclosure !== 0) failures.push(`${file} ${vp.name}: key step is hidden inside a disclosure`);
+        if (row.progressiveLearning.exitRecallCount < 1) failures.push(`${file} ${vp.name}: no independent less-supported close`);
+      }
+      if (file === 'core2.html' && row.progressiveLearning.core2HintDisclosures > 0 && row.progressiveLearning.core2HintOpenByDefault !== 0) {
+        failures.push(`${file} ${vp.name}: guided support is not collapsed by default`);
+      }
+      if (file === 'core2.html' && row.progressiveLearning.core2WrongRouteDisclosures > 0 && row.progressiveLearning.core2WrongRouteOpenByDefault !== 0) {
+        failures.push(`${file} ${vp.name}: common wrong-route warning is not collapsed by default`);
+      }
       if (!row.tablet) continue;
       const bp = blueprints.blueprints.find(b => `${b.id}@${b.version}` === row.blueprint);
       const promise = bp.responsive_policy.tablet_12_7;
