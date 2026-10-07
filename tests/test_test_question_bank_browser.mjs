@@ -51,6 +51,7 @@ for (const width of [320, 390, 768, 1280]) {
       cards: cards.length,
       unique: new Set(cards.map(card => card.dataset.g9TestQuestion)).size,
       validated: cards.filter(card => card.dataset.g9Validation === 'VALIDATED').length,
+      hold: cards.filter(card => card.dataset.g9Validation === 'HOLD').length,
       unvalidated: cards.filter(card => card.dataset.g9Validation === 'UNVALIDATED').length,
       sourceVerified: cards.filter(card => card.dataset.g9SourceVerification === 'SOURCE VERIFIED').length,
       duplicateReview: cards.filter(card => card.dataset.g9Review === 'DUPLICATE_REVIEW').length,
@@ -64,8 +65,9 @@ for (const width of [320, 390, 768, 1280]) {
 
   const where = `TEST Question Bank @${width}`;
   if (facts.cards !== 210 || facts.unique !== 210) failures.push(`${where}: card denominator/uniqueness is ${facts.cards}/${facts.unique}, expected 210/210`);
-  if (facts.validated !== 20) failures.push(`${where}: ${facts.validated}/20 VALIDATED`);
-  if (facts.unvalidated !== 190) failures.push(`${where}: ${facts.unvalidated}/190 UNVALIDATED`);
+  if (facts.validated !== 29) failures.push(`${where}: ${facts.validated}/29 VALIDATED`);
+  if (facts.hold !== 1) failures.push(`${where}: ${facts.hold}/1 HOLD`);
+  if (facts.unvalidated !== 180) failures.push(`${where}: ${facts.unvalidated}/180 UNVALIDATED`);
   if (facts.sourceVerified !== 210) failures.push(`${where}: ${facts.sourceVerified}/210 SOURCE VERIFIED`);
   if (facts.duplicateReview !== 1) failures.push(`${where}: ${facts.duplicateReview} duplicate-review cards, expected 1`);
   if (facts.types.MULTIPLE_CHOICE !== 125 || facts.types.SHORT_ANSWER !== 45 || facts.types.TRUE_FALSE !== 40) {
@@ -99,4 +101,4 @@ if (failures.length) {
   console.log(`FAIL: ${failures.length} TEST Question Bank browser problem(s)`);
   process.exit(1);
 }
-console.log('PASS: TEST Question Bank renders 210 source-verified questions with 20 VALIDATED / 190 UNVALIDATED, correct filters, touch targets and no narrow overflow');
+console.log('PASS: TEST Question Bank renders 210 source-verified questions with 29 VALIDATED / 1 HOLD / 180 UNVALIDATED, correct filters, touch targets and no narrow overflow');
