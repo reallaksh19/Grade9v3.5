@@ -40765,10 +40765,122 @@ window.GRADE9V3 = {
         }
       },
       "gates": [],
-      "buckets": [],
+      "buckets": [
+        {
+          "id": "BUCKET-TEST-MATH-NS-RATIONAL",
+          "title": "Rational numbers in the real-number system",
+          "topic": "Number System",
+          "badge": "EASY",
+          "status": "CANDIDATE",
+          "prerequisites": [],
+          "curriculum": [],
+          "microtopics": [
+            {
+              "id": "MIC-TEST-MATH-NS-RATIONAL-INCLUSION",
+              "title": "Use rational-number set inclusion and a boundary example",
+              "badge": "EASY",
+              "status": "CANDIDATE",
+              "badge_reason": "The key move is conceptual rather than computational: interpret “every” as set inclusion, then test narrower alternatives with a rational counterexample.",
+              "entry_assumptions": [
+                "Can recognize a fraction such as 1/2 as a rational number."
+              ],
+              "inferential_jump": "A universal membership claim can be settled by combining the inclusion Q ⊂ R with one rational counterexample that lies outside the narrower natural, whole and integer sets.",
+              "teaching_path": [
+                {
+                  "id": "NSR-1",
+                  "action": "Read “every rational number is …” as a claim that the entire rational set must sit inside the chosen set.",
+                  "why_valid": "The word every makes the statement universal, so the chosen target set must contain all rational numbers.",
+                  "role": "DECLARE",
+                  "output": "a set-inclusion test rather than an example-matching test",
+                  "inputs": [
+                    "the universal word every"
+                  ]
+                },
+                {
+                  "id": "NSR-2",
+                  "action": "Use 1/2 as a boundary example to test the natural, whole and integer choices.",
+                  "why_valid": "One counterexample is enough to disprove a universal set-membership statement.",
+                  "role": "TRANSFORM",
+                  "output": "natural, whole and integer are rejected as universal supersets of the rationals",
+                  "inputs": [
+                    "1/2 is rational"
+                  ]
+                },
+                {
+                  "id": "NSR-3",
+                  "action": "Check the remaining real-number claim against the inclusion Q ⊂ R.",
+                  "why_valid": "Every rational number is a real number, so the universal statement holds.",
+                  "role": "VERIFY",
+                  "output": "real number is the valid universal classification",
+                  "inputs": [
+                    "Q ⊂ R"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A familiar rational example being an integer means every rational number is an integer.",
+                  "diagnostic_prompt": "Does 1/2 belong to the integers, whole numbers or natural numbers?",
+                  "repair": "Use 1/2 as a counterexample: it is rational but belongs to none of those three narrower sets."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Explain why 3/4 is a real number but not an integer, whole number or natural number.",
+                "source_ref": "SRC-TEST-AUTHORED-NS-RATIONAL",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "3/4 is rational and therefore real, but it is not an integer, whole number or natural number.",
+                  "reasoning": [
+                    "3/4 is a ratio of integers with non-zero denominator, so it is rational.",
+                    "Every rational number is real.",
+                    "3/4 is not an integer, so it is also not whole or natural."
+                  ],
+                  "check": "The classification must include rational and real while excluding integer, whole and natural.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The task is a set-membership explanation, not a computed numerical claim."
+                }
+              },
+              "prerequisites": []
+            }
+          ],
+          "relations": [],
+          "questions": [
+            {
+              "id": "Q-TEST-AUTHORED-NS-RATIONAL-BOUNDARY-01",
+              "stem": "Classify 3/4 among the natural, whole, integer, rational and real number sets. Explain one boundary example or set-inclusion fact that justifies your classification.",
+              "origin": "AUTHORED",
+              "answer": "3/4 is rational and real, but not integer, whole or natural."
+            }
+          ],
+          "capabilities": [
+            {
+              "id": "CAP-TEST-MATH-NS-RATIONAL-CLASSIFY",
+              "action": "Classify a rational number by using set inclusion and boundary counterexamples to distinguish rational, real, integer, whole and natural membership.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            }
+          ],
+          "record_count": 6,
+          "compile_preview": {
+            "compilable": false,
+            "code": "LIBRARY_SUPPORTS_NO_PRODUCT",
+            "detail": "BUCKET-TEST-MATH-NS-RATIONAL"
+          }
+        }
+      ],
       "matrices": [],
-      "packages": [],
-      "library_available": false,
+      "packages": [
+        {
+          "package_id": "LIB-TEST-MATH-NS-RATIONAL-Q1",
+          "status": "CANDIDATE",
+          "admitted": true
+        }
+      ],
+      "library_available": true,
       "atlas_index_contract_version": "2.0",
       "atlas_index": [],
       "visual_targets": {},
