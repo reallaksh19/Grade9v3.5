@@ -1,0 +1,51 @@
+{
+  "schema_version": "grade9v3-phase-d-historical-negative-replay-v1",
+  "issue": 112,
+  "phase": "D04",
+  "result": "PASS_FALSIFIERS",
+  "base_head": "59751b52e4911a132abb8c3956583a75b3cbcab7",
+  "qualification_head": "6dddea80cf002504ffd3733ad8eb3af7d98cadb7",
+  "focused_run": {
+    "workflow": "phase-d-historical-negative-qualification",
+    "run_id": 37549820681,
+    "job_id": 112562376030,
+    "tests": {
+      "count": 8,
+      "result": "PASS"
+    }
+  },
+  "falsifiers": [
+    "#32 Q1 protected-W pre-attempt leakage is rejected by W_LEAK_PRE_ATTEMPT_REACHABLE.",
+    "#32 Q4 a reviewed replacement owned by another question is rejected and not rendered as the question visual.",
+    "#34 noncanonical TMPL-CHEM-G11-* cannot enter the canonical 28-cell QRT authority.",
+    "#36 equal scaffold counts across materially different demands do not constitute semantic sufficiency.",
+    "#38 invented review facets are schema-invalid and each crux must resolve inside its own question route.",
+    "#49-#56 frozen classifications remain REPLAY_REQUIRED and contribute zero accepted fresh cells."
+  ],
+  "historical_receipt_boundary": {
+    "issues": [
+      32,
+      34,
+      36,
+      38
+    ],
+    "status": "CANDIDATE_EVIDENCE_ONLY",
+    "browser": "NOT_RUN_HISTORICALLY",
+    "golden": false
+  },
+  "guardrail_delta": {
+    "phase_c_base_run_id": 37545939587,
+    "phase_c_base_job_id": 112549846745,
+    "d04_run_id": 37549820587,
+    "d04_job_id": 112562376002,
+    "base_unique_failure_or_error_tests": 112,
+    "d04_unique_failure_or_error_tests": 112,
+    "added": [],
+    "removed": [],
+    "disposition": "NO_NEW_BROAD_GUARDRAIL_REGRESSION"
+  },
+  "acceptance_boundary": {
+    "shared_production_change": false,
+    "merge_or_publication": "NOT_GRANTED"
+  }
+}
