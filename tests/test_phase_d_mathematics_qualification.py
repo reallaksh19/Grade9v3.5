@@ -103,7 +103,7 @@ class PhaseDMathematicsQualification(unittest.TestCase):
         self.assertIn("data-g9-attempt-box", html)
         self.assertIn("data-g9-commit", html)
         self.assertIn(f'data-g9-payload-ref="CORE2-{fixture.WITNESS}-solution"', html)
-        self.assertEqual(html.count("template data-g9-rung-payload="), 2)
+        self.assertEqual(html.count("template data-g9-rung-payload="), 3)
         self.assertNotIn('data-g9-support-reveals="ANSWER"', html)
         self.assertNotIn('data-g9-figure', html)
 
