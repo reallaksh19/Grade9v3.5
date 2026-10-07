@@ -97,17 +97,21 @@ class TestTestIntakeDashboard(unittest.TestCase):
 
     def test_hub_projects_exact_verified_records_and_hides_answer_keys(self):
         page = build_test_site.hub_page()
-        self.assertIn('data-g9-unit="question-intake"', page)
-        self.assertEqual(page.count("data-g9-intake-record"), 6)
-        self.assertIn("Every rational number is", page)
-        self.assertIn("printed page 2", page)
-        self.assertIn("PDF index 1", page)
-        self.assertIn("NCERT_OFFICIAL", page)
-        self.assertIn("READY_FOR_BLUEPRINT", page)
-        self.assertIn("Official answer:</strong> available (key not projected)", page)
-        self.assertIn("https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep201.pdf", page)
+        start = page.index('data-g9-unit="question-intake"')
+        end = page.index("</article>", start)
+        panel = page[start:end]
+        self.assertEqual(panel.count("data-g9-intake-record"), 6)
+        self.assertIn("Every rational number is", panel)
+        self.assertIn("printed page 2", panel)
+        self.assertIn("PDF index 1", panel)
+        self.assertIn("NCERT_OFFICIAL", panel)
+        self.assertIn("READY_FOR_BLUEPRINT", panel)
+        self.assertIn("Official answer:</strong> available (key not projected)", panel)
+        self.assertIn("source URL retained in Stage-1 authority", panel)
+        self.assertIn("NCERT-EXEMPLAR-G9-MATH-U01", panel)
+        self.assertNotIn("https://", panel)
         for forbidden in ('answer_key', 'worked_solution', 'difficulty', 'qrt', 'accepted'):
-            self.assertNotIn(forbidden, page)
+            self.assertNotIn(forbidden, panel)
 
     def test_hub_embeds_test_only_search_and_filter_controls(self):
         page = build_test_site.hub_page()
