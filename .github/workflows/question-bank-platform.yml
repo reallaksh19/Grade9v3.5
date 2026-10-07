@@ -70,6 +70,18 @@ jobs:
         run: |
           python3 Shared/tools/build_pages_site.py
           python3 Shared/tools/build_pages_site.py --check
+      - name: Commit exact generated closure to integration workbench
+        if: github.event_name == 'push' && github.ref == 'refs/heads/integration/iss191-clean-core-recovery'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add             public/data/question-bank-data.js             public/data/question-bank-catalog.js             public/data/question-bank-search.js             public/data/question-bank-questions.js             public/data/question-bank-resources.js             public/data/question-bank-manifest.js             public/data/question-bank-details             docs/data/question-bank-data.js             docs/data/question-bank-catalog.js             docs/data/question-bank-search.js             docs/data/question-bank-questions.js             docs/data/question-bank-resources.js             docs/data/question-bank-manifest.js             docs/data/question-bank-details             docs/.pages-manifest.json             artifacts/question-bank/dedup-report.json             artifacts/question-bank/lineage.json             artifacts/question-bank/build-receipt.json
+          if git diff --cached --quiet; then
+            echo "Generated closure already current"
+          else
+            git commit -m "ISS191 U4: refresh governed generated closure"
+            git push origin HEAD:integration/iss191-clean-core-recovery
+          fi
       - name: Lineage explain witness
         run: python3 Shared/tools/build_question_bank_platform.py --explain PYQ-CHEM-IITJEE-2008-P1-Q66
       - name: Measure 5000-question scale fixture
