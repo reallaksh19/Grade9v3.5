@@ -2,10 +2,10 @@
   "schema_version": "0.2.0",
   "package_id": "LIB-MATH-POLYNOMIALS",
   "title": "Polynomial Algebra and Degree Constraints",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "status": "CANDIDATE",
   "subject": "Mathematics",
-  "scope_summary": "Canonical Mathematics Polynomials package with two authority-distinct subsets: 10 reviewed NCERT Exemplar foundation questions admitted to the production Question Bank after source-bound independent validation, and 10 owner-supplied ISS55 competition questions staged as CANDIDATE with production Question Bank admission disabled pending Owner acceptance.",
+  "scope_summary": "Canonical Mathematics Polynomials package with 20 reviewed NCERT Exemplar foundation questions admitted to the production Question Bank after source-bound independent validation, plus 10 owner-supplied ISS55 competition questions staged as CANDIDATE with production Question Bank admission disabled pending Owner acceptance.",
   "curriculum_mappings": [],
   "resources": [
     {
@@ -419,6 +419,60 @@
       "action": "Determine and verify zeros of elementary polynomials from the condition p(x) = 0.",
       "success_criterion": "Uses p(c)=0 to identify or check a zero, including the special case that every real number is a zero of the zero polynomial.",
       "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MAT-POLY-REMAINDER-FACTOR-BASIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Use the Remainder and Factor Theorems to evaluate divisibility, remainders, and simple polynomial parameters.",
+      "success_criterion": "Evaluates p(a) for a divisor x-a, interprets p(a) as the remainder, and sets p(a)=0 exactly when x-a is a factor.",
+      "prerequisite_refs": [
+        "CAP-MAT-POLY-EVALUATE-BASIC"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MAT-POLY-FACTORISATION-BASIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Factor elementary polynomial expressions by expansion, common factors, or quadratic product matching.",
+      "success_criterion": "Rewrites an expression as a product and verifies the factorisation by expansion or exact comparison.",
+      "prerequisite_refs": [
+        "CAP-MAT-POLY-FORM-DEGREE-BASIC"
+      ],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    },
+    {
+      "id": "CAP-MAT-POLY-IDENTITIES-BASIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Apply standard algebraic identities to simplify, expand, factor, and compare polynomial expressions.",
+      "success_criterion": "Chooses an appropriate identity, performs the algebra without sign or coefficient loss, and verifies the resulting expression or value.",
+      "prerequisite_refs": [
+        "CAP-MAT-POLY-EVALUATE-BASIC"
+      ],
       "curriculum_mappings": [],
       "external_provider": null,
       "acceptance_status": "CANDIDATE"
@@ -1948,6 +2002,267 @@
       "research_contribution": "Provides the foundational zero-definition mapping used by the validated NCERT Exemplar admission subset.",
       "prerequisite_refs": [],
       "lineage": []
+    },
+    {
+      "id": "MIC-MAT-POLY-REMAINDER-FACTOR",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Remainders and Linear Factors",
+      "bucket_id": "BUCKET-MAT-POLYNOMIALS",
+      "primary_capability_ref": "CAP-MAT-POLY-REMAINDER-FACTOR-BASIC",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The learner must translate a divisor or factor into the correct evaluation point before interpreting the result.",
+      "entry_assumptions": [
+        "Can evaluate a polynomial at a signed input and solve a one-step linear equation."
+      ],
+      "inferential_jump": "Connect division by x-a with the single value p(a), then distinguish a general remainder from the special zero-remainder factor case.",
+      "teaching_path": [
+        {
+          "id": "POLY-RF-T1",
+          "role": "CONNECT",
+          "action": "Rewrite the divisor x-a so its zero a is explicit.",
+          "why_valid": "The Remainder Theorem evaluates the dividend polynomial at the zero of the linear divisor.",
+          "inputs": [
+            "linear divisor"
+          ],
+          "output": "evaluation point a"
+        },
+        {
+          "id": "POLY-RF-T2",
+          "role": "TRANSFORM",
+          "action": "Evaluate p(a); keep that value as the remainder, or set it equal to zero when a factor is asserted.",
+          "why_valid": "p(a) is the remainder on division by x-a, and x-a is a factor exactly when that remainder is zero.",
+          "inputs": [
+            "polynomial and evaluation point"
+          ],
+          "output": "remainder or factor equation"
+        },
+        {
+          "id": "POLY-RF-T3",
+          "role": "VERIFY",
+          "action": "Check the sign of a and substitute it back into the original polynomial.",
+          "why_valid": "Most errors in this theorem come from using a instead of the zero of the written divisor.",
+          "inputs": [
+            "computed result"
+          ],
+          "output": "verified theorem result"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-MAT-POLY-REMAINDER-FACTOR"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "For division by x+1, use p(1) instead of p(-1).",
+          "diagnostic_prompt": "What value of x makes x+1 equal to zero?",
+          "repair": "Find the divisor's zero first; x+1=x-(-1), so use p(-1)."
+        }
+      ],
+      "exit_task": {
+        "prompt": "If p(3)=0, what does the Factor Theorem say about x-3?",
+        "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "x-3 is a factor of p(x).",
+          "reasoning": [
+            "The divisor x-3 has zero 3.",
+            "A zero remainder p(3)=0 makes x-3 a factor."
+          ],
+          "check": "The conclusion uses the factor case of the Remainder Theorem.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task asks for a theorem conclusion from the given evaluation."
+        }
+      },
+      "research_contribution": "Adds the foundational theorem mapping required by the validated NCERT Exemplar Q11-Q13 subset.",
+      "prerequisite_refs": [
+        "MIC-MAT-POLY-EVALUATION"
+      ],
+      "lineage": []
+    },
+    {
+      "id": "MIC-MAT-POLY-FACTORISATION-BASIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Elementary Polynomial Factorisation",
+      "bucket_id": "BUCKET-MAT-POLYNOMIALS",
+      "primary_capability_ref": "CAP-MAT-POLY-FACTORISATION-BASIC",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "The learner must identify a useful product structure and then verify it rather than rely on visual matching.",
+      "entry_assumptions": [
+        "Can expand binomial products and extract a common numerical or variable factor."
+      ],
+      "inferential_jump": "Move between expanded and product forms so a proposed factor can be proved by exact algebraic equivalence.",
+      "teaching_path": [
+        {
+          "id": "POLY-FB-T1",
+          "role": "DECIDE",
+          "action": "Choose either expansion-and-collection or common-factor extraction according to the expression's visible structure.",
+          "why_valid": "Both routes preserve equality and expose multiplicative structure without guessing.",
+          "inputs": [
+            "polynomial expression"
+          ],
+          "output": "chosen factorisation route"
+        },
+        {
+          "id": "POLY-FB-T2",
+          "role": "TRANSFORM",
+          "action": "Rewrite the polynomial as a product by collecting like terms or matching binomial coefficients.",
+          "why_valid": "A correct factorisation is an algebraically equivalent product whose expansion returns the original polynomial.",
+          "inputs": [
+            "chosen route"
+          ],
+          "output": "candidate product form"
+        },
+        {
+          "id": "POLY-FB-T3",
+          "role": "VERIFY",
+          "action": "Expand the candidate product and compare every coefficient with the original expression.",
+          "why_valid": "Coefficient-by-coefficient agreement falsifies sign and middle-term errors.",
+          "inputs": [
+            "candidate product form"
+          ],
+          "output": "verified factorisation"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-MAT-POLY-FACTORISATION-BASIC"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "A proposed factorisation is accepted because the first and last terms look right.",
+          "diagnostic_prompt": "What middle term appears when the proposed factors are expanded?",
+          "repair": "Expansion must reproduce every coefficient, not only the leading and constant terms."
+        }
+      ],
+      "exit_task": {
+        "prompt": "How can you verify that (2x+1)(2x+3) factors 4x²+8x+3?",
+        "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Expand the product and check that it becomes 4x²+8x+3.",
+          "reasoning": [
+            "Multiply the two binomials term by term.",
+            "Collect the middle terms 6x+2x to obtain 8x."
+          ],
+          "check": "The expanded coefficients 4, 8, and 3 match the polynomial.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task asks for a verification method and exact expansion."
+        }
+      },
+      "research_contribution": "Adds the elementary product-form mapping required by the validated NCERT Exemplar Q14 and Q16 subset.",
+      "prerequisite_refs": [
+        "MIC-MAT-POLY-FORM-DEGREE"
+      ],
+      "lineage": []
+    },
+    {
+      "id": "MIC-MAT-POLY-IDENTITIES-BASIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Standard Algebraic Identities in Polynomial Work",
+      "bucket_id": "BUCKET-MAT-POLYNOMIALS",
+      "primary_capability_ref": "CAP-MAT-POLY-IDENTITIES-BASIC",
+      "intrinsic_badge": "MEDIUM",
+      "badge_reason": "Correctness depends on selecting the matching identity and carrying coefficients and signs through every term.",
+      "entry_assumptions": [
+        "Knows square/cube expansions, difference of squares, and the factorisation of a³-b³."
+      ],
+      "inferential_jump": "Recognize an identity pattern inside an unfamiliar expression, transform it exactly, and use the transformed form to answer a coefficient, value, or factor question.",
+      "teaching_path": [
+        {
+          "id": "POLY-ID-T1",
+          "role": "CONNECT",
+          "action": "Match the expression to a named identity such as a²-b², (a+b)³, or a³-b³.",
+          "why_valid": "The identity supplies an equality valid for all permitted values and prevents ad hoc arithmetic.",
+          "inputs": [
+            "target expression"
+          ],
+          "output": "identity with matched a and b"
+        },
+        {
+          "id": "POLY-ID-T2",
+          "role": "TRANSFORM",
+          "action": "Apply the matched identity with the actual coefficients and simplify the resulting terms.",
+          "why_valid": "Substitution into a valid identity preserves equality while exposing the requested coefficient, factor, or value.",
+          "inputs": [
+            "matched identity"
+          ],
+          "output": "simplified polynomial or product"
+        },
+        {
+          "id": "POLY-ID-T3",
+          "role": "VERIFY",
+          "action": "Re-expand, substitute, or compare coefficients to confirm the transformed expression.",
+          "why_valid": "An independent check catches the common sign and coefficient errors in identity use.",
+          "inputs": [
+            "simplified result"
+          ],
+          "output": "verified identity result"
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-MAT-POLY-IDENTITIES-BASIC"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "The middle coefficients in a square or cube identity can be inferred without the binomial multipliers.",
+          "diagnostic_prompt": "What coefficient multiplies a²b in (a+b)³?",
+          "repair": "Use the full identity a³+3a²b+3ab²+b³, including both factors of 3."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Which identity gives 249²-248² without computing either square?",
+        "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Use a²-b²=(a-b)(a+b).",
+          "reasoning": [
+            "Set a=249 and b=248.",
+            "The difference of squares becomes (249-248)(249+248)."
+          ],
+          "check": "The identity converts the large squares into a small product.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "The task asks for the identity selection; the product may be evaluated separately."
+        }
+      },
+      "research_contribution": "Adds the identity mapping required by the validated NCERT Exemplar Q15 and Q17-Q20 subset.",
+      "prerequisite_refs": [
+        "MIC-MAT-POLY-EVALUATION"
+      ],
+      "lineage": []
     }
   ],
   "relations": [],
@@ -3289,6 +3604,124 @@
         "Q-MAT-POLY-NCERT9-EX21-Q08",
         "Q-MAT-POLY-NCERT9-EX21-Q09",
         "Q-MAT-POLY-NCERT9-EX21-Q10"
+      ]
+    },
+    {
+      "id": "FAM-MAT-POLY-REMAINDER-FACTOR",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Remainder and factor theorem applications",
+      "capability_refs": [
+        "CAP-MAT-POLY-REMAINDER-FACTOR-BASIC"
+      ],
+      "solution_structure": [
+        "Identify the divisor zero",
+        "Evaluate the polynomial at that input",
+        "Interpret the value as remainder or factor condition"
+      ],
+      "demand_dimensions": {
+        "model_choice": "low",
+        "representation_translation": "low",
+        "reasoning_steps": "two to three",
+        "novelty": "foundational theorem application"
+      },
+      "safe_variations": [
+        "Change the linear divisor, exponent, or parameter while keeping direct theorem evaluation sufficient."
+      ],
+      "transfer_boundaries": [
+        "Does not cover polynomial long division by nonlinear divisors or synthetic-division algorithms."
+      ],
+      "common_wrong_routes": [
+        "Using the wrong sign for the divisor zero; treating any non-zero remainder as a factor condition."
+      ],
+      "item_refs": [
+        "Q-MAT-POLY-NCERT9-EX21-Q11",
+        "Q-MAT-POLY-NCERT9-EX21-Q12",
+        "Q-MAT-POLY-NCERT9-EX21-Q13"
+      ]
+    },
+    {
+      "id": "FAM-MAT-POLY-FACTORISATION-BASIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Elementary factorisation by structure and expansion",
+      "capability_refs": [
+        "CAP-MAT-POLY-FACTORISATION-BASIC"
+      ],
+      "solution_structure": [
+        "Expose or propose a product form",
+        "Collect coefficients exactly",
+        "Expand to verify"
+      ],
+      "demand_dimensions": {
+        "model_choice": "low",
+        "representation_translation": "low",
+        "reasoning_steps": "two",
+        "novelty": "foundational product recognition"
+      },
+      "safe_variations": [
+        "Vary coefficients while retaining common-factor extraction or a directly checkable quadratic product."
+      ],
+      "transfer_boundaries": [
+        "Does not cover general cubic factor searches or irreducibility arguments."
+      ],
+      "common_wrong_routes": [
+        "Checking only the first and last terms of a product; losing the middle coefficient."
+      ],
+      "item_refs": [
+        "Q-MAT-POLY-NCERT9-EX21-Q14",
+        "Q-MAT-POLY-NCERT9-EX21-Q16"
+      ]
+    },
+    {
+      "id": "FAM-MAT-POLY-IDENTITIES-BASIC",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Standard algebraic identities for polynomial simplification",
+      "capability_refs": [
+        "CAP-MAT-POLY-IDENTITIES-BASIC"
+      ],
+      "solution_structure": [
+        "Recognize the identity pattern",
+        "Substitute the actual terms and coefficients",
+        "Simplify and verify the requested result"
+      ],
+      "demand_dimensions": {
+        "model_choice": "low to medium",
+        "representation_translation": "low",
+        "reasoning_steps": "two to three",
+        "novelty": "identity recognition in varied forms"
+      },
+      "safe_variations": [
+        "Change numerical values or linear terms while preserving a direct standard-identity route."
+      ],
+      "transfer_boundaries": [
+        "Does not cover proofs of identities by induction or non-polynomial radical identities."
+      ],
+      "common_wrong_routes": [
+        "Dropping binomial coefficients; confusing a³-b³ with (a-b)³; sign errors in difference-of-squares use."
+      ],
+      "item_refs": [
+        "Q-MAT-POLY-NCERT9-EX21-Q15",
+        "Q-MAT-POLY-NCERT9-EX21-Q17",
+        "Q-MAT-POLY-NCERT9-EX21-Q18",
+        "Q-MAT-POLY-NCERT9-EX21-Q19",
+        "Q-MAT-POLY-NCERT9-EX21-Q20"
       ]
     }
   ],
@@ -6287,6 +6720,1181 @@
           "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q10-MOVE-2"
         }
       ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q11",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q11"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q11",
+          "text_sha256": "sha256:73b99fb47b34f998a0ce47f48cab49607bb081b0eb4d882f18933d95480e65f1"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q11",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json",
+          "source_text_sha256": "sha256:73b99fb47b34f998a0ce47f48cab49607bb081b0eb4d882f18933d95480e65f1"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 2
+          },
+          "expected_time_seconds": 60,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-REMAINDER-FACTOR-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q11",
+          "common_wrong_route": "Using p(1) for division by x+1 instead of evaluating at the divisor zero -1.",
+          "stable_crux_move": "Evaluate (-1)^51+51."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q11",
+      "stem": "If x⁵¹ + 51 is divided by x + 1, the remainder is",
+      "subparts": [],
+      "options": [
+        "(A) 0",
+        "(B) 1",
+        "(C) 49",
+        "(D) 50"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(D) 50",
+        "reasoning": [
+          "Identify -1 as the zero of x+1. evaluation point -1.",
+          "Evaluate (-1)^51+51. 50.",
+          "Check the odd power sign before matching the option. option D."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q11-MOVE-1",
+            "kind": "CONNECT",
+            "action": "Identify -1 as the zero of x+1.",
+            "why_valid": "The Remainder Theorem uses the zero of the linear divisor.",
+            "inputs": [
+              "divisor x+1"
+            ],
+            "output": "evaluation point -1"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q11-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Evaluate (-1)^51+51.",
+            "why_valid": "The remainder on division by x+1 is p(-1).",
+            "inputs": [
+              "p(-1)"
+            ],
+            "output": "50"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q11-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Check the odd power sign before matching the option.",
+            "why_valid": "An odd power of -1 is -1, so the arithmetic is -1+51.",
+            "inputs": [
+              "computed remainder"
+            ],
+            "output": "option D"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q11-MOVE-2",
+        "check": "p(-1)=-1+51=50.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-REMAINDER-FACTOR-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-REMAINDER-FACTOR",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Identify -1 as the zero of x+1.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q11-MOVE-1"
+        },
+        {
+          "text": "Evaluate (-1)^51+51.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q11-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q12",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q12"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q12",
+          "text_sha256": "sha256:11f4bebaa831493642170a8326e5561dda775dcc7ed45ebab4e3d63aa04b9f5b"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q12",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json",
+          "source_text_sha256": "sha256:11f4bebaa831493642170a8326e5561dda775dcc7ed45ebab4e3d63aa04b9f5b"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 2
+          },
+          "expected_time_seconds": 60,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-REMAINDER-FACTOR-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q12",
+          "common_wrong_route": "Substituting x=1 for the factor x+1, which changes the parameter equation.",
+          "stable_crux_move": "Compute 2(-1)^2+k(-1)=2-k and set it equal to zero."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q12",
+      "stem": "If x + 1 is a factor of the polynomial 2x² + kx, then the value of k is",
+      "subparts": [],
+      "options": [
+        "(A) -3",
+        "(B) 4",
+        "(C) 2",
+        "(D) -2"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(C) 2",
+        "reasoning": [
+          "Translate the factor x+1 into the condition p(-1)=0. condition p(-1)=0.",
+          "Compute 2(-1)^2+k(-1)=2-k and set it equal to zero. k=2.",
+          "Substitute k=2 back into the polynomial at x=-1. zero remainder."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q12-MOVE-1",
+            "kind": "CONNECT",
+            "action": "Translate the factor x+1 into the condition p(-1)=0.",
+            "why_valid": "A linear factor x-a occurs exactly when p(a)=0; here a=-1.",
+            "inputs": [
+              "factor x+1"
+            ],
+            "output": "condition p(-1)=0"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q12-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Compute 2(-1)^2+k(-1)=2-k and set it equal to zero.",
+            "why_valid": "The asserted factor forces the Remainder-Theorem value to vanish.",
+            "inputs": [
+              "2-k=0"
+            ],
+            "output": "k=2"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q12-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Substitute k=2 back into the polynomial at x=-1.",
+            "why_valid": "2-2=0 confirms x+1 divides the polynomial.",
+            "inputs": [
+              "k=2"
+            ],
+            "output": "zero remainder"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q12-MOVE-2",
+        "check": "With k=2, p(-1)=2-2=0.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-REMAINDER-FACTOR-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-REMAINDER-FACTOR",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Translate the factor x+1 into the condition p(-1)=0.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q12-MOVE-1"
+        },
+        {
+          "text": "Compute 2(-1)^2+k(-1)=2-k and set it equal to zero.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q12-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q13",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q13"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q13",
+          "text_sha256": "sha256:abeca57b608b4bc073ec9a5ed39a7b52f75aba48ce41c07730a8178cd8cbd0ad"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q13",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json",
+          "source_text_sha256": "sha256:abeca57b608b4bc073ec9a5ed39a7b52f75aba48ce41c07730a8178cd8cbd0ad"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 2
+          },
+          "expected_time_seconds": 75,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-REMAINDER-FACTOR-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q13",
+          "common_wrong_route": "Trying to factor every option symbolically instead of using the single-value factor test.",
+          "stable_crux_move": "Evaluate option B as -1+1-1+1."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q13",
+      "stem": "x + 1 is a factor of the polynomial",
+      "subparts": [],
+      "options": [
+        "(A) x³ + x² - x + 1",
+        "(B) x³ + x² + x + 1",
+        "(C) x⁴ + x³ + x² + 1",
+        "(D) x⁴ + 3x³ + 3x² + x + 1"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(B) x³ + x² + x + 1",
+        "reasoning": [
+          "Test each option at x=-1 because x+1 is the proposed factor. values at -1.",
+          "Evaluate option B as -1+1-1+1. 0.",
+          "Check that the other three option values are non-zero. only option B qualifies."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q13-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Test each option at x=-1 because x+1 is the proposed factor.",
+            "why_valid": "The Factor Theorem reduces the factor question to one evaluation per option.",
+            "inputs": [
+              "four options"
+            ],
+            "output": "values at -1"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q13-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Evaluate option B as -1+1-1+1.",
+            "why_valid": "Only a zero value establishes divisibility by x+1.",
+            "inputs": [
+              "option B at -1"
+            ],
+            "output": "0"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q13-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Check that the other three option values are non-zero.",
+            "why_valid": "A non-zero remainder rules out x+1 as a factor.",
+            "inputs": [
+              "options A, C and D"
+            ],
+            "output": "only option B qualifies"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q13-MOVE-2",
+        "check": "Option B evaluates to 0 at x=-1; the others do not.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-REMAINDER-FACTOR-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-REMAINDER-FACTOR",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Test each option at x=-1 because x+1 is the proposed factor.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q13-MOVE-1"
+        },
+        {
+          "text": "Evaluate option B as -1+1-1+1.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q13-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q14",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q14"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q14",
+          "text_sha256": "sha256:f4baf8c2a268fcc4e39b925bb35c4486db2c85b9eb717d0a4fc775fd2462ffb1"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q14",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json",
+          "source_text_sha256": "sha256:f4baf8c2a268fcc4e39b925bb35c4486db2c85b9eb717d0a4fc775fd2462ffb1"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 3
+          },
+          "expected_time_seconds": 75,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-FACTORISATION-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q14",
+          "common_wrong_route": "Expanding only the square and missing cancellation of -1 with +1 before extracting the common factor.",
+          "stable_crux_move": "Extract the common factor 10x."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q14",
+      "stem": "One of the factors of (25x² - 1) + (1 + 5x)² is",
+      "subparts": [],
+      "options": [
+        "(A) 5 + x",
+        "(B) 5 - x",
+        "(C) 5x - 1",
+        "(D) 10x"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(D) 10x",
+        "reasoning": [
+          "Expand (1+5x)^2 and combine it with 25x^2-1. 50x²+10x.",
+          "Extract the common factor 10x. 10x(5x+1).",
+          "Expand 10x(5x+1) to recover 50x²+10x. 10x is a factor.",
+          "The listed factors 5 + x and 5 - x are distractors; expanding them does not reproduce the simplified polynomial."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q14-MOVE-1",
+            "kind": "TRANSFORM",
+            "action": "Expand (1+5x)^2 and combine it with 25x^2-1.",
+            "why_valid": "Exact collection reveals the common-factor structure.",
+            "inputs": [
+              "(25x²-1)+(1+5x)²"
+            ],
+            "output": "50x²+10x"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q14-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Extract the common factor 10x.",
+            "why_valid": "Both terms 50x² and 10x are divisible by 10x.",
+            "inputs": [
+              "50x²+10x"
+            ],
+            "output": "10x(5x+1)"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q14-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Expand 10x(5x+1) to recover 50x²+10x.",
+            "why_valid": "Expansion confirms the proposed factorisation exactly.",
+            "inputs": [
+              "10x(5x+1)"
+            ],
+            "output": "10x is a factor"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q14-MOVE-2",
+        "check": "The expression simplifies to 10x(5x+1), so 10x is a factor.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-FACTORISATION-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-FACTORISATION-BASIC",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Expand (1+5x)^2 and combine it with 25x^2-1.",
+          "support_kind": "EXECUTE",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q14-MOVE-1"
+        },
+        {
+          "text": "Extract the common factor 10x.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q14-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q15",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q15"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q15",
+          "text_sha256": "sha256:01da6515bbde973d5c6f8611ee6e0b4a218096daee41ca01300cfa19b3cb2b79"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q15",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json",
+          "source_text_sha256": "sha256:01da6515bbde973d5c6f8611ee6e0b4a218096daee41ca01300cfa19b3cb2b79"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 1
+          },
+          "expected_time_seconds": 45,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-IDENTITIES-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q15",
+          "common_wrong_route": "Computing both large squares separately instead of using the difference-of-squares identity.",
+          "stable_crux_move": "Recognize 249²-248² as a²-b²."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q15",
+      "stem": "The value of 249² - 248² is",
+      "subparts": [],
+      "options": [
+        "(A) 1²",
+        "(B) 477",
+        "(C) 487",
+        "(D) 497"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(D) 497",
+        "reasoning": [
+          "Recognize 249²-248² as a²-b². (249-248)(249+248).",
+          "Evaluate the two small factors. 497.",
+          "Check the product 1×497 against the choices. option D.",
+          "This selects 497 rather than the distractor values 477 or 487."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q15-MOVE-1",
+            "kind": "CONNECT",
+            "action": "Recognize 249²-248² as a²-b².",
+            "why_valid": "The difference-of-squares identity factors the expression immediately.",
+            "inputs": [
+              "a=249, b=248"
+            ],
+            "output": "(249-248)(249+248)"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q15-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Evaluate the two small factors.",
+            "why_valid": "249-248=1 and 249+248=497.",
+            "inputs": [
+              "factored expression"
+            ],
+            "output": "497"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q15-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Check the product 1×497 against the choices.",
+            "why_valid": "The identity gives an exact value without approximation.",
+            "inputs": [
+              "497"
+            ],
+            "output": "option D"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q15-MOVE-1",
+        "check": "(249-248)(249+248)=1×497=497.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-IDENTITIES-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-IDENTITIES-BASIC",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Recognize 249²-248² as a²-b².",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q15-MOVE-1"
+        },
+        {
+          "text": "Evaluate the two small factors.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q15-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q16",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q16"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q16",
+          "text_sha256": "sha256:0eb26fe36d2d85e7c003561fe128251b3c3b063dec23db8c6e42203779595688"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q16",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json",
+          "source_text_sha256": "sha256:0eb26fe36d2d85e7c003561fe128251b3c3b063dec23db8c6e42203779595688"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 2
+          },
+          "expected_time_seconds": 60,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-FACTORISATION-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q16",
+          "common_wrong_route": "Matching the leading and constant terms but not verifying the middle term.",
+          "stable_crux_move": "Expand the candidate product."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q16",
+      "stem": "The factorisation of 4x² + 8x + 3 is",
+      "subparts": [],
+      "options": [
+        "(A) (x + 1) (x + 3)",
+        "(B) (2x + 1) (2x + 3)",
+        "(C) (2x + 2) (2x + 5)",
+        "(D) (2x - 1) (2x - 3)"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(B) (2x + 1) (2x + 3)",
+        "reasoning": [
+          "Inspect option B because its product gives leading term 4x² and constant term 3. candidate option B.",
+          "Expand the candidate product. 4x²+8x+3.",
+          "Compare every coefficient with the given polynomial. exact match."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q16-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Inspect option B because its product gives leading term 4x² and constant term 3.",
+            "why_valid": "A valid quadratic factorisation must match all three coefficients.",
+            "inputs": [
+              "(2x+1)(2x+3)"
+            ],
+            "output": "candidate option B"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q16-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Expand the candidate product.",
+            "why_valid": "FOIL gives 4x²+6x+2x+3.",
+            "inputs": [
+              "option B"
+            ],
+            "output": "4x²+8x+3"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q16-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Compare every coefficient with the given polynomial.",
+            "why_valid": "The leading, middle, and constant coefficients all agree.",
+            "inputs": [
+              "expanded option B"
+            ],
+            "output": "exact match"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q16-MOVE-2",
+        "check": "(2x+1)(2x+3)=4x²+8x+3.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-FACTORISATION-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-FACTORISATION-BASIC",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Inspect option B because its product gives leading term 4x² and constant term 3.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q16-MOVE-1"
+        },
+        {
+          "text": "Expand the candidate product.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q16-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q17",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q17"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q17",
+          "text_sha256": "sha256:3bbadd84dcbd0a245be1ccfc603b1cc6edecffd6bc3fb93568fc3c633b2aecbb"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q17",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json",
+          "source_text_sha256": "sha256:3bbadd84dcbd0a245be1ccfc603b1cc6edecffd6bc3fb93568fc3c633b2aecbb"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 2
+          },
+          "expected_time_seconds": 60,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-IDENTITIES-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q17",
+          "common_wrong_route": "Expanding the cube but failing to collect both mixed terms into a common 3xy factor.",
+          "stable_crux_move": "Factor the common term 3xy from the mixed terms."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q17",
+      "stem": "Which of the following is a factor of (x + y)³ - (x³ + y³)?",
+      "subparts": [],
+      "options": [
+        "(A) x² + y² + 2xy",
+        "(B) x² + y² - xy",
+        "(C) xy²",
+        "(D) 3xy"
+      ],
+      "conditions": [
+        "Derived context: treat the displayed quantity as a polynomial expression in x and y."
+      ],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(D) 3xy",
+        "reasoning": [
+          "Expand (x+y)^3 and subtract x^3+y^3. 3x²y+3xy².",
+          "Factor the common term 3xy from the mixed terms. 3xy(x+y).",
+          "Confirm that 3xy appears as a multiplicative factor of the final product. option D.",
+          "The polynomial expression therefore has 3xy as a factor after the mixed terms are collected."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q17-MOVE-1",
+            "kind": "TRANSFORM",
+            "action": "Expand (x+y)^3 and subtract x^3+y^3.",
+            "why_valid": "The pure cube terms cancel, leaving only mixed terms.",
+            "inputs": [
+              "(x+y)^3-(x^3+y^3)"
+            ],
+            "output": "3x²y+3xy²"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q17-MOVE-2",
+            "kind": "TRANSFORM",
+            "action": "Factor the common term 3xy from the mixed terms.",
+            "why_valid": "Both remaining terms share exactly 3xy.",
+            "inputs": [
+              "3x²y+3xy²"
+            ],
+            "output": "3xy(x+y)"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q17-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Confirm that 3xy appears as a multiplicative factor of the final product.",
+            "why_valid": "A displayed product proves divisibility by that factor.",
+            "inputs": [
+              "3xy(x+y)"
+            ],
+            "output": "option D"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q17-MOVE-2",
+        "check": "The difference equals 3xy(x+y), so 3xy is a factor.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-IDENTITIES-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-IDENTITIES-BASIC",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Expand (x+y)^3 and subtract x^3+y^3.",
+          "support_kind": "EXECUTE",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q17-MOVE-1"
+        },
+        {
+          "text": "Factor the common term 3xy from the mixed terms.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q17-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q18",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q18"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q18",
+          "text_sha256": "sha256:7886484c330cf4347add93a0145f09c41d5038ddc16708fa3b753a8dc79d6296"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q18",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json",
+          "source_text_sha256": "sha256:7886484c330cf4347add93a0145f09c41d5038ddc16708fa3b753a8dc79d6296"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 1
+          },
+          "expected_time_seconds": 45,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-IDENTITIES-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q18",
+          "common_wrong_route": "Using 9 as the x coefficient by omitting the binomial coefficient 3 in the cube expansion.",
+          "stable_crux_move": "Use (a+b)^3=a^3+3a²b+3ab²+b^3 with a=x and b=3."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q18",
+      "stem": "The coefficient of x in the expansion of (x + 3)³ is",
+      "subparts": [],
+      "options": [
+        "(A) 1",
+        "(B) 9",
+        "(C) 18",
+        "(D) 27"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(D) 27",
+        "reasoning": [
+          "Use (a+b)^3=a^3+3a²b+3ab²+b^3 with a=x and b=3. x³+9x²+27x+27.",
+          "Read the coefficient multiplying x in the expansion. 27.",
+          "Check that 3×3²=27. option D."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q18-MOVE-1",
+            "kind": "CONNECT",
+            "action": "Use (a+b)^3=a^3+3a²b+3ab²+b^3 with a=x and b=3.",
+            "why_valid": "The x-term comes from 3ab², not from b² alone.",
+            "inputs": [
+              "x and 3"
+            ],
+            "output": "x³+9x²+27x+27"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q18-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Read the coefficient multiplying x in the expansion.",
+            "why_valid": "The x-term is 27x.",
+            "inputs": [
+              "expanded polynomial"
+            ],
+            "output": "27"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q18-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Check that 3×3²=27.",
+            "why_valid": "The binomial multiplier and square of 3 together determine the coefficient.",
+            "inputs": [
+              "3×9"
+            ],
+            "output": "option D"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q18-MOVE-1",
+        "check": "(x+3)^3=x³+9x²+27x+27, so the x coefficient is 27.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-IDENTITIES-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-IDENTITIES-BASIC",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Use (a+b)^3=a^3+3a²b+3ab²+b^3 with a=x and b=3.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q18-MOVE-1"
+        },
+        {
+          "text": "Read the coefficient multiplying x in the expansion.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q18-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q19",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q19"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q19",
+          "text_sha256": "sha256:518bc0db2e862efa5e420f45e6cd130851bf18eb665356c0fe4ca22ec2a12b6d"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q19",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json",
+          "source_text_sha256": "sha256:518bc0db2e862efa5e420f45e6cd130851bf18eb665356c0fe4ca22ec2a12b6d"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D2",
+            "score": 3
+          },
+          "expected_time_seconds": 75,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-IDENTITIES-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q19",
+          "common_wrong_route": "Trying to solve separately for x and y even though only the symmetric factor x²+xy+y² is needed.",
+          "stable_crux_move": "Rewrite the result as x²+xy+y²=0 and recognize it in x³-y³=(x-y)(x²+xy+y²)."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q19",
+      "stem": "If x/y + y/x = -1 (x, y ≠ 0), the value of x³ - y³ is",
+      "subparts": [],
+      "options": [
+        "(A) 1",
+        "(B) -1",
+        "(C) 0",
+        "(D) 1/2"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(C) 0",
+        "reasoning": [
+          "Multiply x/y+y/x=-1 by the non-zero product xy. x²+y²=-xy.",
+          "Rewrite the result as x²+xy+y²=0 and recognize it in x³-y³=(x-y)(x²+xy+y²). x³-y³=(x-y)·0.",
+          "Conclude that the product is zero without assuming x=y. option C."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q19-MOVE-1",
+            "kind": "TRANSFORM",
+            "action": "Multiply x/y+y/x=-1 by the non-zero product xy.",
+            "why_valid": "The condition x,y≠0 permits multiplication by xy without changing equivalence.",
+            "inputs": [
+              "given rational equation"
+            ],
+            "output": "x²+y²=-xy"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q19-MOVE-2",
+            "kind": "CONNECT",
+            "action": "Rewrite the result as x²+xy+y²=0 and recognize it in x³-y³=(x-y)(x²+xy+y²).",
+            "why_valid": "The difference-of-cubes factorization contains exactly the symmetric factor forced to zero.",
+            "inputs": [
+              "x²+xy+y²=0"
+            ],
+            "output": "x³-y³=(x-y)·0"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q19-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Conclude that the product is zero without assuming x=y.",
+            "why_valid": "A product with the second factor zero is zero for every allowed x-y.",
+            "inputs": [
+              "factored difference"
+            ],
+            "output": "option C"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q19-MOVE-2",
+        "check": "The condition forces x²+xy+y²=0, hence x³-y³=0.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-IDENTITIES-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-IDENTITIES-BASIC",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Multiply x/y+y/x=-1 by the non-zero product xy.",
+          "support_kind": "EXECUTE",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q19-MOVE-1"
+        },
+        {
+          "text": "Rewrite the result as x²+xy+y²=0 and recognize it in x³-y³=(x-y)(x²+xy+y²).",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q19-MOVE-2"
+        }
+      ]
+    },
+    {
+      "id": "Q-MAT-POLY-NCERT9-EX21-Q20",
+      "version": "0.1.0",
+      "status": "REVIEWED",
+      "source_refs": [
+        "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2"
+      ],
+      "evidence_refs": [
+        "EV-MAT-POLY-NCERT9-EX21-Q20"
+      ],
+      "extensions": {
+        "grade9v3:source_custody": {
+          "question_number": "Ex 2.1 Q20",
+          "text_sha256": "sha256:c3c44aa2552623ecdfd1fc3dba019b46b43e3af768846bd938d71f1a9da01616"
+        },
+        "grade9v3:provenance_class": "NCERT_EXEMPLAR_VALIDATED",
+        "grade9v3:lineage": {
+          "source_question_id": "ncert-exemplar-g9-math-u02-q20",
+          "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+          "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json",
+          "source_text_sha256": "sha256:c3c44aa2552623ecdfd1fc3dba019b46b43e3af768846bd938d71f1a9da01616"
+        },
+        "grade9v3:question_bank": {
+          "include": true,
+          "difficulty": {
+            "band": "D1",
+            "score": 1
+          },
+          "expected_time_seconds": 45,
+          "subtopic_refs": [
+            "CAP-MAT-POLY-IDENTITIES-BASIC"
+          ],
+          "question_number": "Ex 2.1 Q20",
+          "common_wrong_route": "Using (a-b)^2 instead of the conjugate-product identity and producing a linear term.",
+          "stable_crux_move": "Recognize (7x+1/2)(7x-1/2) as (a+b)(a-b)."
+        }
+      },
+      "origin": "ORIGINAL",
+      "origin_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+      "original_identifier": "Unit 2 Ex 2.1 Q20",
+      "stem": "If 49x² - b = (7x + 1/2)(7x - 1/2), then the value of b is",
+      "subparts": [],
+      "options": [
+        "(A) 0",
+        "(B) 1/√2",
+        "(C) 1/4",
+        "(D) 1/2"
+      ],
+      "conditions": [],
+      "figure_refs": [],
+      "answer": {
+        "kind": "EXACT",
+        "summary": "(C) 1/4",
+        "reasoning": [
+          "Recognize (7x+1/2)(7x-1/2) as (a+b)(a-b). 49x²-1/4.",
+          "Compare 49x²-1/4 with 49x²-b. b=1/4.",
+          "Check that substituting b=1/4 reproduces the conjugate product. option C."
+        ],
+        "reasoning_route": [
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q20-MOVE-1",
+            "kind": "CONNECT",
+            "action": "Recognize (7x+1/2)(7x-1/2) as (a+b)(a-b).",
+            "why_valid": "Conjugates multiply to a²-b² with no middle term.",
+            "inputs": [
+              "a=7x, b=1/2"
+            ],
+            "output": "49x²-1/4"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q20-MOVE-2",
+            "kind": "DECIDE",
+            "action": "Compare 49x²-1/4 with 49x²-b.",
+            "why_valid": "Matching the constant terms determines b directly.",
+            "inputs": [
+              "49x²-b = 49x²-1/4"
+            ],
+            "output": "b=1/4"
+          },
+          {
+            "id": "Q-MAT-POLY-NCERT9-EX21-Q20-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Check that substituting b=1/4 reproduces the conjugate product.",
+            "why_valid": "Both expressions become 49x²-1/4.",
+            "inputs": [
+              "b=1/4"
+            ],
+            "output": "option C"
+          }
+        ],
+        "crux_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q20-MOVE-1",
+        "check": "(7x+1/2)(7x-1/2)=49x²-1/4, so b=1/4.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "INDEPENDENTLY_CHECKED"
+      },
+      "primary_capability_ref": "CAP-MAT-POLY-IDENTITIES-BASIC",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-MAT-POLY-IDENTITIES-BASIC",
+      "adaptation": null,
+      "exposure": [],
+      "learner_question_type": "single_choice",
+      "scaffolds": [
+        {
+          "text": "Recognize (7x+1/2)(7x-1/2) as (a+b)(a-b).",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q20-MOVE-1"
+        },
+        {
+          "text": "Compare 49x²-1/4 with 49x²-b.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "Q-MAT-POLY-NCERT9-EX21-Q20-MOVE-2"
+        }
+      ]
     }
   ],
   "teaching_routes": [],
@@ -6401,6 +8009,116 @@
       "producer": "Issue #188 / PR #189 validator for Unit 2 Ex 2.1 Q10",
       "independence": "For Unit 2 Ex 2.1 Q10, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
       "limitation": "Unit 2 Ex 2.1 Q10 evidence validates source identity and answer correctness only; Atlas, rung, representation and pedagogical enrichment are outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q11",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q11",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q11, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q11: source digest and official answer reconciled; independent result (D) 50.",
+      "result": "PASS",
+      "producer": "Issue #196 / PR #197 validator for Unit 2 Ex 2.1 Q11",
+      "independence": "For Unit 2 Ex 2.1 Q11, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q11 evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q12",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q12",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q12, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q12: source digest and official answer reconciled; independent result (C) 2.",
+      "result": "PASS",
+      "producer": "Issue #196 / PR #197 validator for Unit 2 Ex 2.1 Q12",
+      "independence": "For Unit 2 Ex 2.1 Q12, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q12 evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q13",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q13",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q13, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q13: source digest and official answer reconciled; independent result (B) x³ + x² + x + 1.",
+      "result": "PASS",
+      "producer": "Issue #196 / PR #197 validator for Unit 2 Ex 2.1 Q13",
+      "independence": "For Unit 2 Ex 2.1 Q13, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q13 evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q14",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q14",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q14, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q14: source digest and official answer reconciled; independent result (D) 10x.",
+      "result": "PASS",
+      "producer": "Issue #196 / PR #197 validator for Unit 2 Ex 2.1 Q14",
+      "independence": "For Unit 2 Ex 2.1 Q14, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q14 evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q15",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q15",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q15, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q15: source digest and official answer reconciled; independent result (D) 497.",
+      "result": "PASS",
+      "producer": "Issue #196 / PR #197 validator for Unit 2 Ex 2.1 Q15",
+      "independence": "For Unit 2 Ex 2.1 Q15, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q15 evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q16",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q16",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q16, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q16: source digest and official answer reconciled; independent result (B) (2x + 1) (2x + 3).",
+      "result": "PASS",
+      "producer": "Issue #196 / PR #197 validator for Unit 2 Ex 2.1 Q16",
+      "independence": "For Unit 2 Ex 2.1 Q16, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q16 evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q17",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q17",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q17, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q17: source digest and official answer reconciled; independent result (D) 3xy.",
+      "result": "PASS",
+      "producer": "Issue #196 / PR #197 validator for Unit 2 Ex 2.1 Q17",
+      "independence": "For Unit 2 Ex 2.1 Q17, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q17 evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q18",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q18",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q18, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q18: source digest and official answer reconciled; independent result (D) 27.",
+      "result": "PASS",
+      "producer": "Issue #196 / PR #197 validator for Unit 2 Ex 2.1 Q18",
+      "independence": "For Unit 2 Ex 2.1 Q18, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q18 evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q19",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q19",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q19, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q19: source digest and official answer reconciled; independent result (C) 0.",
+      "result": "PASS",
+      "producer": "Issue #196 / PR #197 validator for Unit 2 Ex 2.1 Q19",
+      "independence": "For Unit 2 Ex 2.1 Q19, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q19 evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
+    },
+    {
+      "id": "EV-MAT-POLY-NCERT9-EX21-Q20",
+      "target_ref": "Q-MAT-POLY-NCERT9-EX21-Q20",
+      "target_version": "0.1.0",
+      "method": "Independent mathematical recomputation for Unit 2 Ex 2.1 Q20, bound to TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json.",
+      "observation": "Unit 2 Ex 2.1 Q20: source digest and official answer reconciled; independent result (C) 1/4.",
+      "result": "PASS",
+      "producer": "Issue #196 / PR #197 validator for Unit 2 Ex 2.1 Q20",
+      "independence": "For Unit 2 Ex 2.1 Q20, the official NCERT answer was reconciled separately from the recorded independent recomputation.",
+      "limitation": "Unit 2 Ex 2.1 Q20 evidence validates source identity and answer correctness only; Atlas, rung, representation and later pedagogical enrichment remain outside this admission slice."
     }
   ],
   "known_issues": [],
@@ -6427,8 +8145,11 @@
     "grade9v3:question_bank_admission": {
       "candidate_id": "NCERT-EXEMPLAR-G9-MATH-210",
       "source_bank": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
-      "validation_ref": "TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json",
-      "admission_scope": "UNIT2_EX2_1_Q1_Q10_ONLY",
+      "validation_refs": [
+        "TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json",
+        "TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json"
+      ],
+      "admission_scope": "UNIT2_EX2_1_Q1_Q20_ONLY",
       "admitted_question_refs": [
         "Q-MAT-POLY-NCERT9-EX21-Q01",
         "Q-MAT-POLY-NCERT9-EX21-Q02",
@@ -6439,7 +8160,17 @@
         "Q-MAT-POLY-NCERT9-EX21-Q07",
         "Q-MAT-POLY-NCERT9-EX21-Q08",
         "Q-MAT-POLY-NCERT9-EX21-Q09",
-        "Q-MAT-POLY-NCERT9-EX21-Q10"
+        "Q-MAT-POLY-NCERT9-EX21-Q10",
+        "Q-MAT-POLY-NCERT9-EX21-Q11",
+        "Q-MAT-POLY-NCERT9-EX21-Q12",
+        "Q-MAT-POLY-NCERT9-EX21-Q13",
+        "Q-MAT-POLY-NCERT9-EX21-Q14",
+        "Q-MAT-POLY-NCERT9-EX21-Q15",
+        "Q-MAT-POLY-NCERT9-EX21-Q16",
+        "Q-MAT-POLY-NCERT9-EX21-Q17",
+        "Q-MAT-POLY-NCERT9-EX21-Q18",
+        "Q-MAT-POLY-NCERT9-EX21-Q19",
+        "Q-MAT-POLY-NCERT9-EX21-Q20"
       ],
       "atlas_rungs_enrichment": false
     },
