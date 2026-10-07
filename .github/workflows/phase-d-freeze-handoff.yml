@@ -1,0 +1,20 @@
+name: phase-d-freeze-handoff
+
+on:
+  pull_request:
+    paths:
+      - "evidence/architectural-recovery/ISS69/phase-d-d06-freeze-handoff.v1.json"
+      - "tests/test_phase_d_freeze_handoff.py"
+      - ".github/workflows/phase-d-freeze-handoff.yml"
+  workflow_dispatch:
+
+jobs:
+  freeze-handoff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Run Phase-D exact-head freeze contract
+        run: python3 -m unittest tests.test_phase_d_freeze_handoff
