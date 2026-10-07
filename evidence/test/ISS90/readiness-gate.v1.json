@@ -11,10 +11,10 @@
     "dashboard_material_head": "19ac69516234ac7a6a8177c4ccfc89d32f0b3348"
   },
   "classification": {
-    "technical_infrastructure": "READY_WITH_EVIDENCE_HOLD",
+    "technical_infrastructure": "READY_WITH_RETURNED_SHARED_ATLAS_FINDING",
     "academic_or_canonical_promotion": "DEFERRED",
     "machine_acceptance": "NOT_GRANTED",
-    "reason": "TEST infrastructure and isolation checks pass on the exact candidate head, but browser viewport/tab-order evidence remains unavailable and the 42-coordinate fixture is explicitly unverified/noncanonical."
+    "reason": "TEST dashboard, navigation, Core/schema binding, search isolation and exact candidate regression checks pass. Browser evidence is complete. A generic populated-Atlas touch-target defect was returned to the owning architecture programme as #125 and is not patched by Appendix A."
   },
   "t1_technical_integrity": {
     "status": "PASS",
@@ -52,31 +52,53 @@
     ]
   },
   "t2_layout_accessibility": {
-    "status": "HOLD",
-    "passed_static": [
-      "single H1 and ordered H2 hierarchy",
-      "main/nav/footer landmarks and labelled breadcrumb",
-      "header and breadcrumb flex wrapping",
-      "body overflow-wrap: break-word",
-      "main max-width and border-box containment",
-      "article/direct-child min-width:0",
-      "focus-visible 3px outline with 2px offset",
-      "48px minimum touch target",
-      "responsive max-width:899px media rule",
-      "table/figure horizontal overflow containment",
-      "no root-absolute or javascript: links",
-      "sandbox/draft/non-accepted copy visible"
-    ],
-    "hold": {
-      "reason_class": "PROVIDER",
-      "reason": "No connected browser surface is available in this chat; screenshot-based Product Design audit requires Work mode.",
-      "missing_evidence": [
-        "desktop screenshot",
-        "tablet portrait screenshot",
-        "tablet landscape screenshot",
-        "measured scrollWidth/clientWidth",
-        "observed keyboard tab sequence"
-      ]
+    "status": "PASS_WITH_RETURNED_SHARED_FINDING",
+    "dashboard_browser_evidence": {
+      "workflow_run_id": 37551090934,
+      "job_id": 112566478105,
+      "evidence_head": "c471db389365ded8a40573019f653340b41ab538",
+      "artifact_id": 11451854169,
+      "artifact_name": "test-dashboard-browser-evidence",
+      "artifact_digest": "sha256:c433cad3b7cfdcc75ceeb097d42b138df38971f60f9b477daa0e93b94de05ccf",
+      "screenshots": [
+        "desktop-1440x900.png",
+        "tablet-portrait-854x1366.png",
+        "tablet-landscape-1366x854.png"
+      ],
+      "report": "dashboard-browser-evidence.json",
+      "results": [
+        {
+          "viewport": "1440x900",
+          "scrollWidth": 1440,
+          "clientWidth": 1440,
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "854x1366",
+          "scrollWidth": 854,
+          "clientWidth": 854,
+          "overflow": 0,
+          "status": "PASS"
+        },
+        {
+          "viewport": "1366x854",
+          "scrollWidth": 1366,
+          "clientWidth": 1366,
+          "overflow": 0,
+          "status": "PASS"
+        }
+      ],
+      "keyboard": "PASS: Tab traversal observed through shell and TEST breadcrumb destinations; all recorded focused elements remained visible and inside the viewport.",
+      "runtime": "PASS: zero page errors and zero failed requests in all three dashboard viewport captures."
+    },
+    "static_checks": "PASS",
+    "returned_shared_finding": {
+      "issue": 125,
+      "status": "RETURNED_TO_ARCHITECTURE",
+      "surface": "subject-neutral topic-atlas.js runtime",
+      "detail": "In synthetic populated Atlas state, four 'Open in Question Bank' links measure about 23px high at 1366x854 and 854x1366 versus the 48px tablet floor.",
+      "appendix_action": "NO_SHARED_PATCH"
     }
   },
   "t3_runtime_deploy_integrity": {
@@ -170,7 +192,23 @@
       "head_enumeration": "PASS",
       "base_enumeration": "PASS",
       "compare": "PASS"
-    }
+    },
+    "browser_evidence": {
+      "issue": 122,
+      "pr": 123,
+      "workflow_run_id": 37551090934,
+      "job_id": 112566478105,
+      "artifact_id": 11451854169,
+      "artifact_digest": "sha256:c433cad3b7cfdcc75ceeb097d42b138df38971f60f9b477daa0e93b94de05ccf",
+      "status": "PASS"
+    },
+    "returned_findings": [
+      {
+        "issue": 125,
+        "status": "OPEN_ARCHITECTURE_FOLLOWUP",
+        "reason": "shared Atlas question-link touch target below tablet floor in populated state"
+      }
+    ]
   },
   "t5_promotion_handoff": {
     "status": "DEFERRED",
