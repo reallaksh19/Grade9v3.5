@@ -3,6 +3,8 @@ import json
 import unittest
 from pathlib import Path
 
+from Shared.tools import question_bank_platform
+
 REPO = Path(__file__).resolve().parents[1]
 PACKAGE = REPO / "Mathematics/library/polynomials.v1.json"
 BANK = REPO / "TEST/question-bank/iss55-poly.json"
@@ -47,6 +49,11 @@ class TestIss55PolynomialCanonicalStaging(unittest.TestCase):
                 False,
                 q["id"],
             )
+
+    def test_non_admitted_candidate_does_not_influence_qb_titles(self):
+        titles = question_bank_platform.load_subtopic_titles(REPO)
+        for q in self.package["questions"]:
+            self.assertNotIn(q["primary_capability_ref"], titles)
 
     def test_canonical_package_does_not_depend_on_test_assets(self):
         text = PACKAGE.read_text(encoding="utf-8")
