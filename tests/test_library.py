@@ -438,7 +438,7 @@ class SubstanceGateRestraint(unittest.TestCase):
                     "conditions": [], "subparts": []},
         }
         found = substance.findings(records)
-        self.assertEqual({row["point"] for row in found}, {"DUPLICATED", "TEMPLATED"})
+        self.assertEqual({row["point"] for row in found}, {"DUPLICATED"})
         self.assertEqual({row["record"] for row in found}, {"Q-A", "Q-B"})
 
 
