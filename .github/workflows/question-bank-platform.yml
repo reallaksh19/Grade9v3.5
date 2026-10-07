@@ -57,7 +57,9 @@ jobs:
       - name: ISS191 exact-head governed regeneration
         if: github.event_name == 'push'
         run: |
+          python3 Shared/tools/build_question_bank_web.py
           python3 Shared/tools/build_question_bank_web.py --check
+          python3 Shared/tools/build_question_bank_platform.py --write
           python3 Shared/tools/build_question_bank_platform.py --check
           python3 Shared/tools/build_manifest.py
           python3 Shared/tools/deploy_test.py pages
