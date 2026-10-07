@@ -560,7 +560,7 @@ class Renderer(unittest.TestCase):
     def test_core1a_closure_navigation_can_wrap_at_200_percent_zoom(self):
         self.assertIn(
             ".g9-bridge-link{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:normal;overflow-wrap:anywhere;max-width:100%;min-width:0}",
-            render_core.CSS,
+            render_core.COMPONENT_CSS,
         )
         self.assertIn(
             ".g9-c-link-list li{margin:0;min-width:0;max-width:100%}",
