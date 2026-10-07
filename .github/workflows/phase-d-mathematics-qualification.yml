@@ -36,7 +36,7 @@ jobs:
       - name: Render exact qualification pages
         run: |
           rm -rf /tmp/iss69-d02-mathematics
-          python3 tests/iss69_d02_mathematics_fixture.py --out /tmp/iss69-d02-mathematics
+          python3 -m tests.iss69_d02_mathematics_fixture --out /tmp/iss69-d02-mathematics
       - name: Audit current rendered Mathematics pages
         run: |
           node tools/site-audit/core-page-audit.mjs \
