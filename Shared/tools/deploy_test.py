@@ -31,6 +31,7 @@ if __package__ in (None, ""):
 from Shared.tools import (build_pages_site, build_test_site, explorer_build, product_coverage, product_manifest, quality_gate, render_core,  # noqa: E402
                           site_nav_audit, toughest_concept)
 from Shared.tools import web_blueprint_contract as blueprints  # noqa: E402
+from TEST.tools import derived_question_bank  # noqa: E402
 
 TEST_ROOT = REPO / "TEST"
 PUBLIC_TEST = REPO / "public" / "test"
@@ -139,6 +140,22 @@ def _slug(value: str, what: str) -> str:
     return value
 
 
+def _validate_product_banks(manifest: dict) -> None:
+    """Fail closed on an explicit TEST source-linked derivative before rendering."""
+    for ref in manifest.get("bank_refs") or []:
+        path = REPO / ref
+        if not path.is_file():
+            continue
+        bank = json.loads(path.read_text(encoding="utf-8"))
+        if not derived_question_bank.is_claimed(bank):
+            continue
+        problems = derived_question_bank.findings(bank)
+        if problems:
+            shown = "; ".join(problems[:6])
+            extra = f" (+{len(problems) - 6} more)" if len(problems) > 6 else ""
+            raise DeployError(f"TEST_DERIVED_BANK_INVALID: {ref}: {shown}{extra}")
+
+
 # ------------------------------------------------------------------ products
 
 PRINT_TOOL = REPO / "tools" / "print" / "print-product.mjs"
@@ -182,6 +199,7 @@ def deploy_product(manifest_path: Path) -> dict:
 
     # The pages live three levels below the site root. Set the links here so a wrong --home is not the thing
     # that stops a run.
+    _validate_product_banks(manifest)
     deployed = dict(manifest, home_href="../../../index.html", question_bank_href="../../../question-bank/index.html")
     with tempfile.TemporaryDirectory() as tmp:
         staged = Path(tmp) / manifest_path.name
