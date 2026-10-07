@@ -131,11 +131,14 @@ for (const profile of profiles) {
         el.getAttribute('href') ||
         ''
       ).trim().replace(/\s+/g, ' ').slice(0, 100);
+      const all = [...document.querySelectorAll('a[href], button, input, select, textarea, summary, [tabindex]')];
+      const domIndex = all.indexOf(el);
       return {
         tag: el.tagName.toLowerCase(),
         href: el.getAttribute('href'),
         label,
-        key: `${el.tagName.toLowerCase()}|${el.getAttribute('href') || ''}|${label}`,
+        domIndex,
+        key: `${domIndex}|${el.tagName.toLowerCase()}|${el.getAttribute('href') || ''}|${label}`,
         rect: {
           top: r.top,
           left: r.left,
