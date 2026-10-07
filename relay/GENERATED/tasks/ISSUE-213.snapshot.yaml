@@ -1,0 +1,32 @@
+schema_version: relay-v3.1-task-snapshot
+authority: DERIVED_READ_MODEL
+source_protocol: V3_1
+identity:
+  work_package: ISSUE-213-NCERT-NUMBER-SYSTEMS-ADMISSION-Q01-Q10
+  ep: ISSUE-213-PROVIDER-VIEW
+  issue: 213
+  delivery_vehicle: 214
+purpose:
+  programme_outcome: Admit only academically validated NCERT Exemplar Grade 9 Mathematics records to the production Question Bank.
+  current_goal: Admit exactly Unit 1 Number Systems Exercise 1.1 Q1-Q10 after source-bound validation.
+  task_outcome: Ten Number Systems questions are canonical REVIEWED Question Bank records; production is 349 total / 57 Mathematics while Q11-Q30 remain validation-only.
+  why_this_task_exists: Owner requested validation before production admission and deferred Atlas/rungs/UI enrichment until after Question Bank availability.
+parent_issue:
+  repository: reallaksh19/Grade9v3.5
+  number: 213
+  title: "Admit validated NCERT Number Systems Q1-Q10"
+  state: OPEN
+  url: https://github.com/reallaksh19/Grade9v3.5/issues/213
+delivery:
+  relationship: PRIMARY
+  pr: 214
+  head: 6c14162375d52debd48a4d75613d2651f08265f0
+  branch: feat/admit-ncert-number-systems-q01-q10
+material:
+  base: 19b08efb5b00a4316877b1cdc2f0818e29495b79
+  current_head: 6c14162375d52debd48a4d75613d2651f08265f0
+execution:
+  lifecycle: ACTIVE
+  branch: feat/admit-ncert-number-systems-q01-q10
+next:
+  immediate_action: Qualify the exact admission head and merge only if generated Question Bank state remains 349 total / 57 Mathematics with exactly ten Number Systems admissions.
