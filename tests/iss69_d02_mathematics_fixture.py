@@ -78,7 +78,11 @@ def qualification_package() -> tuple[dict, dict, dict]:
     rep["rendered_asset_refs"] = [QUALIFICATION_ASSET]
     rep.setdefault("extensions", {})["grade9v3:stage_mode"] = "REPLACE"
 
-    microtopic = next(m for m in pkg["microtopics"] if m["id"] == MICROTOPIC)\n    target_unit = next(u for u in microtopic["construction_units"] if u["id"] == TARGET_UNIT)\n    target_unit["crux_question_refs"] = [WITNESS]\n    target_unit["crux_step_ref"] = "LEQ4-3"\n    manifest = {
+    microtopic = next(m for m in pkg["microtopics"] if m["id"] == MICROTOPIC)
+    target_unit = next(u for u in microtopic["construction_units"] if u["id"] == TARGET_UNIT)
+    target_unit["crux_question_refs"] = [WITNESS]
+    target_unit["crux_step_ref"] = "LEQ4-3"
+    manifest = {
         "schema": "product-manifest/v1",
         "product_id": "ISS69-D02-MATHEMATICS-QUALIFICATION",
         "title": "Mathematics qualification · linear-equation solution spaces",
