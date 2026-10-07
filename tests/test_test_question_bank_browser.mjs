@@ -65,9 +65,9 @@ for (const width of [320, 390, 768, 1280]) {
 
   const where = `TEST Question Bank @${width}`;
   if (facts.cards !== 210 || facts.unique !== 210) failures.push(`${where}: card denominator/uniqueness is ${facts.cards}/${facts.unique}, expected 210/210`);
-  if (facts.validated !== 39) failures.push(`${where}: ${facts.validated}/39 VALIDATED`);
+  if (facts.validated !== 49) failures.push(`${where}: ${facts.validated}/49 VALIDATED`);
   if (facts.hold !== 1) failures.push(`${where}: ${facts.hold}/1 HOLD`);
-  if (facts.unvalidated !== 170) failures.push(`${where}: ${facts.unvalidated}/170 UNVALIDATED`);
+  if (facts.unvalidated !== 160) failures.push(`${where}: ${facts.unvalidated}/160 UNVALIDATED`);
   if (facts.sourceVerified !== 210) failures.push(`${where}: ${facts.sourceVerified}/210 SOURCE VERIFIED`);
   if (facts.duplicateReview !== 0) failures.push(`${where}: ${facts.duplicateReview} duplicate-review cards, expected 0`);
   if (facts.types.MULTIPLE_CHOICE !== 125 || facts.types.SHORT_ANSWER !== 45 || facts.types.TRUE_FALSE !== 40) {
@@ -101,4 +101,4 @@ if (failures.length) {
   console.log(`FAIL: ${failures.length} TEST Question Bank browser problem(s)`);
   process.exit(1);
 }
-console.log('PASS: TEST Question Bank renders 210 source-verified questions with 39 VALIDATED / 1 HOLD / 170 UNVALIDATED, correct filters, touch targets and no narrow overflow');
+console.log('PASS: TEST Question Bank renders 210 source-verified questions with 49 VALIDATED / 1 HOLD / 160 UNVALIDATED, correct filters, touch targets and no narrow overflow');
