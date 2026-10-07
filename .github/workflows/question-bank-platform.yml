@@ -67,12 +67,18 @@ jobs:
         run: |
           python3 Shared/tools/build_pages_site.py
           python3 Shared/tools/build_pages_site.py --check
+      - name: Core publication projections are current
+        run: |
+          python3 Shared/tools/build_manifest.py
+          python3 Shared/tools/build_manifest.py --check
+          python3 Shared/tools/build_pages_site.py
+          python3 Shared/tools/build_pages_site.py --check
       - name: Commit governed generated closure on branch push
         if: github.event_name == 'push'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add artifacts/question-bank/dedup-report.json artifacts/question-bank/lineage.json artifacts/question-bank/build-receipt.json docs/.pages-manifest.json
+          git add -A
           if git diff --cached --quiet; then
             echo "No governed generated closure changes to commit"
           else
