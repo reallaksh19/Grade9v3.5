@@ -127,6 +127,21 @@ class TestPages(unittest.TestCase):
     def test_committed_pages_are_what_the_generator_writes(self):
         self.assertEqual(build_test_site.check(), [])
 
+    def test_test_search_index_covers_parked_questions_without_becoming_canonical_search(self):
+        rows = build_test_site.test_search_index()
+        self.assertEqual(len(rows), 220)
+        self.assertEqual(len([r for r in rows if r["kind"] == "OFFICIAL_INTAKE"]), 210)
+        self.assertEqual(len([r for r in rows if r["kind"] == "OWNER_SUPPLIED"]), 10)
+        self.assertEqual(len({r["id"] for r in rows}), 220)
+        hub = (REPO / "public/test/index.html").read_text(encoding="utf-8")
+        self.assertIn('id="g9-test-search-index"', hub)
+        self.assertIn("TEST-only search index: 220 parked question(s); production search untouched", hub)
+        canonical = (REPO / "public/data/search-index.v1.json").read_text(encoding="utf-8")
+        learner = (REPO / "public/data/learner-search-index.v1.json").read_text(encoding="utf-8")
+        for row in rows:
+            self.assertNotIn(str(row["id"]), canonical)
+            self.assertNotIn(str(row["id"]), learner)
+
     def test_owner_question_banks_are_visible_as_test_only_previews(self):
         page = (REPO / "public/test/index.html").read_text(encoding="utf-8")
         self.assertIn("Owner Question Bank: iss55-poly", page)
