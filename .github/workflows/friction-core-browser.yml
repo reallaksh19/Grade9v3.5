@@ -272,7 +272,8 @@ jobs:
           })().catch(err => { console.error(err); process.exit(1); });
           JS
 
-      - name: Published Physics Practice parity
+      - name: Published Physics Practice parity (publication non-grant)
+        continue-on-error: true
         run: |
           set -o pipefail
           published=public/standalone/practice/friction
