@@ -3,20 +3,70 @@
   "purpose": "How the sandbox Atlas page is derived from an existing Topic Atlas page. The template page names its own subject and matrix in a handful of places; each entry below replaces one of them. Shared/tools/build_test_site.py applies the entries and refuses to write anything unless every 'old' string occurs in the template exactly once, so a template that changes shape fails loudly instead of publishing a half-converted page. The last entry adds what a 12.7-inch tablet needs (controls at least 48 px, text at least 14 px) to this page only; the template page is not changed. The {sandbox_bar} placeholder in a 'new' string is replaced by the sandbox header (draft label, portal and TEST links).",
   "template": "public/physics/nlm/atlas.html",
   "swaps": [
-    {"old": "<html lang=\"en\">", "new": "<html lang=\"en\" data-g9-test=\"sandbox-draft\">"},
-    {"old": "<title>NLM Topic Atlas · Laws of Motion (Data-Driven Canonical Orchestration)</title>", "new": "<title>TEST Topic Atlas · Data-Driven Canonical Orchestration</title>"},
-    {"old": "<body>", "new": "<body>{sandbox_bar}"},
-    {"old": "<a href=\"../index.html\" style=\"color: var(--text-muted); text-decoration: none;\">Physics</a>", "new": "<a href=\"../index.html\" style=\"color: var(--text-muted); text-decoration: none;\">TEST</a>"},
-    {"old": "<a href=\"../../index.html\" style=\"color: var(--text-muted); text-decoration: none;\">Home</a>", "new": "<a href=\"../../index.html\" style=\"color: var(--text-muted); text-decoration: none;\">Home</a>"},
-    {"old": "<a href=\"index.html\" style=\"color: var(--text-muted); text-decoration: none;\">Newton's Laws of Motion</a>", "new": "<a href=\"index.html\" style=\"color: var(--text-muted); text-decoration: none;\">TEST Matrix</a>"},
-    {"old": "<span style=\"color: var(--text); font-weight: 600;\">Topic Atlas</span>", "new": "<span style=\"color: var(--text); font-weight: 600;\">Atlas</span>"},
-    {"old": "<span>45% (R2 Threshold)</span>", "new": "<span>50%</span>"},
-    {"old": "<span>78% (Friction R5)</span>", "new": "<span>75%</span>"},
-    {"old": "<div class=\"stat-value\">Laws of Motion</div>", "new": "<div class=\"stat-value\">TEST</div>"},
-    {"old": "<div class=\"stat-detail\"><code>MATRIX-PHY-NLM-FIRST-LAW</code></div>", "new": "<div class=\"stat-detail\"><code>loaded from TEST/matrices</code></div>"},
-    {"old": "<div class=\"stat-value\" id=\"statRungCount\">11 Rungs</div>", "new": "<div class=\"stat-value\" id=\"statRungCount\">no rungs loaded</div>"},
-    {"old": "Governed by <code>Physics/matrices/phy-nlm-first-law.rungs.json</code>", "new": "Governed by <code>TEST/matrices/*.rungs.json</code> · sandbox, not curriculum"},
-    {"old": "</head>", "new": "<style data-g9-test-atlas>.breadcrumb{gap:4px!important}.breadcrumb a{display:inline-flex;align-items:center;min-height:48px;min-width:48px;padding:0 8px}input[type=number],select{box-sizing:border-box;min-height:48px}input[type=number]{font-size:18px}label:has(input[type=checkbox]){position:relative;display:inline-flex;align-items:center;min-height:48px!important;padding-left:46px!important}label:has(input[type=checkbox]) input{position:absolute;inset:-1px;width:auto;height:auto;margin:0;opacity:0;cursor:pointer}label:has(input[type=checkbox])::before{content:\"\";position:absolute;left:10px;top:13px;width:22px;height:22px;box-sizing:border-box;border:2px solid #38bdf8;border-radius:5px}label:has(input[type=checkbox]:checked)::before{background:#38bdf8}label:has(input[type=checkbox]:checked)::after{content:\"\";position:absolute;left:18px;top:17px;width:6px;height:11px;border:solid #0b1220;border-width:0 3px 3px 0;transform:rotate(40deg)}label:has(input[type=checkbox]:focus-visible)::before{outline:3px solid #fde68a;outline-offset:2px}.header-subtitle,.badge,.stat-label,.lane-heading,.node-id,.rung-num-pill,.quote-box,.dim-btn{font-size:14px!important}[style*=\"font-size: 9px\"],[style*=\"font-size:9px\"],[style*=\"font-size: 11px\"],[style*=\"font-size:11px\"],[style*=\"font-size: 12px\"],[style*=\"font-size:12px\"],[style*=\"font-size: 13px\"],[style*=\"font-size:13px\"],[style*=\"font-size: 13.5px\"],[style*=\"font-size:13.5px\"]{font-size:14px!important}</style></head>"}
+    {
+      "old": "<html lang=\"en\">",
+      "new": "<html lang=\"en\" data-g9-test=\"sandbox-draft\">"
+    },
+    {
+      "old": "<title>NLM Topic Atlas · Laws of Motion (Data-Driven Canonical Orchestration)</title>",
+      "new": "<title>TEST Topic Atlas · Data-Driven Canonical Orchestration</title>"
+    },
+    {
+      "old": "<body>",
+      "new": "<body>{sandbox_bar}"
+    },
+    {
+      "old": "<a href=\"../index.html\" style=\"color: var(--text-muted); text-decoration: none;\">Physics</a>",
+      "new": "<a href=\"../index.html\" style=\"color: var(--text-muted); text-decoration: none;\">TEST</a>"
+    },
+    {
+      "old": "<a href=\"../../index.html\" style=\"color: var(--text-muted); text-decoration: none;\">Home</a>",
+      "new": "<a href=\"../../index.html\" style=\"color: var(--text-muted); text-decoration: none;\">Home</a>"
+    },
+    {
+      "old": "<a href=\"index.html\" style=\"color: var(--text-muted); text-decoration: none;\">Newton's Laws of Motion</a>",
+      "new": "<a href=\"index.html\" style=\"color: var(--text-muted); text-decoration: none;\">TEST Matrix</a>"
+    },
+    {
+      "old": "<span style=\"color: var(--text); font-weight: 600;\">Topic Atlas</span>",
+      "new": "<span style=\"color: var(--text); font-weight: 600;\">Atlas</span>"
+    },
+    {
+      "old": "<span>45% (R2 Threshold)</span>",
+      "new": "<span>50%</span>"
+    },
+    {
+      "old": "<span>78% (Friction R5)</span>",
+      "new": "<span>75%</span>"
+    },
+    {
+      "old": "<div class=\"stat-value\">Laws of Motion</div>",
+      "new": "<div class=\"stat-value\">TEST</div>"
+    },
+    {
+      "old": "<div class=\"stat-detail\"><code>MATRIX-PHY-NLM-FIRST-LAW</code></div>",
+      "new": "<div class=\"stat-detail\"><code>loaded from TEST/matrices</code></div>"
+    },
+    {
+      "old": "<div class=\"stat-value\" id=\"statRungCount\">11 Rungs</div>",
+      "new": "<div class=\"stat-value\" id=\"statRungCount\">no rungs loaded</div>"
+    },
+    {
+      "old": "Governed by <code>Physics/matrices/phy-nlm-first-law.rungs.json</code>",
+      "new": "Governed by <code>TEST/matrices/*.rungs.json</code> · sandbox, not curriculum"
+    },
+    {
+      "old": "    <a href=\"../../standalone/practice/core1a-physics-nlm-tablet.html\" style=\"color: #4ade80; border-color: rgba(74, 222, 128, 0.4);\">📖 Core Study</a>\n",
+      "new": ""
+    },
+    {
+      "old": "    <a href=\"../../question-bank/index.html?subject=Physics&topic=nlm&mode=study\" style=\"color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);\">🎯 Question Bank</a>\n",
+      "new": ""
+    },
+    {
+      "old": "</head>",
+      "new": "<style data-g9-test-atlas>.breadcrumb{gap:4px!important}.breadcrumb a{display:inline-flex;align-items:center;min-height:48px;min-width:48px;padding:0 8px}input[type=number],select{box-sizing:border-box;min-height:48px}input[type=number]{font-size:18px}label:has(input[type=checkbox]){position:relative;display:inline-flex;align-items:center;min-height:48px!important;padding-left:46px!important}label:has(input[type=checkbox]) input{position:absolute;inset:-1px;width:auto;height:auto;margin:0;opacity:0;cursor:pointer}label:has(input[type=checkbox])::before{content:\"\";position:absolute;left:10px;top:13px;width:22px;height:22px;box-sizing:border-box;border:2px solid #38bdf8;border-radius:5px}label:has(input[type=checkbox]:checked)::before{background:#38bdf8}label:has(input[type=checkbox]:checked)::after{content:\"\";position:absolute;left:18px;top:17px;width:6px;height:11px;border:solid #0b1220;border-width:0 3px 3px 0;transform:rotate(40deg)}label:has(input[type=checkbox]:focus-visible)::before{outline:3px solid #fde68a;outline-offset:2px}.header-subtitle,.badge,.stat-label,.lane-heading,.node-id,.rung-num-pill,.quote-box,.dim-btn{font-size:14px!important}[style*=\"font-size: 9px\"],[style*=\"font-size:9px\"],[style*=\"font-size: 11px\"],[style*=\"font-size:11px\"],[style*=\"font-size: 12px\"],[style*=\"font-size:12px\"],[style*=\"font-size: 13px\"],[style*=\"font-size:13px\"],[style*=\"font-size: 13.5px\"],[style*=\"font-size:13.5px\"]{font-size:14px!important}</style></head>"
+    }
   ],
   "init": {
     "block_start": "<script>\n  window.addEventListener('DOMContentLoaded'",
