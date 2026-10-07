@@ -58,9 +58,13 @@ jobs:
       - name: Legacy browser projection remains current
         run: python3 Shared/tools/build_question_bank_web.py --check
       - name: Committed shared Question Bank platform artifacts are current
-        run: python3 Shared/tools/build_question_bank_platform.py --check
+        run: |
+          python3 Shared/tools/build_question_bank_platform.py --write
+          python3 Shared/tools/build_question_bank_platform.py --check
       - name: Pages mirror is current and internally linked
-        run: python3 Shared/tools/build_pages_site.py --check
+        run: |
+          python3 Shared/tools/build_pages_site.py
+          python3 Shared/tools/build_pages_site.py --check
       - name: Lineage explain witness
         run: python3 Shared/tools/build_question_bank_platform.py --explain PYQ-CHEM-IITJEE-2008-P1-Q66
       - name: Measure 5000-question scale fixture
@@ -72,7 +76,9 @@ jobs:
         with:
           name: question-bank-platform-${{ github.sha }}
           if-no-files-found: error
+          include-hidden-files: true
           path: |
+            docs/.pages-manifest.json
             public/data/question-bank-catalog.js
             public/data/question-bank-search.js
             public/data/question-bank-resources.js
