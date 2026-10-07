@@ -1626,6 +1626,216 @@ window.GRADE9V3 = {
                 }
               },
               "prerequisites": []
+            },
+            {
+              "id": "MIC-MAT-POLY-FORM-DEGREE",
+              "title": "Polynomial Form and Degree",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Correct classification depends on exponent form, zero coefficients, and the exceptional zero-polynomial case.",
+              "entry_assumptions": [
+                "Can read powers of x and distinguish a coefficient from an exponent."
+              ],
+              "inferential_jump": "Move from the surface form of an expression to the simplified exponent structure that determines whether it is a polynomial and, if non-zero, its degree.",
+              "teaching_path": [
+                {
+                  "id": "POLY-FD-T1",
+                  "action": "Rewrite variable factors using explicit exponents and simplify algebraically where the source convention permits.",
+                  "why_valid": "Polynomial classification is determined by the exponents that remain after valid algebraic simplification.",
+                  "role": "DECLARE",
+                  "output": "simplified exponent form",
+                  "inputs": [
+                    "algebraic expression"
+                  ]
+                },
+                {
+                  "id": "POLY-FD-T2",
+                  "action": "Reject negative or fractional variable exponents; for a polynomial, find the largest exponent whose coefficient is non-zero.",
+                  "why_valid": "A polynomial in one variable has non-negative integer exponents, and zero-coefficient terms are absent from the polynomial.",
+                  "role": "TRANSFORM",
+                  "output": "classification and degree",
+                  "inputs": [
+                    "simplified exponent form"
+                  ]
+                },
+                {
+                  "id": "POLY-FD-T3",
+                  "action": "Handle the zero polynomial separately instead of assigning it the degree of a written zero term.",
+                  "why_valid": "The zero polynomial has no highest non-zero term, so its degree is not defined in the NCERT convention.",
+                  "role": "VERIFY",
+                  "output": "checked result",
+                  "inputs": [
+                    "classification and degree"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A written term such as 0x^5 makes the degree 5, or the zero polynomial has degree 0.",
+                  "diagnostic_prompt": "Does 0x^5 contribute a non-zero term, and what highest non-zero term exists in the zero polynomial?",
+                  "repair": "Degree is controlled only by non-zero terms; the zero polynomial has no such term."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Why is an expression containing 1/x not a polynomial in x?",
+                "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Because 1/x is x^(-1), whose exponent is negative.",
+                  "reasoning": [
+                    "Rewrite 1/x as x^(-1).",
+                    "A polynomial in x requires every variable exponent to be a non-negative integer."
+                  ],
+                  "check": "The exponent -1 violates the polynomial exponent condition.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit task is a conceptual classification claim with no computed numerical result."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-MAT-POLY-EVALUATION",
+              "title": "Polynomial Evaluation by Substitution",
+              "badge": "EASY",
+              "status": "CANDIDATE",
+              "badge_reason": "The main demand is consistent substitution followed by exact simplification.",
+              "entry_assumptions": [
+                "Can substitute a number or expression for a variable and simplify arithmetic exactly."
+              ],
+              "inferential_jump": "Treat p(a) as the value obtained by replacing every x in p(x) with the same input a before simplifying.",
+              "teaching_path": [
+                {
+                  "id": "POLY-EV-T1",
+                  "action": "Replace every occurrence of x by the stated input, keeping parentheses around signed or radical inputs.",
+                  "why_valid": "Function evaluation means applying the polynomial expression to one specified input consistently.",
+                  "role": "DECLARE",
+                  "output": "substituted expression",
+                  "inputs": [
+                    "p(x) and input a"
+                  ]
+                },
+                {
+                  "id": "POLY-EV-T2",
+                  "action": "Evaluate powers and products before combining the resulting terms.",
+                  "why_valid": "Standard algebraic order preserves the exact value of the substituted expression.",
+                  "role": "TRANSFORM",
+                  "output": "simplified value",
+                  "inputs": [
+                    "substituted expression"
+                  ]
+                },
+                {
+                  "id": "POLY-EV-T3",
+                  "action": "Check the substitution against the original polynomial so no occurrence of x was missed.",
+                  "why_valid": "Every x in p(x) must receive the same input for p(a) to be evaluated correctly.",
+                  "role": "VERIFY",
+                  "output": "checked value",
+                  "inputs": [
+                    "simplified value"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "Only the first occurrence of x is replaced, or a negative input is substituted without parentheses.",
+                  "diagnostic_prompt": "When x = -1, what does x^2 become before multiplication by its coefficient?",
+                  "repair": "Substitute the same parenthesized input everywhere, then evaluate powers."
+                }
+              ],
+              "exit_task": {
+                "prompt": "What does the notation p(a) instruct you to do to p(x)?",
+                "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Replace every x in p(x) by a, then simplify.",
+                  "reasoning": [
+                    "The input a takes the place of the variable x throughout the polynomial.",
+                    "After substitution, ordinary algebra gives the value p(a)."
+                  ],
+                  "check": "The procedure uses one consistent input in every term.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit task asks for the evaluation procedure rather than a numerical value."
+                }
+              },
+              "prerequisites": []
+            },
+            {
+              "id": "MIC-MAT-POLY-ZEROS-BASIC",
+              "title": "Zeros of Elementary Polynomials",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Learners must connect the definition p(c)=0 to solving or checking a candidate, including the zero-polynomial edge case.",
+              "entry_assumptions": [
+                "Can solve a simple linear equation and substitute a candidate into a polynomial."
+              ],
+              "inferential_jump": "Translate the word zero into the equation p(c)=0, then solve or verify that equation rather than looking for a zero coefficient.",
+              "teaching_path": [
+                {
+                  "id": "POLY-ZR-T1",
+                  "action": "Translate 'c is a zero of p' into p(c) = 0.",
+                  "why_valid": "A zero is defined as an input at which the polynomial's value is zero.",
+                  "role": "DECLARE",
+                  "output": "equation p(c)=0",
+                  "inputs": [
+                    "polynomial p and candidate/input c"
+                  ]
+                },
+                {
+                  "id": "POLY-ZR-T2",
+                  "action": "Solve the resulting elementary equation or factor the polynomial when that is shorter.",
+                  "why_valid": "Any solution of p(x)=0 is a zero of the polynomial.",
+                  "role": "TRANSFORM",
+                  "output": "candidate zero or zeros",
+                  "inputs": [
+                    "equation p(x)=0"
+                  ]
+                },
+                {
+                  "id": "POLY-ZR-T3",
+                  "action": "Substitute the candidate back into p(x).",
+                  "why_valid": "Direct evaluation confirms that the polynomial value is exactly zero.",
+                  "role": "VERIFY",
+                  "output": "verified zero",
+                  "inputs": [
+                    "candidate zero"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A zero of a polynomial is a coefficient equal to zero rather than an input whose polynomial value is zero.",
+                  "diagnostic_prompt": "For p(x)=2x+5, which number c makes p(c)=0?",
+                  "repair": "Set the whole polynomial equal to zero and solve for the input."
+                }
+              ],
+              "exit_task": {
+                "prompt": "What condition must a real number c satisfy to be a zero of p(x)?",
+                "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "It must satisfy p(c) = 0.",
+                  "reasoning": [
+                    "Evaluate the polynomial at the proposed input c.",
+                    "The input is a zero exactly when that evaluation equals zero."
+                  ],
+                  "check": "This is the defining condition for a polynomial zero.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The exit task states the defining condition rather than computing a particular zero."
+                }
+              },
+              "prerequisites": []
             }
           ],
           "relations": [],
@@ -1689,12 +1899,78 @@ window.GRADE9V3 = {
               "stem": "Find all real zeros of $p(x)=x^4-5x^2+4$ and $q(x)=x^4+4x^2+4$ by choosing a useful change of variable. State the condition imposed by that change of variable, check each accepted real zero, and explain why treating the new variable as an unrestricted real number can mislead. This is a competition extension; no general quartic formula is required.",
               "origin": "AUTHORED",
               "answer": "Set u = x^2 with u >= 0. For p, (u - 1)(u - 4) = 0 gives x = +/-1, +/-2, all verified by substitution. For q, (u + 2)^2 = 0 gives u = -2, which is inadmissible for real x, so q has no real zeros."
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q01",
+              "stem": "Which of the following is a polynomial?",
+              "origin": "ORIGINAL",
+              "answer": "(C) x² + 3x^(3/2)/√x"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q02",
+              "stem": "√2 is a polynomial of degree",
+              "origin": "ORIGINAL",
+              "answer": "(B) 0"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q03",
+              "stem": "Degree of the polynomial 4x⁴ + 0x³ + 0x⁵ + 5x + 7 is",
+              "origin": "ORIGINAL",
+              "answer": "(A) 4"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q04",
+              "stem": "Degree of the zero polynomial is",
+              "origin": "ORIGINAL",
+              "answer": "(D) Not defined"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q05",
+              "stem": "If p(x) = x² - 2√2x + 1, then p(2√2) is equal to",
+              "origin": "ORIGINAL",
+              "answer": "(B) 1"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q06",
+              "stem": "The value of the polynomial 5x - 4x² + 3, when x = -1 is",
+              "origin": "ORIGINAL",
+              "answer": "(A) -6"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q07",
+              "stem": "If p(x) = x + 3, then p(x) + p(-x) is equal to",
+              "origin": "ORIGINAL",
+              "answer": "(D) 6"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q08",
+              "stem": "Zero of the zero polynomial is",
+              "origin": "ORIGINAL",
+              "answer": "(C) Any real number"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q09",
+              "stem": "Zero of the polynomial p(x) = 2x + 5 is",
+              "origin": "ORIGINAL",
+              "answer": "(B) -5/2"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q10",
+              "stem": "One of the zeroes of the polynomial 2x² + 7x - 4 is",
+              "origin": "ORIGINAL",
+              "answer": "(B) 1/2"
             }
           ],
           "capabilities": [
             {
               "id": "CAP-MAT-POLY-CHANGE-OF-VARIABLE-DOMAIN",
               "action": "Solve biquadratic polynomials via substitution while enforcing real domain constraints.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-EVALUATE-BASIC",
+              "action": "Evaluate a polynomial at a stated input by substitution and algebraic simplification.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -1713,6 +1989,12 @@ window.GRADE9V3 = {
             {
               "id": "CAP-MAT-POLY-FACTOR-VALUE-CONSTRUCTION",
               "action": "Construct monic polynomials from zeros and value constraints.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-FORM-DEGREE-BASIC",
+              "action": "Recognize polynomial expressions and determine degree using non-zero coefficients and the zero-polynomial exception.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -1751,16 +2033,22 @@ window.GRADE9V3 = {
               "action": "Construct rigorous sign charts from linear factor signs partitioned across real intervals.",
               "provider": null,
               "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-ZERO-BASIC",
+              "action": "Determine and verify zeros of elementary polynomials from the condition p(x) = 0.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 46,
+          "record_count": 66,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
               "CORE1"
             ],
             "atoms": 0,
-            "questions": 3,
+            "questions": 13,
             "obligations": 2,
             "authoring_requirements": [
               {
@@ -1801,6 +2089,21 @@ window.GRADE9V3 = {
               {
                 "kind": "MICROTOPIC_UNBOUND",
                 "microtopic": "MIC-MAT-POLY-AUXILIARY-DOMAIN",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-POLY-FORM-DEGREE",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-POLY-EVALUATION",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-POLY-ZEROS-BASIC",
                 "detail": "no supported product or no data bound to its relations"
               },
               {
