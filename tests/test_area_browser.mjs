@@ -15,7 +15,7 @@ try { playwright = require('playwright'); }
 catch { playwright = require(path.join(execFileSync('npm', ['root', '-g']).toString().trim(), 'playwright')); }
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'public');
-const PAGES = ['test/index.html', 'test/atlas/index.html', 'test/rungs/index.html', 'test/deployments/index.html'];
+const PAGES = ['test/index.html', 'test/question-bank/index.html', 'test/atlas/index.html', 'test/rungs/index.html', 'test/deployments/index.html'];
 const WIDTHS = [320, 390, 768, 1024, 1280, 1920];
 const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.woff2': 'font/woff2' };
 
@@ -71,6 +71,33 @@ for (const page of PAGES) {
     if (!/TEST/.test(facts.title)) failures.push(`${where}: the title does not say TEST ("${facts.title}")`);
     await context.close();
   }
+}
+
+// The NCERT TEST Question Bank must materialize all parked questions without losing its validation boundary.
+for (const width of [390, 1280]) {
+  const { context, tab, problems } = await open(width, 'test/question-bank/index.html');
+  await tab.waitForFunction(() => document.querySelectorAll('[data-g9-test-question]').length === 210, null, { timeout: 8000 })
+    .catch(() => failures.push(`question bank @${width}: 210 cards never materialized`));
+  const facts = await tab.evaluate(() => ({
+    cards: document.querySelectorAll('[data-g9-test-question]').length,
+    unvalidated: document.querySelectorAll('[data-g9-validation="UNVALIDATED"]').length,
+    sourceVerified: document.querySelectorAll('[data-g9-source-verification="SOURCE VERIFIED"]').length,
+    duplicateReview: document.querySelectorAll('[data-g9-review="DUPLICATE_REVIEW"]').length,
+    overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+  }));
+  checked += 1;
+  if (facts.cards !== 210) failures.push(`question bank @${width}: expected 210 cards, got ${facts.cards}`);
+  if (facts.unvalidated !== 210) failures.push(`question bank @${width}: expected 210 UNVALIDATED cards, got ${facts.unvalidated}`);
+  if (facts.sourceVerified !== 210) failures.push(`question bank @${width}: expected 210 source-verified cards, got ${facts.sourceVerified}`);
+  if (facts.duplicateReview !== 1) failures.push(`question bank @${width}: expected one duplicate-review card, got ${facts.duplicateReview}`);
+  if (facts.overflow > 1) failures.push(`question bank @${width}: ${facts.overflow}px wider than the screen`);
+
+  await tab.locator('#tqbUnit').selectOption({ label: /Unit 2: Polynomials/ }).catch(() => {});
+  await tab.waitForTimeout(50);
+  const visiblePolynomials = await tab.locator('[data-g9-test-question]:not([hidden])').count();
+  if (visiblePolynomials !== 30) failures.push(`question bank @${width}: Unit 2 filter shows ${visiblePolynomials}, expected 30`);
+  for (const problem of problems) failures.push(`question bank @${width}: ${problem}`);
+  await context.close();
 }
 
 // The real TEST matrix: the TEST-local projection feeds the existing Atlas engine.
@@ -152,4 +179,4 @@ if (failures.length) {
   console.log(`\nFAIL: ${failures.length} problem(s) in ${checked} checks`);
   process.exit(1);
 }
-console.log(`PASS: the TEST pages hold at ${WIDTHS.length} widths, the real TEST polynomial Atlas renders from local data, and the tab is reachable (${checked} checks)`);
+console.log(`PASS: the TEST pages hold at ${WIDTHS.length} widths, the 210-question TEST bank preserves its validation boundary, the real polynomial Atlas renders from local data, and the tab is reachable (${checked} checks)`);
