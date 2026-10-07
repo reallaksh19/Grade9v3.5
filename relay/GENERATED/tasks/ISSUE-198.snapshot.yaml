@@ -1,0 +1,32 @@
+schema_version: relay-v3.1-task-snapshot
+authority: DERIVED_READ_MODEL
+source_protocol: V3_1
+identity:
+  work_package: ISSUE-198-NCERT-POLY-QBANK-ADMISSION
+  ep: ISSUE-198-PROVIDER-VIEW
+  issue: 198
+  delivery_vehicle: 201
+purpose:
+  programme_outcome: Admit NCERT Exemplar Grade 9 Mathematics questions to the production Question Bank only after question-level validation.
+  current_goal: Admit exactly Polynomials Exercise 2.1 Q11-Q20, whose merged validation receipt records PASS and admission_eligible=true.
+  task_outcome: Twenty canonical reviewed NCERT Polynomials questions appear in the production Question Bank while the remaining 190 NCERT intake records and all ISS55 owner questions remain non-admitted.
+  why_this_task_exists: Owner requested TEST visibility first, validation before production admission, and Atlas/rungs/UI enrichment afterward.
+parent_issue:
+  repository: reallaksh19/Grade9v3.5
+  number: 198
+  title: "Admit validated NCERT Polynomials Q11-Q20 to production Question Bank"
+  state: OPEN
+  url: https://github.com/reallaksh19/Grade9v3.5/issues/198
+delivery:
+  relationship: PRIMARY
+  pr: 201
+  head: 5a03faa97a8b1de6187086629fee012464abe32f
+  branch: feat/admit-ncert-poly-q11-q20
+material:
+  base: 206ecbc4e05344d0165e79a67bde058a44cc65ad
+  current_head: 5a03faa97a8b1de6187086629fee012464abe32f
+execution:
+  lifecycle: ACTIVE
+  branch: feat/admit-ncert-poly-q11-q20
+next:
+  immediate_action: Qualify the exact admission head and merge only if the twenty-record admission contract and generated Question Bank artifacts are current.
