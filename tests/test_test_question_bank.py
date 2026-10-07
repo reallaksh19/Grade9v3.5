@@ -22,6 +22,7 @@ VALIDATION_SCHEMA = REPO / "TEST/adapter/QuestionValidation.schema.json"
 VALIDATION_RECEIPTS = [
     REPO / "TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json",
     REPO / "TEST/candidates/ncert-exemplar-g9-math-u02-q11-q20.validation.json",
+    REPO / "TEST/candidates/ncert-exemplar-g9-math-u02-q21-q30.validation.json",
 ]
 
 
@@ -38,15 +39,20 @@ class TestTestQuestionBank(unittest.TestCase):
         self.assertEqual(len(rows), 210)
         self.assertEqual(len({q["id"] for q in rows}), 210)
         self.assertEqual(projection["academic_validation_status"], "PER_QUESTION")
-        self.assertEqual(projection["validation_counts"], {"UNVALIDATED": 190, "VALIDATED": 20})
+        self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 180, "VALIDATED": 29})
         self.assertEqual(
             sum(q["text_verification_status"] == "TEXT_VERIFIED_AGAINST_OFFICIAL" for q in rows),
             210,
         )
-        self.assertEqual(sum(q["academic_validation_status"] == "VALIDATED" for q in rows), 20)
-        self.assertEqual(sum(q["academic_validation_status"] == "UNVALIDATED" for q in rows), 190)
+        self.assertEqual(sum(q["academic_validation_status"] == "VALIDATED" for q in rows), 29)
+        self.assertEqual(sum(q["academic_validation_status"] == "UNVALIDATED" for q in rows), 180)
+        self.assertEqual(sum(q["academic_validation_status"] == "HOLD" for q in rows), 1)
         validated = {q["id"] for q in rows if q["academic_validation_status"] == "VALIDATED"}
-        self.assertEqual(validated, {f"ncert-exemplar-g9-math-u02-q{number:02d}" for number in range(1, 21)})
+        expected_validated = {f"ncert-exemplar-g9-math-u02-q{number:02d}" for number in range(1, 31)}
+        expected_validated.remove("ncert-exemplar-g9-math-u02-q23")
+        self.assertEqual(validated, expected_validated)
+        held = {q["id"] for q in rows if q["academic_validation_status"] == "HOLD"}
+        self.assertEqual(held, {"ncert-exemplar-g9-math-u02-q23"})
         self.assertEqual(sum(q["workflow_status"] == "DUPLICATE_REVIEW" for q in rows), 1)
 
     def test_shell_makes_source_and_academic_states_distinct(self):
@@ -110,15 +116,21 @@ class TestTestQuestionBank(unittest.TestCase):
                 self.assertEqual(row["official_answer_text"], original["official_answer_text"])
                 self.assertEqual(row["official_answer_locator"], original["answer_key_locator"])
                 validation = row["academic_validation"]
-                self.assertEqual(validation["status"], "PASS")
-                self.assertTrue(validation["admission_eligible"])
                 self.assertTrue(validation["reasoning"])
-                self.assertEqual(validation["independent_result"], original["official_answer_text"])
+                if row["source_id"] == "ncert-exemplar-g9-math-u02-q23":
+                    self.assertEqual(validation["status"], "HOLD")
+                    self.assertFalse(validation["admission_eligible"])
+                    self.assertNotEqual(validation["independent_result"], original["official_answer_text"])
+                    self.assertIn("wording/key conflict", validation["convention_note"].lower())
+                else:
+                    self.assertEqual(validation["status"], "PASS")
+                    self.assertTrue(validation["admission_eligible"])
+                    self.assertEqual(validation["independent_result"], original["official_answer_text"])
 
             self.assertFalse(receipt["authority_boundary"]["production_question_bank_admission"])
             self.assertFalse(receipt["authority_boundary"]["atlas_rungs_enrichment"])
 
-        self.assertEqual(seen, [f"ncert-exemplar-g9-math-u02-q{number:02d}" for number in range(1, 21)])
+        self.assertEqual(seen, [f"ncert-exemplar-g9-math-u02-q{number:02d}" for number in range(1, 31)])
         first = json.loads(VALIDATION_RECEIPTS[0].read_text(encoding="utf-8"))["records"][0]["academic_validation"]
         self.assertIn("convention_note", first)
         self.assertIn("x = 0", first["convention_note"])
