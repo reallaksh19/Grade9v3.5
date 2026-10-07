@@ -41,7 +41,7 @@ class TestVerifiedQ1Derivative(unittest.TestCase):
 
     def test_learner_metadata_is_verified_curricular(self):
         self.assertEqual(learner_metadata.bank_question_problems(self.question), [])
-        metadata = learner_metadata.bank_question_metadata(self.question)
+        metadata = learner_metadata._bank_question_metadata(self.question, learner_metadata.load_vocabulary())
         self.assertEqual(metadata["provenance"], "CURRICULAR_VERIFIED")
         self.assertEqual(metadata["provenance_label"], "Verified curricular source")
 
