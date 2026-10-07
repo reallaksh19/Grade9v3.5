@@ -16,9 +16,9 @@ class QuestionBankWebTest(unittest.TestCase):
         cls.data = build_question_bank_web.build(ROOT)
 
     def test_canonical_counts_and_topics(self):
-        self.assertEqual(self.data["counts"]["questions"], 339)
-        self.assertEqual(self.data["counts"]["subjects"], {"Chemistry": 126, "Mathematics": 47, "Physics": 166})
-        self.assertEqual(len(self.data["counts"]["topics"]), 12)
+        self.assertEqual(self.data["counts"]["questions"], 349)
+        self.assertEqual(self.data["counts"]["subjects"], {"Chemistry": 126, "Mathematics": 57, "Physics": 166})
+        self.assertEqual(len(self.data["counts"]["topics"]), 13)
 
     def test_selected_d3d4_view_is_exact_and_canonical(self):
         view = next(v for v in self.data["views"] if v["id"] == "selected-d3d4-non-jee-advanced")
