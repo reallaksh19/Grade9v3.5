@@ -1,0 +1,458 @@
+{
+  "schema": "qrt-review/v1",
+  "status": "CANDIDATE",
+  "repository": "reallaksh19/Grade9v3.5",
+  "issue": 53,
+  "agent": "Independent Agent B",
+  "basis_head": "91719ad8df2bfc06c6a481590d2e24c510c24835",
+  "subject": "Mathematics",
+  "grade": 9,
+  "topic": "Polynomials",
+  "source_status": "OWNER_SUPPLIED_RAW_INPUT",
+  "learner_profile": "SIMULATED_OWNER_PRESET_D1",
+  "difficulty_band_rule": "5-component additive difficulty scale: 1-2=D1, 3-5=D2, 6-7=D3, 8+=D4",
+  "items": [
+    {
+      "question_id": "Q1",
+      "bank_id": "OWN-ISSUE53-POLY-01",
+      "template_id": "QRT-EXPLAIN-D1",
+      "difficulty": {
+        "band": "D1",
+        "score": 2,
+        "components": {
+          "concept_model_selection": 1,
+          "trap_exception_sensitivity": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 0,
+          "algebra_computational_load": 0
+        }
+      },
+      "demand": {
+        "primary": "EXPLAIN",
+        "secondary": [
+          "RETRIEVE"
+        ]
+      },
+      "verified_answer": "Degree: 3; Leading coefficient: 4; Constant term: 7; Coefficient of $x^2$: 0. The missing $x^2$ term is recorded with coefficient 0 because $0x^2 = 0$, contributing nothing to the polynomial sum while preserving positional power sequencing.",
+      "X": "Polynomial $p(x)=4x^3-2x+7$ with an omitted $x^2$ power.",
+      "Y": "Definition of polynomial terms and positional power sequencing.",
+      "Z": "State degree 3, leading coefficient 4, constant 7, and explain that missing power $x^2$ has coefficient 0.",
+      "W": "Record degree 3, leading coeff 4, constant 7, $x^2$ coeff 0, and explain $0 \\cdot x^2 = 0$ preserves power order.",
+      "hints": [
+        "Identify the highest power of $x$ present with a non-zero coefficient to find the degree.",
+        "The leading coefficient is the coefficient of the highest power term, and the constant term is the term without $x$ (the $x^0$ term).",
+        "When a power of $x$ between 0 and the degree does not appear, consider what number multiplied by $x^2$ leaves the polynomial value unchanged."
+      ],
+      "representation": {
+        "applicability": "APPLICABLE",
+        "ref": "REP-MATH-POLY-COEFF-TABLE",
+        "reason": "A coefficient table explicitly displays the 0 entry row for power 2."
+      },
+      "misconception": {
+        "M1": "Learner states coefficient of $x^2$ does not exist or is undefined because the term is omitted.",
+        "M2": "Ask what number times $x^2$ can be added to the expression without changing its value.",
+        "M3": "Explain that $0 \\cdot x^2 = 0$, so the term is implicitly present with coefficient 0."
+      },
+      "independent_check": "Reconstruct: $4x^3 + 0x^2 - 2x + 7 = 4x^3 - 2x + 7$; highest power is 3 with coeff 4, constant is 7.",
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q2",
+      "bank_id": "OWN-ISSUE53-POLY-02",
+      "template_id": "QRT-JUSTIFY-D2",
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "trap_exception_sensitivity": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0
+        }
+      },
+      "demand": {
+        "primary": "JUSTIFY",
+        "secondary": [
+          "RETRIEVE"
+        ]
+      },
+      "verified_answer": "Accepted: $3x^2-2x+1$ (degree 2) and $-5$ (degree 0). Rejected: $1/x+3$ (fails condition because exponent of $x$ is $-1$, a negative integer) and $\\sqrt{x}+1$ (fails condition because exponent of $x$ is $1/2$, a fraction/non-integer).",
+      "X": "Four algebraic expressions: $3x^2-2x+1$, $1/x+3$, $\\sqrt{x}+1$, $-5$.",
+      "Y": "Defining axiom of polynomials: all exponents of variable $x$ must be non-negative integers ($\\{0, 1, 2, \\dots\\}$).",
+      "Z": "Rewrite terms in exponential form ($x^{-1}$, $x^{1/2}$, $x^0$), evaluate each against non-negative integer condition, and determine degrees for accepted expressions.",
+      "W": "Classify $3x^2-2x+1$ (deg 2) and $-5$ (deg 0) as polynomials; reject $1/x+3$ (negative power $-1$) and $\\sqrt{x}+1$ (fractional power $1/2$).",
+      "hints": [
+        "Recall the definition: a polynomial in $x$ must have all exponents of $x$ as non-negative integers (whole numbers $0, 1, 2, \\dots$).",
+        "Rewrite reciprocal and radical terms in index form: $1/x = x^{-1}$ and $\\sqrt{x} = x^{1/2}$.",
+        "For a constant like $-5$, express it with $x^0$ and check whether $0$ is a non-negative integer."
+      ],
+      "representation": {
+        "applicability": "APPLICABLE",
+        "ref": "REP-MATH-POLY-COEFF-TABLE",
+        "reason": "Exemplifies valid vs invalid index powers in the monomial power sequence."
+      },
+      "misconception": {
+        "M1": "Learner believes $-5$ is not a polynomial because no variable $x$ is visible, or believes $1/x$ is a polynomial because power of $x$ in denominator is 1.",
+        "M2": "Ask what exponent is obtained when rewriting $1/x$ in numerator index form, and how $-5$ can be written using $x^0$.",
+        "M3": "Show that $1/x = x^{-1}$ has negative exponent $-1 \\notin \\mathbb{W}$, whereas $-5 = -5x^0$ has non-negative integer exponent $0 \\in \\mathbb{W}$."
+      },
+      "independent_check": "Check exponent sets: $\\{2,1,0\\} \\subset \\mathbb{W}$ (valid); $\\{-1,0\\} \\not\\subset \\mathbb{W}$ (invalid); $\\{1/2,0\\} \\not\\subset \\mathbb{W}$ (invalid); $\\{0\\} \\subset \\mathbb{W}$ (valid).",
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q3",
+      "bank_id": "OWN-ISSUE53-POLY-03",
+      "template_id": "QRT-APPLY-D1",
+      "difficulty": {
+        "band": "D1",
+        "score": 2,
+        "components": {
+          "concept_model_selection": 0,
+          "trap_exception_sensitivity": 0,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0
+        }
+      },
+      "demand": {
+        "primary": "APPLY",
+        "secondary": [
+          "REPRESENT"
+        ]
+      },
+      "verified_answer": "$p(2) = (2)^2 - 3(2) + 4 = 4 - 6 + 4 = 2$.",
+      "X": "Polynomial $p(x)=x^2-3x+4$ and input point $x=2$.",
+      "Y": "Definition of polynomial value $p(k)$ via substitution and standard order of operations.",
+      "Z": "Enclose $x=2$ in brackets at each occurrence: $(2)^2 - 3(2) + 4$, evaluate square and product, then combine terms.",
+      "W": "Compute $p(2) = 4 - 6 + 4 = 2$ showing explicit bracket notation.",
+      "hints": [
+        "Replace every occurrence of the variable $x$ with the number $(2)$ enclosed in brackets.",
+        "Follow arithmetic order of operations: compute $(2)^2$ and $3(2)$ before adding and subtracting.",
+        "Combine the resulting terms from left to right: $4 - 6 + 4$."
+      ],
+      "representation": {
+        "applicability": "APPLICABLE",
+        "ref": "REP-MATH-POLY-LINEAR-ZERO",
+        "reason": "Graph illustrates function value $y=p(x)$ at $x=2$."
+      },
+      "misconception": {
+        "M1": "Learner writes $2^2 - 32 + 4$ concatenating digits instead of multiplying $3 \\times 2$, or subtracts before multiplying.",
+        "M2": "Ask what operation is implied between coefficient 3 and variable $x$ in $3x$.",
+        "M3": "Use brackets $3(2) = 6$ to clearly separate multiplication from digit concatenation and maintain operator precedence."
+      },
+      "independent_check": "Factored form check: $p(x) = x(x-3) + 4 \\implies p(2) = 2(2-3) + 4 = 2(-1) + 4 = -2 + 4 = 2$.",
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q4",
+      "bank_id": "OWN-ISSUE53-POLY-04",
+      "template_id": "QRT-APPLY-D1",
+      "difficulty": {
+        "band": "D1",
+        "score": 2,
+        "components": {
+          "concept_model_selection": 0,
+          "trap_exception_sensitivity": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0
+        }
+      },
+      "demand": {
+        "primary": "APPLY",
+        "secondary": [
+          "EXPLAIN"
+        ]
+      },
+      "verified_answer": "Combinable like terms: $2x^2$ and $-x^2$ (quadratic), $3x$ and $4x$ (linear), $-5$ and $2$ (constant). Result in descending powers: $x^2 + 7x - 3$.",
+      "X": "Two quadratic polynomials $p(x)=2x^2+3x-5$ and $q(x)=-x^2+4x+2$.",
+      "Y": "Rule for polynomial addition: only like terms (terms with identical powers of $x$) can be combined.",
+      "Z": "Group like terms together: $(2x^2 - x^2) + (3x + 4x) + (-5 + 2)$, add their coefficients, and write in descending power order.",
+      "W": "Identify like terms by power and write sum $x^2 + 7x - 3$.",
+      "hints": [
+        "Group terms that have the exact same power of $x$ (quadratic with quadratic, linear with linear, constant with constant).",
+        "Use the distributive property to add the coefficients of each group: $(2 - 1)x^2$, $(3 + 4)x$, and $(-5 + 2)$.",
+        "Write the final simplified terms in descending order of exponents: $x^2$, then $x$, then the constant."
+      ],
+      "representation": {
+        "applicability": "APPLICABLE",
+        "ref": "REP-MATH-POLY-COEFF-TABLE",
+        "reason": "Aligns polynomial terms by power rows for column-wise addition."
+      },
+      "misconception": {
+        "M1": "Learner adds coefficients across different powers (e.g. $2x^2 + 3x = 5x^3$) or mishandles negative signs like $-5 + 2 = -7$.",
+        "M2": "Ask whether terms with different powers of $x$ can be factored with a common variable power.",
+        "M3": "Show that $2x^2$ and $3x$ cannot combine because $x^2 \\ne x$; only like terms share common variable factors."
+      },
+      "independent_check": "Evaluate at $x=1$: $p(1) = 2+3-5 = 0$; $q(1) = -1+4+2 = 5$; $p(1)+q(1) = 5$. Sum polynomial at $x=1$: $1^2+7(1)-3 = 1+7-3 = 5$. Matches!",
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q5",
+      "bank_id": "OWN-ISSUE53-POLY-05",
+      "template_id": "QRT-REPRESENT-D2",
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "trap_exception_sensitivity": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0
+        }
+      },
+      "demand": {
+        "primary": "REPRESENT",
+        "secondary": [
+          "EXPLAIN"
+        ]
+      },
+      "verified_answer": "Table with power rows 3, 2, 1, 0 has coefficients 5, 0, -2, 7. Reconstructed polynomial: $5x^3 + 0x^2 - 2x + 7 = 5x^3 - 2x + 7$. A zero entry means the power $x^2$ is not present in the simplified expression ($0 \\cdot x^2 = 0$), acting as an explicit zero entry to maintain positional alignment.",
+      "X": "Polynomial $p(x)=5x^3-2x+7$ to translate into a power-indexed table.",
+      "Y": "General polynomial canonical representation $\\sum_{k=0}^n a_k x^k$.",
+      "Z": "Create rows for powers 3, 2, 1, 0, insert coefficients $a_3=5, a_2=0, a_1=-2, a_0=7$, reconstruct $\\sum a_k x^k$, and explain 0 as null-value positional entry.",
+      "W": "Construct 4-row coefficient table, reconstruct $5x^3-2x+7$, and explain $0x^2$ zero-entry role.",
+      "hints": [
+        "Set up four rows corresponding to exponents $3, 2, 1, 0$.",
+        "For each power, write its coefficient; if a power is missing in the polynomial, write $0$ as its coefficient.",
+        "Reconstruct by multiplying each power by its coefficient and summing: $a_3 x^3 + a_2 x^2 + a_1 x + a_0$."
+      ],
+      "representation": {
+        "applicability": "APPLICABLE",
+        "ref": "REP-MATH-POLY-COEFF-TABLE",
+        "reason": "Direct tabular representation displaying powers and coefficient vectors."
+      },
+      "misconception": {
+        "M1": "Learner skips the row for power 2 or records 'none'/'blank' instead of numerical 0.",
+        "M2": "Ask what happens in positional notation (like digits in 5027) if 0 is omitted.",
+        "M3": "Show that entering 0 maintains the index structure and correctly yields $0 \\cdot x^2 = 0$ upon reconstruction."
+      },
+      "independent_check": "Reconstruction check: $5 \\cdot x^3 + 0 \\cdot x^2 + (-2) \\cdot x^1 + 7 \\cdot x^0 = 5x^3 + 0 - 2x + 7 = 5x^3 - 2x + 7$.",
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q6",
+      "bank_id": "OWN-ISSUE53-POLY-06",
+      "template_id": "QRT-JUSTIFY-D2",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "trap_exception_sensitivity": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0
+        }
+      },
+      "demand": {
+        "primary": "JUSTIFY",
+        "secondary": [
+          "APPLY"
+        ]
+      },
+      "verified_answer": "The student incorrectly squared terms individually and omitted the middle cross-terms. Expanding $(x+3)(x+3) = x(x+3) + 3(x+3) = x^2 + 3x + 3x + 9 = x^2 + 6x + 9$. The error is the missing $+6x$ term. Corrected expansion is $x^2 + 6x + 9$.",
+      "X": "Erroneous identity claim $(x+3)^2 = x^2 + 9$.",
+      "Y": "Distributive property of multiplication over addition for binomial products: $(a+b)(c+d) = ac + ad + bc + bd$.",
+      "Z": "Multiply $(x+3)(x+3)$ term-by-term using distributivity, locate the omitted middle terms $3x + 3x = 6x$, and provide corrected expansion $x^2 + 6x + 9$.",
+      "W": "Isolate omission of cross-term $+6x$ and state corrected expansion $x^2 + 6x + 9$.",
+      "hints": [
+        "Write $(x+3)^2$ as the product of two binomials: $(x+3)(x+3)$.",
+        "Apply the distributive property: multiply every term in the first bracket by every term in the second bracket.",
+        "Compare the resulting four terms with $x^2 + 9$ to see which terms were left out."
+      ],
+      "representation": {
+        "applicability": "APPLICABLE",
+        "ref": "REP-MATH-POLY-AREA-MODEL",
+        "reason": "A square of side $(x+3)$ clearly reveals the two rectangular regions of area $3x$ that sum to $6x$."
+      },
+      "misconception": {
+        "M1": "Learner believes exponents distribute over addition: $(a+b)^2 = a^2 + b^2$.",
+        "M2": "Ask what the value of $(1+3)^2$ is compared to $1^2 + 3^2$.",
+        "M3": "Show that $(1+3)^2 = 4^2 = 16$, while $1^2 + 3^2 = 1 + 9 = 10 \\ne 16$. The difference $16 - 10 = 6 = 2(1)(3)$ is the missing cross-term."
+      },
+      "independent_check": "Counterexample check: At $x=2$, $(2+3)^2 = 25$, while $2^2+9 = 13 \\ne 25$. Corrected: $2^2 + 6(2) + 9 = 4 + 12 + 9 = 25$. Verified!",
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q7",
+      "bank_id": "OWN-ISSUE53-POLY-07",
+      "template_id": "QRT-MODEL-D2",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "trap_exception_sensitivity": 0,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0
+        }
+      },
+      "demand": {
+        "primary": "MODEL",
+        "secondary": [
+          "REPRESENT"
+        ]
+      },
+      "verified_answer": "Polynomial for area: $(x+3)(x+1) = x^2 + 4x + 3$. Output unit: $\\text{cm}^2$ (square centimetres). Represented feature: the total two-dimensional surface area enclosed by the rectangle as a function of $x \\ge 0$.",
+      "X": "Rectangle with length $(x+3)$ cm and width $(x+1)$ cm, parameter $x \\ge 0$.",
+      "Y": "Geometric definition of rectangular area $\\text{Area} = \\text{length} \\times \\text{width}$ and dimension compounding $\\text{cm} \\times \\text{cm} = \\text{cm}^2$.",
+      "Z": "Multiply linear dimensions $(x+3)(x+1)$, expand to $x^2+4x+3$, attach unit $\\text{cm}^2$, and identify the physical feature as enclosed 2D region area.",
+      "W": "Write area polynomial $x^2+4x+3$, unit $\\text{cm}^2$, representing total enclosed surface area.",
+      "hints": [
+        "Use the formula for the area of a rectangle: $\\text{Area} = \\text{length} \\times \\text{width}$.",
+        "Multiply the two binomials $(x+3)$ and $(x+1)$ using the distributive property and combine like terms.",
+        "Remember that multiplying length in cm by width in cm produces area in square centimetres ($\\text{cm}^2$)."
+      ],
+      "representation": {
+        "applicability": "APPLICABLE",
+        "ref": "REP-MATH-POLY-AREA-MODEL",
+        "reason": "A subdivided rectangle of dimensions $(x+3)$ and $(x+1)$ shows the 4 decomposed areas: $x^2$, $3x$, $1x$, $3$."
+      },
+      "misconception": {
+        "M1": "Learner computes perimeter $2(\\text{length} + \\text{width})$ instead of area, or gives unit as $\\text{cm}$ instead of $\\text{cm}^2$.",
+        "M2": "Ask what physical quantity is computed by multiplying two linear length measurements together.",
+        "M3": "Explain that $\\text{cm} \\times \\text{cm} = \\text{cm}^2$, which measures the two-dimensional region covered, unlike perimeter which measures boundary length."
+      },
+      "independent_check": "At $x=2$: length = 5 cm, width = 3 cm $\\implies \\text{Area} = 5 \\times 3 = 15\\text{ cm}^2$. Formula: $2^2 + 4(2) + 3 = 4 + 8 + 3 = 15\\text{ cm}^2$. Matches!",
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q8",
+      "bank_id": "OWN-ISSUE53-POLY-08",
+      "template_id": "QRT-APPLY-D2",
+      "difficulty": {
+        "band": "D2",
+        "score": 3,
+        "components": {
+          "concept_model_selection": 1,
+          "trap_exception_sensitivity": 0,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1
+        }
+      },
+      "demand": {
+        "primary": "APPLY",
+        "secondary": [
+          "JUSTIFY"
+        ]
+      },
+      "verified_answer": "Factorisation: $x^2 - 9 = x^2 - 3^2 = (x - 3)(x + 3)$ using the difference of squares identity $a^2 - b^2 = (a - b)(a + b)$. Check: $(x - 3)(x + 3) = x(x + 3) - 3(x + 3) = x^2 + 3x - 3x - 9 = x^2 - 9$.",
+      "X": "Binomial expression $x^2 - 9$.",
+      "Y": "Difference of two squares identity $a^2 - b^2 = (a-b)(a+b)$.",
+      "Z": "Recognize $9 = 3^2$, apply difference of squares with $a=x, b=3$ to obtain $(x-3)(x+3)$, and multiply factors to verify middle terms cancel.",
+      "W": "Factors $(x-3)(x+3)$; check confirms $x^2+3x-3x-9 = x^2-9$.",
+      "hints": [
+        "Notice that $x^2$ is the square of $x$ and $9$ is the square of $3$ ($3^2 = 9$).",
+        "Recall the algebraic identity for difference of two squares: $a^2 - b^2 = (a - b)(a + b)$.",
+        "To check, expand $(x - 3)(x + 3)$ and observe how the middle terms cancel out."
+      ],
+      "representation": {
+        "applicability": "APPLICABLE",
+        "ref": "REP-MATH-POLY-AREA-MODEL",
+        "reason": "Geometric area dissection of $x^2 - 3^2$ into $(x-3)(x+3)$."
+      },
+      "misconception": {
+        "M1": "Learner writes $(x-3)^2$ or $(x-9)(x+1)$ confusing difference of squares with square of a binomial.",
+        "M2": "Ask what happens to the middle term when expanding $(x-3)^2 = x^2 - 6x + 9$ versus expanding $(x-3)(x+3)$.",
+        "M3": "Show that opposite signs in factors produce cancelling cross-terms $+3x - 3x = 0$, leaving only $x^2 - 9$."
+      },
+      "independent_check": "Multiply factors: $(x-3)(x+3) = x^2 + 3x - 3x - 9 = x^2 - 9$. Numerical check at $x=5$: $5^2 - 9 = 16$; $(5-3)(5+3) = 2 \\times 8 = 16$. Verified!",
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q9",
+      "bank_id": "OWN-ISSUE53-POLY-09",
+      "template_id": "QRT-JUSTIFY-D2",
+      "difficulty": {
+        "band": "D2",
+        "score": 5,
+        "components": {
+          "concept_model_selection": 2,
+          "trap_exception_sensitivity": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1
+        }
+      },
+      "demand": {
+        "primary": "JUSTIFY",
+        "secondary": [
+          "EXPLAIN"
+        ]
+      },
+      "verified_answer": "Yes, $x(x+1)$ and $x^2+x$ are equal for every real $x$. Reason: by the distributive law of multiplication over addition in the real number system ($a(b+c) = ab + ac$), multiplying $x$ across $(x+1)$ yields $x \\cdot x + x \\cdot 1 = x^2 + x$. Because this equality is derived from the fundamental field axioms of real arithmetic and laws of exponents, it constitutes an algebraic identity holding for all $x \\in \\mathbb{R}$, not merely an empirical coincidence at tested values.",
+      "X": "Two expressions $x(x+1)$ and $x^2+x$ across the real domain $\\mathbb{R}$.",
+      "Y": "Distributive property of multiplication over addition for real numbers $a(b+c) = ab+ac$ and definition of an algebraic identity.",
+      "Z": "Apply the distributive property generally: $x(x+1) = x \\cdot x + x \\cdot 1 = x^2 + x$; explain that field axioms hold universally for all real numbers without exception.",
+      "W": "Affirm equality for all $x \\in \\mathbb{R}$ by deductive proof via the distributive axiom.",
+      "hints": [
+        "Consider what property of real numbers allows you to expand a single factor multiplying a sum in brackets.",
+        "Apply the distributive law $a(b + c) = ab + ac$ with $a = x$, $b = x$, and $c = 1$.",
+        "Explain why an equality proved from universal properties of arithmetic must hold for all real numbers, unlike testing a few specific numbers."
+      ],
+      "representation": {
+        "applicability": "APPLICABLE",
+        "ref": "REP-MATH-POLY-AREA-MODEL",
+        "reason": "A rectangle of length $(x+1)$ and width $x$ decomposes into a square $x^2$ and a strip $x$, demonstrating equivalence geometrically."
+      },
+      "misconception": {
+        "M1": "Learner tests $x=1$ and $x=2$ and claims they are equal only because those sample numbers gave matching results, without citing the distributive law.",
+        "M2": "Ask whether testing two or three numbers guarantees that an equation holds for all infinitely many real numbers (e.g. testing $x^2 = x$ at $x=0, 1$).",
+        "M3": "Explain the difference between an identity (proved universally from axioms) and an equation that happens to match at isolated points; only deductive proof establishes truth for all real numbers."
+      },
+      "independent_check": "Axiomatic expansion: $x(x+1) = x \\cdot x + x \\cdot 1 = x^2 + x$. Difference polynomial: $x(x+1) - (x^2+x) = x^2+x-(x^2+x) = 0$ is the zero polynomial, identically 0 for all $x \\in \\mathbb{R}$.",
+      "w_leak_check": "PASS"
+    },
+    {
+      "question_id": "Q10",
+      "bank_id": "OWN-ISSUE53-POLY-10",
+      "template_id": "QRT-SYNTHESIZE-D3",
+      "difficulty": {
+        "band": "D3",
+        "score": 6,
+        "components": {
+          "concept_model_selection": 1,
+          "trap_exception_sensitivity": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1
+        }
+      },
+      "demand": {
+        "primary": "SYNTHESIZE",
+        "secondary": [
+          "JUSTIFY"
+        ]
+      },
+      "verified_answer": "The constructed linear polynomial is $p(x) = -2x + 2$. Verification: (1) Constant term is $p(0) = -2(0) + 2 = 2$; (2) Zero is $p(1) = -2(1) + 2 = 0$; (3) Degree is 1 ($a = -2 \\ne 0$). Exactly one linear polynomial satisfies these conditions: any linear polynomial has form $ax+b$ ($a \\ne 0$); condition $p(0)=2$ forces $b=2$, and condition $p(1)=0$ forces $a(1)+2=0 \\implies a=-2$. Since the linear system for coefficients has a unique solution, no other linear polynomial can satisfy them.",
+      "X": "Two algebraic conditions for a linear polynomial: constant term 2, zero 1.",
+      "Y": "General form of a linear polynomial $p(x) = ax + b$ with $a \\ne 0$ and definition of constant term and zero.",
+      "Z": "Set $b = 2$, set $a(1) + 2 = 0$ to solve $a = -2$; verify both conditions; prove uniqueness from the uniqueness of the solution to the linear equation $a + 2 = 0$.",
+      "W": "Construct $p(x) = -2x + 2$, verify both conditions, and prove uniqueness.",
+      "hints": [
+        "Write the general form of any linear polynomial in one variable: p(x) = ax + b, where a != 0.",
+        "Use the constant term condition: the constant term is p(0) = b, so set b = 2.",
+        "Use the zero condition: a zero at x = 1 means p(1) = 0. Substitute x = 1 and b = 2 into ax + b = 0.",
+        "Solve the resulting linear equation a(1) + 2 = 0 for leading coefficient a.",
+        "Check both conditions with your polynomial, and prove that the solution for coefficients (a, b) is unique in R."
+      ],
+      "representation": {
+        "applicability": "APPLICABLE",
+        "ref": "REP-MATH-POLY-LINEAR-ZERO",
+        "reason": "The straight line $y = -2x + 2$ passes through $(0, 2)$ and $(1, 0)$; two points uniquely determine a line in Euclidean geometry."
+      },
+      "misconception": {
+        "M1": "Learner constructs a quadratic like $2(x-1)^2$ ignoring the linearity condition, or claims multiple linear polynomials exist because of an arbitrary scaling constant.",
+        "M2": "Ask what defines a linear polynomial (degree exactly 1), and whether $k(ax+b)$ preserves the constant term 2 if $k \\ne 1$.",
+        "M3": "Show that scaling $k(-2x+2) = -2kx + 2k$ changes the constant term to $2k$; it only equals 2 when $k=1$, proving uniqueness."
+      },
+      "independent_check": "Check $p(0) = -2(0) + 2 = 2$ (constant term holds); $p(1) = -2(1) + 2 = 0$ (zero holds); $\\deg(p) = 1$ (linear holds). Uniqueness: $b=2$ is fixed by constant term; $a(1)+2=0 \\iff a=-2$, unique root in $\\mathbb{R}$.",
+      "w_leak_check": "PASS"
+    }
+  ]
+}

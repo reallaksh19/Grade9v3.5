@@ -1,0 +1,329 @@
+{
+  "schema": "iss29-n2-academic-reanalysis/v1",
+  "issue": 53,
+  "responsibility": "ISS29-N2-D1",
+  "created_on": "2026-10-07",
+  "source_intake_sha256": "c2cca6e6b92997c30d2f3a7eab91577bc8463ec9ce44ca90b9be728f3d1d46b8",
+  "launch_base": "255e2fe59d81fdb0cd08e71be7d8274ea4d6f7c6",
+  "historical_source_candidate": "bc464d831f4815a45dd45d29ecf6bcc16d5af8ab",
+  "authority": {
+    "blueprint_core1a": "BP-CORE1A-CONSTRUCTION@1.8.0",
+    "blueprint_core2": "BP-CORE2-SOURCE-QUESTION@1.11.0",
+    "demand_matrix": "Shared/quality/question-demand-matrix.v1.json",
+    "difficulty_contract": "Shared/tools/question_difficulty.py + Shared/vocabularies/learner-question-metadata.v1.json",
+    "mathematics_adapter": "Mathematics/adapter/DemandReview.json"
+  },
+  "policy": [
+    "One primary decisive act plus derived D-band selects one canonical QRT cell.",
+    "Requested D1 cohort is planning metadata, not a forced band.",
+    "Author/coordinator review is not independent rendered acceptance.",
+    "Historical H/S/P/M YES values are not carried forward as acceptance.",
+    "Representations must be exact-case and may be waived when they add no academic job.",
+    "Same-question retry after assistance is supported practice; fresh changed-case work is needed for independent-use claims."
+  ],
+  "rows": [
+    {
+      "q": "Q1",
+      "answer": "Degree 3; leading coefficient 4; constant 7; x^2 coefficient 0. The omitted x^2 term is 0x^2.",
+      "band": "D1",
+      "W": "Explain that the missing power is represented by coefficient 0 while correctly identifying degree/leading/constant data.",
+      "conditions": [
+        "Polynomial is already simplified in one variable over the reals."
+      ],
+      "representation": "Use a coefficient-by-power alignment only if it preserves the learner's missing-coefficient decision; historical coefficient-5 asset is wrong-case and must be replaced by the actual coefficient-4 case.",
+      "finding": "Historical representation is bound to the wrong coefficient case; repair to the actual 4x^3-2x+7 instance.",
+      "difficulty": {
+        "components": {
+          "concept_model_selection": 1,
+          "trap_exception_sensitivity": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 0,
+          "algebra_computational_load": 0
+        },
+        "score": 2,
+        "band": "D1"
+      },
+      "demand": {
+        "primary": "EXPLAIN",
+        "secondary": [
+          "RETRIEVE"
+        ],
+        "template_id": "QRT-EXPLAIN-D1"
+      },
+      "acceptance_state": "AUTHOR_DERIVED_PENDING_INDEPENDENT_RENDERED_REVIEW"
+    },
+    {
+      "q": "Q2",
+      "answer": "Polynomials: 3x^2-2x+1 (degree 2) and -5 (degree 0). Not polynomials: 1/x+3 because x has exponent -1; sqrt(x)+1 because x has exponent 1/2.",
+      "band": "D2",
+      "W": "Classify each expression using the defining exponent criterion and state the degree only for accepted expressions.",
+      "conditions": [
+        "Polynomial exponents in x are non-negative integers; nonzero constants have degree 0."
+      ],
+      "representation": "No answer-bearing accepted/rejected labels pre-attempt. If exponent notation is shown, it may teach x^-1 and x^(1/2) meaning without completing the classification.",
+      "finding": "Old primary demand JUSTIFY overstates the assessed act; classification by a defining criterion is canonical RETRIEVE. Pre-attempt labels must not disclose W.",
+      "difficulty": {
+        "components": {
+          "concept_model_selection": 1,
+          "trap_exception_sensitivity": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0
+        },
+        "score": 4,
+        "band": "D2"
+      },
+      "demand": {
+        "primary": "RETRIEVE",
+        "secondary": [
+          "JUSTIFY"
+        ],
+        "template_id": "QRT-RETRIEVE-D2"
+      },
+      "acceptance_state": "AUTHOR_DERIVED_PENDING_INDEPENDENT_RENDERED_REVIEW"
+    },
+    {
+      "q": "Q3",
+      "answer": "p(2)=(2)^2-3(2)+4=2.",
+      "band": "D1",
+      "W": "Substitute 2 at every x using brackets and evaluate correctly.",
+      "conditions": [
+        "Ordinary real-number substitution and order of operations."
+      ],
+      "representation": "Use a bracketed-substitution correspondence or an explicit representation waiver; the old exponent-classification picture is unrelated.",
+      "finding": "Representation must show substitution correspondence, not polynomial classification.",
+      "difficulty": {
+        "components": {
+          "concept_model_selection": 0,
+          "trap_exception_sensitivity": 0,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0
+        },
+        "score": 2,
+        "band": "D1"
+      },
+      "demand": {
+        "primary": "APPLY",
+        "secondary": [
+          "REPRESENT"
+        ],
+        "template_id": "QRT-APPLY-D1"
+      },
+      "acceptance_state": "AUTHOR_DERIVED_PENDING_INDEPENDENT_RENDERED_REVIEW"
+    },
+    {
+      "q": "Q4",
+      "answer": "x^2+7x-3; combine terms only when their powers of x match.",
+      "band": "D1",
+      "W": "Align like powers across the two given quadratics and add their coefficients without pre-supplying the completed sum.",
+      "conditions": [
+        "Like terms have the same variable raised to the same power."
+      ],
+      "representation": "If used, align the two actual quadratic inputs by powers; do not substitute an unrelated cubic and do not display the final protected sum initially.",
+      "finding": "Historical representation is wrong-case and can leak the protected result.",
+      "difficulty": {
+        "components": {
+          "concept_model_selection": 0,
+          "trap_exception_sensitivity": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0
+        },
+        "score": 2,
+        "band": "D1"
+      },
+      "demand": {
+        "primary": "APPLY",
+        "secondary": [
+          "EXPLAIN"
+        ],
+        "template_id": "QRT-APPLY-D1"
+      },
+      "acceptance_state": "AUTHOR_DERIVED_PENDING_INDEPENDENT_RENDERED_REVIEW"
+    },
+    {
+      "q": "Q5",
+      "answer": "Power rows 3,2,1,0 have coefficients 5,0,-2,7; reconstruction gives 5x^3-2x+7; zero records the absent x^2 term.",
+      "band": "D2",
+      "W": "Construct the coefficient table and translate it back to the same polynomial while preserving the missing-zero position.",
+      "conditions": [
+        "Rows correspond exactly to powers 3,2,1,0."
+      ],
+      "representation": "Coefficient table is academically appropriate; initial state must not prefill the assessed coefficient vector.",
+      "finding": "Retain the representation but preserve the learner-owned zero-entry decision and add concrete changed reconstruction/transfer.",
+      "difficulty": {
+        "components": {
+          "concept_model_selection": 1,
+          "trap_exception_sensitivity": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0
+        },
+        "score": 4,
+        "band": "D2"
+      },
+      "demand": {
+        "primary": "REPRESENT",
+        "secondary": [
+          "EXPLAIN"
+        ],
+        "template_id": "QRT-REPRESENT-D2"
+      },
+      "acceptance_state": "AUTHOR_DERIVED_PENDING_INDEPENDENT_RENDERED_REVIEW"
+    },
+    {
+      "q": "Q6",
+      "answer": "(x+3)^2=(x+3)(x+3)=x^2+3x+3x+9=x^2+6x+9; the student's error is omitting the two cross terms.",
+      "band": "D2",
+      "W": "Explain where the two 3x cross terms come from and why the proposed expansion is missing them.",
+      "conditions": [
+        "Distributive multiplication of two identical binomials."
+      ],
+      "representation": "Use an actual square of side x+3 partitioned into x^2, 3x, 3x and 9; the historical rectangle/square mismatch must be removed.",
+      "finding": "Old primary JUSTIFY is weaker than the explanatory crux; visual must represent the actual square construction.",
+      "difficulty": {
+        "components": {
+          "concept_model_selection": 1,
+          "trap_exception_sensitivity": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0
+        },
+        "score": 3,
+        "band": "D2"
+      },
+      "demand": {
+        "primary": "EXPLAIN",
+        "secondary": [
+          "APPLY",
+          "JUSTIFY"
+        ],
+        "template_id": "QRT-EXPLAIN-D2"
+      },
+      "acceptance_state": "AUTHOR_DERIVED_PENDING_INDEPENDENT_RENDERED_REVIEW"
+    },
+    {
+      "q": "Q7",
+      "answer": "Area=(x+3)(x+1)=x^2+4x+3 cm^2 for x>=0; it represents the rectangle's enclosed area.",
+      "band": "D2",
+      "W": "Form the area model from the dimensions, expand it, keep the squared unit, and respect x>=0.",
+      "conditions": [
+        "x>=0 as stated; length and width are measured in cm."
+      ],
+      "representation": "The initial figure may show labelled dimensions/regions but must not print the model answer or expansion outside protected stages.",
+      "finding": "Historical SVG exposes answer-bearing text before commitment; retain useful geometry while removing the leak.",
+      "difficulty": {
+        "components": {
+          "concept_model_selection": 1,
+          "trap_exception_sensitivity": 0,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0
+        },
+        "score": 3,
+        "band": "D2"
+      },
+      "demand": {
+        "primary": "MODEL",
+        "secondary": [
+          "REPRESENT",
+          "APPLY"
+        ],
+        "template_id": "QRT-MODEL-D2"
+      },
+      "acceptance_state": "AUTHOR_DERIVED_PENDING_INDEPENDENT_RENDERED_REVIEW"
+    },
+    {
+      "q": "Q8",
+      "answer": "x^2-9=x^2-3^2=(x-3)(x+3); expansion checks the factorisation.",
+      "band": "D2",
+      "W": "Recognize 9 as 3^2, apply the difference-of-squares identity, and verify by multiplication.",
+      "conditions": [
+        "Difference-of-squares identity a^2-b^2=(a-b)(a+b)."
+      ],
+      "representation": "Either provide a correct difference-of-squares bridge or record a justified representation waiver; do not reuse an unrelated area drawing.",
+      "finding": "Current representation does not establish the relevant identity bridge.",
+      "difficulty": {
+        "components": {
+          "concept_model_selection": 1,
+          "trap_exception_sensitivity": 0,
+          "representation_translation": 0,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 1
+        },
+        "score": 3,
+        "band": "D2"
+      },
+      "demand": {
+        "primary": "APPLY",
+        "secondary": [
+          "JUSTIFY"
+        ],
+        "template_id": "QRT-APPLY-D2"
+      },
+      "acceptance_state": "AUTHOR_DERIVED_PENDING_INDEPENDENT_RENDERED_REVIEW"
+    },
+    {
+      "q": "Q9",
+      "answer": "Yes. By distributivity, x(x+1)=x*x+x*1=x^2+x for every real x.",
+      "band": "D2",
+      "W": "Give a universal algebraic warrant, not finite numerical agreement, for equality over all real x.",
+      "conditions": [
+        "Real-number distributive law applies for every real x."
+      ],
+      "representation": "A positive-length area picture may be optional intuition only and must state its restricted geometric domain; it cannot prove the all-real claim.",
+      "finding": "Historical visual overreaches from positive geometry to an all-real identity; algebraic warrant must carry acceptance.",
+      "difficulty": {
+        "components": {
+          "concept_model_selection": 1,
+          "trap_exception_sensitivity": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 0
+        },
+        "score": 4,
+        "band": "D2"
+      },
+      "demand": {
+        "primary": "JUSTIFY",
+        "secondary": [
+          "EXPLAIN"
+        ],
+        "template_id": "QRT-JUSTIFY-D2"
+      },
+      "acceptance_state": "AUTHOR_DERIVED_PENDING_INDEPENDENT_RENDERED_REVIEW"
+    },
+    {
+      "q": "Q10",
+      "answer": "p(x)=-2x+2. For p(x)=ax+b with a!=0, b=2 and p(1)=0 force a=-2, so the linear polynomial is unique.",
+      "band": "D2",
+      "W": "Coordinate the constant-term and zero constraints in the general linear form and justify uniqueness while preserving a!=0.",
+      "conditions": [
+        "A linear polynomial has form ax+b with a!=0; a=0 is excluded by the requested degree."
+      ],
+      "representation": "A line through (0,2) and (1,0) may support the relation after the algebraic construction; it must not replace the coefficient argument.",
+      "finding": "Historical D3 score is inflated for a short connected constraint problem. Reclassify to D2 and make the linearity/degenerate boundary explicit.",
+      "difficulty": {
+        "components": {
+          "concept_model_selection": 1,
+          "trap_exception_sensitivity": 1,
+          "representation_translation": 0,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 0
+        },
+        "score": 4,
+        "band": "D2"
+      },
+      "demand": {
+        "primary": "SYNTHESIZE",
+        "secondary": [
+          "JUSTIFY",
+          "MODEL"
+        ],
+        "template_id": "QRT-SYNTHESIZE-D2"
+      },
+      "acceptance_state": "AUTHOR_DERIVED_PENDING_INDEPENDENT_RENDERED_REVIEW"
+    }
+  ]
+}

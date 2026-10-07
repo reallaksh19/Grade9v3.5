@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0.0",
+  "registry_id": "MATHEMATICS-GATES-POLYNOMIALS-V1",
+  "subject": "Mathematics",
+  "maturity": "ENGINEERING",
+  "provenance": {
+    "scope": "Five polynomial relations required by Issue #29 N2-D1 / Issue #168. This is subject authority for the repaired candidate, not a claim of full Polynomials coverage.",
+    "owner_basis": "Issue #29 product contract and Issue #168 N2-D1 repair responsibility.",
+    "review_status": "Author-created engineering authority. Independent mathematical/pedagogical acceptance remains pending.",
+    "curriculum_boundary": "All entries remain OWNER_EXTENSION. No CBSE prescription is inferred from this registry."
+  },
+  "gates": [
+    {
+      "gate_id": "MATH-POLY-N2-D1-FOUNDATIONS",
+      "title": "Polynomial form, identities, area modelling, and linear-root relations",
+      "curriculum": {
+        "board": "CBSE",
+        "grade": 9,
+        "chapter": "Polynomials",
+        "scope_class": "OWNER_EXTENSION"
+      },
+      "tier": "NOT_IN_JEE",
+      "scope_state": "ACTIVE",
+      "canonical_concepts": [
+        {
+          "concept_id": "CON-POLY-NONNEGATIVE-EXPONENTS",
+          "statement": "A polynomial in one variable is a finite sum of real-coefficient terms whose exponents are non-negative integers; the leading coefficient of a nonzero degree-n polynomial is nonzero."
+        },
+        {
+          "concept_id": "CON-POLY-DISTRIBUTIVE-IDENTITIES",
+          "statement": "Binomial-square and difference-of-squares identities are consequences of distributivity, including the cross terms or their cancellation."
+        },
+        {
+          "concept_id": "CON-POLY-AREA-MODEL",
+          "statement": "A rectangular area model multiplies two valid side lengths and therefore has square units."
+        },
+        {
+          "concept_id": "CON-POLY-LINEAR-ZERO",
+          "statement": "For p(x)=ax+b with a nonzero, the constant term is b and the unique zero is -b/a."
+        }
+      ],
+      "prerequisites": [],
+      "external_prerequisites": [],
+      "relations": [
+        {
+          "relation_id": "REL-MATH-POLY-STANDARD-FORM",
+          "expression": "p(x) = a_n x^n + a_{n-1} x^{n-1} + ... + a_1 x + a_0",
+          "meaning": "Standard polynomial form in one variable x as a finite sum of terms whose exponents are non-negative integers.",
+          "symbols": [
+            {
+              "symbol": "x",
+              "meaning": "variable",
+              "domain": "real numbers R"
+            },
+            {
+              "symbol": "n",
+              "meaning": "degree of the polynomial",
+              "domain": "non-negative integers W = {0, 1, 2, ...}"
+            },
+            {
+              "symbol": "a_n",
+              "meaning": "leading coefficient",
+              "domain": "non-zero real numbers R \\ {0}"
+            },
+            {
+              "symbol": "a_0",
+              "meaning": "constant term",
+              "domain": "real numbers R"
+            }
+          ],
+          "conditions": [
+            "n in W",
+            "a_n != 0 for degree n"
+          ]
+        },
+        {
+          "relation_id": "REL-MATH-POLY-SQUARE-IDENTITY",
+          "expression": "(a + b)^2 = a^2 + 2ab + b^2",
+          "meaning": "Expansion of a binomial square via distributivity yields both cross products, which combine to 2ab.",
+          "symbols": [
+            {
+              "symbol": "a",
+              "meaning": "first term",
+              "domain": "real numbers R"
+            },
+            {
+              "symbol": "b",
+              "meaning": "second term",
+              "domain": "real numbers R"
+            }
+          ],
+          "conditions": [
+            "Holds for all a, b in R"
+          ]
+        },
+        {
+          "relation_id": "REL-MATH-POLY-DIFF-SQUARES",
+          "expression": "a^2 - b^2 = (a - b)(a + b)",
+          "meaning": "A difference of two squares factors into conjugate binomials because the cross terms cancel.",
+          "symbols": [
+            {
+              "symbol": "a",
+              "meaning": "first term",
+              "domain": "real numbers R"
+            },
+            {
+              "symbol": "b",
+              "meaning": "second term",
+              "domain": "real numbers R"
+            }
+          ],
+          "conditions": [
+            "Holds for all a, b in R"
+          ]
+        },
+        {
+          "relation_id": "REL-MATH-POLY-LINEAR-ROOT",
+          "expression": "p(x) = ax + b, a != 0, zero at x = -b/a",
+          "meaning": "A degree-one polynomial has constant term b and exactly one real zero at -b/a.",
+          "symbols": [
+            {
+              "symbol": "a",
+              "meaning": "leading coefficient",
+              "domain": "non-zero real numbers R \\ {0}"
+            },
+            {
+              "symbol": "b",
+              "meaning": "constant term",
+              "domain": "real numbers R"
+            },
+            {
+              "symbol": "x",
+              "meaning": "zero of the polynomial",
+              "domain": "real numbers R"
+            }
+          ],
+          "conditions": [
+            "a != 0"
+          ]
+        },
+        {
+          "relation_id": "REL-MATH-POLY-RECT-AREA",
+          "expression": "Area(x) = (x + a)(x + b) = x^2 + (a + b)x + ab",
+          "meaning": "A rectangular area with side lengths x+a and x+b is modeled by their product and has square units.",
+          "symbols": [
+            {
+              "symbol": "x",
+              "meaning": "variable dimension parameter",
+              "domain": "non-negative real numbers x >= 0"
+            },
+            {
+              "symbol": "a",
+              "meaning": "length offset",
+              "domain": "real numbers R"
+            },
+            {
+              "symbol": "b",
+              "meaning": "width offset",
+              "domain": "real numbers R"
+            },
+            {
+              "symbol": "Area",
+              "meaning": "enclosed rectangular area",
+              "domain": "square centimetres cm^2"
+            }
+          ],
+          "conditions": [
+            "x >= 0",
+            "length > 0",
+            "width > 0"
+          ]
+        }
+      ],
+      "representations": [],
+      "validity_conditions": [
+        "Use every relation only under its recorded conditions.",
+        "The linear-root relation applies only when the leading coefficient is non-zero.",
+        "The physical area relation additionally requires valid positive side lengths."
+      ],
+      "reasoning_sequence": [
+        {
+          "step_id": "RS-POLY-SELECT-RELATION",
+          "sequence": 1,
+          "action": "Identify the requested mathematical job and select the matching polynomial relation.",
+          "why_valid": "Standard form, square expansion, conjugate factorisation, area modelling and linear-zero construction have different hypotheses and learner decisions."
+        },
+        {
+          "step_id": "RS-POLY-CHECK-CONDITIONS",
+          "sequence": 2,
+          "action": "Check the selected relation's conditions before applying it.",
+          "why_valid": "A relation can only support a conclusion inside its stated domain.",
+          "depends_on": [
+            "RS-POLY-SELECT-RELATION"
+          ]
+        }
+      ],
+      "transformations": [],
+      "misconceptions": [],
+      "problem_families": [],
+      "difficulty": {
+        "maturity": "ENGINEERING",
+        "analytical_steps": 2,
+        "prerequisite_depth": 0,
+        "note": "This gate records subject truth only; learner difficulty remains question-derived under the canonical five-component contract."
+      },
+      "badges": [
+        "POLYNOMIAL-FOUNDATION"
+      ],
+      "falsification_cases": []
+    }
+  ]
+}
