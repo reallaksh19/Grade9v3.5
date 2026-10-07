@@ -551,14 +551,30 @@ def load_resources(repo: Path) -> tuple[list[dict], list[dict]]:
 PACKAGE_GLOB = "*/library/*.json"
 
 
-def load_subtopic_titles(repo: Path) -> dict[str, dict]:
-    """Learner-facing names for capability refs, from canonical records only.
+def load_subtopic_titles(repo: Path, questions: Sequence[Mapping[str, object]] | None = None) -> dict[str, dict]:
+    """Learner-facing names for capability refs, scoped to canonical question demand when supplied.
 
-    A capability has no title of its own; the concept that owns it does. A ref is titled when exactly one
-    microtopic across the library packages names it as its primary capability. Zero owners or several
-    owners is not resolved here (and never guessed from the identifier): the ref stays untitled and the
-    catalog says so.
+    A capability has no title of its own; the concept that owns it does. Production callers pass the
+    canonical browser questions, so an unrelated package cannot perturb Question Bank identity merely
+    by existing under */library. A title is eligible only when the canonical question actually uses the
+    ref and the package subject matches the question subject. Unscoped callers retain the historical
+    whole-library census used by focused ownership tests.
     """
+    wanted: dict[str, set[str]] | None = None
+    if questions is not None:
+        wanted = defaultdict(set)
+        for question in questions:
+            subject = str(question.get("subject") or "")
+            refs = list(question.get("subtopic_refs") or [])
+            if not refs:
+                primary = question.get("primary_capability_ref")
+                if primary:
+                    refs.append(primary)
+                refs.extend(question.get("secondary_capability_refs") or [])
+            for ref in refs:
+                if isinstance(ref, str) and ref and subject:
+                    wanted[ref].add(subject)
+
     owners: dict[str, list[dict]] = defaultdict(list)
     for path in sorted(repo.glob(PACKAGE_GLOB)):
         try:
@@ -567,11 +583,18 @@ def load_subtopic_titles(repo: Path) -> dict[str, dict]:
             continue
         if not isinstance(package, dict):
             continue
+        package_subject = str(package.get("subject") or "")
         for microtopic in package.get("microtopics") or []:
             ref, title = microtopic.get("primary_capability_ref"), microtopic.get("title")
+            if wanted is not None and (
+                not isinstance(ref, str)
+                or ref not in wanted
+                or package_subject not in wanted[ref]
+            ):
+                continue
             if isinstance(ref, str) and ref and isinstance(title, str) and title.strip():
                 owners[ref].append({"title": title.strip(), "source_ref": str(microtopic.get("id") or "")})
-    
+
     return {
         ref: {"title": rows[0]["title"], "source_ref": rows[0]["source_ref"]}
         for ref, rows in sorted(owners.items()) if len(rows) == 1
