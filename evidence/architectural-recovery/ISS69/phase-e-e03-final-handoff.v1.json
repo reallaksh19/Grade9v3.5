@@ -26,7 +26,7 @@
         "E03.3",
         "E03.4"
       ],
-      "state": "NOT_STARTED"
+      "state": "COMPLETE"
     },
     "module_c": {
       "name": "programme result",
@@ -242,5 +242,174 @@
     ],
     "conclusion": "No post-D05 evidence satisfies the independent rendered-review condition, so accepted 4x7 coverage remains 0/28. Unsupported cells are preserved rather than inferred, relabelled or backfilled from technical qualification."
   },
-  "status": "MODULE_A_COMPLETE_MODULES_B_C_PENDING"
+  "status": "MODULES_A_B_COMPLETE_MODULE_C_PENDING",
+  "frontier": {
+    "semantic_contract": {
+      "issue": 66,
+      "pr": 67,
+      "head_sha": "794f98fecc8323ca50b874fb11794ea48e77726a"
+    },
+    "phase_a": {
+      "issue": 70,
+      "pr": 76,
+      "head_sha": "a587052b9f61dd39b5e3098fd8fd538a383cf433"
+    },
+    "phase_b": {
+      "issue": 71,
+      "pr": 77,
+      "head_sha": "d1bb38b44a5626a3930cc28b8b9d164b39c73b55"
+    },
+    "phase_c": {
+      "issue": 72,
+      "pr": 94,
+      "source_runtime_head_sha": "59751b52e4911a132abb8c3956583a75b3cbcab7",
+      "generated_regeneration": {
+        "issue": 108,
+        "pr": 138,
+        "head_sha": "e39eb0b2d6f06b2588ed3888c47c2ec35d502486",
+        "responsibility_complete": true,
+        "role": "proved governed generated-artifact path; E02 regenerated again on final integration tree"
+      }
+    },
+    "phase_d": {
+      "freeze": {
+        "issue": 114,
+        "pr": 127,
+        "head_sha": "c4da59c56be1e148b8dfdb22654d9fb5e1a08541"
+      },
+      "children": [
+        {
+          "phase": "D01",
+          "issue": 109,
+          "pr": 119,
+          "head_sha": "5bd77489859ea9671c9e577d7db87e5dc4fd5870"
+        },
+        {
+          "phase": "D02",
+          "issue": 110,
+          "pr": 124,
+          "head_sha": "319362e26980f803d752de9b68a1dbbe4d6a0c36"
+        },
+        {
+          "phase": "D03",
+          "issue": 111,
+          "pr": 120,
+          "head_sha": "7b6cd3c4bfd8d6ad9c40983c43709bced296c53b"
+        },
+        {
+          "phase": "D04",
+          "issue": 112,
+          "pr": 121,
+          "head_sha": "33db3f2c83fc53358c41081f62a2ab76acabb633"
+        },
+        {
+          "phase": "D05",
+          "issue": 113,
+          "pr": 126,
+          "head_sha": "f1b6f53d77872062e231592b1e4b3fb66d2f8ba7"
+        }
+      ],
+      "evidence_path": "evidence/architectural-recovery/ISS69/phase-d-d06-freeze-handoff.v1.json",
+      "evidence_blob": "7299b41ba36143ebda7faea3a59f1946171fdb96"
+    },
+    "phase_e": {
+      "e01": {
+        "issue": 115,
+        "pr": 134,
+        "head_sha": "eef2debe87d1d3f60cbd8cd4ca9445f58f631a74",
+        "evidence_path": "evidence/architectural-recovery/ISS69/phase-e-e01-authority-ledger.v1.json",
+        "evidence_blob": "68e61035894cb5edf95da7455f42c4bcc53f12fe"
+      },
+      "e02": {
+        "issue": 116,
+        "pr": 141,
+        "human_head_sha": "7d9a53d11daa8f54a8ebb32e0eeda284f1b0db1e",
+        "generated_head_sha": "89f994d4015fe86a53a9661515453b06659baaee",
+        "evidence_path": "evidence/architectural-recovery/ISS69/phase-e-e02-final-qualification.v1.json",
+        "evidence_blob": "d085a83853abe58297df6d731be2901bfde5d5ff",
+        "exact_test_id_result": {
+          "new_failures": 0,
+          "fixed": 3,
+          "still_failing_inherited": 109
+        }
+      },
+      "e03": {
+        "issue": 117,
+        "pr": 149,
+        "branch": "integration/iss69-e03-final-handoff"
+      }
+    },
+    "appendix_a": {
+      "issue": 74,
+      "readiness_pr": 118,
+      "head_sha": "3b1ebeac97ed73252298ef472cd446f0bd6ce385",
+      "dashboard_browser_issue": 100,
+      "browser_run_id": 37551090934,
+      "browser_artifact_id": 11451854169,
+      "technical_state": "COMPLETE_BROWSER_PASS",
+      "promotion_release_state": "SEPARATE_NOT_GRANTED"
+    },
+    "returned_architecture_findings": [
+      {
+        "issue": 125,
+        "pr": 139,
+        "head_sha": "b6815308b32c2a81ae3a244413ae54875fb377cb",
+        "finding": "Topic Atlas question-link touch target below tablet floor",
+        "responsibility_complete": true,
+        "validation": "DEDICATED_BROWSER_AND_EXACT_TEST_ID_PASS",
+        "merge_release_granted": false
+      }
+    ]
+  },
+  "compatibility_and_migration": {
+    "authority_source": {
+      "path": "evidence/architectural-recovery/ISS69/phase-e-e01-authority-ledger.v1.json",
+      "blob": "68e61035894cb5edf95da7455f42c4bcc53f12fe"
+    },
+    "current_blueprints": [
+      "BP-CORE1A-CONSTRUCTION@1.8.0",
+      "BP-CORE2-SOURCE-QUESTION@1.11.0"
+    ],
+    "legacy_blueprints": {
+      "examples": [
+        "BP-CORE1A-CONSTRUCTION@1.4.0",
+        "BP-CORE2-SOURCE-QUESTION@1.5.0"
+      ],
+      "disposition": "OBSERVABLE_COMPATIBILITY_NOT_CURRENT_AUTHORITY"
+    },
+    "generated_projection_migration": {
+      "stale_ref": "BP-CORE1A-CONSTRUCTION@1.7.0",
+      "repaired_by_issue": 108,
+      "final_tree_reverified_by_issue": 116,
+      "final_state": "FRESH_ON_E02_EXACT_TREE"
+    },
+    "qrt_namespace": {
+      "canonical": "QRT-<DEMAND>-<BAND>",
+      "historical_noncanonical": "TMPL-CHEM-G11-*",
+      "historical_state": "NONCANONICAL_DO_NOT_PROMOTE"
+    },
+    "historical_classification_replay": {
+      "issues": [
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "state": "REPLAY_REQUIRED_NONACCEPTING"
+    },
+    "rendered_review_receipt": {
+      "path": "products/verification/phy-kin-2d-motion.review.json",
+      "old_render_digest": "5e64f1570dc30ee2",
+      "current_render_digest": "ff4f6a19c8360c22",
+      "disposition": "REVIEW_STALE_DO_NOT_REUSE",
+      "authority_source": {
+        "path": "evidence/architectural-recovery/ISS69/phase-e-e02-final-qualification.v1.json",
+        "blob": "d085a83853abe58297df6d731be2901bfde5d5ff"
+      }
+    }
+  }
 }
