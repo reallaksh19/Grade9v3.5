@@ -6,20 +6,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 505,
-  "relation_count": 542,
+  "component_count": 506,
+  "relation_count": 543,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 56,
-    "TEST": 247,
+    "TEST": 248,
     "TOOLING": 148,
     "WEB": 16,
     "WEB_CONTRACT": 8,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:93cf394a94fc67650a1c46dccf5cddc3d4588868696d9580e3251350ec3b6438",
+  "digest": "sha256:ea9ec9ab33f0a71aa4c6add2020c294ffb7999d6030b8695cc8d7117a9e9b505",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -2983,6 +2983,13 @@
       "sha256": "a8a74f6e696f2182c13c2a899801f2f4d724bd42b2ed107f25012e65ca831a02"
     },
     {
+      "path": "tests/test_phase_e_final_qualification.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 6821,
+      "sha256": "8c7961efa13bfc581d7c17db0c86f2f2b49c0bdf2d4d38d44dd101bc84543125"
+    },
+    {
       "path": "tests/test_physics_practice_content_quality.py",
       "role": "TEST",
       "role_description": "Executable checks",
@@ -5715,6 +5722,11 @@
     },
     {
       "from": "tests/test_pages_site.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_phase_e_final_qualification.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
