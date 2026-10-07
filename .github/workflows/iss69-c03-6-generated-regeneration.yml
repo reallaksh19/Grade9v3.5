@@ -113,7 +113,7 @@ jobs:
       - name: Run focused generator and Pages tests
         run: |
           set -euo pipefail
-          python3 -m unittest tests.test_tools tests.test_pages_site
+          python3 -m unittest tests.test_tools.Manifest tests.test_tools.WebData tests.test_pages_site
 
       - name: Commit generated outputs
         id: commit
