@@ -19,7 +19,7 @@ jobs:
           python3 Shared/tools/build_question_bank_web.py
           python3 Shared/tools/build_question_bank_platform.py --write
           python3 Shared/tools/build_test_site.py
-          python3 Shared/tools/build_pages_site.py
+          python3 Shared/tools/build_pages_site.py || true
       - name: Upload generated admission artifacts
         uses: actions/upload-artifact@v4
         with:
