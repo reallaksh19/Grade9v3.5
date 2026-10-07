@@ -115,6 +115,22 @@ jobs:
             --witness PYQ-PHY-IITJEE-2011-P2-Q33 \
             --audit-json /tmp/core-page-audit.json
 
+  test-area-browser-audit:
+    # Informational TEST-sandbox layout/runtime evidence. Never grants publication.
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install TEST browser dependencies
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Audit TEST hub, Atlas, rungs and deployments
+        run: node tests/test_area_browser.mjs
+
   blueprint-v2-render-snapshots:
     # Regenerate review snapshots from the live merged blueprint-v2 authority on main.
     # These are review artifacts only; they do not publish or accept products.
