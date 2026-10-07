@@ -1,0 +1,268 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/question-demand-matrix.schema.json",
+  "title": "Factorized cognitive-demand × difficulty question review matrix",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "vocabulary_ref",
+    "review_asks",
+    "demands",
+    "band_policies",
+    "rules"
+  ],
+  "properties": {
+    "schema": {
+      "const": "question-demand-matrix/v1"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "vocabulary_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "review_asks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "H1",
+        "H2",
+        "H3",
+        "S1",
+        "S2",
+        "S3",
+        "P1",
+        "P2",
+        "P3",
+        "M1",
+        "M2",
+        "M3"
+      ],
+      "properties": {
+        "H1": {
+          "$ref": "#/$defs/reviewAsk"
+        },
+        "H2": {
+          "$ref": "#/$defs/reviewAsk"
+        },
+        "H3": {
+          "$ref": "#/$defs/reviewAsk"
+        },
+        "S1": {
+          "$ref": "#/$defs/reviewAsk"
+        },
+        "S2": {
+          "$ref": "#/$defs/reviewAsk"
+        },
+        "S3": {
+          "$ref": "#/$defs/reviewAsk"
+        },
+        "P1": {
+          "$ref": "#/$defs/reviewAsk"
+        },
+        "P2": {
+          "$ref": "#/$defs/reviewAsk"
+        },
+        "P3": {
+          "$ref": "#/$defs/reviewAsk"
+        },
+        "M1": {
+          "$ref": "#/$defs/reviewAsk"
+        },
+        "M2": {
+          "$ref": "#/$defs/reviewAsk"
+        },
+        "M3": {
+          "$ref": "#/$defs/reviewAsk"
+        }
+      }
+    },
+    "demands": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "RETRIEVE",
+        "EXPLAIN",
+        "APPLY",
+        "MODEL",
+        "REPRESENT",
+        "SYNTHESIZE",
+        "JUSTIFY"
+      ],
+      "properties": {
+        "RETRIEVE": {
+          "$ref": "#/$defs/demandPolicy"
+        },
+        "EXPLAIN": {
+          "$ref": "#/$defs/demandPolicy"
+        },
+        "APPLY": {
+          "$ref": "#/$defs/demandPolicy"
+        },
+        "MODEL": {
+          "$ref": "#/$defs/demandPolicy"
+        },
+        "REPRESENT": {
+          "$ref": "#/$defs/demandPolicy"
+        },
+        "SYNTHESIZE": {
+          "$ref": "#/$defs/demandPolicy"
+        },
+        "JUSTIFY": {
+          "$ref": "#/$defs/demandPolicy"
+        }
+      }
+    },
+    "band_policies": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "D1",
+        "D2",
+        "D3",
+        "D4"
+      ],
+      "properties": {
+        "D1": {
+          "$ref": "#/$defs/bandPolicy"
+        },
+        "D2": {
+          "$ref": "#/$defs/bandPolicy"
+        },
+        "D3": {
+          "$ref": "#/$defs/bandPolicy"
+        },
+        "D4": {
+          "$ref": "#/$defs/bandPolicy"
+        }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "$defs": {
+    "reviewAsk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verb",
+        "objective",
+        "question"
+      ],
+      "properties": {
+        "verb": {
+          "type": "string",
+          "minLength": 1
+        },
+        "objective": {
+          "type": "string",
+          "minLength": 1
+        },
+        "question": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "demandPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "decisive_act",
+        "targets"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decisive_act": {
+          "type": "string",
+          "minLength": 1
+        },
+        "targets": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "X",
+            "Y",
+            "Z",
+            "W",
+            "wrong_idea",
+            "replacement_rule",
+            "visual_job",
+            "check_job"
+          ],
+          "properties": {
+            "X": {
+              "type": "string",
+              "minLength": 1
+            },
+            "Y": {
+              "type": "string",
+              "minLength": 1
+            },
+            "Z": {
+              "type": "string",
+              "minLength": 1
+            },
+            "W": {
+              "type": "string",
+              "minLength": 1
+            },
+            "wrong_idea": {
+              "type": "string",
+              "minLength": 1
+            },
+            "replacement_rule": {
+              "type": "string",
+              "minLength": 1
+            },
+            "visual_job": {
+              "type": "string",
+              "minLength": 1
+            },
+            "check_job": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "bandPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "protected_work",
+        "support_posture"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "protected_work": {
+          "type": "string",
+          "minLength": 1
+        },
+        "support_posture": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

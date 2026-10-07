@@ -238,9 +238,16 @@ def audit(path: Path | None = None) -> dict[str, Any]:
     if "FULL_INFERENTIAL_CONSTRUCTION" not in (core1.get("forbidden") or []):
         findings.append(_finding("CORE1_ORIENTATION_BOUNDARY_UNPROTECTED", "CORE1"))
 
-    core1a_ids = _block_ids(roles.get("CORE1A") or {})
+    core1a = roles.get("CORE1A") or {}
+    core1a_ids = _block_ids(core1a)
     if "completed_construction" not in core1a_ids:
         findings.append(_finding("CORE1A_CONSTRUCTION_NOT_EXPLICIT", "CORE1A"))
+    if "microtopic.misconceptions[]" in (core1a.get("required_inputs") or []):
+        findings.append(_finding("CORE1A_MISCONCEPTION_INPUT_MADE_UNIVERSAL", "CORE1A"))
+    if "FABRICATED_MISCONCEPTION_REPAIR" not in (core1a.get("forbidden") or []):
+        findings.append(_finding("CORE1A_FABRICATED_REPAIR_BOUNDARY_UNPROTECTED", "CORE1A"))
+    if "BAND_AS_PANEL_COUNT" not in (core1a.get("forbidden") or []):
+        findings.append(_finding("CORE1A_BAND_PANEL_QUOTA_BOUNDARY_UNPROTECTED", "CORE1A"))
 
     core1b = roles.get("CORE1B") or {}
     core1b_ids = _block_ids(core1b)
@@ -254,6 +261,12 @@ def audit(path: Path | None = None) -> dict[str, Any]:
     core2 = roles.get("CORE2") or {}
     if "AUTHORED_SCAFFOLD_PRESENTED_AS_SOURCE_HINT" not in (core2.get("forbidden") or []):
         findings.append(_finding("CORE2_CUSTODY_SCAFFOLD_BOUNDARY_UNPROTECTED", "CORE2"))
+    if "PROTECTED_MOVE_COMPLETING_SUPPORT" not in (core2.get("withheld_pre_attempt") or []):
+        findings.append(_finding("CORE2_PROTECTED_SUPPORT_NOT_WITHHELD", "CORE2"))
+    if "CLOSED_DISCLOSURE_AS_SEMANTIC_PROTECTION" not in (core2.get("forbidden") or []):
+        findings.append(_finding("CORE2_CLOSED_DISCLOSURE_BOUNDARY_UNPROTECTED", "CORE2"))
+    if "UNTRACKED_PRE_ATTEMPT_ASSISTANCE" not in (core2.get("forbidden") or []):
+        findings.append(_finding("CORE2_PRE_ATTEMPT_ASSISTANCE_BOUNDARY_UNPROTECTED", "CORE2"))
 
     core2a_ids = _block_ids(roles.get("CORE2A") or {})
     if "application_crux" not in core2a_ids:

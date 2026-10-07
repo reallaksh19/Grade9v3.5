@@ -179,6 +179,15 @@ class ExamSideMotionInPlanePilot(unittest.TestCase):
     def test_diagnosed_real_question_repairs_then_uses_fresh_canonical_check(self):
         mapping = self.mapping()
         row = mapping["questions"][0]
+        evidence, error = feedback.diagnostic_evidence_for(
+            feedback.subject_records(mapping["subject"]),
+            "CAP-RELATIVE-V",
+            0,
+            "I subtracted the speed magnitudes as scalars and ignored the directed relation.",
+            "CONFIRMED",
+            "The canonical probe response repeats the targeted scalar relative-velocity misconception.",
+        )
+        self.assertIsNone(error)
         report = feedback.run({
             "subject": mapping["subject"],
             "question_ref": row["question_id"],
@@ -193,7 +202,7 @@ class ExamSideMotionInPlanePilot(unittest.TestCase):
                 "result": "INCORRECT",
                 "failed_capability_ref": "CAP-RELATIVE-V",
                 "error_stage": "CONCEPT",
-                "misconception_index": 0,
+                "diagnostic_evidence": evidence,
             },
         })
         self.assertEqual(report["next_action"], "REPAIR")

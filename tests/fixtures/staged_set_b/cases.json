@@ -1,0 +1,886 @@
+{
+  "schema": "staged-set-b-replay/v1",
+  "scope": "Four observed failures; not complete candidate products or acceptance. Original question records remain unchanged. Only fixture asset locations relocated.",
+  "cases": [
+    {
+      "issue": 53,
+      "question_number": 1,
+      "head_sha": "bc464d831f4815a45dd45d29ecf6bcc16d5af8ab",
+      "original_asset_refs": [
+        "evidence/benchmark/ISS53/assets/poly-coeff-table.svg"
+      ],
+      "question": {
+        "id": "OWN-ISSUE53-POLY-01",
+        "original_identifier": "Q1",
+        "stem": "For $p(x)=4x^3-2x+7$, state its degree, leading coefficient, constant term and coefficient of $x^2$. Explain how the missing $x^2$ term is recorded.",
+        "conditions": [
+          "Polynomials in one variable with real coefficients; no calculus or complex numbers assumed; preserve stated domains and degree bounds."
+        ],
+        "family_ref": "FAM-MATH-POLY-TERMS",
+        "figure_refs": [
+          "REP-MATH-POLY-COEFF-TABLE"
+        ],
+        "answer": {
+          "kind": "EXACT",
+          "summary": "Degree: 3; Leading coefficient: 4; Constant term: 7; Coefficient of $x^2$: 0. The missing $x^2$ term is recorded with coefficient 0 because $0x^2 = 0$, contributing nothing to the polynomial sum while preserving positional power sequencing.",
+          "reasoning_route": [
+            {
+              "id": "OWN-ISSUE53-POLY-01-MOVE-1",
+              "kind": "DECIDE",
+              "action": "Identify degree from highest power",
+              "why_valid": "The degree of a polynomial is the highest power of the variable with a non-zero coefficient. In 4x^3 - 2x + 7, the highest power is 3.",
+              "inputs": [
+                "stated givens and prior move"
+              ],
+              "output": "Degree = 3"
+            },
+            {
+              "id": "OWN-ISSUE53-POLY-01-MOVE-2",
+              "kind": "CONNECT",
+              "action": "Extract leading coefficient and constant term",
+              "why_valid": "The leading coefficient is the coefficient of the highest power term (4 for x^3), and the constant term is the term independent of x (7).",
+              "inputs": [
+                "stated givens and prior move"
+              ],
+              "output": "Leading coeff = 4, Constant term = 7"
+            },
+            {
+              "id": "OWN-ISSUE53-POLY-01-MOVE-3",
+              "kind": "TRANSFORM",
+              "action": "Evaluate missing x^2 term coefficient",
+              "why_valid": "The power x^2 does not appear explicitly in the polynomial. Its coefficient is recorded as 0 because 0 * x^2 = 0 contributes nothing to the sum.",
+              "inputs": [
+                "stated givens and prior move"
+              ],
+              "output": "Coefficient of x^2 = 0"
+            },
+            {
+              "id": "OWN-ISSUE53-POLY-01-MOVE-4",
+              "kind": "VERIFY",
+              "action": "Confirm complete power sequence",
+              "why_valid": "Writing p(x) = 4x^3 + 0x^2 - 2x + 7 shows all integer powers 3, 2, 1, 0 are accounted for.",
+              "inputs": [
+                "stated givens and prior move"
+              ],
+              "output": "Verified complete representation"
+            }
+          ],
+          "crux_move_ref": "OWN-ISSUE53-POLY-01-MOVE-3",
+          "check": "Reconstruct: $4x^3 + 0x^2 - 2x + 7 = 4x^3 - 2x + 7$; highest power is 3 with coeff 4, constant is 7.",
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "scaffolds": [
+          {
+            "text": "Identify the highest power of $x$ present with a non-zero coefficient to find the degree.",
+            "support_kind": "CONNECT",
+            "reveals": "CONCEPT",
+            "learner_stage": "KEY_CONCEPT",
+            "supports_move_ref": "OWN-ISSUE53-POLY-01-MOVE-1"
+          },
+          {
+            "text": "The leading coefficient is the coefficient of the highest power term, and the constant term is the term without $x$ (the $x^0$ term).",
+            "support_kind": "REPRESENT",
+            "reveals": "METHOD",
+            "learner_stage": "REPRESENTATION",
+            "supports_move_ref": "OWN-ISSUE53-POLY-01-MOVE-2"
+          },
+          {
+            "text": "When a power of $x$ between 0 and the degree does not appear, consider what number multiplied by $x^2$ leaves the polynomial value unchanged.",
+            "support_kind": "EXECUTE",
+            "reveals": "METHOD",
+            "learner_stage": "FIRST_MOVE",
+            "supports_move_ref": "OWN-ISSUE53-POLY-01-MOVE-3"
+          }
+        ],
+        "primary_capability_ref": "CAP-MATH-POLY-TERMS-COEFFS",
+        "extensions": {
+          "grade9v3:source_custody": {
+            "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+            "intake_ref": "Q1",
+            "wording_custody": "VERBATIM",
+            "text_sha256": "sha256:9e842562b093ff0429469a60898d6cbd598fa265aea599b50c0e0987678dd771"
+          },
+          "grade9v3:analysis": {
+            "learner_question_type": "constructed_response",
+            "difficulty": {
+              "band": "D1",
+              "score": 2,
+              "components": {
+                "concept_model_selection": 1,
+                "trap_exception_sensitivity": 1,
+                "representation_translation": 0,
+                "reasoning_chain_length": 0,
+                "algebra_computational_load": 0
+              },
+              "basis": "Polynomial $p(x)=4x^3-2x+7$ with an omitted $x^2$ power. Decisive move: State degree 3, leading coefficient 4, constant 7, and explain that missing power $x^2$ has coefficient 0.. Total score 2 -> D1."
+            },
+            "common_wrong_route": "Learner states coefficient of $x^2$ does not exist or is undefined because the term is omitted.",
+            "expected_time_seconds": 90,
+            "cognitive_demand": "EXPLAIN",
+            "stable_crux_move": "State degree 3, leading coefficient 4, constant 7, and explain that missing power $x^2$ has coefficient 0."
+          },
+          "grade9v3:math_spans": [],
+          "grade9v3:component_waivers": {
+            "TRAP": "The decisive misconception (Learner states coefficient of $x^2$ does not exist or is undefined because the term is omitted.) is taught directly in the concept unit and addressed in hint 1 and the solution.",
+            "CONDITIONS": "The question specifies all boundary conditions within the stem.",
+            "CHECK": "Independent check is integrated: Reconstruct: $4x^3 + 0x^2 - 2x + 7 = 4x^3 - 2x + 7$; highest power is 3 with coeff 4, constant is 7."
+          }
+        }
+      },
+      "representation": {
+        "id": "REP-MATH-POLY-COEFF-TABLE",
+        "version": "0.1.0",
+        "status": "CANDIDATE",
+        "source_refs": [],
+        "evidence_refs": [],
+        "extensions": {
+          "grade9v3:stage_mode": "CUMULATIVE"
+        },
+        "kind": "TABLE_OF_VALUES",
+        "purpose": "Positional table of polynomial terms displaying powers 3, 2, 1, 0 with explicit zero entries.",
+        "required_elements": [
+          "Power Inventory",
+          "Tabular Zero Entry",
+          "Reconstruction Check"
+        ],
+        "relation_refs": [
+          "REL-MATH-POLY-STANDARD-FORM",
+          "REL-MATH-POLY-SQUARE-IDENTITY"
+        ],
+        "read_order": [
+          "Examine given polynomial powers and identify present and omitted exponents.",
+          "Align coefficients by power row, inserting 0 for omitted power 2.",
+          "Confirm polynomial reconstruction and index-aligned operations."
+        ],
+        "instance_constraints": [
+          "Pre-attempt stages must orient without disclosing the final target answer W."
+        ],
+        "accessibility": [
+          "The SVG has an accessible name, title and description.",
+          "Text labels duplicate any line-style meaning."
+        ],
+        "misleading_alternatives": [
+          "Treating missing terms as non-existent rather than coefficient 0.",
+          "Omitting cross-terms when squaring binomials."
+        ],
+        "rendered_asset_refs": [
+          "tests/fixtures/staged_set_b/ISS53-legacy-0.svg"
+        ],
+        "scene_instances": [],
+        "correspondence": [
+          {
+            "element": "Power row k=2 with entry 0",
+            "symbol": "0 · x²",
+            "in_words": "explicit zero entry for omitted quadratic term"
+          },
+          {
+            "element": "Leading power row k=3",
+            "symbol": "5 · x³",
+            "in_words": "highest power determining polynomial degree 3"
+          },
+          {
+            "element": "Constant power row k=0",
+            "symbol": "7 · x⁰",
+            "in_words": "constant term independent of variable x"
+          }
+        ],
+        "reveal_stages": [
+          {
+            "id": "COEFF-STAGE-1",
+            "label": "Power Inventory",
+            "purpose": "Examine given polynomial powers and identify present and omitted exponents.",
+            "visible_elements": [
+              "Power Inventory"
+            ]
+          },
+          {
+            "id": "COEFF-STAGE-2",
+            "label": "Tabular Zero Entry",
+            "purpose": "Align coefficients by power row, inserting 0 for omitted power 2.",
+            "visible_elements": [
+              "Tabular Zero Entry"
+            ]
+          },
+          {
+            "id": "COEFF-STAGE-3",
+            "label": "Reconstruction Check",
+            "purpose": "Confirm polynomial reconstruction and index-aligned operations.",
+            "visible_elements": [
+              "Reconstruction Check"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "issue": 54,
+      "question_number": 9,
+      "head_sha": "3d17905ebee4ac6cf39057ac05d49947b1b50430",
+      "original_asset_refs": [
+        "evidence/benchmark/ISS54/assets/parabola-zeros-intercepts.svg"
+      ],
+      "question": {
+        "id": "ISS54-Q9",
+        "version": "1.0.0",
+        "status": "CANDIDATE",
+        "original_identifier": "Q9",
+        "stem": "Construct a quadratic polynomial with real zeros $-2$ and $3$ and with $p(0)=-6$. Explain how the value at zero fixes the scale, then check all three conditions.",
+        "options": [],
+        "conditions": [],
+        "primary_capability_ref": "CAP-MATH-G9-DOMAIN-PUNCTURE",
+        "figure_refs": [
+          "REP-MATH-PARABOLA-ZEROS-PLOT"
+        ],
+        "representation_roles": {
+          "bound_ref": "REP-MATH-PARABOLA-ZEROS-PLOT"
+        },
+        "extensions": {
+          "grade9v3:provenance_class": "OWNER_SUPPLIED",
+          "grade9v3:source_custody": {
+            "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+            "intake_ref": "ISS54-Q9",
+            "wording_custody": "VERBATIM",
+            "text_sha256": "sha256:9746a1402d801ca118c1bb25c54494b4385803e8063f5bedf139ef15644b0774"
+          },
+          "grade9v3:analysis": {
+            "difficulty": {
+              "band": "D2",
+              "score": 4,
+              "components": {
+                "concept_model_selection": 1,
+                "representation_translation": 0,
+                "reasoning_chain_length": 1,
+                "algebra_computational_load": 1,
+                "trap_exception_sensitivity": 1
+              },
+              "basis": "Requires constructing a quadratic polynomial family from given roots, determining the scale factor from an evaluation constraint, and checking all three conditions."
+            },
+            "cognitive_demand": {
+              "primary": "SYNTHESIZE",
+              "secondary": [
+                "APPLY"
+              ]
+            },
+            "common_wrong_route": "Writing p(x) = (x - 2)(x + 3) = x^2 + x - 6, which inverts the signs of the zeros.",
+            "learner_question_type": "constructed_response"
+          }
+        },
+        "answer": {
+          "summary": "Any quadratic with real zeros -2 and 3 belongs to the family p(x) = a(x - (-2))(x - 3) = a(x + 2)(x - 3) with a != 0. The value at zero fixes the scale because evaluating at x=0 gives p(0) = a(0+2)(0-3) = -6a. Setting -6a = -6 yields a = 1, uniquely determining the vertical scale parameter. Thus p(x) = 1(x+2)(x-3) = x^2 - x - 6. Check all three conditions: (1) p(-2) = (-2)^2 - (-2) - 6 = 4 + 2 - 6 = 0; (2) p(3) = 3^2 - 3 - 6 = 9 - 3 - 6 = 0; (3) p(0) = 0^2 - 0 - 6 = -6.",
+          "reasoning_route": [
+            {
+              "id": "m1",
+              "kind": "DECIDE",
+              "action": "Express the quadratic family having zeros -2 and 3 with an arbitrary non-zero scaling coefficient a.",
+              "why_valid": "By the Factor Theorem, if r is a root, (x - r) is a factor.",
+              "inputs": [
+                "zeros -2 and 3"
+              ],
+              "output": "p(x) = a(x - (-2))(x - 3) = a(x + 2)(x - 3)."
+            },
+            {
+              "id": "m2",
+              "kind": "CONNECT",
+              "action": "Use the point constraint p(0) = -6 to solve for the unique vertical scale factor a.",
+              "why_valid": "Evaluating at x=0 yields a linear equation in the parameter a.",
+              "inputs": [
+                "p(0) = a(2)(-3) = -6a",
+                "p(0) = -6"
+              ],
+              "output": "-6a = -6 => a = 1, so p(x) = (x + 2)(x - 3) = x^2 - x - 6."
+            },
+            {
+              "id": "m3",
+              "kind": "VERIFY",
+              "action": "Verify all three conditions explicitly by substitution.",
+              "why_valid": "Substitution confirms that p(-2)=0, p(3)=0, and p(0)=-6.",
+              "inputs": [
+                "p(x) = x^2 - x - 6"
+              ],
+              "output": "p(-2) = 4 + 2 - 6 = 0; p(3) = 9 - 3 - 6 = 0; p(0) = -6. All conditions satisfied."
+            }
+          ],
+          "crux_move_ref": "m2",
+          "check": "Leading coefficient a=1 > 0 yields upward parabola. Vertex at x = -b/(2a) = 1/2, where p(1/2) = (1/4) - (1/2) - 6 = -25/4 = -6.25, which is less than p(0)=-6, consistent with y-intercept."
+        },
+        "scaffolds": [
+          {
+            "text": "If r is a zero of a quadratic polynomial, (x - r) is a factor. What are the factors for zeros -2 and 3?",
+            "support_kind": "CONNECT",
+            "reveals": "CONCEPT",
+            "supports_move_ref": "m1",
+            "learner_stage": "KEY_CONCEPT"
+          },
+          {
+            "text": "Include an unknown leading multiplier a: p(x) = a(x + 2)(x - 3). What do you get when you set x = 0?",
+            "support_kind": "EXECUTE",
+            "reveals": "METHOD",
+            "supports_move_ref": "m2",
+            "learner_stage": "FIRST_MOVE"
+          },
+          {
+            "text": "Solve for a using p(0) = -6. Expand the resulting quadratic and check p(-2), p(3), and p(0).",
+            "support_kind": "EXECUTE",
+            "reveals": "METHOD",
+            "supports_move_ref": "m3",
+            "learner_stage": "CRUX"
+          }
+        ],
+        "family_ref": "FAM-MATH-POLY-RATIONAL-RECONSTRUCTION"
+      },
+      "representation": {
+        "id": "REP-MATH-PARABOLA-ZEROS-PLOT",
+        "version": "0.1.0",
+        "status": "CANDIDATE",
+        "source_refs": [
+          "SRC-NCERT-MATH-9-POLYNOMIALS"
+        ],
+        "evidence_refs": [],
+        "extensions": {
+          "grade9v3:owner_architecture": "ODR-0004"
+        },
+        "kind": "DIAGRAM",
+        "purpose": "Plot quadratic parabola, mark zeros at x-intercepts, and contrast zeros with arbitrary points.",
+        "required_elements": [
+          "coordinate axes",
+          "parabola curve",
+          "plotted points",
+          "marked zeros"
+        ],
+        "relation_refs": [],
+        "read_order": [
+          "coordinate axes",
+          "parabola curve",
+          "plotted points",
+          "marked zeros"
+        ],
+        "instance_constraints": [
+          "Parabola opens upward with vertex at (0, -1).",
+          "Zeros occur at y = 0."
+        ],
+        "accessibility": [
+          "Zeros are highlighted in green with prominent circles and text labels.",
+          "Ordered pairs are labeled with coordinates."
+        ],
+        "misleading_alternatives": [
+          "Calling the y-intercept (0, -1) a zero.",
+          "Confusing zero x-values with zero y-values."
+        ],
+        "rendered_asset_refs": [
+          "tests/fixtures/staged_set_b/ISS54-legacy-0.svg"
+        ],
+        "scene_instances": [],
+        "correspondence": [
+          {
+            "element": "marked zeros",
+            "symbol": "p(x) = 0",
+            "in_words": "Points where the curve crosses the horizontal axis y = 0."
+          }
+        ],
+        "interactive_resource_refs": [],
+        "reveal_stages": [
+          {
+            "id": "stage-points",
+            "label": "Plotted points",
+            "purpose": "Value table coordinates",
+            "visible_elements": [
+              "coordinate axes",
+              "plotted points"
+            ]
+          },
+          {
+            "id": "stage-zeros",
+            "label": "Marked zeros",
+            "purpose": "x-intercepts at y=0",
+            "visible_elements": [
+              "coordinate axes",
+              "marked zeros"
+            ]
+          },
+          {
+            "id": "stage-contrast",
+            "label": "Zero vs point",
+            "purpose": "Distinguishing zeros from arbitrary points",
+            "visible_elements": [
+              "coordinate axes",
+              "parabola curve",
+              "marked zeros"
+            ]
+          }
+        ],
+        "support_stage_map": [
+          {
+            "support_level": "low",
+            "visual_stage_ref": "stage-points"
+          },
+          {
+            "support_level": "medium",
+            "visual_stage_ref": "stage-zeros"
+          },
+          {
+            "support_level": "high",
+            "visual_stage_ref": "stage-contrast"
+          }
+        ]
+      }
+    },
+    {
+      "issue": 55,
+      "question_number": 1,
+      "head_sha": "91951abc430ff50ae526110488d9b12e27e30af5",
+      "original_asset_refs": [
+        "evidence/benchmark/ISS55/assets/polynomial-sign-chart.svg"
+      ],
+      "question": {
+        "id": "OWN-ISS55-POLY-01",
+        "original_identifier": "Q1",
+        "stem": "The polynomial $p_k(x)=x^3-3x^2+(k-4)x+12$ has factor $x-3$. Determine $k$, obtain a complete real factorisation and list the distinct real zeros. Give an independent check of the complete polynomial, not only the initially supplied factor.",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "By the Factor Theorem, x - 3 is a factor implies p_k(3) = 0. We compute p_k(3) = 3^3 - 3(3^2) + (k-4)(3) + 12 = 27 - 27 + 3k - 12 + 12 = 3k = 0, which yields k = 0. Substituting k = 0 gives p_0(x) = x^3 - 3x^2 - 4x + 12. Factorising by grouping: p_0(x) = x^2(x - 3) - 4(x - 3) = (x^2 - 4)(x - 3) = (x - 2)(x + 2)(x - 3). The distinct real zeros are x = -2, 2, 3. Independent check: evaluating p_0 at the newly found zeros gives p_0(2) = 8 - 12 - 8 + 12 = 0 and p_0(-2) = -8 - 12 + 8 + 12 = 0. Expanding (x^2 - 4)(x - 3) = x^3 - 3x^2 - 4x + 12 confirms the complete polynomial with constant term (-2)(2)(-3) = 12.",
+          "reasoning_route": [
+            {
+              "id": "OWN-ISS55-POLY-01-MOVE-1",
+              "kind": "DECIDE",
+              "action": "Apply Factor Theorem: p_k(3) = 0 yields 3k = 0, so k = 0.",
+              "why_valid": "A binomial (x - c) divides p(x) if and only if p(c) = 0.",
+              "inputs": [
+                "supplied benchmark stem and prior move"
+              ],
+              "output": "k = 0"
+            },
+            {
+              "id": "OWN-ISS55-POLY-01-MOVE-2",
+              "kind": "REPRESENT",
+              "action": "Substitute k = 0 to establish explicit cubic p_0(x) = x^3 - 3x^2 - 4x + 12.",
+              "why_valid": "All coefficients must be explicit real constants before factorisation.",
+              "inputs": [
+                "supplied benchmark stem and prior move"
+              ],
+              "output": "p_0(x) = x^3 - 3x^2 - 4x + 12"
+            },
+            {
+              "id": "OWN-ISS55-POLY-01-MOVE-3",
+              "kind": "TRANSFORM",
+              "action": "Factor by grouping: x^2(x - 3) - 4(x - 3) = (x^2 - 4)(x - 3) = (x - 2)(x + 2)(x - 3).",
+              "why_valid": "Common binomial factor (x - 3) and difference of squares x^2 - 4.",
+              "inputs": [
+                "supplied benchmark stem and prior move"
+              ],
+              "output": "(x - 2)(x + 2)(x - 3) with roots {-2, 2, 3}"
+            },
+            {
+              "id": "OWN-ISS55-POLY-01-MOVE-4",
+              "kind": "VERIFY",
+              "action": "Check roots x = 2 and x = -2 directly in p_0(x) and verify expansion.",
+              "why_valid": "Independent check must test the non-given roots in the original polynomial.",
+              "inputs": [
+                "supplied benchmark stem and prior move"
+              ],
+              "output": "p_0(2) = 0, p_0(-2) = 0, expansion verified"
+            }
+          ],
+          "crux_move_ref": "OWN-ISS55-POLY-01-MOVE-4",
+          "check": "Direct substitution: p_0(2) = 8 - 12 - 8 + 12 = 0 and p_0(-2) = -8 - 12 + 8 + 12 = 0. Expanding (x - 2)(x + 2)(x - 3) = (x^2 - 4)(x - 3) = x^3 - 3x^2 - 4x + 12 confirms identity.",
+          "verification_status": "INDEPENDENTLY_CHECKED"
+        },
+        "primary_capability_ref": "CAP-MATH-POLY-CHANGE-OF-VARIABLE-DOMAIN",
+        "family_ref": "FAM-MATH-POLY-CUBIC-FACTORISATION",
+        "extensions": {
+          "grade9v3:source_custody": {
+            "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+            "intake_ref": "Q1",
+            "wording_custody": "VERBATIM",
+            "text_sha256": "sha256:94f268bc6eea8fb6e609ca16e6049704dfecf7f8f90879b7523bf3c850ad710a"
+          },
+          "grade9v3:math_spans": [],
+          "grade9v3:analysis": {
+            "learner_question_type": "constructed_response",
+            "difficulty": {
+              "band": "D3",
+              "score": 6,
+              "components": {
+                "concept_model_selection": 1,
+                "representation_translation": 1,
+                "reasoning_chain_length": 2,
+                "algebra_computational_load": 1,
+                "trap_exception_sensitivity": 1
+              },
+              "basis": "Multi-step coordinate application of Factor Theorem to determine unknown parameter k, complete factoring by grouping, and independent verification of all zeros."
+            },
+            "expected_time_seconds": 240,
+            "common_wrong_route": "Assuming k - 4 = 0 without evaluating at x = 3, or only re-verifying x = 3 during the check.",
+            "cognitive_demand": {
+              "primary": "APPLY",
+              "secondary": [
+                "EXPLAIN",
+                "JUSTIFY"
+              ]
+            },
+            "stable_crux_move": "Set p_k(3)=0 to find k=0, factor x^3-3x^2-4x+12 by grouping into (x^2-4)(x-3)=(x-2)(x+2)(x-3), and extract zeros {-2, 2, 3}.",
+            "topic": "Polynomials in one variable with real coefficients",
+            "concept_bucket": "BUCKET-MATH-POLY-STRESS-ISS55"
+          },
+          "grade9v3:benchmark_authorship": {
+            "custody_class": "OWNER_SUPPLIED_RAW_INPUT",
+            "drafted_by": "COORDINATING_AGENT",
+            "personally_authored_by_owner": false,
+            "official_exam_or_pyq": false
+          },
+          "grade9v3:component_waivers": {
+            "CONDITIONS": "The supplied benchmark stem already states its material conditions; no extra condition is added to the verbatim task."
+          }
+        },
+        "conditions": [],
+        "figure_refs": [
+          "REP-MATH-POLY-GROUPING-ALGEBRA"
+        ],
+        "scaffolds": [
+          {
+            "text": "Start by applying the Factor Theorem: what does (x - 3) being a factor tell you about the value p_k(3)?",
+            "support_kind": "CONNECT",
+            "reveals": "CONCEPT",
+            "learner_stage": "KEY_CONCEPT",
+            "supports_move_ref": "OWN-ISS55-POLY-01-MOVE-1"
+          },
+          {
+            "text": "Set p_k(3) = 0 and solve for k, then write down the numerical polynomial p_0(x).",
+            "support_kind": "REPRESENT",
+            "reveals": "METHOD",
+            "learner_stage": "REPRESENTATION",
+            "supports_move_ref": "OWN-ISS55-POLY-01-MOVE-2"
+          },
+          {
+            "text": "Group the terms in pairs: notice that x^3 - 3x^2 and -4x + 12 both share a common binomial factor.",
+            "support_kind": "CONNECT",
+            "reveals": "METHOD",
+            "learner_stage": "FIRST_MOVE",
+            "supports_move_ref": "OWN-ISS55-POLY-01-MOVE-3"
+          },
+          {
+            "text": "Factor x^2 - 4 as a difference of two squares to find the complete linear factorisation.",
+            "support_kind": "EXECUTE",
+            "reveals": "METHOD",
+            "learner_stage": "FORMAL_MODEL",
+            "supports_move_ref": "OWN-ISS55-POLY-01-MOVE-4"
+          },
+          {
+            "text": "Checkpoint: check the newly found zeros x = 2 and x = -2 in the original polynomial to verify the complete cubic.",
+            "support_kind": "EXECUTE",
+            "reveals": "METHOD",
+            "learner_stage": "CHECKPOINT",
+            "supports_move_ref": "OWN-ISS55-POLY-01-MOVE-4"
+          }
+        ],
+        "secondary_capability_refs": [
+          "CAP-MATH-POLY-FACTOR-PARAMETER"
+        ]
+      },
+      "representation": {
+        "id": "REP-MATH-POLY-GROUPING-ALGEBRA",
+        "version": "0.1.0",
+        "status": "CANDIDATE",
+        "source_refs": [],
+        "evidence_refs": [],
+        "extensions": {},
+        "kind": "ALGEBRA_TILES",
+        "purpose": "Factoring by grouping pairs in cubic polynomials.",
+        "required_elements": [
+          "Pairwise grouping",
+          "Common binomial",
+          "Complete factoring",
+          "Roots extraction"
+        ],
+        "relation_refs": [],
+        "read_order": [
+          "Group x^3 - 3x^2 and -4x + 12.",
+          "Extract (x - 3) leaving (x^2 - 4).",
+          "Expand difference of squares into (x - 2)(x + 2).",
+          "Extract zeros {-2, 2, 3}."
+        ],
+        "instance_constraints": [
+          "Pre-attempt stages orient without displaying the protected final conclusion."
+        ],
+        "accessibility": [
+          "SVG has role=img, title and description.",
+          "Text labels duplicate orientation/line meaning."
+        ],
+        "misleading_alternatives": [
+          "Assuming degree equals the number of distinct real zeros.",
+          "Treating auxiliary variables as unrestricted real numbers."
+        ],
+        "rendered_asset_refs": [
+          "tests/fixtures/staged_set_b/ISS55-legacy-0.svg"
+        ],
+        "scene_instances": [],
+        "correspondence": [
+          {
+            "element": "grouping",
+            "symbol": "(x^2-4)(x-3)",
+            "in_words": "factoring by grouping"
+          }
+        ],
+        "reveal_stages": [
+          {
+            "id": "POLY-GRP-1",
+            "label": "Pairwise grouping",
+            "purpose": "Group x^3 - 3x^2 and -4x + 12.",
+            "visible_elements": [
+              "Pairwise grouping"
+            ]
+          },
+          {
+            "id": "POLY-GRP-2",
+            "label": "Common binomial",
+            "purpose": "Extract (x - 3) leaving (x^2 - 4).",
+            "visible_elements": [
+              "Common binomial"
+            ]
+          },
+          {
+            "id": "POLY-GRP-3",
+            "label": "Complete factoring",
+            "purpose": "Expand difference of squares into (x - 2)(x + 2).",
+            "visible_elements": [
+              "Complete factoring"
+            ]
+          },
+          {
+            "id": "POLY-GRP-4",
+            "label": "Roots extraction",
+            "purpose": "Extract zeros {-2, 2, 3}.",
+            "visible_elements": [
+              "Roots extraction"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "issue": 56,
+      "question_number": 5,
+      "head_sha": "40ca52786c0b5d0c400a5c730314a01689de836a",
+      "original_asset_refs": [
+        "evidence/benchmark/ISS56/assets/poly-box-volume-model.svg"
+      ],
+      "question": {
+        "id": "OWN-ISSUE56-POLY-05",
+        "original_identifier": "Q5",
+        "stem": "An open box is formed by cutting squares of side $x$ cm from the corners of a $10$ cm square sheet and folding the sides up, ignoring thickness. An exact calculation table gives volumes $0$, $64$ and $72$ cubic centimetres at $x=0,1,2$ respectively; $x=0$ denotes the flat limiting configuration. An analyst fits $Q(x)=-28x^2+92x$ to these three entries and treats it as the volume model. Derive the model from the geometry, state the domain for a non-degenerate box, assess the fitted model over that domain, and choose an additional admissible input that discriminates between the two accounts. Explain why matching the recorded entries is insufficient.",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "Geometry yields base dimensions (10 - 2x) by (10 - 2x) and height x, giving cubic volume V(x) = x(10 - 2x)^2 = 4x^3 - 40x^2 + 100x cm^3. Non-degenerate physical box requires strictly positive dimensions (x > 0 and 10 - 2x > 0), giving domain (0, 5) cm. The analyst fitted model Q(x) = -28x^2 + 92x matches entries at x = 0, 1, 2 purely because 3 points uniquely determine a quadratic algebraically. However, Q(x) drops to zero at x = 23/7 ~ 3.29 cm and predicts impossible negative volume for x in (23/7, 5). At discriminating input x = 3 cm, physical V(3) = 3(4)^2 = 48 cm^3 while fitted Q(3) = -28(9) + 92(3) = 24 cm^3 (factor of 2 discrepancy). Matching 3 entries is insufficient because a lower-degree polynomial can fit sample points exactly without matching the cubic geometry.",
+          "reasoning_route": [
+            {
+              "id": "OWN-ISSUE56-POLY-05-MOVE-1",
+              "kind": "REPRESENT",
+              "action": "Derive geometric volume model: base is (10 - 2x) by (10 - 2x) and height is x, so V(x) = x(10 - 2x)^2 = 4x^3 - 40x^2 + 100x.",
+              "why_valid": "Cutting corner squares of side x reduces each side of 10 cm square by 2x.",
+              "inputs": [
+                "10 cm square sheet",
+                "corner cut x"
+              ],
+              "output": "V(x) = 4x^3 - 40x^2 + 100x"
+            },
+            {
+              "id": "OWN-ISSUE56-POLY-05-MOVE-2",
+              "kind": "DECIDE",
+              "action": "Determine non-degenerate domain: height x > 0 and base 10 - 2x > 0 => x in (0, 5) cm.",
+              "why_valid": "A non-degenerate box requires strictly positive physical length, width, and height.",
+              "inputs": [
+                "physical dimensions"
+              ],
+              "output": "domain (0, 5) cm"
+            },
+            {
+              "id": "OWN-ISSUE56-POLY-05-MOVE-3",
+              "kind": "TRANSFORM",
+              "action": "Assess fitted model Q(x) = -28x^2 + 92x: verify it matches at 0, 1, 2, but identify spurious zero at x = 23/7 ~ 3.29 cm and negative volume beyond it.",
+              "why_valid": "Q(0)=0, Q(1)=64, Q(2)=72. But Q(x) = 0 at x = 92/28 = 23/7 cm, giving Q(x) < 0 on (23/7, 5).",
+              "inputs": [
+                "Q(x) formula",
+                "domain (0, 5)"
+              ],
+              "output": "Q(x) produces unphysical negative volumes"
+            },
+            {
+              "id": "OWN-ISSUE56-POLY-05-MOVE-4",
+              "kind": "TRANSFORM",
+              "action": "Choose discriminating admissible input x = 3 cm, compute both models, and explain why 3 points cannot prove model validity.",
+              "why_valid": "x = 3 is in (0, 5). V(3) = 3(4)^2 = 48 cm^3, Q(3) = -252 + 276 = 24 cm^3. Three data points have 3 degrees of freedom, uniquely fixing any quadratic regardless of physics.",
+              "inputs": [
+                "x = 3 cm"
+              ],
+              "output": "V(3)=48 != Q(3)=24; degrees of freedom explanation"
+            }
+          ],
+          "crux_move_ref": "OWN-ISSUE56-POLY-05-MOVE-3",
+          "check": "Check V(0)=0, V(1)=64, V(2)=72. Check Q(0)=0, Q(1)=64, Q(2)=72. At x=3: V(3)=48, Q(3)=24. At x=4: V(4)=4(2)^2=16 > 0, while Q(4)=-28(16)+368=-448+368=-80 < 0 (impossible for physical box).",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "primary_capability_ref": "CAP-MATH-POLY-PARAMETER-BIFURCATIONS",
+        "family_ref": "FAM-MATH-POLYNOMIAL-STRESS",
+        "extensions": {
+          "grade9v3:source_custody": {
+            "authority_class": "OWNER_SUPPLIED_RAW_INPUT",
+            "intake_ref": "Q5",
+            "wording_custody": "VERBATIM",
+            "text_sha256": "sha256:9524918a2550cfdbd9ac49e0667b45e5b4428c9ab629c35fb92f9e16b8b4ec77"
+          },
+          "grade9v3:math_spans": [],
+          "grade9v3:analysis": {
+            "learner_question_type": "constructed_response",
+            "difficulty": {
+              "band": "D3",
+              "score": 7,
+              "components": {
+                "concept_model_selection": 2,
+                "representation_translation": 1,
+                "reasoning_chain_length": 2,
+                "algebra_computational_load": 1,
+                "trap_exception_sensitivity": 1
+              },
+              "basis": "Geometric cubic modeling on (0, 5) and exposing the physical failure of empirical quadratic overfitting."
+            },
+            "expected_time_seconds": 180,
+            "common_wrong_route": "Assuming matching 3 data points validates Q(x) as the physical model without checking geometry or testing additional points.",
+            "cognitive_demand": {
+              "primary": "MODEL",
+              "secondary": [
+                "EXPLAIN",
+                "JUSTIFY"
+              ]
+            },
+            "stable_crux_move": "Derive physical cubic model from dimensions and discriminate against the 3-point quadratic fit by evaluating at an admissible input such as x = 3 where V(3)=48 != Q(3)=24."
+          }
+        },
+        "conditions": [
+          "10 cm square sheet, thickness ignored.",
+          "Corner cut of side x cm.",
+          "Non-degenerate box."
+        ],
+        "figure_refs": [
+          "REP-MATH-POLY-BOX-VOLUME"
+        ],
+        "scaffolds": [
+          {
+            "text": "Express the base dimensions and height of the folded box in terms of x.",
+            "support_kind": "CONNECT",
+            "reveals": "CONCEPT",
+            "learner_stage": "KEY_CONCEPT",
+            "supports_move_ref": "OWN-ISSUE56-POLY-05-MOVE-1"
+          },
+          {
+            "text": "Determine what values of x keep the height and base lengths strictly positive.",
+            "support_kind": "REPRESENT",
+            "reveals": "CONCEPT",
+            "learner_stage": "REPRESENTATION",
+            "supports_move_ref": "OWN-ISSUE56-POLY-05-MOVE-2"
+          },
+          {
+            "text": "Evaluate the analyst quadratic Q(x) across the domain (0, 5) and find where it predicts zero or negative volume.",
+            "support_kind": "CONNECT",
+            "reveals": "METHOD",
+            "learner_stage": "FIRST_MOVE",
+            "supports_move_ref": "OWN-ISSUE56-POLY-05-MOVE-3"
+          },
+          {
+            "text": "Select an admissible test value (such as x = 3) and calculate both V(x) and Q(x).",
+            "support_kind": "EXECUTE",
+            "reveals": "METHOD",
+            "learner_stage": "CRUX",
+            "supports_move_ref": "OWN-ISSUE56-POLY-05-MOVE-4"
+          },
+          {
+            "text": "Explain why matching 3 data points is algebraically guaranteed for any quadratic and does not prove the model is correct.",
+            "support_kind": "EXECUTE",
+            "reveals": "METHOD",
+            "learner_stage": "FORMAL_MODEL",
+            "supports_move_ref": "OWN-ISSUE56-POLY-05-MOVE-4"
+          }
+        ]
+      },
+      "representation": {
+        "id": "REP-MATH-POLY-BOX-VOLUME",
+        "version": "0.1.0",
+        "status": "CANDIDATE",
+        "source_refs": [
+          "SRC-OWNER-ISSUE56-POLY"
+        ],
+        "evidence_refs": [],
+        "extensions": {},
+        "kind": "CONCEPT_FIGURE",
+        "purpose": "Comparison of physical cubic volume model V(x) = 4x^3 - 40x^2 + 100x and analyst empirical quadratic fit Q(x) = -28x^2 + 92x.",
+        "rendered_asset_refs": [
+          "tests/fixtures/staged_set_b/ISS56-legacy-0.svg"
+        ],
+        "reveal_stages": [
+          {
+            "id": "BOX-1",
+            "label": "Folded box sheet geometry",
+            "purpose": "Shows 10x10 sheet with corners of side x cut out, base 10-2x, and height x.",
+            "visible_elements": [
+              "Folded box sheet geometry",
+              "Shows 10x10 sheet with corners cut out"
+            ]
+          },
+          {
+            "id": "BOX-2",
+            "label": "Physical cubic volume curve",
+            "purpose": "Illustrates V(x) = x(10-2x)^2 on non-degenerate domain (0, 5) with peak at x = 5/3.",
+            "visible_elements": [
+              "Physical cubic volume curve",
+              "Illustrates V(x) = x(10-2x)^2"
+            ]
+          },
+          {
+            "id": "BOX-3",
+            "label": "Analyst empirical quadratic fit",
+            "purpose": "Plots Q(x) matching at 0, 1, 2 but showing spurious zero at x = 23/7 cm.",
+            "visible_elements": [
+              "Analyst empirical quadratic fit",
+              "Plots Q(x) matching at 0, 1, 2"
+            ]
+          },
+          {
+            "id": "BOX-4",
+            "label": "Divergence at discriminating input",
+            "purpose": "Highlights massive divergence at x = 3 cm: V(3) = 48 cm^3 vs Q(3) = 24 cm^3, and negative volume beyond 23/7.",
+            "visible_elements": [
+              "Divergence at discriminating input",
+              "Highlights divergence at x = 3 cm"
+            ]
+          }
+        ],
+        "required_elements": [
+          "sheet cut diagram",
+          "cubic curve",
+          "quadratic curve",
+          "discriminating input marker"
+        ],
+        "read_order": [
+          "sheet geometry",
+          "cubic curve",
+          "quadratic fit",
+          "divergence comparison"
+        ],
+        "instance_constraints": [
+          "Illustrates modeling conflict without preempting learner calculations."
+        ],
+        "accessibility": [
+          "Clear geometric diagrams, high contrast labels, distinct colors for models."
+        ],
+        "misleading_alternatives": [
+          "Believing a 3-point fit proves model correctness."
+        ],
+        "scene_instances": [],
+        "correspondence": [],
+        "relation_refs": [
+          "REL-MATH-BOX-VOLUME"
+        ]
+      }
+    }
+  ]
+}

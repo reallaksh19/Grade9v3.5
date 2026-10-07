@@ -283,6 +283,9 @@ shown_hint_indices
 attempted_question_refs
 failed_capability_ref
 misconception_index
+diagnostic_response
+diagnosis = CONFIRMED / REFUTED / INDETERMINATE
+diagnostic_basis
 DEMONSTRATED / UNCERTAIN / MISSING
 ```
 
