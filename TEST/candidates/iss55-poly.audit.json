@@ -1,0 +1,62 @@
+{
+  "schema_version": "grade9v3-test-candidate-audit-v1",
+  "candidate_id": "ISS55-POLY",
+  "title": "Issue #55 polynomial stress set — 10 questions",
+  "origin": {
+    "type": "GITHUB_PR",
+    "pr": 61,
+    "source_commit": "67d732822144d81bcfabd169a3945e8b3d605510"
+  },
+  "target_subject": "Mathematics",
+  "target_topic": "Polynomials",
+  "state": "TECH_PASS",
+  "sources": [
+    "TEST/question-bank/iss55-poly.json",
+    "TEST/library/iss55-poly.v1.json",
+    "TEST/products/iss55-poly.manifest.json",
+    "TEST/matrices/iss55-poly.rungs.json"
+  ],
+  "question_counts": {
+    "total": 10,
+    "owner_supplied": 10
+  },
+  "checks": {
+    "custody": {
+      "status": "PASS",
+      "detail": "All 10 questions retain OWNER_SUPPLIED_RAW_INPUT / VERBATIM custody and stored text digests."
+    },
+    "technical": {
+      "status": "PASS",
+      "detail": "Current renderer regression resolves the TEST package/bank/manifest and renders all 10 Core2 question ids."
+    },
+    "package": {
+      "status": "PASS",
+      "detail": "TEST package validates against the current package schema; referenced SVG assets are parked under TEST/library/figures."
+    },
+    "rungs": {
+      "status": "PASS",
+      "detail": "Three-rung TEST matrix is schema-clean and references the three existing polynomial microtopics."
+    },
+    "atlas": {
+      "status": "PASS",
+      "detail": "TEST Atlas uses a local subject projection for MATRIX-TEST-ISS55-POLY without mutating production data.js."
+    },
+    "search": {
+      "status": "PASS",
+      "detail": "All 10 ids are in the TEST-only index and explicitly absent from canonical and learner search."
+    },
+    "layout": {
+      "status": "PENDING",
+      "detail": "Real-browser TEST Atlas audit is wired to the actual matrix; a candidate-specific deployed Core2 browser acceptance is still pending."
+    },
+    "content_review": {
+      "status": "PENDING",
+      "detail": "Technical checks do not constitute academic/owner acceptance of the 10 questions, solutions or classifications."
+    }
+  },
+  "promotion": {
+    "status": "BLOCKED",
+    "target": "Mathematics",
+    "reason": "Candidate-specific layout/content review and canonical identity reconciliation are still required."
+  }
+}

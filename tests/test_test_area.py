@@ -127,6 +127,18 @@ class TestPages(unittest.TestCase):
     def test_committed_pages_are_what_the_generator_writes(self):
         self.assertEqual(build_test_site.check(), [])
 
+    def test_candidate_qa_registry_is_visible_and_both_candidates_remain_promotion_blocked(self):
+        audits = build_test_site.candidate_audits()
+        self.assertEqual({row["candidate_id"] for row in audits}, {"ISS55-POLY", "NCERT-EXEMPLAR-G9-MATH-210"})
+        self.assertEqual({row["promotion"]["status"] for row in audits}, {"BLOCKED"})
+        by_id = {row["candidate_id"]: row for row in audits}
+        self.assertEqual(by_id["ISS55-POLY"]["state"], "TECH_PASS")
+        self.assertEqual(by_id["NCERT-EXEMPLAR-G9-MATH-210"]["state"], "QA_IN_PROGRESS")
+        hub = (REPO / "public/test/index.html").read_text(encoding="utf-8")
+        self.assertIn("QA candidate: Issue #55 polynomial stress set", hub)
+        self.assertIn("QA candidate: NCERT Exemplar Grade 9 Mathematics", hub)
+        self.assertIn("2 candidate QA record(s) in TEST/candidates", hub)
+
     def test_test_search_index_covers_parked_questions_without_becoming_canonical_search(self):
         rows = build_test_site.test_search_index()
         self.assertEqual(len(rows), 220)

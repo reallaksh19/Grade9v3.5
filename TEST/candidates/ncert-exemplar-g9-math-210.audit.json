@@ -1,0 +1,56 @@
+{
+  "schema_version": "grade9v3-test-candidate-audit-v1",
+  "candidate_id": "NCERT-EXEMPLAR-G9-MATH-210",
+  "title": "NCERT Exemplar Grade 9 Mathematics — 210-question intake",
+  "origin": {
+    "type": "GITHUB_PR",
+    "pr": 91,
+    "source_commit": "4aa137fd6e62eee281370efe98ddbc155c71295f"
+  },
+  "target_subject": "Mathematics",
+  "target_topic": "Seven selected Grade 9 Mathematics units",
+  "state": "QA_IN_PROGRESS",
+  "sources": [
+    "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json"
+  ],
+  "question_counts": {
+    "total": 210,
+    "ready_for_blueprint": 209,
+    "duplicate_review": 1
+  },
+  "checks": {
+    "custody": {
+      "status": "PASS",
+      "detail": "210 records carry official-source locators, verbatim custody metadata and stem digests from the imported Stage-1 bank."
+    },
+    "technical": {
+      "status": "PASS",
+      "detail": "TEST hub ingests and renders all 210 records without entering canonical Question Bank or learner search."
+    },
+    "duplicate_review": {
+      "status": "PENDING",
+      "detail": "ncert-exemplar-g9-math-u01-q07 remains explicitly flagged because Q6/Q7 share the official stem but differ in options."
+    },
+    "academic_blueprint": {
+      "status": "PENDING",
+      "detail": "Difficulty, cognitive demand, capability/family mapping, worked solutions and rungs are intentionally deferred."
+    },
+    "atlas": {
+      "status": "BLOCKED",
+      "detail": "No academic package/rung matrix exists yet for this 210-question intake."
+    },
+    "layout": {
+      "status": "PENDING",
+      "detail": "The intake is visible on TEST; dedicated question-set browser/layout acceptance has not been recorded."
+    },
+    "search": {
+      "status": "PASS",
+      "detail": "All 210 records are in the TEST-only search index and excluded from canonical and learner search."
+    }
+  },
+  "promotion": {
+    "status": "BLOCKED",
+    "target": "Mathematics",
+    "reason": "Academic blueprinting and the one duplicate-review decision are incomplete."
+  }
+}
