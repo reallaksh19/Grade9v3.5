@@ -1,0 +1,145 @@
+{
+  "schema": "demand-review-adapter/v1",
+  "version": "1.0.0",
+  "subject": "Physics",
+  "vocabulary_ref": "Physics/adapter/QualityVocabulary.json",
+  "basis_refs": [
+    "Physics/adapter/QualityVocabulary.json",
+    "Physics/adapter/CoreContracts.json"
+  ],
+  "demands": {
+    "RETRIEVE": {
+      "review_focus": "Definitions, units, sign conventions and model conditions must be reconstructed from defining features rather than keyword familiarity.",
+      "representation_kinds": [
+        "COMPONENT_DIAGRAM"
+      ],
+      "check_types": [
+        "UNITS",
+        "SIGN_AND_DIRECTION"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "A familiar quantity name is recalled with the wrong sign, unit, or applicability condition.",
+          "diagnostic_prompt": "Ask for the unit/sign/condition and a reason, not only the label.",
+          "repair": "Re-anchor the fact to its physical definition and the condition under which it is true."
+        }
+      ]
+    },
+    "EXPLAIN": {
+      "review_focus": "Require a physical mechanism or causal relation, not a restatement of the observed motion or a bare formula.",
+      "representation_kinds": [
+        "MOTION_DIAGRAM",
+        "FREE_BODY_DIAGRAM",
+        "ENERGY_BAR_CHART"
+      ],
+      "check_types": [
+        "SIGN_AND_DIRECTION",
+        "LIMIT_CASE_ANALYSIS"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "A formula is quoted as the explanation without naming the physical mechanism.",
+          "diagnostic_prompt": "Change one physical condition and ask what changes and why.",
+          "repair": "Name the governing interaction/principle and connect each causal step to the observed outcome."
+        }
+      ]
+    },
+    "APPLY": {
+      "review_focus": "Check model conditions and variable/sign mapping before routine computation.",
+      "representation_kinds": [
+        "FREE_BODY_DIAGRAM",
+        "COMPONENT_DIAGRAM",
+        "GRAPH_GENERIC"
+      ],
+      "check_types": [
+        "UNITS",
+        "SUBSTITUTION_BACK_CHECK"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "A correct formula is applied with the wrong body, axis, sign, or validity condition.",
+          "diagnostic_prompt": "Ask the learner to name the body/axis/model condition before substituting.",
+          "repair": "Map the physical quantities to the declared model first, then execute and independently check."
+        }
+      ]
+    },
+    "MODEL": {
+      "review_focus": "The decisive work is selecting the physical system, model/law and assumptions; pre-attempt support must not name the winning model.",
+      "representation_kinds": [
+        "FREE_BODY_DIAGRAM",
+        "EVENT_TIMELINE",
+        "VECTOR_DIAGRAM"
+      ],
+      "check_types": [
+        "DIMENSIONAL_HOMOGENEITY",
+        "LIMIT_CASE_ANALYSIS"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "The learner selects the law suggested by a keyword without checking system boundaries or assumptions.",
+          "diagnostic_prompt": "Offer two plausible models and ask which stated condition rules one out.",
+          "repair": "Choose the system and model by matching assumptions/invariants to the situation, then state what the model does not claim."
+        }
+      ]
+    },
+    "REPRESENT": {
+      "review_focus": "Protect meaning across diagram/vector/component/graph translations; signs, axes, slope/area meaning and shared time are invariants.",
+      "representation_kinds": [
+        "VECTOR_DIAGRAM",
+        "COMPONENT_DIAGRAM",
+        "GRAPH_POSITION_TIME",
+        "GRAPH_VELOCITY_TIME",
+        "EVENT_TIMELINE"
+      ],
+      "check_types": [
+        "GRAPH_CONSISTENCY",
+        "SIGN_AND_DIRECTION"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "The learner copies visual shape while changing sign, scale, direction, or the physical quantity represented.",
+          "diagnostic_prompt": "Ask for one invariant that must agree in both representations before drawing the target.",
+          "repair": "State the invariant, map labelled physical quantities one by one, then round-trip check the translation."
+        }
+      ]
+    },
+    "SYNTHESIZE": {
+      "review_focus": "Make dependencies/shared events visible while leaving the bridge that coordinates multiple physical ideas to the learner.",
+      "representation_kinds": [
+        "EVENT_TIMELINE",
+        "FREE_BODY_DIAGRAM",
+        "ENERGY_BAR_CHART"
+      ],
+      "check_types": [
+        "DUAL_FORMALISM_EQUIVALENCE",
+        "LIMIT_CASE_ANALYSIS"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "Subproblems are solved independently even though they share a time, state, constraint, or conserved quantity.",
+          "diagnostic_prompt": "Ask which quantity or event is shared by two parts of the problem.",
+          "repair": "Establish the shared state/constraint first, propagate it through the dependent models, then verify by an independent invariant."
+        }
+      ]
+    },
+    "JUSTIFY": {
+      "review_focus": "A derivation or experimental inference must state the physical warrant and its conditions, not only algebraic equivalence.",
+      "representation_kinds": [
+        "GRAPH_GENERIC",
+        "APPARATUS_SCHEMATIC",
+        "FREE_BODY_DIAGRAM"
+      ],
+      "check_types": [
+        "DIMENSIONAL_HOMOGENEITY",
+        "SYMMETRY_EXTREMAL_TEST"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "Algebra that reaches the target expression is treated as proof that the physical model applies.",
+          "diagnostic_prompt": "Ask which physical assumption licenses the first non-algebraic step.",
+          "repair": "Separate physical assumptions from algebra, justify each model-dependent step, and test the conclusion against dimensions or a boundary case."
+        }
+      ]
+    }
+  }
+}

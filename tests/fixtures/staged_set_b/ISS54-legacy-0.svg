@@ -1,0 +1,93 @@
+<svg aria-labelledby="title-parabola desc-parabola" class="question-svg" role="img" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .label { font-size: 15px; fill: #18324a; font-family: system-ui, sans-serif; font-weight: 700; }
+  .caption { font-size: 13px; fill: #475569; font-family: system-ui, sans-serif; }
+  .axis { font-size: 12px; fill: #94a3b8; font-family: system-ui, sans-serif; font-style: italic; }
+  .math { font-size: 14px; fill: #0f172a; font-family: Cambria, "Times New Roman", serif; font-weight: 600; }
+  .zero-label { font-size: 13px; fill: #15803d; font-family: system-ui, sans-serif; font-weight: 700; }
+  .point-label { font-size: 12px; fill: #2563eb; font-family: system-ui, sans-serif; }
+</style>
+<title id="title-parabola">Polynomial Zeros vs Plotted Graph Points: p(x) = (x-1)(x+1)</title>
+<desc id="desc-parabola">Graph of quadratic polynomial p(x) = x^2 - 1 showing five plotted points, with explicit distinction between zeros at x-intercepts (-1,0) and (1,0) where y=0, the y-intercept (0,-1), and arbitrary plotted points.</desc>
+
+<rect fill="#f8fafc" height="358" rx="12" stroke="#cbd5e1" stroke-width="2" width="638" x="1" y="1"/>
+
+<!-- Background Grid / Coordinate Axes -->
+<!-- Origin is at (320, 220).
+     Scale: dx = 60 px per unit.
+     x = -2 -> 200
+     x = -1 -> 260
+     x = 0  -> 320
+     x = 1  -> 380
+     x = 2  -> 440
+     dy = 40 px per unit.
+     y = 0  -> 220 (x-axis)
+     y = -1 -> 260
+     y = 1  -> 180
+     y = 2  -> 140
+     y = 3  -> 100
+-->
+<g stroke="#e2e8f0" stroke-width="1.5">
+  <!-- x-axis -->
+  <line x1="100" y1="220" x2="540" y2="220" stroke="#94a3b8" stroke-width="1.5"/>
+  <!-- y-axis -->
+  <line x1="320" y1="40" x2="320" y2="310" stroke="#94a3b8" stroke-width="1.5"/>
+  <!-- Grid tick lines -->
+  <line x1="200" y1="40" x2="200" y2="310" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="260" y1="40" x2="260" y2="310" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="380" y1="40" x2="380" y2="310" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="440" y1="40" x2="440" y2="310" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="100" y1="100" x2="540" y2="100" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="100" y1="180" x2="540" y2="180" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+  <line x1="100" y1="260" x2="540" y2="260" stroke="#f1f5f9" stroke-dasharray="3 3"/>
+</g>
+<text class="axis" x="530" y="235">x</text>
+<text class="axis" x="328" y="55">y</text>
+<text class="axis" x="308" y="235">0</text>
+<text class="axis" x="375" y="235">1</text>
+<text class="axis" x="435" y="235">2</text>
+<text class="axis" x="250" y="235">-1</text>
+<text class="axis" x="190" y="235">-2</text>
+<text class="axis" x="305" y="265">-1</text>
+<text class="axis" x="305" y="105">3</text>
+
+<!-- Smooth Parabola Curve y = x^2 - 1 -->
+<path d="M 180 60 Q 320 460 460 60" fill="none" stroke="#3b82f6" stroke-width="2.5"/>
+
+<!-- STAGE 1: Plotted Ordered Pairs -->
+<g data-g9-stage-id="stage-points">
+  <!-- (-2, 3) -->
+  <circle cx="200" cy="100" fill="#2563eb" r="5"/>
+  <text class="point-label" x="145" y="95">(-2, 3)</text>
+
+  <!-- (0, -1) -->
+  <circle cx="320" cy="260" fill="#6366f1" r="5"/>
+  <text class="point-label" fill="#4338ca" x="330" y="275">(0, -1) y-intercept</text>
+
+  <!-- (2, 3) -->
+  <circle cx="440" cy="100" fill="#2563eb" r="5"/>
+  <text class="point-label" x="450" y="95">(2, 3)</text>
+</g>
+
+<!-- STAGE 2: Marked Zeros at x-intercepts -->
+<g data-g9-stage-id="stage-zeros">
+  <!-- Zero at x = -1, pair (-1, 0) -->
+  <circle cx="260" cy="220" fill="#16a34a" r="7" stroke="#15803d" stroke-width="2"/>
+  <text class="zero-label" text-anchor="end" x="250" y="210">Zero: x = -1</text>
+  <text class="caption" text-anchor="end" x="250" y="225">(-1, 0)</text>
+
+  <!-- Zero at x = 1, pair (1, 0) -->
+  <circle cx="380" cy="220" fill="#16a34a" r="7" stroke="#15803d" stroke-width="2"/>
+  <text class="zero-label" text-anchor="start" x="390" y="210">Zero: x = 1</text>
+  <text class="caption" text-anchor="start" x="390" y="225">(1, 0)</text>
+</g>
+
+<!-- STAGE 3: Contrast Box -->
+<g data-g9-stage-id="stage-contrast">
+  <rect fill="#ffffff" opacity="0.95" x="30" y="20" width="230" height="90" rx="8" stroke="#cbd5e1" stroke-width="1"/>
+  <text class="label" x="40" y="42">Zero vs Plotted Point</text>
+  <text class="caption" x="40" y="62">• Zero: value of x where p(x) = 0</text>
+  <text class="caption" fill="#15803d" font-weight="700" x="40" y="80">  x-intercept on the axis y = 0</text>
+  <text class="caption" x="40" y="98">• Point: any pair (x, p(x)) on graph</text>
+</g>
+</svg>

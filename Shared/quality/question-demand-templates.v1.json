@@ -1,0 +1,2360 @@
+{
+  "schema": "question-demand-templates/v1",
+  "version": "1.0.0",
+  "source_matrix_ref": "Shared/quality/question-demand-matrix.v1.json",
+  "vocabulary_ref": "Shared/vocabularies/cognitive-demand.v1.json",
+  "templates": [
+    {
+      "template_id": "QRT-RETRIEVE-D1",
+      "demand": "RETRIEVE",
+      "demand_label": "Retrieve / classify",
+      "band": "D1",
+      "band_label": "Direct application",
+      "decisive_act": "Reconstruct or select a fact, category, definition, property, unit, or condition.",
+      "slots": {
+        "X": "the exact property, category, or condition being requested, including the qualifier that separates near-neighbours",
+        "Y": "a demonstrated anchor that lets the learner reconstruct the fact instead of guessing",
+        "Z": "retrieve or classify using the defining criterion",
+        "W": "the final retrieval or classification decision. Band protection: Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "wrong_idea": "a nearby fact or category is recalled because its surface wording looks familiar",
+        "replacement_rule": "use the defining criterion or boundary condition, not familiarity alone",
+        "visual_job": "make discriminating features visible when representation helps; otherwise prefer a justified waiver to decoration",
+        "check_job": "verify against the definition, unit, category boundary, or a counterexample"
+      },
+      "band_policy": {
+        "protected_work": "Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "support_posture": "Narrow the immediate operation if useful, but do not perform W."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the exact property, category, or condition being requested, including the qualifier that separates near-neighbours?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the exact property, category, or condition being requested, including the qualifier that separates near-neighbours with a demonstrated anchor that lets the learner reconstruct the fact instead of guessing, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to retrieve or classify using the defining criterion while leaving the final retrieval or classification decision to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the exact property, category, or condition being requested, including the qualifier that separates near-neighbours, without disclosing the final retrieval or classification decision?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated anchor that lets the learner reconstruct the fact instead of guessing in this question's context? Visual job: make discriminating features visible when representation helps; otherwise prefer a justified waiver to decoration."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward retrieve or classify using the defining criterion while leaving the final retrieval or classification decision to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the final retrieval or classification decision to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the exact property, category, or condition being requested, including the qualifier that separates near-neighbours to a demonstrated anchor that lets the learner reconstruct the fact instead of guessing is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify against the definition, unit, category boundary, or a counterexample?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: a nearby fact or category is recalled because its surface wording looks familiar?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'a nearby fact or category is recalled because its surface wording looks familiar' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'a nearby fact or category is recalled because its surface wording looks familiar' fails and establish this replacement rule: use the defining criterion or boundary condition, not familiarity alone?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-RETRIEVE-D2",
+      "demand": "RETRIEVE",
+      "demand_label": "Retrieve / classify",
+      "band": "D2",
+      "band_label": "Connected reasoning",
+      "decisive_act": "Reconstruct or select a fact, category, definition, property, unit, or condition.",
+      "slots": {
+        "X": "the exact property, category, or condition being requested, including the qualifier that separates near-neighbours",
+        "Y": "a demonstrated anchor that lets the learner reconstruct the fact instead of guessing",
+        "Z": "retrieve or classify using the defining criterion",
+        "W": "the final retrieval or classification decision. Band protection: Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "wrong_idea": "a nearby fact or category is recalled because its surface wording looks familiar",
+        "replacement_rule": "use the defining criterion or boundary condition, not familiarity alone",
+        "visual_job": "make discriminating features visible when representation helps; otherwise prefer a justified waiver to decoration",
+        "check_job": "verify against the definition, unit, category boundary, or a counterexample"
+      },
+      "band_policy": {
+        "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "support_posture": "Make the familiar pieces visible, but preserve the connection that makes them work together."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the exact property, category, or condition being requested, including the qualifier that separates near-neighbours?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the exact property, category, or condition being requested, including the qualifier that separates near-neighbours with a demonstrated anchor that lets the learner reconstruct the fact instead of guessing, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to retrieve or classify using the defining criterion while leaving the final retrieval or classification decision to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the exact property, category, or condition being requested, including the qualifier that separates near-neighbours, without disclosing the final retrieval or classification decision?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated anchor that lets the learner reconstruct the fact instead of guessing in this question's context? Visual job: make discriminating features visible when representation helps; otherwise prefer a justified waiver to decoration."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward retrieve or classify using the defining criterion while leaving the final retrieval or classification decision to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the final retrieval or classification decision to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the exact property, category, or condition being requested, including the qualifier that separates near-neighbours to a demonstrated anchor that lets the learner reconstruct the fact instead of guessing is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify against the definition, unit, category boundary, or a counterexample?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: a nearby fact or category is recalled because its surface wording looks familiar?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'a nearby fact or category is recalled because its surface wording looks familiar' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'a nearby fact or category is recalled because its surface wording looks familiar' fails and establish this replacement rule: use the defining criterion or boundary condition, not familiarity alone?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-RETRIEVE-D3",
+      "demand": "RETRIEVE",
+      "demand_label": "Retrieve / classify",
+      "band": "D3",
+      "band_label": "Multi-step reasoning",
+      "decisive_act": "Reconstruct or select a fact, category, definition, property, unit, or condition.",
+      "slots": {
+        "X": "the exact property, category, or condition being requested, including the qualifier that separates near-neighbours",
+        "Y": "a demonstrated anchor that lets the learner reconstruct the fact instead of guessing",
+        "Z": "retrieve or classify using the defining criterion",
+        "W": "the final retrieval or classification decision. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+        "wrong_idea": "a nearby fact or category is recalled because its surface wording looks familiar",
+        "replacement_rule": "use the defining criterion or boundary condition, not familiarity alone",
+        "visual_job": "make discriminating features visible when representation helps; otherwise prefer a justified waiver to decoration",
+        "check_job": "verify against the definition, unit, category boundary, or a counterexample"
+      },
+      "band_policy": {
+        "protected_work": "Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+        "support_posture": "Orient dependencies and component ideas, but do not make the bridge or ordering decision for the learner."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the exact property, category, or condition being requested, including the qualifier that separates near-neighbours?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the exact property, category, or condition being requested, including the qualifier that separates near-neighbours with a demonstrated anchor that lets the learner reconstruct the fact instead of guessing, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to retrieve or classify using the defining criterion while leaving the final retrieval or classification decision to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the exact property, category, or condition being requested, including the qualifier that separates near-neighbours, without disclosing the final retrieval or classification decision?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated anchor that lets the learner reconstruct the fact instead of guessing in this question's context? Visual job: make discriminating features visible when representation helps; otherwise prefer a justified waiver to decoration."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward retrieve or classify using the defining criterion while leaving the final retrieval or classification decision to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the final retrieval or classification decision to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the exact property, category, or condition being requested, including the qualifier that separates near-neighbours to a demonstrated anchor that lets the learner reconstruct the fact instead of guessing is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify against the definition, unit, category boundary, or a counterexample?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: a nearby fact or category is recalled because its surface wording looks familiar?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'a nearby fact or category is recalled because its surface wording looks familiar' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'a nearby fact or category is recalled because its surface wording looks familiar' fails and establish this replacement rule: use the defining criterion or boundary condition, not familiarity alone?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-RETRIEVE-D4",
+      "demand": "RETRIEVE",
+      "demand_label": "Retrieve / classify",
+      "band": "D4",
+      "band_label": "High-transfer / exception-sensitive",
+      "decisive_act": "Reconstruct or select a fact, category, definition, property, unit, or condition.",
+      "slots": {
+        "X": "the exact property, category, or condition being requested, including the qualifier that separates near-neighbours",
+        "Y": "a demonstrated anchor that lets the learner reconstruct the fact instead of guessing",
+        "Z": "retrieve or classify using the defining criterion",
+        "W": "the final retrieval or classification decision. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+        "wrong_idea": "a nearby fact or category is recalled because its surface wording looks familiar",
+        "replacement_rule": "use the defining criterion or boundary condition, not familiarity alone",
+        "visual_job": "make discriminating features visible when representation helps; otherwise prefer a justified waiver to decoration",
+        "check_job": "verify against the definition, unit, category boundary, or a counterexample"
+      },
+      "band_policy": {
+        "protected_work": "Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+        "support_posture": "Preserve the decisive abstraction or strategy choice even when additional optional support is available later."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the exact property, category, or condition being requested, including the qualifier that separates near-neighbours?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the exact property, category, or condition being requested, including the qualifier that separates near-neighbours with a demonstrated anchor that lets the learner reconstruct the fact instead of guessing, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to retrieve or classify using the defining criterion while leaving the final retrieval or classification decision to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the exact property, category, or condition being requested, including the qualifier that separates near-neighbours, without disclosing the final retrieval or classification decision?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated anchor that lets the learner reconstruct the fact instead of guessing in this question's context? Visual job: make discriminating features visible when representation helps; otherwise prefer a justified waiver to decoration."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward retrieve or classify using the defining criterion while leaving the final retrieval or classification decision to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the final retrieval or classification decision to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the exact property, category, or condition being requested, including the qualifier that separates near-neighbours to a demonstrated anchor that lets the learner reconstruct the fact instead of guessing is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify against the definition, unit, category boundary, or a counterexample?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: a nearby fact or category is recalled because its surface wording looks familiar?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'a nearby fact or category is recalled because its surface wording looks familiar' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'a nearby fact or category is recalled because its surface wording looks familiar' fails and establish this replacement rule: use the defining criterion or boundary condition, not familiarity alone?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-EXPLAIN-D1",
+      "demand": "EXPLAIN",
+      "demand_label": "Explain",
+      "band": "D1",
+      "band_label": "Direct application",
+      "decisive_act": "Explain why a relation, mechanism, pattern, or result holds.",
+      "slots": {
+        "X": "the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement",
+        "Y": "a demonstrated mechanism or principle that can account for it",
+        "Z": "build the explanatory chain from principle to outcome",
+        "W": "the causal or linking statement that completes the explanation. Band protection: Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "wrong_idea": "the outcome is restated, labelled, or accompanied by a formula without explaining why it follows",
+        "replacement_rule": "name the mechanism or principle and connect it to the outcome through warranted links",
+        "visual_job": "show causal states, dependencies, or before/after relations without writing the conclusion",
+        "check_job": "test the explanation against a changed condition, counterexample, or predicted consequence"
+      },
+      "band_policy": {
+        "protected_work": "Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "support_posture": "Narrow the immediate operation if useful, but do not perform W."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement with a demonstrated mechanism or principle that can account for it, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to build the explanatory chain from principle to outcome while leaving the causal or linking statement that completes the explanation to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement, without disclosing the causal or linking statement that completes the explanation?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated mechanism or principle that can account for it in this question's context? Visual job: show causal states, dependencies, or before/after relations without writing the conclusion."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward build the explanatory chain from principle to outcome while leaving the causal or linking statement that completes the explanation to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the causal or linking statement that completes the explanation to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement to a demonstrated mechanism or principle that can account for it is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check test the explanation against a changed condition, counterexample, or predicted consequence?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: the outcome is restated, labelled, or accompanied by a formula without explaining why it follows?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'the outcome is restated, labelled, or accompanied by a formula without explaining why it follows' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'the outcome is restated, labelled, or accompanied by a formula without explaining why it follows' fails and establish this replacement rule: name the mechanism or principle and connect it to the outcome through warranted links?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-EXPLAIN-D2",
+      "demand": "EXPLAIN",
+      "demand_label": "Explain",
+      "band": "D2",
+      "band_label": "Connected reasoning",
+      "decisive_act": "Explain why a relation, mechanism, pattern, or result holds.",
+      "slots": {
+        "X": "the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement",
+        "Y": "a demonstrated mechanism or principle that can account for it",
+        "Z": "build the explanatory chain from principle to outcome",
+        "W": "the causal or linking statement that completes the explanation. Band protection: Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "wrong_idea": "the outcome is restated, labelled, or accompanied by a formula without explaining why it follows",
+        "replacement_rule": "name the mechanism or principle and connect it to the outcome through warranted links",
+        "visual_job": "show causal states, dependencies, or before/after relations without writing the conclusion",
+        "check_job": "test the explanation against a changed condition, counterexample, or predicted consequence"
+      },
+      "band_policy": {
+        "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "support_posture": "Make the familiar pieces visible, but preserve the connection that makes them work together."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement with a demonstrated mechanism or principle that can account for it, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to build the explanatory chain from principle to outcome while leaving the causal or linking statement that completes the explanation to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement, without disclosing the causal or linking statement that completes the explanation?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated mechanism or principle that can account for it in this question's context? Visual job: show causal states, dependencies, or before/after relations without writing the conclusion."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward build the explanatory chain from principle to outcome while leaving the causal or linking statement that completes the explanation to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the causal or linking statement that completes the explanation to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement to a demonstrated mechanism or principle that can account for it is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check test the explanation against a changed condition, counterexample, or predicted consequence?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: the outcome is restated, labelled, or accompanied by a formula without explaining why it follows?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'the outcome is restated, labelled, or accompanied by a formula without explaining why it follows' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'the outcome is restated, labelled, or accompanied by a formula without explaining why it follows' fails and establish this replacement rule: name the mechanism or principle and connect it to the outcome through warranted links?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-EXPLAIN-D3",
+      "demand": "EXPLAIN",
+      "demand_label": "Explain",
+      "band": "D3",
+      "band_label": "Multi-step reasoning",
+      "decisive_act": "Explain why a relation, mechanism, pattern, or result holds.",
+      "slots": {
+        "X": "the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement",
+        "Y": "a demonstrated mechanism or principle that can account for it",
+        "Z": "build the explanatory chain from principle to outcome",
+        "W": "the causal or linking statement that completes the explanation. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+        "wrong_idea": "the outcome is restated, labelled, or accompanied by a formula without explaining why it follows",
+        "replacement_rule": "name the mechanism or principle and connect it to the outcome through warranted links",
+        "visual_job": "show causal states, dependencies, or before/after relations without writing the conclusion",
+        "check_job": "test the explanation against a changed condition, counterexample, or predicted consequence"
+      },
+      "band_policy": {
+        "protected_work": "Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+        "support_posture": "Orient dependencies and component ideas, but do not make the bridge or ordering decision for the learner."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement with a demonstrated mechanism or principle that can account for it, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to build the explanatory chain from principle to outcome while leaving the causal or linking statement that completes the explanation to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement, without disclosing the causal or linking statement that completes the explanation?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated mechanism or principle that can account for it in this question's context? Visual job: show causal states, dependencies, or before/after relations without writing the conclusion."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward build the explanatory chain from principle to outcome while leaving the causal or linking statement that completes the explanation to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the causal or linking statement that completes the explanation to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement to a demonstrated mechanism or principle that can account for it is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check test the explanation against a changed condition, counterexample, or predicted consequence?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: the outcome is restated, labelled, or accompanied by a formula without explaining why it follows?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'the outcome is restated, labelled, or accompanied by a formula without explaining why it follows' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'the outcome is restated, labelled, or accompanied by a formula without explaining why it follows' fails and establish this replacement rule: name the mechanism or principle and connect it to the outcome through warranted links?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-EXPLAIN-D4",
+      "demand": "EXPLAIN",
+      "demand_label": "Explain",
+      "band": "D4",
+      "band_label": "High-transfer / exception-sensitive",
+      "decisive_act": "Explain why a relation, mechanism, pattern, or result holds.",
+      "slots": {
+        "X": "the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement",
+        "Y": "a demonstrated mechanism or principle that can account for it",
+        "Z": "build the explanatory chain from principle to outcome",
+        "W": "the causal or linking statement that completes the explanation. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+        "wrong_idea": "the outcome is restated, labelled, or accompanied by a formula without explaining why it follows",
+        "replacement_rule": "name the mechanism or principle and connect it to the outcome through warranted links",
+        "visual_job": "show causal states, dependencies, or before/after relations without writing the conclusion",
+        "check_job": "test the explanation against a changed condition, counterexample, or predicted consequence"
+      },
+      "band_policy": {
+        "protected_work": "Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+        "support_posture": "Preserve the decisive abstraction or strategy choice even when additional optional support is available later."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement with a demonstrated mechanism or principle that can account for it, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to build the explanatory chain from principle to outcome while leaving the causal or linking statement that completes the explanation to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement, without disclosing the causal or linking statement that completes the explanation?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated mechanism or principle that can account for it in this question's context? Visual job: show causal states, dependencies, or before/after relations without writing the conclusion."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward build the explanatory chain from principle to outcome while leaving the causal or linking statement that completes the explanation to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the causal or linking statement that completes the explanation to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the phenomenon or relation that needs a causal or conceptual explanation rather than a restatement to a demonstrated mechanism or principle that can account for it is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check test the explanation against a changed condition, counterexample, or predicted consequence?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: the outcome is restated, labelled, or accompanied by a formula without explaining why it follows?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'the outcome is restated, labelled, or accompanied by a formula without explaining why it follows' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'the outcome is restated, labelled, or accompanied by a formula without explaining why it follows' fails and establish this replacement rule: name the mechanism or principle and connect it to the outcome through warranted links?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-APPLY-D1",
+      "demand": "APPLY",
+      "demand_label": "Apply",
+      "band": "D1",
+      "band_label": "Direct application",
+      "decisive_act": "Execute a known model, algorithm, relation, or procedure under the right conditions.",
+      "slots": {
+        "X": "the givens and conditions that determine whether the known procedure or relation is valid here",
+        "Y": "a demonstrated procedure or relation together with its applicability conditions",
+        "Z": "instantiate and execute the known procedure correctly",
+        "W": "the decisive substitution, transformation, or execution step that yields the requested result. Band protection: Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "wrong_idea": "a familiar formula or procedure is executed without checking its conditions or mapping variables correctly",
+        "replacement_rule": "verify applicability, map each given to the procedure, then execute",
+        "visual_job": "align givens with procedure variables or steps without carrying out the protected computation",
+        "check_job": "verify by units, substitution-back, a special value, inverse operation, or an alternate computation"
+      },
+      "band_policy": {
+        "protected_work": "Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "support_posture": "Narrow the immediate operation if useful, but do not perform W."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the givens and conditions that determine whether the known procedure or relation is valid here?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the givens and conditions that determine whether the known procedure or relation is valid here with a demonstrated procedure or relation together with its applicability conditions, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to instantiate and execute the known procedure correctly while leaving the decisive substitution, transformation, or execution step that yields the requested result to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the givens and conditions that determine whether the known procedure or relation is valid here, without disclosing the decisive substitution, transformation, or execution step that yields the requested result?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated procedure or relation together with its applicability conditions in this question's context? Visual job: align givens with procedure variables or steps without carrying out the protected computation."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward instantiate and execute the known procedure correctly while leaving the decisive substitution, transformation, or execution step that yields the requested result to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the decisive substitution, transformation, or execution step that yields the requested result to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the givens and conditions that determine whether the known procedure or relation is valid here to a demonstrated procedure or relation together with its applicability conditions is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify by units, substitution-back, a special value, inverse operation, or an alternate computation?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: a familiar formula or procedure is executed without checking its conditions or mapping variables correctly?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'a familiar formula or procedure is executed without checking its conditions or mapping variables correctly' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'a familiar formula or procedure is executed without checking its conditions or mapping variables correctly' fails and establish this replacement rule: verify applicability, map each given to the procedure, then execute?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-APPLY-D2",
+      "demand": "APPLY",
+      "demand_label": "Apply",
+      "band": "D2",
+      "band_label": "Connected reasoning",
+      "decisive_act": "Execute a known model, algorithm, relation, or procedure under the right conditions.",
+      "slots": {
+        "X": "the givens and conditions that determine whether the known procedure or relation is valid here",
+        "Y": "a demonstrated procedure or relation together with its applicability conditions",
+        "Z": "instantiate and execute the known procedure correctly",
+        "W": "the decisive substitution, transformation, or execution step that yields the requested result. Band protection: Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "wrong_idea": "a familiar formula or procedure is executed without checking its conditions or mapping variables correctly",
+        "replacement_rule": "verify applicability, map each given to the procedure, then execute",
+        "visual_job": "align givens with procedure variables or steps without carrying out the protected computation",
+        "check_job": "verify by units, substitution-back, a special value, inverse operation, or an alternate computation"
+      },
+      "band_policy": {
+        "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "support_posture": "Make the familiar pieces visible, but preserve the connection that makes them work together."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the givens and conditions that determine whether the known procedure or relation is valid here?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the givens and conditions that determine whether the known procedure or relation is valid here with a demonstrated procedure or relation together with its applicability conditions, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to instantiate and execute the known procedure correctly while leaving the decisive substitution, transformation, or execution step that yields the requested result to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the givens and conditions that determine whether the known procedure or relation is valid here, without disclosing the decisive substitution, transformation, or execution step that yields the requested result?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated procedure or relation together with its applicability conditions in this question's context? Visual job: align givens with procedure variables or steps without carrying out the protected computation."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward instantiate and execute the known procedure correctly while leaving the decisive substitution, transformation, or execution step that yields the requested result to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the decisive substitution, transformation, or execution step that yields the requested result to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the givens and conditions that determine whether the known procedure or relation is valid here to a demonstrated procedure or relation together with its applicability conditions is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify by units, substitution-back, a special value, inverse operation, or an alternate computation?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: a familiar formula or procedure is executed without checking its conditions or mapping variables correctly?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'a familiar formula or procedure is executed without checking its conditions or mapping variables correctly' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'a familiar formula or procedure is executed without checking its conditions or mapping variables correctly' fails and establish this replacement rule: verify applicability, map each given to the procedure, then execute?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-APPLY-D3",
+      "demand": "APPLY",
+      "demand_label": "Apply",
+      "band": "D3",
+      "band_label": "Multi-step reasoning",
+      "decisive_act": "Execute a known model, algorithm, relation, or procedure under the right conditions.",
+      "slots": {
+        "X": "the givens and conditions that determine whether the known procedure or relation is valid here",
+        "Y": "a demonstrated procedure or relation together with its applicability conditions",
+        "Z": "instantiate and execute the known procedure correctly",
+        "W": "the decisive substitution, transformation, or execution step that yields the requested result. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+        "wrong_idea": "a familiar formula or procedure is executed without checking its conditions or mapping variables correctly",
+        "replacement_rule": "verify applicability, map each given to the procedure, then execute",
+        "visual_job": "align givens with procedure variables or steps without carrying out the protected computation",
+        "check_job": "verify by units, substitution-back, a special value, inverse operation, or an alternate computation"
+      },
+      "band_policy": {
+        "protected_work": "Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+        "support_posture": "Orient dependencies and component ideas, but do not make the bridge or ordering decision for the learner."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the givens and conditions that determine whether the known procedure or relation is valid here?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the givens and conditions that determine whether the known procedure or relation is valid here with a demonstrated procedure or relation together with its applicability conditions, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to instantiate and execute the known procedure correctly while leaving the decisive substitution, transformation, or execution step that yields the requested result to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the givens and conditions that determine whether the known procedure or relation is valid here, without disclosing the decisive substitution, transformation, or execution step that yields the requested result?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated procedure or relation together with its applicability conditions in this question's context? Visual job: align givens with procedure variables or steps without carrying out the protected computation."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward instantiate and execute the known procedure correctly while leaving the decisive substitution, transformation, or execution step that yields the requested result to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the decisive substitution, transformation, or execution step that yields the requested result to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the givens and conditions that determine whether the known procedure or relation is valid here to a demonstrated procedure or relation together with its applicability conditions is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify by units, substitution-back, a special value, inverse operation, or an alternate computation?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: a familiar formula or procedure is executed without checking its conditions or mapping variables correctly?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'a familiar formula or procedure is executed without checking its conditions or mapping variables correctly' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'a familiar formula or procedure is executed without checking its conditions or mapping variables correctly' fails and establish this replacement rule: verify applicability, map each given to the procedure, then execute?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-APPLY-D4",
+      "demand": "APPLY",
+      "demand_label": "Apply",
+      "band": "D4",
+      "band_label": "High-transfer / exception-sensitive",
+      "decisive_act": "Execute a known model, algorithm, relation, or procedure under the right conditions.",
+      "slots": {
+        "X": "the givens and conditions that determine whether the known procedure or relation is valid here",
+        "Y": "a demonstrated procedure or relation together with its applicability conditions",
+        "Z": "instantiate and execute the known procedure correctly",
+        "W": "the decisive substitution, transformation, or execution step that yields the requested result. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+        "wrong_idea": "a familiar formula or procedure is executed without checking its conditions or mapping variables correctly",
+        "replacement_rule": "verify applicability, map each given to the procedure, then execute",
+        "visual_job": "align givens with procedure variables or steps without carrying out the protected computation",
+        "check_job": "verify by units, substitution-back, a special value, inverse operation, or an alternate computation"
+      },
+      "band_policy": {
+        "protected_work": "Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+        "support_posture": "Preserve the decisive abstraction or strategy choice even when additional optional support is available later."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the givens and conditions that determine whether the known procedure or relation is valid here?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the givens and conditions that determine whether the known procedure or relation is valid here with a demonstrated procedure or relation together with its applicability conditions, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to instantiate and execute the known procedure correctly while leaving the decisive substitution, transformation, or execution step that yields the requested result to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the givens and conditions that determine whether the known procedure or relation is valid here, without disclosing the decisive substitution, transformation, or execution step that yields the requested result?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated procedure or relation together with its applicability conditions in this question's context? Visual job: align givens with procedure variables or steps without carrying out the protected computation."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward instantiate and execute the known procedure correctly while leaving the decisive substitution, transformation, or execution step that yields the requested result to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the decisive substitution, transformation, or execution step that yields the requested result to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the givens and conditions that determine whether the known procedure or relation is valid here to a demonstrated procedure or relation together with its applicability conditions is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify by units, substitution-back, a special value, inverse operation, or an alternate computation?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: a familiar formula or procedure is executed without checking its conditions or mapping variables correctly?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'a familiar formula or procedure is executed without checking its conditions or mapping variables correctly' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'a familiar formula or procedure is executed without checking its conditions or mapping variables correctly' fails and establish this replacement rule: verify applicability, map each given to the procedure, then execute?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-MODEL-D1",
+      "demand": "MODEL",
+      "demand_label": "Model / strategy choice",
+      "band": "D1",
+      "band_label": "Direct application",
+      "decisive_act": "Choose or formulate the governing model, law, variables, process, or strategy.",
+      "slots": {
+        "X": "which features of the situation determine the model, law, or strategy and which features are irrelevant",
+        "Y": "a demonstrated model's assumptions, invariants, or selection cues",
+        "Z": "choose or formulate the governing model and map the situation into it",
+        "W": "the final model, law, or strategy choice or formulation. Band protection: Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "wrong_idea": "the most familiar model is selected from keywords instead of checking assumptions",
+        "replacement_rule": "compare candidate models against the stated conditions and choose the one whose assumptions fit",
+        "visual_job": "surface features that discriminate between candidate models without naming the winning model",
+        "check_job": "test the chosen model against its assumptions, dimensions, limiting cases, or a plausible alternative model"
+      },
+      "band_policy": {
+        "protected_work": "Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "support_posture": "Narrow the immediate operation if useful, but do not perform W."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify which features of the situation determine the model, law, or strategy and which features are irrelevant?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate which features of the situation determine the model, law, or strategy and which features are irrelevant with a demonstrated model's assumptions, invariants, or selection cues, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to choose or formulate the governing model and map the situation into it while leaving the final model, law, or strategy choice or formulation to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see which features of the situation determine the model, law, or strategy and which features are irrelevant, without disclosing the final model, law, or strategy choice or formulation?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated model's assumptions, invariants, or selection cues in this question's context? Visual job: surface features that discriminate between candidate models without naming the winning model."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward choose or formulate the governing model and map the situation into it while leaving the final model, law, or strategy choice or formulation to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the final model, law, or strategy choice or formulation to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from which features of the situation determine the model, law, or strategy and which features are irrelevant to a demonstrated model's assumptions, invariants, or selection cues is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check test the chosen model against its assumptions, dimensions, limiting cases, or a plausible alternative model?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: the most familiar model is selected from keywords instead of checking assumptions?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'the most familiar model is selected from keywords instead of checking assumptions' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'the most familiar model is selected from keywords instead of checking assumptions' fails and establish this replacement rule: compare candidate models against the stated conditions and choose the one whose assumptions fit?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-MODEL-D2",
+      "demand": "MODEL",
+      "demand_label": "Model / strategy choice",
+      "band": "D2",
+      "band_label": "Connected reasoning",
+      "decisive_act": "Choose or formulate the governing model, law, variables, process, or strategy.",
+      "slots": {
+        "X": "which features of the situation determine the model, law, or strategy and which features are irrelevant",
+        "Y": "a demonstrated model's assumptions, invariants, or selection cues",
+        "Z": "choose or formulate the governing model and map the situation into it",
+        "W": "the final model, law, or strategy choice or formulation. Band protection: Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "wrong_idea": "the most familiar model is selected from keywords instead of checking assumptions",
+        "replacement_rule": "compare candidate models against the stated conditions and choose the one whose assumptions fit",
+        "visual_job": "surface features that discriminate between candidate models without naming the winning model",
+        "check_job": "test the chosen model against its assumptions, dimensions, limiting cases, or a plausible alternative model"
+      },
+      "band_policy": {
+        "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "support_posture": "Make the familiar pieces visible, but preserve the connection that makes them work together."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify which features of the situation determine the model, law, or strategy and which features are irrelevant?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate which features of the situation determine the model, law, or strategy and which features are irrelevant with a demonstrated model's assumptions, invariants, or selection cues, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to choose or formulate the governing model and map the situation into it while leaving the final model, law, or strategy choice or formulation to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see which features of the situation determine the model, law, or strategy and which features are irrelevant, without disclosing the final model, law, or strategy choice or formulation?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated model's assumptions, invariants, or selection cues in this question's context? Visual job: surface features that discriminate between candidate models without naming the winning model."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward choose or formulate the governing model and map the situation into it while leaving the final model, law, or strategy choice or formulation to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the final model, law, or strategy choice or formulation to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from which features of the situation determine the model, law, or strategy and which features are irrelevant to a demonstrated model's assumptions, invariants, or selection cues is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check test the chosen model against its assumptions, dimensions, limiting cases, or a plausible alternative model?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: the most familiar model is selected from keywords instead of checking assumptions?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'the most familiar model is selected from keywords instead of checking assumptions' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'the most familiar model is selected from keywords instead of checking assumptions' fails and establish this replacement rule: compare candidate models against the stated conditions and choose the one whose assumptions fit?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-MODEL-D3",
+      "demand": "MODEL",
+      "demand_label": "Model / strategy choice",
+      "band": "D3",
+      "band_label": "Multi-step reasoning",
+      "decisive_act": "Choose or formulate the governing model, law, variables, process, or strategy.",
+      "slots": {
+        "X": "which features of the situation determine the model, law, or strategy and which features are irrelevant",
+        "Y": "a demonstrated model's assumptions, invariants, or selection cues",
+        "Z": "choose or formulate the governing model and map the situation into it",
+        "W": "the final model, law, or strategy choice or formulation. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+        "wrong_idea": "the most familiar model is selected from keywords instead of checking assumptions",
+        "replacement_rule": "compare candidate models against the stated conditions and choose the one whose assumptions fit",
+        "visual_job": "surface features that discriminate between candidate models without naming the winning model",
+        "check_job": "test the chosen model against its assumptions, dimensions, limiting cases, or a plausible alternative model"
+      },
+      "band_policy": {
+        "protected_work": "Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+        "support_posture": "Orient dependencies and component ideas, but do not make the bridge or ordering decision for the learner."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify which features of the situation determine the model, law, or strategy and which features are irrelevant?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate which features of the situation determine the model, law, or strategy and which features are irrelevant with a demonstrated model's assumptions, invariants, or selection cues, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to choose or formulate the governing model and map the situation into it while leaving the final model, law, or strategy choice or formulation to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see which features of the situation determine the model, law, or strategy and which features are irrelevant, without disclosing the final model, law, or strategy choice or formulation?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated model's assumptions, invariants, or selection cues in this question's context? Visual job: surface features that discriminate between candidate models without naming the winning model."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward choose or formulate the governing model and map the situation into it while leaving the final model, law, or strategy choice or formulation to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the final model, law, or strategy choice or formulation to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from which features of the situation determine the model, law, or strategy and which features are irrelevant to a demonstrated model's assumptions, invariants, or selection cues is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check test the chosen model against its assumptions, dimensions, limiting cases, or a plausible alternative model?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: the most familiar model is selected from keywords instead of checking assumptions?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'the most familiar model is selected from keywords instead of checking assumptions' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'the most familiar model is selected from keywords instead of checking assumptions' fails and establish this replacement rule: compare candidate models against the stated conditions and choose the one whose assumptions fit?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-MODEL-D4",
+      "demand": "MODEL",
+      "demand_label": "Model / strategy choice",
+      "band": "D4",
+      "band_label": "High-transfer / exception-sensitive",
+      "decisive_act": "Choose or formulate the governing model, law, variables, process, or strategy.",
+      "slots": {
+        "X": "which features of the situation determine the model, law, or strategy and which features are irrelevant",
+        "Y": "a demonstrated model's assumptions, invariants, or selection cues",
+        "Z": "choose or formulate the governing model and map the situation into it",
+        "W": "the final model, law, or strategy choice or formulation. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+        "wrong_idea": "the most familiar model is selected from keywords instead of checking assumptions",
+        "replacement_rule": "compare candidate models against the stated conditions and choose the one whose assumptions fit",
+        "visual_job": "surface features that discriminate between candidate models without naming the winning model",
+        "check_job": "test the chosen model against its assumptions, dimensions, limiting cases, or a plausible alternative model"
+      },
+      "band_policy": {
+        "protected_work": "Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+        "support_posture": "Preserve the decisive abstraction or strategy choice even when additional optional support is available later."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify which features of the situation determine the model, law, or strategy and which features are irrelevant?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate which features of the situation determine the model, law, or strategy and which features are irrelevant with a demonstrated model's assumptions, invariants, or selection cues, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to choose or formulate the governing model and map the situation into it while leaving the final model, law, or strategy choice or formulation to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see which features of the situation determine the model, law, or strategy and which features are irrelevant, without disclosing the final model, law, or strategy choice or formulation?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated model's assumptions, invariants, or selection cues in this question's context? Visual job: surface features that discriminate between candidate models without naming the winning model."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward choose or formulate the governing model and map the situation into it while leaving the final model, law, or strategy choice or formulation to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the final model, law, or strategy choice or formulation to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from which features of the situation determine the model, law, or strategy and which features are irrelevant to a demonstrated model's assumptions, invariants, or selection cues is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check test the chosen model against its assumptions, dimensions, limiting cases, or a plausible alternative model?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: the most familiar model is selected from keywords instead of checking assumptions?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'the most familiar model is selected from keywords instead of checking assumptions' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'the most familiar model is selected from keywords instead of checking assumptions' fails and establish this replacement rule: compare candidate models against the stated conditions and choose the one whose assumptions fit?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-REPRESENT-D1",
+      "demand": "REPRESENT",
+      "demand_label": "Representation translation",
+      "band": "D1",
+      "band_label": "Direct application",
+      "decisive_act": "Preserve meaning while translating between representations.",
+      "slots": {
+        "X": "what must remain invariant while moving between the source and target representations",
+        "Y": "a demonstrated meaning or relationship already understood in one representation",
+        "Z": "construct the target representation while preserving that meaning",
+        "W": "the decisive correspondence or translation that fixes the target representation. Band protection: Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "wrong_idea": "surface features are copied while meaning, scale, sign, entity, or invariant is changed",
+        "replacement_rule": "state the invariant first, then map each relevant element across representations",
+        "visual_job": "show source-to-target correspondences progressively while preserving the invariant without completing the final mapping",
+        "check_job": "translate back or compare an invariant or value in both representations"
+      },
+      "band_policy": {
+        "protected_work": "Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "support_posture": "Narrow the immediate operation if useful, but do not perform W."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify what must remain invariant while moving between the source and target representations?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate what must remain invariant while moving between the source and target representations with a demonstrated meaning or relationship already understood in one representation, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to construct the target representation while preserving that meaning while leaving the decisive correspondence or translation that fixes the target representation to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see what must remain invariant while moving between the source and target representations, without disclosing the decisive correspondence or translation that fixes the target representation?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated meaning or relationship already understood in one representation in this question's context? Visual job: show source-to-target correspondences progressively while preserving the invariant without completing the final mapping."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward construct the target representation while preserving that meaning while leaving the decisive correspondence or translation that fixes the target representation to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the decisive correspondence or translation that fixes the target representation to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from what must remain invariant while moving between the source and target representations to a demonstrated meaning or relationship already understood in one representation is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check translate back or compare an invariant or value in both representations?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: surface features are copied while meaning, scale, sign, entity, or invariant is changed?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'surface features are copied while meaning, scale, sign, entity, or invariant is changed' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'surface features are copied while meaning, scale, sign, entity, or invariant is changed' fails and establish this replacement rule: state the invariant first, then map each relevant element across representations?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-REPRESENT-D2",
+      "demand": "REPRESENT",
+      "demand_label": "Representation translation",
+      "band": "D2",
+      "band_label": "Connected reasoning",
+      "decisive_act": "Preserve meaning while translating between representations.",
+      "slots": {
+        "X": "what must remain invariant while moving between the source and target representations",
+        "Y": "a demonstrated meaning or relationship already understood in one representation",
+        "Z": "construct the target representation while preserving that meaning",
+        "W": "the decisive correspondence or translation that fixes the target representation. Band protection: Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "wrong_idea": "surface features are copied while meaning, scale, sign, entity, or invariant is changed",
+        "replacement_rule": "state the invariant first, then map each relevant element across representations",
+        "visual_job": "show source-to-target correspondences progressively while preserving the invariant without completing the final mapping",
+        "check_job": "translate back or compare an invariant or value in both representations"
+      },
+      "band_policy": {
+        "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "support_posture": "Make the familiar pieces visible, but preserve the connection that makes them work together."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify what must remain invariant while moving between the source and target representations?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate what must remain invariant while moving between the source and target representations with a demonstrated meaning or relationship already understood in one representation, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to construct the target representation while preserving that meaning while leaving the decisive correspondence or translation that fixes the target representation to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see what must remain invariant while moving between the source and target representations, without disclosing the decisive correspondence or translation that fixes the target representation?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated meaning or relationship already understood in one representation in this question's context? Visual job: show source-to-target correspondences progressively while preserving the invariant without completing the final mapping."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward construct the target representation while preserving that meaning while leaving the decisive correspondence or translation that fixes the target representation to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the decisive correspondence or translation that fixes the target representation to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from what must remain invariant while moving between the source and target representations to a demonstrated meaning or relationship already understood in one representation is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check translate back or compare an invariant or value in both representations?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: surface features are copied while meaning, scale, sign, entity, or invariant is changed?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'surface features are copied while meaning, scale, sign, entity, or invariant is changed' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'surface features are copied while meaning, scale, sign, entity, or invariant is changed' fails and establish this replacement rule: state the invariant first, then map each relevant element across representations?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-REPRESENT-D3",
+      "demand": "REPRESENT",
+      "demand_label": "Representation translation",
+      "band": "D3",
+      "band_label": "Multi-step reasoning",
+      "decisive_act": "Preserve meaning while translating between representations.",
+      "slots": {
+        "X": "what must remain invariant while moving between the source and target representations",
+        "Y": "a demonstrated meaning or relationship already understood in one representation",
+        "Z": "construct the target representation while preserving that meaning",
+        "W": "the decisive correspondence or translation that fixes the target representation. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+        "wrong_idea": "surface features are copied while meaning, scale, sign, entity, or invariant is changed",
+        "replacement_rule": "state the invariant first, then map each relevant element across representations",
+        "visual_job": "show source-to-target correspondences progressively while preserving the invariant without completing the final mapping",
+        "check_job": "translate back or compare an invariant or value in both representations"
+      },
+      "band_policy": {
+        "protected_work": "Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+        "support_posture": "Orient dependencies and component ideas, but do not make the bridge or ordering decision for the learner."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify what must remain invariant while moving between the source and target representations?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate what must remain invariant while moving between the source and target representations with a demonstrated meaning or relationship already understood in one representation, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to construct the target representation while preserving that meaning while leaving the decisive correspondence or translation that fixes the target representation to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see what must remain invariant while moving between the source and target representations, without disclosing the decisive correspondence or translation that fixes the target representation?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated meaning or relationship already understood in one representation in this question's context? Visual job: show source-to-target correspondences progressively while preserving the invariant without completing the final mapping."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward construct the target representation while preserving that meaning while leaving the decisive correspondence or translation that fixes the target representation to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the decisive correspondence or translation that fixes the target representation to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from what must remain invariant while moving between the source and target representations to a demonstrated meaning or relationship already understood in one representation is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check translate back or compare an invariant or value in both representations?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: surface features are copied while meaning, scale, sign, entity, or invariant is changed?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'surface features are copied while meaning, scale, sign, entity, or invariant is changed' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'surface features are copied while meaning, scale, sign, entity, or invariant is changed' fails and establish this replacement rule: state the invariant first, then map each relevant element across representations?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-REPRESENT-D4",
+      "demand": "REPRESENT",
+      "demand_label": "Representation translation",
+      "band": "D4",
+      "band_label": "High-transfer / exception-sensitive",
+      "decisive_act": "Preserve meaning while translating between representations.",
+      "slots": {
+        "X": "what must remain invariant while moving between the source and target representations",
+        "Y": "a demonstrated meaning or relationship already understood in one representation",
+        "Z": "construct the target representation while preserving that meaning",
+        "W": "the decisive correspondence or translation that fixes the target representation. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+        "wrong_idea": "surface features are copied while meaning, scale, sign, entity, or invariant is changed",
+        "replacement_rule": "state the invariant first, then map each relevant element across representations",
+        "visual_job": "show source-to-target correspondences progressively while preserving the invariant without completing the final mapping",
+        "check_job": "translate back or compare an invariant or value in both representations"
+      },
+      "band_policy": {
+        "protected_work": "Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+        "support_posture": "Preserve the decisive abstraction or strategy choice even when additional optional support is available later."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify what must remain invariant while moving between the source and target representations?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate what must remain invariant while moving between the source and target representations with a demonstrated meaning or relationship already understood in one representation, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to construct the target representation while preserving that meaning while leaving the decisive correspondence or translation that fixes the target representation to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see what must remain invariant while moving between the source and target representations, without disclosing the decisive correspondence or translation that fixes the target representation?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated meaning or relationship already understood in one representation in this question's context? Visual job: show source-to-target correspondences progressively while preserving the invariant without completing the final mapping."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward construct the target representation while preserving that meaning while leaving the decisive correspondence or translation that fixes the target representation to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the decisive correspondence or translation that fixes the target representation to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from what must remain invariant while moving between the source and target representations to a demonstrated meaning or relationship already understood in one representation is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check translate back or compare an invariant or value in both representations?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: surface features are copied while meaning, scale, sign, entity, or invariant is changed?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'surface features are copied while meaning, scale, sign, entity, or invariant is changed' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'surface features are copied while meaning, scale, sign, entity, or invariant is changed' fails and establish this replacement rule: state the invariant first, then map each relevant element across representations?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-SYNTHESIZE-D1",
+      "demand": "SYNTHESIZE",
+      "demand_label": "Synthesize / multi-step reasoning",
+      "band": "D1",
+      "band_label": "Direct application",
+      "decisive_act": "Coordinate dependent ideas or steps where route selection is part of the difficulty.",
+      "slots": {
+        "X": "the dependency between subproblems or ideas that makes their order or coordination matter",
+        "Y": "a demonstrated component idea that can anchor the first valid bridge",
+        "Z": "coordinate the component ideas into a dependency-respecting route",
+        "W": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "wrong_idea": "pieces are solved independently or chained in a convenient but invalid order",
+        "replacement_rule": "identify dependencies, establish the bridge quantity or condition, then propagate it through the chain",
+        "visual_job": "make dependencies, shared conditions, or state transitions visible without completing the route",
+        "check_job": "verify through an independent invariant, alternate route, limiting case, or consistency relation"
+      },
+      "band_policy": {
+        "protected_work": "Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "support_posture": "Narrow the immediate operation if useful, but do not perform W."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the dependency between subproblems or ideas that makes their order or coordination matter?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the dependency between subproblems or ideas that makes their order or coordination matter with a demonstrated component idea that can anchor the first valid bridge, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the dependency between subproblems or ideas that makes their order or coordination matter, without disclosing the bridge or ordering decision that unlocks the multi-step route?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated component idea that can anchor the first valid bridge in this question's context? Visual job: make dependencies, shared conditions, or state transitions visible without completing the route."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the bridge or ordering decision that unlocks the multi-step route to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the dependency between subproblems or ideas that makes their order or coordination matter to a demonstrated component idea that can anchor the first valid bridge is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify through an independent invariant, alternate route, limiting case, or consistency relation?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: pieces are solved independently or chained in a convenient but invalid order?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'pieces are solved independently or chained in a convenient but invalid order' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'pieces are solved independently or chained in a convenient but invalid order' fails and establish this replacement rule: identify dependencies, establish the bridge quantity or condition, then propagate it through the chain?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-SYNTHESIZE-D2",
+      "demand": "SYNTHESIZE",
+      "demand_label": "Synthesize / multi-step reasoning",
+      "band": "D2",
+      "band_label": "Connected reasoning",
+      "decisive_act": "Coordinate dependent ideas or steps where route selection is part of the difficulty.",
+      "slots": {
+        "X": "the dependency between subproblems or ideas that makes their order or coordination matter",
+        "Y": "a demonstrated component idea that can anchor the first valid bridge",
+        "Z": "coordinate the component ideas into a dependency-respecting route",
+        "W": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "wrong_idea": "pieces are solved independently or chained in a convenient but invalid order",
+        "replacement_rule": "identify dependencies, establish the bridge quantity or condition, then propagate it through the chain",
+        "visual_job": "make dependencies, shared conditions, or state transitions visible without completing the route",
+        "check_job": "verify through an independent invariant, alternate route, limiting case, or consistency relation"
+      },
+      "band_policy": {
+        "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "support_posture": "Make the familiar pieces visible, but preserve the connection that makes them work together."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the dependency between subproblems or ideas that makes their order or coordination matter?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the dependency between subproblems or ideas that makes their order or coordination matter with a demonstrated component idea that can anchor the first valid bridge, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the dependency between subproblems or ideas that makes their order or coordination matter, without disclosing the bridge or ordering decision that unlocks the multi-step route?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated component idea that can anchor the first valid bridge in this question's context? Visual job: make dependencies, shared conditions, or state transitions visible without completing the route."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the bridge or ordering decision that unlocks the multi-step route to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the dependency between subproblems or ideas that makes their order or coordination matter to a demonstrated component idea that can anchor the first valid bridge is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify through an independent invariant, alternate route, limiting case, or consistency relation?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: pieces are solved independently or chained in a convenient but invalid order?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'pieces are solved independently or chained in a convenient but invalid order' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'pieces are solved independently or chained in a convenient but invalid order' fails and establish this replacement rule: identify dependencies, establish the bridge quantity or condition, then propagate it through the chain?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-SYNTHESIZE-D3",
+      "demand": "SYNTHESIZE",
+      "demand_label": "Synthesize / multi-step reasoning",
+      "band": "D3",
+      "band_label": "Multi-step reasoning",
+      "decisive_act": "Coordinate dependent ideas or steps where route selection is part of the difficulty.",
+      "slots": {
+        "X": "the dependency between subproblems or ideas that makes their order or coordination matter",
+        "Y": "a demonstrated component idea that can anchor the first valid bridge",
+        "Z": "coordinate the component ideas into a dependency-respecting route",
+        "W": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+        "wrong_idea": "pieces are solved independently or chained in a convenient but invalid order",
+        "replacement_rule": "identify dependencies, establish the bridge quantity or condition, then propagate it through the chain",
+        "visual_job": "make dependencies, shared conditions, or state transitions visible without completing the route",
+        "check_job": "verify through an independent invariant, alternate route, limiting case, or consistency relation"
+      },
+      "band_policy": {
+        "protected_work": "Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+        "support_posture": "Orient dependencies and component ideas, but do not make the bridge or ordering decision for the learner."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the dependency between subproblems or ideas that makes their order or coordination matter?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the dependency between subproblems or ideas that makes their order or coordination matter with a demonstrated component idea that can anchor the first valid bridge, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the dependency between subproblems or ideas that makes their order or coordination matter, without disclosing the bridge or ordering decision that unlocks the multi-step route?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated component idea that can anchor the first valid bridge in this question's context? Visual job: make dependencies, shared conditions, or state transitions visible without completing the route."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the bridge or ordering decision that unlocks the multi-step route to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the dependency between subproblems or ideas that makes their order or coordination matter to a demonstrated component idea that can anchor the first valid bridge is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify through an independent invariant, alternate route, limiting case, or consistency relation?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: pieces are solved independently or chained in a convenient but invalid order?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'pieces are solved independently or chained in a convenient but invalid order' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'pieces are solved independently or chained in a convenient but invalid order' fails and establish this replacement rule: identify dependencies, establish the bridge quantity or condition, then propagate it through the chain?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-SYNTHESIZE-D4",
+      "demand": "SYNTHESIZE",
+      "demand_label": "Synthesize / multi-step reasoning",
+      "band": "D4",
+      "band_label": "High-transfer / exception-sensitive",
+      "decisive_act": "Coordinate dependent ideas or steps where route selection is part of the difficulty.",
+      "slots": {
+        "X": "the dependency between subproblems or ideas that makes their order or coordination matter",
+        "Y": "a demonstrated component idea that can anchor the first valid bridge",
+        "Z": "coordinate the component ideas into a dependency-respecting route",
+        "W": "the bridge or ordering decision that unlocks the multi-step route. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+        "wrong_idea": "pieces are solved independently or chained in a convenient but invalid order",
+        "replacement_rule": "identify dependencies, establish the bridge quantity or condition, then propagate it through the chain",
+        "visual_job": "make dependencies, shared conditions, or state transitions visible without completing the route",
+        "check_job": "verify through an independent invariant, alternate route, limiting case, or consistency relation"
+      },
+      "band_policy": {
+        "protected_work": "Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+        "support_posture": "Preserve the decisive abstraction or strategy choice even when additional optional support is available later."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the dependency between subproblems or ideas that makes their order or coordination matter?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the dependency between subproblems or ideas that makes their order or coordination matter with a demonstrated component idea that can anchor the first valid bridge, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the dependency between subproblems or ideas that makes their order or coordination matter, without disclosing the bridge or ordering decision that unlocks the multi-step route?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated component idea that can anchor the first valid bridge in this question's context? Visual job: make dependencies, shared conditions, or state transitions visible without completing the route."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward coordinate the component ideas into a dependency-respecting route while leaving the bridge or ordering decision that unlocks the multi-step route to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the bridge or ordering decision that unlocks the multi-step route to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the dependency between subproblems or ideas that makes their order or coordination matter to a demonstrated component idea that can anchor the first valid bridge is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check verify through an independent invariant, alternate route, limiting case, or consistency relation?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: pieces are solved independently or chained in a convenient but invalid order?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'pieces are solved independently or chained in a convenient but invalid order' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'pieces are solved independently or chained in a convenient but invalid order' fails and establish this replacement rule: identify dependencies, establish the bridge quantity or condition, then propagate it through the chain?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-JUSTIFY-D1",
+      "demand": "JUSTIFY",
+      "demand_label": "Justify / prove / infer",
+      "band": "D1",
+      "band_label": "Direct application",
+      "decisive_act": "Establish a conclusion from explicit warrants or evidence.",
+      "slots": {
+        "X": "the claim to establish and the evidence or conditions that may legitimately support it",
+        "Y": "a demonstrated theorem, principle, data rule, or warrant",
+        "Z": "construct a valid claim-to-warrant-to-conclusion argument",
+        "W": "the decisive warrant, inference, or proof step that establishes the claim. Band protection: Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "wrong_idea": "an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof",
+        "replacement_rule": "state the warrant explicitly and show why its conditions license this conclusion",
+        "visual_job": "show givens, evidence, and construction relationships without marking the conclusion as established",
+        "check_job": "challenge the argument with a counterexample, converse, boundary case, independent derivation, or evidence-consistency test"
+      },
+      "band_policy": {
+        "protected_work": "Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit.",
+        "support_posture": "Narrow the immediate operation if useful, but do not perform W."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the claim to establish and the evidence or conditions that may legitimately support it?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the claim to establish and the evidence or conditions that may legitimately support it with a demonstrated theorem, principle, data rule, or warrant, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the claim to establish and the evidence or conditions that may legitimately support it, without disclosing the decisive warrant, inference, or proof step that establishes the claim?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated theorem, principle, data rule, or warrant in this question's context? Visual job: show givens, evidence, and construction relationships without marking the conclusion as established."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the decisive warrant, inference, or proof step that establishes the claim to the learner? Leave one meaningful identification, relation, translation, or execution decision to the learner; support may make the surrounding route explicit."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the claim to establish and the evidence or conditions that may legitimately support it to a demonstrated theorem, principle, data rule, or warrant is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check challenge the argument with a counterexample, converse, boundary case, independent derivation, or evidence-consistency test?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof' fails and establish this replacement rule: state the warrant explicitly and show why its conditions license this conclusion?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-JUSTIFY-D2",
+      "demand": "JUSTIFY",
+      "demand_label": "Justify / prove / infer",
+      "band": "D2",
+      "band_label": "Connected reasoning",
+      "decisive_act": "Establish a conclusion from explicit warrants or evidence.",
+      "slots": {
+        "X": "the claim to establish and the evidence or conditions that may legitimately support it",
+        "Y": "a demonstrated theorem, principle, data rule, or warrant",
+        "Z": "construct a valid claim-to-warrant-to-conclusion argument",
+        "W": "the decisive warrant, inference, or proof step that establishes the claim. Band protection: Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "wrong_idea": "an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof",
+        "replacement_rule": "state the warrant explicitly and show why its conditions license this conclusion",
+        "visual_job": "show givens, evidence, and construction relationships without marking the conclusion as established",
+        "check_job": "challenge the argument with a counterexample, converse, boundary case, independent derivation, or evidence-consistency test"
+      },
+      "band_policy": {
+        "protected_work": "Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle.",
+        "support_posture": "Make the familiar pieces visible, but preserve the connection that makes them work together."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the claim to establish and the evidence or conditions that may legitimately support it?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the claim to establish and the evidence or conditions that may legitimately support it with a demonstrated theorem, principle, data rule, or warrant, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the claim to establish and the evidence or conditions that may legitimately support it, without disclosing the decisive warrant, inference, or proof step that establishes the claim?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated theorem, principle, data rule, or warrant in this question's context? Visual job: show givens, evidence, and construction relationships without marking the conclusion as established."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the decisive warrant, inference, or proof step that establishes the claim to the learner? Leave a short connection or choice plus its execution to the learner; support may identify relevant givens and a familiar principle."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the claim to establish and the evidence or conditions that may legitimately support it to a demonstrated theorem, principle, data rule, or warrant is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check challenge the argument with a counterexample, converse, boundary case, independent derivation, or evidence-consistency test?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof' fails and establish this replacement rule: state the warrant explicitly and show why its conditions license this conclusion?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-JUSTIFY-D3",
+      "demand": "JUSTIFY",
+      "demand_label": "Justify / prove / infer",
+      "band": "D3",
+      "band_label": "Multi-step reasoning",
+      "decisive_act": "Establish a conclusion from explicit warrants or evidence.",
+      "slots": {
+        "X": "the claim to establish and the evidence or conditions that may legitimately support it",
+        "Y": "a demonstrated theorem, principle, data rule, or warrant",
+        "Z": "construct a valid claim-to-warrant-to-conclusion argument",
+        "W": "the decisive warrant, inference, or proof step that establishes the claim. Band protection: Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+        "wrong_idea": "an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof",
+        "replacement_rule": "state the warrant explicitly and show why its conditions license this conclusion",
+        "visual_job": "show givens, evidence, and construction relationships without marking the conclusion as established",
+        "check_job": "challenge the argument with a counterexample, converse, boundary case, independent derivation, or evidence-consistency test"
+      },
+      "band_policy": {
+        "protected_work": "Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately.",
+        "support_posture": "Orient dependencies and component ideas, but do not make the bridge or ordering decision for the learner."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the claim to establish and the evidence or conditions that may legitimately support it?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the claim to establish and the evidence or conditions that may legitimately support it with a demonstrated theorem, principle, data rule, or warrant, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the claim to establish and the evidence or conditions that may legitimately support it, without disclosing the decisive warrant, inference, or proof step that establishes the claim?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated theorem, principle, data rule, or warrant in this question's context? Visual job: show givens, evidence, and construction relationships without marking the conclusion as established."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the decisive warrant, inference, or proof step that establishes the claim to the learner? Leave the important bridge between ideas, representations, or models to the learner; support may expose the component ideas separately."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the claim to establish and the evidence or conditions that may legitimately support it to a demonstrated theorem, principle, data rule, or warrant is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check challenge the argument with a counterexample, converse, boundary case, independent derivation, or evidence-consistency test?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof' fails and establish this replacement rule: state the warrant explicitly and show why its conditions license this conclusion?"
+        }
+      }
+    },
+    {
+      "template_id": "QRT-JUSTIFY-D4",
+      "demand": "JUSTIFY",
+      "demand_label": "Justify / prove / infer",
+      "band": "D4",
+      "band_label": "High-transfer / exception-sensitive",
+      "decisive_act": "Establish a conclusion from explicit warrants or evidence.",
+      "slots": {
+        "X": "the claim to establish and the evidence or conditions that may legitimately support it",
+        "Y": "a demonstrated theorem, principle, data rule, or warrant",
+        "Z": "construct a valid claim-to-warrant-to-conclusion argument",
+        "W": "the decisive warrant, inference, or proof step that establishes the claim. Band protection: Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+        "wrong_idea": "an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof",
+        "replacement_rule": "state the warrant explicitly and show why its conditions license this conclusion",
+        "visual_job": "show givens, evidence, and construction relationships without marking the conclusion as established",
+        "check_job": "challenge the argument with a counterexample, converse, boundary case, independent derivation, or evidence-consistency test"
+      },
+      "band_policy": {
+        "protected_work": "Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only.",
+        "support_posture": "Preserve the decisive abstraction or strategy choice even when additional optional support is available later."
+      },
+      "review": {
+        "H1": {
+          "verb": "CLARIFY",
+          "objective": "The learner can state what the question turns on before choosing a route.",
+          "question": "Can hint 1 help this learner clarify the claim to establish and the evidence or conditions that may legitimately support it?"
+        },
+        "H2": {
+          "verb": "CORRELATE",
+          "objective": "The learner connects the crux to knowledge already held.",
+          "question": "Can hint 2 help this learner correlate the claim to establish and the evidence or conditions that may legitimately support it with a demonstrated theorem, principle, data rule, or warrant, and see why that bridge applies here?"
+        },
+        "H3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "The learner can start the crux without being handed the protected work.",
+          "question": "Can hint 3 open the way to construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+        },
+        "S1": {
+          "verb": "CLARIFY",
+          "objective": "The first visual stage makes the situation and crux legible without answering it.",
+          "question": "Does stage 1 show the situation and help this learner see the claim to establish and the evidence or conditions that may legitimately support it, without disclosing the decisive warrant, inference, or proof step that establishes the claim?"
+        },
+        "S2": {
+          "verb": "CORRELATE",
+          "objective": "A visual stage connects the learner's held idea to this question.",
+          "question": "Does a stage show a demonstrated theorem, principle, data rule, or warrant in this question's context? Visual job: show givens, evidence, and construction relationships without marking the conclusion as established."
+        },
+        "S3": {
+          "verb": "OPEN_THE_WAY",
+          "objective": "A later visual stage supports construction toward the crux without completing it.",
+          "question": "Does a later stage show the way toward construct a valid claim-to-warrant-to-conclusion argument while leaving the decisive warrant, inference, or proof step that establishes the claim to the learner?"
+        },
+        "P1": {
+          "verb": "PROTECT",
+          "objective": "Pre-attempt panels orient without handing over the decisive learner work.",
+          "question": "Do all pre-attempt panels leave the decisive warrant, inference, or proof step that establishes the claim to the learner? Leave the decisive model, strategy, synthesis, exception, or warrant itself to the learner; support may clarify constraints and invariants only."
+        },
+        "P2": {
+          "verb": "ROUTE",
+          "objective": "Concept navigation reaches the exact bridge or repair the learner needs.",
+          "question": "Does the concept link land where the bridge from the claim to establish and the evidence or conditions that may legitimately support it to a demonstrated theorem, principle, data rule, or warrant is actually taught or repaired?"
+        },
+        "P3": {
+          "verb": "EXPLAIN_AND_CHECK",
+          "objective": "Post-attempt reasoning explains validity and verifies independently.",
+          "question": "Does each solution move explain why it holds here, and does the check challenge the argument with a counterexample, converse, boundary case, independent derivation, or evidence-consistency test?"
+        },
+        "M1": {
+          "verb": "DIAGNOSE",
+          "objective": "The likely conceptual wrong route is explicitly represented.",
+          "question": "Is this likely wrong idea represented: an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof?"
+        },
+        "M2": {
+          "verb": "DETECT",
+          "objective": "The diagnostic distinguishes a held misconception from a one-off execution slip.",
+          "question": "Would a learner who holds 'an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof' answer the diagnostic differently from a learner who merely slipped?"
+        },
+        "M3": {
+          "verb": "REPAIR",
+          "objective": "The repair makes the failure visible and establishes a replacement rule.",
+          "question": "Does the repair show why 'an example, diagram, pattern, authority statement, or numerical coincidence is treated as proof' fails and establish this replacement rule: state the warrant explicitly and show why its conditions license this conclusion?"
+        }
+      }
+    }
+  ]
+}
