@@ -92,14 +92,26 @@ class StagedSvgDisclosure(unittest.TestCase):
         self.assertEqual(rendered, "")
         self.assertTrue(gaps)
 
-    def test_declared_stage_missing_from_asset_fails_closed(self):
+    def test_requested_stage_missing_from_selected_asset_fails_closed(self):
         svg = (
             "<svg aria-label='Figure'><title>Figure</title><desc>Figure stages</desc>"
             "<g data-g9-stage-id='S1'><text>Given</text></g></svg>"
         )
-        rendered, gaps = self._render(svg)
+        rendered, gaps = self._render(svg, allowed=["S2"])
         self.assertEqual(rendered, "")
         self.assertTrue(gaps)
+
+    def test_catalogue_may_describe_stages_not_present_in_selected_scene(self):
+        # One representation may have several question-specific assets.
+        # Catalogued labels are not permission to display missing/other stages.
+        svg = (
+            "<svg aria-label='Figure'><title>Figure</title><desc>Figure stages</desc>"
+            "<g data-g9-stage-id='S1'><text>Given</text></g></svg>"
+        )
+        rendered, gaps = self._render(svg, allowed=["S1"])
+        self.assertEqual(gaps, [])
+        self.assertIn("Given", rendered)
+        self.assertNotIn("W = 42", rendered)
 
     def test_explicit_empty_allowlist_shows_no_figure(self):
         svg = self._svg('"', '"')
