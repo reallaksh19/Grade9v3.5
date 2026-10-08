@@ -1,0 +1,111 @@
+{
+  "matrix_id": "MATRIX-TEST-NCERT-U01-Q01",
+  "subject": "TEST",
+  "bucket_id": "BUCKET-TEST-NCERT-U01-REAL-NUMBERS",
+  "topic": "Number Systems",
+  "subtopic": "Rational numbers as a subset of real numbers",
+  "axis_note": "Three draft reconstruction rungs from an independently custody-READY NCERT Q1. Not canonical curriculum.",
+  "rungs": [
+    {
+      "rung": "R1",
+      "ladder_position": 20,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-TEST-NCERT-U01-RATIONAL-REAL-INCLUSION",
+      "ceiling": [
+        "rational number definition",
+        "integer quotient"
+      ],
+      "must_contain": [
+        "Recognise a/b with integers a,b and b ≠ 0.",
+        "Give a nonintegral rational example, such as 1/2."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "numerator sign",
+          "hold": "nonzero integer denominator",
+          "notice": "Negative fractions remain rational."
+        }
+      ]
+    },
+    {
+      "rung": "R2",
+      "ladder_position": 60,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-TEST-NCERT-U01-RATIONAL-REAL-INCLUSION",
+      "ceiling": [
+        "set inclusion",
+        "proper subset",
+        "counterexample"
+      ],
+      "must_contain": [
+        "Show Q ⊆ R explicitly.",
+        "Refute natural/integer/whole as universal categories using counterexamples."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "rational example (-2, 1/2, -3/2)",
+          "hold": "same four candidate supersets",
+          "notice": "Rational is not synonymous with integer or natural number."
+        }
+      ]
+    },
+    {
+      "rung": "R3",
+      "ladder_position": 100,
+      "provenance": "AUTHORED",
+      "microtopic_ref": "MIC-TEST-NCERT-U01-RATIONAL-REAL-INCLUSION",
+      "ceiling": [
+        "quantifiers",
+        "reverse inclusion",
+        "irrational counterexample"
+      ],
+      "must_contain": [
+        "Explain why every rational is real.",
+        "Counterexample √2 disproves the reverse claim that every real is rational."
+      ],
+      "controlled_variation": [
+        {
+          "phase": 1,
+          "vary": "direction of inclusion",
+          "hold": "the sets Q and R",
+          "notice": "Implication is not symmetric."
+        }
+      ]
+    }
+  ],
+  "family": {
+    "invariant_demand": "Classify a number by the smallest supported set claims without reversing set inclusion.",
+    "difficult_move": "Distinguish every rational is real from every real is rational.",
+    "independent_check": "Use a fractional rational and an irrational real counterexample.",
+    "support_ladder": [
+      {
+        "level": "high",
+        "handed_over": "The inclusion Q ⊆ R and the rational definition."
+      },
+      {
+        "level": "medium",
+        "handed_over": "The two set names, but not which contains which."
+      },
+      {
+        "level": "low",
+        "handed_over": "Only the source MCQ and the requirement to justify every option."
+      }
+    ]
+  },
+  "transfer": [
+    {
+      "dimension": "model_choice",
+      "changed_demand": "Given a new rational, decide which set-membership statements hold universally.",
+      "information_not_handed_over": "Which set is the superset",
+      "repair_to": "R1"
+    },
+    {
+      "dimension": "reasoning_steps",
+      "changed_demand": "Challenge the reverse inclusion using one irrational real number.",
+      "information_not_handed_over": "A counterexample",
+      "repair_to": "R3"
+    }
+  ]
+}

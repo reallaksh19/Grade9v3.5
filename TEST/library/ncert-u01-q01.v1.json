@@ -1,0 +1,243 @@
+{
+  "schema_version": "0.2.0",
+  "package_id": "TEST-LIB-NCERT-U01-Q01",
+  "title": "NCERT Number Systems Q1 — source-linked TEST Core2/Core1A",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "TEST",
+  "scope_summary": "Draft nonaccepted package anchored to source ncert-exemplar-g9-math-u01-q01, sha256:40010d207519d386d5d2a6519c39745ee59de121105642b68c4f398a002cb3f6; source custody is reconciled in #68 and remains distinct from academic validation.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-NCERT-EXEMPLAR-MATH-IX-U01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-MATH-IX-U01"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "NCERT Exemplar Mathematics Class IX, Unit 1 — Number Systems",
+      "origin": "WEB",
+      "locator": "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep201.pdf",
+      "edition": "Recorded 2023–24 exemplar intake; verify edition against NCERT PDF",
+      "section": "Unit 1, Exercise 1.1, Question 1, printed page 2, PDF index 1",
+      "last_checked": "2026-10-08",
+      "access_status": "FULL_ITEM_INSPECTED",
+      "rights_status": "Link to official NCERT source; draft question remains unaccepted and is not a license to redistribute PDF",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "QUESTION_BANK",
+        "CURRICULUM"
+      ],
+      "supports_claims": [
+        "Question 1 is a source-witnessed MCQ on the inclusion of rational numbers in the real numbers"
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "GRADE_9_FOUNDATION"
+      ],
+      "selection_reason": "One previously reconciled custody READY source question selected by its existing source ID and stem SHA; other 209 intake records are not part of this product",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "id": "BUCKET-TEST-NCERT-U01-REAL-NUMBERS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-MATH-IX-U01"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Rational and real number inclusion — NCERT pilot",
+      "topic": "Number Systems: rational numbers and real numbers",
+      "intrinsic_badge": "EASY",
+      "badge_reason": "Identify the correct superset, not a subset that excludes negative or fractional rational values",
+      "depth_overlay": "FOUNDATION",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [],
+      "primary_representation_ref": null,
+      "conventions": [
+        {
+          "id": "rational_definition",
+          "statement": "A rational number is a/b for integers a and b with b nonzero."
+        },
+        {
+          "id": "set_inclusion",
+          "statement": "Every rational number is real; not every real number is rational."
+        }
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "CAP-TEST-NCERT-U01-RATIONAL-REAL-INCLUSION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-MATH-IX-U01"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "action": "Classify a rational number as belonging to the real-number set, and reject narrower categories when the statement says every.",
+      "success_criterion": "State Q ⊆ R and supply a counterexample to the claims that all rationals are natural numbers, integers or whole numbers.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "id": "MIC-TEST-NCERT-U01-RATIONAL-REAL-INCLUSION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-MATH-IX-U01"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Every rational number is real",
+      "bucket_id": "BUCKET-TEST-NCERT-U01-REAL-NUMBERS",
+      "primary_capability_ref": "CAP-TEST-NCERT-U01-RATIONAL-REAL-INCLUSION",
+      "intrinsic_badge": "EASY",
+      "badge_reason": "The quantifier every requires testing both fractional and negative rational values.",
+      "entry_assumptions": [
+        "Distinguish integers from fractions with nonzero denominators.",
+        "Recognise negative rational numbers."
+      ],
+      "inferential_jump": "Use Q ⊆ R as an inclusion relation, not the false reverse inclusion R ⊆ Q.",
+      "teaching_path": [
+        {
+          "id": "NS-Q1-T1",
+          "role": "DECLARE",
+          "action": "Define rational numbers as quotients a/b of integers with b nonzero.",
+          "why_valid": "Every such quotient is a real number on the number line.",
+          "inputs": [
+            "integer numerator a",
+            "nonzero integer denominator b"
+          ],
+          "output": "Any rational belongs to the real numbers."
+        },
+        {
+          "id": "NS-Q1-T2",
+          "role": "TRANSFORM",
+          "action": "Test the narrower claims with -1/2, 1/2 and -2.",
+          "why_valid": "These are rational, but not all are whole, natural or integer values.",
+          "inputs": [
+            "options A, B and D"
+          ],
+          "output": "Reject natural number, integer and whole number as universal classifications."
+        },
+        {
+          "id": "NS-Q1-T3",
+          "role": "VERIFY",
+          "action": "Identify the real-number set as a valid universal superset of the rational numbers.",
+          "why_valid": "The set inclusion Q ⊆ R establishes option C without claiming R ⊆ Q.",
+          "inputs": [
+            "definition of rational numbers",
+            "counterexamples to narrower sets"
+          ],
+          "output": "Every rational number is a real number."
+        }
+      ],
+      "relation_refs": [],
+      "representation_refs": [],
+      "question_family_refs": [
+        "FAM-TEST-NCERT-U01-SET-INCLUSION"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Every rational number is an integer because it is a quotient of integers.",
+          "diagnostic_prompt": "Is 1/2 an integer? Can 1/2 be written as a/b with integers a and b ≠ 0?",
+          "repair": "A quotient of integers need not be an integer; rationals include non-integer fractions."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Is -3/2 rational and real? Is every real number rational? Justify both claims.",
+        "source_ref": "SRC-NCERT-EXEMPLAR-MATH-IX-U01",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "-3/2 is a rational number and thus a real number. Not every real number is rational: √2 is real but irrational.",
+          "reasoning": [
+            "Write -3/2 as a quotient of integers with nonzero denominator.",
+            "Invoke rational ⊆ real.",
+            "Use √2 to refute the reverse inclusion."
+          ],
+          "check": "One rational counterexample disproves a narrower universal claim, while √2 disproves real ⊆ rational.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "no_numeric_claim": "This exit task tests definitions and a set-inclusion proof, not a computed numerical answer."
+        }
+      },
+      "research_contribution": "Issue #131 TEST product specimen selected from independently reconciled NCERT Number Systems Q1; no curriculum admission is implied.",
+      "prerequisite_refs": [],
+      "lineage": []
+    }
+  ],
+  "relations": [],
+  "representations": [],
+  "question_families": [
+    {
+      "id": "FAM-TEST-NCERT-U01-SET-INCLUSION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-MATH-IX-U01"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Recognise the inclusion of rational numbers in real numbers",
+      "capability_refs": [
+        "CAP-TEST-NCERT-U01-RATIONAL-REAL-INCLUSION"
+      ],
+      "solution_structure": [
+        "Define a rational number as an integer quotient.",
+        "Check the universal quantifier using rational counterexamples to narrower options.",
+        "Conclude every rational belongs to the real-number set."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Set inclusion among number classes",
+        "representation_translation": "Fractional notation to number-set membership",
+        "reasoning_steps": "Definition, counterexamples, inclusion",
+        "novelty": "Requires separating a set from its subsets"
+      },
+      "safe_variations": [
+        "Test a negative rational and a non-integral fraction."
+      ],
+      "transfer_boundaries": [
+        "Do not infer that every real number is rational."
+      ],
+      "common_wrong_routes": [
+        "Calling every rational an integer because numerator and denominator are integers."
+      ],
+      "item_refs": [
+        "ncert-exemplar-g9-math-u01-q01"
+      ]
+    }
+  ],
+  "questions": [],
+  "teaching_routes": [],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "grade9v3:test_source_lineage": {
+      "source_id": "ncert-exemplar-g9-math-u01-q01",
+      "stem_sha256": "sha256:40010d207519d386d5d2a6519c39745ee59de121105642b68c4f398a002cb3f6",
+      "source_url": "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep201.pdf",
+      "original_identifier": "Unit 1 Ex 1.1 Q1",
+      "authority": "NCERT_OFFICIAL",
+      "required_custody_status": "READY_FOR_BLUEPRINT",
+      "academic_validation_independent": true,
+      "acceptance": "DRAFT_NOT_ACCEPTED"
+    }
+  },
+  "data": []
+}
