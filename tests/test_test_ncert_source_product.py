@@ -13,7 +13,7 @@ from jsonschema import Draft202012Validator
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import product_manifest, test_source_custody  # noqa: E402
+from Shared.tools import product_manifest, render_core, test_source_custody  # noqa: E402
 
 PACKAGE = REPO / "TEST/library/ncert-u01-q01.v1.json"
 MATRIX = REPO / "TEST/matrices/ncert-u01-q01.rungs.json"
@@ -93,6 +93,21 @@ class TestNcertQ1ParkedProduct(unittest.TestCase):
                                return_value={"ready_ids": [], "handoff": []}):
             with self.assertRaisesRegex(ValueError, "not independently custody READY"):
                 adapter.build(REPO)
+
+    def test_actual_production_renderer_builds_both_selected_roles(self):
+        pages, gaps, digest, advisories, waivers = render_core.build_report(
+            MANIFEST, mode="PAGES", held_to="REFERENCE")
+        self.assertEqual(set(pages), {"index.html", "core2.html", "core1a.html"})
+        self.assertIn(SOURCE_ID, pages["core2.html"])
+        self.assertIn(self.question["stem"], pages["core2.html"])
+        self.assertIn(self.package["microtopics"][0]["title"], pages["core1a.html"])
+        self.assertIn(self.package["microtopics"][0]["id"], pages["core1a.html"])
+        self.assertTrue(digest)
+        self.assertTrue(all(gap.get("core") in {"CORE1A", "CORE2"} for gap in gaps))
+        self.assertIsInstance(advisories, list)
+        self.assertIsInstance(waivers, list)
+        for page in pages.values():
+            self.assertNotIn("accepted=true", page.lower())
 
     def test_matrix_uses_same_microtopic_and_has_real_content(self):
         mic = self.package["microtopics"][0]["id"]
