@@ -46,5 +46,7 @@ jobs:
         run: python TEST/imo-research/validate_review_gates.py
       - name: Validate new organizer sample Q5 angle-geometry proof candidate and holds
         run: python TEST/imo-research/validate_sample_q5_geometry.py
+      - name: Validate original seven-cell Grade 9 research practice
+        run: python TEST/imo-research/validate_original_practice.py
       - name: Run research-only falsifier tests
         run: python -m unittest discover -s tests -p 'test_imo_*.py' -v
