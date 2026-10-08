@@ -108,7 +108,14 @@ def validate(repo: Path) -> dict:
             options_now = question.get("options", [])
             options_match = record.get("captured_options") == options_now
             if qid == "ncert-exemplar-g9-math-u01-q07":
-                options_match = options_match or tuple(options_now) == Q7_SOURCE_FAITHFUL_OPTIONS
+                # Two historical snapshots can coexist only when *both* keep
+                # their frozen meaning. A changed review is not an alternative
+                # to the one exact reviewed live overbar recapture.
+                options_match = (
+                    (options_match or tuple(options_now) == Q7_SOURCE_FAITHFUL_OPTIONS)
+                    and tuple(record.get("captured_options") or ())
+                    == FROZEN_R4_PRIMARY_OBSERVATIONS[qid][2]
+                )
             if (record.get("original_identifier") != question["original_identifier"]
                     or not options_match):
                 raise ValueError(f"{where}: review source identifier/options mismatch for {qid}")
