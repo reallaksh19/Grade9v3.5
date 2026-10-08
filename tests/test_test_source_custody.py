@@ -119,6 +119,30 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
                             and v["source_locator"]["pdf_page_index"] == 1
                             for v in result["handoff"] if "-u02-" in v["intake_question_ref"]))
 
+    def test_later_overlay_cannot_promote_previously_held_question(self):
+        """A second overlay may not override official source-text HOLD with shape-valid READY."""
+        second = self.repo / POLY
+        second.write_text(json.dumps(self.polynomials, ensure_ascii=False), encoding="utf-8")
+        q1 = next(q for q in self.bank_doc["questions"] if q["id"] == "ncert-exemplar-g9-math-u02-q01")
+        forged = copy.deepcopy(self.polynomials)
+        record = copy.deepcopy(forged["records"][0])
+        record.update({
+            "id": q1["id"],
+            "original_identifier": q1["original_identifier"],
+            "stem_sha256": q1["stem_sha256"],
+            "options": q1["options"],
+        })
+        record["source_locator"]["question_number"] = q1["question_number"]
+        record["official_answer"]["question_number"] = q1["question_number"]
+        record["official_answer"]["answer_key"] = "(C)"
+        forged["records"] = [record]
+        forged["holds"] = []
+        # The filename sorts after the legitimate Polynomials overlay.
+        later = self.repo / "TEST/evidence/source-intake/zzz-illicit-custody.custody.v1.json"
+        later.write_text(json.dumps(forged, ensure_ascii=False), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "duplicate custody evidence or source-text HOLD"):
+            test_source_custody.reconcile(self.repo)
+
     def test_disputed_stem_cannot_clear_hold(self):
         second = self.repo / POLY
         doc = copy.deepcopy(self.polynomials)

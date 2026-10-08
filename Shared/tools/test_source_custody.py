@@ -65,7 +65,8 @@ def reconcile(repo: Path) -> dict:
             _require(isinstance(record, dict), where, "invalid evidence record")
             qid = record.get("id")
             _require(isinstance(qid, str) and qid in by_id, where, f"orphan source identity {qid!r}")
-            _require(qid not in reconciled, where, f"duplicate custody evidence for {qid}")
+            _require(qid not in reconciled and qid not in source_holds,
+                     where, f"duplicate custody evidence or source-text HOLD for {qid}")
             bank, source = by_id[qid]
             _require(overlay["source_bank_ref"] == f"TEST/question-bank/intake/{bank['bank_id']}.json",
                      where, f"bank identity mismatch for {qid}")
