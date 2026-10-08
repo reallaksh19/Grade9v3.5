@@ -4,7 +4,7 @@ import json
 import unittest
 from pathlib import Path
 
-from Shared.tools import core_template_contract
+from Shared.tools import build_core_learning_data, core_template_contract
 from Shared.tools.core_learning_projection_adapter import _web_delivery
 
 
@@ -13,15 +13,8 @@ REPO = Path(__file__).resolve().parents[1]
 
 class WebBlueprintProjectionTests(unittest.TestCase):
     def test_projection_delivery_is_role_driven_and_subject_neutral(self):
-        expected = {
-            "CORE1": "BP-CORE1-ORIENTATION@1.1.0",
-            "CORE2": "BP-CORE2-SOURCE-QUESTION@1.5.0",
-            "CORE1A": "BP-CORE1A-CONSTRUCTION@1.4.0",
-            "CORE1B": "BP-CORE1B-RECONSTRUCTION@1.1.0",
-            "CORE2A": "BP-CORE2A-SUPPORTED-APPLICATION@1.1.0",
-            "CORE2B": "BP-CORE2B-TRANSFER@1.1.0",
-        }
-        for core, ref in expected.items():
+        for core in core_template_contract.ROLE_ORDER:
+            ref = core_template_contract.resolve_web_blueprint_for_core(core)["ref"]
             delivery = _web_delivery(core)
             self.assertEqual(delivery["blueprint_ref"], ref)
             self.assertEqual(delivery["shell_ref"], "G9-TABLET-SHELL-V1")
@@ -35,6 +28,15 @@ class WebBlueprintProjectionTests(unittest.TestCase):
         for core in core_template_contract.ROLE_ORDER:
             blueprint = core_template_contract.resolve_web_blueprint_for_core(core)
             self.assertIn(core, blueprint["core_roles"])
+
+    def test_committed_core_learning_data_matches_the_governed_generator(self):
+        path = REPO / "public/core-learning/data.js"
+        expected = build_core_learning_data.rendered_file()["public/core-learning/data.js"]
+        self.assertEqual(
+            path.read_bytes(),
+            expected,
+            "generated Core-learning data is stale; run python3 Shared/tools/build_manifest.py",
+        )
 
     def test_generated_projection_blueprint_is_invariant_across_subject_rows(self):
         path = REPO / "public/core-learning/data.js"

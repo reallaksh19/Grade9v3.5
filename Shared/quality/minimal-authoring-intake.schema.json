@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grade9v3.local/minimal-authoring-intake.schema.json",
+  "title": "Minimal authoring intake",
+  "description": "Owner-facing facts supplied or extracted from a short authoring request. Pedagogical decisions are intentionally absent because they belong to the agent/QRT workflow.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "subject", "grade", "topic", "questions"],
+  "properties": {
+    "schema": {"const": "minimal-authoring-intake/v1"},
+    "subject": {"enum": ["Physics", "Chemistry", "Mathematics"]},
+    "grade": {"type": "integer", "minimum": 9, "maximum": 11},
+    "topic": {"type": "string", "minLength": 1},
+    "purpose": {"enum": ["STARTER", "PRACTICE", "REVISION", "COMPETITION"]},
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "stem"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "stem": {"type": "string", "minLength": 1},
+          "source": {"type": "string", "minLength": 1},
+          "owner_notes": {"type": "string"}
+        }
+      }
+    },
+    "learner": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "profile_ref": {"type": "string", "minLength": 1},
+        "knowledge": {
+          "type": "object",
+          "additionalProperties": {"enum": ["DEMONSTRATED", "UNCERTAIN", "MISSING"]}
+        },
+        "support_posture": {"enum": ["SIMPLEST_FOUNDATION", "BRIDGE_FIRST", "STANDARD", "MINIMAL"]}
+      }
+    },
+    "special_constraints": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}

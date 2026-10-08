@@ -2,7 +2,7 @@
   "schema_version": "0.2.0",
   "package_id": "LIB-MATH-LINEAR-EQUATIONS",
   "title": "Linear equations in one unknown",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "status": "CANDIDATE",
   "subject": "Mathematics",
   "scope_summary": "One-unknown linear equations over the rationals, built around the distinction between an exact solution and its decimal approximation. Authored to exercise this repository's Mathematics adapter end to end; no curated acceptance is claimed.",
@@ -2304,8 +2304,8 @@
         {
           "id": "LEQ4-1",
           "role": "DECLARE",
-          "action": "Write the equation in the form ax + by + c = 0 and check that a and b are both non-zero.",
-          "why_valid": "That form with a ≠ 0 and b ≠ 0 is what makes it a linear equation in two variables.",
+          "action": "Write the equation in the form ax + by + c = 0 and check that a and b are not both zero.",
+          "why_valid": "Either individual coefficient may be zero. Both zero would yield an entire-plane identity or empty contradiction rather than a line.",
           "inputs": [],
           "output": "3x + 4y = 12 becomes 3x + 4y − 12 = 0, with a = 3, b = 4, c = −12."
         },
@@ -2390,7 +2390,7 @@
           "held_by": "ISSUE-MAT-LEQ-EXIT-ORACLE"
         }
       },
-      "research_contribution": "The Class IX Exemplar defines the form with a ≠ 0 and b ≠ 0, states that there are infinitely many solutions forming a straight-line graph, and supplies five keyed items; Ganita Manjari adds the line y = ax + b with its slope; the CBSE 2026-27 curriculum prescribes graphical representation of solutions.",
+      "research_contribution": "Authored line-boundary repair grounded in OpenStax Elementary Algebra 2e section 4.1: either single zero coefficient is allowed. Original source/evidence cards remain separately attributable; no board or source acceptance follows.",
       "prerequisite_refs": [
         "CAP-MAT-LEQ-01-SUBSTITUTION-CHECK",
         "CAP-MAT-LEQ-02-SAME-OPERATION-BOTH-SIDES"
@@ -2616,15 +2616,32 @@
     },
     {
       "id": "REL-MATH-EXACTNESS",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-MATH-AUTHOR"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9v3:academic_revision": {
+          "previous": {
+            "meaning": "Only the exact rational reproduces the statement without residue; every truncated decimal leaves one.",
+            "conditions": [
+              "Substituting a truncated decimal does not satisfy the statement exactly.",
+              "Rounding is a presentation choice made after the mathematics, never during it.",
+              "The residue may be small, but it is not zero."
+            ],
+            "checks": [
+              "A solution whose denominator has a prime factor other than 2 or 5 has no terminating decimal form."
+            ]
+          },
+          "status": "AUTHOR_REVIEW_NOT_INDEPENDENT_ACCEPTANCE",
+          "basis": "R4 REL-MATH-EXACTNESS: For a nonzero linear coefficient, the residual is a times the error in the candidate value. An exact terminating decimal is an exact rational too; only a changed value introduces a nonzero residual.",
+          "review_report_ref": "mathematics-proof-review.json"
+        }
+      },
       "expression": "x exact  =>  a*x + b = c holds exactly",
-      "meaning": "Only the exact rational reproduces the statement without residue; every truncated decimal leaves one.",
+      "meaning": "For a nonzero linear coefficient, the residual is a times the error in the candidate value. An exact terminating decimal is an exact rational too; only a changed value introduces a nonzero residual.",
       "symbols": [
         {
           "symbol": "x",
@@ -2638,9 +2655,9 @@
         }
       ],
       "conditions": [
-        "Substituting a truncated decimal does not satisfy the statement exactly.",
-        "Rounding is a presentation choice made after the mathematics, never during it.",
-        "The residue may be small, but it is not zero."
+        "The linear coefficient a is non-zero and all arithmetic is exact over the rationals.",
+        "The decimal approximation differs numerically from the exact solution.",
+        "Rounding is a presentation choice made after the mathematics, never during it."
       ],
       "derivation": [
         {
@@ -2653,10 +2670,10 @@
         },
         {
           "id": "DX-2",
-          "action": "Substitute a truncation and subtract the two sides.",
-          "why_valid": "The difference exhibits the residue directly.",
+          "action": "Substitute a decimal value different from the exact solution and subtract the two sides.",
+          "why_valid": "The residual a*(approximation - exact solution) is nonzero when a and the difference are nonzero.",
           "inputs": [],
-          "output": "A non-zero difference.",
+          "output": "A non-zero difference only when the candidate value has changed.",
           "role": "VERIFY"
         }
       ],
@@ -2664,7 +2681,7 @@
         "Concerns the value named, not the notation used to name it; 14/6 and 7/3 name the same number."
       ],
       "checks": [
-        "A solution whose denominator has a prime factor other than 2 or 5 has no terminating decimal form."
+        "For 2x = 1, x = 0.5 is exact and has zero residual; for 3x = 1, x = 0.333 has residual -0.001."
       ],
       "gate_relation_ref": "REL-EQ-EXACT-VERIFICATION"
     },
@@ -2890,7 +2907,7 @@
     },
     {
       "id": "REL-MAT-LEQ-03-REDUCTION",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-NCERT-8-LINEQ-ONE",
@@ -2907,28 +2924,40 @@
       "extensions": {
         "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-03",
         "grade9v3:authored_by": "agent-author-math-1",
-        "grade9v3:citations": {
-          "expression": [
-            "EV-MAT-09-LEQ-03-001",
-            "EV-MAT-09-LEQ-03-002"
-          ],
-          "meaning": [
-            "EV-MAT-09-LEQ-03-001",
-            "EV-MAT-09-LEQ-03-002",
-            "EV-MAT-09-LEQ-03-006"
-          ],
-          "conditions": [
-            "EV-MAT-09-LEQ-03-002",
-            "EV-MAT-09-LEQ-03-001",
-            "EV-MAT-09-LEQ-03-007"
-          ],
-          "derivation": [
-            "EV-MAT-09-LEQ-03-006"
-          ],
-          "limits": [
-            "EV-MAT-09-LEQ-03-003"
-          ],
-          "checks": "AUTHORED_PEDAGOGICAL"
+        "grade9v3:academic_revision": {
+          "previous": {
+            "conditions": [
+              "Every term inside a bracket is multiplied by the factor in front of it, sign included.",
+              "Both whole sides are multiplied by the LCM, including terms that have no denominator, even when fractions appear on one side only.",
+              "Like terms are combined within one side; terms cross the equality sign only by a balanced operation."
+            ]
+          },
+          "status": "AUTHOR_REVIEW_NOT_INDEPENDENT_ACCEPTANCE",
+          "previous_citations": {
+            "expression": [
+              "EV-MAT-09-LEQ-03-001",
+              "EV-MAT-09-LEQ-03-002"
+            ],
+            "meaning": [
+              "EV-MAT-09-LEQ-03-001",
+              "EV-MAT-09-LEQ-03-002",
+              "EV-MAT-09-LEQ-03-006"
+            ],
+            "conditions": [
+              "EV-MAT-09-LEQ-03-002",
+              "EV-MAT-09-LEQ-03-001",
+              "EV-MAT-09-LEQ-03-007"
+            ],
+            "derivation": [
+              "EV-MAT-09-LEQ-03-006"
+            ],
+            "limits": [
+              "EV-MAT-09-LEQ-03-003"
+            ],
+            "checks": "AUTHORED_PEDAGOGICAL"
+          },
+          "basis": "R4 REL-MAT-LEQ-03-REDUCTION: An equation is brought to a simpler form, without changing its solution, by opening brackets and combining like terms on both sides and by multiplying both sides by the LCM of the denominators of its terms.",
+          "review_report_ref": "mathematics-proof-review.json"
         }
       },
       "expression": "L = R  ⇔  m·L = m·R, where m is the LCM of the denominators of the terms; opening brackets and combining like terms rewrites each side as an equal expression",
@@ -2948,7 +2977,8 @@
       "conditions": [
         "Every term inside a bracket is multiplied by the factor in front of it, sign included.",
         "Both whole sides are multiplied by the LCM, including terms that have no denominator, even when fractions appear on one side only.",
-        "Like terms are combined within one side; terms cross the equality sign only by a balanced operation."
+        "Like terms are combined within one side; terms cross the equality sign only by a balanced operation.",
+        "Denominators are non-zero constant integers; the domain is declared before clearing them."
       ],
       "derivation": [
         {
@@ -2988,7 +3018,7 @@
     },
     {
       "id": "REL-MAT-LEQ-03-REDUCED-OUTCOMES",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-OPENSTAX-EA2E-2-4",
@@ -3003,27 +3033,42 @@
       "extensions": {
         "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-03",
         "grade9v3:authored_by": "agent-author-math-1",
-        "grade9v3:citations": {
-          "expression": [
-            "EV-MAT-09-LEQ-03-004",
-            "EV-MAT-09-LEQ-03-005"
-          ],
-          "meaning": [
-            "EV-MAT-09-LEQ-03-004",
-            "EV-MAT-09-LEQ-03-005"
-          ],
-          "conditions": [
-            "EV-MAT-09-LEQ-03-004",
-            "EV-MAT-09-LEQ-03-005",
-            "EV-MAT-09-LEQ-01-004"
-          ],
-          "derivation": "AUTHORED_PEDAGOGICAL",
-          "limits": "AUTHORED_PEDAGOGICAL",
-          "checks": "AUTHORED_PEDAGOGICAL"
+        "grade9v3:academic_revision": {
+          "previous": {
+            "meaning": "An equation that is false for all values of the variable has no solution and is called a contradiction; one that is true for any value is an identity, and its solution is all real numbers.",
+            "conditions": [
+              "The variable terms on the two sides cancel completely during reduction.",
+              "The verdict is read from the variable-free statement that remains, not from a value of x."
+            ],
+            "limits": [
+              "This outcome occurs only when the variable cancels; otherwise one value results."
+            ]
+          },
+          "status": "AUTHOR_REVIEW_NOT_INDEPENDENT_ACCEPTANCE",
+          "previous_citations": {
+            "expression": [
+              "EV-MAT-09-LEQ-03-004",
+              "EV-MAT-09-LEQ-03-005"
+            ],
+            "meaning": [
+              "EV-MAT-09-LEQ-03-004",
+              "EV-MAT-09-LEQ-03-005"
+            ],
+            "conditions": [
+              "EV-MAT-09-LEQ-03-004",
+              "EV-MAT-09-LEQ-03-005",
+              "EV-MAT-09-LEQ-01-004"
+            ],
+            "derivation": "AUTHORED_PEDAGOGICAL",
+            "limits": "AUTHORED_PEDAGOGICAL",
+            "checks": "AUTHORED_PEDAGOGICAL"
+          },
+          "basis": "R4 REL-MAT-LEQ-03-REDUCED-OUTCOMES: After reversible reduction, a false constant equality has no admissible solutions; a true constant equality admits every value in the declared domain.",
+          "review_report_ref": "mathematics-proof-review.json"
         }
       },
       "expression": "If reducing removes the variable: a false statement (e.g. 6 = 5) ⇒ no solution (contradiction); a true statement (e.g. 6 = 6) ⇒ every value is a solution (identity)",
-      "meaning": "An equation that is false for all values of the variable has no solution and is called a contradiction; one that is true for any value is an identity, and its solution is all real numbers.",
+      "meaning": "After reversible reduction, a false constant equality has no admissible solutions; a true constant equality admits every value in the declared domain.",
       "symbols": [
         {
           "symbol": "p = q",
@@ -3033,7 +3078,8 @@
       ],
       "conditions": [
         "The variable terms on the two sides cancel completely during reduction.",
-        "The verdict is read from the variable-free statement that remains, not from a value of x."
+        "The verdict is read from the variable-free statement that remains, not from a value of x.",
+        "Every reduction preserves the original admissible domain and solution set."
       ],
       "derivation": [
         {
@@ -3062,7 +3108,7 @@
         }
       ],
       "limits": [
-        "This outcome occurs only when the variable cancels; otherwise one value results."
+        "An identity admits every value of the declared domain, which need not be all real numbers."
       ],
       "checks": [
         "Try two different values in the original equation: for an identity both work, for a contradiction neither does."
@@ -3071,7 +3117,7 @@
     },
     {
       "id": "REL-MAT-LEQ-04-TWO-VARIABLE-FORM",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-NCERT-EXEMPLAR-9-LINEQ-TWO",
@@ -3090,30 +3136,47 @@
       "extensions": {
         "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-04",
         "grade9v3:authored_by": "agent-author-math-1",
-        "grade9v3:citations": {
-          "expression": [
-            "EV-MAT-09-LEQ-04-001",
-            "EV-MAT-09-LEQ-04-005"
-          ],
-          "meaning": [
-            "EV-MAT-09-LEQ-04-002",
-            "EV-MAT-09-LEQ-04-003"
-          ],
-          "conditions": [
-            "EV-MAT-09-LEQ-04-001",
-            "EV-MAT-09-LEQ-04-005",
-            "EV-MAT-09-LEQ-04-017"
-          ],
-          "derivation": [
-            "EV-MAT-09-LEQ-04-006"
-          ],
-          "limits": [
-            "EV-MAT-09-LEQ-04-007"
-          ],
-          "checks": "AUTHORED_PEDAGOGICAL"
+        "grade9v3:academic_revision": {
+          "previous": {
+            "expression": "ax + by + c = 0, where a, b, c are real numbers, a ≠ 0 and b ≠ 0; a solution is a pair (x₀, y₀) with ax₀ + by₀ + c = 0",
+            "conditions": [
+              "a and b are both non-zero; otherwise the statement is not a linear equation in two variables in this sense.",
+              "a, b and c are real numbers.",
+              "Solutions are pairs of values located on the Cartesian plane; read on a number line, an equation in one variable has a single solution instead."
+            ],
+            "checks": [
+              "Substitute both coordinates of a pair, each in its own place.",
+              "Two found pairs and a third between them on the line must all satisfy the equation."
+            ]
+          },
+          "status": "AUTHOR_REVIEW_NOT_INDEPENDENT_ACCEPTANCE",
+          "previous_citations": {
+            "expression": [
+              "EV-MAT-09-LEQ-04-001",
+              "EV-MAT-09-LEQ-04-005"
+            ],
+            "meaning": [
+              "EV-MAT-09-LEQ-04-002",
+              "EV-MAT-09-LEQ-04-003"
+            ],
+            "conditions": [
+              "EV-MAT-09-LEQ-04-001",
+              "EV-MAT-09-LEQ-04-005",
+              "EV-MAT-09-LEQ-04-017"
+            ],
+            "derivation": [
+              "EV-MAT-09-LEQ-04-006"
+            ],
+            "limits": [
+              "EV-MAT-09-LEQ-04-007"
+            ],
+            "checks": "AUTHORED_PEDAGOGICAL"
+          },
+          "basis": "R4 REL-MAT-LEQ-04-TWO-VARIABLE-FORM: A linear equation in two variables has infinitely many solutions; its graph is a straight line, and every point on that line represents a solution.",
+          "review_report_ref": "mathematics-proof-review.json"
         }
       },
-      "expression": "ax + by + c = 0, where a, b, c are real numbers, a ≠ 0 and b ≠ 0; a solution is a pair (x₀, y₀) with ax₀ + by₀ + c = 0",
+      "expression": "ax + by + c = 0, where a, b, c are real numbers and a and b are not both zero; a solution is a pair (x₀, y₀) with ax₀ + by₀ + c = 0",
       "meaning": "A linear equation in two variables has infinitely many solutions; its graph is a straight line, and every point on that line represents a solution.",
       "symbols": [
         {
@@ -3124,7 +3187,7 @@
         {
           "symbol": "a, b",
           "meaning": "The coefficients of x and y",
-          "unit_or_domain": "non-zero real numbers"
+          "unit_or_domain": "real numbers, not both zero"
         },
         {
           "symbol": "c",
@@ -3138,9 +3201,9 @@
         }
       ],
       "conditions": [
-        "a and b are both non-zero; otherwise the statement is not a linear equation in two variables in this sense.",
+        "a and b are not both zero; either individual coefficient may be zero.",
         "a, b and c are real numbers.",
-        "Solutions are pairs of values located on the Cartesian plane; read on a number line, an equation in one variable has a single solution instead."
+        "The graph claim uses the real Cartesian plane and ordered real pairs."
       ],
       "derivation": [
         {
@@ -3170,10 +3233,10 @@
         {
           "id": "R04-D4",
           "role": "VERIFY",
-          "action": "Observe that every choice of one value yields a matching value of the other.",
-          "why_valid": "b ≠ 0 lets y be found for any x, so solutions never run out.",
+          "action": "Split the general claim by whether b is zero.",
+          "why_valid": "For b != 0 solve y for each x; otherwise a != 0 fixes x and leaves y arbitrary.",
           "inputs": [],
-          "output": "infinitely many pairs, all on one straight line"
+          "output": "A nonvertical or vertical straight line with infinitely many real pairs."
         }
       ],
       "limits": [
@@ -3181,14 +3244,15 @@
         "The relation says nothing about solving two such equations together; that is outside this microtopic."
       ],
       "checks": [
-        "Substitute both coordinates of a pair, each in its own place.",
-        "Two found pairs and a third between them on the line must all satisfy the equation."
+        "If b = 0 and a != 0, x = -c/a with arbitrary real y is a vertical line.",
+        "If a = 0 and b != 0, y = -c/b with arbitrary real x is a horizontal line.",
+        "If a = b = 0, the constant equality is either the entire plane or empty, not a line."
       ],
       "gate_relation_ref": "REL-MAT-LEQ-04-TWO-VARIABLE-FORM"
     },
     {
       "id": "REL-MAT-LEQ-04-STRAIGHT-LINE",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "status": "CANDIDATE",
       "source_refs": [
         "SRC-NCERT-9-LINEAR-POLYNOMIALS",
@@ -3200,23 +3264,35 @@
       "extensions": {
         "grade9v3:research_node": "MAT-09-LINEAR-EQUATIONS-04",
         "grade9v3:authored_by": "agent-author-math-1",
-        "grade9v3:citations": {
-          "expression": [
-            "EV-MAT-09-LEQ-04-004"
-          ],
-          "meaning": [
-            "EV-MAT-09-LEQ-04-004"
-          ],
-          "conditions": [
-            "EV-MAT-09-LEQ-04-004"
-          ],
-          "derivation": "AUTHORED_PEDAGOGICAL",
-          "limits": "AUTHORED_PEDAGOGICAL",
-          "checks": "AUTHORED_PEDAGOGICAL"
+        "grade9v3:academic_revision": {
+          "previous": {
+            "meaning": "A linear relationship between two variables x and y is represented by a straight line y = ax + b, and the slope of this line is a.",
+            "conditions": [
+              "x and y are linearly related.",
+              "The letters a and b here name slope and constant; they differ from the a and b of ax + by + c = 0."
+            ]
+          },
+          "status": "AUTHOR_REVIEW_NOT_INDEPENDENT_ACCEPTANCE",
+          "previous_citations": {
+            "expression": [
+              "EV-MAT-09-LEQ-04-004"
+            ],
+            "meaning": [
+              "EV-MAT-09-LEQ-04-004"
+            ],
+            "conditions": [
+              "EV-MAT-09-LEQ-04-004"
+            ],
+            "derivation": "AUTHORED_PEDAGOGICAL",
+            "limits": "AUTHORED_PEDAGOGICAL",
+            "checks": "AUTHORED_PEDAGOGICAL"
+          },
+          "basis": "R4 REL-MAT-LEQ-04-STRAIGHT-LINE: The form y = ax + b describes every nonvertical line in the real Cartesian plane, including horizontal lines with a = 0. A vertical line x = k has no slope in this form.",
+          "review_report_ref": "mathematics-proof-review.json"
         }
       },
       "expression": "y = ax + b (a straight line with slope a)",
-      "meaning": "A linear relationship between two variables x and y is represented by a straight line y = ax + b, and the slope of this line is a.",
+      "meaning": "The form y = ax + b describes every nonvertical line in the real Cartesian plane, including horizontal lines with a = 0. A vertical line x = k has no slope in this form.",
       "symbols": [
         {
           "symbol": "a",
@@ -3230,7 +3306,8 @@
         }
       ],
       "conditions": [
-        "x and y are linearly related.",
+        "x and y are real coordinates in the Cartesian plane.",
+        "The line is nonvertical; the coefficient of y in the general form is non-zero.",
         "The letters a and b here name slope and constant; they differ from the a and b of ax + by + c = 0."
       ],
       "derivation": [
@@ -9383,7 +9460,8 @@
   ],
   "extensions": {
     "mathematics:domain_regime": "RATIONAL_EXACT",
-    "library:local_question_banks": []
+    "library:local_question_banks": [],
+    "grade9v3:academic_review_report": "evidence/blueprint-cycles/closure-r4-20261005/mathematics-proof-review.json"
   },
   "application_contexts": []
 }

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QRT interactive Chromium smoke</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 18px/1.5 system-ui, sans-serif; }
+    main { max-width: 760px; margin: 0 auto; padding: 24px; }
+    button { min-width: 120px; min-height: 48px; font: inherit; }
+    button:focus { outline: 3px solid currentColor; outline-offset: 3px; }
+    .state { min-height: 48px; padding: 12px 0; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Interactive smoke witness</h1>
+    <p>This local page exists only to prove the mandatory Chromium audit can launch and measure an interactive learner surface.</p>
+    <button id="toggle" type="button" aria-controls="state">Change state</button>
+    <p class="state" id="state" aria-live="polite">Initial state</p>
+  </main>
+  <script>
+    const button = document.getElementById('toggle');
+    const state = document.getElementById('state');
+    button.addEventListener('click', () => {
+      state.textContent = state.textContent === 'Initial state' ? 'Changed state' : 'Initial state';
+    });
+  </script>
+</body>
+</html>

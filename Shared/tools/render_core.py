@@ -34,13 +34,13 @@ import subprocess
 from functools import lru_cache
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, urljoin
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import core2_v2, learner_metadata, owner_bank, product_coverage, product_manifest, toughest_concept  # noqa: E402
+from Shared.tools import core2_v2, learner_metadata, owner_bank, product_coverage, product_manifest, toughest_concept, learning_repair  # noqa: E402
 from Shared.tools import web_blueprint_contract as blueprints_api  # noqa: E402
 
 BLUEPRINTS = REPO / "Shared/web/interactive-page-blueprints.v1.json"
@@ -165,6 +165,29 @@ def _scope_svg_ids(svg: str, scope: str) -> str:
     return out
 
 
+def _parsed_svg_stage_ids(svg: str) -> list[str]:
+    """Validate a staged SVG and read its stage groups irrespective of attribute quoting.
+
+    Refuse malformed markup, non-<g> stage markers and duplicate stage IDs.
+    Rendering must never fall back to mounting an entire staged asset when a
+    protected stage cannot be identified.
+    """
+    root = ET.fromstring(svg)
+    if root.tag.rsplit("}", 1)[-1] != "svg":
+        raise ValueError("staged asset root must be <svg>")
+    ids: list[str] = []
+    for element in root.iter():
+        if "data-g9-stage-id" not in element.attrib:
+            continue
+        if element.tag.rsplit("}", 1)[-1] != "g":
+            raise ValueError("stage marker must belong to a <g> group")
+        stage_id = element.attrib["data-g9-stage-id"]
+        if not stage_id or stage_id in ids:
+            raise ValueError("empty or duplicated SVG stage ID")
+        ids.append(stage_id)
+    return ids
+
+
 def _number(value: str | None, default: float | None = None) -> float | None:
     found = re.match(r"\s*(-?\d+(?:\.\d+)?)", value or "")
     return float(found.group(1)) if found else default
@@ -227,9 +250,14 @@ def _figure_column_px(ctx: Ctx, role: str) -> tuple[float, float] | None:
 
 
 def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, first_stage_only: bool = False,
-           allowed: list[str] | None = None) -> str:
+           allowed: list[str] | None = None, instance_ref: str | None = None,
+           owner_ref: str | None = None) -> str:
     """Mount a representation's authored SVG, or record the gap (never a stand-in)."""
     if not rep_id:
+        return ""
+    # An explicit empty list means no pre-solution stages are authorized.
+    # Do not reinterpret it as the legacy "first stage" default.
+    if allowed is not None and not allowed:
         return ""
     rep = ctx.index("representations").get(rep_id)
     source_resource = None
@@ -247,7 +275,19 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
     if rep is None:
         ctx.gap("MOUNT_REPRESENTATION", record, f"{rep_id} is not a representation in the product's packages", role)
         return ""
-    svg = next((s for s in (asset_svg(a) for a in rep.get("rendered_asset_refs") or []) if s), None)
+    case = None
+    if instance_ref is not None:
+        case = next((item for item in rep.get("scene_instances", []) if item["id"] == instance_ref), None)
+        if (source_resource or rep.get("kind") == "SOURCE_FIGURE" or not case
+                or case.get("question_ref") != (owner_ref or record)
+                or role not in case.get("cores", []) or not case.get("asset_ref")):
+            ctx.gap("MOUNT_REPRESENTATION", record, "selected case must bind this question, role and authored asset", role)
+            return ""
+        if not case.get("datum_refs") or any(ref not in ctx.index("data") for ref in case["datum_refs"]):
+            ctx.gap("BUILD_SCENE", record, "selected case refers to absent data records", role)
+            return ""
+    assets = [case["asset_ref"]] if case else rep.get("rendered_asset_refs") or []
+    svg = next((s for s in (asset_svg(a) for a in assets) if s), None)
     if svg is None:
         ctx.gap("BUILD_SCENE", rep_id, "no authored SVG asset (rendered_asset_refs) to mount", role)
         return ""
@@ -266,7 +306,28 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
     instance_no = ctx.figure_instances.get(instance_base, 0) + 1
     ctx.figure_instances[instance_base] = instance_no
     svg = _scope_svg_ids(svg, f"g9fig-{instance_base}-{instance_no}")
-    stage_ids = re.findall(r'data-g9-stage-id="([^"]+)"', svg)
+    # An SVG that actually declares stage markers is an access-control
+    # boundary. Catalogue reveal_stages may include labels for different scene
+    # assets or legacy unstaged figures; metadata alone must not reinterpret
+    # a fully visible historical figure as an invalid staged asset.
+    # Parse marked SVG as XML before deciding which stages exist.
+    if stage == "PRE_ATTEMPT" and "data-g9-stage-id" in svg:
+        try:
+            stage_ids = _parsed_svg_stage_ids(svg)
+        except (ET.ParseError, ValueError) as exc:
+            ctx.gap("BUILD_SCENE", record, f"{rep_id}: unsafe staged SVG ({exc})", role)
+            return ""
+        # A representation's catalogued reveal stages can span multiple bound
+        # scene assets; only the selected asset and explicit allowed IDs govern
+        # this attempt. Never assume every catalogue stage is on every asset.
+        if not stage_ids:
+            ctx.gap("BUILD_SCENE", record, f"{rep_id}: staged asset has no parseable stage groups", role)
+            return ""
+    else:
+        stage_ids = re.findall(r'data-g9-stage-id="([^"]+)"', svg)
+    if allowed is not None and any(sid not in stage_ids for sid in allowed):
+        ctx.gap("BUILD_SCENE", record, "authorized visual stage is absent from asset", role)
+        return ""
     # Before an attempt only permitted stages show: the record's stage_refs, else the first stage.
     if stage == "PRE_ATTEMPT" and not allowed:
         first_stage_only = True
@@ -296,57 +357,97 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
                    f'{esc("; ".join(labels[s] for s in shown if labels.get(s)))}</figcaption>')
     else:
         caption = (f'<figcaption data-g9-block="representation_bridge" data-g9-caption="purpose">'
-                   f'{esc(rep.get("purpose", ""))}</figcaption>')
+                   f'{esc(case["scene"]["caption"] if case else rep.get("purpose", ""))}</figcaption>')
     if source_resource:
         caption = f'<figcaption data-g9-source-caption>{esc(source_resource.get("caption", ""))}</figcaption>'
-    if withheld:
+    if withheld or (stage == "PRE_ATTEMPT" and stage_ids):
+        # Even a single permitted stage can carry an answer-bearing root SVG
+        # aria-label/title/desc. Scrub staged pre-attempt metadata whether or
+        # not there are any groups to withhold.
         # A withheld stage is not in the page at all (hiding it with CSS still hands it to the DOM,
         # the hover tooltip and screen readers). The asset's own <title>/<desc> describe the whole
         # figure, so they go too; the accessible name is the shown stages' labels from the record.
-        svg = _without_stages(svg, set(withheld))
+        redacted = _without_stages(svg, set(withheld))
+        if stage == "PRE_ATTEMPT":
+            try:
+                remaining = _parsed_svg_stage_ids(redacted)
+            except (ET.ParseError, ValueError) as exc:
+                ctx.gap("BUILD_SCENE", record, f"{rep_id}: stage redaction failed ({exc})", role)
+                return ""
+            if remaining != shown:
+                ctx.gap("BUILD_SCENE", record, f"{rep_id}: protected SVG stage survived redaction", role)
+                return ""
+        svg = redacted
         svg = re.sub(r"<(title|desc)\b[^>]*>.*?</\1>", "", svg, flags=re.S)
         head = re.search(r"<svg\b[^>]*>", svg)
         if head:                                       # the name comes from the shown stages below
-            clean = re.sub(r'\s(role|aria-label|aria-labelledby|aria-describedby)="[^"]*"', "", head.group(0))
+            clean = re.sub(
+                r"""\s(?:role|aria-label|aria-labelledby|aria-describedby)\s*=\s*(["']).*?\1""",
+                "", head.group(0), flags=re.I | re.S,
+            )
             svg = svg[:head.start()] + clean + svg[head.end():]
-        name = "; ".join(labels[s] for s in shown if labels.get(s)) or rep.get("purpose", "")
+        visible_name = "; ".join(labels[s] for s in shown if labels.get(s))
+        # An author purpose may disclose the protected result (W). Never use it as
+        # the pre-attempt accessible fallback, even after SVG title/desc removal.
+        name = visible_name or ("Diagram showing the available stage" if stage == "PRE_ATTEMPT"
+                                else rep.get("purpose", ""))
         svg = re.sub(r"<svg\b", f'<svg role="img" aria-label="{esc(name)}"', svg, count=1)
-    sequence_attr = ' data-g9-stage-sequence="true"' if len(stage_ids) > 1 else ""
-    return (f'<figure data-g9-figure data-g9-fig="{esc(record)}-{esc(rep_id)}" data-g9-stage="{stage}" '
-            f'data-g9-representation="{esc(rep_id)}" data-g9-kind="{esc(kind)}" data-reveal-stages="{max(len(shown), 1)}" '
-            f'data-g9-stages-total="{max(len(stage_ids), 1)}" data-g9-stages="{esc(" ".join(shown))}"{sequence_attr}>'
-            f'{svg}{controls}{caption}</figure>')
+    stage_mode = str((rep.get("extensions") or {}).get("grade9v3:stage_mode") or "CUMULATIVE").upper()
+    if stage_mode not in {"CUMULATIVE", "REPLACE"}:
+        ctx.gap("AUTHOR_STAGE_MODE", rep_id,
+                f"unsupported grade9v3:stage_mode {stage_mode!r}; use CUMULATIVE or REPLACE",
+                role, component="STAGED_VISUAL" if role == "CORE1A" else "REPRESENTATION")
+        stage_mode = "CUMULATIVE"
+    mode_attr = f' data-g9-stage-mode="{stage_mode.lower()}"' if len(stage_ids) > 1 else ""
+    bp = blueprint_of(ctx, role) or {}
+    text_floor = ((bp.get('responsive_policy') or {}).get('tablet_12_7') or {}).get('figure_min_text_css_px',
+                  ((ctx.blueprints.get('shell') or {}).get('typography_policy') or {}).get('minimum_learner_text_css_px',14))
+    case_attrs = (f' data-g9-case-instance="{esc(case["id"])}"'
+                  f' data-g9-case-owner="{esc(case["question_ref"])}"'
+                  f' data-g9-case-data="{esc(" ".join(case["datum_refs"]))}"') if case else ""
+    return (f'<figure data-g9-figure data-g9-fig="{esc(record)}-{esc(rep_id)}" data-g9-stage="{stage}"{case_attrs} '
+            f'data-g9-representation="{esc(rep_id)}" data-g9-kind="{esc(kind)}" data-g9-min-figure-text="{esc(text_floor)}" data-reveal-stages="{max(len(shown), 1)}" '
+            f'data-g9-stages-total="{max(len(stage_ids), 1)}" data-g9-stages="{esc(" ".join(shown))}"{mode_attr}>'
+            f'<div class="g9-diagram-scroll" tabindex="0" role="region" aria-label="Diagram; scroll horizontally when enlarged">{svg}</div>{controls}{caption}</figure>')
 
 
 def _without_stages(svg: str, withheld: set[str]) -> str:
-    """Remove each <g data-g9-stage-id="…"> element whose stage is withheld, with everything inside it."""
-    out, i = [], 0
-    opener = re.compile(r'<g\b[^>]*\bdata-g9-stage-id="([^"]+)"[^>]*>')
-    while True:
-        m = opener.search(svg, i)
-        if not m:
-            out.append(svg[i:])
-            return "".join(out)
-        if m.group(1) not in withheld:
-            out.append(svg[i:m.end()])
-            i = m.end()
+    """Remove withheld <g> subtrees without serializing or changing other SVG bytes.
+
+    The caller validates well-formed XML first and re-parses the result to
+    confirm that exactly the authorized stage IDs remain. The tag scanner
+    accepts either XML attribute quote style and nested <g> elements.
+    """
+    g_tag = re.compile(r"""</?g\b(?:[^'">]|"[^"]*"|'[^']*')*>""", re.I | re.S)
+    stage_attribute = re.compile(r""" \bdata-g9-stage-id\s*=\s*(["'])(.*?)\1""".strip(), re.I | re.S)
+    output: list[str] = []
+    cursor = 0
+    skip_depth = 0
+    for match in g_tag.finditer(svg):
+        tag = match.group(0)
+        closing = tag.startswith("</")
+        self_closing = tag.rstrip().endswith("/>")
+        if skip_depth:
+            if closing:
+                skip_depth -= 1
+            elif not self_closing:
+                skip_depth += 1
+            if skip_depth == 0:
+                cursor = match.end()
             continue
-        out.append(svg[i:m.start()])
-        if m.group(0).endswith("/>"):                  # an empty withheld group
-            i = m.end()
+        if closing:
             continue
-        depth, j = 1, m.end()
-        tags = re.compile(r"<g\b[^>]*?(/?)>|</g\s*>")
-        while depth:
-            t = tags.search(svg, j)
-            if t is None:                      # malformed asset: drop the rest rather than leak it
-                return "".join(out)
-            if t.group(0).startswith("</"):
-                depth -= 1
-            elif not t.group(1):
-                depth += 1
-            j = t.end()
-        i = j
+        marker = stage_attribute.search(tag)
+        if marker and html.unescape(marker.group(2)) in withheld:
+            output.append(svg[cursor:match.start()])
+            if self_closing:
+                cursor = match.end()
+            else:
+                skip_depth = 1
+    if skip_depth:
+        return ""  # malformed containment; caller records a BUILD_SCENE gap
+    output.append(svg[cursor:])
+    return "".join(output)
 
 
 # ------------------------------------------------------------------ small html helpers
@@ -360,6 +461,14 @@ def block(name: str, body: str, tag: str = "div", title: str | None = None) -> s
 
 def para(text) -> str:
     return f"<p>{esc(text)}</p>" if text else ""
+
+
+def secondary_disclosure(summary: str, body: str, kind: str) -> str:
+    """Progressive disclosure for useful-but-secondary learner material; closed by default."""
+    if not body:
+        return ""
+    return (f'<details class="g9-secondary-disclosure" data-g9-secondary="{esc(kind)}">'
+            f'<summary>{esc(summary)}</summary><div class="g9-secondary-body">{body}</div></details>')
 
 
 @lru_cache(maxsize=1024)
@@ -768,6 +877,68 @@ def _coverage_findings(ctx: Ctx, roles: list[str]) -> None:
             ctx.advise(policy["component"], finding["record"], finding["detail"], finding["core"])
 
 
+PURPOSE_DELIVERY_KEY = "grade9v3:purpose_delivery"
+
+
+def _purpose_delivery_spec(ctx: Ctx) -> tuple[str, list[dict]]:
+    """Return the manifest-selected purpose and authored delivery specs from package extensions."""
+    purpose = str(ctx.manifest.get("purpose") or "").upper()
+    if purpose not in {"REVISION", "COMPETITION"}:
+        return purpose, []
+    specs: list[dict] = []
+    for package in ctx.packages:
+        delivery = ((package.get("extensions") or {}).get(PURPOSE_DELIVERY_KEY) or {})
+        spec = delivery.get(purpose)
+        if isinstance(spec, dict):
+            specs.append(spec)
+    return purpose, specs
+
+
+def _purpose_extension(ctx: Ctx, role: str, record_id: str) -> str:
+    """Project a purpose-specific challenge beside the exact concept/question it extends."""
+    purpose, specs = _purpose_delivery_spec(ctx)
+    if not specs:
+        return ""
+    ref_key = "concept_refs" if role == "CORE1A" else "question_refs" if role == "CORE2" else None
+    if ref_key is None:
+        return ""
+    rendered: list[str] = []
+    for spec in specs:
+        section_title = str(spec.get("section_title") or ("Next-level revision" if purpose == "REVISION" else "Competition transfer"))
+        for item in spec.get("items") or []:
+            if not isinstance(item, dict) or role not in (item.get("roles") or []):
+                continue
+            if record_id not in (item.get(ref_key) or []):
+                continue
+            item_id = str(item.get("id") or "")
+            prompt = str(item.get("prompt") or "")
+            if not item_id or not prompt:
+                continue
+            source_kind = str(item.get("source_kind") or "")
+            source_label = str(item.get("source_label") or "")
+            if source_kind == "AUTHOR_CREATED_COMPETITION_STYLE":
+                provenance = source_label or "Original competition-style transfer; not a past-paper claim."
+            elif source_kind == "VERIFIED_COMPETITIVE_SOURCE":
+                provenance = source_label or "Verified competitive source"
+            else:
+                provenance = source_label or "Authored transfer"
+            answer = item.get("answer") or {}
+            answer_body = para(answer.get("summary")) + items(answer.get("reasoning"), True)
+            response = item.get("response") if isinstance(item.get("response"), dict) else {"type": "free_response", "paper_ok": True}
+            rendered.append(
+                f'<section class="g9-purpose-extension" data-g9-purpose-delivery="{esc(purpose)}" '
+                f'data-g9-purpose-item="{esc(item_id)}" data-g9-purpose-role="{esc(role)}">'
+                f'<div class="g9-eyebrow">{esc(section_title)}</div>'
+                f'<h3>{esc(item.get("title") or section_title)}</h3>'
+                f'<p class="g9-purpose-source">{esc(provenance)}</p>'
+                f'<div class="g9-purpose-prompt">{para(prompt)}</div>'
+                + attempt_box("Your attempt", response, record=item_id)
+                + reveal("Check your reasoning", answer_body, ref=f"PURPOSE-{item_id}-{role}")
+                + '</section>'
+            )
+    return "".join(rendered)
+
+
 # ------------------------------------------------------------------ roles
 
 def _relations(ctx: Ctx, m: dict) -> list[dict]:
@@ -930,7 +1101,7 @@ def _core1a_bucket_orientation(ctx: Ctx) -> str:
             f'<div class="g9-bucket-orientation-grid"><div>{primary}</div><aside>{companion}</aside></div>'
             f'</section>'
         )
-    return "".join(rendered)
+    return secondary_disclosure("Contents and concept route", "".join(rendered), "core1a-contents")
 
 
 def _core1a_section_route(m: dict) -> str:
@@ -1038,7 +1209,8 @@ def _core1a_practice_navigation(ctx: Ctx, m: dict) -> str:
 def _core1a_interactive_bridge(ctx: Ctx, m: dict) -> str:
     """Conditionally render contextual interactive bridge if an eligible explorer is registered for this concept."""
     concept_id = m.get("id")
-    if not concept_id:
+    portal_root = _portal_root(ctx.manifest, "PAGES")
+    if not concept_id or not portal_root:
         return ""
     try:
         from Shared.tools.resolve_concept_bundle import resolve_bundle
@@ -1055,7 +1227,7 @@ def _core1a_interactive_bridge(ctx: Ctx, m: dict) -> str:
         for it in interactives:
             ep = it.get("entrypoint", "")
             title = it.get("title", "Interactive Explorer")
-            rel_href = f"../../../{ep}"
+            rel_href = _portal_href(portal_root, ep)
             cards.append(
                 f'<aside class="g9-interactive-bridge" data-g9-interactive-bridge>'
                 f'<span class="g9-pill g9-pill-interactive">Try Visually</span>'
@@ -1073,7 +1245,8 @@ def _core1a_interactive_bridge(ctx: Ctx, m: dict) -> str:
 def _core1a_learning_transitions(ctx: Ctx, m: dict) -> str:
     """Render derived transitions connecting Learn to Practice, Interactive, and Question Bank."""
     concept_id = m.get("id")
-    if not concept_id:
+    portal_root = _portal_root(ctx.manifest, "PAGES")
+    if not concept_id or not portal_root:
         return ""
     chips = []
     if "CORE2" in product_manifest.selected_output_roles(ctx.manifest):
@@ -1120,14 +1293,25 @@ def _core1a_worked_anchor(question: dict, ctx: Ctx | None = None, owner: bool = 
     if route:
         steps = "".join(
             f'<li data-g9-watch-step data-g9-move-ref="{esc(row.get("id", index))}">'
-            f'<strong>{esc(row.get("action", ""))}</strong>'
+            f'<div class="g9-worked-step-body"><strong>{esc(row.get("action", ""))}</strong>'
             f'{para("Why valid: " + row["why_valid"]) if row.get("why_valid") else ""}'
-            f'{para("Result: " + row["output"]) if row.get("output") else ""}</li>'
+            f'{para("Result: " + row["output"]) if row.get("output") else ""}</div></li>'
             for index, row in enumerate(route, 1)
         )
-        working = f'<ol class="g9-watch-steps">{steps}</ol>'
+        working = ('<p class="g9-worked-instruction">Follow the operation, its justification and its result.</p>'
+                   f'<ol class="g9-watch-steps">{steps}</ol>')
     else:
-        working = items(answer.get("reasoning"), True)
+        legacy = [str(step) for step in answer.get("reasoning") or [] if str(step).strip()]
+        if legacy:
+            steps = "".join(
+                f'<li data-g9-watch-step>'
+                f'<div class="g9-worked-step-body">{para(step)}</div></li>'
+                for index, step in enumerate(legacy, 1)
+            )
+            working = ('<p class="g9-worked-instruction">Follow the operation, its justification and its result.</p>'
+                       f'<ol class="g9-watch-steps">{steps}</ol>')
+        else:
+            working = ""
     stem = question.get("stem")
     head = (f'<p class="g9-prov" data-g9-anchor-source>{esc(_identity(question))} · {esc(_custody(question))}</p>'
             if owner else "")
@@ -1213,13 +1397,20 @@ def _core1a_path_bridge(ctx: Ctx, m: dict, steps: dict[str, dict]) -> tuple[str,
         + "</section>"
     )
     wrong = _misconceptions(m, None)
-    support = (
-        f'<section class="g9-cu-support" data-g9-support-for="{esc(m["id"])}">'
-        f'<h3>{esc(m["title"])}</h3>'
-        + block("wrong_path", items(row["wrong_idea"] for row in wrong), title="A tempting wrong path")
+    trap = (
+        block("wrong_path", items(row["wrong_idea"] for row in wrong), title="A tempting wrong path")
         + block("diagnose", items(row["diagnostic_prompt"] for row in wrong), title="Diagnose")
         + block("repair", items(row["repair"] for row in wrong), title="Repair")
-        + "</section>"
+    )
+    trap_component = component(
+        ctx, "CORE1A", "TRAP_REPAIR",
+        secondary_disclosure("Mistake clinic · diagnose and repair", trap, "core1a-trap-repair"),
+        m["id"], items=len(wrong), waivers=blueprints_api.waivers_of(m),
+    )
+    support = (
+        f'<section class="g9-cu-support" data-g9-support-for="{esc(m["id"])}">'
+        f'<h3>{esc(m["title"])}</h3>{trap_component}</section>'
+        if trap_component else ""
     )
     return primary, support
 
@@ -1228,13 +1419,15 @@ _TRIAD_ROLE = {"CHECK": "Check", "APPLY": "Apply", "CONNECT": "Connect"}
 
 
 def _quick_check(checks: list[dict]) -> str:
-    """The unit's independent checks as the 1-2-3 quick check: each item carries the job it does when it declares one."""
+    """Render whichever intermediate checks are actually authored; role labels are optional metadata."""
     rows = "".join(
         f'<li data-g9-triad-role="{esc(c.get("role") or "")}"><span class="g9-triad-head">'
         f'{n} · {esc(_TRIAD_ROLE.get(c.get("role") or "", "Check"))}</span>'
         f'<span class="g9-triad-text">{esc(c["statement"])}</span></li>'
-        for n, c in enumerate(checks, 1))
-    return block("independent_check", f'<ol class="g9-triad">{rows}</ol>' if rows else "", title="1-2-3 quick check")
+        for n, c in enumerate(checks, 1)
+    )
+    # Keep the legacy CSS hook for compatible styling; it no longer implies three items.
+    return block("independent_check", f'<ol class="g9-triad">{rows}</ol>' if rows else "", title="Quick check")
 
 
 def _stages_of(figure_html: str) -> int:
@@ -1258,19 +1451,20 @@ def core1a(ctx: Ctx, m: dict) -> str:
 
     identity = component_body(ctx, "CORE1A", {
         "CONCEPT_HEADER": part("CONCEPT_HEADER", f"<h2>{esc(m['title'])}</h2>" + metadata_strip(ctx, "CORE1A", m)),
-        "SECTION_ROUTE": part("SECTION_ROUTE", block("section_route", _core1a_section_route(m), title="Sections")),
+        "SECTION_ROUTE": part("SECTION_ROUTE", secondary_disclosure("Sections", _core1a_section_route(m), "core1a-section-route")),
     }, "identity")
 
     def opening() -> dict[str, str]:
-        """What opens the construction, once per concept: the key step, then what the learner must already hold."""
+        """Current conditions precede construction; its key insight follows the visual."""
         return {
             "KEY_STEP": part("KEY_STEP", block("inferential_jump", para(m["inferential_jump"]), title="The key step")),
-            "MODEL_CONTRACT": part("MODEL_CONTRACT", block("entry_assumptions", items(m.get("entry_assumptions")) + _prereqs(ctx, m),
-                                                           title="You need")),
+            "MODEL_CONTRACT": part("MODEL_CONTRACT",
+                block("entry_assumptions", items(m.get("entry_assumptions")), title="Conditions for this construction")
+                + secondary_disclosure("Prerequisite reference", _prereqs(ctx, m), "core1a-prerequisites")),
         }
     closure = component_body(ctx, "CORE1A", {
         "EXIT_RECALL": part("EXIT_RECALL", (
-            block("exit_task", para(exit_task.get("prompt")), title="Try it with less support")
+            block("exit_task", para(exit_task.get("prompt")), title="Now you do one")
             + attempt_box("Your answer", record=m["id"])
             + reveal("Model answer",
                      block("exit_answer",
@@ -1289,10 +1483,10 @@ def core1a(ctx: Ctx, m: dict) -> str:
             _toughest_unit_gaps(ctx, m, units, toughest)
         primary, support = _core1a_path_bridge(ctx, m, steps)
         opened = opening()
-        return head + compose(ctx, "CORE1A", {
+        return (head + compose(ctx, "CORE1A", {
             "construction": opened["KEY_STEP"] + opened["MODEL_CONTRACT"] + primary,
             "repair_closure": support + closure,
-        })
+        }) + _purpose_extension(ctx, "CORE1A", m["id"]))
 
     rows = ""
     bank_questions = [q for q in ctx.bank if isinstance(q, dict) and q.get("id")]
@@ -1315,17 +1509,28 @@ def core1a(ctx: Ctx, m: dict) -> str:
             f'<br><em>Result:</em> {esc(step["output"])}</li>'
             for step in step_items
         )
+        novel_anchor = ((m.get("extensions") or {}).get("grade9v3:lesson_anchors") or {}).get(u["id"])
         bank_ref = u.get("bank_anchor_ref")
-        if bank_ref:
+        if novel_anchor is not None:
+            errors = learning_repair.anchor_problems(novel_anchor, bank_by_id, u['id'])
+            for error in errors:
+                ctx.gap('AUTHOR_WORKED_ANCHOR', u['id'], error, 'CORE1A', component='WORKED_EXAMPLE')
+            anchor_html = _core1a_worked_anchor(novel_anchor) if not errors else ''
+        elif bank_ref:
             anchor_q = bank_by_id.get(bank_ref)
             if not anchor_q:
                 ctx.gap("AUTHOR_WORKED_ANCHOR", u["id"], f"bank_anchor_ref {bank_ref} is not a question of this product's bank "
                         f"({', '.join(sorted(bank_by_id)[:4])}...)", "CORE1A", component="WORKED_EXAMPLE")
             anchor_html = _core1a_worked_anchor(anchor_q, ctx, owner=True) if anchor_q else ""
         else:
-            anchor_q = questions.get(u.get("worked_anchor_ref") or "")
-            if not anchor_q:
-                ctx.gap("AUTHOR_WORKED_ANCHOR", u["id"], "no worked anchor", "CORE1A")
+            worked_ref = u.get("worked_anchor_ref")
+            anchor_q = questions.get(worked_ref) if worked_ref else None
+            if worked_ref and not anchor_q:
+                ctx.gap(
+                    "AUTHOR_WORKED_ANCHOR", u["id"],
+                    f"worked_anchor_ref {worked_ref} does not resolve to a question",
+                    "CORE1A", component="WORKED_EXAMPLE",
+                )
             anchor_html = _core1a_worked_anchor(anchor_q) if anchor_q else ""
         crux_refs = [ref for ref in u.get("crux_question_refs") or [] if isinstance(ref, str)]
         crux_questions = [bank_by_id[ref] for ref in crux_refs if ref in bank_by_id]
@@ -1341,8 +1546,6 @@ def core1a(ctx: Ctx, m: dict) -> str:
                     component="QUESTION_BRIDGE")
         check_rows = [c for c in u.get("independent_checks") or [] if c.get("statement")]
         checks = [c["statement"] for c in check_rows]
-        if not checks:
-            ctx.gap("AUTHOR_INDEPENDENT_CHECK", u["id"], "no independent check", "CORE1A")
         wrong = _misconceptions(m, u)
         title = decision or (f"Construction step {n + 1} of {len(units)}" if len(units) > 1 else "Construction")
         unit_head = (f'<div class="g9-unit-head"><span class="g9-unit-no" aria-hidden="true">{n + 1}</span>'
@@ -1353,20 +1556,49 @@ def core1a(ctx: Ctx, m: dict) -> str:
         relation_matrix = (_core1a_relation_matrix(ctx, m, unit_relations) if unit_relations is not None
                            else (_core1a_relation_matrix(ctx, m) if n == 0 else ""))
 
+        unit_waivers = {**waivers, **blueprints_api.waivers_of(u)}
+
         def unit_part(cid: str, body: str, items: int | None = None, band: str | None = None) -> str:
-            return component(ctx, "CORE1A", cid, body, u["id"], items=items, unit=u["id"], band=band, waivers=waivers)
+            return component(
+                ctx, "CORE1A", cid, body, u["id"], items=items, unit=u["id"],
+                band=band, waivers=unit_waivers,
+            )
 
         figure_html = figure(ctx, u.get("representation_ref"), "TEACHING", "CORE1A", u["id"])
-        # The unit card holds the unit's own components in blueprint order; the key step precedes the first card.
+        probes = [r for r in (m.get('extensions') or {}).get('grade9v3:question_repairs', [])
+                  if r.get('construction_ref') == u['id'] and r.get('interaction') == 'MODEL_SCOPE_PROBE']
+        primary_probe = ''
+        if probes:
+            row = next((r for r in probes if novel_anchor and r['question_ref'] == novel_anchor.get('target_question_ref')), probes[0])
+            question = bank_by_id.get(row.get('question_ref')) or (
+                questions.get(row.get('question_ref'))
+                if u.get('worked_anchor_ref') == row.get('question_ref') else None)
+            valid = question and row == (question.get('extensions') or {}).get(learning_repair.KEY) and not learning_repair.problems(question, {u['id']})
+            if valid:
+                primary_probe = learning_repair.alignment_probe('construction-' + u['id'])
+            else:
+                ctx.gap('AUTHOR_LEARNING_REPAIR', u['id'], 'construction probe does not bind this question and crux', 'CORE1A')
+
+        # Construction, its adjacent visual and then the insight follow the active blueprint order.
         card_parts = {
             "UNIT_HEADER": unit_part("UNIT_HEADER", unit_head),
             **(opening() if n == 0 else {}),
-            "QUESTION_BRIDGE": unit_part("QUESTION_BRIDGE", _core1a_question_bridge(ctx, u, crux_questions, ctx.toughest())),
+            "QUESTION_BRIDGE": unit_part("QUESTION_BRIDGE", secondary_disclosure(
+                "Why this section matters for the question set",
+                _core1a_question_bridge(ctx, u, crux_questions, ctx.toughest()),
+                "core1a-question-bridge",
+            )),
             "CONSTRUCTION_STEPS": unit_part("CONSTRUCTION_STEPS",
                                             block("construction", f"<ol>{step_html}</ol>" if step_html else ""),
                                             items=len(step_items), band=unit_band),
-            "EQUATIONS": unit_part("EQUATIONS", block("equation_matrix", relation_matrix, title="Equations and validity")),
-            "WORKED_EXAMPLE": unit_part("WORKED_EXAMPLE", block("worked_anchor", anchor_html, title="Watch one")),
+            "EQUATIONS": unit_part("EQUATIONS", secondary_disclosure(
+                "Formula reference · meaning and conditions",
+                block("equation_matrix", relation_matrix, title="Equations and validity"),
+                "core1a-equations",
+            )),
+            "STAGED_VISUAL": unit_part("STAGED_VISUAL", figure_html, items=_stages_of(figure_html), band=unit_band),
+            "MODEL_SCOPE_PROBE": unit_part("MODEL_SCOPE_PROBE", primary_probe),
+            "WORKED_EXAMPLE": unit_part("WORKED_EXAMPLE", block("worked_anchor", anchor_html, title="Worked explanation")),
         }
         card = component_body(ctx, "CORE1A", card_parts, "construction")
         construction = f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">{card}</section>'
@@ -1374,51 +1606,103 @@ def core1a(ctx: Ctx, m: dict) -> str:
         trap = (block("wrong_path", items(row["wrong_idea"] for row in wrong), title="A tempting wrong path")
                 + block("diagnose", items(row["diagnostic_prompt"] for row in wrong), title="Diagnose")
                 + block("repair", items(row["repair"] for row in wrong), title="Repair"))
+        support_body = component_body(ctx, "CORE1A", {
+            "TRAP_REPAIR": unit_part("TRAP_REPAIR", secondary_disclosure(
+                "Mistake clinic · diagnose and repair",
+                trap,
+                "core1a-trap-repair",
+            ), items=len(wrong)),
+            "QUICK_CHECK": unit_part("QUICK_CHECK", _quick_check(check_rows), items=len(checks)),
+        }, "repair_closure")
         support = (
             f'<section class="g9-cu-support" data-g9-support-for="{esc(u["id"])}">'
-            f"<h3>{esc(support_label)}</h3>"
-            + component_body(ctx, "CORE1A", {
-                "TRAP_REPAIR": unit_part("TRAP_REPAIR", trap, items=len(wrong)),
-                "QUICK_CHECK": unit_part("QUICK_CHECK", _quick_check(check_rows), items=len(checks)),
-            }, "repair_closure")
-            + "</section>"
+            f"<h3>{esc(support_label)}</h3>{support_body}</section>"
+            if support_body else ""
         )
-        # Each unit is its own row: its construction on the primary side, its picture and repair on the support side.
         rows += compose(ctx, "CORE1A", {
             "construction": construction,
-            "representation": component_body(ctx, "CORE1A", {
-                "STAGED_VISUAL": unit_part("STAGED_VISUAL", figure_html, items=_stages_of(figure_html), band=unit_band),
-            }, "representation"),
-            "repair_closure": support,
+            **({"repair_closure": support} if support else {}),
         })
 
     if toughest and m["id"] == toughest["microtopic_ref"]:
         _toughest_unit_gaps(ctx, m, units, toughest)
-    return head + rows + closing
+    repair_rows = (m.get("extensions") or {}).get("grade9v3:question_repairs") or []
+    return_hrefs = {}
+    for repair_row in repair_rows:
+        ref = repair_row['question_ref']
+        href = next((_unit_href(ctx, role, ref) for role in ('CORE2', 'CORE2A', 'CORE2B')
+                     if _unit_href(ctx, role, ref)), None)
+        return_hrefs[ref] = href or ('#' + repair_row['construction_ref'])
+    clinics = secondary_disclosure("Question-specific diagnosis and repair", learning_repair.clinic(repair_rows, return_hrefs), "core1a-question-repair") if repair_rows else ""
+    return head + rows + clinics + _purpose_extension(ctx, "CORE1A", m["id"]) + closing
 
 
 def _toughest_unit_gaps(ctx: Ctx, m: dict, units: list[dict], toughest: dict) -> None:
-    """New authoring must build the toughest question's concept, not only name it.
+    """Require the toughest target to bind to the construction that teaches its decisive move.
 
-    The unit that builds it names the question in crux_question_refs, works it through as its example (bank_anchor_ref), and
-    takes the depth of the question's band (the steps and the stages), so the concept book is built for the question a
-    learner is most likely to fail."""
+    The source question itself does not have to become the worked example. The ordinary
+    Core1A unit validation separately checks that a bound crux_step_ref belongs to the
+    unit's teaching path.
+    """
     ref, label = toughest["question_ref"], toughest["label"]
     move = (toughest.get("crux_move") or {}).get("action")
-    why = (f"{label} is the toughest question in this set ({toughest['band']}, {toughest['score']}/10, "
-           f"{toughest['conceptual']}/4 conceptual) and belongs to this concept")
+    why = (
+        f"{label} is the toughest question in this set ({toughest['band']}, {toughest['score']}/10, "
+        f"{toughest['conceptual']}/4 conceptual) and belongs to this concept"
+    )
     builders = [u for u in units if ref in (u.get("crux_question_refs") or [])]
     if not builders:
-        ctx.gap("AUTHOR_TOUGHEST_CONCEPT", m["id"],
-                f"{why}, but no construction unit builds toward it: name {ref} in crux_question_refs on the unit whose steps lead to "
-                + (f"the move a learner misses ({move!r}), " if move else "the move the question turns on, ")
-                + f"and set that unit's bank_anchor_ref to {ref}", "CORE1A", component="QUESTION_BRIDGE")
+        ctx.gap(
+            "AUTHOR_TOUGHEST_CONCEPT", m["id"],
+            f"{why}, but no construction unit builds toward it: name {ref} in crux_question_refs on the unit whose steps lead to "
+            + (f"the move a learner misses ({move!r})" if move else "the move the question turns on"),
+            "CORE1A", component="QUESTION_BRIDGE",
+        )
         return
-    for u in builders:
-        if u.get("bank_anchor_ref") != ref:
-            ctx.gap("AUTHOR_TOUGHEST_CONCEPT", u["id"],
-                    f"{why}; this unit builds toward it but its worked example is not {label}: set bank_anchor_ref to {ref} so the "
-                    "unit walks through the question itself", "CORE1A", component="WORKED_EXAMPLE")
+
+    # The extra worked-target admission is a REFERENCE authoring obligation,
+    # not a new FLOOR rule for already governed canonical products. The
+    # blueprint itself keeps WORKED_EXAMPLE EXPECTED, never unwaivably REQUIRED.
+    if ctx.held_to != "REFERENCE":
+        return
+
+    authored = ((m.get("extensions") or {}).get("grade9v3:lesson_anchors") or {})
+    bank_by_id = {q["id"]: q for q in ctx.bank if isinstance(q, dict) and q.get("id")}
+    for unit in builders:
+        novel_anchor = authored.get(unit["id"])
+        # An author may explicitly waive an inapplicable worked panel at the
+        # recovered blueprint's EXPECTED level; a bare missing panel is not a
+        # waiver. An actual authored anchor still needs its exact crux binding.
+        if (novel_anchor is None and not unit.get("bank_anchor_ref")
+                and not unit.get("worked_anchor_ref")
+                and blueprints_api.waivers_of(unit).get("WORKED_EXAMPLE")):
+            continue
+        if novel_anchor is not None:
+            problems = learning_repair.anchor_problems(
+                novel_anchor, bank_by_id, unit["id"], expected_ref=ref)
+            answer = novel_anchor.get("answer") if isinstance(novel_anchor, dict) else {}
+            answer = answer if isinstance(answer, dict) else {}
+            reasoning = answer.get("reasoning_route") or answer.get("reasoning") or []
+            if not isinstance(reasoning, list) or not any(
+                    (isinstance(step, str) and step.strip())
+                    or (isinstance(step, dict) and step.get("action") and step.get("why_valid"))
+                    for step in reasoning):
+                problems.append("lesson anchor has no worked reasoning with a justified move")
+            if problems:
+                ctx.gap("AUTHOR_TOUGHEST_CONCEPT", unit["id"],
+                        f"{why}, but the separate worked example is not bound to the real target crux: "
+                        + "; ".join(problems), "CORE1A", component="WORKED_EXAMPLE")
+        elif unit.get("bank_anchor_ref") == ref:
+            continue  # The traditional question-as-worked-example path.
+        elif unit.get("bank_anchor_ref") or unit.get("worked_anchor_ref"):
+            ctx.gap("AUTHOR_TOUGHEST_CONCEPT", unit["id"],
+                    f"{why}, but the different worked example has no explicit target-crux binding: "
+                    "author grade9v3:lesson_anchors with target_question_ref, target_crux_move_ref "
+                    "and construction_ref", "CORE1A", component="WORKED_EXAMPLE")
+        else:
+            ctx.gap("AUTHOR_TOUGHEST_CONCEPT", unit["id"],
+                    f"{why}, but its crux_question_refs are only a label: a worked teaching example "
+                    "bound to the target question and crux is absent", "CORE1A", component="WORKED_EXAMPLE")
 
 
 def core1b(ctx: Ctx, m: dict) -> str:
@@ -1471,7 +1755,9 @@ def _custody(q: dict) -> str:
     cust = (q.get("extensions") or {}).get("grade9v3:source_custody") or {}
     if cust.get("authority_class") == "OWNER_SUPPLIED_RAW_INPUT":
         # CORE2.md: a question the owner supplied is custody in its own right and is shown as supplied, with no exam identity.
-        return "Owner-supplied question" + (", verbatim" if cust.get("wording_custody") == "VERBATIM" else "")
+        line = "Owner-supplied question" + (", verbatim" if cust.get("wording_custody") == "VERBATIM" else "")
+        authorship = (q.get("extensions") or {}).get("grade9v3:authorship") or {}
+        return line + (" · coordinator/AI-drafted benchmark" if authorship.get("kind") == "COORDINATOR_AI_DRAFTED" else "")
     if (cust.get("authority_class") != "OFFICIAL_EXAM_ORGANIZER_ARCHIVE"
             or cust.get("source_status") != "PYQ_VERIFIED_PARENT"
             or not cust.get("paper_url")):
@@ -1506,6 +1792,12 @@ def _core2_concept_navigation(ctx: Ctx, q: dict) -> str:
     if not ids:
         return ""
     microtopics = {m["id"]: m for m in ctx.selection_rows.get("microtopics", [])}
+    repair = (q.get("extensions") or {}).get(learning_repair.KEY) or {}
+    target = repair.get("construction_ref")
+    unit_ids = {u["id"] for m in microtopics.values() for u in m.get("construction_units", [])}
+    if target and target not in unit_ids:
+        ctx.gap("AUTHOR_CONCEPT_TARGET", q["id"], "construction target does not resolve", "CORE2")
+        return ""
     rows = []
     for microtopic_id in ids:
         microtopic = microtopics.get(microtopic_id)
@@ -1513,8 +1805,9 @@ def _core2_concept_navigation(ctx: Ctx, q: dict) -> str:
             continue
         rows.append(
             f'<li><a data-g9-concept-link data-g9-question-ref="{esc(q["id"])}" '
-            f'data-g9-concept-ref="{esc(microtopic_id)}" href="core1a.html#{esc(microtopic_id)}">'
-            f'{esc(microtopic.get("title") or microtopic_id)}</a></li>'
+            f'data-g9-concept-ref="{esc(microtopic_id)}" '
+            f'href="core1a.html?g9-return={esc(q["id"])}&amp;g9-concept={esc(microtopic_id)}#{esc(target or microtopic_id)}">'
+            f'{esc(((q.get("extensions") or {}).get("grade9v3:attempt_labels") or {}).get("concept") or microtopic.get("title") or microtopic_id)}</a></li>'
         )
     return block("concept_navigation", "<ul>" + "".join(rows) + "</ul>" if rows else "",
                  title="Need the concept again?")
@@ -1579,7 +1872,7 @@ def _core2_rung_head(number: int, stage: str | None, provenance: str, kind: str 
             f'{_core2_rung_pill(provenance)}</div>')
 
 
-def _core2_support_rung(ctx: Ctx, q: dict, row: dict, number: int) -> str:
+def _core2_support_rung(ctx: Ctx, q: dict, row: dict, number: int, post_solution: bool = False) -> str:
     """Render one provenance-explicit support rung without manufacturing academic content."""
     attrs = [
         f'data-g9-rung="{number}"',
@@ -1597,8 +1890,18 @@ def _core2_support_rung(ctx: Ctx, q: dict, row: dict, number: int) -> str:
     stage = row.get("learner_stage")
     stage_badge = _core2_rung_head(number, stage, row["provenance"], row.get("support_kind"))
     allowed = [row["visual_stage_ref"]] if row.get("visual_stage_ref") else None
-    visual = figure(ctx, row.get("visual_ref"), "PRE_ATTEMPT", "CORE2",
-                    f'{q["id"]}-support-{number}', allowed=allowed)
+    instance_ref = None
+    if row.get("visual_ref"):
+        binding = core2_v2.visual_support(q, row["visual_ref"])
+        if binding:
+            instance_ref = binding["instance_ref"]
+            if not post_solution:
+                allowed = ([ref for ref in allowed if ref in binding["pre_attempt_stage_refs"]]
+                           if allowed else binding["pre_attempt_stage_refs"])
+    visual = ("" if instance_ref and allowed == [] and not post_solution else
+              figure(ctx, row.get("visual_ref"), "POST_ATTEMPT" if post_solution else "PRE_ATTEMPT",
+                     "CORE2", f'{q["id"]}-support-{number}', allowed=allowed,
+                     instance_ref=instance_ref, owner_ref=q["id"]))
     reveal_body = f'<p>{question_text(ctx, q, _core2_support_target(row["source"]), row["text"])}</p>' + visual
     if row.get("prompt"):
         content = (stage_badge
@@ -1652,7 +1955,11 @@ def _core2_support(ctx: Ctx, q: dict) -> str:
              + block("authored_core2_support",
                      _core2_support_ladder(ctx, q, authored_rows, core2_v2.AUTHORED_CORE2_SUPPORT),
                      title="Guided support"))
-    return ('<div class="g9-eyebrow">Hint ladder · reveal only what you need</div>' + lanes) if lanes else ""
+    return (secondary_disclosure(
+        "Need a hint? · guided support",
+        '<div class="g9-eyebrow">Hint ladder · reveal only what you need</div>' + lanes,
+        "core2-hints",
+    ) if lanes else "")
 
 
 def _core2_solution_moves(answer: dict) -> int:
@@ -1730,8 +2037,101 @@ def _difficulty_why(rid: str, analysis: dict) -> str:
     return (f'<button type="button" class="g9-why-toggle" data-g9-toggle aria-expanded="false" aria-controls="{target}">'
             f'<span class="g9-pill g9-pill-band" data-g9-band="{esc(d["band"])}">{esc(d["band"])}{score}</span>'
             f'<span>Why this difficulty?</span></button>'
-            f'<div id="{target}" class="g9-why" hidden>{para(d.get("basis"))}'
+            f'<div id="{target}" class="g9-why" hidden>'
+            '<p>This author estimate combines the five parts below. The detailed rationale is available with the answer and working after your attempt.</p>'
             f'{f"<div class=g9-dgrid>{cells}</div>" if cells else ""}</div>')
+
+
+def _core2_question_figures(ctx: Ctx, q: dict, stage: str = "PRE_ATTEMPT") -> str:
+    """Use explicitly reviewed authored support without replacing a source figure.
+
+    Frozen question figure_refs remain custody data. A correction may supersede
+    an authored representation, but not an authentic source snapshot/resource.
+    """
+    refs = q.get("figure_refs") or []
+    review = (q.get("extensions") or {}).get("grade9v3:core2_visual_review")
+    if review is not None:
+        authored = review.get("authored_figure_refs") if isinstance(review, dict) else None
+        valid = (isinstance(review, dict) and review.get("question_ref") == q["id"]
+                 and review.get("replaces_authored_figure_refs") == refs
+                 and isinstance(review.get("rationale"), str) and bool(review["rationale"].strip())
+                 and isinstance(authored, list) and bool(authored)
+                 and all(isinstance(ref, str) for ref in authored))
+        representations = ctx.index("representations")
+        if valid:
+            valid = all(ref in representations and representations[ref].get("kind") != "SOURCE_FIGURE"
+                        for ref in refs + authored)
+            valid = valid and all((representations[ref].get("extensions") or {}).get("grade9v3:authored_question_ref") == q["id"]
+                                  for ref in authored)
+        if not valid:
+            ctx.gap("AUTHOR_CORE2_VISUAL_REVIEW", q["id"],
+                    "review must bind this question and its frozen authored refs; source figure snapshots cannot be replaced", "CORE2")
+        else:
+            refs = authored
+    return _core2_bound_figures(ctx, q, refs, stage)
+
+
+def _core2_bound_figures(ctx: Ctx, q: dict, refs: list[str], stage: str) -> str:
+    output = []
+    try:
+        plan = core2_v2.support_plan(q)
+        if any(item["representation_ref"] not in refs for item in plan.get("visuals", [])):
+            raise core2_v2.Core2SupportProjectionError("a bound visual must belong to this question's figure references")
+        for ref in refs:
+            binding = core2_v2.visual_support(q, ref)
+            if not binding:
+                if stage == "PRE_ATTEMPT":
+                    output.append(figure(ctx, ref, stage, "CORE2", q["id"], first_stage_only=True))
+                continue
+            if stage == "PRE_ATTEMPT":
+                allowed = binding["pre_attempt_stage_refs"]
+                render_stage = "PRE_ATTEMPT"
+            elif stage == "AFTER_ATTEMPT":
+                allowed = binding["after_attempt_stage_refs"]
+                render_stage = "POST_ATTEMPT"
+            else:
+                allowed = binding["post_solution_stage_refs"]
+                render_stage = "POST_ATTEMPT"
+            if not allowed:
+                continue
+            output.append(figure(ctx, ref, render_stage, "CORE2", q["id"], allowed=allowed,
+                                 instance_ref=binding["instance_ref"], owner_ref=q["id"]))
+    except core2_v2.Core2SupportProjectionError as exc:
+        ctx.gap("AUTHOR_CORE2_SUPPORT", q["id"], str(exc), "CORE2")
+    return "".join(output)
+
+
+def _core2_after_attempt_support(ctx: Ctx, q: dict) -> str:
+    """Support unlocked by commitment without bundling it into the full solution."""
+    if core2_v2.SUPPORT_PLAN_KEY not in (q.get("extensions") or {}):
+        return ""
+    try:
+        rows = core2_v2.after_attempt_support(q)
+        text = "".join(_core2_support_rung(ctx, q, row, number, post_solution=True)
+                       for number, row in enumerate(rows, 1))
+        figures = _core2_question_figures(ctx, q, "AFTER_ATTEMPT")
+    except core2_v2.Core2SupportProjectionError as exc:
+        ctx.gap("AUTHOR_CORE2_SUPPORT", q["id"], str(exc), "CORE2")
+        return ""
+    body = block("after_attempt_support", (f"<ol>{text}</ol>" if text else "") + figures,
+                 title="Support after your attempt") if text or figures else ""
+    return reveal("More support after your attempt", body, ref=f'CORE2-{q["id"]}-after-attempt') if body else ""
+
+
+def _core2_completed_support(ctx: Ctx, q: dict) -> str:
+    """Keep solution-only support inside the existing attempted-solution payload."""
+    if core2_v2.SUPPORT_PLAN_KEY not in (q.get("extensions") or {}):
+        return ""
+    try:
+        rows = core2_v2.post_solution_support(q)
+        text = "".join(_core2_support_rung(ctx, q, row, number, post_solution=True)
+                       for number, row in enumerate(rows, 1))
+        figures = _core2_question_figures(ctx, q, "POST_SOLUTION")
+    except core2_v2.Core2SupportProjectionError as exc:
+        ctx.gap("AUTHOR_CORE2_SUPPORT", q["id"], str(exc), "CORE2")
+        return ""
+    return block("completed_support", (f"<ol>{text}</ol>" if text else "") + figures,
+                 title="Further support") if text or figures else ""
 
 
 def core2(ctx: Ctx, q: dict) -> str:
@@ -1741,8 +2141,7 @@ def core2(ctx: Ctx, q: dict) -> str:
         ctx.gap("AUTHOR_SOURCE_RESULT_DIFFERS", q["id"], "authored summary differs from current independent result", "CORE2")
     rid = q["id"]
     analysis = (q.get("extensions") or {}).get(owner_bank.ANALYSIS_KEY) or {}
-    figures = "".join(figure(ctx, ref, "PRE_ATTEMPT", "CORE2", rid, first_stage_only=True)
-                      for ref in q.get("figure_refs") or [])
+    figures = _core2_question_figures(ctx, q)
     roles = q.get("representation_roles") or {}
     teaching_figure = figure(ctx, roles.get("bound_ref"), "POST_ATTEMPT", "CORE2", rid + "-bound")
     conditions = "".join(f'<li>{question_text(ctx, q, "conditions", c)}</li>' for c in q.get("conditions") or [])
@@ -1755,16 +2154,41 @@ def core2(ctx: Ctx, q: dict) -> str:
     band = ((analysis.get("difficulty") or {}).get("band")) if isinstance(analysis.get("difficulty"), dict) else None
     waivers = blueprints_api.waivers_of(q)
 
+    # A newly authored Owner-bank question is held to the complete Core2
+    # reasoning contract in a REFERENCE deployment. Legacy prose is still
+    # renderable for FLOOR products, but it is not a substitute for the
+    # move-typed solution that an Owner must finish before acceptance.
+    custody = (q.get("extensions") or {}).get(owner_bank.CUSTODY_KEY) or {}
+    if (ctx.held_to == "REFERENCE"
+            and custody.get("authority_class") == owner_bank.CUSTODY_CLASS
+            and not ans.get("reasoning_route")):
+        ctx.gap("AUTHOR_COMPONENT", rid,
+                "SOLUTION_STEPS is absent: answer.reasoning_route must teach the authored inferential moves",
+                "CORE2", component="SOLUTION_STEPS")
+
     def part(cid: str, body: str, items: int | None = None) -> str:
         return component(ctx, "CORE2", cid, body, rid, items=items, band=band, waivers=waivers)
 
+    repair = (q.get("extensions") or {}).get(learning_repair.KEY)
+    unit_ids = {u["id"] for m in ctx.selection_rows.get("microtopics", []) for u in m.get("construction_units", [])}
+    repair_errors = learning_repair.problems(q, unit_ids) if repair is not None else []
+    for error in repair_errors:
+        ctx.gap("AUTHOR_LEARNING_REPAIR", rid, error, "CORE2")
+    repair_html = learning_repair.card(repair, rid) if repair and not repair_errors else ""
+    detailed_labels = ""
+    if (q.get("extensions") or {}).get("grade9v3:attempt_labels"):
+        concept = learner_metadata.resolve_concept(ctx.packages, q.get("primary_capability_ref"))
+        family = learner_metadata.resolve_family(ctx.packages, q.get("family_ref"))
+        detailed_labels = block("detailed_concept_labels", para(concept["concept"] + " · " + family["family"]),
+                                title="Concept and question family")
     worked = component_body(ctx, "CORE2", {
+        "DIAGNOSTIC_REPAIR": part("DIAGNOSTIC_REPAIR", repair_html),
         "SOLUTION_STEPS": part("SOLUTION_STEPS", _core2_solution(ctx, q, ans), items=_core2_solution_moves(ans)),
         "ANSWER": part("ANSWER", solution),
         "CHECK": part("CHECK", block("independent_check", '<p>' + question_text(ctx, q, "answer_check", ans["check"]) + '</p>'
                                      if ans.get("check") else "", title="Independent check")),
     }, parent="SOLUTION")
-    return compose(ctx, "CORE2", {
+    rendered = compose(ctx, "CORE2", {
         "identity": component_body(ctx, "CORE2", {
             "IDENTITY": part("IDENTITY", block("source_identity", f"<h2>{esc(_identity(q))}</h2><p class=\"g9-prov\">{esc(_custody(q))}</p>")
                              + metadata_strip(ctx, "CORE2", q)),
@@ -1775,8 +2199,6 @@ def core2(ctx: Ctx, q: dict) -> str:
             "STEM": part("STEM", '<div class="g9-eyebrow">Attempt first</div>'
                          + block("stem", '<p>' + question_text(ctx, q, "stem", q["stem"]) + '</p>')),
             "CONDITIONS": part("CONDITIONS", block("conditions", f'<ul>{conditions}</ul>' if conditions else "", title="Conditions")),
-            "TRAP": part("TRAP", block("common_wrong_route", '<p>' + question_text(ctx, q, "common_wrong_route", wrong_route) + '</p>'
-                                       if isinstance(wrong_route, str) and wrong_route.strip() else "", title="Common wrong route")),
             "ATTEMPT": part("ATTEMPT", attempt_box("Your answer", response_for(q), q.get("options"), rid,
                                                    option_html=options if options else None)),
         }, "attempt"),
@@ -1786,13 +2208,24 @@ def core2(ctx: Ctx, q: dict) -> str:
                                    items=figures.count("<figure ")),
         }, "representation"),
         "support": component_body(ctx, "CORE2", {
-            "HINT_LADDER": part("HINT_LADDER", _core2_support(ctx, q), items=_core2_support_rungs(q)),
+            "TRAP": part("TRAP", reveal(
+                "Common wrong route · after your attempt",
+                block("common_wrong_route", '<p>' + question_text(ctx, q, "common_wrong_route", wrong_route) + '</p>'
+                      if isinstance(wrong_route, str) and wrong_route.strip() else "", title="Common wrong route"),
+                ref=f"CORE2-{rid}-wrong-route",
+            )),
+            "HINT_LADDER": part("HINT_LADDER", _core2_support(ctx, q) + _core2_after_attempt_support(ctx, q),
+                                items=_core2_support_rungs(q)),
             "CONCEPT_NAV": part("CONCEPT_NAV", _core2_concept_navigation(ctx, q)),
         }, "support"),
         "solution": component_body(ctx, "CORE2", {
-            "SOLUTION": part("SOLUTION", reveal("Answer and working", worked + teaching_figure, ref=f'CORE2-{rid}-solution')),
+            "SOLUTION": part("SOLUTION", reveal("Answer and working", worked + teaching_figure + detailed_labels
+                             + _core2_completed_support(ctx, q)
+                             + block("difficulty_basis", para((analysis.get("difficulty") or {}).get("basis")),
+                                     title="Author's difficulty rationale"), ref=f'CORE2-{rid}-solution')),
         }, "solution"),
     })
+    return rendered + _purpose_extension(ctx, "CORE2", rid)
 
 
 def _ladder(ctx: Ctx, q: dict, role: str, source: bool = False) -> str:
@@ -2001,17 +2434,25 @@ CSS = """
 --soft:#141c29;--pill-bg:#262f5a;--pill-fg:#c3c9ff;--src-bg:#12301f;--src-fg:#6ee7b7;--info-bg:#14263d;--info-line:#3b6db3;--info-fg:#b8c9de;--warn-bg:#2b1620;--warn-line:#6b3045;--warn-fg:#f3b6c4;--ok-bg:#10281d;--ok-line:#1f6b44;--ok-fg:#b7efcf}
 html{font-size:calc(var(--g9-type-body) * var(--g9-zoom))}body{margin:0;background:var(--bg);color:var(--fg);font:1rem/1.6 system-ui,sans-serif;overflow-wrap:break-word}
 header[data-g9-shell-header]{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:8px var(--g9-space);background:var(--card);border-bottom:1px solid var(--line)}
+.g9-header-inner{width:100%;min-width:0;box-sizing:border-box;padding:0;gap:12px}
+.g9-brand{min-width:0;max-width:100%;flex-wrap:wrap;justify-content:flex-start;overflow-wrap:anywhere}
+.g9-header-nav,.g9-header-actions{min-width:0;max-width:100%;flex-wrap:wrap;gap:8px}
+.g9-header-nav a,.g9-header-actions>*{max-width:100%;white-space:normal;overflow-wrap:anywhere}
 a{color:var(--accent)}
 header a,header button,button,summary,nav a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);font:inherit;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;touch-action:manipulation}
 nav[data-g9-breadcrumb]{display:flex;gap:8px;flex-wrap:wrap;padding:8px var(--g9-space)}
 .g9-breadcrumb-bar{display:none!important}
-.g9-triad-context{font-size:.78rem;opacity:.7;margin-bottom:4px;display:block}
-.g9-triad-context a{color:inherit;text-decoration:none}
+.g9-triad-context{font-size:max(.85rem,14px);opacity:.7;margin-bottom:4px;display:block}
+.g9-triad-context a{color:inherit;text-decoration:none;min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:0 8px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;touch-action:manipulation}
 .g9-triad-context a:hover{text-decoration:underline}
-main{max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box}
+.g9-triad-actions a{min-height:var(--g9-touch-min);min-width:var(--g9-touch-min);padding:10px 14px;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;touch-action:manipulation}
+main{width:100%;min-width:0;max-width:var(--g9-content-max);margin:0 auto;padding:var(--g9-space);box-sizing:border-box;overflow-wrap:anywhere}
 main>*{min-width:0}article[data-g9-unit]{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:var(--g9-space);margin:18px 0;min-width:0}
 article[data-g9-unit]>*{min-width:0}
-article[id],section[id]{scroll-margin-top:96px}
+.blueprint-slot,.g9-component,.g9-cu,.g9-cu-support,[data-g9-block],details,fieldset{min-width:0;max-width:100%;box-sizing:border-box}
+fieldset{min-inline-size:0}
+h1,h2,h3,h4,p,li,label,summary{overflow-wrap:anywhere}
+article[id],section[id]{scroll-margin-top:var(--g9-header-offset,96px)}
 .g9-core1a-book{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:clamp(16px,2vw,24px);margin:0 0 18px;min-width:0}
 .g9-core1a-book>h2{margin:.15em 0 .6em}
 .g9-bucket-orientation-grid{display:block;min-width:0}.g9-bucket-orientation-grid>*{min-width:0}
@@ -2022,7 +2463,7 @@ article[id],section[id]{scroll-margin-top:96px}
 .g9-cu:first-child{border-top:0}
 .g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] ol{list-style:none;padding-left:0;counter-reset:g9-derive}
 .g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li{counter-increment:g9-derive;margin:0 0 12px;padding:12px 14px;border-left:3px solid var(--accent);background:var(--bg)}
-.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li::before{content:"Step " counter(g9-derive);display:block;color:var(--muted);font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.g9-path-bridge[data-g9-derivation-bridge] [data-g9-block=construction] li::before{content:"Step " counter(g9-derive);display:block;color:var(--muted);font-size:max(.85rem,14px);font-weight:700;text-transform:uppercase;letter-spacing:.03em}
 .g9-cu-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:.35rem 0 .8rem}
 .g9-cu-nav-links{display:flex;gap:8px;flex-wrap:wrap}
 .g9-stage-controls{display:grid;gap:8px;max-width:100%}
@@ -2054,6 +2495,9 @@ figure{margin:14px 0;max-width:100%;overflow-x:auto}figure svg{width:100%;height
 [data-g9-meta-item] strong{font-weight:700;flex:0 0 auto}
 [data-g9-meta-label]{min-width:0;overflow-wrap:anywhere}
 h4{margin:.8em 0 .3em}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.g9-shell-header .g9-header-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 footer{padding:24px 16px;color:var(--muted)}
 @media print{:root,:root[data-theme=dark]{--bg:#fff;--fg:#000;--card:#fff;--line:#bbb;--accent:#1f5fae;--muted:#333;--soft:#fff;--pill-bg:#eee;--pill-fg:#222;--src-bg:#eee;--src-fg:#222;--info-bg:#fff;--info-line:#888;--info-fg:#222;--warn-bg:#fff;--warn-line:#888;--warn-fg:#222;--ok-bg:#fff;--ok-line:#888;--ok-fg:#222}
 header[data-g9-shell-header],nav[data-g9-breadcrumb],.g9-attempt,button,[data-g9-display-panel],[data-g9-source-pdf]{display:none!important}
@@ -2078,9 +2522,29 @@ input,select{font-size:max(16px,1rem)}
 COMPONENT_CSS = """
 .g9-split{display:block;min-width:0}.g9-col{min-width:0}
 .g9-component{min-width:0;margin:14px 0}.g9-component:first-child{margin-top:0}
-.g9-eyebrow{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px}
-.g9-pill{display:inline-flex;align-items:center;font-size:.85rem;font-weight:800;line-height:1.2;padding:3px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);white-space:nowrap}
+.g9-eyebrow{font-size:max(.85rem,14px);font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 6px}
+.g9-pill{display:inline-flex;align-items:center;font-size:max(.85rem,14px);font-weight:800;line-height:1.2;padding:3px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);white-space:nowrap}
 .g9-pill-source{background:var(--src-bg);color:var(--src-fg)}
+.g9-purpose-extension{margin:18px 0;padding:16px;border:2px solid var(--accent);border-radius:16px;background:var(--soft)}
+.g9-purpose-extension h3{margin:.1rem 0 .35rem}.g9-purpose-source{margin:.15rem 0 .7rem;color:var(--muted);font-size:.9rem}
+.g9-purpose-prompt p{font-size:1.05rem;line-height:1.55;white-space:pre-line}
+.g9-secondary-disclosure{border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
+.g9-secondary-disclosure{min-width:0;max-width:100%}
+.g9-c-disclosure-tile,.g9-c-disclosure-info,.g9-c-disclosure-equation-card,.g9-c-disclosure-trap-card,.g9-c-predict-reveal-worked-card{min-width:0;max-width:100%;overflow-wrap:anywhere}
+.g9-c-disclosure-tile>.g9-secondary-disclosure{background:var(--soft)}
+.g9-c-disclosure-info>.g9-secondary-disclosure{background:var(--info-bg);border-color:var(--info-line)}
+.g9-c-disclosure-equation-card>.g9-secondary-disclosure{background:var(--soft)}
+.g9-c-disclosure-trap-card>.g9-secondary-disclosure{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-fg)}
+.g9-c-predict-reveal-worked-card>.g9-secondary-disclosure{border-left:4px solid var(--accent)}
+.g9-c-disclosure-tile .g9-secondary-disclosure>summary,.g9-c-disclosure-info .g9-secondary-disclosure>summary,.g9-c-disclosure-equation-card .g9-secondary-disclosure>summary,.g9-c-disclosure-trap-card .g9-secondary-disclosure>summary,.g9-c-predict-reveal-worked-card .g9-secondary-disclosure>summary{min-height:var(--g9-touch-min);overflow-wrap:anywhere}
+.g9-secondary-disclosure>summary{min-height:var(--g9-touch-min);min-width:0;display:flex;align-items:center;flex-wrap:wrap;overflow-wrap:anywhere;padding:10px 12px;font-weight:800;cursor:pointer}
+.g9-secondary-disclosure>summary::after{content:"+";margin-left:auto;font-size:1.2em}.g9-secondary-disclosure[open]>summary::after{content:"−"}
+.g9-secondary-body{padding:0 12px 12px}
+.g9-worked-instruction{margin:.35rem 0 .6rem;color:var(--muted);font-weight:650}
+.g9-watch-steps{padding-left:1.35rem}.g9-watch-steps>li{margin:.65rem 0}
+.g9-worked-step{border:1px solid var(--line);border-radius:10px;background:var(--card);overflow:hidden}
+.g9-worked-step>summary{min-height:var(--g9-touch-min);display:flex;align-items:center;padding:9px 11px;font-weight:750;cursor:pointer}
+.g9-worked-step-body{padding:0 11px 11px}.g9-worked-step-body p{margin:.3rem 0}
 article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-bottom:1px solid var(--line)}
 .g9-c-header h2,.g9-c-concept-header h2{font-size:1.2rem;line-height:1.3;margin:0;letter-spacing:-.01em}
 .g9-c-header .g9-prov{margin:2px 0 0}
@@ -2091,17 +2555,17 @@ article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-
 :root[data-theme=dark] .g9-pill-band{background:#3a2a14;color:#fdba74}:root[data-theme=dark] .g9-pill-band[data-g9-band=D1]{background:#12301f;color:#6ee7b7}:root[data-theme=dark] .g9-pill-band[data-g9-band=D2]{background:#172a4d;color:#9ec5ff}:root[data-theme=dark] .g9-pill-band[data-g9-band=D4]{background:#3a1830;color:#f9a8d4}
 .g9-why{margin-top:6px}.g9-why p{margin:.2rem 0 .6rem;color:var(--muted)}
 .g9-dgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
-.g9-dcell{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.85rem;color:var(--muted)}.g9-dcell b{display:block;color:var(--fg);font-size:1rem}
+.g9-dcell{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:max(.85rem,14px);color:var(--muted)}.g9-dcell b{display:block;color:var(--fg);font-size:1rem}
 .g9-c-stem [data-g9-block=stem] p{margin:.1rem 0;font-size:1.12rem;line-height:1.58;font-weight:560;white-space:pre-line}
 .g9-c-callout-info{border-left:4px solid var(--info-line);background:var(--info-bg);padding:10px 14px;border-radius:0 12px 12px 0;color:var(--info-fg)}
 .g9-c-callout-warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:12px;padding:10px 14px;color:var(--warn-fg)}
 .g9-c-callout-info h4,.g9-c-callout-warn h4{margin:0 0 .2rem;font-size:1rem}.g9-c-callout-warn h4{color:var(--warn-fg)}
 .g9-c-callout-info ul{margin:.2rem 0;padding-left:1.2rem}.g9-c-callout-info p,.g9-c-callout-warn p{margin:.1rem 0}
-.g9-bridge-link{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
-.g9-crux-tag{display:inline-block;margin:0 0 4px;padding:1px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);font-size:.85rem;font-weight:800}
+.g9-bridge-link{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:normal;overflow-wrap:anywhere;max-width:100%;min-width:0}
+.g9-crux-tag{display:inline-block;margin:0 0 4px;padding:1px 10px;border-radius:999px;background:var(--pill-bg);color:var(--pill-fg);font-size:max(.85rem,14px);font-weight:800}
 .g9-c-step-cards [data-g9-block=construction] ol>li[data-g9-crux-step]{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
 .g9-lines{white-space:pre-line}
-.g9-cu-support>h3{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.g9-cu-support>h3{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:normal;overflow-wrap:anywhere}
 .g9-c-attempt .g9-attempt{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--soft)}
 .g9-answer-options{display:grid;gap:8px;counter-reset:g9opt}
 .g9-answer-option{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:6px 12px}
@@ -2112,23 +2576,25 @@ article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-
 .g9-c-visual-card figure,.g9-c-staged-visual figure{margin:0}
 .g9-c-visual-card figure svg,.g9-c-staged-visual figure svg{display:block;width:100%;height:auto;max-width:100%}
 .g9-c-visual-card figure svg{max-height:min(48vh,440px)}.g9-c-staged-visual figure svg{max-height:min(42vh,360px)}
-.g9-c-ladder .g9-block>h4{margin:.9rem 0 .2rem;font-size:.85rem;color:var(--muted)}
+.g9-diagram-scroll{width:100%;max-width:100%;min-width:0;min-height:48px;box-sizing:border-box;overflow-x:auto}
+.g9-diagram-scroll svg{display:block;max-height:none!important;max-width:none!important}
+.g9-c-ladder .g9-block>h4{margin:.9rem 0 .2rem;font-size:max(.85rem,14px);color:var(--muted)}
 .g9-rung-map,.g9-c-ladder [data-g9-ladder]{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:8px}
 .g9-rung-map>li{border:1px dashed var(--line);border-radius:12px;padding:9px 13px;color:var(--muted)}
 .g9-c-ladder [data-g9-ladder]>li{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:10px 13px}
 .g9-rung-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-weight:800}
-.g9-rung-no{display:inline-grid;place-items:center;min-width:2.3em;height:2.1em;border-radius:8px;background:var(--pill-bg);color:var(--pill-fg);font-size:.85rem}
+.g9-rung-no{display:inline-grid;place-items:center;min-width:2.3em;height:2.1em;border-radius:8px;background:var(--pill-bg);color:var(--pill-fg);font-size:max(.85rem,14px)}
 .g9-c-ladder details[data-g9-support-reveal]{border:0;padding:0;margin:.5rem 0}
 .g9-c-ladder details[data-g9-support-reveal]>summary{width:100%;justify-content:space-between;font-weight:700}
 .g9-c-ladder [data-g9-support-prompt]{margin:.5rem 0}.g9-c-ladder .g9-ladder>button{margin-top:10px}
 .g9-pdf-link{gap:6px;font-weight:700}.g9-pdf-icon{flex:none;width:24px;height:24px}.g9-pdf-link span{white-space:nowrap}header .g9-pdf-link{color:var(--accent)}.g9-c-link-list .g9-source-pdf{border-radius:12px}
-.g9-c-link-list h4{margin:.9rem 0 .3rem;font-size:.85rem;color:var(--muted)}
+.g9-c-link-list h4{margin:.9rem 0 .3rem;font-size:max(.85rem,14px);color:var(--muted)}
 .g9-c-link-list ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.2rem 0;padding:0}
-.g9-c-link-list li{margin:0}.g9-c-link-list a{display:inline-flex;align-items:center;min-height:48px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--fg);text-decoration:none}
+.g9-c-link-list li{margin:0;min-width:0;max-width:100%}.g9-c-link-list a{display:inline-flex;align-items:center;min-height:48px;max-width:100%;min-width:0;box-sizing:border-box;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--fg);text-decoration:none;white-space:normal;overflow-wrap:anywhere}
 .g9-c-disclosure>details{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:0;overflow:hidden;margin:0}
 .g9-c-disclosure>details>summary{list-style:none;display:flex;width:100%;justify-content:space-between;border:0;border-radius:0;background:transparent;padding:13px 15px;font-weight:850;min-height:48px}
 .g9-c-disclosure>details>summary::-webkit-details-marker{display:none}
-.g9-c-disclosure>details>summary::after{content:"Show";font-size:.85rem;background:var(--pill-bg);color:var(--pill-fg);padding:4px 10px;border-radius:999px}
+.g9-c-disclosure>details>summary::after{content:"Show";font-size:max(.85rem,14px);background:var(--pill-bg);color:var(--pill-fg);padding:4px 10px;border-radius:999px}
 .g9-c-disclosure>details[open]>summary::after{content:"Hide"}.g9-c-disclosure>details[data-locked]>summary::after{content:"After you attempt"}
 .g9-c-disclosure>details[open]>summary{border-bottom:1px solid var(--line);background:var(--card)}
 .g9-c-disclosure [data-g9-payload-slot]{padding:6px 16px 16px}
@@ -2138,15 +2604,15 @@ article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-
 .g9-step-body [data-g9-block=solution_inputs]{display:flex;flex-wrap:wrap;gap:.4rem;align-items:baseline;color:var(--muted)}
 .g9-step-body [data-g9-block=solution_inputs] h4{margin:0}
 .g9-step-body [data-g9-block=solution_inputs] ul{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;margin:0;padding:0}
-.g9-step-body [data-g9-block=solution_inputs] li{border:1px solid var(--line);border-radius:999px;padding:1px 10px;font-size:.85rem}
-.g9-step-body p{margin:.25rem 0}.g9-step-body h4{margin:0;font-size:.85rem;color:var(--muted)}
+.g9-step-body [data-g9-block=solution_inputs] li{border:1px solid var(--line);border-radius:999px;padding:1px 10px;font-size:max(.85rem,14px)}
+.g9-step-body p{margin:.25rem 0}.g9-step-body h4{margin:0;font-size:max(.85rem,14px);color:var(--muted)}
 .g9-solution-move[data-g9-solution-crux=true]{background:var(--info-bg);border-radius:10px;padding-left:8px;padding-right:8px}
 .g9-c-step-list [data-g9-block=working] ol{list-style:none;padding:0;margin:0;counter-reset:g9s}
 .g9-c-step-list [data-g9-block=working] ol>li{counter-increment:g9s;display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
 .g9-c-step-list [data-g9-block=working] ol>li::before{content:counter(g9s);font-weight:850;font-size:.9rem;color:var(--pill-fg);background:var(--pill-bg);border-radius:8px;padding:5px 6px;text-align:center;height:max-content}
 .g9-c-answer-box{background:var(--ok-bg);border:1px solid var(--ok-line);border-radius:12px;padding:10px 14px;color:var(--ok-fg)}
-.g9-c-answer-box p{margin:.15rem 0}.g9-c-answer-box h4{margin:0 0 .2rem;font-size:.85rem}
-.g9-c-check-box{border-left:4px solid var(--ok-line);padding:4px 14px;color:var(--ok-fg)}.g9-c-check-box h4{margin:0;font-size:.85rem}.g9-c-check-box p{margin:.15rem 0}
+.g9-c-answer-box p{margin:.15rem 0}.g9-c-answer-box h4{margin:0 0 .2rem;font-size:max(.85rem,14px)}
+.g9-c-check-box{border-left:4px solid var(--ok-line);padding:4px 14px;color:var(--ok-fg)}.g9-c-check-box h4{margin:0;font-size:max(.85rem,14px)}.g9-c-check-box p{margin:.15rem 0}
 .g9-c-tile,.g9-c-recall-card{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:12px 16px}
 .g9-c-tile h4,.g9-c-recall-card h4{margin:0 0 .3rem}.g9-c-tile ul{margin:.2rem 0;padding-left:1.2rem}
 .g9-c-banner{border-left:5px solid var(--accent);background:var(--info-bg);padding:12px 16px;border-radius:0 14px 14px 0}.g9-c-banner h4{margin:0 0 .2rem;color:var(--accent)}.g9-c-banner p{margin:.1rem 0}
@@ -2161,14 +2627,14 @@ article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-
 .g9-c-equation-card,.g9-c-worked-card{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 14px}
 .g9-c-worked-card{border-left:4px solid var(--accent)}.g9-c-worked-card [data-g9-block=worked_anchor]{border-left:0;padding-left:0}
 .g9-c-trap-card{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:14px;padding:10px 14px;color:var(--warn-fg)}
-.g9-c-trap-card [data-g9-block]{border-left:0;padding-left:0}.g9-c-trap-card h4{margin:.5rem 0 .1rem;font-size:.85rem}
+.g9-c-trap-card [data-g9-block]{border-left:0;padding-left:0}.g9-c-trap-card h4{margin:.5rem 0 .1rem;font-size:max(.85rem,14px)}
 .g9-c-trap-card ul{margin:.1rem 0;padding-left:1.2rem}
 .g9-c-triad{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 14px}
-.g9-c-triad h4{margin:0 0 .4rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.g9-c-triad h4{margin:0 0 .4rem;font-size:max(.85rem,14px);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
 .g9-triad{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .g9-triad>li{display:grid;gap:2px;border-left:4px solid var(--line);padding:2px 0 2px 10px}
 .g9-triad>li[data-g9-triad-role=CHECK]{border-color:var(--info-line)}.g9-triad>li[data-g9-triad-role=APPLY]{border-color:var(--ok-line)}.g9-triad>li[data-g9-triad-role=CONNECT]{border-color:var(--pill-fg)}
-.g9-triad-head{font-size:.85rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.g9-triad-head{font-size:max(.85rem,14px);font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
 .g9-c-chips ul,.g9-c-chips ol{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:.3rem 0;padding:0}
 .g9-c-chips li{margin:0}
 .g9-c-chips a{border:1px solid var(--line);border-radius:999px;background:var(--card);padding:6px 14px;min-height:48px;display:inline-flex;align-items:center;text-decoration:none;color:var(--fg)}
@@ -2187,6 +2653,8 @@ article[data-g9-role=CORE1A]>.slot-identity [data-g9-block=section_route] h4{mar
 article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] ol{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
 article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] li{margin:0}
 article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] a{display:inline-block;width:auto;max-width:24rem;padding:4px 14px;border-radius:999px;line-height:38px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-component=SECTION_ROUTE]{flex:1 1 100%;width:100%;min-width:0}
+article[data-g9-role=CORE1A]>.slot-identity [data-g9-section-route] a{max-width:100%;white-space:normal;overflow-wrap:anywhere}
 article[data-g9-role=CORE2]>.slot-identity [data-g9-meta-item],article[data-g9-role=CORE1A]>.slot-identity [data-g9-meta-item]{padding:2px 10px;line-height:1.35}
 .g9-interactive-bridge{border:2px solid var(--accent);border-radius:16px;background:var(--card);padding:16px 20px;margin:18px 0}
 .g9-interactive-bridge h3{margin:8px 0 4px;font-size:1.15rem;color:var(--fg)}
@@ -2239,17 +2707,20 @@ JS = r"""
 (()=>{const q=(s,r=document)=>[...r.querySelectorAll(s)];
 const store={get:k=>{try{return localStorage.getItem('g9-'+k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem('g9-'+k,v);return true}catch(e){return false}},remove:k=>{try{localStorage.removeItem('g9-'+k);return true}catch(e){return false}}};
 const root=document.documentElement;const scope=root.dataset.g9Product&&root.dataset.g9RenderDigest?root.dataset.g9Product+':'+root.dataset.g9RenderDigest:'';
+const shell=document.querySelector('.g9-shell-header');if(shell){const offset=()=>root.style.setProperty('--g9-header-offset',(shell.getBoundingClientRect().height+16)+'px');new ResizeObserver(offset).observe(shell);offset();}
 const apply=()=>{root.dataset.theme=store.get('theme')||root.dataset.theme||'light';root.style.setProperty('--g9-zoom',store.get('zoom')||'1');};apply();
 q('[data-g9-theme]').forEach(b=>b.onclick=()=>{store.set('theme',b.dataset.g9Theme);apply()});
 q('[data-g9-zoom]').forEach(b=>b.onclick=()=>{let z=parseFloat(store.get('zoom')||'1');z=b.dataset.g9Zoom==='inc'?Math.min(1.6,z+0.1):b.dataset.g9Zoom==='dec'?Math.max(0.8,z-0.1):1;store.set('zoom',z.toFixed(1));apply()});
 q('[data-g9-font]').forEach(b=>b.onclick=()=>q('[data-g9-zoom="'+b.dataset.g9Font+'"]')[0]?.click());
-function initFigure(f){if(f.dataset.g9Init)return;f.dataset.g9Init='1';const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);if(ids.length<2)return;let i=0;
+function fitFigure(f){const svg=q('svg',f)[0];if(!svg||!svg.isConnected)return;const groups=q('[data-g9-stage-id]',svg).filter(g=>getComputedStyle(g).display!=='none');if(groups.length){const boxes=groups.map(g=>g.getBBox()).filter(b=>b.width>0&&b.height>0);if(boxes.length){const x=Math.min(...boxes.map(b=>b.x))-12,y=Math.min(...boxes.map(b=>b.y))-12,r=Math.max(...boxes.map(b=>b.x+b.width))+12,b=Math.max(...boxes.map(b=>b.y+b.height))+12;svg.setAttribute('viewBox',[x,y,r-x,b-y].join(' '));}}
+const host=svg.parentElement;const labels=q('text',svg).filter(t=>t.checkVisibility({visibilityProperty:true}));const min=labels.reduce((v,t)=>Math.min(v,parseFloat(getComputedStyle(t).fontSize)||Infinity),Infinity);const box=svg.viewBox.baseVal;const floor=Number(f.dataset.g9MinFigureText)||14;const needed=Number.isFinite(min)&&min>0?Math.ceil(box.width*floor/min):0;svg.style.width=Math.max(host.clientWidth,needed)+'px';}
+function initFigure(f){if(f.dataset.g9Init)return;f.dataset.g9Init='1';const ids=(f.dataset.g9Stages||'').split(' ').filter(Boolean);fitFigure(f);const host=q('.g9-diagram-scroll',f)[0];if(host){let width=host.clientWidth;new ResizeObserver(()=>{const next=host.clientWidth;if(next!==width){width=next;fitFigure(f)}}).observe(host)}if(ids.length<2)return;let i=0;
 const chips=q('[data-g9-stage-goto]',f);const desc=q('[data-g9-stage-desc-text]',f)[0];
-const isSeq=f.dataset.g9StageSequence==='true'||ids.every(id=>{const g=q('[data-g9-stage-id="'+id+'"]',f)[0];return g&&g.querySelector('text[y="24"]');});
+const stageMode=f.dataset.g9StageMode||'cumulative';const cumulative=stageMode!=='replace';
 ids.forEach(id=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display='none'));
-const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=(isSeq?n===i:n<=i)?'':'none'));const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
+const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=(cumulative?n<=i:n===i)?'':'none'));fitFigure(f);const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
 q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})}
-function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('[data-g9-rung-ghost]',l)[0]?.remove();q('figure[data-g9-figure]',payload).forEach(initFigure);q('[data-g9-ladder]',l)[0].append(payload);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
+function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('[data-g9-rung-ghost]',l)[0]?.remove();q('[data-g9-ladder]',l)[0].append(payload);q('figure[data-g9-figure]',l).forEach(initFigure);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
 function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}
 const number=t=>{const v=t.trim();if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?(?:\s*\/\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)?$/i.test(v))return false;const p=v.split('/').map(x=>Number(x.trim()));return p.every(Number.isFinite)&&(p.length===1||p[1]!==0)};
 function validAttempt(box){const type=box.dataset.g9ResponseType;if(type==='single_choice'||type==='multiple_choice'||type==='true_false')return q('[data-g9-choice]:checked',box).length>0;
@@ -2260,18 +2731,21 @@ return !!q('[data-g9-attempt]',box)[0]?.value.trim()}
 const stateKey=a=>scope&&a?.dataset.g9Unit?'state:'+scope+':'+a.dataset.g9Unit:null;const returnKey=concept=>scope&&concept?'return:'+scope+':'+concept:null;
 function readState(key){if(!key)return null;const raw=store.get(key);if(!raw)return null;try{const state=JSON.parse(raw);return state&&typeof state==='object'?state:null}catch(e){return null}}
 const attemptFields=a=>q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a);const rungCount=l=>{const list=q('[data-g9-ladder]',l)[0];return list?q('[data-g9-rung]',list).length:0};
-function saveCore2State(a){if(a.dataset.g9Role!=='CORE2')return;const key=stateKey(a);if(!key)return;const fields=attemptFields(a).map(el=>({value:el.value,checked:!!el.checked}));const ladders={};q('.g9-ladder[data-g9-ladder-ref]',a).forEach(l=>ladders[l.dataset.g9LadderRef]=rungCount(l));const reveals=q('details[data-g9-support-reveal]',a).map(d=>!!d.open);store.set(key,JSON.stringify({attempted:!!a.dataset.attempted,fields,ladders,reveals}))}
+const assistanceOf=a=>(a.dataset.g9Assistance||'').split(',').filter(Boolean);
+function markAssistance(a,kind){if(a.dataset.g9Role!=='CORE2'||!kind)return;const kinds=new Set(assistanceOf(a));kinds.add(kind);a.dataset.g9Assistance=Array.from(kinds).join(',');a.dataset.g9Assisted='1'}
+function saveCore2State(a){if(a.dataset.g9Role!=='CORE2')return;const key=stateKey(a);if(!key)return;const fields=attemptFields(a).map(el=>({value:el.value,checked:!!el.checked}));const ladders={};q('.g9-ladder[data-g9-ladder-ref]',a).forEach(l=>ladders[l.dataset.g9LadderRef]=rungCount(l));const reveals=q('details[data-g9-support-reveal]',a).map(d=>!!d.open);const assistance=assistanceOf(a);store.set(key,JSON.stringify({attempted:!!a.dataset.attempted,assisted:!!a.dataset.g9Assisted,assistance,fields,ladders,reveals}))}
 function bindSupportRevealState(a){q('details[data-g9-support-reveal]',a).forEach(d=>{if(d.dataset.g9StateBound)return;d.dataset.g9StateBound='1';d.addEventListener('toggle',()=>saveCore2State(a))})}
-function restoreCore2State(a,lock){if(a.dataset.g9Role!=='CORE2')return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});bindSupportRevealState(a);q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.attempted){a.dataset.attempted='1';materialise(a)}lock()}
-const articles=q('article[data-g9-unit],article[data-g9-diagnostic]');
+function restoreCore2State(a,lock){if(a.dataset.g9Role!=='CORE2')return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});bindSupportRevealState(a);q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.assisted){a.dataset.g9Assisted='1';a.dataset.g9Assistance=(Array.isArray(state.assistance)?state.assistance:[]).filter(v=>typeof v==='string').join(',')}if(state.attempted){a.dataset.attempted='1';materialise(a)}lock()}
+const articles=q('article[data-g9-unit],article[data-g9-diagnostic],[data-g9-purpose-item]');
 articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);
 q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));
 q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});
-a.addEventListener('click',e=>{const b=e.target.closest('[data-g9-next-rung]');if(b&&a.contains(b)){nextRung(b.closest('.g9-ladder'));bindSupportRevealState(a);saveCore2State(a)}});attemptFields(a).forEach(el=>{el.addEventListener('input',()=>saveCore2State(a));el.addEventListener('change',()=>saveCore2State(a))});
-q('[data-g9-concept-link]',a).forEach(link=>link.addEventListener('click',()=>{saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef);if(key)store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit);refreshReturnLinks()}))});
-const practiceLinks=q('[data-g9-practice-link]');const practiceLabels=new Map(practiceLinks.map(link=>[link,link.textContent]));
-function refreshReturnLinks(){practiceLinks.forEach(link=>{const key=returnKey(link.dataset.g9ConceptRef);const active=!!key&&store.get(key)===link.dataset.g9QuestionRef;if(active){link.dataset.g9ReturnLink='';link.textContent='Return to question · '+practiceLabels.get(link)}else{delete link.dataset.g9ReturnLink;link.textContent=practiceLabels.get(link)}})}
-practiceLinks.forEach(link=>link.addEventListener('click',()=>{const key=returnKey(link.dataset.g9ConceptRef);if(key&&store.get(key)===link.dataset.g9QuestionRef){store.remove(key);refreshReturnLinks()}}));refreshReturnLinks();
+a.addEventListener('click',e=>{const b=e.target.closest('[data-g9-next-rung]');if(b&&a.contains(b)){markAssistance(a,'HINT_LADDER');nextRung(b.closest('.g9-ladder'));bindSupportRevealState(a);saveCore2State(a)}});attemptFields(a).forEach(el=>{el.addEventListener('input',()=>saveCore2State(a));el.addEventListener('change',()=>saveCore2State(a))});
+q('details[data-g9-payload-ref$="-wrong-route"]',a).forEach(d=>d.addEventListener('toggle',()=>{if(d.open){markAssistance(a,'WRONG_ROUTE');saveCore2State(a)}}));
+q('[data-g9-concept-link]',a).forEach(link=>link.addEventListener('click',()=>{markAssistance(a,'CONCEPT_NAV');saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef);if(key)store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit);refreshReturnLinks()}))});
+const practiceLinks=q('[data-g9-practice-link]');const practiceLabels=new Map(practiceLinks.map(link=>[link,link.textContent]));const navParams=new URLSearchParams(location.search);const navReturn=navParams.get('g9-return');const navConcept=navParams.get('g9-concept');
+function refreshReturnLinks(){practiceLinks.forEach(link=>{const key=returnKey(link.dataset.g9ConceptRef);const stored=!!key&&store.get(key)===link.dataset.g9QuestionRef;const routed=navReturn===link.dataset.g9QuestionRef&&navConcept===link.dataset.g9ConceptRef;const active=stored||routed;if(active){link.dataset.g9ReturnLink='';link.textContent='Return to question · '+practiceLabels.get(link)}else{delete link.dataset.g9ReturnLink;link.textContent=practiceLabels.get(link)}})}
+practiceLinks.forEach(link=>link.addEventListener('click',()=>{const key=returnKey(link.dataset.g9ConceptRef);if(key&&store.get(key)===link.dataset.g9QuestionRef)store.remove(key);refreshReturnLinks()}));refreshReturnLinks();
 window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)});
 q('figure[data-g9-figure]').forEach(initFigure);
 q('[data-g9-toggle]').forEach(b=>b.onclick=()=>{const t=document.getElementById(b.getAttribute('aria-controls'));if(!t)return;const open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));t.hidden=open});
@@ -2303,17 +2777,17 @@ def pdf_control(href: str, accessible_name: str = PDF_ACCESSIBLE_NAME) -> str:
             f'aria-label="{esc(accessible_name)}">{PDF_ICON}<span>PDF</span></a>')
 
 
-def shell_header(home_href: str, question_bank_href: str, pdf_href: str | None = None, pdf_name: str = PDF_ACCESSIBLE_NAME) -> str:
+def shell_header(home_href: str, question_bank_href: str, pdf_href: str | None = None, pdf_name: str = PDF_ACCESSIBLE_NAME, portal_root: str | None = None) -> str:
     """The shared tablet-shell header. Used by every rendered page."""
-    pdf_btn = f'<a class="g9-header-btn" href="{esc(pdf_href)}" title="{esc(pdf_name)}">PDF</a>' if pdf_href else ""
-    return (f'<header class="g9-shell-header"><div class="g9-header-inner">'
+    pdf_btn = f'<a class="g9-header-btn g9-pdf-link" data-g9-action="pdf" data-g9-pdf-link aria-label="{esc(pdf_name)}" href="{esc(pdf_href)}" title="{esc(pdf_name)}">PDF</a>' if pdf_href else ""
+    subjects = ''.join(f'<a href="{esc(_portal_href(portal_root, name.lower()+"/index.html"))}">{name}</a>'
+                       for name in ('Physics','Chemistry','Mathematics')) if portal_root else ''
+    qb_link = f'<a href="{esc(question_bank_href)}">Question Bank</a>' if question_bank_href != home_href else ''
+    return (f'<header class="g9-shell-header" data-g9-shell-header><div class="g9-header-inner">'
             f'<a href="{esc(home_href)}" class="g9-brand"><span class="logo-icon">⚡</span><span class="brand-title">Grade9V3.5</span><span class="g9-brand-badge">Learner Platform</span></a>'
             f'<nav class="g9-header-nav" aria-label="Portal Navigation">'
-            f'<a href="{esc(home_href)}">Home</a>'
-            f'<a href="../../../physics/index.html">Physics</a>'
-            f'<a href="../../../chemistry/index.html">Chemistry</a>'
-            f'<a href="../../../mathematics/index.html">Mathematics</a>'
-            f'<a href="{esc(question_bank_href)}">Question Bank</a>'
+            f'<a data-g9-home href="{esc(home_href)}">Home</a>'
+            f'{subjects}{qb_link}'
             f'</nav>'
             f'<div class="g9-header-actions">'
             f'<button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" title="Search Grade9V3 (Ctrl/⌘ K)" aria-label="Search"><span class="g9-btn-icon">🔍</span><span class="g9-btn-text">Search</span></button>'
@@ -2337,6 +2811,21 @@ def _pdf_target(ctx: Ctx, role: str, mode: str) -> tuple[str | None, str]:
     return policy["target_pattern"].format(page_stem=stem), policy["accessible_name"]
 
 
+def _portal_root(manifest: dict, mode: str) -> str | None:
+    """A declared portal home supplies its base; a standalone product index does not."""
+    home = _mode_href(manifest["home_href"], mode)
+    parent = home.rsplit('/', 1)[0]+'/' if '/' in home else None
+    return parent
+
+def _portal_href(portal_root: str | None, target: str) -> str | None:
+    """Resolve a site-root-relative target without urljoin collapsing ../../../ prefixes."""
+    if not portal_root:
+        return None
+    if target.startswith(("http://", "https://", "//", "#")):
+        return target
+    return f"{portal_root}{target.lstrip('/')}"
+
+
 def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
     m = ctx.manifest
     if mode == "EMBED":
@@ -2349,63 +2838,43 @@ def shell(ctx: Ctx, role: str, mode: str, pdf: bool = True) -> tuple[str, str]:
     qb_href = _mode_href(m.get("question_bank_href", m["home_href"]), mode)
     pdf_href, pdf_name = _pdf_target(ctx, role, mode) if pdf else (None, PDF_ACCESSIBLE_NAME)
     
-    header = shell_header(home_href, qb_href, pdf_href, pdf_name)
-    
-    # Breadcrumbs
-    subject = m.get("subject", "Physics")
-    subject_href = f"../../../{subject.lower()}/index.html"
-    
-
-    from Shared.tools.resolve_concept_bundle import resolve_bundle
-    cap_ref = None
-    try:
-        if ctx.selection_rows and "core2" in ctx.selection_rows and ctx.selection_rows["core2"]:
-            cap_ref = ctx.selection_rows["core2"][0].get("primary_capability_ref", "")
-        else:
-            cap_ref = "MIC-PHY-NLM-FRICTION" # fallback
-            
-        registry_path = REPO / "public" / "data" / "resource-registry.v1.json"
-        reg = load_json(registry_path) if registry_path.exists() else []
-        bundle = resolve_bundle(cap_ref, reg)
-        explore_btn = ""
+    portal_root = _portal_root(m, mode)
+    header = shell_header(home_href, qb_href, pdf_href, pdf_name, portal_root)
+    subject = m.get("subject", "")
+    subject_href = _portal_href(portal_root, subject.lower()+"/index.html") if portal_root else None
+    concept = next(iter(ctx.selection_rows.get("microtopics", [])), {})
+    selected_questions = ctx.selection_rows.get("core2", [])
+    cap_ref = concept.get("primary_capability_ref") or (selected_questions[0].get("primary_capability_ref") if selected_questions else None)
+    explore_btn = ""
+    topic_href = None
+    if portal_root and cap_ref:
+        from Shared.tools.resolve_concept_bundle import resolve_bundle
+        registry_path = REPO / "public/data/resource-registry.v1.json"
+        bundle = resolve_bundle(cap_ref, load_json(registry_path)) if registry_path.exists() else {}
         if bundle.get("interactive"):
-            ep = bundle["interactive"][0].get("entrypoint", "")
-            explore_btn = f'<a class="g9-triad-btn g9-btn-explore" href="../../../{ep}">⚡ Try visually</a>'
-            
-        topic_id = bundle.get("topic_ref", "")
-        if topic_id:
-            topic_slug = topic_id.split(".")[-1]
-        else:
-            pid = m.get("product_id", "")
-            parts = pid.split("-")
-            topic_slug = parts[2].lower() if len(parts) >= 3 else "nlm"
-    except Exception:
-        explore_btn = ""
-        topic_slug = "nlm"
-        
-    topic_href = f"../../../topics/{topic_slug}/index.html"
-    
-    triad_context = (f'<div class="g9-triad-context" aria-label="breadcrumb">'
-                     f'<a href="{esc(home_href)}">Home</a>'
-                     f' / <a href="{subject_href}">{esc(subject)}</a>'
-                     f' / <a href="{topic_href}">{esc(m.get("title", ""))}</a>'
-                     f' / <span aria-current="page">{esc(current_role)}</span>'
-                     f'</div>')
-
-    qb_url = f"../../../question-bank/index.html?capability={esc(cap_ref)}"
-
-    c1a_active = ' active' if role == 'CORE1A' else ''
-    c2_active = ' active' if role == 'CORE2' else ''
-
-    triad = (f'<div class="g9-concept-triad-bar"><div class="g9-triad-inner">'
-             f'{triad_context}'
+            entry = bundle["interactive"][0].get("entrypoint")
+            if entry:
+                explore_btn = f'<a class="g9-triad-btn g9-btn-explore" href="{esc(_portal_href(portal_root, entry))}">⚡ Try visually</a>'
+        topic_ref = bundle.get("topic_ref")
+        if topic_ref:
+            topic_href = _portal_href(portal_root, "topics/"+topic_ref.split(".")[-1]+"/index.html")
+    subject_label = f'<a href="{esc(subject_href)}">{esc(subject)}</a>' if subject_href else esc(subject)
+    topic_label = f'<a href="{esc(topic_href)}">{esc(m.get("title", ""))}</a>' if topic_href else esc(m.get("title", ""))
+    triad_context = f'<div class="g9-triad-context">{subject_label} / {topic_label} / <span aria-current="page">{esc(current_role)}</span></div>'
+    actions = []
+    selected_roles = product_manifest.selected_output_roles(m)
+    for target,label in (("CORE1","Orientation"),("CORE1A","📖 Learn"),("CORE1B","Recall"),
+                         ("CORE2","✍️ Practice"),("CORE2A","Apply"),("CORE2B","Transfer")):
+        if target in selected_roles:
+            active = ' active' if role == target else ''
+            href = '#g9-role-'+target if mode == 'SINGLE_FILE' else ROLE_FILE[target]
+            actions.append(f'<a class="g9-triad-btn{active}" href="{esc(href)}">{label}</a>')
+    actions.append(explore_btn)
+    if qb_href != home_href:
+        actions.append(f'<a class="g9-triad-btn g9-btn-qb" href="{esc(qb_href)}">All questions in QB &rarr;</a>')
+    triad = (f'<div class="g9-concept-triad-bar"><div class="g9-triad-inner">{triad_context}'
              f'<span class="g9-triad-concept-title">Concept: {esc(m.get("title", ""))}</span>'
-             f'<div class="g9-triad-actions">'
-             f'<a class="g9-triad-btn g9-btn-learn{c1a_active}" href="core1a.html">📖 Learn</a>'
-             f'<a class="g9-triad-btn g9-btn-practice{c2_active}" href="core2.html">✍️ Practice</a>'
-             f'{explore_btn}'
-             f'<a class="g9-triad-btn g9-btn-qb" href="{qb_url}">All questions in QB &rarr;</a>'
-             f'</div></div></div>')
+             f'<div class="g9-triad-actions">{"".join(actions)}</div></div></div>')
 
     return header, triad
 
@@ -2446,9 +2915,19 @@ def _shared_head_assets(ctx: Ctx, mode: str) -> str:
     if mode == "EMBED":
         return ""
     if mode == "SINGLE_FILE":
-        return '<style data-g9-tablet-shell>' + TABLET_CSS.read_text(encoding="utf-8") + '</style>'
+        return ('<style data-g9-modern-shell>' + (REPO / 'public/css/modern-learner.css').read_text(encoding="utf-8")
+                + '</style><style data-g9-tablet-shell>' + TABLET_CSS.read_text(encoding="utf-8") + '</style>')
     root = _asset_root(ctx)
     return f'<link rel="stylesheet" href="{esc(root)}css/modern-learner.css"><link rel="stylesheet" href="{esc(root)}css/tablet-12-7.css">'
+
+
+def _shared_script_assets(ctx: Ctx, mode: str) -> str:
+    if mode == "EMBED":
+        return ""
+    paths = ("js/display-controls.js", "js/site-header.js")
+    if mode == "SINGLE_FILE":
+        return ''.join('<script>' + (REPO / 'public' / path).read_text(encoding='utf-8') + '</script>' for path in paths)
+    return ''.join(f'<script src="{esc(_asset_root(ctx))}{path}"></script>' for path in paths)
 
 
 def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
@@ -2472,13 +2951,13 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
             '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}">'
             f'{_shared_head_assets(ctx, mode)}'
-            f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}{COMPONENT_CSS}{layout_css(ctx.blueprints)}</style></head>'
+            f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}{COMPONENT_CSS}{learning_repair.CSS}{layout_css(ctx.blueprints)}</style></head>'
             f'<body data-core="{role}" data-blueprint-ref="{esc(bp["id"])}@{esc(bp["version"])}">'
             f'{header}{crumbs}<noscript>Answers open after you attempt; this page needs JavaScript.</noscript>'
             f'<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>'
             f'{_core1a_bucket_orientation(ctx) if role == "CORE1A" else ""}{articles}</main>'
             f'<footer data-g9-footer>{esc(m["subject"])} · {esc(m["title"])}</footer>'
-            f"<script>{JS}</script><script src=\"{esc(_asset_root(ctx))}js/display-controls.js\"></script><script src=\"{esc(_asset_root(ctx))}js/site-header.js\"></script></body></html>\n")
+            f"<script>{JS}{learning_repair.JS}</script>{_shared_script_assets(ctx, mode)}</body></html>\n")
 
 
 def index_page(ctx: Ctx, digest: str) -> str:
@@ -2591,7 +3070,9 @@ def context(manifest_path: Path) -> Ctx:
         for representation in package.get("representations", [])
         for ref in representation.get("rendered_asset_refs", [])
         if isinstance(ref, str)
-    } | {r["snapshot_ref"] for p in packages for r in p.get("resources", []) if r.get("snapshot_ref")})
+    } | {scene["asset_ref"] for p in packages for rep in p.get("representations", [])
+         for scene in rep.get("scene_instances", []) if scene.get("asset_ref")}
+      | {r["snapshot_ref"] for p in packages for r in p.get("resources", []) if r.get("snapshot_ref")})
     own_capabilities = {
         capability["id"]
         for package in packages
@@ -2668,7 +3149,7 @@ def _single_file_fragment(page_html: str, role: str) -> str:
     def cross_link(m: re.Match[str]) -> str:
         target_role = file_to_role.get(m.group(1))
         return f'href="#g9-{target_role}--{m.group(2)}"' if target_role else m.group(0)
-    fragment = re.sub(r'href="(core\w+\.html)#([^"]+)"', cross_link, fragment)
+    fragment = re.sub(r'href="(core\w+\.html)(?:\?[^"#]*)?#([^"]+)"', cross_link, fragment)
     for old in local_anchor_ids:
         fragment = fragment.replace(f'href="#{old}"', f'href="#g9-{role}--{old}"')
     fragment = re.sub(
@@ -2874,7 +3355,9 @@ def pdf_publication_problems(folder: Path) -> list[str]:
     linked: set[str] = set()
     for page in sorted(folder.glob("*.html")):
         text = page.read_text(encoding="utf-8")
-        for href in re.findall(r'<a data-g9-action="pdf"[^>]*?\shref="([^"]*)"', text):
+        for anchor in re.findall(r'<a\b[^>]*\bdata-g9-action="pdf"[^>]*>', text):
+            target_attr = re.search(r'\bhref="([^"]*)"', anchor)
+            href = target_attr.group(1) if target_attr else ""
             if not re.fullmatch(r"[a-z0-9]+\.pdf", href):
                 problems.append(f"{page.name}: the PDF link {href!r} is not a learner PDF beside the page")
                 continue
