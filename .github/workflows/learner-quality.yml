@@ -33,6 +33,8 @@ jobs:
         run: |
           python3 -m unittest tests.test_test_source_review -v
           python3 Shared/tools/test_source_review.py
+      - name: TEST NCERT Q1 source-linked parked product contract (Issue 131)
+        run: python3 -m unittest tests.test_test_ncert_source_product -v
       - name: Authenticate pilot witness pointers
         env:
           GITHUB_TOKEN: ${{ github.token }}
