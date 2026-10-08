@@ -134,7 +134,7 @@ def describe(brief: dict | None) -> list[str]:
     if brief.get("crux_move"):
         move = brief["crux_move"]
         lines.append(f"  the move a learner misses: {move.get('action')} ({move.get('id')})")
-        lines.append("  the concept unit that builds it: its steps lead up to this move and the last of them makes it (crux_step_ref); its worked example is this question")
+        lines.append("  the concept unit that builds it: its crux_step_ref points to the decisive teaching step; use the target question as worked example or an independently worked lesson anchor explicitly bound to the target question and crux")
     if brief.get("wrong_route"):
         lines.append(f"  the tempting wrong route: {brief['wrong_route']}")
     lines.append(f"  chosen by: {brief['rule']}")
