@@ -42,7 +42,7 @@ for (const width of [320, 390, 768, 1280]) {
 
   const facts = await page.evaluate(() => {
     const cards = [...document.querySelectorAll('[data-g9-test-question]')];
-    const controls = [...document.querySelectorAll('#tqbSearch,#tqbUnit,#tqbType,#tqbReset,.tqb-test-nav a,.tqb-answer summary')];
+    const controls = [...document.querySelectorAll('#tqbSearch,#tqbUnit,#tqbType,#tqbReset,.tqb-test-nav a,.tqb-answer summary,.tqb-card-footer a')];
     const small = controls.filter(el => {
       const rect = el.getBoundingClientRect();
       return rect.width > 0 && rect.height > 0 && rect.height < 47.5;
@@ -54,6 +54,16 @@ for (const width of [320, 390, 768, 1280]) {
       hold: cards.filter(card => card.dataset.g9Validation === 'HOLD').length,
       unvalidated: cards.filter(card => card.dataset.g9Validation === 'UNVALIDATED').length,
       sourceVerified: cards.filter(card => card.dataset.g9SourceVerification === 'SOURCE VERIFIED').length,
+      custodyEvidenced: cards.filter(card => card.dataset.g9Custody === 'INDEPENDENTLY_EVIDENCED').length,
+      custodyPending: cards.filter(card => card.dataset.g9Custody === 'EVIDENCE_PENDING').length,
+      sourceLinks: cards.filter(card => card.querySelector('.tqb-card-footer a')).length,
+      unsafeSourceLinks: cards.filter(card => {
+        const a = card.querySelector('.tqb-card-footer a');
+        return !a || a.protocol !== 'https:' || a.hostname !== 'ncert.nic.in'
+          || a.target !== '_blank' || !a.rel.includes('noopener');
+      }).length,
+      evidencedWithoutLocator: cards.filter(card => card.dataset.g9Custody === 'INDEPENDENTLY_EVIDENCED'
+        && !card.querySelector('.tqb-card-footer')?.textContent.includes('printed page')).length,
       duplicateReview: cards.filter(card => card.dataset.g9Review === 'DUPLICATE_REVIEW').length,
       types: Object.fromEntries(['MULTIPLE_CHOICE','SHORT_ANSWER','TRUE_FALSE'].map(type => [type, cards.filter(card => card.dataset.type === type).length])),
       overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
@@ -68,7 +78,10 @@ for (const width of [320, 390, 768, 1280]) {
   if (facts.validated !== 59) failures.push(`${where}: ${facts.validated}/59 VALIDATED`);
   if (facts.hold !== 1) failures.push(`${where}: ${facts.hold}/1 HOLD`);
   if (facts.unvalidated !== 150) failures.push(`${where}: ${facts.unvalidated}/150 UNVALIDATED`);
-  if (facts.sourceVerified !== 210) failures.push(`${where}: ${facts.sourceVerified}/210 SOURCE VERIFIED`);
+  if (facts.sourceVerified !== 210) failures.push(`${where}: ${facts.sourceVerified}/210 historical text-verification labels`);
+  if (facts.custodyEvidenced !== 6 || facts.custodyPending !== 204) failures.push(`${where}: evidence truth is ${facts.custodyEvidenced} evidenced / ${facts.custodyPending} pending, expected 6/204`);
+  if (facts.sourceLinks !== 210 || facts.unsafeSourceLinks) failures.push(`${where}: source links ${facts.sourceLinks}/210, invalid ${facts.unsafeSourceLinks}`);
+  if (facts.evidencedWithoutLocator) failures.push(`${where}: ${facts.evidencedWithoutLocator} independently evidenced records missing corrected printed/PDF locator`);
   if (facts.duplicateReview !== 0) failures.push(`${where}: ${facts.duplicateReview} duplicate-review cards, expected 0`);
   if (facts.types.MULTIPLE_CHOICE !== 125 || facts.types.SHORT_ANSWER !== 45 || facts.types.TRUE_FALSE !== 40) {
     failures.push(`${where}: type denominators ${JSON.stringify(facts.types)}`);
@@ -101,4 +114,4 @@ if (failures.length) {
   console.log(`FAIL: ${failures.length} TEST Question Bank browser problem(s)`);
   process.exit(1);
 }
-console.log('PASS: TEST Question Bank renders 210 source-verified questions with 59 VALIDATED / 1 HOLD / 150 UNVALIDATED, correct filters, touch targets and no narrow overflow');
+console.log('PASS: TEST Question Bank renders 210 parked questions (6 independent custody evidence / 204 pending), official links, 59 VALIDATED / 1 HOLD / 150 UNVALIDATED, controls and no narrow overflow');
