@@ -54,6 +54,22 @@ class TestOfficialSourceReview(unittest.TestCase):
                          (12, 198))
         self.assertFalse(set(result["review_ids"]) & set(current["ready_ids"]))
 
+    def test_frozen_review_rejects_deleted_observation_or_ledger(self):
+        """A subset of the historical eight is not an eight-question review."""
+        for variant in ("drop one record", "remove entire ledger"):
+            with self.subTest(variant=variant):
+                self.data = copy.deepcopy(self.review)
+                self.write()
+                if variant == "drop one record":
+                    self.data["records"].pop()
+                    self.write()
+                else:
+                    self.review_file.unlink()
+                with self.assertRaisesRegex(
+                    ValueError, "frozen primary-source observation scope missing reviewed IDs"
+                ):
+                    test_source_review.validate(self.repo)
+
     def test_coordinated_raw_and_review_rewrite_cannot_reuse_observation(self):
         """Matching mutable bank+review copies are not an independent PDF witness."""
         for variant in ("stem", "options", "identifier", "source_url"):

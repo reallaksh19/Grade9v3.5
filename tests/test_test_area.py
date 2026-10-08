@@ -223,7 +223,9 @@ class TestPages(unittest.TestCase):
         hub = (REPO / "public/test/index.html").read_text(encoding="utf-8")
         self.assertIn('id="g9-test-search-index"', hub)
         self.assertIn("12 READY_FOR_BLUEPRINT · 0 SOURCE_TEXT_HOLD · 198 EVIDENCE_PENDING", hub)
-        self.assertNotIn("SOURCE TEXT HOLD", hub)
+        # The JavaScript facet may explain SOURCE TEXT HOLD even when there
+        # are zero actual held questions. It may not fabricate a held badge.
+        self.assertNotIn(">SOURCE TEXT HOLD</span>", hub)
         self.assertIn("Which one of the following is a polynomial?", hub)
         self.assertIn("Printed page 14 / PDF index 1", hub)
         self.assertIn("Inspect 210 parked intake questions", hub)

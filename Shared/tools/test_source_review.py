@@ -131,6 +131,12 @@ def validate(repo: Path) -> dict:
             if observed is None or reported != observed:
                 raise ValueError(f"{where}: frozen primary-source observation scope mismatch for {qid}")
             reviewed[qid] = record
+    missing = set(FROZEN_R4_PRIMARY_OBSERVATIONS) - set(reviewed)
+    if missing:
+        raise ValueError(
+            "frozen primary-source observation scope missing reviewed IDs: "
+            + ", ".join(sorted(missing))
+        )
     return {"reviewed": len(reviewed), "review_ids": sorted(reviewed),
             "notation_discrepancies": sorted(qid for qid, r in reviewed.items()
                                             if r["comparison_status"] == "SOURCE_NOTATION_DISCREPANCY"),
