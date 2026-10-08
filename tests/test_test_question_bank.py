@@ -155,7 +155,10 @@ class TestTestQuestionBank(unittest.TestCase):
                     self.assertNotEqual(row["stem_sha256"], original["stem_sha256"])
                 else:
                     self.assertEqual(row["stem_sha256"], original["stem_sha256"])
-                self.assertEqual(row["source_text_verification"], original["text_verification_status"])
+                # The academic receipt preserves its historical capture claim;
+                # the source bank is now explicitly unverified until custody is joined.
+                self.assertEqual(row["source_text_verification"], "TEXT_VERIFIED_AGAINST_OFFICIAL")
+                self.assertEqual(original["text_verification_status"], "CAPTURED_UNVERIFIED")
                 self.assertEqual(row["official_answer_text"], original["official_answer_text"])
                 self.assertEqual(row["official_answer_locator"], original["answer_key_locator"])
                 validation = row["academic_validation"]
@@ -194,7 +197,7 @@ class TestTestQuestionBank(unittest.TestCase):
             original = source[row["source_id"]]
             self.assertEqual(row["original_identifier"], original["original_identifier"])
             self.assertEqual(row["stem_sha256"], original["stem_sha256"])
-            self.assertEqual(row["source_text_verification"], original["text_verification_status"])
+            # Preserve immutable academic receipt's historical claim without granting custody.\n            self.assertEqual(row["source_text_verification"], "TEXT_VERIFIED_AGAINST_OFFICIAL")\n            self.assertEqual(original["text_verification_status"], "CAPTURED_UNVERIFIED")
             self.assertEqual(row["official_answer_text"], original["official_answer_text"])
             self.assertEqual(row["official_answer_locator"], original["answer_key_locator"])
             validation = row["academic_validation"]
@@ -207,7 +210,7 @@ class TestTestQuestionBank(unittest.TestCase):
         q7 = source["ncert-exemplar-g9-math-u01-q07"]
         self.assertEqual(q6["stem_sha256"], q7["stem_sha256"])
         self.assertNotEqual(q6["options"], q7["options"])
-        self.assertEqual(q7["workflow_status"], "READY_FOR_BLUEPRINT")
+        self.assertEqual(q7["workflow_status"], "EVIDENCE_PENDING")
         q7_validation = rows[6]["academic_validation"]
         self.assertIn("stem-only digest collision", q7_validation["convention_note"])
         self.assertIn("not duplicate items", q7_validation["convention_note"])
@@ -229,7 +232,7 @@ class TestTestQuestionBank(unittest.TestCase):
             original = source[row["source_id"]]
             self.assertEqual(row["original_identifier"], original["original_identifier"])
             self.assertEqual(row["stem_sha256"], original["stem_sha256"])
-            self.assertEqual(row["source_text_verification"], original["text_verification_status"])
+            # Preserve immutable academic receipt's historical claim without granting custody.\n            self.assertEqual(row["source_text_verification"], "TEXT_VERIFIED_AGAINST_OFFICIAL")\n            self.assertEqual(original["text_verification_status"], "CAPTURED_UNVERIFIED")
             self.assertEqual(row["official_answer_text"], original["official_answer_text"])
             self.assertEqual(row["official_answer_locator"], original["answer_key_locator"])
             validation = row["academic_validation"]
@@ -256,7 +259,7 @@ class TestTestQuestionBank(unittest.TestCase):
             original = source[row["source_id"]]
             self.assertEqual(row["original_identifier"], original["original_identifier"])
             self.assertEqual(row["stem_sha256"], original["stem_sha256"])
-            self.assertEqual(row["source_text_verification"], original["text_verification_status"])
+            # Preserve immutable academic receipt's historical claim without granting custody.\n            self.assertEqual(row["source_text_verification"], "TEXT_VERIFIED_AGAINST_OFFICIAL")\n            self.assertEqual(original["text_verification_status"], "CAPTURED_UNVERIFIED")
             self.assertEqual(row["official_answer_text"], original["official_answer_text"])
             self.assertEqual(row["official_answer_locator"], original["answer_key_locator"])
             validation = row["academic_validation"]
