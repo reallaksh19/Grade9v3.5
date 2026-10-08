@@ -49,12 +49,16 @@ class Renderer(unittest.TestCase):
                 self.assertTrue(slots and set(slots) <= set(allowed), (slots, allowed))
                 self.assertIn("@media print", html)
 
-    def test_reveals_are_gated_and_no_record_id_or_placeholder_reaches_the_learner(self):
+    def test_protected_reveals_are_gated_and_no_record_id_or_placeholder_reaches_the_learner(self):
         for name, html in self.pages.items():
             with self.subTest(page=name):
                 self.assertNotIn("None supplied", html)
                 self.assertIsNone(re.search(r">\s*(FAM|K2D)[A-Z0-9-]+\s*<", html))
-                for details in re.findall(r"<details[^>]*>", html):
+                protected = re.findall(
+                    r'<details[^>]*data-g9-payload-ref="[^"]+"[^>]*>',
+                    html,
+                )
+                for details in protected:
                     self.assertIn("data-requires-attempt", details)
 
     def test_missing_inputs_are_typed_gaps_that_the_board_knows(self):
@@ -69,6 +73,25 @@ class Renderer(unittest.TestCase):
         self.assertFalse(out.exists())
         render_core.main(["build", "--manifest", str(manifest_file(self.tmp)), "--out", str(out), "--draft"])
         self.assertIn("data-g9-draft", (out / "core1.html").read_text(encoding="utf-8"))
+
+    def test_strict_build_failure_names_typed_gaps_without_writing(self):
+        """CI must name each real blocker without authorizing a draft."""
+        import contextlib
+        import io
+
+        out = self.tmp / "strict-out"
+        stderr = io.StringIO()
+        manifest = manifest_file(self.tmp)
+        with contextlib.redirect_stderr(stderr):
+            rc = render_core.main(["build", "--manifest", str(manifest), "--out", str(out)])
+        self.assertEqual(rc, 2)
+        self.assertFalse(out.exists())
+        log = stderr.getvalue()
+        for gap in self.gaps:
+            self.assertIn(gap["duty"], log)
+            self.assertIn(gap["record"], log)
+            self.assertIn(gap["detail"], log)
+        self.assertIn(f"{len(self.gaps)} gap(s): nothing written", log)
 
     def test_a_draft_says_when_a_role_in_the_product_has_no_records(self):
         """A run found a Core2 product with no questions built 'successfully' (rc 0) with nothing said."""
@@ -213,13 +236,10 @@ class Renderer(unittest.TestCase):
             motion_ctx, "CORE1A", "PAGES", render_core.render_digest(motion_ctx)
         )
 
-        # Explicit structure drives the view: staged representations stay staged,
-        # relations stay semantic matrices, and worked/repair/check material keeps
-        # its governed content. The renderer does not classify every figure or
-        # VERIFY step into a new academic archetype.
-        self.assertIn('data-g9-stage-sequence="true"', motion_html)
+        # Explicit authored structure drives the view. Representation and intermediate
+        # check presence is governed by the blueprint's EXPECTED/OPTIONAL applicability,
+        # not by a renderer-invented archetype or a universal panel requirement.
         self.assertIn("data-g9-equation-matrix", motion_html)
-        self.assertIn('data-g9-block="independent_check"', motion_html)
         for microtopic in motion_ctx.selection_rows["microtopics"]:
             for unit in microtopic.get("construction_units") or []:
                 if unit.get("representation_ref"):
@@ -289,27 +309,39 @@ class Renderer(unittest.TestCase):
         units = projectile["construction_units"]
         for index, unit in enumerate(units):
             primary_at = article.index(f'id="{unit["id"]}"')
-            support_at = article.index(f'data-g9-support-for="{unit["id"]}"')
             next_boundary = (
                 article.index(f'id="{units[index + 1]["id"]}"')
                 if index + 1 < len(units)
                 else article.index('data-g9-block="exit_task"')
             )
-            self.assertLess(primary_at, support_at)
-            self.assertLess(support_at, next_boundary)
-
-            construction_slot = article.rfind(
-                'data-blueprint-slot="construction"', 0, primary_at
+            marker = f'data-g9-support-for="{unit["id"]}"'
+            has_support = bool(
+                render_core._misconceptions(projectile, unit)
+                or [row for row in unit.get("independent_checks") or [] if row.get("statement")]
             )
-            support_slot = article.rfind(
-                'data-blueprint-slot="repair_closure"', 0, support_at
-            )
-            self.assertGreaterEqual(construction_slot, 0)
-            self.assertGreater(support_slot, construction_slot)
+            segment = article[primary_at:next_boundary]
+            if has_support:
+                self.assertIn(marker, segment)
+                support_at = article.index(marker, primary_at, next_boundary)
+                self.assertLess(primary_at, support_at)
+                construction_slot = article.rfind(
+                    'data-blueprint-slot="construction"', 0, primary_at
+                )
+                support_slot = article.rfind(
+                    'data-blueprint-slot="repair_closure"', 0, support_at
+                )
+                self.assertGreaterEqual(construction_slot, 0)
+                self.assertGreater(support_slot, construction_slot)
+            else:
+                self.assertNotIn(marker, segment)
 
-        # each unit is its own two-column row, then one support-only row for the closing task, laid out by the blueprint's fractions
-        self.assertEqual(article.count('class="g9-split'), len(units) + 1)
-        self.assertIn('article[data-g9-role="CORE1A"] .g9-split{display:grid;', render_core.layout_css(ctx.blueprints))
+        # Teaching and any adjacent optional support stay in one continuous reading pane.
+        self.assertNotIn('class="g9-split', article)
+        self.assertEqual(
+            next(row for row in ctx.blueprints["blueprints"] if "CORE1A" in row["core_roles"])
+            ["responsive_policy"]["expanded"],
+            "SINGLE_PANE",
+        )
 
     def test_core1a_relation_matrix_preserves_equation_meaning_and_validity_semantics(self):
         repo_manifest = REPO / "products" / "physics" / "phy-kin-2d-motion.manifest.json"
@@ -507,30 +539,53 @@ class Renderer(unittest.TestCase):
             if "CORE1A" in row["core_roles"]
         )
 
-        self.assertEqual(blueprint["responsive_policy"]["expanded"], "STAGE_SUPPORT")
-        # 60/40: the support column is wide enough that a figure drawn in a 480-unit viewBox renders its labels at 14 px or more
-        # on the 12.7-inch reference tablet (see responsive_policy.tablet_12_7).
-        self.assertAlmostEqual(
-            blueprint["responsive_policy"]["primary_fraction"], 0.6, places=2
-        )
-        self.assertAlmostEqual(
-            blueprint["responsive_policy"]["support_fraction"], 0.4, places=2
-        )
+        self.assertEqual(blueprint["responsive_policy"]["expanded"], "SINGLE_PANE")
+        self.assertEqual(blueprint["interaction_policy"]["worked_example_step_policy"], "SHOW_ALL")
+        self.assertNotIn('class="g9-split', html)
         self.assertGreaterEqual(blueprint["touch_policy"]["minimum_target_css_px"], 48)
         self.assertGreaterEqual(blueprint["touch_policy"]["minimum_control_gap_css_px"], 8)
-        self.assertFalse(blueprint["interaction_policy"]["progressive_support"])
+        self.assertTrue(blueprint["interaction_policy"]["progressive_support"])
         self.assertIn("ATTEMPT_FIRST_AS_PRIMARY_MODE", blueprint["forbidden"])
 
+        # The only retained 68/32 ratio is a local bucket-orientation card.
+        # Core1A's page layout is selected from its blueprint and remains one pane.
         self.assertIn("@media (min-width:1100px)", render_core.CSS)
-        self.assertIn("grid-template-columns:.68fr .32fr", render_core.CSS)
+        self.assertIn(
+            ".g9-bucket-orientation-grid{display:grid;grid-template-columns:.68fr .32fr",
+            render_core.CSS,
+        )
+        self.assertNotIn(
+            'article[data-g9-role="CORE1A"] .g9-split{display:grid;',
+            render_core.layout_css(ctx.blueprints),
+        )
         self.assertIn("min-height:var(--g9-touch-min)", render_core.CSS)
         self.assertIn("overflow-x:auto", render_core.CSS)
         self.assertIn(".g9-stage-controls{display:grid;gap:8px;max-width:100%}", render_core.CSS)
         self.assertIn(".g9-stage-chip[aria-pressed=true]", render_core.CSS)
         self.assertIn("[data-g9-concept-route] a,[data-g9-section-route] a{display:flex;width:100%;max-width:100%;min-width:0", render_core.CSS)
         self.assertIn("overflow-wrap:anywhere", render_core.CSS)
+        self.assertIn(
+            ".blueprint-slot,.g9-component,.g9-cu,.g9-cu-support,[data-g9-block],details,fieldset{min-width:0;max-width:100%;box-sizing:border-box}",
+            render_core.CSS,
+        )
+        self.assertIn("fieldset{min-inline-size:0}", render_core.CSS)
+        self.assertIn(
+            ".g9-cu-support>h3{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:normal;overflow-wrap:anywhere}",
+            render_core.COMPONENT_CSS,
+        )
         self.assertIn("[data-g9-meta-item]{display:inline-flex;flex-wrap:wrap", render_core.CSS)
         self.assertIn('data-g9-equation-matrix', html)
+
+    def test_core1a_closure_navigation_can_wrap_at_200_percent_zoom(self):
+        self.assertIn(
+            ".g9-bridge-link{color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:3px;white-space:normal;overflow-wrap:anywhere;max-width:100%;min-width:0}",
+            render_core.COMPONENT_CSS,
+        )
+        self.assertIn(
+            ".g9-c-link-list li{margin:0;min-width:0;max-width:100%}",
+            render_core.COMPONENT_CSS,
+        )
+        self.assertIn("white-space:normal;overflow-wrap:anywhere", render_core.COMPONENT_CSS)
 
     def test_core1a_browser_audit_contract_is_syntax_valid_and_covers_required_viewports(self):
         audit = REPO / "tools" / "site-audit" / "core-page-audit.mjs"

@@ -21,6 +21,26 @@ jobs:
           python-version: "3.11"
       - name: Install test dependencies
         run: pip install --quiet jsonschema pypdf
+      - name: Diagnostic evidence contract
+        run: python3 -m unittest tests.test_diagnostic_evidence_contract
+      - name: U09 diagnostic caller migration
+        run: |
+          python3 -m unittest \
+            tests.test_feedback \
+            tests.test_study_session \
+            tests.test_neetprep_relative_motion_pilot \
+            tests.test_c6_examside_motion_in_plane \
+            tests.test_high_likelihood_scenario_matrix_contract
+      - name: Representation instance binding contract
+        run: python3 -m unittest tests.test_representation_binding_contract
+      - name: Issue69 subject-neutrality contract
+        run: python3 -m unittest tests.test_issue69_subject_neutrality
+      - name: Core2 staged support contract
+        run: python3 -m unittest tests.test_staged_support_repair
+      - name: Strict renderer failures identify typed gaps without writing
+        run: python3 -m unittest tests.test_render_core.Renderer.test_strict_build_failure_names_typed_gaps_without_writing -v
+      - name: Physics Motion-in-2D source figure references resolve
+        run: python3 -m unittest tests.test_motion_2d_figure_resolution -v
       - name: TEST Question Bank regressions
         run: python3 -m unittest tests.test_test_question_bank
       - name: TEST official intake identity/shape gate
@@ -79,6 +99,9 @@ jobs:
           tests.test_core2_v2_quality
           tests.test_core2_v2_boundaries
 
+
+      - name: Existing blueprint layout observation regressions
+        run: node --test tests/test_blueprint_layout.mjs
 
   ncert-q1-source-linked-product-build:
     # Draft-only producer execution: no commit, deploy, or canonical publication.
@@ -174,6 +197,25 @@ jobs:
           pip install --quiet jsonschema pypdf
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
+      - name: ISS66 staged support browser-state replay
+        run: |
+          python3 tests/iss66_support_state_fixture.py --out /tmp/iss66-support.html
+          python3 -m http.server 8766 --directory /tmp >/tmp/iss66-support-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          python3 - <<'PY'
+          import socket, time
+          for _ in range(50):
+              try:
+                  with socket.create_connection(("127.0.0.1", 8766), timeout=0.2):
+                      break
+              except OSError:
+                  time.sleep(0.1)
+          else:
+              raise SystemExit("ISS66 support fixture server did not start")
+          PY
+          node tests/iss66_support_state_browser.mjs http://127.0.0.1:8766/iss66-support.html
+
       - name: Render real Motion-in-2D product
         run: |
           rm -rf /tmp/g9-core2-v2-site

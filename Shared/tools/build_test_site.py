@@ -149,14 +149,10 @@ def source_counts() -> dict:
 def frame(depth: int, title: str, current: str, body: str, heading: str | None = None) -> str:
     root = "../" * depth
     home = root + "index.html"
-    header = render_core.shell_header(home, root + "question-bank/index.html")
-    # The shared product shell assumes a deeper product route for subject navigation.
-    # TEST pages have depth 1 or 2: rebase only those three links to this page's root.
-    for subject in ("physics", "chemistry", "mathematics"):
-        assumed = f'href="../../../{subject}/index.html"'
-        if assumed not in header:
-            raise ValueError(f"TEST header lost its expected {subject} link")
-        header = header.replace(assumed, f'href="{root}{subject}/index.html"')
+    # Pass the TEST page's actual relative portal root to the shared shell.
+    # This preserves Physics/Chemistry/Mathematics links at both TEST depths
+    # without depending on an old header's hard-coded ../../../ links.
+    header = render_core.shell_header(home, root + "question-bank/index.html", portal_root=root)
     crumbs = "".join(
         f'<a href="{esc("../" * (depth - 1) + path if depth > 1 else path)}"{" aria-current=page" if path == current else ""}>{esc(label)}</a>'
         for path, label in NAV)

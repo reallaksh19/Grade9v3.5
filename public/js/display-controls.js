@@ -60,9 +60,9 @@
 
     // 1. Apply Font Scale
     document.documentElement.style.setProperty('--font-scale', fontScale.toString());
-    document.documentElement.style.fontSize = (16 * fontScale) + 'px';
+    document.documentElement.style.fontSize = 'calc(var(--g9-type-body, 16px) * var(--font-scale, 1) * var(--g9-zoom, 1))';
     if (document.body) {
-      document.body.style.fontSize = (16 * fontScale) + 'px';
+      document.body.style.fontSize = '1rem';
     }
 
     // 2. Apply UI Zoom Scale
@@ -192,7 +192,7 @@
       #g9-display-widget-root {
         position: fixed;
         top: 70px;
-        right: 20px;
+        right: 16px;
         z-index: 2147483647;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         pointer-events: none;
@@ -203,9 +203,12 @@
       .g9-display-popover {
         position: fixed;
         top: 70px;
-        right: 20px;
+        right: 16px;
         bottom: auto;
-        width: 300px;
+        width: min(360px, calc(100vw - 32px));
+        box-sizing: border-box;
+        max-height: calc(100vh - 86px);
+        overflow-y: auto;
         background: #161b22;
         border: 1px solid #444c56;
         border-radius: 12px;
@@ -230,19 +233,19 @@
         padding-bottom: 8px;
       }
       .g9-popover-title {
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.6px;
         color: #c9d1d9;
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
       }
       .g9-popover-actions {
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
       }
       .g9-close-btn {
         background: transparent;
@@ -260,13 +263,13 @@
       .g9-control-row {
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 8px;
       }
       .g9-control-label-wrap {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-size: 11.5px;
+        font-size: 14px;
         font-weight: 600;
         color: #c9d1d9;
       }
@@ -283,27 +286,27 @@
         width: 100%;
         accent-color: #58a6ff;
         cursor: pointer;
-        height: 6px;
+        height: 48px;
       }
       .g9-btn-pill-row {
         display: flex;
-        gap: 5px;
+        gap: 8px;
         margin-top: 2px;
       }
-      .g9-pill {
+      #g9-display-widget-root .g9-pill {
         background: #21262d;
         border: 1px solid #30363d;
         color: #9aa4b2;
         padding: 3px 8px;
         border-radius: 4px;
-        font-size: 10.5px;
+        font-size: 14px;
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.1s ease;
+        transition: background-color 0.1s ease, color 0.1s ease, border-color 0.1s ease;
         flex: 1;
         text-align: center;
       }
-      .g9-pill:hover {
+      #g9-display-widget-root .g9-pill:hover {
         background: #2d333b;
         color: #58a6ff;
         border-color: #58a6ff;
@@ -314,7 +317,7 @@
         color: #9aa4b2;
         padding: 3px 8px;
         border-radius: 4px;
-        font-size: 10px;
+        font-size: 14px;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.15s;
@@ -325,7 +328,7 @@
         color: #ff7b72;
       }
       .g9-popover-hint {
-        font-size: 10px;
+        font-size: 14px;
         color: #8b949e;
         line-height: 1.4;
         border-top: 1px solid rgba(68, 76, 86, 0.3);
@@ -335,19 +338,24 @@
         background: var(--bg-card, #161b22);
         border: 1px solid var(--border, #30363d);
         color: var(--text, #c9d1d9);
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 600;
         padding: 5px 10px;
         border-radius: 6px;
         cursor: pointer;
         display: inline-flex;
         align-items: center;
-        gap: 5px;
+        gap: 8px;
         transition: all 0.15s;
       }
       .g9-display-trigger-btn:hover {
         border-color: var(--accent, #58a6ff);
         color: var(--accent, #58a6ff);
+      }
+      #g9-display-widget-root button {
+        min-width: 48px;
+        min-height: 48px;
+        box-sizing: border-box;
       }
     `;
     document.head.appendChild(style);

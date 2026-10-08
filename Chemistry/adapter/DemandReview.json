@@ -1,0 +1,146 @@
+{
+  "schema": "demand-review-adapter/v1",
+  "version": "1.0.0",
+  "subject": "Chemistry",
+  "vocabulary_ref": "Chemistry/adapter/QualityVocabulary.json",
+  "basis_refs": [
+    "Chemistry/adapter/QualityVocabulary.json",
+    "Chemistry/adapter/CoreContracts.json"
+  ],
+  "demands": {
+    "RETRIEVE": {
+      "review_focus": "Definitions, species identities, formula conventions and classifications are anchored to composition/criteria rather than visual familiarity.",
+      "representation_kinds": [
+        "PARTICLE_DIAGRAM",
+        "STRUCTURAL_FORMULA"
+      ],
+      "check_types": [
+        "ATOM_CONSERVATION_STOICHIOMETRY"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "A coefficient, subscript, symbol or class is recalled from appearance rather than its chemical meaning.",
+          "diagnostic_prompt": "Ask what changes if the coefficient changes versus if a subscript changes.",
+          "repair": "Tie the remembered form to species identity/composition and the criterion defining the class."
+        }
+      ]
+    },
+    "EXPLAIN": {
+      "review_focus": "Require movement between macroscopic observation, particulate account and symbolic description without treating the symbolic equation as the mechanism.",
+      "representation_kinds": [
+        "PARTICLE_DIAGRAM",
+        "REACTION_SCHEME",
+        "ENERGY_PROFILE"
+      ],
+      "check_types": [
+        "MASS_CONSERVATION",
+        "ELECTRON_CHARGE_BALANCE"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "The symbolic equation is repeated as though it explains the particle-level cause or macroscopic observation.",
+          "diagnostic_prompt": "Ask what particles/entities are present before and after and which observed change that accounts for.",
+          "repair": "State the representation level, connect particle/entity changes to the observation, and keep model distinct from mechanism claims."
+        }
+      ]
+    },
+    "APPLY": {
+      "review_focus": "Routine quantitative work must preserve species identity, mole/entity ratios and conservation while executing the procedure.",
+      "representation_kinds": [
+        "MOLE_MAP",
+        "REACTION_SCHEME",
+        "DATA_TABLE"
+      ],
+      "check_types": [
+        "ATOM_CONSERVATION_STOICHIOMETRY",
+        "MASS_CONSERVATION",
+        "UNITS"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "A mole ratio is used mechanically while the counted entity or balanced-equation basis is wrong.",
+          "diagnostic_prompt": "Ask what one coefficient counts and which entity the requested amount refers to.",
+          "repair": "Fix the entity and conservation basis first, then use the ratio/procedure and check the ledger."
+        }
+      ]
+    },
+    "MODEL": {
+      "review_focus": "Protect the choice of chemical representation/process model, relevant species and assumptions such as complete reaction or conservation basis.",
+      "representation_kinds": [
+        "PARTICLE_DIAGRAM",
+        "REACTION_SCHEME",
+        "APPARATUS_SCHEMATIC"
+      ],
+      "check_types": [
+        "MASS_CONSERVATION",
+        "ELECTRON_CHARGE_BALANCE"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "A familiar reaction/process label is chosen without checking species, charge, phase or experimental conditions.",
+          "diagnostic_prompt": "Present a competing model and ask which observed/species constraint discriminates between them.",
+          "repair": "Choose the model from species/evidence/conditions, declare its representation level and state what it does not imply."
+        }
+      ]
+    },
+    "REPRESENT": {
+      "review_focus": "Macro ↔ particulate ↔ symbolic translation is itself the demand; coefficients, subscripts, charge, phase and entity counts must preserve meaning.",
+      "representation_kinds": [
+        "PARTICLE_DIAGRAM",
+        "STRUCTURAL_FORMULA",
+        "REACTION_SCHEME",
+        "DATA_TABLE"
+      ],
+      "check_types": [
+        "ATOM_CONSERVATION_STOICHIOMETRY",
+        "ELECTRON_CHARGE_BALANCE"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "Surface symbols are translated while particle count, composition, charge or phase meaning changes.",
+          "diagnostic_prompt": "Ask which entity/count/charge must stay invariant across the two representations.",
+          "repair": "Declare both representation levels, map entities and counts explicitly, then check conservation/charge across the translation."
+        }
+      ]
+    },
+    "SYNTHESIZE": {
+      "review_focus": "Coordinate composition, conservation, amount relationships and possibly evidence/mechanism without collapsing them into one symbolic manipulation.",
+      "representation_kinds": [
+        "REACTION_SCHEME",
+        "MOLE_MAP",
+        "PARTICLE_DIAGRAM"
+      ],
+      "check_types": [
+        "ATOM_CONSERVATION_STOICHIOMETRY",
+        "MASS_CONSERVATION",
+        "ELECTRON_CHARGE_BALANCE"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "Stoichiometric accounting, species identity and mechanistic claims are mixed so one correct calculation appears to validate all of them.",
+          "diagnostic_prompt": "Ask which intermediate quantity/species is required by more than one step.",
+          "repair": "Sequence species identification → conservation/model → amount relation, and independently check the resulting ledger."
+        }
+      ]
+    },
+    "JUSTIFY": {
+      "review_focus": "Claims about composition, reaction, classification or experiment must be warranted by chemical evidence/conservation, not by a diagram or equation alone.",
+      "representation_kinds": [
+        "DATA_TABLE",
+        "APPARATUS_SCHEMATIC",
+        "PARTICLE_DIAGRAM"
+      ],
+      "check_types": [
+        "MASS_CONSERVATION",
+        "ELECTRON_CHARGE_BALANCE"
+      ],
+      "misconception_patterns": [
+        {
+          "wrong_idea": "A plausible particle sketch or balanced equation is treated as sufficient evidence that a reaction/process actually occurs.",
+          "diagnostic_prompt": "Ask what observation or conserved quantity would distinguish the claim from an alternative.",
+          "repair": "State the evidence and warrant separately; use conservation/charge as constraints, not as proof of mechanism or occurrence."
+        }
+      ]
+    }
+  }
+}
