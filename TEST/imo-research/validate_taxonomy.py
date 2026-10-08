@@ -28,17 +28,19 @@ def ensure(ok: bool, detail: str) -> None:
         raise SeedError(detail)
 
 
-def load_taxonomy(root: Path = TAX) -> tuple[dict, list[dict]]:
+def load_taxonomy(root: Path = TAX) -> tuple[dict, list[dict], dict]:
     try:
         register = json.loads((root / "sof-class9-topic-registry.v1.json").read_text(encoding="utf-8"))
+        subtopics = json.loads((root / "sof-class9-subtopics.v1.json").read_text(encoding="utf-8"))
         lines = (root / "seed-question-topic-map.v1.jsonl").read_text(encoding="utf-8").splitlines()
         ensure(bool(lines) and all(line.strip() for line in lines), "taxonomy blank/absent rows")
         rows = [json.loads(line) for line in lines]
     except (OSError, UnicodeError, json.JSONDecodeError) as exc:
         raise SeedError(f"taxonomy unreadable: {exc}") from exc
-    ensure(isinstance(register, dict) and all(isinstance(x, dict) for x in rows),
+    ensure(isinstance(register, dict) and isinstance(subtopics, dict) and
+           all(isinstance(x, dict) for x in rows),
            "taxonomy records must be objects")
-    return register, rows
+    return register, rows, subtopics
 
 
 def full_paper_section(number: int) -> str:
@@ -51,7 +53,16 @@ def validate_taxonomy(seed: Path = SEED, root: Path = TAX) -> dict:
     validate_seed(seed)
     qs, _, _ = load_seed(seed)
     q_by_id = {q["id"]: q for q in qs}
-    registry, rows = load_taxonomy(root)
+    registry, rows, subtopic_data = load_taxonomy(root)
+    ensure(subtopic_data.get("schema") == "sof-imo-g09-subtopics-v1" and
+           subtopic_data.get("authority") == "ANALYST_PROVISIONAL_NOT_OFFICIAL_SOFSUBTOPICS",
+           "subtopic authority is not independently accepted")
+    subtopics = subtopic_data.get("subtopics")
+    ensure(isinstance(subtopics, list) and all(isinstance(x, dict) for x in subtopics),
+           "subtopic catalogue malformed")
+    sub_by_id = {x.get("id"):x for x in subtopics}
+    ensure(len(sub_by_id) == len(subtopics) and all(isinstance(k, str) for k in sub_by_id),
+           "subtopic catalogue duplicates/invalid IDs")
     ensure(registry.get("schema") == "sof-imo-g09-taxonomy-v1" and
            registry.get("source_url") == SYLLABUS and registry.get("grade") == 9 and
            registry.get("exam_level") == "LEVEL_1", "syllabus identity not grounded")
@@ -76,7 +87,7 @@ def validate_taxonomy(seed: Path = SEED, root: Path = TAX) -> dict:
            [x.get("marks_per_question") for x in section_map] == [1, 1, 1, 3],
            "SOF Level 1 exam section pattern changed")
     ensure(len(rows) == len(qs) == 66, "incomplete source-question taxonomy mapping")
-    count, seen, section_counts = Counter(), set(), Counter()
+    count, seen, section_counts, used_subtopics = Counter(), set(), Counter(), set()
     for row in rows:
         qid = row.get("question_id")
         ensure(isinstance(qid, str) and qid in q_by_id and qid not in seen,
@@ -92,6 +103,14 @@ def validate_taxonomy(seed: Path = SEED, root: Path = TAX) -> dict:
         sub = row.get("subtopic_id")
         ensure(isinstance(sub, str) and sub.startswith(topic + "-") and len(sub) > len(topic) + 2,
                f"{qid}: missing/invalid topic-specific subtopic")
+        candidate = sub_by_id.get(sub)
+        ensure(candidate is not None and candidate.get("topic_id") == topic and
+               candidate.get("academic_status") == "PROVISIONAL_FROM_ATTACHMENT" and
+               isinstance(candidate.get("title"), str) and candidate["title"] and
+               candidate.get("microconcept_ref") == "MIC-" + sub and
+               row.get("microconcept_ref") == candidate["microconcept_ref"],
+               f"{qid}: missing/ungrounded subtopic and microconcept registry reference")
+        used_subtopics.add(sub)
         ensure(isinstance(row.get("learning_demand_summary"), str) and
                len(row["learning_demand_summary"]) >= 15,
                f"{qid}: no specific inferred micro-concept")
@@ -114,6 +133,7 @@ def validate_taxonomy(seed: Path = SEED, root: Path = TAX) -> dict:
         count[topic] += 1
         seen.add(qid)
     ensure(seen == set(q_by_id), "taxonomy coverage is not source-complete")
+    ensure(used_subtopics == set(sub_by_id), "unused/omitted subtopic catalogue entry")
     by_seed = {q["seed_entry"]: q for q in qs if q["seed_entry"] != 38}
     by_id = {row["question_id"]: row for row in rows}
     ensure(by_id[by_seed[9]["id"]]["full_paper_exam_section"] == "EVERYDAY_MATHEMATICS" and
@@ -124,6 +144,7 @@ def validate_taxonomy(seed: Path = SEED, root: Path = TAX) -> dict:
     missing = [topic for topic in OFFICIAL_TOPIC_IDS if count[topic] == 0]
     return {"result":"PROVISIONAL_TOPIC_COVERAGE_NO_ADMISSION", "mapped_questions":len(seen),
             "official_topics":len(OFFICIAL_TOPIC_IDS), "adjunct_topics":len(ADJUNCT_TOPIC_IDS),
+            "provisional_subtopics":len(sub_by_id),
             "by_topic":{t:count[t] for t in OFFICIAL_TOPIC_IDS + ADJUNCT_TOPIC_IDS},
             "uncovered_official_topics":missing, "by_source_section":dict(section_counts),
             "full_paper_section_unknown":len(rows)-sum(section_counts.values()),
