@@ -411,6 +411,37 @@ class SubstanceGateRestraint(unittest.TestCase):
         self.assertEqual(found, [], "duplication is only compared between peers")
 
 
+    def test_same_source_stem_with_different_question_context_is_not_a_duplicate(self):
+        stem = "Which of the following is irrational?"
+        records = {
+            "Q-A": {"_collection": "questions", "stem": stem,
+                    "options": ["(A) 2/3", "(B) 2", "(C) sqrt(7)", "(D) 9"],
+                    "conditions": [], "subparts": []},
+            "Q-B": {"_collection": "questions", "stem": stem,
+                    "options": ["(A) 0.14", "(B) recurring 0.3", "(C) recurring 0.17",
+                                "(D) 0.4014001400014..."],
+                    "conditions": [], "subparts": []},
+        }
+        self.assertEqual(
+            substance.findings(records),
+            [],
+            "a repeated official prompt with different learner-visible choices is not duplicate authored prose",
+        )
+
+    def test_same_stem_and_same_question_context_is_still_a_duplicate(self):
+        stem = "Which of the following is irrational?"
+        options = ["(A) 2/3", "(B) 2", "(C) sqrt(7)", "(D) 9"]
+        records = {
+            "Q-A": {"_collection": "questions", "stem": stem, "options": options,
+                    "conditions": [], "subparts": []},
+            "Q-B": {"_collection": "questions", "stem": stem, "options": list(options),
+                    "conditions": [], "subparts": []},
+        }
+        found = substance.findings(records)
+        self.assertEqual({row["point"] for row in found}, {"DUPLICATED"})
+        self.assertEqual({row["record"] for row in found}, {"Q-A", "Q-B"})
+
+
     def test_machine_audit_receipts_are_not_treated_as_authored_teaching_prose(self):
         receipt = {
             "check_id": "audit_4_runtime_release_integrity.runtime_smoke",

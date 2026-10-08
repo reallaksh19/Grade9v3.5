@@ -141,15 +141,37 @@ def findings(records: Mapping[str, Mapping]) -> list[dict]:
     # group. Attributing a string shared by thirty-one records to only the first of
     # them reported four defective packets out of forty-three, and let the other
     # twenty-seven through as clean.
+    #
+    # A question stem is different from authored explanatory prose: official banks may
+    # legitimately reuse a generic stem while changing the choices/conditions that make
+    # it a different learner item. Treat the whole learner-visible context as the
+    # discriminant for repeated stems. If stem + options + conditions + subparts are all
+    # the same, the duplicate remains a finding; differing context must not force a
+    # verbatim source stem to be rewritten merely to satisfy this heuristic.
+    def question_context(record_id):
+        record = records.get(record_id, {})
+        def values(key):
+            raw = record.get(key) or []
+            return tuple(_normalise(str(value)) for value in raw) if isinstance(raw, (list, tuple)) else ()
+        return values("options"), values("conditions"), values("subparts")
+
     def shared(index, point, describe):
-        for sites in index.values():
-            owners = sorted({record_id for record_id, _ in sites})
-            if len(owners) < 2:
-                continue
-            listed = ", ".join(owners[:4]) + ("..." if len(owners) > 4 else "")
-            for record_id, path in sites:
-                yield {"point": point, "record": record_id, "field": path,
-                       "detail": describe(len(owners), listed)}
+        for (collection, _), original_sites in index.items():
+            groups = [original_sites]
+            if collection == "questions" and original_sites and all(path == "stem" for _, path in original_sites):
+                by_context = defaultdict(list)
+                for record_id, path in original_sites:
+                    by_context[question_context(record_id)].append((record_id, path))
+                groups = list(by_context.values())
+
+            for sites in groups:
+                owners = sorted({record_id for record_id, _ in sites})
+                if len(owners) < 2:
+                    continue
+                listed = ", ".join(owners[:4]) + ("..." if len(owners) > 4 else "")
+                for record_id, path in sites:
+                    yield {"point": point, "record": record_id, "field": path,
+                           "detail": describe(len(owners), listed)}
 
     found += list(shared(exact, "DUPLICATED",
                          lambda n, listed: f"identical text on {n} records ({listed})"))

@@ -41,6 +41,28 @@ class Points(unittest.TestCase):
     def test_a_stem_that_asks_nothing_is_refused(self):
         self.assertIn(("QUESTION_STEM", "BLOCK"), self.points(stem="Compare squared speeds"))
 
+    def test_a_short_mcq_source_lead_in_may_be_completed_by_its_options(self):
+        points = self.points(
+            stem="Every rational number is",
+            options=[
+                "(A) a natural number",
+                "(B) a whole number",
+                "(C) a real number",
+                "(D) an integer",
+            ],
+        )
+        self.assertNotIn(("QUESTION_STEM", "BLOCK"), points)
+        self.assertNotIn(("QUESTION_STEM_COMPLETE", "ADVISE"), points)
+
+    def test_a_short_stem_without_visible_completion_is_still_refused(self):
+        self.assertIn(("QUESTION_STEM", "BLOCK"), self.points(stem="Every rational number is", options=[]))
+
+    def test_conditions_do_not_pad_a_short_non_question_past_the_stem_floor(self):
+        self.assertIn(
+            ("QUESTION_STEM", "BLOCK"),
+            self.points(stem="Compare squared speeds", options=[], conditions=["Take g = 10 m/s^2."]),
+        )
+
     def test_a_stem_made_of_the_records_own_hints_is_refused(self):
         """Q-PHY-KIN-2D-SRC-40 of pull request 375: the stem is the sentences of the solution."""
         hint = "Velocity direction comes from the ratio of the components. Minimum projectile speed occurs at the apex."

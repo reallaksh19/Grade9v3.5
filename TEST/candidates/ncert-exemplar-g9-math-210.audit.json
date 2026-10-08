@@ -15,8 +15,8 @@
   ],
   "question_counts": {
     "total": 210,
-    "ready_for_blueprint": 209,
-    "duplicate_review": 1
+    "ready_for_blueprint": 210,
+    "duplicate_review": 0
   },
   "checks": {
     "custody": {
@@ -28,8 +28,8 @@
       "detail": "TEST hub ingests and renders all 210 records without entering canonical Question Bank or learner search."
     },
     "duplicate_review": {
-      "status": "PENDING",
-      "detail": "ncert-exemplar-g9-math-u01-q07 remains explicitly flagged because Q6/Q7 share the official stem but differ in options."
+      "status": "PASS",
+      "detail": "Resolved by TEST/candidates/ncert-exemplar-g9-math-u01-q01-q10.validation.json: Q6 and Q7 share the official generic stem and stem digest, but their option sets, source positions, identifiers and correct answers differ. Q7 is a distinct source item and is now READY_FOR_BLUEPRINT."
     },
     "academic_blueprint": {
       "status": "PENDING",
@@ -51,6 +51,6 @@
   "promotion": {
     "status": "BLOCKED",
     "target": "Mathematics",
-    "reason": "Academic blueprinting and the one duplicate-review decision are incomplete."
+    "reason": "Whole-candidate promotion remains blocked by deferred academic blueprinting, Atlas/rungs and layout review. Per-question production Question Bank admission is governed separately by source-bound academic validation receipts."
   }
 }
