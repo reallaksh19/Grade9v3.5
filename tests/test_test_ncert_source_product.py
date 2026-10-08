@@ -147,6 +147,19 @@ class TestNcertQ1ParkedProduct(unittest.TestCase):
         self.assertEqual(self.view["questions"][0]["stem"], self.question["stem"])
         self.assertEqual(self.view["questions"][0]["options"], self.question["options"])
 
+    def test_construction_relates_rationals_to_reals_without_reversing_inclusion(self):
+        self.assertEqual(len(self.package["relations"]), 1)
+        relation, = self.package["relations"]
+        self.assertEqual(relation["expression"], "ℚ ⊆ ℝ")
+        self.assertEqual(relation["gate_relation_ref"], None)
+        self.assertIn("reverse inclusion", relation["meaning"])
+        microtopic = self.package["microtopics"][0]
+        self.assertEqual(microtopic["relation_refs"], [relation["id"]])
+        self.assertEqual(microtopic["construction_units"][0]["relation_refs"], [relation["id"]])
+        self.assertEqual(len(relation["derivation"]), 3)
+        self.assertTrue(any("√2" in check for check in relation["checks"]))
+        self.assertEqual(self.package["questions"], [])
+
     def test_matrix_uses_same_microtopic_and_has_real_content(self):
         mic = self.package["microtopics"][0]["id"]
         self.assertEqual(self.matrix["bucket_id"], self.package["buckets"][0]["id"])

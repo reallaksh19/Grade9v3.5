@@ -143,7 +143,9 @@
           "output": "Every rational number is a real number."
         }
       ],
-      "relation_refs": [],
+      "relation_refs": [
+        "REL-TEST-NCERT-U01-RATIONALS-IN-REALS"
+      ],
       "representation_refs": [],
       "question_family_refs": [
         "FAM-TEST-NCERT-U01-SET-INCLUSION"
@@ -207,12 +209,93 @@
             "grade9v3:component_waivers": {
               "STAGED_VISUAL": "The official source multiple-choice item has no figure. This candidate uses exact symbolic inclusion and counterexamples; no staged graphic is claimed as source-authored."
             }
-          }
+          },
+          "relation_refs": [
+            "REL-TEST-NCERT-U01-RATIONALS-IN-REALS"
+          ]
         }
       ]
     }
   ],
-  "relations": [],
+  "relations": [
+    {
+      "id": "REL-TEST-NCERT-U01-RATIONALS-IN-REALS",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-NCERT-EXEMPLAR-MATH-IX-U01"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:authoring_note": "The inclusion relation is authored mathematical explanation for Q1; it is not reproduced as a source-image or additional NCERT condition."
+      },
+      "expression": "ℚ ⊆ ℝ",
+      "meaning": "Every rational number is also a real number; the reverse inclusion does not hold.",
+      "symbols": [
+        {
+          "symbol": "ℚ",
+          "meaning": "Set of rational numbers a/b with integers a,b and b nonzero",
+          "unit_or_domain": "number sets"
+        },
+        {
+          "symbol": "ℝ",
+          "meaning": "Set of real numbers on the number line",
+          "unit_or_domain": "number sets"
+        },
+        {
+          "symbol": "⊆",
+          "meaning": "Is a subset of; the left set is contained in the right set",
+          "unit_or_domain": "set relation"
+        }
+      ],
+      "conditions": [
+        "A rational number has the form a/b with integer numerator and nonzero integer denominator.",
+        "The real numbers include both rational and irrational numbers."
+      ],
+      "derivation": [
+        {
+          "id": "NS-Q1-REL-1",
+          "role": "DECLARE",
+          "action": "Take any rational x. By definition x=a/b for integers a,b, with b nonzero.",
+          "why_valid": "This is the definition of the rational-number set.",
+          "inputs": [
+            "x ∈ ℚ"
+          ],
+          "output": "x is a quotient of integers with nonzero denominator."
+        },
+        {
+          "id": "NS-Q1-REL-2",
+          "role": "TRANSFORM",
+          "action": "Locate the quotient a/b on the real number line.",
+          "why_valid": "Every rational number is real.",
+          "inputs": [
+            "x=a/b"
+          ],
+          "output": "x ∈ ℝ."
+        },
+        {
+          "id": "NS-Q1-REL-3",
+          "role": "VERIFY",
+          "action": "Test 1/2 against the narrower options and √2 against the converse.",
+          "why_valid": "One counterexample refutes a universal statement.",
+          "inputs": [
+            "1/2 ∈ ℚ",
+            "√2 ∈ ℝ"
+          ],
+          "output": "ℚ ⊆ ℝ, but ℝ ⊄ ℚ."
+        }
+      ],
+      "limits": [
+        "This does not assert that every real number is rational.",
+        "The notation is the author's symbolic explanation, not an additional quoted NCERT condition."
+      ],
+      "checks": [
+        "1/2 is rational and real, but is not an integer, whole number or natural number.",
+        "√2 is real and irrational; reversing the inclusion is incorrect."
+      ],
+      "gate_relation_ref": null
+    }
+  ],
   "representations": [],
   "question_families": [
     {
