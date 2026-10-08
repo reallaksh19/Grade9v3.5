@@ -49,9 +49,6 @@ jobs:
   regression-delta:
     name: Regression delta (exact test ids)
     runs-on: ubuntu-latest
-    # Avoid hosted-runner apt/network cancellation before exact test-ID comparison.
-    container:
-      image: mcr.microsoft.com/playwright:v1.56.1-noble
     steps:
       - uses: actions/checkout@v4
         with:
@@ -66,7 +63,8 @@ jobs:
         run: |
           pip install --quiet jsonschema pypdf
           npm install -g playwright@1.56.1
-          # Browser binaries and OS dependencies come from the pinned image.
+          # Install the pinned Chromium browser without apt package-manager changes.
+          npx playwright install chromium
       - name: Base commit
         id: base
         run: |
