@@ -105,12 +105,55 @@
         "grade9v3:analysis": {
           "topic": "Number Systems",
           "concept_bucket": "BUCKET-TEST-NCERT-U01-REAL-NUMBERS",
-          "common_wrong_route": "Conflating rationals with integers or reversing Q ⊆ R; test with 1/2 and √2."
-        }
+          "common_wrong_route": "Conflating rationals with integers or reversing Q ⊆ R; test with 1/2 and √2.",
+          "exam_source_badge": "NCERT Exemplar Class IX · Unit 1, Exercise 1.1, Question 1 (witnessed custody; academic validation separate)",
+          "learner_question_type": "single_correct_mcq",
+          "original_question_type": "single_correct_mcq",
+          "difficulty": {
+            "band": "D1",
+            "score": 2,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "A direct number-set inclusion check; learners must reject three overly narrow sets with a fractional counterexample."
+          },
+          "expected_time_seconds": 75
+        },
+        "grade9v3:provenance_class": "NCERT_CUSTODY_WITNESSED"
       },
       "response": {
         "type": "single_choice"
-      }
+      },
+      "scaffolds": [
+        {
+          "text": "Consider 1/2. It is rational, but is it a natural number, an integer, or a whole number?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "NS-Q1-MOVE-1",
+          "learner_stage": "REPRESENTATION",
+          "prompt": "Which of the four candidate sets fail for 1/2?"
+        },
+        {
+          "text": "Use the definition of rational numbers: a/b, where a and b are integers and b is not zero. Which larger number set contains all such values?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "NS-Q1-MOVE-2",
+          "learner_stage": "KEY_CONCEPT",
+          "prompt": "Where do all such quotients lie on the number line?"
+        },
+        {
+          "text": "Check the word every. A single non-integer rational disproves a narrower universal claim.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "NS-Q1-MOVE-3",
+          "learner_stage": "CRUX",
+          "prompt": "Which single option survives all rational counterexamples?"
+        }
+      ]
     }
   ]
 }
