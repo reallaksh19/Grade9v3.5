@@ -23,6 +23,74 @@ VALIDATION_SCHEMA = "grade9v3-test-question-validation-v1"
 BANNER = "TEST sandbox · drafts only · not reviewed, not accepted, not curriculum"
 
 
+# Capture-era version guard for the 60 existing academic receipts.
+# These snapshots prevent options-only or coordinated source/receipt edits from
+# reusing an old academic PASS. They are NOT independent academic verification
+# or NCERT custody evidence. Extending this scope requires explicit review.
+HISTORICAL_ACADEMIC_CAPTURE_SCOPE = {
+    "ncert-exemplar-g9-math-u01-q01": (["(A) a natural number","(B) an integer","(C) a real number","(D) a whole number"], "(C) a real number", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q1", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q02": (["(A) there is no rational number","(B) there is exactly one rational number","(C) there are infinitely many rational numbers","(D) there are only rational numbers and no irrational numbers"], "(C) there are infinitely many rational numbers", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q2", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q03": (["(A) terminating","(B) non-terminating","(C) non-terminating repeating","(D) non-terminating non-repeating"], "(D) non-terminating non-repeating", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q3", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q04": (["(A) always an irrational number","(B) always a rational number","(C) always an integer","(D) sometimes rational, sometimes irrational"], "(D) sometimes rational, sometimes irrational", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q4", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q05": (["(A) a finite decimal","(B) 1.41421","(C) non-terminating recurring","(D) non-terminating non-recurring"], "(D) non-terminating non-recurring", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q5", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q06": (["(A) √(4/9)","(B) √12/√3","(C) √7","(D) √81"], "(C) √7", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q6", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q07": (["(A) 0.14","(B) 0.1416 (with bar over 16)","(C) 0.1416 (with bar over 1416)","(D) 0.4014001400014..."], "(D) 0.4014001400014...", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q7", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q08": (["(A) (√2 + √3)/2","(B) (√2 · √3)/2","(C) 1.5","(D) 1.8"], "(C) 1.5", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q8", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q09": (["(A) 19/10","(B) 1999/1000","(C) 2","(D) 1/9"], "(C) 2", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q9", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q10": (["(A) 2√6","(B) 6","(C) 3√3","(D) 4√6"], "(C) 3√3", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q10", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q11": (["(A) 6√5","(B) 5√6","(C) √25","(D) 10√5"], "(B) 5√6", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q11", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q12": (["(A) (√7 + 2)/3","(B) (√7 - 2)/3","(C) (√7 + 2)/5","(D) (√7 + 2)/45"], "(A) (√7 + 2)/3", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q12", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q13": (["(A) (1/2)(3 - 2√2)","(B) 1/(3 + 2√2)","(C) 3 - 2√2","(D) 3 + 2√2"], "(D) 3 + 2√2", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q13", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q14": (["(A) 13","(B) 19","(C) 5","(D) 35"], "(B) 19", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q14", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q15": (["(A) √2","(B) 2","(C) 4","(D) 8"], "(B) 2", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q15", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q16": (["(A) 2.4142","(B) 5.8282","(C) 0.4142","(D) 0.1718"], "(C) 0.4142", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q16", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q17": (["(A) 2^(-1/6)","(B) 2^(-6)","(C) 2^(1/6)","(D) 2^6"], "(C) 2^(1/6)", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q17", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q18": (["(A) √2","(B) 2","(C) ¹²√2","(D) ¹²√32"], "(B) 2", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q18", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q19": (["(A) 1/9","(B) 1/3","(C) 9","(D) 1/81"], "(A) 1/9", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q19", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q20": (["(A) 4","(B) 16","(C) 64","(D) 256.25"], "(A) 4", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q20", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q21": (["(A) x^(12/7) - x^(5/7)","(B) ¹²√(x⁴)^(1/3)","(C) (√(x³))^(2/3)","(D) x^(12/7) × x^(7/12)"], "(C) (√(x³))^(2/3)", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.1 Q21", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u01-q22": (None, "Yes. Let x = 21, y = √2 be a rational number and irrational number respectively. Now x + y = 21 + √2 = 22.4142... which is non-terminating and non-recurring. Hence x + y is irrational.", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.2 Q1", "SHORT_ANSWER"),
+    "ncert-exemplar-g9-math-u01-q23": (None, "No. 0 × √2 = 0 which is not irrational.", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.2 Q2", "SHORT_ANSWER"),
+    "ncert-exemplar-g9-math-u01-q24": (["True","False"], "False. Although √2/3 is of the form p/q, here p = √2 is not an integer.", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.2 Q3(i)", "TRUE_FALSE"),
+    "ncert-exemplar-g9-math-u01-q25": (["True","False"], "False. Between any two integers there is only a finite number of integers.", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.2 Q3(ii)", "TRUE_FALSE"),
+    "ncert-exemplar-g9-math-u01-q26": (["True","False"], "False. For example (∜2)² = √2 which is not rational.", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.2 Q3(v)", "TRUE_FALSE"),
+    "ncert-exemplar-g9-math-u01-q27": (["True","False"], "False, because √12/√3 = √(12/3) = √4 = 2, which is a rational number.", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.2 Q3(vi)", "TRUE_FALSE"),
+    "ncert-exemplar-g9-math-u01-q28": (None, "Rational, as √196 = 14", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.3 Q1(i)", "SHORT_ANSWER"),
+    "ncert-exemplar-g9-math-u01-q29": (None, "Irrational, as 3√18 = 9√2, which is the product of a rational and an irrational number and so an irrational number.", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.3 Q1(ii)", "SHORT_ANSWER"),
+    "ncert-exemplar-g9-math-u01-q30": (None, "Irrational, as √(9/27) = 1/√3, which is the quotient of a rational and an irrational number and so an irrational number.", "NCERT Exemplar Class IX Mathematics, Answers Unit 1, Ex 1.3 Q1(iii)", "SHORT_ANSWER"),
+    "ncert-exemplar-g9-math-u02-q01": (["(A) x²/2 - 2/x²","(B) √(2x) - 1","(C) x² + 3x^(3/2)/√x","(D) (x - 1)/(x + 1)"], "(C) x² + 3x^(3/2)/√x", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q1", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q02": (["(A) 2","(B) 0","(C) 1","(D) 1/2"], "(B) 0", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q2", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q03": (["(A) 4","(B) 5","(C) 3","(D) 7"], "(A) 4", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q3", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q04": (["(A) 0","(B) 1","(C) Any natural number","(D) Not defined"], "(D) Not defined", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q4", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q05": (["(A) 0","(B) 1","(C) 4√2","(D) 8√2 + 1"], "(B) 1", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q5", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q06": (["(A) -6","(B) 6","(C) 2","(D) -2"], "(A) -6", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q6", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q07": (["(A) 3","(B) 2x","(C) 0","(D) 6"], "(D) 6", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q7", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q08": (["(A) 0","(B) 1","(C) Any real number","(D) Not defined"], "(C) Any real number", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q8", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q09": (["(A) -2/5","(B) -5/2","(C) 2/5","(D) 5/2"], "(B) -5/2", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q9", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q10": (["(A) 2","(B) 1/2","(C) -1/2","(D) -2"], "(B) 1/2", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q10", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q11": (["(A) 0","(B) 1","(C) 49","(D) 50"], "(D) 50", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q11", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q12": (["(A) -3","(B) 4","(C) 2","(D) -2"], "(C) 2", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q12", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q13": (["(A) x³ + x² - x + 1","(B) x³ + x² + x + 1","(C) x⁴ + x³ + x² + 1","(D) x⁴ + 3x³ + 3x² + x + 1"], "(B) x³ + x² + x + 1", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q13", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q14": (["(A) 5 + x","(B) 5 - x","(C) 5x - 1","(D) 10x"], "(D) 10x", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q14", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q15": (["(A) 1²","(B) 477","(C) 487","(D) 497"], "(D) 497", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q15", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q16": (["(A) (x + 1) (x + 3)","(B) (2x + 1) (2x + 3)","(C) (2x + 2) (2x + 5)","(D) (2x - 1) (2x - 3)"], "(B) (2x + 1) (2x + 3)", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q16", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q17": (["(A) x² + y² + 2xy","(B) x² + y² - xy","(C) xy²","(D) 3xy"], "(D) 3xy", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q17", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q18": (["(A) 1","(B) 9","(C) 18","(D) 27"], "(D) 27", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q18", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q19": (["(A) 1","(B) -1","(C) 0","(D) 1/2"], "(C) 0", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q19", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q20": (["(A) 0","(B) 1/√2","(C) 1/4","(D) 1/2"], "(C) 1/4", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q20", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q21": (["(A) 0","(B) abc","(C) 3abc","(D) 2abc"], "(C) 3abc", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q21", "MULTIPLE_CHOICE"),
+    "ncert-exemplar-g9-math-u02-q22": (None, "Polynomials: (iii) and (iv) because the exponent of the variable after simplification in each of these is a whole number.", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.2 Q1", "SHORT_ANSWER"),
+    "ncert-exemplar-g9-math-u02-q23": (["True","False"], "False, because a binomial has exactly two terms.", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.2 Q2(i)", "TRUE_FALSE"),
+    "ncert-exemplar-g9-math-u02-q24": (["True","False"], "False, x³ + x + 1 is a polynomial but not a binomial.", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.2 Q2(ii)", "TRUE_FALSE"),
+    "ncert-exemplar-g9-math-u02-q25": (["True","False"], "False, a quadratic polynomial can have up to two zeroes.", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.2 Q2(iv)", "TRUE_FALSE"),
+    "ncert-exemplar-g9-math-u02-q26": (None, "5", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.3 Q1(i)", "SHORT_ANSWER"),
+    "ncert-exemplar-g9-math-u02-q27": (None, "8", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.3 Q1(ii)", "SHORT_ANSWER"),
+    "ncert-exemplar-g9-math-u02-q28": (None, "0", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.3 Q1(iii)", "SHORT_ANSWER"),
+    "ncert-exemplar-g9-math-u02-q29": (None, "1", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.3 Q2(i)", "SHORT_ANSWER"),
+    "ncert-exemplar-g9-math-u02-q30": (None, "-1", "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.3 Q2(ii)", "SHORT_ANSWER"),
+}
+
+
 def intake_banks(repo: Path) -> list[dict]:
     """Only validated, unique flat-identity source banks enter the TEST projection."""
     return test_intake_registry.load_intake_banks(repo)
@@ -59,7 +127,9 @@ def validation_index(repo: Path) -> dict[str, dict]:
                 projected = UNVALIDATED
             value = {"status": projected, "receipt": path.relative_to(repo).as_posix(),
                      "stem_sha256": row.get("stem_sha256"),
-                     "original_identifier": row.get("original_identifier")}
+                     "original_identifier": row.get("original_identifier"),
+                     "official_answer_text": row.get("official_answer_text"),
+                     "official_answer_locator": row.get("official_answer_locator")}
             if source_id in rows and rows[source_id] != value:
                 raise ValueError(f"conflicting TEST question validation receipts for {source_id}")
             rows[source_id] = value
@@ -79,8 +149,17 @@ def payload(repo: Path) -> dict:
             row = validations.get(question.get("id")) or {"status": UNVALIDATED, "receipt": None}
             # A PASS receipt for a superseded source digest is historical evidence,
             # never approval of the corrected wording. Preserve receipts unchanged.
-            matches_source = (row.get("stem_sha256") == question.get("stem_sha256")
-                              and row.get("original_identifier") == question.get("original_identifier"))
+            source_id = question.get("id")
+            matches_source = (
+                row.get("stem_sha256") == question.get("stem_sha256")
+                and row.get("original_identifier") == question.get("original_identifier")
+                and row.get("official_answer_text") == question.get("official_answer_text")
+                and row.get("official_answer_locator") == question.get("answer_key_locator")
+                and source_id in HISTORICAL_ACADEMIC_CAPTURE_SCOPE
+                and (question.get("options"), question.get("official_answer_text"),
+                     question.get("answer_key_locator"), question.get("question_type"))
+                    == HISTORICAL_ACADEMIC_CAPTURE_SCOPE[source_id]
+            )
             academic_status = row["status"] if matches_source else UNVALIDATED
             question["academic_validation_status"] = academic_status
             question["academic_validation_receipt"] = row["receipt"] if matches_source else None
@@ -95,9 +174,8 @@ def payload(repo: Path) -> dict:
             question["custody_question_source_url"] = (
                 evidence["source_identity"]["document_url"] if evidence else question["source_url"]
             )
-            question["custody_answer_source_url"] = (
-                evidence["official_answer_key_ref"]["document_url"] if evidence else None
-            )
+            verified_key = evidence["official_answer_key_ref"] if evidence else None
+            question["custody_answer_source_url"] = verified_key["document_url"] if verified_key else None
     return {
         "schema_version": "grade9v3-test-question-bank-projection-v1",
         "academic_validation_status": "PER_QUESTION",
@@ -230,7 +308,7 @@ PAGE = """<!doctype html>
     const sourceHold = custodyStatus(q) === 'SOURCE_TEXT_HOLD';
     const answerNote = sourceHold
       ? 'SOURCE-TEXT HOLD: official NCERT wording differs from this recorded stem; source custody and READY are withheld pending review.'
-      : !independentlyEvidenced
+      : !q.custody_answer_source_url
       ? 'This answer is recorded in intake, but its official answer-document custody has not been independently reconciled.'
       : academic === 'VALIDATED'
         ? 'Independent official-answer custody and Grade9V3 academic validation are separately evidenced.'

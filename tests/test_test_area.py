@@ -147,6 +147,64 @@ class TestPages(unittest.TestCase):
         self.assertIn("QA candidate: NCERT Exemplar Grade 9 Mathematics", hub)
         self.assertIn("2 candidate QA record(s) in TEST/candidates", hub)
 
+    def test_stale_ncert_qa_counts_are_not_current_source_authority(self):
+        """A 209-READY historical QA receipt must not override the custody ledger."""
+        historical = next(a for a in build_test_site.candidate_audits()
+                          if a["candidate_id"] == "NCERT-EXEMPLAR-G9-MATH-210")
+        self.assertEqual(historical["question_counts"]["ready_for_blueprint"], 209)
+        custody = {"total_intake": 210, "ready_for_blueprint": 0,
+                   "source_text_hold": 0, "evidence_pending": 210}
+        html = build_test_site.render_candidate_audit_section([historical], custody)
+        self.assertIn("ready for blueprint: 0", html)
+        self.assertIn("evidence pending: 210", html)
+        self.assertIn("Historical QA receipt", html)
+        self.assertNotIn("ready for blueprint: 209", html)
+        self.assertEqual(historical["question_counts"]["ready_for_blueprint"], 209)
+
+    def test_no_intake_bank_exposes_an_explicit_empty_state(self):
+        html = build_test_site.render_intake_section([], {"handoff": [], "hold_ids": []})
+        self.assertIn("data-g9-intake-empty", html)
+        self.assertIn("No official source-intake questions are staged", html)
+        self.assertNotIn("READY_FOR_BLUEPRINT", html)
+
+    def test_source_hold_and_empty_bank_do_not_claim_readiness(self):
+        source = copy.deepcopy(build_test_site.intake_banks()[0])
+        source["questions"] = [source["questions"][0]]
+        held = {"handoff": [], "hold_ids": [source["questions"][0]["id"]]}
+        html = build_test_site.render_intake_section([source], held)
+        self.assertIn("SOURCE TEXT HOLD", html)
+        self.assertNotIn("SOURCE EVIDENCED", html)
+        self.assertIn("Exact official page not independently reconciled", html)
+        self.assertIn("Recorded answer — official key custody pending", html)
+        source["questions"] = []
+        html = build_test_site.render_intake_section([source], {"handoff": [], "hold_ids": []})
+        self.assertIn("0 question(s)", html)
+        self.assertIn("data-g9-intake-bank-empty", html)
+        self.assertNotIn("data-g9-intake-source-id", html)
+
+    def test_pending_badge_is_neutral_and_separate_from_answer_key_claim(self):
+        home = build_test_site.render_intake_section(
+            build_test_site.intake_banks(), build_test_site.test_source_custody.reconcile(REPO))
+        self.assertIn('background:#64748b;color:#fff;padding:2px 6px;border-radius:4px">EVIDENCE PENDING', home)
+        self.assertNotIn('background:#16a34a;color:#fff;padding:2px 6px;border-radius:4px">EVIDENCE PENDING', home)
+        self.assertIn("ANSWER KEY CUSTODY PENDING", build_test_site.INTAKE_HOME_FILTER_SCRIPT)
+
+    def test_test_home_places_intake_before_historical_QA(self):
+        html = build_test_site.hub_page()
+        self.assertLess(html.index("Stage-1 Question Intake:"),
+                        html.index("QA candidate: Issue #55"))
+        self.assertIn("dataset.g9SourceCustody", build_test_site.INTAKE_HOME_FILTER_SCRIPT)
+
+    def test_test_home_answers_do_not_claim_unverified_official_key_custody(self):
+        """The 198 evidence-pending questions still carry recorded, not witnessed, keys."""
+        home = build_test_site.render_intake_section(
+            build_test_site.intake_banks(), build_test_site.test_source_custody.reconcile(REPO))
+        self.assertIn("Recorded answer — official key custody pending:", home)
+        self.assertIn("Evidenced official answer:", home)
+        self.assertNotIn("Official Answer:", home)
+        self.assertEqual(home.count("Evidenced official answer:"), 12)
+        self.assertEqual(home.count("Recorded answer — official key custody pending:"), 198)
+
     def test_test_search_index_covers_parked_questions_without_becoming_canonical_search(self):
         rows = build_test_site.test_search_index()
         self.assertEqual(len(rows), 220)

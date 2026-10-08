@@ -1,8 +1,10 @@
 """Focused regressions for the TEST-only NCERT Exemplar Question Bank projection."""
 from __future__ import annotations
 
+import copy
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -43,10 +45,12 @@ class TestTestQuestionBank(unittest.TestCase):
         self.assertEqual(len({q["id"] for q in rows}), 210)
         self.assertEqual(projection["academic_validation_status"], "PER_QUESTION")
         self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 151, "VALIDATED": 58})
-        self.assertEqual(
-            sum(q["text_verification_status"] == "TEXT_VERIFIED_AGAINST_OFFICIAL" for q in rows),
-            210,
-        )
+        self.assertTrue(all(q["workflow_status"] == "EVIDENCE_PENDING" for q in rows))
+        self.assertTrue(all(q["text_verification_status"] == "CAPTURED_UNVERIFIED" for q in rows))
+        self.assertTrue(all(q["wording_custody"] == "CAPTURED_UNVERIFIED" for q in rows))
+        self.assertTrue(all("page" not in q and "unverified_legacy_page" in q for q in rows))
+        self.assertEqual(sum(q["custody_evidence_status"] == "INDEPENDENTLY_EVIDENCED"
+                             for q in rows), 12)
         self.assertEqual(sum(q["academic_validation_status"] == "VALIDATED" for q in rows), 58)
         self.assertEqual(sum(q["academic_validation_status"] == "UNVALIDATED" for q in rows), 151)
         self.assertEqual(sum(q["academic_validation_status"] == "HOLD" for q in rows), 1)
@@ -108,6 +112,36 @@ class TestTestQuestionBank(unittest.TestCase):
         self.assertEqual(DOCS_PAGE.read_bytes(), PUBLIC_PAGE.read_bytes())
         self.assertEqual(DOCS_DATA.read_bytes(), PUBLIC_DATA.read_bytes())
 
+    def test_historical_academic_receipt_cannot_validate_a_rewritten_source_instance(self):
+        receipt = json.loads(NUMBER_SYSTEMS_VALIDATION.read_text(encoding="utf-8"))
+        receipt["records"] = [receipt["records"][0]]
+        original = copy.deepcopy(self.questions[0])
+        with tempfile.TemporaryDirectory() as folder:
+            tmp = Path(folder)
+            bank_dir = tmp / "TEST/question-bank/intake"
+            candidates = tmp / "TEST/candidates"
+            bank_dir.mkdir(parents=True)
+            candidates.mkdir(parents=True)
+            bank_path = bank_dir / "ncert-cbse-math-g9-pilot.json"
+            receipt_path = candidates / "number-systems-q01.validation.json"
+            receipt_path.write_text(json.dumps(receipt, ensure_ascii=False), encoding="utf-8")
+
+            def projected(question):
+                bank = copy.deepcopy(self.bank)
+                bank["questions"] = [question]
+                bank_path.write_text(json.dumps(bank, ensure_ascii=False), encoding="utf-8")
+                return build_test_question_bank.payload(tmp)["banks"][0]["questions"][0]
+
+            self.assertEqual(projected(original)["academic_validation_status"], "VALIDATED")
+            options_changed = copy.deepcopy(original)
+            options_changed["options"][0] = "(A) a changed natural number"
+            self.assertEqual(projected(options_changed)["academic_validation_status"], "UNVALIDATED")
+            answer_changed = copy.deepcopy(original)
+            answer_changed["official_answer_text"] = "(A) a natural number"
+            receipt["records"][0]["official_answer_text"] = answer_changed["official_answer_text"]
+            receipt_path.write_text(json.dumps(receipt, ensure_ascii=False), encoding="utf-8")
+            self.assertEqual(projected(answer_changed)["academic_validation_status"], "UNVALIDATED")
+
     def test_source_intake_ids_remain_out_of_production_question_bank_and_search(self):
         production = build_question_bank_web.build(REPO)
         production_ids = {q["id"] for q in production["questions"]}
@@ -153,7 +187,10 @@ class TestTestQuestionBank(unittest.TestCase):
                     self.assertNotEqual(row["stem_sha256"], original["stem_sha256"])
                 else:
                     self.assertEqual(row["stem_sha256"], original["stem_sha256"])
-                self.assertEqual(row["source_text_verification"], original["text_verification_status"])
+                # The academic receipt preserves its historical capture claim;
+                # the source bank is now explicitly unverified until custody is joined.
+                self.assertEqual(row["source_text_verification"], "TEXT_VERIFIED_AGAINST_OFFICIAL")
+                self.assertEqual(original["text_verification_status"], "CAPTURED_UNVERIFIED")
                 self.assertEqual(row["official_answer_text"], original["official_answer_text"])
                 self.assertEqual(row["official_answer_locator"], original["answer_key_locator"])
                 validation = row["academic_validation"]
@@ -192,7 +229,9 @@ class TestTestQuestionBank(unittest.TestCase):
             original = source[row["source_id"]]
             self.assertEqual(row["original_identifier"], original["original_identifier"])
             self.assertEqual(row["stem_sha256"], original["stem_sha256"])
-            self.assertEqual(row["source_text_verification"], original["text_verification_status"])
+            # Preserve immutable academic receipt's historical claim without granting custody.
+            self.assertEqual(row["source_text_verification"], "TEXT_VERIFIED_AGAINST_OFFICIAL")
+            self.assertEqual(original["text_verification_status"], "CAPTURED_UNVERIFIED")
             self.assertEqual(row["official_answer_text"], original["official_answer_text"])
             self.assertEqual(row["official_answer_locator"], original["answer_key_locator"])
             validation = row["academic_validation"]
@@ -205,7 +244,7 @@ class TestTestQuestionBank(unittest.TestCase):
         q7 = source["ncert-exemplar-g9-math-u01-q07"]
         self.assertEqual(q6["stem_sha256"], q7["stem_sha256"])
         self.assertNotEqual(q6["options"], q7["options"])
-        self.assertEqual(q7["workflow_status"], "READY_FOR_BLUEPRINT")
+        self.assertEqual(q7["workflow_status"], "EVIDENCE_PENDING")
         q7_validation = rows[6]["academic_validation"]
         self.assertIn("stem-only digest collision", q7_validation["convention_note"])
         self.assertIn("not duplicate items", q7_validation["convention_note"])
@@ -227,7 +266,9 @@ class TestTestQuestionBank(unittest.TestCase):
             original = source[row["source_id"]]
             self.assertEqual(row["original_identifier"], original["original_identifier"])
             self.assertEqual(row["stem_sha256"], original["stem_sha256"])
-            self.assertEqual(row["source_text_verification"], original["text_verification_status"])
+            # Preserve immutable academic receipt's historical claim without granting custody.
+            self.assertEqual(row["source_text_verification"], "TEXT_VERIFIED_AGAINST_OFFICIAL")
+            self.assertEqual(original["text_verification_status"], "CAPTURED_UNVERIFIED")
             self.assertEqual(row["official_answer_text"], original["official_answer_text"])
             self.assertEqual(row["official_answer_locator"], original["answer_key_locator"])
             validation = row["academic_validation"]
@@ -254,7 +295,9 @@ class TestTestQuestionBank(unittest.TestCase):
             original = source[row["source_id"]]
             self.assertEqual(row["original_identifier"], original["original_identifier"])
             self.assertEqual(row["stem_sha256"], original["stem_sha256"])
-            self.assertEqual(row["source_text_verification"], original["text_verification_status"])
+            # Preserve immutable academic receipt's historical claim without granting custody.
+            self.assertEqual(row["source_text_verification"], "TEXT_VERIFIED_AGAINST_OFFICIAL")
+            self.assertEqual(original["text_verification_status"], "CAPTURED_UNVERIFIED")
             self.assertEqual(row["official_answer_text"], original["official_answer_text"])
             self.assertEqual(row["official_answer_locator"], original["answer_key_locator"])
             validation = row["academic_validation"]
