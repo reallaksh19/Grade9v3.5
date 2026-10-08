@@ -3452,6 +3452,10 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{len(gaps)} depth gap(s); {len(authority_findings)} subject-authority finding(s)")
         return 1 if gaps or authority_findings else 0
     if gaps and not args.draft:
+        # A strict CI failure must identify its real authoring defects. This
+        # remains fail-closed: no output is written and the exit code is 2.
+        for gap in gaps:
+            print(f"{gap['core']:7s} {gap['duty']:32s} {gap['record']:44s} {gap['detail']}", file=sys.stderr)
         print(f"{len(gaps)} gap(s): nothing written. Run `render_core.py gaps` or `--draft`.", file=sys.stderr)
         return 2
     out = Path(args.out)

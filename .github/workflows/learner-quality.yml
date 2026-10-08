@@ -37,6 +37,10 @@ jobs:
         run: python3 -m unittest tests.test_issue69_subject_neutrality
       - name: Core2 staged support contract
         run: python3 -m unittest tests.test_staged_support_repair
+      - name: Strict renderer failures identify typed gaps without writing
+        run: python3 -m unittest tests.test_render_core.Renderer.test_strict_build_failure_names_typed_gaps_without_writing -v
+      - name: Physics Motion-in-2D source figure references resolve
+        run: python3 -m unittest tests.test_motion_2d_figure_resolution -v
       - name: TEST Question Bank regressions
         run: python3 -m unittest tests.test_test_question_bank
       - name: TEST official intake identity/shape gate

@@ -1,0 +1,436 @@
+{
+  "schema": "sof-imo-g09-original-practice-structured-diagnostics-v1",
+  "issue": 277,
+  "source_pr_merged": 270,
+  "source_original_content_head": "1caa71fc3deda2fbff70bed40f0a092a13457bff",
+  "source_path": "TEST/imo-research/original-practice/seven-cell-original-problems.v1.json",
+  "scope": "STRUCTURED_RESEARCH_CHECKER_NOT_PUBLIC_FREE_TEXT_GRADER",
+  "human_independent_academic_review_required": false,
+  "original_sof_stems_options_figures_included": false,
+  "provisional_qrt_cells": 7,
+  "accepted_qrt_cells": 0,
+  "core_2_ready": 0,
+  "core_1a_ready": 0,
+  "learner_published": 0,
+  "grading_coverage": "POSITIVE_AND_INTENDED_MISCONCEPTION_TEST_CASES_ONLY",
+  "explicit_limit": "Structured response format cannot reliably automatically score arbitrary proof prose or establish universal correctness; manual/product QA decision still separate.",
+  "records": [
+    {
+      "candidate_id": "IMO-G9-ORIGINAL-PRACTICE-001",
+      "proposed_qrt_cell": "QRT-JUSTIFY-D3",
+      "response_fields": [
+        "claim_true",
+        "even_factor",
+        "factor_three",
+        "proof_basis"
+      ],
+      "accepted_illustrative_response": {
+        "claim_true": true,
+        "even_factor": true,
+        "factor_three": true,
+        "proof_basis": "parity_and_mod3"
+      },
+      "equivalent_illustrative_response": {
+        "claim_true": true,
+        "even_factor": true,
+        "factor_three": true,
+        "proof_basis": "residue_mod6"
+      },
+      "misconception_probes": [
+        {
+          "code": "EXAMPLE_ONLY",
+          "response": {
+            "claim_true": true,
+            "even_factor": true,
+            "factor_three": true,
+            "proof_basis": "example_only"
+          },
+          "actionable_hint": "A few tested products do not establish the claim for every starting integer. Consider a residue-class or factor argument."
+        },
+        {
+          "code": "MISSING_THREE_FACTOR",
+          "response": {
+            "claim_true": true,
+            "even_factor": true,
+            "factor_three": false,
+            "proof_basis": "parity_and_mod3"
+          },
+          "actionable_hint": "An even factor explains divisibility by 2 only. Inspect how one of three consecutive terms relates to divisibility by 3."
+        }
+      ],
+      "grader_limit": "A structured proof certificate flags required parity/modulo-3 claims; it does not semantically assess arbitrary written proofs.",
+      "grading_admission": "RESEARCH_ONLY_NOT_LIVE",
+      "accessibility_readability_signoff": "NOT_COMPLETED",
+      "product_owner_decision": null,
+      "qrt_acceptance": null,
+      "core_ready": false,
+      "learner_published": false
+    },
+    {
+      "candidate_id": "IMO-G9-ORIGINAL-PRACTICE-002",
+      "proposed_qrt_cell": "QRT-REPRESENT-D1",
+      "response_fields": [
+        "x",
+        "y"
+      ],
+      "accepted_illustrative_response": {
+        "x": -4,
+        "y": 3
+      },
+      "equivalent_illustrative_response": {
+        "x": -4,
+        "y": 3
+      },
+      "misconception_probes": [
+        {
+          "code": "AXES_SWAPPED",
+          "response": {
+            "x": 3,
+            "y": -4
+          },
+          "actionable_hint": "Review the order of the axes: write east-west displacement first and north-south displacement second."
+        },
+        {
+          "code": "WEST_SIGN",
+          "response": {
+            "x": 4,
+            "y": 3
+          },
+          "actionable_hint": "In the declared Cartesian orientation, travelling west moves opposite the positive x-direction."
+        },
+        {
+          "code": "NORTH_SIGN",
+          "response": {
+            "x": -4,
+            "y": -3
+          },
+          "actionable_hint": "Check whether north is aligned with the positive or negative y-direction."
+        }
+      ],
+      "grader_limit": "A structured coordinate pair is evaluated; a written explanation of direction signs is not automatically assessed.",
+      "grading_admission": "RESEARCH_ONLY_NOT_LIVE",
+      "accessibility_readability_signoff": "NOT_COMPLETED",
+      "product_owner_decision": null,
+      "qrt_acceptance": null,
+      "core_ready": false,
+      "learner_published": false
+    },
+    {
+      "candidate_id": "IMO-G9-ORIGINAL-PRACTICE-003",
+      "proposed_qrt_cell": "QRT-JUSTIFY-D1",
+      "response_fields": [
+        "equal_area",
+        "area_cm2",
+        "used_perpendicular_height"
+      ],
+      "accepted_illustrative_response": {
+        "equal_area": true,
+        "area_cm2": 42,
+        "used_perpendicular_height": true
+      },
+      "equivalent_illustrative_response": {
+        "equal_area": true,
+        "area_cm2": 42,
+        "used_perpendicular_height": true
+      },
+      "misconception_probes": [
+        {
+          "code": "TRIANGLE_HALF_FACTOR",
+          "response": {
+            "equal_area": true,
+            "area_cm2": 84,
+            "used_perpendicular_height": true
+          },
+          "actionable_hint": "Check whether triangle area uses the same formula as a parallelogram or half of that base-times-height area."
+        },
+        {
+          "code": "EQUAL_HEIGHT_NOT_RECOGNIZED",
+          "response": {
+            "equal_area": false,
+            "area_cm2": 42,
+            "used_perpendicular_height": true
+          },
+          "actionable_hint": "Consider whether moving the third vertex parallel to the common base changes perpendicular altitude."
+        },
+        {
+          "code": "SLANTED_HEIGHT",
+          "response": {
+            "equal_area": true,
+            "area_cm2": 42,
+            "used_perpendicular_height": false
+          },
+          "actionable_hint": "The triangle height is the shortest perpendicular distance to the base line, not a sloping side length."
+        }
+      ],
+      "grader_limit": "Checks selected reasoning anchors and numeric area, not free-form geometric proofs.",
+      "grading_admission": "RESEARCH_ONLY_NOT_LIVE",
+      "accessibility_readability_signoff": "NOT_COMPLETED",
+      "product_owner_decision": null,
+      "qrt_acceptance": null,
+      "core_ready": false,
+      "learner_published": false
+    },
+    {
+      "candidate_id": "IMO-G9-ORIGINAL-PRACTICE-004",
+      "proposed_qrt_cell": "QRT-MODEL-D2",
+      "response_fields": [
+        "surface_scope",
+        "area_cm2"
+      ],
+      "accepted_illustrative_response": {
+        "surface_scope": "curved_only",
+        "area_cm2": 880
+      },
+      "equivalent_illustrative_response": {
+        "surface_scope": "curved_only",
+        "area_cm2": 880
+      },
+      "misconception_probes": [
+        {
+          "code": "END_CAPS_INCLUDED",
+          "response": {
+            "surface_scope": "both_ends_included",
+            "area_cm2": 1188
+          },
+          "actionable_hint": "The prompt leaves the two circular ends uncovered. Visualize the one rectangular curved sheet when the wall is unrolled."
+        },
+        {
+          "code": "MISSING_CIRCUMFERENCE_FACTOR",
+          "response": {
+            "surface_scope": "curved_only",
+            "area_cm2": 440
+          },
+          "actionable_hint": "Verify the width of the unrolled curved wall is the whole circumference, rather than half of it."
+        }
+      ],
+      "grader_limit": "Validates selected surface scope and area; does not parse arbitrary unit spellings or free text.",
+      "grading_admission": "RESEARCH_ONLY_NOT_LIVE",
+      "accessibility_readability_signoff": "NOT_COMPLETED",
+      "product_owner_decision": null,
+      "qrt_acceptance": null,
+      "core_ready": false,
+      "learner_published": false
+    },
+    {
+      "candidate_id": "IMO-G9-ORIGINAL-PRACTICE-005",
+      "proposed_qrt_cell": "QRT-REPRESENT-D2",
+      "response_fields": [
+        "slope",
+        "intercept",
+        "target_x"
+      ],
+      "accepted_illustrative_response": {
+        "slope": -2,
+        "intercept": 5,
+        "target_x": 7
+      },
+      "equivalent_illustrative_response": {
+        "slope": -2,
+        "intercept": 5,
+        "target_x": 7
+      },
+      "misconception_probes": [
+        {
+          "code": "DELTA_X_IGNORED",
+          "response": {
+            "slope": -4,
+            "intercept": 5,
+            "target_x": 3.5
+          },
+          "actionable_hint": "Slope compares change in output with change in input. Divide the drop in y by the corresponding increase in x."
+        },
+        {
+          "code": "TARGET_SIGN",
+          "response": {
+            "slope": -2,
+            "intercept": 5,
+            "target_x": -7
+          },
+          "actionable_hint": "Isolate x carefully after subtracting the constant; track the negative coefficient when dividing."
+        },
+        {
+          "code": "INTERCEPT_MISREAD",
+          "response": {
+            "slope": -2,
+            "intercept": 9,
+            "target_x": 9
+          },
+          "actionable_hint": "Read the value paired with x=0 to identify the intercept before solving for the new input."
+        }
+      ],
+      "grader_limit": "Checks slope, intercept and inverse value as structured numbers; not arbitrary equivalent algebraic strings.",
+      "grading_admission": "RESEARCH_ONLY_NOT_LIVE",
+      "accessibility_readability_signoff": "NOT_COMPLETED",
+      "product_owner_decision": null,
+      "qrt_acceptance": null,
+      "core_ready": false,
+      "learner_published": false
+    },
+    {
+      "candidate_id": "IMO-G9-ORIGINAL-PRACTICE-006",
+      "proposed_qrt_cell": "QRT-MODEL-D3",
+      "response_fields": [
+        "booklet_rupees",
+        "card_rupees",
+        "target_total_rupees"
+      ],
+      "accepted_illustrative_response": {
+        "booklet_rupees": 18,
+        "card_rupees": 29,
+        "target_total_rupees": 112
+      },
+      "equivalent_illustrative_response": {
+        "booklet_rupees": 18,
+        "card_rupees": 29,
+        "target_total_rupees": 112
+      },
+      "misconception_probes": [
+        {
+          "code": "UNIT_PRICES_SWAPPED",
+          "response": {
+            "booklet_rupees": 29,
+            "card_rupees": 18,
+            "target_total_rupees": 123
+          },
+          "actionable_hint": "Check both original invoices with the inferred per-item prices before calculating the new order."
+        },
+        {
+          "code": "TARGET_TOTAL_MISCOMPUTED",
+          "response": {
+            "booklet_rupees": 18,
+            "card_rupees": 29,
+            "target_total_rupees": 123
+          },
+          "actionable_hint": "Both unit prices satisfy the invoices. Reapply the quantities in the new order rather than those in an earlier invoice."
+        }
+      ],
+      "grader_limit": "Uses two unit-price invariants and target price; does not independently grade prose describing elimination.",
+      "grading_admission": "RESEARCH_ONLY_NOT_LIVE",
+      "accessibility_readability_signoff": "NOT_COMPLETED",
+      "product_owner_decision": null,
+      "qrt_acceptance": null,
+      "core_ready": false,
+      "learner_published": false
+    },
+    {
+      "candidate_id": "IMO-G9-ORIGINAL-PRACTICE-007",
+      "proposed_qrt_cell": "QRT-REPRESENT-D3",
+      "response_fields": [
+        "vertices",
+        "twice_area",
+        "area_preserved"
+      ],
+      "accepted_illustrative_response": {
+        "vertices": {
+          "P": [
+            6,
+            -1
+          ],
+          "Q": [
+            1,
+            -1
+          ],
+          "R": [
+            4,
+            2
+          ]
+        },
+        "twice_area": 15,
+        "area_preserved": true
+      },
+      "equivalent_illustrative_response": {
+        "vertices": {
+          "P": [
+            6,
+            -1
+          ],
+          "Q": [
+            1,
+            -1
+          ],
+          "R": [
+            4,
+            2
+          ]
+        },
+        "twice_area": 15,
+        "area_preserved": true
+      },
+      "misconception_probes": [
+        {
+          "code": "REFLECTION_TRANSLATION_MISORDER",
+          "response": {
+            "vertices": {
+              "P": [
+                2,
+                -1
+              ],
+              "Q": [
+                -3,
+                -1
+              ],
+              "R": [
+                0,
+                2
+              ]
+            },
+            "twice_area": 15,
+            "area_preserved": true
+          },
+          "actionable_hint": "The given sequence first reflects x across the y-axis, then adds the horizontal and vertical translation to every vertex."
+        },
+        {
+          "code": "AREA_NOT_PRESERVED",
+          "response": {
+            "vertices": {
+              "P": [
+                6,
+                -1
+              ],
+              "Q": [
+                1,
+                -1
+              ],
+              "R": [
+                4,
+                2
+              ]
+            },
+            "twice_area": 15,
+            "area_preserved": false
+          },
+          "actionable_hint": "Check whether a mirror reflection or a rigid translation alters lengths or absolute triangle area."
+        },
+        {
+          "code": "DETERMINANT_HALF_FACTOR",
+          "response": {
+            "vertices": {
+              "P": [
+                6,
+                -1
+              ],
+              "Q": [
+                1,
+                -1
+              ],
+              "R": [
+                4,
+                2
+              ]
+            },
+            "twice_area": 30,
+            "area_preserved": true
+          },
+          "actionable_hint": "Distinguish the determinant magnitude (twice area) from the triangle area itself."
+        }
+      ],
+      "grader_limit": "A structured vertex mapping and twice-area certificate are checked; other geometrically congruent coordinate descriptions are not interpreted.",
+      "grading_admission": "RESEARCH_ONLY_NOT_LIVE",
+      "accessibility_readability_signoff": "NOT_COMPLETED",
+      "product_owner_decision": null,
+      "qrt_acceptance": null,
+      "core_ready": false,
+      "learner_published": false
+    }
+  ]
+}
