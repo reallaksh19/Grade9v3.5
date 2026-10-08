@@ -151,6 +151,7 @@ class TestNcertQ1ParkedProduct(unittest.TestCase):
         self.assertEqual(len(self.package["relations"]), 1)
         relation, = self.package["relations"]
         self.assertEqual(relation["expression"], "ℚ ⊆ ℝ")
+        self.assertIn('<mi>ℚ</mi><mo>⊆</mo><mi>ℝ</mi>', relation["mathml"])
         self.assertEqual(relation["gate_relation_ref"], None)
         self.assertIn("reverse inclusion", relation["meaning"])
         microtopic = self.package["microtopics"][0]
