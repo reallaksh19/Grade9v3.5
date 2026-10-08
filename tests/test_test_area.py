@@ -223,7 +223,12 @@ class TestPages(unittest.TestCase):
         hub = (REPO / "public/test/index.html").read_text(encoding="utf-8")
         self.assertIn('id="g9-test-search-index"', hub)
         self.assertIn("12 READY_FOR_BLUEPRINT · 0 SOURCE_TEXT_HOLD · 198 EVIDENCE_PENDING", hub)
-        self.assertNotIn("SOURCE TEXT HOLD", hub)
+        # JS must define the HOLD state even when no live question is held.
+        # Reject only an actually rendered HOLD card, not the safe UI branch.
+        self.assertNotIn(
+            'background:#b45309;color:#fff;padding:2px 6px;border-radius:4px">SOURCE TEXT HOLD</span>',
+            hub,
+        )
         self.assertIn("Which one of the following is a polynomial?", hub)
         self.assertIn("Printed page 14 / PDF index 1", hub)
         self.assertIn("Inspect 210 parked intake questions", hub)
