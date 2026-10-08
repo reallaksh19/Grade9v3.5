@@ -771,11 +771,15 @@ class TestOwnerBankFromIntake(unittest.TestCase):
     def test_the_skeleton_carries_the_deepest_ladder_and_route_and_check_names_what_is_empty(self):
         bank = self.bank(fill=False)
         row = bank["questions"][0]
-        # The skeleton is the reference depth for a D3 or D4 question: the author deletes what the band does not need.
-        self.assertEqual([m["kind"] for m in row["answer"]["reasoning_route"]], ["DECIDE", "REPRESENT", "TRANSFORM", "VERIFY"])
-        self.assertEqual([r["learner_stage"] for r in row["scaffolds"]],
-                         ["REPRESENTATION", "KEY_CONCEPT", "CRUX", "FORMAL_MODEL", "CHECKPOINT"])
-        self.assertEqual({r["supports_move_ref"] for r in row["scaffolds"]} - {m["id"] for m in row["answer"]["reasoning_route"]}, set())
+        # Start with one real move and one support stub pointing to that move;
+        # a D3/D4 label must not manufacture extra steps or dangling references.
+        self.assertEqual([m["kind"] for m in row["answer"]["reasoning_route"]], ["DECIDE"])
+        self.assertEqual([r["learner_stage"] for r in row["scaffolds"]], ["KEY_CONCEPT"])
+        for question in bank["questions"]:
+            move_ids = {move["id"] for move in question["answer"]["reasoning_route"]}
+            self.assertEqual(move_ids, {f'{question["id"]}-MOVE-1'})
+            self.assertEqual({rung["supports_move_ref"] for rung in question["scaffolds"]}, move_ids)
+            self.assertTrue(all(not rung["text"] for rung in question["scaffolds"]))
         problems = " ".join(owner_bank.check(bank))
         self.assertIn("scaffolds[0].text is empty", problems)
         self.assertIn("is missing action", problems)
@@ -835,8 +839,14 @@ class TestOwnerBankFromIntake(unittest.TestCase):
         row = bank["questions"][0]
         row["extensions"]["grade9v3:analysis"]["difficulty"].update(band="D3", score=5)
         problems = " ".join(owner_bank.check(bank))
-        self.assertIn("HINT_LADDER needs 5, the record supplies 3", problems)
-        self.assertIn("SOLUTION_STEPS needs 4, the record supplies 3", problems)
+        self.assertNotIn("HINT_LADDER needs", problems,
+                         "difficulty alone cannot require padded support rungs")
+        self.assertNotIn("SOLUTION_STEPS needs", problems,
+                         "difficulty alone cannot require padded solution steps")
+        # Actual logical content still matters: a missing warrant is a defect
+        # regardless of the band's implied or stated complexity.
+        row["answer"]["reasoning_route"][1]["why_valid"] = ""
+        self.assertIn("is missing why_valid", " ".join(owner_bank.check(bank)))
 
     def test_an_owner_question_cannot_take_an_exam_provenance_class(self):
         bank = self.bank()
