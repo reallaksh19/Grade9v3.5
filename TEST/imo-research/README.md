@@ -27,7 +27,7 @@ No TEST question-bank loader, canonical question-bank generator, production or p
 | Owner entry | Printed source and page | Evidence result | Status |
 |---|---|---|---|
 | Q2 | 2025–26 Set A Q28, physical p.5 | Original says **additive identity**, compilation says **additive inverse**. Options include 0 and negative fraction; the source itself may have a mistake, but do not silently correct. | `TEXT_DISPUTED` |
-| Q9 | 2024–25 Set B Q44, physical p.7 | Under Mathematical Reasoning; compiler erroneously assigns it to Achievers. | Locator reconciled; answer not independently checked |
+| Q9 | 2024–25 Set B Q44, physical p.7 | Under Everyday Mathematics; compiler erroneously assigns it to Achievers. | Locator reconciled; answer not independently checked |
 | Q38 | 2025–26 Set A printed Q32/Q33, physical p.5 | Two numbered questions from a shared pie chart. | Split confirmed; figure retained as dependency |
 | Q37 | 2024–25 Set B Q16, physical p.4 | Source has pie chart used by question, not just stated percentages. | Visual asset pending |
 
