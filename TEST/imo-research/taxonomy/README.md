@@ -6,7 +6,7 @@
 
 1. SOF's Class 9 official syllabus: https://sofworld.org/imo/class-9/imo-syllabus/imo-syllabus-class-9 (inspected 2026-10-08). There are **17 expressly named Section 2 topics**. Section 1 is verbal/non-verbal reasoning; Section 3 refers to Mathematical Reasoning and Quantitative Aptitude; Section 4 is HOTS over Section 2.
 2. Class 9 Level 1 has 50 positions: Logical Reasoning Q1–15, Mathematical Reasoning Q16–35, Everyday Mathematics Q36–45, Achievers Q46–50. This positioning is an exam-section rule **for a full Level 1 paper only**, not the syllabus topic of a question.
-3. The Owner's attachment holds 65 distinct compilation entries. Compilation Q38 maps to **two separately numbered original paper questions** and Q66–Q68 are aliases: 66 question IDs. Sample paper numbers Q1–10 cannot be assumed to be full exam Q1–10; their exam sections remain `null` until a genuine sample-paper section locator is checked.
+3. The Owner's attachment holds 65 distinct compilation entries. Compilation Q38 maps to **two separately numbered original paper questions** and Q66–Q68 are aliases: 66 question IDs. Sample paper numbers Q1–10 cannot be assumed to be full exam Q1–10: their **full-paper position/section remains `null`**. Separately, the official 2026–27 sample PDF provides its own printed section headings, now recorded in `official-sample-2026-27-observations.v1.json`.
 4. Subtopic and learning-demand summaries are **analyst-proposed classifications** from the attachment. They have not passed an independent academic review. Don't mistake them for verified source taxonomy or proof of a learner misconception.
 
 `sof-class9-topic-registry.v1.json` stores the organiser syllabus order, exam slots, 17 official topics and two distinctly labelled analyst grouping categories, `LOGIC` (Section 1) and `QUANT` (Section 3 quantitative aptitude). These adjuncts are not new official Section 2 topics. `sof-class9-subtopics.v1.json` normalizes the **49 provisional subtopic/microconcept groups**. `seed-question-topic-map.v1.jsonl` links each source-instance ID to exactly one provisional primary topic, subtopic and microconcept, independently of its exam section, and preserves the no-acceptance state.
@@ -37,7 +37,15 @@
 
 These are *seed inventory frequencies*, not question likelihoods or assertions that absent official topics are absent from SOF papers.
 
-**Question section provenance:** 28 seeded candidates map by printed paper position to Mathematical Reasoning, 19 to Everyday Mathematics, 8 to Achievers, 3 to Logical Reasoning and **8 organiser sample questions have section unresolved**. The combined chapter count, original exam section and proposed cognitive-demand classification are independent axes.
+**Question section provenance:** 28 seeded candidates map by printed paper position to Mathematical Reasoning, 19 to Everyday Mathematics, 8 to Achievers, 3 to Logical Reasoning and **8 organiser sample questions have no full-paper position inference**; their *separate printed sample section* is now observed directly. The combined chapter count, original exam section and proposed cognitive-demand classification are independent axes.
+
+## Organizer-hosted 2026–27 sample source (separate evidence)
+
+SOF-hosted original PDF: https://sofworld.org/download/file/fid/73719 — two printed pages, visible section headers and printed answer-key panel (inspected 2026-10-08).
+
+Exactly 8 of its 10 sample questions are in the Owner seed; Q1 and Q3 are source-census gaps, not silently appended. The observed sample sections for these eight are **Logical Reasoning 1, Mathematical Reasoning 3, Everyday Mathematics 2, Achievers 2**. Eight official *printed-key options* were sighted, but zero were independently academically adjudicated. The researcher ledger preserves all eight `NOT_INDEPENDENTLY_VERIFIED` statuses. Sample Q5/Q6/Q10 contain diagrams; sample Q9's repeating decimals and nested indices must be compared using the original visual notation before any learner rendering. All eight retain unresolved rights/copyright, source transcription and Core-admission gates.
+
+Importantly, printed sample section evidence does **not** convert its local Q1–10 labels into full Level-1 Q1–50 positions; these remain distinct database fields.
 
 ## Known boundary/cross-topic cases
 
