@@ -34,5 +34,13 @@ jobs:
         run: python TEST/imo-research/validate_taxonomy.py
       - name: Validate organizer sample answer and QRT research pilot
         run: python TEST/imo-research/validate_sample_pilot.py
+      - name: Validate full Level 1 printed-source maths audit B02
+        run: python TEST/imo-research/validate_fullpaper_batch02.py
+      - name: Validate 2023–24 and 2024–25 paper research audit B03
+        run: python TEST/imo-research/validate_fullpaper_batch03.py
+      - name: Validate B04 2025 Set A full-paper mathematics and 58 of 58 census
+        run: python TEST/imo-research/validate_fullpaper_batch04.py
+      - name: Validate scanned-source and owner answer discrepancy register
+        run: python TEST/imo-research/validate_discrepancy_register.py
       - name: Run research-only falsifier tests
         run: python -m unittest discover -s tests -p 'test_imo_*.py' -v
