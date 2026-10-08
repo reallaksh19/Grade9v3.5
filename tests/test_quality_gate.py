@@ -28,6 +28,11 @@ NODE_OK = shutil.which("node") is not None
 
 def complete_fixture(tmp: Path) -> Path:
     pkg = json.loads((REPO / MATH).read_text(encoding="utf-8"))
+    # This synthetic draft selects only Q-MATH-LINEAR-01. Exclude unrelated
+    # published records whose historical statuses belong to canonical admission,
+    # not to the renderer's candidate-stage package schema.
+    pkg["questions"] = [q for q in pkg["questions"] if q["id"] == "Q-MATH-LINEAR-01"]
+    assert len(pkg["questions"]) == 1, "Synthetic quality fixture lost its authored source"
     rep = next(r for r in pkg["representations"] if r["id"] == "REP-MATH-NUMBER-LINE")
     rep["rendered_asset_refs"] = [SVG]
     rep["reveal_stages"] = [

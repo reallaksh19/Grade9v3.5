@@ -39,6 +39,8 @@ jobs:
         run: python3 -m unittest tests.test_staged_support_repair
       - name: NCERT custody-witnessed metadata provenance is fail-closed
         run: python3 -m unittest tests.test_learner_metadata -v
+      - name: Negative C2A C2B visual contract remains distinguishable
+        run: python3 -m unittest tests.test_quality_gate.Gate.test_removing_both_required_practice_visuals_reports_each_core -v
       - name: Strict renderer failures identify typed gaps without writing
         run: python3 -m unittest tests.test_render_core.Renderer.test_strict_build_failure_names_typed_gaps_without_writing -v
       - name: Physics Motion-in-2D source figure references resolve
