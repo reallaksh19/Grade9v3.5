@@ -105,6 +105,19 @@ class TestOfficialIntakeIdentity(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "malformed source stem digest"):
             test_intake_registry.load_intake_banks(self.repo)
 
+    def test_unofficial_source_links_are_blocked_before_render(self):
+        forged = copy.deepcopy(self.q1)
+        for url in ("https://ncert.nic.in.evil.test/file.pdf",
+                    "javascript:alert(1)",
+                    "http://ncert.nic.in/unsafe",
+                    "https://user@ncert.nic.in/file.pdf",
+                    "https://ncert.nic.in:444/file.pdf"):
+            with self.subTest(url=url):
+                forged["source_url"] = url
+                self.bank("unsafe.json", [forged])
+                with self.assertRaisesRegex(ValueError, "unofficial or unsafe source URL"):
+                    test_intake_registry.load_intake_banks(self.repo)
+
     def test_handoff_output_is_not_a_second_intake_bank(self):
         self.bank("main.json", [self.q1])
         (self.intake / "some.blueprint-handoff.json").write_text("{}", encoding="utf-8")
