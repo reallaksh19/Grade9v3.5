@@ -1,8 +1,10 @@
 """Focused regressions for the TEST-only NCERT Exemplar Question Bank projection."""
 from __future__ import annotations
 
+import copy
 import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -109,6 +111,36 @@ class TestTestQuestionBank(unittest.TestCase):
         self.assertEqual(PUBLIC_DATA.read_text(encoding="utf-8"), build_test_question_bank.render_data(REPO))
         self.assertEqual(DOCS_PAGE.read_bytes(), PUBLIC_PAGE.read_bytes())
         self.assertEqual(DOCS_DATA.read_bytes(), PUBLIC_DATA.read_bytes())
+
+    def test_historical_academic_receipt_cannot_validate_a_rewritten_source_instance(self):
+        receipt = json.loads(NUMBER_SYSTEMS_VALIDATION.read_text(encoding="utf-8"))
+        receipt["records"] = [receipt["records"][0]]
+        original = copy.deepcopy(self.questions[0])
+        with tempfile.TemporaryDirectory() as folder:
+            tmp = Path(folder)
+            bank_dir = tmp / "TEST/question-bank/intake"
+            candidates = tmp / "TEST/candidates"
+            bank_dir.mkdir(parents=True)
+            candidates.mkdir(parents=True)
+            bank_path = bank_dir / "ncert-cbse-math-g9-pilot.json"
+            receipt_path = candidates / "number-systems-q01.validation.json"
+            receipt_path.write_text(json.dumps(receipt, ensure_ascii=False), encoding="utf-8")
+
+            def projected(question):
+                bank = copy.deepcopy(self.bank)
+                bank["questions"] = [question]
+                bank_path.write_text(json.dumps(bank, ensure_ascii=False), encoding="utf-8")
+                return build_test_question_bank.payload(tmp)["banks"][0]["questions"][0]
+
+            self.assertEqual(projected(original)["academic_validation_status"], "VALIDATED")
+            options_changed = copy.deepcopy(original)
+            options_changed["options"][0] = "(A) a changed natural number"
+            self.assertEqual(projected(options_changed)["academic_validation_status"], "UNVALIDATED")
+            answer_changed = copy.deepcopy(original)
+            answer_changed["official_answer_text"] = "(A) a natural number"
+            receipt["records"][0]["official_answer_text"] = answer_changed["official_answer_text"]
+            receipt_path.write_text(json.dumps(receipt, ensure_ascii=False), encoding="utf-8")
+            self.assertEqual(projected(answer_changed)["academic_validation_status"], "UNVALIDATED")
 
     def test_source_intake_ids_remain_out_of_production_question_bank_and_search(self):
         production = build_question_bank_web.build(REPO)
