@@ -235,6 +235,10 @@ class TestPages(unittest.TestCase):
         atlas = (REPO / "public/test/atlas/index.html").read_text(encoding="utf-8")
         self.assertIn("subjects.TEST", atlas)
         self.assertIn('data-g9-test-atlas-data', atlas)
+        self.assertIn('.header-title-group{flex-wrap:wrap;min-width:0;max-width:100%}', atlas)
+        self.assertIn('.header-subtitle{min-width:0;overflow-wrap:anywhere}', atlas)
+        transform = json.loads(build_test_site.ATLAS_TRANSFORM.read_text(encoding="utf-8"))
+        self.assertIn('.header-title-group{flex-wrap:wrap;min-width:0;max-width:100%}', transform["swaps"][-1]["new"])
         self.assertIn("MATRIX-TEST-ISS55-POLY", atlas)
         self.assertIn("MIC-MATH-POLY-IDENTITY-DEGREE-BOUND", atlas)
         for leftover in ("MATRIX-PHY-NLM-FIRST-LAW", "Laws of Motion", "phy-nlm-first-law", "NLM Topic Atlas"):

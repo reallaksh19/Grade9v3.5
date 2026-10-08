@@ -54,6 +54,7 @@ for (const page of PAGES) {
       const small = links.filter((a) => Math.min(a.getBoundingClientRect().width, a.getBoundingClientRect().height) < 44);
       return {
         overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        atlasHeaderRight: document.querySelector('.header-title-group')?.getBoundingClientRect().right ?? 0,
         offenders: [...document.querySelectorAll('body *')]
           .filter(el => {
             const rect = el.getBoundingClientRect();
@@ -79,6 +80,8 @@ for (const page of PAGES) {
     const where = `${page} @${width}`;
     for (const problem of problems) failures.push(`${where}: ${problem}`);
     if (facts.overflow > 1) failures.push(`${where}: ${facts.overflow}px wider than the screen; offenders=${JSON.stringify(facts.offenders)}`);
+    if (page === 'test/atlas/index.html' && facts.atlasHeaderRight > width + 1)
+      failures.push(`${where}: Atlas title group right ${Math.round(facts.atlasHeaderRight)} exceeds viewport ${width}`);
     if (!/not accepted/.test(facts.banner)) failures.push(`${where}: the draft label is not visible ("${facts.banner.slice(0, 60)}")`);
     if (facts.small.length) failures.push(`${where}: header links under 44px: ${facts.small.join(', ')}`);
     if (!/data-g9-shell/.test(facts.html)) failures.push(`${where}: no shell marker`);
