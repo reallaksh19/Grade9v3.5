@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -25,7 +26,10 @@ def _require(condition: bool, where: str, reason: str) -> None:
 
 
 def _evidence_ref(value: object) -> bool:
-    return isinstance(value, str) and value.startswith("github:reallaksh19/Grade9v3.5#129:") and value.rsplit(":", 1)[-1].isdigit()
+    # A durable pointer shape, not proof that GitHub has verified the claim.
+    return isinstance(value, str) and re.fullmatch(
+        r"github:reallaksh19/Grade9v3\\.5#[1-9][0-9]*:[1-9][0-9]*", value
+    ) is not None
 
 
 def reconcile(repo: Path) -> dict:
