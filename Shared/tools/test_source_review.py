@@ -23,6 +23,20 @@ ROOT = "TEST/evidence/source-intake"
 STATES = {"VISUAL_MATCH", "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "SOURCE_NOTATION_DISCREPANCY"}
 ANSWER_DOCUMENT = "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep2an.pdf"
 
+# Frozen *observations* from the eight-row R4 review, not independent custody.
+# Prevent plausible numeric page/key or verdict rewrites from reusing that record.
+# Changing an observation requires a deliberate, reviewable source-scope update.
+FROZEN_R4_PRIMARY_OBSERVATIONS = {
+    "ncert-exemplar-g9-math-u01-q07": (3, 2, 0, "SOURCE_NOTATION_DISCREPANCY", "(D)"),
+    "ncert-exemplar-g9-math-u01-q08": (3, 2, 0, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(C)"),
+    "ncert-exemplar-g9-math-u01-q09": (4, 3, 0, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(C)"),
+    "ncert-exemplar-g9-math-u01-q10": (4, 3, 0, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(C)"),
+    "ncert-exemplar-g9-math-u02-q07": (15, 2, 3, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(D)"),
+    "ncert-exemplar-g9-math-u02-q08": (15, 2, 3, "VISUAL_MATCH", "(C)"),
+    "ncert-exemplar-g9-math-u02-q09": (15, 2, 3, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(B)"),
+    "ncert-exemplar-g9-math-u02-q10": (15, 2, 3, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(B)"),
+}
+
 
 def validate(repo: Path) -> dict:
     """Fail on malformed, stale, duplicated or falsely promoted review claims."""
@@ -106,6 +120,14 @@ def validate(repo: Path) -> dict:
             if (not isinstance(record.get("comparison_note"), str)
                     or not record["comparison_note"].strip()):
                 raise ValueError(f"{where}: comparison needs explicit source-note for {qid}")
+            # Existing observations are source-located snapshots, not editable
+            # declarations. Numeric coordinates must match the inspected record.
+            observed = FROZEN_R4_PRIMARY_OBSERVATIONS.get(qid)
+            reported = (loc["printed_page"], loc["pdf_page_index"],
+                        record["official_answer_pdf_page_index"],
+                        record["comparison_status"], key)
+            if observed is None or reported != observed:
+                raise ValueError(f"{where}: frozen primary-source observation scope mismatch for {qid}")
             reviewed[qid] = record
     return {"reviewed": len(reviewed), "review_ids": sorted(reviewed),
             "notation_discrepancies": sorted(qid for qid, r in reviewed.items()
