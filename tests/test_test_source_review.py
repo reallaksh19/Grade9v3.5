@@ -69,6 +69,8 @@ class TestOfficialSourceReview(unittest.TestCase):
                 "printed_page", "unverified"), "review locator"),
             ("fabricated answer", lambda d: d["records"][0].__setitem__("official_answer_key", "(A)"),
              "review answer"),
+            ("suppressed mismatch", lambda d: d["records"][0].__setitem__(
+                "comparison_status", "VISUAL_MATCH"), "cannot be silently cleared"),
             ("false READY", lambda d: d["records"][0].__setitem__("projection_disposition",
                                                                   "READY_FOR_BLUEPRINT"), "cannot grant"),
             ("false promotion", lambda d: d["records"][0].__setitem__("source_custody_promoted", True),

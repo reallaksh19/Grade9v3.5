@@ -55,13 +55,17 @@ def validate(repo: Path) -> dict:
             question = questions.get(qid)
             if question is None or qid in reviewed:
                 raise ValueError(f"{where}: unknown or duplicate review source id {qid!r}")
-            if qid in current_ready:
-                raise ValueError(f"{where}: already custody READY; review-only record would misstate live custody")
+            # This file is an immutable earlier observation. A later, independently
+            # authenticated custody overlay may promote a previously reviewed ID,
+            # but this historical review still must not do the promoting.
             if (record.get("projection_disposition") != "EVIDENCE_PENDING"
                     or record.get("source_custody_promoted") is not False):
                 raise ValueError(f"{where}: review cannot grant source readiness for {qid}")
             if record.get("comparison_status") not in STATES:
                 raise ValueError(f"{where}: unknown review comparison result for {qid}")
+            if (qid == "ncert-exemplar-g9-math-u01-q07"
+                    and record["comparison_status"] != "SOURCE_NOTATION_DISCREPANCY"):
+                raise ValueError(f"{where}: known overbar transcription discrepancy cannot be silently cleared")
             if record.get("reviewer_observation") != "DIRECT_NCERT_PRIMARY_PDF_VISUAL_REVIEW":
                 raise ValueError(f"{where}: missing explicitly described review method for {qid}")
             stem = record.get("captured_stem")
@@ -102,7 +106,8 @@ def validate(repo: Path) -> dict:
     return {"reviewed": len(reviewed), "review_ids": sorted(reviewed),
             "notation_discrepancies": sorted(qid for qid, r in reviewed.items()
                                             if r["comparison_status"] == "SOURCE_NOTATION_DISCREPANCY"),
-            "custody_promotions": 0}
+            "custody_promotions": 0,
+            "separately_custody_ready": sorted(set(reviewed) & current_ready)}
 
 
 def main(argv: list[str] | None = None) -> int:
