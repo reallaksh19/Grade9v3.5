@@ -79,7 +79,7 @@
       "question_format": "FREE_RESPONSE",
       "question_text": "On a map, east is the positive x-direction and north is the positive y-direction. A location is described as 4 kilometres west and 3 kilometres north of the origin. Express its location as an ordered pair (x,y), in kilometres.",
       "expected_answer": "(-4, 3)",
-      "worked_solution": "Moving west decreases the x-coordinate by 4, so x=-4. Moving north increases the y-coordinate by 3, so y=+3. Write x before y to obtain (-4,3).",
+      "worked_solution": "Moving west decreases the x-coordinate by 4, so x=-4. Moving north increases the y-coordinate by 3, so y=+3. Write x before y to obtain (-4,3). The correct quadrant has negative x and positive y, so its coordinate lies in quadrant II.",
       "independent_reverse_or_alternate_check": "Read the answer back: x=-4 means 4 kilometres west, and y=3 means 3 kilometres north; the verbal directions are recovered exactly.",
       "student_error_to_diagnose": "Reversing the order of x and y produces a different point.",
       "protected_cognitive_decision": "Preserve the sign conventions and the ordered (x,y) coordinate positions when translating compass directions.",
@@ -130,7 +130,7 @@
       "expected_answer": "Yes. Each area is 42 square centimetres.",
       "worked_solution": "A triangle's area is one-half times base length times perpendicular altitude. Both triangles have the same base length 12 cm and perpendicular altitude 7 cm. Each area is (1/2)*12*7=42 cm² regardless of the horizontal position of the third vertex.",
       "independent_reverse_or_alternate_check": "On the coordinate plane take A=(0,0),B=(12,0),C=(2,7),D=(10,7). Their determinant areas both equal |12*7|/2=42; shifting a peak parallel to the base preserves altitude.",
-      "student_error_to_diagnose": "A slanted side is not the perpendicular altitude.",
+      "student_error_to_diagnose": "A slanted side is not the perpendicular altitude. The altitude is measured at right angles to AB, not along a slanted side.",
       "protected_cognitive_decision": "Explain why equal base and perpendicular height, rather than identical side shapes, guarantee equal areas.",
       "qrt_proposal": {
         "primary_demand": "JUSTIFY",
@@ -227,8 +227,8 @@
       "question_format": "FREE_RESPONSE",
       "question_text": "A relation is recorded by four paired measurements: when x is -2, 0, 2, 4, the corresponding y-values are 9, 5, 1, -3. Express the pattern as an equation y=mx+c, then find x when y=-9.",
       "expected_answer": "y=-2x+5; x=7",
-      "worked_solution": "When x rises by 2, y falls by 4, so slope m=-4/2=-2. At x=0, y=5, hence intercept c=5. Therefore y=-2x+5. Solving -9=-2x+5 gives -14=-2x and x=7.",
-      "independent_reverse_or_alternate_check": "Verify two nonadjacent pairs: x=-2 gives 4+5=9 and x=4 gives -8+5=-3. Substitution x=7 gives y=-14+5=-9.",
+      "worked_solution": "When x rises by 2, y falls by 4, so slope m=-4/2=-2. At x=0, y=5, hence intercept c=5. Therefore y=-2x+5. Solving -9=-2x+5 gives -14=-2x and x=7. Check the equation on every row before using it for a new target y-value.",
+      "independent_reverse_or_alternate_check": "Verify two nonadjacent pairs: x=-2 gives 4+5=9 and x=4 gives -8+5=-3. Substitution x=7 gives y=-14+5=-9. Thus the rule matches both measurements and the requested inverse.",
       "student_error_to_diagnose": "Treating the change -4 in y as the slope ignores that x changed by 2.",
       "protected_cognitive_decision": "Preserve the row pairing, divide changes in y by changes in x, then use the resulting equation to invert the target.",
       "qrt_proposal": {
