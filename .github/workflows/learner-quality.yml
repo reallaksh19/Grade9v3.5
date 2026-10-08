@@ -19,6 +19,8 @@ jobs:
         run: pip install --quiet jsonschema pypdf
       - name: TEST Question Bank regressions
         run: python3 -m unittest tests.test_test_question_bank
+      - name: TEST official intake identity/shape gate
+        run: python3 -m unittest tests.test_test_intake_identity -v
       - name: Informational platform code tests
         continue-on-error: true
         run: >-
