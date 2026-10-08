@@ -22,7 +22,7 @@ class TopicMapTests(unittest.TestCase):
         self.seed.mkdir(); self.taxonomy.mkdir()
         for filename in ("questions.jsonl", "sources.json", "source_observations.json"):
             (self.seed / filename).write_bytes((RESEARCH / "seed" / filename).read_bytes())
-        for filename in ("sof-class9-topic-registry.v1.json", "sof-class9-subtopics.v1.json", "seed-question-topic-map.v1.jsonl"):
+        for filename in ("sof-class9-topic-registry.v1.json", "sof-class9-subtopics.v1.json", "official-sample-2026-27-observations.v1.json", "seed-question-topic-map.v1.jsonl"):
             (self.taxonomy / filename).write_bytes((RESEARCH / "taxonomy" / filename).read_bytes())
 
     def run_audit(self):
@@ -77,6 +77,27 @@ class TopicMapTests(unittest.TestCase):
             row = next(x for x in rows if x["attachment_entry"] == 65)
             row["primary_topic_id"] = "ACHIEVERS_SECTION"
         self.mutate_map(changed)
+        with self.assertRaises(SeedError): self.run_audit()
+
+    def test_official_sample_sections_are_separate_from_full_paper_slots(self):
+        result = self.run_audit()
+        self.assertEqual(result["full_paper_section_unknown"], 8)
+        self.assertEqual(result["organizer_sample_key_sightings"], 8)
+        self.assertEqual(result["by_sample_section"]["ACHIEVERS_SECTION"], 2)
+        self.assertEqual(result["independently_reviewed_sample_keys"], 0)
+
+    def test_unearned_sample_key_promotion_is_refused(self):
+        p = self.taxonomy / "official-sample-2026-27-observations.v1.json"
+        d = json.loads(p.read_text())
+        d["records"][0]["academic_answer_status"] = "OFFICIAL_VERIFIED"
+        p.write_text(json.dumps(d))
+        with self.assertRaises(SeedError): self.run_audit()
+
+    def test_unobserved_sample_question_section_is_refused(self):
+        p = self.taxonomy / "official-sample-2026-27-observations.v1.json"
+        d = json.loads(p.read_text())
+        d["records"][0]["section_observed"] = "EVERYDAY_MATHEMATICS"
+        p.write_text(json.dumps(d))
         with self.assertRaises(SeedError): self.run_audit()
 
     def test_sample_question_not_assigned_full_paper_section(self):
