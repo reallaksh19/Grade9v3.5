@@ -328,7 +328,7 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
         result = test_source_custody.reconcile(REPO)
         projection = build_test_question_bank.payload(REPO)
         self.assertEqual((result["ready_for_blueprint"], result["source_text_hold"], result["evidence_pending"]), (12, 0, 198))
-        self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 151, "VALIDATED": 58})
+        self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 152, "VALIDATED": 57})
         self.assertEqual(result["total_intake"], 210)
         question = next(q for bank in projection["banks"] for q in bank["questions"]
                         if q["id"] == "ncert-exemplar-g9-math-u02-q01")
