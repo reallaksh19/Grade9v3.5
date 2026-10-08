@@ -476,6 +476,9 @@ def render_intake_section(intakes: list[dict], custody: dict) -> str:
             )
 
         all_q_html = "".join(q_cards)
+        if not q_list:
+            all_q_html = ('<p data-g9-intake-bank-empty>No valid official-source questions are staged '
+                          'in this bank. Source verification and readiness are pending.</p>')
 
         blocks.append(card(
             f"intake-{bank_id}",

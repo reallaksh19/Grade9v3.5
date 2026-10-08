@@ -179,13 +179,14 @@ class TestPages(unittest.TestCase):
         source["questions"] = []
         html = build_test_site.render_intake_section([source], {"handoff": [], "hold_ids": []})
         self.assertIn("0 question(s)", html)
-        self.assertNotIn("READY_FOR_BLUEPRINT ·", html)
+        self.assertIn("data-g9-intake-bank-empty", html)
+        self.assertNotIn("data-g9-intake-source-id", html)
 
     def test_test_home_places_intake_before_historical_QA(self):
         html = build_test_site.hub_page()
         self.assertLess(html.index("Stage-1 Question Intake:"),
                         html.index("QA candidate: Issue #55"))
-        self.assertIn("data-g9SourceCustody", build_test_site.INTAKE_HOME_FILTER_SCRIPT)
+        self.assertIn("dataset.g9SourceCustody", build_test_site.INTAKE_HOME_FILTER_SCRIPT)
 
     def test_test_home_answers_do_not_claim_unverified_official_key_custody(self):
         """The 198 evidence-pending questions still carry recorded, not witnessed, keys."""
