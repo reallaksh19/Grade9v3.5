@@ -32,11 +32,17 @@ step. **It carries no SOF stems, option lists, figure pixels or scanned PDF
 bytes.** The source seed, owner compilation, math audits and discrepancy records
 remain unchanged.
 
+For the **eight seeded organizer-sample questions**, the separate pinned
+organizer observation register identifies exact PDF page indices (0 or 1)
+and printed-key sightings. Those are observations, not independently approved
+answers, source reuse rights, or component-complete Core2 custody. The two
+additional sample positions retain locators from the separate extension ledger.
+
 | Component needed for reviewed source-backed Core2 | Present in this frozen input? |
 | --- | --- |
 | Original question number and source URL claim | Yes, research locator evidence |
 | Retained original-document byte digest | **No — all four source-ledger `document_sha256` values are null** |
-| Precise PDF page locator for *every* item | **No — only selected sighted/disputed positions have page indices** |
+| Precise PDF page locator for *every* item | **No — all 10 organizer-sample positions and selected disputed full-paper items have observed page indices** |
 | Component-level verified verbatim stem/options/figure/hints/key | **No — missing complete signed-off item custody** |
 | Publisher wording/diagram rights or approved external-reference mode | **No — not reviewed** |
 | Canonical source-question acceptance / product owner admission | **No** |
@@ -114,7 +120,7 @@ python -m unittest discover -s tests -p 'test_imo_core_pilot_research.py' -v
 python -m unittest discover -s tests -p 'test_imo_*.py' -v
 ```
 
-The dedicated SOF IMO research workflow runs this check; 33 test cases
+The dedicated SOF IMO research workflow runs this check; 38 test cases
 exercise false source rights/digest/source identity, dispute erasure, fake
 Core2 admission, mathematical Core1A conceptual closure, and invented
 product approval. A CI PASS validates **research consistency only**.
