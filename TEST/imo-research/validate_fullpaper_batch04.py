@@ -33,20 +33,20 @@ def ensure(ok: bool, message: str) -> None:
 def mathematical_oracles() -> dict[int, str]:
     """Recompute numeric facts and geometry consequences, not the ledger's chosen choices."""
     rows = int((10914+111)**0.5)
-    assert rows*rows == 10914+111
+    ensure(rows*rows == 10914+111, "tree count square calculation fails")
     s = F(84,6)
-    assert F(60-s-6,s-6)==5
+    ensure(F(60-s-6,s-6)==5, "father-son age relation fails")
     hours = 12*8*10
     required = F(hours,8*15)
     net = (1+F(40,100))*(1-F(10,100))
     primes = {p for p in range(51,101)
               if all(p%d for d in range(2,int(p**0.5)+1))}
-    assert primes=={53,59,61,67,71,73,79,83,89,97}
+    ensure(primes=={53,59,61,67,71,73,79,83,89,97}, "prime enumeration incorrect")
     # 5x-3y=1600; 4x-2y=1600 => x=800, y=800.
     xx, yy = 800,800
-    assert 5*xx-3*yy==1600 and 4*xx-2*yy==1600
+    ensure(5*xx-3*yy==1600 and 4*xx-2*yy==1600, "ratio income savings inconsistent")
     factor = lambda t:t*(t-3)*(t+4)
-    assert all(factor(t)==t**3+t*t-12*t for t in (0,4,7))
+    ensure(all(factor(t)==t**3+t*t-12*t for t in (0,4,7)), "cuboid polynomial factorisation incorrect")
     lower = 2*10-15
     spread = max([71,18,20,54,86,65,75,93])-min([71,18,20,54,86,65,75,93])
     bar_cm = F(4,10)*F(2500,50)
@@ -55,14 +55,14 @@ def mathematical_oracles() -> dict[int, str]:
     volume_b = F(314,100)*12*4**3
     slant_b = 5*4
     sphere_vol = F(4,3)*F(314,100)*F(7,2)**3
-    assert cone_h==27 and volume_b==F(241152,100) and slant_b==20
-    assert sphere_vol != F(18576,100)
+    ensure(cone_h==27 and volume_b==F(241152,100) and slant_b==20, "cone transfer and slant checks inconsistent")
+    ensure(sphere_vol != F(18576,100), "inscribed sphere distractor unexpectedly equal")
     # Q50 part I chord-distance calculation. Part II independently follows from
     # equal cyclic inscribed angles at D/B (outer) and E/B (inner), while AD=AE
     # and BC=BF are line supports. Diagram is essential, not a numerical oracle.
     radius2 = (F(6,2))**2 + 4**2
     larger_chord_distance2 = radius2-(F(8,2))**2
-    assert radius2==25 and larger_chord_distance2==9
+    ensure(radius2==25 and larger_chord_distance2==9, "two-chord distance oracle incorrect")
     return {
         36:f"{rows} rows",37:f"{int(s+6)} years",38:f"{int(required)} labourers",
         40:f"{int((net-1)*100)}% price increase",
@@ -150,9 +150,8 @@ def validate_b04(seed_root: Path = SEED, verification_root: Path = VERIFY) -> di
                f"{qid}: false figure, academic/key/rights/QRT/Core status")
         if number==50:
             working=row["mathematical_derivation"].lower()
-            ensure("same chord" in working and "parallel" not in working or
-                   ("same chord" in working and "inner circle" in working and "outer circle" in working),
-                   "Q50 figure reasoning must include the two source cyclic warrants")
+            ensure(all(term in working for term in ("same chord","inner circle","outer circle","collinear")),
+                   "Q50 figure reasoning must include two cyclic warrants and collinearities")
             ensure("parallel" in row.get("alternate_check","").lower(),
                    "Q50 source diagram parallel-line consequence not reasoned")
         ensure(not (set(row)&{"stem","options","figure_image","pdf_bytes","original_full_text"}),
