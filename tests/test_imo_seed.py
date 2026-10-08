@@ -38,6 +38,16 @@ class SeedTests(unittest.TestCase):
         apply(data)
         p.write_text(json.dumps(data))
 
+    def test_printed_q44_uses_everyday_math(self):
+        q = next(q for q in self.get_questions() if q["seed_entry"] == 9)
+        self.assertEqual(q["exam_section"], "EVERYDAY_MATHEMATICS")
+
+    def test_q44_cannot_revert_to_mathematical_reasoning(self):
+        qs = self.get_questions()
+        next(q for q in qs if q["seed_entry"] == 9)["exam_section"] = "MATHEMATICAL_REASONING"
+        self.put_questions(qs)
+        with self.assertRaises(SeedError): validate(self.root)
+
     def test_valid_seed_is_research_only(self):
         result = validate(self.root)
         self.assertEqual((result["candidate_questions"], result["aliases"], result["ready_for_core"]), (66, 3, 0))
