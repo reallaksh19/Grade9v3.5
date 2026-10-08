@@ -56,5 +56,7 @@ jobs:
         run: python TEST/imo-research/validate_practice_diagnostics.py
       - name: Validate non-admitting seven-candidate qualification evidence and pinned upstream receipts
         run: python TEST/imo-research/validate_qualification_evidence.py
+      - name: Validate seven learner-quality design proposals and Grade 9 scope holds
+        run: python TEST/imo-research/validate_learner_quality.py
       - name: Run research-only falsifier tests
         run: python -m unittest discover -s tests -p 'test_imo_*.py' -v
