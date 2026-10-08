@@ -83,6 +83,43 @@ QUESTION_WITNESS_INSTANCE_SCOPE = {
     "ncert-exemplar-g9-math-u02-q06": {"options": ["(A) -6", "(B) 6", "(C) 2", "(D) -2"], "pages": (14, 1)},
 }
 
+# Frozen original document and answer-key claims for the 12 pilot witnesses.
+# Prevent coordinated changes to two mutable JSON files from laundering a
+# different official PDF or answer under an older witness. These are replay
+# guards, not independent re-verification of NCERT document contents.
+QUESTION_WITNESS_DOCUMENT_SCOPE = {
+    "github:reallaksh19/Grade9v3.5#129:6029049531": (
+        "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep201.pdf",
+        "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep2an.pdf",
+        "github:reallaksh19/Grade9v3.5#129:6028932600",
+    ),
+    "github:reallaksh19/Grade9v3.5#68:6053770988": (
+        "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep202.pdf",
+        "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep2an.pdf",
+        "github:reallaksh19/Grade9v3.5#68:6053770988",
+    ),
+    "github:reallaksh19/Grade9v3.5#68:6050805060": (
+        "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep202.pdf",
+        "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep2an.pdf",
+        "github:reallaksh19/Grade9v3.5#68:6050805060",
+    ),
+}
+QUESTION_WITNESS_ANSWER_SCOPE = {
+    "ncert-exemplar-g9-math-u01-q01": "(C)",
+    "ncert-exemplar-g9-math-u01-q02": "(C)",
+    "ncert-exemplar-g9-math-u01-q03": "(D)",
+    "ncert-exemplar-g9-math-u01-q04": "(D)",
+    "ncert-exemplar-g9-math-u01-q05": "(D)",
+    "ncert-exemplar-g9-math-u01-q06": "(C)",
+    "ncert-exemplar-g9-math-u02-q01": "(C)",
+    "ncert-exemplar-g9-math-u02-q02": "(B)",
+    "ncert-exemplar-g9-math-u02-q03": "(A)",
+    "ncert-exemplar-g9-math-u02-q04": "(D)",
+    "ncert-exemplar-g9-math-u02-q05": "(B)",
+    "ncert-exemplar-g9-math-u02-q06": "(A)",
+}
+
+
 HOLD_WITNESS_SCOPE = {
     "ncert-exemplar-g9-math-u02-q01": (
         "github:reallaksh19/Grade9v3.5#68:6050805060",
@@ -173,6 +210,11 @@ def reconcile(repo: Path) -> dict:
                      where, f"independent source/text evidence missing for {qid}")
             _require(QUESTION_WITNESS_SCOPE.get(record.get("verification_evidence_ref"), {}).get(qid) == digest,
                      where, f"question witness scope or stem digest mismatch for {qid}")
+            witness_documents = QUESTION_WITNESS_DOCUMENT_SCOPE.get(record["verification_evidence_ref"])
+            _require(witness_documents is not None
+                     and origin["url"] == witness_documents[0]
+                     and origin["verification_evidence_ref"] == witness_documents[2],
+                     where, f"question witness official document mismatch for {qid}")
             # A stem digest alone does not pin option text; two coordinated edits
             # to the bank and overlay must not replay a previous question witness.
             instance = QUESTION_WITNESS_INSTANCE_SCOPE.get(qid)
@@ -200,6 +242,11 @@ def reconcile(repo: Path) -> dict:
                          and key.get("question_number") == source["question_number"],
                          where, f"answer-key locator mismatch for {qid}")
                 answer_key = key.get("answer_key")
+                _require(key_doc["url"] == witness_documents[1]
+                         and key_doc["verification_evidence_ref"] == witness_documents[2]
+                         and key.get("verification_evidence_ref") == witness_documents[2]
+                         and answer_key == QUESTION_WITNESS_ANSWER_SCOPE.get(qid),
+                         where, f"answer witness scope mismatch for {qid}")
                 _require(source.get("official_answer_available") is True
                          and isinstance(answer_key, str) and bool(answer_key.strip())
                          and source.get("official_answer_text", "").startswith(answer_key),

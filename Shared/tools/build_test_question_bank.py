@@ -95,9 +95,8 @@ def payload(repo: Path) -> dict:
             question["custody_question_source_url"] = (
                 evidence["source_identity"]["document_url"] if evidence else question["source_url"]
             )
-            question["custody_answer_source_url"] = (
-                evidence["official_answer_key_ref"]["document_url"] if evidence else None
-            )
+            verified_key = evidence["official_answer_key_ref"] if evidence else None
+            question["custody_answer_source_url"] = verified_key["document_url"] if verified_key else None
     return {
         "schema_version": "grade9v3-test-question-bank-projection-v1",
         "academic_validation_status": "PER_QUESTION",
@@ -230,7 +229,7 @@ PAGE = """<!doctype html>
     const sourceHold = custodyStatus(q) === 'SOURCE_TEXT_HOLD';
     const answerNote = sourceHold
       ? 'SOURCE-TEXT HOLD: official NCERT wording differs from this recorded stem; source custody and READY are withheld pending review.'
-      : !independentlyEvidenced
+      : !q.custody_answer_source_url
       ? 'This answer is recorded in intake, but its official answer-document custody has not been independently reconciled.'
       : academic === 'VALIDATED'
         ? 'Independent official-answer custody and Grade9V3 academic validation are separately evidenced.'

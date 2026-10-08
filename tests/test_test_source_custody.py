@@ -102,6 +102,42 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, expected):
                     test_source_custody.reconcile(self.repo)
 
+    def test_original_document_url_cannot_be_changed_in_bank_and_overlay_together(self):
+        # Both files can be self-consistent and official-hosted while the
+        # original source witness still belongs to a different PDF.
+        replacement = "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep202.pdf"
+        self.bank_doc["questions"][0]["source_url"] = replacement
+        self.overlay_doc["documents"][0]["url"] = replacement
+        self.write()
+        with self.assertRaisesRegex(ValueError, "question witness official document mismatch"):
+            test_source_custody.reconcile(self.repo)
+
+    def test_answer_key_and_recorded_answer_cannot_be_changed_together(self):
+        # The stem/options/pages stay unchanged, but a new apparent key is not
+        # authenticated by the witness originally inspected for Q1.
+        self.bank_doc["questions"][0]["official_answer_text"] = "(A) a natural number"
+        self.overlay_doc["records"][0]["official_answer"]["answer_key"] = "(A)"
+        self.write()
+        with self.assertRaisesRegex(ValueError, "answer witness scope mismatch"):
+            test_source_custody.reconcile(self.repo)
+
+    def test_original_answer_document_cannot_be_replaced_with_another_official_url(self):
+        replacement = "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep201.pdf"
+        self.overlay_doc["documents"][1]["url"] = replacement
+        self.write()
+        with self.assertRaisesRegex(ValueError, "answer witness scope mismatch"):
+            test_source_custody.reconcile(self.repo)
+
+    def test_ready_question_without_optional_answer_key_survives_question_bank_producer(self):
+        self.overlay_doc["records"][0].pop("official_answer")
+        self.write()
+        custody = test_source_custody.reconcile(self.repo)
+        self.assertIn(self.bank_doc["questions"][0]["id"], custody["ready_ids"])
+        question_bank = build_test_question_bank.payload(self.repo)
+        first = question_bank["banks"][0]["questions"][0]
+        self.assertEqual(first["custody_evidence_status"], "INDEPENDENTLY_EVIDENCED")
+        self.assertIsNone(first["custody_answer_source_url"])
+
     def test_official_answer_key_is_optional_for_verified_question_readiness(self):
         """Stage-1 question/text readiness does not depend on answer-key publication."""
         for available in (False, True):
