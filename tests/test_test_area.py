@@ -416,8 +416,33 @@ class TestDeploy(unittest.TestCase):
         mine = [g["detail"] for g in receipt["gaps"] if g["record"] == row["id"]]
         for component in ("HINT_LADDER", "SOLUTION_STEPS", "CONDITIONS", "REPRESENTATION"):
             self.assertTrue(any(d.startswith(component) for d in mine), (component, mine))
+        # Different missing components of the same record remain separately
+        # accountable, even if the renderer can show legacy prose for a draft.
+        named = [g for g in receipt["gaps"] if g["record"] == row["id"]
+                 and g.get("component") in ("HINT_LADDER", "SOLUTION_STEPS", "CONDITIONS", "REPRESENTATION")]
+        self.assertEqual({g["component"] for g in named},
+                         {"HINT_LADDER", "SOLUTION_STEPS", "CONDITIONS", "REPRESENTATION"}, named)
+        self.assertEqual(len(named), 4, "one independent gap for each component")
         self.assertLessEqual({g["component"] for g in receipt["gaps"] if g.get("component")}, set(receipt["authoring"]),
                              "the blueprint's instruction is kept for each component that has a gap")
+
+    def test_reference_owner_route_is_not_satisfied_by_legacy_prose(self):
+        bank_path = self.fixture.root / "owner.bank.json"
+        bank = json.loads(bank_path.read_text(encoding="utf-8"))
+        owner = bank["questions"][0]
+        # A legacy prose fallback may continue to render a draft, but must
+        # never satisfy the Owner's authored, move-typed Core2 obligation.
+        owner["answer"]["reasoning"] = ["A plausible untyped result is not a validated move."]
+        owner["answer"].pop("reasoning_route", None)
+        bank_path.write_text(json.dumps(bank), encoding="utf-8")
+        receipt = deploy_test.deploy_product(self.fixture.manifest)
+        gaps = [g for g in receipt["gaps"] if g["record"] == owner["id"]
+                and g.get("component") == "SOLUTION_STEPS"]
+        self.assertEqual(len(gaps), 1, gaps)
+        self.assertIn("answer.reasoning_route", gaps[0]["detail"])
+        self.assertIs(receipt["accepted"], False)
+        # Non-Owner records at FLOOR still retain backward-compatible legacy
+        # prose; this gate is explicitly limited to REFERENCE Owner authoring.
 
     def test_the_hub_and_deployments_pages_report_the_deployment_without_calling_it_done(self):
         deploy_test.deploy_product(self.fixture.manifest)
