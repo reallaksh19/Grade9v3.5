@@ -51,6 +51,40 @@ class TestOfficialIntakeIdentity(unittest.TestCase):
         path.write_text(json.dumps(payload), encoding="utf-8")
         return path
 
+    def test_raw_capture_cannot_assert_source_readiness_or_ambiguous_page(self):
+        """Only reconciled custody overlays can promote READY or identify official pages."""
+        for field, value, message in (
+            ("workflow_status", "READY_FOR_BLUEPRINT", "raw capture cannot claim READY"),
+            ("text_verification_status", "TEXT_VERIFIED_AGAINST_OFFICIAL",
+             "raw capture cannot claim independent text verification"),
+            ("wording_custody", "VERBATIM",
+             "raw capture cannot claim verbatim wording custody"),
+            ("page", 42, "ambiguous raw page is prohibited"),
+        ):
+            with self.subTest(field=field):
+                row = copy.deepcopy(self.q1)
+                row[field] = value
+                self.bank("invalid.json", [row])
+                with self.assertRaisesRegex(ValueError, message):
+                    test_intake_registry.load_intake_banks(self.repo)
+
+    def test_raw_capture_option_shapes_fail_closed(self):
+        for kind, options in (
+            ("MULTIPLE_CHOICE", ["(A) valid", "(A) duplicate"]),
+            ("MULTIPLE_CHOICE", ["(A) valid", "(C) missing B"]),
+            ("MULTIPLE_CHOICE", None),
+            ("TRUE_FALSE", ["True", "Possibly"]),
+            ("SHORT_ANSWER", ["(A) invented option"]),
+            ("UNSUPPORTED", ["(A) unknown"]),
+        ):
+            with self.subTest(kind=kind, options=options):
+                question = copy.deepcopy(self.q1)
+                question["question_type"] = kind
+                question["options"] = options
+                self.bank("invalid.json", [question])
+                with self.assertRaisesRegex(ValueError, "options|question type"):
+                    test_intake_registry.load_intake_banks(self.repo)
+
     def test_current_main_has_one_unique_instance_per_210_questions(self):
         banks = test_intake_registry.load_intake_banks(REPO)
         self.assertEqual(sum(len(b["questions"]) for b in banks), 210)
