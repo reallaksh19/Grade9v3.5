@@ -306,9 +306,12 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
     instance_no = ctx.figure_instances.get(instance_base, 0) + 1
     ctx.figure_instances[instance_base] = instance_no
     svg = _scope_svg_ids(svg, f"g9fig-{instance_base}-{instance_no}")
-    # An authored pre-attempt staged SVG is an access-control boundary, not
-    # just a visual effect. Parse it as XML before deciding which stages exist.
-    if stage == "PRE_ATTEMPT" and ("data-g9-stage-id" in svg or rep.get("reveal_stages")):
+    # An SVG that actually declares stage markers is an access-control
+    # boundary. Catalogue reveal_stages may include labels for different scene
+    # assets or legacy unstaged figures; metadata alone must not reinterpret
+    # a fully visible historical figure as an invalid staged asset.
+    # Parse marked SVG as XML before deciding which stages exist.
+    if stage == "PRE_ATTEMPT" and "data-g9-stage-id" in svg:
         try:
             stage_ids = _parsed_svg_stage_ids(svg)
         except (ET.ParseError, ValueError) as exc:
