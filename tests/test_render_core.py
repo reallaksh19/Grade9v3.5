@@ -70,6 +70,25 @@ class Renderer(unittest.TestCase):
         render_core.main(["build", "--manifest", str(manifest_file(self.tmp)), "--out", str(out), "--draft"])
         self.assertIn("data-g9-draft", (out / "core1.html").read_text(encoding="utf-8"))
 
+    def test_strict_build_failure_names_typed_gaps_without_writing(self):
+        """CI must name each real blocker without authorizing a draft."""
+        import contextlib
+        import io
+
+        out = self.tmp / "strict-out"
+        stderr = io.StringIO()
+        manifest = manifest_file(self.tmp)
+        with contextlib.redirect_stderr(stderr):
+            rc = render_core.main(["build", "--manifest", str(manifest), "--out", str(out)])
+        self.assertEqual(rc, 2)
+        self.assertFalse(out.exists())
+        log = stderr.getvalue()
+        for gap in self.gaps:
+            self.assertIn(gap["duty"], log)
+            self.assertIn(gap["record"], log)
+            self.assertIn(gap["detail"], log)
+        self.assertIn(f"{len(self.gaps)} gap(s): nothing written", log)
+
     def test_a_draft_says_when_a_role_in_the_product_has_no_records(self):
         """A run found a Core2 product with no questions built 'successfully' (rc 0) with nothing said."""
         import contextlib
