@@ -19,8 +19,8 @@ if __package__ in (None, ""):
 
 from Shared.tools import test_intake_registry, test_source_custody  # noqa: E402
 
-AUTHOR = "TEST/library/ncert-u01-q01.core2-authoring.v1.json"
-OUTPUT = "TEST/library/ncert-u01-q01.core2-source-view.v1.json"
+AUTHOR = "TEST/library/ncert-u01-q01/core2-authoring.v1.json"
+OUTPUT = "TEST/library/ncert-u01-q01/core2-source-view.v1.json"
 SOURCE = "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json"
 SCHEMA = "grade9v3-test-core2-source-view-v1"
 

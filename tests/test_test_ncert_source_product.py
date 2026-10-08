@@ -21,8 +21,8 @@ MATRIX = REPO / "TEST/matrices/ncert-u01-q01.rungs.json"
 MANIFEST = REPO / "TEST/products/ncert-u01-q01.manifest.json"
 INTAKE = REPO / "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json"
 SOURCE_ID = "ncert-exemplar-g9-math-u01-q01"
-CORE2_VIEW = REPO / "TEST/library/ncert-u01-q01.core2-source-view.v1.json"
-CORE2_AUTHOR = REPO / "TEST/library/ncert-u01-q01.core2-authoring.v1.json"
+CORE2_VIEW = REPO / "TEST/library/ncert-u01-q01/core2-source-view.v1.json"
+CORE2_AUTHOR = REPO / "TEST/library/ncert-u01-q01/core2-authoring.v1.json"
 ADAPTER = REPO / "TEST/library/ncert_source_core2_view.py"
 ADAPTER_SPEC = importlib.util.spec_from_file_location("test_ncert_q1_adapter", ADAPTER)
 assert ADAPTER_SPEC is not None and ADAPTER_SPEC.loader is not None
