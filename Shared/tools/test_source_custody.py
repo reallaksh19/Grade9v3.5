@@ -20,6 +20,24 @@ if __package__ in (None, ""):
 from Shared.tools import test_intake_registry  # noqa: E402
 
 SCHEMA = "grade9v3-test-source-custody-overlay-v1"
+
+# Frozen, manually inspected pilot pointers, not a substitute for official PDF checking.
+# Adding a new pilot witness requires an explicit reviewed code change and hosted
+# comment-authentication result; arbitrary plausible GitHub IDs cannot admit READY.
+KNOWN_WITNESSES = {
+    "github:reallaksh19/Grade9v3.5#129:6028932600": {
+        "issue": 129, "id": 6028932600,
+        "fragments": ("ieep201.pdf", "ieep2an.pdf", "Q1", "Q6"),
+    },
+    "github:reallaksh19/Grade9v3.5#129:6029049531": {
+        "issue": 129, "id": 6029049531,
+        "fragments": ("SHA-256", "sha256:40010d207519d386d5d2a6519c39745ee59de121105642b68c4f398a002cb3f6"),
+    },
+    "github:reallaksh19/Grade9v3.5#68:6050805060": {
+        "issue": 68, "id": 6050805060,
+        "fragments": ("ieep202.pdf", "ieep2an.pdf", "u02-q02", "u02-q06", "verbatim"),
+    },
+}
 def _require(condition: bool, where: str, reason: str) -> None:
     if not condition:
         raise ValueError(f"{where}: {reason}")
@@ -27,9 +45,11 @@ def _require(condition: bool, where: str, reason: str) -> None:
 
 def _evidence_ref(value: object) -> bool:
     # A durable pointer shape, not proof that GitHub has verified the claim.
-    return isinstance(value, str) and re.fullmatch(
-        r"github:reallaksh19/Grade9v3\.5#[1-9][0-9]*:[1-9][0-9]*", value
-    ) is not None
+    return (isinstance(value, str)
+            and value in KNOWN_WITNESSES
+            and re.fullmatch(
+                r"github:reallaksh19/Grade9v3\.5#[1-9][0-9]*:[1-9][0-9]*", value
+            ) is not None)
 
 
 def reconcile(repo: Path) -> dict:

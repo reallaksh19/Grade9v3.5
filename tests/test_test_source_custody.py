@@ -130,6 +130,22 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
                     test_source_custody.reconcile(self.repo)
                 self.overlay_doc = copy.deepcopy(self.overlay)
 
+    def test_forged_well_formed_github_witness_cannot_promote_ready(self):
+        """A shape-valid but nonexistent GitHub pointer is not custody evidence."""
+        fake = "github:reallaksh19/Grade9v3.5#129:9999999999"
+        for location in ("source_document", "question", "answer_key"):
+            with self.subTest(location=location):
+                self.overlay_doc = copy.deepcopy(self.overlay)
+                if location == "source_document":
+                    self.overlay_doc["documents"][0]["verification_evidence_ref"] = fake
+                elif location == "question":
+                    self.overlay_doc["records"][0]["verification_evidence_ref"] = fake
+                else:
+                    self.overlay_doc["records"][0]["official_answer"]["verification_evidence_ref"] = fake
+                self.write()
+                with self.assertRaisesRegex(ValueError, "witness|evidence missing"):
+                    test_source_custody.reconcile(self.repo)
+
     def test_source_bank_stem_mutation_invalidates_a_former_witness(self):
         self.bank_doc["questions"][0]["stem"] = "Changed question wording"
         self.write()
