@@ -138,6 +138,9 @@ class QualificationEvidenceTests(unittest.TestCase):
         self.blocked("ledger", lambda d: d["records"][0].update(
             sof_original_stem="unauthorized source text"))
 
+    def test_unlicensed_top_level_material_fails(self):
+        self.blocked("ledger", lambda d: d.update(sof_original_stem="unauthorized text"))
+
     def test_seventh_item_must_not_be_deleted(self):
         self.blocked("ledger", lambda d: d["records"].pop())
 
