@@ -157,6 +157,8 @@ class TestPages(unittest.TestCase):
         self.assertIn("6 READY_FOR_BLUEPRINT · 204 EVIDENCE_PENDING", hub)
         self.assertIn("Inspect 210 parked intake questions", hub)
         self.assertIn('rel="noopener noreferrer"', hub)
+        self.assertIn('href="https&#58;//ncert.nic.in/', hub)
+        self.assertNotRegex(hub, r"https?://", "TEST pages stay offline despite optional official PDF links")
         self.assertEqual(hub.count("Official source PDF:"), 210)
         self.assertIn("Printed page 2 / PDF index 1", hub)
         self.assertNotIn("All items verified against official PDFs", hub)
