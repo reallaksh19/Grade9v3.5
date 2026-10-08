@@ -32,5 +32,7 @@ jobs:
         run: python TEST/imo-research/validate_math_audit.py
       - name: Validate SOF syllabus taxonomy mapping
         run: python TEST/imo-research/validate_taxonomy.py
+      - name: Validate organizer sample answer and QRT research pilot
+        run: python TEST/imo-research/validate_sample_pilot.py
       - name: Run research-only falsifier tests
         run: python -m unittest discover -s tests -p 'test_imo_*.py' -v
