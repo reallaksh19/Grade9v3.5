@@ -66,6 +66,23 @@ QUESTION_WITNESS_SCOPE = {
         "ncert-exemplar-g9-math-u02-q06": "sha256:d1f9ab971075dd4795abafbb0e7a9163deb032e79470daae63d2198ebcef5643",
     },
 }
+# Fixed observed options/pages for the 12 already-inspected pilot instances.
+# This is a replay guard for recorded witness scope, not new NCERT PDF proof.
+QUESTION_WITNESS_INSTANCE_SCOPE = {
+    "ncert-exemplar-g9-math-u01-q01": {"options": ["(A) a natural number", "(B) an integer", "(C) a real number", "(D) a whole number"], "pages": (2, 1)},
+    "ncert-exemplar-g9-math-u01-q02": {"options": ["(A) there is no rational number", "(B) there is exactly one rational number", "(C) there are infinitely many rational numbers", "(D) there are only rational numbers and no irrational numbers"], "pages": (3, 2)},
+    "ncert-exemplar-g9-math-u01-q03": {"options": ["(A) terminating", "(B) non-terminating", "(C) non-terminating repeating", "(D) non-terminating non-repeating"], "pages": (3, 2)},
+    "ncert-exemplar-g9-math-u01-q04": {"options": ["(A) always an irrational number", "(B) always a rational number", "(C) always an integer", "(D) sometimes rational, sometimes irrational"], "pages": (3, 2)},
+    "ncert-exemplar-g9-math-u01-q05": {"options": ["(A) a finite decimal", "(B) 1.41421", "(C) non-terminating recurring", "(D) non-terminating non-recurring"], "pages": (3, 2)},
+    "ncert-exemplar-g9-math-u01-q06": {"options": ["(A) √(4/9)", "(B) √12/√3", "(C) √7", "(D) √81"], "pages": (3, 2)},
+    "ncert-exemplar-g9-math-u02-q01": {"options": ["(A) x²/2 - 2/x²", "(B) √(2x) - 1", "(C) x² + 3x^(3/2)/√x", "(D) (x - 1)/(x + 1)"], "pages": (14, 1)},
+    "ncert-exemplar-g9-math-u02-q02": {"options": ["(A) 2", "(B) 0", "(C) 1", "(D) 1/2"], "pages": (14, 1)},
+    "ncert-exemplar-g9-math-u02-q03": {"options": ["(A) 4", "(B) 5", "(C) 3", "(D) 7"], "pages": (14, 1)},
+    "ncert-exemplar-g9-math-u02-q04": {"options": ["(A) 0", "(B) 1", "(C) Any natural number", "(D) Not defined"], "pages": (14, 1)},
+    "ncert-exemplar-g9-math-u02-q05": {"options": ["(A) 0", "(B) 1", "(C) 4√2", "(D) 8√2 + 1"], "pages": (14, 1)},
+    "ncert-exemplar-g9-math-u02-q06": {"options": ["(A) -6", "(B) 6", "(C) 2", "(D) -2"], "pages": (14, 1)},
+}
+
 HOLD_WITNESS_SCOPE = {
     "ncert-exemplar-g9-math-u02-q01": (
         "github:reallaksh19/Grade9v3.5#68:6050805060",
@@ -140,6 +157,11 @@ def reconcile(repo: Path) -> dict:
             _require(record.get("original_identifier") == source["original_identifier"]
                      and record.get("options") == source.get("options", []),
                      where, f"question identifier/options mismatch for {qid}")
+            # A stem digest alone does not pin option text; two coordinated edits
+            # to the bank and overlay must not replay a previous question witness.
+            instance = QUESTION_WITNESS_INSTANCE_SCOPE.get(qid)
+            _require(instance is not None and record.get("options") == instance["options"],
+                     where, f"question witness options scope mismatch for {qid}")
             locator = record.get("source_locator") or {}
             _require(isinstance(locator, dict), where, f"invalid locator for {qid}")
             _require(all(locator.get(key) == source[key] for key in
@@ -150,6 +172,8 @@ def reconcile(repo: Path) -> dict:
                      and type(locator.get("pdf_page_index")) is int
                      and locator["pdf_page_index"] >= 0,
                      where, f"missing independently checked PDF/printed page for {qid}")
+            _require((locator["printed_page"], locator["pdf_page_index"]) == instance["pages"],
+                     where, f"question witness page scope mismatch for {qid}")
             _require(record.get("source_verification_status") == "SOURCE_VERIFIED_OFFICIAL"
                      and record.get("text_verification_status") == "TEXT_VERIFIED_AGAINST_OFFICIAL"
                      and _evidence_ref(record.get("verification_evidence_ref")),
