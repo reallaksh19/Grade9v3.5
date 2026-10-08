@@ -365,7 +365,9 @@ INTAKE_HOME_FILTER_SCRIPT = """<script src="question-bank/questions.js"></script
         sourceHold ? "SOURCE TEXT HOLD" : sourceReady ? "SOURCE VERIFIED" : "SOURCE UNVERIFIED",
         sourceHold ? "TEXT HELD" : sourceReady ? "TEXT VERIFIED" : "TEXT UNVERIFIED",
         blueprint(q).replaceAll("_", " "),
-        "ACADEMIC " + (q.academic_validation_status || "UNVALIDATED")
+        "ACADEMIC " + (q.academic_validation_status || "UNVALIDATED"),
+        q.custody_answer_source_url ? "ANSWER KEY EVIDENCED"
+          : q.official_answer_text ? "ANSWER KEY CUSTODY PENDING" : "NO ANSWER RECORDED"
       ].filter(Boolean);
       const banner = el.querySelector('div[style*="display:flex"]');
       if (!banner) throw new Error("TEST intake card has no status-badge group: " + q.id);
@@ -452,6 +454,7 @@ def render_intake_section(intakes: list[dict], custody: dict) -> str:
             pdf_name = src_url.rsplit("/", 1)[-1] if src_url else ""
             evidence_state = ("SOURCE EVIDENCED" if source else
                               "SOURCE TEXT HOLD" if qid in held else "EVIDENCE PENDING")
+            evidence_color = "#16a34a" if source else "#b45309" if qid in held else "#64748b"
             verified_page = source["source_locator"] if source else None
             page_note = (f' · Printed page {verified_page["printed_page"]} / PDF index {verified_page["pdf_page_index"]}'
                          if verified_page else ' · Exact official page not independently reconciled')
@@ -464,7 +467,7 @@ def render_intake_section(intakes: list[dict], custody: dict) -> str:
                 f'<div style="border:1px solid #e2e8f0;border-radius:6px;padding:12px;margin:8px 0;background:#fff">'
                 f'<div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;margin-bottom:6px">'
                 f'<span style="background:#0284c7;color:#fff;padding:2px 6px;border-radius:4px">{esc(q.get("topic_label", ""))}</span>'
-                f'<span style="background:#16a34a;color:#fff;padding:2px 6px;border-radius:4px">{esc(evidence_state)}</span>'
+                f'<span style="background:{evidence_color};color:#fff;padding:2px 6px;border-radius:4px">{esc(evidence_state)}</span>'
                 f'<span style="background:#64748b;color:#fff;padding:2px 6px;border-radius:4px">Difficulty: not analysed</span>'
                 f'<span style="background:#64748b;color:#fff;padding:2px 6px;border-radius:4px">Demand: not analysed</span>'
                 f'</div>'
