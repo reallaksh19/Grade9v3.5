@@ -1,0 +1,264 @@
+{
+  "schema": "grade9v3-test-deploy-receipt-v1",
+  "slug": "ncert-u01-q01",
+  "title": "NCERT Number Systems Q1 — TEST Core2/Core1A draft",
+  "subject": "TEST",
+  "manifest": "TEST/products/ncert-u01-q01.manifest.json",
+  "manifest_sha256": "528aedcfeb3a2bbf682576c617c0166787ade562918c6880dc6208b9ad8b96c7",
+  "inputs_sha256": {
+    "TEST/library/ncert-u01-q01.v1.json": "1779fde3dfc1335c3a4e09080a2a30fbcd05e83b6c59fe244fbb64c45ab36993",
+    "TEST/library/ncert-u01-q01/core2-source-view.v1.json": "8a539684c4607d3cc45db21b1d23c01da7519fe6c254b2b6621e5a3371baf948"
+  },
+  "links_overridden_for_location": true,
+  "renderer": "render_core/2",
+  "render_digest": "92d142fb1039a5b8",
+  "draft": true,
+  "gap_count": 0,
+  "gaps_by_core": {},
+  "gaps": [],
+  "advisories": [],
+  "waived": [
+    {
+      "core": "CORE2",
+      "component": "CONDITIONS",
+      "record": "ncert-exemplar-g9-math-u01-q01",
+      "reason": "The official stem 'Every rational number is' contains a universal quantifier but no separately stated conditions; adding constraints would invent NCERT wording."
+    },
+    {
+      "core": "CORE2",
+      "component": "REPRESENTATION",
+      "record": "ncert-exemplar-g9-math-u01-q01",
+      "reason": "No source figure accompanies this number-set classification question. The draft uses authored symbolic Q subset R reasoning and 1/2 counterexamples without claiming a nonexistent NCERT illustration."
+    },
+    {
+      "core": "CORE1A",
+      "component": "STAGED_VISUAL",
+      "record": "CU-TEST-NCERT-U01-RATIONAL-REAL-INCLUSION",
+      "reason": "The official source multiple-choice item has no figure. This candidate uses exact symbolic inclusion and counterexamples; no staged graphic is claimed as source-authored."
+    }
+  ],
+  "held_to": "REFERENCE",
+  "toughest": {
+    "rule": "the question whose difficulty is most conceptual (concept_model_selection + trap_exception_sensitivity), then the higher total score, then representation_translation, then reasoning_chain_length, then the first in the bank",
+    "question_ref": "ncert-exemplar-g9-math-u01-q01",
+    "label": "Unit 1 Ex 1.1 Q1",
+    "stem": "Every rational number is",
+    "band": "D1",
+    "score": 2,
+    "conceptual": 1,
+    "components": {
+      "concept_model_selection": 1,
+      "representation_translation": 0,
+      "reasoning_chain_length": 1,
+      "algebra_computational_load": 0,
+      "trap_exception_sensitivity": 0
+    },
+    "capability_ref": "CAP-TEST-NCERT-U01-RATIONAL-REAL-INCLUSION",
+    "microtopic_ref": "MIC-TEST-NCERT-U01-RATIONAL-REAL-INCLUSION",
+    "microtopic_title": "Every rational number is real",
+    "relation_refs": [
+      "REL-TEST-NCERT-U01-RATIONALS-IN-REALS"
+    ],
+    "crux_move": {
+      "id": "NS-Q1-MOVE-2",
+      "kind": "REPRESENT",
+      "action": "Use Q ⊆ R: every rational a/b with integer a, b ≠ 0 represents a real number.",
+      "why_valid": "Every quotient of integers with nonzero denominator is a real number.",
+      "output": "Option (C) is valid."
+    },
+    "wrong_route": "Conflating rationals with integers or reversing Q ⊆ R; test with 1/2 and √2.",
+    "related_question_refs": [],
+    "runner_up": null
+  },
+  "coverage": {
+    "product": "ncert-u01-q01",
+    "cores": {
+      "core2": {
+        "selected": 1,
+        "available": 1,
+        "unselected": [],
+        "omitted": {},
+        "unexplained": [],
+        "selected_beyond_library": []
+      },
+      "core2a": {
+        "selected": 0,
+        "available": 0,
+        "unselected": [],
+        "omitted": {},
+        "unexplained": [],
+        "selected_beyond_library": []
+      },
+      "core2b": {
+        "selected": 0,
+        "available": 0,
+        "unselected": [],
+        "omitted": {},
+        "unexplained": [],
+        "selected_beyond_library": []
+      }
+    },
+    "toughest": {
+      "available": "ncert-exemplar-g9-math-u01-q01",
+      "label": "Unit 1 Ex 1.1 Q1",
+      "selected": true,
+      "selects_it": true
+    },
+    "sources": {
+      "declared": 1,
+      "questions": 30,
+      "ingested": 1,
+      "not_yet_records": 29,
+      "rows": [
+        {
+          "source": "NCERT Exemplar Mathematics Class IX, Unit 1, Exercise 1.1",
+          "kind": "NCERT_OFFICIAL_EXEMPLAR",
+          "questions": 30,
+          "ingested": 1,
+          "status": "PARTLY_INGESTED",
+          "reason": "One independent custody-READY source is materialized into the TEST-only renderer view; the other 29 captured records are not admitted to this product."
+        }
+      ]
+    }
+  },
+  "blueprints": {
+    "CORE2": "BP-CORE2-SOURCE-QUESTION@1.11.0",
+    "CORE1A": "BP-CORE1A-CONSTRUCTION@1.8.0"
+  },
+  "authoring": {
+    "IDENTITY": {
+      "level": "REQUIRED",
+      "hint": "Identity comes from the question's custody. An owner-supplied question shows 'Owner-supplied question' and carries no exam, year or paper. Question-bound grade9v3:attempt_labels may supply neutral concept/family labels where titles settle the assessed act. Preserve canonical refs and show detailed titles only in the protected solution."
+    },
+    "SOURCE_PDF": {
+      "level": "OPTIONAL",
+      "hint": "Nothing to write: the page links the paper when the question's source custody is an official exam organizer archive, verified (source_status PYQ_VERIFIED_PARENT), and paper_url is an https link to a PDF. An owner-supplied question has no source file and shows no link; never put a link in the record to make the icon appear."
+    },
+    "DIFFICULTY_WHY": {
+      "level": "EXPECTED",
+      "hint": "Fill extensions['grade9v3:analysis'].difficulty: five components (each 0 to 2), score (their sum), band for that score, basis (one sentence); and expected_time_seconds, your estimate of the time a prepared learner needs. They are your estimates and are shown as estimates. The basis may discuss the answer route, so it belongs only to the protected post-attempt solution. Never expose it in the initial difficulty grid."
+    },
+    "CONDITIONS": {
+      "level": "EXPECTED",
+      "hint": "List each stated condition (a constraint or assumption the question gives) as one entry of conditions[]. Never list a method or a result there."
+    },
+    "TRAP": {
+      "level": "OPTIONAL",
+      "hint": "Treat common_wrong_route as an authored support hypothesis, not a diagnosis. It may appear before commitment only when the warning is genuinely PRE_ATTEMPT_SAFE relative to protected_move_refs. If the warning identifies the winning model, decisive exclusion, warrant, or other protected work, author it in typed question support and bind its availability through grade9v3:core2_support_plan as AFTER_ATTEMPT or POST_SOLUTION. Collapsed/closed presentation never makes otherwise unsafe content safe."
+    },
+    "REPRESENTATION": {
+      "level": "EXPECTED",
+      "hint": "Decide representation applicability from the question's semantic review. If useful, add an accessible authored SVG drawn only from the question data and name it in figure_refs. If a figure would be decorative or would leak protected work, waive REPRESENTATION with a written reason. To correct a legacy authored visual while preserving frozen question refs, bind core2_visual_review to the exact question and replaced refs, with a rationale and question-owned authored refs. Authentic SOURCE_FIGURE resources cannot be superseded. A third stage needs a reason if it would perform the learner decision."
+    },
+    "HINT_LADDER": {
+      "level": "EXPECTED",
+      "hint": "Author question-specific support for the semantic jobs the resolved QRT requires: clarify the learner-relative obstacle, connect to demonstrated knowledge, represent relevant givens, or open a route toward the crux while preserving the learner-owned move. Rung count is not a quality target. Each support row keeps typed support_kind/reveals/learner_stage/supports_move_ref. If a row completes or materially narrows a protected move, declare it in grade9v3:core2_support_plan with AFTER_ATTEMPT or POST_SOLUTION availability; only support proven safe relative to protected_move_refs may be PRE_ATTEMPT_SAFE. Do not add filler to reach a number."
+    },
+    "CONCEPT_NAV": {
+      "level": "OPTIONAL",
+      "hint": "Prefer an exact learning_repair.construction_ref when authored; otherwise resolve the capability to the exact construction that teaches the missing bridge. Opening concept help is learner-requested assistance: preserve the source/return anchor and do not count the same-question retry as independent transfer. A fresh changed item may later provide independent evidence."
+    },
+    "SOLUTION_STEPS": {
+      "level": "REQUIRED",
+      "hint": "Write answer.reasoning_route[] with as many moves as the actual dependency structure requires; difficulty band never sets the move count. Each move has id, kind (DECIDE, REPRESENT, CONNECT, TRANSFORM or VERIFY), action, why_valid, inputs and output. Set crux_move_ref to the one existing move whose success most directly decides the question. Each why_valid states the local warrant rather than a generic claim that a model or source permits the step. When material, make applicability conditions, model assumptions, representation invariants, bookkeeping boundaries, or empirical-versus-model limits explicit. Subject-specific repair rules belong in governed subject/record authority, not this Shared blueprint."
+    },
+    "CHECK": {
+      "level": "EXPECTED",
+      "hint": "Use a changed case, conservation ledger, counterexample or independent operation with expected result. Repeating the wrong rule as a rejection is not an independent check."
+    },
+    "DIAGNOSTIC_REPAIR": {
+      "level": "OPTIONAL",
+      "hint": "An authored wrong_idea/diagnostic_prompt is a hypothesis, not a learner diagnosis. Use the typed diagnostic-evidence contract: canonical hypothesis + discriminating probe + observed learner response + evaluator basis. Only complete CONFIRMED evidence may select misconception-specific repair; INDETERMINATE, REFUTED, invalid, or bare-index claims remain non-confirming. Preserve uncertainty and require fresh verification after repair; do not grade free response by keyword or declare mastery."
+    },
+    "MODEL_CONTRACT": {
+      "level": "EXPECTED",
+      "hint": "List in entry_assumptions[] each thing a learner must already be able to do before this concept, one per entry and specific to this concept."
+    },
+    "QUESTION_BRIDGE": {
+      "level": "OPTIONAL",
+      "hint": "Name actual crux_question_refs and crux_step_ref. The hardest-target unit must teach that precise bridge through its worked instance; a distinct lesson anchor must explicitly bind the target question, its actual crux move and this construction unit. A shared topic alone is insufficient."
+    },
+    "CONSTRUCTION_STEPS": {
+      "level": "REQUIRED",
+      "hint": "Each construction unit names at least 2 teaching_path steps, and every authored step states the action, why it is valid, and the state/output it establishes. Choose additional steps only when the inferential burden requires them; difficulty band does not prescribe a panel count. A unit that builds a question crux binds the actual crux_question_refs and crux_step_ref so the decisive bridge is taught explicitly. Preserve representation invariants, model boundaries, applicability conditions, and changed-case transfer when those are material to the concept; do not import subject-specific repair rules into the shared blueprint."
+    },
+    "STAGED_VISUAL": {
+      "level": "EXPECTED",
+      "hint": "First decide whether a staged visual has a real semantic job for this construction. When it does, representation_ref names an accessible representation and reveal_stages contains only the stages needed to construct the correspondence or mechanism. Stage count follows the representation, not the question's D-band. When a visual is genuinely not applicable, waive STAGED_VISUAL with a written reason instead of drawing decoration."
+    },
+    "MODEL_SCOPE_PROBE": {
+      "level": "OPTIONAL",
+      "hint": "Opt in with a question/crux/construction-bound MODEL_SCOPE_PROBE repair record. Declare axis, independent variables, toy versus physical outputs and a static fallback. Do not infer applicability from the demand label."
+    },
+    "KEY_STEP": {
+      "level": "REQUIRED",
+      "hint": "inferential_jump: one or two sentences naming the step a learner does not make unaided and why it is not obvious."
+    },
+    "EQUATIONS": {
+      "level": "EXPECTED",
+      "hint": "Each construction unit names the microtopic's relations it uses in construction_units[].relation_refs; each relation record needs its expression, meaning and conditions. A subject that declares no gates writes gate_relation_ref: null."
+    },
+    "WORKED_EXAMPLE": {
+      "level": "EXPECTED",
+      "hint": "Use a lesson anchor or other mapped worked instance when seeing a completed route materially helps this construction. Bind any hardest-target bridge to the precise target question/crux/construction, but do not require the protected source question itself to become the teaching anchor. If a worked example would merely replay the construction or leak the next independent task, author an explicit applicability waiver instead."
+    },
+    "TRAP_REPAIR": {
+      "level": "OPTIONAL",
+      "hint": "Author misconception rows only when a plausible wrong idea is materially relevant to this construction. Each row carries wrong_idea, a diagnostic_prompt that can distinguish the hypothesis from a slip/alternative route, and a bounded repair. A construction unit names only the rows that actually apply; absence of a justified misconception is valid and requires no filler."
+    },
+    "QUICK_CHECK": {
+      "level": "OPTIONAL",
+      "hint": "independent_checks[] is optional intermediate evidence. Author only the checks that add a distinct learner job for this unit; CHECK/APPLY/CONNECT are available roles, not a mandatory triad. Do not duplicate the mandatory EXIT_RECALL or create filler to reach a number."
+    },
+    "COVERAGE": {
+      "level": "GAP at the reference",
+      "hint": "Every record of the denominator is selected, or omitted by the manifest with a reason (coverage.omitted: {record id: why}); the hardest question of the denominator, by the toughest-concept rule, is selected. Say what was left out and what is not yet a record in the manifest: coverage.omitted ({record id: why}) and coverage.sources (source, kind, questions, ingested, status). `python3 Shared/tools/product_coverage.py MANIFEST` shows the figures."
+    },
+    "TYPESET": {
+      "level": "GAP at the reference",
+      "hint": "A relation shown on a page carries presentation MathML (relation.mathml, the restricted subset the renderer accepts). One that has only an expression is shown as plain text, and the build says so. Write relation.mathml for each relation a page shows (math, mi, mn, mo, mrow, msub, msup, mfrac, msqrt, mtext); for an equation in plain arithmetic, `python3 Shared/tools/typeset_relation.py \"EXPRESSION\" --json` prints it."
+    }
+  },
+  "quality": {
+    "checked": "static: the pages' own markers against Shared/quality/learner-quality.v1.json; no browser measurement",
+    "findings": [
+      {
+        "severity": "S1",
+        "rule": "C2-BLOCKS",
+        "where": "core2.html#ncert-exemplar-g9-math-u01-q01",
+        "detail": "missing block(s): answer"
+      }
+    ],
+    "continuity": [],
+    "left_out": [
+      "PRODUCT-ALL-ROLES",
+      "CONT_1A_1B_PARITY"
+    ]
+  },
+  "roles": [
+    "CORE2",
+    "CORE1A"
+  ],
+  "selection_counts": {
+    "microtopics": 1,
+    "core2": 1,
+    "core2a": 0,
+    "core2b": 0
+  },
+  "empty_roles": [],
+  "pages": {
+    "core1a.html": "31f29a133ff7be40692c1589ca9abb9aa8cf5f567e29688f6039558c8015ad0f",
+    "core2.html": "2ffb8e9e5e0bcaffb06d7753d2ad7f139e760ea56f1e68afc75b91270d8a8a4c",
+    "index.html": "4ee633db0755ee2955d6840d340cacfa82ab55530e376c73621baee699fd696b"
+  },
+  "pdf": {
+    "status": "PRINTED",
+    "reason": "",
+    "files": {
+      "core1a.pdf": "0e59f36ddd0cb75135a09d4da1c6dd6ed9abcf864d43602a3f3fdab2844aa390",
+      "core2.pdf": "229707242d7e2b107cda70e49d6565cb90f02532e047e3334fda246d2b3b8ad5"
+    }
+  },
+  "accepted": false,
+  "notice": "TEST sandbox draft: not reviewed, not accepted, not curriculum. accept_product.py refuses TEST."
+}
