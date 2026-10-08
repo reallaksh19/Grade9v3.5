@@ -64,8 +64,8 @@ class TestOfficialSourceReview(unittest.TestCase):
         for label, parent, key, replacement in alterations:
             with self.subTest(label=label):
                 self.data = copy.deepcopy(self.review)
-                # U02 Q7 has a normalised review and U01 Q7 a known disclosure mismatch.
-                q = self.data["records"][0] if key == "comparison_status" else self.data["records"][4]
+                # U02 Q7 is normalised; an unreviewed downgrade must be detected.
+                q = self.data["records"][4]
                 target = q[parent] if parent else q
                 target[key] = replacement
                 self.write()
