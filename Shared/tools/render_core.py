@@ -165,6 +165,29 @@ def _scope_svg_ids(svg: str, scope: str) -> str:
     return out
 
 
+def _parsed_svg_stage_ids(svg: str) -> list[str]:
+    """Validate a staged SVG and read its stage groups irrespective of attribute quoting.
+
+    Refuse malformed markup, non-<g> stage markers and duplicate stage IDs.
+    Rendering must never fall back to mounting an entire staged asset when a
+    protected stage cannot be identified.
+    """
+    root = ET.fromstring(svg)
+    if root.tag.rsplit("}", 1)[-1] != "svg":
+        raise ValueError("staged asset root must be <svg>")
+    ids: list[str] = []
+    for element in root.iter():
+        if "data-g9-stage-id" not in element.attrib:
+            continue
+        if element.tag.rsplit("}", 1)[-1] != "g":
+            raise ValueError("stage marker must belong to a <g> group")
+        stage_id = element.attrib["data-g9-stage-id"]
+        if not stage_id or stage_id in ids:
+            raise ValueError("empty or duplicated SVG stage ID")
+        ids.append(stage_id)
+    return ids
+
+
 def _number(value: str | None, default: float | None = None) -> float | None:
     found = re.match(r"\s*(-?\d+(?:\.\d+)?)", value or "")
     return float(found.group(1)) if found else default
@@ -232,6 +255,10 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
     """Mount a representation's authored SVG, or record the gap (never a stand-in)."""
     if not rep_id:
         return ""
+    # An explicit empty list means no pre-solution stages are authorized.
+    # Do not reinterpret it as the legacy "first stage" default.
+    if allowed is not None and not allowed:
+        return ""
     rep = ctx.index("representations").get(rep_id)
     source_resource = None
     if rep is None:
@@ -279,9 +306,27 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
     instance_no = ctx.figure_instances.get(instance_base, 0) + 1
     ctx.figure_instances[instance_base] = instance_no
     svg = _scope_svg_ids(svg, f"g9fig-{instance_base}-{instance_no}")
-    stage_ids = re.findall(r'data-g9-stage-id="([^"]+)"', svg)
-    if case and allowed is not None and any(sid not in stage_ids for sid in allowed):
-        ctx.gap("BUILD_SCENE", record, "selected case has no such visual stage", role)
+    # An SVG that actually declares stage markers is an access-control
+    # boundary. Catalogue reveal_stages may include labels for different scene
+    # assets or legacy unstaged figures; metadata alone must not reinterpret
+    # a fully visible historical figure as an invalid staged asset.
+    # Parse marked SVG as XML before deciding which stages exist.
+    if stage == "PRE_ATTEMPT" and "data-g9-stage-id" in svg:
+        try:
+            stage_ids = _parsed_svg_stage_ids(svg)
+        except (ET.ParseError, ValueError) as exc:
+            ctx.gap("BUILD_SCENE", record, f"{rep_id}: unsafe staged SVG ({exc})", role)
+            return ""
+        # A representation's catalogued reveal stages can span multiple bound
+        # scene assets; only the selected asset and explicit allowed IDs govern
+        # this attempt. Never assume every catalogue stage is on every asset.
+        if not stage_ids:
+            ctx.gap("BUILD_SCENE", record, f"{rep_id}: staged asset has no parseable stage groups", role)
+            return ""
+    else:
+        stage_ids = re.findall(r'data-g9-stage-id="([^"]+)"', svg)
+    if allowed is not None and any(sid not in stage_ids for sid in allowed):
+        ctx.gap("BUILD_SCENE", record, "authorized visual stage is absent from asset", role)
         return ""
     # Before an attempt only permitted stages show: the record's stage_refs, else the first stage.
     if stage == "PRE_ATTEMPT" and not allowed:
@@ -315,15 +360,31 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
                    f'{esc(case["scene"]["caption"] if case else rep.get("purpose", ""))}</figcaption>')
     if source_resource:
         caption = f'<figcaption data-g9-source-caption>{esc(source_resource.get("caption", ""))}</figcaption>'
-    if withheld:
+    if withheld or (stage == "PRE_ATTEMPT" and stage_ids):
+        # Even a single permitted stage can carry an answer-bearing root SVG
+        # aria-label/title/desc. Scrub staged pre-attempt metadata whether or
+        # not there are any groups to withhold.
         # A withheld stage is not in the page at all (hiding it with CSS still hands it to the DOM,
         # the hover tooltip and screen readers). The asset's own <title>/<desc> describe the whole
         # figure, so they go too; the accessible name is the shown stages' labels from the record.
-        svg = _without_stages(svg, set(withheld))
+        redacted = _without_stages(svg, set(withheld))
+        if stage == "PRE_ATTEMPT":
+            try:
+                remaining = _parsed_svg_stage_ids(redacted)
+            except (ET.ParseError, ValueError) as exc:
+                ctx.gap("BUILD_SCENE", record, f"{rep_id}: stage redaction failed ({exc})", role)
+                return ""
+            if remaining != shown:
+                ctx.gap("BUILD_SCENE", record, f"{rep_id}: protected SVG stage survived redaction", role)
+                return ""
+        svg = redacted
         svg = re.sub(r"<(title|desc)\b[^>]*>.*?</\1>", "", svg, flags=re.S)
         head = re.search(r"<svg\b[^>]*>", svg)
         if head:                                       # the name comes from the shown stages below
-            clean = re.sub(r'\s(role|aria-label|aria-labelledby|aria-describedby)="[^"]*"', "", head.group(0))
+            clean = re.sub(
+                r"""\s(?:role|aria-label|aria-labelledby|aria-describedby)\s*=\s*(["']).*?\1""",
+                "", head.group(0), flags=re.I | re.S,
+            )
             svg = svg[:head.start()] + clean + svg[head.end():]
         visible_name = "; ".join(labels[s] for s in shown if labels.get(s))
         # An author purpose may disclose the protected result (W). Never use it as
@@ -351,34 +412,42 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
 
 
 def _without_stages(svg: str, withheld: set[str]) -> str:
-    """Remove each <g data-g9-stage-id="…"> element whose stage is withheld, with everything inside it."""
-    out, i = [], 0
-    opener = re.compile(r'<g\b[^>]*\bdata-g9-stage-id="([^"]+)"[^>]*>')
-    while True:
-        m = opener.search(svg, i)
-        if not m:
-            out.append(svg[i:])
-            return "".join(out)
-        if m.group(1) not in withheld:
-            out.append(svg[i:m.end()])
-            i = m.end()
+    """Remove withheld <g> subtrees without serializing or changing other SVG bytes.
+
+    The caller validates well-formed XML first and re-parses the result to
+    confirm that exactly the authorized stage IDs remain. The tag scanner
+    accepts either XML attribute quote style and nested <g> elements.
+    """
+    g_tag = re.compile(r"""</?g\b(?:[^'">]|"[^"]*"|'[^']*')*>""", re.I | re.S)
+    stage_attribute = re.compile(r""" \bdata-g9-stage-id\s*=\s*(["'])(.*?)\1""".strip(), re.I | re.S)
+    output: list[str] = []
+    cursor = 0
+    skip_depth = 0
+    for match in g_tag.finditer(svg):
+        tag = match.group(0)
+        closing = tag.startswith("</")
+        self_closing = tag.rstrip().endswith("/>")
+        if skip_depth:
+            if closing:
+                skip_depth -= 1
+            elif not self_closing:
+                skip_depth += 1
+            if skip_depth == 0:
+                cursor = match.end()
             continue
-        out.append(svg[i:m.start()])
-        if m.group(0).endswith("/>"):                  # an empty withheld group
-            i = m.end()
+        if closing:
             continue
-        depth, j = 1, m.end()
-        tags = re.compile(r"<g\b[^>]*?(/?)>|</g\s*>")
-        while depth:
-            t = tags.search(svg, j)
-            if t is None:                      # malformed asset: drop the rest rather than leak it
-                return "".join(out)
-            if t.group(0).startswith("</"):
-                depth -= 1
-            elif not t.group(1):
-                depth += 1
-            j = t.end()
-        i = j
+        marker = stage_attribute.search(tag)
+        if marker and html.unescape(marker.group(2)) in withheld:
+            output.append(svg[cursor:match.start()])
+            if self_closing:
+                cursor = match.end()
+            else:
+                skip_depth = 1
+    if skip_depth:
+        return ""  # malformed containment; caller records a BUILD_SCENE gap
+    output.append(svg[cursor:])
+    return "".join(output)
 
 
 # ------------------------------------------------------------------ small html helpers
@@ -2404,6 +2473,13 @@ COMPONENT_CSS = """
 .g9-purpose-prompt p{font-size:1.05rem;line-height:1.55;white-space:pre-line}
 .g9-secondary-disclosure{border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
 .g9-secondary-disclosure{min-width:0;max-width:100%}
+.g9-c-disclosure-tile,.g9-c-disclosure-info,.g9-c-disclosure-equation-card,.g9-c-disclosure-trap-card,.g9-c-predict-reveal-worked-card{min-width:0;max-width:100%;overflow-wrap:anywhere}
+.g9-c-disclosure-tile>.g9-secondary-disclosure{background:var(--soft)}
+.g9-c-disclosure-info>.g9-secondary-disclosure{background:var(--info-bg);border-color:var(--info-line)}
+.g9-c-disclosure-equation-card>.g9-secondary-disclosure{background:var(--soft)}
+.g9-c-disclosure-trap-card>.g9-secondary-disclosure{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-fg)}
+.g9-c-predict-reveal-worked-card>.g9-secondary-disclosure{border-left:4px solid var(--accent)}
+.g9-c-disclosure-tile .g9-secondary-disclosure>summary,.g9-c-disclosure-info .g9-secondary-disclosure>summary,.g9-c-disclosure-equation-card .g9-secondary-disclosure>summary,.g9-c-disclosure-trap-card .g9-secondary-disclosure>summary,.g9-c-predict-reveal-worked-card .g9-secondary-disclosure>summary{min-height:var(--g9-touch-min);overflow-wrap:anywhere}
 .g9-secondary-disclosure>summary{min-height:var(--g9-touch-min);min-width:0;display:flex;align-items:center;flex-wrap:wrap;overflow-wrap:anywhere;padding:10px 12px;font-weight:800;cursor:pointer}
 .g9-secondary-disclosure>summary::after{content:"+";margin-left:auto;font-size:1.2em}.g9-secondary-disclosure[open]>summary::after{content:"−"}
 .g9-secondary-body{padding:0 12px 12px}

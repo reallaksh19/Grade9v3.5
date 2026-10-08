@@ -6,20 +6,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 508,
-  "relation_count": 548,
+  "component_count": 509,
+  "relation_count": 549,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 56,
-    "TEST": 249,
+    "TEST": 250,
     "TOOLING": 149,
     "WEB": 16,
     "WEB_CONTRACT": 8,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:e981682667a651853345d1789be26d56bf7a43c44d2d9b404d2fb015ce19327d",
+  "digest": "sha256:16070d1e170496d9d1bb3555e85843311feae1fb94a859406eb5f62972229f87",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -1334,8 +1334,8 @@
       "path": "Shared/tools/render_core.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 205948,
-      "sha256": "8eb784f874a5fcb21bd2c44bc63203d24861cd248ec85b173e8131c3230c446f"
+      "bytes": 210331,
+      "sha256": "100245d31fd36adfeb9d9b319861e4a2e63b85007ee3b20af25a3467c2538a09"
     },
     {
       "path": "Shared/tools/renderer_inventory.py",
@@ -1607,8 +1607,8 @@
       "path": "Shared/web/atlas-sandbox-transform.v1.json",
       "role": "WEB_CONTRACT",
       "role_description": "Subject-neutral interactive page blueprint contracts",
-      "bytes": 5336,
-      "sha256": "a2c47194b9dc26f75d7fe43a4d2543428e62e1b7f1fdf6ef6e4394bd43c4ae2a"
+      "bytes": 5577,
+      "sha256": "40d630f84ac7787b747306d651e40cef23d6067c2d4813a8524bbbd4987d4d74"
     },
     {
       "path": "Shared/web/explorer-model.js",
@@ -2049,7 +2049,7 @@
       "role": "TEST",
       "role_description": "Executable checks",
       "bytes": 21866,
-      "sha256": "6bab97d0893dd676d8a4a73654c4dd854e4784841aa42e699bc983be0c3412cf"
+      "sha256": "c83583a5773069077ec618663cfa772260446ee3dddb0ce1792b3c0b981e237d"
     },
     {
       "path": "tests/iss66_support_state_browser.mjs",
@@ -2223,8 +2223,8 @@
       "path": "tests/test_authoring_applicability.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 3361,
-      "sha256": "63f29e718a9a498719f4b5dc070746163af6da40888e87fb38bbb9ff6e10531e"
+      "bytes": 3582,
+      "sha256": "34f26277cda1a200a79ba6d02dc05c80ed5d5fe7381cc7a5645594c541f6f02d"
     },
     {
       "path": "tests/test_authoring_intake.py",
@@ -2244,8 +2244,8 @@
       "path": "tests/test_blueprint_components.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 38277,
-      "sha256": "b208b3e75c2bbdc4288b3169949df256087c7b60ce5fcc6955bf246a0d0bdef1"
+      "bytes": 40536,
+      "sha256": "3ca0da7c25413b1b11974c5e1ddab65085dfbba2ae319223eb7d3e6a4cc2d04c"
     },
     {
       "path": "tests/test_blueprint_layout.mjs",
@@ -2776,8 +2776,8 @@
       "path": "tests/test_interactive_page_builder.py",
       "role": "TEST",
       "role_description": "Executable checks",
-      "bytes": 6928,
-      "sha256": "1a7b007403e843edb2d55cf6c44699e31a2964123bc7ad6ac1d8850590a49ba6"
+      "bytes": 7426,
+      "sha256": "590ce0ade17ff9acd322418294ca1be1bdc1013ad4d4fb06c6a7234a23d45df8"
     },
     {
       "path": "tests/test_iss55_polynomial_canonical_staging.py",
@@ -3331,6 +3331,13 @@
       "role_description": "Executable checks",
       "bytes": 9454,
       "sha256": "e18d931cde84005e444760738439155e208aa39532f6e675d5bd5d2b7ab66217"
+    },
+    {
+      "path": "tests/test_svg_stage_disclosure.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 6861,
+      "sha256": "52c4ee7fbac6792597cd5631f41345dfbd96c98536ed3856b6e5f7854be8b4c8"
     },
     {
       "path": "tests/test_tablet_audit.py",
@@ -6171,6 +6178,11 @@
     },
     {
       "from": "tests/test_study_start.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_svg_stage_disclosure.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
