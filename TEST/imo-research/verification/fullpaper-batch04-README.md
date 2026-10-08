@@ -23,7 +23,7 @@ All 11 B04 selected-answer letters agree with the owner compilation. Example mat
 - **Printed Q40**: successive multipliers 1.40×0.90=1.26 give 26% increase (D).
 - **Printed Q44**: two simultaneous savings constraints determine P's annual income to be ₹4,000 (C).
 - **Printed Q48**: cone-to-cylinder volume and 3:4 cone ratios are consistent; the maximum sphere in a 7 cm cube is approximately 179.5 cm³, not 185.76, hence claim C is incorrect (C).
-- **Printed Q50**: the shorter and longer chords of the same circle have centre distances 4 and 3 respectively. For the two cyclic quadrilaterals visible in the original diagram, matching inscribed angles at the shared AB chord and the source collinearities AD/AE and BC/BF imply EF is parallel to DC. Both source assertions true (A). Figure inspected but original image is **not licensed or reproduced**.
+- **Printed Q50**: the shorter and longer chords of the same circle have centre distances 4 and 3 respectively. For the two cyclic quadrilaterals visible in the original diagram, the outer-circle equality ∠CDA=∠CBA and inner-circle equality ∠FEA=∠FBA, together with the source collinearities A/E/D and B/F/C, imply EF is parallel to DC. Both source assertions true (A). Figure inspected but original image is **not licensed or reproduced**.
 
 Earlier research disagreements remain open: original paper 2023 Q18 versus the attachment's reordered option labels, printed 2025 Q28 *identity* versus attachment *inverse* wording, source 2025 Q31 intersection diagram versus attachment option, 2023 Q13 fourth sorted digit, plus the official sample Q9 rewritten roots/powers. B04 does not overwrite prior discrepancy evidence.
 
