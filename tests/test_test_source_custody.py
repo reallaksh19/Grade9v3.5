@@ -230,6 +230,22 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "witness options scope"):
             test_source_custody.reconcile(self.repo)
 
+    def test_coordinated_bank_overlay_locator_rewrite_cannot_replay_source_witness(self):
+        first = self.bank_doc["questions"][0]
+        first["question_number"] = "999"
+        self.overlay_doc["records"][0]["source_locator"]["question_number"] = "999"
+        self.write()
+        with self.assertRaisesRegex(ValueError, "question witness original locator/identity mismatch"):
+            test_source_custody.reconcile(self.repo)
+
+    def test_coordinated_original_identifier_change_cannot_replay_source_witness(self):
+        first = self.bank_doc["questions"][0]
+        first["original_identifier"] = "Unit 1 Ex 1.1 Q999"
+        self.overlay_doc["records"][0]["original_identifier"] = first["original_identifier"]
+        self.write()
+        with self.assertRaisesRegex(ValueError, "question witness original locator/identity mismatch"):
+            test_source_custody.reconcile(self.repo)
+
     def test_valid_shape_but_unwitnessed_printed_pdf_page_is_rejected(self):
         """Numeric page checks alone cannot authenticate an official PDF locator."""
         locator = self.overlay_doc["records"][0]["source_locator"]

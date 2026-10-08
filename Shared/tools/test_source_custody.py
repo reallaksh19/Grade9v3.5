@@ -87,6 +87,23 @@ QUESTION_WITNESS_INSTANCE_SCOPE = {
 # Prevent coordinated changes to two mutable JSON files from laundering a
 # different official PDF or answer under an older witness. These are replay
 # guards, not independent re-verification of NCERT document contents.
+# Fixed source-instance names and locators attached to the existing pilot
+# question witnesses; two coordinated mutable records cannot relocate a QID.
+QUESTION_WITNESS_ORIGINAL_LOCATOR_SCOPE = {
+    "ncert-exemplar-g9-math-u01-q01": ("Unit 1 Ex 1.1 Q1", "Unit 1: Number Systems", "Exercise 1.1", "1", "NCERT_OFFICIAL", "EXEMPLAR", "NCERT Exemplar Problems-Solutions Mathematics Class IX"),
+    "ncert-exemplar-g9-math-u01-q02": ("Unit 1 Ex 1.1 Q2", "Unit 1: Number Systems", "Exercise 1.1", "2", "NCERT_OFFICIAL", "EXEMPLAR", "NCERT Exemplar Problems-Solutions Mathematics Class IX"),
+    "ncert-exemplar-g9-math-u01-q03": ("Unit 1 Ex 1.1 Q3", "Unit 1: Number Systems", "Exercise 1.1", "3", "NCERT_OFFICIAL", "EXEMPLAR", "NCERT Exemplar Problems-Solutions Mathematics Class IX"),
+    "ncert-exemplar-g9-math-u01-q04": ("Unit 1 Ex 1.1 Q4", "Unit 1: Number Systems", "Exercise 1.1", "4", "NCERT_OFFICIAL", "EXEMPLAR", "NCERT Exemplar Problems-Solutions Mathematics Class IX"),
+    "ncert-exemplar-g9-math-u01-q05": ("Unit 1 Ex 1.1 Q5", "Unit 1: Number Systems", "Exercise 1.1", "5", "NCERT_OFFICIAL", "EXEMPLAR", "NCERT Exemplar Problems-Solutions Mathematics Class IX"),
+    "ncert-exemplar-g9-math-u01-q06": ("Unit 1 Ex 1.1 Q6", "Unit 1: Number Systems", "Exercise 1.1", "6", "NCERT_OFFICIAL", "EXEMPLAR", "NCERT Exemplar Problems-Solutions Mathematics Class IX"),
+    "ncert-exemplar-g9-math-u02-q01": ("Unit 2 Ex 2.1 Q1", "Unit 2: Polynomials", "Exercise 2.1", "1", "NCERT_OFFICIAL", "EXEMPLAR", "NCERT Exemplar Problems-Solutions Mathematics Class IX"),
+    "ncert-exemplar-g9-math-u02-q02": ("Unit 2 Ex 2.1 Q2", "Unit 2: Polynomials", "Exercise 2.1", "2", "NCERT_OFFICIAL", "EXEMPLAR", "NCERT Exemplar Problems-Solutions Mathematics Class IX"),
+    "ncert-exemplar-g9-math-u02-q03": ("Unit 2 Ex 2.1 Q3", "Unit 2: Polynomials", "Exercise 2.1", "3", "NCERT_OFFICIAL", "EXEMPLAR", "NCERT Exemplar Problems-Solutions Mathematics Class IX"),
+    "ncert-exemplar-g9-math-u02-q04": ("Unit 2 Ex 2.1 Q4", "Unit 2: Polynomials", "Exercise 2.1", "4", "NCERT_OFFICIAL", "EXEMPLAR", "NCERT Exemplar Problems-Solutions Mathematics Class IX"),
+    "ncert-exemplar-g9-math-u02-q05": ("Unit 2 Ex 2.1 Q5", "Unit 2: Polynomials", "Exercise 2.1", "5", "NCERT_OFFICIAL", "EXEMPLAR", "NCERT Exemplar Problems-Solutions Mathematics Class IX"),
+    "ncert-exemplar-g9-math-u02-q06": ("Unit 2 Ex 2.1 Q6", "Unit 2: Polynomials", "Exercise 2.1", "6", "NCERT_OFFICIAL", "EXEMPLAR", "NCERT Exemplar Problems-Solutions Mathematics Class IX"),
+}
+
 QUESTION_WITNESS_DOCUMENT_SCOPE = {
     "github:reallaksh19/Grade9v3.5#129:6029049531": (
         "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep201.pdf",
@@ -222,6 +239,12 @@ def reconcile(repo: Path) -> dict:
                      where, f"question witness options scope mismatch for {qid}")
             _require((locator["printed_page"], locator["pdf_page_index"]) == instance["pages"],
                      where, f"question witness page scope mismatch for {qid}")
+            original_locator = (
+                source["original_identifier"], source["chapter_or_unit"],
+                source["exercise_or_section"], source["question_number"],
+                source["source_authority"], source["source_kind"], source["document_title"])
+            _require(original_locator == QUESTION_WITNESS_ORIGINAL_LOCATOR_SCOPE.get(qid),
+                     where, f"question witness original locator/identity mismatch for {qid}")
             _require(record.get("workflow_status") == "READY_FOR_BLUEPRINT",
                      where, f"unsupported READY claim for {qid}")
             # Question-text readiness is independent of answer-key availability.
