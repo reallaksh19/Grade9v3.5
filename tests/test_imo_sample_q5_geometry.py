@@ -59,8 +59,8 @@ class SampleQ5GeometryTests(unittest.TestCase):
         with self.assertRaises(SeedError):self.validate()
 
     def test_equal_y_sectors_cannot_be_changed_to_unequal(self):
-        self.change(lambda d:d["source_diagram_facts_requiring_external_confirmation"][4].replace("y and y","y and z") or
-                    d["source_diagram_facts_requiring_external_confirmation"].__setitem__(4,"not two equal sectors"))
+        self.change(lambda d:d["source_diagram_facts_requiring_external_confirmation"].__setitem__(
+            4,"An oblique ray divides the marked supplementary angle into y and z."))
         with self.assertRaises(SeedError):self.validate()
 
     def test_corresponding_parallel_transfer_step_required(self):
