@@ -8,29 +8,24 @@ record. Source-verification and academic-validation are displayed as independent
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
-SCHEMA = "grade9v3-test-source-question-intake-v1"
+REPO = Path(__file__).resolve().parents[2]
+if __package__ in (None, ""):
+    sys.path.insert(0, str(REPO))
+
+from Shared.tools import test_intake_registry  # noqa: E402
+
+SCHEMA = test_intake_registry.SCHEMA
 UNVALIDATED = "UNVALIDATED"
 VALIDATION_SCHEMA = "grade9v3-test-question-validation-v1"
 BANNER = "TEST sandbox · drafts only · not reviewed, not accepted, not curriculum"
 
 
 def intake_banks(repo: Path) -> list[dict]:
-    root = repo / "TEST" / "question-bank" / "intake"
-    if not root.is_dir():
-        return []
-    banks: list[dict] = []
-    for path in sorted(root.glob("*.json")):
-        if path.name.endswith(".blueprint-handoff.json"):
-            continue
-        try:
-            data = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            continue
-        if isinstance(data, dict) and data.get("schema_version") == SCHEMA:
-            banks.append(data)
-    return banks
+    """Only validated, unique flat-identity source banks enter the TEST projection."""
+    return test_intake_registry.load_intake_banks(repo)
 
 
 def validation_index(repo: Path) -> dict[str, dict]:
