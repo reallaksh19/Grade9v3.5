@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'TEST/imo-research/**'
+      - 'TEST/library/imo-g9-divisibility-core1a.v1.json'
+      - 'tests/test_imo_core1a_candidate_package.py'
       - 'tests/test_imo_seed.py'
       - 'tests/test_imo_math_audit.py'
       - '.github/workflows/imo-research-validation.yml'
@@ -11,6 +13,8 @@ on:
     branches: [main]
     paths:
       - 'TEST/imo-research/**'
+      - 'TEST/library/imo-g9-divisibility-core1a.v1.json'
+      - 'tests/test_imo_core1a_candidate_package.py'
       - 'tests/test_imo_seed.py'
       - 'tests/test_imo_math_audit.py'
       - '.github/workflows/imo-research-validation.yml'
@@ -58,5 +62,7 @@ jobs:
         run: python TEST/imo-research/validate_qualification_evidence.py
       - name: Validate seven learner-quality design proposals and Grade 9 scope holds
         run: python TEST/imo-research/validate_learner_quality.py
+      - name: Validate candidate authored TEST IMO Core1A package without accepting source Core2
+        run: python TEST/imo-research/validate_core1a_candidate_package.py
       - name: Run research-only falsifier tests
         run: python -m unittest discover -s tests -p 'test_imo_*.py' -v
