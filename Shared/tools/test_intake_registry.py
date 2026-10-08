@@ -10,8 +10,27 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+from urllib.parse import urlsplit
 
 SCHEMA = "grade9v3-test-source-question-intake-v1"
+
+OFFICIAL_HOSTS = {"NCERT_OFFICIAL": {"ncert.nic.in"},
+                  "CBSE_OFFICIAL": {"cbse.gov.in", "cbseacademic.nic.in"}}
+
+
+def official_source_url(url: object, authority: object) -> bool:
+    """Permit only explicit official HTTPS hosts, never lookalikes or active URLs."""
+    if not isinstance(url, str) or not isinstance(authority, str):
+        return False
+    try:
+        parsed = urlsplit(url)
+        return (parsed.scheme == "https"
+                and parsed.hostname in OFFICIAL_HOSTS.get(authority, set())
+                and not parsed.username and not parsed.password
+                and parsed.port is None and bool(parsed.path))
+    except ValueError:
+        return False
+
 
 
 def load_intake_banks(repo: Path) -> list[dict]:
@@ -57,6 +76,8 @@ def load_intake_banks(repo: Path) -> list[dict]:
                       "chapter_or_unit", "exercise_or_section", "question_number")
             if any(not isinstance(q.get(field), str) or not q[field].strip() for field in fields):
                 raise ValueError(f"{where}: incomplete official source identity/locator")
+            if not official_source_url(q["source_url"], q["source_authority"]):
+                raise ValueError(f"{where}: unofficial or unsafe source URL")
             if not isinstance(q.get("stem"), str) or not q["stem"].strip():
                 raise ValueError(f"{where}: missing source stem")
             digest = q.get("stem_sha256")
