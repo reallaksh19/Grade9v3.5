@@ -21,6 +21,8 @@ OFFICIAL_TOPIC_IDS = (
 ADJUNCT_TOPIC_IDS = ("LOGIC", "QUANT")
 SECTIONS = ("LOGICAL_REASONING", "MATHEMATICAL_REASONING", "EVERYDAY_MATHEMATICS", "ACHIEVERS_SECTION")
 SYLLABUS = "https://sofworld.org/imo/class-9/imo-syllabus/imo-syllabus-class-9"
+SAMPLE_PDF = "https://sofworld.org/download/file/fid/73719"
+SAMPLE_KEY = {2:"B",4:"B",5:"C",6:"C",7:"D",8:"D",9:"D",10:"A"}
 
 
 def ensure(ok: bool, detail: str) -> None:
@@ -54,6 +56,28 @@ def validate_taxonomy(seed: Path = SEED, root: Path = TAX) -> dict:
     qs, _, _ = load_seed(seed)
     q_by_id = {q["id"]: q for q in qs}
     registry, rows, subtopic_data = load_taxonomy(root)
+    try:
+        sample = json.loads((root / "official-sample-2026-27-observations.v1.json").read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise SeedError(f"sample evidence unreadable: {exc}") from exc
+    ensure(isinstance(sample, dict) and
+           sample.get("schema") == "sof-imo-g09-official-sample-observations-v1" and
+           sample.get("organizer_url") == SAMPLE_PDF and
+           sample.get("host_class") == "SOF_ORGANIZER_HOSTED" and
+           sample.get("source_id") == "SOF-IMO-G09-SAMPLE-2026-27" and
+           sample.get("page_count") == 2 and
+           sample.get("full_sample_question_count") == 10 and
+           sample.get("captured_seed_question_count") == 8 and
+           sample.get("missing_from_seed") == [1, 3] and
+           sample.get("document_sha256") is None and
+           sample.get("source_rights_status") == "NOT_REVIEWED" and
+           sample.get("academic_review_status") == "NOT_REVIEWED",
+           "unverified organizer sample custody/key claim")
+    sample_rows = sample.get("records")
+    ensure(isinstance(sample_rows, list) and len(sample_rows) == 8 and
+           all(isinstance(x, dict) for x in sample_rows), "sample observation census changed")
+    sample_by_qid = {x.get("question_id"):x for x in sample_rows}
+    ensure(len(sample_by_qid) == 8, "duplicate organizer sample observation question")
     ensure(subtopic_data.get("schema") == "sof-imo-g09-subtopics-v1" and
            subtopic_data.get("authority") == "ANALYST_PROVISIONAL_NOT_OFFICIAL_SOFSUBTOPICS",
            "subtopic authority is not independently accepted")
@@ -87,7 +111,7 @@ def validate_taxonomy(seed: Path = SEED, root: Path = TAX) -> dict:
            [x.get("marks_per_question") for x in section_map] == [1, 1, 1, 3],
            "SOF Level 1 exam section pattern changed")
     ensure(len(rows) == len(qs) == 66, "incomplete source-question taxonomy mapping")
-    count, seen, section_counts, used_subtopics = Counter(), set(), Counter(), set()
+    count, seen, section_counts, used_subtopics, sample_counts = Counter(), set(), Counter(), set(), Counter()
     for row in rows:
         qid = row.get("question_id")
         ensure(isinstance(qid, str) and qid in q_by_id and qid not in seen,
@@ -128,11 +152,33 @@ def validate_taxonomy(seed: Path = SEED, root: Path = TAX) -> dict:
                    "SAMPLE_SECTION_UNRESOLVED" if is_sample
                    else "SOF_LEVEL1_POSITION_RULE_WITH_PAPER_SOURCE_CLAIM"),
                f"{qid}: source question number misused as Level 1 section")
+        if is_sample:
+            ev = sample_by_qid.get(qid)
+            ensure(ev is not None and
+                   ev.get("source_document_ref") == q["source_id_claim"] and
+                   ev.get("seed_entry") == q["seed_entry"] and
+                   ev.get("sample_question_number") == int(q["original_question_number_claim"]) and
+                   ev.get("printed_answer_key_option") == SAMPLE_KEY.get(int(q["original_question_number_claim"])) and
+                   ev.get("section_observed") in SECTIONS and
+                   row.get("sample_section_observed") == ev["section_observed"] and
+                   row.get("sample_section_basis") == "SOF_ORGANIZER_PDF_VISUAL_SECTION_HEADER" and
+                   ev.get("academic_answer_status") == "NOT_INDEPENDENTLY_VERIFIED" and
+                   ev.get("source_comparison_status") == "SECTION_AND_KEY_PANEL_SIGHTED_ONLY" and
+                   ev.get("rights_status") == "NOT_REVIEWED" and
+                   ev.get("core_eligible") is False,
+                   f"{qid}: organizer sample section/key evidence invalid or overclaimed")
+            sample_counts[ev["section_observed"]] += 1
+        else:
+            ensure(row.get("sample_section_observed") is None and
+                   row.get("sample_section_basis") == "NOT_APPLICABLE_FULL_LEVEL1",
+                   f"{qid}: unexpected sample metadata on full Level1 paper")
         if observed_section:
             section_counts[observed_section] += 1
         count[topic] += 1
         seen.add(qid)
     ensure(seen == set(q_by_id), "taxonomy coverage is not source-complete")
+    ensure(set(sample_by_qid) == {r["question_id"] for r in rows if r["source_id"] == "SOF-IMO-G09-SAMPLE-2026-27"},
+           "sample evidence does not cover all sample source positions")
     ensure(used_subtopics == set(sub_by_id), "unused/omitted subtopic catalogue entry")
     by_seed = {q["seed_entry"]: q for q in qs if q["seed_entry"] != 38}
     by_id = {row["question_id"]: row for row in rows}
@@ -148,6 +194,9 @@ def validate_taxonomy(seed: Path = SEED, root: Path = TAX) -> dict:
             "by_topic":{t:count[t] for t in OFFICIAL_TOPIC_IDS + ADJUNCT_TOPIC_IDS},
             "uncovered_official_topics":missing, "by_source_section":dict(section_counts),
             "full_paper_section_unknown":len(rows)-sum(section_counts.values()),
+            "by_sample_section":dict(sample_counts),
+            "organizer_sample_key_sightings":len(sample_by_qid),
+            "independently_reviewed_sample_keys":0,
             "accepted_qrt_cells":0, "core_eligible":0}
 
 
