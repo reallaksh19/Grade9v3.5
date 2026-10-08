@@ -116,7 +116,7 @@
     const sourceHold = custodyStatus(q) === 'SOURCE_TEXT_HOLD';
     const answerNote = sourceHold
       ? 'SOURCE-TEXT HOLD: official NCERT wording differs from this recorded stem; source custody and READY are withheld pending review.'
-      : !independentlyEvidenced
+      : !q.custody_answer_source_url
       ? 'This answer is recorded in intake, but its official answer-document custody has not been independently reconciled.'
       : academic === 'VALIDATED'
         ? 'Independent official-answer custody and Grade9V3 academic validation are separately evidenced.'

@@ -59,14 +59,14 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
         result = test_source_custody.reconcile(self.repo)
         first = result["handoff"][0]
         sixth = result["handoff"][5]
-        self.assertEqual(self.bank_doc["questions"][0]["page"], 1)
+        self.assertEqual(self.bank_doc["questions"][0]["unverified_legacy_page"], 1)
         self.assertEqual(first["source_locator"]["printed_page"], 2)
         self.assertEqual(first["source_locator"]["pdf_page_index"], 1)
         self.assertEqual(sixth["source_locator"]["printed_page"], 3)
         self.assertEqual(sixth["source_locator"]["pdf_page_index"], 2)
         self.assertNotIn("edition_or_year", first)
         self.assertIn("ieep2an.pdf", first["official_answer_key_ref"]["document_url"])
-        self.assertEqual(self.bank_doc["questions"][0]["workflow_status"], "READY_FOR_BLUEPRINT")
+        self.assertEqual(self.bank_doc["questions"][0]["workflow_status"], "EVIDENCE_PENDING")
 
     def test_no_overlay_means_no_independently_evidenced_ready_records(self):
         self.overlay_path.unlink()
@@ -101,6 +101,48 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
                 self.write()
                 with self.assertRaisesRegex(ValueError, expected):
                     test_source_custody.reconcile(self.repo)
+
+    def test_original_document_url_cannot_be_changed_in_bank_and_overlay_together(self):
+        # Both files can be self-consistent and official-hosted while the
+        # original source witness still belongs to a different PDF.
+        replacement = "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep202.pdf"
+        self.bank_doc["questions"][0]["source_url"] = replacement
+        self.overlay_doc["documents"][0]["url"] = replacement
+        self.write()
+        with self.assertRaisesRegex(ValueError, "question witness official document mismatch"):
+            test_source_custody.reconcile(self.repo)
+
+    def test_answer_key_and_recorded_answer_cannot_be_changed_together(self):
+        # The stem/options/pages stay unchanged, but a new apparent key is not
+        # authenticated by the witness originally inspected for Q1.
+        self.bank_doc["questions"][0]["official_answer_text"] = "(A) a natural number"
+        self.overlay_doc["records"][0]["official_answer"]["answer_key"] = "(A)"
+        self.write()
+        with self.assertRaisesRegex(ValueError, "answer witness scope mismatch"):
+            test_source_custody.reconcile(self.repo)
+
+    def test_answer_text_cannot_be_rewritten_while_keeping_witnessed_choice(self):
+        self.bank_doc["questions"][0]["official_answer_text"] = "(C) fabricated answer explanation"
+        self.write()
+        with self.assertRaisesRegex(ValueError, "recorded answer text differs from witnessed option"):
+            test_source_custody.reconcile(self.repo)
+
+    def test_original_answer_document_cannot_be_replaced_with_another_official_url(self):
+        replacement = "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep202.pdf"
+        self.overlay_doc["documents"][1]["url"] = replacement
+        self.write()
+        with self.assertRaisesRegex(ValueError, "answer witness scope mismatch"):
+            test_source_custody.reconcile(self.repo)
+
+    def test_ready_question_without_optional_answer_key_survives_question_bank_producer(self):
+        self.overlay_doc["records"][0].pop("official_answer")
+        self.write()
+        custody = test_source_custody.reconcile(self.repo)
+        self.assertIn(self.bank_doc["questions"][0]["id"], custody["ready_ids"])
+        question_bank = build_test_question_bank.payload(self.repo)
+        first = question_bank["banks"][0]["questions"][0]
+        self.assertEqual(first["custody_evidence_status"], "INDEPENDENTLY_EVIDENCED")
+        self.assertIsNone(first["custody_answer_source_url"])
 
     def test_official_answer_key_is_optional_for_verified_question_readiness(self):
         """Stage-1 question/text readiness does not depend on answer-key publication."""
@@ -177,6 +219,40 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
         self.overlay_doc["records"][0]["stem_sha256"] = digest
         self.write()
         with self.assertRaisesRegex(ValueError, "question witness scope"):
+            test_source_custody.reconcile(self.repo)
+
+    def test_coordinated_bank_and_overlay_options_rewrite_cannot_reuse_old_witness(self):
+        """Matching mutable copies do not constitute independent official-option evidence."""
+        first = self.bank_doc["questions"][0]
+        first["options"][0] = "(A) forged but structurally plausible option"
+        self.overlay_doc["records"][0]["options"] = copy.deepcopy(first["options"])
+        self.write()
+        with self.assertRaisesRegex(ValueError, "witness options scope"):
+            test_source_custody.reconcile(self.repo)
+
+    def test_coordinated_bank_overlay_locator_rewrite_cannot_replay_source_witness(self):
+        first = self.bank_doc["questions"][0]
+        first["question_number"] = "999"
+        self.overlay_doc["records"][0]["source_locator"]["question_number"] = "999"
+        self.write()
+        with self.assertRaisesRegex(ValueError, "question witness original locator/identity mismatch"):
+            test_source_custody.reconcile(self.repo)
+
+    def test_coordinated_original_identifier_change_cannot_replay_source_witness(self):
+        first = self.bank_doc["questions"][0]
+        first["original_identifier"] = "Unit 1 Ex 1.1 Q999"
+        self.overlay_doc["records"][0]["original_identifier"] = first["original_identifier"]
+        self.write()
+        with self.assertRaisesRegex(ValueError, "question witness original locator/identity mismatch"):
+            test_source_custody.reconcile(self.repo)
+
+    def test_valid_shape_but_unwitnessed_printed_pdf_page_is_rejected(self):
+        """Numeric page checks alone cannot authenticate an official PDF locator."""
+        locator = self.overlay_doc["records"][0]["source_locator"]
+        locator["printed_page"] = 999
+        locator["pdf_page_index"] = 998
+        self.write()
+        with self.assertRaisesRegex(ValueError, "witness page scope"):
             test_source_custody.reconcile(self.repo)
 
     def test_source_bank_stem_mutation_invalidates_a_former_witness(self):
