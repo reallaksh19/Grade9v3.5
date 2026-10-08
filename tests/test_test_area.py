@@ -161,6 +161,16 @@ class TestPages(unittest.TestCase):
         self.assertNotIn("ready for blueprint: 209", html)
         self.assertEqual(historical["question_counts"]["ready_for_blueprint"], 209)
 
+    def test_test_home_answers_do_not_claim_unverified_official_key_custody(self):
+        """The 198 evidence-pending questions still carry recorded, not witnessed, keys."""
+        home = build_test_site.render_intake_section(
+            build_test_site.intake_banks(), build_test_site.test_source_custody.reconcile(REPO))
+        self.assertIn("Recorded answer — official key custody pending:", home)
+        self.assertIn("Evidenced official answer:", home)
+        self.assertNotIn("Official Answer:", home)
+        self.assertEqual(home.count("Evidenced official answer:"), 12)
+        self.assertEqual(home.count("Recorded answer — official key custody pending:"), 198)
+
     def test_test_search_index_covers_parked_questions_without_becoming_canonical_search(self):
         rows = build_test_site.test_search_index()
         self.assertEqual(len(rows), 220)
