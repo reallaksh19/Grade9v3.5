@@ -1,10 +1,12 @@
 """Issue #131: first genuine NCERT Q1-lineage TEST product; no canonical admission."""
 from __future__ import annotations
 
+import importlib.util
 import json
 import sys
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from jsonschema import Draft202012Validator
 
@@ -18,6 +20,13 @@ MATRIX = REPO / "TEST/matrices/ncert-u01-q01.rungs.json"
 MANIFEST = REPO / "TEST/products/ncert-u01-q01.manifest.json"
 INTAKE = REPO / "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json"
 SOURCE_ID = "ncert-exemplar-g9-math-u01-q01"
+CORE2_VIEW = REPO / "TEST/library/ncert-u01-q01.core2-source-view.v1.json"
+CORE2_AUTHOR = REPO / "TEST/library/ncert-u01-q01.core2-authoring.v1.json"
+ADAPTER = REPO / "TEST/library/ncert_source_core2_view.py"
+ADAPTER_SPEC = importlib.util.spec_from_file_location("test_ncert_q1_adapter", ADAPTER)
+assert ADAPTER_SPEC is not None and ADAPTER_SPEC.loader is not None
+adapter = importlib.util.module_from_spec(ADAPTER_SPEC)
+ADAPTER_SPEC.loader.exec_module(adapter)
 
 
 class TestNcertQ1ParkedProduct(unittest.TestCase):
@@ -27,6 +36,7 @@ class TestNcertQ1ParkedProduct(unittest.TestCase):
         cls.matrix = json.loads(MATRIX.read_text(encoding="utf-8"))
         cls.manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
         cls.bank = json.loads(INTAKE.read_text(encoding="utf-8"))
+        cls.view = json.loads(CORE2_VIEW.read_text(encoding="utf-8"))
         cls.question = next(q for q in cls.bank["questions"] if q["id"] == SOURCE_ID)
 
     def test_package_conforms_to_production_renderer_schema(self):
@@ -49,7 +59,8 @@ class TestNcertQ1ParkedProduct(unittest.TestCase):
         self.assertEqual(source["stem_sha256"], self.question["stem_sha256"])
         self.assertEqual(source["source_url"], self.question["source_url"])
         self.assertEqual(source["original_identifier"], self.question["original_identifier"])
-        self.assertEqual(self.manifest["bank_refs"], [INTAKE.relative_to(REPO).as_posix()])
+        self.assertEqual(self.manifest["bank_refs"], [CORE2_VIEW.relative_to(REPO).as_posix()])
+        self.assertEqual(self.view["source_bank_ref"], INTAKE.relative_to(REPO).as_posix())
         self.assertEqual(self.manifest["selection"]["core2"], [SOURCE_ID])
         self.assertEqual(self.manifest["output_roles"], ["CORE2", "CORE1A"])
         self.assertEqual(len(self.bank["questions"]), 210)
@@ -58,11 +69,30 @@ class TestNcertQ1ParkedProduct(unittest.TestCase):
 
     def test_manifest_selection_resolves_in_production_selection_contract(self):
         selected = product_manifest.validate_selection(
-            self.manifest, [self.package], self.bank["questions"])
+            self.manifest, [self.package], self.view["questions"])
         self.assertEqual([q["id"] for q in selected["core2"]], [SOURCE_ID])
         self.assertEqual(len(selected["microtopics"]), 1)
         self.assertEqual(selected["core2a"], [])
         self.assertEqual(selected["core2b"], [])
+
+    def test_authoring_view_is_deterministic_and_cannot_grant_source_ready(self):
+        self.assertEqual(CORE2_VIEW.read_text(encoding="utf-8"), adapter.generated_bytes(REPO))
+        self.assertEqual(adapter.main(["--repo", str(REPO), "--check"]), 0)
+        self.assertEqual(len(self.view["questions"]), 1)
+        row = self.view["questions"][0]
+        self.assertEqual(row["id"], SOURCE_ID)
+        self.assertEqual(row["stem"], self.question["stem"])
+        self.assertEqual(row["options"], self.question["options"])
+        self.assertEqual(row["original_identifier"], self.question["original_identifier"])
+        self.assertEqual(row["status"], "CANDIDATE")
+        self.assertEqual(row["answer"]["verification_status"], "CHECKED_BY_AUTHOR")
+        self.assertEqual(row["answer"]["source_key"]["value"], self.question["official_answer_text"])
+        self.assertEqual(row["extensions"]["grade9v3:ncert_source_lineage"]["stem_sha256"],
+                         self.question["stem_sha256"])
+        with mock.patch.object(adapter.test_source_custody, "reconcile",
+                               return_value={"ready_ids": [], "handoff": []}):
+            with self.assertRaisesRegex(ValueError, "not independently custody READY"):
+                adapter.build(REPO)
 
     def test_matrix_uses_same_microtopic_and_has_real_content(self):
         mic = self.package["microtopics"][0]["id"]
