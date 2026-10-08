@@ -1,0 +1,86 @@
+{
+  "schema_version": "grade9v3-test-core2-authored-spec-v1",
+  "source_question_ref": "ncert-exemplar-g9-math-u01-q01",
+  "expected_stem_sha256": "sha256:40010d207519d386d5d2a6519c39745ee59de121105642b68c4f398a002cb3f6",
+  "annotation": "Question text/options/id are never authored here; this is a candidate nonaccepted instructional answer and concept mapping, materialized only when the separate source-custody reconciler confirms READY.",
+  "render_record_template": {
+    "id": "",
+    "status": "CANDIDATE",
+    "original_identifier": "",
+    "stem": "",
+    "options": [],
+    "subparts": [],
+    "conditions": [],
+    "figure_refs": [],
+    "source_refs": [],
+    "evidence_refs": [],
+    "primary_capability_ref": "CAP-TEST-NCERT-U01-RATIONAL-REAL-INCLUSION",
+    "secondary_capability_refs": [],
+    "family_ref": "FAM-TEST-NCERT-U01-SET-INCLUSION",
+    "answer": {
+      "kind": "MODEL_RESPONSE",
+      "summary": "(C) a real number. Every rational number is a real number.",
+      "reasoning": [
+        "A rational number has the form a/b for integers a and b with b nonzero.",
+        "Each rational number lies on the real number line, hence the rational set is contained in the real set.",
+        "The rational number 1/2 is not an integer, whole number or natural number, so (A), (B), and (D) cannot be universal descriptions.",
+        "Therefore (C), a real number, is the correct choice."
+      ],
+      "reasoning_route": [
+        {
+          "id": "NS-Q1-MOVE-1",
+          "kind": "DECIDE",
+          "action": "Interpret 'Every rational number is' as asking for a set containing all rational numbers.",
+          "why_valid": "A universal claim must hold for negative and fractional rationals, not just positive whole examples.",
+          "inputs": [
+            "Original NCERT Q1 wording"
+          ],
+          "output": "Find a valid universal superset of Q."
+        },
+        {
+          "id": "NS-Q1-MOVE-2",
+          "kind": "REPRESENT",
+          "action": "Use Q ⊆ R: every rational a/b with integer a, b ≠ 0 represents a real number.",
+          "why_valid": "Every quotient of integers with nonzero denominator is a real number.",
+          "inputs": [
+            "Rational number definition",
+            "number-set inclusion"
+          ],
+          "output": "Option (C) is valid."
+        },
+        {
+          "id": "NS-Q1-MOVE-3",
+          "kind": "VERIFY",
+          "action": "Test 1/2 against natural, integer and whole-number categories.",
+          "why_valid": "One nonintegral rational refutes each narrower universal option.",
+          "inputs": [
+            "Options (A), (B) and (D)"
+          ],
+          "output": "Reject the narrower categories; retain (C)."
+        }
+      ],
+      "crux_move_ref": "NS-Q1-MOVE-2",
+      "check": "Independent definition and counterexample check: 1/2 is rational and real, but not a natural number, integer or whole number; √2 is real but irrational, so reverse inclusion does not follow.",
+      "acceptable_alternatives": [
+        "Rational numbers are a subset of the real numbers; therefore the classification is real number."
+      ],
+      "subpart_answers": [],
+      "verification_status": "CHECKED_BY_AUTHOR",
+      "source_key": {
+        "state": "PRESENT",
+        "value": "(C) a real number"
+      },
+      "key_relation": "MATCHES_KEY"
+    },
+    "extensions": {
+      "grade9v3:analysis": {
+        "topic": "Number Systems",
+        "concept_bucket": "BUCKET-TEST-NCERT-U01-REAL-NUMBERS",
+        "common_wrong_route": "Conflating rationals with integers or reversing Q ⊆ R; test with 1/2 and √2."
+      }
+    },
+    "response": {
+      "type": "single_choice"
+    }
+  }
+}
