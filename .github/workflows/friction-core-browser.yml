@@ -41,6 +41,9 @@ permissions:
 jobs:
   friction-evidence:
     runs-on: ubuntu-latest
+    # Pin browser + OS libraries to the same version as the npm harness.
+    container:
+      image: mcr.microsoft.com/playwright:v1.56.1-noble
     steps:
       - uses: actions/checkout@v4
 
@@ -62,7 +65,7 @@ jobs:
         run: |
           pip install --quiet jsonschema pypdf cffi
           npm install --no-save playwright@1.56.1
-          npx playwright install --with-deps chromium
+          # Chromium and browser system libraries are preinstalled in this image.
 
       - name: Denominator coverage and toughest concept
         run: |
