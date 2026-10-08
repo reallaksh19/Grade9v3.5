@@ -90,7 +90,7 @@ jobs:
       # github.base_ref points to a trial branch, not main. Keep the existing gate.
       - name: Pinned-main baseline test IDs
         env:
-          PINNED_MAIN: 19b08efb5b00a4316877b1cdc2f0818e29495b79
+          PINNED_MAIN: 7a09cc83e4d30194561456a6b746d2063efe607f
         run: |
           git cat-file -e "${PINNED_MAIN}^{commit}"
           git merge-base --is-ancestor "$PINNED_MAIN" HEAD
