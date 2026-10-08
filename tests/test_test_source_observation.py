@@ -157,7 +157,7 @@ class TestFourRowOfficialPDFObservation(unittest.TestCase):
                          if q["id"] == self.data["records"][0]["source_id"])
                 q[field] = value
                 self.write()
-                with self.assertRaisesRegex(ValueError, "raw intake must not inherit"):
+                with self.assertRaisesRegex(ValueError, "raw capture cannot|raw intake must not inherit"):
                     test_source_observation.validate(self.repo)
 
 
