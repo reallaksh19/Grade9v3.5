@@ -541,19 +541,69 @@ class TestToughestConcept(unittest.TestCase):
         microtopic["construction_units"][0]["crux_step_ref"] = unit["step_refs"][2]
         self.package_path.write_text(json.dumps(package), encoding="utf-8")
         details = [g["detail"] for g in self.deploy()["gaps"] if g.get("component") == "CONSTRUCTION_STEPS"]
-        self.assertEqual(len(details), 1, details)
-        self.assertIn("3 of the 4 steps the reference page has for a D3 question", details[0])
+        self.assertEqual(details, [], "three authored dependencies are not deficient only because the target is D3")
+        microtopic["construction_units"][0]["step_refs"] = unit["step_refs"][:1]
+        microtopic["construction_units"][0]["crux_step_ref"] = unit["step_refs"][0]
+        self.package_path.write_text(json.dumps(package), encoding="utf-8")
+        gaps = [g for g in self.deploy()["gaps"] if g.get("component") == "CONSTRUCTION_STEPS"]
+        self.assertEqual(len(gaps), 1, gaps)
+        self.assertIn("1 of the 2 construction steps it needs", gaps[0]["detail"])
 
     def test_naming_the_question_is_not_enough_the_unit_must_work_it_and_point_at_its_step(self):
         receipt = self.deploy()
         self.unit_for(receipt, bank_anchor_ref=None, worked_anchor_ref=None)
         gaps = self.toughest_gaps(self.deploy())
         self.assertEqual(len(gaps), 1, gaps)
-        self.assertIn("its worked example is not Q1", gaps[0])
+        self.assertIn("a worked teaching example", gaps[0])
+        self.unit_for(receipt, bank_anchor_ref="Q-OWNER-FX-02")
+        gaps = self.toughest_gaps(self.deploy())
+        self.assertEqual(len(gaps), 1, gaps)
+        self.assertIn("no explicit target-crux binding", gaps[0])
         self.unit_for(receipt, crux_step_ref="NOT-A-STEP")
         details = [g["detail"] for g in self.deploy()["gaps"] if g["duty"] == "AUTHOR_QUESTION_BRIDGE"]
         self.assertEqual(len(details), 1, details)
         self.assertIn("crux_step_ref", details[0])
+
+    def test_distinct_worked_anchor_must_bind_target_question_crux_and_teach_a_move(self):
+        receipt = self.deploy()
+        unit = self.unit_for(receipt, bank_anchor_ref=None, worked_anchor_ref=None)
+        package = json.loads(self.package_path.read_text(encoding="utf-8"))
+        microtopic = next(m for m in package["microtopics"] if m["id"] == receipt["toughest"]["microtopic_ref"])
+        target = receipt["toughest"]
+        anchor = {
+            "id": "LESSON-FX-INDEPENDENT-VECTORS",
+            "stem": "For a=(1,2) and b=(3,-2), find the vector a+b and justify each component.",
+            "construction_ref": unit["id"],
+            "target_question_ref": target["question_ref"],
+            "target_crux_move_ref": target["crux_move"]["id"],
+            "answer": {
+                "summary": "a+b=(4,0).",
+                "reasoning": ["Add x-components 1+3=4 and y-components 2+(-2)=0; "
+                              "vector addition operates independently on each axis."],
+                "check": "The resultant has the claimed x and y components.",
+            },
+        }
+        microtopic.setdefault("extensions", {}).setdefault("grade9v3:lesson_anchors", {})[unit["id"]] = anchor
+        self.package_path.write_text(json.dumps(package), encoding="utf-8")
+        accepted = self.deploy()
+        self.assertEqual(self.toughest_gaps(accepted), [])
+        page = (deploy_test.PUBLIC_TEST / "products" / self.fixture.slug / "core1a.html").read_text(encoding="utf-8")
+        self.assertIn(anchor["stem"], page)
+        self.assertIn('data-g9-bridge-question="' + target["question_ref"] + '"', page)
+        self.assertNotIn(target["stem"], page, "teaching anchor must not echo the protected target stem")
+
+        # A correct topic and worked solution cannot substitute for an exact crux binding.
+        anchor["target_crux_move_ref"] = "A-DIFFERENT-MOVE"
+        self.package_path.write_text(json.dumps(package), encoding="utf-8")
+        gaps = self.toughest_gaps(self.deploy())
+        self.assertEqual(len(gaps), 1, gaps)
+        self.assertIn("lesson anchor crux does not resolve", gaps[0])
+        anchor["target_crux_move_ref"] = target["crux_move"]["id"]
+        anchor["answer"]["reasoning"] = []
+        self.package_path.write_text(json.dumps(package), encoding="utf-8")
+        gaps = self.toughest_gaps(self.deploy())
+        self.assertEqual(len(gaps), 1, gaps)
+        self.assertIn("no worked reasoning with a justified move", gaps[0])
 
     def test_a_bank_ref_that_names_no_question_of_the_bank_is_a_gap_that_says_which(self):
         receipt = self.deploy()
