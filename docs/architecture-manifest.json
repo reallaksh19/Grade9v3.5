@@ -6,20 +6,20 @@
     "adapter",
     "adapter"
   ],
-  "component_count": 508,
-  "relation_count": 548,
+  "component_count": 509,
+  "relation_count": 549,
   "components_by_role": {
     "CONTRACT": 9,
     "ENGINE": 10,
     "GATES": 2,
     "LIBRARY": 56,
-    "TEST": 249,
+    "TEST": 250,
     "TOOLING": 149,
     "WEB": 16,
     "WEB_CONTRACT": 8,
     "WEB_RUNTIME": 9
   },
-  "digest": "sha256:e981682667a651853345d1789be26d56bf7a43c44d2d9b404d2fb015ce19327d",
+  "digest": "sha256:e8eb686c1d434d80dc10e77c3faed741de6fc4a3fc29704995d40931de8eaa15",
   "components": [
     {
       "path": "Shared/gates/gate.schema.json",
@@ -1334,8 +1334,8 @@
       "path": "Shared/tools/render_core.py",
       "role": "TOOLING",
       "role_description": "Guardrails and generators",
-      "bytes": 205948,
-      "sha256": "8eb784f874a5fcb21bd2c44bc63203d24861cd248ec85b173e8131c3230c446f"
+      "bytes": 209065,
+      "sha256": "51fd6d7687a9e560ac46034bd0c53121a927a98b5a1f22487e8d773da1d06990"
     },
     {
       "path": "Shared/tools/renderer_inventory.py",
@@ -3331,6 +3331,13 @@
       "role_description": "Executable checks",
       "bytes": 9454,
       "sha256": "e18d931cde84005e444760738439155e208aa39532f6e675d5bd5d2b7ab66217"
+    },
+    {
+      "path": "tests/test_svg_stage_disclosure.py",
+      "role": "TEST",
+      "role_description": "Executable checks",
+      "bytes": 5667,
+      "sha256": "f12660568c5e50a638a27d2f38a4964103b3dfc334bab1dd8e6fee1fcde636ae"
     },
     {
       "path": "tests/test_tablet_audit.py",
@@ -6171,6 +6178,11 @@
     },
     {
       "from": "tests/test_study_start.py",
+      "to": "Shared.tools",
+      "kind": "IMPORTS"
+    },
+    {
+      "from": "tests/test_svg_stage_disclosure.py",
       "to": "Shared.tools",
       "kind": "IMPORTS"
     },
