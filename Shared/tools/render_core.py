@@ -1658,6 +1658,42 @@ def _toughest_unit_gaps(ctx: Ctx, m: dict, units: list[dict], toughest: dict) ->
             + (f"the move a learner misses ({move!r})" if move else "the move the question turns on"),
             "CORE1A", component="QUESTION_BRIDGE",
         )
+        return
+
+    # Naming the hard question is not a worked lesson. The traditional
+    # question-as-example path remains possible; an independent lesson example
+    # must bind the *actual* target question and its exact crux move, not merely
+    # share the topic. This check is only applied at authoring REFERENCE depth.
+    authored = ((m.get("extensions") or {}).get("grade9v3:lesson_anchors") or {})
+    bank_by_id = {q["id"]: q for q in ctx.bank if isinstance(q, dict) and q.get("id")}
+    for unit in builders:
+        novel_anchor = authored.get(unit["id"])
+        if novel_anchor is not None:
+            problems = learning_repair.anchor_problems(
+                novel_anchor, bank_by_id, unit["id"], expected_ref=ref)
+            answer = novel_anchor.get("answer") if isinstance(novel_anchor, dict) else {}
+            answer = answer if isinstance(answer, dict) else {}
+            reasoning = answer.get("reasoning_route") or answer.get("reasoning") or []
+            if not isinstance(reasoning, list) or not any(
+                    (isinstance(step, str) and step.strip())
+                    or (isinstance(step, dict) and step.get("action") and step.get("why_valid"))
+                    for step in reasoning):
+                problems.append("lesson anchor has no worked reasoning with a justified move")
+            if problems:
+                ctx.gap("AUTHOR_TOUGHEST_CONCEPT", unit["id"],
+                        f"{why}, but the separate worked example is not bound to the real target crux: "
+                        + "; ".join(problems), "CORE1A", component="WORKED_EXAMPLE")
+        elif unit.get("bank_anchor_ref") == ref:
+            continue  # The traditional question-as-worked-example path.
+        elif unit.get("bank_anchor_ref") or unit.get("worked_anchor_ref"):
+            ctx.gap("AUTHOR_TOUGHEST_CONCEPT", unit["id"],
+                    f"{why}, but the different worked example has no explicit target-crux binding: "
+                    "author grade9v3:lesson_anchors with target_question_ref, target_crux_move_ref "
+                    "and construction_ref", "CORE1A", component="WORKED_EXAMPLE")
+        else:
+            ctx.gap("AUTHOR_TOUGHEST_CONCEPT", unit["id"],
+                    f"{why}, but its crux_question_refs are only a label: a worked teaching example "
+                    "bound to the target question and crux is absent", "CORE1A", component="WORKED_EXAMPLE")
 
 
 def core1b(ctx: Ctx, m: dict) -> str:
