@@ -94,6 +94,17 @@ for (const width of [320, 390, 768, 1280]) {
   if (!facts.boundary) failures.push(`${where}: production-isolation statement missing`);
   if (facts.small.length) failures.push(`${where}: controls under 48px: ${facts.small.slice(0,6).join(', ')}`);
 
+  // Direct source-recature browser assertion: the PDF overbars must survive
+  // the actual card renderer without laundering the superseded academic PASS.
+  const correctedQ7 = page.locator('[data-g9-test-question="ncert-exemplar-g9-math-u01-q07"]');
+  const q7Options = (await correctedQ7.locator('.tqb-options li').allTextContents()).map(text => text.trim());
+  const expectedQ7 = ['(A) 0.14', '(B) 0.141̅6̅', '(C) 0.1̅4̅1̅6̅', '(D) 0.4014001400014...'];
+  if (JSON.stringify(q7Options) !== JSON.stringify(expectedQ7))
+    failures.push(`${where}: official Q7 repeating-decimal overbar transcription differs from captured source`);
+  if (await correctedQ7.getAttribute('data-g9-validation') !== 'UNVALIDATED'
+      || await correctedQ7.getAttribute('data-g9-custody') !== 'EVIDENCE_PENDING')
+    failures.push(`${where}: corrected Q7 illegally inherited old academic/source authority`);
+
   await page.locator('#tqbUnit').selectOption('Unit 2: Polynomials');
   await page.waitForTimeout(50);
   const polynomialCount = await page.locator('[data-g9-test-question]:not([hidden])').count();
@@ -159,6 +170,12 @@ for (const width of [320, 768, 1280]) {
   if (custodyFacts.ready !== 12 || custodyFacts.pending !== 198 || custodyFacts.evidencedAnswers !== 12
       || custodyFacts.mistaken || custodyFacts.badges < 210 * 8)
     failures.push('TEST home @' + width + ': custody badges were missing or overstated: ' + JSON.stringify(custodyFacts));
+  const homeQ7 = page.locator('[data-g9-intake-source-id="ncert-exemplar-g9-math-u01-q07"]');
+  const homeQ7Text = await homeQ7.innerText();
+  if (!homeQ7Text.includes('(B) 0.141̅6̅') || !homeQ7Text.includes('(C) 0.1̅4̅1̅6̅')
+      || await homeQ7.getAttribute('data-g9-source-custody') !== 'EVIDENCE_PENDING')
+    failures.push('TEST home @' + width + ': Q7 math overbars or source-pending disclosure missing');
+
   const select = key => page.locator('[data-g9-intake-facet="' + key + '"]');
   await select('topic').selectOption('Polynomials');
   if (await cards.count() !== 30) failures.push('TEST home @' + width + ': topic filter expected 30');
