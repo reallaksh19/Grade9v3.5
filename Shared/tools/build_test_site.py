@@ -290,6 +290,75 @@ def render_owner_bank_section(banks: list[dict]) -> str:
     return "".join(blocks)
 
 
+INTAKE_HOME_FILTER_HTML = """<div data-g9-intake-controls style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px;margin:14px 0"><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Search staged questions<input type="search" data-g9-intake-search placeholder="Question, ID or topic" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Subject<select data-g9-intake-facet="subject" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All subjects</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Grade<select data-g9-intake-facet="grade" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All grades</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Source authority<select data-g9-intake-facet="authority" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All authorities</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Source kind<select data-g9-intake-facet="kind" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All source kinds</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Topic<select data-g9-intake-facet="topic" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All topics</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Subtopic<select data-g9-intake-facet="subtopic" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All subtopics</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Question type<select data-g9-intake-facet="type" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All types</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Intake state<select data-g9-intake-facet="intake" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All intake states</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Blueprint readiness<select data-g9-intake-facet="blueprint" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All readiness states</option></select></label><button type="button" data-g9-intake-reset style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px;cursor:pointer">Clear intake filters</button></div><p data-g9-intake-count aria-live="polite" style="font-size:14px"></p>"""
+INTAKE_HOME_FILTER_SCRIPT = """<script src="question-bank/questions.js"></script><script>
+(() => {
+  const projection = window.G9_TEST_QUESTION_BANK || { banks: [] };
+  const byId = new Map(projection.banks.flatMap(bank => bank.questions || []).map(q => [q.id, q]));
+  const blueprint = q => q.custody_evidence_status === "INDEPENDENTLY_EVIDENCED" ? "READY_FOR_BLUEPRINT"
+    : q.custody_evidence_status === "SOURCE_TEXT_HOLD" ? "SOURCE_TEXT_HOLD" : "EVIDENCE_PENDING";
+  const dimensions = [
+    ["subject", q => q.subject || "Unknown"],
+    ["grade", q => String(q.grade ?? "Unknown")],
+    ["authority", q => q.source_authority || "Unknown"],
+    ["kind", q => q.source_kind || "Unknown"],
+    ["topic", q => q.topic_label || "Unknown"],
+    ["subtopic", q => q.subtopic_label || "Not labelled"],
+    ["type", q => q.question_type || "Unknown"],
+    ["intake", q => q.custody_evidence_status === "SOURCE_TEXT_HOLD" ? "SOURCE_TEXT_HOLD" : "TEST_VISIBLE"],
+    ["blueprint", blueprint],
+  ];
+  for (const bank of document.querySelectorAll('article[data-g9-unit^="intake-"]')) {
+    const container = bank.querySelector("[data-g9-intake-controls]");
+    const count = bank.querySelector("[data-g9-intake-count]");
+    if (!container || !count) continue;
+    const cards = [...bank.querySelectorAll('details > div[style*="border:1px"]')];
+    const rows = cards.map(el => {
+      const id = el.querySelector("p strong")?.textContent?.trim();
+      const q = byId.get(id);
+      if (!q) throw new Error("TEST intake source projection missing " + id);
+      const values = Object.fromEntries(dimensions.map(([key, get]) => [key, get(q)]));
+      el.dataset.g9IntakeSourceId = q.id;
+      return { el, values, search: [q.id, q.original_identifier, q.stem, q.topic_label,
+        q.subtopic_label, q.chapter_or_unit, q.question_type].join(" ").toLowerCase() };
+    });
+    const facets = [...container.querySelectorAll("[data-g9-intake-facet]")];
+    for (const select of facets) {
+      const key = select.dataset.g9IntakeFacet;
+      const distinct = [...new Set(rows.map(row => row.values[key]))].sort((a,b) => a.localeCompare(b));
+      for (const value of distinct) {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value.replaceAll("_", " ");
+        select.append(option);
+      }
+    }
+    const search = container.querySelector("[data-g9-intake-search]");
+    const apply = () => {
+      const query = search.value.trim().toLowerCase();
+      let shown = 0;
+      for (const row of rows) {
+        const ok = (!query || row.search.includes(query)) &&
+          facets.every(select => !select.value || row.values[select.dataset.g9IntakeFacet] === select.value);
+        row.el.hidden = !ok;
+        if (ok) shown++;
+      }
+      count.textContent = shown + " of " + rows.length + " official questions shown";
+    };
+    search.addEventListener("input", apply);
+    facets.forEach(select => select.addEventListener("change", apply));
+    container.querySelector("[data-g9-intake-reset]").addEventListener("click", () => {
+      search.value = "";
+      facets.forEach(select => { select.value = ""; });
+      apply();
+      search.focus();
+    });
+    apply();
+  }
+})();
+</script>"""
+
+
 def render_intake_section(intakes: list[dict], custody: dict) -> str:
     ready = {row["intake_question_ref"]: row for row in custody["handoff"]}
     held = set(custody["hold_ids"])
@@ -363,7 +432,7 @@ def render_intake_section(intakes: list[dict], custody: dict) -> str:
             f'a stored stem digest or historical verification label alone does not establish official custody. '
             f'Academic blueprinting (difficulty bands D1–D4, cognitive demand, QRT cells, worked solutions) is deferred.</p>'
             f'<p><strong>Topics:</strong> {topic_summary}</p>'
-            f'<details><summary>Inspect {len(q_list)} parked intake questions</summary>{all_q_html}</details>'
+            f'<details><summary>Inspect {len(q_list)} parked intake questions</summary>{INTAKE_HOME_FILTER_HTML}{all_q_html}</details>'
         ))
     return "".join(blocks)
 
@@ -416,7 +485,7 @@ def hub_page() -> str:
                f'<li>{len(audits)} candidate QA record(s) in TEST/candidates</li>'
                f'<li>TEST-only search index: {len(search_rows)} parked question(s); production search untouched</li></ul>'
                '<p class="g9-prov">How to add each of them: TEST/README.md in the repository.</p>')
-        + search_index_script(search_rows))
+        + search_index_script(search_rows) + INTAKE_HOME_FILTER_SCRIPT)
     return frame(1, "TEST", "index.html", body, heading="TEST: a sandbox for stress runs")
 
 

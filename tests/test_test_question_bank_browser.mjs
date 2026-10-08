@@ -132,6 +132,38 @@ for (const width of [320, 390, 768, 1280]) {
   await context.close();
 }
 
+// The TEST home must support real per-question filtering from the normalized TEST-only bank.
+for (const width of [320, 768, 1280]) {
+  const context = await browser.newContext({ viewport: { width, height: 900 } });
+  const page = await context.newPage();
+  const pageErrors = [];
+  page.on('pageerror', e => pageErrors.push(e.message));
+  page.on('response', response => {
+    if (response.status() >= 400) pageErrors.push(response.status() + ' ' + response.url());
+  });
+  await page.goto(base + '/test/index.html', { waitUntil: 'networkidle' });
+  await page.locator('article[data-g9-unit^="intake-"] details > summary').click();
+  await page.waitForFunction(() => document.querySelectorAll('[data-g9-intake-source-id]').length === 210);
+  const cards = page.locator('[data-g9-intake-source-id]:not([hidden])');
+  if (await cards.count() !== 210) failures.push('TEST home @' + width + ': did not render all 210 questions');
+  const select = key => page.locator('[data-g9-intake-facet="' + key + '"]');
+  await select('topic').selectOption('Polynomials');
+  if (await cards.count() !== 30) failures.push('TEST home @' + width + ': topic filter expected 30');
+  await select('blueprint').selectOption('READY_FOR_BLUEPRINT');
+  if (await cards.count() !== 5) failures.push('TEST home @' + width + ': combined topic/ready expected 5');
+  await page.locator('[data-g9-intake-reset]').click();
+  await select('blueprint').selectOption('SOURCE_TEXT_HOLD');
+  if (await cards.count() !== 1) failures.push('TEST home @' + width + ': Q1 text HOLD expected 1');
+  await page.locator('[data-g9-intake-reset]').click();
+  await select('blueprint').selectOption('EVIDENCE_PENDING');
+  if (await cards.count() !== 198) failures.push('TEST home @' + width + ': pending expected 198');
+  await page.locator('[data-g9-intake-reset]').click();
+  await page.locator('[data-g9-intake-search]').fill('ncert-exemplar-g9-math-u13-q30');
+  if (await cards.count() !== 1) failures.push('TEST home @' + width + ': exact ID search expected 1');
+  pageErrors.forEach(err => failures.push('TEST home @' + width + ': ' + err));
+  await context.close();
+}
+
 await browser.close();
 server.close();
 
