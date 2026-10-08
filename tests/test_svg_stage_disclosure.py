@@ -113,6 +113,17 @@ class StagedSvgDisclosure(unittest.TestCase):
         self.assertIn("Given", rendered)
         self.assertNotIn("W = 42", rendered)
 
+    def test_unstaged_legacy_asset_is_not_mistaken_for_an_invalid_stage(self):
+        # The catalogue may retain reveal_stages for other scene assets.
+        # An asset with no stage markers follows existing non-staged rendering.
+        svg = (
+            "<svg aria-label='Given diagram'><title>Given diagram</title>"
+            "<desc>Visible source setup</desc><text>Given setup</text></svg>"
+        )
+        rendered, gaps = self._render(svg)
+        self.assertEqual(gaps, [])
+        self.assertIn("Given setup", rendered)
+
     def test_explicit_empty_allowlist_shows_no_figure(self):
         svg = self._svg('"', '"')
         rendered, gaps = self._render(svg, allowed=[])
