@@ -318,7 +318,7 @@ def validate_directory(
                 ensure("Grade-level enrichment review required" in item["text"],
                        f"{id}: scope warning removed")
     ensure("No answers or solutions appear on this page." in first
-           and "not an official SOF" in first.lower(),
+           and "not an official sof" in first.lower(),
            "learners are misled about published research preview status")
     return {
         "status":"MATH_TAB_RESEARCH_INDEX_WITH_DRAFT_PRACTICE_ONLY",
