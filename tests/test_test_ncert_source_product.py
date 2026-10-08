@@ -114,6 +114,26 @@ class TestNcertQ1ParkedProduct(unittest.TestCase):
         for page in pages.values():
             self.assertNotIn("accepted=true", page.lower())
 
+    def test_witnessed_ncert_metadata_is_complete_without_academic_admission(self):
+        from Shared.tools import learner_metadata
+
+        row = self.view["questions"][0]
+        self.assertEqual(
+            row["extensions"]["grade9v3:provenance_class"], "NCERT_CUSTODY_WITNESSED"
+        )
+        self.assertEqual(learner_metadata.bank_question_problems(row), [])
+        analysis = row["extensions"]["grade9v3:analysis"]
+        self.assertEqual(analysis["learner_question_type"], "single_correct_mcq")
+        self.assertEqual(analysis["difficulty"]["band"], "D2")
+        self.assertEqual(
+            analysis["difficulty"]["score"],
+            sum(analysis["difficulty"]["components"].values()),
+        )
+        self.assertTrue(row["extensions"]["grade9v3:ncert_source_lineage"][
+            "academic_status_not_granted_by_view"
+        ])
+        self.assertEqual(row["status"], "CANDIDATE")
+
     def test_mutated_intake_or_answer_witness_cannot_reuse_render_view(self):
         manipulated = copy.deepcopy(self.bank)
         manipulated["questions"][0]["stem_sha256"] = "sha256:" + "0" * 64
