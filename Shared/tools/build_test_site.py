@@ -22,7 +22,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.library.resolve import build_index  # noqa: E402
-from Shared.tools import atlas_index, build_test_question_bank, build_web_data, matrix_conformance, product_coverage, render_core, test_intake_registry  # noqa: E402
+from Shared.tools import atlas_index, build_test_question_bank, build_web_data, matrix_conformance, product_coverage, render_core, test_intake_registry, test_source_custody  # noqa: E402
 
 esc = render_core.esc
 TEST_ROOT = REPO / "TEST"
@@ -95,14 +95,15 @@ def owner_banks() -> list[dict]:
 
 
 def test_search_index() -> list[dict]:
-    """TEST-only derived index over parked question sources."""
+    """TEST-only index: sourced READY means independent custody, not a stored workflow label."""
+    ready = set(test_source_custody.reconcile(REPO)["ready_ids"])
     rows: list[dict] = []
     for bank in intake_banks():
         for q in bank.get("questions", []):
             rows.append({
                 "id": q.get("id"), "bank_id": bank.get("bank_id"), "kind": "OFFICIAL_INTAKE",
                 "topic": q.get("topic_label"), "subtopic": q.get("subtopic_label"), "stem": q.get("stem"),
-                "status": q.get("workflow_status"), "difficulty": None, "demand": None,
+                "status": "READY_FOR_BLUEPRINT" if q["id"] in ready else "EVIDENCE_PENDING", "difficulty": None, "demand": None,
             })
     for bank in owner_banks():
         for q in bank.get("questions", []):
@@ -278,7 +279,8 @@ def render_owner_bank_section(banks: list[dict]) -> str:
     return "".join(blocks)
 
 
-def render_intake_section(intakes: list[dict]) -> str:
+def render_intake_section(intakes: list[dict], custody: dict) -> str:
+    ready = {row["intake_question_ref"]: row for row in custody["handoff"]}
     if not intakes:
         return ""
     blocks = []
@@ -303,13 +305,20 @@ def render_intake_section(intakes: list[dict]) -> str:
             ans_block = f"<p><strong>Official Answer:</strong> {esc(ans_text)} <em>({esc(q.get('answer_key_locator', ''))})</em></p>" if ans_text else ""
             src_url = q.get("source_url", "")
             pdf_name = src_url.rsplit("/", 1)[-1] if src_url else ""
-            src_link = f' · <span class="g9-prov">Source document: {esc(pdf_name)}</span>' if pdf_name else ""
+            source = ready.get(qid)
+            evidence_state = "SOURCE EVIDENCED" if source else "EVIDENCE PENDING"
+            verified_page = source["source_locator"] if source else None
+            page_note = (f' · Printed page {verified_page["printed_page"]} / PDF index {verified_page["pdf_page_index"]}'
+                         if verified_page else ' · Exact official page not independently reconciled')
+            src_link = (f' · <a href="{esc(src_url)}" target="_blank" rel="noopener noreferrer" '
+                        f'style="display:inline-flex;min-height:48px;align-items:center">Official source PDF: {esc(pdf_name)}</a>'
+                        f'<span class="g9-prov">{page_note}</span>') if pdf_name else ""
 
             q_cards.append(
                 f'<div style="border:1px solid #e2e8f0;border-radius:6px;padding:12px;margin:8px 0;background:#fff">'
                 f'<div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;margin-bottom:6px">'
                 f'<span style="background:#0284c7;color:#fff;padding:2px 6px;border-radius:4px">{esc(q.get("topic_label", ""))}</span>'
-                f'<span style="background:#16a34a;color:#fff;padding:2px 6px;border-radius:4px">{esc(q.get("text_verification_status", ""))}</span>'
+                f'<span style="background:#16a34a;color:#fff;padding:2px 6px;border-radius:4px">{esc(evidence_state)}</span>'
                 f'<span style="background:#64748b;color:#fff;padding:2px 6px;border-radius:4px">Difficulty: not analysed</span>'
                 f'<span style="background:#64748b;color:#fff;padding:2px 6px;border-radius:4px">Demand: not analysed</span>'
                 f'</div>'
@@ -332,12 +341,14 @@ def render_intake_section(intakes: list[dict]) -> str:
             ]),
             f'<h2>Stage-1 Question Intake: {esc(bank_id)}</h2>'
             f'<p class="g9-prov">Source scope: {esc(", ".join(bank.get("source_scope", [])))} · {len(q_list)} question(s) · '
-            f'Status: READY_FOR_BLUEPRINT · Verbatim custody: VERBATIM</p>'
+            f'Independent source custody: {sum(q["id"] in ready for q in q_list)} READY_FOR_BLUEPRINT · '
+            f'{sum(q["id"] not in ready for q in q_list)} EVIDENCE_PENDING · historical intake labels are not authority</p>'
             f'<p>Official questions ingested from <em>{esc(bank.get("created_from", "official source"))}</em>. '
-            f'All items verified against official PDFs with cryptographic stem digests (sha256). '
+            f'Independent official-document witnesses currently cover only the separately reconciled records; '
+            f'a stored stem digest or historical verification label alone does not establish official custody. '
             f'Academic blueprinting (difficulty bands D1–D4, cognitive demand, QRT cells, worked solutions) is deferred.</p>'
             f'<p><strong>Topics:</strong> {topic_summary}</p>'
-            f'<details><summary>Inspect {len(q_list)} verified intake questions</summary>{all_q_html}</details>'
+            f'<details><summary>Inspect {len(q_list)} parked intake questions</summary>{all_q_html}</details>'
         ))
     return "".join(blocks)
 
@@ -347,6 +358,7 @@ def hub_page() -> str:
     pages = interactive_pages()
     counts = source_counts()
     intakes = intake_banks()
+    custody = test_source_custody.reconcile(REPO)
     owner = owner_banks()
     search_rows = test_search_index()
     audits = candidate_audits()
@@ -370,7 +382,7 @@ def hub_page() -> str:
         '<p class="g9-prov">A gap count of 0 means the depth check found nothing missing. It counts what is absent, '
         'not how good it is, and it does not say the content has been reviewed.</p>'
         + render_candidate_audit_section(audits)
-        + render_intake_section(intakes)
+        + render_intake_section(intakes, custody)
         + render_owner_bank_section(owner)
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
         + stage(2, "Core1A", "Concept construction for the same topic", core1a)
