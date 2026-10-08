@@ -1,6 +1,7 @@
 """Issue #131: first genuine NCERT Q1-lineage TEST product; no canonical admission."""
 from __future__ import annotations
 
+import copy
 import importlib.util
 import json
 import sys
@@ -13,7 +14,7 @@ from jsonschema import Draft202012Validator
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import product_manifest, render_core, test_source_custody  # noqa: E402
+from Shared.tools import matrix_conformance, product_manifest, render_core, test_source_custody  # noqa: E402
 
 PACKAGE = REPO / "TEST/library/ncert-u01-q01.v1.json"
 MATRIX = REPO / "TEST/matrices/ncert-u01-q01.rungs.json"
@@ -109,6 +110,21 @@ class TestNcertQ1ParkedProduct(unittest.TestCase):
         for page in pages.values():
             self.assertNotIn("accepted=true", page.lower())
 
+    def test_mutated_intake_or_answer_witness_cannot_reuse_render_view(self):
+        manipulated = copy.deepcopy(self.bank)
+        manipulated["questions"][0]["stem_sha256"] = "sha256:" + "0" * 64
+        with mock.patch.object(adapter.test_intake_registry, "load_intake_banks",
+                               return_value=[manipulated]):
+            with self.assertRaisesRegex(ValueError, "source stem digest changed"):
+                adapter.build(REPO)
+        valid = test_source_custody.reconcile(REPO)
+        bad = copy.deepcopy(valid)
+        q1 = next(row for row in bad["handoff"] if row["intake_question_ref"] == SOURCE_ID)
+        q1["official_answer_key_ref"]["answer_key"] = "(A)"
+        with mock.patch.object(adapter.test_source_custody, "reconcile", return_value=bad):
+            with self.assertRaisesRegex(ValueError, "official answer key not independently evidenced"):
+                adapter.build(REPO)
+
     def test_matrix_uses_same_microtopic_and_has_real_content(self):
         mic = self.package["microtopics"][0]["id"]
         self.assertEqual(self.matrix["bucket_id"], self.package["buckets"][0]["id"])
@@ -117,6 +133,7 @@ class TestNcertQ1ParkedProduct(unittest.TestCase):
         self.assertTrue(all(r["microtopic_ref"] == mic and r["must_contain"]
                             and r["controlled_variation"] for r in self.matrix["rungs"]))
         self.assertIn(SOURCE_ID, self.package["question_families"][0]["item_refs"])
+        self.assertEqual(matrix_conformance.board_findings(self.matrix), [])
 
     def test_publication_and_generated_pages_are_not_being_faked(self):
         self.assertFalse((REPO / "Mathematics/library/ncert-u01-q01.v1.json").exists())
