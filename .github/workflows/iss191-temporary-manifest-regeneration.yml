@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Remove ephemeral generator workflow from final source inventory
-        run: rm -- .github/workflows/iss191-temporary-manifest-regeneration.yml
+        run: git rm -- .github/workflows/iss191-temporary-manifest-regeneration.yml
       - name: Generate governed architecture manifest from final intended tree
         run: python3 Shared/tools/build_manifest.py
       - name: Commit exact generated manifest and temporary workflow removal
