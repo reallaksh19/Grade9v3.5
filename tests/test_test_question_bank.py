@@ -59,6 +59,29 @@ class TestTestQuestionBank(unittest.TestCase):
         self.assertEqual(held, {"ncert-exemplar-g9-math-u02-q23"})
         self.assertEqual(sum(q["workflow_status"] == "DUPLICATE_REVIEW" for q in rows), 0)
 
+    def test_custody_evidence_is_separate_from_legacy_source_and_academic_states(self):
+        projection = build_test_question_bank.payload(REPO)
+        self.assertEqual(projection["custody_evidence_counts"],
+                         {"EVIDENCE_PENDING": 204, "INDEPENDENTLY_EVIDENCED": 6})
+        rows = [q for bank in projection["banks"] for q in bank["questions"]]
+        self.assertEqual(len(rows), 210)
+        evidenced = [q for q in rows if q["custody_evidence_status"] == "INDEPENDENTLY_EVIDENCED"]
+        self.assertEqual([q["id"] for q in evidenced],
+                         [f"ncert-exemplar-g9-math-u01-q{i:02d}" for i in range(1, 7)])
+        for q in evidenced:
+            self.assertIsNotNone(q["custody_source_locator"])
+            self.assertIn("ieep201.pdf", q["custody_question_source_url"])
+            self.assertIn("ieep2an.pdf", q["custody_answer_source_url"])
+            self.assertIn("#129:", q["custody_evidence_ref"])
+        pending = [q for q in rows if q["custody_evidence_status"] == "EVIDENCE_PENDING"]
+        self.assertEqual(len(pending), 204)
+        self.assertTrue(all(q["custody_source_locator"] is None for q in pending))
+        self.assertTrue(all(q["custody_evidence_ref"] is None for q in pending))
+        self.assertTrue(all(q["custody_answer_source_url"] is None for q in pending))
+        self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 150, "VALIDATED": 59})
+        self.assertIn("independent source evidence", build_test_question_bank.render_page(REPO))
+        self.assertIn('target="_blank" rel="noopener noreferrer"', build_test_question_bank.render_page(REPO))
+
     def test_shell_makes_source_and_academic_states_distinct(self):
         page = build_test_question_bank.render_page(REPO)
         self.assertIn("SOURCE VERIFIED", page)
