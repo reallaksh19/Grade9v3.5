@@ -133,8 +133,6 @@ def reconcile(repo: Path) -> dict:
             _require(record.get("original_identifier") == source["original_identifier"]
                      and record.get("options") == source.get("options", []),
                      where, f"question identifier/options mismatch for {qid}")
-            _require(QUESTION_WITNESS_SCOPE.get(record.get("verification_evidence_ref"), {}).get(qid) == digest,
-                     where, f"question witness scope or stem digest mismatch for {qid}")
             locator = record.get("source_locator") or {}
             _require(isinstance(locator, dict), where, f"invalid locator for {qid}")
             _require(all(locator.get(key) == source[key] for key in
@@ -149,6 +147,8 @@ def reconcile(repo: Path) -> dict:
                      and record.get("text_verification_status") == "TEXT_VERIFIED_AGAINST_OFFICIAL"
                      and _evidence_ref(record.get("verification_evidence_ref")),
                      where, f"independent source/text evidence missing for {qid}")
+            _require(QUESTION_WITNESS_SCOPE.get(record.get("verification_evidence_ref"), {}).get(qid) == digest,
+                     where, f"question witness scope or stem digest mismatch for {qid}")
             _require(record.get("workflow_status") == "READY_FOR_BLUEPRINT",
                      where, f"unsupported READY claim for {qid}")
             # Question-text readiness is independent of answer-key availability.
