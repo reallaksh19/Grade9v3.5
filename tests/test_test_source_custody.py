@@ -59,14 +59,14 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
         result = test_source_custody.reconcile(self.repo)
         first = result["handoff"][0]
         sixth = result["handoff"][5]
-        self.assertEqual(self.bank_doc["questions"][0]["page"], 1)
+        self.assertEqual(self.bank_doc["questions"][0]["unverified_legacy_page"], 1)
         self.assertEqual(first["source_locator"]["printed_page"], 2)
         self.assertEqual(first["source_locator"]["pdf_page_index"], 1)
         self.assertEqual(sixth["source_locator"]["printed_page"], 3)
         self.assertEqual(sixth["source_locator"]["pdf_page_index"], 2)
         self.assertNotIn("edition_or_year", first)
         self.assertIn("ieep2an.pdf", first["official_answer_key_ref"]["document_url"])
-        self.assertEqual(self.bank_doc["questions"][0]["workflow_status"], "READY_FOR_BLUEPRINT")
+        self.assertEqual(self.bank_doc["questions"][0]["workflow_status"], "EVIDENCE_PENDING")
 
     def test_no_overlay_means_no_independently_evidenced_ready_records(self):
         self.overlay_path.unlink()
