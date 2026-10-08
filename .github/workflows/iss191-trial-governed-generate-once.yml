@@ -11,7 +11,9 @@ permissions:
   contents: write
 jobs:
   regenerate:
-    if: github.event.before == 'ec83e87b636298eaea190dacf514081936325f93' && github.event.head_commit.message == 'ISS191 U5: launch one-shot governed generated closure'
+    if: >-
+      github.event.before == '094a5d39fb0a3b7b940fe3103a9e609e539a1aee' &&
+      github.event.head_commit.message == 'ISS191 U5: correct one-shot governed-generation trigger'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
