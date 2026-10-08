@@ -129,6 +129,24 @@ class TestNcertQ1ParkedProduct(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "official answer key not independently evidenced"):
                 adapter.build(REPO)
 
+    def test_core1a_unit_names_actual_source_crux_and_honest_waivers(self):
+        microtopic = self.package["microtopics"][0]
+        unit, = microtopic["construction_units"]
+        self.assertEqual(unit["step_refs"], [step["id"] for step in microtopic["teaching_path"]])
+        self.assertEqual(unit["bank_anchor_ref"], SOURCE_ID)
+        self.assertEqual(unit["crux_question_refs"], [SOURCE_ID])
+        self.assertEqual(unit["crux_step_ref"], "NS-Q1-T3")
+        self.assertNotIn("worked_anchor_ref", unit)
+        self.assertEqual(self.package["questions"], [])
+        self.assertEqual(len(unit["independent_checks"]), 2)
+        waivers = self.view["questions"][0]["extensions"]["grade9v3:component_waivers"]
+        self.assertEqual(waivers, json.loads(CORE2_AUTHOR.read_text(encoding="utf-8"))
+                         ["render_record_template"]["extensions"]["grade9v3:component_waivers"])
+        self.assertIn("no separately stated conditions", waivers["CONDITIONS"])
+        self.assertIn("No source figure", waivers["REPRESENTATION"])
+        self.assertEqual(self.view["questions"][0]["stem"], self.question["stem"])
+        self.assertEqual(self.view["questions"][0]["options"], self.question["options"])
+
     def test_matrix_uses_same_microtopic_and_has_real_content(self):
         mic = self.package["microtopics"][0]["id"]
         self.assertEqual(self.matrix["bucket_id"], self.package["buckets"][0]["id"])
