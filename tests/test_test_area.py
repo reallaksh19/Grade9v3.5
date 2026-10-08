@@ -786,9 +786,13 @@ class TestOwnerBankFromIntake(unittest.TestCase):
         del row["scaffolds"]
         del row["answer"]["reasoning_route"]
         problems = " ".join(owner_bank.check(bank))
-        self.assertIn("HINT_LADDER needs 3, the record supplies 0", problems)
-        self.assertIn("SOLUTION_STEPS needs 3, the record supplies 0", problems)
+        self.assertIn("HINT_LADDER is absent", problems,
+                      "a missing expected support lane needs authored support or a reasoned waiver")
+        self.assertIn("SOLUTION_STEPS is absent: answer.reasoning_route", problems,
+                      "missing required reasoning cannot pass merely because no step quota is declared")
         self.assertIn("scaffolds[]", problems, "the message carries the blueprint's own instruction for the author")
+        self.assertEqual(owner_bank.check(bank, complete=False), [],
+                         "draft authoring remains inspectable; only complete admission is fail-closed")
 
     def test_a_rung_must_point_at_a_move_the_crux_must_name_one_and_an_owner_question_has_no_source_hints(self):
         bank = self.bank()
@@ -815,12 +819,14 @@ class TestOwnerBankFromIntake(unittest.TestCase):
             row["extensions"]["grade9v3:analysis"].pop("common_wrong_route")
             del row["answer"]["check"]
         notes = " ".join(owner_bank.check(bank))
-        for component in ("CONDITIONS", "TRAP", "REPRESENTATION", "CHECK"):
-            self.assertIn(f"{component} is absent", notes)   # the blueprint's EXPECTED components, named as it names them
+        for component in ("CONDITIONS", "REPRESENTATION", "CHECK"):
+            self.assertIn(f"{component} is absent", notes)  # these are EXPECTED, not OPTIONAL
+        self.assertNotIn("TRAP is absent", notes,
+                         "an optional pre-attempt wrong-route warning cannot be universally required")
         self.assertIn("component_waivers", notes, "the message says how to waive")
         self.assertEqual(owner_bank.check(bank, complete=False), [], "the renderer builds a draft and reports a gap instead")
         for row in bank["questions"]:
-            row["extensions"]["grade9v3:component_waivers"] = {"CONDITIONS": "the question states none", "TRAP": "no tempting route",
+            row["extensions"]["grade9v3:component_waivers"] = {"CONDITIONS": "the question states none",
                                                                "REPRESENTATION": "nothing to draw", "CHECK": "a unit check adds nothing"}
         self.assertEqual(owner_bank.check(bank), [])
 
