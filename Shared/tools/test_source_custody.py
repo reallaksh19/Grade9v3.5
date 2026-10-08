@@ -11,7 +11,6 @@ import hashlib
 import json
 import sys
 from pathlib import Path
-from urllib.parse import urlsplit
 
 REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
@@ -20,21 +19,9 @@ if __package__ in (None, ""):
 from Shared.tools import test_intake_registry  # noqa: E402
 
 SCHEMA = "grade9v3-test-source-custody-overlay-v1"
-OFFICIAL_HOSTS = {"NCERT_OFFICIAL": {"ncert.nic.in"},
-                  "CBSE_OFFICIAL": {"cbse.gov.in", "cbseacademic.nic.in"}}
-
-
 def _require(condition: bool, where: str, reason: str) -> None:
     if not condition:
         raise ValueError(f"{where}: {reason}")
-
-
-def _official_url(url: str, authority: str) -> bool:
-    if not isinstance(url, str):
-        return False
-    parsed = urlsplit(url)
-    return (parsed.scheme == "https" and parsed.hostname in OFFICIAL_HOSTS.get(authority, set())
-            and not parsed.username and not parsed.password and parsed.port is None)
 
 
 def _evidence_ref(value: object) -> bool:
@@ -65,7 +52,7 @@ def reconcile(repo: Path) -> dict:
             _require(isinstance(name, str) and name and name not in documents,
                      where, "missing or duplicate document id")
             authority = document.get("authority")
-            _require(_official_url(document.get("url"), authority), where, "unofficial document URL")
+            _require(test_intake_registry.official_source_url(document.get("url"), authority), where, "unofficial document URL")
             _require(document.get("role") in {"QUESTION_SOURCE", "ANSWER_KEY"}, where, "invalid document role")
             _require(_evidence_ref(document.get("verification_evidence_ref")), where, "missing source document witness")
             documents[name] = document
