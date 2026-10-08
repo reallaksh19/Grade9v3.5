@@ -2145,6 +2145,18 @@ def core2(ctx: Ctx, q: dict) -> str:
     band = ((analysis.get("difficulty") or {}).get("band")) if isinstance(analysis.get("difficulty"), dict) else None
     waivers = blueprints_api.waivers_of(q)
 
+    # A newly authored Owner-bank question is held to the complete Core2
+    # reasoning contract in a REFERENCE deployment. Legacy prose is still
+    # renderable for FLOOR products, but it is not a substitute for the
+    # move-typed solution that an Owner must finish before acceptance.
+    custody = (q.get("extensions") or {}).get(owner_bank.CUSTODY_KEY) or {}
+    if (ctx.held_to == "REFERENCE"
+            and custody.get("authority_class") == owner_bank.CUSTODY_CLASS
+            and not ans.get("reasoning_route")):
+        ctx.gap("AUTHOR_COMPONENT", rid,
+                "SOLUTION_STEPS is absent: answer.reasoning_route must teach the authored inferential moves",
+                "CORE2", component="SOLUTION_STEPS")
+
     def part(cid: str, body: str, items: int | None = None) -> str:
         return component(ctx, "CORE2", cid, body, rid, items=items, band=band, waivers=waivers)
 
