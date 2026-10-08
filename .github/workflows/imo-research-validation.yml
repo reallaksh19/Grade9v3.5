@@ -30,5 +30,7 @@ jobs:
         run: python TEST/imo-research/validate_seed.py
       - name: Validate printed-source mathematical audit
         run: python TEST/imo-research/validate_math_audit.py
+      - name: Validate SOF syllabus taxonomy mapping
+        run: python TEST/imo-research/validate_taxonomy.py
       - name: Run research-only falsifier tests
         run: python -m unittest discover -s tests -p 'test_imo_*.py' -v
