@@ -127,9 +127,9 @@ def validate_proof(seed: Path=SEED, pilot: Path=PILOT,
            [s.get("claim") for s in steps]==STEPS and
            all(isinstance(s.get("reason"),str) and len(s["reason"])>=100 for s in steps),
            "corresponding/supplementary/bisected angle proof incomplete")
-    ensure(all(part in " ".join(s["reason"] for s in steps).lower()
-               for part in ("parallel","opposite","180°","2y","90°")),
-           "critical geometric angle warrants not explained")
+    explanation=" ".join(s["reason"] for s in steps).lower()
+    ensure(all(part in explanation for part in ("l1∥l2","l3∥l4","opposite","180°","2y","90°")),
+           "critical parallel, opposite-ray and equal-sector warrants not explained")
     analytic=p.get("independent_analytic_check")
     ensure(isinstance(analytic,dict) and
            analytic.get("probe_x_degrees")==[30,60,80] and
