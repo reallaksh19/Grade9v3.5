@@ -147,6 +147,20 @@ class TestPages(unittest.TestCase):
         self.assertIn("QA candidate: NCERT Exemplar Grade 9 Mathematics", hub)
         self.assertIn("2 candidate QA record(s) in TEST/candidates", hub)
 
+    def test_stale_ncert_qa_counts_are_not_current_source_authority(self):
+        """A 209-READY historical QA receipt must not override the custody ledger."""
+        historical = next(a for a in build_test_site.candidate_audits()
+                          if a["candidate_id"] == "NCERT-EXEMPLAR-G9-MATH-210")
+        self.assertEqual(historical["question_counts"]["ready_for_blueprint"], 209)
+        custody = {"total_intake": 210, "ready_for_blueprint": 0,
+                   "source_text_hold": 0, "evidence_pending": 210}
+        html = build_test_site.render_candidate_audit_section([historical], custody)
+        self.assertIn("ready for blueprint: 0", html)
+        self.assertIn("evidence pending: 210", html)
+        self.assertIn("Historical QA receipt", html)
+        self.assertNotIn("ready for blueprint: 209", html)
+        self.assertEqual(historical["question_counts"]["ready_for_blueprint"], 209)
+
     def test_test_search_index_covers_parked_questions_without_becoming_canonical_search(self):
         rows = build_test_site.test_search_index()
         self.assertEqual(len(rows), 220)
