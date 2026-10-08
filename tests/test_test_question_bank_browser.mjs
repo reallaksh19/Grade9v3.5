@@ -98,6 +98,29 @@ for (const width of [320, 390, 768, 1280]) {
   if (polynomialCount !== 30) failures.push(`${where}: Polynomials filter shows ${polynomialCount}, expected 30`);
 
   await page.locator('#tqbReset').click();
+  const facetCases = [
+    ['#tqbSubject', 'Mathematics', 210],
+    ['#tqbGrade', '9', 210],
+    ['#tqbAuthority', 'NCERT_OFFICIAL', 210],
+    ['#tqbKind', 'EXEMPLAR', 210],
+    ['#tqbTopic', 'Polynomials', 30],
+    ['#tqbSubtopic', 'Rational Numbers', 5],
+    ['#tqbIntake', 'SOURCE_TEXT_HOLD', 1],
+    ['#tqbBlueprint', 'READY_FOR_BLUEPRINT', 11],
+    ['#tqbBlueprint', 'SOURCE_TEXT_HOLD', 1],
+    ['#tqbBlueprint', 'EVIDENCE_PENDING', 198],
+  ];
+  for (const [selector, value, expected] of facetCases) {
+    await page.locator(selector).selectOption(value);
+    const shown = await page.locator('[data-g9-test-question]:not([hidden])').count();
+    if (shown !== expected) failures.push(`${where}: ${selector}=${value} showed ${shown}, expected ${expected}`);
+    await page.locator('#tqbReset').click();
+  }
+  await page.locator('#tqbTopic').selectOption('Polynomials');
+  await page.locator('#tqbBlueprint').selectOption('READY_FOR_BLUEPRINT');
+  const combined = await page.locator('[data-g9-test-question]:not([hidden])').count();
+  if (combined !== 5) failures.push(`${where}: combined Polynomials/READY showed ${combined}, expected 5`);
+  await page.locator('#tqbReset').click();
   await page.locator('#tqbSearch').fill('ncert-exemplar-g9-math-u13-q30');
   await page.waitForTimeout(50);
   const idCount = await page.locator('[data-g9-test-question]:not([hidden])').count();

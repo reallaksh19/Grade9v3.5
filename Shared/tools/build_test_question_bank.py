@@ -112,7 +112,7 @@ PAGE = """<!doctype html>
 <title>Question Bank · TEST · Grade9V3</title>
 <link rel="stylesheet" href="../../css/tablet-12-7.css">
 <style>
-.tqb-shell{max-width:1220px;margin:0 auto;padding:24px}.tqb-intro{background:#fff7ed;border:1px solid #fdba74;border-radius:12px;padding:16px;margin:0 0 18px}.tqb-intro strong{color:#9a3412}.tqb-stats{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.tqb-stat,.tqb-badge{display:inline-flex;align-items:center;border-radius:999px;padding:5px 9px;font:700 12px/1.2 system-ui,sans-serif}.tqb-stat{background:#e2e8f0;color:#0f172a}.tqb-controls{display:grid;grid-template-columns:minmax(220px,2fr) minmax(180px,1fr) minmax(160px,1fr) auto;gap:10px;align-items:end;position:sticky;top:0;z-index:3;background:var(--bg,#f8fafc);padding:10px 0 14px}.tqb-controls>*{min-width:0}.tqb-controls label{display:grid;min-width:0;gap:4px;font:700 12px/1.2 system-ui,sans-serif}.tqb-controls input,.tqb-controls select,.tqb-controls button{width:100%;max-width:100%;min-width:0;min-height:48px;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:8px;padding:8px 10px;background:white;color:#0f172a}.tqb-controls button{cursor:pointer;font-weight:700}.tqb-result-count{margin:4px 0 12px;font-weight:700}.tqb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:14px}.tqb-card{border:1px solid #cbd5e1;border-radius:12px;background:#fff;padding:16px;min-width:0}.tqb-card[hidden]{display:none}.tqb-card h2{font-size:18px;margin:10px 0 4px}.tqb-badges{display:flex;gap:6px;flex-wrap:wrap}.tqb-badge-source{background:#dcfce7;color:#166534}.tqb-badge-unvalidated{background:#fef3c7;color:#92400e;border:1px solid #f59e0b}.tqb-badge-validated{background:#dbeafe;color:#1e40af;border:1px solid #60a5fa}.tqb-badge-review{background:#fee2e2;color:#991b1b}.tqb-badge-custody{background:#dcfce7;color:#166534}.tqb-badge-pending{background:#fff7ed;color:#9a3412;border:1px solid #fdba74}.tqb-meta,.tqb-muted{color:#64748b;font-size:13px;overflow-wrap:anywhere}.tqb-stem{font-size:17px;line-height:1.55;margin:14px 0}.tqb-options{margin:8px 0 12px;padding-left:24px}.tqb-options li{margin:5px 0}.tqb-answer{border-top:1px solid #e2e8f0;margin-top:12px;padding-top:10px}.tqb-answer summary{cursor:pointer;font-weight:700;min-height:48px;display:flex;align-items:center}.tqb-warning{background:#fffbeb;border-left:4px solid #f59e0b;padding:8px 10px;font-size:13px}.tqb-card-footer{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;border-top:1px solid #e2e8f0;margin-top:12px;padding-top:10px;color:#64748b;font-size:12px}.tqb-card-footer a{display:inline-flex;min-height:48px;align-items:center;color:#1d4ed8;text-decoration:underline}.tqb-empty{padding:32px;text-align:center;border:1px dashed #94a3b8;border-radius:12px}.tqb-test-nav{display:flex;flex-wrap:wrap;gap:4px;margin:0;padding:0 14px;background:#7c2d12}.tqb-test-nav a{display:inline-flex;min-height:48px;align-items:center;padding:0 10px;color:#fde68a;font-weight:700;text-decoration:none}.tqb-test-banner{background:#7c2d12;color:white;padding:8px 14px;font:600 14px/1.4 system-ui,sans-serif}
+.tqb-shell{max-width:1220px;margin:0 auto;padding:24px}.tqb-intro{background:#fff7ed;border:1px solid #fdba74;border-radius:12px;padding:16px;margin:0 0 18px}.tqb-intro strong{color:#9a3412}.tqb-stats{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.tqb-stat,.tqb-badge{display:inline-flex;align-items:center;border-radius:999px;padding:5px 9px;font:700 12px/1.2 system-ui,sans-serif}.tqb-stat{background:#e2e8f0;color:#0f172a}.tqb-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px;align-items:end;position:sticky;top:0;z-index:3;background:var(--bg,#f8fafc);padding:10px 0 14px}.tqb-controls>*{min-width:0}.tqb-controls label{display:grid;min-width:0;gap:4px;font:700 12px/1.2 system-ui,sans-serif}.tqb-controls input,.tqb-controls select,.tqb-controls button{width:100%;max-width:100%;min-width:0;min-height:48px;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:8px;padding:8px 10px;background:white;color:#0f172a}.tqb-controls button{cursor:pointer;font-weight:700}.tqb-result-count{margin:4px 0 12px;font-weight:700}.tqb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:14px}.tqb-card{border:1px solid #cbd5e1;border-radius:12px;background:#fff;padding:16px;min-width:0}.tqb-card[hidden]{display:none}.tqb-card h2{font-size:18px;margin:10px 0 4px}.tqb-badges{display:flex;gap:6px;flex-wrap:wrap}.tqb-badge-source{background:#dcfce7;color:#166534}.tqb-badge-unvalidated{background:#fef3c7;color:#92400e;border:1px solid #f59e0b}.tqb-badge-validated{background:#dbeafe;color:#1e40af;border:1px solid #60a5fa}.tqb-badge-review{background:#fee2e2;color:#991b1b}.tqb-badge-custody{background:#dcfce7;color:#166534}.tqb-badge-pending{background:#fff7ed;color:#9a3412;border:1px solid #fdba74}.tqb-meta,.tqb-muted{color:#64748b;font-size:13px;overflow-wrap:anywhere}.tqb-stem{font-size:17px;line-height:1.55;margin:14px 0}.tqb-options{margin:8px 0 12px;padding-left:24px}.tqb-options li{margin:5px 0}.tqb-answer{border-top:1px solid #e2e8f0;margin-top:12px;padding-top:10px}.tqb-answer summary{cursor:pointer;font-weight:700;min-height:48px;display:flex;align-items:center}.tqb-warning{background:#fffbeb;border-left:4px solid #f59e0b;padding:8px 10px;font-size:13px}.tqb-card-footer{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;border-top:1px solid #e2e8f0;margin-top:12px;padding-top:10px;color:#64748b;font-size:12px}.tqb-card-footer a{display:inline-flex;min-height:48px;align-items:center;color:#1d4ed8;text-decoration:underline}.tqb-empty{padding:32px;text-align:center;border:1px dashed #94a3b8;border-radius:12px}.tqb-test-nav{display:flex;flex-wrap:wrap;gap:4px;margin:0;padding:0 14px;background:#7c2d12}.tqb-test-nav a{display:inline-flex;min-height:48px;align-items:center;padding:0 10px;color:#fde68a;font-weight:700;text-decoration:none}.tqb-test-banner{background:#7c2d12;color:white;padding:8px 14px;font:600 14px/1.4 system-ui,sans-serif}
 @media(max-width:800px){.tqb-controls{grid-template-columns:1fr;position:static}.tqb-grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -127,6 +127,14 @@ PAGE = """<!doctype html>
 <label>Search<input id="tqbSearch" type="search" placeholder="Question, topic, id…" autocomplete="off"></label>
 <label>Unit<select id="tqbUnit"><option value="">All units</option></select></label>
 <label>Type<select id="tqbType"><option value="">All types</option></select></label>
+<label>Subject<select id="tqbSubject"><option value="">All subjects</option></select></label>
+<label>Grade<select id="tqbGrade"><option value="">All grades</option></select></label>
+<label>Authority<select id="tqbAuthority"><option value="">All authorities</option></select></label>
+<label>Source kind<select id="tqbKind"><option value="">All source kinds</option></select></label>
+<label>Topic<select id="tqbTopic"><option value="">All topics</option></select></label>
+<label>Subtopic<select id="tqbSubtopic"><option value="">All subtopics</option></select></label>
+<label>Intake state<select id="tqbIntake"><option value="">All intake states</option></select></label>
+<label>Blueprint readiness<select id="tqbBlueprint"><option value="">All readiness states</option></select></label>
 <button id="tqbReset" type="button">Clear filters</button>
 </section>
 <p class="tqb-result-count" id="tqbCount" aria-live="polite"></p>
@@ -152,6 +160,31 @@ PAGE = """<!doctype html>
   const sourceFilename = q => String(q.custody_question_source_url || q.source_url || '').split('/').pop();
   const custodyStatus = q => q.custody_evidence_status || 'EVIDENCE_PENDING';
   const sourceVerified = q => q.text_verification_status === 'TEXT_VERIFIED_AGAINST_OFFICIAL';
+  // Never use the historical workflow/status label as an authority for READY.
+  const blueprintState = q => custodyStatus(q) === 'INDEPENDENTLY_EVIDENCED'
+    ? 'READY_FOR_BLUEPRINT' : custodyStatus(q) === 'SOURCE_TEXT_HOLD'
+    ? 'SOURCE_TEXT_HOLD' : 'EVIDENCE_PENDING';
+  const intakeState = q => custodyStatus(q) === 'SOURCE_TEXT_HOLD' ? 'SOURCE_TEXT_HOLD' : 'TEST_VISIBLE';
+  const facets = [
+    ['tqbSubject', q => q.subject || 'Unknown'],
+    ['tqbGrade', q => String(q.grade ?? 'Unknown')],
+    ['tqbAuthority', q => q.source_authority || 'Unknown'],
+    ['tqbKind', q => q.source_kind || 'Unknown'],
+    ['tqbTopic', q => q.topic_label || 'Unknown'],
+    ['tqbSubtopic', q => q.subtopic_label || 'Not labelled'],
+    ['tqbIntake', intakeState],
+    ['tqbBlueprint', blueprintState],
+  ].map(([id, get]) => ({ id, get, control: document.getElementById(id) }));
+  for (const {get, control} of facets) {
+    const counts = new Map();
+    questions.forEach(q => counts.set(get(q), (counts.get(get(q)) || 0) + 1));
+    for (const [value, total] of [...counts].sort(([a],[b]) => a.localeCompare(b))) {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = label(value) + ' (' + total + ')';
+      control.append(option);
+    }
+  }
   const validationStatus = q => q.academic_validation_status || 'UNVALIDATED';
   const reviewBadge = q => q.workflow_status === 'DUPLICATE_REVIEW'
     ? '<span class="tqb-badge tqb-badge-review" data-g9-review-badge>DUPLICATE REVIEW</span>' : '';
@@ -196,7 +229,7 @@ PAGE = """<!doctype html>
         ? 'Independent official-answer custody and Grade9V3 academic validation are separately evidenced.'
         : 'Official-answer custody is independently evidenced. Grade9V3 academic validation is still pending.';
     const answer = q.official_answer_text
-      ? '<details class="tqb-answer"><summary>Official source answer</summary><p><strong>'+esc(q.official_answer_text)+'</strong></p>'
+      ? '<details class="tqb-answer"><summary>'+(q.custody_answer_source_url ? 'Evidenced official answer' : 'Recorded answer — official key custody pending')+'</summary><p><strong>'+esc(q.official_answer_text)+'</strong></p>'
         + '<p class="tqb-muted">'+esc(q.answer_key_locator || '')+'</p>'
         + '<p class="tqb-warning">'+esc(answerNote)+'</p></details>'
       : '<p class="tqb-warning">No source answer is recorded. Academic validation remains pending.</p>';
@@ -211,10 +244,15 @@ PAGE = """<!doctype html>
     article.dataset.g9Review = q.workflow_status || '';
     article.dataset.unit = q.chapter_or_unit || '';
     article.dataset.type = q.question_type || '';
+    facets.forEach(({id,get}) => { article.dataset[id] = get(q); });
     article.dataset.search = text;
     article.innerHTML = '<div class="tqb-badges">'
       + '<span class="tqb-badge '+(independentlyEvidenced ? 'tqb-badge-custody' : 'tqb-badge-pending')+'">'+(independentlyEvidenced ? 'SOURCE EVIDENCED' : sourceHold ? 'SOURCE TEXT HOLD' : 'EVIDENCE PENDING')+'</span>'
-      + '<span class="tqb-badge '+(academic === 'VALIDATED' ? 'tqb-badge-validated' : 'tqb-badge-unvalidated')+'">'+esc(academic)+'</span>'+reviewBadge(q)+'</div>'
+      + '<span class="tqb-badge tqb-stat">'+esc(q.subject || '')+' · Grade '+esc(q.grade)+'</span>'
+      + '<span class="tqb-badge tqb-stat">'+esc(label(q.source_authority))+' · '+esc(label(q.source_kind))+'</span>'
+      + '<span class="tqb-badge tqb-stat">Intake: '+esc(label(intakeState(q)))+'</span>'
+      + '<span class="tqb-badge '+(independentlyEvidenced ? 'tqb-badge-custody' : 'tqb-badge-pending')+'">Blueprint: '+esc(label(blueprintState(q)))+'</span>'
+      + '<span class="tqb-badge '+(academic === 'VALIDATED' ? 'tqb-badge-validated' : 'tqb-badge-unvalidated')+'">Academic: '+esc(academic)+'</span>'+reviewBadge(q)+'</div>'
       + '<h2>'+esc(q.original_identifier || q.id)+'</h2>'
       + '<p class="tqb-meta"><code>'+esc(q.id)+'</code> · '+esc(q.chapter_or_unit || '')+' · '+esc(q.exercise_or_section || '')+' · '+esc(label(q.question_type || ''))+'</p>'
       + '<p class="tqb-meta">'+esc(q.topic_label || '')+(q.subtopic_label ? ' · '+esc(q.subtopic_label) : '')+'</p>'
@@ -235,15 +273,19 @@ PAGE = """<!doctype html>
     cards.forEach(card => {
       const matches = (!query || card.dataset.search.includes(query))
         && (!unit.value || card.dataset.unit === unit.value)
-        && (!type.value || card.dataset.type === type.value);
+        && (!type.value || card.dataset.type === type.value)
+        && facets.every(({id,control}) => !control.value || card.dataset[id] === control.value);
       card.hidden = !matches;
       if (matches) visible += 1;
     });
     count.textContent = visible + ' of ' + cards.length + ' questions shown';
     empty.hidden = visible !== 0;
   }
-  [search, unit, type].forEach(control => control.addEventListener('input', apply));
-  reset.addEventListener('click', () => { search.value=''; unit.value=''; type.value=''; apply(); search.focus(); });
+  [search, unit, type, ...facets.map(({control}) => control)].forEach(control => control.addEventListener('input', apply));
+  reset.addEventListener('click', () => {
+    [search, unit, type, ...facets.map(({control}) => control)].forEach(control => { control.value = ''; });
+    apply(); search.focus();
+  });
   apply();
 })();
 </script>
