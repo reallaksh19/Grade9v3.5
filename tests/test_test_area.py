@@ -161,6 +161,12 @@ class TestPages(unittest.TestCase):
         self.assertNotIn("ready for blueprint: 209", html)
         self.assertEqual(historical["question_counts"]["ready_for_blueprint"], 209)
 
+    def test_no_intake_bank_exposes_an_explicit_empty_state(self):
+        html = build_test_site.render_intake_section([], {"handoff": [], "hold_ids": []})
+        self.assertIn("data-g9-intake-empty", html)
+        self.assertIn("No official source-intake questions are staged", html)
+        self.assertNotIn("READY_FOR_BLUEPRINT", html)
+
     def test_test_home_answers_do_not_claim_unverified_official_key_custody(self):
         """The 198 evidence-pending questions still carry recorded, not witnessed, keys."""
         home = build_test_site.render_intake_section(

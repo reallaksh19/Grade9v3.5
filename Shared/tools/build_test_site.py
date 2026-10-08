@@ -393,7 +393,9 @@ def render_intake_section(intakes: list[dict], custody: dict) -> str:
     ready = {row["intake_question_ref"]: row for row in custody["handoff"]}
     held = set(custody["hold_ids"])
     if not intakes:
-        return ""
+        return ('<section data-g9-intake-empty><h2>Stage-1 Question Intake</h2>'
+                '<p>No official source-intake questions are staged. Source evidence and '
+                'blueprint readiness are not available.</p></section>')
     blocks = []
     for bank in intakes:
         bank_id = bank.get("bank_id", "unknown")

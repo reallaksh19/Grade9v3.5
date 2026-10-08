@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -116,6 +117,26 @@ def load_intake_banks(repo: Path) -> list[dict]:
                 raise ValueError(f"{where}: unofficial or unsafe source URL")
             if not isinstance(q.get("stem"), str) or not q["stem"].strip():
                 raise ValueError(f"{where}: missing source stem")
+            # Captured options must be valid source content, even while the
+            # official wording and answers await independent custody evidence.
+            kind = q.get("question_type")
+            options = q.get("options")
+            if kind == "MULTIPLE_CHOICE":
+                if (not isinstance(options, list) or len(options) < 2
+                        or not all(isinstance(option, str) and option.strip()
+                                   and re.match(r"^\\([A-Z]\\)\\s+\\S", option) for option in options)
+                        or len(set(options)) != len(options)
+                        or [option[1] for option in options]
+                        != [chr(ord("A") + index) for index in range(len(options))]):
+                    raise ValueError(f"{where}: malformed captured multiple-choice options")
+            elif kind == "TRUE_FALSE":
+                if options != ["True", "False"]:
+                    raise ValueError(f"{where}: malformed captured true/false options")
+            elif kind == "SHORT_ANSWER":
+                if options not in (None, []):
+                    raise ValueError(f"{where}: short-answer record must not invent options")
+            else:
+                raise ValueError(f"{where}: unsupported captured question type")
             digest = q.get("stem_sha256")
             if not isinstance(digest, str) or not digest.startswith("sha256:") or len(digest) != 71:
                 raise ValueError(f"{where}: missing or malformed source stem digest")

@@ -242,11 +242,6 @@ def reconcile(repo: Path) -> dict:
                          and key.get("question_number") == source["question_number"],
                          where, f"answer-key locator mismatch for {qid}")
                 answer_key = key.get("answer_key")
-                _require(key_doc["url"] == witness_documents[1]
-                         and key_doc["verification_evidence_ref"] == witness_documents[2]
-                         and key.get("verification_evidence_ref") == witness_documents[2]
-                         and answer_key == QUESTION_WITNESS_ANSWER_SCOPE.get(qid),
-                         where, f"answer witness scope mismatch for {qid}")
                 _require(source.get("official_answer_available") is True
                          and isinstance(answer_key, str) and bool(answer_key.strip())
                          and source.get("official_answer_text", "").startswith(answer_key),
@@ -256,6 +251,11 @@ def reconcile(repo: Path) -> dict:
                              and any(isinstance(option, str) and option.startswith(answer_key)
                                      for option in source.get("options", [])),
                              where, f"official answer differs from source record for {qid}")
+                _require(key_doc["url"] == witness_documents[1]
+                         and key_doc["verification_evidence_ref"] == witness_documents[2]
+                         and key.get("verification_evidence_ref") == witness_documents[2]
+                         and answer_key == QUESTION_WITNESS_ANSWER_SCOPE.get(qid),
+                         where, f"answer witness scope mismatch for {qid}")
             reconciled[qid] = {
                 "intake_question_ref": qid,
                 "source_identity": {"authority": origin["authority"], "kind": origin["kind"],

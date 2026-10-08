@@ -68,6 +68,23 @@ class TestOfficialIntakeIdentity(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, message):
                     test_intake_registry.load_intake_banks(self.repo)
 
+    def test_raw_capture_option_shapes_fail_closed(self):
+        for kind, options in (
+            ("MULTIPLE_CHOICE", ["(A) valid", "(A) duplicate"]),
+            ("MULTIPLE_CHOICE", ["(A) valid", "(C) missing B"]),
+            ("MULTIPLE_CHOICE", None),
+            ("TRUE_FALSE", ["True", "Possibly"]),
+            ("SHORT_ANSWER", ["(A) invented option"]),
+            ("UNSUPPORTED", ["(A) unknown"]),
+        ):
+            with self.subTest(kind=kind, options=options):
+                question = copy.deepcopy(self.q1)
+                question["question_type"] = kind
+                question["options"] = options
+                self.bank("invalid.json", [question])
+                with self.assertRaisesRegex(ValueError, "options|question type"):
+                    test_intake_registry.load_intake_banks(self.repo)
+
     def test_current_main_has_one_unique_instance_per_210_questions(self):
         banks = test_intake_registry.load_intake_banks(REPO)
         self.assertEqual(sum(len(b["questions"]) for b in banks), 210)

@@ -122,7 +122,7 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
             test_source_custody.reconcile(self.repo)
 
     def test_original_answer_document_cannot_be_replaced_with_another_official_url(self):
-        replacement = "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep201.pdf"
+        replacement = "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep202.pdf"
         self.overlay_doc["documents"][1]["url"] = replacement
         self.write()
         with self.assertRaisesRegex(ValueError, "answer witness scope mismatch"):
