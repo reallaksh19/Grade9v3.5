@@ -360,7 +360,10 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
                    f'{esc(case["scene"]["caption"] if case else rep.get("purpose", ""))}</figcaption>')
     if source_resource:
         caption = f'<figcaption data-g9-source-caption>{esc(source_resource.get("caption", ""))}</figcaption>'
-    if withheld:
+    if withheld or (stage == "PRE_ATTEMPT" and stage_ids):
+        # Even a single permitted stage can carry an answer-bearing root SVG
+        # aria-label/title/desc. Scrub staged pre-attempt metadata whether or
+        # not there are any groups to withhold.
         # A withheld stage is not in the page at all (hiding it with CSS still hands it to the DOM,
         # the hover tooltip and screen readers). The asset's own <title>/<desc> describe the whole
         # figure, so they go too; the accessible name is the shown stages' labels from the record.
