@@ -58,5 +58,7 @@ jobs:
         run: python TEST/imo-research/validate_qualification_evidence.py
       - name: Validate seven learner-quality design proposals and Grade 9 scope holds
         run: python TEST/imo-research/validate_learner_quality.py
+      - name: Validate authentic-source Core2 custody census and independent Core1A construction proposal
+        run: python TEST/imo-research/validate_core_pilot_research.py
       - name: Run research-only falsifier tests
         run: python -m unittest discover -s tests -p 'test_imo_*.py' -v
