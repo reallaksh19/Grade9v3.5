@@ -81,7 +81,7 @@ for (const width of [320, 390, 768, 1280]) {
   if (facts.hold !== 1) failures.push(`${where}: ${facts.hold}/1 HOLD`);
   if (facts.unvalidated !== 151) failures.push(`${where}: ${facts.unvalidated}/151 UNVALIDATED`);
   if (facts.sourceVerified !== 12) failures.push(`${where}: ${facts.sourceVerified}/12 independently evidenced source-verification attributes`);
-  if (facts.legacyTextLabels !== 210) failures.push(`${where}: ${facts.legacyTextLabels}/210 historical text labels preserved as non-authority`);
+  if (facts.legacyTextLabels !== 0) failures.push(`${where}: ${facts.legacyTextLabels} stale historical verification labels, expected 0`);
   if (facts.custodyEvidenced !== 12 || facts.custodyHold !== 0 || facts.custodyPending !== 198) failures.push(`${where}: evidence truth is ${facts.custodyEvidenced} evidenced / ${facts.custodyHold} source-text HOLD / ${facts.custodyPending} pending, expected 12/0/198`);
   if (facts.sourceLinks !== 210 || facts.unsafeSourceLinks) failures.push(`${where}: source links ${facts.sourceLinks}/210, invalid ${facts.unsafeSourceLinks}`);
   if (facts.evidencedWithoutLocator) failures.push(`${where}: ${facts.evidencedWithoutLocator} independently evidenced records missing corrected printed/PDF locator`);
