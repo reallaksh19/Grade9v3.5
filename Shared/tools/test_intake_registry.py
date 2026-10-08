@@ -90,6 +90,17 @@ def load_intake_banks(repo: Path) -> list[dict]:
                         "topic_label", "question_type")
             if any(not isinstance(q.get(field), str) or not q[field].strip() for field in metadata):
                 raise ValueError(f"{where}: missing required Stage-1 metadata")
+            # The flat v1 file is an unverified capture ledger, never a custody
+            # or READY receipt. Those decisions come only from the reconciler.
+            if q.get("workflow_status") != "EVIDENCE_PENDING":
+                raise ValueError(f"{where}: raw capture cannot claim READY or source HOLD")
+            if q.get("text_verification_status") != "CAPTURED_UNVERIFIED":
+                raise ValueError(f"{where}: raw capture cannot claim independent text verification")
+            if "page" in q:
+                raise ValueError(f"{where}: ambiguous raw page is prohibited; use unverified_legacy_page")
+            legacy_page = q.get("unverified_legacy_page")
+            if legacy_page is not None and (type(legacy_page) is not int or legacy_page < 1):
+                raise ValueError(f"{where}: invalid unverified legacy page")
             if q.get("subject") != bank["subject"] or type(q.get("grade")) is not int or q["grade"] != bank["grade"]:
                 raise ValueError(f"{where}: bank/question subject or grade mismatch")
             if q.get("source_authority") not in scope:
