@@ -237,10 +237,20 @@ class TestPages(unittest.TestCase):
         atlas = (REPO / "public/test/atlas/index.html").read_text(encoding="utf-8")
         self.assertIn("subjects.TEST", atlas)
         self.assertIn('data-g9-test-atlas-data', atlas)
-        self.assertIn('.header-title-group{flex-wrap:wrap;min-width:0;max-width:100%}', atlas)
-        self.assertIn('.header-subtitle{min-width:0;overflow-wrap:anywhere}', atlas)
+        # The TEST Atlas uses locally scoped responsive headers, not the
+        # older global selector. Check both generated HTML and its only
+        # authoritative transform so a stale generated copy cannot pass.
         transform = json.loads(build_test_site.ATLAS_TRANSFORM.read_text(encoding="utf-8"))
-        self.assertIn('.header-title-group{flex-wrap:wrap;min-width:0;max-width:100%}', transform["swaps"][-1]["new"])
+        expected_header_rules = (
+            ".atlas-header .header-title-group{flex:1 1 100%;flex-wrap:wrap;min-width:0;max-width:100%}",
+            ".atlas-header .header-title{flex-wrap:wrap;min-width:0;max-width:100%}",
+            ".atlas-header .header-subtitle{min-width:0;max-width:100%;overflow-wrap:anywhere}",
+        )
+        self.assertIn("@media(max-width:420px)", atlas)
+        for rule in expected_header_rules:
+            with self.subTest(rule=rule):
+                self.assertIn(rule, transform["swaps"][-1]["new"])
+                self.assertIn(rule, atlas)
         self.assertIn("MATRIX-TEST-ISS55-POLY", atlas)
         self.assertIn("MIC-MATH-POLY-IDENTITY-DEGREE-BOUND", atlas)
         for leftover in ("MATRIX-PHY-NLM-FIRST-LAW", "Laws of Motion", "phy-nlm-first-law", "NLM Topic Atlas"):
