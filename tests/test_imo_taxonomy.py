@@ -22,7 +22,7 @@ class TopicMapTests(unittest.TestCase):
         self.seed.mkdir(); self.taxonomy.mkdir()
         for filename in ("questions.jsonl", "sources.json", "source_observations.json"):
             (self.seed / filename).write_bytes((RESEARCH / "seed" / filename).read_bytes())
-        for filename in ("sof-class9-topic-registry.v1.json", "seed-question-topic-map.v1.jsonl"):
+        for filename in ("sof-class9-topic-registry.v1.json", "sof-class9-subtopics.v1.json", "seed-question-topic-map.v1.jsonl"):
             (self.taxonomy / filename).write_bytes((RESEARCH / "taxonomy" / filename).read_bytes())
 
     def run_audit(self):
@@ -106,6 +106,17 @@ class TopicMapTests(unittest.TestCase):
             row = next(x for x in rows if x["attachment_entry"] == 38 and x["attachment_subentry"] == "ii")
             row["subtopic_id"] = "STATISTICS-DATA-DISPLAYS"
         self.mutate_map(changed)
+        with self.assertRaises(SeedError): self.run_audit()
+
+    def test_missing_microconcept_ref_is_refused(self):
+        self.mutate_map(lambda rows: rows[0].pop("microconcept_ref"))
+        with self.assertRaises(SeedError): self.run_audit()
+
+    def test_invalid_subtopic_registry_authority_is_refused(self):
+        p = self.taxonomy / "sof-class9-subtopics.v1.json"
+        data = json.loads(p.read_text())
+        data["subtopics"][0]["academic_status"] = "ACCEPTED"
+        p.write_text(json.dumps(data))
         with self.assertRaises(SeedError): self.run_audit()
 
     def test_subtopic_must_belong_to_primary_topic(self):
