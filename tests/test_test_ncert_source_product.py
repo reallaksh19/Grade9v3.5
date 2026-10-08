@@ -145,6 +145,23 @@ class TestNcertQ1ParkedProduct(unittest.TestCase):
         self.assertEqual(self.package["questions"], [])
         self.assertEqual(self.manifest["selection"]["core2"], [SOURCE_ID])
 
+    def test_authored_set_relation_and_support_preserve_original_q1(self):
+        relation = self.package["relations"][0]
+        unit = self.package["microtopics"][0]["construction_units"][0]
+        self.assertEqual(relation["expression"], "ℚ ⊆ ℝ")
+        self.assertIsNone(relation["gate_relation_ref"])
+        self.assertEqual(unit["relation_refs"], [relation["id"]])
+        self.assertEqual(self.package["microtopics"][0]["relation_refs"], [relation["id"]])
+        self.assertTrue(unit["extensions"]["grade9v3:component_waivers"]["STAGED_VISUAL"])
+        question = self.view["questions"][0]
+        self.assertTrue(question["extensions"]["grade9v3:component_waivers"]["REPRESENTATION"])
+        self.assertEqual(len(question["conditions"]), 1)
+        self.assertEqual([s["supports_move_ref"] for s in question["scaffolds"]],
+                         ["NS-Q1-MOVE-1", "NS-Q1-MOVE-3"])
+        self.assertEqual(question["stem"], self.question["stem"])
+        self.assertEqual(question["options"], self.question["options"])
+        self.assertEqual(self.package["questions"], [])
+
     def test_mutated_intake_or_answer_witness_cannot_reuse_render_view(self):
         manipulated = copy.deepcopy(self.bank)
         manipulated["questions"][0]["stem_sha256"] = "sha256:" + "0" * 64

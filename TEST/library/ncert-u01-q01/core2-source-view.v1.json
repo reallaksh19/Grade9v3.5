@@ -17,7 +17,9 @@
         "(D) a whole number"
       ],
       "subparts": [],
-      "conditions": [],
+      "conditions": [
+        "The claim must apply to every rational number, as the original question explicitly states."
+      ],
       "figure_refs": [],
       "source_refs": [],
       "evidence_refs": [],
@@ -122,11 +124,32 @@
           },
           "expected_time_seconds": 60
         },
-        "grade9v3:provenance_class": "NCERT_CUSTODY_WITNESSED"
+        "grade9v3:provenance_class": "NCERT_CUSTODY_WITNESSED",
+        "grade9v3:component_waivers": {
+          "REPRESENTATION": "Original NCERT Q1 is unillustrated. An added nested-set picture would directly reveal the MCQ answer before the learner's attempt; symbolic set reasoning is instead available in post-attempt concept teaching."
+        }
       },
       "response": {
         "type": "single_choice"
-      }
+      },
+      "scaffolds": [
+        {
+          "text": "Try a rational fraction that is not an integer to test whether a proposed category is too narrow.",
+          "prompt": "For a claim saying 'every', what one counterexample would disprove it?",
+          "learner_stage": "KEY_CONCEPT",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "NS-Q1-MOVE-1"
+        },
+        {
+          "text": "A set-containment claim must be checked in its stated direction; the converse is another claim.",
+          "prompt": "Does showing that each member of one set belongs to another automatically prove reverse inclusion?",
+          "learner_stage": "FIRST_MOVE",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "NS-Q1-MOVE-3"
+        }
+      ]
     }
   ]
 }

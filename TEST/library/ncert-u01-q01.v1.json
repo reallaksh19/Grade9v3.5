@@ -143,7 +143,9 @@
           "output": "Every rational number is a real number."
         }
       ],
-      "relation_refs": [],
+      "relation_refs": [
+        "REL-TEST-NCERT-U01-RATIONAL-SUBSET-REAL"
+      ],
       "representation_refs": [],
       "question_family_refs": [
         "FAM-TEST-NCERT-U01-SET-INCLUSION"
@@ -200,12 +202,89 @@
               "statement": "Without using the NCERT option labels, check whether 1/2 and -3/2 are rational and real but nonintegral, and use √2 to reject the reverse inclusion.",
               "role": "CONNECT"
             }
-          ]
+          ],
+          "relation_refs": [
+            "REL-TEST-NCERT-U01-RATIONAL-SUBSET-REAL"
+          ],
+          "extensions": {
+            "grade9v3:component_waivers": {
+              "STAGED_VISUAL": "The learner's move is the abstract subset distinction, which the relation and fresh counterexamples construct without diagram stages. A sequence of nested-set pictures would give away the conclusion or add only decoration; no original source figure is omitted."
+            }
+          }
         }
       ]
     }
   ],
-  "relations": [],
+  "relations": [
+    {
+      "id": "REL-TEST-NCERT-U01-RATIONAL-SUBSET-REAL",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:authorship_note": "Authored conceptual set-inclusion explanation, not an NCERT source quotation."
+      },
+      "expression": "ℚ ⊆ ℝ",
+      "meaning": "Every rational number is a real number; the reverse containment is not asserted.",
+      "symbols": [
+        {
+          "symbol": "ℚ",
+          "meaning": "The rational numbers",
+          "unit_or_domain": "number sets"
+        },
+        {
+          "symbol": "ℝ",
+          "meaning": "The real numbers",
+          "unit_or_domain": "number sets"
+        }
+      ],
+      "conditions": [
+        "The variable describes any quotient a/b of integers with b nonzero.",
+        "The claim is universal over rational numbers."
+      ],
+      "derivation": [
+        {
+          "id": "REL-TEST-NS1-D1",
+          "role": "DECLARE",
+          "action": "Take any a/b where a and b are integers and b is nonzero.",
+          "why_valid": "This is the definition of a rational number.",
+          "inputs": [
+            "Definition of a rational number"
+          ],
+          "output": "a/b belongs to ℚ"
+        },
+        {
+          "id": "REL-TEST-NS1-D2",
+          "role": "TRANSFORM",
+          "action": "Place the quotient on the real number line.",
+          "why_valid": "Every rational quotient is a real number.",
+          "inputs": [
+            "a/b belongs to ℚ"
+          ],
+          "output": "ℚ ⊆ ℝ"
+        },
+        {
+          "id": "REL-TEST-NS1-D3",
+          "role": "VERIFY",
+          "action": "Check the fraction 1/2 and the irrational real √2.",
+          "why_valid": "The examples distinguish the forward inclusion from its false converse.",
+          "inputs": [
+            "ℚ ⊆ ℝ"
+          ],
+          "output": "Inclusion does not imply equality or reverse inclusion"
+        }
+      ],
+      "limits": [
+        "This statement does not assert that every real number is rational."
+      ],
+      "checks": [
+        "1/2 and -3/2 are rational and real but not integers.",
+        "√2 is real but irrational."
+      ],
+      "gate_relation_ref": null
+    }
+  ],
   "representations": [],
   "question_families": [
     {
