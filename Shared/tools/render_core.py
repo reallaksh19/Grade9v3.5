@@ -314,9 +314,11 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
         except (ET.ParseError, ValueError) as exc:
             ctx.gap("BUILD_SCENE", record, f"{rep_id}: unsafe staged SVG ({exc})", role)
             return ""
-        declared = [row.get("id") for row in rep.get("reveal_stages") or []]
-        if not stage_ids or any(sid not in stage_ids for sid in declared):
-            ctx.gap("BUILD_SCENE", record, f"{rep_id}: declared stages do not match staged SVG", role)
+        # A representation's catalogued reveal stages can span multiple bound
+        # scene assets; only the selected asset and explicit allowed IDs govern
+        # this attempt. Never assume every catalogue stage is on every asset.
+        if not stage_ids:
+            ctx.gap("BUILD_SCENE", record, f"{rep_id}: staged asset has no parseable stage groups", role)
             return ""
     else:
         stage_ids = re.findall(r'data-g9-stage-id="([^"]+)"', svg)
