@@ -65,6 +65,12 @@ class SamplePilotTests(unittest.TestCase):
         self.mutate(lambda d: self.sample(d,5).update(agent_derived_option="C"))
         with self.assertRaises(SeedError):self.check()
 
+    def test_missing_q9_index_and_q5_diagram_issue_notes_fail(self):
+        self.mutate(lambda d: d.update(source_issues=[
+            "Q9 discrepancy requires comparison",
+            "Q5 original source check pending"]))
+        with self.assertRaises(SeedError): self.check()
+
     def test_source_transcription_conflict_must_remain(self):
         self.mutate(lambda d: self.sample(d,9).update(source_vs_owner_transcription_status="RECONCILED"))
         with self.assertRaises(SeedError):self.check()
