@@ -121,8 +121,35 @@ class Gate(unittest.TestCase):
         report = quality_gate.gate(out, "Physics", "PRODUCT-PHY-KIN-2D", static=True)
         self.assertEqual(report["verdict"], "FAIL")
         self.assertTrue({"DRAFT", "BLOCKING_FINDINGS"} <= set(report["fail_reasons"]))
-        rules = {f["rule"] for f in report["findings"]}
-        self.assertTrue({"C2A-REPRESENTATION", "C2B-SAFE-REPRESENTATION", "C1A-REPRESENTATION-BRIDGE"} <= rules)
+        rules = {finding["rule"] for finding in report["findings"]}
+        # Core2A and Core2B must independently fail when their pre-attempt
+        # figures are absent. Core1A's visual is EXPECTED/waivable according to
+        # the recovered blueprint, rather than a universal figures_min=1 floor.
+        self.assertIn("C2A-REPRESENTATION", rules, report["findings"])
+        self.assertIn("C2B-SAFE-REPRESENTATION", rules, report["findings"])
+        contract_rules = {rule["id"]: rule for rule in quality_gate.quality_contract.contract()["rules"]}
+        self.assertEqual(contract_rules["C1A-REPRESENTATION-BRIDGE"]["check"]["min"], 0)
+        self.assertEqual(contract_rules["C1A-REPRESENTATION-BRIDGE"]["check"]["waiver_component"], "STAGED_VISUAL")
+
+    def test_removing_both_required_practice_visuals_reports_each_core(self):
+        manifest = complete_fixture(self.tmp)
+        manifest_data = json.loads(manifest.read_text(encoding="utf-8"))
+        package_path = Path(manifest_data["package_refs"][0])
+        package = json.loads(package_path.read_text(encoding="utf-8"))
+        practice = next(q for q in package["questions"] if q["id"] == "Q-MATH-LINEAR-01")
+        transfer = next(q for q in package["questions"] if q["id"] == "Q-MATH-LINEAR-2B-FIXTURE")
+        practice["representation_roles"]["initial_ref"] = None
+        transfer["representation_roles"]["safe_ref"] = None
+        package_path.write_text(json.dumps(package), encoding="utf-8")
+        report = quality_gate.gate(self.build(manifest, draft=True), "Mathematics", "FIXTURE-MATH-LINEAR", static=True)
+        findings = report["findings"]
+        self.assertEqual(report["verdict"], "FAIL")
+        self.assertTrue(any(f["rule"] == "C2A-REPRESENTATION" and
+                            f["where"].startswith("core2a.html#Q-MATH-LINEAR-01")
+                            for f in findings), findings)
+        self.assertTrue(any(f["rule"] == "C2B-SAFE-REPRESENTATION" and
+                            f["where"].startswith("core2b.html#Q-MATH-LINEAR-2B-FIXTURE")
+                            for f in findings), findings)
 
     def test_ungated_answer_and_broken_lineage_fail(self):
         out = self.build(complete_fixture(self.tmp))
