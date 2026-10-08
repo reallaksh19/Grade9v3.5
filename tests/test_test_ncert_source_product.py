@@ -90,6 +90,10 @@ class TestNcertQ1ParkedProduct(unittest.TestCase):
         self.assertEqual(row["answer"]["source_key"]["value"], self.question["official_answer_text"])
         self.assertEqual(row["extensions"]["grade9v3:ncert_source_lineage"]["stem_sha256"],
                          self.question["stem_sha256"])
+        consumer_custody = row["extensions"]["grade9v3:source_custody"]
+        self.assertEqual(consumer_custody["authority_class"], "CURRICULAR_STANDARD")
+        self.assertEqual(consumer_custody["source_status"], "NCERT_AUTHENTIC")
+        self.assertEqual(consumer_custody["wording_custody"], "FAITHFUL_NCERT")
         with mock.patch.object(adapter.test_source_custody, "reconcile",
                                return_value={"ready_ids": [], "handoff": []}):
             with self.assertRaisesRegex(ValueError, "not independently custody READY"):

@@ -87,11 +87,11 @@ def build(repo: Path) -> dict:
     # The existing renderer's legacy PYQ-only badge does NOT understand NCERT
     # custody yet. Keep the NCERT authority class explicit; never forge PYQ.
     ext["grade9v3:source_custody"] = {
-        "authority_class": "NCERT_OFFICIAL_EXEMPLAR",
+        "authority_class": "CURRICULAR_STANDARD",
         "intake_ref": source["id"],
-        "wording_custody": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+        "wording_custody": "FAITHFUL_NCERT",
         "text_sha256": source["stem_sha256"],
-        "source_status": "READY_FOR_BLUEPRINT",
+        "source_status": "NCERT_AUTHENTIC",
         "paper_url": source["source_url"],
     }
     # Preserve source-lineage disclosures before authored topic classification.
