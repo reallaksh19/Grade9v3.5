@@ -1,0 +1,158 @@
+{
+  "schema": "sof-imo-g09-core1a-canonical-teaching-construction-proposal-v1",
+  "responsibility_issue": 294,
+  "base_main_sha": "9a51fb9ae65a4b81f2dc6b791cbbc4eeba3c4260",
+  "status": "PRE_CANONICAL_TEST_DESIGN_NOT_CORE1A_LEARNER_PRODUCT",
+  "canonical_academic_package_ref": null,
+  "project_source": "MATHEMATICS_DOMAIN_REASONING_INDEPENDENT_OF_SOF_SOURCE_ANSWER_KEYS",
+  "syllabus_topic_reference": "TEST/imo-research/taxonomy/sof-class9-topic-registry.v1.json#NS",
+  "official_syllabus_granularity_limit": "NUMBER_SYSTEMS_TOPIC_OBSERVED_NO_OFFICIAL_DIVISIBILITY_SUBTOPIC_CERTIFICATION",
+  "dedicated_core2_source_question_ref": null,
+  "author_created_example_ref": "IMO-G9-ORIGINAL-PRACTICE-001",
+  "authored_example_source_status": "MODEL_AUTHORED_NOT_SOF_SOURCE_NOT_CORE2",
+  "source_question_identity_granted": false,
+  "qrt_cell_accepted": false,
+  "core1a_admitted": false,
+  "core2_admitted": false,
+  "learner_published": false,
+  "research_human_academic_signature_required": false,
+  "product_owner_curriculum_acceptance": null,
+  "concept_slice": {
+    "proposal_id": "IMO-G9-CORE1A-NS-CONSECUTIVE-DIVISIBILITY-001",
+    "bucket_ref_candidate": "TEST-IMO-G9-BUCKET-NS-DIVISIBILITY-CANDIDATE",
+    "capability_ref_candidate": "TEST-IMO-G9-CAP-UNIVERSAL-DIVISIBILITY-PROOF-CANDIDATE",
+    "microtopic_ref_candidate": "TEST-IMO-G9-MIC-CONSECUTIVE-FACTOR-INVARIANTS-CANDIDATE",
+    "intrinsic_badge_proposal": "HARD",
+    "intrinsic_badge_reason": "The learner must replace finite numeric examples with a universal argument, identify independent divisibility factors, and combine coprime factors without relying on a particular starting integer.",
+    "entry_assumptions": [
+      "Positive integers, divisibility notation, remainders modulo a positive integer.",
+      "Even and odd integers; among two consecutive integers exactly one is even.",
+      "Every integer leaves remainder 0, 1 or 2 on division by 3.",
+      "If coprime positive integers a and b both divide N then ab divides N."
+    ],
+    "initial_conventions": [
+      "Let n be any positive integer and write its consecutive successors as n+1, n+2, and so on.",
+      "A universal proof must cover every allowable n and may not rely on a finite list of trials.",
+      "In a divisibility statement a divides N, N must be a multiple of a; factors 2 and 3 are coprime."
+    ],
+    "inferential_jump": "Connect two independently guaranteed factors (an even factor and a factor divisible by 3) in one product, then use coprimality to establish divisibility by 6 for every positive starting n.",
+    "representation_bridges": [
+      {
+        "kind": "WORDS_TO_SYMBOLS",
+        "verbal": "Three successive integers",
+        "symbolic": "n, n+1, n+2",
+        "visual_spec": "Three adjacent labelled integer boxes; no actual image or learner accessibility approval yet."
+      },
+      {
+        "kind": "PARITY_RESIDUE",
+        "verbal": "At least one is even",
+        "symbolic": "n mod 2 is 0 or 1",
+        "visual_spec": "Two residue cases with even positions highlighted by printed labels, not color alone."
+      },
+      {
+        "kind": "MOD3_RESIDUE",
+        "verbal": "Exactly one factor is a multiple of three",
+        "symbolic": "n mod 3 is 0, 1, or 2",
+        "visual_spec": "Three rows listing the divisible factor n, n+2, or n+1 respectively."
+      }
+    ],
+    "completed_teaching_path": [
+      {
+        "step_ref": "STEP-01",
+        "action": "Represent any triple of consecutive integers as n(n+1)(n+2) for arbitrary positive integer n.",
+        "why_valid": "Successive whole numbers differ by exactly one; the symbolic triple represents every permitted starting value."
+      },
+      {
+        "step_ref": "STEP-02",
+        "action": "Show that an even factor occurs among n and n+1, so 2 divides the product.",
+        "why_valid": "Integers alternate even and odd; for any integer n, one of n and n+1 is even."
+      },
+      {
+        "step_ref": "STEP-03",
+        "action": "Separate the three cases n mod 3 equals 0, 1, or 2 and identify one factor divisible by 3 in each case.",
+        "why_valid": "The three consecutive residues modulo 3 visit all three remainder classes, so exactly one remainder is zero."
+      },
+      {
+        "step_ref": "STEP-04",
+        "action": "Conclude that 6 divides the product, since 2 and 3 are coprime and each divides it.",
+        "why_valid": "Euclid's coprimality principle gives 2×3 = 6 as a divisor; overlapping factors are not an obstacle for coprime divisors."
+      }
+    ],
+    "misconception_repair": {
+      "code": "EXAMPLE_ONLY",
+      "wrong_idea": "Evaluating three starting cases proves the statement for every starting integer.",
+      "diagnostic_prompt": "Would checking n=1, 2, and 3 tell us why a previously unseen starting value must also work?",
+      "repair": "Explain the parity and residue classes as exhaustive cases, then combine the coprime factors."
+    },
+    "independent_reverse_checks": [
+      "For a chosen n, locate the even factor and the factor divisible by 3; this checks the abstract proof but is not a substitute for it.",
+      "Use the cases for n modulo 6 to independently confirm that every residue produces a product divisible by 6; retain this as a cross-check, not the only universal argument."
+    ],
+    "worked_concept_anchor": {
+      "status": "NEWLY_AUTHORED_TEACHING_ANCHOR_NOT_SOF_SOURCE",
+      "prompt": "Given any three successive positive integers, show how their residue classes guarantee a factor of 2 and a factor of 3 in their product, even when the factors are different terms.",
+      "model_answer": "For n,n+1,n+2, a pair of adjacent terms contains an even number. The three terms cover all residues mod 3, so one is divisible by 3. Since 2 and 3 are coprime, the product is divisible by 6.",
+      "source_identity_claim": false
+    },
+    "exit_task": {
+      "prompt": "For every positive starting integer n, show that n(n+1)(n+2)(n+3) is divisible by 24 without relying only on sample calculations.",
+      "answer": "Among four consecutive integers exactly one is divisible by 4 and a different even number is divisible by 2; the product is therefore divisible by 8. At least one of the four is divisible by 3. Because gcd(8,3)=1, the product is divisible by 24.",
+      "check": "Re-derive the factor 8 by distinguishing residues 0 and 2 modulo 4 among the two even factors; use modulo 3 to guarantee a separate factor of 3."
+    },
+    "safety_limits": [
+      "Do not turn a checker-certificate flag into a semantic free-text proof grade.",
+      "Do not link the authored example as an original SOF question or Core2 source custody.",
+      "Do not publish this proposed Core1A teaching construction until its canonical capability/microtopic/representation refs are admitted and the relevant product gates pass."
+    ]
+  },
+  "topic_rollout": [
+    {
+      "topic_id": "NS",
+      "original_practice_ids": [
+        "IMO-G9-ORIGINAL-PRACTICE-001"
+      ],
+      "role": "INITIAL_HARD_CONCEPT_SLICE",
+      "core1a_design": "PROPOSED_NOT_CANONICAL",
+      "core2_source_ready": false
+    },
+    {
+      "topic_id": "COORD",
+      "original_practice_ids": [
+        "IMO-G9-ORIGINAL-PRACTICE-002",
+        "IMO-G9-ORIGINAL-PRACTICE-007"
+      ],
+      "role": "NEXT_CONCEPT_CLUSTER_WITH_EXTENSION_HOLD_007",
+      "core1a_design": "NOT_AUTHORED",
+      "core2_source_ready": false
+    },
+    {
+      "topic_id": "TRIANGLE_AREAS",
+      "original_practice_ids": [
+        "IMO-G9-ORIGINAL-PRACTICE-003"
+      ],
+      "role": "NEXT_CONCEPT_CLUSTER",
+      "core1a_design": "NOT_AUTHORED",
+      "core2_source_ready": false
+    },
+    {
+      "topic_id": "MENSURATION",
+      "original_practice_ids": [
+        "IMO-G9-ORIGINAL-PRACTICE-004"
+      ],
+      "role": "NEXT_CONCEPT_CLUSTER",
+      "core1a_design": "NOT_AUTHORED",
+      "core2_source_ready": false
+    },
+    {
+      "topic_id": "LIN_EQ",
+      "original_practice_ids": [
+        "IMO-G9-ORIGINAL-PRACTICE-005",
+        "IMO-G9-ORIGINAL-PRACTICE-006"
+      ],
+      "role": "NEXT_CONCEPT_CLUSTER_WITH_EXTENSION_HOLD_006",
+      "core1a_design": "NOT_AUTHORED",
+      "core2_source_ready": false
+    }
+  ],
+  "next_release_requirement": "FORMAL_CANONICAL_PACKAGE_ACCEPTANCE_PLUS_REAL_SOURCE_CUSTODY_FOR_CORE2_PLUS_RIGHTS_REVIEW_PLUS_EXACT_RENDER_QA_PLUS_DATED_OWNER_DECISION"
+}
