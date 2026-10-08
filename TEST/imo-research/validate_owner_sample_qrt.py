@@ -164,6 +164,10 @@ def validate_owner_sample_qrt(
                  {1:"SOURCE_DICE_FIGURES_RIGHTS_NOT_REVIEWED",
                   3:"SOURCE_RADIAL_NUMBER_DIAGRAM_RIGHTS_NOT_REVIEWED",
                   5:"SOURCE_PARALLEL_LINE_FIGURE_RIGHTS_NOT_REVIEWED"}[number] and
+               r.get("prior_record_status")==(
+                   "OLD_PILOT_FIGURE_GEOMETRY_PENDING_NEW_AGENT_PROOF_AVAILABLE"
+                   if number==5 else
+                   "NEW_SAMPLE_DISCOVERED_OUTSIDE_ORIGINAL_66_SEED") and
                r.get("independent_human_academic_review_requirement")==
                    "NOT_APPLICABLE_PER_OWNER_DIRECTIVE" and
                r.get("question_qrt_acceptance_status")=="PROPOSED_NOT_ACCEPTED" and
