@@ -251,6 +251,11 @@ def reconcile(repo: Path) -> dict:
                              and any(isinstance(option, str) and option.startswith(answer_key)
                                      for option in source.get("options", [])),
                              where, f"official answer differs from source record for {qid}")
+                    matched_options = [option for option in source.get("options", [])
+                                       if option.startswith(answer_key)]
+                    _require(len(matched_options) == 1
+                             and source.get("official_answer_text") == matched_options[0],
+                             where, f"recorded answer text differs from witnessed option for {qid}")
                 _require(key_doc["url"] == witness_documents[1]
                          and key_doc["verification_evidence_ref"] == witness_documents[2]
                          and key.get("verification_evidence_ref") == witness_documents[2]
