@@ -124,6 +124,14 @@ class TestManifestCommand(unittest.TestCase):
 
 
 class TestPages(unittest.TestCase):
+    def test_test_shell_subject_links_stay_under_portal_root_at_each_depth(self):
+        for depth in (1, 2):
+            with self.subTest(depth=depth):
+                page = build_test_site.frame(depth, "TEST", "index.html", "")
+                for subject in ("physics", "chemistry", "mathematics"):
+                    self.assertIn(f'href="{"../" * depth}{subject}/index.html"', page)
+                    self.assertNotIn(f'href="../../../{subject}/index.html"', page)
+
     def test_committed_pages_are_what_the_generator_writes(self):
         self.assertEqual(build_test_site.check(), [])
 
@@ -145,8 +153,31 @@ class TestPages(unittest.TestCase):
         self.assertEqual(len([r for r in rows if r["kind"] == "OFFICIAL_INTAKE"]), 210)
         self.assertEqual(len([r for r in rows if r["kind"] == "OWNER_SUPPLIED"]), 10)
         self.assertEqual(len({r["id"] for r in rows}), 220)
+        intake_rows = [r for r in rows if r["kind"] == "OFFICIAL_INTAKE"]
+        self.assertEqual(sum(r["status"] == "READY_FOR_BLUEPRINT" for r in intake_rows), 12)
+        self.assertEqual(sum(r["status"] == "SOURCE_TEXT_HOLD" for r in intake_rows), 0)
+        self.assertEqual(sum(r["status"] == "EVIDENCE_PENDING" for r in intake_rows), 198)
+        self.assertEqual(
+            {r["id"] for r in intake_rows if r["status"] == "READY_FOR_BLUEPRINT"},
+            {f"ncert-exemplar-g9-math-u01-q{n:02d}" for n in range(1, 7)} |
+            {f"ncert-exemplar-g9-math-u02-q{n:02d}" for n in range(1, 7)},
+        )
         hub = (REPO / "public/test/index.html").read_text(encoding="utf-8")
         self.assertIn('id="g9-test-search-index"', hub)
+        self.assertIn("12 READY_FOR_BLUEPRINT · 0 SOURCE_TEXT_HOLD · 198 EVIDENCE_PENDING", hub)
+        self.assertNotIn("SOURCE TEXT HOLD", hub)
+        self.assertIn("Which one of the following is a polynomial?", hub)
+        self.assertIn("Printed page 14 / PDF index 1", hub)
+        self.assertIn("Inspect 210 parked intake questions", hub)
+        self.assertIn("data-g9-intake-controls", hub)
+        self.assertIn("data-g9-intake-facet=\"blueprint\"", hub)
+        self.assertIn('src="question-bank/questions.js"', hub)
+        self.assertIn('rel="noopener noreferrer"', hub)
+        self.assertIn('href="https&#58;//ncert.nic.in/', hub)
+        self.assertNotRegex(hub, r"https?://", "TEST pages stay offline despite optional official PDF links")
+        self.assertEqual(hub.count("Official source PDF:"), 210)
+        self.assertIn("Printed page 2 / PDF index 1", hub)
+        self.assertNotIn("All items verified against official PDFs", hub)
         self.assertIn("TEST-only search index: 220 parked question(s); production search untouched", hub)
         canonical = (REPO / "public/data/search-index.v1.json").read_text(encoding="utf-8")
         learner = (REPO / "public/data/learner-search-index.v1.json").read_text(encoding="utf-8")
@@ -206,6 +237,10 @@ class TestPages(unittest.TestCase):
         atlas = (REPO / "public/test/atlas/index.html").read_text(encoding="utf-8")
         self.assertIn("subjects.TEST", atlas)
         self.assertIn('data-g9-test-atlas-data', atlas)
+        self.assertIn('.header-title-group{flex-wrap:wrap;min-width:0;max-width:100%}', atlas)
+        self.assertIn('.header-subtitle{min-width:0;overflow-wrap:anywhere}', atlas)
+        transform = json.loads(build_test_site.ATLAS_TRANSFORM.read_text(encoding="utf-8"))
+        self.assertIn('.header-title-group{flex-wrap:wrap;min-width:0;max-width:100%}', transform["swaps"][-1]["new"])
         self.assertIn("MATRIX-TEST-ISS55-POLY", atlas)
         self.assertIn("MIC-MATH-POLY-IDENTITY-DEGREE-BOUND", atlas)
         for leftover in ("MATRIX-PHY-NLM-FIRST-LAW", "Laws of Motion", "phy-nlm-first-law", "NLM Topic Atlas"):

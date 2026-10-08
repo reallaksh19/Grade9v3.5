@@ -54,6 +54,21 @@ for (const page of PAGES) {
       const small = links.filter((a) => Math.min(a.getBoundingClientRect().width, a.getBoundingClientRect().height) < 44);
       return {
         overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        atlasHeaderRight: document.querySelector('.header-title-group')?.getBoundingClientRect().right ?? 0,
+        offenders: [...document.querySelectorAll('body *')]
+          .filter(el => {
+            const rect = el.getBoundingClientRect();
+            return rect.width > 0 && rect.height > 0 && rect.right > innerWidth + 1;
+          })
+          .map(el => {
+            const r = el.getBoundingClientRect();
+            const css = getComputedStyle(el);
+            return { node: el.tagName.toLowerCase() + (el.id ? '#' + el.id : '')
+              + (typeof el.className === 'string' ? '.' + el.className.trim().split(/\\s+/).slice(0, 2).join('.') : ''),
+              left: Math.round(r.left), right: Math.round(r.right),
+              width: Math.round(r.width), minWidth: css.minWidth,
+              overflowX: css.overflowX, display: css.display };
+          }).sort((a,b) => b.right - a.right).slice(0, 12),
         banner,
         barLinks: links.length,
         small: small.map((a) => a.textContent),
@@ -64,7 +79,9 @@ for (const page of PAGES) {
     checked += 1;
     const where = `${page} @${width}`;
     for (const problem of problems) failures.push(`${where}: ${problem}`);
-    if (facts.overflow > 1) failures.push(`${where}: ${facts.overflow}px wider than the screen`);
+    if (facts.overflow > 1) failures.push(`${where}: ${facts.overflow}px wider than the screen; offenders=${JSON.stringify(facts.offenders)}`);
+    if (page === 'test/atlas/index.html' && facts.atlasHeaderRight > width + 1)
+      failures.push(`${where}: Atlas title group right ${Math.round(facts.atlasHeaderRight)} exceeds viewport ${width}`);
     if (!/not accepted/.test(facts.banner)) failures.push(`${where}: the draft label is not visible ("${facts.banner.slice(0, 60)}")`);
     if (facts.small.length) failures.push(`${where}: header links under 44px: ${facts.small.join(', ')}`);
     if (!/data-g9-shell/.test(facts.html)) failures.push(`${where}: no shell marker`);
@@ -89,10 +106,10 @@ for (const width of [390, 1280]) {
   }));
   checked += 1;
   if (facts.cards !== 210) failures.push(`question bank @${width}: expected 210 cards, got ${facts.cards}`);
-  if (facts.validated !== 59) failures.push(`question bank @${width}: expected 59 VALIDATED cards, got ${facts.validated}`);
+  if (facts.validated !== 58) failures.push(`question bank @${width}: expected 58 VALIDATED cards, got ${facts.validated}`);
   if (facts.hold !== 1) failures.push(`question bank @${width}: expected one HOLD card, got ${facts.hold}`);
-  if (facts.unvalidated !== 150) failures.push(`question bank @${width}: expected 150 UNVALIDATED cards, got ${facts.unvalidated}`);
-  if (facts.sourceVerified !== 210) failures.push(`question bank @${width}: expected 210 source-verified cards, got ${facts.sourceVerified}`);
+  if (facts.unvalidated !== 151) failures.push(`question bank @${width}: expected 151 UNVALIDATED cards, got ${facts.unvalidated}`);
+  if (facts.sourceVerified !== 12) failures.push(`question bank @${width}: expected 12 source-evidenced cards, got ${facts.sourceVerified}`);
   if (facts.duplicateReview !== 0) failures.push(`question bank @${width}: expected no duplicate-review cards, got ${facts.duplicateReview}`);
   if (facts.overflow > 1) failures.push(`question bank @${width}: ${facts.overflow}px wider than the screen`);
 

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import html
 import json
 import posixpath
 import re
@@ -101,7 +102,7 @@ def _public_payload(relative: str, content: bytes) -> bytes:
             if not is_runtime:
                 continue
             for raw in HTML_LINK.findall(tag):
-                split = urlsplit(raw.strip())
+                split = urlsplit(html.unescape(raw.strip()))
                 if split.scheme.lower() in {"http", "https"} or split.netloc:
                     raise ValueError(
                         f"unapproved external runtime dependency in {relative}: {raw}"
@@ -222,7 +223,7 @@ def link_findings(
             continue
         text = content.decode("utf-8")
         for raw in HTML_LINK.findall(text):
-            raw = raw.strip()
+            raw = html.unescape(raw.strip())
             if not raw or raw.startswith("#") or raw.startswith("//"):
                 continue
             split = urlsplit(raw)

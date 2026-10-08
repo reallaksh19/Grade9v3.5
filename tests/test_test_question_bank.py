@@ -42,22 +42,54 @@ class TestTestQuestionBank(unittest.TestCase):
         self.assertEqual(len(rows), 210)
         self.assertEqual(len({q["id"] for q in rows}), 210)
         self.assertEqual(projection["academic_validation_status"], "PER_QUESTION")
-        self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 150, "VALIDATED": 59})
+        self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 151, "VALIDATED": 58})
         self.assertEqual(
             sum(q["text_verification_status"] == "TEXT_VERIFIED_AGAINST_OFFICIAL" for q in rows),
             210,
         )
-        self.assertEqual(sum(q["academic_validation_status"] == "VALIDATED" for q in rows), 59)
-        self.assertEqual(sum(q["academic_validation_status"] == "UNVALIDATED" for q in rows), 150)
+        self.assertEqual(sum(q["academic_validation_status"] == "VALIDATED" for q in rows), 58)
+        self.assertEqual(sum(q["academic_validation_status"] == "UNVALIDATED" for q in rows), 151)
         self.assertEqual(sum(q["academic_validation_status"] == "HOLD" for q in rows), 1)
         validated = {q["id"] for q in rows if q["academic_validation_status"] == "VALIDATED"}
         expected_validated = {f"ncert-exemplar-g9-math-u02-q{number:02d}" for number in range(1, 31)}
         expected_validated.remove("ncert-exemplar-g9-math-u02-q23")
+        expected_validated.remove("ncert-exemplar-g9-math-u02-q01")
         expected_validated |= {f"ncert-exemplar-g9-math-u01-q{number:02d}" for number in range(1, 31)}
         self.assertEqual(validated, expected_validated)
         held = {q["id"] for q in rows if q["academic_validation_status"] == "HOLD"}
         self.assertEqual(held, {"ncert-exemplar-g9-math-u02-q23"})
         self.assertEqual(sum(q["workflow_status"] == "DUPLICATE_REVIEW" for q in rows), 0)
+
+    def test_custody_evidence_is_separate_from_legacy_source_and_academic_states(self):
+        projection = build_test_question_bank.payload(REPO)
+        self.assertEqual(projection["custody_evidence_counts"],
+                         {"EVIDENCE_PENDING": 198, "INDEPENDENTLY_EVIDENCED": 12, "SOURCE_TEXT_HOLD": 0})
+        rows = [q for bank in projection["banks"] for q in bank["questions"]]
+        self.assertEqual(len(rows), 210)
+        evidenced = [q for q in rows if q["custody_evidence_status"] == "INDEPENDENTLY_EVIDENCED"]
+        self.assertEqual({q["id"] for q in evidenced},
+                         {f"ncert-exemplar-g9-math-u01-q{i:02d}" for i in range(1, 7)} |
+                         {f"ncert-exemplar-g9-math-u02-q{i:02d}" for i in range(1, 7)})
+        for q in evidenced:
+            self.assertIsNotNone(q["custody_source_locator"])
+            self.assertIn("ieep20", q["custody_question_source_url"])
+            self.assertIn("ieep2an.pdf", q["custody_answer_source_url"])
+            self.assertTrue("#129:" in q["custody_evidence_ref"] or "#68:" in q["custody_evidence_ref"])
+        pending = [q for q in rows if q["custody_evidence_status"] == "EVIDENCE_PENDING"]
+        self.assertEqual(len(pending), 198)
+        held = [q for q in rows if q["custody_evidence_status"] == "SOURCE_TEXT_HOLD"]
+        self.assertEqual(held, [])
+        self.assertTrue(all(q["custody_source_locator"] is None for q in held))
+        self.assertTrue(all(q["custody_source_locator"] is None for q in pending))
+        self.assertTrue(all(q["custody_evidence_ref"] is None for q in pending))
+        self.assertTrue(all(q["custody_answer_source_url"] is None for q in pending))
+        self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 151, "VALIDATED": 58})
+        self.assertIn("independent source evidence", build_test_question_bank.render_page(REPO))
+        corrected_q1 = next(q for q in rows if q["id"] == "ncert-exemplar-g9-math-u02-q01")
+        self.assertEqual(corrected_q1["academic_validation_status"], "UNVALIDATED")
+        self.assertIsNone(corrected_q1["academic_validation_receipt"])
+        self.assertEqual(corrected_q1["custody_evidence_status"], "INDEPENDENTLY_EVIDENCED")
+        self.assertIn('target="_blank" rel="noopener noreferrer"', build_test_question_bank.render_page(REPO))
 
     def test_shell_makes_source_and_academic_states_distinct(self):
         page = build_test_question_bank.render_page(REPO)
@@ -115,7 +147,12 @@ class TestTestQuestionBank(unittest.TestCase):
             for row in rows:
                 original = source[row["source_id"]]
                 self.assertEqual(row["original_identifier"], original["original_identifier"])
-                self.assertEqual(row["stem_sha256"], original["stem_sha256"])
+                if row["source_id"] == "ncert-exemplar-g9-math-u02-q01":
+                    # Historical academic PASS still binds the superseded capture,
+                    # and therefore must NOT be applied to corrected official wording.
+                    self.assertNotEqual(row["stem_sha256"], original["stem_sha256"])
+                else:
+                    self.assertEqual(row["stem_sha256"], original["stem_sha256"])
                 self.assertEqual(row["source_text_verification"], original["text_verification_status"])
                 self.assertEqual(row["official_answer_text"], original["official_answer_text"])
                 self.assertEqual(row["official_answer_locator"], original["answer_key_locator"])

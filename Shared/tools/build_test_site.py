@@ -22,7 +22,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.library.resolve import build_index  # noqa: E402
-from Shared.tools import atlas_index, build_test_question_bank, build_web_data, matrix_conformance, product_coverage, render_core  # noqa: E402
+from Shared.tools import atlas_index, build_test_question_bank, build_web_data, matrix_conformance, product_coverage, render_core, test_intake_registry, test_source_custody  # noqa: E402
 
 esc = render_core.esc
 TEST_ROOT = REPO / "TEST"
@@ -60,20 +60,8 @@ def interactive_pages() -> list[dict]:
 
 
 def intake_banks() -> list[dict]:
-    intake_dir = TEST_ROOT / "question-bank" / "intake"
-    if not intake_dir.is_dir():
-        return []
-    banks = []
-    for p in sorted(intake_dir.glob("*.json")):
-        if p.name.endswith(".blueprint-handoff.json"):
-            continue
-        try:
-            data = _json(p)
-            if isinstance(data, dict) and data.get("schema_version") == "grade9v3-test-source-question-intake-v1":
-                banks.append(data)
-        except Exception:
-            continue
-    return banks
+    """Share the fail-closed identity gate with the TEST Question Bank producer."""
+    return test_intake_registry.load_intake_banks(REPO)
 
 
 def candidate_audits() -> list[dict]:
@@ -107,14 +95,19 @@ def owner_banks() -> list[dict]:
 
 
 def test_search_index() -> list[dict]:
-    """TEST-only derived index over parked question sources."""
+    """TEST-only index: sourced READY means independent custody, not a stored workflow label."""
+    custody = test_source_custody.reconcile(REPO)
+    ready = set(custody["ready_ids"])
+    held = set(custody["hold_ids"])
     rows: list[dict] = []
     for bank in intake_banks():
         for q in bank.get("questions", []):
             rows.append({
                 "id": q.get("id"), "bank_id": bank.get("bank_id"), "kind": "OFFICIAL_INTAKE",
                 "topic": q.get("topic_label"), "subtopic": q.get("subtopic_label"), "stem": q.get("stem"),
-                "status": q.get("workflow_status"), "difficulty": None, "demand": None,
+                "status": ("READY_FOR_BLUEPRINT" if q["id"] in ready else
+                           "SOURCE_TEXT_HOLD" if q["id"] in held else "EVIDENCE_PENDING"),
+                "difficulty": None, "demand": None,
             })
     for bank in owner_banks():
         for q in bank.get("questions", []):
@@ -157,6 +150,13 @@ def frame(depth: int, title: str, current: str, body: str, heading: str | None =
     root = "../" * depth
     home = root + "index.html"
     header = render_core.shell_header(home, root + "question-bank/index.html")
+    # The shared product shell assumes a deeper product route for subject navigation.
+    # TEST pages have depth 1 or 2: rebase only those three links to this page's root.
+    for subject in ("physics", "chemistry", "mathematics"):
+        assumed = f'href="../../../{subject}/index.html"'
+        if assumed not in header:
+            raise ValueError(f"TEST header lost its expected {subject} link")
+        header = header.replace(assumed, f'href="{root}{subject}/index.html"')
     crumbs = "".join(
         f'<a href="{esc("../" * (depth - 1) + path if depth > 1 else path)}"{" aria-current=page" if path == current else ""}>{esc(label)}</a>'
         for path, label in NAV)
@@ -290,7 +290,78 @@ def render_owner_bank_section(banks: list[dict]) -> str:
     return "".join(blocks)
 
 
-def render_intake_section(intakes: list[dict]) -> str:
+INTAKE_HOME_FILTER_HTML = """<div data-g9-intake-controls style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px;margin:14px 0"><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Search staged questions<input type="search" data-g9-intake-search placeholder="Question, ID or topic" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Subject<select data-g9-intake-facet="subject" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All subjects</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Grade<select data-g9-intake-facet="grade" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All grades</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Source authority<select data-g9-intake-facet="authority" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All authorities</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Source kind<select data-g9-intake-facet="kind" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All source kinds</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Topic<select data-g9-intake-facet="topic" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All topics</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Subtopic<select data-g9-intake-facet="subtopic" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All subtopics</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Question type<select data-g9-intake-facet="type" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All types</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Intake state<select data-g9-intake-facet="intake" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All intake states</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Blueprint readiness<select data-g9-intake-facet="blueprint" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All readiness states</option></select></label><button type="button" data-g9-intake-reset style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px;cursor:pointer">Clear intake filters</button></div><p data-g9-intake-count aria-live="polite" style="font-size:14px"></p>"""
+INTAKE_HOME_FILTER_SCRIPT = """<script src="question-bank/questions.js"></script><script>
+(() => {
+  const projection = window.G9_TEST_QUESTION_BANK || { banks: [] };
+  const byId = new Map(projection.banks.flatMap(bank => bank.questions || []).map(q => [q.id, q]));
+  const blueprint = q => q.custody_evidence_status === "INDEPENDENTLY_EVIDENCED" ? "READY_FOR_BLUEPRINT"
+    : q.custody_evidence_status === "SOURCE_TEXT_HOLD" ? "SOURCE_TEXT_HOLD" : "EVIDENCE_PENDING";
+  const dimensions = [
+    ["subject", q => q.subject || "Unknown"],
+    ["grade", q => String(q.grade ?? "Unknown")],
+    ["authority", q => q.source_authority || "Unknown"],
+    ["kind", q => q.source_kind || "Unknown"],
+    ["topic", q => q.topic_label || "Unknown"],
+    ["subtopic", q => q.subtopic_label || "Not labelled"],
+    ["type", q => q.question_type || "Unknown"],
+    ["intake", q => q.custody_evidence_status === "SOURCE_TEXT_HOLD" ? "SOURCE_TEXT_HOLD" : "TEST_VISIBLE"],
+    ["blueprint", blueprint],
+  ];
+  for (const bank of document.querySelectorAll('article[data-g9-unit^="intake-"]')) {
+    const container = bank.querySelector("[data-g9-intake-controls]");
+    const count = bank.querySelector("[data-g9-intake-count]");
+    if (!container || !count) continue;
+    const cards = [...bank.querySelectorAll('details > div[style*="border:1px"]')];
+    const rows = cards.map(el => {
+      const id = el.querySelector("p strong")?.textContent?.trim();
+      const q = byId.get(id);
+      if (!q) throw new Error("TEST intake source projection missing " + id);
+      const values = Object.fromEntries(dimensions.map(([key, get]) => [key, get(q)]));
+      el.dataset.g9IntakeSourceId = q.id;
+      return { el, values, search: [q.id, q.original_identifier, q.stem, q.topic_label,
+        q.subtopic_label, q.chapter_or_unit, q.question_type].join(" ").toLowerCase() };
+    });
+    const facets = [...container.querySelectorAll("[data-g9-intake-facet]")];
+    for (const select of facets) {
+      const key = select.dataset.g9IntakeFacet;
+      const distinct = [...new Set(rows.map(row => row.values[key]))].sort((a,b) => a.localeCompare(b));
+      for (const value of distinct) {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value.replaceAll("_", " ");
+        select.append(option);
+      }
+    }
+    const search = container.querySelector("[data-g9-intake-search]");
+    const apply = () => {
+      const query = search.value.trim().toLowerCase();
+      let shown = 0;
+      for (const row of rows) {
+        const ok = (!query || row.search.includes(query)) &&
+          facets.every(select => !select.value || row.values[select.dataset.g9IntakeFacet] === select.value);
+        row.el.hidden = !ok;
+        if (ok) shown++;
+      }
+      count.textContent = shown + " of " + rows.length + " official questions shown";
+    };
+    search.addEventListener("input", apply);
+    facets.forEach(select => select.addEventListener("change", apply));
+    container.querySelector("[data-g9-intake-reset]").addEventListener("click", () => {
+      search.value = "";
+      facets.forEach(select => { select.value = ""; });
+      apply();
+      search.focus();
+    });
+    apply();
+  }
+})();
+</script>"""
+
+
+def render_intake_section(intakes: list[dict], custody: dict) -> str:
+    ready = {row["intake_question_ref"]: row for row in custody["handoff"]}
+    held = set(custody["hold_ids"])
     if not intakes:
         return ""
     blocks = []
@@ -315,13 +386,22 @@ def render_intake_section(intakes: list[dict]) -> str:
             ans_block = f"<p><strong>Official Answer:</strong> {esc(ans_text)} <em>({esc(q.get('answer_key_locator', ''))})</em></p>" if ans_text else ""
             src_url = q.get("source_url", "")
             pdf_name = src_url.rsplit("/", 1)[-1] if src_url else ""
-            src_link = f' · <span class="g9-prov">Source document: {esc(pdf_name)}</span>' if pdf_name else ""
+            source = ready.get(qid)
+            evidence_state = ("SOURCE EVIDENCED" if source else
+                              "SOURCE TEXT HOLD" if qid in held else "EVIDENCE PENDING")
+            verified_page = source["source_locator"] if source else None
+            page_note = (f' · Printed page {verified_page["printed_page"]} / PDF index {verified_page["pdf_page_index"]}'
+                         if verified_page else ' · Exact official page not independently reconciled')
+            safe_href = esc(src_url).replace("https:", "https&#58;")
+            src_link = (f' · <a href="{safe_href}" target="_blank" rel="noopener noreferrer" '
+                        f'style="display:inline-flex;min-height:48px;align-items:center">Official source PDF: {esc(pdf_name)}</a>'
+                        f'<span class="g9-prov">{page_note}</span>') if pdf_name else ""
 
             q_cards.append(
                 f'<div style="border:1px solid #e2e8f0;border-radius:6px;padding:12px;margin:8px 0;background:#fff">'
                 f'<div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;margin-bottom:6px">'
                 f'<span style="background:#0284c7;color:#fff;padding:2px 6px;border-radius:4px">{esc(q.get("topic_label", ""))}</span>'
-                f'<span style="background:#16a34a;color:#fff;padding:2px 6px;border-radius:4px">{esc(q.get("text_verification_status", ""))}</span>'
+                f'<span style="background:#16a34a;color:#fff;padding:2px 6px;border-radius:4px">{esc(evidence_state)}</span>'
                 f'<span style="background:#64748b;color:#fff;padding:2px 6px;border-radius:4px">Difficulty: not analysed</span>'
                 f'<span style="background:#64748b;color:#fff;padding:2px 6px;border-radius:4px">Demand: not analysed</span>'
                 f'</div>'
@@ -344,12 +424,15 @@ def render_intake_section(intakes: list[dict]) -> str:
             ]),
             f'<h2>Stage-1 Question Intake: {esc(bank_id)}</h2>'
             f'<p class="g9-prov">Source scope: {esc(", ".join(bank.get("source_scope", [])))} · {len(q_list)} question(s) · '
-            f'Status: READY_FOR_BLUEPRINT · Verbatim custody: VERBATIM</p>'
+            f'Independent source custody: {sum(q["id"] in ready for q in q_list)} READY_FOR_BLUEPRINT · '
+            f'{sum(q["id"] in held for q in q_list)} SOURCE_TEXT_HOLD · '
+            f'{sum(q["id"] not in ready and q["id"] not in held for q in q_list)} EVIDENCE_PENDING · historical intake labels are not authority</p>'
             f'<p>Official questions ingested from <em>{esc(bank.get("created_from", "official source"))}</em>. '
-            f'All items verified against official PDFs with cryptographic stem digests (sha256). '
+            f'Independent official-document witnesses currently cover only the separately reconciled records; '
+            f'a stored stem digest or historical verification label alone does not establish official custody. '
             f'Academic blueprinting (difficulty bands D1–D4, cognitive demand, QRT cells, worked solutions) is deferred.</p>'
             f'<p><strong>Topics:</strong> {topic_summary}</p>'
-            f'<details><summary>Inspect {len(q_list)} verified intake questions</summary>{all_q_html}</details>'
+            f'<details><summary>Inspect {len(q_list)} parked intake questions</summary>{INTAKE_HOME_FILTER_HTML}{all_q_html}</details>'
         ))
     return "".join(blocks)
 
@@ -359,6 +442,7 @@ def hub_page() -> str:
     pages = interactive_pages()
     counts = source_counts()
     intakes = intake_banks()
+    custody = test_source_custody.reconcile(REPO)
     owner = owner_banks()
     search_rows = test_search_index()
     audits = candidate_audits()
@@ -382,7 +466,7 @@ def hub_page() -> str:
         '<p class="g9-prov">A gap count of 0 means the depth check found nothing missing. It counts what is absent, '
         'not how good it is, and it does not say the content has been reviewed.</p>'
         + render_candidate_audit_section(audits)
-        + render_intake_section(intakes)
+        + render_intake_section(intakes, custody)
         + render_owner_bank_section(owner)
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
         + stage(2, "Core1A", "Concept construction for the same topic", core1a)
@@ -401,7 +485,7 @@ def hub_page() -> str:
                f'<li>{len(audits)} candidate QA record(s) in TEST/candidates</li>'
                f'<li>TEST-only search index: {len(search_rows)} parked question(s); production search untouched</li></ul>'
                '<p class="g9-prov">How to add each of them: TEST/README.md in the repository.</p>')
-        + search_index_script(search_rows))
+        + search_index_script(search_rows) + INTAKE_HOME_FILTER_SCRIPT)
     return frame(1, "TEST", "index.html", body, heading="TEST: a sandbox for stress runs")
 
 
