@@ -137,6 +137,38 @@ def check_pilot(seed: Path = BASE / "seed",
            "source question inventory drift")
     ensure(proposed == 7 and computed == 7 and len(cells) == 6,
            "pilot provisional QRT coverage drift")
+    try:
+        coverage = json.loads((pilot.parent / "qrt-proposed-coverage.v1.json").read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise SeedError(f"QRT coverage ledger unreadable: {exc}") from exc
+    all_cells = {f"QRT-{d}-{band}" for d in DEMANDS for band in ("D1","D2","D3","D4")}
+    ensure(coverage.get("schema") == "sof-imo-g09-qrt-proposed-coverage-v1" and
+           coverage.get("scope") == "ORGANIZER_2026-27_SAMPLE_SEEDED_8_OF_10" and
+           coverage.get("proposals_not_acceptance") is True and
+           coverage.get("accepted_coverage_denominator") == 28 and
+           coverage.get("accepted_coverage_numerator") == 0 and
+           coverage.get("proposed_coverage_numerator") == 6 and
+           coverage.get("cell_count") == 28 and
+           coverage.get("unreviewed_cognitive_proposals") == 7,
+           "QRT coverage counts wrongly accepted or drifted")
+    entries = coverage.get("cells")
+    ensure(isinstance(entries,list) and len(entries) == 28 and
+           all(isinstance(x,dict) for x in entries), "QRT matrix must include all 28 cells")
+    coverage_ids = set()
+    for entry in entries:
+        cell = entry.get("cell")
+        ensure(cell in all_cells and cell not in coverage_ids,
+               f"QRT cell missing, malformed or duplicate: {cell}")
+        coverage_ids.add(cell)
+        derived = {r["question_id"] for r in rows if r["qrt_proposal"] and
+                   r["qrt_proposal"]["cell"] == cell}
+        ensure(entry.get("proposed_question_ids") == sorted(derived) and
+               entry.get("independently_accepted_question_ids") == [] and
+               entry.get("independent_academic_review_status") == "NOT_ACCEPTED" and
+               entry.get("primary_demand") + "-" + entry.get("derived_band") == cell[4:],
+               f"{cell}: coverage or independent acceptance mismatch")
+    ensure(coverage_ids == all_cells, "missing canonical 4x7 cell")
+
     return {"result":"SAMPLE_MATH_AND_QRT_PROPOSALS_ONLY", "sample_seed_questions":len(seen),
             "agent_calculated":computed, "printed_key_agreements":computed,
             "on_figure_hold":1, "proposed_primary_qrt_assignments":proposed,
