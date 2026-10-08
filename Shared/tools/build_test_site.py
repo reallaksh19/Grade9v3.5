@@ -208,13 +208,42 @@ def link(href: str, label: str) -> str:
 
 # ------------------------------------------------------------------ pages
 
-def render_candidate_audit_section(audits: list[dict]) -> str:
+def render_candidate_audit_section(audits: list[dict], custody: dict | None = None) -> str:
     if not audits:
         return ""
+    # Old candidate audit receipts are immutable history, not present-day custody.
+    # Project fresh custody facts without rewriting their recorded claims.
+    if custody is None:
+        custody = test_source_custody.reconcile(REPO)
     cards = []
     rank = {"PASS": 0, "NOT_APPLICABLE": 1, "PENDING": 2, "BLOCKED": 3}
     for audit in audits:
         checks = audit.get("checks") or {}
+        legacy_note = ""
+        if audit.get("candidate_id") == "NCERT-EXEMPLAR-G9-MATH-210":
+            historical = audit.get("question_counts") or {}
+            checks = dict(checks)
+            checks["custody"] = {
+                "status": "PENDING",
+                "detail": ("The historical metadata PASS cannot verify official wording. "
+                           f"Current source custody: {custody['ready_for_blueprint']} independently "
+                           f"evidenced; {custody['source_text_hold']} source-text HOLD; "
+                           f"{custody['evidence_pending']} awaiting evidence."),
+            }
+            counts_source = {
+                "total": custody["total_intake"],
+                "ready_for_blueprint": custody["ready_for_blueprint"],
+                "source_text_hold": custody["source_text_hold"],
+                "evidence_pending": custody["evidence_pending"],
+            }
+            legacy_note = (
+                '<p class="g9-prov">Historical QA receipt (not current source authority): '
+                f'{esc(historical.get("ready_for_blueprint", "?"))} previously labelled READY and '
+                f'{esc(historical.get("duplicate_review", "?"))} duplicate-review. '
+                'Present readiness is computed exclusively from source-custody evidence.</p>'
+            )
+        else:
+            counts_source = audit.get("question_counts") or {}
         ordered = sorted(checks.items(), key=lambda item: (rank.get((item[1] or {}).get("status"), 9), item[0]))
         rows = "".join(
             f'<tr><td>{esc(name.replace("_", " ").title())}</td>'
@@ -222,7 +251,7 @@ def render_candidate_audit_section(audits: list[dict]) -> str:
             f'<td>{esc((result or {}).get("detail", ""))}</td></tr>'
             for name, result in ordered
         )
-        counts = " · ".join(f"{esc(k.replace('_', ' '))}: {esc(v)}" for k, v in (audit.get("question_counts") or {}).items())
+        counts = " · ".join(f"{esc(k.replace('_', ' '))}: {esc(v)}" for k, v in counts_source.items())
         promotion = audit.get("promotion") or {}
         origin = audit.get("origin") or {}
         origin_text = f'PR #{origin.get("pr")}' if origin.get("pr") else origin.get("type", "TEST")
@@ -239,6 +268,7 @@ def render_candidate_audit_section(audits: list[dict]) -> str:
             f'<div class="g9-table-scroll"><table><thead><tr><th>Check</th><th>Status</th><th>Evidence / next action</th></tr></thead>'
             f'<tbody>{rows}</tbody></table></div>'
             f'<p class="g9-prov">Promotion reason: {esc(promotion.get("reason", ""))}</p>'
+            + legacy_note
         ))
     return "".join(cards)
 
@@ -465,7 +495,7 @@ def hub_page() -> str:
         'accepted or curriculum, and <code>accept_product.py</code> refuses TEST.</p>'
         '<p class="g9-prov">A gap count of 0 means the depth check found nothing missing. It counts what is absent, '
         'not how good it is, and it does not say the content has been reviewed.</p>'
-        + render_candidate_audit_section(audits)
+        + render_candidate_audit_section(audits, custody)
         + render_intake_section(intakes, custody)
         + render_owner_bank_section(owner)
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
