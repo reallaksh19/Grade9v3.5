@@ -124,6 +124,14 @@ class TestManifestCommand(unittest.TestCase):
 
 
 class TestPages(unittest.TestCase):
+    def test_test_shell_subject_links_stay_under_portal_root_at_each_depth(self):
+        for depth in (1, 2):
+            with self.subTest(depth=depth):
+                page = build_test_site.frame(depth, "TEST", "index.html", "")
+                for subject in ("physics", "chemistry", "mathematics"):
+                    self.assertIn(f'href="{"../" * depth}{subject}/index.html"', page)
+                    self.assertNotIn(f'href="../../../{subject}/index.html"', page)
+
     def test_committed_pages_are_what_the_generator_writes(self):
         self.assertEqual(build_test_site.check(), [])
 

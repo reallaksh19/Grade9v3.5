@@ -29,6 +29,10 @@ jobs:
         run: |
           python3 -m unittest tests.test_test_area.TestPages.test_test_search_index_covers_parked_questions_without_becoming_canonical_search -v
           python3 -m unittest tests.test_test_area.TestPages.test_committed_pages_are_what_the_generator_writes -v
+          python3 -m unittest tests.test_test_area.TestPages.test_test_shell_subject_links_stay_under_portal_root_at_each_depth -v
+          python3 -m unittest tests.test_pages_site.PagesSiteTest.test_html_entities_are_decoded_for_official_links_and_traversal -v
+          python3 -m unittest tests.test_pages_site.PagesSiteTest.test_generated_html_links_do_not_escape_docs_root -v
+          python3 -m unittest tests.test_pages_site.PagesSiteTest.test_committed_pages_mirror_is_current -v
       - name: Capture exact generator output after a blocking failure
         if: failure()
         run: |
