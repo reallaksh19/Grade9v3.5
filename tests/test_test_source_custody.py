@@ -100,7 +100,8 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
     def test_source_bank_stem_mutation_invalidates_a_former_witness(self):
         self.bank_doc["questions"][0]["stem"] = "Changed question wording"
         self.write()
-        with self.assertRaisesRegex(ValueError, "stem digest mismatch"):
+        # The intake identity gate rejects altered wording before custody reconciliation.
+        with self.assertRaisesRegex(ValueError, "source stem digest does not match wording"):
             test_source_custody.reconcile(self.repo)
 
     def test_academic_receipts_remain_distinct_from_source_custody(self):
