@@ -134,6 +134,17 @@ class TestNcertQ1ParkedProduct(unittest.TestCase):
         ])
         self.assertEqual(row["status"], "CANDIDATE")
 
+    def test_core1a_construction_links_exact_source_crux_without_copying_q1(self):
+        unit = self.package["microtopics"][0]["construction_units"][0]
+        self.assertEqual(unit["bank_anchor_ref"], SOURCE_ID)
+        self.assertEqual(unit["crux_question_refs"], [SOURCE_ID])
+        self.assertIn(unit["crux_step_ref"], unit["step_refs"])
+        steps = {row["id"] for row in self.package["microtopics"][0]["teaching_path"]}
+        self.assertEqual(set(unit["step_refs"]), steps)
+        self.assertTrue(unit["independent_checks"][0]["statement"])
+        self.assertEqual(self.package["questions"], [])
+        self.assertEqual(self.manifest["selection"]["core2"], [SOURCE_ID])
+
     def test_mutated_intake_or_answer_witness_cannot_reuse_render_view(self):
         manipulated = copy.deepcopy(self.bank)
         manipulated["questions"][0]["stem_sha256"] = "sha256:" + "0" * 64
