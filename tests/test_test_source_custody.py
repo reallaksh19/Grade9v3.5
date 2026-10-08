@@ -15,6 +15,7 @@ from Shared.tools import build_test_question_bank, test_source_custody  # noqa: 
 
 BANK = "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json"
 OVERLAY = "TEST/evidence/source-intake/ncert-exemplar-g9-number-systems-q1-q6.custody.v1.json"
+POLY = "TEST/evidence/source-intake/ncert-exemplar-g9-polynomials-q02-q06.custody.v1.json"
 
 
 class TestSourceCustodyReconciliation(unittest.TestCase):
@@ -22,6 +23,7 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
     def setUpClass(cls):
         cls.bank = json.loads((REPO / BANK).read_text(encoding="utf-8"))
         cls.overlay = json.loads((REPO / OVERLAY).read_text(encoding="utf-8"))
+        cls.polynomials = json.loads((REPO / POLY).read_text(encoding="utf-8"))
 
     def setUp(self):
         tmp = tempfile.TemporaryDirectory()
@@ -104,10 +106,31 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "source stem digest does not match wording"):
             test_source_custody.reconcile(self.repo)
 
+    def test_second_topic_five_ready_and_disputed_q1_held(self):
+        second = self.repo / POLY
+        second.write_text(json.dumps(self.polynomials, ensure_ascii=False), encoding="utf-8")
+        result = test_source_custody.reconcile(self.repo)
+        self.assertEqual((result["total_intake"], result["ready_for_blueprint"],
+                          result["source_text_hold"], result["evidence_pending"]), (210, 11, 1, 198))
+        self.assertEqual(result["hold_ids"], ["ncert-exemplar-g9-math-u02-q01"])
+        self.assertEqual(len([qid for qid in result["ready_ids"] if "-u02-" in qid]), 5)
+        self.assertNotIn("ncert-exemplar-g9-math-u02-q01", result["ready_ids"])
+        self.assertTrue(all(v["source_locator"]["printed_page"] == 14
+                            and v["source_locator"]["pdf_page_index"] == 1
+                            for v in result["handoff"] if "-u02-" in v["intake_question_ref"]))
+
+    def test_disputed_stem_cannot_clear_hold(self):
+        second = self.repo / POLY
+        doc = copy.deepcopy(self.polynomials)
+        doc["holds"][0]["official_stem"] = doc["holds"][0]["captured_stem"]
+        second.write_text(json.dumps(doc, ensure_ascii=False), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "invalid disputed official wording"):
+            test_source_custody.reconcile(self.repo)
+
     def test_academic_receipts_remain_distinct_from_source_custody(self):
         result = test_source_custody.reconcile(REPO)
         projection = build_test_question_bank.payload(REPO)
-        self.assertEqual((result["ready_for_blueprint"], result["evidence_pending"]), (6, 204))
+        self.assertEqual((result["ready_for_blueprint"], result["source_text_hold"], result["evidence_pending"]), (11, 1, 198))
         self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 150, "VALIDATED": 59})
         self.assertEqual(result["total_intake"], 210)
 

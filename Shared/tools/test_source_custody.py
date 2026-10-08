@@ -37,6 +37,7 @@ def reconcile(repo: Path) -> dict:
     banks = test_intake_registry.load_intake_banks(repo)
     by_id = {q["id"]: (bank, q) for bank in banks for q in bank["questions"]}
     reconciled: dict[str, dict] = {}
+    source_holds: dict[str, dict] = {}
     evidence_dir = repo / "TEST/evidence/source-intake"
     for path in sorted(evidence_dir.glob("*.custody.v1.json")):
         try:
@@ -136,13 +137,49 @@ def reconcile(repo: Path) -> dict:
                 "verification_evidence_ref": record["verification_evidence_ref"],
                 "intake_status": "READY_FOR_BLUEPRINT",
             }
+        hold_rows = overlay.get("holds", [])
+        _require(isinstance(hold_rows, list), where, "source-text holds must be a list")
+        for hold in hold_rows:
+            _require(isinstance(hold, dict), where, "invalid source-text hold")
+            qid = hold.get("id")
+            _require(isinstance(qid, str) and qid in by_id, where, f"orphan source-text hold {qid!r}")
+            _require(qid not in reconciled and qid not in source_holds, where, f"duplicate or READY source-text hold {qid}")
+            bank, source = by_id[qid]
+            _require(overlay["source_bank_ref"] == f"TEST/question-bank/intake/{bank['bank_id']}.json",
+                     where, f"bank identity mismatch for held {qid}")
+            origin = documents.get(hold.get("source_document_ref"))
+            _require(origin is not None and origin["role"] == "QUESTION_SOURCE"
+                     and origin["authority"] == source["source_authority"]
+                     and origin["kind"] == source["source_kind"]
+                     and origin["url"] == source["source_url"], where, f"held official source mismatch for {qid}")
+            loc = hold.get("source_locator")
+            _require(isinstance(loc, dict)
+                     and all(loc.get(k) == source[k] for k in
+                             ("chapter_or_unit", "exercise_or_section", "question_number"))
+                     and type(loc.get("printed_page")) is int and loc["printed_page"] > 0
+                     and type(loc.get("pdf_page_index")) is int and loc["pdf_page_index"] >= 0,
+                     where, f"invalid held source locator for {qid}")
+            _require(hold.get("disposition") == "SOURCE_TEXT_HOLD"
+                     and hold.get("reason_code") == "VERBATIM_SOURCE_TEXT_MISMATCH"
+                     and hold.get("captured_stem") == source["stem"]
+                     and hold.get("captured_stem_sha256") == source["stem_sha256"]
+                     and isinstance(hold.get("official_stem"), str)
+                     and bool(hold["official_stem"].strip()) and hold["official_stem"] != source["stem"]
+                     and _evidence_ref(hold.get("verification_evidence_ref")),
+                     where, f"invalid disputed official wording for {qid}")
+            source_holds[qid] = {"id": qid, "reason": hold["reason_code"],
+                                 "official_stem": hold["official_stem"],
+                                 "verification_evidence_ref": hold["verification_evidence_ref"]}
     return {
         "schema_version": "grade9v3-test-source-custody-reconciliation-v1",
         "total_intake": len(by_id),
         "ready_for_blueprint": len(reconciled),
-        "evidence_pending": len(by_id) - len(reconciled),
+        "evidence_pending": len(by_id) - len(reconciled) - len(source_holds),
+        "source_text_hold": len(source_holds),
         "ready_ids": sorted(reconciled),
-        "pending_ids": sorted(set(by_id) - set(reconciled)),
+        "hold_ids": sorted(source_holds),
+        "held": [source_holds[qid] for qid in sorted(source_holds)],
+        "pending_ids": sorted(set(by_id) - set(reconciled) - set(source_holds)),
         "handoff": [reconciled[qid] for qid in sorted(reconciled)],
     }
 
@@ -157,7 +194,8 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(result["handoff"], sort_keys=True, ensure_ascii=False, indent=2))
     else:
         print(f"Stage-1 custody: {result['ready_for_blueprint']} READY_FOR_BLUEPRINT; "
-              f"{result['evidence_pending']} EVIDENCE_PENDING; "
+              f"{result['source_text_hold']} SOURCE_TEXT_HOLD; "
+          f"{result['evidence_pending']} EVIDENCE_PENDING; "
               "no academic, production or owner acceptance implied")
     return 0
 
