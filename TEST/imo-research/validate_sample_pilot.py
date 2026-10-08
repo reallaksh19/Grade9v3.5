@@ -57,8 +57,10 @@ def check_pilot(seed: Path = BASE / "seed",
            data.get("independent_peer_accepted_count") == 0 and
            data.get("core_ready_count") == 0,
            "nonzero acceptance claim not supported")
-    issue_text = " ".join(data.get("source_issues") or [])
-    ensure("Q9" in issue_text and "radical" in issue_text and "Q5" in issue_text,
+    issues = data.get("source_issues")
+    ensure(isinstance(issues, list) and all(isinstance(x, str) for x in issues) and
+           any("Q9" in x and ("index" in x.lower() or "root" in x.lower()) for x in issues) and
+           any("Q5" in x and "diagram" in x.lower() for x in issues),
            "source mismatch and diagram hold not visible")
 
     _, mapped, _ = load_taxonomy(taxonomy)
