@@ -1,0 +1,32 @@
+schema_version: relay-v3.1-task-snapshot
+authority: DERIVED_READ_MODEL
+source_protocol: V3_1
+identity:
+  work_package: ISSUE-202-NCERT-POLY-VALIDATION
+  ep: ISSUE-202-PROVIDER-VIEW
+  issue: 202
+  delivery_vehicle: 203
+purpose:
+  programme_outcome: Validate NCERT Exemplar Grade 9 Mathematics questions before any production Question Bank admission.
+  current_goal: Validate exactly Unit 2 Polynomials intake source records Q21-Q30 and preserve any unresolved source wording or key conflict.
+  task_outcome: Nine records are validation-PASS and one record is HOLD; TEST exposes the distinction while production admission remains unchanged.
+  why_this_task_exists: Owner requested TEST visibility first, validation before production admission, and Atlas/rungs/UI enrichment afterward.
+parent_issue:
+  repository: reallaksh19/Grade9v3.5
+  number: 202
+  title: "Validate NCERT Polynomials intake Q21-Q30"
+  state: OPEN
+  url: https://github.com/reallaksh19/Grade9v3.5/issues/202
+delivery:
+  relationship: PRIMARY
+  pr: 203
+  head: 1a2b3fa28147cfe9ab8e7e87d49aea436ed4b5e5
+  branch: audit/ncert-poly-q21-q30
+material:
+  base: 08946b6e4520e4721f186026e64fbc87c89aa64a
+  current_head: 1a2b3fa28147cfe9ab8e7e87d49aea436ed4b5e5
+execution:
+  lifecycle: ACTIVE
+  branch: audit/ncert-poly-q21-q30
+next:
+  immediate_action: Qualify the exact validation head, merge the receipt if green, then open a separate admission responsibility for only the nine PASS records while Q23 remains held.
