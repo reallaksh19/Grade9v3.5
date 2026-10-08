@@ -54,6 +54,20 @@ for (const page of PAGES) {
       const small = links.filter((a) => Math.min(a.getBoundingClientRect().width, a.getBoundingClientRect().height) < 44);
       return {
         overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        offenders: [...document.querySelectorAll('body *')]
+          .filter(el => {
+            const rect = el.getBoundingClientRect();
+            return rect.width > 0 && rect.height > 0 && rect.right > innerWidth + 1;
+          })
+          .map(el => {
+            const r = el.getBoundingClientRect();
+            const css = getComputedStyle(el);
+            return { node: el.tagName.toLowerCase() + (el.id ? '#' + el.id : '')
+              + (typeof el.className === 'string' ? '.' + el.className.trim().split(/\\s+/).slice(0, 2).join('.') : ''),
+              left: Math.round(r.left), right: Math.round(r.right),
+              width: Math.round(r.width), minWidth: css.minWidth,
+              overflowX: css.overflowX, display: css.display };
+          }).sort((a,b) => b.right - a.right).slice(0, 12),
         banner,
         barLinks: links.length,
         small: small.map((a) => a.textContent),
@@ -64,7 +78,7 @@ for (const page of PAGES) {
     checked += 1;
     const where = `${page} @${width}`;
     for (const problem of problems) failures.push(`${where}: ${problem}`);
-    if (facts.overflow > 1) failures.push(`${where}: ${facts.overflow}px wider than the screen`);
+    if (facts.overflow > 1) failures.push(`${where}: ${facts.overflow}px wider than the screen; offenders=${JSON.stringify(facts.offenders)}`);
     if (!/not accepted/.test(facts.banner)) failures.push(`${where}: the draft label is not visible ("${facts.banner.slice(0, 60)}")`);
     if (facts.small.length) failures.push(`${where}: header links under 44px: ${facts.small.join(', ')}`);
     if (!/data-g9-shell/.test(facts.html)) failures.push(`${where}: no shell marker`);
