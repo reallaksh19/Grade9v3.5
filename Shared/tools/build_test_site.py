@@ -412,11 +412,15 @@ def render_intake_section(intakes: list[dict], custody: dict) -> str:
             opts = q.get("options") or []
             opts_html = "".join(f"<li>{esc(o)}</li>" for o in opts)
             opts_block = f"<ul style='margin:4px 0 8px 18px'>{opts_html}</ul>" if opts_html else ""
+            source = ready.get(qid)
             ans_text = q.get("official_answer_text", "")
-            ans_block = f"<p><strong>Official Answer:</strong> {esc(ans_text)} <em>({esc(q.get('answer_key_locator', ''))})</em></p>" if ans_text else ""
+            key_evidenced = bool(source and source.get("official_answer_key_ref"))
+            answer_label = ("Evidenced official answer" if key_evidenced
+                            else "Recorded answer — official key custody pending")
+            ans_block = (f"<p><strong>{answer_label}:</strong> {esc(ans_text)} "
+                         f"<em>({esc(q.get('answer_key_locator', ''))})</em></p>") if ans_text else ""
             src_url = q.get("source_url", "")
             pdf_name = src_url.rsplit("/", 1)[-1] if src_url else ""
-            source = ready.get(qid)
             evidence_state = ("SOURCE EVIDENCED" if source else
                               "SOURCE TEXT HOLD" if qid in held else "EVIDENCE PENDING")
             verified_page = source["source_locator"] if source else None
