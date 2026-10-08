@@ -9,10 +9,15 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from Shared.tools import test_intake_registry
+REPO = Path(__file__).resolve().parents[2]
+if __package__ in (None, ""):
+    sys.path.insert(0, str(REPO))
+
+from Shared.tools import test_intake_registry  # noqa: E402
 
 SCHEMA = "grade9v3-test-source-custody-overlay-v1"
 OFFICIAL_HOSTS = {"NCERT_OFFICIAL": {"ncert.nic.in"},
