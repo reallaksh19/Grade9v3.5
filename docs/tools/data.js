@@ -1836,6 +1836,294 @@ window.GRADE9V3 = {
                 }
               },
               "prerequisites": []
+            },
+            {
+              "id": "MIC-MAT-POLY-REMAINDER-FACTOR",
+              "title": "Remainders and Linear Factors",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The learner must translate a divisor or factor into the correct evaluation point before interpreting the result.",
+              "entry_assumptions": [
+                "Can evaluate a polynomial at a signed input and solve a one-step linear equation."
+              ],
+              "inferential_jump": "Connect division by x-a with the single value p(a), then distinguish a general remainder from the special zero-remainder factor case.",
+              "teaching_path": [
+                {
+                  "id": "POLY-RF-T1",
+                  "action": "Rewrite the divisor x-a so its zero a is explicit.",
+                  "why_valid": "The Remainder Theorem evaluates the dividend polynomial at the zero of the linear divisor.",
+                  "role": "CONNECT",
+                  "output": "evaluation point a",
+                  "inputs": [
+                    "linear divisor"
+                  ]
+                },
+                {
+                  "id": "POLY-RF-T2",
+                  "action": "Evaluate p(a); keep that value as the remainder, or set it equal to zero when a factor is asserted.",
+                  "why_valid": "p(a) is the remainder on division by x-a, and x-a is a factor exactly when that remainder is zero.",
+                  "role": "TRANSFORM",
+                  "output": "remainder or factor equation",
+                  "inputs": [
+                    "polynomial and evaluation point"
+                  ]
+                },
+                {
+                  "id": "POLY-RF-T3",
+                  "action": "Check the sign of a and substitute it back into the original polynomial.",
+                  "why_valid": "Most errors in this theorem come from using a instead of the zero of the written divisor.",
+                  "role": "VERIFY",
+                  "output": "verified theorem result",
+                  "inputs": [
+                    "computed result"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "For division by x+1, use p(1) instead of p(-1).",
+                  "diagnostic_prompt": "What value of x makes x+1 equal to zero?",
+                  "repair": "Find the divisor's zero first; x+1=x-(-1), so use p(-1)."
+                }
+              ],
+              "exit_task": {
+                "prompt": "If p(3)=0, what does the Factor Theorem say about x-3?",
+                "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "x-3 is a factor of p(x).",
+                  "reasoning": [
+                    "The divisor x-3 has zero 3.",
+                    "A zero remainder p(3)=0 makes x-3 a factor."
+                  ],
+                  "check": "The conclusion uses the factor case of the Remainder Theorem.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The task asks for a theorem conclusion from the given evaluation."
+                }
+              },
+              "prerequisites": [
+                "MIC-MAT-POLY-EVALUATION"
+              ]
+            },
+            {
+              "id": "MIC-MAT-POLY-FACTORISATION-BASIC",
+              "title": "Elementary Polynomial Factorisation",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "The learner must identify a useful product structure and then verify it rather than rely on visual matching.",
+              "entry_assumptions": [
+                "Can expand binomial products and extract a common numerical or variable factor."
+              ],
+              "inferential_jump": "Move between expanded and product forms so a proposed factor can be proved by exact algebraic equivalence.",
+              "teaching_path": [
+                {
+                  "id": "POLY-FB-T1",
+                  "action": "Choose either expansion-and-collection or common-factor extraction according to the expression's visible structure.",
+                  "why_valid": "Both routes preserve equality and expose multiplicative structure without guessing.",
+                  "role": "DECIDE",
+                  "output": "chosen factorisation route",
+                  "inputs": [
+                    "polynomial expression"
+                  ]
+                },
+                {
+                  "id": "POLY-FB-T2",
+                  "action": "Rewrite the polynomial as a product by collecting like terms or matching binomial coefficients.",
+                  "why_valid": "A correct factorisation is an algebraically equivalent product whose expansion returns the original polynomial.",
+                  "role": "TRANSFORM",
+                  "output": "candidate product form",
+                  "inputs": [
+                    "chosen route"
+                  ]
+                },
+                {
+                  "id": "POLY-FB-T3",
+                  "action": "Expand the candidate product and compare every coefficient with the original expression.",
+                  "why_valid": "Coefficient-by-coefficient agreement falsifies sign and middle-term errors.",
+                  "role": "VERIFY",
+                  "output": "verified factorisation",
+                  "inputs": [
+                    "candidate product form"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "A proposed factorisation is accepted because the first and last terms look right.",
+                  "diagnostic_prompt": "What middle term appears when the proposed factors are expanded?",
+                  "repair": "Expansion must reproduce every coefficient, not only the leading and constant terms."
+                }
+              ],
+              "exit_task": {
+                "prompt": "How can you verify that (2x+1)(2x+3) factors 4x²+8x+3?",
+                "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Expand the product and check that it becomes 4x²+8x+3.",
+                  "reasoning": [
+                    "Multiply the two binomials term by term.",
+                    "Collect the middle terms 6x+2x to obtain 8x."
+                  ],
+                  "check": "The expanded coefficients 4, 8, and 3 match the polynomial.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The task asks for a verification method and exact expansion."
+                }
+              },
+              "prerequisites": [
+                "MIC-MAT-POLY-FORM-DEGREE"
+              ]
+            },
+            {
+              "id": "MIC-MAT-POLY-IDENTITIES-BASIC",
+              "title": "Standard Algebraic Identities in Polynomial Work",
+              "badge": "MEDIUM",
+              "status": "CANDIDATE",
+              "badge_reason": "Correctness depends on selecting the matching identity and carrying coefficients and signs through every term.",
+              "entry_assumptions": [
+                "Knows square/cube expansions, difference of squares, and the factorisation of a³-b³."
+              ],
+              "inferential_jump": "Recognize an identity pattern inside an unfamiliar expression, transform it exactly, and use the transformed form to answer a coefficient, value, or factor question.",
+              "teaching_path": [
+                {
+                  "id": "POLY-ID-T1",
+                  "action": "Match the expression to a named identity such as a²-b², (a+b)³, or a³-b³.",
+                  "why_valid": "The identity supplies an equality valid for all permitted values and prevents ad hoc arithmetic.",
+                  "role": "CONNECT",
+                  "output": "identity with matched a and b",
+                  "inputs": [
+                    "target expression"
+                  ]
+                },
+                {
+                  "id": "POLY-ID-T2",
+                  "action": "Apply the matched identity with the actual coefficients and simplify the resulting terms.",
+                  "why_valid": "Substitution into a valid identity preserves equality while exposing the requested coefficient, factor, or value.",
+                  "role": "TRANSFORM",
+                  "output": "simplified polynomial or product",
+                  "inputs": [
+                    "matched identity"
+                  ]
+                },
+                {
+                  "id": "POLY-ID-T3",
+                  "action": "Re-expand, substitute, or compare coefficients to confirm the transformed expression.",
+                  "why_valid": "An independent check catches the common sign and coefficient errors in identity use.",
+                  "role": "VERIFY",
+                  "output": "verified identity result",
+                  "inputs": [
+                    "simplified result"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "The middle coefficients in a square or cube identity can be inferred without the binomial multipliers.",
+                  "diagnostic_prompt": "What coefficient multiplies a²b in (a+b)³?",
+                  "repair": "Use the full identity a³+3a²b+3ab²+b³, including both factors of 3."
+                }
+              ],
+              "exit_task": {
+                "prompt": "Which identity gives 249²-248² without computing either square?",
+                "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "Use a²-b²=(a-b)(a+b).",
+                  "reasoning": [
+                    "Set a=249 and b=248.",
+                    "The difference of squares becomes (249-248)(249+248)."
+                  ],
+                  "check": "The identity converts the large squares into a small product.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The task asks for the identity selection; the product may be evaluated separately."
+                }
+              },
+              "prerequisites": [
+                "MIC-MAT-POLY-EVALUATION"
+              ]
+            },
+            {
+              "id": "MIC-MAT-POLY-COEFFICIENT-BASIC",
+              "title": "Coefficients of Polynomial Terms",
+              "badge": "EASY",
+              "status": "CANDIDATE",
+              "badge_reason": "The task is direct once the learner distinguishes the signed numerical multiplier from the exponent.",
+              "entry_assumptions": [
+                "Can identify a term such as x² or -x² inside a polynomial expression."
+              ],
+              "inferential_jump": "Move from a requested power to its complete signed multiplier, including the implicit coefficients +1 and -1.",
+              "teaching_path": [
+                {
+                  "id": "POLY-COEF-T1",
+                  "action": "Locate the term containing the requested power of the variable.",
+                  "why_valid": "Only that term determines the coefficient being asked for.",
+                  "role": "CONNECT",
+                  "output": "target term",
+                  "inputs": [
+                    "polynomial and requested power"
+                  ]
+                },
+                {
+                  "id": "POLY-COEF-T2",
+                  "action": "Write the target term as a signed number multiplied by the requested power.",
+                  "why_valid": "The coefficient is exactly that signed numerical multiplier, including an implicit magnitude of 1.",
+                  "role": "TRANSFORM",
+                  "output": "explicit multiplier times variable power",
+                  "inputs": [
+                    "target term"
+                  ]
+                },
+                {
+                  "id": "POLY-COEF-T3",
+                  "action": "Multiply the stated coefficient by the requested power to recover the original term.",
+                  "why_valid": "Recovering the original term checks both the magnitude and the sign.",
+                  "role": "VERIFY",
+                  "output": "checked coefficient",
+                  "inputs": [
+                    "coefficient and requested power"
+                  ]
+                }
+              ],
+              "misconceptions": [
+                {
+                  "wrong_idea": "The exponent is the coefficient, or an omitted coefficient is zero.",
+                  "diagnostic_prompt": "In -x², what signed number multiplied by x² reproduces the term?",
+                  "repair": "Write -x²=(-1)x²; the coefficient is -1 while 2 is the exponent."
+                }
+              ],
+              "exit_task": {
+                "prompt": "What is the coefficient of x³ in 4-x+7x³?",
+                "source_ref": "SRC-MAT-POLY-NCERT-EXEMPLAR-9-UNIT2",
+                "answer": {
+                  "kind": "MODEL_RESPONSE",
+                  "summary": "7",
+                  "reasoning": [
+                    "Locate the x³ term, which is 7x³.",
+                    "The signed number multiplying x³ is 7, so the coefficient is 7."
+                  ],
+                  "check": "7·x³ reproduces the target term 7x³.",
+                  "acceptable_alternatives": [],
+                  "subpart_answers": [],
+                  "verification_status": "CHECKED_BY_AUTHOR"
+                },
+                "oracle": {
+                  "no_numeric_claim": "The target term explicitly displays its numerical coefficient."
+                }
+              },
+              "prerequisites": [
+                "MIC-MAT-POLY-FORM-DEGREE"
+              ]
             }
           ],
           "relations": [],
@@ -1959,12 +2247,132 @@ window.GRADE9V3 = {
               "stem": "One of the zeroes of the polynomial 2x² + 7x - 4 is",
               "origin": "ORIGINAL",
               "answer": "(B) 1/2"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q11",
+              "stem": "If x⁵¹ + 51 is divided by x + 1, the remainder is",
+              "origin": "ORIGINAL",
+              "answer": "(D) 50"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q12",
+              "stem": "If x + 1 is a factor of the polynomial 2x² + kx, then the value of k is",
+              "origin": "ORIGINAL",
+              "answer": "(C) 2"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q13",
+              "stem": "x + 1 is a factor of the polynomial",
+              "origin": "ORIGINAL",
+              "answer": "(B) x³ + x² + x + 1"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q14",
+              "stem": "One of the factors of (25x² - 1) + (1 + 5x)² is",
+              "origin": "ORIGINAL",
+              "answer": "(D) 10x"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q15",
+              "stem": "The value of 249² - 248² is",
+              "origin": "ORIGINAL",
+              "answer": "(D) 497"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q16",
+              "stem": "The factorisation of 4x² + 8x + 3 is",
+              "origin": "ORIGINAL",
+              "answer": "(B) (2x + 1) (2x + 3)"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q17",
+              "stem": "Which of the following is a factor of (x + y)³ - (x³ + y³)?",
+              "origin": "ORIGINAL",
+              "answer": "(D) 3xy"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q18",
+              "stem": "The coefficient of x in the expansion of (x + 3)³ is",
+              "origin": "ORIGINAL",
+              "answer": "(D) 27"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q19",
+              "stem": "If x/y + y/x = -1 (x, y ≠ 0), the value of x³ - y³ is",
+              "origin": "ORIGINAL",
+              "answer": "(C) 0"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q20",
+              "stem": "If 49x² - b = (7x + 1/2)(7x - 1/2), then the value of b is",
+              "origin": "ORIGINAL",
+              "answer": "(C) 1/4"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX21-Q21",
+              "stem": "If a + b + c = 0, then a³ + b³ + c³ is equal to",
+              "origin": "ORIGINAL",
+              "answer": "(C) 3abc"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX22-Q01",
+              "stem": "Which of the following expressions are polynomials? Justify your answer: (i) 1/x (ii) √x + 2 (iii) x² + 2x + 1 (iv) 1",
+              "origin": "ORIGINAL",
+              "answer": "Polynomials: (iii) and (iv) because the exponent of the variable after simplification in each of these is a whole number."
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX22-Q02-II",
+              "stem": "State whether the following statement is True or False? Justify your answer: Every polynomial is a binomial.",
+              "origin": "ORIGINAL",
+              "answer": "False, x³ + x + 1 is a polynomial but not a binomial."
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX22-Q02-IV",
+              "stem": "State whether the following statement is True or False? Justify your answer: A polynomial cannot have more than one zero.",
+              "origin": "ORIGINAL",
+              "answer": "False, a quadratic polynomial can have up to two zeroes."
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX23-Q01-I",
+              "stem": "Find the degree of the polynomial: x⁵ - x⁴ + 3",
+              "origin": "ORIGINAL",
+              "answer": "5"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX23-Q01-II",
+              "stem": "Find the degree of the polynomial: 2 - y² - y³ + 2y⁸",
+              "origin": "ORIGINAL",
+              "answer": "8"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX23-Q01-III",
+              "stem": "Find the degree of the polynomial: 2",
+              "origin": "ORIGINAL",
+              "answer": "0"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX23-Q02-I",
+              "stem": "Write the coefficient of x² in the following: 2 + x² + x",
+              "origin": "ORIGINAL",
+              "answer": "1"
+            },
+            {
+              "id": "Q-MAT-POLY-NCERT9-EX23-Q02-II",
+              "stem": "Write the coefficient of x² in the following: 2 - x² + x³",
+              "origin": "ORIGINAL",
+              "answer": "-1"
             }
           ],
           "capabilities": [
             {
               "id": "CAP-MAT-POLY-CHANGE-OF-VARIABLE-DOMAIN",
               "action": "Solve biquadratic polynomials via substitution while enforcing real domain constraints.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-COEFFICIENT-BASIC",
+              "action": "Identify the coefficient of a specified power in an elementary polynomial, including implicit +1 and -1 coefficients.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -1993,6 +2401,12 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-MAT-POLY-FACTORISATION-BASIC",
+              "action": "Factor elementary polynomial expressions by expansion, common factors, or quadratic product matching.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-MAT-POLY-FORM-DEGREE-BASIC",
               "action": "Recognize polynomial expressions and determine degree using non-zero coefficients and the zero-polynomial exception.",
               "provider": null,
@@ -2001,6 +2415,12 @@ window.GRADE9V3 = {
             {
               "id": "CAP-MAT-POLY-GEOMETRIC-AREA-DEGREE",
               "action": "Model geometric area and explain degree reduction via leading term cancellation.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
+              "id": "CAP-MAT-POLY-IDENTITIES-BASIC",
+              "action": "Apply standard algebraic identities to simplify, expand, factor, and compare polynomial expressions.",
               "provider": null,
               "acceptance": "CANDIDATE"
             },
@@ -2029,6 +2449,12 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             },
             {
+              "id": "CAP-MAT-POLY-REMAINDER-FACTOR-BASIC",
+              "action": "Use the Remainder and Factor Theorems to evaluate divisibility, remainders, and simple polynomial parameters.",
+              "provider": null,
+              "acceptance": "CANDIDATE"
+            },
+            {
               "id": "CAP-MAT-POLY-SIGN-CHART-RIGOR",
               "action": "Construct rigorous sign charts from linear factor signs partitioned across real intervals.",
               "provider": null,
@@ -2041,14 +2467,14 @@ window.GRADE9V3 = {
               "acceptance": "CANDIDATE"
             }
           ],
-          "record_count": 66,
+          "record_count": 97,
           "compile_preview": {
             "compilable": true,
             "supported_products": [
               "CORE1"
             ],
             "atoms": 0,
-            "questions": 13,
+            "questions": 32,
             "obligations": 2,
             "authoring_requirements": [
               {
@@ -2104,6 +2530,26 @@ window.GRADE9V3 = {
               {
                 "kind": "MICROTOPIC_UNBOUND",
                 "microtopic": "MIC-MAT-POLY-ZEROS-BASIC",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-POLY-REMAINDER-FACTOR",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-POLY-FACTORISATION-BASIC",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-POLY-IDENTITIES-BASIC",
+                "detail": "no supported product or no data bound to its relations"
+              },
+              {
+                "kind": "MICROTOPIC_UNBOUND",
+                "microtopic": "MIC-MAT-POLY-COEFFICIENT-BASIC",
                 "detail": "no supported product or no data bound to its relations"
               },
               {
@@ -2714,12 +3160,12 @@ window.GRADE9V3 = {
         {
           "package_id": "LIB-MATH-LINEAR-EQUATIONS",
           "status": "CANDIDATE",
-          "admitted": true
+          "admitted": false
         },
         {
           "package_id": "LIB-MATH-POLYNOMIALS",
           "status": "CANDIDATE",
-          "admitted": true
+          "admitted": false
         }
       ],
       "library_available": true,
