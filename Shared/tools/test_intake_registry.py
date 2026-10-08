@@ -124,7 +124,7 @@ def load_intake_banks(repo: Path) -> list[dict]:
             if kind == "MULTIPLE_CHOICE":
                 if (not isinstance(options, list) or len(options) < 2
                         or not all(isinstance(option, str) and option.strip()
-                                   and re.match(r"^\\([A-Z]\\)\\s+\\S", option) for option in options)
+                                   and re.match(r"^\([A-Z]\)\s+\S", option) for option in options)
                         or len(set(options)) != len(options)
                         or [option[1] for option in options]
                         != [chr(ord("A") + index) for index in range(len(options))]):
