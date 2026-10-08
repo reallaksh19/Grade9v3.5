@@ -211,7 +211,9 @@ def validate_census(
               "source_id":source_id,"source_host_kind":source["host_type"],
               "original_printed_position_claim":seeded["original_question_number_claim"],
               "original_printed_position_observed":(
-                  str(case["source_numbers"][0]) if case else None),
+                  str(seeded["original_question_number_claim"])
+                  if case and int(seeded["original_question_number_claim"]) in case["source_numbers"]
+                  else None),
               "source_document_url":addon["official_source_url"] if sample_row
                                     else source["url"],
               "source_locator_pdf_page_index":(
