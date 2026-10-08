@@ -1,0 +1,65 @@
+name: ISS131 temporary source-linked TEST generation
+on:
+  push:
+    branches:
+      - trial/iss131-q1-post-288-20261008
+    paths:
+      - .github/workflows/iss131-trial-generated-test-pages.yml
+permissions:
+  contents: write
+jobs:
+  build-exact-draft-and-remove-worker:
+    if: github.repository == 'reallaksh19/Grade9v3.5' && github.ref == 'refs/heads/trial/iss131-q1-post-288-20261008'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install exact printer and render dependencies
+        run: |
+          pip install --quiet jsonschema pypdf
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium
+      - name: Exclude temporary workflow from generated source
+        run: git rm -- .github/workflows/iss131-trial-generated-test-pages.yml
+      - name: Regenerate governed nonaccepted Q1 product and mirrors
+        run: |
+          python3 TEST/library/ncert_source_core2_view.py --check
+          python3 -m unittest tests.test_test_ncert_source_product -v
+          python3 Shared/tools/deploy_test.py product TEST/products/ncert-u01-q01.manifest.json
+          python3 Shared/tools/deploy_test.py pages --check
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root = Path("public/test/products/ncert-u01-q01")
+          receipt = json.loads((root/"deploy-receipt.json").read_text(encoding="utf-8"))
+          assert receipt["draft"] is True and receipt["accepted"] is False
+          assert receipt["roles"] == ["CORE2", "CORE1A"]
+          assert receipt["selection_counts"]["core2"] == 1
+          for name in ("index.html", "core2.html", "core1a.html"):
+              assert (root/name).is_file()
+              assert (Path("docs/test/products/ncert-u01-q01")/name).read_bytes() == (root/name).read_bytes()
+          assert (root/"core2.pdf").is_file() and (root/"core1a.pdf").is_file()
+          print("PASS: draft TEST product pages, real PDFs and mirrored receipts")
+          PY
+      - name: Commit only generated TEST outputs and remove worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A -- public/test docs/test
+          python3 - <<'PY'
+          import subprocess
+          paths = subprocess.check_output(["git","diff","--cached","--name-only"], text=True).splitlines()
+          assert paths and ".github/workflows/iss131-trial-generated-test-pages.yml" in paths, paths
+          assert all(p.startswith(("public/test/","docs/test/")) or p == ".github/workflows/iss131-trial-generated-test-pages.yml" for p in paths), paths
+          assert "public/test/products/ncert-u01-q01/core1a.html" in paths
+          print("TEST generated paths:", len(paths))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'build(iss131): materialize exact nonaccepted NCERT Q1 TEST deployment'
+          git push origin "HEAD:${{ github.ref_name }}"
