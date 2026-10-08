@@ -1,0 +1,78 @@
+name: ISS131 temporary source-linked product preview
+on:
+  push:
+    branches:
+      - feat/131-ncert-number-systems-q01-test-product-20261008
+    paths:
+      - .github/workflows/iss131-temporary-product-preview.yml
+
+permissions:
+  contents: write
+
+jobs:
+  capture-draft-from-governed-producers:
+    if: github.repository == 'reallaksh19/Grade9v3.5' && github.ref == 'refs/heads/feat/131-ncert-number-systems-q01-test-product-20261008'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Remove temporary worker from final record
+        run: git rm -- .github/workflows/iss131-temporary-product-preview.yml
+      - name: Install governed renderer and PDF printing requirements
+        run: |
+          pip install --quiet jsonschema pypdf
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Build actual draft Q1 role pages and mirrored TEST sites
+        run: |
+          python3 TEST/library/ncert_source_core2_view.py --check
+          python3 Shared/tools/deploy_test.py product TEST/products/ncert-u01-q01.manifest.json
+          python3 Shared/tools/deploy_test.py pages
+          python3 Shared/tools/deploy_test.py pages --check
+      - name: Validate bounded source-linked draft preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -A -- public/test/products/ncert-u01-q01 docs/test/products/ncert-u01-q01
+          git add -- public/test/index.html public/test/atlas/index.html public/test/rungs/index.html public/test/deployments/index.html docs/test/index.html docs/test/atlas/index.html docs/test/rungs/index.html docs/test/deployments/index.html
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import subprocess
+          from pathlib import Path
+          worker = '.github/workflows/iss131-temporary-product-preview.yml'
+          changed = set(subprocess.check_output(['git', 'diff', '--cached', '--name-only'], text=True).splitlines())
+          allowed = {worker}
+          allowed |= {f'{root}/{path}' for root in ('public/test', 'docs/test') for path in ('index.html', 'atlas/index.html', 'rungs/index.html', 'deployments/index.html')}
+          allowed_dirs = ('public/test/products/ncert-u01-q01/', 'docs/test/products/ncert-u01-q01/')
+          assert worker in changed, 'temporary workflow removal not staged'
+          assert all(path in allowed or path.startswith(allowed_dirs) for path in changed), f'Out of scope generated file: {sorted(changed - allowed)}'
+          root = Path('public/test/products/ncert-u01-q01')
+          target = Path('docs/test/products/ncert-u01-q01')
+          receipt = json.loads((root / 'deploy-receipt.json').read_text())
+          assert receipt['draft'] is True and receipt['accepted'] is False
+          assert receipt['roles'] == ['CORE2', 'CORE1A']
+          assert receipt['selection_counts']['core2'] == 1
+          for name in ('index.html', 'core1a.html', 'core2.html'):
+              raw = (root / name).read_bytes()
+              assert hashlib.sha256(raw).hexdigest() == receipt['pages'][name]
+          for name in ('core1a.pdf', 'core2.pdf'):
+              assert (root / name).is_file() and (root / name).stat().st_size > 1000, name
+          public_files = sorted(p.relative_to(root) for p in root.rglob('*') if p.is_file())
+          mirrored = sorted(p.relative_to(target) for p in target.rglob('*') if p.is_file())
+          assert public_files == mirrored, f'Missing generated role-page mirror: {set(public_files) ^ set(mirrored)}'
+          assert all((root / p).read_bytes() == (target / p).read_bytes() for p in public_files)
+          for path in ('index.html', 'atlas/index.html', 'rungs/index.html', 'deployments/index.html'):
+              assert (Path('public/test') / path).read_bytes() == (Path('docs/test') / path).read_bytes(), path
+          assert not any('key.pdf' in str(path) for path in public_files), 'Protected answer key PDF cannot be published'
+          print('PASS: draft source-linked Q1 producer preview, mirrored bytes, generated PDFs; accepted=false')
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'build(test): snapshot Q1 nonaccepted product preview with receipts (#131)'
+          git push origin "HEAD:${{ github.ref_name }}"
