@@ -363,7 +363,7 @@ def validate_concept(
         ensure(isinstance(s.get(key),list) and len(s[key]) == count,
                f"missing essential mathematical teaching operator {key}")
     ensure(len(s["inferential_jump"]) >= 135 and
-           "coprime" in s["inferential_jump"],
+           any(term in s["inferential_jump"] for term in ("coprime","coprimality")),
            "Core1A decisive universal reasoning cannot disappear")
     for index,bridge in enumerate(s["representation_bridges"],start=1):
         ensure(isinstance(bridge,dict) and set(bridge) ==
