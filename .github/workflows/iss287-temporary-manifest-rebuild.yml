@@ -1,0 +1,40 @@
+name: ISS287 temporary metadata manifest regeneration
+on:
+  push:
+    branches:
+      - fix/iss287-ncert-custody-provenance-20261008
+    paths:
+      - .github/workflows/iss287-temporary-manifest-rebuild.yml
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    if: github.repository == 'reallaksh19/Grade9v3.5'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact owned branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Regenerate committed derived architecture index
+        run: |
+          python3 Shared/tools/build_manifest.py
+          python3 Shared/tools/build_manifest.py --check
+      - name: Commit only exact producer output
+        shell: bash
+        run: |
+          set -euo pipefail
+          changes="$(git diff --name-only)"
+          printf '%s\n' "$changes"
+          test "$changes" = "docs/architecture-manifest.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- docs/architecture-manifest.json
+          git commit -m "build(metadata): regenerate architecture manifest after witnessed NCERT contract"
+          git push origin "HEAD:${{ github.ref_name }}"
