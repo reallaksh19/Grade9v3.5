@@ -145,6 +145,20 @@ for (const width of [320, 768, 1280]) {
   await page.waitForFunction(() => document.querySelectorAll('[data-g9-intake-source-id]').length === 210);
   const cards = page.locator('[data-g9-intake-source-id]:not([hidden])');
   if (await cards.count() !== 210) failures.push('TEST home @' + width + ': did not render all 210 questions');
+  const custodyFacts = await page.evaluate(() => {
+    const nodes = [...document.querySelectorAll('[data-g9-intake-source-id]')];
+    const count = value => nodes.filter(node => node.dataset.g9SourceCustody === value).length;
+    const mistaken = nodes.filter(node =>
+      node.dataset.g9SourceCustody !== 'INDEPENDENTLY_EVIDENCED' &&
+      [...node.querySelectorAll('[data-g9-intake-badge]')].some(x =>
+        x.textContent === 'SOURCE VERIFIED' || x.textContent === 'TEXT VERIFIED')).length;
+    return { ready: count('INDEPENDENTLY_EVIDENCED'), pending: count('EVIDENCE_PENDING'),
+      evidencedAnswers: nodes.filter(x => x.dataset.g9AnswerCustody === 'INDEPENDENTLY_EVIDENCED').length,
+      mistaken, badges: nodes.reduce((count, node) => count + node.querySelectorAll('[data-g9-intake-badge]').length, 0) };
+  });
+  if (custodyFacts.ready !== 12 || custodyFacts.pending !== 198 || custodyFacts.evidencedAnswers !== 12
+      || custodyFacts.mistaken || custodyFacts.badges < 210 * 8)
+    failures.push('TEST home @' + width + ': custody badges were missing or overstated: ' + JSON.stringify(custodyFacts));
   const select = key => page.locator('[data-g9-intake-facet="' + key + '"]');
   await select('topic').selectOption('Polynomials');
   if (await cards.count() !== 30) failures.push('TEST home @' + width + ': topic filter expected 30');

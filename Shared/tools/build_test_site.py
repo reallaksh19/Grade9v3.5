@@ -349,6 +349,33 @@ INTAKE_HOME_FILTER_SCRIPT = """<script src="question-bank/questions.js"></script
       if (!q) throw new Error("TEST intake source projection missing " + id);
       const values = Object.fromEntries(dimensions.map(([key, get]) => [key, get(q)]));
       el.dataset.g9IntakeSourceId = q.id;
+      el.dataset.g9SourceCustody = q.custody_evidence_status || "EVIDENCE_PENDING";
+      el.dataset.g9AnswerCustody = q.custody_answer_source_url ? "INDEPENDENTLY_EVIDENCED" : "KEY_NOT_EVIDENCED";
+      el.dataset.g9AcademicState = q.academic_validation_status || "UNVALIDATED";
+      // Render from the guarded projection. A captured raw status or old QA
+      // receipt never creates a VERIFIED badge.
+      const sourceReady = q.custody_evidence_status === "INDEPENDENTLY_EVIDENCED";
+      const sourceHold = q.custody_evidence_status === "SOURCE_TEXT_HOLD";
+      const badges = [
+        q.subject || "Unknown subject", "Grade " + (q.grade ?? "Unknown"),
+        q.subtopic_label || "", (q.question_type || "Unknown type").replaceAll("_", " "),
+        q.source_authority === "NCERT_OFFICIAL" ? "NCERT" : q.source_authority === "CBSE_OFFICIAL" ? "CBSE" : "Unknown authority",
+        q.source_kind || "Unknown source kind",
+        "INTAKE ONLY",
+        sourceHold ? "SOURCE TEXT HOLD" : sourceReady ? "SOURCE VERIFIED" : "SOURCE UNVERIFIED",
+        sourceHold ? "TEXT HELD" : sourceReady ? "TEXT VERIFIED" : "TEXT UNVERIFIED",
+        blueprint(q).replaceAll("_", " "),
+        "ACADEMIC " + (q.academic_validation_status || "UNVALIDATED")
+      ].filter(Boolean);
+      const banner = el.querySelector('div[style*="display:flex"]');
+      if (!banner) throw new Error("TEST intake card has no status-badge group: " + q.id);
+      for (const name of badges) {
+        const chip = document.createElement("span");
+        chip.dataset.g9IntakeBadge = name;
+        chip.textContent = name;
+        chip.style.cssText = "background:#334155;color:#fff;padding:2px 6px;border-radius:4px";
+        banner.append(chip);
+      }
       return { el, values, search: [q.id, q.original_identifier, q.stem, q.topic_label,
         q.subtopic_label, q.chapter_or_unit, q.question_type].join(" ").toLowerCase() };
     });
@@ -501,8 +528,8 @@ def hub_page() -> str:
         'accepted or curriculum, and <code>accept_product.py</code> refuses TEST.</p>'
         '<p class="g9-prov">A gap count of 0 means the depth check found nothing missing. It counts what is absent, '
         'not how good it is, and it does not say the content has been reviewed.</p>'
-        + render_candidate_audit_section(audits, custody)
         + render_intake_section(intakes, custody)
+        + render_candidate_audit_section(audits, custody)
         + render_owner_bank_section(owner)
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
         + stage(2, "Core1A", "Concept construction for the same topic", core1a)

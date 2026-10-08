@@ -167,6 +167,26 @@ class TestPages(unittest.TestCase):
         self.assertIn("No official source-intake questions are staged", html)
         self.assertNotIn("READY_FOR_BLUEPRINT", html)
 
+    def test_source_hold_and_empty_bank_do_not_claim_readiness(self):
+        source = copy.deepcopy(build_test_site.intake_banks()[0])
+        source["questions"] = [source["questions"][0]]
+        held = {"handoff": [], "hold_ids": [source["questions"][0]["id"]]}
+        html = build_test_site.render_intake_section([source], held)
+        self.assertIn("SOURCE TEXT HOLD", html)
+        self.assertNotIn("SOURCE EVIDENCED", html)
+        self.assertIn("Exact official page not independently reconciled", html)
+        self.assertIn("Recorded answer — official key custody pending", html)
+        source["questions"] = []
+        html = build_test_site.render_intake_section([source], {"handoff": [], "hold_ids": []})
+        self.assertIn("0 question(s)", html)
+        self.assertNotIn("READY_FOR_BLUEPRINT ·", html)
+
+    def test_test_home_places_intake_before_historical_QA(self):
+        html = build_test_site.hub_page()
+        self.assertLess(html.index("Stage-1 Question Intake:"),
+                        html.index("QA candidate: Issue #55"))
+        self.assertIn("data-g9SourceCustody", build_test_site.INTAKE_HOME_FILTER_SCRIPT)
+
     def test_test_home_answers_do_not_claim_unverified_official_key_custody(self):
         """The 198 evidence-pending questions still carry recorded, not witnessed, keys."""
         home = build_test_site.render_intake_section(
