@@ -6,6 +6,7 @@ import shutil
 import subprocess
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from jsonschema import Draft202012Validator
 
@@ -380,6 +381,44 @@ class Core2V2BlueprintContract(unittest.TestCase):
 
 
 class Core2V2RendererContract(unittest.TestCase):
+    def test_pre_attempt_unlabeled_stage_must_not_expose_protected_purpose(self):
+        # Staged SVG title/description are scrubbed, but an author-purpose
+        # fallback must not reintroduce the withheld decisive move as aria text.
+        protected = "W = 42"
+        svg = (
+            '<svg aria-label="W = 42">'
+            '<title>W = 42</title><desc>W = 42, decisive result</desc>'
+            '<g data-g9-stage-id="S1"><text>Given setup</text></g>'
+            '<g data-g9-stage-id="S2"><text>W = 42</text></g>'
+            '</svg>'
+        )
+        rep = {
+            "id": "REP-PROTECTED",
+            "kind": "DIAGRAM",
+            "purpose": f"Protected answer: {protected}",
+            "rendered_asset_refs": ["test.svg"],
+            "reveal_stages": [
+                {"id": "S1", "label": ""},
+                {"id": "S2", "label": "Decisive result after attempt"},
+            ],
+        }
+        ctx = render_core.Ctx(
+            manifest={"product_id": "TEST-CORE2-ARIA"},
+            packages=[{"representations": [rep]}],
+            bank=[],
+            blueprints={},
+        )
+        with patch.object(render_core, "asset_svg", return_value=svg):
+            rendered = render_core.figure(
+                ctx, rep["id"], "PRE_ATTEMPT", "CORE2", "Q-PROTECTED",
+                first_stage_only=True,
+            )
+        self.assertIn('aria-label="Diagram showing the available stage"', rendered)
+        self.assertIn("Given setup", rendered)
+        self.assertNotIn(protected, rendered)
+        self.assertNotIn("Decisive result after attempt", rendered)
+        self.assertEqual(ctx.gaps, [])
+
     @staticmethod
     def _ctx() -> render_core.Ctx:
         return render_core.Ctx(
