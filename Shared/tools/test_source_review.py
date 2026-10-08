@@ -23,6 +23,15 @@ ROOT = "TEST/evidence/source-intake"
 STATES = {"VISUAL_MATCH", "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "SOURCE_NOTATION_DISCREPANCY"}
 ANSWER_DOCUMENT = "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep2an.pdf"
 
+# The old R4 observation is immutable. Q7 has subsequently been recaptured
+# using combining overbars; either historical raw options or this one exact
+# replacement may coexist with that review, but the review itself stays frozen.
+Q7_SOURCE_FAITHFUL_OPTIONS = (
+    "(A) 0.14", "(B) 0.141\u03056\u0305", "(C) 0.1\u03054\u03051\u03056\u0305",
+    "(D) 0.4014001400014...",
+)
+
+
 # Frozen *observations* from the eight-row R4 review, not independent custody.
 # Prevent plausible numeric page/key or verdict rewrites from reusing that record.
 # Changing an observation requires a deliberate, reviewable source-scope update.
@@ -92,8 +101,16 @@ def validate(repo: Path) -> dict:
                     or digest != question["stem_sha256"]
                     or digest != "sha256:" + hashlib.sha256(stem.encode("utf-8")).hexdigest()):
                 raise ValueError(f"{where}: review source stem digest/wording mismatch for {qid}")
+            # R4 recorded the pre-correction Q7 capture. Do not falsify history
+            # by rewriting the observation to the new overbar-bearing text.
+            # A Q7 live replacement is accepted here ONLY for the exact reviewed
+            # notation, never as a new primary-source or READY witness.
+            options_now = question.get("options", [])
+            options_match = record.get("captured_options") == options_now
+            if qid == "ncert-exemplar-g9-math-u01-q07":
+                options_match = options_match or tuple(options_now) == Q7_SOURCE_FAITHFUL_OPTIONS
             if (record.get("original_identifier") != question["original_identifier"]
-                    or record.get("captured_options") != question.get("options", [])):
+                    or not options_match):
                 raise ValueError(f"{where}: review source identifier/options mismatch for {qid}")
             url = record.get("official_question_document_url")
             if (url not in documents or url != question["source_url"]
