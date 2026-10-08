@@ -124,6 +124,28 @@ class StagedSvgDisclosure(unittest.TestCase):
         self.assertEqual(gaps, [])
         self.assertIn("Given setup", rendered)
 
+    def test_single_permitted_stage_scrubs_protected_root_metadata(self):
+        # No stage is withheld, but authored metadata must not disclose W.
+        # This used to bypass the sanitizer guarded by 'if withheld'.
+        for quote in ("'", '"'):
+            with self.subTest(quote=quote):
+                svg = (
+                    f"<svg xmlns='http://www.w3.org/2000/svg' aria-label={quote}W = 42{quote} "
+                    f"aria-labelledby={quote}protected-title{quote}>"
+                    "<title id='protected-title'>W = 42</title>"
+                    "<desc>Protected result W = 42</desc>"
+                    f"<g data-g9-stage-id={quote}S1{quote}><text>Given setup</text></g>"
+                    "</svg>"
+                )
+                rendered, gaps = self._render(svg, allowed=["S1"])
+                self.assertEqual(gaps, [])
+                self.assertIn("Given setup", rendered)
+                self.assertIn('aria-label="Given"', rendered)
+                self.assertNotIn("W = 42", rendered)
+                self.assertNotIn("protected-title", rendered)
+                self.assertNotIn("<title", rendered)
+                self.assertNotIn("<desc", rendered)
+
     def test_explicit_empty_allowlist_shows_no_figure(self):
         svg = self._svg('"', '"')
         rendered, gaps = self._render(svg, allowed=[])
