@@ -149,12 +149,15 @@ jobs:
           assert (Path("docs/test/deployments/index.html")).is_file()
           print("PASS: source-bound TEST product generated, draft and nonaccepted; three role pages mirrored")
           PY
+      - name: Browser-audit actual nonaccepted NCERT Q1 Core2 and Core1A roles
+        run: node tests/browser_ncert_q1_source_product.mjs
       - name: Preserve draft-only Core2/Core1A and receipts for review
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ncert-q1-test-product-draft
           path: |
+            /tmp/ncert-q1-browser-evidence.json
             public/test/products/ncert-u01-q01/
             public/test/atlas/index.html
             public/test/rungs/index.html
