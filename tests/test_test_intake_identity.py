@@ -57,6 +57,8 @@ class TestOfficialIntakeIdentity(unittest.TestCase):
             ("workflow_status", "READY_FOR_BLUEPRINT", "raw capture cannot claim READY"),
             ("text_verification_status", "TEXT_VERIFIED_AGAINST_OFFICIAL",
              "raw capture cannot claim independent text verification"),
+            ("wording_custody", "VERBATIM",
+             "raw capture cannot claim verbatim wording custody"),
             ("page", 42, "ambiguous raw page is prohibited"),
         ):
             with self.subTest(field=field):
