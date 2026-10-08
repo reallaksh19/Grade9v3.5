@@ -325,7 +325,11 @@ def figure(ctx: Ctx, rep_id: str | None, stage: str, role: str, record: str, fir
         if head:                                       # the name comes from the shown stages below
             clean = re.sub(r'\s(role|aria-label|aria-labelledby|aria-describedby)="[^"]*"', "", head.group(0))
             svg = svg[:head.start()] + clean + svg[head.end():]
-        name = "; ".join(labels[s] for s in shown if labels.get(s)) or rep.get("purpose", "")
+        visible_name = "; ".join(labels[s] for s in shown if labels.get(s))
+        # An author purpose may disclose the protected result (W). Never use it as
+        # the pre-attempt accessible fallback, even after SVG title/desc removal.
+        name = visible_name or ("Diagram showing the available stage" if stage == "PRE_ATTEMPT"
+                                else rep.get("purpose", ""))
         svg = re.sub(r"<svg\b", f'<svg role="img" aria-label="{esc(name)}"', svg, count=1)
     stage_mode = str((rep.get("extensions") or {}).get("grade9v3:stage_mode") or "CUMULATIVE").upper()
     if stage_mode not in {"CUMULATIVE", "REPLACE"}:
