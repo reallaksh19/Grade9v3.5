@@ -179,6 +179,24 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "question witness scope"):
             test_source_custody.reconcile(self.repo)
 
+    def test_coordinated_bank_and_overlay_options_rewrite_cannot_reuse_old_witness(self):
+        """Matching mutable copies do not constitute independent official-option evidence."""
+        first = self.bank_doc["questions"][0]
+        first["options"][0] = "(A) forged but structurally plausible option"
+        self.overlay_doc["records"][0]["options"] = copy.deepcopy(first["options"])
+        self.write()
+        with self.assertRaisesRegex(ValueError, "witness options scope"):
+            test_source_custody.reconcile(self.repo)
+
+    def test_valid_shape_but_unwitnessed_printed_pdf_page_is_rejected(self):
+        """Numeric page checks alone cannot authenticate an official PDF locator."""
+        locator = self.overlay_doc["records"][0]["source_locator"]
+        locator["printed_page"] = 999
+        locator["pdf_page_index"] = 998
+        self.write()
+        with self.assertRaisesRegex(ValueError, "witness page scope"):
+            test_source_custody.reconcile(self.repo)
+
     def test_source_bank_stem_mutation_invalidates_a_former_witness(self):
         self.bank_doc["questions"][0]["stem"] = "Changed question wording"
         self.write()
