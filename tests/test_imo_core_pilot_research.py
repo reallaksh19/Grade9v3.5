@@ -86,6 +86,28 @@ class CorePilotResearchTests(unittest.TestCase):
             "SOF-IMO-G09-L1-2025-26-A-Q033").update(
                 original_printed_position_observed="32"))
 
+    def test_organizer_sample_page_and_sighting_retained(self):
+        d=json.loads(self.census.read_text(encoding="utf-8"))
+        rows=[r for r in d["records"] if
+              r["origin_scope"]=="ORGANIZER_SAMPLE_SEED_POSITION"]
+        self.assertEqual(len(rows),8)
+        self.assertEqual({r["source_locator_pdf_page_index"] for r in rows},{0,1})
+        self.assertTrue(all(r["source_host_kind"]=="SOF_ORGANIZER_HOSTED_PDF" and
+             r["official_printed_key_receipt"]==
+             "SAMPLE_SOURCE_KEY_OBSERVED_NOT_CORE2_VERIFIED" for r in rows))
+
+    def test_organizer_sample_sighting_cannot_be_falsely_denied(self):
+        self.rejects(self.census,lambda d:next(
+            r for r in d["records"] if r["question_id"]==
+            "SOF-IMO-G09-SAMPLE-2026-27-Q002").update(
+                official_printed_key_receipt="NOT_ESTABLISHED_FOR_CORE2"))
+
+    def test_organizer_sample_page_locator_cannot_be_erased(self):
+        self.rejects(self.census,lambda d:next(
+            r for r in d["records"] if r["question_id"]==
+            "SOF-IMO-G09-SAMPLE-2026-27-Q004").update(
+                source_locator_pdf_page_index=None))
+
     def test_source_host_not_organizer_claimed_for_mirror(self):
         self.rejects(self.census,lambda d:next(
             r for r in d["records"] if r["origin_scope"]==
