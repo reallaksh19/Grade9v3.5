@@ -530,7 +530,31 @@ class Links(unittest.TestCase):
     def test_a_core2_page_links_to_concepts_only_when_the_product_has_a_core1a_page(self):
         ctx = render_core.context(MOTION_2D)
         question = ctx.selection_rows["core2"][0]
-        self.assertIn('href="core1a.html#', render_core._core2_concept_navigation(ctx, question))
+        from html import unescape
+        from urllib.parse import parse_qs, urlsplit
+
+        markup = render_core._core2_concept_navigation(ctx, question)
+        # The link must preserve both the real Core1A destination and the
+        # question/concept return context; "core1a.html#" silently rejects
+        # the newer, correct query-preserving round-trip URL.
+        links = re.findall(r'<a\b[^>]*\bdata-g9-concept-link\b[^>]*>', markup)
+        self.assertTrue(links, "a selected concept needs a navigable Core1A link")
+        microtopic_ids = {row["id"] for row in ctx.selection_rows["microtopics"]}
+        for tag in links:
+            with self.subTest(tag=tag):
+                href_match = re.search(r'\bhref="([^"]+)"', tag)
+                concept_match = re.search(r'\bdata-g9-concept-ref="([^"]+)"', tag)
+                owner_match = re.search(r'\bdata-g9-question-ref="([^"]+)"', tag)
+                self.assertIsNotNone(href_match)
+                self.assertIsNotNone(concept_match)
+                self.assertIsNotNone(owner_match)
+                self.assertEqual(owner_match.group(1), question["id"])
+                self.assertIn(concept_match.group(1), microtopic_ids)
+                url = urlsplit(unescape(href_match.group(1)))
+                self.assertEqual(url.path, "core1a.html")
+                self.assertEqual(parse_qs(url.query).get("g9-return"), [question["id"]])
+                self.assertEqual(parse_qs(url.query).get("g9-concept"), [concept_match.group(1)])
+                self.assertTrue(url.fragment, "link must resolve to a concept or construction unit")
         ctx.manifest["output_roles"] = ["CORE2"]
         self.assertEqual(render_core._core2_concept_navigation(ctx, question), "")
 
