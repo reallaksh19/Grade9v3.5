@@ -618,6 +618,12 @@ class Authoring(unittest.TestCase):
         wanted = json.loads(json.dumps(blueprints.skeleton(owner_bank.core2_blueprint())).replace("{qid}", question["id"]))
         self.assertEqual(question["scaffolds"], wanted["scaffolds"])
         self.assertEqual(question["answer"]["reasoning_route"], wanted["answer"]["reasoning_route"])
+        move_ids = {move["id"] for move in question["answer"]["reasoning_route"]}
+        self.assertEqual(move_ids, {question["id"] + "-MOVE-1"})
+        self.assertEqual(len(question["scaffolds"]), 1,
+                         "the blueprint seeds one justified support, not a five-rung quota")
+        self.assertTrue({row["supports_move_ref"] for row in question["scaffolds"]} <= move_ids)
+        self.assertTrue(all(not row["text"] for row in question["scaffolds"]))
         self.assertEqual(question["extensions"]["grade9v3:analysis"]["common_wrong_route"], "")
 
     def test_owner_bank_does_not_invent_band_based_hint_quotas(self):
