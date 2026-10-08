@@ -51,6 +51,21 @@ class TestOfficialIntakeIdentity(unittest.TestCase):
         path.write_text(json.dumps(payload), encoding="utf-8")
         return path
 
+    def test_raw_capture_cannot_assert_source_readiness_or_ambiguous_page(self):
+        """Only reconciled custody overlays can promote READY or identify official pages."""
+        for field, value, message in (
+            ("workflow_status", "READY_FOR_BLUEPRINT", "raw capture cannot claim READY"),
+            ("text_verification_status", "TEXT_VERIFIED_AGAINST_OFFICIAL",
+             "raw capture cannot claim independent text verification"),
+            ("page", 42, "ambiguous raw page is prohibited"),
+        ):
+            with self.subTest(field=field):
+                row = copy.deepcopy(self.q1)
+                row[field] = value
+                self.bank("invalid.json", [row])
+                with self.assertRaisesRegex(ValueError, message):
+                    test_intake_registry.load_intake_banks(self.repo)
+
     def test_current_main_has_one_unique_instance_per_210_questions(self):
         banks = test_intake_registry.load_intake_banks(REPO)
         self.assertEqual(sum(len(b["questions"]) for b in banks), 210)
