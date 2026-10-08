@@ -55,6 +55,10 @@ jobs:
         run: |
           python3 -m unittest tests.test_test_source_review -v
           python3 Shared/tools/test_source_review.py
+      - name: R4 Q7 source-notation recapture proposal cannot grant custody
+        run: |
+          python3 -m unittest tests.test_test_source_recapture -v
+          python3 Shared/tools/test_source_recapture.py
       - name: Authenticate pilot witness pointers
         env:
           GITHUB_TOKEN: ${{ github.token }}
