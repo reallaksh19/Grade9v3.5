@@ -77,12 +77,12 @@ for (const width of [320, 390, 768, 1280]) {
 
   const where = `TEST Question Bank @${width}`;
   if (facts.cards !== 210 || facts.unique !== 210) failures.push(`${where}: card denominator/uniqueness is ${facts.cards}/${facts.unique}, expected 210/210`);
-  if (facts.validated !== 59) failures.push(`${where}: ${facts.validated}/59 VALIDATED`);
+  if (facts.validated !== 58) failures.push(`${where}: ${facts.validated}/58 VALIDATED`);
   if (facts.hold !== 1) failures.push(`${where}: ${facts.hold}/1 HOLD`);
-  if (facts.unvalidated !== 150) failures.push(`${where}: ${facts.unvalidated}/150 UNVALIDATED`);
-  if (facts.sourceVerified !== 11) failures.push(`${where}: ${facts.sourceVerified}/11 independently evidenced source-verification attributes`);
+  if (facts.unvalidated !== 151) failures.push(`${where}: ${facts.unvalidated}/151 UNVALIDATED`);
+  if (facts.sourceVerified !== 12) failures.push(`${where}: ${facts.sourceVerified}/12 independently evidenced source-verification attributes`);
   if (facts.legacyTextLabels !== 210) failures.push(`${where}: ${facts.legacyTextLabels}/210 historical text labels preserved as non-authority`);
-  if (facts.custodyEvidenced !== 11 || facts.custodyHold !== 1 || facts.custodyPending !== 198) failures.push(`${where}: evidence truth is ${facts.custodyEvidenced} evidenced / ${facts.custodyHold} source-text HOLD / ${facts.custodyPending} pending, expected 11/1/198`);
+  if (facts.custodyEvidenced !== 12 || facts.custodyHold !== 0 || facts.custodyPending !== 198) failures.push(`${where}: evidence truth is ${facts.custodyEvidenced} evidenced / ${facts.custodyHold} source-text HOLD / ${facts.custodyPending} pending, expected 12/0/198`);
   if (facts.sourceLinks !== 210 || facts.unsafeSourceLinks) failures.push(`${where}: source links ${facts.sourceLinks}/210, invalid ${facts.unsafeSourceLinks}`);
   if (facts.evidencedWithoutLocator) failures.push(`${where}: ${facts.evidencedWithoutLocator} independently evidenced records missing corrected printed/PDF locator`);
   if (facts.duplicateReview !== 0) failures.push(`${where}: ${facts.duplicateReview} duplicate-review cards, expected 0`);
@@ -107,9 +107,8 @@ for (const width of [320, 390, 768, 1280]) {
     ['#tqbKind', 'EXEMPLAR', 210],
     ['#tqbTopic', 'Polynomials', 30],
     ['#tqbSubtopic', 'Rational Numbers', 5],
-    ['#tqbIntake', 'SOURCE_TEXT_HOLD', 1],
-    ['#tqbBlueprint', 'READY_FOR_BLUEPRINT', 11],
-    ['#tqbBlueprint', 'SOURCE_TEXT_HOLD', 1],
+    ['#tqbIntake', 'TEST_VISIBLE', 210],
+    ['#tqbBlueprint', 'READY_FOR_BLUEPRINT', 12],
     ['#tqbBlueprint', 'EVIDENCE_PENDING', 198],
   ];
   for (const [selector, value, expected] of facetCases) {
@@ -121,7 +120,7 @@ for (const width of [320, 390, 768, 1280]) {
   await page.locator('#tqbTopic').selectOption('Polynomials');
   await page.locator('#tqbBlueprint').selectOption('READY_FOR_BLUEPRINT');
   const combined = await page.locator('[data-g9-test-question]:not([hidden])').count();
-  if (combined !== 5) failures.push(`${where}: combined Polynomials/READY showed ${combined}, expected 5`);
+  if (combined !== 6) failures.push(`${where}: combined Polynomials/READY showed ${combined}, expected 6`);
   await page.locator('#tqbReset').click();
   await page.locator('#tqbSearch').fill('ncert-exemplar-g9-math-u13-q30');
   await page.waitForTimeout(50);
@@ -150,10 +149,10 @@ for (const width of [320, 768, 1280]) {
   await select('topic').selectOption('Polynomials');
   if (await cards.count() !== 30) failures.push('TEST home @' + width + ': topic filter expected 30');
   await select('blueprint').selectOption('READY_FOR_BLUEPRINT');
-  if (await cards.count() !== 5) failures.push('TEST home @' + width + ': combined topic/ready expected 5');
+  if (await cards.count() !== 6) failures.push('TEST home @' + width + ': combined topic/ready expected 6');
   await page.locator('[data-g9-intake-reset]').click();
-  await select('blueprint').selectOption('SOURCE_TEXT_HOLD');
-  if (await cards.count() !== 1) failures.push('TEST home @' + width + ': Q1 text HOLD expected 1');
+  await page.locator('[data-g9-intake-search]').fill('ncert-exemplar-g9-math-u02-q01');
+  if (await cards.count() !== 1) failures.push('TEST home @' + width + ': corrected Q1 source record expected 1');
   await page.locator('[data-g9-intake-reset]').click();
   await select('blueprint').selectOption('EVIDENCE_PENDING');
   if (await cards.count() !== 198) failures.push('TEST home @' + width + ': pending expected 198');
@@ -172,4 +171,4 @@ if (failures.length) {
   console.log(`FAIL: ${failures.length} TEST Question Bank browser problem(s)`);
   process.exit(1);
 }
-console.log('PASS: TEST Question Bank renders 210 parked questions (11 independent custody evidence / 1 source-text HOLD / 198 pending), official links, 59 VALIDATED / 1 HOLD / 150 UNVALIDATED, controls and no narrow overflow');
+console.log('PASS: TEST Question Bank renders 210 parked questions (12 independent custody evidence / 0 source-text HOLD / 198 pending), official links, 58 VALIDATED / 1 HOLD / 151 UNVALIDATED (stale Q1 academic digest masked), controls and no narrow overflow');

@@ -21,6 +21,19 @@ class WitnessAuthenticationTest(unittest.TestCase):
         self.assertTrue(test_source_custody._evidence_ref(self.ref))
         verify_test_source_witnesses.verify_payload(self.ref, self.payload)
 
+    def test_corrected_q1_witness_requires_exact_ncERT_source_context(self):
+        ref = "github:reallaksh19/Grade9v3.5#68:6053770988"
+        payload = {
+            "id": 6053770988,
+            "html_url": "https://github.com/reallaksh19/Grade9v3.5/issues/68#issuecomment-6053770988",
+            "user": {"login": "reallaksh19"},
+            "body": "ieep202.pdf ieep2an.pdf Which one of the following is a polynomial? Q1 (C)",
+        }
+        verify_test_source_witnesses.verify_payload(ref, payload)
+        payload["body"] = "ieep202.pdf ieep2an.pdf Q1 (C)"
+        with self.assertRaisesRegex(ValueError, "context absent"):
+            verify_test_source_witnesses.verify_payload(ref, payload)
+
     def test_unknown_or_spoofed_witness_fails_closed(self):
         self.assertFalse(test_source_custody._evidence_ref(
             "github:reallaksh19/Grade9v3.5#68:9999999999"))

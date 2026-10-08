@@ -17,6 +17,7 @@ from Shared.tools import build_test_question_bank, test_source_custody  # noqa: 
 BANK = "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json"
 OVERLAY = "TEST/evidence/source-intake/ncert-exemplar-g9-number-systems-q1-q6.custody.v1.json"
 POLY = "TEST/evidence/source-intake/ncert-exemplar-g9-polynomials-q02-q06.custody.v1.json"
+Q1_CORRECTED = "TEST/evidence/source-intake/ncert-exemplar-g9-polynomials-q01.custody.v1.json"
 
 
 class TestSourceCustodyReconciliation(unittest.TestCase):
@@ -25,6 +26,7 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
         cls.bank = json.loads((REPO / BANK).read_text(encoding="utf-8"))
         cls.overlay = json.loads((REPO / OVERLAY).read_text(encoding="utf-8"))
         cls.polynomials = json.loads((REPO / POLY).read_text(encoding="utf-8"))
+        cls.corrected_q1 = json.loads((REPO / Q1_CORRECTED).read_text(encoding="utf-8"))
 
     def setUp(self):
         tmp = tempfile.TemporaryDirectory()
@@ -184,57 +186,78 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "source stem digest does not match wording"):
             test_source_custody.reconcile(self.repo)
 
-    def test_second_topic_five_ready_and_disputed_q1_held(self):
-        second = self.repo / POLY
-        second.write_text(json.dumps(self.polynomials, ensure_ascii=False), encoding="utf-8")
+    def stage_second_topic(self):
+        q1_path = self.repo / Q1_CORRECTED
+        q1_path.write_text(json.dumps(self.corrected_q1, ensure_ascii=False), encoding="utf-8")
+        other = self.repo / POLY
+        other.write_text(json.dumps(self.polynomials, ensure_ascii=False), encoding="utf-8")
+
+    def test_second_topic_q1_reverified_without_academic_promotion(self):
+        self.stage_second_topic()
         result = test_source_custody.reconcile(self.repo)
         self.assertEqual((result["total_intake"], result["ready_for_blueprint"],
-                          result["source_text_hold"], result["evidence_pending"]), (210, 11, 1, 198))
-        self.assertEqual(result["hold_ids"], ["ncert-exemplar-g9-math-u02-q01"])
-        self.assertEqual(len([qid for qid in result["ready_ids"] if "-u02-" in qid]), 5)
-        self.assertNotIn("ncert-exemplar-g9-math-u02-q01", result["ready_ids"])
+                          result["source_text_hold"], result["evidence_pending"]), (210, 12, 0, 198))
+        self.assertEqual(result["hold_ids"], [])
+        self.assertEqual(len([qid for qid in result["ready_ids"] if "-u02-" in qid]), 6)
+        q1 = next(q for q in result["handoff"] if q["intake_question_ref"] == "ncert-exemplar-g9-math-u02-q01")
+        self.assertEqual(q1["stem"], "Which one of the following is a polynomial?")
+        self.assertEqual(q1["official_answer_key_ref"]["answer_key"], "(C)")
+        self.assertEqual(q1["source_locator"]["printed_page"], 14)
+        self.assertEqual(q1["source_locator"]["pdf_page_index"], 1)
         self.assertTrue(all(v["source_locator"]["printed_page"] == 14
                             and v["source_locator"]["pdf_page_index"] == 1
                             for v in result["handoff"] if "-u02-" in v["intake_question_ref"]))
 
-    def test_later_overlay_cannot_promote_previously_held_question(self):
-        """A second overlay may not override official source-text HOLD with shape-valid READY."""
-        second = self.repo / POLY
-        second.write_text(json.dumps(self.polynomials, ensure_ascii=False), encoding="utf-8")
+    def test_later_overlay_cannot_duplicate_corrected_q1_ready_record(self):
+        self.stage_second_topic()
         q1 = next(q for q in self.bank_doc["questions"] if q["id"] == "ncert-exemplar-g9-math-u02-q01")
         forged = copy.deepcopy(self.polynomials)
         record = copy.deepcopy(forged["records"][0])
         record.update({
-            "id": q1["id"],
-            "original_identifier": q1["original_identifier"],
-            "stem_sha256": q1["stem_sha256"],
-            "options": q1["options"],
+            "id": q1["id"], "original_identifier": q1["original_identifier"],
+            "stem_sha256": q1["stem_sha256"], "options": q1["options"],
         })
         record["source_locator"]["question_number"] = q1["question_number"]
         record["official_answer"]["question_number"] = q1["question_number"]
         record["official_answer"]["answer_key"] = "(C)"
-        forged["records"] = [record]
-        forged["holds"] = []
-        # The filename sorts after the legitimate Polynomials overlay.
+        forged["records"], forged["holds"] = [record], []
         later = self.repo / "TEST/evidence/source-intake/zzz-illicit-custody.custody.v1.json"
         later.write_text(json.dumps(forged, ensure_ascii=False), encoding="utf-8")
         with self.assertRaisesRegex(ValueError, "duplicate custody evidence or source-text HOLD"):
             test_source_custody.reconcile(self.repo)
 
-    def test_disputed_stem_cannot_clear_hold(self):
-        second = self.repo / POLY
-        doc = copy.deepcopy(self.polynomials)
-        doc["holds"][0]["official_stem"] = doc["holds"][0]["captured_stem"]
-        second.write_text(json.dumps(doc, ensure_ascii=False), encoding="utf-8")
-        with self.assertRaisesRegex(ValueError, "invalid disputed official wording"):
+    def test_old_q1_hold_cannot_override_new_verified_source(self):
+        self.stage_second_topic()
+        historic_hold = {
+            "id": "ncert-exemplar-g9-math-u02-q01", "disposition": "SOURCE_TEXT_HOLD",
+            "reason_code": "VERBATIM_SOURCE_TEXT_MISMATCH",
+            "captured_stem": "Which of the following is a polynomial?",
+            "captured_stem_sha256": "sha256:e9cf2f9dd0b4ccdd828e671580c65aed68b09405a1eda4c0f54561b9e24a3175",
+            "official_stem": "Which one of the following is a polynomial?",
+            "source_document_ref": "NCERT-U02-QUESTION",
+            "source_locator": {
+                "chapter_or_unit": "Unit 2: Polynomials", "exercise_or_section": "Exercise 2.1",
+                "question_number": "1", "printed_page": 14, "pdf_page_index": 1,
+            },
+            "verification_evidence_ref": "github:reallaksh19/Grade9v3.5#68:6050805060",
+        }
+        other = self.repo / POLY
+        old_overlay = copy.deepcopy(self.polynomials)
+        old_overlay["holds"] = [historic_hold]
+        other.write_text(json.dumps(old_overlay, ensure_ascii=False), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "duplicate or READY source-text hold"):
             test_source_custody.reconcile(self.repo)
 
     def test_academic_receipts_remain_distinct_from_source_custody(self):
         result = test_source_custody.reconcile(REPO)
         projection = build_test_question_bank.payload(REPO)
-        self.assertEqual((result["ready_for_blueprint"], result["source_text_hold"], result["evidence_pending"]), (11, 1, 198))
-        self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 150, "VALIDATED": 59})
+        self.assertEqual((result["ready_for_blueprint"], result["source_text_hold"], result["evidence_pending"]), (12, 0, 198))
+        self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 151, "VALIDATED": 58})
         self.assertEqual(result["total_intake"], 210)
+        question = next(q for bank in projection["banks"] for q in bank["questions"]
+                        if q["id"] == "ncert-exemplar-g9-math-u02-q01")
+        self.assertEqual(question["academic_validation_status"], "UNVALIDATED")
+        self.assertIsNone(question["academic_validation_receipt"])
 
 
 if __name__ == "__main__":
