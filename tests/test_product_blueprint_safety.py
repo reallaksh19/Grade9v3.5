@@ -59,6 +59,38 @@ class ProductBlueprintSafety(unittest.TestCase):
             "paper_url": "https://example.org/paper.pdf",
         }}}), "Official past paper")
 
+    def test_verified_curricular_custody_label_is_truthful_without_source_promotion(self):
+        base = {"authority_class": "CURRICULAR_STANDARD", "source_status": "NCERT_AUTHENTIC"}
+        faithful = {"extensions": {"grade9v3:source_custody": {
+            **base, "wording_custody": "FAITHFUL_NCERT",
+            "paper_url": "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep201.pdf"
+        }}}
+        verbatim = {"extensions": {"grade9v3:source_custody": {
+            **base, "wording_custody": "VERBATIM"
+        }}}
+        unverified = {"extensions": {"grade9v3:source_custody": {
+            "authority_class": "CURRICULAR_STANDARD",
+            "source_status": "CAPTURED_UNVERIFIED",
+            "wording_custody": "VERBATIM"
+        }}}
+        self.assertEqual(render_core._custody(faithful), "Verified curricular source, faithful NCERT wording")
+        self.assertEqual(render_core._custody(verbatim), "Verified curricular source, verbatim")
+        self.assertEqual(render_core._custody(unverified), "Source unverified")
+        self.assertEqual(render_core._source_pdf(faithful), "")
+
+    def test_owner_and_verified_past_paper_labels_remain_unmodified(self):
+        owner = {"extensions": {"grade9v3:source_custody": {
+            "authority_class": "OWNER_SUPPLIED_RAW_INPUT", "wording_custody": "VERBATIM"
+        }}}
+        past = {"extensions": {"grade9v3:source_custody": {
+            "authority_class": "OFFICIAL_EXAM_ORGANIZER_ARCHIVE",
+            "source_status": "PYQ_VERIFIED_PARENT",
+            "paper_url": "https://example.org/paper.pdf",
+            "wording_custody": "FAITHFUL_NON_VERBATIM_RESTATEMENT"
+        }}}
+        self.assertEqual(render_core._custody(owner), "Owner-supplied question, verbatim")
+        self.assertEqual(render_core._custody(past), "Official past paper, faithful restatement of the original")
+
     def test_renderer_cannot_write_directly_to_public(self):
         target = REPO / "public" / "blueprint-safety-probe"
         self.assertFalse(target.exists())
