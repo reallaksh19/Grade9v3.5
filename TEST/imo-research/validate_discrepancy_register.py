@@ -35,9 +35,6 @@ EXPECTED = {
  "IMO-SOURCE-CONFLICT-009":("S",(5,),(23,),1,"C","C","UNSOLVED_FIGURE_GEOMETRY","DIAGRAM_MATH_PENDING",True),
  "IMO-SOURCE-CONFLICT-010":("S",(9,),(6,),1,"D","D","RADICAL_INDEX_STATEMENT_REWRITTEN","SOURCE_NOTATION_DISPUTED_DO_NOT_NORMALIZE",False),
 }
-B01_CASES={2,3,4,5,6,7,8}
-OPTION_COMPARISON={"C","B","A","D"}
-
 
 def ensure(ok: bool, reason: str) -> None:
     if not ok:
@@ -170,9 +167,6 @@ def validate_register(seed: Path = SOURCE,
                    r["owner_compilation_claimed_choice"]=="C","B02 Q13 digit correction missing")
         if year=="S":
             s=sample_records[numbers[0]]
-            ensure(s["organizer_printed_key"]==choice and
-                   s["academic_answer_status"] if False else True,
-                   "unused") if False else None
             ensure(s["organizer_printed_key"]==choice and s["core_eligible"] is False and
                    s["accepted_qrt_cell"] is None, f"{cid}: sample organizer key or hold changed")
             if numbers[0]==5:
