@@ -133,7 +133,10 @@
     article.dataset.g9TestQuestion = q.id;
     article.dataset.g9Validation = academic;
     article.dataset.g9Custody = custodyStatus(q);
-    article.dataset.g9SourceVerification = sourceVerified(q) ? 'SOURCE VERIFIED' : (q.text_verification_status || 'SOURCE STATUS UNKNOWN');
+    article.dataset.g9SourceVerification = independentlyEvidenced ? 'SOURCE VERIFIED'
+      : sourceHold ? 'SOURCE TEXT HOLD' : 'SOURCE EVIDENCE PENDING';
+    article.dataset.g9LegacyTextStatus = sourceVerified(q) ? 'HISTORICAL_TEXT_VERIFIED_LABEL'
+      : (q.text_verification_status || 'HISTORICAL_STATUS_UNKNOWN');
     article.dataset.g9Review = q.workflow_status || '';
     article.dataset.unit = q.chapter_or_unit || '';
     article.dataset.type = q.question_type || '';

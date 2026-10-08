@@ -54,6 +54,7 @@ for (const width of [320, 390, 768, 1280]) {
       hold: cards.filter(card => card.dataset.g9Validation === 'HOLD').length,
       unvalidated: cards.filter(card => card.dataset.g9Validation === 'UNVALIDATED').length,
       sourceVerified: cards.filter(card => card.dataset.g9SourceVerification === 'SOURCE VERIFIED').length,
+      legacyTextLabels: cards.filter(card => card.dataset.g9LegacyTextStatus === 'HISTORICAL_TEXT_VERIFIED_LABEL').length,
       custodyEvidenced: cards.filter(card => card.dataset.g9Custody === 'INDEPENDENTLY_EVIDENCED').length,
       custodyPending: cards.filter(card => card.dataset.g9Custody === 'EVIDENCE_PENDING').length,
       custodyHold: cards.filter(card => card.dataset.g9Custody === 'SOURCE_TEXT_HOLD').length,
@@ -79,7 +80,8 @@ for (const width of [320, 390, 768, 1280]) {
   if (facts.validated !== 59) failures.push(`${where}: ${facts.validated}/59 VALIDATED`);
   if (facts.hold !== 1) failures.push(`${where}: ${facts.hold}/1 HOLD`);
   if (facts.unvalidated !== 150) failures.push(`${where}: ${facts.unvalidated}/150 UNVALIDATED`);
-  if (facts.sourceVerified !== 210) failures.push(`${where}: ${facts.sourceVerified}/210 historical text-verification labels`);
+  if (facts.sourceVerified !== 11) failures.push(`${where}: ${facts.sourceVerified}/11 independently evidenced source-verification attributes`);
+  if (facts.legacyTextLabels !== 210) failures.push(`${where}: ${facts.legacyTextLabels}/210 historical text labels preserved as non-authority`);
   if (facts.custodyEvidenced !== 11 || facts.custodyHold !== 1 || facts.custodyPending !== 198) failures.push(`${where}: evidence truth is ${facts.custodyEvidenced} evidenced / ${facts.custodyHold} source-text HOLD / ${facts.custodyPending} pending, expected 11/1/198`);
   if (facts.sourceLinks !== 210 || facts.unsafeSourceLinks) failures.push(`${where}: source links ${facts.sourceLinks}/210, invalid ${facts.unsafeSourceLinks}`);
   if (facts.evidencedWithoutLocator) failures.push(`${where}: ${facts.evidencedWithoutLocator} independently evidenced records missing corrected printed/PDF locator`);
