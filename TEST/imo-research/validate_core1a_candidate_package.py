@@ -64,7 +64,7 @@ def validate_package(package: Path = PACKAGE) -> dict:
            "Isolated authored mathematical Core1A candidate; no official SOF source questions, QRT admission, licensed figures, public learner delivery or curriculum approval.",
            "research-only TEST canonical scope or status altered")
     ensure(d.get("extensions") == {
-        "grade9v3:imo_provenance": "ISSUE_296_AUTHORED_CORE1A_CANDIDATE_NO_SOFT_CORE2",
+        "grade9v3:imo_provenance": "ISSUE_296_AUTHORED_CORE1A_CANDIDATE_NO_SOF_CORE2",
         "grade9v3:qrt_admitted": False,
         "grade9v3:core2_source_custody_granted": False,
         "grade9v3:learner_published": False
