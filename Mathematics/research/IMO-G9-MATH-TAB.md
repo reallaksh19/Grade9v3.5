@@ -10,7 +10,7 @@ Owner direction dated 2026-10-08: "segregate questions to relevant topics and po
   - Eight positions in the 2026–27 organizer sample in the 66-row seed.
   - Two additional sample positions (sample Q1 and Q3) documented separately from the 66-row seed.
 - **Seven** model-authored and newly worded original practice questions shown **in full as draft public previews**, each linked to a proposed mathematics topic. They are explicitly **not official SOF** source questions and remain unreviewed for Core/QRT acceptance and learner-feedback quality.
-- **15 populated topic groups**, built from the 17 official Mathematics syllabus topic labels and two analyst adjunct sections (LOGIC/QUANT) without implying that the latter are SOF Section 2 topics. Five of the official Mathematics topics are not in this scoped source/practice set, and no false completeness is claimed.
+- **15 populated topic groups**, built from the 17 official Mathematics syllabus topic labels and two analyst adjunct sections (LOGIC/QUANT) without implying that the latter are SOF Section 2 topics. Four of the official Mathematics topics are not in this scoped source/practice set, and no false completeness is claimed.
 - The Mathematics tab publishes links to this page in both `public/mathematics/index.html` and `docs/mathematics/index.html`. The two new browser pages are identical.
 - A topic dropdown, question-type filter, search box, jump-to-topic links, stable question IDs, explicit source-vs-authored labels, and notices for known source discrepancies are provided. No answers or automatic grading are posted.
 - Original practice #006 (two simultaneous equations) and #007 (multi-step coordinate transformations/determinant reasoning) retain **Grade 9 scope review** warnings.
