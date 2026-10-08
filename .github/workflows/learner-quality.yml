@@ -149,6 +149,8 @@ jobs:
           assert (Path("docs/test/deployments/index.html")).is_file()
           print("PASS: source-bound TEST product generated, draft and nonaccepted; three role pages mirrored")
           PY
+      - name: Audit Q1 learner attempt and concept-return interaction in real Chromium
+        run: node tests/test_test_ncert_product_browser.mjs
       - name: Preserve draft-only Core2/Core1A and receipts for review
         if: always()
         uses: actions/upload-artifact@v4
