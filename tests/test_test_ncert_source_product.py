@@ -162,6 +162,17 @@ class TestNcertQ1ParkedProduct(unittest.TestCase):
         self.assertEqual(question["options"], self.question["options"])
         self.assertEqual(self.package["questions"], [])
 
+    def test_set_inclusion_mathml_is_derived_from_authored_relation(self):
+        from xml.etree import ElementTree as ET
+
+        relation = self.package["relations"][0]
+        math = ET.fromstring(relation["mathml"])
+        self.assertEqual(math.tag, "{http://www.w3.org/1998/Math/MathML}math")
+        self.assertEqual(
+            "".join(math.itertext()), "ℚ⊆ℝ"
+        )
+        self.assertEqual(relation["expression"], "ℚ ⊆ ℝ")
+
     def test_mutated_intake_or_answer_witness_cannot_reuse_render_view(self):
         manipulated = copy.deepcopy(self.bank)
         manipulated["questions"][0]["stem_sha256"] = "sha256:" + "0" * 64

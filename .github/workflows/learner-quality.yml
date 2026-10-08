@@ -114,7 +114,10 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install TEST product dependencies
-        run: pip install --quiet jsonschema pypdf
+        run: |
+          pip install --quiet jsonschema pypdf
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium
       - name: Verify source-derived Core2 Q1 view and owning producer contracts
         run: |
           python3 TEST/library/ncert_source_core2_view.py --check
