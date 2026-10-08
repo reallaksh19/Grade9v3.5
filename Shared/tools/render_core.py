@@ -1758,6 +1758,13 @@ def _custody(q: dict) -> str:
         line = "Owner-supplied question" + (", verbatim" if cust.get("wording_custody") == "VERBATIM" else "")
         authorship = (q.get("extensions") or {}).get("grade9v3:authorship") or {}
         return line + (" · coordinator/AI-drafted benchmark" if authorship.get("kind") == "COORDINATOR_AI_DRAFTED" else "")
+    if (cust.get("authority_class") == "CURRICULAR_STANDARD"
+            and cust.get("source_status") == "NCERT_AUTHENTIC"):
+        wording = {
+            "FAITHFUL_NCERT": "faithful NCERT wording",
+            "VERBATIM": "verbatim",
+        }.get(cust.get("wording_custody"), "")
+        return "Verified curricular source" + (f", {wording}" if wording else "")
     if (cust.get("authority_class") != "OFFICIAL_EXAM_ORGANIZER_ARCHIVE"
             or cust.get("source_status") != "PYQ_VERIFIED_PARENT"
             or not cust.get("paper_url")):
