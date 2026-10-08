@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import sys
 import tempfile
@@ -145,6 +146,36 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
                 self.write()
                 with self.assertRaisesRegex(ValueError, "witness|evidence missing"):
                     test_source_custody.reconcile(self.repo)
+
+    def test_real_witness_for_q1_to_q6_cannot_be_replayed_for_q7(self):
+        """Same-worded Q6/Q7 are distinct official source instances."""
+        q7 = self.bank_doc["questions"][6]
+        self.assertEqual(self.bank_doc["questions"][5]["stem"], q7["stem"])
+        forged = copy.deepcopy(self.overlay_doc["records"][5])
+        forged.update({
+            "id": q7["id"],
+            "original_identifier": q7["original_identifier"],
+            "stem_sha256": q7["stem_sha256"],
+            "options": q7["options"],
+        })
+        forged["source_locator"]["question_number"] = q7["question_number"]
+        forged["official_answer"]["question_number"] = q7["question_number"]
+        forged["official_answer"]["answer_key"] = q7["official_answer_text"].split()[0]
+        self.overlay_doc["records"].append(forged)
+        self.write()
+        with self.assertRaisesRegex(ValueError, "question witness scope"):
+            test_source_custody.reconcile(self.repo)
+
+    def test_joint_bank_overlay_stem_rewrite_cannot_reuse_old_witness(self):
+        """A self-consistent new digest cannot retrofit an older GitHub witness."""
+        first = self.bank_doc["questions"][0]
+        first["stem"] = "Every rational number is a different statement"
+        digest = "sha256:" + hashlib.sha256(first["stem"].encode("utf-8")).hexdigest()
+        first["stem_sha256"] = digest
+        self.overlay_doc["records"][0]["stem_sha256"] = digest
+        self.write()
+        with self.assertRaisesRegex(ValueError, "question witness scope"):
+            test_source_custody.reconcile(self.repo)
 
     def test_source_bank_stem_mutation_invalidates_a_former_witness(self):
         self.bank_doc["questions"][0]["stem"] = "Changed question wording"

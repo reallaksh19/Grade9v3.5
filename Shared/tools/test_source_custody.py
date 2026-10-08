@@ -38,6 +38,36 @@ KNOWN_WITNESSES = {
         "fragments": ("ieep202.pdf", "ieep2an.pdf", "u02-q02", "u02-q06", "verbatim"),
     },
 }
+# A real comment pointer is not fungible source evidence: scope it to the exact
+# independently inspected question IDs and captured stem digests. The digest also
+# prevents replay if the bank and overlay are modified in lockstep after inspection.
+# These are bounded witness claims, not automatic official-PDF verification.
+QUESTION_WITNESS_SCOPE = {
+    "github:reallaksh19/Grade9v3.5#129:6029049531": {
+        "ncert-exemplar-g9-math-u01-q01": "sha256:40010d207519d386d5d2a6519c39745ee59de121105642b68c4f398a002cb3f6",
+        "ncert-exemplar-g9-math-u01-q02": "sha256:530fe02b34e00327f20ac7eb891300f78be4a57a1c71a3d78b6daaa800c50859",
+        "ncert-exemplar-g9-math-u01-q03": "sha256:4c255eb30fe8e41876eec4a4763b3a8edc9ad76be3e12ab61c25790b7441b7b7",
+        "ncert-exemplar-g9-math-u01-q04": "sha256:29b572e11d87ac9ecc63095968127fd290bf8dedd16434537dcc5d0dfdf289be",
+        "ncert-exemplar-g9-math-u01-q05": "sha256:9e546d00f0d12851328a795961478eb2e7de09c63623aeed959f6fa7cc590f12",
+        "ncert-exemplar-g9-math-u01-q06": "sha256:ca54af54c150e14888774feabed443bc1268dd4ffc24c58935994ef023b17e10",
+    },
+    "github:reallaksh19/Grade9v3.5#68:6050805060": {
+        "ncert-exemplar-g9-math-u02-q02": "sha256:627a863a58c1f737a8ec90567d45497ed6091979977777e9a6b851ad42a9ad03",
+        "ncert-exemplar-g9-math-u02-q03": "sha256:acf970e82ea78d3e0962ee2961e90547822df1945cf6a0093512c9373be69bd7",
+        "ncert-exemplar-g9-math-u02-q04": "sha256:43f7d6ff7a197201b8c538375778d52ee7e2906cd987cba60eaaa94a07d14416",
+        "ncert-exemplar-g9-math-u02-q05": "sha256:10c33f397767b5dd584b33dcbe1571188c09ff872732d69ba97102c2e73cb879",
+        "ncert-exemplar-g9-math-u02-q06": "sha256:d1f9ab971075dd4795abafbb0e7a9163deb032e79470daae63d2198ebcef5643",
+    },
+}
+HOLD_WITNESS_SCOPE = {
+    "ncert-exemplar-g9-math-u02-q01": (
+        "github:reallaksh19/Grade9v3.5#68:6050805060",
+        "sha256:e9cf2f9dd0b4ccdd828e671580c65aed68b09405a1eda4c0f54561b9e24a3175",
+        "Which one of the following is a polynomial?",
+    ),
+}
+
+
 def _require(condition: bool, where: str, reason: str) -> None:
     if not condition:
         raise ValueError(f"{where}: {reason}")
@@ -103,6 +133,8 @@ def reconcile(repo: Path) -> dict:
             _require(record.get("original_identifier") == source["original_identifier"]
                      and record.get("options") == source.get("options", []),
                      where, f"question identifier/options mismatch for {qid}")
+            _require(QUESTION_WITNESS_SCOPE.get(record.get("verification_evidence_ref"), {}).get(qid) == digest,
+                     where, f"question witness scope or stem digest mismatch for {qid}")
             locator = record.get("source_locator") or {}
             _require(isinstance(locator, dict), where, f"invalid locator for {qid}")
             _require(all(locator.get(key) == source[key] for key in
@@ -193,7 +225,11 @@ def reconcile(repo: Path) -> dict:
                      and hold.get("captured_stem_sha256") == source["stem_sha256"]
                      and isinstance(hold.get("official_stem"), str)
                      and bool(hold["official_stem"].strip()) and hold["official_stem"] != source["stem"]
-                     and _evidence_ref(hold.get("verification_evidence_ref")),
+                     and _evidence_ref(hold.get("verification_evidence_ref"))
+                     and HOLD_WITNESS_SCOPE.get(qid) == (
+                         hold.get("verification_evidence_ref"),
+                         hold.get("captured_stem_sha256"),
+                         hold.get("official_stem")),
                      where, f"invalid disputed official wording for {qid}")
             source_holds[qid] = {"id": qid, "reason": hold["reason_code"],
                                  "official_stem": hold["official_stem"],
