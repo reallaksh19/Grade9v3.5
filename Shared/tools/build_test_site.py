@@ -22,7 +22,7 @@ if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
 from Shared.library.resolve import build_index  # noqa: E402
-from Shared.tools import atlas_index, build_test_question_bank, build_web_data, matrix_conformance, product_coverage, render_core  # noqa: E402
+from Shared.tools import atlas_index, build_test_question_bank, build_web_data, matrix_conformance, product_coverage, render_core, test_intake_registry  # noqa: E402
 
 esc = render_core.esc
 TEST_ROOT = REPO / "TEST"
@@ -60,20 +60,8 @@ def interactive_pages() -> list[dict]:
 
 
 def intake_banks() -> list[dict]:
-    intake_dir = TEST_ROOT / "question-bank" / "intake"
-    if not intake_dir.is_dir():
-        return []
-    banks = []
-    for p in sorted(intake_dir.glob("*.json")):
-        if p.name.endswith(".blueprint-handoff.json"):
-            continue
-        try:
-            data = _json(p)
-            if isinstance(data, dict) and data.get("schema_version") == "grade9v3-test-source-question-intake-v1":
-                banks.append(data)
-        except Exception:
-            continue
-    return banks
+    """Share the fail-closed identity gate with the TEST Question Bank producer."""
+    return test_intake_registry.load_intake_banks(REPO)
 
 
 def candidate_audits() -> list[dict]:
