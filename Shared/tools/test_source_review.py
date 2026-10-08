@@ -12,7 +12,11 @@ import json
 import sys
 from pathlib import Path
 
-from Shared.tools import test_intake_registry, test_source_custody
+REPO = Path(__file__).resolve().parents[2]
+if __package__ in (None, ""):
+    sys.path.insert(0, str(REPO))
+
+from Shared.tools import test_intake_registry, test_source_custody  # noqa: E402
 
 SCHEMA = "grade9v3-test-primary-source-review-v1"
 ROOT = "TEST/evidence/source-intake"
