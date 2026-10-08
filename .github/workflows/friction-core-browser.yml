@@ -62,7 +62,8 @@ jobs:
         run: |
           pip install --quiet jsonschema pypdf cffi
           npm install --no-save playwright@1.56.1
-          npx playwright install --with-deps chromium
+          # Install the pinned Chromium browser without apt package-manager changes.
+          npx playwright install chromium
 
       - name: Denominator coverage and toughest concept
         run: |

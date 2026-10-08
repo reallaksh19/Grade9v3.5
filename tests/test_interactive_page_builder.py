@@ -30,6 +30,16 @@ class InteractivePageBuilderTests(unittest.TestCase):
             "explorer_locator": None,
         }
 
+    def test_projection_blueprint_ref_matches_id_and_version(self):
+        # Fixtures must not pair a current registry ref with retired metadata.
+        for core in ("CORE1", "CORE1A", "CORE1B", "CORE2A", "CORE2B"):
+            with self.subTest(core=core):
+                web = self.row(core)["projection"]["delivery"]["web"]
+                self.assertEqual(
+                    web["blueprint_ref"],
+                    f'{web["blueprint_id"]}@{web["blueprint_version"]}',
+                )
+
     def test_package_uses_projection_blueprint_without_subject_switch(self):
         for core in ("CORE1", "CORE1A", "CORE1B", "CORE2A", "CORE2B"):
             package = build_interactive_page.compile_page_package(self.row(core))

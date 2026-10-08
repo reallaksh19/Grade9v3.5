@@ -63,7 +63,8 @@ jobs:
         run: |
           pip install --quiet jsonschema pypdf
           npm install -g playwright@1.56.1
-          npx playwright install --with-deps chromium
+          # Install the pinned Chromium browser without apt package-manager changes.
+          npx playwright install chromium
       - name: Base commit
         id: base
         run: |
@@ -85,9 +86,36 @@ jobs:
           git worktree add "$RUNNER_TEMP/base" "${{ steps.base.outputs.sha }}"
           cd "$RUNNER_TEMP/base"
           NODE_PATH="$(npm root -g)" python3 "$GITHUB_WORKSPACE/Shared/tools/run_test_ids.py" --output "$RUNNER_TEMP/base.json"
-      # new_failure_ids must be empty; a count does not decide, and a HEAD that ran nothing or does not load is a failure, not a pass.
-      - name: Compare
-        run: python3 Shared/tools/diff_test_failures.py --base "$RUNNER_TEMP/base.json" --head "$RUNNER_TEMP/head.json" --enforce
+      # #191 U5 requires a separate exact pinned-main comparator: on a stacked PR,
+      # github.base_ref points to a trial branch, not main. Keep the existing gate.
+      - name: Pinned-main baseline test IDs
+        env:
+          PINNED_MAIN: 19b08efb5b00a4316877b1cdc2f0818e29495b79
+        run: |
+          git cat-file -e "${PINNED_MAIN}^{commit}"
+          git merge-base --is-ancestor "$PINNED_MAIN" HEAD
+          echo "pinned main comparison: $PINNED_MAIN -> $(git rev-parse HEAD)"
+          git worktree add "$RUNNER_TEMP/pinned-main" "$PINNED_MAIN"
+          cd "$RUNNER_TEMP/pinned-main"
+          NODE_PATH="$(npm root -g)" python3 "$GITHUB_WORKSPACE/Shared/tools/run_test_ids.py" --output "$RUNNER_TEMP/pinned-main.json"
+      # Both independent exact-ID comparisons are enforced. Collect both verdicts
+      # even if the first finds regressions; no false PASS from count equality.
+      - name: Compare against stacked base and pinned main
+        run: |
+          status=0
+          python3 Shared/tools/diff_test_failures.py --base "$RUNNER_TEMP/base.json" --head "$RUNNER_TEMP/head.json" --enforce || status=1
+          python3 Shared/tools/diff_test_failures.py --base "$RUNNER_TEMP/pinned-main.json" --head "$RUNNER_TEMP/head.json" --enforce || status=1
+          exit "$status"
+      - name: Preserve exact test ID evidence
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: canonical-exact-ids-${{ github.sha }}
+          if-no-files-found: error
+          path: |
+            ${{ runner.temp }}/head.json
+            ${{ runner.temp }}/base.json
+            ${{ runner.temp }}/pinned-main.json
 
   release-status:
     # Informational. Whether a product is released is the Owner's decision, through accept_product.py, which refuses a product that is not eligible.

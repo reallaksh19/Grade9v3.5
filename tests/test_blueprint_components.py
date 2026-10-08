@@ -238,9 +238,14 @@ class Reporting(unittest.TestCase):
         page = {"role": "CORE1A", "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.8.0",
                 "units": [{"id": "MIC", "construction_units": ["CU-1", "CU-2"],
                            "components": [{"id": "STAGED_VISUAL", "items": 3, "unit": "CU-1"}]}]}
-        problems = quality_contract.OPS["blueprint_components"](page, {"level": "REQUIRED"}, {})
+        # Staged visuals are EXPECTED, not REQUIRED: every construction
+        # unit must supply one or provide an explicit, scoped waiver.
+        problems = quality_contract.OPS["blueprint_components"](page, {"level": "EXPECTED"}, {})
         self.assertIn("MIC / CU-2: STAGED_VISUAL is absent", problems)
         self.assertNotIn("MIC / CU-1: STAGED_VISUAL is absent", problems)
+        page["units"][0]["waived"] = {"STAGED_VISUAL@CU-2": "a visual would be decorative"}
+        waived = quality_contract.OPS["blueprint_components"](page, {"level": "EXPECTED"}, {})
+        self.assertNotIn("MIC / CU-2: STAGED_VISUAL is absent", waived)
 
 
 class ReferenceDepth(unittest.TestCase):
@@ -530,7 +535,31 @@ class Links(unittest.TestCase):
     def test_a_core2_page_links_to_concepts_only_when_the_product_has_a_core1a_page(self):
         ctx = render_core.context(MOTION_2D)
         question = ctx.selection_rows["core2"][0]
-        self.assertIn('href="core1a.html#', render_core._core2_concept_navigation(ctx, question))
+        from html import unescape
+        from urllib.parse import parse_qs, urlsplit
+
+        markup = render_core._core2_concept_navigation(ctx, question)
+        # The link must preserve both the real Core1A destination and the
+        # question/concept return context; "core1a.html#" silently rejects
+        # the newer, correct query-preserving round-trip URL.
+        links = re.findall(r'<a\b[^>]*\bdata-g9-concept-link\b[^>]*>', markup)
+        self.assertTrue(links, "a selected concept needs a navigable Core1A link")
+        microtopic_ids = {row["id"] for row in ctx.selection_rows["microtopics"]}
+        for tag in links:
+            with self.subTest(tag=tag):
+                href_match = re.search(r'\bhref="([^"]+)"', tag)
+                concept_match = re.search(r'\bdata-g9-concept-ref="([^"]+)"', tag)
+                owner_match = re.search(r'\bdata-g9-question-ref="([^"]+)"', tag)
+                self.assertIsNotNone(href_match)
+                self.assertIsNotNone(concept_match)
+                self.assertIsNotNone(owner_match)
+                self.assertEqual(owner_match.group(1), question["id"])
+                self.assertIn(concept_match.group(1), microtopic_ids)
+                url = urlsplit(unescape(href_match.group(1)))
+                self.assertEqual(url.path, "core1a.html")
+                self.assertEqual(parse_qs(url.query).get("g9-return"), [question["id"]])
+                self.assertEqual(parse_qs(url.query).get("g9-concept"), [concept_match.group(1)])
+                self.assertTrue(url.fragment, "link must resolve to a concept or construction unit")
         ctx.manifest["output_roles"] = ["CORE2"]
         self.assertEqual(render_core._core2_concept_navigation(ctx, question), "")
 
@@ -545,15 +574,24 @@ class Authoring(unittest.TestCase):
         self.assertEqual(question["answer"]["reasoning_route"], wanted["answer"]["reasoning_route"])
         self.assertEqual(question["extensions"]["grade9v3:analysis"]["common_wrong_route"], "")
 
-    def test_the_depth_an_owner_bank_is_held_to_is_the_blueprints_target_for_its_band_not_a_number_in_the_tool(self):
-        bank = owner_bank.new(self.INTAKE, "demo")
-        bank["questions"][0]["extensions"]["grade9v3:analysis"]["difficulty"]["band"] = "D1"
-        raised = copy.deepcopy(REGISTRY)
-        next(c for b in raised["blueprints"] if b["id"] == "BP-CORE2-SOURCE-QUESTION"
-             for c in b["components"] if c["id"] == "HINT_LADDER")["target_items_by_band"]["D1"] = 6
-        with patch.object(blueprints, "load_registry", return_value=raised):
-            self.assertIn("HINT_LADDER needs 6, the record supplies 5", " ".join(owner_bank.check(bank)))
-        self.assertNotIn("HINT_LADDER needs", " ".join(owner_bank.check(bank)), "five rungs meet the blueprint's three for a D1 question")
+    def test_owner_bank_does_not_invent_band_based_hint_quotas(self):
+        # The current Core2 blueprint makes supports semantically applicable,
+        # rather than requiring a D-band-derived number of rungs.
+        core2 = next(b for b in REGISTRY["blueprints"]
+                     if b["id"] == "BP-CORE2-SOURCE-QUESTION")
+        support = next(c for c in core2["components"] if c["id"] == "HINT_LADDER")
+        self.assertEqual(support["level"], "EXPECTED")
+        self.assertNotIn("target_items_by_band", support)
+        self.assertNotIn("band_source", support)
+        self.assertIn("protected move", support["authoring"]["hint"].lower())
+        for band in ("D1", "D4"):
+            with self.subTest(band=band):
+                bank = owner_bank.new(self.INTAKE, "demo")
+                bank["questions"][0]["extensions"]["grade9v3:analysis"]["difficulty"]["band"] = band
+                # Validating the same authored support at different bands
+                # must not fabricate a numeric ladder-depth violation.
+                problems = " ".join(owner_bank.check(bank))
+                self.assertNotIn("HINT_LADDER needs", problems)
 
 
 if __name__ == "__main__":

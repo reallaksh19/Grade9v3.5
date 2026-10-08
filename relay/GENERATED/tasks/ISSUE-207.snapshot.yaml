@@ -1,0 +1,32 @@
+schema_version: relay-v3.1-task-snapshot
+authority: DERIVED_READ_MODEL
+source_protocol: V3_1
+identity:
+  work_package: ISSUE-207-NCERT-POLY-QBANK-ADMISSION
+  ep: ISSUE-207-PROVIDER-VIEW
+  issue: 207
+  delivery_vehicle: 208
+purpose:
+  programme_outcome: Admit NCERT Exemplar Grade 9 Mathematics questions to the production Question Bank only after question-level validation.
+  current_goal: Admit exactly Unit 2 source records Q21, Q22, Q24-Q30 whose merged validation receipt records PASS and admission_eligible=true.
+  task_outcome: Twenty-nine canonical NCERT Unit 2 Polynomials questions appear in production while Q23 remains HOLD, the remaining 181 NCERT intake records remain non-admitted, and all ISS55 records remain non-admitted.
+  why_this_task_exists: Owner requested TEST visibility first, validation before production admission, and Atlas/rungs/UI enrichment afterward.
+parent_issue:
+  repository: reallaksh19/Grade9v3.5
+  number: 207
+  title: "Admit validated NCERT Polynomials Q21-Q22 and Q24-Q30"
+  state: OPEN
+  url: https://github.com/reallaksh19/Grade9v3.5/issues/207
+delivery:
+  relationship: PRIMARY
+  pr: 208
+  head: 057e72dad0b9180b84d4775eacf201dacaf552f2
+  branch: feat/admit-ncert-poly-q21-q30-pass
+material:
+  base: f34eccb93e0ee471560e751b8bb36a6051391198
+  current_head: 057e72dad0b9180b84d4775eacf201dacaf552f2
+execution:
+  lifecycle: ACTIVE
+  branch: feat/admit-ncert-poly-q21-q30-pass
+next:
+  immediate_action: Qualify the exact admission head and merge only if the twenty-nine-record admission contract remains green and Q23 remains HOLD/non-admitted.
