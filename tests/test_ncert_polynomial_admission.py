@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 
 from Shared.library import intake
-from Shared.tools import build_question_bank_web
+from Shared.tools import build_question_bank_web, build_test_question_bank
 
 REPO = Path(__file__).resolve().parents[1]
 PACKAGE = REPO / "Mathematics/library/polynomials.v1.json"
@@ -31,6 +31,8 @@ CANONICAL_TO_SOURCE = {
 CANONICAL_IDS = list(CANONICAL_TO_SOURCE)
 SOURCE_IDS = list(CANONICAL_TO_SOURCE.values())
 HELD_SOURCE_ID = "ncert-exemplar-g9-math-u02-q23"
+CORRECTED_Q1_SOURCE_ID = "ncert-exemplar-g9-math-u02-q01"
+CANONICAL_Q1_ID = "Q-MAT-POLY-NCERT9-EX21-Q01"
 
 
 class TestNcertPolynomialQuestionBankAdmission(unittest.TestCase):
@@ -49,7 +51,8 @@ class TestNcertPolynomialQuestionBankAdmission(unittest.TestCase):
         cls.browser = build_question_bank_web.build(REPO)
         cls.browser_by_id = {row["id"]: row for row in cls.browser["questions"]}
 
-    def test_admission_is_exactly_the_twenty_nine_validation_pass_records(self):
+    def test_historical_twenty_nine_admissions_pin_original_receipt_versions(self):
+        """Existing canonical package is historical; Q1 is NOT aligned to corrected TEST source."""
         admitted = [
             q for q in self.package["questions"]
             if (q.get("extensions") or {}).get("grade9v3:question_bank", {}).get("include") is True
@@ -69,12 +72,43 @@ class TestNcertPolynomialQuestionBankAdmission(unittest.TestCase):
             source = self.source_by_id[source_id]
             self.assertEqual(lineage["source_question_id"], source_id)
             self.assertEqual(lineage["validation_ref"], validation_ref)
-            self.assertEqual(canonical["stem"], source["stem"])
+            # Existing canonical Q1 and historical PASS receipt bind the old
+            # intake wording. Do not silently treat the corrected official
+            # TEST source as academically approved by that old receipt.
+            if source_id == CORRECTED_Q1_SOURCE_ID:
+                self.assertEqual(canonical["stem"], "Which of the following is a polynomial?")
+                self.assertEqual(source["stem"], "Which one of the following is a polynomial?")
+                self.assertEqual(custody["text_sha256"], receipt["stem_sha256"])
+                self.assertEqual(lineage["source_text_sha256"], receipt["stem_sha256"])
+                self.assertNotEqual(receipt["stem_sha256"], source["stem_sha256"])
+                self.assertNotEqual(canonical["stem"], source["stem"])
+            else:
+                self.assertEqual(canonical["stem"], source["stem"])
+                self.assertEqual(custody["text_sha256"], source["stem_sha256"])
             self.assertEqual(canonical["options"], source.get("options", []))
             self.assertEqual(canonical["answer"]["summary"], source["official_answer_text"])
-            self.assertEqual(custody["text_sha256"], source["stem_sha256"])
             self.assertEqual(canonical["answer"]["verification_status"], "INDEPENDENTLY_CHECKED")
             self.assertEqual(canonical["status"], "REVIEWED")
+
+    def test_q1_corrected_official_source_does_not_reuse_stale_academic_pass(self):
+        """Q1 production copy is an existing migration debt for #132, not a new admission."""
+        source = self.source_by_id[CORRECTED_Q1_SOURCE_ID]
+        receipt, _ = self.validation_by_id[CORRECTED_Q1_SOURCE_ID]
+        canonical = self.package_by_id[CANONICAL_Q1_ID]
+        self.assertEqual(source["stem"], "Which one of the following is a polynomial?")
+        self.assertNotEqual(source["stem_sha256"], receipt["stem_sha256"])
+        self.assertNotEqual(source["stem_sha256"],
+                            canonical["extensions"]["grade9v3:source_custody"]["text_sha256"])
+        projection = build_test_question_bank.payload(REPO)
+        projected = next(q for bank in projection["banks"] for q in bank["questions"]
+                         if q["id"] == CORRECTED_Q1_SOURCE_ID)
+        self.assertEqual(projected["custody_evidence_status"], "INDEPENDENTLY_EVIDENCED")
+        self.assertEqual(projected["academic_validation_status"], "UNVALIDATED")
+        self.assertIsNone(projected["academic_validation_receipt"])
+        self.assertEqual(canonical["extensions"]["grade9v3:lineage"]["validation_ref"],
+                         "TEST/candidates/ncert-exemplar-g9-math-u02-q01-q10.validation.json")
+        self.assertTrue(canonical["extensions"]["grade9v3:question_bank"]["include"],
+                        "This is historical existing canonical inclusion requiring separate #132 authorization")
 
     def test_q23_hold_is_explicit_and_not_admitted(self):
         receipt, validation_ref = self.validation_by_id[HELD_SOURCE_ID]

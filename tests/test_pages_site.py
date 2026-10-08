@@ -37,6 +37,20 @@ class PagesSiteTest(unittest.TestCase):
         self.assertIn('href="../../tools/run-builder/index.html"', atlas)
         self.assertNotIn('href="../../../tools/run-builder/index.html"', atlas)
 
+    def test_html_entities_are_decoded_for_official_links_and_traversal(self):
+        official = {"test/index.html": ("public/test/index.html",
+                    b'<a href="https&#58;//ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep202.pdf">NCERT</a>')}
+        self.assertEqual(build_pages_site.link_findings(official), [])
+        escape = {"test/index.html": ("public/test/index.html",
+                  b'<a href="&#46;&#46;/&#46;&#46;/&#46;&#46;/outside.html">escape</a>')}
+        self.assertTrue(any("link escapes docs/ Pages root" in reason
+                            for reason in build_pages_site.link_findings(escape)))
+        with self.assertRaisesRegex(ValueError, "unapproved external runtime dependency"):
+            build_pages_site._public_payload(
+                "test/index.html",
+                b'<script src="https&#58;//cdn.example.invalid/payload.js"></script>',
+            )
+
     def test_generated_html_links_do_not_escape_docs_root(self):
         desired = build_pages_site.desired_files(REPO)
         self.assertEqual(build_pages_site.link_findings(desired), [])
