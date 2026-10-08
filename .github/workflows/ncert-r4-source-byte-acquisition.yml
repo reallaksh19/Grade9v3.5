@@ -3,9 +3,8 @@
 name: R4 NCERT PDF bytes (informational)
 
 on:
-  push:
-    branches:
-      - fix/68-r4-q07-recapture-proposal-20261008
+  pull_request:
+    types: [opened, reopened, synchronize]
     paths:
       - .github/workflows/ncert-r4-source-byte-acquisition.yml
   workflow_dispatch:
