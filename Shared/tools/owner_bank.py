@@ -92,6 +92,12 @@ def _page_problems(question: dict, label: str, complete: bool = True, seen: set 
     route = answer.get("reasoning_route")
     moves = [m for m in route if isinstance(m, dict)] if isinstance(route, list) else []
     ids = [m.get("id") for m in moves]
+    if complete and not moves:
+        # A missing solution route is a real source gap, even though the
+        # recovered blueprint deliberately has no difficulty-band move quota.
+        # Draft authoring (complete=False) must still be inspectable.
+        problems.append(f"{label}: SOLUTION_STEPS is absent: answer.reasoning_route must "
+                        "teach the actual inferential moves before this question can be accepted")
     if moves:
         try:
             core2_v2.project_solution(answer)
