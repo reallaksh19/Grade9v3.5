@@ -547,7 +547,7 @@ class TestToughestConcept(unittest.TestCase):
         self.package_path.write_text(json.dumps(package), encoding="utf-8")
         gaps = [g for g in self.deploy()["gaps"] if g.get("component") == "CONSTRUCTION_STEPS"]
         self.assertEqual(len(gaps), 1, gaps)
-        self.assertIn("1 of the 2 construction steps it needs", gaps[0]["detail"])
+        self.assertIn("CONSTRUCTION_STEPS has 1 of the 2 steps it needs", gaps[0]["detail"])
 
     def test_naming_the_question_is_not_enough_the_unit_must_work_it_and_point_at_its_step(self):
         receipt = self.deploy()
