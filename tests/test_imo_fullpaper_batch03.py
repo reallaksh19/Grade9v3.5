@@ -74,7 +74,7 @@ class AuditB03Tests(unittest.TestCase):
         with self.assertRaises(SeedError):self.run_audit()
 
     def test_math_derivation_is_required(self):
-        self.change(lambda d:self.q(d,19).update(agent_mathematical_derivation=""))
+        self.change(lambda d:self.q(d,18).update(agent_mathematical_derivation=""))
         with self.assertRaises(SeedError):self.run_audit()
 
     def test_alt_check_is_required(self):
