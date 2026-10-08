@@ -319,14 +319,60 @@ class Core1aBenchmark(unittest.TestCase):
         self.assertIn('data-g9-theme="dark"', self.html)
 
     def test_secondary_reference_is_collapsed_but_the_crux_and_practice_path_stay_visible(self):
-        for kind in ("core1a-prerequisites", "core1a-question-bridge", "core1a-equations", "core1a-trap-repair"):
+        # These are authored on the benchmark. QUESTION_BRIDGE is OPTIONAL:
+        # this product's construction units do not bind a source crux question.
+        ctx = render_core.context(MOTION_2D)
+        units = [unit for m in ctx.selection_rows["microtopics"]
+                 for unit in m.get("construction_units", [])]
+        self.assertTrue(units)
+        self.assertTrue(all(not unit.get("crux_question_refs") for unit in units))
+        for kind in ("core1a-prerequisites", "core1a-equations", "core1a-trap-repair"):
             matches = re.findall(rf'<details class="g9-secondary-disclosure" data-g9-secondary="{kind}"[^>]*>', self.html)
             self.assertTrue(matches, kind)
             self.assertTrue(all(" open" not in tag for tag in matches), kind)
+        self.assertNotIn('data-g9-secondary="core1a-question-bridge"', self.html,
+                         "an unbound source question must not produce an empty disclosure")
         self.assertIn('data-g9-component="KEY_STEP"', self.html)
         self.assertIn('data-g9-component="CONSTRUCTION_STEPS"', self.html)
         self.assertIn('data-g9-component="QUICK_CHECK"', self.html)
         self.assertIn("Now you do one", self.html)
+
+    def test_source_bound_crux_bridge_is_collapsed_and_links_to_independent_practice(self):
+        ctx = render_core.context(MOTION_2D)
+        join = render_core._concept_join(ctx, "CORE1A")["microtopic_to_questions"]
+        concept = next(m for m in ctx.selection_rows["microtopics"]
+                       if m.get("construction_units") and join.get(m["id"]))
+        question_ref = join[concept["id"]][0]
+        self.assertIn(question_ref, {q["id"] for q in ctx.bank})
+        unit = concept["construction_units"][0]
+        self.assertFalse(unit.get("crux_question_refs"))
+        unit["crux_question_refs"] = [question_ref]
+        unit["crux_step_ref"] = unit["step_refs"][0]
+        html = render_core.page(ctx, "CORE1A", "PAGES", render_core.render_digest(ctx))
+        matches = re.findall(
+            r'<details class="g9-secondary-disclosure" data-g9-secondary="core1a-question-bridge"[^>]*>',
+            html,
+        )
+        self.assertEqual(len(matches), 1, "a genuine source-bound bridge must render once")
+        self.assertNotIn(" open", matches[0], "the bridge must remain closed before learner choice")
+        self.assertIn(f'data-g9-bridge-question="{question_ref}"', html)
+        self.assertIn(f'data-g9-question-ref="{question_ref}" href="core2.html#{question_ref}"', html)
+        self.assertIn('data-g9-crux-step', html)
+        self.assertIn('data-g9-component="KEY_STEP"', html)
+        self.assertIn('data-g9-component="QUICK_CHECK"', html)
+        self.assertIn("Now you do one", html)
+
+    def test_unresolved_crux_question_is_a_named_gap_not_a_fake_bridge(self):
+        ctx = render_core.context(MOTION_2D)
+        unit = ctx.selection_rows["microtopics"][0]["construction_units"][0]
+        unit["crux_question_refs"] = ["Q-MISSING-FROM-SOURCE-BANK"]
+        unit["crux_step_ref"] = unit["step_refs"][0]
+        html = render_core.page(ctx, "CORE1A", "PAGES", render_core.render_digest(ctx))
+        self.assertNotIn('data-g9-bridge-question="Q-MISSING-FROM-SOURCE-BANK"', html)
+        self.assertTrue(any(g["duty"] == "AUTHOR_QUESTION_BRIDGE"
+                            and g["record"] == unit["id"]
+                            and "Q-MISSING-FROM-SOURCE-BANK" in g["detail"]
+                            for g in ctx.gaps), ctx.gaps)
 
     def test_worked_teaching_is_visible_and_precedes_the_fresh_attempt(self):
         tree = OwnedHTML(self.html)
