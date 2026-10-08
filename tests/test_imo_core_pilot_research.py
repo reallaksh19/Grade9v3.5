@@ -74,6 +74,18 @@ class CorePilotResearchTests(unittest.TestCase):
         self.rejects(self.census,lambda d:d["source_census"].update(
             source_seed_positions=65))
 
+    def test_q32_q33_are_distinct_observed_source_numbers(self):
+        d=json.loads(self.census.read_text(encoding="utf-8"))
+        by_id={r["question_id"]:r for r in d["records"]}
+        self.assertEqual(by_id["SOF-IMO-G09-L1-2025-26-A-Q032"]["original_printed_position_observed"],"32")
+        self.assertEqual(by_id["SOF-IMO-G09-L1-2025-26-A-Q033"]["original_printed_position_observed"],"33")
+
+    def test_split_dispute_cannot_assign_q32_to_q33(self):
+        self.rejects(self.census,lambda d:next(
+            r for r in d["records"] if r["question_id"]==
+            "SOF-IMO-G09-L1-2025-26-A-Q033").update(
+                original_printed_position_observed="32"))
+
     def test_source_host_not_organizer_claimed_for_mirror(self):
         self.rejects(self.census,lambda d:next(
             r for r in d["records"] if r["origin_scope"]==
