@@ -45,6 +45,7 @@ class TestTestQuestionBank(unittest.TestCase):
         self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 151, "VALIDATED": 58})
         self.assertTrue(all(q["workflow_status"] == "EVIDENCE_PENDING" for q in rows))
         self.assertTrue(all(q["text_verification_status"] == "CAPTURED_UNVERIFIED" for q in rows))
+        self.assertTrue(all(q["wording_custody"] == "CAPTURED_UNVERIFIED" for q in rows))
         self.assertTrue(all("page" not in q and "unverified_legacy_page" in q for q in rows))
         self.assertEqual(sum(q["custody_evidence_status"] == "INDEPENDENTLY_EVIDENCED"
                              for q in rows), 12)
