@@ -107,7 +107,7 @@ def validate(root: Path = ROOT) -> dict:
     split = [q for q in qs if q["seed_entry"] == 38]
     require({(x["seed_subentry"], x["original_question_number_claim"]) for x in split} == {("i", "32"), ("ii", "33")},
             "combined Q38 must keep two distinct printed-source positions")
-    require(by_id["SOF-IMO-G09-L1-2024-25-B-Q044"]["exam_section"] == "MATHEMATICAL_REASONING",
+    require(by_id["SOF-IMO-G09-L1-2024-25-B-Q044"]["exam_section"] == "EVERYDAY_MATHEMATICS",
             "printed Q44 section correction lost")
     require(by_id["SOF-IMO-G09-L1-2025-26-A-Q028"]["transcription_status"] == "TEXT_DISPUTED",
             "printed additive-identity contradiction cannot be cleared")
