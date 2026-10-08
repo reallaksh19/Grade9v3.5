@@ -44,21 +44,22 @@ class TestTestQuestionBank(unittest.TestCase):
         self.assertEqual(len(rows), 210)
         self.assertEqual(len({q["id"] for q in rows}), 210)
         self.assertEqual(projection["academic_validation_status"], "PER_QUESTION")
-        self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 151, "VALIDATED": 58})
+        self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 152, "VALIDATED": 57})
         self.assertTrue(all(q["workflow_status"] == "EVIDENCE_PENDING" for q in rows))
         self.assertTrue(all(q["text_verification_status"] == "CAPTURED_UNVERIFIED" for q in rows))
         self.assertTrue(all(q["wording_custody"] == "CAPTURED_UNVERIFIED" for q in rows))
         self.assertTrue(all("page" not in q and "unverified_legacy_page" in q for q in rows))
         self.assertEqual(sum(q["custody_evidence_status"] == "INDEPENDENTLY_EVIDENCED"
                              for q in rows), 12)
-        self.assertEqual(sum(q["academic_validation_status"] == "VALIDATED" for q in rows), 58)
-        self.assertEqual(sum(q["academic_validation_status"] == "UNVALIDATED" for q in rows), 151)
+        self.assertEqual(sum(q["academic_validation_status"] == "VALIDATED" for q in rows), 57)
+        self.assertEqual(sum(q["academic_validation_status"] == "UNVALIDATED" for q in rows), 152)
         self.assertEqual(sum(q["academic_validation_status"] == "HOLD" for q in rows), 1)
         validated = {q["id"] for q in rows if q["academic_validation_status"] == "VALIDATED"}
         expected_validated = {f"ncert-exemplar-g9-math-u02-q{number:02d}" for number in range(1, 31)}
         expected_validated.remove("ncert-exemplar-g9-math-u02-q23")
         expected_validated.remove("ncert-exemplar-g9-math-u02-q01")
         expected_validated |= {f"ncert-exemplar-g9-math-u01-q{number:02d}" for number in range(1, 31)}
+        expected_validated.remove("ncert-exemplar-g9-math-u01-q07")
         self.assertEqual(validated, expected_validated)
         held = {q["id"] for q in rows if q["academic_validation_status"] == "HOLD"}
         self.assertEqual(held, {"ncert-exemplar-g9-math-u02-q23"})
@@ -87,12 +88,18 @@ class TestTestQuestionBank(unittest.TestCase):
         self.assertTrue(all(q["custody_source_locator"] is None for q in pending))
         self.assertTrue(all(q["custody_evidence_ref"] is None for q in pending))
         self.assertTrue(all(q["custody_answer_source_url"] is None for q in pending))
-        self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 151, "VALIDATED": 58})
+        self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 152, "VALIDATED": 57})
         self.assertIn("independent source evidence", build_test_question_bank.render_page(REPO))
         corrected_q1 = next(q for q in rows if q["id"] == "ncert-exemplar-g9-math-u02-q01")
         self.assertEqual(corrected_q1["academic_validation_status"], "UNVALIDATED")
         self.assertIsNone(corrected_q1["academic_validation_receipt"])
         self.assertEqual(corrected_q1["custody_evidence_status"], "INDEPENDENTLY_EVIDENCED")
+        q7 = next(q for q in rows if q["id"] == "ncert-exemplar-g9-math-u01-q07")
+        self.assertEqual(q7["academic_validation_status"], "UNVALIDATED")
+        self.assertIsNone(q7["academic_validation_receipt"])
+        self.assertEqual(q7["custody_evidence_status"], "EVIDENCE_PENDING")
+        self.assertEqual(q7["options"][1], "(B) 0.141\u03056\u0305")
+        self.assertEqual(q7["options"][2], "(C) 0.1\u03054\u03051\u03056\u0305")
         self.assertIn('target="_blank" rel="noopener noreferrer"', build_test_question_bank.render_page(REPO))
 
     def test_shell_makes_source_and_academic_states_distinct(self):
