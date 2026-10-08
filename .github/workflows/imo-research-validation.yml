@@ -40,5 +40,7 @@ jobs:
         run: python TEST/imo-research/validate_fullpaper_batch03.py
       - name: Validate B04 2025 Set A full-paper mathematics and 58 of 58 census
         run: python TEST/imo-research/validate_fullpaper_batch04.py
+      - name: Validate scanned-source and owner answer discrepancy register
+        run: python TEST/imo-research/validate_discrepancy_register.py
       - name: Run research-only falsifier tests
         run: python -m unittest discover -s tests -p 'test_imo_*.py' -v
