@@ -9,7 +9,7 @@
 3. The Owner's attachment holds 65 distinct compilation entries. Compilation Q38 maps to **two separately numbered original paper questions** and Q66–Q68 are aliases: 66 question IDs. Sample paper numbers Q1–10 cannot be assumed to be full exam Q1–10; their exam sections remain `null` until a genuine sample-paper section locator is checked.
 4. Subtopic and learning-demand summaries are **analyst-proposed classifications** from the attachment. They have not passed an independent academic review. Don't mistake them for verified source taxonomy or proof of a learner misconception.
 
-`sof-class9-topic-registry.v1.json` stores the organiser syllabus order, exam slots, 17 official topics and two distinctly labelled analyst grouping categories, `LOGIC` (Section 1) and `QUANT` (Section 3 quantitative aptitude). These adjuncts are not new official Section 2 topics. `seed-question-topic-map.v1.jsonl` links each source-instance ID to exactly one provisional primary topic and a specific subtopic, independently of its exam section, and preserves the no-acceptance state.
+`sof-class9-topic-registry.v1.json` stores the organiser syllabus order, exam slots, 17 official topics and two distinctly labelled analyst grouping categories, `LOGIC` (Section 1) and `QUANT` (Section 3 quantitative aptitude). These adjuncts are not new official Section 2 topics. `sof-class9-subtopics.v1.json` normalizes the **49 provisional subtopic/microconcept groups**. `seed-question-topic-map.v1.jsonl` links each source-instance ID to exactly one provisional primary topic, subtopic and microconcept, independently of its exam section, and preserves the no-acceptance state.
 
 ## Current coverage (66/66 mapped, not academically accepted)
 
