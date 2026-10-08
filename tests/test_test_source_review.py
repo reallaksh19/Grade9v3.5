@@ -53,6 +53,25 @@ class TestOfficialSourceReview(unittest.TestCase):
                          (12, 198))
         self.assertFalse(set(result["review_ids"]) & set(current["ready_ids"]))
 
+    def test_numeric_locator_rewrite_does_not_reuse_primary_source_observation(self):
+        """Well-shaped printed/PDF indices are not authenticated simply by being numbers."""
+        alterations = (
+            ("question printed page", "source_locator", "printed_page", 99),
+            ("question PDF index", "source_locator", "pdf_page_index", 98),
+            ("answer PDF index", None, "official_answer_pdf_page_index", 17),
+            ("downgraded notation disclosure", None, "comparison_status", "VISUAL_MATCH"),
+        )
+        for label, parent, key, replacement in alterations:
+            with self.subTest(label=label):
+                self.data = copy.deepcopy(self.review)
+                # U02 Q7 has a normalised review and U01 Q7 a known disclosure mismatch.
+                q = self.data["records"][0] if key == "comparison_status" else self.data["records"][4]
+                target = q[parent] if parent else q
+                target[key] = replacement
+                self.write()
+                with self.assertRaisesRegex(ValueError, "frozen primary-source observation scope"):
+                    test_source_review.validate(self.repo)
+
     def test_review_cannot_be_replayed_or_promote_a_question(self):
         changes = (
             ("unknown", lambda d: d["records"][0].__setitem__("source_id", "other"),
