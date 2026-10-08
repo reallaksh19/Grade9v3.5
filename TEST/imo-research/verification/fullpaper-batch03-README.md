@@ -29,7 +29,7 @@ Key verification examples:
 
 ## What remains
 
-- All **23 original seeded source positions from 2023–24 A and 12 from 2024–25 B** are now included in at least one of the B01/B02/B03 agent-worked audits. The remaining **11 original full-paper source candidates are exclusively in 2025–26 Set A**.
+- All **24 original seeded source positions from 2023–24 A and 12 from 2024–25 B** are now included in at least one of the B01/B02/B03 agent-worked audits. The remaining **11 original full-paper source candidates are exclusively in 2025–26 Set A**.
 - Already documented answer or text discrepancies remain in their original observation ledgers; agreement in B03 does not erase the earlier Q1, Q2, Q22 or Q46 concerns.
 - Separate organizer sample has ten identified question positions: original owner seed eight + two separately discovered source records, not part of the 58 original full-paper denominator.
 - **Zero** official-answer-key receipts accepted for the school-hosted full papers, independent academic review approvals, rights/redistribution approvals, accepted 4×7 QRT cells, or Core 2/Core 1A admissions. No sample or fullpaper questions were made learner-facing.
