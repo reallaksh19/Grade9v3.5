@@ -165,7 +165,8 @@ def check_pilot(seed: Path = BASE / "seed",
         ensure(entry.get("proposed_question_ids") == sorted(derived) and
                entry.get("independently_accepted_question_ids") == [] and
                entry.get("independent_academic_review_status") == "NOT_ACCEPTED" and
-               entry.get("primary_demand") + "-" + entry.get("derived_band") == cell[4:],
+               entry.get("primary_demand") == cell.split("-")[1] and
+               entry.get("derived_band") == cell.split("-")[2],
                f"{cell}: coverage or independent acceptance mismatch")
     ensure(coverage_ids == all_cells, "missing canonical 4x7 cell")
 
