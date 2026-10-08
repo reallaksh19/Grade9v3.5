@@ -94,6 +94,13 @@ def build(repo: Path) -> dict:
         "source_status": "READY_FOR_BLUEPRINT",
         "paper_url": source["source_url"],
     }
+    # Preserve source-lineage disclosures before authored topic classification.
+    candidate["extensions"] = {
+        "grade9v3:ncert_source_lineage": ext["grade9v3:ncert_source_lineage"],
+        "grade9v3:source_custody": ext["grade9v3:source_custody"],
+        **{k: v for k, v in ext.items()
+           if k not in {"grade9v3:ncert_source_lineage", "grade9v3:source_custody"}},
+    }
     return {
         "schema_version": SCHEMA,
         "authority_note": ("TEST-only derived product view, never a source intake bank or "
