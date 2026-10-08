@@ -63,6 +63,10 @@ jobs:
         run: |
           python3 -m unittest tests.test_test_source_observation -v
           python3 Shared/tools/test_source_observation.py
+      - name: R4 official PDF byte measurement stays unauthenticated and non-promoting
+        run: |
+          python3 -m unittest tests.test_test_source_pdf_bytes -v
+          python3 Shared/tools/test_source_pdf_bytes.py
       - name: Authenticate pilot witness pointers
         env:
           GITHUB_TOKEN: ${{ github.token }}
