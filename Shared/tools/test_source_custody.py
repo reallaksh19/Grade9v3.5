@@ -28,7 +28,7 @@ def _require(condition: bool, where: str, reason: str) -> None:
 def _evidence_ref(value: object) -> bool:
     # A durable pointer shape, not proof that GitHub has verified the claim.
     return isinstance(value, str) and re.fullmatch(
-        r"github:reallaksh19/Grade9v3\\.5#[1-9][0-9]*:[1-9][0-9]*", value
+        r"github:reallaksh19/Grade9v3\.5#[1-9][0-9]*:[1-9][0-9]*", value
     ) is not None
 
 
