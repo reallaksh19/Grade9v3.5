@@ -688,6 +688,26 @@ class TestToughestConcept(unittest.TestCase):
         self.assertEqual(len(gaps), 1, gaps)
         self.assertIn("no worked reasoning with a justified move", gaps[0])
 
+    def test_reference_hardest_question_can_waive_an_inapplicable_worked_panel(self):
+        receipt = self.deploy()
+        unit = self.unit_for(receipt, bank_anchor_ref=None, worked_anchor_ref=None,
+                             extensions={"grade9v3:component_waivers": {
+                                 "WORKED_EXAMPLE": "the complete teaching construction deliberately leads to independent practice"}})
+        accepted = self.deploy()
+        self.assertEqual(self.toughest_gaps(accepted), [],
+                         "the recovered WORKED_EXAMPLE level is EXPECTED, not unwaivably REQUIRED")
+        self.assertTrue(any(w["component"] == "WORKED_EXAMPLE" and w["record"] == unit["id"]
+                            for w in accepted["waived"]), accepted["waived"])
+        # Removing the authored reason cannot silently substitute for a worked
+        # example or its exact target-crux binding.
+        package = json.loads(self.package_path.read_text(encoding="utf-8"))
+        microtopic = next(m for m in package["microtopics"] if m["id"] == receipt["toughest"]["microtopic_ref"])
+        microtopic["construction_units"][0]["extensions"]["grade9v3:component_waivers"].clear()
+        self.package_path.write_text(json.dumps(package), encoding="utf-8")
+        gaps = self.toughest_gaps(self.deploy())
+        self.assertEqual(len(gaps), 1, gaps)
+        self.assertIn("a worked teaching example", gaps[0])
+
     def test_a_bank_ref_that_names_no_question_of_the_bank_is_a_gap_that_says_which(self):
         receipt = self.deploy()
         self.unit_for(receipt, bank_anchor_ref="Q-NOT-IN-THE-BANK", crux_question_refs=["Q-ALSO-NOT"])
