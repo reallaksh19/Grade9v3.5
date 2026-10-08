@@ -15,7 +15,7 @@ REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
-from Shared.tools import test_intake_registry  # noqa: E402
+from Shared.tools import test_intake_registry, test_source_custody  # noqa: E402
 
 SCHEMA = test_intake_registry.SCHEMA
 UNVALIDATED = "UNVALIDATED"
@@ -66,18 +66,34 @@ def validation_index(repo: Path) -> dict[str, dict]:
 
 def payload(repo: Path) -> dict:
     validations = validation_index(repo)
+    custody = test_source_custody.reconcile(repo)
+    source_evidence = {row["intake_question_ref"]: row for row in custody["handoff"]}
     banks = json.loads(json.dumps(intake_banks(repo)))
     counts: dict[str, int] = {}
+    custody_counts = {"INDEPENDENTLY_EVIDENCED": 0, "EVIDENCE_PENDING": 0}
     for bank in banks:
         for question in bank.get("questions") or []:
             row = validations.get(question.get("id")) or {"status": UNVALIDATED, "receipt": None}
             question["academic_validation_status"] = row["status"]
             question["academic_validation_receipt"] = row["receipt"]
             counts[row["status"]] = counts.get(row["status"], 0) + 1
+            evidence = source_evidence.get(question["id"])
+            state = "INDEPENDENTLY_EVIDENCED" if evidence else "EVIDENCE_PENDING"
+            custody_counts[state] += 1
+            question["custody_evidence_status"] = state
+            question["custody_evidence_ref"] = evidence["verification_evidence_ref"] if evidence else None
+            question["custody_source_locator"] = evidence["source_locator"] if evidence else None
+            question["custody_question_source_url"] = (
+                evidence["source_identity"]["document_url"] if evidence else question["source_url"]
+            )
+            question["custody_answer_source_url"] = (
+                evidence["official_answer_key_ref"]["document_url"] if evidence else None
+            )
     return {
         "schema_version": "grade9v3-test-question-bank-projection-v1",
         "academic_validation_status": "PER_QUESTION",
         "validation_counts": dict(sorted(counts.items())),
+        "custody_evidence_counts": dict(sorted(custody_counts.items())),
         "banks": banks,
     }
 
