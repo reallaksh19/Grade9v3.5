@@ -4,6 +4,12 @@ on:
   pull_request:
     paths:
       - 'TEST/imo-research/**'
+      - 'Mathematics/research/imo-g9-topic-browser.v1.json'
+      - 'public/mathematics/imo-grade9/**'
+      - 'docs/mathematics/imo-grade9/**'
+      - 'public/mathematics/index.html'
+      - 'docs/mathematics/index.html'
+      - 'tests/test_imo_math_tab.py'
       - 'tests/test_imo_seed.py'
       - 'tests/test_imo_math_audit.py'
       - '.github/workflows/imo-research-validation.yml'
@@ -11,6 +17,12 @@ on:
     branches: [main]
     paths:
       - 'TEST/imo-research/**'
+      - 'Mathematics/research/imo-g9-topic-browser.v1.json'
+      - 'public/mathematics/imo-grade9/**'
+      - 'docs/mathematics/imo-grade9/**'
+      - 'public/mathematics/index.html'
+      - 'docs/mathematics/index.html'
+      - 'tests/test_imo_math_tab.py'
       - 'tests/test_imo_seed.py'
       - 'tests/test_imo_math_audit.py'
       - '.github/workflows/imo-research-validation.yml'
@@ -58,5 +70,7 @@ jobs:
         run: python TEST/imo-research/validate_qualification_evidence.py
       - name: Validate seven learner-quality design proposals and Grade 9 scope holds
         run: python TEST/imo-research/validate_learner_quality.py
+      - name: Validate rights-safe Mathematics IMO topic browser and public-docs parity
+        run: python TEST/imo-research/validate_math_tab_imo_topics.py
       - name: Run research-only falsifier tests
         run: python -m unittest discover -s tests -p 'test_imo_*.py' -v
