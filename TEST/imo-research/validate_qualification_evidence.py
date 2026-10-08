@@ -67,6 +67,32 @@ COUNT_FIELDS = dict(
     qrt_accepted_cells=0, core_2_admitted=0, core_1a_admitted=0,
     learner_published=0, product_approved=0,
 )
+TOP_LEVEL_FIELDS = {
+    "schema",
+    "responsibility",
+    "scope",
+    "base_main_sha",
+    "historical_intake_is_immutable_snapshot",
+    "ci_provenance_notice",
+    "upstream_receipts",
+    "input_git_blobs",
+    "academic_peer_review",
+    "policy_interpretation",
+    "original_sof_text_options_diagrams_reproduced",
+    "independently_licensed_source_material",
+    "sample_original_source_positions_unchanged",
+    "owner_seed_positions_unchanged",
+    "fullpaper_attachment_selected_agent_audit_unchanged",
+    "qrt_accepted_cells",
+    "core_2_admitted",
+    "core_1a_admitted",
+    "learner_published",
+    "product_approved",
+    "reviewed_for_accessibility_with_learners",
+    "evidence_class",
+    "records",
+}
+
 ROW_FIELDS = {
     "candidate_id", "source_pr", "intake_pr", "diagnostics_pr",
     "original_practice_row", "structured_diagnostic_row", "provisional_qrt_cell",
@@ -112,6 +138,7 @@ def validate_qualification(
     validate_original_practice(seed, practice)
     validate_diagnostics(diagnostics, practice)
     d = read_json(ledger)
+    ensure(set(d) == TOP_LEVEL_FIELDS, "unexpected qualification fields or source material")
     p = read_json(practice)
     g = read_json(diagnostics)
     old = read_json(intake)
