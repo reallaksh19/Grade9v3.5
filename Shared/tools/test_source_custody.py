@@ -99,27 +99,33 @@ def reconcile(repo: Path) -> dict:
                      where, f"independent source/text evidence missing for {qid}")
             _require(record.get("workflow_status") == "READY_FOR_BLUEPRINT",
                      where, f"unsupported READY claim for {qid}")
-            key = record.get("official_answer") or {}
-            _require(isinstance(key, dict), where, f"invalid answer custody for {qid}")
-            key_doc = documents.get(key.get("document_ref"))
-            _require(key_doc is not None and key_doc["role"] == "ANSWER_KEY"
-                     and key_doc["authority"] == origin["authority"]
-                     and key_doc["url"] != origin["url"]
-                     and _evidence_ref(key.get("verification_evidence_ref")),
-                     where, f"missing independent official answer-key witness for {qid}")
-            _require(key.get("exercise_or_section") == source["exercise_or_section"]
-                     and key.get("question_number") == source["question_number"],
-                     where, f"answer-key locator mismatch for {qid}")
-            answer_key = key.get("answer_key")
-            _require(source.get("official_answer_available") is True
-                     and isinstance(answer_key, str) and bool(answer_key.strip())
-                     and source.get("official_answer_text", "").startswith(answer_key),
-                     where, f"official answer differs from source record for {qid}")
-            if source.get("question_type") == "MULTIPLE_CHOICE":
-                _require(bool(re.fullmatch(r"\([A-Za-z]\)", answer_key))
-                         and any(isinstance(option, str) and option.startswith(answer_key)
-                                 for option in source.get("options", [])),
+            # Question-text readiness is independent of answer-key availability.
+            # When a key is supplied, verify its separate document witness; otherwise
+            # do not infer answer custody from a legacy intake answer label.
+            key = record.get("official_answer")
+            key_doc = None
+            if key is not None:
+                _require(isinstance(key, dict) and bool(key),
+                         where, f"invalid answer custody for {qid}")
+                key_doc = documents.get(key.get("document_ref"))
+                _require(key_doc is not None and key_doc["role"] == "ANSWER_KEY"
+                         and key_doc["authority"] == origin["authority"]
+                         and key_doc["url"] != origin["url"]
+                         and _evidence_ref(key.get("verification_evidence_ref")),
+                         where, f"missing independent official answer-key witness for {qid}")
+                _require(key.get("exercise_or_section") == source["exercise_or_section"]
+                         and key.get("question_number") == source["question_number"],
+                         where, f"answer-key locator mismatch for {qid}")
+                answer_key = key.get("answer_key")
+                _require(source.get("official_answer_available") is True
+                         and isinstance(answer_key, str) and bool(answer_key.strip())
+                         and source.get("official_answer_text", "").startswith(answer_key),
                          where, f"official answer differs from source record for {qid}")
+                if source.get("question_type") == "MULTIPLE_CHOICE":
+                    _require(bool(re.fullmatch(r"\([A-Za-z]\)", answer_key))
+                             and any(isinstance(option, str) and option.startswith(answer_key)
+                                     for option in source.get("options", [])),
+                             where, f"official answer differs from source record for {qid}")
             reconciled[qid] = {
                 "intake_question_ref": qid,
                 "source_identity": {"authority": origin["authority"], "kind": origin["kind"],
@@ -131,10 +137,11 @@ def reconcile(repo: Path) -> dict:
                 "subject": source["subject"], "grade": source["grade"],
                 "topic_label": source["topic_label"], "subtopic_label": source.get("subtopic_label"),
                 "question_type": source["question_type"],
-                "official_answer_key_ref": {"document_url": key_doc["url"],
-                                            "exercise_or_section": key["exercise_or_section"],
-                                            "question_number": key["question_number"],
-                                            "answer_key": key["answer_key"]},
+                "official_answer_key_ref": ({"document_url": key_doc["url"],
+                                             "exercise_or_section": key["exercise_or_section"],
+                                             "question_number": key["question_number"],
+                                             "answer_key": key["answer_key"]} if key_doc else None),
+                "official_answer_custody": "INDEPENDENTLY_EVIDENCED" if key_doc else "KEY_NOT_EVIDENCED",
                 "verification_evidence_ref": record["verification_evidence_ref"],
                 "intake_status": "READY_FOR_BLUEPRINT",
             }

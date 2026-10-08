@@ -99,6 +99,37 @@ class TestSourceCustodyReconciliation(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, expected):
                     test_source_custody.reconcile(self.repo)
 
+    def test_official_answer_key_is_optional_for_verified_question_readiness(self):
+        """Stage-1 question/text readiness does not depend on answer-key publication."""
+        for available in (False, True):
+            with self.subTest(official_answer_available=available):
+                self.overlay_doc["records"][0].pop("official_answer", None)
+                first = self.bank_doc["questions"][0]
+                first["official_answer_available"] = available
+                if not available:
+                    first.pop("official_answer_text", None)
+                self.write()
+                result = test_source_custody.reconcile(self.repo)
+                self.assertEqual((result["ready_for_blueprint"], result["evidence_pending"]), (6, 204))
+                q1 = next(q for q in result["handoff"] if q["intake_question_ref"] == first["id"])
+                self.assertEqual(q1["intake_status"], "READY_FOR_BLUEPRINT")
+                self.assertIsNone(q1["official_answer_key_ref"])
+                self.assertEqual(q1["official_answer_custody"], "KEY_NOT_EVIDENCED")
+                self.assertTrue(all(q["official_answer_key_ref"] is not None
+                                    for q in result["handoff"] if q["intake_question_ref"] != first["id"]))
+                self.overlay_doc = copy.deepcopy(self.overlay)
+                self.bank_doc = copy.deepcopy(self.bank)
+
+    def test_supplied_but_incomplete_answer_custody_is_not_treated_as_absent(self):
+        """Partial key objects still fail closed even though omitted keys are allowed."""
+        for invalid in ({}, {"answer_key": "(C)"}, {"document_ref": "NCERT-EXEMPLAR-G9-MATH-ANSWERS"}):
+            with self.subTest(invalid=invalid):
+                self.overlay_doc["records"][0]["official_answer"] = invalid
+                self.write()
+                with self.assertRaisesRegex(ValueError, "invalid answer custody|missing independent official answer-key witness"):
+                    test_source_custody.reconcile(self.repo)
+                self.overlay_doc = copy.deepcopy(self.overlay)
+
     def test_source_bank_stem_mutation_invalidates_a_former_witness(self):
         self.bank_doc["questions"][0]["stem"] = "Changed question wording"
         self.write()
