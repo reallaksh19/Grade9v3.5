@@ -22,7 +22,8 @@ class AuthoringApplicabilityTests(unittest.TestCase):
         visual = next(c for c in bp["components"] if c["id"] == "STAGED_VISUAL")
         self.assertEqual(visual["level"], "EXPECTED")
         self.assertIn("not applicable", visual["authoring"]["hint"].lower())
-        self.assertIn("reference depth", visual["authoring"]["hint"].lower())
+        self.assertIn("stage count follows the representation", visual["authoring"]["hint"].lower())
+        self.assertIn("waive staged_visual with a written reason", visual["authoring"]["hint"].lower())
 
     def test_core1a_missing_visual_still_fails_without_waiver(self):
         unit = {
@@ -56,7 +57,7 @@ class AuthoringApplicabilityTests(unittest.TestCase):
     def test_core1a_blueprint_expected_component_accepts_scoped_waiver(self):
         page = {
             "role": "CORE1A",
-            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.7.0",
+            "blueprint_ref": "BP-CORE1A-CONSTRUCTION@1.8.0",
             "units": [{
                 "id": "MIC",
                 "construction_units": ["CU-1"],
@@ -76,8 +77,9 @@ class AuthoringApplicabilityTests(unittest.TestCase):
         ladder = next(c for c in bp["components"] if "scaffolds" in (c.get("source") or []))
         self.assertNotIn("every question gets one", rep["authoring"]["hint"].lower())
         self.assertIn("applicability", rep["authoring"]["hint"].lower())
-        self.assertIn("reference depth", ladder["authoring"]["hint"].lower())
-        self.assertIn("never create filler", ladder["authoring"]["hint"].lower())
+        self.assertIn("rung count is not a quality target", ladder["authoring"]["hint"].lower())
+        self.assertIn("protected move", ladder["authoring"]["hint"].lower())
+        self.assertIn("do not add filler", ladder["authoring"]["hint"].lower())
 
 
 if __name__ == "__main__":
