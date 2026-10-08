@@ -239,6 +239,7 @@ class Issue69SubjectNeutrality(unittest.TestCase):
         builder.pop("bank_anchor_ref", None)
         builder.pop("worked_anchor_ref", None)
         microtopic.setdefault("extensions", {})["grade9v3:lesson_anchors"] = {}
+        self.assertEqual(ctx.held_to, "FLOOR", "canonical rendering is not reference-depth authoring")
 
         before = len(ctx.gaps)
         render_core._toughest_unit_gaps(ctx, microtopic, units, toughest)
