@@ -43,10 +43,11 @@ class TestTestQuestionBank(unittest.TestCase):
         self.assertEqual(len({q["id"] for q in rows}), 210)
         self.assertEqual(projection["academic_validation_status"], "PER_QUESTION")
         self.assertEqual(projection["validation_counts"], {"HOLD": 1, "UNVALIDATED": 151, "VALIDATED": 58})
-        self.assertEqual(
-            sum(q["text_verification_status"] == "TEXT_VERIFIED_AGAINST_OFFICIAL" for q in rows),
-            210,
-        )
+        self.assertTrue(all(q["workflow_status"] == "EVIDENCE_PENDING" for q in rows))
+        self.assertTrue(all(q["text_verification_status"] == "CAPTURED_UNVERIFIED" for q in rows))
+        self.assertTrue(all("page" not in q and "unverified_legacy_page" in q for q in rows))
+        self.assertEqual(sum(q["custody_evidence_status"] == "INDEPENDENTLY_EVIDENCED"
+                             for q in rows), 12)
         self.assertEqual(sum(q["academic_validation_status"] == "VALIDATED" for q in rows), 58)
         self.assertEqual(sum(q["academic_validation_status"] == "UNVALIDATED" for q in rows), 151)
         self.assertEqual(sum(q["academic_validation_status"] == "HOLD" for q in rows), 1)
