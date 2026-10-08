@@ -115,10 +115,12 @@ def validate_register(seed: Path = SOURCE,
                c.get("owner_compilation_entries")==list(owners),
                f"{cid}: original source locator/owner reference drift")
         for qid in qids:
+            seed_url=( "https://sofworld.org/imo/class-9/sample-model-test-papers/imo-sample-papers-class-9"
+                      if year=="S" else url )
             ensure(qid in seeds and seeds[qid]["source_id_claim"]==source_id and
-                   seeds[qid]["source_url_claim"]==url and
+                   seeds[qid]["source_url_claim"]==seed_url and
                    seeds[qid]["seed_entry"] in owners,
-                   f"{cid}: cannot crosswalk source question {qid}")
+                   f"{cid}: cannot crosswalk original seed's landing or PDF source locator {qid}")
             all_qids.add(qid)
         ensure(c.get("conflict_type")==kind and c.get("source_finding_status")==status and
                c.get("printed_option_selection_by_math_or_key")==choice and
