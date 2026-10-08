@@ -12,6 +12,11 @@ import re
 from pathlib import Path
 from urllib.parse import urlparse
 
+try:
+    from Shared.tools import question_difficulty
+except ModuleNotFoundError:  # Script entry point: python Shared/tools/<tool>.py
+    import question_difficulty  # type: ignore
+
 ROOT = Path(__file__).resolve().parents[2]
 BANK_SCHEMA = ROOT / "Shared/library/competitive-exam-bank.schema.json"
 PACKAGE_SCHEMA = ROOT / "Shared/library/package.schema.json"
@@ -19,12 +24,7 @@ RUN_SCHEMA = ROOT / "Shared/library/question-bank-run.schema.json"
 PUBLICATION_SCHEMA = ROOT / "Shared/library/question-bank-publication.schema.json"
 DEFAULT_RUN = ROOT / "docs/question-bank/pass1/run-manifest.json"
 
-DIFFICULTY_BAND = {
-    0: "D1", 1: "D1", 2: "D1",
-    3: "D2", 4: "D2", 5: "D2",
-    6: "D3", 7: "D3",
-    8: "D4", 9: "D4", 10: "D4",
-}
+DIFFICULTY_BAND = question_difficulty.score_band_map()  # compatibility alias; vocabulary-backed authority lives in question_difficulty.
 EXPECTED_GATES = {
     "G0_SCOPE_FROZEN",
     "G1_CORPUS_ENUMERATED",
@@ -241,13 +241,12 @@ def validate_bank(
         difficulty = analysis.get("difficulty") or {}
         components = difficulty.get("components") or {}
         if components:
-            score = sum(components.values())
-            if difficulty.get("score") != score:
-                _fail(findings, "EXAM_BANK_DIFFICULTY_SCORE", qid,
-                      "difficulty.score must equal the component sum")
-            if DIFFICULTY_BAND.get(score) != difficulty.get("band"):
-                _fail(findings, "EXAM_BANK_DIFFICULTY_BAND", qid,
-                      "difficulty.band must derive from the component sum")
+            try:
+                question_difficulty.derive(difficulty, question_ref=str(qid))
+            except question_difficulty.DifficultyContractError as exc:
+                detail = str(exc)
+                point = "EXAM_BANK_DIFFICULTY_BAND" if "BAND_" in detail else "EXAM_BANK_DIFFICULTY_SCORE"
+                _fail(findings, point, qid, detail)
             exam = custody.get("exam")
             if exam and exam.lower() in str(difficulty.get("basis", "")).lower():
                 _fail(findings, "EXAM_BANK_DIFFICULTY_PRESTIGE_LEAK", qid,

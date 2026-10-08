@@ -1,0 +1,81 @@
+{
+  "schema": "minimal-authoring-intake-policy/v1",
+  "version": "1.0.0",
+  "purpose": "Allow an owner to provide only repository context plus a batch of questions while keeping user-owned facts distinct from agent-owned academic and pedagogical decisions.",
+  "owner_owned_inputs": {
+    "subject": {
+      "required_to_start": true,
+      "clarify_when_missing": true
+    },
+    "grade": {
+      "required_to_start": true,
+      "clarify_when_missing": true
+    },
+    "topic": {
+      "required_to_start": true,
+      "clarify_when_missing": true
+    },
+    "questions": {
+      "required_to_start": true,
+      "clarify_when_missing": true
+    },
+    "purpose": {
+      "required_for_personalized_review": true,
+      "values": ["STARTER", "PRACTICE", "REVISION", "COMPETITION"],
+      "clarify_when_missing": true
+    },
+    "learner_knowledge": {
+      "required_for_personalized_review": true,
+      "values": ["DEMONSTRATED", "UNCERTAIN", "MISSING"],
+      "clarify_when_missing": true,
+      "timing": "AFTER_LEARNER_INDEPENDENT_CAPABILITY_SCAN",
+      "rule": "Ask only about prerequisite or bridge ideas that materially affect X, Y, W, support posture or concept-rebuild routing. Never infer these states from an overall percentage."
+    },
+    "source_provenance": {
+      "required_to_start": false,
+      "default_when_questions_are_pasted_by_owner": "OWNER_SUPPLIED",
+      "clarify_when_missing": false,
+      "rule": "Do not invent an exam, book, year, paper or official-answer status."
+    },
+    "special_constraints": {
+      "required_to_start": false,
+      "clarify_when_missing": false
+    }
+  },
+  "agent_owned_decisions": [
+    "canonical capability and concept mapping",
+    "academic verification and solution",
+    "five-component question difficulty analysis",
+    "D1-D4 band",
+    "primary and secondary cognitive demand",
+    "QRT template selection",
+    "learner-relative X after owner knowledge is known",
+    "learner bridge Y from DEMONSTRATED evidence",
+    "stable crux Z",
+    "protected learner work W",
+    "hint objectives and authored hints",
+    "figure applicability and representation design",
+    "misconception diagnosis and repair",
+    "independent validation strategy",
+    "Core2 support authoring",
+    "Core1A evidence synthesis and recommendation",
+    "Blueprint projection and HTML rendering"
+  ],
+  "forbidden_clarification_requests": [
+    "Ask the owner to choose D1-D4.",
+    "Ask the owner to choose the cognitive demand.",
+    "Ask the owner to choose a QRT template.",
+    "Ask the owner to write X, Y, Z or W.",
+    "Ask the owner to design the hint ladder, SVG, misconception repair or worked solution.",
+    "Ask the owner to provide a learner percentage as a substitute for idea-level knowledge."
+  ],
+  "clarification_behavior": {
+    "batch_missing_owner_facts": true,
+    "one_round_where_practical": true,
+    "continue_learner_independent_analysis_while_waiting": true,
+    "do_not_repeat_known_answers": true,
+    "do_not_block_on_optional_metadata": true,
+    "unknown_learner_state_is_not_demonstrated": true,
+    "production_profile_rule": "Never fabricate a production learner profile. If knowledge evidence is absent, ask the owner or retain the personalized review as unresolved."
+  }
+}

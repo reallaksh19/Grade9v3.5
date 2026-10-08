@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-label="Polynomial identity theorem and difference polynomial proof" font-family="system-ui, sans-serif" font-size="20">
+  <title>Polynomial identity theorem and difference polynomial proof</title>
+  <desc>Four staged panels: agreement at three points, forming the difference polynomial, contradiction with the root bound, and concluding that the difference is the zero polynomial.</desc>
+  <g data-g9-stage-id="POLY-IDENT-1">
+    <text x="40" y="45" font-weight="700" font-size="24">1 · Three points of agreement</text>
+    <text x="60" y="80">deg(p) ≤ 2 and deg(q) ≤ 2, with agreement at x₁, x₂, x₃.</text>
+    <text x="60" y="108">At each point, p(xᵢ) = q(xᵢ).</text>
+    <line x1="80" y1="140" x2="820" y2="140" stroke="currentColor" stroke-width="2"/>
+    <circle cx="240" cy="140" r="6" fill="currentColor"/><text x="235" y="170">x₁</text>
+    <circle cx="480" cy="140" r="6" fill="currentColor"/><text x="475" y="170">x₂</text>
+    <circle cx="720" cy="140" r="6" fill="currentColor"/><text x="715" y="170">x₃</text>
+  </g>
+  <g data-g9-stage-id="POLY-IDENT-2">
+    <text x="40" y="215" font-weight="700" font-size="24">2 · Define d(x) = p(x) - q(x)</text>
+    <text x="60" y="250">d has degree at most 2, unless d is the zero polynomial.</text>
+    <text x="60" y="280">Also d(x₁) = d(x₂) = d(x₃) = 0.</text>
+  </g>
+  <g data-g9-stage-id="POLY-IDENT-3">
+    <text x="40" y="335" font-weight="700" font-size="24">3 · Contradiction if d is non-zero</text>
+    <text x="60" y="370">A non-zero polynomial of degree ≤ 2 has at most two distinct zeros.</text>
+    <text x="60" y="400">But d has three distinct zeros, so the non-zero case is impossible.</text>
+  </g>
+  <g data-g9-stage-id="POLY-IDENT-4">
+    <text x="40" y="455" font-weight="700" font-size="24">4 · Zero difference implies identity</text>
+    <text x="60" y="487">Therefore d(x) ≡ 0, so p(x) = q(x) for every x.</text>
+    <text x="60" y="515">The root bound applies only to non-zero polynomials.</text>
+  </g>
+</svg>

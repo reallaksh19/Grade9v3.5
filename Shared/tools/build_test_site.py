@@ -21,17 +21,12 @@ REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
-from Shared.tools import matrix_conformance, product_coverage, render_core  # noqa: E402
-from TEST.tools import source_intake  # noqa: E402
+from Shared.library.resolve import build_index  # noqa: E402
+from Shared.tools import atlas_index, build_test_question_bank, build_web_data, matrix_conformance, product_coverage, render_core, test_intake_registry, test_source_custody  # noqa: E402
 
 esc = render_core.esc
 TEST_ROOT = REPO / "TEST"
 PUBLIC_TEST = REPO / "public" / "test"
-CORE_CONTRACT = TEST_ROOT / "adapter" / "CoreContracts.json"
-QUALITY_VOCABULARY = TEST_ROOT / "adapter" / "QualityVocabulary.json"
-FIXTURE_MANIFEST = TEST_ROOT / "question-bank" / "fixtures" / "pr61-math-42.fixture.json"
-INTAKE_DIR = TEST_ROOT / "question-bank" / "intake"
-PACKAGE_SCHEMA = REPO / "Shared" / "library" / "package.schema.json"
 NAV = (("index.html", "TEST"), ("atlas/index.html", "Atlas"), ("rungs/index.html", "Rungs"), ("deployments/index.html", "Deployments"))
 ROLE_PAGES = (("index.html", "Product index"), ("core2.html", "Core2"), ("core1a.html", "Core1A"), ("core1.html", "Core1"),
               ("core1b.html", "Core1B"), ("core2a.html", "Core2A"), ("core2b.html", "Core2B"))
@@ -40,251 +35,6 @@ BANNER = "TEST sandbox · drafts only · not reviewed, not accepted, not curricu
 
 def _json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
-
-
-def _relative(path: Path) -> str:
-    try:
-        return path.relative_to(REPO).as_posix()
-    except ValueError:
-        return path.as_posix()
-
-
-def _core_contract_state() -> dict:
-    contract = _json(CORE_CONTRACT)
-    if contract.get("subject") != "TEST":
-        raise ValueError(f"{_relative(CORE_CONTRACT)} must declare subject TEST")
-
-    products = contract.get("learner_products")
-    if not isinstance(products, dict) or not products:
-        raise ValueError(f"{_relative(CORE_CONTRACT)} must declare learner_products")
-
-    roles = []
-    for core, row in products.items():
-        if not isinstance(row, dict) or not row.get("role") or not row.get("production"):
-            raise ValueError(f"{_relative(CORE_CONTRACT)} learner product {core} is incomplete")
-        roles.append({"core": core, "role": row["role"], "production": row["production"]})
-
-    release_authority = contract.get("release_authority")
-    if not isinstance(release_authority, str) or not release_authority:
-        raise ValueError(f"{_relative(CORE_CONTRACT)} must declare release_authority")
-
-    validators = contract.get("validator_catalogue")
-    if not isinstance(validators, list):
-        raise ValueError(f"{_relative(CORE_CONTRACT)} validator_catalogue must be a list")
-
-    return {
-        "path": _relative(CORE_CONTRACT),
-        "package_schema_path": _relative(PACKAGE_SCHEMA),
-        "schema_version": contract.get("schema_version"),
-        "contract_version": contract.get("contract_version"),
-        "subject": contract["subject"],
-        "roles": roles,
-        "release_authority": release_authority,
-        "validator_catalogue": list(validators),
-    }
-
-
-def _quality_vocabulary_state() -> dict:
-    vocabulary = _json(QUALITY_VOCABULARY)
-    if vocabulary.get("subject") != "TEST":
-        raise ValueError(f"{_relative(QUALITY_VOCABULARY)} must declare subject TEST")
-    if vocabulary.get("schema") != "quality-vocabulary/v1":
-        raise ValueError(f"{_relative(QUALITY_VOCABULARY)} must use quality-vocabulary/v1")
-    purpose = vocabulary.get("purpose")
-    if not isinstance(purpose, str) or not purpose:
-        raise ValueError(f"{_relative(QUALITY_VOCABULARY)} must declare purpose")
-
-    return {
-        "path": _relative(QUALITY_VOCABULARY),
-        "schema": vocabulary["schema"],
-        "subject": vocabulary["subject"],
-        "purpose": purpose,
-        "shared_quality_contract_path": "Shared/quality/learner-quality.v1.json",
-    }
-
-
-def _fixture_state() -> dict:
-    fixture = _json(FIXTURE_MANIFEST)
-    if fixture.get("subject") != "TEST":
-        raise ValueError(f"{_relative(FIXTURE_MANIFEST)} must declare subject TEST")
-    if fixture.get("authority_status") != "UNVERIFIED_SANDBOX_FIXTURE":
-        raise ValueError(f"{_relative(FIXTURE_MANIFEST)} must remain UNVERIFIED_SANDBOX_FIXTURE")
-    if fixture.get("question_count") != 42:
-        raise ValueError(f"{_relative(FIXTURE_MANIFEST)} must freeze exactly 42 coordinates")
-
-    topic_counts = fixture.get("topic_counts")
-    if not isinstance(topic_counts, dict) or len(topic_counts) != 7 or set(topic_counts.values()) != {6}:
-        raise ValueError(f"{_relative(FIXTURE_MANIFEST)} must contain seven topic buckets of six coordinates")
-
-    excluded = fixture.get("excluded_provider_head")
-    if not isinstance(excluded, dict) or excluded.get("excluded_placeholder_records") != 168:
-        raise ValueError(f"{_relative(FIXTURE_MANIFEST)} must exclude the 168 placeholder additions")
-
-    return {
-        "path": _relative(FIXTURE_MANIFEST),
-        "fixture_id": fixture.get("fixture_id"),
-        "authority_status": fixture["authority_status"],
-        "question_count": fixture["question_count"],
-        "topic_counts": dict(topic_counts),
-        "excluded_provider_head": {
-            "commit": excluded.get("commit"),
-            "excluded_placeholder_records": excluded["excluded_placeholder_records"],
-            "disposition": excluded.get("disposition"),
-        },
-    }
-
-
-HOLD_STATES = {"SOURCE_HOLD", "TEXT_HOLD", "IDENTITY_HOLD", "DUPLICATE_REVIEW", "TOPIC_HOLD"}
-
-
-def intake_banks() -> list[tuple[Path, dict]]:
-    """Validated Stage-1 intake banks only; generated handoffs are projections, never source authority."""
-    banks = []
-    for path in sorted(INTAKE_DIR.glob("*.v1.json")):
-        bank = _json(path)
-        problems = source_intake.findings(bank)
-        if problems:
-            detail = "; ".join(problems[:5])
-            raise ValueError(f"{_relative(path)} failed Stage-1 intake validation: {detail}")
-        banks.append((path, bank))
-    return banks
-
-
-def intake_state() -> dict:
-    """Pure TEST intake view-model assembled only from validated Stage-1 source banks."""
-    bank_rows = []
-    records = []
-    seen_ids: dict[str, str] = {}
-    seen_instances: dict[tuple, str] = {}
-
-    for path, bank in intake_banks():
-        documents = {row["id"]: row for row in bank["documents"]}
-        ready = sum(1 for q in bank["questions"] if q["workflow_status"] == source_intake.READY)
-        bank_rows.append({
-            "path": _relative(path),
-            "bank_id": bank["bank_id"],
-            "subject": bank["subject"],
-            "grade": bank["grade"],
-            "question_count": len(bank["questions"]),
-            "ready_for_blueprint": ready,
-        })
-
-        for q in bank["questions"]:
-            qid = q["id"]
-            if qid in seen_ids:
-                raise ValueError(f"{qid}: duplicate TEST intake id across {seen_ids[qid]} and {_relative(path)}")
-            seen_ids[qid] = _relative(path)
-
-            doc = documents[q["source_document_ref"]]
-            loc = q["source_locator"]
-            instance = (
-                doc["url"],
-                loc["chapter_or_unit"],
-                loc["exercise_or_section"],
-                str(loc["question_number"]),
-                loc["printed_page"],
-            )
-            if instance in seen_instances:
-                raise ValueError(f"{qid}: duplicate TEST source instance also used by {seen_instances[instance]}")
-            seen_instances[instance] = qid
-
-            records.append({
-                "id": qid,
-                "bank_id": bank["bank_id"],
-                "bank_path": _relative(path),
-                "original_identifier": q["original_identifier"],
-                "stem": q["stem"],
-                "stem_sha256": q["stem_sha256"],
-                "subject": q["subject"],
-                "grade": q["grade"],
-                "topic_label": q["topic_label"],
-                "subtopic_label": q.get("subtopic_label") or "",
-                "question_type": q["question_type"],
-                "source": {
-                    "document_ref": q["source_document_ref"],
-                    "authority": doc["authority"],
-                    "kind": doc["kind"],
-                    "title": doc["title"],
-                    "url": doc["url"],
-                },
-                "source_locator": dict(loc),
-                "source_verification_status": q["source_verification_status"],
-                "text_verification_status": q["text_verification_status"],
-                "workflow_status": q["workflow_status"],
-                "verification_evidence_ref": q["verification_evidence_ref"],
-                "official_answer_available": bool(q["official_answer_available"]),
-            })
-
-    records.sort(key=lambda row: row["id"])
-
-    def counts(field: str) -> dict[str, int]:
-        out: dict[str, int] = {}
-        for row in records:
-            value = str(row[field])
-            out[value] = out.get(value, 0) + 1
-        return dict(sorted(out.items()))
-
-    return {
-        "banks": bank_rows,
-        "bank_count": len(bank_rows),
-        "record_count": len(records),
-        "ready_for_blueprint": sum(1 for row in records if row["workflow_status"] == source_intake.READY),
-        "hold_count": sum(1 for row in records if row["workflow_status"] in HOLD_STATES),
-        "by_topic": counts("topic_label"),
-        "by_source": dict(sorted({
-            authority: sum(1 for row in records if row["source"]["authority"] == authority)
-            for authority in {row["source"]["authority"] for row in records}
-        }.items())),
-        "by_status": counts("workflow_status"),
-        "records": records,
-    }
-
-
-def intake_search_index(state: dict | None = None) -> dict:
-    """Sandbox-only search projection. It is not consumed by the global learner header/search index."""
-    state = state or intake_state()
-    documents = []
-    for row in state["records"]:
-        terms = [
-            row["id"], row["original_identifier"], row["stem"], row["subject"], str(row["grade"]),
-            row["topic_label"], row["subtopic_label"], row["question_type"],
-            row["source"]["authority"], row["source"]["kind"], row["source"]["title"],
-            row["source_verification_status"], row["text_verification_status"], row["workflow_status"],
-        ]
-        documents.append({
-            "id": row["id"],
-            "href": f'#intake-{row["id"]}',
-            "stem": row["stem"],
-            "topic_label": row["topic_label"],
-            "subtopic_label": row["subtopic_label"],
-            "source_authority": row["source"]["authority"],
-            "source_kind": row["source"]["kind"],
-            "workflow_status": row["workflow_status"],
-            "search_text": " ".join(str(term) for term in terms if term).lower(),
-        })
-    return {
-        "schema_version": "grade9v3-test-intake-search-index-v1",
-        "scope": "TEST_ONLY_SANDBOX",
-        "document_count": len(documents),
-        "documents": documents,
-    }
-
-
-def dashboard_state() -> dict:
-    """Pure TEST dashboard view-model. Source files are authority; this is projection data only."""
-    core = _core_contract_state()
-    fixture = _fixture_state()
-    return {
-        "core_contract": core,
-        "quality_vocabulary": _quality_vocabulary_state(),
-        "fixture": fixture,
-        "safety": {
-            "release_authority": core["release_authority"],
-            "fixture_authority_status": fixture["authority_status"],
-            "excluded_placeholder_records": fixture["excluded_provider_head"]["excluded_placeholder_records"],
-            "fixture_scope": "TEST_ONLY_NOT_CANONICAL",
-        },
-    }
 
 
 # ------------------------------------------------------------------ repository state
@@ -309,14 +59,88 @@ def interactive_pages() -> list[dict]:
     return [_json(p) for p in sorted((PUBLIC_TEST / "interactive").glob("*/interactive-receipt.json"))]
 
 
+def intake_banks() -> list[dict]:
+    """Share the fail-closed identity gate with the TEST Question Bank producer."""
+    return test_intake_registry.load_intake_banks(REPO)
+
+
+def candidate_audits() -> list[dict]:
+    audit_dir = TEST_ROOT / "candidates"
+    if not audit_dir.is_dir():
+        return []
+    rows = []
+    for path in sorted(audit_dir.glob("*.audit.json")):
+        try:
+            data = _json(path)
+            if isinstance(data, dict) and data.get("schema_version") == "grade9v3-test-candidate-audit-v1":
+                rows.append(data)
+        except Exception:
+            continue
+    return rows
+
+
+def owner_banks() -> list[dict]:
+    bank_dir = TEST_ROOT / "question-bank"
+    if not bank_dir.is_dir():
+        return []
+    banks = []
+    for p in sorted(bank_dir.glob("*.json")):
+        try:
+            data = _json(p)
+            if isinstance(data, dict) and data.get("schema_version") == "grade9v3-owner-supplied-bank-v1":
+                banks.append(data)
+        except Exception:
+            continue
+    return banks
+
+
+def test_search_index() -> list[dict]:
+    """TEST-only index: sourced READY means independent custody, not a stored workflow label."""
+    custody = test_source_custody.reconcile(REPO)
+    ready = set(custody["ready_ids"])
+    held = set(custody["hold_ids"])
+    rows: list[dict] = []
+    for bank in intake_banks():
+        for q in bank.get("questions", []):
+            rows.append({
+                "id": q.get("id"), "bank_id": bank.get("bank_id"), "kind": "OFFICIAL_INTAKE",
+                "topic": q.get("topic_label"), "subtopic": q.get("subtopic_label"), "stem": q.get("stem"),
+                "status": ("READY_FOR_BLUEPRINT" if q["id"] in ready else
+                           "SOURCE_TEXT_HOLD" if q["id"] in held else "EVIDENCE_PENDING"),
+                "difficulty": None, "demand": None,
+            })
+    for bank in owner_banks():
+        for q in bank.get("questions", []):
+            analysis = (q.get("extensions") or {}).get("grade9v3:analysis") or {}
+            difficulty = analysis.get("difficulty") or {}
+            demand = analysis.get("cognitive_demand") or {}
+            rows.append({
+                "id": q.get("id"), "bank_id": bank.get("bank_id"), "kind": "OWNER_SUPPLIED",
+                "topic": analysis.get("topic"), "subtopic": analysis.get("concept_bucket"), "stem": q.get("stem"),
+                "status": (q.get("answer") or {}).get("verification_status"),
+                "difficulty": difficulty.get("band"),
+                "demand": demand.get("primary") if isinstance(demand, dict) else demand,
+            })
+    return sorted(rows, key=lambda row: (str(row.get("bank_id") or ""), str(row.get("id") or "")))
+
+
+def search_index_script(rows: list[dict]) -> str:
+    payload = json.dumps(rows, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    return f'<script type="application/json" id="g9-test-search-index">{payload}</script>'
+
+
 def source_counts() -> dict:
     banks = sorted((TEST_ROOT / "question-bank").glob("*.json"))
     questions = sum(len(_json(p).get("questions") or []) for p in banks)
+    intakes = intake_banks()
+    intake_questions = sum(len(b.get("questions") or []) for b in intakes)
     return {
         "matrices": len(list((TEST_ROOT / "matrices").glob("*.rungs.json"))),
         "packages": len(list((TEST_ROOT / "library").glob("*.json"))),
         "banks": len(banks),
         "bank_questions": questions,
+        "intake_banks": len(intakes),
+        "intake_questions": intake_questions,
     }
 
 
@@ -325,9 +149,10 @@ def source_counts() -> dict:
 def frame(depth: int, title: str, current: str, body: str, heading: str | None = None) -> str:
     root = "../" * depth
     home = root + "index.html"
-    header = render_core.shell_header(home, root + "question-bank/index.html")
-    for subject_slug in ("physics", "chemistry", "mathematics"):
-        header = header.replace(f"../../../{subject_slug}/index.html", f"{root}{subject_slug}/index.html")
+    # Pass the TEST page's actual relative portal root to the shared shell.
+    # This preserves Physics/Chemistry/Mathematics links at both TEST depths
+    # without depending on an old header's hard-coded ../../../ links.
+    header = render_core.shell_header(home, root + "question-bank/index.html", portal_root=root)
     crumbs = "".join(
         f'<a href="{esc("../" * (depth - 1) + path if depth > 1 else path)}"{" aria-current=page" if path == current else ""}>{esc(label)}</a>'
         for path, label in NAV)
@@ -374,134 +199,318 @@ def card(ident: str, search: str, inner: str) -> str:
 
 
 def link(href: str, label: str) -> str:
-    return (
-        f'<a data-g9-test-action href="{esc(href)}" '
-        'style="display:inline-flex;align-items:center;min-height:48px;min-width:48px;'
-        'padding:0 4px;vertical-align:middle">'
-        f'{esc(label)}</a>'
-    )
-
-
-def core_contract_card(core: dict) -> str:
-    roles = "".join(
-        f'<li><strong>{esc(row["core"])}</strong> · {esc(row["role"])} · {esc(row["production"])}</li>'
-        for row in core["roles"]
-    )
-    validators = core["validator_catalogue"]
-    validator_state = f'{len(validators)} declared' if validators else 'none declared for TEST'
-    version = " / ".join(
-        x for x in (core.get("schema_version"), core.get("contract_version")) if x
-    )
-    return card(
-        "core-contract",
-        "production core contract schema roles release authority validators",
-        '<h2>Production Core contract basis</h2>'
-        f'<p class="g9-prov">Package schema: <code>{esc(core["package_schema_path"])}</code><br>'
-        f'Core contract: <code>{esc(core["path"])}</code>'
-        f'{" · version " + esc(version) if version else ""}</p>'
-        f'<ul>{roles}</ul>'
-        f'<p><strong>Release authority:</strong> <code>{esc(core["release_authority"])}</code></p>'
-        f'<p><strong>Validator catalogue:</strong> {esc(validator_state)}</p>'
-        '<p class="g9-prov">Projection only; this panel does not grant acceptance or release.</p>',
-    )
-
-
-def fixture_boundary_card(fixture: dict, safety: dict) -> str:
-    topics = "".join(
-        f'<li>{esc(topic)} · {esc(count)} coordinate(s)</li>'
-        for topic, count in sorted(fixture["topic_counts"].items())
-    )
-    excluded = fixture["excluded_provider_head"]
-    commit = excluded.get("commit") or "unknown provider head"
-    disposition = excluded.get("disposition") or "HOLD"
-    return card(
-        "fixture-boundary",
-        "fixture boundary sandbox unverified coordinates hold excluded not canonical search",
-        '<h2>TEST fixture boundary</h2>'
-        f'<p><strong>{esc(fixture["question_count"])}</strong> TEST-only coordinate(s) · '
-        f'<code>{esc(fixture["fixture_id"])}</code></p>'
-        f'<p><strong>Authority:</strong> <code>{esc(fixture["authority_status"])}</code></p>'
-        f'<ul>{topics}</ul>'
-        f'<p><strong>Excluded provider additions:</strong> '
-        f'{esc(excluded["excluded_placeholder_records"])} placeholder record(s) · '
-        f'<code>{esc(commit)}</code> · {esc(disposition)}.</p>'
-        f'<p class="g9-prov">Scope: <code>{esc(safety["fixture_scope"])}</code>. '
-        'This fixture is not canonical, not learner-searchable, and not acceptance evidence. '
-        'It is not a source-verification claim. Question text and answers are deliberately not projected here.</p>',
-    )
-
-
-def intake_card(state: dict) -> str:
-    """Render validated Stage-1 intake records and an embedded TEST-only discovery index."""
-    def options(values: dict[str, int]) -> str:
-        return "".join(
-            f'<option value="{esc(value)}">{esc(value)} · {count}</option>'
-            for value, count in values.items()
-        )
-
-    records = []
-    for row in state["records"]:
-        loc = row["source_locator"]
-        answer_note = "available (key not projected)" if row["official_answer_available"] else "not available"
-        records.append(
-            f'<section id="intake-{esc(row["id"])}" data-g9-intake-record data-g9-intake-id="{esc(row["id"])}" '
-            f'data-g9-intake-topic="{esc(row["topic_label"])}" data-g9-intake-source="{esc(row["source"]["authority"])}" '
-            f'data-g9-intake-status="{esc(row["workflow_status"])}" style="border-top:1px solid var(--border);padding:12px 0">'
-            f'<h3>{esc(row["original_identifier"])}</h3>'
-            f'<p>{esc(row["stem"])}</p>'
-            f'<p class="g9-prov"><strong>{esc(row["subject"])}</strong> · Grade {esc(row["grade"])} · '
-            f'{esc(row["topic_label"])}{(" · " + esc(row["subtopic_label"])) if row["subtopic_label"] else ""} · '
-            f'{esc(row["question_type"])}</p>'
-            f'<p><strong>Source:</strong> {esc(row["source"]["authority"])} · {esc(row["source"]["kind"])} · '
-            f'{esc(row["source"]["title"])} · printed page {esc(loc["printed_page"])} · PDF index {esc(loc["pdf_page_index"])} · '
-            f'source URL retained in Stage-1 authority <code>{esc(row["source"]["document_ref"])}</code></p>'
-            f'<p><strong>Custody:</strong> {esc(row["source_verification_status"])} · {esc(row["text_verification_status"])} · '
-            f'<strong>Workflow:</strong> {esc(row["workflow_status"])} · <strong>Official answer:</strong> {esc(answer_note)}</p>'
-            f'<p class="g9-prov">Stem digest: <code>{esc(row["stem_sha256"])}</code> · '
-            f'evidence <code>{esc(row["verification_evidence_ref"])}</code></p></section>'
-        )
-
-    index_json = json.dumps(intake_search_index(state), ensure_ascii=False, sort_keys=True).replace("<", "\\u003c")
-    rows = "".join(records) or '<p data-g9-intake-empty>No validated Stage-1 intake records yet.</p>'
-    body = (
-        '<h2>Question intake</h2>'
-        f'<p><strong>{state["record_count"]}</strong> validated TEST intake record(s) · '
-        f'{state["ready_for_blueprint"]} READY_FOR_BLUEPRINT · {state["hold_count"]} HOLD.</p>'
-        '<p class="g9-prov">This is TEST-only source custody. READY_FOR_BLUEPRINT is a downstream-analysis handoff, not academic acceptance or learner publication.</p>'
-        '<div data-g9-test-intake>'
-        '<div data-g9-test-intake-controls style="display:flex;flex-wrap:wrap;gap:8px;align-items:end">'
-        '<label>Search TEST intake<br><input data-g9-test-intake-query type="search" aria-label="Search TEST intake" style="min-height:48px;min-width:220px"></label>'
-        f'<label>Topic<br><select data-g9-test-intake-topic style="min-height:48px"><option value="">All topics</option>{options(state["by_topic"])}</select></label>'
-        f'<label>Source<br><select data-g9-test-intake-source style="min-height:48px"><option value="">All sources</option>{options(state["by_source"])}</select></label>'
-        f'<label>Status<br><select data-g9-test-intake-status style="min-height:48px"><option value="">All statuses</option>{options(state["by_status"])}</select></label>'
-        f'<p data-g9-test-intake-count aria-live="polite" style="min-height:48px;display:flex;align-items:center">{state["record_count"]} shown</p></div>'
-        f'<script type="application/json" data-g9-test-search-index>{index_json}</script>{rows}</div>'
-        '<script>(()=>{const root=document.querySelector("[data-g9-test-intake]");if(!root)return;'
-        'const data=JSON.parse(root.querySelector("[data-g9-test-search-index]").textContent);'
-        'const docs=new Map(data.documents.map(d=>[d.id,d]));const cards=[...root.querySelectorAll("[data-g9-intake-record]")];'
-        'const q=root.querySelector("[data-g9-test-intake-query]"),topic=root.querySelector("[data-g9-test-intake-topic]"),'
-        'source=root.querySelector("[data-g9-test-intake-source]"),status=root.querySelector("[data-g9-test-intake-status]"),'
-        'count=root.querySelector("[data-g9-test-intake-count]");const apply=()=>{const needle=q.value.trim().toLowerCase();let shown=0;'
-        'for(const card of cards){const doc=docs.get(card.dataset.g9IntakeId);const ok=(!needle||doc.search_text.includes(needle))&&'
-        '(!topic.value||doc.topic_label===topic.value)&&(!source.value||doc.source_authority===source.value)&&'
-        '(!status.value||doc.workflow_status===status.value);card.hidden=!ok;if(ok)shown+=1;}count.textContent=`${shown} shown`;};'
-        'for(const control of [q,topic,source,status]){control.addEventListener("input",apply);control.addEventListener("change",apply);}apply();})();</script>'
-    )
-    return card(
-        "question-intake",
-        "question intake verified source workflow hold ready sandbox search " +
-        " ".join(state["by_topic"]) + " " + " ".join(state["by_source"]) + " " + " ".join(state["by_status"]),
-        body,
-    )
+    return f'<a href="{esc(href)}">{esc(label)}</a>'
 
 
 # ------------------------------------------------------------------ pages
 
+def render_candidate_audit_section(audits: list[dict], custody: dict | None = None) -> str:
+    if not audits:
+        return ""
+    # Old candidate audit receipts are immutable history, not present-day custody.
+    # Project fresh custody facts without rewriting their recorded claims.
+    if custody is None:
+        custody = test_source_custody.reconcile(REPO)
+    cards = []
+    rank = {"PASS": 0, "NOT_APPLICABLE": 1, "PENDING": 2, "BLOCKED": 3}
+    for audit in audits:
+        checks = audit.get("checks") or {}
+        legacy_note = ""
+        if audit.get("candidate_id") == "NCERT-EXEMPLAR-G9-MATH-210":
+            historical = audit.get("question_counts") or {}
+            checks = dict(checks)
+            checks["custody"] = {
+                "status": "PENDING",
+                "detail": ("The historical metadata PASS cannot verify official wording. "
+                           f"Current source custody: {custody['ready_for_blueprint']} independently "
+                           f"evidenced; {custody['source_text_hold']} source-text HOLD; "
+                           f"{custody['evidence_pending']} awaiting evidence."),
+            }
+            counts_source = {
+                "total": custody["total_intake"],
+                "ready_for_blueprint": custody["ready_for_blueprint"],
+                "source_text_hold": custody["source_text_hold"],
+                "evidence_pending": custody["evidence_pending"],
+            }
+            legacy_note = (
+                '<p class="g9-prov">Historical QA receipt (not current source authority): '
+                f'{esc(historical.get("ready_for_blueprint", "?"))} previously labelled READY and '
+                f'{esc(historical.get("duplicate_review", "?"))} duplicate-review. '
+                'Present readiness is computed exclusively from source-custody evidence.</p>'
+            )
+        else:
+            counts_source = audit.get("question_counts") or {}
+        ordered = sorted(checks.items(), key=lambda item: (rank.get((item[1] or {}).get("status"), 9), item[0]))
+        rows = "".join(
+            f'<tr><td>{esc(name.replace("_", " ").title())}</td>'
+            f'<td><strong>{esc((result or {}).get("status", "PENDING"))}</strong></td>'
+            f'<td>{esc((result or {}).get("detail", ""))}</td></tr>'
+            for name, result in ordered
+        )
+        counts = " · ".join(f"{esc(k.replace('_', ' '))}: {esc(v)}" for k, v in counts_source.items())
+        promotion = audit.get("promotion") or {}
+        origin = audit.get("origin") or {}
+        origin_text = f'PR #{origin.get("pr")}' if origin.get("pr") else origin.get("type", "TEST")
+        cards.append(card(
+            f'candidate-{audit.get("candidate_id", "unknown")}',
+            f'{audit.get("candidate_id", "")} {audit.get("title", "")} {audit.get("state", "")} '
+            + " ".join(str((r or {}).get("status", "")) for r in checks.values()),
+            f'<h2>QA candidate: {esc(audit.get("title") or audit.get("candidate_id"))}</h2>'
+            f'<p class="g9-prov">{esc(audit.get("candidate_id"))} · {esc(origin_text)} · target {esc(audit.get("target_subject"))}'
+            f'{(" / " + esc(audit.get("target_topic"))) if audit.get("target_topic") else ""}</p>'
+            f'<p><strong>Lifecycle state:</strong> {esc(audit.get("state"))} · '
+            f'<strong>Promotion:</strong> {esc(promotion.get("status", "BLOCKED"))} → {esc(promotion.get("target", ""))}</p>'
+            f'{f"<p>{counts}</p>" if counts else ""}'
+            f'<div class="g9-table-scroll"><table><thead><tr><th>Check</th><th>Status</th><th>Evidence / next action</th></tr></thead>'
+            f'<tbody>{rows}</tbody></table></div>'
+            f'<p class="g9-prov">Promotion reason: {esc(promotion.get("reason", ""))}</p>'
+            + legacy_note
+        ))
+    return "".join(cards)
+
+
+def render_owner_bank_section(banks: list[dict]) -> str:
+    if not banks:
+        return ""
+    blocks = []
+    for bank in banks:
+        bank_id = bank.get("bank_id", "unknown")
+        q_list = bank.get("questions", [])
+        q_cards = []
+        search_bits = ["owner bank", str(bank_id)]
+        for q in q_list:
+            qid = str(q.get("id", ""))
+            stem = str(q.get("stem", ""))
+            analysis = (q.get("extensions") or {}).get("grade9v3:analysis") or {}
+            difficulty = analysis.get("difficulty") or {}
+            demand = analysis.get("cognitive_demand") or {}
+            primary = demand.get("primary") if isinstance(demand, dict) else demand
+            secondary = demand.get("secondary", []) if isinstance(demand, dict) else []
+            demand_text = ", ".join([str(x) for x in [primary, *secondary] if x])
+            answer = q.get("answer") or {}
+            summary = str(answer.get("summary", ""))
+            verification = str(answer.get("verification_status", ""))
+            custody = (q.get("extensions") or {}).get("grade9v3:source_custody") or {}
+            search_bits.extend([qid, stem, str(analysis.get("topic", "")), str(analysis.get("concept_bucket", ""))])
+            q_cards.append(
+                f'<div style="border:1px solid #e2e8f0;border-radius:6px;padding:12px;margin:8px 0;background:#fff">'
+                f'<div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;margin-bottom:6px">'
+                f'<span style="background:#7c3aed;color:#fff;padding:2px 6px;border-radius:4px">{esc(difficulty.get("band", "UNRATED"))} · score {esc(difficulty.get("score", ""))}</span>'
+                f'<span style="background:#0369a1;color:#fff;padding:2px 6px;border-radius:4px">Demand: {esc(demand_text or "not analysed")}</span>'
+                f'<span style="background:#16a34a;color:#fff;padding:2px 6px;border-radius:4px">{esc(verification or "NOT_RUN")}</span>'
+                f'</div>'
+                f'<p style="margin:0 0 6px 0"><strong>{esc(qid)}</strong> · {esc(q.get("original_identifier", ""))} · '
+                f'<span class="g9-prov">{esc(custody.get("authority_class", "OWNER_SUPPLIED_RAW_INPUT"))} · {esc(custody.get("wording_custody", "VERBATIM"))}</span></p>'
+                f'<p style="margin:0 0 6px 0">{esc(stem)}</p>'
+                f'<details><summary>Inspect answer / verification evidence</summary><p>{esc(summary)}</p></details>'
+                f'</div>'
+            )
+        blocks.append(card(
+            f"owner-bank-{bank_id}",
+            " ".join(search_bits),
+            f'<h2>Owner Question Bank: {esc(bank_id)}</h2>'
+            f'<p class="g9-prov">{len(q_list)} question(s) · owner-supplied custody · TEST-only preview · not accepted</p>'
+            f'<p>This is the parked Core2 source bank. Inspect wording, difficulty/demand classification, answer reasoning and layout here before a TEST product is built.</p>'
+            f'<details><summary>Inspect {len(q_list)} owner questions</summary>{"".join(q_cards)}</details>'
+        ))
+    return "".join(blocks)
+
+
+INTAKE_HOME_FILTER_HTML = """<div data-g9-intake-controls style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:10px;margin:14px 0"><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Search staged questions<input type="search" data-g9-intake-search placeholder="Question, ID or topic" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Subject<select data-g9-intake-facet="subject" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All subjects</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Grade<select data-g9-intake-facet="grade" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All grades</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Source authority<select data-g9-intake-facet="authority" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All authorities</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Source kind<select data-g9-intake-facet="kind" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All source kinds</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Topic<select data-g9-intake-facet="topic" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All topics</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Subtopic<select data-g9-intake-facet="subtopic" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All subtopics</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Question type<select data-g9-intake-facet="type" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All types</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Intake state<select data-g9-intake-facet="intake" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All intake states</option></select></label><label style="display:grid;gap:4px;font-size:14px;font-weight:600">Blueprint readiness<select data-g9-intake-facet="blueprint" style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px"><option value="">All readiness states</option></select></label><button type="button" data-g9-intake-reset style="min-height:48px;width:100%;min-width:0;padding:8px;border:1px solid #64748b;border-radius:8px;cursor:pointer">Clear intake filters</button></div><p data-g9-intake-count aria-live="polite" style="font-size:14px"></p>"""
+INTAKE_HOME_FILTER_SCRIPT = """<script src="question-bank/questions.js"></script><script>
+(() => {
+  const projection = window.G9_TEST_QUESTION_BANK || { banks: [] };
+  const byId = new Map(projection.banks.flatMap(bank => bank.questions || []).map(q => [q.id, q]));
+  const blueprint = q => q.custody_evidence_status === "INDEPENDENTLY_EVIDENCED" ? "READY_FOR_BLUEPRINT"
+    : q.custody_evidence_status === "SOURCE_TEXT_HOLD" ? "SOURCE_TEXT_HOLD" : "EVIDENCE_PENDING";
+  const dimensions = [
+    ["subject", q => q.subject || "Unknown"],
+    ["grade", q => String(q.grade ?? "Unknown")],
+    ["authority", q => q.source_authority || "Unknown"],
+    ["kind", q => q.source_kind || "Unknown"],
+    ["topic", q => q.topic_label || "Unknown"],
+    ["subtopic", q => q.subtopic_label || "Not labelled"],
+    ["type", q => q.question_type || "Unknown"],
+    ["intake", q => q.custody_evidence_status === "SOURCE_TEXT_HOLD" ? "SOURCE_TEXT_HOLD" : "TEST_VISIBLE"],
+    ["blueprint", blueprint],
+  ];
+  for (const bank of document.querySelectorAll('article[data-g9-unit^="intake-"]')) {
+    const container = bank.querySelector("[data-g9-intake-controls]");
+    const count = bank.querySelector("[data-g9-intake-count]");
+    if (!container || !count) continue;
+    const cards = [...bank.querySelectorAll('details > div[style*="border:1px"]')];
+    const rows = cards.map(el => {
+      const id = el.querySelector("p strong")?.textContent?.trim();
+      const q = byId.get(id);
+      if (!q) throw new Error("TEST intake source projection missing " + id);
+      const values = Object.fromEntries(dimensions.map(([key, get]) => [key, get(q)]));
+      el.dataset.g9IntakeSourceId = q.id;
+      el.dataset.g9SourceCustody = q.custody_evidence_status || "EVIDENCE_PENDING";
+      el.dataset.g9AnswerCustody = q.custody_answer_source_url ? "INDEPENDENTLY_EVIDENCED" : "KEY_NOT_EVIDENCED";
+      el.dataset.g9AcademicState = q.academic_validation_status || "UNVALIDATED";
+      // Render from the guarded projection. A captured raw status or old QA
+      // receipt never creates a VERIFIED badge.
+      const sourceReady = q.custody_evidence_status === "INDEPENDENTLY_EVIDENCED";
+      const sourceHold = q.custody_evidence_status === "SOURCE_TEXT_HOLD";
+      const badges = [
+        q.subject || "Unknown subject", "Grade " + (q.grade ?? "Unknown"),
+        q.subtopic_label || "", (q.question_type || "Unknown type").replaceAll("_", " "),
+        q.source_authority === "NCERT_OFFICIAL" ? "NCERT" : q.source_authority === "CBSE_OFFICIAL" ? "CBSE" : "Unknown authority",
+        q.source_kind || "Unknown source kind",
+        "INTAKE ONLY",
+        sourceHold ? "SOURCE TEXT HOLD" : sourceReady ? "SOURCE VERIFIED" : "SOURCE UNVERIFIED",
+        sourceHold ? "TEXT HELD" : sourceReady ? "TEXT VERIFIED" : "TEXT UNVERIFIED",
+        blueprint(q).replaceAll("_", " "),
+        "ACADEMIC " + (q.academic_validation_status || "UNVALIDATED"),
+        q.custody_answer_source_url ? "ANSWER KEY EVIDENCED"
+          : q.official_answer_text ? "ANSWER KEY CUSTODY PENDING" : "NO ANSWER RECORDED"
+      ].filter(Boolean);
+      const banner = el.querySelector('div[style*="display:flex"]');
+      if (!banner) throw new Error("TEST intake card has no status-badge group: " + q.id);
+      for (const name of badges) {
+        const chip = document.createElement("span");
+        chip.dataset.g9IntakeBadge = name;
+        chip.textContent = name;
+        chip.style.cssText = "background:#334155;color:#fff;padding:2px 6px;border-radius:4px";
+        banner.append(chip);
+      }
+      return { el, values, search: [q.id, q.original_identifier, q.stem, q.topic_label,
+        q.subtopic_label, q.chapter_or_unit, q.question_type].join(" ").toLowerCase() };
+    });
+    const facets = [...container.querySelectorAll("[data-g9-intake-facet]")];
+    for (const select of facets) {
+      const key = select.dataset.g9IntakeFacet;
+      const distinct = [...new Set(rows.map(row => row.values[key]))].sort((a,b) => a.localeCompare(b));
+      for (const value of distinct) {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value.replaceAll("_", " ");
+        select.append(option);
+      }
+    }
+    const search = container.querySelector("[data-g9-intake-search]");
+    const apply = () => {
+      const query = search.value.trim().toLowerCase();
+      let shown = 0;
+      for (const row of rows) {
+        const ok = (!query || row.search.includes(query)) &&
+          facets.every(select => !select.value || row.values[select.dataset.g9IntakeFacet] === select.value);
+        row.el.hidden = !ok;
+        if (ok) shown++;
+      }
+      count.textContent = shown + " of " + rows.length + " official questions shown";
+    };
+    search.addEventListener("input", apply);
+    facets.forEach(select => select.addEventListener("change", apply));
+    container.querySelector("[data-g9-intake-reset]").addEventListener("click", () => {
+      search.value = "";
+      facets.forEach(select => { select.value = ""; });
+      apply();
+      search.focus();
+    });
+    apply();
+  }
+})();
+</script>"""
+
+
+def render_intake_section(intakes: list[dict], custody: dict) -> str:
+    ready = {row["intake_question_ref"]: row for row in custody["handoff"]}
+    held = set(custody["hold_ids"])
+    if not intakes:
+        return ('<section data-g9-intake-empty><h2>Stage-1 Question Intake</h2>'
+                '<p>No official source-intake questions are staged. Source evidence and '
+                'blueprint readiness are not available.</p></section>')
+    blocks = []
+    for bank in intakes:
+        bank_id = bank.get("bank_id", "unknown")
+        q_list = bank.get("questions", [])
+        topics: dict[str, int] = {}
+        for q in q_list:
+            t = q.get("topic_label", "Unknown")
+            topics[t] = topics.get(t, 0) + 1
+
+        topic_summary = " · ".join(f"{esc(t)} ({cnt})" for t, cnt in sorted(topics.items()))
+
+        q_cards = []
+        for q in q_list:
+            qid = q.get("id", "")
+            stem = q.get("stem", "")
+            opts = q.get("options") or []
+            opts_html = "".join(f"<li>{esc(o)}</li>" for o in opts)
+            opts_block = f"<ul style='margin:4px 0 8px 18px'>{opts_html}</ul>" if opts_html else ""
+            source = ready.get(qid)
+            ans_text = q.get("official_answer_text", "")
+            key_evidenced = bool(source and source.get("official_answer_key_ref"))
+            answer_label = ("Evidenced official answer" if key_evidenced
+                            else "Recorded answer — official key custody pending")
+            ans_block = (f"<p><strong>{answer_label}:</strong> {esc(ans_text)} "
+                         f"<em>({esc(q.get('answer_key_locator', ''))})</em></p>") if ans_text else ""
+            src_url = q.get("source_url", "")
+            pdf_name = src_url.rsplit("/", 1)[-1] if src_url else ""
+            evidence_state = ("SOURCE EVIDENCED" if source else
+                              "SOURCE TEXT HOLD" if qid in held else "EVIDENCE PENDING")
+            evidence_color = "#16a34a" if source else "#b45309" if qid in held else "#64748b"
+            verified_page = source["source_locator"] if source else None
+            page_note = (f' · Printed page {verified_page["printed_page"]} / PDF index {verified_page["pdf_page_index"]}'
+                         if verified_page else ' · Exact official page not independently reconciled')
+            safe_href = esc(src_url).replace("https:", "https&#58;")
+            src_link = (f' · <a href="{safe_href}" target="_blank" rel="noopener noreferrer" '
+                        f'style="display:inline-flex;min-height:48px;align-items:center">Official source PDF: {esc(pdf_name)}</a>'
+                        f'<span class="g9-prov">{page_note}</span>') if pdf_name else ""
+
+            q_cards.append(
+                f'<div style="border:1px solid #e2e8f0;border-radius:6px;padding:12px;margin:8px 0;background:#fff">'
+                f'<div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;margin-bottom:6px">'
+                f'<span style="background:#0284c7;color:#fff;padding:2px 6px;border-radius:4px">{esc(q.get("topic_label", ""))}</span>'
+                f'<span style="background:{evidence_color};color:#fff;padding:2px 6px;border-radius:4px">{esc(evidence_state)}</span>'
+                f'<span style="background:#64748b;color:#fff;padding:2px 6px;border-radius:4px">Difficulty: not analysed</span>'
+                f'<span style="background:#64748b;color:#fff;padding:2px 6px;border-radius:4px">Demand: not analysed</span>'
+                f'</div>'
+                f'<p style="margin:0 0 6px 0"><strong>{esc(qid)}</strong> ({esc(q.get("chapter_or_unit", ""))} · {esc(q.get("exercise_or_section", ""))} · Q{esc(q.get("question_number", ""))}){src_link}</p>'
+                f'<p style="margin:0 0 6px 0">{esc(stem)}</p>'
+                f'{opts_block}'
+                f'{ans_block}'
+                f'</div>'
+            )
+
+        all_q_html = "".join(q_cards)
+        if not q_list:
+            all_q_html = ('<p data-g9-intake-bank-empty>No valid official-source questions are staged '
+                          'in this bank. Source verification and readiness are pending.</p>')
+
+        blocks.append(card(
+            f"intake-{bank_id}",
+            " ".join([
+                "intake", str(bank_id), *topics.keys(), "stage-1 official questions",
+                *(str(q.get("id", "")) for q in q_list),
+                *(str(q.get("stem", "")) for q in q_list),
+                *(str(q.get("subtopic_label", "")) for q in q_list),
+            ]),
+            f'<h2>Stage-1 Question Intake: {esc(bank_id)}</h2>'
+            f'<p class="g9-prov">Source scope: {esc(", ".join(bank.get("source_scope", [])))} · {len(q_list)} question(s) · '
+            f'Independent source custody: {sum(q["id"] in ready for q in q_list)} READY_FOR_BLUEPRINT · '
+            f'{sum(q["id"] in held for q in q_list)} SOURCE_TEXT_HOLD · '
+            f'{sum(q["id"] not in ready and q["id"] not in held for q in q_list)} EVIDENCE_PENDING · historical intake labels are not authority</p>'
+            f'<p>Official questions ingested from <em>{esc(bank.get("created_from", "official source"))}</em>. '
+            f'Independent official-document witnesses currently cover only the separately reconciled records; '
+            f'a stored stem digest or historical verification label alone does not establish official custody. '
+            f'Academic blueprinting (difficulty bands D1–D4, cognitive demand, QRT cells, worked solutions) is deferred.</p>'
+            f'<p><strong>Topics:</strong> {topic_summary}</p>'
+            f'<details><summary>Inspect {len(q_list)} parked intake questions</summary>{INTAKE_HOME_FILTER_HTML}{all_q_html}</details>'
+        ))
+    return "".join(blocks)
+
+
 def hub_page() -> str:
-    state = dashboard_state()
     deployed = products()
     pages = interactive_pages()
     counts = source_counts()
+    intakes = intake_banks()
+    custody = test_source_custody.reconcile(REPO)
+    owner = owner_banks()
+    search_rows = test_search_index()
+    audits = candidate_audits()
 
     def product_line(receipt: dict, role: str, selection_key: str) -> str:
         return (f'{esc(receipt["slug"])}: {receipt["selection_counts"].get(selection_key, 0)} record(s) selected, '
@@ -521,22 +530,27 @@ def hub_page() -> str:
         'accepted or curriculum, and <code>accept_product.py</code> refuses TEST.</p>'
         '<p class="g9-prov">A gap count of 0 means the depth check found nothing missing. It counts what is absent, '
         'not how good it is, and it does not say the content has been reviewed.</p>'
-        + core_contract_card(state["core_contract"])
-        + fixture_boundary_card(state["fixture"], state["safety"])
-        + intake_card(intake_state())
+        + render_intake_section(intakes, custody)
+        + render_candidate_audit_section(audits, custody)
+        + render_owner_bank_section(owner)
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
         + stage(2, "Core1A", "Concept construction for the same topic", core1a)
         + stage(3, "Explorer", "A guided page on the toughest concept of the same question set", inter)
         + card("places", "atlas rungs deployments",
                '<h2>Where things are</h2><ul>'
+               f'<li>{link("question-bank/index.html", "Question Bank")}: parked source questions, explicitly unvalidated for academic admission</li>'
                f'<li>{link("atlas/index.html", "Atlas")}: the Topic Atlas for the TEST matrix</li>'
                f'<li>{link("rungs/index.html", "Rungs")}: the ladder, rung by rung</li>'
                f'<li>{link("deployments/index.html", "Deployments")}: every deployed draft, with its digest and gaps</li></ul>')
-        + card("sources", "matrices packages question bank",
+        + card("sources", "matrices packages question bank intake",
                f'<h2>Sources in this repository</h2><ul><li>{counts["matrices"]} rung matrix file(s) in TEST/matrices</li>'
                f'<li>{counts["packages"]} package file(s) in TEST/library</li>'
-               f'<li>{counts["banks"]} owner-supplied question file(s) in TEST/question-bank, {counts["bank_questions"]} question(s)</li></ul>'
-               '<p class="g9-prov">How to add each of them: TEST/README.md in the repository.</p>'))
+               f'<li>{counts["banks"]} owner-supplied question file(s) in TEST/question-bank, {counts["bank_questions"]} question(s)</li>'
+               f'<li>{counts["intake_banks"]} official intake bank(s) in TEST/question-bank/intake, {counts["intake_questions"]} question(s)</li>'
+               f'<li>{len(audits)} candidate QA record(s) in TEST/candidates</li>'
+               f'<li>TEST-only search index: {len(search_rows)} parked question(s); production search untouched</li></ul>'
+               '<p class="g9-prov">How to add each of them: TEST/README.md in the repository.</p>')
+        + search_index_script(search_rows) + INTAKE_HOME_FILTER_SCRIPT)
     return frame(1, "TEST", "index.html", body, heading="TEST: a sandbox for stress runs")
 
 
@@ -652,6 +666,35 @@ def deployments_page() -> str:
 
 
 ATLAS_TRANSFORM = REPO / "Shared" / "web" / "atlas-sandbox-transform.v1.json"
+
+
+def atlas_subject_payload() -> dict:
+    """Build only the TEST subject's Atlas read model.
+
+    Production data.js stays untouched. Core destinations are intentionally unavailable until
+    a TEST product is actually deployed; the Atlas can still inspect the package/matrix mapping.
+    """
+    packages = [_json(p) for p in sorted((TEST_ROOT / "library").glob("*.json"))]
+    records = build_index(packages) if packages else {}
+    empty_core = {"bucket_availability": [], "core_projections": []}
+    entry = {
+        "matrices": build_web_data.matrix_summary("TEST", records),
+        "library_available": bool(packages),
+    }
+    entry.update(atlas_index.build_subject_index("TEST", matrices(), records, empty_core))
+    return entry
+
+
+def atlas_data_script() -> str:
+    """Inline TEST-local Atlas projection without mutating production data/search."""
+    payload = json.dumps(atlas_subject_payload(), ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    return ("<script data-g9-test-atlas-data>"
+            "window.GRADE9V3=window.GRADE9V3||{subjects:{}};"
+            "window.GRADE9V3.subjects=window.GRADE9V3.subjects||{};"
+            f"window.GRADE9V3.subjects.TEST={payload};"
+            "</script>")
+
+
 ATLAS_INIT = """<script>
   window.addEventListener('DOMContentLoaded', () => {
     const matrices = ((window.GRADE9V3 && window.GRADE9V3.subjects && window.GRADE9V3.subjects.TEST) || {}).matrices || [];
@@ -688,11 +731,21 @@ def atlas_page() -> str:
     end = text.index("</script>", init) + len("</script>")
     if transform["init"]["call"] not in text[init:end]:
         raise ValueError("the Topic Atlas template changed: its init call moved")
-    return text[:init] + ATLAS_INIT + text[end:]
+    text = text[:init] + ATLAS_INIT + text[end:]
+    marker = '<script src="../../data/data.js"></script>'
+    if text.count(marker) != 1:
+        raise ValueError("the Topic Atlas template changed: its global data script moved")
+    return text.replace(marker, marker + "\n" + atlas_data_script(), 1)
+
+
+def question_bank_page() -> str:
+    return build_test_question_bank.render_page(REPO)
 
 
 def render_all() -> dict[str, str]:
-    return {"index.html": hub_page(), "atlas/index.html": atlas_page(), "rungs/index.html": rungs_page(),
+    return {"index.html": hub_page(), "question-bank/index.html": question_bank_page(),
+            "question-bank/questions.js": build_test_question_bank.render_data(REPO),
+            "atlas/index.html": atlas_page(), "rungs/index.html": rungs_page(),
             "deployments/index.html": deployments_page()}
 
 

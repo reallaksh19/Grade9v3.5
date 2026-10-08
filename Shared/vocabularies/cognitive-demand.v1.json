@@ -1,0 +1,42 @@
+{
+  "schema": "grade9v3-cognitive-demand/v1",
+  "version": "1.1.0",
+  "demands": {
+    "RETRIEVE": {
+      "label": "Retrieve / classify",
+      "decisive_act": "Reconstruct or select a fact, category, definition, property, unit, or condition."
+    },
+    "EXPLAIN": {
+      "label": "Explain",
+      "decisive_act": "Explain why a relation, mechanism, pattern, or result holds."
+    },
+    "APPLY": {
+      "label": "Apply",
+      "decisive_act": "Execute a known model, algorithm, relation, or procedure under the right conditions."
+    },
+    "MODEL": {
+      "label": "Model / strategy choice",
+      "decisive_act": "Choose or formulate the governing model, law, variables, process, or strategy."
+    },
+    "REPRESENT": {
+      "label": "Representation translation",
+      "decisive_act": "Preserve meaning while translating between representations."
+    },
+    "SYNTHESIZE": {
+      "label": "Synthesize / multi-step reasoning",
+      "decisive_act": "Coordinate dependent ideas or steps where route selection is part of the difficulty."
+    },
+    "JUSTIFY": {
+      "label": "Justify / prove / infer",
+      "decisive_act": "Establish a conclusion from explicit warrants or evidence."
+    }
+  },
+  "selection": {
+    "primary": "Assign exactly one primary demand: the learner act whose success most directly decides the question.",
+    "secondary": "Secondary demands may be recorded but do not select a different base QRT cell.",
+    "not_question_type": "Cognitive demand is not inferred from the response format or question type.",
+    "not_difficulty": "Cognitive demand is independent of D1-D4 question difficulty.",
+    "not_transfer_dimension": "Cognitive demand says what work the question asks; a transfer dimension says what changed relative to prior exposure.",
+    "primary_move_binding": "The primary cognitive demand classifies the existing canonical question crux at answer.crux_move_ref. QRT resolution requires that reference to resolve inside answer.reasoning_route[]; do not author a second competing move reference."
+  }
+}

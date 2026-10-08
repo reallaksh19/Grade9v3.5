@@ -19,6 +19,7 @@ on:
       - "tests/test_question_bank_web.py"
       - "tests/test_question_bank_platform.py"
       - "tests/test_question_bank_platform_runtime.py"
+      - "tests/test_ncert_polynomial_admission.py"
       - "tests/question_bank_data_service.test.mjs"
       - ".github/workflows/question-bank-platform.yml"
   pull_request:
@@ -51,7 +52,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Question Bank contract and growth falsifiers
-        run: python3 -m unittest tests.test_question_bank_web tests.test_question_bank_platform tests.test_question_bank_platform_runtime
+        run: python3 -m unittest tests.test_question_bank_web tests.test_question_bank_platform tests.test_question_bank_platform_runtime tests.test_ncert_polynomial_admission
       - name: Progressive browser data service
         run: node tests/question_bank_data_service.test.mjs
       - name: Legacy browser projection remains current

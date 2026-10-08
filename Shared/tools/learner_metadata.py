@@ -10,6 +10,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlsplit
+import re
 import sys
 
 REPO = Path(__file__).resolve().parents[2]
@@ -17,6 +19,7 @@ sys.path.insert(0, str(REPO))
 VOCABULARY = REPO / "Shared/vocabularies/learner-question-metadata.v1.json"
 OWNER_CLASS = "OWNER_SUPPLIED_RAW_INPUT"       # the custody class Shared/tools/owner_bank.py writes
 OWNER_PROVENANCE = "OWNER_SUPPLIED"
+NCERT_PROVENANCE = "NCERT_CUSTODY_WITNESSED"
 CONCEPT_ROLES = {"CORE1", "CORE1A", "CORE1B"}
 ASSESSMENT_ROLES = {"CORE2", "CORE2A", "CORE2B"}
 DIFFICULTY_COMPONENTS = {
@@ -170,6 +173,43 @@ def _question_type(value: Any, record_id: str, vocabulary: dict[str, Any]) -> di
     }
 
 
+def _check_ncert_custody_metadata(question: dict, custody: dict, extensions: dict) -> None:
+    """Verify consistent *recorded custody*, not NCERT-PDF bytes or academic approval."""
+    lineage = extensions.get("grade9v3:ncert_source_lineage")
+    qid = question.get("id")
+    if not isinstance(lineage, dict) or not isinstance(qid, str) or not qid:
+        raise LearnerMetadataError(f"METADATA_NCERT_CUSTODY_INCOMPLETE: {qid}")
+    url = lineage.get("source_url")
+    parsed = urlsplit(url) if isinstance(url, str) else None
+    key_url = lineage.get("answer_source_url")
+    key_parsed = urlsplit(key_url) if isinstance(key_url, str) else None
+    official_root = "/pdf/publication/exemplarproblem/classIX/mathematics/"
+    if not (
+        question.get("status") == "CANDIDATE"
+        and lineage.get("source_id") == qid == custody.get("intake_ref")
+        and isinstance(lineage.get("original_identifier"), str)
+        and bool(lineage["original_identifier"].strip())
+        and lineage.get("source_authority") == "NCERT_OFFICIAL"
+        and lineage.get("source_document_role") == "EXEMPLAR"
+        and lineage.get("source_custody_status") == "READY_FOR_BLUEPRINT"
+        and lineage.get("academic_status_not_granted_by_view") is True
+        and custody.get("authority_class") == "CURRICULAR_STANDARD"
+        and custody.get("wording_custody") == "FAITHFUL_NCERT"
+        and custody.get("source_status") == "NCERT_AUTHENTIC"
+        and custody.get("paper_url") == url
+        and custody.get("text_sha256") == lineage.get("stem_sha256")
+        and isinstance(lineage.get("stem_sha256"), str)
+        and re.fullmatch(r"sha256:[0-9a-f]{64}", lineage["stem_sha256"])
+        and parsed and parsed.scheme == "https" and parsed.netloc == "ncert.nic.in"
+        and parsed.path.startswith(official_root) and not parsed.query and not parsed.fragment
+        and key_parsed and key_parsed.scheme == "https"
+        and key_parsed.netloc == "ncert.nic.in"
+        and key_parsed.path.startswith(official_root)
+        and not key_parsed.query and not key_parsed.fragment
+    ):
+        raise LearnerMetadataError(f"METADATA_NCERT_CUSTODY_CONTRADICTION: {qid}")
+
+
 def _bank_question_metadata(question: dict, vocabulary: dict[str, Any]) -> dict:
     extensions = question.get("extensions") or {}
     analysis = extensions.get("grade9v3:analysis") or {}
@@ -189,6 +229,8 @@ def _bank_question_metadata(question: dict, vocabulary: dict[str, Any]) -> dict:
         }
     if provenance not in vocabulary["provenance"]:
         raise LearnerMetadataError(f"METADATA_PROVENANCE_INVALID: {question['id']}:{provenance}")
+    if provenance == NCERT_PROVENANCE:
+        _check_ncert_custody_metadata(question, custody, extensions)
     source_status = custody.get("source_status")
     if provenance in {"PYQ_VERIFIED", "PYQ_ADAPTED"} and not (
         isinstance(source_status, str) and source_status.startswith("PYQ_VERIFIED")
@@ -230,7 +272,7 @@ def bank_question_problems(question: dict, vocabulary: dict[str, Any] | None = N
 def _authored_question_metadata(question: dict, vocabulary: dict[str, Any]) -> dict:
     extensions = question.get("extensions") or {}
     external_claim = extensions.get("grade9v3:provenance_class")
-    if external_claim in {"PYQ_VERIFIED", "PYQ_ADAPTED"}:
+    if external_claim in {"PYQ_VERIFIED", "PYQ_ADAPTED", NCERT_PROVENANCE}:
         raise LearnerMetadataError(
             f"METADATA_AUTHORED_EXTERNAL_PROVENANCE: {question['id']}:{external_claim}"
         )
@@ -340,6 +382,17 @@ def project(role: str, record: dict, packages: list[dict], vocabulary: dict[str,
         })
 
     out.update({"family": family, **metadata})
+    if role == "CORE2":
+        labels = (record.get("extensions") or {}).get("grade9v3:attempt_labels")
+        if labels is not None:
+            if (not isinstance(labels, dict) or labels.get("question_ref") != record["id"]
+                    or set(labels) - {"question_ref", "concept", "family"}
+                    or any(not isinstance(labels.get(k), str) or not labels[k].strip()
+                           for k in ("concept", "family"))):
+                raise LearnerMetadataError(f"METADATA_ATTEMPT_LABELS_INVALID: {record['id']}")
+            for item in items:
+                if item["kind"] in {"concept", "family"}:
+                    item["value"] = item["label"] = labels[item["kind"]]
     return out
 
 

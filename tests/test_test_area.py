@@ -124,8 +124,148 @@ class TestManifestCommand(unittest.TestCase):
 
 
 class TestPages(unittest.TestCase):
+    def test_test_shell_subject_links_stay_under_portal_root_at_each_depth(self):
+        for depth in (1, 2):
+            with self.subTest(depth=depth):
+                page = build_test_site.frame(depth, "TEST", "index.html", "")
+                for subject in ("physics", "chemistry", "mathematics"):
+                    self.assertIn(f'href="{"../" * depth}{subject}/index.html"', page)
+                    self.assertNotIn(f'href="../../../{subject}/index.html"', page)
+
     def test_committed_pages_are_what_the_generator_writes(self):
         self.assertEqual(build_test_site.check(), [])
+
+    def test_candidate_qa_registry_is_visible_and_both_candidates_remain_promotion_blocked(self):
+        audits = build_test_site.candidate_audits()
+        self.assertEqual({row["candidate_id"] for row in audits}, {"ISS55-POLY", "NCERT-EXEMPLAR-G9-MATH-210"})
+        by_id = {row["candidate_id"]: row for row in audits}
+        # Candidate technical readiness is not a canonical/learner release. The
+        # independent NCERT source remains blocked pending official custody.
+        self.assertEqual(by_id["ISS55-POLY"]["promotion"]["status"], "READY")
+        self.assertEqual(by_id["NCERT-EXEMPLAR-G9-MATH-210"]["promotion"]["status"], "BLOCKED")
+        self.assertEqual(by_id["ISS55-POLY"]["state"], "TECH_PASS")
+        self.assertEqual(by_id["NCERT-EXEMPLAR-G9-MATH-210"]["state"], "QA_IN_PROGRESS")
+        hub = (REPO / "public/test/index.html").read_text(encoding="utf-8")
+        self.assertIn("QA candidate: Issue #55 polynomial stress set", hub)
+        self.assertIn("QA candidate: NCERT Exemplar Grade 9 Mathematics", hub)
+        self.assertIn("2 candidate QA record(s) in TEST/candidates", hub)
+
+    def test_stale_ncert_qa_counts_are_not_current_source_authority(self):
+        """A 209-READY historical QA receipt must not override the custody ledger."""
+        historical = next(a for a in build_test_site.candidate_audits()
+                          if a["candidate_id"] == "NCERT-EXEMPLAR-G9-MATH-210")
+        self.assertEqual(historical["question_counts"]["ready_for_blueprint"], 209)
+        custody = {"total_intake": 210, "ready_for_blueprint": 0,
+                   "source_text_hold": 0, "evidence_pending": 210}
+        html = build_test_site.render_candidate_audit_section([historical], custody)
+        self.assertIn("ready for blueprint: 0", html)
+        self.assertIn("evidence pending: 210", html)
+        self.assertIn("Historical QA receipt", html)
+        self.assertNotIn("ready for blueprint: 209", html)
+        self.assertEqual(historical["question_counts"]["ready_for_blueprint"], 209)
+
+    def test_no_intake_bank_exposes_an_explicit_empty_state(self):
+        html = build_test_site.render_intake_section([], {"handoff": [], "hold_ids": []})
+        self.assertIn("data-g9-intake-empty", html)
+        self.assertIn("No official source-intake questions are staged", html)
+        self.assertNotIn("READY_FOR_BLUEPRINT", html)
+
+    def test_source_hold_and_empty_bank_do_not_claim_readiness(self):
+        source = copy.deepcopy(build_test_site.intake_banks()[0])
+        source["questions"] = [source["questions"][0]]
+        held = {"handoff": [], "hold_ids": [source["questions"][0]["id"]]}
+        html = build_test_site.render_intake_section([source], held)
+        self.assertIn("SOURCE TEXT HOLD", html)
+        self.assertNotIn("SOURCE EVIDENCED", html)
+        self.assertIn("Exact official page not independently reconciled", html)
+        self.assertIn("Recorded answer — official key custody pending", html)
+        source["questions"] = []
+        html = build_test_site.render_intake_section([source], {"handoff": [], "hold_ids": []})
+        self.assertIn("0 question(s)", html)
+        self.assertIn("data-g9-intake-bank-empty", html)
+        self.assertNotIn("data-g9-intake-source-id", html)
+
+    def test_pending_badge_is_neutral_and_separate_from_answer_key_claim(self):
+        home = build_test_site.render_intake_section(
+            build_test_site.intake_banks(), build_test_site.test_source_custody.reconcile(REPO))
+        self.assertIn('background:#64748b;color:#fff;padding:2px 6px;border-radius:4px">EVIDENCE PENDING', home)
+        self.assertNotIn('background:#16a34a;color:#fff;padding:2px 6px;border-radius:4px">EVIDENCE PENDING', home)
+        self.assertIn("ANSWER KEY CUSTODY PENDING", build_test_site.INTAKE_HOME_FILTER_SCRIPT)
+
+    def test_test_home_places_intake_before_historical_QA(self):
+        html = build_test_site.hub_page()
+        self.assertLess(html.index("Stage-1 Question Intake:"),
+                        html.index("QA candidate: Issue #55"))
+        self.assertIn("dataset.g9SourceCustody", build_test_site.INTAKE_HOME_FILTER_SCRIPT)
+
+    def test_test_home_answers_do_not_claim_unverified_official_key_custody(self):
+        """The 198 evidence-pending questions still carry recorded, not witnessed, keys."""
+        home = build_test_site.render_intake_section(
+            build_test_site.intake_banks(), build_test_site.test_source_custody.reconcile(REPO))
+        self.assertIn("Recorded answer — official key custody pending:", home)
+        self.assertIn("Evidenced official answer:", home)
+        self.assertNotIn("Official Answer:", home)
+        self.assertEqual(home.count("Evidenced official answer:"), 12)
+        self.assertEqual(home.count("Recorded answer — official key custody pending:"), 198)
+
+    def test_test_search_index_covers_parked_questions_without_becoming_canonical_search(self):
+        rows = build_test_site.test_search_index()
+        self.assertEqual(len(rows), 220)
+        self.assertEqual(len([r for r in rows if r["kind"] == "OFFICIAL_INTAKE"]), 210)
+        self.assertEqual(len([r for r in rows if r["kind"] == "OWNER_SUPPLIED"]), 10)
+        self.assertEqual(len({r["id"] for r in rows}), 220)
+        intake_rows = [r for r in rows if r["kind"] == "OFFICIAL_INTAKE"]
+        self.assertEqual(sum(r["status"] == "READY_FOR_BLUEPRINT" for r in intake_rows), 12)
+        self.assertEqual(sum(r["status"] == "SOURCE_TEXT_HOLD" for r in intake_rows), 0)
+        self.assertEqual(sum(r["status"] == "EVIDENCE_PENDING" for r in intake_rows), 198)
+        self.assertEqual(
+            {r["id"] for r in intake_rows if r["status"] == "READY_FOR_BLUEPRINT"},
+            {f"ncert-exemplar-g9-math-u01-q{n:02d}" for n in range(1, 7)} |
+            {f"ncert-exemplar-g9-math-u02-q{n:02d}" for n in range(1, 7)},
+        )
+        hub = (REPO / "public/test/index.html").read_text(encoding="utf-8")
+        self.assertIn('id="g9-test-search-index"', hub)
+        self.assertIn("12 READY_FOR_BLUEPRINT · 0 SOURCE_TEXT_HOLD · 198 EVIDENCE_PENDING", hub)
+        # The JavaScript facet may explain SOURCE TEXT HOLD even when there
+        # are zero actual held questions. It may not fabricate a held badge.
+        self.assertNotIn(">SOURCE TEXT HOLD</span>", hub)
+        self.assertIn("Which one of the following is a polynomial?", hub)
+        self.assertIn("Printed page 14 / PDF index 1", hub)
+        self.assertIn("Inspect 210 parked intake questions", hub)
+        self.assertIn("data-g9-intake-controls", hub)
+        self.assertIn("data-g9-intake-facet=\"blueprint\"", hub)
+        self.assertIn('src="question-bank/questions.js"', hub)
+        self.assertIn('rel="noopener noreferrer"', hub)
+        self.assertIn('href="https&#58;//ncert.nic.in/', hub)
+        self.assertNotRegex(hub, r"https?://", "TEST pages stay offline despite optional official PDF links")
+        self.assertEqual(hub.count("Official source PDF:"), 210)
+        self.assertIn("Printed page 2 / PDF index 1", hub)
+        self.assertNotIn("All items verified against official PDFs", hub)
+        self.assertIn("TEST-only search index: 220 parked question(s); production search untouched", hub)
+        canonical = (REPO / "public/data/search-index.v1.json").read_text(encoding="utf-8")
+        learner = (REPO / "public/data/learner-search-index.v1.json").read_text(encoding="utf-8")
+        for row in rows:
+            self.assertNotIn(str(row["id"]), canonical)
+            self.assertNotIn(str(row["id"]), learner)
+
+    def test_owner_question_banks_are_visible_as_test_only_previews(self):
+        page = (REPO / "public/test/index.html").read_text(encoding="utf-8")
+        self.assertIn("Owner Question Bank: iss55-poly", page)
+        self.assertIn("10 question(s) · owner-supplied custody · TEST-only preview · not accepted", page)
+        for number in range(1, 11):
+            self.assertIn(f"OWN-ISS55-POLY-{number:02d}", page)
+        self.assertIn("Inspect answer / verification evidence", page)
+
+    def test_committed_polynomial_core2_source_renders_through_current_renderer(self):
+        manifest = REPO / "TEST/products/iss55-poly.manifest.json"
+        pages, gaps, _digest, _advisories, _waived = render_core.build_report(manifest, "PAGES", held_to="REFERENCE")
+        self.assertIn("core2.html", pages)
+        core2 = pages["core2.html"]
+        for number in range(1, 11):
+            self.assertIn(f"OWN-ISS55-POLY-{number:02d}", core2)
+        self.assertNotIn("Official past paper", core2)
+        self.assertTrue(all(gap.get("core") == "CORE2" for gap in gaps), gaps)
+
 
     def test_a_rung_matrix_that_breaks_the_matrix_schema_says_so_on_the_rungs_page_and_in_the_build(self):
         board = {"matrix_id": "MX-BAD", "subject": "TEST", "topic": "Vectors", "subtopic": "Sums",
@@ -159,6 +299,23 @@ class TestPages(unittest.TestCase):
     def test_the_atlas_is_bound_to_test_and_keeps_no_trace_of_laws_of_motion(self):
         atlas = (REPO / "public/test/atlas/index.html").read_text(encoding="utf-8")
         self.assertIn("subjects.TEST", atlas)
+        self.assertIn('data-g9-test-atlas-data', atlas)
+        # The TEST Atlas uses locally scoped responsive headers, not the
+        # older global selector. Check both generated HTML and its only
+        # authoritative transform so a stale generated copy cannot pass.
+        transform = json.loads(build_test_site.ATLAS_TRANSFORM.read_text(encoding="utf-8"))
+        expected_header_rules = (
+            ".atlas-header .header-title-group{flex:1 1 100%;flex-wrap:wrap;min-width:0;max-width:100%}",
+            ".atlas-header .header-title{flex-wrap:wrap;min-width:0;max-width:100%}",
+            ".atlas-header .header-subtitle{min-width:0;max-width:100%;overflow-wrap:anywhere}",
+        )
+        self.assertIn("@media(max-width:420px)", atlas)
+        for rule in expected_header_rules:
+            with self.subTest(rule=rule):
+                self.assertIn(rule, transform["swaps"][-1]["new"])
+                self.assertIn(rule, atlas)
+        self.assertIn("MATRIX-TEST-ISS55-POLY", atlas)
+        self.assertIn("MIC-MATH-POLY-IDENTITY-DEGREE-BOUND", atlas)
         for leftover in ("MATRIX-PHY-NLM-FIRST-LAW", "Laws of Motion", "phy-nlm-first-law", "NLM Topic Atlas"):
             self.assertNotIn(leftover, atlas)
         self.assertNotIn("\\n<script", atlas, "the template's literal backslash-n is fixed in the copy")
@@ -188,21 +345,47 @@ class TestPages(unittest.TestCase):
 
     def test_the_tab_is_in_the_shared_header_and_on_the_hubs_and_the_site_can_reach_test(self):
         header = (REPO / "public/js/site-header.js").read_text(encoding="utf-8")
-        self.assertIn("root + 'test/index.html'", header)
-        self.assertIn("TEST · LAB", header)
+        self.assertIn("root+'test/index.html'", header)
         for page, href in (("index.html", "test/index.html"), ("physics/index.html", "../test/index.html"),
                            ("chemistry/index.html", "../test/index.html"), ("mathematics/index.html", "../test/index.html")):
             text = (REPO / "public" / page).read_text(encoding="utf-8")
-            self.assertIn(
-                f'href="{href}" class="test-link" data-site-test title="TEST sandbox · draft only">TEST · LAB</a>',
-                text,
-                page,
-            )
+            self.assertIn(f'href="{href}" class="test-link" data-site-test>TEST</a>', text, page)
 
     def test_test_is_not_a_question_bank_subject(self):
         projection = build_question_bank_web.build(REPO)
         self.assertNotIn("TEST", {q.get("subject") for q in projection["questions"]})
-        self.assertEqual(len(projection["questions"]), 81)
+        # The independently growing production bank cannot use a frozen 81-
+        # question tally as a TEST-isolation oracle. Reject duplicated IDs.
+        self.assertGreaterEqual(len(projection["questions"]), 81)
+        self.assertEqual(len({q["id"] for q in projection["questions"]}),
+                         len(projection["questions"]))
+
+
+    def test_polynomial_bank_uses_exact_primary_capabilities_and_keeps_concept_bridges_secondary(self):
+        bank = json.loads((REPO / "TEST/question-bank/iss55-poly.json").read_text(encoding="utf-8"))
+        expected = {
+            "OWN-ISS55-POLY-01": ("CAP-MATH-POLY-FACTOR-PARAMETER", "CAP-MATH-POLY-CHANGE-OF-VARIABLE-DOMAIN"),
+            "OWN-ISS55-POLY-02": ("CAP-MATH-POLY-MULTIPLICITY-SIGN", "CAP-MATH-POLY-SIGN-CHART-RIGOR"),
+            "OWN-ISS55-POLY-03": ("CAP-MATH-POLY-INTERPOLATION-DEGREE-BOUND", "CAP-MATH-POLY-IDENTITY-THEOREM-DEGREE"),
+            "OWN-ISS55-POLY-04": ("CAP-MATH-POLY-GEOMETRIC-AREA-DEGREE", "CAP-MATH-POLY-SIGN-CHART-RIGOR"),
+            "OWN-ISS55-POLY-06": ("CAP-MATH-POLY-FACTOR-VALUE-CONSTRUCTION", "CAP-MATH-POLY-CHANGE-OF-VARIABLE-DOMAIN"),
+            "OWN-ISS55-POLY-07": ("CAP-MATH-POLY-FACTOR-DIVISIBILITY-DEGREE", "CAP-MATH-POLY-IDENTITY-THEOREM-DEGREE"),
+            "OWN-ISS55-POLY-09": ("CAP-MATH-POLY-PARAMETER-DEGREE-ZERO", "CAP-MATH-POLY-CHANGE-OF-VARIABLE-DOMAIN"),
+        }
+        rows = {q["id"]: q for q in bank["questions"]}
+        for qid, (primary, bridge) in expected.items():
+            self.assertEqual(rows[qid]["primary_capability_ref"], primary)
+            self.assertIn(bridge, rows[qid].get("secondary_capability_refs", []))
+
+        package = json.loads((REPO / "TEST/library/iss55-poly.v1.json").read_text(encoding="utf-8"))
+        anchors = {
+            a["target_question_ref"]: a
+            for mic in package["microtopics"]
+            for a in ((mic.get("extensions") or {}).get("grade9v3:lesson_anchors") or {}).values()
+        }
+        self.assertIn("(k - 4)x + 12", anchors["OWN-ISS55-POLY-01"]["stem"])
+        self.assertIn("(a - 1)x^3 + (a + 1)x^2 - 2x", anchors["OWN-ISS55-POLY-09"]["stem"])
+        self.assertIn("x^4 + 4x^2 + 4", anchors["OWN-ISS55-POLY-10"]["stem"])
 
 
 class TestDeploy(unittest.TestCase):
@@ -300,8 +483,37 @@ class TestDeploy(unittest.TestCase):
         mine = [g["detail"] for g in receipt["gaps"] if g["record"] == row["id"]]
         for component in ("HINT_LADDER", "SOLUTION_STEPS", "CONDITIONS", "REPRESENTATION"):
             self.assertTrue(any(d.startswith(component) for d in mine), (component, mine))
+        # Different missing components of the same record remain separately
+        # accountable, even if the renderer can show legacy prose for a draft.
+        named = [g for g in receipt["gaps"] if g["record"] == row["id"]
+                 and g.get("component") in ("HINT_LADDER", "SOLUTION_STEPS", "CONDITIONS", "REPRESENTATION")]
+        self.assertEqual({g["component"] for g in named},
+                         {"HINT_LADDER", "SOLUTION_STEPS", "CONDITIONS", "REPRESENTATION"}, named)
+        self.assertEqual(len(named), 4, "one independent gap for each component")
         self.assertLessEqual({g["component"] for g in receipt["gaps"] if g.get("component")}, set(receipt["authoring"]),
                              "the blueprint's instruction is kept for each component that has a gap")
+
+    def test_reference_owner_route_is_not_satisfied_by_legacy_prose(self):
+        bank_path = self.fixture.root / "owner.bank.json"
+        bank = json.loads(bank_path.read_text(encoding="utf-8"))
+        owner = bank["questions"][0]
+        # A legacy prose fallback may continue to render a draft, but must
+        # never satisfy the Owner's authored, move-typed Core2 obligation.
+        owner["answer"]["reasoning"] = ["A plausible untyped result is not a validated move."]
+        owner["answer"].pop("reasoning_route", None)
+        # Removing the route also invalidates any existing scaffold move refs;
+        # leave those out so draft structural admission can still report the
+        # *separate* required reference-depth solution debt.
+        owner["scaffolds"] = []
+        bank_path.write_text(json.dumps(bank), encoding="utf-8")
+        receipt = deploy_test.deploy_product(self.fixture.manifest)
+        gaps = [g for g in receipt["gaps"] if g["record"] == owner["id"]
+                and g.get("component") == "SOLUTION_STEPS"]
+        self.assertEqual(len(gaps), 1, gaps)
+        self.assertIn("answer.reasoning_route", gaps[0]["detail"])
+        self.assertIs(receipt["accepted"], False)
+        # Non-Owner records at FLOOR still retain backward-compatible legacy
+        # prose; this gate is explicitly limited to REFERENCE Owner authoring.
 
     def test_the_hub_and_deployments_pages_report_the_deployment_without_calling_it_done(self):
         deploy_test.deploy_product(self.fixture.manifest)
@@ -309,7 +521,12 @@ class TestDeploy(unittest.TestCase):
         self.assertIn(self.fixture.slug, pages["deployments/index.html"])
         self.assertIn("accepted: no", pages["deployments/index.html"])
         self.assertIn("2 record(s) selected", pages["index.html"])
-        self.assertNotRegex(pages["index.html"] + pages["deployments/index.html"], r"(?i)\b(complete|completed|published|approved|ready)\b")
+        # Official source *intake* may legitimately say READY_FOR_BLUEPRINT,
+        # but no TEST *product deployment* is published or accepted.
+        self.assertNotRegex(pages["deployments/index.html"],
+                            r"(?i)\b(complete|completed|published|approved|ready)\b")
+        self.assertIn("not accepted", pages["index.html"])
+        self.assertIn("not accepted", pages["deployments/index.html"])
 
     def test_only_test_products_made_of_test_records_can_be_deployed(self):
         manifest = json.loads(self.fixture.manifest.read_text(encoding="utf-8"))
@@ -425,19 +642,89 @@ class TestToughestConcept(unittest.TestCase):
         microtopic["construction_units"][0]["crux_step_ref"] = unit["step_refs"][2]
         self.package_path.write_text(json.dumps(package), encoding="utf-8")
         details = [g["detail"] for g in self.deploy()["gaps"] if g.get("component") == "CONSTRUCTION_STEPS"]
-        self.assertEqual(len(details), 1, details)
-        self.assertIn("3 of the 4 steps the reference page has for a D3 question", details[0])
+        self.assertEqual(details, [], "three authored dependencies are not deficient only because the target is D3")
+        microtopic["construction_units"][0]["step_refs"] = unit["step_refs"][:1]
+        microtopic["construction_units"][0]["crux_step_ref"] = unit["step_refs"][0]
+        self.package_path.write_text(json.dumps(package), encoding="utf-8")
+        gaps = [g for g in self.deploy()["gaps"] if g.get("component") == "CONSTRUCTION_STEPS"]
+        self.assertEqual(len(gaps), 1, gaps)
+        self.assertIn("CONSTRUCTION_STEPS has 1 of the 2 steps it needs", gaps[0]["detail"])
 
     def test_naming_the_question_is_not_enough_the_unit_must_work_it_and_point_at_its_step(self):
         receipt = self.deploy()
         self.unit_for(receipt, bank_anchor_ref=None, worked_anchor_ref=None)
         gaps = self.toughest_gaps(self.deploy())
         self.assertEqual(len(gaps), 1, gaps)
-        self.assertIn("its worked example is not Q1", gaps[0])
+        self.assertIn("a worked teaching example", gaps[0])
+        self.unit_for(receipt, bank_anchor_ref="Q-OWNER-FX-02")
+        gaps = self.toughest_gaps(self.deploy())
+        self.assertEqual(len(gaps), 1, gaps)
+        self.assertIn("no explicit target-crux binding", gaps[0])
         self.unit_for(receipt, crux_step_ref="NOT-A-STEP")
         details = [g["detail"] for g in self.deploy()["gaps"] if g["duty"] == "AUTHOR_QUESTION_BRIDGE"]
         self.assertEqual(len(details), 1, details)
         self.assertIn("crux_step_ref", details[0])
+
+    def test_distinct_worked_anchor_must_bind_target_question_crux_and_teach_a_move(self):
+        receipt = self.deploy()
+        unit = self.unit_for(receipt, bank_anchor_ref=None, worked_anchor_ref=None)
+        package = json.loads(self.package_path.read_text(encoding="utf-8"))
+        microtopic = next(m for m in package["microtopics"] if m["id"] == receipt["toughest"]["microtopic_ref"])
+        target = receipt["toughest"]
+        anchor = {
+            "id": "LESSON-FX-INDEPENDENT-VECTORS",
+            "stem": "For a=(1,2) and b=(3,-2), find the vector a+b and justify each component.",
+            "construction_ref": unit["id"],
+            "target_question_ref": target["question_ref"],
+            "target_crux_move_ref": target["crux_move"]["id"],
+            "answer": {
+                "summary": "a+b=(4,0).",
+                "reasoning": ["Add x-components 1+3=4 and y-components 2+(-2)=0; "
+                              "vector addition operates independently on each axis."],
+                "check": "The resultant has the claimed x and y components.",
+            },
+        }
+        microtopic.setdefault("extensions", {}).setdefault("grade9v3:lesson_anchors", {})[unit["id"]] = anchor
+        self.package_path.write_text(json.dumps(package), encoding="utf-8")
+        accepted = self.deploy()
+        self.assertEqual(self.toughest_gaps(accepted), [])
+        page = (deploy_test.PUBLIC_TEST / "products" / self.fixture.slug / "core1a.html").read_text(encoding="utf-8")
+        self.assertIn(anchor["stem"], page)
+        self.assertIn('data-g9-bridge-question="' + target["question_ref"] + '"', page)
+        self.assertNotIn(target["stem"], page, "teaching anchor must not echo the protected target stem")
+
+        # A correct topic and worked solution cannot substitute for an exact crux binding.
+        anchor["target_crux_move_ref"] = "A-DIFFERENT-MOVE"
+        self.package_path.write_text(json.dumps(package), encoding="utf-8")
+        gaps = self.toughest_gaps(self.deploy())
+        self.assertEqual(len(gaps), 1, gaps)
+        self.assertIn("lesson anchor crux does not resolve", gaps[0])
+        anchor["target_crux_move_ref"] = target["crux_move"]["id"]
+        anchor["answer"]["reasoning"] = []
+        self.package_path.write_text(json.dumps(package), encoding="utf-8")
+        gaps = self.toughest_gaps(self.deploy())
+        self.assertEqual(len(gaps), 1, gaps)
+        self.assertIn("no worked reasoning with a justified move", gaps[0])
+
+    def test_reference_hardest_question_can_waive_an_inapplicable_worked_panel(self):
+        receipt = self.deploy()
+        unit = self.unit_for(receipt, bank_anchor_ref=None, worked_anchor_ref=None,
+                             extensions={"grade9v3:component_waivers": {
+                                 "WORKED_EXAMPLE": "the complete teaching construction deliberately leads to independent practice"}})
+        accepted = self.deploy()
+        self.assertEqual(self.toughest_gaps(accepted), [],
+                         "the recovered WORKED_EXAMPLE level is EXPECTED, not unwaivably REQUIRED")
+        self.assertTrue(any(w["component"] == "WORKED_EXAMPLE" and w["record"] == unit["id"]
+                            for w in accepted["waived"]), accepted["waived"])
+        # Removing the authored reason cannot silently substitute for a worked
+        # example or its exact target-crux binding.
+        package = json.loads(self.package_path.read_text(encoding="utf-8"))
+        microtopic = next(m for m in package["microtopics"] if m["id"] == receipt["toughest"]["microtopic_ref"])
+        microtopic["construction_units"][0]["extensions"]["grade9v3:component_waivers"].clear()
+        self.package_path.write_text(json.dumps(package), encoding="utf-8")
+        gaps = self.toughest_gaps(self.deploy())
+        self.assertEqual(len(gaps), 1, gaps)
+        self.assertIn("a worked teaching example", gaps[0])
 
     def test_a_bank_ref_that_names_no_question_of_the_bank_is_a_gap_that_says_which(self):
         receipt = self.deploy()
@@ -655,11 +942,15 @@ class TestOwnerBankFromIntake(unittest.TestCase):
     def test_the_skeleton_carries_the_deepest_ladder_and_route_and_check_names_what_is_empty(self):
         bank = self.bank(fill=False)
         row = bank["questions"][0]
-        # The skeleton is the reference depth for a D3 or D4 question: the author deletes what the band does not need.
-        self.assertEqual([m["kind"] for m in row["answer"]["reasoning_route"]], ["DECIDE", "REPRESENT", "TRANSFORM", "VERIFY"])
-        self.assertEqual([r["learner_stage"] for r in row["scaffolds"]],
-                         ["REPRESENTATION", "KEY_CONCEPT", "CRUX", "FORMAL_MODEL", "CHECKPOINT"])
-        self.assertEqual({r["supports_move_ref"] for r in row["scaffolds"]} - {m["id"] for m in row["answer"]["reasoning_route"]}, set())
+        # Start with one real move and one support stub pointing to that move;
+        # a D3/D4 label must not manufacture extra steps or dangling references.
+        self.assertEqual([m["kind"] for m in row["answer"]["reasoning_route"]], ["DECIDE"])
+        self.assertEqual([r["learner_stage"] for r in row["scaffolds"]], ["KEY_CONCEPT"])
+        for question in bank["questions"]:
+            move_ids = {move["id"] for move in question["answer"]["reasoning_route"]}
+            self.assertEqual(move_ids, {f'{question["id"]}-MOVE-1'})
+            self.assertEqual({rung["supports_move_ref"] for rung in question["scaffolds"]}, move_ids)
+            self.assertTrue(all(not rung["text"] for rung in question["scaffolds"]))
         problems = " ".join(owner_bank.check(bank))
         self.assertIn("scaffolds[0].text is empty", problems)
         self.assertIn("is missing action", problems)
@@ -670,9 +961,14 @@ class TestOwnerBankFromIntake(unittest.TestCase):
         del row["scaffolds"]
         del row["answer"]["reasoning_route"]
         problems = " ".join(owner_bank.check(bank))
-        self.assertIn("HINT_LADDER needs 3, the record supplies 0", problems)
-        self.assertIn("SOLUTION_STEPS needs 3, the record supplies 0", problems)
-        self.assertIn("scaffolds[]", problems, "the message carries the blueprint's own instruction for the author")
+        self.assertIn("HINT_LADDER is absent", problems,
+                      "a missing expected support lane needs authored support or a reasoned waiver")
+        self.assertIn("SOLUTION_STEPS is absent: answer.reasoning_route", problems,
+                      "missing required reasoning cannot pass merely because no step quota is declared")
+        self.assertIn("Author question-specific support", problems,
+                      "the missing expected lane retains actionable blueprint authoring guidance")
+        self.assertEqual(owner_bank.check(bank, complete=False), [],
+                         "draft authoring remains inspectable; only complete admission is fail-closed")
 
     def test_a_rung_must_point_at_a_move_the_crux_must_name_one_and_an_owner_question_has_no_source_hints(self):
         bank = self.bank()
@@ -699,12 +995,14 @@ class TestOwnerBankFromIntake(unittest.TestCase):
             row["extensions"]["grade9v3:analysis"].pop("common_wrong_route")
             del row["answer"]["check"]
         notes = " ".join(owner_bank.check(bank))
-        for component in ("CONDITIONS", "TRAP", "REPRESENTATION", "CHECK"):
-            self.assertIn(f"{component} is absent", notes)   # the blueprint's EXPECTED components, named as it names them
+        for component in ("CONDITIONS", "REPRESENTATION", "CHECK"):
+            self.assertIn(f"{component} is absent", notes)  # these are EXPECTED, not OPTIONAL
+        self.assertNotIn("TRAP is absent", notes,
+                         "an optional pre-attempt wrong-route warning cannot be universally required")
         self.assertIn("component_waivers", notes, "the message says how to waive")
         self.assertEqual(owner_bank.check(bank, complete=False), [], "the renderer builds a draft and reports a gap instead")
         for row in bank["questions"]:
-            row["extensions"]["grade9v3:component_waivers"] = {"CONDITIONS": "the question states none", "TRAP": "no tempting route",
+            row["extensions"]["grade9v3:component_waivers"] = {"CONDITIONS": "the question states none",
                                                                "REPRESENTATION": "nothing to draw", "CHECK": "a unit check adds nothing"}
         self.assertEqual(owner_bank.check(bank), [])
 
@@ -713,8 +1011,14 @@ class TestOwnerBankFromIntake(unittest.TestCase):
         row = bank["questions"][0]
         row["extensions"]["grade9v3:analysis"]["difficulty"].update(band="D3", score=5)
         problems = " ".join(owner_bank.check(bank))
-        self.assertIn("HINT_LADDER needs 5, the record supplies 3", problems)
-        self.assertIn("SOLUTION_STEPS needs 4, the record supplies 3", problems)
+        self.assertNotIn("HINT_LADDER needs", problems,
+                         "difficulty alone cannot require padded support rungs")
+        self.assertNotIn("SOLUTION_STEPS needs", problems,
+                         "difficulty alone cannot require padded solution steps")
+        # Actual logical content still matters: a missing warrant is a defect
+        # regardless of the band's implied or stated complexity.
+        row["answer"]["reasoning_route"][1]["why_valid"] = ""
+        self.assertIn("is missing why_valid", " ".join(owner_bank.check(bank)))
 
     def test_an_owner_question_cannot_take_an_exam_provenance_class(self):
         bank = self.bank()

@@ -7,8 +7,18 @@ on:
     paths:
       - ".github/workflows/core1a-tablet-browser.yml"
       - "Shared/tools/render_core.py"
+      # Run generated-freshness and tablet evidence on the exact proposed projection.
+      - "Shared/tools/build_manifest.py"
+      - "Shared/tools/build_core_learning_data.py"
+      - "tools/data.js"
+      - "public/core-learning/data.js"
+      - "docs/architecture-manifest.json"
+      - "docs/.pages-manifest.json"
       - "Shared/web/interactive-page-blueprints.v1.json"
       - "public/css/tablet-12-7.css"
+      - "public/css/modern-learner.css"
+      - "public/js/display-controls.js"
+      - "public/js/site-header.js"
       - "tools/site-audit/core-page-audit.mjs"
       - "products/physics/phy-kin-2d-motion.manifest.json"
       - "Physics/library/phy-kin-2d-motion.v1.json"
@@ -34,7 +44,8 @@ jobs:
       - name: Install pinned browser harness
         run: |
           npm install --no-save playwright@1.56.1
-          npx playwright install --with-deps chromium
+          # Install browser only; do not apt-install runner system packages.
+          npx playwright install chromium
 
       - name: Build exact Motion Core pages into temporary audit root
         run: |
@@ -61,6 +72,11 @@ jobs:
           css = root / "css"
           css.mkdir(parents=True, exist_ok=True)
           shutil.copy2("public/css/tablet-12-7.css", css / "tablet-12-7.css")
+          shutil.copy2("public/css/modern-learner.css", css / "modern-learner.css")
+          scripts = root / "js"
+          scripts.mkdir(parents=True, exist_ok=True)
+          for name in ("display-controls.js", "site-header.js"):
+              shutil.copy2(Path("public/js") / name, scripts / name)
           (root / "render-evidence.json").write_text(
               json.dumps({
                   "manifest": manifest.as_posix(),
@@ -98,6 +114,11 @@ jobs:
           css = root / "css"
           css.mkdir(parents=True, exist_ok=True)
           shutil.copy2("public/css/tablet-12-7.css", css / "tablet-12-7.css")
+          shutil.copy2("public/css/modern-learner.css", css / "modern-learner.css")
+          scripts = root / "js"
+          scripts.mkdir(parents=True, exist_ok=True)
+          for name in ("display-controls.js", "site-header.js"):
+              shutil.copy2(Path("public/js") / name, scripts / name)
           core1a = pages["core1a.html"]
           if 'data-g9-derivation-bridge' not in core1a:
               raise SystemExit("derivation witness did not render the generic derivation bridge")

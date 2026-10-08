@@ -1,0 +1,177 @@
+{
+  "schema_version": "grade9v3-test-question-validation-v1",
+  "candidate_id": "NCERT-EXEMPLAR-G9-MATH-210",
+  "source_bank": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+  "scope": "Unit 2: Polynomials · Exercise 2.1 · Q1-Q10",
+  "validation_kind": "ACADEMIC_ANSWER_AND_STRUCTURE",
+  "validated_at": "2026-10-07",
+  "authority_boundary": {
+    "production_question_bank_admission": false,
+    "atlas_rungs_enrichment": false,
+    "note": "This receipt records source reconciliation and independent academic answer checks only. Production Question Bank admission is a separate follow-up responsibility."
+  },
+  "records": [
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q01",
+      "original_identifier": "Unit 2 Ex 2.1 Q1",
+      "stem_sha256": "sha256:e9cf2f9dd0b4ccdd828e671580c65aed68b09405a1eda4c0f54561b9e24a3175",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "(C) x² + 3x^(3/2)/√x",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q1",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "(C) x² + 3x^(3/2)/√x",
+        "reasoning": [
+          "Using the NCERT algebraic-expression convention, x^(3/2)/sqrt(x) simplifies by exponent subtraction to x, so option C becomes x² + 3x and has only non-negative integer powers of x.",
+          "Option A contains x^(-2), option B contains x^(1/2), and option D retains a variable expression in the denominator."
+        ],
+        "admission_eligible": true,
+        "convention_note": "The PASS follows the NCERT Exemplar convention of classifying the simplified algebraic expression. The simplification is not being asserted here as equality of total real-valued functions at x = 0, where the unsimplified denominator sqrt(x) is zero."
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q02",
+      "original_identifier": "Unit 2 Ex 2.1 Q2",
+      "stem_sha256": "sha256:627a863a58c1f737a8ec90567d45497ed6091979977777e9a6b851ad42a9ad03",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "(B) 0",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q2",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "(B) 0",
+        "reasoning": [
+          "sqrt(2) is a non-zero constant polynomial, equivalently sqrt(2)·x^0, so its degree is 0."
+        ],
+        "admission_eligible": true
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q03",
+      "original_identifier": "Unit 2 Ex 2.1 Q3",
+      "stem_sha256": "sha256:acf970e82ea78d3e0962ee2961e90547822df1945cf6a0093512c9373be69bd7",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "(A) 4",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q3",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "(A) 4",
+        "reasoning": [
+          "The coefficient of x^5 is zero, so 0x^5 contributes no term. The highest non-zero power is x^4; therefore the degree is 4."
+        ],
+        "admission_eligible": true
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q04",
+      "original_identifier": "Unit 2 Ex 2.1 Q4",
+      "stem_sha256": "sha256:43f7d6ff7a197201b8c538375778d52ee7e2906cd987cba60eaaa94a07d14416",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "(D) Not defined",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q4",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "(D) Not defined",
+        "reasoning": [
+          "The zero polynomial has no non-zero term whose exponent can serve as the greatest exponent, so its degree is not defined in the NCERT convention."
+        ],
+        "admission_eligible": true
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q05",
+      "original_identifier": "Unit 2 Ex 2.1 Q5",
+      "stem_sha256": "sha256:10c33f397767b5dd584b33dcbe1571188c09ff872732d69ba97102c2e73cb879",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "(B) 1",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q5",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "(B) 1",
+        "reasoning": [
+          "At x = 2sqrt(2), x² = 8 and 2sqrt(2)·x = 2sqrt(2)·2sqrt(2) = 8, so p(2sqrt(2)) = 8 - 8 + 1 = 1."
+        ],
+        "admission_eligible": true
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q06",
+      "original_identifier": "Unit 2 Ex 2.1 Q6",
+      "stem_sha256": "sha256:d1f9ab971075dd4795abafbb0e7a9163deb032e79470daae63d2198ebcef5643",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "(A) -6",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q6",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "(A) -6",
+        "reasoning": [
+          "Substituting x = -1 gives 5(-1) - 4(-1)² + 3 = -5 - 4 + 3 = -6."
+        ],
+        "admission_eligible": true
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q07",
+      "original_identifier": "Unit 2 Ex 2.1 Q7",
+      "stem_sha256": "sha256:a086cd2210982163be7dfbdad7fc9cfa1c9ce00ff867163a6b315519ea65bb9a",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "(D) 6",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q7",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "(D) 6",
+        "reasoning": [
+          "p(-x) = -x + 3, so p(x) + p(-x) = (x + 3) + (-x + 3) = 6."
+        ],
+        "admission_eligible": true
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q08",
+      "original_identifier": "Unit 2 Ex 2.1 Q8",
+      "stem_sha256": "sha256:b5938b0629df8a8997e888b2d33677048dd9800d29fe6b23b2b93ccc41637dbc",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "(C) Any real number",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q8",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "(C) Any real number",
+        "reasoning": [
+          "The zero polynomial has value 0 for every real input. Hence every real number satisfies p(x) = 0 and is a zero of the zero polynomial."
+        ],
+        "admission_eligible": true
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q09",
+      "original_identifier": "Unit 2 Ex 2.1 Q9",
+      "stem_sha256": "sha256:a14fd2d6137b869c653f9eeb158eb14a41b894a6e1b113918623aab13326efc9",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "(B) -5/2",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q9",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "(B) -5/2",
+        "reasoning": [
+          "A zero satisfies 2x + 5 = 0. Thus 2x = -5 and x = -5/2."
+        ],
+        "admission_eligible": true
+      }
+    },
+    {
+      "source_id": "ncert-exemplar-g9-math-u02-q10",
+      "original_identifier": "Unit 2 Ex 2.1 Q10",
+      "stem_sha256": "sha256:f7f2590fcb64a90fe599a3c5112137d435e48036f44a182efd1ead40197640f4",
+      "source_text_verification": "TEXT_VERIFIED_AGAINST_OFFICIAL",
+      "official_answer_text": "(B) 1/2",
+      "official_answer_locator": "NCERT Exemplar Class IX Mathematics, Answers Unit 2, Ex 2.1 Q10",
+      "academic_validation": {
+        "status": "PASS",
+        "independent_result": "(B) 1/2",
+        "reasoning": [
+          "2x² + 7x - 4 factors as (2x - 1)(x + 4), so its zeros are 1/2 and -4. Therefore 1/2 is one of the zeros."
+        ],
+        "admission_eligible": true
+      }
+    }
+  ]
+}

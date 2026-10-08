@@ -1,0 +1,58 @@
+name: SOF IMO research seed integrity
+
+on:
+  pull_request:
+    paths:
+      - 'TEST/imo-research/**'
+      - 'tests/test_imo_seed.py'
+      - 'tests/test_imo_math_audit.py'
+      - '.github/workflows/imo-research-validation.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'TEST/imo-research/**'
+      - 'tests/test_imo_seed.py'
+      - 'tests/test_imo_math_audit.py'
+      - '.github/workflows/imo-research-validation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  research-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate source identity and quarantine
+        run: python TEST/imo-research/validate_seed.py
+      - name: Validate printed-source mathematical audit
+        run: python TEST/imo-research/validate_math_audit.py
+      - name: Validate SOF syllabus taxonomy mapping
+        run: python TEST/imo-research/validate_taxonomy.py
+      - name: Validate organizer sample answer and QRT research pilot
+        run: python TEST/imo-research/validate_sample_pilot.py
+      - name: Validate full Level 1 printed-source maths audit B02
+        run: python TEST/imo-research/validate_fullpaper_batch02.py
+      - name: Validate 2023–24 and 2024–25 paper research audit B03
+        run: python TEST/imo-research/validate_fullpaper_batch03.py
+      - name: Validate B04 2025 Set A full-paper mathematics and 58 of 58 census
+        run: python TEST/imo-research/validate_fullpaper_batch04.py
+      - name: Validate scanned-source and owner answer discrepancy register
+        run: python TEST/imo-research/validate_discrepancy_register.py
+      - name: Validate independent review queue and source rights gates
+        run: python TEST/imo-research/validate_review_gates.py
+      - name: Validate new organizer sample Q5 angle-geometry proof candidate and holds
+        run: python TEST/imo-research/validate_sample_q5_geometry.py
+      - name: Validate owner human-review N/A and complete ten-sample QRT proposals
+        run: python TEST/imo-research/validate_owner_sample_qrt.py
+      - name: Validate original seven-cell Grade 9 research practice
+        run: python TEST/imo-research/validate_original_practice.py
+      - name: Validate seven original practice Core intake gates with zero acceptance
+        run: python TEST/imo-research/validate_intake_contract.py
+      - name: Validate original-practice structured answer diagnostics and holds
+        run: python TEST/imo-research/validate_practice_diagnostics.py
+      - name: Run research-only falsifier tests
+        run: python -m unittest discover -s tests -p 'test_imo_*.py' -v

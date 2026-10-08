@@ -5,7 +5,7 @@ Runs on a render_core product directory:
 1. Reads the pages (data-g9-* markers) into a learner observation and judges it against the
    learner quality contract (Shared/quality/learner-quality.v1.json).
 2. Measures the rendered pages in Chromium (tools/site-audit/core-page-audit.mjs) for the
-   RENDERED rules (touch targets, stage-support layout), unless --static.
+   RENDERED rules (touch targets, selected blueprint layout policy), unless --static.
 3. Checks continuity across the Cores:
    - Core1A and Core1B cover the same units;
    - every Core2B lineage link and every repair link resolves to a rendered unit.
@@ -35,7 +35,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO))
 
-from Shared.tools import quality_contract, quality_observe  # noqa: E402
+from Shared.tools import quality_contract, quality_observe, learning_repair  # noqa: E402
 
 REPORT_SCHEMA = REPO / "Shared/quality/gate-report.schema.json"
 BLOCKING = {"S0", "S1", "S2"}
@@ -55,6 +55,7 @@ def continuity(folder: Path) -> list[dict]:
     pages = {p.name: p.read_text(encoding="utf-8") for p in folder.glob("core*.html")}
     units = {name: set(re.findall(r'data-g9-unit="([^"]+)"', text)) for name, text in pages.items()}
     found = []
+    targets_by_page = {name: learning_repair.navigation_targets(text) for name, text in pages.items()}
     a, b = units.get("core1a.html", set()), units.get("core1b.html", set())
     receipt = folder / "render-receipt.json"
     rec = json.loads(receipt.read_text(encoding="utf-8")) if receipt.is_file() else {}
@@ -64,7 +65,7 @@ def continuity(folder: Path) -> list[dict]:
     for name, text in pages.items():
         for href in re.findall(r'href="(core\w+\.html)#([^"]+)"', text):
             target, anchor = href
-            if anchor not in units.get(target, set()):
+            if anchor not in targets_by_page.get(target, set()):
                 found.append({"code": "CONT_LINK_UNRESOLVED", "detail": f"{name} links to {target}#{anchor}, which is not a rendered unit"})
     rendered_ids = set().union(*units.values()) if units else set()
     for row in rec.get("ledger", []):

@@ -1,9 +1,9 @@
-// Local artifact exercise, not a CI workflow. Requires a real Chromium installation.
+// Real-browser TEST sandbox audit. Runs in learner-platform-code-tests and can also be run locally:
 //   node tests/test_area_browser.mjs
 // Opens the TEST area's own pages in a real browser at phone, tablet and desktop widths and checks what a
 // static read cannot: no script error, nothing fetched from another host, no sideways scroll, the draft label
-// and the way to the portal are on screen and tappable, the Atlas shows an honest empty state, and once a
-// matrix exists under TEST the same Atlas engine renders it. The TEST tab is reached from the portal.
+// and the way to the portal are on screen and tappable, and the real TEST polynomial matrix renders through
+// the shared Atlas engine. The TEST tab is reached from the portal.
 import { createRequire } from 'node:module';
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -15,7 +15,7 @@ try { playwright = require('playwright'); }
 catch { playwright = require(path.join(execFileSync('npm', ['root', '-g']).toString().trim(), 'playwright')); }
 
 const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', 'public');
-const PAGES = ['test/index.html', 'test/atlas/index.html', 'test/rungs/index.html', 'test/deployments/index.html'];
+const PAGES = ['test/index.html', 'test/question-bank/index.html', 'test/atlas/index.html', 'test/rungs/index.html', 'test/deployments/index.html'];
 const WIDTHS = [320, 390, 768, 1024, 1280, 1920];
 const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.woff2': 'font/woff2' };
 
@@ -32,7 +32,7 @@ const browser = await playwright.chromium.launch();
 const failures = [];
 let checked = 0;
 
-async function open(width, page, { injectMatrix = false, height = 900 } = {}) {
+async function open(width, page, { height = 900 } = {}) {
   const context = await browser.newContext({ viewport: { width, height }, hasTouch: true });
   const tab = await context.newPage();
   const problems = [];
@@ -40,15 +40,6 @@ async function open(width, page, { injectMatrix = false, height = 900 } = {}) {
   tab.on('console', (message) => { if (message.type() === 'error') problems.push(`console error: ${message.text()}`); });
   tab.on('request', (request) => { if (!request.url().startsWith(base) && !request.url().startsWith('data:')) problems.push(`left the site: ${request.url()}`); });
   tab.on('response', (response) => { if (response.status() >= 400) problems.push(`${response.status()} ${response.url().replace(base, '')}`); });
-  if (injectMatrix) {
-    // The real data.js, plus one matrix copied under TEST: what build_web_data.py produces once a TEST matrix exists.
-    await tab.route('**/data/data.js', async (route) => {
-      const original = await (await route.fetch()).text();
-      const extra = "\n;(function(){var s=window.GRADE9V3.subjects;var m=JSON.parse(JSON.stringify(s.Mathematics.matrices[0]));"
-        + "m.matrix_id='MATRIX-TEST-BROWSER';m.subject='TEST';s.TEST.matrices=[m];})();\n";
-      await route.fulfill({ body: original + extra, contentType: 'text/javascript' });
-    });
-  }
   await tab.goto(`${base}/${page}`, { waitUntil: 'networkidle' });
   return { context, tab, problems };
 }
@@ -63,6 +54,21 @@ for (const page of PAGES) {
       const small = links.filter((a) => Math.min(a.getBoundingClientRect().width, a.getBoundingClientRect().height) < 44);
       return {
         overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        atlasHeaderRight: document.querySelector('.header-title-group')?.getBoundingClientRect().right ?? 0,
+        offenders: [...document.querySelectorAll('body *')]
+          .filter(el => {
+            const rect = el.getBoundingClientRect();
+            return rect.width > 0 && rect.height > 0 && rect.right > innerWidth + 1;
+          })
+          .map(el => {
+            const r = el.getBoundingClientRect();
+            const css = getComputedStyle(el);
+            return { node: el.tagName.toLowerCase() + (el.id ? '#' + el.id : '')
+              + (typeof el.className === 'string' ? '.' + el.className.trim().split(/\\s+/).slice(0, 2).join('.') : ''),
+              left: Math.round(r.left), right: Math.round(r.right),
+              width: Math.round(r.width), minWidth: css.minWidth,
+              overflowX: css.overflowX, display: css.display };
+          }).sort((a,b) => b.right - a.right).slice(0, 12),
         banner,
         barLinks: links.length,
         small: small.map((a) => a.textContent),
@@ -73,7 +79,9 @@ for (const page of PAGES) {
     checked += 1;
     const where = `${page} @${width}`;
     for (const problem of problems) failures.push(`${where}: ${problem}`);
-    if (facts.overflow > 1) failures.push(`${where}: ${facts.overflow}px wider than the screen`);
+    if (facts.overflow > 1) failures.push(`${where}: ${facts.overflow}px wider than the screen; offenders=${JSON.stringify(facts.offenders)}`);
+    if (page === 'test/atlas/index.html' && facts.atlasHeaderRight > width + 1)
+      failures.push(`${where}: Atlas title group right ${Math.round(facts.atlasHeaderRight)} exceeds viewport ${width}`);
     if (!/not accepted/.test(facts.banner)) failures.push(`${where}: the draft label is not visible ("${facts.banner.slice(0, 60)}")`);
     if (facts.small.length) failures.push(`${where}: header links under 44px: ${facts.small.join(', ')}`);
     if (!/data-g9-shell/.test(facts.html)) failures.push(`${where}: no shell marker`);
@@ -82,64 +90,85 @@ for (const page of PAGES) {
   }
 }
 
-// The Atlas with nothing under TEST: an empty state that says what to do, not a broken page.
+// The NCERT TEST Question Bank must materialize all parked questions without losing its validation boundary.
 for (const width of [390, 1280]) {
-  const { context, tab, problems } = await open(width, 'test/atlas/index.html');
-  const subtitle = (await tab.textContent('#atlasSubtopicSubtitle')).trim();
-  const note = await tab.evaluate(() => (document.querySelector('.breadcrumb').nextElementSibling || {}).textContent || '');
-  checked += 1;
-  if (!/No TEST rung matrix yet/.test(subtitle)) failures.push(`atlas empty @${width}: subtitle is "${subtitle}"`);
-  if (!/TEST\/matrices/.test(note) || !/build_web_data/.test(note)) failures.push(`atlas empty @${width}: the note does not say how to add a matrix ("${note.slice(0, 80)}")`);
-  for (const problem of problems) failures.push(`atlas empty @${width}: ${problem}`);
-  await context.close();
-}
-
-// The same page with a matrix under TEST: the real Atlas engine renders it, nothing from another subject appears.
-for (const width of [390, 1280]) {
-  const { context, tab, problems } = await open(width, 'test/atlas/index.html?matrix=MATRIX-TEST-BROWSER', { injectMatrix: true });
-  await tab.waitForFunction(() => /Subtopic:/.test((document.getElementById('atlasSubtopicSubtitle') || {}).textContent || ''), null, { timeout: 8000 })
-    .catch(() => failures.push(`atlas with matrix @${width}: the subtitle never showed a subtopic`));
+  const { context, tab, problems } = await open(width, 'test/question-bank/index.html');
+  await tab.waitForFunction(() => document.querySelectorAll('[data-g9-test-question]').length === 210, null, { timeout: 8000 })
+    .catch(() => failures.push(`question bank @${width}: 210 cards never materialized`));
   const facts = await tab.evaluate(() => ({
-    subtitle: (document.getElementById('atlasSubtopicSubtitle') || {}).textContent || '',
-    rungs: document.querySelectorAll('#rungs .rung-card, #rungs [data-rung], #rungs .card').length,
+    cards: document.querySelectorAll('[data-g9-test-question]').length,
+    validated: document.querySelectorAll('[data-g9-validation="VALIDATED"]').length,
+    hold: document.querySelectorAll('[data-g9-validation="HOLD"]').length,
+    unvalidated: document.querySelectorAll('[data-g9-validation="UNVALIDATED"]').length,
+    sourceVerified: document.querySelectorAll('[data-g9-source-verification="SOURCE VERIFIED"]').length,
+    duplicateReview: document.querySelectorAll('[data-g9-review="DUPLICATE_REVIEW"]').length,
     overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-    text: document.body.innerText,
   }));
   checked += 1;
-  if (!/MATRIX-TEST-BROWSER/.test(facts.subtitle)) failures.push(`atlas with matrix @${width}: subtitle is "${facts.subtitle}"`);
-  if (facts.overflow > 1) failures.push(`atlas with matrix @${width}: ${facts.overflow}px wider than the screen`);
-  if (/Laws of Motion|NLM/.test(facts.text)) failures.push(`atlas with matrix @${width}: the Laws of Motion template shows through`);
-  for (const problem of problems) failures.push(`atlas with matrix @${width}: ${problem}`);
+  if (facts.cards !== 210) failures.push(`question bank @${width}: expected 210 cards, got ${facts.cards}`);
+  if (facts.validated !== 58) failures.push(`question bank @${width}: expected 58 VALIDATED cards, got ${facts.validated}`);
+  if (facts.hold !== 1) failures.push(`question bank @${width}: expected one HOLD card, got ${facts.hold}`);
+  if (facts.unvalidated !== 151) failures.push(`question bank @${width}: expected 151 UNVALIDATED cards, got ${facts.unvalidated}`);
+  if (facts.sourceVerified !== 12) failures.push(`question bank @${width}: expected 12 source-evidenced cards, got ${facts.sourceVerified}`);
+  if (facts.duplicateReview !== 0) failures.push(`question bank @${width}: expected no duplicate-review cards, got ${facts.duplicateReview}`);
+  if (facts.overflow > 1) failures.push(`question bank @${width}: ${facts.overflow}px wider than the screen`);
+
+  await tab.locator('#tqbUnit').selectOption('Unit 2: Polynomials');
+  await tab.waitForTimeout(50);
+  const visiblePolynomials = await tab.locator('[data-g9-test-question]:not([hidden])').count();
+  if (visiblePolynomials !== 30) failures.push(`question bank @${width}: Unit 2 filter shows ${visiblePolynomials}, expected 30`);
+  for (const problem of problems) failures.push(`question bank @${width}: ${problem}`);
   await context.close();
 }
 
-// On a 12.7-inch tablet (either way up) the Atlas, empty or with a matrix, has no control under 48 px and no text under 14 px.
-for (const [width, height] of [[1366, 854], [854, 1366]]) {
-  for (const withMatrix of [false, true]) {
-    const { context, tab, problems } = await open(width, withMatrix ? 'test/atlas/index.html?matrix=MATRIX-TEST-BROWSER' : 'test/atlas/index.html', { injectMatrix: withMatrix, height });
-    if (withMatrix) await tab.waitForFunction(() => /Subtopic:/.test((document.getElementById('atlasSubtopicSubtitle') || {}).textContent || ''), null, { timeout: 8000 }).catch(() => {});
-    const facts = await tab.evaluate(() => {
-      const shown = (el) => { const r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0 && !el.closest('[hidden]') && getComputedStyle(el).visibility !== 'hidden'; };
-      const small = [...document.querySelectorAll('a[href], button, input, select, summary, [role=button]')].filter((el) => shown(el) && el.getBoundingClientRect().height < 47.5)
-        .map((el) => `${el.tagName.toLowerCase()} "${(el.textContent || el.getAttribute('aria-label') || el.type || '').trim().slice(0, 20)}" ${Math.round(el.getBoundingClientRect().height)}px`);
-      const tiny = new Set();
-      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-      for (let node = walker.nextNode(); node; node = walker.nextNode()) {
-        const parent = node.parentElement;
-        if (!node.textContent.trim() || !parent || parent.closest('script, style, [hidden]') || !shown(parent)) continue;
-        const size = parseFloat(getComputedStyle(parent).fontSize);
-        if (size < 14) tiny.add(`${parent.tagName.toLowerCase()}.${String(parent.className).split(' ')[0]} ${size}px`);
-      }
-      return { small, tiny: [...tiny], overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth };
-    });
-    checked += 1;
-    const where = `atlas ${withMatrix ? 'with a matrix' : 'empty'} @${width}x${height}`;
-    if (facts.small.length) failures.push(`${where}: controls under 48px: ${facts.small.slice(0, 6).join('; ')}`);
-    if (facts.tiny.length) failures.push(`${where}: text under 14px: ${facts.tiny.slice(0, 6).join('; ')}`);
-    if (facts.overflow > 1) failures.push(`${where}: ${facts.overflow}px wider than the screen`);
-    for (const problem of problems) failures.push(`${where}: ${problem}`);
-    await context.close();
+// The real TEST matrix: the TEST-local projection feeds the existing Atlas engine.
+for (const width of [390, 1280]) {
+  const { context, tab, problems } = await open(width, 'test/atlas/index.html?matrix=MATRIX-TEST-ISS55-POLY');
+  await tab.waitForFunction(() => /Subtopic:/.test((document.getElementById('atlasSubtopicSubtitle') || {}).textContent || ''), null, { timeout: 8000 })
+    .catch(() => failures.push(`atlas real matrix @${width}: the subtitle never showed a subtopic`));
+  const facts = await tab.evaluate(() => ({
+    subtitle: (document.getElementById('atlasSubtopicSubtitle') || {}).textContent || '',
+    overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    text: document.body.innerText,
+    hasLocalData: !!document.querySelector('script[data-g9-test-atlas-data]'),
+  }));
+  checked += 1;
+  if (!/MATRIX-TEST-ISS55-POLY/.test(facts.subtitle)) failures.push(`atlas real matrix @${width}: subtitle is "${facts.subtitle}"`);
+  if (!facts.hasLocalData) failures.push(`atlas real matrix @${width}: TEST-local Atlas data script is missing`);
+  if (!/Degree-Bounded Polynomial Identity|Interval Sign Charts|Auxiliary Variable Substitution/.test(facts.text)) {
+    failures.push(`atlas real matrix @${width}: polynomial rung content did not render`);
   }
+  if (facts.overflow > 1) failures.push(`atlas real matrix @${width}: ${facts.overflow}px wider than the screen`);
+  if (/Laws of Motion|NLM/.test(facts.text)) failures.push(`atlas real matrix @${width}: the Laws of Motion template shows through`);
+  for (const problem of problems) failures.push(`atlas real matrix @${width}: ${problem}`);
+  await context.close();
+}
+
+// On a 12.7-inch tablet (either way up) the real Atlas has no undersized controls/text and no overflow.
+for (const [width, height] of [[1366, 854], [854, 1366]]) {
+  const { context, tab, problems } = await open(width, 'test/atlas/index.html?matrix=MATRIX-TEST-ISS55-POLY', { height });
+  await tab.waitForFunction(() => /Subtopic:/.test((document.getElementById('atlasSubtopicSubtitle') || {}).textContent || ''), null, { timeout: 8000 }).catch(() => {});
+  const facts = await tab.evaluate(() => {
+    const shown = (el) => { const r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0 && !el.closest('[hidden]') && getComputedStyle(el).visibility !== 'hidden'; };
+    const small = [...document.querySelectorAll('a[href], button, input, select, summary, [role=button]')].filter((el) => shown(el) && el.getBoundingClientRect().height < 47.5)
+      .map((el) => `${el.tagName.toLowerCase()} "${(el.textContent || el.getAttribute('aria-label') || el.type || '').trim().slice(0, 20)}" ${Math.round(el.getBoundingClientRect().height)}px`);
+    const tiny = new Set();
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+      const parent = node.parentElement;
+      if (!node.textContent.trim() || !parent || parent.closest('script, style, [hidden]') || !shown(parent)) continue;
+      const size = parseFloat(getComputedStyle(parent).fontSize);
+      if (size < 14) tiny.add(`${parent.tagName.toLowerCase()}.${String(parent.className).split(' ')[0]} ${size}px`);
+    }
+    return { small, tiny: [...tiny], overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth };
+  });
+  checked += 1;
+  const where = `atlas real matrix @${width}x${height}`;
+  if (facts.small.length) failures.push(`${where}: controls under 48px: ${facts.small.slice(0, 6).join('; ')}`);
+  if (facts.tiny.length) failures.push(`${where}: text under 14px: ${facts.tiny.slice(0, 6).join('; ')}`);
+  if (facts.overflow > 1) failures.push(`${where}: ${facts.overflow}px wider than the screen`);
+  for (const problem of problems) failures.push(`${where}: ${problem}`);
+  await context.close();
 }
 
 // The tab: from the portal and from each subject hub, one tap reaches the TEST hub, and the hub reaches the other pages.
@@ -171,4 +200,4 @@ if (failures.length) {
   console.log(`\nFAIL: ${failures.length} problem(s) in ${checked} checks`);
   process.exit(1);
 }
-console.log(`PASS: the TEST pages hold at ${WIDTHS.length} widths, the Atlas shows its empty state and renders a TEST matrix, and the tab is reachable (${checked} checks)`);
+console.log(`PASS: the TEST pages hold at ${WIDTHS.length} widths, the 210-question TEST bank preserves its validation boundary, the real polynomial Atlas renders from local data, and the tab is reachable (${checked} checks)`);

@@ -1,0 +1,731 @@
+{
+  "schema": "qrt-pr3-math-pilot/v1",
+  "status": "PILOT_ONLY_NOT_CANONICAL",
+  "source": {
+    "repository": "reallaksh19/Grade9v3.5",
+    "pull_request": 3,
+    "head": "fceb5df4747b7f6ecb6d09c88bf3bdbbdb2b284a",
+    "question_package": "Mathematics/library/polynomials.v1.json",
+    "rendered_page": "public/mathematics/polynomials/core2.html",
+    "observed_blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.0.0",
+    "active_blueprint_ref": "BP-CORE2-SOURCE-QUESTION@1.5.0",
+    "render_core_stamp_present": true,
+    "note": "The pilot proves matrix resolution and semantic review against the current PR #3 render, but the rendered page still declares an older Core2 blueprint ref and is not acceptance evidence for active Blueprint 1.9."
+  },
+  "blocked_companion_path": {
+    "package": "Mathematics/library/coordinate-geometry.v1.json",
+    "rendered_page": "public/mathematics/coordinate-geometry/core2.html",
+    "reason": "At the inspected PR #3 head the page has no data-blueprint-ref, no data-g9-role CORE2, no render_core stamp, and no source question anchors; normalize it before QRT render review."
+  },
+  "learner_profile": {
+    "profile_id": "PROFILE-MAT-POLY-PR3-PILOT",
+    "provenance": "SYNTHETIC_TEST",
+    "held": {
+      "CAP-MAT-ALG-IDENTITIES": "DEMONSTRATED",
+      "CAP-MAT-POLY-REMAINDER-FACTOR": "DEMONSTRATED",
+      "CAP-MAT-POLY-STRUCTURE": "DEMONSTRATED",
+      "CAP-MAT-POLY-EVALUATION": "DEMONSTRATED"
+    },
+    "knowledge_percentage": null,
+    "support_posture": "STANDARD",
+    "measured_fit_claim": false
+  },
+  "items": [
+    {
+      "source_question_ref": "Q-MAT-POLY-M1-P39-CHECK-POINT-1-1",
+      "expected_template_id": "QRT-RETRIEVE-D1",
+      "normalized_pilot_question": {
+        "id": "Q-MAT-POLY-M1-P39-CHECK-POINT-1-1",
+        "stem": "Classify the following polynomials based on the number of terms: (a) x + 3 (b) x² + x + 2 (c) x³ + 1 (d) 8x³ (e) 7x² + 8x + 3 (f) x⁵/12 (g) x⁴ + x²/2 (h) x² + x + 3.",
+        "primary_capability_ref": "CAP-MAT-ALG-IDENTITIES",
+        "secondary_capability_refs": [],
+        "difficulty": {
+          "band": "D1",
+          "score": 1,
+          "components": {
+            "concept_model_selection": 0,
+            "representation_translation": 0,
+            "reasoning_chain_length": 1,
+            "algebra_computational_load": 0,
+            "trap_exception_sensitivity": 0
+          },
+          "basis": "The decisive learner act is retrieving the term-count classification criterion and applying it to each expression; no new model choice is required."
+        },
+        "extensions": {
+          "grade9v3:cognitive_demand": {
+            "primary": "RETRIEVE",
+            "secondary": [],
+            "basis": "The decisive learner act is retrieving the term-count classification criterion and applying it to each expression; no new model choice is required."
+          },
+          "grade9v3:analysis": {
+            "stable_crux_move": "Count top-level nonzero terms, then map 1/2/3 terms to monomial/binomial/trinomial.",
+            "common_wrong_route": "Classify by degree or highest exponent instead of number of terms."
+          }
+        },
+        "answer": {
+          "reasoning_route": [
+            {
+              "id": "MOVE-1",
+              "kind": "DECIDE",
+              "action": "Identify the top-level terms in each polynomial.",
+              "why_valid": "Terms are separated by top-level addition or subtraction.",
+              "inputs": [],
+              "output": "term counts"
+            },
+            {
+              "id": "MOVE-2",
+              "kind": "CONNECT",
+              "action": "Map each term count to the classification name.",
+              "why_valid": "Monomial/binomial/trinomial are defined by one/two/three nonzero terms.",
+              "inputs": [
+                "term counts"
+              ],
+              "output": "classifications"
+            }
+          ],
+          "crux_move_ref": "MOVE-2"
+        }
+      },
+      "render_observation": {
+        "page": "public/mathematics/polynomials/core2.html",
+        "question_anchor_present": true,
+        "attempt_box_count": 1,
+        "hint_ladder_count": 0,
+        "hint_rung_count": 0,
+        "figure_count": 0,
+        "concept_link_count": 0,
+        "why_valid_count": 0,
+        "independent_check_count": 0
+      },
+      "review": {
+        "H1": {
+          "verdict": "NO",
+          "evidence": "Rendered article has an empty support slot and zero hint ladders/rungs.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "H2": {
+          "verdict": "NO",
+          "evidence": "Rendered article has an empty support slot and zero hint ladders/rungs.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "H3": {
+          "verdict": "NO",
+          "evidence": "Rendered article has an empty support slot and zero hint ladders/rungs.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "S1": {
+          "verdict": "YES",
+          "correctly_not_applicable": true,
+          "not_applicable_reason": "For these symbolic polynomial items, no figure is required to perform the demand-specific cognitive job; absence is not treated as a defect.",
+          "evidence": "Rendered article contains zero figures.",
+          "fix": null
+        },
+        "S2": {
+          "verdict": "YES",
+          "correctly_not_applicable": true,
+          "not_applicable_reason": "For these symbolic polynomial items, no figure is required to perform the demand-specific cognitive job; absence is not treated as a defect.",
+          "evidence": "Rendered article contains zero figures.",
+          "fix": null
+        },
+        "S3": {
+          "verdict": "YES",
+          "correctly_not_applicable": true,
+          "not_applicable_reason": "For these symbolic polynomial items, no figure is required to perform the demand-specific cognitive job; absence is not treated as a defect.",
+          "evidence": "Rendered article contains zero figures.",
+          "fix": null
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "The stem/attempt are shown before solution; the solution is inside details[data-requires-attempt].",
+          "fix": null
+        },
+        "P2": {
+          "verdict": "NO",
+          "evidence": "Rendered article has zero concept links.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "P3": {
+          "verdict": "NO",
+          "evidence": "Rendered article has no per-move 'Why valid' support and no independent-check block.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "M1": {
+          "verdict": "NO",
+          "evidence": "Rendered article exposes no misconception diagnostic/repair support.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "M2": {
+          "verdict": "NO",
+          "evidence": "Rendered article exposes no misconception diagnostic/repair support.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "M3": {
+          "verdict": "NO",
+          "evidence": "Rendered article exposes no misconception diagnostic/repair support.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        }
+      }
+    },
+    {
+      "source_question_ref": "Q-MAT-POLY-M1-P39-CHECK-POINT-1-5",
+      "expected_template_id": "QRT-APPLY-D2",
+      "normalized_pilot_question": {
+        "id": "Q-MAT-POLY-M1-P39-CHECK-POINT-1-5",
+        "stem": "The polynomial 5x² + 7x + 3 is divided by x - 2. Find the remainder by using the remainder theorem.",
+        "primary_capability_ref": "CAP-MAT-POLY-REMAINDER-FACTOR",
+        "secondary_capability_refs": [],
+        "difficulty": {
+          "band": "D2",
+          "score": 3,
+          "components": {
+            "concept_model_selection": 1,
+            "representation_translation": 0,
+            "reasoning_chain_length": 1,
+            "algebra_computational_load": 1,
+            "trap_exception_sensitivity": 0
+          },
+          "basis": "The theorem is named in the stem; the learner must execute a known relation under its stated divisor form."
+        },
+        "extensions": {
+          "grade9v3:cognitive_demand": {
+            "primary": "APPLY",
+            "secondary": [],
+            "basis": "The theorem is named in the stem; the learner must execute a known relation under its stated divisor form."
+          },
+          "grade9v3:analysis": {
+            "stable_crux_move": "Translate divisor x - 2 into evaluation at x = 2 and compute p(2).",
+            "common_wrong_route": "Substitute -2 because the divisor visibly contains -2, or perform long division despite the named theorem."
+          }
+        },
+        "answer": {
+          "reasoning_route": [
+            {
+              "id": "MOVE-1",
+              "kind": "DECIDE",
+              "action": "Read x - 2 as the remainder-theorem input a = 2.",
+              "why_valid": "For division by x-a, the remainder is p(a).",
+              "inputs": [],
+              "output": "a=2"
+            },
+            {
+              "id": "MOVE-2",
+              "kind": "TRANSFORM",
+              "action": "Evaluate p(2).",
+              "why_valid": "The remainder theorem reduces the division to evaluation.",
+              "inputs": [
+                "a=2"
+              ],
+              "output": "remainder"
+            }
+          ],
+          "crux_move_ref": "MOVE-2"
+        }
+      },
+      "render_observation": {
+        "page": "public/mathematics/polynomials/core2.html",
+        "question_anchor_present": true,
+        "attempt_box_count": 1,
+        "hint_ladder_count": 0,
+        "hint_rung_count": 0,
+        "figure_count": 0,
+        "concept_link_count": 0,
+        "why_valid_count": 0,
+        "independent_check_count": 0
+      },
+      "review": {
+        "H1": {
+          "verdict": "NO",
+          "evidence": "Rendered article has an empty support slot and zero hint ladders/rungs.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "H2": {
+          "verdict": "NO",
+          "evidence": "Rendered article has an empty support slot and zero hint ladders/rungs.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "H3": {
+          "verdict": "NO",
+          "evidence": "Rendered article has an empty support slot and zero hint ladders/rungs.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "S1": {
+          "verdict": "YES",
+          "correctly_not_applicable": true,
+          "not_applicable_reason": "For these symbolic polynomial items, no figure is required to perform the demand-specific cognitive job; absence is not treated as a defect.",
+          "evidence": "Rendered article contains zero figures.",
+          "fix": null
+        },
+        "S2": {
+          "verdict": "YES",
+          "correctly_not_applicable": true,
+          "not_applicable_reason": "For these symbolic polynomial items, no figure is required to perform the demand-specific cognitive job; absence is not treated as a defect.",
+          "evidence": "Rendered article contains zero figures.",
+          "fix": null
+        },
+        "S3": {
+          "verdict": "YES",
+          "correctly_not_applicable": true,
+          "not_applicable_reason": "For these symbolic polynomial items, no figure is required to perform the demand-specific cognitive job; absence is not treated as a defect.",
+          "evidence": "Rendered article contains zero figures.",
+          "fix": null
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "The stem/attempt are shown before solution; the solution is inside details[data-requires-attempt].",
+          "fix": null
+        },
+        "P2": {
+          "verdict": "NO",
+          "evidence": "Rendered article has zero concept links.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "P3": {
+          "verdict": "NO",
+          "evidence": "Rendered article has no per-move 'Why valid' support and no independent-check block.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "M1": {
+          "verdict": "NO",
+          "evidence": "Rendered article exposes no misconception diagnostic/repair support.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "M2": {
+          "verdict": "NO",
+          "evidence": "Rendered article exposes no misconception diagnostic/repair support.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "M3": {
+          "verdict": "NO",
+          "evidence": "Rendered article exposes no misconception diagnostic/repair support.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        }
+      }
+    },
+    {
+      "source_question_ref": "Q-MAT-POLY-M2-P01-ASSESSMENT-CORNER-SINGLE-CORRECT-TYPE-QUESTIONS-2",
+      "expected_template_id": "QRT-MODEL-D2",
+      "normalized_pilot_question": {
+        "id": "Q-MAT-POLY-M2-P01-ASSESSMENT-CORNER-SINGLE-CORRECT-TYPE-QUESTIONS-2",
+        "stem": "One of the factors of the expression (2x - 3y)² - 7(2x - 3y) - 30 is:",
+        "primary_capability_ref": "CAP-MAT-POLY-STRUCTURE",
+        "secondary_capability_refs": [],
+        "difficulty": {
+          "band": "D2",
+          "score": 5,
+          "components": {
+            "concept_model_selection": 2,
+            "representation_translation": 1,
+            "reasoning_chain_length": 1,
+            "algebra_computational_load": 1,
+            "trap_exception_sensitivity": 0
+          },
+          "basis": "The important move is choosing a simpler structural model u = 2x - 3y before carrying out routine quadratic factorisation."
+        },
+        "extensions": {
+          "grade9v3:cognitive_demand": {
+            "primary": "MODEL",
+            "secondary": [],
+            "basis": "The important move is choosing a simpler structural model u = 2x - 3y before carrying out routine quadratic factorisation."
+          },
+          "grade9v3:analysis": {
+            "stable_crux_move": "Recognize the repeated expression 2x - 3y as one variable and model the expression as u² - 7u - 30.",
+            "common_wrong_route": "Expand everything in x and y first, losing the repeated-expression structure."
+          }
+        },
+        "answer": {
+          "reasoning_route": [
+            {
+              "id": "MOVE-1",
+              "kind": "DECIDE",
+              "action": "Set u = 2x - 3y.",
+              "why_valid": "The same compound expression appears as the quadratic base and the linear term.",
+              "inputs": [],
+              "output": "u²-7u-30"
+            },
+            {
+              "id": "MOVE-2",
+              "kind": "TRANSFORM",
+              "action": "Factor the quadratic in u and translate back.",
+              "why_valid": "The substitution preserves the expression exactly.",
+              "inputs": [
+                "u²-7u-30"
+              ],
+              "output": "factor in x,y"
+            }
+          ],
+          "crux_move_ref": "MOVE-1"
+        }
+      },
+      "render_observation": {
+        "page": "public/mathematics/polynomials/core2.html",
+        "question_anchor_present": true,
+        "attempt_box_count": 1,
+        "hint_ladder_count": 0,
+        "hint_rung_count": 0,
+        "figure_count": 0,
+        "concept_link_count": 0,
+        "why_valid_count": 0,
+        "independent_check_count": 0
+      },
+      "review": {
+        "H1": {
+          "verdict": "NO",
+          "evidence": "Rendered article has an empty support slot and zero hint ladders/rungs.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "H2": {
+          "verdict": "NO",
+          "evidence": "Rendered article has an empty support slot and zero hint ladders/rungs.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "H3": {
+          "verdict": "NO",
+          "evidence": "Rendered article has an empty support slot and zero hint ladders/rungs.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "S1": {
+          "verdict": "YES",
+          "correctly_not_applicable": true,
+          "not_applicable_reason": "For these symbolic polynomial items, no figure is required to perform the demand-specific cognitive job; absence is not treated as a defect.",
+          "evidence": "Rendered article contains zero figures.",
+          "fix": null
+        },
+        "S2": {
+          "verdict": "YES",
+          "correctly_not_applicable": true,
+          "not_applicable_reason": "For these symbolic polynomial items, no figure is required to perform the demand-specific cognitive job; absence is not treated as a defect.",
+          "evidence": "Rendered article contains zero figures.",
+          "fix": null
+        },
+        "S3": {
+          "verdict": "YES",
+          "correctly_not_applicable": true,
+          "not_applicable_reason": "For these symbolic polynomial items, no figure is required to perform the demand-specific cognitive job; absence is not treated as a defect.",
+          "evidence": "Rendered article contains zero figures.",
+          "fix": null
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "The stem/attempt are shown before solution; the solution is inside details[data-requires-attempt].",
+          "fix": null
+        },
+        "P2": {
+          "verdict": "NO",
+          "evidence": "Rendered article has zero concept links.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "P3": {
+          "verdict": "NO",
+          "evidence": "Rendered article has no per-move 'Why valid' support and no independent-check block.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "M1": {
+          "verdict": "NO",
+          "evidence": "Rendered article exposes no misconception diagnostic/repair support.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "M2": {
+          "verdict": "NO",
+          "evidence": "Rendered article exposes no misconception diagnostic/repair support.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "M3": {
+          "verdict": "NO",
+          "evidence": "Rendered article exposes no misconception diagnostic/repair support.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        }
+      }
+    },
+    {
+      "source_question_ref": "Q-MAT-POLY-M2-P06-HIGHER-ORDER-THINKING-SKILLS-HOTS-16",
+      "expected_template_id": "QRT-SYNTHESIZE-D3",
+      "normalized_pilot_question": {
+        "id": "Q-MAT-POLY-M2-P06-HIGHER-ORDER-THINKING-SKILLS-HOTS-16",
+        "stem": "The polynomials ax³ + 3x² - 3 and 2x³ - 5x + a when divided by (x - 4) leave the remainder R1 and R2 respectively. Find the value of a if R1 + R2 = 0.",
+        "primary_capability_ref": "CAP-MAT-POLY-REMAINDER-FACTOR",
+        "secondary_capability_refs": [],
+        "difficulty": {
+          "band": "D3",
+          "score": 6,
+          "components": {
+            "concept_model_selection": 1,
+            "representation_translation": 1,
+            "reasoning_chain_length": 2,
+            "algebra_computational_load": 2,
+            "trap_exception_sensitivity": 0
+          },
+          "basis": "The learner must coordinate two remainder-theorem evaluations and then apply a shared condition to solve for one parameter."
+        },
+        "extensions": {
+          "grade9v3:cognitive_demand": {
+            "primary": "SYNTHESIZE",
+            "secondary": [],
+            "basis": "The learner must coordinate two remainder-theorem evaluations and then apply a shared condition to solve for one parameter."
+          },
+          "grade9v3:analysis": {
+            "stable_crux_move": "Evaluate both polynomials at x = 4, keep R1 and R2 distinct, then impose R1 + R2 = 0.",
+            "common_wrong_route": "Set each remainder to zero separately instead of using the stated relation between them."
+          }
+        },
+        "answer": {
+          "reasoning_route": [
+            {
+              "id": "MOVE-1",
+              "kind": "REPRESENT",
+              "action": "Write R1 = P(4) and R2 = Q(4).",
+              "why_valid": "Both divisors are x-4, so the remainder theorem uses the same evaluation point.",
+              "inputs": [],
+              "output": "two remainder expressions"
+            },
+            {
+              "id": "MOVE-2",
+              "kind": "CONNECT",
+              "action": "Combine the two remainder expressions using R1 + R2 = 0.",
+              "why_valid": "The problem constrains their sum, not each remainder separately.",
+              "inputs": [
+                "R1",
+                "R2"
+              ],
+              "output": "one equation in a"
+            },
+            {
+              "id": "MOVE-3",
+              "kind": "TRANSFORM",
+              "action": "Solve the resulting linear equation for a.",
+              "why_valid": "The coordinated condition produces a single algebraic unknown.",
+              "inputs": [
+                "one equation in a"
+              ],
+              "output": "a"
+            }
+          ],
+          "crux_move_ref": "MOVE-2"
+        }
+      },
+      "render_observation": {
+        "page": "public/mathematics/polynomials/core2.html",
+        "question_anchor_present": true,
+        "attempt_box_count": 1,
+        "hint_ladder_count": 0,
+        "hint_rung_count": 0,
+        "figure_count": 0,
+        "concept_link_count": 0,
+        "why_valid_count": 0,
+        "independent_check_count": 0
+      },
+      "review": {
+        "H1": {
+          "verdict": "NO",
+          "evidence": "Rendered article has an empty support slot and zero hint ladders/rungs.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "H2": {
+          "verdict": "NO",
+          "evidence": "Rendered article has an empty support slot and zero hint ladders/rungs.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "H3": {
+          "verdict": "NO",
+          "evidence": "Rendered article has an empty support slot and zero hint ladders/rungs.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "S1": {
+          "verdict": "YES",
+          "correctly_not_applicable": true,
+          "not_applicable_reason": "For these symbolic polynomial items, no figure is required to perform the demand-specific cognitive job; absence is not treated as a defect.",
+          "evidence": "Rendered article contains zero figures.",
+          "fix": null
+        },
+        "S2": {
+          "verdict": "YES",
+          "correctly_not_applicable": true,
+          "not_applicable_reason": "For these symbolic polynomial items, no figure is required to perform the demand-specific cognitive job; absence is not treated as a defect.",
+          "evidence": "Rendered article contains zero figures.",
+          "fix": null
+        },
+        "S3": {
+          "verdict": "YES",
+          "correctly_not_applicable": true,
+          "not_applicable_reason": "For these symbolic polynomial items, no figure is required to perform the demand-specific cognitive job; absence is not treated as a defect.",
+          "evidence": "Rendered article contains zero figures.",
+          "fix": null
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "The stem/attempt are shown before solution; the solution is inside details[data-requires-attempt].",
+          "fix": null
+        },
+        "P2": {
+          "verdict": "NO",
+          "evidence": "Rendered article has zero concept links.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "P3": {
+          "verdict": "NO",
+          "evidence": "Rendered article has no per-move 'Why valid' support and no independent-check block.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "M1": {
+          "verdict": "NO",
+          "evidence": "Rendered article exposes no misconception diagnostic/repair support.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "M2": {
+          "verdict": "NO",
+          "evidence": "Rendered article exposes no misconception diagnostic/repair support.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "M3": {
+          "verdict": "NO",
+          "evidence": "Rendered article exposes no misconception diagnostic/repair support.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        }
+      }
+    },
+    {
+      "source_question_ref": "Q-MAT-POLY-M1-P44-CHECK-POINT-2-10",
+      "expected_template_id": "QRT-JUSTIFY-D3",
+      "normalized_pilot_question": {
+        "id": "Q-MAT-POLY-M1-P44-CHECK-POINT-2-10",
+        "stem": "If p - q = 9, prove that p³ - q³ - 27pq = 729.",
+        "primary_capability_ref": "CAP-MAT-ALG-IDENTITIES",
+        "secondary_capability_refs": [],
+        "difficulty": {
+          "band": "D3",
+          "score": 6,
+          "components": {
+            "concept_model_selection": 2,
+            "representation_translation": 0,
+            "reasoning_chain_length": 2,
+            "algebra_computational_load": 1,
+            "trap_exception_sensitivity": 1
+          },
+          "basis": "The task asks for a proof; the decisive work is selecting and applying a valid identity to establish the target from the given condition."
+        },
+        "extensions": {
+          "grade9v3:cognitive_demand": {
+            "primary": "JUSTIFY",
+            "secondary": [],
+            "basis": "The task asks for a proof; the decisive work is selecting and applying a valid identity to establish the target from the given condition."
+          },
+          "grade9v3:analysis": {
+            "stable_crux_move": "Rewrite p³ - q³ - 3pq(p-q) as (p-q)³, then use p-q = 9.",
+            "common_wrong_route": "Try arbitrary numerical values for p and q or expand aimlessly without a warrant connecting the target to p-q."
+          }
+        },
+        "answer": {
+          "reasoning_route": [
+            {
+              "id": "MOVE-1",
+              "kind": "DECIDE",
+              "action": "Use the identity p³ - q³ - 3pq(p-q) = (p-q)³.",
+              "why_valid": "It is the difference-of-cubes identity rearranged to expose the given quantity p-q.",
+              "inputs": [],
+              "output": "(p-q)³"
+            },
+            {
+              "id": "MOVE-2",
+              "kind": "CONNECT",
+              "action": "Substitute p-q = 9 to obtain 9³.",
+              "why_valid": "The given condition matches the identity's exposed quantity exactly.",
+              "inputs": [
+                "(p-q)³"
+              ],
+              "output": "729"
+            },
+            {
+              "id": "MOVE-3",
+              "kind": "VERIFY",
+              "action": "Check that 27pq equals 3pq(p-q) when p-q=9.",
+              "why_valid": "This confirms the target expression matches the identity under the given condition.",
+              "inputs": [
+                "p-q=9"
+              ],
+              "output": "identity match"
+            }
+          ],
+          "crux_move_ref": "MOVE-1"
+        }
+      },
+      "render_observation": {
+        "page": "public/mathematics/polynomials/core2.html",
+        "question_anchor_present": true,
+        "attempt_box_count": 1,
+        "hint_ladder_count": 0,
+        "hint_rung_count": 0,
+        "figure_count": 0,
+        "concept_link_count": 0,
+        "why_valid_count": 0,
+        "independent_check_count": 0
+      },
+      "review": {
+        "H1": {
+          "verdict": "NO",
+          "evidence": "Rendered article has an empty support slot and zero hint ladders/rungs.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "H2": {
+          "verdict": "NO",
+          "evidence": "Rendered article has an empty support slot and zero hint ladders/rungs.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "H3": {
+          "verdict": "NO",
+          "evidence": "Rendered article has an empty support slot and zero hint ladders/rungs.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "S1": {
+          "verdict": "YES",
+          "correctly_not_applicable": true,
+          "not_applicable_reason": "For these symbolic polynomial items, no figure is required to perform the demand-specific cognitive job; absence is not treated as a defect.",
+          "evidence": "Rendered article contains zero figures.",
+          "fix": null
+        },
+        "S2": {
+          "verdict": "YES",
+          "correctly_not_applicable": true,
+          "not_applicable_reason": "For these symbolic polynomial items, no figure is required to perform the demand-specific cognitive job; absence is not treated as a defect.",
+          "evidence": "Rendered article contains zero figures.",
+          "fix": null
+        },
+        "S3": {
+          "verdict": "YES",
+          "correctly_not_applicable": true,
+          "not_applicable_reason": "For these symbolic polynomial items, no figure is required to perform the demand-specific cognitive job; absence is not treated as a defect.",
+          "evidence": "Rendered article contains zero figures.",
+          "fix": null
+        },
+        "P1": {
+          "verdict": "YES",
+          "evidence": "The stem/attempt are shown before solution; the solution is inside details[data-requires-attempt].",
+          "fix": null
+        },
+        "P2": {
+          "verdict": "NO",
+          "evidence": "Rendered article has zero concept links.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "P3": {
+          "verdict": "NO",
+          "evidence": "Rendered article has no per-move 'Why valid' support and no independent-check block.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "M1": {
+          "verdict": "NO",
+          "evidence": "Rendered article exposes no misconception diagnostic/repair support.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "M2": {
+          "verdict": "NO",
+          "evidence": "Rendered article exposes no misconception diagnostic/repair support.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        },
+        "M3": {
+          "verdict": "NO",
+          "evidence": "Rendered article exposes no misconception diagnostic/repair support.",
+          "fix": "Resolve this ask from the selected QRT cell and Mathematics subject adapter."
+        }
+      }
+    }
+  ]
+}

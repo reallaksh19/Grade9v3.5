@@ -7,6 +7,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  issues: read
+
 jobs:
   code-tests:
     runs-on: ubuntu-latest
@@ -17,6 +21,70 @@ jobs:
           python-version: "3.11"
       - name: Install test dependencies
         run: pip install --quiet jsonschema pypdf
+      - name: Diagnostic evidence contract
+        run: python3 -m unittest tests.test_diagnostic_evidence_contract
+      - name: U09 diagnostic caller migration
+        run: |
+          python3 -m unittest \
+            tests.test_feedback \
+            tests.test_study_session \
+            tests.test_neetprep_relative_motion_pilot \
+            tests.test_c6_examside_motion_in_plane \
+            tests.test_high_likelihood_scenario_matrix_contract
+      - name: Representation instance binding contract
+        run: python3 -m unittest tests.test_representation_binding_contract
+      - name: Issue69 subject-neutrality contract
+        run: python3 -m unittest tests.test_issue69_subject_neutrality
+      - name: Core2 staged support contract
+        run: python3 -m unittest tests.test_staged_support_repair
+      - name: NCERT custody-witnessed metadata provenance is fail-closed
+        run: python3 -m unittest tests.test_learner_metadata -v
+      - name: Strict renderer failures identify typed gaps without writing
+        run: python3 -m unittest tests.test_render_core.Renderer.test_strict_build_failure_names_typed_gaps_without_writing -v
+      - name: Physics Motion-in-2D source figure references resolve
+        run: python3 -m unittest tests.test_motion_2d_figure_resolution -v
+      - name: TEST Question Bank regressions
+        run: python3 -m unittest tests.test_test_question_bank
+      - name: TEST official intake identity/shape gate
+        run: python3 -m unittest tests.test_test_intake_identity -v
+      - name: TEST verified source custody and ready-only handoff
+        run: |
+          python3 -m unittest tests.test_test_source_custody -v
+          python3 Shared/tools/test_source_custody.py
+      - name: R4 primary-source review is bounded and non-promoting
+        run: |
+          python3 -m unittest tests.test_test_source_review -v
+          python3 Shared/tools/test_source_review.py
+      - name: Authenticate pilot witness pointers
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python3 -m unittest tests.test_test_witness_authentication -v
+          python3 Shared/tools/verify_test_source_witnesses.py
+      - name: Blocking TEST hub custody and generator freshness
+        run: |
+          python3 -m unittest tests.test_test_area.TestPages.test_test_search_index_covers_parked_questions_without_becoming_canonical_search -v
+          python3 -m unittest tests.test_test_area.TestPages.test_committed_pages_are_what_the_generator_writes -v
+          python3 -m unittest tests.test_test_area.TestPages.test_test_shell_subject_links_stay_under_portal_root_at_each_depth -v
+          python3 -m unittest tests.test_pages_site.PagesSiteTest.test_html_entities_are_decoded_for_official_links_and_traversal -v
+          python3 -m unittest tests.test_pages_site.PagesSiteTest.test_generated_html_links_do_not_escape_docs_root -v
+          python3 -m unittest tests.test_pages_site.PagesSiteTest.test_committed_pages_mirror_is_current -v
+      - name: Capture exact generator output after a blocking failure
+        if: failure()
+        run: |
+          python3 Shared/tools/build_test_site.py
+          git diff --stat -- public/test/index.html public/test/rungs/index.html public/test/deployments/index.html
+      - name: Upload TEST regeneration evidence
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-generator-freshness-diagnostic
+          path: |
+            public/test/index.html
+            public/test/rungs/index.html
+            public/test/deployments/index.html
+          if-no-files-found: error
+          retention-days: 7
       - name: Informational platform code tests
         continue-on-error: true
         run: >-
@@ -30,6 +98,26 @@ jobs:
           tests.test_core2_v2_motion2d
           tests.test_core2_v2_quality
           tests.test_core2_v2_boundaries
+
+
+      - name: Existing blueprint layout observation regressions
+        run: node --test tests/test_blueprint_layout.mjs
+
+  test-question-bank-browser-audit:
+    # Blocking technical evidence for the TEST-only NCERT intake browser.
+    # Passing this does not admit or publish any question to the production Question Bank.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install TEST Question Bank browser dependencies
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Audit 210-question TEST Question Bank
+        run: node tests/test_test_question_bank_browser.mjs
 
   core2-v2-browser-audit:
     # Rendered acceptance evidence only. This job is deliberately non-gating;
@@ -49,6 +137,25 @@ jobs:
           pip install --quiet jsonschema pypdf
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
+      - name: ISS66 staged support browser-state replay
+        run: |
+          python3 tests/iss66_support_state_fixture.py --out /tmp/iss66-support.html
+          python3 -m http.server 8766 --directory /tmp >/tmp/iss66-support-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          python3 - <<'PY'
+          import socket, time
+          for _ in range(50):
+              try:
+                  with socket.create_connection(("127.0.0.1", 8766), timeout=0.2):
+                      break
+              except OSError:
+                  time.sleep(0.1)
+          else:
+              raise SystemExit("ISS66 support fixture server did not start")
+          PY
+          node tests/iss66_support_state_browser.mjs http://127.0.0.1:8766/iss66-support.html
+
       - name: Render real Motion-in-2D product
         run: |
           rm -rf /tmp/g9-core2-v2-site
@@ -114,6 +221,42 @@ jobs:
             --single-base http://127.0.0.1:8765/products/physics/phy-kin-2d-motion-single/ \
             --witness PYQ-PHY-IITJEE-2011-P2-Q33 \
             --audit-json /tmp/core-page-audit.json
+
+  test-area-browser-audit:
+    # Informational TEST-sandbox layout/runtime evidence. Never grants publication.
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install TEST browser dependencies
+        run: |
+          pip install --quiet jsonschema pypdf
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Render current ISS55 polynomial TEST draft
+        run: |
+          python3 Shared/tools/deploy_test.py product TEST/products/iss55-poly.manifest.json
+          python3 Shared/tools/deploy_test.py pages
+      - name: Audit polynomial Core2 TEST draft
+        run: |
+          node tools/site-audit/core-page-audit.mjs             public/test/products/iss55-poly             --profile tablet-12.7             --json /tmp/iss55-poly-core2-audit.json
+      - name: Audit TEST hub, Atlas, rungs and deployments
+        run: node tests/test_area_browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-iss55-poly-current-render
+          path: |
+            public/test/products/iss55-poly
+            /tmp/iss55-poly-core2-audit.json
+          if-no-files-found: error
+          retention-days: 7
 
   blueprint-v2-render-snapshots:
     # Regenerate review snapshots from the live merged blueprint-v2 authority on main.

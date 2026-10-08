@@ -20,7 +20,7 @@ class TestBlueprintTransitions(unittest.TestCase):
         bridge_html = render_core._core1a_interactive_bridge(self.ctx, m_friction)
         self.assertIn("data-g9-interactive-bridge", bridge_html)
         self.assertIn("Try it visually", bridge_html)
-        self.assertIn("physics/nlm/explorers/friction-threshold/index.html", bridge_html)
+        self.assertIn('href="../../../physics/nlm/explorers/friction-threshold/index.html"', bridge_html)
 
     def test_interactive_bridge_absent_when_no_explorer(self):
         # Microtopic 2: MIC-PHY-NLM-FRICTION-QUANT has NO explorer
