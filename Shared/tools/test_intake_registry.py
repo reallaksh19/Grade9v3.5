@@ -96,6 +96,8 @@ def load_intake_banks(repo: Path) -> list[dict]:
                 raise ValueError(f"{where}: raw capture cannot claim READY or source HOLD")
             if q.get("text_verification_status") != "CAPTURED_UNVERIFIED":
                 raise ValueError(f"{where}: raw capture cannot claim independent text verification")
+            if q.get("wording_custody") != "CAPTURED_UNVERIFIED":
+                raise ValueError(f"{where}: raw capture cannot claim verbatim wording custody")
             if "page" in q:
                 raise ValueError(f"{where}: ambiguous raw page is prohibited; use unverified_legacy_page")
             legacy_page = q.get("unverified_legacy_page")
