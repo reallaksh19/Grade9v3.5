@@ -21,6 +21,10 @@ jobs:
         run: python3 -m unittest tests.test_test_question_bank
       - name: TEST official intake identity/shape gate
         run: python3 -m unittest tests.test_test_intake_identity -v
+      - name: TEST verified source custody and ready-only handoff
+        run: |
+          python3 -m unittest tests.test_test_source_custody -v
+          python3 Shared/tools/test_source_custody.py
       - name: Informational platform code tests
         continue-on-error: true
         run: >-
