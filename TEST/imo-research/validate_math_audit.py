@@ -116,8 +116,8 @@ def validate_audit(root: Path = ROOT) -> dict:
                    else "EVERYDAY_MATHEMATICS" if number <= 45 else "ACHIEVERS_SECTION")
         ensure(row.get("exam_section_observed") == section, f"{qid}: section differs from printed SOF sections")
         ensure(row.get("computed_answer") == expected.get(qid), f"{qid}: calculation result unsupported")
-        ensure(row.get("math_derived_printed_choice") in "ABCD" and
-               row.get("compilation_claimed_choice") in "ABCD" and
+        ensure(row.get("math_derived_printed_choice") in ("A", "B", "C", "D") and
+               row.get("compilation_claimed_choice") in ("A", "B", "C", "D") and
                isinstance(row.get("independent_computation"), str) and len(row["independent_computation"]) >= 35,
                f"{qid}: insufficient answer reasoning")
         ensure(row.get("source_comparison") in {
