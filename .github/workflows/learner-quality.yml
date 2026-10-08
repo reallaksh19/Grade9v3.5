@@ -59,6 +59,10 @@ jobs:
         run: |
           python3 -m unittest tests.test_test_source_recapture -v
           python3 Shared/tools/test_source_recapture.py
+      - name: R4 Q11-Q12 across two topics stay rendered-page observations only
+        run: |
+          python3 -m unittest tests.test_test_source_observation -v
+          python3 Shared/tools/test_source_observation.py
       - name: Authenticate pilot witness pointers
         env:
           GITHUB_TOKEN: ${{ github.token }}
