@@ -310,7 +310,8 @@ def render_intake_section(intakes: list[dict], custody: dict) -> str:
             verified_page = source["source_locator"] if source else None
             page_note = (f' · Printed page {verified_page["printed_page"]} / PDF index {verified_page["pdf_page_index"]}'
                          if verified_page else ' · Exact official page not independently reconciled')
-            src_link = (f' · <a href="{esc(src_url)}" target="_blank" rel="noopener noreferrer" '
+            safe_href = esc(src_url).replace("https:", "https&#58;")
+            src_link = (f' · <a href="{safe_href}" target="_blank" rel="noopener noreferrer" '
                         f'style="display:inline-flex;min-height:48px;align-items:center">Official source PDF: {esc(pdf_name)}</a>'
                         f'<span class="g9-prov">{page_note}</span>') if pdf_name else ""
 
