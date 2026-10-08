@@ -204,13 +204,42 @@ def link(href: str, label: str) -> str:
 
 # ------------------------------------------------------------------ pages
 
-def render_candidate_audit_section(audits: list[dict]) -> str:
+def render_candidate_audit_section(audits: list[dict], custody: dict | None = None) -> str:
     if not audits:
         return ""
+    # Old candidate audit receipts are immutable history, not present-day custody.
+    # Project fresh custody facts without rewriting their recorded claims.
+    if custody is None:
+        custody = test_source_custody.reconcile(REPO)
     cards = []
     rank = {"PASS": 0, "NOT_APPLICABLE": 1, "PENDING": 2, "BLOCKED": 3}
     for audit in audits:
         checks = audit.get("checks") or {}
+        legacy_note = ""
+        if audit.get("candidate_id") == "NCERT-EXEMPLAR-G9-MATH-210":
+            historical = audit.get("question_counts") or {}
+            checks = dict(checks)
+            checks["custody"] = {
+                "status": "PENDING",
+                "detail": ("The historical metadata PASS cannot verify official wording. "
+                           f"Current source custody: {custody['ready_for_blueprint']} independently "
+                           f"evidenced; {custody['source_text_hold']} source-text HOLD; "
+                           f"{custody['evidence_pending']} awaiting evidence."),
+            }
+            counts_source = {
+                "total": custody["total_intake"],
+                "ready_for_blueprint": custody["ready_for_blueprint"],
+                "source_text_hold": custody["source_text_hold"],
+                "evidence_pending": custody["evidence_pending"],
+            }
+            legacy_note = (
+                '<p class="g9-prov">Historical QA receipt (not current source authority): '
+                f'{esc(historical.get("ready_for_blueprint", "?"))} previously labelled READY and '
+                f'{esc(historical.get("duplicate_review", "?"))} duplicate-review. '
+                'Present readiness is computed exclusively from source-custody evidence.</p>'
+            )
+        else:
+            counts_source = audit.get("question_counts") or {}
         ordered = sorted(checks.items(), key=lambda item: (rank.get((item[1] or {}).get("status"), 9), item[0]))
         rows = "".join(
             f'<tr><td>{esc(name.replace("_", " ").title())}</td>'
@@ -218,7 +247,7 @@ def render_candidate_audit_section(audits: list[dict]) -> str:
             f'<td>{esc((result or {}).get("detail", ""))}</td></tr>'
             for name, result in ordered
         )
-        counts = " · ".join(f"{esc(k.replace('_', ' '))}: {esc(v)}" for k, v in (audit.get("question_counts") or {}).items())
+        counts = " · ".join(f"{esc(k.replace('_', ' '))}: {esc(v)}" for k, v in counts_source.items())
         promotion = audit.get("promotion") or {}
         origin = audit.get("origin") or {}
         origin_text = f'PR #{origin.get("pr")}' if origin.get("pr") else origin.get("type", "TEST")
@@ -235,6 +264,7 @@ def render_candidate_audit_section(audits: list[dict]) -> str:
             f'<div class="g9-table-scroll"><table><thead><tr><th>Check</th><th>Status</th><th>Evidence / next action</th></tr></thead>'
             f'<tbody>{rows}</tbody></table></div>'
             f'<p class="g9-prov">Promotion reason: {esc(promotion.get("reason", ""))}</p>'
+            + legacy_note
         ))
     return "".join(cards)
 
@@ -315,6 +345,35 @@ INTAKE_HOME_FILTER_SCRIPT = """<script src="question-bank/questions.js"></script
       if (!q) throw new Error("TEST intake source projection missing " + id);
       const values = Object.fromEntries(dimensions.map(([key, get]) => [key, get(q)]));
       el.dataset.g9IntakeSourceId = q.id;
+      el.dataset.g9SourceCustody = q.custody_evidence_status || "EVIDENCE_PENDING";
+      el.dataset.g9AnswerCustody = q.custody_answer_source_url ? "INDEPENDENTLY_EVIDENCED" : "KEY_NOT_EVIDENCED";
+      el.dataset.g9AcademicState = q.academic_validation_status || "UNVALIDATED";
+      // Render from the guarded projection. A captured raw status or old QA
+      // receipt never creates a VERIFIED badge.
+      const sourceReady = q.custody_evidence_status === "INDEPENDENTLY_EVIDENCED";
+      const sourceHold = q.custody_evidence_status === "SOURCE_TEXT_HOLD";
+      const badges = [
+        q.subject || "Unknown subject", "Grade " + (q.grade ?? "Unknown"),
+        q.subtopic_label || "", (q.question_type || "Unknown type").replaceAll("_", " "),
+        q.source_authority === "NCERT_OFFICIAL" ? "NCERT" : q.source_authority === "CBSE_OFFICIAL" ? "CBSE" : "Unknown authority",
+        q.source_kind || "Unknown source kind",
+        "INTAKE ONLY",
+        sourceHold ? "SOURCE TEXT HOLD" : sourceReady ? "SOURCE VERIFIED" : "SOURCE UNVERIFIED",
+        sourceHold ? "TEXT HELD" : sourceReady ? "TEXT VERIFIED" : "TEXT UNVERIFIED",
+        blueprint(q).replaceAll("_", " "),
+        "ACADEMIC " + (q.academic_validation_status || "UNVALIDATED"),
+        q.custody_answer_source_url ? "ANSWER KEY EVIDENCED"
+          : q.official_answer_text ? "ANSWER KEY CUSTODY PENDING" : "NO ANSWER RECORDED"
+      ].filter(Boolean);
+      const banner = el.querySelector('div[style*="display:flex"]');
+      if (!banner) throw new Error("TEST intake card has no status-badge group: " + q.id);
+      for (const name of badges) {
+        const chip = document.createElement("span");
+        chip.dataset.g9IntakeBadge = name;
+        chip.textContent = name;
+        chip.style.cssText = "background:#334155;color:#fff;padding:2px 6px;border-radius:4px";
+        banner.append(chip);
+      }
       return { el, values, search: [q.id, q.original_identifier, q.stem, q.topic_label,
         q.subtopic_label, q.chapter_or_unit, q.question_type].join(" ").toLowerCase() };
     });
@@ -359,7 +418,9 @@ def render_intake_section(intakes: list[dict], custody: dict) -> str:
     ready = {row["intake_question_ref"]: row for row in custody["handoff"]}
     held = set(custody["hold_ids"])
     if not intakes:
-        return ""
+        return ('<section data-g9-intake-empty><h2>Stage-1 Question Intake</h2>'
+                '<p>No official source-intake questions are staged. Source evidence and '
+                'blueprint readiness are not available.</p></section>')
     blocks = []
     for bank in intakes:
         bank_id = bank.get("bank_id", "unknown")
@@ -378,13 +439,18 @@ def render_intake_section(intakes: list[dict], custody: dict) -> str:
             opts = q.get("options") or []
             opts_html = "".join(f"<li>{esc(o)}</li>" for o in opts)
             opts_block = f"<ul style='margin:4px 0 8px 18px'>{opts_html}</ul>" if opts_html else ""
+            source = ready.get(qid)
             ans_text = q.get("official_answer_text", "")
-            ans_block = f"<p><strong>Official Answer:</strong> {esc(ans_text)} <em>({esc(q.get('answer_key_locator', ''))})</em></p>" if ans_text else ""
+            key_evidenced = bool(source and source.get("official_answer_key_ref"))
+            answer_label = ("Evidenced official answer" if key_evidenced
+                            else "Recorded answer — official key custody pending")
+            ans_block = (f"<p><strong>{answer_label}:</strong> {esc(ans_text)} "
+                         f"<em>({esc(q.get('answer_key_locator', ''))})</em></p>") if ans_text else ""
             src_url = q.get("source_url", "")
             pdf_name = src_url.rsplit("/", 1)[-1] if src_url else ""
-            source = ready.get(qid)
             evidence_state = ("SOURCE EVIDENCED" if source else
                               "SOURCE TEXT HOLD" if qid in held else "EVIDENCE PENDING")
+            evidence_color = "#16a34a" if source else "#b45309" if qid in held else "#64748b"
             verified_page = source["source_locator"] if source else None
             page_note = (f' · Printed page {verified_page["printed_page"]} / PDF index {verified_page["pdf_page_index"]}'
                          if verified_page else ' · Exact official page not independently reconciled')
@@ -397,7 +463,7 @@ def render_intake_section(intakes: list[dict], custody: dict) -> str:
                 f'<div style="border:1px solid #e2e8f0;border-radius:6px;padding:12px;margin:8px 0;background:#fff">'
                 f'<div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;margin-bottom:6px">'
                 f'<span style="background:#0284c7;color:#fff;padding:2px 6px;border-radius:4px">{esc(q.get("topic_label", ""))}</span>'
-                f'<span style="background:#16a34a;color:#fff;padding:2px 6px;border-radius:4px">{esc(evidence_state)}</span>'
+                f'<span style="background:{evidence_color};color:#fff;padding:2px 6px;border-radius:4px">{esc(evidence_state)}</span>'
                 f'<span style="background:#64748b;color:#fff;padding:2px 6px;border-radius:4px">Difficulty: not analysed</span>'
                 f'<span style="background:#64748b;color:#fff;padding:2px 6px;border-radius:4px">Demand: not analysed</span>'
                 f'</div>'
@@ -409,6 +475,9 @@ def render_intake_section(intakes: list[dict], custody: dict) -> str:
             )
 
         all_q_html = "".join(q_cards)
+        if not q_list:
+            all_q_html = ('<p data-g9-intake-bank-empty>No valid official-source questions are staged '
+                          'in this bank. Source verification and readiness are pending.</p>')
 
         blocks.append(card(
             f"intake-{bank_id}",
@@ -461,8 +530,8 @@ def hub_page() -> str:
         'accepted or curriculum, and <code>accept_product.py</code> refuses TEST.</p>'
         '<p class="g9-prov">A gap count of 0 means the depth check found nothing missing. It counts what is absent, '
         'not how good it is, and it does not say the content has been reviewed.</p>'
-        + render_candidate_audit_section(audits)
         + render_intake_section(intakes, custody)
+        + render_candidate_audit_section(audits, custody)
         + render_owner_bank_section(owner)
         + stage(1, "Core2", "Owner-supplied questions, preserved verbatim", core2)
         + stage(2, "Core1A", "Concept construction for the same topic", core1a)

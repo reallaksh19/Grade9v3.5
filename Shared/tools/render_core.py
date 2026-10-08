@@ -1660,14 +1660,23 @@ def _toughest_unit_gaps(ctx: Ctx, m: dict, units: list[dict], toughest: dict) ->
         )
         return
 
-    # Naming the hard question is not a worked lesson. The traditional
-    # question-as-example path remains possible; an independent lesson example
-    # must bind the *actual* target question and its exact crux move, not merely
-    # share the topic. This check is only applied at authoring REFERENCE depth.
+    # The extra worked-target admission is a REFERENCE authoring obligation,
+    # not a new FLOOR rule for already governed canonical products. The
+    # blueprint itself keeps WORKED_EXAMPLE EXPECTED, never unwaivably REQUIRED.
+    if ctx.held_to != "REFERENCE":
+        return
+
     authored = ((m.get("extensions") or {}).get("grade9v3:lesson_anchors") or {})
     bank_by_id = {q["id"]: q for q in ctx.bank if isinstance(q, dict) and q.get("id")}
     for unit in builders:
         novel_anchor = authored.get(unit["id"])
+        # An author may explicitly waive an inapplicable worked panel at the
+        # recovered blueprint's EXPECTED level; a bare missing panel is not a
+        # waiver. An actual authored anchor still needs its exact crux binding.
+        if (novel_anchor is None and not unit.get("bank_anchor_ref")
+                and not unit.get("worked_anchor_ref")
+                and blueprints_api.waivers_of(unit).get("WORKED_EXAMPLE")):
+            continue
         if novel_anchor is not None:
             problems = learning_repair.anchor_problems(
                 novel_anchor, bank_by_id, unit["id"], expected_ref=ref)

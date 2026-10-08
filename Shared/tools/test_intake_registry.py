@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -90,6 +91,19 @@ def load_intake_banks(repo: Path) -> list[dict]:
                         "topic_label", "question_type")
             if any(not isinstance(q.get(field), str) or not q[field].strip() for field in metadata):
                 raise ValueError(f"{where}: missing required Stage-1 metadata")
+            # The flat v1 file is an unverified capture ledger, never a custody
+            # or READY receipt. Those decisions come only from the reconciler.
+            if q.get("workflow_status") != "EVIDENCE_PENDING":
+                raise ValueError(f"{where}: raw capture cannot claim READY or source HOLD")
+            if q.get("text_verification_status") != "CAPTURED_UNVERIFIED":
+                raise ValueError(f"{where}: raw capture cannot claim independent text verification")
+            if q.get("wording_custody") != "CAPTURED_UNVERIFIED":
+                raise ValueError(f"{where}: raw capture cannot claim verbatim wording custody")
+            if "page" in q:
+                raise ValueError(f"{where}: ambiguous raw page is prohibited; use unverified_legacy_page")
+            legacy_page = q.get("unverified_legacy_page")
+            if legacy_page is not None and (type(legacy_page) is not int or legacy_page < 1):
+                raise ValueError(f"{where}: invalid unverified legacy page")
             if q.get("subject") != bank["subject"] or type(q.get("grade")) is not int or q["grade"] != bank["grade"]:
                 raise ValueError(f"{where}: bank/question subject or grade mismatch")
             if q.get("source_authority") not in scope:
@@ -103,6 +117,26 @@ def load_intake_banks(repo: Path) -> list[dict]:
                 raise ValueError(f"{where}: unofficial or unsafe source URL")
             if not isinstance(q.get("stem"), str) or not q["stem"].strip():
                 raise ValueError(f"{where}: missing source stem")
+            # Captured options must be valid source content, even while the
+            # official wording and answers await independent custody evidence.
+            kind = q.get("question_type")
+            options = q.get("options")
+            if kind == "MULTIPLE_CHOICE":
+                if (not isinstance(options, list) or len(options) < 2
+                        or not all(isinstance(option, str) and option.strip()
+                                   and re.match(r"^\([A-Z]\)\s+\S", option) for option in options)
+                        or len(set(options)) != len(options)
+                        or [option[1] for option in options]
+                        != [chr(ord("A") + index) for index in range(len(options))]):
+                    raise ValueError(f"{where}: malformed captured multiple-choice options")
+            elif kind == "TRUE_FALSE":
+                if options != ["True", "False"]:
+                    raise ValueError(f"{where}: malformed captured true/false options")
+            elif kind == "SHORT_ANSWER":
+                if options not in (None, []):
+                    raise ValueError(f"{where}: short-answer record must not invent options")
+            else:
+                raise ValueError(f"{where}: unsupported captured question type")
             digest = q.get("stem_sha256")
             if not isinstance(digest, str) or not digest.startswith("sha256:") or len(digest) != 71:
                 raise ValueError(f"{where}: missing or malformed source stem digest")

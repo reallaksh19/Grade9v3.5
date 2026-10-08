@@ -138,14 +138,75 @@ class TestPages(unittest.TestCase):
     def test_candidate_qa_registry_is_visible_and_both_candidates_remain_promotion_blocked(self):
         audits = build_test_site.candidate_audits()
         self.assertEqual({row["candidate_id"] for row in audits}, {"ISS55-POLY", "NCERT-EXEMPLAR-G9-MATH-210"})
-        self.assertEqual({row["promotion"]["status"] for row in audits}, {"BLOCKED"})
         by_id = {row["candidate_id"]: row for row in audits}
+        # Candidate technical readiness is not a canonical/learner release. The
+        # independent NCERT source remains blocked pending official custody.
+        self.assertEqual(by_id["ISS55-POLY"]["promotion"]["status"], "READY")
+        self.assertEqual(by_id["NCERT-EXEMPLAR-G9-MATH-210"]["promotion"]["status"], "BLOCKED")
         self.assertEqual(by_id["ISS55-POLY"]["state"], "TECH_PASS")
         self.assertEqual(by_id["NCERT-EXEMPLAR-G9-MATH-210"]["state"], "QA_IN_PROGRESS")
         hub = (REPO / "public/test/index.html").read_text(encoding="utf-8")
         self.assertIn("QA candidate: Issue #55 polynomial stress set", hub)
         self.assertIn("QA candidate: NCERT Exemplar Grade 9 Mathematics", hub)
         self.assertIn("2 candidate QA record(s) in TEST/candidates", hub)
+
+    def test_stale_ncert_qa_counts_are_not_current_source_authority(self):
+        """A 209-READY historical QA receipt must not override the custody ledger."""
+        historical = next(a for a in build_test_site.candidate_audits()
+                          if a["candidate_id"] == "NCERT-EXEMPLAR-G9-MATH-210")
+        self.assertEqual(historical["question_counts"]["ready_for_blueprint"], 209)
+        custody = {"total_intake": 210, "ready_for_blueprint": 0,
+                   "source_text_hold": 0, "evidence_pending": 210}
+        html = build_test_site.render_candidate_audit_section([historical], custody)
+        self.assertIn("ready for blueprint: 0", html)
+        self.assertIn("evidence pending: 210", html)
+        self.assertIn("Historical QA receipt", html)
+        self.assertNotIn("ready for blueprint: 209", html)
+        self.assertEqual(historical["question_counts"]["ready_for_blueprint"], 209)
+
+    def test_no_intake_bank_exposes_an_explicit_empty_state(self):
+        html = build_test_site.render_intake_section([], {"handoff": [], "hold_ids": []})
+        self.assertIn("data-g9-intake-empty", html)
+        self.assertIn("No official source-intake questions are staged", html)
+        self.assertNotIn("READY_FOR_BLUEPRINT", html)
+
+    def test_source_hold_and_empty_bank_do_not_claim_readiness(self):
+        source = copy.deepcopy(build_test_site.intake_banks()[0])
+        source["questions"] = [source["questions"][0]]
+        held = {"handoff": [], "hold_ids": [source["questions"][0]["id"]]}
+        html = build_test_site.render_intake_section([source], held)
+        self.assertIn("SOURCE TEXT HOLD", html)
+        self.assertNotIn("SOURCE EVIDENCED", html)
+        self.assertIn("Exact official page not independently reconciled", html)
+        self.assertIn("Recorded answer — official key custody pending", html)
+        source["questions"] = []
+        html = build_test_site.render_intake_section([source], {"handoff": [], "hold_ids": []})
+        self.assertIn("0 question(s)", html)
+        self.assertIn("data-g9-intake-bank-empty", html)
+        self.assertNotIn("data-g9-intake-source-id", html)
+
+    def test_pending_badge_is_neutral_and_separate_from_answer_key_claim(self):
+        home = build_test_site.render_intake_section(
+            build_test_site.intake_banks(), build_test_site.test_source_custody.reconcile(REPO))
+        self.assertIn('background:#64748b;color:#fff;padding:2px 6px;border-radius:4px">EVIDENCE PENDING', home)
+        self.assertNotIn('background:#16a34a;color:#fff;padding:2px 6px;border-radius:4px">EVIDENCE PENDING', home)
+        self.assertIn("ANSWER KEY CUSTODY PENDING", build_test_site.INTAKE_HOME_FILTER_SCRIPT)
+
+    def test_test_home_places_intake_before_historical_QA(self):
+        html = build_test_site.hub_page()
+        self.assertLess(html.index("Stage-1 Question Intake:"),
+                        html.index("QA candidate: Issue #55"))
+        self.assertIn("dataset.g9SourceCustody", build_test_site.INTAKE_HOME_FILTER_SCRIPT)
+
+    def test_test_home_answers_do_not_claim_unverified_official_key_custody(self):
+        """The 198 evidence-pending questions still carry recorded, not witnessed, keys."""
+        home = build_test_site.render_intake_section(
+            build_test_site.intake_banks(), build_test_site.test_source_custody.reconcile(REPO))
+        self.assertIn("Recorded answer — official key custody pending:", home)
+        self.assertIn("Evidenced official answer:", home)
+        self.assertNotIn("Official Answer:", home)
+        self.assertEqual(home.count("Evidenced official answer:"), 12)
+        self.assertEqual(home.count("Recorded answer — official key custody pending:"), 198)
 
     def test_test_search_index_covers_parked_questions_without_becoming_canonical_search(self):
         rows = build_test_site.test_search_index()
@@ -165,7 +226,9 @@ class TestPages(unittest.TestCase):
         hub = (REPO / "public/test/index.html").read_text(encoding="utf-8")
         self.assertIn('id="g9-test-search-index"', hub)
         self.assertIn("12 READY_FOR_BLUEPRINT · 0 SOURCE_TEXT_HOLD · 198 EVIDENCE_PENDING", hub)
-        self.assertNotIn("SOURCE TEXT HOLD", hub)
+        # The JavaScript facet may explain SOURCE TEXT HOLD even when there
+        # are zero actual held questions. It may not fabricate a held badge.
+        self.assertNotIn(">SOURCE TEXT HOLD</span>", hub)
         self.assertIn("Which one of the following is a polynomial?", hub)
         self.assertIn("Printed page 14 / PDF index 1", hub)
         self.assertIn("Inspect 210 parked intake questions", hub)
@@ -291,7 +354,11 @@ class TestPages(unittest.TestCase):
     def test_test_is_not_a_question_bank_subject(self):
         projection = build_question_bank_web.build(REPO)
         self.assertNotIn("TEST", {q.get("subject") for q in projection["questions"]})
-        self.assertEqual(len(projection["questions"]), 81)
+        # The independently growing production bank cannot use a frozen 81-
+        # question tally as a TEST-isolation oracle. Reject duplicated IDs.
+        self.assertGreaterEqual(len(projection["questions"]), 81)
+        self.assertEqual(len({q["id"] for q in projection["questions"]}),
+                         len(projection["questions"]))
 
 
     def test_polynomial_bank_uses_exact_primary_capabilities_and_keeps_concept_bridges_secondary(self):
@@ -434,6 +501,10 @@ class TestDeploy(unittest.TestCase):
         # never satisfy the Owner's authored, move-typed Core2 obligation.
         owner["answer"]["reasoning"] = ["A plausible untyped result is not a validated move."]
         owner["answer"].pop("reasoning_route", None)
+        # Removing the route also invalidates any existing scaffold move refs;
+        # leave those out so draft structural admission can still report the
+        # *separate* required reference-depth solution debt.
+        owner["scaffolds"] = []
         bank_path.write_text(json.dumps(bank), encoding="utf-8")
         receipt = deploy_test.deploy_product(self.fixture.manifest)
         gaps = [g for g in receipt["gaps"] if g["record"] == owner["id"]
@@ -450,7 +521,12 @@ class TestDeploy(unittest.TestCase):
         self.assertIn(self.fixture.slug, pages["deployments/index.html"])
         self.assertIn("accepted: no", pages["deployments/index.html"])
         self.assertIn("2 record(s) selected", pages["index.html"])
-        self.assertNotRegex(pages["index.html"] + pages["deployments/index.html"], r"(?i)\b(complete|completed|published|approved|ready)\b")
+        # Official source *intake* may legitimately say READY_FOR_BLUEPRINT,
+        # but no TEST *product deployment* is published or accepted.
+        self.assertNotRegex(pages["deployments/index.html"],
+                            r"(?i)\b(complete|completed|published|approved|ready)\b")
+        self.assertIn("not accepted", pages["index.html"])
+        self.assertIn("not accepted", pages["deployments/index.html"])
 
     def test_only_test_products_made_of_test_records_can_be_deployed(self):
         manifest = json.loads(self.fixture.manifest.read_text(encoding="utf-8"))
@@ -629,6 +705,26 @@ class TestToughestConcept(unittest.TestCase):
         gaps = self.toughest_gaps(self.deploy())
         self.assertEqual(len(gaps), 1, gaps)
         self.assertIn("no worked reasoning with a justified move", gaps[0])
+
+    def test_reference_hardest_question_can_waive_an_inapplicable_worked_panel(self):
+        receipt = self.deploy()
+        unit = self.unit_for(receipt, bank_anchor_ref=None, worked_anchor_ref=None,
+                             extensions={"grade9v3:component_waivers": {
+                                 "WORKED_EXAMPLE": "the complete teaching construction deliberately leads to independent practice"}})
+        accepted = self.deploy()
+        self.assertEqual(self.toughest_gaps(accepted), [],
+                         "the recovered WORKED_EXAMPLE level is EXPECTED, not unwaivably REQUIRED")
+        self.assertTrue(any(w["component"] == "WORKED_EXAMPLE" and w["record"] == unit["id"]
+                            for w in accepted["waived"]), accepted["waived"])
+        # Removing the authored reason cannot silently substitute for a worked
+        # example or its exact target-crux binding.
+        package = json.loads(self.package_path.read_text(encoding="utf-8"))
+        microtopic = next(m for m in package["microtopics"] if m["id"] == receipt["toughest"]["microtopic_ref"])
+        microtopic["construction_units"][0]["extensions"]["grade9v3:component_waivers"].clear()
+        self.package_path.write_text(json.dumps(package), encoding="utf-8")
+        gaps = self.toughest_gaps(self.deploy())
+        self.assertEqual(len(gaps), 1, gaps)
+        self.assertIn("a worked teaching example", gaps[0])
 
     def test_a_bank_ref_that_names_no_question_of_the_bank_is_a_gap_that_says_which(self):
         receipt = self.deploy()
@@ -869,7 +965,8 @@ class TestOwnerBankFromIntake(unittest.TestCase):
                       "a missing expected support lane needs authored support or a reasoned waiver")
         self.assertIn("SOLUTION_STEPS is absent: answer.reasoning_route", problems,
                       "missing required reasoning cannot pass merely because no step quota is declared")
-        self.assertIn("scaffolds[]", problems, "the message carries the blueprint's own instruction for the author")
+        self.assertIn("Author question-specific support", problems,
+                      "the missing expected lane retains actionable blueprint authoring guidance")
         self.assertEqual(owner_bank.check(bank, complete=False), [],
                          "draft authoring remains inspectable; only complete admission is fail-closed")
 
