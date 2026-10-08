@@ -18,6 +18,7 @@ SOURCES = ROOT / "seed" / "sources.json"
 DISPUTES = ROOT / "adjudication" / "source-discrepancy-register.v1.json"
 SAMPLE = ROOT / "verification" / "official-sample-2026-27-new-positions.v1.json"
 TOPICS = ROOT / "taxonomy" / "seed-question-topic-map.v1.jsonl"
+SAMPLE_OBSERVATIONS = ROOT / "taxonomy" / "official-sample-2026-27-observations.v1.json"
 WAIVER = ROOT / "governance" / "owner-independent-academic-review-waiver.v1.json"
 PINS = (
     ("owner_seed","TEST/imo-research/seed/questions.jsonl",
@@ -35,6 +36,9 @@ PINS = (
     ("owner_waiver",
      "TEST/imo-research/governance/owner-independent-academic-review-waiver.v1.json",
      "b647f1f3998a3d88fa91d99e193aaaf372279a93"),
+    ("organizer_sample_observations",
+     "TEST/imo-research/taxonomy/official-sample-2026-27-observations.v1.json",
+     "9f7620a21ef1da291d5e3a68b657437de93a1ba2"),
 )
 COMPONENTS = (
     "original_identity", "original_stem", "subparts_conditions",
@@ -104,12 +108,14 @@ def read_lines(path: Path) -> list[dict]:
 def validate_census(
     census: Path = CENSUS, seed: Path = SEED, sources: Path = SOURCES,
     disputes: Path = DISPUTES, sample: Path = SAMPLE, topics: Path = TOPICS,
-    waiver: Path = WAIVER,
+    waiver: Path = WAIVER, observations: Path = SAMPLE_OBSERVATIONS,
 ) -> dict:
     validate_seed(seed.parent)
     d, ledger, differences, addon, policy = tuple(
         read(x) for x in (census,sources,disputes,sample,waiver))
     questions,topic_rows = read_lines(seed),read_lines(topics)
+    observed_sample = read(observations)
+    observed_by_id = {r["question_id"]:r for r in observed_sample["records"]}
     ensure(set(d) == CENSUS_KEYS and
            d["schema"] == "sof-imo-g09-core2-source-custody-eligibility-census-v1"
            and type(d["responsibility_issue"]) is int
@@ -135,10 +141,10 @@ def validate_census(
                ("accepted_qrt_cells","core2_admitted_positions",
                 "core1a_admitted_units","learner_published")),
            "unauthorized QRT, Core or publication")
-    expected_files = (seed,sources,disputes,sample,topics,waiver)
+    expected_files = (seed,sources,disputes,sample,topics,waiver,observations)
     refs = d.get("inputs")
     ensure(isinstance(refs,list) and len(refs) == len(PINS),
-           "six exact source input provenance pins mandatory")
+           "seven exact source input provenance pins mandatory")
     for ref, (role,path,sha),file in zip(refs,PINS,expected_files):
         ensure(isinstance(ref,dict) and ref == dict(
             role=role,path=path,git_blob_sha=sha) and git_blob_sha(file) == sha,
@@ -149,6 +155,12 @@ def validate_census(
     ensure(len({q["seed_entry"] for q in questions}) == 65,
            "original source entries/split question changed")
     orig_sample = [q for q in questions if "SAMPLE" in q["source_id_claim"]]
+    ensure(len(observed_by_id) == 8 and
+           {q["id"] for q in orig_sample} == set(observed_by_id) and
+           observed_sample["organizer_url"] == addon["official_source_url"] and
+           observed_sample["document_sha256"] is None and
+           observed_sample["source_rights_status"] == "NOT_REVIEWED",
+           "organizer sample observations are not complete source custody")
     full = [q for q in questions if "SAMPLE" not in q["source_id_claim"]]
     extra = addon.get("entries",[])
     cases = differences.get("cases",[])
@@ -204,27 +216,39 @@ def validate_census(
             source = source_by_id[source_id]
             case = case_by_id.get(id)
             sample_row = "SAMPLE" in source_id
+            observed = observed_by_id[id] if sample_row else None
+            ensure(not sample_row or (
+                observed["sample_question_number"] == int(seeded["original_question_number_claim"])
+                and observed["source_comparison_status"] == "SECTION_AND_KEY_PANEL_SIGHTED_ONLY"),
+                f"{id}: organizer sample observation does not match original number")
             expected = {
               "identity_class":"OWNER_COMPILATION_SEED_CLAIM_NOT_VERIFIED_SOURCE",
               "origin_scope":"ORGANIZER_SAMPLE_SEED_POSITION" if sample_row else
                              "FULLPAPER_OWNER_SEED_POSITION",
-              "source_id":source_id,"source_host_kind":source["host_type"],
+              "source_id":source_id,
+              "source_host_kind":"SOF_ORGANIZER_HOSTED_PDF" if sample_row
+                                 else source["host_type"],
               "original_printed_position_claim":seeded["original_question_number_claim"],
               "original_printed_position_observed":(
+                  str(observed["sample_question_number"]) if sample_row else
                   str(seeded["original_question_number_claim"])
                   if case and int(seeded["original_question_number_claim"]) in case["source_numbers"]
                   else None),
               "source_document_url":addon["official_source_url"] if sample_row
                                     else source["url"],
               "source_locator_pdf_page_index":(
+                  observed["pdf_page_index"] if sample_row else
                   case["source_pdf_page_index"] if case else None),
               "source_locator_basis":(
-                  "DISCREPANCY_REGISTER_SCAN_OBSERVATION" if case
-                  else "INSUFFICIENT_ITEM_LOCATOR"),
+                  "ORGANIZER_SAMPLE_SECTION_AND_KEY_PANEL_SIGHTED_ONLY"
+                  if sample_row else "DISCREPANCY_REGISTER_SCAN_OBSERVATION"
+                  if case else "INSUFFICIENT_ITEM_LOCATOR"),
               "document_retained_sha256":source["document_sha256"],
               "source_text_fidelity_status":seeded["transcription_status"],
               "source_seed_custody_status":seeded["source_custody_status"],
-              "official_printed_key_receipt":"NOT_ESTABLISHED_FOR_CORE2",
+              "official_printed_key_receipt":(
+                  "SAMPLE_SOURCE_KEY_OBSERVED_NOT_CORE2_VERIFIED"
+                  if sample_row else "NOT_ESTABLISHED_FOR_CORE2"),
               "agent_mathematical_evidence":
                   "SEPARATE_RESEARCH_AGENT_WORK_NOT_ACADEMIC_APPROVAL",
               "provisional_topic_id":topic_by_id[id]["primary_topic_id"],
@@ -233,6 +257,8 @@ def validate_census(
               "next_source_action":(
                   "Resolve specific printed-versus-owner discrepancy with retained source bytes, complete item-component checks, and rights disposition."
                   if case else
+                  "Retain organizer PDF digest, verify full item components including stem/options and any figure, then determine copyright/external-reference permissions."
+                  if sample_row else
                   "Acquire/retain original PDF digest, establish exact printed item locator, check every source component, and record reproduction/external-reference rights.")
             }
         else:
