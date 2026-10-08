@@ -16,14 +16,14 @@ The owner-designated research standard permits agent mathematical checking **wit
 | 006 | Model two distinct print-shop invoices by simultaneous equations | 112 rupees; independently recompute both invoices | MODEL-D3 |
 | 007 | Reflect three vertices in the y-axis and translate; test area invariant | (6,-1),(1,-1),(4,2); signed determinant reverses but absolute area 7.5 | REPRESENT-D3 |
 
-These are **seven distinct provisional 4×7 QRT cells**, deliberately aligned with the seven historical research-cell categories already observed in the 2026–27 official sample. The original questions themselves do not reuse the SOF dice, quadrant puzzle, parallel-line diagram, stems or options. Their Grade 9 content is created from general educational mathematics (divisibility, coordinate geometry, triangles, surface area, linear relations and simultaneous equations).
+These are **seven distinct provisional 4×7 QRT cells**, aligned with the sample-research classification plan: six cells already present in the merged historical sample pilot and the seventh, REPRESENT-D3, documented in separate still-unmerged sample proposal PR #266. The original questions themselves do not reuse the SOF dice, quadrant puzzle, parallel-line diagram, stems or options. Their Grade 9 content is created from general educational mathematics (divisibility, coordinate geometry, triangles, surface area, linear relations and simultaneous equations).
 
 A learner may benefit from these tasks after standard quality and product review. However, this PR **does not** populate the canonical QRT matrix, turn them into Core 2/Core 1A learner pages, or claim live learner publication.
 
 ## Evidence and controls
 
 - Each question is a new free-response task with its own scenario, complete original prompt, expected result, reasoned working, alternate/reverse test, one important student mistake to diagnose, and protected cognitive action.
-- Each tentative QRT classification has a primary demand, optional secondary demands, **five explicit score components** and a score/band/cell derived from the [historical demand matrix](../../../../Shared/quality/question-demand-matrix.v1.json). A research-cell proposal is not an accepted Matrix slot.
+- Each tentative QRT classification has a primary demand, optional secondary demands, **five explicit score components** and a score/band/cell derived from the [historical demand matrix](../../../Shared/quality/question-demand-matrix.v1.json). A research-cell proposal is not an accepted Matrix slot.
 - `validate_original_practice.py` uses independent arithmetic checks, including all residue classes modulo 6; two determinant triangle areas; curved cylinder/unrolled rectangle; four linear table rows; both invoice constraints; and signed/absolute triangle area invariance under reflection and translation.
 - No third-party source stems, complete choice lists, figures or paper bytes are copied. The original owner 66-item source seed, 58 AI-worked fullpaper subset and 10 organizer sample source-position census are untouched.
 - Authorship is transparently marked **AI-generated**. No independent human reviewer is required by the owner's current policy and none is falsely claimed. Neither a publisher reuse license nor an exclusive originality guarantee has been established.
