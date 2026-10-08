@@ -146,15 +146,18 @@ class TestPages(unittest.TestCase):
         self.assertEqual(len([r for r in rows if r["kind"] == "OWNER_SUPPLIED"]), 10)
         self.assertEqual(len({r["id"] for r in rows}), 220)
         intake_rows = [r for r in rows if r["kind"] == "OFFICIAL_INTAKE"]
-        self.assertEqual(sum(r["status"] == "READY_FOR_BLUEPRINT" for r in intake_rows), 6)
-        self.assertEqual(sum(r["status"] == "EVIDENCE_PENDING" for r in intake_rows), 204)
+        self.assertEqual(sum(r["status"] == "READY_FOR_BLUEPRINT" for r in intake_rows), 11)
+        self.assertEqual(sum(r["status"] == "SOURCE_TEXT_HOLD" for r in intake_rows), 1)
+        self.assertEqual(sum(r["status"] == "EVIDENCE_PENDING" for r in intake_rows), 198)
         self.assertEqual(
             {r["id"] for r in intake_rows if r["status"] == "READY_FOR_BLUEPRINT"},
-            {f"ncert-exemplar-g9-math-u01-q{n:02d}" for n in range(1, 7)},
+            {f"ncert-exemplar-g9-math-u01-q{n:02d}" for n in range(1, 7)} |
+            {f"ncert-exemplar-g9-math-u02-q{n:02d}" for n in range(2, 7)},
         )
         hub = (REPO / "public/test/index.html").read_text(encoding="utf-8")
         self.assertIn('id="g9-test-search-index"', hub)
-        self.assertIn("6 READY_FOR_BLUEPRINT · 204 EVIDENCE_PENDING", hub)
+        self.assertIn("11 READY_FOR_BLUEPRINT · 1 SOURCE_TEXT_HOLD · 198 EVIDENCE_PENDING", hub)
+        self.assertIn("SOURCE TEXT HOLD", hub)
         self.assertIn("Inspect 210 parked intake questions", hub)
         self.assertIn('rel="noopener noreferrer"', hub)
         self.assertIn('href="https&#58;//ncert.nic.in/', hub)

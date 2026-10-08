@@ -96,14 +96,18 @@ def owner_banks() -> list[dict]:
 
 def test_search_index() -> list[dict]:
     """TEST-only index: sourced READY means independent custody, not a stored workflow label."""
-    ready = set(test_source_custody.reconcile(REPO)["ready_ids"])
+    custody = test_source_custody.reconcile(REPO)
+    ready = set(custody["ready_ids"])
+    held = set(custody["hold_ids"])
     rows: list[dict] = []
     for bank in intake_banks():
         for q in bank.get("questions", []):
             rows.append({
                 "id": q.get("id"), "bank_id": bank.get("bank_id"), "kind": "OFFICIAL_INTAKE",
                 "topic": q.get("topic_label"), "subtopic": q.get("subtopic_label"), "stem": q.get("stem"),
-                "status": "READY_FOR_BLUEPRINT" if q["id"] in ready else "EVIDENCE_PENDING", "difficulty": None, "demand": None,
+                "status": ("READY_FOR_BLUEPRINT" if q["id"] in ready else
+                           "SOURCE_TEXT_HOLD" if q["id"] in held else "EVIDENCE_PENDING"),
+                "difficulty": None, "demand": None,
             })
     for bank in owner_banks():
         for q in bank.get("questions", []):
@@ -281,6 +285,7 @@ def render_owner_bank_section(banks: list[dict]) -> str:
 
 def render_intake_section(intakes: list[dict], custody: dict) -> str:
     ready = {row["intake_question_ref"]: row for row in custody["handoff"]}
+    held = set(custody["hold_ids"])
     if not intakes:
         return ""
     blocks = []
@@ -306,7 +311,8 @@ def render_intake_section(intakes: list[dict], custody: dict) -> str:
             src_url = q.get("source_url", "")
             pdf_name = src_url.rsplit("/", 1)[-1] if src_url else ""
             source = ready.get(qid)
-            evidence_state = "SOURCE EVIDENCED" if source else "EVIDENCE PENDING"
+            evidence_state = ("SOURCE EVIDENCED" if source else
+                              "SOURCE TEXT HOLD" if qid in held else "EVIDENCE PENDING")
             verified_page = source["source_locator"] if source else None
             page_note = (f' · Printed page {verified_page["printed_page"]} / PDF index {verified_page["pdf_page_index"]}'
                          if verified_page else ' · Exact official page not independently reconciled')
@@ -343,7 +349,8 @@ def render_intake_section(intakes: list[dict], custody: dict) -> str:
             f'<h2>Stage-1 Question Intake: {esc(bank_id)}</h2>'
             f'<p class="g9-prov">Source scope: {esc(", ".join(bank.get("source_scope", [])))} · {len(q_list)} question(s) · '
             f'Independent source custody: {sum(q["id"] in ready for q in q_list)} READY_FOR_BLUEPRINT · '
-            f'{sum(q["id"] not in ready for q in q_list)} EVIDENCE_PENDING · historical intake labels are not authority</p>'
+            f'{sum(q["id"] in held for q in q_list)} SOURCE_TEXT_HOLD · '
+            f'{sum(q["id"] not in ready and q["id"] not in held for q in q_list)} EVIDENCE_PENDING · historical intake labels are not authority</p>'
             f'<p>Official questions ingested from <em>{esc(bank.get("created_from", "official source"))}</em>. '
             f'Independent official-document witnesses currently cover only the separately reconciled records; '
             f'a stored stem digest or historical verification label alone does not establish official custody. '

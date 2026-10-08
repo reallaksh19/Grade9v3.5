@@ -56,6 +56,7 @@ for (const width of [320, 390, 768, 1280]) {
       sourceVerified: cards.filter(card => card.dataset.g9SourceVerification === 'SOURCE VERIFIED').length,
       custodyEvidenced: cards.filter(card => card.dataset.g9Custody === 'INDEPENDENTLY_EVIDENCED').length,
       custodyPending: cards.filter(card => card.dataset.g9Custody === 'EVIDENCE_PENDING').length,
+      custodyHold: cards.filter(card => card.dataset.g9Custody === 'SOURCE_TEXT_HOLD').length,
       sourceLinks: cards.filter(card => card.querySelector('.tqb-card-footer a')).length,
       unsafeSourceLinks: cards.filter(card => {
         const a = card.querySelector('.tqb-card-footer a');
@@ -79,7 +80,7 @@ for (const width of [320, 390, 768, 1280]) {
   if (facts.hold !== 1) failures.push(`${where}: ${facts.hold}/1 HOLD`);
   if (facts.unvalidated !== 150) failures.push(`${where}: ${facts.unvalidated}/150 UNVALIDATED`);
   if (facts.sourceVerified !== 210) failures.push(`${where}: ${facts.sourceVerified}/210 historical text-verification labels`);
-  if (facts.custodyEvidenced !== 6 || facts.custodyPending !== 204) failures.push(`${where}: evidence truth is ${facts.custodyEvidenced} evidenced / ${facts.custodyPending} pending, expected 6/204`);
+  if (facts.custodyEvidenced !== 11 || facts.custodyHold !== 1 || facts.custodyPending !== 198) failures.push(`${where}: evidence truth is ${facts.custodyEvidenced} evidenced / ${facts.custodyHold} source-text HOLD / ${facts.custodyPending} pending, expected 11/1/198`);
   if (facts.sourceLinks !== 210 || facts.unsafeSourceLinks) failures.push(`${where}: source links ${facts.sourceLinks}/210, invalid ${facts.unsafeSourceLinks}`);
   if (facts.evidencedWithoutLocator) failures.push(`${where}: ${facts.evidencedWithoutLocator} independently evidenced records missing corrected printed/PDF locator`);
   if (facts.duplicateReview !== 0) failures.push(`${where}: ${facts.duplicateReview} duplicate-review cards, expected 0`);
@@ -114,4 +115,4 @@ if (failures.length) {
   console.log(`FAIL: ${failures.length} TEST Question Bank browser problem(s)`);
   process.exit(1);
 }
-console.log('PASS: TEST Question Bank renders 210 parked questions (6 independent custody evidence / 204 pending), official links, 59 VALIDATED / 1 HOLD / 150 UNVALIDATED, controls and no narrow overflow');
+console.log('PASS: TEST Question Bank renders 210 parked questions (11 independent custody evidence / 1 source-text HOLD / 198 pending), official links, 59 VALIDATED / 1 HOLD / 150 UNVALIDATED, controls and no narrow overflow');

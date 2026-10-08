@@ -68,9 +68,10 @@ def payload(repo: Path) -> dict:
     validations = validation_index(repo)
     custody = test_source_custody.reconcile(repo)
     source_evidence = {row["intake_question_ref"]: row for row in custody["handoff"]}
+    source_holds = set(custody["hold_ids"])
     banks = json.loads(json.dumps(intake_banks(repo)))
     counts: dict[str, int] = {}
-    custody_counts = {"INDEPENDENTLY_EVIDENCED": 0, "EVIDENCE_PENDING": 0}
+    custody_counts = {"INDEPENDENTLY_EVIDENCED": 0, "EVIDENCE_PENDING": 0, "SOURCE_TEXT_HOLD": 0}
     for bank in banks:
         for question in bank.get("questions") or []:
             row = validations.get(question.get("id")) or {"status": UNVALIDATED, "receipt": None}
@@ -78,7 +79,8 @@ def payload(repo: Path) -> dict:
             question["academic_validation_receipt"] = row["receipt"]
             counts[row["status"]] = counts.get(row["status"], 0) + 1
             evidence = source_evidence.get(question["id"])
-            state = "INDEPENDENTLY_EVIDENCED" if evidence else "EVIDENCE_PENDING"
+            state = ("INDEPENDENTLY_EVIDENCED" if evidence else
+                     "SOURCE_TEXT_HOLD" if question["id"] in source_holds else "EVIDENCE_PENDING")
             custody_counts[state] += 1
             question["custody_evidence_status"] = state
             question["custody_evidence_ref"] = evidence["verification_evidence_ref"] if evidence else None
@@ -165,13 +167,15 @@ PAGE = """<!doctype html>
 
   const verifiedCount = questions.filter(sourceVerified).length;
   const evidenceCount = questions.filter(q => custodyStatus(q) === 'INDEPENDENTLY_EVIDENCED').length;
-  const pendingCount = questions.length - evidenceCount;
+  const holdCount = questions.filter(q => custodyStatus(q) === 'SOURCE_TEXT_HOLD').length;
+  const pendingCount = questions.length - evidenceCount - holdCount;
   const validatedCount = questions.filter(q => validationStatus(q) === 'VALIDATED').length;
   const unvalidatedCount = questions.filter(q => validationStatus(q) === 'UNVALIDATED').length;
   const duplicateCount = questions.filter(q => q.workflow_status === 'DUPLICATE_REVIEW').length;
   stats.innerHTML = '<span class="tqb-stat">'+questions.length+' questions</span>'
     + '<span class="tqb-stat">'+verifiedCount+' legacy text-verification labels</span>'
     + '<span class="tqb-stat">'+evidenceCount+' independent source evidence</span>'
+    + '<span class="tqb-stat">'+holdCount+' source-text hold</span>'
     + '<span class="tqb-stat">'+pendingCount+' evidence pending</span>'
     + '<span class="tqb-stat">'+validatedCount+' academically validated</span>'
     + '<span class="tqb-stat">'+unvalidatedCount+' academically unvalidated</span>'
@@ -183,7 +187,10 @@ PAGE = """<!doctype html>
       ? '<ol class="tqb-options">'+q.options.map(option => '<li>'+esc(option)+'</li>').join('')+'</ol>' : '';
     const academic = validationStatus(q);
     const independentlyEvidenced = custodyStatus(q) === 'INDEPENDENTLY_EVIDENCED';
-    const answerNote = !independentlyEvidenced
+    const sourceHold = custodyStatus(q) === 'SOURCE_TEXT_HOLD';
+    const answerNote = sourceHold
+      ? 'SOURCE-TEXT HOLD: official NCERT wording differs from this recorded stem; source custody and READY are withheld pending review.'
+      : !independentlyEvidenced
       ? 'This answer is recorded in intake, but its official answer-document custody has not been independently reconciled.'
       : academic === 'VALIDATED'
         ? 'Independent official-answer custody and Grade9V3 academic validation are separately evidenced.'
@@ -206,7 +213,7 @@ PAGE = """<!doctype html>
     article.dataset.type = q.question_type || '';
     article.dataset.search = text;
     article.innerHTML = '<div class="tqb-badges">'
-      + '<span class="tqb-badge '+(independentlyEvidenced ? 'tqb-badge-custody' : 'tqb-badge-pending')+'">'+(independentlyEvidenced ? 'SOURCE EVIDENCED' : 'EVIDENCE PENDING')+'</span>'
+      + '<span class="tqb-badge '+(independentlyEvidenced ? 'tqb-badge-custody' : 'tqb-badge-pending')+'">'+(independentlyEvidenced ? 'SOURCE EVIDENCED' : sourceHold ? 'SOURCE TEXT HOLD' : 'EVIDENCE PENDING')+'</span>'
       + '<span class="tqb-badge '+(academic === 'VALIDATED' ? 'tqb-badge-validated' : 'tqb-badge-unvalidated')+'">'+esc(academic)+'</span>'+reviewBadge(q)+'</div>'
       + '<h2>'+esc(q.original_identifier || q.id)+'</h2>'
       + '<p class="tqb-meta"><code>'+esc(q.id)+'</code> · '+esc(q.chapter_or_unit || '')+' · '+esc(q.exercise_or_section || '')+' · '+esc(label(q.question_type || ''))+'</p>'
