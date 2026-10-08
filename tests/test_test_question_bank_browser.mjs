@@ -77,9 +77,9 @@ for (const width of [320, 390, 768, 1280]) {
 
   const where = `TEST Question Bank @${width}`;
   if (facts.cards !== 210 || facts.unique !== 210) failures.push(`${where}: card denominator/uniqueness is ${facts.cards}/${facts.unique}, expected 210/210`);
-  if (facts.validated !== 58) failures.push(`${where}: ${facts.validated}/58 VALIDATED`);
+  if (facts.validated !== 57) failures.push(`${where}: ${facts.validated}/57 VALIDATED`);
   if (facts.hold !== 1) failures.push(`${where}: ${facts.hold}/1 HOLD`);
-  if (facts.unvalidated !== 151) failures.push(`${where}: ${facts.unvalidated}/151 UNVALIDATED`);
+  if (facts.unvalidated !== 152) failures.push(`${where}: ${facts.unvalidated}/152 UNVALIDATED`);
   if (facts.sourceVerified !== 12) failures.push(`${where}: ${facts.sourceVerified}/12 independently evidenced source-verification attributes`);
   if (facts.legacyTextLabels !== 0) failures.push(`${where}: ${facts.legacyTextLabels} stale historical verification labels, expected 0`);
   if (facts.custodyEvidenced !== 12 || facts.custodyHold !== 0 || facts.custodyPending !== 198) failures.push(`${where}: evidence truth is ${facts.custodyEvidenced} evidenced / ${facts.custodyHold} source-text HOLD / ${facts.custodyPending} pending, expected 12/0/198`);
@@ -185,4 +185,4 @@ if (failures.length) {
   console.log(`FAIL: ${failures.length} TEST Question Bank browser problem(s)`);
   process.exit(1);
 }
-console.log('PASS: TEST Question Bank renders 210 parked questions (12 independent custody evidence / 0 source-text HOLD / 198 pending), official links, 58 VALIDATED / 1 HOLD / 151 UNVALIDATED (stale Q1 academic digest masked), controls and no narrow overflow');
+console.log('PASS: TEST Question Bank renders 210 parked questions (12 independent custody evidence / 0 source-text HOLD / 198 pending), official links, 57 VALIDATED / 1 HOLD / 152 UNVALIDATED (stale Q1 academic digest masked), controls and no narrow overflow');
