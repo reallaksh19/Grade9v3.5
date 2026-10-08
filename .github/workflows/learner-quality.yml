@@ -29,6 +29,22 @@ jobs:
         run: |
           python3 -m unittest tests.test_test_area.TestPages.test_test_search_index_covers_parked_questions_without_becoming_canonical_search -v
           python3 -m unittest tests.test_test_area.TestPages.test_committed_pages_are_what_the_generator_writes -v
+      - name: Capture exact generator output after a blocking failure
+        if: failure()
+        run: |
+          python3 Shared/tools/build_test_site.py
+          git diff --stat -- public/test/index.html public/test/rungs/index.html public/test/deployments/index.html
+      - name: Upload TEST regeneration evidence
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-generator-freshness-diagnostic
+          path: |
+            public/test/index.html
+            public/test/rungs/index.html
+            public/test/deployments/index.html
+          if-no-files-found: error
+          retention-days: 7
       - name: Informational platform code tests
         continue-on-error: true
         run: >-
