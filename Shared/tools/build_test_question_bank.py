@@ -110,7 +110,7 @@ PAGE = """<!doctype html>
 <title>Question Bank · TEST · Grade9V3</title>
 <link rel="stylesheet" href="../../css/tablet-12-7.css">
 <style>
-.tqb-shell{max-width:1220px;margin:0 auto;padding:24px}.tqb-intro{background:#fff7ed;border:1px solid #fdba74;border-radius:12px;padding:16px;margin:0 0 18px}.tqb-intro strong{color:#9a3412}.tqb-stats{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.tqb-stat,.tqb-badge{display:inline-flex;align-items:center;border-radius:999px;padding:5px 9px;font:700 12px/1.2 system-ui,sans-serif}.tqb-stat{background:#e2e8f0;color:#0f172a}.tqb-controls{display:grid;grid-template-columns:minmax(220px,2fr) minmax(180px,1fr) minmax(160px,1fr) auto;gap:10px;align-items:end;position:sticky;top:0;z-index:3;background:var(--bg,#f8fafc);padding:10px 0 14px}.tqb-controls>*{min-width:0}.tqb-controls label{display:grid;min-width:0;gap:4px;font:700 12px/1.2 system-ui,sans-serif}.tqb-controls input,.tqb-controls select,.tqb-controls button{width:100%;max-width:100%;min-width:0;min-height:48px;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:8px;padding:8px 10px;background:white;color:#0f172a}.tqb-controls button{cursor:pointer;font-weight:700}.tqb-result-count{margin:4px 0 12px;font-weight:700}.tqb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:14px}.tqb-card{border:1px solid #cbd5e1;border-radius:12px;background:#fff;padding:16px;min-width:0}.tqb-card[hidden]{display:none}.tqb-card h2{font-size:18px;margin:10px 0 4px}.tqb-badges{display:flex;gap:6px;flex-wrap:wrap}.tqb-badge-source{background:#dcfce7;color:#166534}.tqb-badge-unvalidated{background:#fef3c7;color:#92400e;border:1px solid #f59e0b}.tqb-badge-validated{background:#dbeafe;color:#1e40af;border:1px solid #60a5fa}.tqb-badge-review{background:#fee2e2;color:#991b1b}.tqb-meta,.tqb-muted{color:#64748b;font-size:13px;overflow-wrap:anywhere}.tqb-stem{font-size:17px;line-height:1.55;margin:14px 0}.tqb-options{margin:8px 0 12px;padding-left:24px}.tqb-options li{margin:5px 0}.tqb-answer{border-top:1px solid #e2e8f0;margin-top:12px;padding-top:10px}.tqb-answer summary{cursor:pointer;font-weight:700;min-height:48px;display:flex;align-items:center}.tqb-warning{background:#fffbeb;border-left:4px solid #f59e0b;padding:8px 10px;font-size:13px}.tqb-card-footer{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;border-top:1px solid #e2e8f0;margin-top:12px;padding-top:10px;color:#64748b;font-size:12px}.tqb-empty{padding:32px;text-align:center;border:1px dashed #94a3b8;border-radius:12px}.tqb-test-nav{display:flex;flex-wrap:wrap;gap:4px;margin:0;padding:0 14px;background:#7c2d12}.tqb-test-nav a{display:inline-flex;min-height:48px;align-items:center;padding:0 10px;color:#fde68a;font-weight:700;text-decoration:none}.tqb-test-banner{background:#7c2d12;color:white;padding:8px 14px;font:600 14px/1.4 system-ui,sans-serif}
+.tqb-shell{max-width:1220px;margin:0 auto;padding:24px}.tqb-intro{background:#fff7ed;border:1px solid #fdba74;border-radius:12px;padding:16px;margin:0 0 18px}.tqb-intro strong{color:#9a3412}.tqb-stats{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.tqb-stat,.tqb-badge{display:inline-flex;align-items:center;border-radius:999px;padding:5px 9px;font:700 12px/1.2 system-ui,sans-serif}.tqb-stat{background:#e2e8f0;color:#0f172a}.tqb-controls{display:grid;grid-template-columns:minmax(220px,2fr) minmax(180px,1fr) minmax(160px,1fr) auto;gap:10px;align-items:end;position:sticky;top:0;z-index:3;background:var(--bg,#f8fafc);padding:10px 0 14px}.tqb-controls>*{min-width:0}.tqb-controls label{display:grid;min-width:0;gap:4px;font:700 12px/1.2 system-ui,sans-serif}.tqb-controls input,.tqb-controls select,.tqb-controls button{width:100%;max-width:100%;min-width:0;min-height:48px;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:8px;padding:8px 10px;background:white;color:#0f172a}.tqb-controls button{cursor:pointer;font-weight:700}.tqb-result-count{margin:4px 0 12px;font-weight:700}.tqb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:14px}.tqb-card{border:1px solid #cbd5e1;border-radius:12px;background:#fff;padding:16px;min-width:0}.tqb-card[hidden]{display:none}.tqb-card h2{font-size:18px;margin:10px 0 4px}.tqb-badges{display:flex;gap:6px;flex-wrap:wrap}.tqb-badge-source{background:#dcfce7;color:#166534}.tqb-badge-unvalidated{background:#fef3c7;color:#92400e;border:1px solid #f59e0b}.tqb-badge-validated{background:#dbeafe;color:#1e40af;border:1px solid #60a5fa}.tqb-badge-review{background:#fee2e2;color:#991b1b}.tqb-badge-custody{background:#dcfce7;color:#166534}.tqb-badge-pending{background:#fff7ed;color:#9a3412;border:1px solid #fdba74}.tqb-meta,.tqb-muted{color:#64748b;font-size:13px;overflow-wrap:anywhere}.tqb-stem{font-size:17px;line-height:1.55;margin:14px 0}.tqb-options{margin:8px 0 12px;padding-left:24px}.tqb-options li{margin:5px 0}.tqb-answer{border-top:1px solid #e2e8f0;margin-top:12px;padding-top:10px}.tqb-answer summary{cursor:pointer;font-weight:700;min-height:48px;display:flex;align-items:center}.tqb-warning{background:#fffbeb;border-left:4px solid #f59e0b;padding:8px 10px;font-size:13px}.tqb-card-footer{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;border-top:1px solid #e2e8f0;margin-top:12px;padding-top:10px;color:#64748b;font-size:12px}.tqb-empty{padding:32px;text-align:center;border:1px dashed #94a3b8;border-radius:12px}.tqb-test-nav{display:flex;flex-wrap:wrap;gap:4px;margin:0;padding:0 14px;background:#7c2d12}.tqb-test-nav a{display:inline-flex;min-height:48px;align-items:center;padding:0 10px;color:#fde68a;font-weight:700;text-decoration:none}.tqb-test-banner{background:#7c2d12;color:white;padding:8px 14px;font:600 14px/1.4 system-ui,sans-serif}
 @media(max-width:800px){.tqb-controls{grid-template-columns:1fr;position:static}.tqb-grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -119,7 +119,7 @@ PAGE = """<!doctype html>
 <nav class="tqb-test-nav" aria-label="TEST"><a href="../../index.html">Portal</a><a href="../index.html">TEST</a><a href="index.html" aria-current="page">Question Bank</a><a href="../atlas/index.html">Atlas</a><a href="../rungs/index.html">Rungs</a><a href="../deployments/index.html">Deployments</a></nav>
 <main class="tqb-shell">
 <h1>TEST Question Bank</h1>
-<section class="tqb-intro"><strong>Academic validation boundary.</strong> These questions are parked for review. Source verification and Grade9V3 academic validation are separate states. A question remains <strong>UNVALIDATED</strong> until a source-bound validation receipt marks it PASS and admission-eligible; validated questions show <strong>VALIDATED</strong>. Production admission is governed separately.</section>
+<section class="tqb-intro"><strong>Academic validation boundary.</strong> These questions are parked for review. An intake text-verification claim, independent official-source custody evidence, and Grade9V3 academic validation are three separate states. Only records with independent evidence can be READY_FOR_BLUEPRINT; the other records remain evidence-pending regardless of their historical workflow label. A question remains <strong>UNVALIDATED</strong> until a source-bound validation receipt marks it PASS and admission-eligible; validated questions show <strong>VALIDATED</strong>. Production admission is governed separately.</section>
 <div class="tqb-stats" id="tqbStats"></div>
 <section class="tqb-controls" aria-label="Question filters">
 <label>Search<input id="tqbSearch" type="search" placeholder="Question, topic, id…" autocomplete="off"></label>
@@ -147,7 +147,8 @@ PAGE = """<!doctype html>
   const stats = document.getElementById('tqbStats');
   const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const label = value => String(value || '').replaceAll('_',' ');
-  const sourceFilename = q => String(q.source_url || '').split('/').pop();
+  const sourceFilename = q => String(q.custody_question_source_url || q.source_url || '').split('/').pop();
+  const custodyStatus = q => q.custody_evidence_status || 'EVIDENCE_PENDING';
   const sourceVerified = q => q.text_verification_status === 'TEXT_VERIFIED_AGAINST_OFFICIAL';
   const validationStatus = q => q.academic_validation_status || 'UNVALIDATED';
   const reviewBadge = q => q.workflow_status === 'DUPLICATE_REVIEW'
@@ -163,11 +164,15 @@ PAGE = """<!doctype html>
   [...types].sort().forEach(([name,n]) => type.insertAdjacentHTML('beforeend', '<option value="'+esc(name)+'">'+esc(label(name))+' ('+n+')</option>'));
 
   const verifiedCount = questions.filter(sourceVerified).length;
+  const evidenceCount = questions.filter(q => custodyStatus(q) === 'INDEPENDENTLY_EVIDENCED').length;
+  const pendingCount = questions.length - evidenceCount;
   const validatedCount = questions.filter(q => validationStatus(q) === 'VALIDATED').length;
   const unvalidatedCount = questions.filter(q => validationStatus(q) === 'UNVALIDATED').length;
   const duplicateCount = questions.filter(q => q.workflow_status === 'DUPLICATE_REVIEW').length;
   stats.innerHTML = '<span class="tqb-stat">'+questions.length+' questions</span>'
-    + '<span class="tqb-stat">'+verifiedCount+' source verified</span>'
+    + '<span class="tqb-stat">'+verifiedCount+' legacy text-verification labels</span>'
+    + '<span class="tqb-stat">'+evidenceCount+' independent source evidence</span>'
+    + '<span class="tqb-stat">'+pendingCount+' evidence pending</span>'
     + '<span class="tqb-stat">'+validatedCount+' academically validated</span>'
     + '<span class="tqb-stat">'+unvalidatedCount+' academically unvalidated</span>'
     + '<span class="tqb-stat">'+duplicateCount+' duplicate review</span>'
@@ -177,9 +182,12 @@ PAGE = """<!doctype html>
     const options = (q.options || []).length
       ? '<ol class="tqb-options">'+q.options.map(option => '<li>'+esc(option)+'</li>').join('')+'</ol>' : '';
     const academic = validationStatus(q);
-    const answerNote = academic === 'VALIDATED'
-      ? 'This source answer has a matching Grade9V3 PASS validation receipt.'
-      : 'This is the answer recorded from the official source. Grade9V3 academic validation is still pending.';
+    const independentlyEvidenced = custodyStatus(q) === 'INDEPENDENTLY_EVIDENCED';
+    const answerNote = !independentlyEvidenced
+      ? 'This answer is recorded in intake, but its official answer-document custody has not been independently reconciled.'
+      : academic === 'VALIDATED'
+        ? 'Independent official-answer custody and Grade9V3 academic validation are separately evidenced.'
+        : 'Official-answer custody is independently evidenced. Grade9V3 academic validation is still pending.';
     const answer = q.official_answer_text
       ? '<details class="tqb-answer"><summary>Official source answer</summary><p><strong>'+esc(q.official_answer_text)+'</strong></p>'
         + '<p class="tqb-muted">'+esc(q.answer_key_locator || '')+'</p>'
@@ -191,19 +199,24 @@ PAGE = """<!doctype html>
     article.id = q.id;
     article.dataset.g9TestQuestion = q.id;
     article.dataset.g9Validation = academic;
+    article.dataset.g9Custody = custodyStatus(q);
     article.dataset.g9SourceVerification = sourceVerified(q) ? 'SOURCE VERIFIED' : (q.text_verification_status || 'SOURCE STATUS UNKNOWN');
     article.dataset.g9Review = q.workflow_status || '';
     article.dataset.unit = q.chapter_or_unit || '';
     article.dataset.type = q.question_type || '';
     article.dataset.search = text;
     article.innerHTML = '<div class="tqb-badges">'
-      + '<span class="tqb-badge tqb-badge-source">'+(sourceVerified(q) ? 'SOURCE VERIFIED' : esc(label(q.text_verification_status || 'SOURCE STATUS UNKNOWN')))+'</span>'
+      + '<span class="tqb-badge '+(independentlyEvidenced ? 'tqb-badge-custody' : 'tqb-badge-pending')+'">'+(independentlyEvidenced ? 'SOURCE EVIDENCED' : 'EVIDENCE PENDING')+'</span>'
       + '<span class="tqb-badge '+(academic === 'VALIDATED' ? 'tqb-badge-validated' : 'tqb-badge-unvalidated')+'">'+esc(academic)+'</span>'+reviewBadge(q)+'</div>'
       + '<h2>'+esc(q.original_identifier || q.id)+'</h2>'
       + '<p class="tqb-meta"><code>'+esc(q.id)+'</code> · '+esc(q.chapter_or_unit || '')+' · '+esc(q.exercise_or_section || '')+' · '+esc(label(q.question_type || ''))+'</p>'
       + '<p class="tqb-meta">'+esc(q.topic_label || '')+(q.subtopic_label ? ' · '+esc(q.subtopic_label) : '')+'</p>'
       + '<div class="tqb-stem">'+esc(q.stem || '')+'</div>'+options+answer
-      + '<footer class="tqb-card-footer"><span>'+esc(q.wording_custody || '')+' · '+esc(q.capture_method || '')+'</span><span>Source: '+esc(sourceFilename(q))+'</span></footer>';
+      + '<footer class="tqb-card-footer"><span>'+esc(q.wording_custody || '')+' · '+esc(q.capture_method || '')+'</span>'
+      + '<span>Source: <a href="'+esc(q.custody_question_source_url || q.source_url || '')+'" target="_blank" rel="noopener noreferrer">'+esc(sourceFilename(q))+'</a>'
+      + ' · '+esc(q.exercise_or_section || '')+' Q'+esc(q.question_number || '')
+      + (independentlyEvidenced ? ' · printed page '+esc(q.custody_source_locator.printed_page)+' / PDF index '+esc(q.custody_source_locator.pdf_page_index) : ' · independent locator pending')
+      + '</span></footer>';
     return article;
   }
 
