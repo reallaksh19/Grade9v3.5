@@ -2473,6 +2473,13 @@ COMPONENT_CSS = """
 .g9-purpose-prompt p{font-size:1.05rem;line-height:1.55;white-space:pre-line}
 .g9-secondary-disclosure{border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
 .g9-secondary-disclosure{min-width:0;max-width:100%}
+.g9-c-disclosure-tile,.g9-c-disclosure-info,.g9-c-disclosure-equation-card,.g9-c-disclosure-trap-card,.g9-c-predict-reveal-worked-card{min-width:0;max-width:100%;overflow-wrap:anywhere}
+.g9-c-disclosure-tile>.g9-secondary-disclosure{background:var(--soft)}
+.g9-c-disclosure-info>.g9-secondary-disclosure{background:var(--info-bg);border-color:var(--info-line)}
+.g9-c-disclosure-equation-card>.g9-secondary-disclosure{background:var(--soft)}
+.g9-c-disclosure-trap-card>.g9-secondary-disclosure{background:var(--warn-bg);border-color:var(--warn-line);color:var(--warn-fg)}
+.g9-c-predict-reveal-worked-card>.g9-secondary-disclosure{border-left:4px solid var(--accent)}
+.g9-c-disclosure-tile .g9-secondary-disclosure>summary,.g9-c-disclosure-info .g9-secondary-disclosure>summary,.g9-c-disclosure-equation-card .g9-secondary-disclosure>summary,.g9-c-disclosure-trap-card .g9-secondary-disclosure>summary,.g9-c-predict-reveal-worked-card .g9-secondary-disclosure>summary{min-height:var(--g9-touch-min);overflow-wrap:anywhere}
 .g9-secondary-disclosure>summary{min-height:var(--g9-touch-min);min-width:0;display:flex;align-items:center;flex-wrap:wrap;overflow-wrap:anywhere;padding:10px 12px;font-weight:800;cursor:pointer}
 .g9-secondary-disclosure>summary::after{content:"+";margin-left:auto;font-size:1.2em}.g9-secondary-disclosure[open]>summary::after{content:"−"}
 .g9-secondary-body{padding:0 12px 12px}
