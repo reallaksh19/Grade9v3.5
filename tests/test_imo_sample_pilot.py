@@ -30,6 +30,8 @@ class SamplePilotTests(unittest.TestCase):
             (self.tax / filename).write_bytes((ROOT/"taxonomy"/filename).read_bytes())
         self.pilot = self.verify / "official-sample-2026-27-math-qrt-pilot.v1.json"
         self.pilot.write_bytes((ROOT/"verification"/self.pilot.name).read_bytes())
+        self.coverage = self.verify / "qrt-proposed-coverage.v1.json"
+        self.coverage.write_bytes((ROOT/"verification"/self.coverage.name).read_bytes())
 
     def check(self):
         return check_pilot(self.seed,self.tax,self.pilot)
@@ -98,6 +100,19 @@ class SamplePilotTests(unittest.TestCase):
             self.sample(d,2)["qrt_proposal"]["primary_demand"]="MEMORIZE"
         self.mutate(change)
         with self.assertRaises(SeedError):self.check()
+
+    def test_qr_cell_counts_cannot_be_promoted(self):
+        d = json.loads(self.coverage.read_text())
+        d["accepted_coverage_numerator"] = 6
+        self.coverage.write_text(json.dumps(d))
+        with self.assertRaises(SeedError): self.check()
+
+    def test_false_cell_mapping_refused(self):
+        d = json.loads(self.coverage.read_text())
+        item = next(x for x in d["cells"] if x["proposed_question_ids"])
+        item["proposed_question_ids"] = []
+        self.coverage.write_text(json.dumps(d))
+        with self.assertRaises(SeedError): self.check()
 
     def test_no_unlicensed_original_question_stem(self):
         def change(d):
