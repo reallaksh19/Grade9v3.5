@@ -1,0 +1,34 @@
+name: SOF IMO research seed integrity
+
+on:
+  pull_request:
+    paths:
+      - 'TEST/imo-research/**'
+      - 'tests/test_imo_seed.py'
+      - 'tests/test_imo_math_audit.py'
+      - '.github/workflows/imo-research-validation.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'TEST/imo-research/**'
+      - 'tests/test_imo_seed.py'
+      - 'tests/test_imo_math_audit.py'
+      - '.github/workflows/imo-research-validation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  research-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate source identity and quarantine
+        run: python TEST/imo-research/validate_seed.py
+      - name: Validate printed-source mathematical audit
+        run: python TEST/imo-research/validate_math_audit.py
+      - name: Run research-only falsifier tests
+        run: python -m unittest discover -s tests -p 'test_imo_*.py' -v
