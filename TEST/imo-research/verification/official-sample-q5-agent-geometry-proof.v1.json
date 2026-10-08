@@ -1,0 +1,85 @@
+{
+  "schema": "sof-imo-g09-sample-q5-agent-figure-proof-v1",
+  "source_role": "ORGANIZER_HOSTED_SAMPLE_NOT_LICENSED_FOR_REPRODUCTION",
+  "original_source_document_id": "SOF-IMO-G09-SAMPLE-2026-27",
+  "original_question_id": "SOF-IMO-G09-SAMPLE-2026-27-Q005",
+  "original_seed_owner_compilation_entry": 23,
+  "official_sample_pdf_url": "https://sofworld.org/download/file/fid/73719",
+  "owner_seed_sample_landing_url": "https://sofworld.org/imo/class-9/sample-model-test-papers/imo-sample-papers-class-9",
+  "source_pdf_zero_index_page": 1,
+  "printed_section": "MATHEMATICAL_REASONING",
+  "printed_sof_answer_key_option": "C",
+  "owner_compilation_claimed_option": "C",
+  "independent_agent_mathematical_result": "y=90°−x/2",
+  "independent_agent_computed_choice": "C",
+  "result_kind": "ADDITIONAL_AGENT_DIAGRAM_PROOF_CANDIDATE_NOT_PEER_ACCEPTED",
+  "source_diagram_facts_requiring_external_confirmation": [
+    "Printed labels identify l1 parallel to l2 and l3 parallel to l4.",
+    "At l1/l3 a marked acute sector x lies between a downward ray of l1 and a down-left ray of l3.",
+    "At l2/l4 the down-left ray of l4 and downward ray of l2 enclose a corresponding angle x.",
+    "The upward-right l4 ray is opposite its downward-left ray, forming the adjacent supplementary angle to x.",
+    "A third drawn oblique down-right ray partitions that supplementary angle into two adjacent sectors explicitly labelled y and y."
+  ],
+  "agent_proof_steps": [
+    {
+      "step": 1,
+      "claim": "parallel_transfer",
+      "reason": "The matching directed angles from l1∥l2 and l3∥l4 give the angle between the downward l2 ray and down-left l4 ray equal to x."
+    },
+    {
+      "step": 2,
+      "claim": "supplementary_angle",
+      "reason": "The up-right l4 ray is opposite the down-left l4 ray. Thus the sector between downward l2 and up-right l4 equals 180°−x."
+    },
+    {
+      "step": 3,
+      "claim": "two_equal_y_sectors",
+      "reason": "The original diagram marks two adjacent parts of that sector as y and y; their sum is 2y, so x+2y=180°."
+    },
+    {
+      "step": 4,
+      "claim": "symbolic_solution",
+      "reason": "Rearrange 2y=180°−x and divide by two: y=90°−x/2, the relationship corresponding to printed option C."
+    }
+  ],
+  "independent_analytic_check": {
+    "frame": "Unit-vector rays with downward l2=(0,−1) and the down-left l4 ray obtained by rotating that ray clockwise by x; the other l4 ray is antipodal and points up-right.",
+    "up_right_l4_direction": "(sin(x),cos(x))",
+    "lower_l2_direction": "(0,-1)",
+    "angle_between_up_right_and_downward_l2": "acos(-cos(x))=180°−x for acute x",
+    "bisector_direction": "normalize((sin(x),cos(x)−1)), which points down-right for 0°<x<90°",
+    "angle_on_each_side_of_bisector": "(180°−x)/2",
+    "probe_x_degrees": [
+      30,
+      60,
+      80
+    ],
+    "expected_each_y_degrees": [
+      75,
+      60,
+      50
+    ]
+  },
+  "external_independent_geometry_reviewer_checklist": [
+    "Confirm x-sector endpoints and both y-sector endpoints from organizer's original printed diagram, without relying on the displayed key.",
+    "Confirm l1/l2 and l3/l4 parallel marks are actually printed and support the claimed angle transfer.",
+    "Confirm the two y glyphs label adjacent equal sectors at the same source vertex, not unrelated points or one combined arc.",
+    "Independently derive the supplementary relation and option C, preferably by a different method and sign the original-source screenshot/figure reference.",
+    "Check right to distribute the original source question text or figure independently of academic agreement."
+  ],
+  "previous_pilot_snapshot_status": "FIGURE_GEOMETRY_PENDING",
+  "previous_dispute_case_id": "IMO-SOURCE-CONFLICT-009",
+  "previous_case_status": "DIAGRAM_MATH_PENDING",
+  "previous_queue_priority": "P0",
+  "source_original_figure_copied": false,
+  "source_original_text_or_options_copied": false,
+  "original_figure_reproduction_rights": "NOT_REVIEWED",
+  "independent_human_source_fidelity_signoff": null,
+  "independent_human_mathematical_signoff": null,
+  "academic_answer_accepted": false,
+  "qrt_candidate_proposed": false,
+  "qrt_acceptance": null,
+  "core_eligible": false,
+  "existing_pilot_and_review_queue_holds_preserved": true,
+  "note": "This later agent-only proof proposes a resolution for the former agent-unsolved hold, but does not rewrite historical pilot snapshot, change P0 independent review pending status, claim a new publisher key, or admit question into QRT/Core."
+}
