@@ -1,7 +1,7 @@
 {
   "schema_version": "grade9v3-test-source-custody-overlay-v1",
   "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
-  "evidence_scope": "NCERT Exemplar Mathematics Class IX Unit 2 Exercise 2.1 Q2–Q6 only. Q1 is source-text HOLD; remaining historical intake receives no new official custody.",
+  "evidence_scope": "NCERT Exemplar Mathematics Class IX Unit 2 Exercise 2.1 Q2–Q6; corrected Q1 source has a separately witnessed custody overlay; remaining intake pending.",
   "witness_scope": "NCERT original question PDF page14/index1 and answers PDF page153/index3; GitHub reference is a custody pointer, not independent attestation.",
   "documents": [
     {
@@ -177,24 +177,5 @@
       "workflow_status": "READY_FOR_BLUEPRINT"
     }
   ],
-  "holds": [
-    {
-      "id": "ncert-exemplar-g9-math-u02-q01",
-      "disposition": "SOURCE_TEXT_HOLD",
-      "reason_code": "VERBATIM_SOURCE_TEXT_MISMATCH",
-      "captured_stem": "Which of the following is a polynomial?",
-      "captured_stem_sha256": "sha256:e9cf2f9dd0b4ccdd828e671580c65aed68b09405a1eda4c0f54561b9e24a3175",
-      "official_stem": "Which one of the following is a polynomial?",
-      "source_document_ref": "NCERT-U02-QUESTION",
-      "source_locator": {
-        "chapter_or_unit": "Unit 2: Polynomials",
-        "exercise_or_section": "Exercise 2.1",
-        "question_number": "1",
-        "printed_page": 14,
-        "pdf_page_index": 1
-      },
-      "verification_evidence_ref": "github:reallaksh19/Grade9v3.5#68:6050805060",
-      "resolution": "HOLD; source-text/digest/academic-receipt correction needs a separate reviewed change."
-    }
-  ]
+  "holds": []
 }

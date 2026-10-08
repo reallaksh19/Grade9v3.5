@@ -37,6 +37,10 @@ KNOWN_WITNESSES = {
         "issue": 68, "id": 6050805060,
         "fragments": ("ieep202.pdf", "ieep2an.pdf", "u02-q02", "u02-q06", "verbatim"),
     },
+    "github:reallaksh19/Grade9v3.5#68:6053770988": {
+        "issue": 68, "id": 6053770988,
+        "fragments": ("ieep202.pdf", "ieep2an.pdf", "Which one of the following is a polynomial?", "Q1", "(C)"),
+    },
 }
 # A real comment pointer is not fungible source evidence: scope it to the exact
 # independently inspected question IDs and captured stem digests. The digest also
@@ -50,6 +54,9 @@ QUESTION_WITNESS_SCOPE = {
         "ncert-exemplar-g9-math-u01-q04": "sha256:29b572e11d87ac9ecc63095968127fd290bf8dedd16434537dcc5d0dfdf289be",
         "ncert-exemplar-g9-math-u01-q05": "sha256:9e546d00f0d12851328a795961478eb2e7de09c63623aeed959f6fa7cc590f12",
         "ncert-exemplar-g9-math-u01-q06": "sha256:ca54af54c150e14888774feabed443bc1268dd4ffc24c58935994ef023b17e10",
+    },
+    "github:reallaksh19/Grade9v3.5#68:6053770988": {
+        "ncert-exemplar-g9-math-u02-q01": "sha256:fcc60bc35e78598ae1d95c91c96c9e04a6378d0c31a198742b49dcb3c5509a21",
     },
     "github:reallaksh19/Grade9v3.5#68:6050805060": {
         "ncert-exemplar-g9-math-u02-q02": "sha256:627a863a58c1f737a8ec90567d45497ed6091979977777e9a6b851ad42a9ad03",

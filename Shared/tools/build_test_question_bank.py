@@ -57,7 +57,9 @@ def validation_index(repo: Path) -> dict[str, dict]:
                 projected = "FAILED"
             else:
                 projected = UNVALIDATED
-            value = {"status": projected, "receipt": path.relative_to(repo).as_posix()}
+            value = {"status": projected, "receipt": path.relative_to(repo).as_posix(),
+                     "stem_sha256": row.get("stem_sha256"),
+                     "original_identifier": row.get("original_identifier")}
             if source_id in rows and rows[source_id] != value:
                 raise ValueError(f"conflicting TEST question validation receipts for {source_id}")
             rows[source_id] = value
@@ -75,9 +77,14 @@ def payload(repo: Path) -> dict:
     for bank in banks:
         for question in bank.get("questions") or []:
             row = validations.get(question.get("id")) or {"status": UNVALIDATED, "receipt": None}
-            question["academic_validation_status"] = row["status"]
-            question["academic_validation_receipt"] = row["receipt"]
-            counts[row["status"]] = counts.get(row["status"], 0) + 1
+            # A PASS receipt for a superseded source digest is historical evidence,
+            # never approval of the corrected wording. Preserve receipts unchanged.
+            matches_source = (row.get("stem_sha256") == question.get("stem_sha256")
+                              and row.get("original_identifier") == question.get("original_identifier"))
+            academic_status = row["status"] if matches_source else UNVALIDATED
+            question["academic_validation_status"] = academic_status
+            question["academic_validation_receipt"] = row["receipt"] if matches_source else None
+            counts[academic_status] = counts.get(academic_status, 0) + 1
             evidence = source_evidence.get(question["id"])
             state = ("INDEPENDENTLY_EVIDENCED" if evidence else
                      "SOURCE_TEXT_HOLD" if question["id"] in source_holds else "EVIDENCE_PENDING")
