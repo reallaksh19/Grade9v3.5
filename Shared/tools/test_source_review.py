@@ -27,14 +27,14 @@ ANSWER_DOCUMENT = "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/
 # Prevent plausible numeric page/key or verdict rewrites from reusing that record.
 # Changing an observation requires a deliberate, reviewable source-scope update.
 FROZEN_R4_PRIMARY_OBSERVATIONS = {
-    "ncert-exemplar-g9-math-u01-q07": (3, 2, 0, "SOURCE_NOTATION_DISCREPANCY", "(D)"),
-    "ncert-exemplar-g9-math-u01-q08": (3, 2, 0, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(C)"),
-    "ncert-exemplar-g9-math-u01-q09": (4, 3, 0, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(C)"),
-    "ncert-exemplar-g9-math-u01-q10": (4, 3, 0, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(C)"),
-    "ncert-exemplar-g9-math-u02-q07": (15, 2, 3, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(D)"),
-    "ncert-exemplar-g9-math-u02-q08": (15, 2, 3, "VISUAL_MATCH", "(C)"),
-    "ncert-exemplar-g9-math-u02-q09": (15, 2, 3, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(B)"),
-    "ncert-exemplar-g9-math-u02-q10": (15, 2, 3, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(B)"),
+    "ncert-exemplar-g9-math-u01-q07": ("Unit 1 Ex 1.1 Q7", "sha256:ca54af54c150e14888774feabed443bc1268dd4ffc24c58935994ef023b17e10", ("(A) 0.14", "(B) 0.1416 (with bar over 16)", "(C) 0.1416 (with bar over 1416)", "(D) 0.4014001400014..."), "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep201.pdf", 3, 2, 0, "SOURCE_NOTATION_DISCREPANCY", "(D)"),
+    "ncert-exemplar-g9-math-u01-q08": ("Unit 1 Ex 1.1 Q8", "sha256:6b129d19cb6843884e9b3ece342b35792f0b5b2d6e68c5b5f711cd8efb3b4555", ("(A) (√2 + √3)/2", "(B) (√2 · √3)/2", "(C) 1.5", "(D) 1.8"), "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep201.pdf", 3, 2, 0, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(C)"),
+    "ncert-exemplar-g9-math-u01-q09": ("Unit 1 Ex 1.1 Q9", "sha256:95983b6a230f17147913be88b58362c7bbe0e63229f937cf44e94c88e3dfdc90", ("(A) 19/10", "(B) 1999/1000", "(C) 2", "(D) 1/9"), "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep201.pdf", 4, 3, 0, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(C)"),
+    "ncert-exemplar-g9-math-u01-q10": ("Unit 1 Ex 1.1 Q10", "sha256:d537ab861909252a8d6bb2b9ab4d11005a57e5cca8bd206e3354ce1d1211d044", ("(A) 2√6", "(B) 6", "(C) 3√3", "(D) 4√6"), "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep201.pdf", 4, 3, 0, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(C)"),
+    "ncert-exemplar-g9-math-u02-q07": ("Unit 2 Ex 2.1 Q7", "sha256:a086cd2210982163be7dfbdad7fc9cfa1c9ce00ff867163a6b315519ea65bb9a", ("(A) 3", "(B) 2x", "(C) 0", "(D) 6"), "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep202.pdf", 15, 2, 3, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(D)"),
+    "ncert-exemplar-g9-math-u02-q08": ("Unit 2 Ex 2.1 Q8", "sha256:b5938b0629df8a8997e888b2d33677048dd9800d29fe6b23b2b93ccc41637dbc", ("(A) 0", "(B) 1", "(C) Any real number", "(D) Not defined"), "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep202.pdf", 15, 2, 3, "VISUAL_MATCH", "(C)"),
+    "ncert-exemplar-g9-math-u02-q09": ("Unit 2 Ex 2.1 Q9", "sha256:a14fd2d6137b869c653f9eeb158eb14a41b894a6e1b113918623aab13326efc9", ("(A) -2/5", "(B) -5/2", "(C) 2/5", "(D) 5/2"), "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep202.pdf", 15, 2, 3, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(B)"),
+    "ncert-exemplar-g9-math-u02-q10": ("Unit 2 Ex 2.1 Q10", "sha256:f7f2590fcb64a90fe599a3c5112137d435e48036f44a182efd1ead40197640f4", ("(A) 2", "(B) 1/2", "(C) -1/2", "(D) -2"), "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep202.pdf", 15, 2, 3, "VISUAL_MATCH_WITH_NOTATION_NORMALIZATION", "(B)"),
 }
 
 
@@ -123,7 +123,9 @@ def validate(repo: Path) -> dict:
             # Existing observations are source-located snapshots, not editable
             # declarations. Numeric coordinates must match the inspected record.
             observed = FROZEN_R4_PRIMARY_OBSERVATIONS.get(qid)
-            reported = (loc["printed_page"], loc["pdf_page_index"],
+            reported = (record["original_identifier"], digest,
+                        tuple(record["captured_options"]), url,
+                        loc["printed_page"], loc["pdf_page_index"],
                         record["official_answer_pdf_page_index"],
                         record["comparison_status"], key)
             if observed is None or reported != observed:
