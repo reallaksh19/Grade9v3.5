@@ -36,3 +36,31 @@ Other than this bounded verification evidence, source text, math keys, QRT and p
 ## Next responsibility / handoff
 
 Download/hash full permitted source PDFs, compare each original printed page (stems, options, diagrams), independently solve with evidence, resolve disputes explicitly, map chapter/subtopic/microconcept, classify primary cognitive demand using five-component difficulty and one canonical 4×7 QRT cell per question. Only then design a SOF-specific TEST adapter and create draft Core2/Core1A products using the governed blueprint. Never turn source-access evidence into official-key, rights or learner-readiness approval.
+
+## Batch B01 — first source + arithmetic verification (2026-10-08)
+
+The owner asked to proceed after the seed PR. The source scans for 2023–24 A, 2024–25 B, 2025–26 A were independently viewed page-by-page, and **16 individual printed-source questions** across mathematical reasoning, everyday mathematics and Achievers were recalculated.
+
+- `seed/math_audit_batch01.json` stores printed-paper page indexes, original Q number and source URL, derived numeric/symbolic result, **printed** option letter, compilation option letter, calculation and review/rights/figure holds.
+- `validate_math_audit.py` recomputes question-specific mathematical oracles and verifies source instance/position identities; it requires the exact three known answer-label disputes, enforces the printed exam-section routing and forbids official-key, Core, or QRT promotion.
+- `tests/test_imo_math_audit.py` checks the positive audit and 11 negative/maths cases.
+
+```bash
+python TEST/imo-research/validate_math_audit.py
+python -m unittest discover -s tests -p 'test_imo_math_audit.py' -v
+```
+
+**Measured within B01:** 16/66 candidate positions have inspected printed pages plus independent AI-worked calculations. 13 have the same printed-choice label as the compilation, **3 differ**. Zero have independent peer-review acceptance, independent official key confirmation, rights clearance or verified admission to Core/QRT.
+
+| Compilation entry | Source printed question | Independent calculation | Disposition |
+|---|---|---|---|
+| Q1 | 2023–24 A Q18, p.4 | -5/12, printed **C**; owner's re-ordered options marked **A** | ORIGINAL_OPTIONS_DIFFER / HOLD |
+| Q2 | 2025–26 A Q28, p.5 | Source literally asks *additive identity* => 0, printed **B**; owner rewrote as *additive inverse* => -32/75, claimed **C** | MEANING_CHANGING_SOURCE_TEXT / HOLD |
+| Q22 | 2025–26 A Q31, p.5 | From printed rays, b=21°, a=84°, c=48°, printed **C**; owner claimed **D** | DIAGRAM_DEPENDENT_ANSWER_DISPUTE / HOLD |
+| Q31 | 2023–24 A Q17, p.4 | Cone height ratio 4:9, printed **C**, agreed with owner's answer | Option A differs from original scan; options HOLD |
+
+The source shows 2023–24 A Q45 and 2024–25 B Q42 with essentially the same hemispherical dome task and answer options. **These are separate exam/source-instance identities** even if a content fingerprint eventually groups them; 2024–25 Q42 is *not* another item in the owner seed.
+
+PDF scans and worked calculations support research claims only: an AI-computed correct result is *not* a separately reviewed mathematical receipt, and a school-mirrored paper is not verified organizer custody or reuse permission. No new question stems, figures, or solution pages were republished.
+
+**CI qualification caveat:** Original PR#228 head `f01430cde4a30fc4d49e5e5e9aad76cf39a0f6e0` had hosted v31-relay and learner-platform-code-tests successes but guardrails and canonical-assurance failures in broad subject/runtime suites. Do not attribute those failures to IMO or assert baseline equivalence without a direct baseline comparison. Any subsequent edit invalidates exact-head qualification; recheck the new PR head before delivery. This research-only branch must remain a draft until independent review/owner decision.
