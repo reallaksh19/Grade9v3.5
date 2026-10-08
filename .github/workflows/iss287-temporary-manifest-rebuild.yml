@@ -32,9 +32,12 @@ jobs:
           set -euo pipefail
           changes="$(git diff --name-only)"
           printf '%s\n' "$changes"
-          test "$changes" = "docs/architecture-manifest.json"
+          expected="$(printf '%s\n' 'docs/architecture-manifest.json' 'public/data/data.js' 'tools/data.js')"
+          test "$changes" = "$expected"
+          cmp --silent tools/data.js public/data/data.js
+          git diff --numstat -- docs/architecture-manifest.json public/data/data.js tools/data.js
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- docs/architecture-manifest.json
+          git add -- docs/architecture-manifest.json public/data/data.js tools/data.js
           git commit -m "build(metadata): regenerate architecture manifest after witnessed NCERT contract"
           git push origin "HEAD:${{ github.ref_name }}"
