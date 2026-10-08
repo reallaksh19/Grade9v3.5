@@ -8,6 +8,7 @@ versioned projection adapter; the same schema_version must not mean two shapes.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -27,7 +28,13 @@ def official_source_url(url: object, authority: object) -> bool:
         return (parsed.scheme == "https"
                 and parsed.hostname in OFFICIAL_HOSTS.get(authority, set())
                 and not parsed.username and not parsed.password
-                and parsed.port is None and bool(parsed.path))
+                and parsed.port is None and bool(parsed.path)
+                and url.startswith(f"https://{parsed.hostname}/")
+                and parsed.path != "/"
+                and "//" not in parsed.path
+                and not any(part in (".", "..") for part in parsed.path.split("/"))
+                and not any(mark in url for mark in ("?", "#", "%", chr(92)))
+                and not any(char.isspace() for char in url))
     except ValueError:
         return False
 
@@ -59,6 +66,13 @@ def load_intake_banks(repo: Path) -> list[dict]:
             )
         if not isinstance(bank.get("questions"), list):
             raise ValueError(f"{path}: questions must be a list")
+        if bank.get("bank_id") != path.stem:
+            raise ValueError(f"{path}: bank ID must equal source filename")
+        if bank.get("subject") != "Mathematics" or type(bank.get("grade")) is not int or bank["grade"] != 9:
+            raise ValueError(f"{path}: unsupported TEST intake subject/grade")
+        scope = bank.get("source_scope")
+        if not isinstance(scope, list) or not scope or any(x not in OFFICIAL_HOSTS for x in scope):
+            raise ValueError(f"{path}: invalid official source scope")
 
         for index, q in enumerate(bank["questions"]):
             where = f"{path}: questions[{index}]"
@@ -71,6 +85,15 @@ def load_intake_banks(repo: Path) -> list[dict]:
                 raise ValueError(f"{where}: missing stable source question id")
             if qid in ids:
                 raise ValueError(f"{where}: duplicate source id {qid!r} (first in {ids[qid]})")
+            metadata = ("original_identifier", "document_title", "capture_method",
+                        "wording_custody", "text_verification_status", "last_checked",
+                        "topic_label", "question_type")
+            if any(not isinstance(q.get(field), str) or not q[field].strip() for field in metadata):
+                raise ValueError(f"{where}: missing required Stage-1 metadata")
+            if q.get("subject") != bank["subject"] or type(q.get("grade")) is not int or q["grade"] != bank["grade"]:
+                raise ValueError(f"{where}: bank/question subject or grade mismatch")
+            if q.get("source_authority") not in scope:
+                raise ValueError(f"{where}: source authority outside bank scope")
 
             fields = ("source_authority", "source_kind", "source_url",
                       "chapter_or_unit", "exercise_or_section", "question_number")
@@ -83,6 +106,9 @@ def load_intake_banks(repo: Path) -> list[dict]:
             digest = q.get("stem_sha256")
             if not isinstance(digest, str) or not digest.startswith("sha256:") or len(digest) != 71:
                 raise ValueError(f"{where}: missing or malformed source stem digest")
+            computed = "sha256:" + hashlib.sha256(q["stem"].encode("utf-8")).hexdigest()
+            if digest != computed:
+                raise ValueError(f"{where}: source stem digest does not match wording")
 
             # The locator, not the stem alone, is the identity. Official Q6/Q7
             # legitimately share a stem and differ in their source position/options.

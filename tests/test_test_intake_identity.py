@@ -41,6 +41,10 @@ class TestOfficialIntakeIdentity(unittest.TestCase):
         payload = {
             "schema_version": test_intake_registry.SCHEMA,
             "bank_id": filename.removesuffix(".json"),
+            "subject": self.original["subject"],
+            "grade": self.original["grade"],
+            "source_scope": copy.deepcopy(self.original["source_scope"]),
+            "created_from": self.original["created_from"],
             "questions": copy.deepcopy(questions),
             **extra,
         }
@@ -111,12 +115,54 @@ class TestOfficialIntakeIdentity(unittest.TestCase):
                     "javascript:alert(1)",
                     "http://ncert.nic.in/unsafe",
                     "https://user@ncert.nic.in/file.pdf",
-                    "https://ncert.nic.in:444/file.pdf"):
+                    "https://ncert.nic.in:444/file.pdf",
+                    "https://ncert.nic.in/file.pdf?copy=1",
+                    "https://ncert.nic.in/file.pdf#page=1",
+                    "https://ncert.nic.in/file%2epdf",
+                    "https://ncert.nic.in/./file.pdf",
+                    "https://ncert.nic.in//file.pdf",
+                    "https://NCERT.NIC.IN/file.pdf"):
             with self.subTest(url=url):
                 forged["source_url"] = url
                 self.bank("unsafe.json", [forged])
                 with self.assertRaisesRegex(ValueError, "unofficial or unsafe source URL"):
                     test_intake_registry.load_intake_banks(self.repo)
+
+    def test_same_official_document_url_alias_cannot_be_a_second_source_instance(self):
+        alias = copy.deepcopy(self.q1)
+        alias["id"] = "alias-for-q1"
+        alias["source_url"] += "?copy=1"
+        self.bank("first.json", [self.q1])
+        self.bank("second.json", [alias])
+        with self.assertRaisesRegex(ValueError, "unofficial or unsafe source URL"):
+            test_intake_registry.load_intake_banks(self.repo)
+
+    def test_missing_stage_one_metadata_or_grade_mismatch_fails_closed(self):
+        fields = ("original_identifier", "document_title", "capture_method",
+                  "wording_custody", "text_verification_status", "last_checked",
+                  "topic_label", "question_type")
+        for field in fields:
+            with self.subTest(missing=field):
+                invalid = copy.deepcopy(self.q1)
+                invalid.pop(field)
+                self.bank("bad.json", [invalid])
+                with self.assertRaisesRegex(ValueError, "missing required Stage-1 metadata"):
+                    test_intake_registry.load_intake_banks(self.repo)
+        invalid = copy.deepcopy(self.q1)
+        invalid["grade"] = 10
+        self.bank("bad.json", [invalid])
+        with self.assertRaisesRegex(ValueError, "bank/question subject or grade mismatch"):
+            test_intake_registry.load_intake_banks(self.repo)
+        self.bank("bad.json", [self.q1], source_scope=["CBSE_OFFICIAL"])
+        with self.assertRaisesRegex(ValueError, "source authority outside bank scope"):
+            test_intake_registry.load_intake_banks(self.repo)
+
+    def test_stem_digest_must_match_the_actual_captured_text(self):
+        invalid = copy.deepcopy(self.q1)
+        invalid["stem"] += " tampered"
+        self.bank("bad.json", [invalid])
+        with self.assertRaisesRegex(ValueError, "source stem digest does not match wording"):
+            test_intake_registry.load_intake_banks(self.repo)
 
     def test_handoff_output_is_not_a_second_intake_bank(self):
         self.bank("main.json", [self.q1])

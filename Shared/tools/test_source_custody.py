@@ -86,9 +86,9 @@ def reconcile(repo: Path) -> dict:
             _require(all(locator.get(key) == source[key] for key in
                          ("chapter_or_unit", "exercise_or_section", "question_number")),
                      where, f"source exercise/number mismatch for {qid}")
-            _require(isinstance(locator.get("printed_page"), int)
+            _require(type(locator.get("printed_page")) is int
                      and locator["printed_page"] > 0
-                     and isinstance(locator.get("pdf_page_index"), int)
+                     and type(locator.get("pdf_page_index")) is int
                      and locator["pdf_page_index"] >= 0,
                      where, f"missing independently checked PDF/printed page for {qid}")
             _require(record.get("source_verification_status") == "SOURCE_VERIFIED_OFFICIAL"
@@ -108,10 +108,16 @@ def reconcile(repo: Path) -> dict:
             _require(key.get("exercise_or_section") == source["exercise_or_section"]
                      and key.get("question_number") == source["question_number"],
                      where, f"answer-key locator mismatch for {qid}")
+            answer_key = key.get("answer_key")
             _require(source.get("official_answer_available") is True
-                     and isinstance(key.get("answer_key"), str)
-                     and source.get("official_answer_text", "").startswith(key["answer_key"]),
+                     and isinstance(answer_key, str) and bool(answer_key.strip())
+                     and source.get("official_answer_text", "").startswith(answer_key),
                      where, f"official answer differs from source record for {qid}")
+            if source.get("question_type") == "MULTIPLE_CHOICE":
+                _require(bool(re.fullmatch(r"\([A-Za-z]\)", answer_key))
+                         and any(isinstance(option, str) and option.startswith(answer_key)
+                                 for option in source.get("options", [])),
+                         where, f"official answer differs from source record for {qid}")
             reconciled[qid] = {
                 "intake_question_ref": qid,
                 "source_identity": {"authority": origin["authority"], "kind": origin["kind"],
