@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import sys
 import tempfile
@@ -52,6 +53,37 @@ class TestOfficialSourceReview(unittest.TestCase):
         self.assertEqual((current["ready_for_blueprint"], current["evidence_pending"]),
                          (12, 198))
         self.assertFalse(set(result["review_ids"]) & set(current["ready_ids"]))
+
+    def test_coordinated_raw_and_review_rewrite_cannot_reuse_observation(self):
+        """Matching mutable bank+review copies are not an independent PDF witness."""
+        for variant in ("stem", "options", "identifier", "source_url"):
+            with self.subTest(variant=variant):
+                self.data = copy.deepcopy(self.review)
+                bank = copy.deepcopy(self.bank)
+                record = self.data["records"][4]  # Unit 2 Q7, notation normalised.
+                source = next(q for q in bank["questions"] if q["id"] == record["source_id"])
+                if variant == "stem":
+                    source["stem"] += " altered"
+                    source["stem_sha256"] = "sha256:" + hashlib.sha256(
+                        source["stem"].encode("utf-8")).hexdigest()
+                    record["captured_stem"] = source["stem"]
+                    record["stem_sha256"] = source["stem_sha256"]
+                elif variant == "options":
+                    source["options"][0] = "(A) 99"
+                    record["captured_options"] = copy.deepcopy(source["options"])
+                elif variant == "identifier":
+                    source["original_identifier"] = "Unit 2 Ex 2.1 Q77"
+                    record["original_identifier"] = source["original_identifier"]
+                else:
+                    source["source_url"] = (
+                        "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep203.pdf"
+                    )
+                    record["official_question_document_url"] = source["source_url"]
+                    self.data["question_documents"].append(source["source_url"])
+                self.source.write_text(json.dumps(bank, ensure_ascii=False), encoding="utf-8")
+                self.write()
+                with self.assertRaisesRegex(ValueError, "frozen primary-source observation scope"):
+                    test_source_review.validate(self.repo)
 
     def test_numeric_locator_rewrite_does_not_reuse_primary_source_observation(self):
         """Well-shaped printed/PDF indices are not authenticated simply by being numbers."""
