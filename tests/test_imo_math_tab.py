@@ -153,8 +153,8 @@ class ImoMathTabTests(unittest.TestCase):
             git_blob_sha="0"*40)))
 
     def test_mirrored_docs_must_match_public(self):
-        self.rejects(lambda:self.mutate_html("docs","68 SOF source-paper references",
-                                             "67 SOF source-paper references"))
+        self.rejects(lambda:self.mutate_html("docs","SOF source-paper references",
+                                             "Unverified source-paper references"))
 
     def test_math_hub_link_required(self):
         self.rejects(lambda:self.mutate_html("public_hub",'href="imo-grade9/index.html"',
