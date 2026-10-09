@@ -123,7 +123,25 @@ entrypoint fails before learner identity resolution with
 `NO_INDEPENDENT_CORE_PUBLICATION_GRANT`, using its existing unavailable
 panel and trace. Their public source files and GitHub Pages mirrors were
 updated consistently. Focused regression assertions pin those source/mirror
-invariants, **not** a successful real browser journey. The previously
+invariants, **not** a successful real browser journey.
+
+**Pages read-after-check protection:** The Pages generator separately checks
+the actual `core-learning/data.js` bytes at the point they enter the mirror,
+after initial public-source validation. This rejects content changed between
+preflight and copying with `CORE_PUBLICATION_HOLD_MIRROR_SOURCE_CHANGED`.
+A test simulates a valid first read and a preview-bearing second read. This
+covers deterministic mirroring from the bytes read; it does not certify an
+already-running remote deployment.
+
+**Known positive-journey conflict, intentionally unresolved:** The existing
+`tests/motion_session_251.test.mjs` positive identity test directly reads
+`public/core-learning/data.js` and expects a published Core1B/Core2B chain.
+Under the intentional zero-projection HOLD envelope it cannot satisfy that
+assertion. Its browser journey expects the same public chain. These tests
+must **not** be suppressed or declared green: the conflict demonstrates why
+this safety leaf cannot be counted as joined six-Core continuity or merged
+before a separately authorized positive publication route and real browser
+proof exist. The previously
 successful Motion Session and six-Core journey tests must not be rewritten
 to treat publication HOLD as learner-success evidence.
 
