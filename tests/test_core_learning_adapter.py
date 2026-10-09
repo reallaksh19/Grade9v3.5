@@ -167,6 +167,13 @@ class CoreLearningProductionAdapter(unittest.TestCase):
         })
         for field in ("core_projections", "bucket_availability", "findings"):
             self.assertEqual(public[field], [], field)
+        # Serializing even a fully compilable internal preview must fail closed.
+        with self.assertRaisesRegex(ValueError, "CORE_PUBLICATION_HOLD"):
+            build_core_learning_data.render(self.payload)
+        poisoned = dict(public)
+        poisoned["core_projections"] = [{"id": "UNAPPROVED"}]
+        with self.assertRaisesRegex(ValueError, "CORE_PUBLICATION_HOLD"):
+            build_core_learning_data.render(poisoned)
         expected = build_core_learning_data.render(public).encode("utf-8")
         for relative in ("public/core-learning/data.js", "docs/core-learning/data.js"):
             with self.subTest(relative=relative):
