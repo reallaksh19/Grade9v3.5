@@ -1,0 +1,75 @@
+name: Repo six-Core and QRT readiness (read-only)
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/repo-core-readiness.yml'
+      - 'Shared/tools/repo_core_readiness.py'
+      - 'tests/test_repo_core_readiness.py'
+      - 'Shared/tools/question_review_matrix.py'
+      - 'Shared/vocabularies/cognitive-demand.v1.json'
+      - 'Shared/quality/question-demand-matrix.v1.json'
+      - 'Shared/quality/question-demand-templates.v1.json'
+      - 'Shared/library/**'
+      - 'Shared/tools/core2a_inventory.py'
+      - 'Shared/tools/core2b_inventory.py'
+      - 'Shared/roles/**'
+      - 'Mathematics/library/**'
+      - 'Physics/library/**'
+      - 'Chemistry/library/**'
+      - 'Mathematics/adapter/**'
+      - 'Physics/adapter/**'
+      - 'Chemistry/adapter/**'
+      - 'docs/method/REPO-WIDE-SIX-CORE-QRT-INTEGRATION.md'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/repo-core-readiness.yml'
+      - 'Shared/tools/repo_core_readiness.py'
+      - 'Shared/tools/question_review_matrix.py'
+      - 'Shared/library/**'
+      - 'Shared/quality/question-demand-matrix.v1.json'
+      - 'Mathematics/library/**'
+      - 'Physics/library/**'
+      - 'Chemistry/library/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install existing contract validation dependency
+        run: python -m pip install --quiet jsonschema
+      - name: Check canonical QRT source and 28-cell generated projection
+        run: |
+          python Shared/tools/question_review_matrix.py check
+          python Shared/tools/question_review_matrix.py write --check
+      - name: Test that the six-Core inventory cannot confer acceptance
+        run: python -m unittest tests.test_repo_core_readiness -v
+      - name: Read canonical six-Core inventories without changing them
+        run: |
+          python Shared/tools/repo_core_readiness.py --out /tmp/repo-six-core-qrt-readiness.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('/tmp/repo-six-core-qrt-readiness.json').read_text())
+          assert report['qrt']['mechanical_contract_valid'], report['qrt']
+          assert report['release']['academic_acceptance'] == 'NOT_EVALUATED'
+          assert report['release']['integrated_six_role_journey'] == 'NOT_EVALUATED'
+          print('Read-only live inventory recorded; academic and six-Core acceptance NOT_EVALUATED')
+          PY
+      - name: Upload nonrelease readiness snapshot
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: repo-six-core-qrt-readiness
+          path: /tmp/repo-six-core-qrt-readiness.json
+          if-no-files-found: warn
