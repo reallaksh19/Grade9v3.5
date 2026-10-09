@@ -44,9 +44,13 @@ jobs:
         run: node --test tests/core_learning_host.test.mjs tests/core_learning_page.test.mjs
       - name: Existing canonical adapter delivery integrity
         run: python -m unittest tests.test_core_learning_adapter
+      # Do not skip real-browser qualification when an unrelated baseline
+      # adapter test is red. Its preceding step still fails the overall job.
       - name: Install pinned Chromium harness
+        if: ${{ !cancelled() }}
         run: |
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
       - name: Browser route, independent reconstruction gate and assistance marker
+        if: ${{ !cancelled() }}
         run: node tests/core1_continuity_browser.mjs
