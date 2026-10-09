@@ -6,6 +6,7 @@ on:
       - "TEST/imo-research/candidates/imo-g9-q26-common-base-core1a.v1.json"
       - "TEST/imo-research/candidates/README-imo-327-core1a-math-gate.md"
       - "tests/test_imo_327_core1a_math_proof.py"
+      - "tools/print/print-product.mjs"
       - ".github/workflows/imo-327-core1a-math.yml"
   workflow_dispatch:
 
@@ -20,5 +21,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Validate shared print utility syntax
+        run: node --check tools/print/print-product.mjs
       - name: Independently verify exponential laws, inverse and repair guards
         run: python -m unittest discover -s tests -p 'test_imo_327_core1a_math_proof.py' -v
