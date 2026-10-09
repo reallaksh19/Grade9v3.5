@@ -65,7 +65,12 @@ try {
       if(await summary.count()!==1){out.failures.push('missing keyboard-accessible full-solution summary');}
       else{
         const initiallyClosed=!(await summary.evaluate(el=>el.parentElement.open));
-        const initiallyHidden=!(await summary.isVisible());
+        // The solution control is visible; BEFORE commitment its click/Enter must not open or materialise W.
+        const controlVisible=await summary.isVisible();
+        await summary.focus();await summary.press('Enter');
+        const preCommitBlocked=!(await summary.evaluate(el=>el.parentElement.open));
+        const preCommitPayloadEmpty=await summary.evaluate(
+          el=>el.parentElement.querySelector('[data-g9-payload-slot]')?.children.length===0);
         // This is a machine-produced example attempt, NOT real learner assessment.
         const answerField=article.locator('[data-g9-attempt-box] textarea').first();
         if(await answerField.count()!==1)out.failures.push('missing free-response attempt field');
@@ -74,14 +79,16 @@ try {
           await article.locator('[data-g9-commit]').first().click();
         }
         const released=await summary.isVisible();
-        if(!initiallyHidden||!released)out.failures.push('attempt-gated answer not protected until explicit commitment');
+        if(!initiallyClosed||!controlVisible||!preCommitBlocked||!preCommitPayloadEmpty||!released)
+          out.failures.push('answer gate failed: pre-commit Enter opened/materialised content or commit did not release it');
         await summary.focus();await summary.press('Enter');
         const opened=await summary.evaluate(el=>el.parentElement.open);
         const route=article.locator('[data-g9-block="reasoning_route"]');
         const routeText=await route.first().innerText({timeout:2500});
         const link=article.locator('a[data-g9-repair-ref="TC-03"]');
         const href=await link.first().getAttribute('href');
-        out.learning={initially_closed:initiallyClosed,pre_commit_hidden:initiallyHidden,
+        out.learning={initially_closed:initiallyClosed,pre_commit_blocked:preCommitBlocked,
+          pre_commit_payload_empty:preCommitPayloadEmpty,
           post_commit_released:released,keyboard_opened:opened,
           route_explains_parity_and_modulo3:/parity/i.test(routeText)&&/modulo 3/i.test(routeText),
           repair_href:href,repair_link_count:await link.count()};
