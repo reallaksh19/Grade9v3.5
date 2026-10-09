@@ -1,0 +1,148 @@
+{
+  "schema": "imo-327-qrt-core1a-vs-hints-golden/v1",
+  "fixture_id": "GOLDEN-IMO327-JUSTIFY-D4",
+  "status": "AUTHOR_REVIEW_FIXTURE_NOT_LEARNER_PRODUCT",
+  "origin": "WHOLLY_AUTHORED_NOT_SOF",
+  "governance": {
+    "issue": 327,
+    "pr": 333,
+    "academic_review": "NOT_GRANTED",
+    "qrt_review": "NOT_GRANTED",
+    "owner_release": "NOT_GRANTED",
+    "source_core2_admitted": false,
+    "published": false
+  },
+  "matrix": {
+    "path": "Shared/quality/question-demand-matrix.v1.json",
+    "vocabulary": "Shared/vocabularies/cognitive-demand.v1.json",
+    "expected_cell": "QRT-JUSTIFY-D4",
+    "primary_demand": "JUSTIFY",
+    "derived_band": "D4",
+    "protected_work": "Preserve the necessary-and-sufficient existence argument, sign boundary and uniqueness warrant; hints may clarify quantifiers and domain but may not conclude which k works."
+  },
+  "task": {
+    "role": "AUTHORED_PROOF_DEMONSTRATION_NOT_AUTHENTIC_CORE2",
+    "title": "Prove an exponential-equation existence criterion",
+    "stem": "Let a>1 and k be real. Prove exactly for which k the equation a^(2x+1)=(a^2)^x+k has a real solution, and prove uniqueness when it exists. Address the boundary k=0. Then explain how the criterion changes if 0<a<1.",
+    "expected_attempt": "State and justify necessity, sufficiency and uniqueness; verify edge cases and changed-base assumption. Numerical trials alone do not establish the universal claim.",
+    "misconception": "Uses one example as proof, ignores strict positivity, or extends a>1 sign conclusion to bases between 0 and 1."
+  },
+  "qrt_question": {
+    "id": "GOLDEN-IMO327-JUSTIFY-D4",
+    "primary_capability_ref": "CAP-GOLDEN-EXPONENTIAL-EXISTENCE-PROOF",
+    "difficulty": {
+      "band": "D4",
+      "score": 8,
+      "components": {
+        "concept_model_selection": 2,
+        "representation_translation": 1,
+        "reasoning_chain_length": 2,
+        "algebra_computational_load": 1,
+        "trap_exception_sensitivity": 2
+      },
+      "basis": "Author evidence: a universal iff proof needs a valid substitution, positivity sign condition, surjective/injective exponential reasoning, and an exception for 0<a<1; derived D4."
+    },
+    "extensions": {
+      "grade9v3:cognitive_demand": {
+        "primary": "JUSTIFY",
+        "secondary": [
+          "MODEL",
+          "SYNTHESIZE"
+        ],
+        "basis": "The decisive work is establishing a universally valid necessary-and-sufficient warrant including uniqueness and domain exception."
+      },
+      "grade9v3:analysis": {
+        "stable_crux_move": "Prove necessity, sufficiency and uniqueness under the stated base domain; distinguish the reversed-sign exception.",
+        "common_wrong_route": "Treat a successful numeric trial or a guessed k sign as proof for all real x and all positive bases."
+      }
+    },
+    "answer": {
+      "crux_move_ref": "MOVE-JUSTIFY-IFF",
+      "reasoning_route": [
+        {
+          "id": "MOVE-JUSTIFY-IFF",
+          "kind": "JUSTIFY",
+          "action": "Establish the sign-compatible necessary-and-sufficient condition and unique inverse exponent from t=a^(2x)>0, and re-evaluate the sign when 0<a<1.",
+          "why_valid": "Positive-base real exponentials range over (0,infinity) and are injective for a>0, a!=1; the coefficient (a-1) has a fixed sign.",
+          "inputs": [],
+          "output": "A complete iff argument, uniqueness and base-domain exception, not an example."
+        }
+      ]
+    }
+  },
+  "item_help": {
+    "role": "ITEM_SCOPED_HINTS",
+    "must_not_reveal_before_attempt": [
+      "k>0",
+      "k<0",
+      "(a-1)t=k",
+      "t=k/(a-1)",
+      "log_a",
+      "iff"
+    ],
+    "rungs": [
+      {
+        "id": "H1",
+        "purpose": "ORIENT",
+        "text": "Separate what is given about a, k and x from what you must establish: existence, nonexistence and uniqueness."
+      },
+      {
+        "id": "H2",
+        "purpose": "CONNECT",
+        "text": "Which properties of positive-base real exponentials are relevant to their values and to whether two exponents can give the same value?"
+      },
+      {
+        "id": "H3",
+        "purpose": "OPEN_THE_WAY",
+        "text": "Organize the argument into necessity, sufficiency and uniqueness. Check the boundary cases and the changed base interval; you must choose the decisive inference yourself."
+      }
+    ],
+    "protected_decision_ref": "MOVE-JUSTIFY-IFF",
+    "assisted_attempt_if_any_hint_used": true
+  },
+  "core1a_repair": {
+    "role": "CONCEPT_FIRST_NOT_TARGET_SOLUTION",
+    "trigger": "Learner takes one numerical instance as proof, overlooks range/positivity, or falsely carries a sign condition across different base domains.",
+    "sequence": [
+      {
+        "stage": "NEUTRAL_DEMONSTRATION",
+        "text": "Away from a and k, consider Z=2^r for real r. Can Z be zero or negative? Check how Z behaves for very large positive and negative r."
+      },
+      {
+        "stage": "GENERAL_PRINCIPLE",
+        "text": "For a positive base b other than 1, b^r ranges over all positive numbers, and equal output values require equal exponents. Explain why existence needs a permissible output and uniqueness needs one-to-one behaviour."
+      },
+      {
+        "stage": "CONCEPT_CHECK",
+        "text": "Let Z=4^q>0. Could either Z=-2 or Z=0 be attained? Could two different real q give Z=16? Explain all three claims, without referring to a or k."
+      },
+      {
+        "stage": "GUIDED_APPLICATION",
+        "text": "On an unrelated relation with a known sign, compare the possibility of 3Z=12 and -2Z=12 under Z>0. Distinguish one example from a proof of a universal criterion."
+      },
+      {
+        "stage": "FRESH_INDEPENDENT_EXIT",
+        "text": "For a different base b=1/2, determine with proof which real m permit (1/2)^(2y+1)=(1/4)^y+m, including uniqueness and zero as a boundary."
+      }
+    ],
+    "checkpoint_before_target_aid": true,
+    "checkpoint_enforced_by_current_renderer": false,
+    "return_to_new_unseen_task_required": true,
+    "return_enforced_by_current_renderer": false,
+    "checkpoint_mechanism": "REVIEW_FIXTURE_NOT_RENDERED",
+    "semantic_comprehension_verified": false
+  },
+  "evidence_rules": {
+    "hint_used": "ASSISTED_NOT_INDEPENDENT_MASTERY",
+    "repair_viewed": "CONCEPT_EXPOSED_NOT_MASTERY",
+    "fresh_unseen_correct_without_help": "POTENTIAL_INDEPENDENT_EVIDENCE_REQUIRES_REVIEW",
+    "attempt_capture_available_in_fixture": false,
+    "learner_telemetry": "NOT_IMPLEMENTED",
+    "local_hint_disclosure_state": "NOT_CONNECTED_TO_RUNTIME"
+  },
+  "reviewer_only": {
+    "expected_explanation": "Let t=a^(2x)>0. The equation becomes (a-1)t=k. For a>1, a-1>0, so a positive t exists iff k>0; then t=k/(a-1)>0 and a^(2x)=t has exactly one real solution x=(log_a t)/2. k=0 and k<0 are impossible. For 0<a<1, a-1<0, so existence and uniqueness instead require k<0. The excluded a=1 case is degenerate and not part of either interval.",
+    "concept_check": "4^q>0 always, so neither zero nor -2 occurs. Base 4 exponentiation is one-to-one; only q=2 gives 16.",
+    "fresh_exit": "For b=1/2, the coefficient b-1=-1/2, and t=b^(2y)>0 requires m<0. Then t=-2m>0, giving one real y via log_b(t)/2; m=0 or m>0 gives no real y."
+  }
+}
