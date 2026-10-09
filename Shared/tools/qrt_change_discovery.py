@@ -38,6 +38,10 @@ AUTHORITY_GLOBAL = frozenset({
     "Shared/tools/qrt_content_self_audit.py",
     "Shared/tools/question_review_matrix.py",
     "Shared/tools/question_difficulty.py",
+    "Shared/web/explorer-runtime.js",
+    "Shared/web/explorer-model.js",
+    "Shared/web/explorer-profiles.v1.json",
+    "Shared/web/explorer-spec.schema.json",
 })
 RESOURCE_EXTENSIONS = {".html", ".htm", ".svg", ".png", ".jpg", ".jpeg",
                        ".webp", ".gif", ".css", ".js", ".mjs", ".json", ".pdf"}
@@ -102,6 +106,11 @@ def question_delta(path: str, before_text: str, after_text: str) -> tuple[list[d
     old, old_errors = _question_records(before or {})
     new, new_errors = _question_records(after or {})
     problems.extend(old_errors + new_errors)
+    for doc in (before, after):
+        if doc is not None and isinstance(doc.get("questions"), list) and doc["questions"] and not (
+            old if doc is before else new
+        ):
+            problems.append(_finding("QUESTION_COLLECTION_FORMAT_UNRECOGNIZED", path))
     result: list[dict] = []
     for qid in sorted(set(old) | set(new)):
         if qid not in new:
@@ -305,8 +314,10 @@ def discover(
     unindexed_surfaces = [
         path for path in changed
         if path.startswith(SOURCE_ROOTS) and (
-            "/publication/" in path and path.endswith((".html", ".svg", ".pdf", "/manifest.json"))
+            "/publication/" in path and path.endswith((".html", ".svg", ".pdf", "manifest.json"))
             or path.startswith("TEST/products/") and path.endswith(".manifest.json")
+            or path.endswith((".svg", ".png", ".webp", ".css", ".js", ".mjs"))
+            and ("/library/figures/" in path or "/content/" in path)
         )
     ]
     for path in unindexed_surfaces:
