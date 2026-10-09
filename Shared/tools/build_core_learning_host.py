@@ -98,6 +98,7 @@ TEMPLATE = r'''<!doctype html>
       <div>
         <p class="core-kicker" id="subject-context">Compiled canonical learner activity</p>
         <h1 id="projection-title">Core learner</h1>
+        <p class="host-note" role="note">Compiler design preview only. Curriculum approval, source custody and QRT release remain unverified; TEST sandbox activities are withheld from this chooser.</p>
         <p id="projection-status" data-status role="status" aria-live="polite"></p>
       </div>
       <span class="delivery-chip" id="delivery-chip">Resolving blueprint…</span>
@@ -148,8 +149,8 @@ TEMPLATE = r'''<!doctype html>
     import { mountCoreLearningPage } from "__CORE_RUNTIME_BASE__/core-learning-host.mjs";
 
     const data = window.GRADE9V3_CORE;
-    const rows = Array.isArray(data?.core_projections) ? data.core_projections : [];
-    const availability = Array.isArray(data?.bucket_availability) ? data.bucket_availability : [];
+    const rows = (Array.isArray(data?.core_projections) ? data.core_projections : []).filter(row => row?.subject !== "TEST");
+    const availability = (Array.isArray(data?.bucket_availability) ? data.bucket_availability : []).filter(row => row?.subject !== "TEST");
     const learner = document.getElementById("learner");
     const select = document.getElementById("projection-select");
     const loadButton = document.getElementById("load-projection");
@@ -229,6 +230,7 @@ TEMPLATE = r'''<!doctype html>
     function mount(id, { updateUrl = true } = {}) {
       try {
         const row = rows.find((item) => item.id === id);
+        if (!row) throw new Error("CORE_LEARNING_PROJECTION_NOT_PUBLIC_PREVIEW");
         const result = mountCoreLearningPage(learner, data, id, registries);
         select.value = result.id;
         mountExplorer(row);
