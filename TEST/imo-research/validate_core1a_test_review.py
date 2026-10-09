@@ -11,7 +11,10 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO / "TEST" / "imo-research"))
 from validate_qualification_evidence import git_blob_sha  # noqa: E402
-from validate_core1a_candidate_package import validate_package  # noqa: E402
+from validate_core1a_candidate_package import (  # noqa: E402
+    IMOCore1ACandidateError, validate_package
+)
+from validate_seed import SeedError  # noqa: E402
 from validate_core_pilot_research import validate_census  # noqa: E402
 
 PKG = REPO / "TEST/library/imo-g9-divisibility-core1a.v1.json"
@@ -128,8 +131,11 @@ def validate_preview(
     math_pub: Path = MATH_PUB, math_docs: Path = MATH_DOCS,
     receipt_path: Path = RECEIPT, queue_path: Path = QUEUE,
 ) -> dict:
-    validate_package(pkg_path)
-    validate_census()
+    try:
+        validate_package(pkg_path)
+        validate_census()
+    except (IMOCore1ACandidateError, SeedError) as exc:
+        raise PreviewError(f"upstream source/Core1A candidate invalid: {exc}") from exc
     pkg = load(pkg_path)
     micro = pkg["microtopics"][0]
     bucket = pkg["buckets"][0]
@@ -148,7 +154,7 @@ def validate_preview(
            and 'data-g9-role="CORE1A"' not in page_text,
            "review preview incorrectly marketed as canonical Core1A")
     demand("TEST REVIEW ONLY · CANDIDATE" in page_text
-           and "NOT RUN" in page_text
+           and "real device, keyboard, assistive-technology and print inspections are NOT RUN" in page_text
            and "not an academically accepted Core 1A product" in page_text,
            "TEST and unperformed QA disclosure must be visible")
     demand("SOF-IMO-G09-" not in page_text and
@@ -163,8 +169,7 @@ def validate_preview(
            "exit task disclosure must be initially closed and response accessible")
     demand(not h.unsafe_links, "unexpected external script/media/form/link")
     demand(all(k in all_text for k in (pkg["package_id"],
-           bucket["title"].split(" with ")[0] if False else micro["inferential_jump"],
-           micro["exit_task"]["prompt"])),
+           micro["inferential_jump"], micro["exit_task"]["prompt"])),
            "candidate package identity, decisive inference or exit prompt missing")
     for assumption in micro["entry_assumptions"]:
         demand(assumption in all_text, "required entry assumption dropped")
