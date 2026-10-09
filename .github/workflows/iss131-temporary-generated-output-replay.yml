@@ -43,7 +43,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git add -A -- docs/.pages-manifest.json public/test docs/test .github/workflows/iss131-temporary-generated-output-replay.yml
+          git add -A -- docs/.pages-manifest.json public/test docs/test
           git diff --cached --name-only
           python3 - <<'PY'
           import subprocess
