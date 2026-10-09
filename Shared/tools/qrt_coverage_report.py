@@ -168,9 +168,15 @@ def candidate(repo: Path, row: Any, *, head: str) -> dict:
                 findings.append(_finding("INDEPENDENT_REVIEW_NOT_REQUIRED_BY_RUN", qid))
             if not requirements.get("question_anchor_binding_required"):
                 findings.append(_finding("QUESTION_ARTICLE_BINDING_NOT_REQUIRED_BY_RUN", qid))
-            ids = [x.get("id") for x in run.get("questions") or [] if isinstance(x, dict)]
-            if ids.count(qid) != 1:
+            questions = [x for x in run.get("questions") or [] if isinstance(x, dict)]
+            matching = [x for x in questions if x.get("id") == qid]
+            if len(matching) != 1:
                 findings.append(_finding("CANDIDATE_QUESTION_NOT_UNIQUE_IN_RUN", qid))
+            elif selected_cell and matching[0].get("qrt_template_id") != selected_cell:
+                findings.append(_finding(
+                    "QRT_RESOLVED_CELL_NOT_BOUND_IN_RUN", qid,
+                    f"expected {selected_cell}, run declares {matching[0].get('qrt_template_id')}",
+                ))
             # The entire governed gate includes author self-audit, artifact/hash,
             # 12-ask reviews, preattempt W and interactive Chromium receipts.
             try:
