@@ -132,6 +132,18 @@ def question_delta(path: str, before_text: str, after_text: str) -> tuple[list[d
             for qid in sorted(set(new) - active):
                 result.append({"question_ref": qid, "source_path": path,
                                "reason": "BANK_ENVELOPE_CHANGED"})
+        # Learner order can alter presentation, readiness and navigation while
+        # every individual question object remains byte-for-byte identical.
+        for key in ("questions", "records"):
+            left, right = (before or {}).get(key), (after or {}).get(key)
+            if isinstance(left, list) and isinstance(right, list):
+                ids_left = [r.get("id") for r in left if isinstance(r, dict)]
+                ids_right = [r.get("id") for r in right if isinstance(r, dict)]
+                if ids_left != ids_right and set(old) == set(new):
+                    active = {x["question_ref"] for x in result}
+                    for qid in sorted(set(new) - active):
+                        result.append({"question_ref": qid, "source_path": path,
+                                       "reason": "QUESTION_PRESENTATION_ORDER_CHANGED"})
     if after is not None and not new and old:
         # A replacement lacking question records must not silently erase all coverage.
         problems.append(_finding("QUESTION_CONTAINER_DISAPPEARED", path))
