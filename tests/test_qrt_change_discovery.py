@@ -246,5 +246,32 @@ class QRTChangeDiscoveryTests(unittest.TestCase):
         self.assertEqual(deps, {"TEST/content/page.html"})
 
 
+
+    def test_generated_learner_hosts_runtime_and_projection_changes_hold_without_review(self):
+        for surface in (
+            "public/core-learning/index.html",
+            "docs/core-learning/index.html",
+            "standalone/core-learning/index.html",
+            "Shared/tools/build_core_learning_host.py",
+            "Shared/workbench/core-learning-page.mjs",
+            "Shared/workbench/core1-continuity.mjs",
+            "Shared/workbench/familiar-transfer.mjs",
+            "public/js/core-learning/familiar-transfer.mjs",
+            "docs/js/core-learning/familiar-transfer.mjs",
+        ):
+            with self.subTest(surface=surface):
+                report = self.discover([surface])
+                self.assertFalse(report["pass_changed_scope"])
+                self.assertFalse(report["no_relevant_changes"])
+                self.assertIn(surface, report["scope_changed_paths"])
+                self.assertIn("GLOBAL_CHANGE_WITHOUT_INDEXED_QRT_SCOPE",
+                              [f["code"] for f in report["findings"]])
+
+    def test_unrelated_non_learner_docs_do_not_fake_qrt_change(self):
+        report = self.discover(["docs/method/PHYSICS-CORE2B-DECISION-REVIEW-WORKORDER.md"])
+        self.assertTrue(report["no_relevant_changes"])
+        self.assertTrue(report["pass_changed_scope"])
+
+
 if __name__ == "__main__":
     unittest.main()
