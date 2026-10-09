@@ -61,6 +61,20 @@ class Core1ARendererMaturityTests(unittest.TestCase):
         )
         self.assertFalse(any("QRT-" in q["id"] for q in pkg["questions"]))
 
+    def test_unaccepted_pilot_is_not_globally_discovered_as_subject_library(self):
+        """TEST demo must never enter generators that scan */library/*.v1.json."""
+        self.assertTrue(PACKAGE.is_file())
+        self.assertEqual(PACKAGE.parent.name, "pilots")
+        self.assertNotIn(PACKAGE, list(ROOT.glob("*/library/*.v1.json")))
+        self.assertNotIn(
+            PACKAGE.name,
+            [p.name for p in (ROOT / "TEST/library").glob("*.v1.json")],
+        )
+        manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+        self.assertEqual(manifest["package_refs"], [
+            "TEST/imo-research/pilots/core1a-render-qualified-divisibility.v1.json"
+        ])
+
     def test_manifest_is_a_test_only_canonical_selection(self):
         m = json.loads(MANIFEST.read_text(encoding="utf-8"))
         pkg = json.loads(PACKAGE.read_text(encoding="utf-8"))
