@@ -1,0 +1,145 @@
+{
+  "schema": "imo-327-qrt-core1a-vs-hints-golden/v1",
+  "fixture_id": "GOLDEN-IMO327-MODEL-D3",
+  "status": "AUTHOR_REVIEW_FIXTURE_NOT_LEARNER_PRODUCT",
+  "origin": "WHOLLY_AUTHORED_NOT_SOF",
+  "governance": {
+    "issue": 327,
+    "pr": 333,
+    "academic_review": "NOT_GRANTED",
+    "qrt_review": "NOT_GRANTED",
+    "owner_release": "NOT_GRANTED",
+    "source_core2_admitted": false,
+    "published": false
+  },
+  "matrix": {
+    "path": "Shared/quality/question-demand-matrix.v1.json",
+    "vocabulary": "Shared/vocabularies/cognitive-demand.v1.json",
+    "expected_cell": "QRT-MODEL-D3",
+    "primary_demand": "MODEL",
+    "derived_band": "D3",
+    "protected_work": "The learner chooses the common-positive-quantity model and the multiplier relationship; an optional question hint may orient but must not instantiate t or solve 4t=t+192."
+  },
+  "task": {
+    "role": "CORE2A_AUTHORED_CANDIDATE_NOT_AUTHENTIC_CORE2",
+    "candidate_question_id": "Q-TEST-IMO-G9-COMMON-BASE-SUPPORTED-01",
+    "title": "Choose the common-power model",
+    "stem": "For a real number u, solve 4^(2u+1)=16^u+192. Explain the shared positive quantity and verify your solution in the original equation.",
+    "expected_attempt": "State and justify the model, solve for u, then reverse-check; cannot claim unassisted proficiency once hints or answer are viewed.",
+    "misconception": "Writes t+4 instead of 4t, or equates exponents across an added constant."
+  },
+  "qrt_question": {
+    "id": "GOLDEN-IMO327-MODEL-D3",
+    "primary_capability_ref": "CAP-TEST-IMO-G9-COMMON-EXPONENTIAL-QUANTITY",
+    "difficulty": {
+      "band": "D3",
+      "score": 7,
+      "components": {
+        "concept_model_selection": 2,
+        "representation_translation": 1,
+        "reasoning_chain_length": 2,
+        "algebra_computational_load": 1,
+        "trap_exception_sensitivity": 1
+      },
+      "basis": "Same five component judgments as the real authored Core2A item. Selecting one positive common power and identifying the offset multiplier is the model choice."
+    },
+    "extensions": {
+      "grade9v3:cognitive_demand": {
+        "primary": "MODEL",
+        "secondary": [
+          "REPRESENT",
+          "APPLY"
+        ],
+        "basis": "Decisive work is choosing a shared positive exponential quantity and its multiplier before arithmetic."
+      },
+      "grade9v3:analysis": {
+        "stable_crux_move": "Choose a common positive exponential quantity and its multiplicative offset in linked bases.",
+        "common_wrong_route": "Equate exponents across the constant or turn exponent offset into additive +4."
+      }
+    },
+    "answer": {
+      "crux_move_ref": "MOVE-MODEL-FACTOR",
+      "reasoning_route": [
+        {
+          "id": "MOVE-MODEL-FACTOR",
+          "kind": "DECIDE",
+          "action": "Choose t=4^(2u)=16^u>0 and establish that 4^(2u+1)=4t, not t+4.",
+          "why_valid": "The power-of-power and exponent-addition laws for positive bases imply the factor relationship.",
+          "inputs": [],
+          "output": "4t=t+192 with t>0."
+        }
+      ]
+    }
+  },
+  "item_help": {
+    "role": "ITEM_SCOPED_HINTS",
+    "must_not_reveal_before_attempt": [
+      "t=4^(2u)",
+      "4t=t+192",
+      "t=64",
+      "u=3/2",
+      "256"
+    ],
+    "rungs": [
+      {
+        "id": "H1",
+        "purpose": "ORIENT",
+        "text": "Compare the bases 4 and 16. How might they be expressed with one common base?"
+      },
+      {
+        "id": "H2",
+        "purpose": "CONNECT",
+        "text": "Two familiar exponent laws may help: power of a power, and multiplying powers with the same base. Which terms need each?"
+      },
+      {
+        "id": "H3",
+        "purpose": "OPEN_THE_WAY",
+        "text": "Try representing the related powers consistently using a quantity of your own choosing. You must decide the multiplier and write the resulting equation yourself."
+      }
+    ],
+    "protected_decision_ref": "MOVE-MODEL-FACTOR",
+    "assisted_attempt_if_any_hint_used": true
+  },
+  "core1a_repair": {
+    "role": "CONCEPT_FIRST_NOT_TARGET_SOLUTION",
+    "trigger": "Learner mistakes adding one to an exponent for adding the base to the power.",
+    "sequence": [
+      {
+        "stage": "NEUTRAL_DEMONSTRATION",
+        "text": "Before any equation in u, set P=2^3=8. Compare 2^4=16 with 2P=16 and P+2=10."
+      },
+      {
+        "stage": "GENERAL_PRINCIPLE",
+        "text": "Explain in words and symbols why b^(r+1)=b*b^r: one extra power contributes a factor, not a sum."
+      },
+      {
+        "stage": "CONCEPT_CHECK",
+        "text": "If Q=5^n, choose between 5^(n+1)=5Q and 5^(n+1)=Q+5. Defend your answer with the exponent law."
+      },
+      {
+        "stage": "GUIDED_APPLICATION",
+        "text": "On an unrelated authored example, express 3^(2x+1) and 9^x through the same positive quantity, then learn why the two representations differ by a factor."
+      },
+      {
+        "stage": "FRESH_INDEPENDENT_EXIT",
+        "text": "Solve 5^(2v+1)=25^v+100 for real v, with original-equation verification and no help."
+      }
+    ],
+    "checkpoint_before_target_aid": true,
+    "checkpoint_enforced_by_current_renderer": false,
+    "return_to_new_unseen_task_required": true,
+    "return_enforced_by_current_renderer": false
+  },
+  "evidence_rules": {
+    "hint_used": "ASSISTED_NOT_INDEPENDENT_MASTERY",
+    "repair_viewed": "CONCEPT_EXPOSED_NOT_MASTERY",
+    "fresh_unseen_correct_without_help": "POTENTIAL_INDEPENDENT_EVIDENCE_REQUIRES_REVIEW",
+    "attempt_capture_available_in_fixture": false,
+    "learner_telemetry": "NOT_IMPLEMENTED"
+  },
+  "reviewer_only": {
+    "expected_explanation": "Set t=16^u=4^(2u)>0. Then 4^(2u+1)=4t. Thus 4t=t+192, t=64=4^3, so 2u=3 and u=3/2; both original sides are 256.",
+    "concept_check": "5^(n+1)=5Q, because 5^(n+1)=5^n*5^1.",
+    "fresh_exit": "For 5^(2v+1)=25^v+100, set t=25^v=5^(2v)>0, so 5t=t+100 and t=25=5^2; v=1. Both sides equal 125."
+  }
+}
