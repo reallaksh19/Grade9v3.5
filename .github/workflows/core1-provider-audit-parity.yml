@@ -17,15 +17,13 @@ permissions:
   contents: read
 
 jobs:
-  exact-main-baseline:
+  exact-head-adapter:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout exact pre-fix main baseline
+      - name: Checkout candidate exact head
         uses: actions/checkout@v4
-        with:
-          ref: 778eb35a70517a46108ad0a5dc01dfc89f61c0e3
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Exact main baseline of failing adapter assertion
-        run: python -m unittest tests.test_core_learning_adapter.CoreLearningProductionAdapter.test_every_core1_orientable_bucket_reaches_the_learner_provider -v
+      - name: Full canonical Core provider and live-audit tests
+        run: python -m unittest tests.test_core_learning_adapter -v
