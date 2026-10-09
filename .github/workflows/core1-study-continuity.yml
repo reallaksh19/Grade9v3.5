@@ -13,6 +13,7 @@ on:
       - "standalone/core-learning/index.html"
       - "public/core-learning/data.js"
       - "tests/core1_continuity.test.mjs"
+      - "tests/core1_continuity_browser.mjs"
       - ".github/workflows/core1-study-continuity.yml"
   workflow_dispatch:
 
@@ -38,3 +39,9 @@ jobs:
         run: node --test tests/core_learning_host.test.mjs tests/core_learning_page.test.mjs
       - name: Existing canonical adapter delivery integrity
         run: python -m unittest tests.test_core_learning_adapter
+      - name: Install pinned Chromium harness
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Browser route, independent reconstruction gate and assistance marker
+        run: node tests/core1_continuity_browser.mjs
