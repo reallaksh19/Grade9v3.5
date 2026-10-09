@@ -114,6 +114,14 @@ class Core1BReconstructionTests(unittest.TestCase):
         self.assertEqual(re.findall(r'<article[^>]*data-g9-role="([^"]+)"', b), ["CORE1B"])
         self.assertIn("Boundary test", b)
         self.assertIn("Reconstruct", b)
+        # The Core1B self-tutor must show the author's entire closure after
+        # commitment, not silently discard rubric evidence or rejected work.
+        self.assertIn("Check your prediction", b)
+        self.assertIn("No. Three checks are instances", b)
+        self.assertIn("Evidence:", b)
+        self.assertIn("Answers that do not yet satisfy the criteria", b)
+        self.assertIn("I tested t=3,4,5", b)
+        self.assertIn("The factor t is always divisible by 3", b)
         self.assertIn("CORE1B-GIVEN-FACTORS", b)
         self.assertIn('data-g9-stage="PRE_ATTEMPT"', b)
         self.assertNotIn("SOF-IMO-G09-L1", b)
