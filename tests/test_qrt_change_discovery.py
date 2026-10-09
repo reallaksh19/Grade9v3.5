@@ -214,6 +214,17 @@ class QRTChangeDiscoveryTests(unittest.TestCase):
         self.assertEqual(report["impacts"][0]["question_ref"], "PHY-DEEP-1")
         self.assertFalse(report["pass_changed_scope"])
 
+    def test_directory_navigation_includes_linked_index_html(self):
+        origin = self.repo / "TEST/content/page.html"
+        origin.parent.mkdir(parents=True, exist_ok=True)
+        origin.write_text('<a href="CORE1A/">Study concept</a>', encoding="utf-8")
+        landing = origin.parent / "CORE1A/index.html"
+        landing.parent.mkdir(parents=True, exist_ok=True)
+        landing.write_text('<article data-g9-unit="Q1">Bridge</article>', encoding="utf-8")
+        deps, findings = delta.linked_dependencies(self.repo, "TEST/content/page.html")
+        self.assertEqual(findings, [])
+        self.assertIn("TEST/content/CORE1A/index.html", deps)
+
     def test_static_resource_graph_path_escape_is_rejected(self):
         path = self.repo / "TEST/content/page.html"
         path.parent.mkdir(parents=True)
