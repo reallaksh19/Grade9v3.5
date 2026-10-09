@@ -1744,7 +1744,8 @@ def core1b(ctx: Ctx, m: dict) -> str:
                             title="Attempt")
                     + attempt_box("Your attempt", (task or {}).get("response"), record=m["id"])),
         "reconstruction": (
-            reveal("Reconstruct", block("reconstruct", items((r["ask"] for r in rec.get("route") or []), True))
+            reveal("Reconstruct", block("prediction_answer", para((e.get("predict") or {}).get("defensible_answer")), title="Check your prediction")
+                    + block("reconstruct", items((r["ask"] for r in rec.get("route") or []), True))
                    + block("diagnose", items(w["diagnostic_prompt"] for w in wrong), title="Diagnose")
                    + block("repair", items(w["repair"] for w in wrong), title="Repair")
                    + block("success_criteria", para(att.get("produces")), title="What your answer should contain")
