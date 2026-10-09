@@ -61,7 +61,7 @@ class Core1ARendererMaturityTests(unittest.TestCase):
         self.assertIn(MICRO, html)
         self.assertIn("CORE1A", html)
         self.assertIn("divisible by 6", html.lower())
-        self.assertEqual(re.findall(r'<article\\b[^>]*data-g9-role="([^"]+)"', html), ["CORE1A"])
+        self.assertEqual(re.findall(r'<article[^>]*data-g9-role="([^"]+)"', html), ["CORE1A"])
         self.assertNotIn("SOF-IMO-G09-L1", html)
         self.assertEqual(len(render_digest), 16)
         self.assertTrue(all({"core", "record", "duty", "detail"} <= set(g) for g in gaps))
