@@ -6,6 +6,7 @@ No authentic-source Core2 is synthesized; QRT resolution uses the original
 from __future__ import annotations
 
 import json
+import re
 import unittest
 from pathlib import Path
 
@@ -139,9 +140,12 @@ class AuthoredQRTRepairJourneyTests(unittest.TestCase):
         self.assertIn("PRACTICE-FACTORS-ONLY", b)
         self.assertIn('data-g9-stage="POST_ATTEMPT"', b)
         self.assertIn('id="CU-TEST-CORE1A-QUAL-G9-CONSECUTIVE-FACTOR-PROOF"', a)
-        self.assertNotIn('data-g9-role="CORE2"', b)
+        # Shared shell JavaScript references every role; inspect actual articles only.
+        self.assertEqual(
+            re.findall(r'<article\\b[^>]*data-g9-role="([^"]+)"', b),
+            ["CORE2A"],
+        )
         self.assertNotIn("SOF-IMO-G09-", b)
-        self.assertNotIn('data-g9-role="CORE2B"', b)
 
 
 if __name__ == "__main__":
