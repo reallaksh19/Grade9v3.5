@@ -1,0 +1,49 @@
+name: IMO Index Laws subtopic homepage holds
+
+on:
+  pull_request:
+    paths:
+      - 'public/mathematics/number-systems/**'
+      - 'docs/mathematics/number-systems/**'
+      - 'docs/.pages-manifest.json'
+      - 'tests/test_imo_327_index_laws_home.py'
+      - 'tools/site-audit/imo-327-index-laws-home-audit.mjs'
+      - '.github/workflows/imo-327-index-laws-home.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  held-homepage-projection:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify actual subtopic routes, safe roles and complete Pages mirror
+        run: python -m unittest discover -s tests -p 'test_imo_327_index_laws_home.py' -v
+      - name: Verify generated Pages mirror and all relative links
+        run: python Shared/tools/build_pages_site.py --check
+  real-browser-held-route:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Chromium audit dependency
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium
+      - name: Browser test both pages at 4 widths, 200 percent font, keyboard and authority holds
+        run: node tools/site-audit/imo-327-index-laws-home-audit.mjs docs artifacts/imo-327-index-laws-home
+      - name: Keep browser screenshot and semantic audit receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: imo-327-index-laws-home-browser
+          path: artifacts/imo-327-index-laws-home/
+          if-no-files-found: warn
