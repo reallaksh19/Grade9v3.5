@@ -53,6 +53,27 @@ class CorePublicDataBoundaryTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "CORE_PUBLICATION_HOLD_PUBLIC_SOURCE_MISMATCH"):
                 build_pages_site.desired_files(self.repo)
 
+    def test_pages_detects_core_source_change_after_preflight(self):
+        # First read passes preflight, second read is the exact bytes that
+        # would be copied. The second must be independently checked.
+        core_path = self.public / "data.js"
+        original_read = Path.read_bytes
+        core_reads = 0
+
+        def racy_read(path):
+            nonlocal core_reads
+            if path == core_path:
+                core_reads += 1
+                if core_reads == 2:
+                    return b'window.GRADE9V3_CORE = {"subject":"TEST"};\\n'
+            return original_read(path)
+
+        with patch.object(Path, "read_bytes", racy_read):
+            with patch.dict(build_pages_site.EXTRA_SOURCES, {}, clear=True):
+                with self.assertRaisesRegex(ValueError, "CORE_PUBLICATION_HOLD_MIRROR_SOURCE_CHANGED"):
+                    build_pages_site.desired_files(self.repo)
+        self.assertEqual(core_reads, 2)
+
     def test_pages_rejects_corrupt_and_missing_public_payload(self):
         path = self.public / "data.js"
         path.write_bytes(self.expected + b"/* forged approval */")
