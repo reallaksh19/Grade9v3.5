@@ -4,7 +4,7 @@
 
 ## Reuse/provenance and dependency clarity
 
-Base main `bc1af3e7ba438bd2404c54967dd46c652acad325` is the Core-foundation merge from [PR #310](https://github.com/reallaksh19/Grade9v3.5/pull/310). The existing authored Q26-like Core1A package originally exists on *separate, unmerged* [draft #308](https://github.com/reallaksh19/Grade9v3.5/pull/308) at `d0382084906206eafa8a186d1a1a3c7e8dff5b65`, package Git blob `e309f80defc905e236aa525d7945f0f74a9b5d32`. This R1 branch explicitly **copies its original authored Core1A construction and stage-SVG** to permit one self-contained test against merged main; it adds only the one practice question and family's `item_refs` and does **not edit #308 or present it as merged**. Maintain review/co-merge awareness of the duplicate candidate path; both PRs are drafts.
+Base main `bc1af3e7ba438bd2404c54967dd46c652acad325` is the Core-foundation merge from [PR #310](https://github.com/reallaksh19/Grade9v3.5/pull/310). The existing authored Q26-like Core1A package originally exists on *separate, unmerged* [draft #308](https://github.com/reallaksh19/Grade9v3.5/pull/308) at `d0382084906206eafa8a186d1a1a3c7e8dff5b65`, package Git blob `e309f80defc905e236aa525d7945f0f74a9b5d32`. This R1 branch explicitly **copies its original authored Core1A construction and stage-SVG, with only a print-scoped CSS parity fix to show all three mathematical teaching stages on paper** to permit one self-contained test against merged main; it adds only the one practice question and family's `item_refs` and does **not edit #308 or present it as merged**. Maintain review/co-merge awareness of the duplicate candidate path; both PRs are drafts.
 
 No original SOF stems, options, figures or key are stored in the learner output. [Original math-audit B02-010](../verification/fullpaper-source-math-batch02.v1.json) motivates the family *provisionally* through a shared-power multiplicative-factor crux; it does not grant authentic-source CORE2 product authority. The 68 authentic-source positions and seven already catalogued original practice candidates remain completely separate. This new authored supported-practice item is not represented as an eighth authentic source.
 
@@ -29,7 +29,7 @@ The workflow uses the **existing** `Shared/tools/deploy_test.py product`, sole `
 | Correct mathematical result, model, five why-valid steps | CHECKED_BY_AUTHOR, PENDING CI |
 | Canonical technology HTML/manifest role projection, depth | PENDING exact-head CI |
 | Browser 320/390/768/1280, 200%-text, keyboard/attempt/repair | PENDING actual Chromium |
-| Printed real CORE1A and CORE2A PDFs + hashes/receipts + visual completeness | PENDING exact-head evidence; **visual inspection separately required** |
+| Printed real CORE1A and CORE2A PDFs + hashes/receipts + visual completeness | PENDING exact-head evidence; **all three stage headings asserted in PDF text; physical visual inspection separately required** |
 | Manually operated screen-reader and student comprehension | NOT_RUN |
 | Independent academic acceptance, product Owner admission, rights | NOT_GRANTED |
 | Authentic SOF original Core2, source custody, QRT owner acceptance | ZERO / HOLD |
