@@ -118,14 +118,14 @@
         "Linear equations preserve equality under adding and subtracting the same quantity.",
         "Every positive real number t has a real exponent representation a^x for any a>0,a≠1, but no nonpositive t does."
       ],
-      "inferential_jump": "Transform apparently different exponential terms into one shared positive quantity t, recognize that an exponent offset creates a multiplicative factor instead of an additive exponent equality, solve a linear equation in t, then justify the unique real exponent and check it in the original equation.",
+      "inferential_jump": "CONCEPT FIRST: Before using the worked equation, establish the exponent-offset law with an unrelated small power: if P=b^n for a positive base b, then b^(n+1)=bP, never P+b. At b=2 and n=3, 2^4=2*2^3=16, whereas 8+2=10. Ask why multiplication, not addition, follows; then connect the law to a shared positive power t in the separately authored 3/9 example. The learner must justify that connection, solve reversibly, and independently transfer it to a new base.",
       "teaching_path": [
         {
           "id": "TC-01",
-          "action": "Begin with the authored equation 3^(2x+1)=9^x+162 for real x. Re-express 9^x as 3^(2x) because 9=3^2, and name t=3^(2x)>0.",
-          "why_valid": "For a positive base, (3^2)^x=3^(2x) for every real x, and an exponential base 3 value is always strictly positive, so this substitution keeps both algebraic form and domain.",
+          "action": "CONCEPT BEFORE AID: Start away from the challenge equation. Let P=2^3=8. Compare 2^4 with 2P and P+2: 16=2P, not 10=P+2. Explain why a^(n+1)=a*a^n whenever a>0. Ask the learner: if Q=5^n, is 5^(n+1) equal to 5Q or Q+5, and why? Only after this reasoning introduce the authored example 3^(2x+1)=9^x+162, set t=9^x=3^(2x)>0, and identify the shared positive quantity; do not solve the equation in this first step.",
+          "why_valid": "Index addition a^(n+1)=a^n*a shows that a one-unit exponent increase multiplies the power by the base, as the concrete 8→16 example confirms. This principle is independent of the learner's attempted equation. For the later example, 9^x=(3^2)^x=3^(2x)>0 for all real x; it is a separate application of the same positive-base laws.",
           "inputs": [],
-          "output": "9^x=3^(2x)=t, with t>0",
+          "output": "Concept: 2^4=2*2^3=16, not 2^3+2=10; for Q=5^n, 5^(n+1)=5Q. Application only: 9^x=3^(2x)=t>0.",
           "role": "DECLARE",
           "source_ref": "SRC-TEST-IMO-G9-INDEX-AUTHORED"
         },
@@ -228,7 +228,7 @@
       "construction_units": [
         {
           "id": "CU-TEST-IMO-G9-EXPONENTIAL-RELATION",
-          "decision": "Explain why an exponent offset creates a multiplicative factor in one shared positive quantity t, solve the resulting relation and reverse-check original equality.",
+          "decision": "First construct the exponent-offset multiplication law from a neutral numerical case; diagnose why it is not addition. Only then use that law in the authored 3/9 worked equation and return to its original equality.",
           "step_refs": [
             "TC-01",
             "TC-02",
@@ -247,6 +247,10 @@
           ],
           "independent_checks": [
             {
+              "statement": "Concept-only checkpoint before the worked equation: if Q=5^n for any real n, is 5^(n+1)=5Q or Q+5? State the exponent law and reject the wrong relation without using x=2, t=81 or the worked equation.",
+              "check_type": "CONCEPT_ONLY_OFFSET_LAW"
+            },
+            {
               "statement": "Check 3^(2*2+1)=9^2+162 numerically with exact integers.",
               "check_type": "ORIGINAL_EQUATION_REVERSE_CHECK"
             },
@@ -264,8 +268,8 @@
         }
       ],
       "compact_anchor": {
-        "prompt": "Why does 3^(2x+1)=3t rather than t+3 when t=3^(2x)?",
-        "result": "The index law 3^(u+1)=3*3^u multiplies the existing power by 3; adding 1 to an exponent is not adding 1 to the value.",
+        "prompt": "Before any problem aid: if Q=5^n for real n, which equals 5^(n+1), 5Q or Q+5? Justify using the index law, not by analogy with a particular question.",
+        "result": "5^(n+1)=5*5^n=5Q because adding one in an exponent multiplies the whole power by its base. For n=0, 5=5*1, not 1+5.",
         "representation_ref": "REP-TEST-IMO-G9-COMMON-BASE-RELATION-TABLE"
       }
     }
@@ -653,19 +657,19 @@
       "hints": [],
       "scaffolds": [
         {
-          "text": "Find a positive common base for 16^u and 4^(2u+1). Do not solve for u yet.",
+          "text": "Look at 16 and 4: which one is a power of the other? Rewrite one expression using a shared base. Do not introduce a numerical answer.",
           "support_kind": "REPRESENT",
           "reveals": "CONCEPT",
           "supports_move_ref": "MOVE-IMO-R1-BASE"
         },
         {
-          "text": "Give the shared power a name, t>0. Recall a^(v+1)=a*a^v; it is not a^v+a.",
+          "text": "Recall the general law a^(n+1)=a*a^n. Where is the one-step exponent offset in your question? Explain what it multiplies, without calculating u.",
           "support_kind": "CONNECT",
           "reveals": "CONCEPT",
           "supports_move_ref": "MOVE-IMO-R1-FACTOR"
         },
         {
-          "text": "Once both sides use t, preserve equality while solving; test positivity and then check the original equation.",
+          "text": "Choose a strictly positive common power for the two exponential expressions. Express both sides through that power, then solve and check back in the original equation. Keep the unknown exponent until the end.",
           "support_kind": "CONNECT",
           "reveals": "METHOD",
           "supports_move_ref": "MOVE-IMO-R1-SOLVE"
@@ -823,10 +827,13 @@
         "Reject an impossible negative t and attempt the fresh base-2 exit."
       ],
       "help_plan": [
-        "Core1A shows the full authored shared-quantity construction before the independent exit.",
-        "Use a semantic text/symbol equivalence table rather than ungrounded animation."
+        "Core1A concept first: derive a^(n+1)=a*a^n using P=2^3 and P=5^n before showing the separately authored 3/9 example.",
+        "Require the learner to explain why one exponent increment multiplies the power; this authored content alone DOES NOT implement a runtime gated checkpoint.",
+        "Only after the conceptual bridge, guide 3^(2x+1)=9^x+162, then diagnose common wrong routes; the independent exit remains a new base-2 problem.",
+        "Core2A hints remain optional, question-scoped and progressively revealing; each disclosure must be recorded before independent-credit logic can rely on it.",
+        "A failed Core2A attempt must return to concept reconstruction, not directly display its own solved equation. Returning to a fresh, unassisted attempt and proof of transfer requires renderer/QRT work not delivered by this content-only edit."
       ],
-      "reveal_plan": "The authored mathematical concept is fully taught in Core1A; a separate fresh exit task can be attempted before opening its model closure. No protected authentic-source answer or key appears.",
+      "reveal_plan": "Core1A teaches the general exponent-offset law from a neutral numerical and symbolic example before a worked anchor; concept check then worked application then a fresh base-2 exit is the required pedagogical order. This authored package supplies the conceptual reasoning but its existing renderer does not yet block advance until the learner answers the concept check. Core2A solutions stay attempt-gated; showing any scaffold makes the attempt assisted, not independently mastered, once evidence capture is implemented.",
       "source_preferences": [
         {
           "resource_ref": "SRC-TEST-IMO-G9-INDEX-AUTHORED",
