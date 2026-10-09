@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en" data-g9-shell data-g9-role="TEST" data-g9-test="sandbox-draft" data-g9-preview-core="CORE1A" data-g9-canonical-acceptance="false">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TEST research preview: explain why every three consecutive positive integers multiply to a multiple of six. Draft Grade 9 IMO Core1A study, not an approved learner product.">
+  <title>TEST Core 1A · Consecutive Integers and Divisibility · Grade9V3.5</title>
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <style>
+    :root {color-scheme:light dark}
+    .core-preview {max-width:1040px;margin:0 auto;padding:clamp(16px,3vw,36px)}
+    .review-banner {border:2px solid #67748c;border-radius:12px;background:var(--bg-soft,#f6f8fc);padding:14px 18px;line-height:1.65;margin-bottom:24px}
+    .review-banner strong {display:inline-block;margin-right:10px}
+    .review-banner p {margin:6px 0}
+    .review-heading {font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.16;margin:12px 0}
+    .lead {font-size:1.09rem;line-height:1.6;max-width:72ch}
+    .lesson-nav {display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}
+    .lesson-nav a {border-radius:8px;border:1px solid #8895a7;padding:9px 13px;min-height:44px;display:inline-flex;align-items:center}
+    .review-panel {background:var(--bg-card,#fff);border:1px solid var(--border,#cbd5e1);border-radius:16px;padding:clamp(16px,3vw,27px);margin:22px 0}
+    .review-panel h2 {font-size:1.4rem;margin:0 0 12px}
+    .review-panel h3 {font-size:1.11rem;margin:0 0 8px}
+    .review-panel p,.review-panel li {line-height:1.68}
+    .opening-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,345px),1fr));gap:16px}
+    .concept-display {border-left:4px solid #3a6f84;background:var(--bg-soft,#f8fafc);padding:14px 20px;border-radius:0 12px 12px 0;margin:20px 0}
+    .concept-display code {font-size:1.06em;white-space:normal}
+    .proof-steps {list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,410px),1fr));gap:14px}
+    .proof-step {border:1px solid var(--border,#bdc9d6);border-radius:14px;padding:19px}
+    .proof-step:last-child {border-color:#277ea1;border-width:2px}
+    .step-label {font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;font-weight:750;margin-bottom:8px}
+    .step-result {background:var(--bg-soft,#eff5fa);border-radius:8px;padding:11px;overflow-wrap:anywhere}
+    .because {border-top:1px solid var(--border,#bdc9d6);padding-top:12px}
+    .table-wrap {overflow-x:auto}
+    .residue-table {width:100%;border-collapse:collapse;min-width:470px;margin:14px 0}
+    .residue-table th,.residue-table td {border:1px solid var(--border,#adb9c7);text-align:left;padding:11px 13px;vertical-align:top}
+    .residue-table thead th {background:var(--bg-soft,#f1f5f9)}
+    .reasoning-note {border-left:4px solid #9a6d26;padding:12px 16px;background:var(--bg-soft,#fffbf5)}
+    .exit-field {width:100%;box-sizing:border-box;min-height:145px;resize:vertical;border:1px solid #788597;border-radius:10px;padding:13px;background:var(--bg-card,#fff);color:inherit;font:inherit}
+    .model-proof {margin-top:22px;border:1px solid var(--border,#b1b7c5);border-radius:12px;padding:15px}
+    .model-proof summary {cursor:pointer;font-weight:760;min-height:44px;padding:9px 4px}
+    .model-proof summary:focus-visible {outline:3px solid #377ec0;outline-offset:3px}
+    .model-proof[open] summary {border-bottom:1px solid var(--border,#cbd5e1);margin-bottom:12px}
+    .review-status {border:1px dashed #8792a3;border-radius:12px;padding:17px;margin:24px 0}
+    .smallprint {font-size:.89rem;line-height:1.6;color:var(--text-muted,#4d627c)}
+    code {font-family:ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
+    a:focus-visible,textarea:focus-visible {outline:3px solid #2660a5;outline-offset:3px}
+    @media print {
+      .g9-shell-header,.g9-breadcrumb-bar,.lesson-nav,textarea {display:none!important}
+      .core-preview {max-width:none;padding:0}
+      .review-panel,.review-banner,.proof-step {break-inside:avoid}
+      .model-proof {break-inside:auto}
+      .smallprint {color:#333}
+      body {font-size:11pt}
+    }
+  </style>
+</head>
+<body>
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a class="g9-brand" href="../../index.html"><span class="logo-icon" aria-hidden="true">⚡</span><span class="brand-title">Grade9V3.5</span><span class="g9-brand-badge">TEST Sandbox</span></a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a>
+        <a href="../../mathematics/index.html">Mathematics</a>
+        <a href="../../mathematics/imo-grade9/index.html">IMO Topics</a>
+        <a href="../index.html">TEST</a>
+      </nav>
+    </div>
+  </header>
+  <nav class="g9-breadcrumb-bar" aria-label="Breadcrumb"><div class="g9-breadcrumbs"><a href="../../index.html">Home</a> <span>/</span> <a href="../../mathematics/index.html">Mathematics</a> <span>/</span> <a href="../../mathematics/imo-grade9/index.html">IMO Grade 9</a> <span>/</span> <span>TEST Core 1A</span></div></nav>
+  <main class="core-preview">
+    <div class="review-banner" role="note" aria-label="TEST research preview status">
+      <strong>TEST REVIEW ONLY · CANDIDATE</strong>
+      <p>This is a readable preview of an <strong>authored mathematical Core 1A candidate</strong>, not an academically accepted Core 1A product, a graded test or an official SOF question. The seven AI-authored questions and original-paper references on the Mathematics tab have separate review status.</p>
+      <p class="smallprint">Input: <code>TEST-IMO-G9-CORE1A-NS-DIVISIBILITY-PILOT</code>, version 0.1.0, status CANDIDATE. This page is a TEST artifact; real device, keyboard, assistive-technology and print inspections are NOT RUN.</p>
+    </div>
+    <p class="smallprint">Number Systems · Universal reasoning · proposed intrinsic HARD depth</p>
+    <h1 class="review-heading">Why three consecutive integers always multiply to a multiple of 6</h1>
+    <p class="lead">A few successful calculations do not prove an assertion about <em>every</em> positive starting number. We will use an arbitrary <code>n</code>, guaranteed factors of 2 and 3, and a complete set of remainder cases to construct the proof.</p>
+    <nav class="lesson-nav" aria-label="Sections in this Core 1A review">
+      <a href="#prerequisites">Before starting</a><a href="#proof">Complete proof</a><a href="#residue-bridge">Visual table</a><a href="#misconception">Wrong path and repair</a><a href="#exit-task">Independent exit</a>
+    </nav>
+    <div class="opening-grid">
+      <section class="review-panel" id="prerequisites" aria-labelledby="prereq-title">
+        <h2 id="prereq-title">Before starting</h2>
+        <p>Check these assumptions:</p>
+        <ul>
+          <li>Positive integer arithmetic and the meaning of a divisor.</li>
+          <li>Even and odd integers alternate when moving to the next integer.</li>
+          <li>A positive integer modulo 3 has residue 0, 1 or 2.</li>
+          <li>If two coprime integers divide a number then so does their product.</li>
+        </ul>
+      </section>
+      <section class="review-panel" aria-labelledby="conventions-title">
+        <h2 id="conventions-title">Conventions and scope</h2>
+        <ul>
+          <li><strong>positive integer start:</strong> n is an arbitrary positive integer, not a chosen sample.</li>
+          <li><strong>divisibility:</strong> a divides N means there exists an integer k with N=a*k.</li>
+          <li><strong>modulo:</strong> Every integer has exactly one residue modulo m among 0,...,m-1.</li>
+          <li><strong>factor ownership:</strong> A factor of 2 and a factor of 3 in the product may occur in different terms; 2 and 3 are coprime.</li>
+        </ul>
+      </section>
+    </div>
+    <section class="review-panel" id="proof" aria-labelledby="proof-title">
+      <h2 id="proof-title">Core 1A · Complete construction</h2>
+      <p><strong>Decisive inference:</strong> Convert finite observations into a universal argument by establishing a guaranteed factor of 2 and a guaranteed factor of 3 within any three consecutive integers, and then use coprimality to conclude divisibility by 6.</p>
+      <div class="concept-display"><strong>Claim:</strong> For every positive integer <code>n</code>, the product <code>n(n+1)(n+2)</code> is divisible by <code>6</code>.</div>
+      <ol class="proof-steps">
+        <li class="proof-step" data-core1a-step-id="TC-01">
+          <div class="step-label">Step 1 · declare</div>
+          <h3>Set an arbitrary start</h3>
+          <p>Let n denote an arbitrary positive starting integer; the three consecutive factors are n, n+1 and n+2.</p>
+          <p class="step-result"><strong>Result:</strong> <code>n(n+1)(n+2)</code></p>
+          <p class="because"><strong>Why this is valid:</strong> This representation includes every eligible triple, not merely three sampled values.</p>
+        </li>
+        <li class="proof-step" data-core1a-step-id="TC-02">
+          <div class="step-label">Step 2 · transform</div>
+          <h3>Guarantee a factor of 2</h3>
+          <p>Consider n and n+1: one is even, so the product of the three integers has at least one factor of 2.</p>
+          <p class="step-result"><strong>Result:</strong> <code>2 divides n(n+1)(n+2)</code></p>
+          <p class="because"><strong>Why this is valid:</strong> Parity alternates in adjacent integers. The statement holds for both possible parities of n.</p>
+        </li>
+        <li class="proof-step" data-core1a-step-id="TC-03">
+          <div class="step-label">Step 3 · transform</div>
+          <h3>Guarantee a factor of 3</h3>
+          <p>Separate n modulo 3 into cases 0, 1 and 2. Identify n, n+2 or n+1 respectively as divisible by 3.</p>
+          <p class="step-result"><strong>Result:</strong> <code>3 divides n(n+1)(n+2)</code></p>
+          <p class="because"><strong>Why this is valid:</strong> These three remainder classes are exhaustive and exactly one member of any three consecutive integers has remainder 0 modulo 3.</p>
+        </li>
+        <li class="proof-step" data-core1a-step-id="TC-04">
+          <div class="step-label">Step 4 · verify</div>
+          <h3>Combine coprime factors</h3>
+          <p>Combine both divisors: since the whole product is divisible by 2 and 3 and these are coprime, it is divisible by 6.</p>
+          <p class="step-result"><strong>Result:</strong> <code>6 divides n(n+1)(n+2)</code></p>
+          <p class="because"><strong>Why this is valid:</strong> When coprime integers 2 and 3 divide the same whole number, their product 6 also divides that number; we have justified both divisibilities for every n.</p>
+        </li>
+      </ol>
+      <p><strong>What has been proved?</strong> No restriction was placed on which positive integer <code>n</code> might be; the proof uses only exhaustive residue and parity cases, so it applies to <em>every</em> allowed start.</p>
+    </section>
+    <section class="review-panel" id="residue-bridge" aria-labelledby="residue-title" data-core1a-representation-ref="REP-TEST-IMO-G9-RESIDUE-TABLE">
+      <h2 id="residue-title">Representation bridge · Residues to guaranteed factors</h2>
+      <p>Read the left column as the remainder of the <em>arbitrary</em> starting value <code>n</code> when divided by 3. The right column identifies the exact term whose remainder is zero. This table includes all possible remainder classes; it is not a list of isolated numeric examples.</p>
+      <div class="table-wrap">
+        <table class="residue-table">
+          <caption>Exhaustive modulo-3 cases for three successive integers</caption>
+          <thead><tr><th scope="col">Remainder of n modulo 3</th><th scope="col">Divisible term</th><th scope="col">Why the term is divisible by 3</th></tr></thead>
+          <tbody>
+            <tr data-residue="0"><th scope="row">0</th><td><code>n</code></td><td><code>n</code> already has remainder 0.</td></tr>
+            <tr data-residue="1"><th scope="row">1</th><td><code>n+2</code></td><td>The remainder after adding 2 becomes 0 modulo 3.</td></tr>
+            <tr data-residue="2"><th scope="row">2</th><td><code>n+1</code></td><td>The remainder after adding 1 becomes 0 modulo 3.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Back from table to symbols:</strong> whichever of the three cases holds, <code>3</code> divides <code>n(n+1)(n+2)</code>. In words, one of any three consecutive integers is a multiple of 3.</p>
+      <div class="reasoning-note"><strong>Parity remains a separate guarantee.</strong> If <code>n</code> is even then <code>n</code> supplies a factor of 2; if <code>n</code> is odd then <code>n+1</code> supplies it. The factor 2 and factor 3 need not come from the same term. Their coprimality combines them in the <em>whole product</em>.</div>
+    </section>
+    <section class="review-panel" id="misconception" aria-labelledby="mistake-title">
+      <h2 id="mistake-title">A plausible wrong path — and the repair</h2>
+      <p><strong>Misconception:</strong> Checking a few starting integers proves the divisibility assertion for all future n.</p>
+      <p><strong>Diagnostic:</strong> If the starting integer is far larger than every sample you checked, what property guarantees divisibility without recalculation?</p>
+      <p><strong>Repair:</strong> Use complete residue cases modulo 2 and 3 to cover all possible starts; identify guaranteed factors and apply the coprime-product rule.</p>
+      <p>Example values may be useful checks, but the <strong>universal guarantee</strong> comes from exhausting all modulo-2 and modulo-3 cases, not from trying selected values.</p>
+    </section>
+    <section class="review-panel" id="exit-task" aria-labelledby="exit-title">
+      <h2 id="exit-title">Independent exit · Transfer to four factors</h2>
+      <p id="exit-instructions">This is an authored self-check, not an automatically marked response. Write a general proof before opening the model closure. Your notes remain in this browser field; the page does not submit or save them.</p>
+      <p class="concept-display"><strong>Task:</strong> Prove, for every positive integer n, that n(n+1)(n+2)(n+3) is divisible by 24. Give a general proof, not only examples.</p>
+      <label for="exit-response"><strong>Your reasoning (optional)</strong></label>
+      <textarea class="exit-field" id="exit-response" rows="6" aria-describedby="exit-instructions" placeholder="Start with arbitrary n. Which factors guarantee 8? Where does 3 come from?"></textarea>
+      <details class="model-proof" id="exit-model-closure">
+        <summary>Reveal model proof for self-check</summary>
+        <p><strong>The product of four consecutive positive integers is divisible by 24.</strong></p>
+        <ol>
+            <li data-exit-reasoning="1">Write the factors as n, n+1, n+2 and n+3, with n arbitrary and positive.</li>
+            <li data-exit-reasoning="2">Exactly one of these four has remainder 0 modulo 4, and another even factor has remainder 2 modulo 4. Their product is divisible by 8.</li>
+            <li data-exit-reasoning="3">Within any four consecutive integers there is a multiple of 3, so the full product is divisible by 3.</li>
+            <li data-exit-reasoning="4">Because 8 and 3 are coprime, the full product is divisible by 24 for every n.</li>
+        </ol>
+        <p><strong>Independent check:</strong> For each remainder n modulo 24, verify the four-factor product is a multiple of 24; this is an independent exhaustive modular check, not a replacement for the proof.</p>
+        <p class="smallprint">This is an authored model response, not an independently graded answer or official source-paper key. It is included in the HTML source for study; the disclosure is a reading aid, not an exam answer-security mechanism.</p>
+      </details>
+    </section>
+    <aside class="review-status" aria-label="Open research and product review requirements">
+      <h2>Review status and next gates</h2>
+      <ul>
+        <li>Mathematical candidate package: <strong>CANDIDATE</strong>; canonical admission and product-owner approval: <strong>not granted</strong>.</li>
+        <li>Source-backed Core 2: <strong>not included</strong>. No authentic SOF question stem, options, figures or keys are copied or shown.</li>
+        <li>Representation: text and actual semantic residue table; live learner comprehension, assistive-technology and print checks: <strong>NOT RUN</strong>.</li>
+        <li>No accepted QRT cells, automatic proof grading, learner-response collection or official curriculum subtopic certification are claimed.</li>
+      </ul>
+      <p><a href="../../mathematics/imo-grade9/index.html">Return to IMO questions by topic</a></p>
+    </aside>
+  </main>
+  <footer class="g9-footer"><p>Grade9V3.5 · TEST Core 1A Candidate Review · No Academic/Product Admission</p></footer>
+  <script src="../../js/display-controls.js"></script>
+  <script src="../../js/site-header.js" data-site-root="../../"></script>
+</body>
+</html>
