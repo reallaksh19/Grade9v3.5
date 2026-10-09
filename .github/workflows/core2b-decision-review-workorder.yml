@@ -1,0 +1,38 @@
+name: core2b-decision-review-workorder
+
+on:
+  pull_request:
+    paths:
+      - "Physics/library/phy-kin-2d-motion.v1.json"
+      - "Physics/tools/core2b_decision_workorder.py"
+      - "Shared/tools/core2b_inventory.py"
+      - "tests/test_core2b_decision_workorder.py"
+      - "docs/method/PHYSICS-CORE2B-DECISION-REVIEW-WORKORDER.md"
+      - ".github/workflows/core2b-decision-review-workorder.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reviewer-workorder-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Exact canonical pair and adversarial structural review tests
+        run: python -m unittest -v tests.test_core2b_decision_workorder
+      - name: Build SHA-bound reviewer-only work order (no academic outcome)
+        run: |
+          python Physics/tools/core2b_decision_workorder.py \
+            --out /tmp/physics-core2b-independent-workorder.json \
+            --enforce-structure
+      - name: Archive internal reviewer packet (never learner release)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: internal-physics-core2b-independent-review-not-accepted
+          path: /tmp/physics-core2b-independent-workorder.json
+          if-no-files-found: ignore
