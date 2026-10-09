@@ -358,7 +358,11 @@
             "CORE1A"
           ],
           "microtopic_ref": "MIC-TEST-CORE1A-QUAL-G9-CONSECUTIVE-FACTOR-INVARIANTS",
-          "datum_refs": [],
+          "datum_refs": [
+            "DATUM-TEST-CORE1A-QUAL-N-MOD3-0",
+            "DATUM-TEST-CORE1A-QUAL-N-MOD3-1",
+            "DATUM-TEST-CORE1A-QUAL-N-MOD3-2"
+          ],
           "asset_ref": "TEST/library/figures/core1a-consecutive-divisibility-staged.svg",
           "scene": {
             "kind": "STAGED_SYMBOLIC_PROOF",
@@ -568,5 +572,54 @@
     "grade9v3:learner_published": false,
     "grade9v3:core_maturity": "AUTHORED_RENDER_QUALIFICATION_ONLY"
   },
-  "data": []
+  "data": [
+    {
+      "id": "DATUM-TEST-CORE1A-QUAL-N-MOD3-0",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-CORE1A-QUAL-G9-NS-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 0,
+      "unit": "residue modulo 3",
+      "symbol": "n mod 3 = 0",
+      "meaning": "Case in which n itself is divisible by 3",
+      "locator": "AUTHOR_CREATED: Core1A modular arithmetic exhaustiveness proof"
+    },
+    {
+      "id": "DATUM-TEST-CORE1A-QUAL-N-MOD3-1",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-CORE1A-QUAL-G9-NS-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 1,
+      "unit": "residue modulo 3",
+      "symbol": "n mod 3 = 1",
+      "meaning": "Case in which n+2 is divisible by 3",
+      "locator": "AUTHOR_CREATED: Core1A modular arithmetic exhaustiveness proof"
+    },
+    {
+      "id": "DATUM-TEST-CORE1A-QUAL-N-MOD3-2",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-CORE1A-QUAL-G9-NS-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "DATUM",
+      "value": 2,
+      "unit": "residue modulo 3",
+      "symbol": "n mod 3 = 2",
+      "meaning": "Case in which n+1 is divisible by 3",
+      "locator": "AUTHOR_CREATED: Core1A modular arithmetic exhaustiveness proof"
+    }
+  ]
 }
