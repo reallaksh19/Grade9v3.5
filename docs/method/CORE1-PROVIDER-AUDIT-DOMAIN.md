@@ -96,6 +96,15 @@ authorized public activities. The chooser and direct-link UI additionally
 exclude TEST rows as defense in depth; those UI filters alone would never
 satisfy data custody.
 
+The Pages generator now checks `public/core-learning/data.js` against the
+source-authoritative `build_core_learning_data.rendered_file()` bytes
+**before** copying any site assets. Missing Core host/data pairs, internal
+preview payloads and tampered/forged release claims are rejected by named
+`CORE_PUBLICATION_HOLD_*` errors. New focused tests exercise both the
+validator and real `desired_files()` mirror generation with valid and
+invalid temporary site roots. It is a source-generation guard, **not**
+proof that remote Pages deployment or caches are current.
+
 The candidate Mathematics Polynomials Core1 entry is **not publicly served**
 through these Core learner `data.js` outputs. Its separately qualified
 Question Bank records are governed by their own publication contracts; this
@@ -117,7 +126,10 @@ change does not revoke or grant those rights.
   has updated, that caches have expired, or that no other independent
   public site references old previews.
 - A deterministic-source and mirror-byte check is not an executing
-  Python test or Chromium journey. GitHub Actions has recently failed
+  Python test or Chromium journey. The owning workflow now requests the full
+  adapter suite, dedicated Pages custody tests, the existing Pages freshness
+  suite, generator host parity and a full Pages --check. GitHub Actions has
+  recently failed
   all jobs with **zero executed steps**. Exact-head execution and browser
   verification are mandatory.
 
