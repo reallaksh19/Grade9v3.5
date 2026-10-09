@@ -62,8 +62,9 @@ class Core1BReconstructionTests(unittest.TestCase):
         route = e["reconstruct"]["route"]
         self.assertGreaterEqual(len(route), 4)
         self.assertTrue(all("?" in s["ask"] and s["why_this_ask"] for s in route))
-        self.assertEqual({s["from_step_ref"] for s in route},
+        self.assertEqual({s["from_step_ref"] for s in route if s.get("from_step_ref")},
                          {"TC-01", "TC-02", "TC-03", "TC-04"})
+        self.assertNotIn("from_step_ref", route[-1])  # learner-led universal closure
         self.assertIn("Core1A directly models", e["reconstruct"]["differs_from_teaching_path"])
         self.assertIn("(t−1)t", e["boundary_test"]["prompt"])
         self.assertIn("t=2", e["boundary_test"]["answer"])
