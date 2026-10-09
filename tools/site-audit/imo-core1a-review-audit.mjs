@@ -114,12 +114,36 @@ function demand(test,message){if(!test)throw new Error(message)}
     await page.setViewportSize({width:390,height:844});
     await page.goto(URL,{waitUntil:'networkidle'});
     await page.evaluate(()=>{document.documentElement.style.fontSize='200%'});
-    const scaled=await page.evaluate(()=>({
-      w:innerWidth,
-      extra:Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)-document.documentElement.clientWidth
-    }));
+    const scaled=await page.evaluate(()=>{
+      const overflowCandidates=Array.from(document.querySelectorAll('body *'))
+        .filter(node=>{
+          const rect=node.getBoundingClientRect();
+          if(rect.right<=innerWidth+1 && rect.left>=-1)return false;
+          let parent=node.parentElement;
+          while(parent && parent!==document.body){
+            const style=getComputedStyle(parent), box=parent.getBoundingClientRect();
+            if(/auto|hidden|scroll|clip/.test(style.overflowX)
+              && box.left>=-1 && box.right<=innerWidth+1)return false;
+            parent=parent.parentElement;
+          }
+          return true;
+        })
+        .slice(0,18).map(node=>{
+          const box=node.getBoundingClientRect();
+          return {tag:node.tagName.toLowerCase(),id:node.id||null,
+            className:typeof node.className==='string'?node.className.slice(0,90):'',
+            left:Math.round(box.left),right:Math.round(box.right),
+            width:Math.round(box.width),scrollWidth:node.scrollWidth,
+            clientWidth:node.clientWidth,overflowX:getComputedStyle(node).overflowX};
+        });
+      return {w:innerWidth,
+        extra:Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)
+          -document.documentElement.clientWidth,
+        overflowCandidates};
+    });
     report.checks.zoom200=scaled;
-    assert(scaled.extra<=0,'200% text scaling introduces horizontal page overflow: '+scaled.extra);
+    assert(scaled.extra<=0,'200% text scaling introduces horizontal page overflow: '
+      +scaled.extra+'; offenders: '+JSON.stringify(scaled.overflowCandidates));
     await page.screenshot({path:path.join(OUT,'zoom200-mobile.png'),fullPage:true,animations:'disabled'});
 
     // Printed TEST review includes the authored model, not an official SOF key.
