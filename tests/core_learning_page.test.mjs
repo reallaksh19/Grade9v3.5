@@ -512,8 +512,32 @@ test("blueprint slot order, responsive policy, and touch policy drive rendered a
   assert.match(rendered, /grid-template-columns:minmax\(0,var\(--g9-primary\)\) minmax\(0,var\(--g9-support\)\)/);
 });
 
+test("question role renders stem even when a compiled projection also carries concept metadata", () => {
+  for (const core of ["core2a", "core2b"]) {
+    const projection = structuredClone(byId[core]);
+    const sentinel = "PROTECTED_CONCEPT_INFERENCE_NEVER_PREATTEMPT";
+    projection.concept.inferential_jump = sentinel;
+    const html = renderCoreLearningProjection(projection);
+    assert.match(html, new RegExp(projection.application.stem.replace(/[.*+?^${}()|[\]\\]/g, "\\test("Core2A learner-openable solution is an explicit reveal rather than commit side effect", () => {")));
+    assert.doesNotMatch(html, /PROTECTED_CONCEPT_INFERENCE_NEVER_PREATTEMPT/,
+      "Concept inferential jump cannot substitute for a protected question stem");
+  }
+});
+
+test("solution control is absent for a question with no authored solution body", () => {
+  const page = renderCoreLearningProjection(byId.core2a);
+  assert.doesNotMatch(page, /data-action="solution"/);
+});
+
 test("Core2A learner-openable solution is an explicit reveal rather than commit side effect", () => {
-  const projection = byId.core2a;
+  const projection = structuredClone(byId.core2a);
+  // The generic fixture has no solution. An openable solution button is only
+  // legitimate when canonical solution content is actually supplied.
+  projection.application.solution = {
+    summary: "The controlling model is established by the supplied condition.",
+    steps: ["Reconstruct the valid move from the given representation."],
+    rubric: [],
+  };
   const initial = deriveCoreLearningState(projection);
   const before = renderCoreLearningProjection(projection, initial);
   assert.match(before, /data-action="solution"/);
