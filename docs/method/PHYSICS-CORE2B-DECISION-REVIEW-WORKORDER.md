@@ -29,7 +29,7 @@ The author claims the invariant is shared-time independent horizontal and vertic
 ## Generate the exact internal evidence packet
 
 ```sh
-python Shared/tools/core2b_decision_workorder.py \
+python Physics/tools/core2b_decision_workorder.py \
   --out /tmp/physics-transfer-decision-workorder.json \
   --enforce-structure
 python -m unittest tests.test_core2b_decision_workorder
