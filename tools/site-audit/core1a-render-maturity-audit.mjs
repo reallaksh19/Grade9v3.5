@@ -38,7 +38,7 @@ try {
       scroll:document.documentElement.scrollWidth,
       h1:document.querySelector('h1')?.textContent?.trim()||'',
       units:document.querySelectorAll('article[data-g9-role="CORE1A"]').length,
-      test:document.documentElement.dataset.g9Role==='TEST',
+      test:document.documentElement.dataset.g9Test==='sandbox-draft',
       acceptance:document.documentElement.dataset.g9CanonicalAcceptance||''
     }));
     await page.screenshot({path:path.join(evidenceDir,name+'.png'),fullPage:true});
