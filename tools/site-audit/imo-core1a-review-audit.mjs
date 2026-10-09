@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 'use strict';
 /** Browser-only TEST Core1A review QA. No admissions, remote fetches or page publishing. */
-const fs = require('fs');
-const path = require('path');
-const { chromium } = require('playwright');
+import fs from 'node:fs';
+import path from 'node:path';
+import { chromium } from 'playwright';
 
 const OUT = process.env.IMO_BROWSER_OUT || '/tmp/imo-core1a-browser';
 const URL = process.env.IMO_BROWSER_URL || 'http://127.0.0.1:8769/test/imo-grade9/core1a.html';
