@@ -273,7 +273,11 @@ class Core1BReconstructionTests(unittest.TestCase):
         b = pages["core1b.html"]
         self.assertIn('data-g9-block="boundary_test"', b)
         self.assertIn('data-g9-block="boundary_answer"', b)
-        self.assertEqual(b.count('data-g9-attempt-stage="boundary"'), 2)
+        # Count DOM elements only: inline browser JS also names this selector.
+        boundary_tags = re.findall(
+            r'<(?:div|details)\\b[^>]*data-g9-attempt-stage="boundary"', b
+        )
+        self.assertEqual(len(boundary_tags), 2)
 
 if __name__ == "__main__":
     unittest.main()
