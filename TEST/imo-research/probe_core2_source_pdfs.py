@@ -9,13 +9,17 @@ from __future__ import annotations
 import argparse
 import json
 import tempfile
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.error import URLError
 
+REPO = Path(__file__).resolve().parents[2]
+if str(REPO) not in sys.path:
+    sys.path.insert(0, str(REPO))
+
 from Shared.tools.source_pipeline import acquire_url, verify_acquisition
 
-REPO = Path(__file__).resolve().parents[2]
 QUEUE = REPO / "TEST/imo-research/intake/core2-source-acquisition-handoff.v1.json"
 
 
