@@ -17,7 +17,10 @@ function dataWith({ unrelated = false } = {}) {
   const a = structuredClone(core2a);
   const b = structuredClone(core2b);
   a.application.check = "Substitute the input and check the original condition.";
-  a.application.solution.steps = ["Reconstruct the familiar relation."];
+  // The generic component fixture intentionally has no authored solution payload.
+  // Construct a complete *test-only* familiar route without changing production data.
+  a.application.solution = { steps: ["Reconstruct the familiar relation."] };
+  b.application.solution = { rubric: [] };
   b.application.transfer.builds_on = [a.application.question_ref];
   b.application.transfer.invariant = "The model condition still controls the relation.";
   b.application.transfer.novelty = {
