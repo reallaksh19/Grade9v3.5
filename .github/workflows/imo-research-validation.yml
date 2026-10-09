@@ -4,6 +4,9 @@ on:
   pull_request:
     paths:
       - 'TEST/imo-research/**'
+      - 'public/test/imo-grade9/**'
+      - 'docs/test/imo-grade9/**'
+      - 'tests/test_imo_core1a_test_review.py'
       - 'TEST/library/imo-g9-divisibility-core1a.v1.json'
       - 'tests/test_imo_core_pilot_research.py'
       - 'tests/test_imo_core1a_candidate_package.py'
@@ -20,6 +23,9 @@ on:
     branches: [main]
     paths:
       - 'TEST/imo-research/**'
+      - 'public/test/imo-grade9/**'
+      - 'docs/test/imo-grade9/**'
+      - 'tests/test_imo_core1a_test_review.py'
       - 'TEST/library/imo-g9-divisibility-core1a.v1.json'
       - 'tests/test_imo_core_pilot_research.py'
       - 'tests/test_imo_core1a_candidate_package.py'
@@ -82,5 +88,7 @@ jobs:
         run: python TEST/imo-research/validate_core_pilot_research.py
       - name: Validate authored TEST Core1A candidate canonical package with zero admission
         run: python TEST/imo-research/validate_core1a_candidate_package.py
+      - name: Validate TEST-only IMO Core1A teaching page and honest Core2 source PDF handoff
+        run: python TEST/imo-research/validate_core1a_test_review.py
       - name: Run research-only falsifier tests
         run: python -m unittest discover -s tests -p 'test_imo_*.py' -v
