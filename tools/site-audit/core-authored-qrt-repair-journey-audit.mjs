@@ -65,13 +65,24 @@ try {
       if(await summary.count()!==1){out.failures.push('missing keyboard-accessible full-solution summary');}
       else{
         const initiallyClosed=!(await summary.evaluate(el=>el.parentElement.open));
+        const initiallyHidden=!(await summary.isVisible());
+        // This is a machine-produced example attempt, NOT real learner assessment.
+        const answerField=article.locator('[data-g9-attempt-box] textarea').first();
+        if(await answerField.count()!==1)out.failures.push('missing free-response attempt field');
+        else{
+          await answerField.fill('Synthetic QA attempt: an arbitrary-number proof is required.');
+          await article.locator('[data-g9-commit]').first().click();
+        }
+        const released=await summary.isVisible();
+        if(!initiallyHidden||!released)out.failures.push('attempt-gated answer not protected until explicit commitment');
         await summary.focus();await summary.press('Enter');
         const opened=await summary.evaluate(el=>el.parentElement.open);
         const route=article.locator('[data-g9-block="reasoning_route"]');
-        const routeText=await route.first().innerText();
+        const routeText=await route.first().innerText({timeout:2500});
         const link=article.locator('a[data-g9-repair-ref="TC-03"]');
         const href=await link.first().getAttribute('href');
-        out.learning={initially_closed:initiallyClosed,keyboard_opened:opened,
+        out.learning={initially_closed:initiallyClosed,pre_commit_hidden:initiallyHidden,
+          post_commit_released:released,keyboard_opened:opened,
           route_explains_parity_and_modulo3:/parity/i.test(routeText)&&/modulo 3/i.test(routeText),
           repair_href:href,repair_link_count:await link.count()};
         if(!initiallyClosed||!opened)out.failures.push('solution was exposed initially or did not reveal using Enter');
