@@ -518,7 +518,7 @@ test("question role renders stem even when a compiled projection also carries co
     const sentinel = "PROTECTED_CONCEPT_INFERENCE_NEVER_PREATTEMPT";
     projection.concept.inferential_jump = sentinel;
     const html = renderCoreLearningProjection(projection);
-    assert.match(html, new RegExp(projection.application.stem.replace(/[.*+?^${}()|[\]\\]/g, "\\test("Core2A learner-openable solution is an explicit reveal rather than commit side effect", () => {")));
+    assert.ok(html.includes(projection.application.stem), "Actual Core2 question stem must be visible");
     assert.doesNotMatch(html, /PROTECTED_CONCEPT_INFERENCE_NEVER_PREATTEMPT/,
       "Concept inferential jump cannot substitute for a protected question stem");
   }
