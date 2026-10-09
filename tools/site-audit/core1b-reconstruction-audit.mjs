@@ -72,6 +72,11 @@ try {
       precommit_payload_empty:empty,postcommit_opened:opened,
       has_residue_question:/remainder 0,1 or 2/.test(text),
       has_coprime_question:/gcd\(2,3\)/.test(text),
+      prediction_check_visible:/No\. Three checks are instances/.test(text),
+      full_rubric_evidence_visible:/Evidence:/.test(text),
+      accepted_and_rejected_visible:/Representative answers that satisfy/.test(text)
+        && /Answers that do not yet satisfy/.test(text)
+        && /I tested t=3,4,5/.test(text),
       has_boundary:await boundary.count()>0
     };
     for(const [k,v] of Object.entries(result.reconstruction))
