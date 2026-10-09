@@ -32,6 +32,11 @@ jobs:
           python -m pip install --quiet jsonschema pypdf
           npm install --no-save playwright@1.56.1
           npx playwright install chromium
+      - name: Preserve QRT 7 by 4 semantics and current 28-cell generated projection
+        run: |
+          python Shared/tools/question_review_matrix.py check
+          python Shared/tools/question_review_matrix.py write --check
+          python -m unittest tests.test_question_review_matrix -v
       - name: Exercise exact manifest through real renderer and falsify bad selection
         run: python -m unittest tests.test_imo_core1a_renderer_maturity -v
       - name: Actual registered-blueprint render, TEST stamping and print receipt
