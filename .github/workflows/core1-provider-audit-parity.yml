@@ -7,6 +7,11 @@ on:
   pull_request:
     paths:
       - "tests/test_core_learning_adapter.py"
+      - "tests/test_core_publication_boundary.py"
+      - "Shared/tools/build_pages_site.py"
+      - "public/core-learning/data.js"
+      - "docs/core-learning/data.js"
+      - "docs/core-learning/index.html"
       - "Shared/library/core1_orientation.py"
       - "Shared/tools/build_core_learning_data.py"
       - "docs/core1-orientation-report.json"
@@ -25,5 +30,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Full canonical Core provider and live-audit tests
-        run: python -m unittest tests.test_core_learning_adapter -v
+      - name: Full Core provider and public/Pages custody tests
+        run: python -m unittest tests.test_core_learning_adapter tests.test_core_publication_boundary -v
+      - name: Verify generated Core public/standalone hosts
+        run: python Shared/tools/build_core_learning_host.py --check
+      - name: Verify actual public Core data from release-safe generator
+        run: python -c 'from pathlib import Path; from Shared.tools import build_core_learning_data as b; assert Path("public/core-learning/data.js").read_bytes() == b.rendered_file()["public/core-learning/data.js"]'
+
