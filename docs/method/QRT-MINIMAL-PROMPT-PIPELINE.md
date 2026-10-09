@@ -238,7 +238,26 @@ A fully coherent reviewed candidate becomes **`REVIEW_EVIDENCE_COMPLETE_NOT_ACCE
 
 The committed index starts intentionally **empty**, since no new cross-Core candidate has earned a complete reviewer-bound receipt. An empty preview reports `empty_scope=true` and `passed_scoped_evidence=false`; it **does not** assert zero QRT debt or full coverage. For a scoped candidate gate, run `--enforce-scoped`, which fails on empty, stale, incomplete or rework-required evidence. The existing QRT hardening workflow invokes the read-only preview and switches to strict enforcement when the index contains declared candidates.
 
-**Remaining integration obligation:** automatic changed-question discovery and source-to-reachable-resource dependency enumeration beyond the explicitly recorded hashes need a later authority-scoped implementation. Do not call this bounded explicit-index mechanism universal 24×7 production acceptance or treat unindexed changed source as checked.
+### Automatic change-scope discovery and static reachable resources (#313 I1c)
+
+The owning `qrt-pipeline-hardening` workflow now compares **the PR base commit SHA to the checked-out HEAD** (full fetch, Git merge-base semantics). It calls:
+
+```sh
+python Shared/tools/qrt_change_discovery.py \
+  --base "$PR_BASE_COMMIT_SHA" \
+  --index docs/qrt-coverage-index.v1.json \
+  --out /tmp/qrt-change-discovery.json \
+  --enforce
+```
+
+For governed subject and TEST source JSON, the detector compares actual question records, not filenames or line counts: added, modified, removed and bank-level provenance/metadata-envelope changes all produce affected IDs. It recognizes `questions[]` and explicitly authored original-practice `records[]`, including nested canonical packages. An unrecognized changed `questions[]` shape or JSONL question source becomes a **hold**, not an invisible pass. Changed `render_core`, canonical QRT authorities, interactive runtime, published role pages, product manifests and learner figures/resources are separately surfaced; renderer/global changes with no scoped QRT inventory are a coverage failure.
+
+For indexed artifacts, `linked_dependencies()` traces **static local paths** through HTML links/images/scripts/stylesheets into other HTML, CSS, JavaScript imports and assets, bounded at 1,000 nodes. It fails on missing local resources; a changed reachable asset must be included as a hashed tracked input, otherwise it cannot inherit the existing QRT review. The existing governed preattempt graph checker still owns W-transitive protection; HTML link scanning alone does not establish W safety or dynamically generated JavaScript links.
+
+**Decision semantics:** a PR with no relevant changed questions/artifacts emits `no_relevant_changes=true` but **never** states repository-wide academic/QRT approval. A changed source without a bound indexed question produces `CHANGED_QUESTION_REVIEW_REQUIRED`; a changed resource without a bound question produces `PUBLISHED_SURFACE_WITHOUT_QRT_BINDING`; an indexed but stale candidate runs the full existing I1b/QRT completion gate and produces `SCOPED_QRT_REVIEW_NOT_CURRENT`. An empty index is not an escape hatch for changed governed content. The workflow attaches both evidence reports and runs the existing focused QRT and browser gates.
+
+**Limits that remain open for the six-Core product:** browser-computed resources, runtime navigation, dynamic imports, external links, original source rights, human independence and unrecognized subject-specific data models require separate review/adapters. The initial review index deliberately contains no accepted candidate, so changed governed content is blocked pending real receipts rather than self-accepted. No automatic merge or release is authorized.
+
 
 ## Transitive protected-work policy
 
