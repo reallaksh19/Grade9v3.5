@@ -199,6 +199,7 @@ TEMPLATE = r'''<!doctype html>
     const studyRoutes = document.getElementById("core1-study-routes");
     const viewedConstruction = new Set();
     const visitedFamiliar = new Set();
+    const reviewedFamiliar = new Set();
     const transferNav = document.getElementById("familiar-transfer");
     const transferNote = document.getElementById("familiar-transfer-note");
     const transferPaths = document.getElementById("familiar-transfer-paths");
@@ -325,14 +326,18 @@ TEMPLATE = r'''<!doctype html>
       }
       const didVisit = outcome.pairs.some((pair) =>
         visitedFamiliar.has(row.subject + "|" + pair.parent_ref));
+      const sawWorked = outcome.pairs.some((pair) =>
+        reviewedFamiliar.has(row.subject + "|" + pair.parent_ref));
       const text = [
         "The familiar question demonstrates an earlier route; Core2B asks for a different decision while preserving the stated invariant.",
         "Lineage, protected DECIDE and rubric are structural source evidence, not proof of authentic source custody or independent academic novelty.",
       ];
       if (row.projection?.core === "CORE2B") {
-        text.push(didVisit
-          ? "This session viewed the related Core2A familiar example; the transfer attempt is assisted by that exposure, not certified mastery."
-          : "No related Core2A encounter has been observed this session. Study the familiar question first; prior capability is unverified.");
+        text.push(sawWorked
+          ? "This session revealed the related Core2A worked explanation; transfer is assisted by instructional exposure, not certified mastery."
+          : didVisit
+            ? "The related Core2A question was visited, but its worked explanation was not observed. Prior capability is unverified."
+            : "No related Core2A encounter has been observed this session. Study the familiar question first; prior capability is unverified.");
       }
       if (outcome.findings.length) text.push("Other pairs held: " + outcome.findings.join(" · "));
       transferNote.textContent = text.join(" ");
@@ -366,6 +371,16 @@ TEMPLATE = r'''<!doctype html>
         transferPaths.append(item);
       }
     }
+
+    learner.addEventListener("reveal_changed", (event) => {
+      const row = rows.find((item) => item.id === select.value);
+      if (row?.projection?.core !== "CORE2A") return;
+      if (!["reasoning", "solution"].includes(event.detail?.kind)) return;
+      const qid = row.projection.application?.question_ref;
+      if (!qid) return;
+      reviewedFamiliar.add(row.subject + "|" + qid);
+      renderFamiliarTransfer(row);
+    });
 
     function mount(id, { updateUrl = true } = {}) {
       try {
