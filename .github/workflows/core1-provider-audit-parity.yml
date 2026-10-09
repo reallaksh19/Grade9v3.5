@@ -9,6 +9,9 @@ on:
       - "tests/test_core_learning_adapter.py"
       - "tests/test_core_publication_boundary.py"
       - "Shared/tools/build_pages_site.py"
+      - "Shared/tools/build_core_learning_host.py"
+      - "public/core-learning/index.html"
+      - "standalone/core-learning/index.html"
       - "public/core-learning/data.js"
       - "docs/core-learning/data.js"
       - "docs/core-learning/index.html"
@@ -31,9 +34,11 @@ jobs:
         with:
           python-version: "3.12"
       - name: Full Core provider and public/Pages custody tests
-        run: python -m unittest tests.test_core_learning_adapter tests.test_core_publication_boundary -v
+        run: python -m unittest tests.test_core_learning_adapter tests.test_core_publication_boundary tests.test_pages_site -v
       - name: Verify generated Core public/standalone hosts
         run: python Shared/tools/build_core_learning_host.py --check
+      - name: Verify GitHub Pages mirror byte freshness and links
+        run: python Shared/tools/build_pages_site.py --check
       - name: Verify actual public Core data from release-safe generator
         run: python -c 'from pathlib import Path; from Shared.tools import build_core_learning_data as b; assert Path("public/core-learning/data.js").read_bytes() == b.rendered_file()["public/core-learning/data.js"]'
 
