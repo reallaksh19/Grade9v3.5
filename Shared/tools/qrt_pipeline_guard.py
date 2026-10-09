@@ -14,6 +14,7 @@ import hashlib
 import json
 import re
 from pathlib import Path
+from html.parser import HTMLParser
 from typing import Any
 
 REPO = Path(__file__).resolve().parents[2]
@@ -198,10 +199,32 @@ def validate_blueprints(run: dict[str, Any], registry: dict[str, Any]) -> list[s
     return problems
 
 
+class _QuestionArticleParser(HTMLParser):
+    """Observe real rendered question units, never plain text or quoted JS strings."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.question_refs: set[str] = set()
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag == "article":
+            ref = dict(attrs).get("data-g9-unit")
+            if ref:
+                self.question_refs.add(ref)
+
+
 def validate_artifacts_and_reviews(run: dict[str, Any]) -> list[str]:
     problems: list[str] = []
     head = str((run.get("run_identity") or {}).get("head_sha") or "")
+    strict_binding = bool(
+        (run.get("review_requirements") or {}).get("question_anchor_binding_required")
+    )
+    question_ids = {
+        str(q.get("id")) for q in run.get("questions") or []
+        if isinstance(q, dict) and q.get("id")
+    }
     artifacts: dict[str, dict[str, Any]] = {}
+    observed_units: dict[str, set[str]] = {}
     for artifact in run.get("rendered_artifacts") or []:
         if not isinstance(artifact, dict):
             continue
@@ -210,8 +233,16 @@ def validate_artifacts_and_reviews(run: dict[str, Any]) -> list[str]:
         if not aid or not path_text:
             problems.append("RENDERED_ARTIFACT_ID_OR_PATH_MISSING")
             continue
+        if aid in artifacts:
+            problems.append(f"RENDERED_ARTIFACT_ID_DUPLICATE: {aid}")
+            continue
         artifacts[aid] = artifact
-        path = REPO / path_text
+        # Run evidence may cite only repository-relative files. Absolute or
+        # escaping paths can otherwise bind QRT reviews to unrelated local bytes.
+        path = (REPO / path_text).resolve()
+        if Path(path_text).is_absolute() or not path.is_relative_to(REPO.resolve()):
+            problems.append(f"RENDERED_ARTIFACT_PATH_OUTSIDE_REPO: {aid}:{path_text}")
+            continue
         if not path.exists() or not path.is_file():
             problems.append(f"RENDERED_ARTIFACT_MISSING: {aid}:{path_text}")
             continue
@@ -223,6 +254,16 @@ def validate_artifacts_and_reviews(run: dict[str, Any]) -> list[str]:
             problems.append(f"RENDERED_ARTIFACT_DIGEST_MISMATCH: {aid}")
         if artifact.get("head_sha") != head:
             problems.append(f"RENDERED_ARTIFACT_HEAD_MISMATCH: {aid}")
+        if strict_binding:
+            if path.suffix.lower() != ".html":
+                problems.append(f"QRT_QUESTION_ARTIFACT_NOT_HTML: {aid}")
+                continue
+            try:
+                parser = _QuestionArticleParser()
+                parser.feed(path.read_text(encoding="utf-8"))
+                observed_units[aid] = parser.question_refs
+            except (UnicodeError, OSError) as exc:
+                problems.append(f"QRT_QUESTION_ARTIFACT_UNREADABLE: {aid}:{type(exc).__name__}")
 
     review_by_question: dict[str, dict[str, Any]] = {}
     independent_reviewed_questions: set[str] = set()
@@ -236,7 +277,11 @@ def validate_artifacts_and_reviews(run: dict[str, Any]) -> list[str]:
             problems.append(f"REVIEW_BASIS_INVALID: {review.get('question_ref')}")
             continue
         qid = str(review.get("question_ref") or "")
+        if strict_binding and qid not in question_ids:
+            problems.append(f"QRT_REVIEW_QUESTION_UNKNOWN: {qid}")
         if qid:
+            if strict_binding and qid in review_by_question:
+                problems.append(f"QRT_REVIEW_QUESTION_DUPLICATE: {qid}")
             review_by_question[qid] = review
         if basis == "INDEPENDENT_RENDERED":
             reviewer_ref = str(review.get("reviewer_ref") or "").strip()
@@ -251,6 +296,12 @@ def validate_artifacts_and_reviews(run: dict[str, Any]) -> list[str]:
             continue
         if review.get("artifact_sha256") != artifact.get("sha256"):
             problems.append(f"REVIEW_NOT_BOUND_TO_RENDERED_BYTES: {qid}:{aid}")
+        if strict_binding:
+            declared = artifact.get("question_refs") or []
+            if qid not in declared:
+                problems.append(f"QRT_REVIEW_QUESTION_NOT_DECLARED_IN_ARTIFACT: {qid}:{aid}")
+            if qid not in observed_units.get(aid, set()):
+                problems.append(f"QRT_REVIEW_QUESTION_NOT_RENDERED_IN_ARTIFACT: {qid}:{aid}")
         judgements = review.get("judgements") or {}
         for ask in ASKS:
             row = judgements.get(ask)
