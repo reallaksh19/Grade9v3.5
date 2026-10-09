@@ -155,6 +155,43 @@ class CoreLearningProductionAdapter(unittest.TestCase):
                 for call in compile_call.call_args_list
             ))
 
+    def test_public_and_pages_core_data_are_physically_held_without_grants(self):
+        # Exact bytes: no TEST, Mathematics candidate or Physics candidate
+        # projection can ride into either public/ or the GitHub Pages docs/.
+        public = build_core_learning_data.build_public()
+        self.assertEqual(public["provider_status"], "PUBLICATION_HELD")
+        self.assertEqual(public["publication_gate"], {
+            "status": "HOLD",
+            "code": "NO_INDEPENDENT_CORE_PUBLICATION_GRANT",
+            "authority": "NOT_GRANTED_BY_ANY_MACHINE_CHECK",
+        })
+        for field in ("core_projections", "bucket_availability", "findings"):
+            self.assertEqual(public[field], [], field)
+        expected = build_core_learning_data.render(public).encode("utf-8")
+        for relative in ("public/core-learning/data.js", "docs/core-learning/data.js"):
+            with self.subTest(relative=relative):
+                self.assertEqual((REPO / relative).read_bytes(), expected)
+
+        # Internal compiler preview is not deleted or reclassified as released.
+        self.assertTrue(any(row["subject"] == "TEST" for row in self.rows))
+        self.assertTrue(any(
+            row["subject"] == "Mathematics"
+            and row["source_ref"] == "BUCKET-MAT-POLYNOMIALS"
+            for row in self.rows
+        ))
+        self.assertTrue(any(row["subject"] == "Physics" for row in self.rows))
+        self.assertEqual(
+            build_core_learning_data.rendered_file(),
+            {"public/core-learning/data.js": expected},
+        )
+
+    def test_public_pages_mirror_contains_release_hold_instead_of_preview_chooser(self):
+        public = (REPO / "public/core-learning/index.html").read_bytes()
+        pages = (REPO / "docs/core-learning/index.html").read_bytes()
+        self.assertEqual(pages, public)
+        self.assertIn(b'if (data?.publication_gate?.status === "HOLD")', public)
+        self.assertIn(b'No public activities are available.', public)
+
     def test_every_routed_concept_reaches_both_core1a_and_core1b(self):
         report = json.loads(RECONSTRUCTION_REPORT.read_text(encoding="utf-8"))
         routed = {
