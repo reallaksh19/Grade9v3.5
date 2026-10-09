@@ -157,16 +157,53 @@ def _render_manifest(files: dict[str, tuple[str, bytes]]) -> bytes:
     return (json.dumps(payload, indent=2, sort_keys=True) + "\n").encode("utf-8")
 
 
+def _assert_core_public_data_safe(repo: Path) -> None:
+    """Never mirror raw internal Core previews through the Pages deployment path.
+
+    The source public/ asset is the only Core data Pages may copy. Validate it
+    against the authoritative generator's *public* (not preview) output before
+    reading the rest of the site. A partial temporary site without a Core host
+    is permitted for unrelated site-building tests.
+    """
+    public = repo / "public"
+    data = public / "core-learning" / "data.js"
+    host = public / "core-learning" / "index.html"
+    if not host.is_file() and not data.is_file():
+        return
+    if not host.is_file() or not data.is_file():
+        raise ValueError("CORE_PUBLICATION_HOLD_SOURCE_MISSING")
+
+    # build_pages_site.py is also callable as a directly executed script.
+    # Ensure the common repository modules resolve in that mode.
+    import sys
+    if str(REPO) not in sys.path:
+        sys.path.insert(0, str(REPO))
+    from Shared.tools import build_core_learning_data
+
+    expected = build_core_learning_data.rendered_file()["public/core-learning/data.js"]
+    if data.read_bytes() != expected:
+        raise ValueError("CORE_PUBLICATION_HOLD_PUBLIC_SOURCE_MISMATCH")
+
+
 def desired_files(repo: Path = REPO) -> dict[str, tuple[str, bytes]]:
+    _assert_core_public_data_safe(repo)
     public = repo / "public"
     files: dict[str, tuple[str, bytes]] = {}
     for source in sorted(public.rglob("*")):
         if not source.is_file():
             continue
         relative = source.relative_to(public).as_posix()
+        content = source.read_bytes()
+        if relative == "core-learning/data.js":
+            # Verify the bytes *actually being copied*, not just the earlier
+            # source preflight. The file could change between those reads.
+            from Shared.tools import build_core_learning_data
+            expected = build_core_learning_data.rendered_file()[f"public/{relative}"]
+            if content != expected:
+                raise ValueError("CORE_PUBLICATION_HOLD_MIRROR_SOURCE_CHANGED")
         files[relative] = (
             f"public/{relative}",
-            _public_payload(relative, source.read_bytes()),
+            _public_payload(relative, content),
         )
 
     for source_rel, target_rel in EXTRA_SOURCES.items():

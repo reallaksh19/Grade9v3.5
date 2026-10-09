@@ -66,6 +66,7 @@
       <div>
         <p class="core-kicker" id="subject-context">Compiled canonical learner activity</p>
         <h1 id="projection-title">Core learner</h1>
+        <p class="host-note" role="note">Compiler design preview only. Curriculum approval, source custody and QRT release remain unverified; TEST sandbox activities are withheld from this chooser.</p>
         <p id="projection-status" data-status role="status" aria-live="polite"></p>
       </div>
       <span class="delivery-chip" id="delivery-chip">Resolving blueprint…</span>
@@ -116,8 +117,8 @@
     import { mountCoreLearningPage } from "../../public/js/core-learning/core-learning-host.mjs";
 
     const data = window.GRADE9V3_CORE;
-    const rows = Array.isArray(data?.core_projections) ? data.core_projections : [];
-    const availability = Array.isArray(data?.bucket_availability) ? data.bucket_availability : [];
+    const rows = (Array.isArray(data?.core_projections) ? data.core_projections : []).filter(row => row?.subject !== "TEST");
+    const availability = (Array.isArray(data?.bucket_availability) ? data.bucket_availability : []).filter(row => row?.subject !== "TEST");
     const learner = document.getElementById("learner");
     const select = document.getElementById("projection-select");
     const loadButton = document.getElementById("load-projection");
@@ -197,6 +198,7 @@
     function mount(id, { updateUrl = true } = {}) {
       try {
         const row = rows.find((item) => item.id === id);
+        if (!row) throw new Error("CORE_LEARNING_PROJECTION_NOT_PUBLIC_PREVIEW");
         const result = mountCoreLearningPage(learner, data, id, registries);
         select.value = result.id;
         mountExplorer(row);
@@ -229,7 +231,11 @@
       loadButton.disabled = true;
       const first = availability.find((row) => row?.status === "UNSUPPORTED");
       const reason = first?.code ? ` Reason: ${first.code}.` : "";
-      setStatus("No compiled Core learner projections are available in this generated data build." + reason);
+      if (data?.publication_gate?.status === "HOLD") {
+        setStatus("Core learner publication held: " + (data.publication_gate.code || "NO_RELEASE_GRANT") + ". No public activities are available.");
+      } else {
+        setStatus("No compiled Core learner projections are available in this generated data build." + reason);
+      }
     } else {
       loadButton.addEventListener("click", () => mount(select.value));
       select.addEventListener("change", () => setStatus(`Selected ${labelFor(rows.find((row) => row.id === select.value))}.`));

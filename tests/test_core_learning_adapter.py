@@ -7,6 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from Shared.contracts import ContractError
+from Shared.library import core1_orientation
 from Shared.library.compile_inputs import compile_bucket
 from Shared.library.resolve import build_index
 from Shared.tools import build_core_learning_data, build_core_learning_host
@@ -87,10 +88,14 @@ class CoreLearningProductionAdapter(unittest.TestCase):
         self.assertTrue(b["projection"]["concept"]["elicitation"]["predict"]["prompt"])
 
     def test_every_core1_orientable_bucket_reaches_the_learner_provider(self):
-        report = json.loads(ORIENTATION_REPORT.read_text(encoding="utf-8"))
+        # The committed audit is an earlier evidence snapshot, not a live
+        # compiler allowlist. Compare *all* current canonical orientable
+        # buckets against the provider so newly added candidates are not
+        # silently dropped merely because an old JSON report predates them.
+        live_report = core1_orientation.audit(REPO)
         expected = {
             (row["subject"], row["bucket_ref"])
-            for row in report["buckets"]
+            for row in live_report["buckets"]
             if row["core1_compilable"]
         }
         delivered = {
@@ -98,7 +103,101 @@ class CoreLearningProductionAdapter(unittest.TestCase):
             for row in self.rows
             if row["projection"]["core"] == "CORE1"
         }
+        self.assertTrue(expected)
         self.assertEqual(delivered, expected)
+
+    def test_historical_orientation_snapshot_delta_is_explicit_not_publication(self):
+        # Do not regenerate the historical 22-bucket report or let an
+        # executable compiler preview masquerade as curriculum/QRT approval.
+        historical = json.loads(ORIENTATION_REPORT.read_text(encoding="utf-8"))
+        live_report = core1_orientation.audit(REPO)
+        old_ids = {
+            (row["subject"], row["bucket_ref"])
+            for row in historical["buckets"]
+        }
+        live_ids = {
+            (row["subject"], row["bucket_ref"])
+            for row in live_report["buckets"]
+        }
+        preview_delta = {
+            ("Mathematics", "BUCKET-MAT-POLYNOMIALS"),
+            ("TEST", "BUCKET-TEST-IMO-G9-NS-DIVISIBILITY"),
+            ("TEST", "BUCKET-MATH-POLY-STRESS-ISS55"),
+        }
+        self.assertEqual(len(historical["buckets"]), 22)
+        self.assertEqual(live_ids - old_ids, preview_delta)
+        self.assertEqual(old_ids - live_ids, set())
+        self.assertTrue(all(
+            row["core1_compilable"]
+            for row in live_report["buckets"]
+            if (row["subject"], row["bucket_ref"]) in preview_delta
+        ))
+        for path in (
+            REPO / "Mathematics/library/polynomials.v1.json",
+            REPO / "TEST/library/imo-g9-divisibility-core1a.v1.json",
+            REPO / "TEST/library/iss55-poly.v1.json",
+        ):
+            package = json.loads(path.read_text(encoding="utf-8"))
+            self.assertEqual(package["status"], "CANDIDATE", path)
+            self.assertTrue(all(b["status"] == "CANDIDATE" for b in package["buckets"]))
+        # All emitted data is compiled using an explicitly labelled design
+        # preview. No test here grants QRT acceptance or publication rights.
+        with patch.object(
+            build_core_learning_data, "compile_bucket", wraps=compile_bucket
+        ) as compile_call:
+            for subject in ("Mathematics", "TEST"):
+                build_core_learning_data._subject_rows(subject)
+            self.assertTrue(compile_call.call_args_list)
+            self.assertTrue(all(
+                call.kwargs.get("practice_control") == {
+                    "mode": "DESIGN_PREVIEW", "purpose": "PRACTICE"
+                }
+                for call in compile_call.call_args_list
+            ))
+
+    def test_public_and_pages_core_data_are_physically_held_without_grants(self):
+        # Exact bytes: no TEST, Mathematics candidate or Physics candidate
+        # projection can ride into either public/ or the GitHub Pages docs/.
+        public = build_core_learning_data.build_public()
+        self.assertEqual(public["provider_status"], "PUBLICATION_HELD")
+        self.assertEqual(public["publication_gate"], {
+            "status": "HOLD",
+            "code": "NO_INDEPENDENT_CORE_PUBLICATION_GRANT",
+            "authority": "NOT_GRANTED_BY_ANY_MACHINE_CHECK",
+        })
+        for field in ("core_projections", "bucket_availability", "findings"):
+            self.assertEqual(public[field], [], field)
+        # Serializing even a fully compilable internal preview must fail closed.
+        with self.assertRaisesRegex(ValueError, "CORE_PUBLICATION_HOLD"):
+            build_core_learning_data.render(self.payload)
+        poisoned = dict(public)
+        poisoned["core_projections"] = [{"id": "UNAPPROVED"}]
+        with self.assertRaisesRegex(ValueError, "CORE_PUBLICATION_HOLD"):
+            build_core_learning_data.render(poisoned)
+        expected = build_core_learning_data.render(public).encode("utf-8")
+        for relative in ("public/core-learning/data.js", "docs/core-learning/data.js"):
+            with self.subTest(relative=relative):
+                self.assertEqual((REPO / relative).read_bytes(), expected)
+
+        # Internal compiler preview is not deleted or reclassified as released.
+        self.assertTrue(any(row["subject"] == "TEST" for row in self.rows))
+        self.assertTrue(any(
+            row["subject"] == "Mathematics"
+            and row["source_ref"] == "BUCKET-MAT-POLYNOMIALS"
+            for row in self.rows
+        ))
+        self.assertTrue(any(row["subject"] == "Physics" for row in self.rows))
+        self.assertEqual(
+            build_core_learning_data.rendered_file(),
+            {"public/core-learning/data.js": expected},
+        )
+
+    def test_public_pages_mirror_contains_release_hold_instead_of_preview_chooser(self):
+        public = (REPO / "public/core-learning/index.html").read_bytes()
+        pages = (REPO / "docs/core-learning/index.html").read_bytes()
+        self.assertEqual(pages, public)
+        self.assertIn(b'if (data?.publication_gate?.status === "HOLD")', public)
+        self.assertIn(b'No public activities are available.', public)
 
     def test_every_routed_concept_reaches_both_core1a_and_core1b(self):
         report = json.loads(RECONSTRUCTION_REPORT.read_text(encoding="utf-8"))
@@ -371,6 +470,32 @@ class CoreLearningProductionAdapter(unittest.TestCase):
         self.assertIn("Legacy iframe · migration only", public)
         self.assertIn("row?.projection?.delivery?.web", public)
         self.assertIn('locator.slice("public/".length)', public)
+
+    def test_learner_hosts_label_previews_and_hold_test_sandbox_at_ui_boundary(self):
+        # This protects the ordinary chooser/direct-link mount route, not the
+        # underlying bytes of public/core-learning/data.js. A separate data
+        # publication policy must close that remaining exposure.
+        rendered = build_core_learning_host.render()
+        for relative in (
+            "public/core-learning/index.html",
+            "standalone/core-learning/index.html",
+        ):
+            html = rendered[relative].decode("utf-8")
+            self.assertIn(
+                "Compiler design preview only. Curriculum approval, source custody and QRT release remain unverified",
+                html,
+                relative,
+            )
+            self.assertIn(
+                '.filter(row => row?.subject !== "TEST")',
+                html,
+                relative,
+            )
+            self.assertIn(
+                'if (!row) throw new Error("CORE_LEARNING_PROJECTION_NOT_PUBLIC_PREVIEW");',
+                html,
+                relative,
+            )
 
     def test_shared_clock_explorer_remains_available_when_canonical_resource_exists(self):
         row = self.row(core="CORE2A", source=FAMILIAR)

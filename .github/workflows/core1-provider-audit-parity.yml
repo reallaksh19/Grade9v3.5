@@ -1,0 +1,48 @@
+name: core1-provider-audit-parity
+
+on:
+  push:
+    branches:
+      - "fix/326-core1-live-audit-parity"
+  pull_request:
+    paths:
+      - "tests/test_core_learning_adapter.py"
+      - "tests/test_core_publication_boundary.py"
+      - "Shared/tools/build_pages_site.py"
+      - "public/js/topic-atlas.js"
+      - "docs/js/topic-atlas.js"
+      - "public/motion-session/app.mjs"
+      - "docs/motion-session/app.mjs"
+      - "Shared/tools/build_core_learning_host.py"
+      - "public/core-learning/index.html"
+      - "standalone/core-learning/index.html"
+      - "public/core-learning/data.js"
+      - "docs/core-learning/data.js"
+      - "docs/core-learning/index.html"
+      - "Shared/library/core1_orientation.py"
+      - "Shared/tools/build_core_learning_data.py"
+      - "docs/core1-orientation-report.json"
+      - ".github/workflows/core1-provider-audit-parity.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-head-adapter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout candidate exact head
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Full Core provider and public/Pages custody tests
+        run: python -m unittest tests.test_core_learning_adapter tests.test_core_publication_boundary tests.test_pages_site -v
+      - name: Verify generated Core public/standalone hosts
+        run: python Shared/tools/build_core_learning_host.py --check
+      - name: Verify GitHub Pages mirror byte freshness and links
+        run: python Shared/tools/build_pages_site.py --check
+      - name: Verify actual public Core data from release-safe generator
+        run: python -c 'from pathlib import Path; from Shared.tools import build_core_learning_data as b; assert Path("public/core-learning/data.js").read_bytes() == b.rendered_file()["public/core-learning/data.js"]'
+
