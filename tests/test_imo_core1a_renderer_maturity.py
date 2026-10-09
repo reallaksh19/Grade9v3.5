@@ -17,8 +17,8 @@ from Shared.tools import product_coverage, product_manifest, render_core
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "TEST/products/core1a-divisibility-render-maturity.manifest.json"
-PACKAGE = ROOT / "TEST/library/imo-g9-divisibility-core1a.v1.json"
-MICRO = "MIC-TEST-IMO-G9-CONSECUTIVE-FACTOR-INVARIANTS"
+PACKAGE = ROOT / "TEST/library/core1a-render-qualified-divisibility.v1.json"
+MICRO = "MIC-TEST-CORE1A-QUAL-G9-CONSECUTIVE-FACTOR-INVARIANTS"
 
 
 def digest(b: bytes) -> str:
@@ -32,14 +32,17 @@ class Core1ARendererMaturityTests(unittest.TestCase):
         self.assertEqual(m["schema"], "product-manifest/v1")
         self.assertEqual(m["subject"], "TEST")
         self.assertEqual(m["output_roles"], ["CORE1A"])
-        self.assertEqual(m["package_refs"], ["TEST/library/imo-g9-divisibility-core1a.v1.json"])
+        self.assertEqual(m["package_refs"], ["TEST/library/core1a-render-qualified-divisibility.v1.json"])
         self.assertEqual(m["bank_refs"], [])
         self.assertEqual(m["selection"], {
             "microtopics": [MICRO], "core2": [], "core2a": [], "core2b": [],
         })
         self.assertEqual(pkg["subject"], "TEST")
         self.assertEqual(pkg["status"], "CANDIDATE")
-        self.assertEqual(pkg["questions"], [])
+        self.assertEqual(len(pkg["questions"]), 1)
+        self.assertEqual(pkg["questions"][0]["origin"], "AUTHORED")
+        self.assertEqual(pkg["questions"][0]["exposure"][0]["core"], "CORE1A")
+        self.assertEqual(len(pkg["representations"][0]["reveal_stages"]), 3)
         self.assertEqual(pkg["extensions"]["grade9v3:core2_source_custody_granted"], False)
         self.assertEqual(pkg["extensions"]["grade9v3:learner_published"], False)
         self.assertEqual(pkg["extensions"]["grade9v3:qrt_admitted"], False)
@@ -61,6 +64,8 @@ class Core1ARendererMaturityTests(unittest.TestCase):
         self.assertIn(MICRO, html)
         self.assertIn("CORE1A", html)
         self.assertIn("divisible by 6", html.lower())
+        self.assertIn("data-g9-stage-id", html)
+        self.assertIn("Worked explanation", html)
         self.assertEqual(re.findall(r'<article[^>]*data-g9-role="([^"]+)"', html), ["CORE1A"])
         self.assertNotIn("SOF-IMO-G09-L1", html)
         self.assertEqual(len(render_digest), 16)
