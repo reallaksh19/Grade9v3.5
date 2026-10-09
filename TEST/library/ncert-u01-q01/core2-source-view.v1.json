@@ -1,0 +1,163 @@
+{
+  "schema_version": "grade9v3-test-core2-source-view-v1",
+  "authority_note": "TEST-only derived product view, never a source intake bank or curriculum/canonical acceptance. Rebuild using TEST/library/ncert_source_core2_view.py --check.",
+  "source_bank_ref": "TEST/question-bank/intake/ncert-cbse-math-g9-pilot.json",
+  "source_question_ref": "ncert-exemplar-g9-math-u01-q01",
+  "source_stem_sha256": "sha256:40010d207519d386d5d2a6519c39745ee59de121105642b68c4f398a002cb3f6",
+  "questions": [
+    {
+      "id": "ncert-exemplar-g9-math-u01-q01",
+      "status": "CANDIDATE",
+      "original_identifier": "Unit 1 Ex 1.1 Q1",
+      "stem": "Every rational number is",
+      "options": [
+        "(A) a natural number",
+        "(B) an integer",
+        "(C) a real number",
+        "(D) a whole number"
+      ],
+      "subparts": [],
+      "conditions": [],
+      "figure_refs": [],
+      "source_refs": [],
+      "evidence_refs": [],
+      "primary_capability_ref": "CAP-TEST-NCERT-U01-RATIONAL-REAL-INCLUSION",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-TEST-NCERT-U01-SET-INCLUSION",
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "(C) a real number. Every rational number is a real number.",
+        "reasoning": [
+          "A rational number has the form a/b for integers a and b with b nonzero.",
+          "Each rational number lies on the real number line, hence the rational set is contained in the real set.",
+          "The rational number 1/2 is not an integer, whole number or natural number, so (A), (B), and (D) cannot be universal descriptions.",
+          "Therefore (C), a real number, is the correct choice."
+        ],
+        "reasoning_route": [
+          {
+            "id": "NS-Q1-MOVE-1",
+            "kind": "DECIDE",
+            "action": "Interpret 'Every rational number is' as asking for a set containing all rational numbers.",
+            "why_valid": "A universal claim must hold for negative and fractional rationals, not just positive whole examples.",
+            "inputs": [
+              "Original NCERT Q1 wording"
+            ],
+            "output": "Find a valid universal superset of Q."
+          },
+          {
+            "id": "NS-Q1-MOVE-2",
+            "kind": "REPRESENT",
+            "action": "Use Q ⊆ R: every rational a/b with integer a, b ≠ 0 represents a real number.",
+            "why_valid": "Every quotient of integers with nonzero denominator is a real number.",
+            "inputs": [
+              "Rational number definition",
+              "number-set inclusion"
+            ],
+            "output": "Option (C) is valid."
+          },
+          {
+            "id": "NS-Q1-MOVE-3",
+            "kind": "VERIFY",
+            "action": "Test 1/2 against natural, integer and whole-number categories.",
+            "why_valid": "One nonintegral rational refutes each narrower universal option.",
+            "inputs": [
+              "Options (A), (B) and (D)"
+            ],
+            "output": "Reject the narrower categories; retain (C)."
+          }
+        ],
+        "crux_move_ref": "NS-Q1-MOVE-2",
+        "check": "Independent definition and counterexample check: 1/2 is rational and real, but not a natural number, integer or whole number; √2 is real but irrational, so reverse inclusion does not follow.",
+        "acceptable_alternatives": [
+          "Rational numbers are a subset of the real numbers; therefore the classification is real number."
+        ],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "source_key": {
+          "state": "PRESENT",
+          "value": "(C) a real number"
+        },
+        "key_relation": "MATCHES_KEY"
+      },
+      "extensions": {
+        "grade9v3:ncert_source_lineage": {
+          "source_id": "ncert-exemplar-g9-math-u01-q01",
+          "stem_sha256": "sha256:40010d207519d386d5d2a6519c39745ee59de121105642b68c4f398a002cb3f6",
+          "original_identifier": "Unit 1 Ex 1.1 Q1",
+          "source_url": "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep201.pdf",
+          "source_authority": "NCERT_OFFICIAL",
+          "source_document_role": "EXEMPLAR",
+          "verified_printed_page": 2,
+          "verified_pdf_page_index": 1,
+          "source_custody_status": "READY_FOR_BLUEPRINT",
+          "separate_official_answer_key": "(C)",
+          "answer_source_url": "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep2an.pdf",
+          "academic_status_not_granted_by_view": true
+        },
+        "grade9v3:source_custody": {
+          "authority_class": "CURRICULAR_STANDARD",
+          "intake_ref": "ncert-exemplar-g9-math-u01-q01",
+          "wording_custody": "FAITHFUL_NCERT",
+          "text_sha256": "sha256:40010d207519d386d5d2a6519c39745ee59de121105642b68c4f398a002cb3f6",
+          "source_status": "NCERT_AUTHENTIC",
+          "paper_url": "https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/ieep201.pdf"
+        },
+        "grade9v3:analysis": {
+          "topic": "Number Systems",
+          "concept_bucket": "BUCKET-TEST-NCERT-U01-REAL-NUMBERS",
+          "common_wrong_route": "Conflating rationals with integers or reversing Q ⊆ R; test with 1/2 and √2.",
+          "exam_source_badge": "NCERT Exemplar Class IX · Unit 1, Exercise 1.1, Question 1 (witnessed custody; academic validation separate)",
+          "learner_question_type": "single_correct_mcq",
+          "original_question_type": "single_correct_mcq",
+          "difficulty": {
+            "band": "D1",
+            "score": 2,
+            "components": {
+              "concept_model_selection": 1,
+              "representation_translation": 0,
+              "reasoning_chain_length": 1,
+              "algebra_computational_load": 0,
+              "trap_exception_sensitivity": 0
+            },
+            "basis": "A direct number-set inclusion check; learners must reject three overly narrow sets with a fractional counterexample."
+          },
+          "expected_time_seconds": 75
+        },
+        "grade9v3:provenance_class": "NCERT_CUSTODY_WITNESSED",
+        "grade9v3:component_waivers": {
+          "CONDITIONS": "The official stem 'Every rational number is' contains a universal quantifier but no separately stated conditions; adding constraints would invent NCERT wording.",
+          "REPRESENTATION": "No source figure accompanies this number-set classification question. The draft uses authored symbolic Q subset R reasoning and 1/2 counterexamples without claiming a nonexistent NCERT illustration."
+        }
+      },
+      "response": {
+        "type": "single_choice"
+      },
+      "scaffolds": [
+        {
+          "text": "Consider 1/2. It is rational, but is it a natural number, an integer, or a whole number?",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "NS-Q1-MOVE-1",
+          "learner_stage": "REPRESENTATION",
+          "prompt": "Which of the four candidate sets fail for 1/2?"
+        },
+        {
+          "text": "Use the definition of rational numbers: a/b, where a and b are integers and b is not zero. Which larger number set contains all such values?",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "NS-Q1-MOVE-2",
+          "learner_stage": "KEY_CONCEPT",
+          "prompt": "Where do all such quotients lie on the number line?"
+        },
+        {
+          "text": "Check the word every. A single non-integer rational disproves a narrower universal claim.",
+          "support_kind": "EXECUTE",
+          "reveals": "METHOD",
+          "supports_move_ref": "NS-Q1-MOVE-3",
+          "learner_stage": "CRUX",
+          "prompt": "Which single option survives all rational counterexamples?"
+        }
+      ]
+    }
+  ]
+}

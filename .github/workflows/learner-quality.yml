@@ -55,6 +55,8 @@ jobs:
         run: |
           python3 -m unittest tests.test_test_source_review -v
           python3 Shared/tools/test_source_review.py
+      - name: TEST NCERT Q1 source-linked parked product contract (Issue 131)
+        run: python3 -m unittest tests.test_test_ncert_source_product -v
       - name: Authenticate pilot witness pointers
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -102,6 +104,72 @@ jobs:
 
       - name: Existing blueprint layout observation regressions
         run: node --test tests/test_blueprint_layout.mjs
+
+  ncert-q1-source-linked-product-build:
+    # Draft-only producer execution: no commit, deploy, or canonical publication.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install TEST product dependencies and PDF browser printer
+        run: |
+          pip install --quiet jsonschema pypdf
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Verify source-derived Core2 Q1 view and owning producer contracts
+        run: |
+          python3 TEST/library/ncert_source_core2_view.py --check
+          python3 -m unittest tests.test_test_ncert_source_product -v
+          python3 Shared/tools/matrix_conformance.py --help >/dev/null
+      - name: Build actual nonaccepted TEST product and mirrors
+        run: |
+          python3 Shared/tools/deploy_test.py product TEST/products/ncert-u01-q01.manifest.json
+          python3 Shared/tools/deploy_test.py pages --check
+      - name: Assert recorded draft receipt, product roles and source isolation
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          base = Path("public/test/products/ncert-u01-q01")
+          receipt = json.loads((base / "deploy-receipt.json").read_text(encoding="utf-8"))
+          assert receipt["draft"] is True and receipt["accepted"] is False, "product became accepted"
+          assert receipt["roles"] == ["CORE2", "CORE1A"], receipt.get("roles")
+          assert receipt["selection_counts"]["core2"] == 1, receipt["selection_counts"]
+          for name in ("index.html", "core2.html", "core1a.html"):
+              contents = (base / name).read_bytes()
+              assert b"TEST sandbox" in contents, name
+              assert hashlib.sha256(contents).hexdigest() == receipt["pages"][name], name
+              assert (Path("docs/test/products/ncert-u01-q01") / name).read_bytes() == contents, name
+          assert (Path("docs/test/atlas/index.html")).is_file()
+          assert (Path("docs/test/rungs/index.html")).is_file()
+          assert (Path("docs/test/deployments/index.html")).is_file()
+          print("PASS: source-bound TEST product generated, draft and nonaccepted; three role pages mirrored")
+          PY
+      - name: Browser-audit actual nonaccepted NCERT Q1 Core2 and Core1A roles
+        run: node tests/browser_ncert_q1_source_product.mjs
+      - name: Preserve draft-only Core2/Core1A and receipts for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ncert-q1-test-product-draft
+          path: |
+            /tmp/ncert-q1-browser-evidence.json
+            public/test/products/ncert-u01-q01/
+            public/test/atlas/index.html
+            public/test/rungs/index.html
+            public/test/deployments/index.html
+            public/test/index.html
+            docs/test/products/ncert-u01-q01/
+            docs/test/atlas/index.html
+            docs/test/rungs/index.html
+            docs/test/deployments/index.html
+            docs/test/index.html
+          if-no-files-found: warn
+          retention-days: 7
 
   test-question-bank-browser-audit:
     # Blocking technical evidence for the TEST-only NCERT intake browser.
