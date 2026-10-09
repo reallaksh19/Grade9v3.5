@@ -85,12 +85,15 @@ def _question_records(data: dict) -> tuple[dict[str, dict], list[dict[str, str]]
                 found[qid] = value
                 return
             for child_key, child in value.items():
-                if child_key in {"questions", "records"} and isinstance(child, list):
+                if isinstance(child, dict):
+                    visit(child, child_key)
+                elif isinstance(child, list) and child_key in {
+                    "questions", "records", "microtopics", "topics", "units",
+                    "sections", "practice_families", "packages",
+                }:
                     for row in child:
                         visit(row, child_key)
-                elif isinstance(child, dict) and child_key in {"package", "bank", "payload", "content"}:
-                    visit(child, child_key)
-        elif isinstance(value, list) and key in {"questions", "records"}:
+        elif isinstance(value, list) and key in {"questions", "records", "microtopics"}:
             for row in value:
                 visit(row, key)
 
