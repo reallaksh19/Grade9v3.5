@@ -2541,7 +2541,8 @@ html[data-g9-role="CORE1B"] body{line-height:1.48!important}
 html[data-g9-role="CORE1B"] .g9-concept-triad-bar{display:none!important}
 html[data-g9-role="CORE1B"] article[data-g9-role="CORE1B"]{margin:4px 0!important;padding:12px!important}
 html[data-g9-role="CORE1B"] article[data-g9-role="CORE1B"] .g9-split{display:block!important}
-html[data-g9-role="CORE1B"] footer{position:fixed!important;bottom:1mm!important;left:10mm!important;padding:0!important;font-size:11px!important;background:#fff!important}
+html[data-g9-role="CORE1B"] article[data-g9-role="CORE1B"] figure[data-g9-figure]{break-inside:avoid-page!important;page-break-inside:avoid!important}
+html[data-g9-role="CORE1B"] footer{position:static!important;bottom:auto!important;left:auto!important;padding:0!important;break-before:auto!important;font-size:11px!important;background:#fff!important}
 }
 .g9-attempt input[type=text],.g9-attempt select,.g9-attempt textarea{min-height:48px;box-sizing:border-box}
 .g9-answer-option,.g9-paper,.g9-match{display:flex;align-items:center;gap:.5rem;min-height:48px}

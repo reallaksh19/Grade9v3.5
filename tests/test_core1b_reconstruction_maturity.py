@@ -268,6 +268,8 @@ class Core1BReconstructionTests(unittest.TestCase):
         for role in ("core1a.html", "core1b.html", "core2a.html"):
             self.assertIn('html[data-g9-role="CORE1B"] .g9-concept-triad-bar', pages[role])
             self.assertIn('html[data-g9-role="CORE1B"] article[data-g9-role="CORE1B"] .g9-split', pages[role])
+            self.assertIn('html[data-g9-role="CORE1B"] article[data-g9-role="CORE1B"] figure[data-g9-figure]', pages[role])
+            self.assertIn('html[data-g9-role="CORE1B"] footer{position:static', pages[role])
             self.assertNotIn('html[data-g9-role="CORE1A"] .g9-concept-triad-bar', pages[role])
             self.assertNotIn('html[data-g9-role="CORE2A"] .g9-concept-triad-bar', pages[role])
         b = pages["core1b.html"]

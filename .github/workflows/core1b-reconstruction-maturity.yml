@@ -124,6 +124,14 @@ jobs:
                      and 'The three factors are consecutive' in text
                      for text in learner_pages), (
                          'learner task/givens/boundary orphaned across paper sheets')
+          # Same-page factor/figcaption identity, not merely PDF keyword existence.
+          diagram='t − 2 × t − 1 × t'
+          assert any(diagram in text and 'Given triple only' in text
+                     for text in learner_pages), 'PRE_ATTEMPT figure/caption split in learner print'
+          assert any(diagram in text and 'Given triple only' in text
+                     for text in key_pages), 'PRE_ATTEMPT figure/caption split in offline KEY'
+          assert any(diagram in text and 'Present the new reconstruction task' in text
+                     for text in key_pages), 'POST_ATTEMPT figure/caption split in offline KEY'
           for mark in ['Check your prediction','No. Three checks are instances',
                        'Evidence:', 'Answers that do not yet satisfy',
                        'The factor t is always divisible by 3', 'Boundary answer',
