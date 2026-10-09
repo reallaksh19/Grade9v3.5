@@ -13,7 +13,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from Shared.tools import product_coverage, product_manifest, render_core
+from Shared.tools import product_coverage, product_manifest, render_core, question_review_matrix as qrt
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "TEST/products/core1a-divisibility-render-maturity.manifest.json"
@@ -26,6 +26,41 @@ def digest(b: bytes) -> str:
 
 
 class Core1ARendererMaturityTests(unittest.TestCase):
+    def test_owner_7_by_4_qrt_matrix_remains_a_separate_complete_semantic_contract(self):
+        """The conceptual lesson cannot collapse or replace the 28 QRT cells."""
+        self.assertEqual(qrt.DEMANDS, (
+            "RETRIEVE", "EXPLAIN", "APPLY", "MODEL",
+            "REPRESENT", "SYNTHESIZE", "JUSTIFY",
+        ))
+        self.assertEqual(qrt.BANDS, ("D1", "D2", "D3", "D4"))
+        self.assertEqual(qrt.ASKS, (
+            "H1", "H2", "H3", "S1", "S2", "S3",
+            "P1", "P2", "P3", "M1", "M2", "M3",
+        ))
+        self.assertEqual(qrt.check_paths(), [])
+        matrix, vocab = qrt.load(qrt.MATRIX_PATH), qrt.load(qrt.VOCAB_PATH)
+        projected = qrt.generated_payload(matrix, vocab)
+        checked_in = qrt.load(qrt.GENERATED_PATH)
+        self.assertEqual(projected, checked_in)
+        cells = projected["templates"]
+        self.assertEqual(len(cells), 28)
+        self.assertEqual(
+            {(row["demand"], row["band"]) for row in cells},
+            {(d, b) for d in qrt.DEMANDS for b in qrt.BANDS},
+        )
+        for cell in cells:
+            self.assertEqual(tuple(cell["review"]), qrt.ASKS)
+            self.assertIn(cell["band_policy"]["protected_work"], cell["slots"]["W"])
+            self.assertEqual(qrt.forbidden_score_keys(cell), [])
+        pkg = json.loads(PACKAGE.read_text(encoding="utf-8"))
+        # Concept intrinsic badge is not a question's D band or its demand.
+        self.assertIn(pkg["microtopics"][0]["intrinsic_badge"], ("HARD", "MEDIUM", "EASY"))
+        self.assertEqual(
+            set(json.loads(MANIFEST.read_text(encoding="utf-8"))["output_roles"]),
+            {"CORE1A"},
+        )
+        self.assertFalse(any("QRT-" in q["id"] for q in pkg["questions"]))
+
     def test_manifest_is_a_test_only_canonical_selection(self):
         m = json.loads(MANIFEST.read_text(encoding="utf-8"))
         pkg = json.loads(PACKAGE.read_text(encoding="utf-8"))
