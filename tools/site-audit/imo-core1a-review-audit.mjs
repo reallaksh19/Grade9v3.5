@@ -136,14 +136,30 @@ function demand(test,message){if(!test)throw new Error(message)}
             width:Math.round(box.width),scrollWidth:node.scrollWidth,
             clientWidth:node.clientWidth,overflowX:getComputedStyle(node).overflowX};
         });
+      const scrollCandidates=Array.from(document.querySelectorAll('html, body, body *'))
+        .filter(node=>node.scrollWidth>node.clientWidth+4)
+        .map(node=>({
+          tag:node.tagName.toLowerCase(),id:node.id||null,
+          className:typeof node.className==='string'?node.className.slice(0,80):'',
+          scrollWidth:node.scrollWidth,clientWidth:node.clientWidth,
+          overflowX:getComputedStyle(node).overflowX,
+          left:Math.round(node.getBoundingClientRect().left),
+          right:Math.round(node.getBoundingClientRect().right)
+        }))
+        .sort((a,b)=>(b.scrollWidth-b.clientWidth)-(a.scrollWidth-a.clientWidth))
+        .slice(0,28);
       return {w:innerWidth,
         extra:Math.max(document.documentElement.scrollWidth,document.body.scrollWidth)
           -document.documentElement.clientWidth,
-        overflowCandidates};
+        root:{clientWidth:document.documentElement.clientWidth,
+              scrollWidth:document.documentElement.scrollWidth,
+              bodyClientWidth:document.body.clientWidth,
+              bodyScrollWidth:document.body.scrollWidth},
+        overflowCandidates,scrollCandidates};
     });
     report.checks.zoom200=scaled;
     assert(scaled.extra<=0,'200% text scaling introduces horizontal page overflow: '
-      +scaled.extra+'; offenders: '+JSON.stringify(scaled.overflowCandidates));
+      +scaled.extra+'; offenders: '+JSON.stringify(scaled.overflowCandidates)+'; scroll: '+JSON.stringify(scaled.scrollCandidates));
     await page.screenshot({path:path.join(OUT,'zoom200-mobile.png'),fullPage:true,animations:'disabled'});
 
     // Printed TEST review includes the authored model, not an official SOF key.
