@@ -312,5 +312,98 @@ class QRTPipelineGuardTests(unittest.TestCase):
             guard.REPO = original_repo
 
 
+    def _strict_rendered_fixture(self, folder: str):
+        run, path = self._rendered_review_fixture(folder, basis="INDEPENDENT_RENDERED")
+        path.write_text('<main><article data-g9-unit="Q1">Exact Q1</article></main>', encoding="utf-8")
+        sha = guard.sha256_file(path)
+        run["rendered_artifacts"][0]["sha256"] = sha
+        run["rendered_artifacts"][0]["question_refs"] = ["Q1"]
+        run["reviews"][0]["artifact_sha256"] = sha
+        run["reviews"][0]["reviewer_ref"] = "reviewer:independent-1"
+        run["review_requirements"] = {
+            "independent_rendered_review_required": True,
+            "question_anchor_binding_required": True,
+        }
+        return run, path
+
+    def test_strict_binding_requires_actual_question_article_not_only_hash(self):
+        with tempfile.TemporaryDirectory() as folder:
+            original_repo = guard.REPO
+            try:
+                guard.REPO = Path(folder)
+                run, path = self._strict_rendered_fixture(folder)
+                self.assertEqual(guard.validate_artifacts_and_reviews(run), [])
+                # A matching digest over the WRONG question is not Q1 evidence.
+                path.write_text('<article data-g9-unit="Q2">Other question</article>', encoding="utf-8")
+                new_sha = guard.sha256_file(path)
+                run["rendered_artifacts"][0]["sha256"] = new_sha
+                run["reviews"][0]["artifact_sha256"] = new_sha
+                self.assertIn(
+                    "QRT_REVIEW_QUESTION_NOT_RENDERED_IN_ARTIFACT: Q1:CORE2",
+                    guard.validate_artifacts_and_reviews(run),
+                )
+                # A bare string and a JS string are not actual rendered articles.
+                path.write_text('<script>const fake = \'data-g9-unit="Q1"\';</script>', encoding="utf-8")
+                new_sha = guard.sha256_file(path)
+                run["rendered_artifacts"][0]["sha256"] = new_sha
+                run["reviews"][0]["artifact_sha256"] = new_sha
+                self.assertIn(
+                    "QRT_REVIEW_QUESTION_NOT_RENDERED_IN_ARTIFACT: Q1:CORE2",
+                    guard.validate_artifacts_and_reviews(run),
+                )
+            finally:
+                guard.REPO = original_repo
+
+    def test_strict_binding_rejects_undeclared_unknown_and_duplicate_evidence(self):
+        with tempfile.TemporaryDirectory() as folder:
+            original_repo = guard.REPO
+            try:
+                guard.REPO = Path(folder)
+                run, _ = self._strict_rendered_fixture(folder)
+                run["rendered_artifacts"][0]["question_refs"] = ["Q2"]
+                self.assertIn(
+                    "QRT_REVIEW_QUESTION_NOT_DECLARED_IN_ARTIFACT: Q1:CORE2",
+                    guard.validate_artifacts_and_reviews(run),
+                )
+                run["rendered_artifacts"][0]["question_refs"] = ["Q1"]
+                duplicated = dict(run["reviews"][0])
+                run["reviews"].append(duplicated)
+                self.assertIn(
+                    "QRT_REVIEW_QUESTION_DUPLICATE: Q1",
+                    guard.validate_artifacts_and_reviews(run),
+                )
+                run["reviews"].pop()
+                run["reviews"][0]["question_ref"] = "Q-UNKNOWN"
+                problems = guard.validate_artifacts_and_reviews(run)
+                self.assertIn("QRT_REVIEW_QUESTION_UNKNOWN: Q-UNKNOWN", problems)
+                self.assertIn("POST_RENDER_QRT_REVIEW_MISSING: Q1", problems)
+            finally:
+                guard.REPO = original_repo
+
+    def test_exact_artifact_path_cannot_escape_repository(self):
+        with tempfile.TemporaryDirectory() as folder:
+            original_repo = guard.REPO
+            try:
+                guard.REPO = Path(folder)
+                run, _ = self._strict_rendered_fixture(folder)
+                run["rendered_artifacts"][0]["path"] = "../outside.html"
+                self.assertIn(
+                    "RENDERED_ARTIFACT_PATH_OUTSIDE_REPO: CORE2:../outside.html",
+                    guard.validate_artifacts_and_reviews(run),
+                )
+            finally:
+                guard.REPO = original_repo
+
+    def test_legacy_review_does_not_retroactively_require_question_marker(self):
+        with tempfile.TemporaryDirectory() as folder:
+            original_repo = guard.REPO
+            try:
+                guard.REPO = Path(folder)
+                run, _ = self._rendered_review_fixture(folder)
+                self.assertEqual(guard.validate_artifacts_and_reviews(run), [])
+            finally:
+                guard.REPO = original_repo
+
+
 if __name__ == "__main__":
     unittest.main()
