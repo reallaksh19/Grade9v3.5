@@ -103,15 +103,16 @@ test("Core2A is not secretly converted into a Core1 study route", () => {
 });
 
 test("the generated learner hosts actually mount continuity navigation and assistance disclosure", async () => {
-  const [publicHtml, standaloneHtml, builder] = await Promise.all([
+  const [publicHtml, docsHtml, standaloneHtml, builder] = await Promise.all([
     readFile(resolve(here, "../public/core-learning/index.html"), "utf8"),
+    readFile(resolve(here, "../docs/core-learning/index.html"), "utf8"),
     readFile(resolve(here, "../standalone/core-learning/index.html"), "utf8"),
     readFile(resolve(here, "../Shared/tools/build_core_learning_host.py"), "utf8"),
   ]);
-  for (const text of [publicHtml, standaloneHtml, builder]) {
+  for (const text of [publicHtml, docsHtml, standaloneHtml, builder]) {
     assert.match(text, /id="core1-study-journey"/);
     assert.match(text, /resolveCore1StudyContinuity/);
-    assert.match(text, /CORE1B · Attempt reconstruction/);
+    assert.match(text, /Core1B · Attempt reconstruction/);
     assert.match(text, /viewedConstruction/);
     assert.match(text, /not an uncued mastery result/);
   }
