@@ -8,6 +8,9 @@ on:
       - "tests/test_imo_327_core1a_math_proof.py"
       - "tests/test_imo_327_help_mode_separation.py"
       - "tests/test_imo_327_qrt_help_golden.py"
+      - "tests/test_imo_327_help_runtime_contract.py"
+      - "Shared/tools/render_core.py"
+      - "tools/site-audit/imo-r1-authored-qrt-core2a-audit.mjs"
       - "TEST/imo-research/golden/**"
       - "TEST/imo-research/candidates/README-imo-327-concept-first-vs-hints.md"
       - "tools/print/print-product.mjs"
@@ -33,3 +36,5 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_imo_327_help_mode_separation.py' -v
       - name: Validate three actual 7-by-4 QRT golden fixtures, maths and disclosure boundaries
         run: python -m unittest discover -s tests -p 'test_imo_327_qrt_help_golden.py' -v
+      - name: Assert real emitted TEST HTML has opt-in hints and concept-first format gate
+        run: python -m unittest discover -s tests -p 'test_imo_327_help_runtime_contract.py' -v
