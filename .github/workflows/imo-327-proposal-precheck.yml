@@ -1,0 +1,24 @@
+name: IMO intake v3.2 proposal precheck
+
+on:
+  pull_request:
+    paths:
+      - 'TEST/imo-research/intake/imo-327-delp-proposal-v2.json'
+      - 'TEST/imo-research/intake/README-imo-327-claim-first.md'
+      - 'tests/test_imo_327_claim_first_proposal.py'
+      - '.github/workflows/imo-327-proposal-precheck.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  claim-first-structural-precheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Confirm claim coverage and staged release non-grants
+        run: python -m unittest discover -s tests -p 'test_imo_327_claim_first_proposal.py' -v
