@@ -9,6 +9,7 @@ import json
 import re
 import unittest
 from pathlib import Path
+from html.parser import HTMLParser
 
 from Shared.tools import product_manifest, product_coverage, question_review_matrix as qrt, render_core
 
@@ -22,6 +23,29 @@ def fixture():
     p = json.loads(PACKAGE.read_text(encoding="utf-8"))
     manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
     return p, manifest, next(m for m in p["microtopics"] if m["id"] == M)
+
+
+class _FigureVisibility(HTMLParser):
+    """Distinguish actual learner figures from inert answer-template markup."""
+    def __init__(self):
+        super().__init__()
+        self.template_depth = 0
+        self.figures = []
+
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        if tag == "template":
+            self.template_depth += 1
+        if tag == "figure" and "data-g9-figure" in a:
+            self.figures.append({
+                "stage": a.get("data-g9-stage"),
+                "representation": a.get("data-g9-representation"),
+                "in_template": self.template_depth > 0,
+            })
+
+    def handle_endtag(self, tag):
+        if tag == "template":
+            self.template_depth -= 1
 
 
 class Core1BReconstructionTests(unittest.TestCase):
@@ -52,6 +76,9 @@ class Core1BReconstructionTests(unittest.TestCase):
         p, manifest, m = fixture()
         e = m["elicitation"]
         self.assertIn("Do those three checks PROVE", e["predict"]["prompt"])
+        self.assertIn("If using a printed handout, write on a separate sheet.", e["predict"]["prompt"])
+        self.assertNotIn("same response box", e["predict"]["prompt"])
+        self.assertTrue(e["attempt"]["task"]["response"]["paper_ok"])
         self.assertTrue(e["predict"]["defensible_answer"].startswith("No."))
         self.assertIn("t−2", e["attempt"]["task"]["prompt"])
         self.assertEqual(e["attempt"]["closure"], "RUBRIC")
@@ -99,6 +126,33 @@ class Core1BReconstructionTests(unittest.TestCase):
         for hint in ("even factor", "multiples of three", "remainder", "parity"):
             self.assertNotIn(hint, s.lower())
         self.assertEqual(len(rep["scene_instances"][0]["datum_refs"]), 1)
+
+
+    def test_inert_postattempt_figure_is_not_a_missing_print_figure(self):
+        """Static quality counts template markup; learner print intentionally doesn't."""
+        html, gaps, _, advisories, waivers = render_core.build_report(
+            MANIFEST, "PAGES", held_to="REFERENCE")
+        self.assertEqual(gaps, [], gaps)
+        self.assertEqual(advisories, [], advisories)
+        self.assertEqual(waivers, [], waivers)
+        figures = {}
+        for name in ("core1a.html", "core1b.html", "core2a.html"):
+            parser = _FigureVisibility()
+            parser.feed(html[name])
+            self.assertEqual(parser.template_depth, 0)
+            figures[name] = parser.figures
+        self.assertEqual(sum(map(len, figures.values())), 4)
+        self.assertEqual(sum(sum(not f["in_template"] for f in fs)
+                             for fs in figures.values()), 3)
+        core = figures["core1b.html"]
+        self.assertEqual(len(core), 2)
+        self.assertEqual([f["stage"] for f in core], ["PRE_ATTEMPT", "POST_ATTEMPT"])
+        self.assertEqual([f["in_template"] for f in core], [False, True])
+        # The protected second instance is the SAME unmarked authored asset,
+        # not a lost fourth student-visible diagram or official source figure.
+        self.assertEqual(core[0]["representation"], core[1]["representation"])
+        self.assertEqual(core[0]["representation"],
+                         "REP-TEST-CORE1B-ENDING-AT-T-UNMARKED")
 
     def test_real_role_scoped_renderer_and_qrt_stay_intact(self):
         p, manifest, m = fixture()
