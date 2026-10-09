@@ -5,8 +5,9 @@ on:
       - '.github/workflows/imo-r1-q26-qrt-core2a.yml'
       - 'TEST/imo-research/candidates/imo-g9-q26-common-base-core1a.v1.json'
       - 'TEST/imo-research/candidates/assets/REP-TEST-IMO-G9-COMMON-BASE-RELATION.svg'
+      - 'TEST/imo-research/candidates/assets/REP-TEST-IMO-G9-R1-CORE2A-ATTEMPT-SAFE.svg'
       - 'TEST/imo-research/candidates/imo-g9-r1-qrt-core2a-core1a.test.manifest.json'
-      - 'tests/test_imo_r1_q26_core2a_integration.py'
+      - 'tests/test_core_imo_r1_q26_core2a_integration.py'
       - 'tools/site-audit/imo-r1-authored-qrt-core2a-audit.mjs'
   workflow_dispatch:
 permissions:
@@ -34,7 +35,7 @@ jobs:
           python Shared/tools/question_review_matrix.py write --check
           python -m unittest tests.test_question_review_matrix -v
       - name: Source-safe candidate, QRT MODEL-D3, math and renderer refusals
-        run: python -m unittest tests.test_imo_r1_q26_core2a_integration -v
+        run: python -m unittest tests.test_core_imo_r1_q26_core2a_integration -v
       - name: Render through the sole canonical technology into TEST and print both role PDFs
         run: |
           python Shared/tools/deploy_test.py product \
