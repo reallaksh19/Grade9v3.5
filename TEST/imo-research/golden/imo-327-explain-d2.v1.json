@@ -122,16 +122,19 @@
       }
     ],
     "checkpoint_before_target_aid": true,
-    "checkpoint_enforced_by_current_renderer": false,
+    "checkpoint_enforced_by_current_renderer": true,
     "return_to_new_unseen_task_required": true,
-    "return_enforced_by_current_renderer": false
+    "return_enforced_by_current_renderer": false,
+    "checkpoint_mechanism": "TEST_CLIENT_FORMATIVE_FORMAT_ONLY_CHOICE_AND_KEYWORD_REASON",
+    "semantic_comprehension_verified": false
   },
   "evidence_rules": {
     "hint_used": "ASSISTED_NOT_INDEPENDENT_MASTERY",
     "repair_viewed": "CONCEPT_EXPOSED_NOT_MASTERY",
     "fresh_unseen_correct_without_help": "POTENTIAL_INDEPENDENT_EVIDENCE_REQUIRES_REVIEW",
     "attempt_capture_available_in_fixture": false,
-    "learner_telemetry": "NOT_IMPLEMENTED"
+    "learner_telemetry": "NOT_IMPLEMENTED",
+    "local_hint_disclosure_state": "BEST_EFFORT_CLIENT_LOCAL_NOT_TRUSTED_MASTERY"
   },
   "reviewer_only": {
     "expected_explanation": "For real n, 5^(n+1)=5^n*5^1=5*5^n. At n=0, LHS=5 but 5^0+5=6, so the additive alternative is false.",
