@@ -1,0 +1,874 @@
+{
+  "schema_version": "0.2.0",
+  "package_id": "TEST-IMO-G9-CORE1A-COMMON-BASE-PILOT",
+  "title": "TEST · IMO Class 9 Index Laws — Common-Base Exponential Relations",
+  "version": "0.1.0",
+  "status": "CANDIDATE",
+  "subject": "TEST",
+  "scope_summary": "Wholly authored Core1A TEST mathematical reasoning candidate; provisionally motivated by a researched common-base crux but no SOF source question, key, figure or PDF is reproduced and no Core/rights/QRT/publication approval is granted.",
+  "curriculum_mappings": [],
+  "resources": [
+    {
+      "id": "SRC-TEST-IMO-G9-INDEX-AUTHORED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [],
+      "evidence_refs": [],
+      "extensions": {},
+      "title": "Authored common-base exponential relationship construction",
+      "origin": "AUTHORED",
+      "locator": "https://github.com/reallaksh19/Grade9v3.5/issues/294",
+      "edition": "Project-authored Grade 9 mathematical construction, 2026",
+      "section": "Positive bases; exponential identities; substitution and reversible equation solving",
+      "last_checked": "2026-10-09",
+      "access_status": "SECTION_INSPECTED",
+      "rights_status": "Wholly authored teaching content; no licensed third-party original source stems, answer options or figures",
+      "snapshot_ref": null,
+      "snapshot_digest": null,
+      "role": [
+        "AUTHOR_CREATED"
+      ],
+      "supports_claims": [
+        "For real x, 9^x=3^(2x)>0 and 3^(2x+1)=3*9^x.",
+        "The authored equation 3^(2x+1)=9^x+162 has the unique real solution x=2.",
+        "The independently authored exit equation 2^(2y+1)=4^y+64 has real solution y=3."
+      ],
+      "entry_capabilities": [],
+      "depth": [
+        "COMPETITION"
+      ],
+      "selection_reason": "Authorial mathematical truth is independent of a source question's copyright status or printed answer; source-specific Q26 alignment remains a separately held research hypothesis.",
+      "fallback": []
+    }
+  ],
+  "buckets": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "BUCKET-TEST-IMO-G9-COMMON-BASE",
+      "title": "Common positive quantity in an exponential equation",
+      "topic": "Number Systems; Index Laws; exponential equations with related positive bases",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Learners must infer a shared exponential quantity and its multiplicative factor across two forms, not equate exponents across an addition, and must map a positive t back to a real exponent.",
+      "depth_overlay": "ADVANCED",
+      "curriculum_mappings": [],
+      "prerequisite_refs": [],
+      "primary_representation_ref": "REP-TEST-IMO-G9-COMMON-BASE-RELATION-TABLE",
+      "conventions": [
+        {
+          "id": "real_exponent_domain",
+          "statement": "The unknown exponents x and y are real numbers; all authored bases 2, 3, 4 and 9 are positive and not 1."
+        },
+        {
+          "id": "index_laws",
+          "statement": "For a positive base a, a^(m+n)=a^m*a^n and (a^m)^n=a^(mn) hold for real exponents m,n."
+        },
+        {
+          "id": "positive_power",
+          "statement": "For a>0, a^z>0 for every real z; any substituted exponential quantity t must be positive."
+        },
+        {
+          "id": "equation_equivalence",
+          "statement": "An equation preserves its solution set when the same finite expression is added or subtracted on both sides, and positive powers of the same base a≠1 have equal exponents only when the powers are equal."
+        }
+      ]
+    }
+  ],
+  "capabilities": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "CAP-TEST-IMO-G9-COMMON-EXPONENTIAL-QUANTITY",
+      "action": "Transform two exponential expressions to a common positive-base quantity, preserve a multiplicative factor, solve in that quantity and map back with an original-equation check.",
+      "success_criterion": "For an authored relation such as 3^(2x+1)=9^x+162, justify t=3^(2x)>0, 3t=t+162 and x=2 with exact reverse substitution; independently solve a fresh base-2 relation and identify an impossible nonpositive t.",
+      "prerequisite_refs": [],
+      "curriculum_mappings": [],
+      "external_provider": null,
+      "acceptance_status": "CANDIDATE"
+    }
+  ],
+  "microtopics": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "MIC-TEST-IMO-G9-COMMON-BASE-RELATION",
+      "title": "Recognize a shared exponential quantity before solving",
+      "bucket_id": "BUCKET-TEST-IMO-G9-COMMON-BASE",
+      "primary_capability_ref": "CAP-TEST-IMO-G9-COMMON-EXPONENTIAL-QUANTITY",
+      "intrinsic_badge": "HARD",
+      "badge_reason": "Learners must infer a shared exponential quantity and its multiplicative factor across two forms, not equate exponents across an addition, and must map a positive t back to a real exponent.",
+      "entry_assumptions": [
+        "Positive-base exponent rules: a^(m+n)=a^m*a^n and (a^m)^n=a^(mn).",
+        "Equal powers of a fixed positive base other than 1 have equal real exponents.",
+        "Linear equations preserve equality under adding and subtracting the same quantity.",
+        "Every positive real number t has a real exponent representation a^x for any a>0,a≠1, but no nonpositive t does."
+      ],
+      "inferential_jump": "Transform apparently different exponential terms into one shared positive quantity t, recognize that an exponent offset creates a multiplicative factor instead of an additive exponent equality, solve a linear equation in t, then justify the unique real exponent and check it in the original equation.",
+      "teaching_path": [
+        {
+          "id": "TC-01",
+          "action": "Begin with the authored equation 3^(2x+1)=9^x+162 for real x. Re-express 9^x as 3^(2x) because 9=3^2, and name t=3^(2x)>0.",
+          "why_valid": "For a positive base, (3^2)^x=3^(2x) for every real x, and an exponential base 3 value is always strictly positive, so this substitution keeps both algebraic form and domain.",
+          "inputs": [],
+          "output": "9^x=3^(2x)=t, with t>0",
+          "role": "DECLARE",
+          "source_ref": "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+        },
+        {
+          "id": "TC-02",
+          "action": "Rewrite the other exponential as 3^(2x+1)=3*3^(2x)=3t. Its exponent differs by one, so the whole term is multiplied by 3.",
+          "why_valid": "The exponent addition law 3^(u+1)=3^u*3 expresses a factor relationship for the same positive quantity t; it does not turn a sum of unlike terms into a sum of exponents.",
+          "inputs": [],
+          "output": "3^(2x+1)=3t and 9^x+162=t+162",
+          "role": "TRANSFORM",
+          "source_ref": "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+        },
+        {
+          "id": "TC-03",
+          "action": "Substitute the two equivalent expressions to get 3t=t+162. Subtract t from both sides and divide by 2 to obtain t=81, which is positive.",
+          "why_valid": "Substituting equals for equals and performing reversible linear operations preserves the original equation. The positivity check also confirms t=81 can represent a real positive-base exponential.",
+          "inputs": [],
+          "output": "3t=t+162; 2t=162; t=81>0",
+          "role": "TRANSFORM",
+          "source_ref": "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+        },
+        {
+          "id": "TC-04",
+          "action": "Map back from t=3^(2x)=81=3^4. Because base 3 is positive and not 1, equal powers imply 2x=4 and therefore x=2.",
+          "why_valid": "The exponential map z→3^z is one-to-one on the real numbers; since 81=3^4, mapping a positive t back to its unique real exponent is justified.",
+          "inputs": [],
+          "output": "3^(2x)=3^4; x=2",
+          "role": "TRANSFORM",
+          "source_ref": "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+        },
+        {
+          "id": "TC-05",
+          "action": "Check the candidate in the untransformed authored equation: at x=2, 3^(2x+1)=3^5=243 while 9^2+162=81+162=243.",
+          "why_valid": "A final exact substitution checks the result independently of symbolic rearrangement; it also catches a wrong factor or misplaced power that happens to produce a plausible t.",
+          "inputs": [],
+          "output": "243=243; x=2 verifies the original equation",
+          "role": "VERIFY",
+          "source_ref": "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+        }
+      ],
+      "relation_refs": [
+        "REL-TEST-IMO-G9-EXPONENTIAL-FACTOR"
+      ],
+      "representation_refs": [
+        "REP-TEST-IMO-G9-COMMON-BASE-RELATION-TABLE"
+      ],
+      "question_family_refs": [
+        "FAM-TEST-IMO-G9-AUTHORED-EXPONENTIAL-RELATIONS"
+      ],
+      "misconceptions": [
+        {
+          "wrong_idea": "Because both sides contain powers, equate exponents of 3^(2x+1) and 9^x+162, treating the additive 162 as though it were an exponent.",
+          "diagnostic_prompt": "After writing 9^x=3^(2x), is 3^(2x+1) equal to 3t or t+3? What rule would allow or forbid equating exponents across an addition?",
+          "repair": "Set t=3^(2x)>0 and explicitly write the factor 3t before solving 3t=t+162; only equate exponents after obtaining equality of two positive powers of base 3."
+        },
+        {
+          "wrong_idea": "Accept an algebraic value t≤0 as though it were a real positive-base exponential.",
+          "diagnostic_prompt": "If the substitution yields t=-5 for t=3^(2x), could any real x produce it? Which original domain fact rules it out?",
+          "repair": "Retain t>0 throughout; reject nonpositive computed values and explain that the original real exponential equation then has no solution."
+        },
+        {
+          "wrong_idea": "After t=3^(2x)=81=3^4, forget the factor 2 in the exponent and claim x=4 merely because the powers have base 3.",
+          "diagnostic_prompt": "You have 3^(2x)=3^4. Which statement is justified: x=4, 2x=4 or 3x=4? Test your proposed x in 3^(2x+1)=9^x+162 before accepting it.",
+          "repair": "Equal positive-base powers imply equality of the complete exponents, so 2x=4 and x=2. Verify x=2 in the original equation: 243=81+162. The wrong answer x=4 fails because 3^9=19683 but 9^4+162=6723."
+        }
+      ],
+      "exit_task": {
+        "prompt": "Independently solve 2^(2y+1)=4^y+64 for real y. Name a shared positive quantity, justify the multiplicative relation, map back to y and reverse-check the untransformed equation.",
+        "source_ref": "SRC-TEST-IMO-G9-INDEX-AUTHORED",
+        "answer": {
+          "kind": "MODEL_RESPONSE",
+          "summary": "The authored base-2 equation has the unique real solution y=3.",
+          "reasoning": [
+            "Since 4=2^2, write t=4^y=2^(2y)>0 for any real y.",
+            "Use 2^(2y+1)=2*2^(2y)=2t, so the original relation becomes 2t=t+64.",
+            "Subtract t to obtain t=64=2^6, hence 2^(2y)=2^6 and 2y=6, giving y=3.",
+            "Check without t: 2^(2*3+1)=2^7=128, while 4^3+64=64+64=128."
+          ],
+          "check": "For y=3, both original sides equal 128. A second fresh boundary probe, 2^(2y+1)=4^y−5, would require t=-5 and therefore has no real solution.",
+          "acceptable_alternatives": [],
+          "subpart_answers": [],
+          "verification_status": "CHECKED_BY_AUTHOR"
+        },
+        "oracle": {
+          "verification": {
+            "validator_id": "TEST/imo-research/candidates/validate_q26_common_base_candidate.py",
+            "bindings": {
+              "domain": "real_x_positive_bases",
+              "anchor_solution": "x=2",
+              "exit_solution": "y=3",
+              "impossible_t": "-5",
+              "method": "shared_positive_exponential_quantity"
+            }
+          }
+        }
+      },
+      "research_contribution": "A wholly authored Core1A construction with five complete inferential steps, a named positive quantity, one factor law bridge, wrong-route diagnosis, positivity domain exception and independent fresh exit. The related original source Q26 component custody remains unresolved.",
+      "prerequisite_refs": [],
+      "lineage": [],
+      "construction_units": [
+        {
+          "id": "CU-TEST-IMO-G9-EXPONENTIAL-RELATION",
+          "decision": "Explain why an exponent offset creates a multiplicative factor in one shared positive quantity t, solve the resulting relation and reverse-check original equality.",
+          "step_refs": [
+            "TC-01",
+            "TC-02",
+            "TC-03",
+            "TC-04",
+            "TC-05"
+          ],
+          "representation_ref": "REP-TEST-IMO-G9-COMMON-BASE-RELATION-TABLE",
+          "misconception_indexes": [
+            0,
+            1,
+            2
+          ],
+          "relation_refs": [
+            "REL-TEST-IMO-G9-EXPONENTIAL-FACTOR"
+          ],
+          "independent_checks": [
+            {
+              "statement": "Check 3^(2*2+1)=9^2+162 numerically with exact integers.",
+              "check_type": "ORIGINAL_EQUATION_REVERSE_CHECK"
+            },
+            {
+              "statement": "Check the independent base-2 exit at y=3 and explain why an inferred t≤0 is impossible.",
+              "check_type": "TRANSFER_AND_DOMAIN_CHECK"
+            }
+          ],
+          "reveal_stage_refs": [
+            "Q26-BASE",
+            "Q26-FACTOR",
+            "Q26-SOLVE"
+          ],
+          "worked_anchor_ref": "Q-TEST-IMO-G9-Q26-CORE1A-WORKED-ANCHOR"
+        }
+      ],
+      "compact_anchor": {
+        "prompt": "Why does 3^(2x+1)=3t rather than t+3 when t=3^(2x)?",
+        "result": "The index law 3^(u+1)=3*3^u multiplies the existing power by 3; adding 1 to an exponent is not adding 1 to the value.",
+        "representation_ref": "REP-TEST-IMO-G9-COMMON-BASE-RELATION-TABLE"
+      }
+    }
+  ],
+  "relations": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "REL-TEST-IMO-G9-EXPONENTIAL-FACTOR",
+      "expression": "For all real x, 9^x=3^(2x)>0 and 3^(2x+1)=3*9^x.",
+      "meaning": "Both exponential terms can be represented as multiples of a single positive t=3^(2x); the authored equation becomes 3t=t+162.",
+      "symbols": [
+        {
+          "symbol": "x",
+          "meaning": "Real exponent in the authored example",
+          "unit_or_domain": "real"
+        },
+        {
+          "symbol": "t",
+          "meaning": "Shared strictly positive exponential quantity t=3^(2x)",
+          "unit_or_domain": "real_positive"
+        }
+      ],
+      "conditions": [
+        "All bases used in exponentiation are positive and different from 1.",
+        "x is real; t=3^(2x)>0."
+      ],
+      "derivation": [
+        {
+          "id": "DERIV-TC-02",
+          "action": "Rewrite the other exponential as 3^(2x+1)=3*3^(2x)=3t. Its exponent differs by one, so the whole term is multiplied by 3.",
+          "why_valid": "The exponent addition law 3^(u+1)=3^u*3 expresses a factor relationship for the same positive quantity t; it does not turn a sum of unlike terms into a sum of exponents.",
+          "inputs": [],
+          "output": "3^(2x+1)=3t and 9^x+162=t+162",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "DERIV-TC-03",
+          "action": "Substitute the two equivalent expressions to get 3t=t+162. Subtract t from both sides and divide by 2 to obtain t=81, which is positive.",
+          "why_valid": "Substituting equals for equals and performing reversible linear operations preserves the original equation. The positivity check also confirms t=81 can represent a real positive-base exponential.",
+          "inputs": [],
+          "output": "3t=t+162; 2t=162; t=81>0",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "DERIV-TC-04",
+          "action": "Map back from t=3^(2x)=81=3^4. Because base 3 is positive and not 1, equal powers imply 2x=4 and therefore x=2.",
+          "why_valid": "The exponential map z→3^z is one-to-one on the real numbers; since 81=3^4, mapping a positive t back to its unique real exponent is justified.",
+          "inputs": [],
+          "output": "3^(2x)=3^4; x=2",
+          "role": "TRANSFORM"
+        },
+        {
+          "id": "DERIV-TC-05",
+          "action": "Check the candidate in the untransformed authored equation: at x=2, 3^(2x+1)=3^5=243 while 9^2+162=81+162=243.",
+          "why_valid": "A final exact substitution checks the result independently of symbolic rearrangement; it also catches a wrong factor or misplaced power that happens to produce a plausible t.",
+          "inputs": [],
+          "output": "243=243; x=2 verifies the original equation",
+          "role": "VERIFY"
+        }
+      ],
+      "limits": [
+        "Do not equate exponents across sums of exponential and constant terms.",
+        "Do not accept t≤0 as a real positive-base exponential.",
+        "No SOF original source problem is quoted or represented as authenticated."
+      ],
+      "checks": [
+        "At x=2, the authored original equation balances 243=243.",
+        "At y=3, the independent authored exit equation balances 128=128."
+      ],
+      "gate_relation_ref": null,
+      "mathml": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msup><mn>9</mn><mi>x</mi></msup><mo>=</mo><msup><mn>3</mn><mrow><mn>2</mn><mi>x</mi></mrow></msup><mo>=</mo><mi>t</mi><mo>&gt;</mo><mn>0</mn></mrow></math>"
+    }
+  ],
+  "representations": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "REP-TEST-IMO-G9-COMMON-BASE-RELATION-TABLE",
+      "kind": "TABLE_OF_VALUES",
+      "purpose": "Align the authored source-format expressions to the same positive symbolic quantity without skipping the multiplicative-factor step.",
+      "required_elements": [
+        "Row 1: 9^x=3^(2x)=t, with t>0.",
+        "Row 2: 3^(2x+1)=3*3^(2x)=3t.",
+        "Row 3: 9^x+162=t+162; the equation is 3t=t+162.",
+        "Row 4: after solving, t=81=3^4 maps back to x=2.",
+        "Row 5: original equality check shows 243 on both sides."
+      ],
+      "relation_refs": [
+        "REL-TEST-IMO-G9-EXPONENTIAL-FACTOR"
+      ],
+      "read_order": [
+        "Name t from the base-3 equality and state t>0.",
+        "Read the second power as a multiple 3t, not a sum of exponents.",
+        "Solve the linear t equation and map t back to x.",
+        "Return to the original authored equation for exact checking."
+      ],
+      "instance_constraints": [
+        "Every table row must label the matching algebraic expression and its meaning.",
+        "Do not reveal any third-party source question or option text.",
+        "Do not imply all equations in powers have a real solution when t≤0."
+      ],
+      "accessibility": [
+        "Each expression has an equivalent plain-language description in reading order.",
+        "Do not convey the factor relationship by color or arrows alone.",
+        "Any optional visual stage must pair 3t and t+162 with explicit labels."
+      ],
+      "misleading_alternatives": [
+        "Treating the exponent offset +1 as addition to the power value.",
+        "Dropping t>0 and accepting a negative substitution result."
+      ],
+      "rendered_asset_refs": [
+        "TEST/imo-research/candidates/assets/REP-TEST-IMO-G9-COMMON-BASE-RELATION.svg"
+      ],
+      "scene_instances": [],
+      "correspondence": [
+        {
+          "element": "Common-base row",
+          "symbol": "9^x=3^(2x)=t>0",
+          "in_words": "The two forms describe one positive quantity t."
+        },
+        {
+          "element": "Factor row",
+          "symbol": "3^(2x+1)=3t",
+          "in_words": "One extra exponent of base 3 multiplies t by 3."
+        },
+        {
+          "element": "Original equation row",
+          "symbol": "3t=t+162",
+          "in_words": "The equation becomes linear in t; then map the result back to x."
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "Q26-BASE",
+          "label": "Name common quantity",
+          "purpose": "Show that 9^x is 3^(2x), a strictly positive t.",
+          "visible_elements": [
+            "9^x=3^(2x)=t",
+            "t>0"
+          ]
+        },
+        {
+          "id": "Q26-FACTOR",
+          "label": "Preserve power factor",
+          "purpose": "Make the exponent offset produce the factor 3 instead of treating it as addition.",
+          "visible_elements": [
+            "3^(2x+1)=3t",
+            "One extra exponent multiplies"
+          ]
+        },
+        {
+          "id": "Q26-SOLVE",
+          "label": "Solve and map back",
+          "purpose": "Compare the original two sides through 3t=t+162, then map t=81 back to x.",
+          "visible_elements": [
+            "3t=t+162",
+            "t=81",
+            "x=2"
+          ]
+        }
+      ]
+    },
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "REPLACE"
+      },
+      "id": "REP-TEST-IMO-G9-R1-CORE2A-ATTEMPT-SAFE",
+      "kind": "ALGEBRA_TILES",
+      "purpose": "Show only the original authored question's two sides; no t, 4t, 64 or u=3/2 before the learner commits.",
+      "required_elements": [
+        "Left side 4^(2u+1) exactly as in the authored question.",
+        "Right side 16^u+192 exactly as in the authored question.",
+        "No step, answer, or hidden model disclosure."
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "The given left-side power.",
+        "The given right-side sum.",
+        "Learner independently decides which exponential relationship helps."
+      ],
+      "instance_constraints": [
+        "No sourced SOF text and no pre-attempt hint about the factor law."
+      ],
+      "accessibility": [
+        "Accessible text states only the already visible authored equation."
+      ],
+      "misleading_alternatives": [
+        "Never show t=64, 4t or u=3/2 before typed commitment."
+      ],
+      "rendered_asset_refs": [
+        "TEST/imo-research/candidates/assets/REP-TEST-IMO-G9-R1-CORE2A-ATTEMPT-SAFE.svg"
+      ],
+      "scene_instances": [
+        {
+          "id": "SCENE-TEST-IMO-G9-R1-CORE2A-SAFE",
+          "cores": [
+            "CORE2A"
+          ],
+          "question_ref": "Q-TEST-IMO-G9-COMMON-BASE-SUPPORTED-01",
+          "datum_refs": [
+            "DATUM-TEST-IMO-G9-R1-SAFE-GIVEN-EQUATION"
+          ],
+          "asset_ref": "TEST/imo-research/candidates/assets/REP-TEST-IMO-G9-R1-CORE2A-ATTEMPT-SAFE.svg",
+          "scene": {
+            "kind": "STAGED_SYMBOLIC_FACTORS",
+            "frame": "Given authored positive-base equation only",
+            "caption": "Attempt-safe original equation; solution reasoning remains a learner decision."
+          }
+        }
+      ]
+    }
+  ],
+  "question_families": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "FAM-TEST-IMO-G9-AUTHORED-EXPONENTIAL-RELATIONS",
+      "title": "Authored linked-base exponential equations",
+      "capability_refs": [
+        "CAP-TEST-IMO-G9-COMMON-EXPONENTIAL-QUANTITY"
+      ],
+      "solution_structure": [
+        "Express all powers using one positive base.",
+        "Name a common positive exponential quantity.",
+        "Use the exponent offset as a multiplicative factor.",
+        "Solve a linear relation in the common quantity.",
+        "Map the result back to a real exponent and verify the original statement."
+      ],
+      "demand_dimensions": {
+        "model_choice": "Choose t=3^(2x)>0 from the common power rather than guessing an exponent equality.",
+        "representation_translation": "Map 9^x, 3^(2x) and 3^(2x+1) to t and 3t without erasing a factor.",
+        "reasoning_steps": "Common base → factor relation → t equation → invert positive exponential → reverse-check.",
+        "novelty": "Protected step is recognizing the multiplicative relationship, not only carrying out linear arithmetic."
+      },
+      "safe_variations": [
+        "Fresh positive bases a and a^2 with a genuine exponent offset.",
+        "Fresh additive constants yielding positive substituted t."
+      ],
+      "transfer_boundaries": [
+        "A computed t≤0 yields no real solution for a positive-base power.",
+        "Unrelated bases may require additional transformations, and not all exponential equations linearize.",
+        "No source Q26 answer, official key or SOF content is reproduced."
+      ],
+      "common_wrong_routes": [
+        "Equating exponents across a sum.",
+        "Using t+3 instead of 3t.",
+        "Failing to reject nonpositive t."
+      ],
+      "item_refs": [
+        "Q-TEST-IMO-G9-COMMON-BASE-SUPPORTED-01"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q-TEST-IMO-G9-COMMON-BASE-SUPPORTED-01",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:authored_by": "imo-producer-r1",
+        "grade9v3:source_family_link": "PROVISIONAL_AGENT_AUDIT_IMO-B02-010_NO_SOF_CUSTODY",
+        "grade9v3:cognitive_demand": {
+          "primary": "MODEL",
+          "secondary": [
+            "REPRESENT",
+            "APPLY"
+          ],
+          "basis": "Choosing the common positive exponential quantity is the protected modelling act; later power arithmetic depends on it."
+        },
+        "grade9v3:analysis": {
+          "stable_crux_move": "Choose t=4^(2u)>0 and establish that the other power equals 4t.",
+          "common_wrong_route": "Equate exponents across an additive constant or write t+4 instead of 4t."
+        }
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-TEST-IMO-G9-INDEX-AUTHORED",
+      "original_identifier": "INDEPENDENT-IMO-R1-Q26-FAMILY-01",
+      "stem": "For a real number u, solve 4^(2u+1)=16^u+192. Explain the shared positive quantity and verify your solution in the original equation.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "u is a real number; all exponential bases are positive and not equal to 1.",
+        "Use valid real-index laws and reject any nonpositive substituted power.",
+        "State a reason for each transformation and check the answer in the original equation.",
+        "This is new authored supported practice, not a reproduced SOF exam question."
+      ],
+      "figure_refs": [
+        "REP-TEST-IMO-G9-R1-CORE2A-ATTEMPT-SAFE"
+      ],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The unique real solution is u=3/2.",
+        "reasoning": [
+          "Write 16^u=(4^2)^u=4^(2u) and set t=4^(2u)>0.",
+          "The exponent offset is multiplicative: 4^(2u+1)=4*4^(2u)=4t.",
+          "Therefore 4t=t+192, so 3t=192 and t=64>0.",
+          "Since 4^(2u)=64=4^3 and base 4 is injective on real exponents, 2u=3 and u=3/2.",
+          "Original check: left=4^4=256; right=16^(3/2)+192=64+192=256."
+        ],
+        "reasoning_route": [
+          {
+            "id": "MOVE-IMO-R1-BASE",
+            "kind": "REPRESENT",
+            "action": "Rewrite 16^u=4^(2u) and let t=4^(2u)>0.",
+            "why_valid": "The real-index power law holds for positive bases, and 4^(2u)>0 for every real u.",
+            "inputs": [],
+            "output": "16^u=4^(2u)=t>0"
+          },
+          {
+            "id": "MOVE-IMO-R1-FACTOR",
+            "kind": "DECIDE",
+            "action": "Recognize 4^(2u+1)=4*4^(2u)=4t, not t+4.",
+            "why_valid": "a^(v+1)=a*a^v, so increasing the exponent by one multiplies the power by its base.",
+            "inputs": [],
+            "output": "4^(2u+1)=4t"
+          },
+          {
+            "id": "MOVE-IMO-R1-SOLVE",
+            "kind": "CONNECT",
+            "action": "Replace equal powers in the equation and solve 4t=t+192 to get t=64>0.",
+            "why_valid": "Substitution preserves equality, subtracting t is reversible and 64 satisfies the strict positivity constraint.",
+            "inputs": [],
+            "output": "3t=192; t=64>0"
+          },
+          {
+            "id": "MOVE-IMO-R1-RECOVER",
+            "kind": "TRANSFORM",
+            "action": "Since 4^(2u)=64=4^3, infer 2u=3 and u=3/2.",
+            "why_valid": "Equal powers of a positive base other than one have equal real exponents.",
+            "inputs": [],
+            "output": "u=3/2"
+          },
+          {
+            "id": "MOVE-IMO-R1-CHECK",
+            "kind": "VERIFY",
+            "action": "Substitute u=3/2 back in the original equation: 4^4=16^(3/2)+192=256.",
+            "why_valid": "Exact original-equation substitution checks the model and factor without relying on the transformed equation.",
+            "inputs": [],
+            "output": "256=256"
+          }
+        ],
+        "crux_move_ref": "MOVE-IMO-R1-FACTOR",
+        "check": "At u=3/2 both sides of the unmodified equation are exactly 256, and t=64 is positive.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-TEST-IMO-G9-COMMON-EXPONENTIAL-QUANTITY",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-TEST-IMO-G9-AUTHORED-EXPONENTIAL-RELATIONS",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "SUPPORTED_PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Find a positive common base for 16^u and 4^(2u+1). Do not solve for u yet.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "MOVE-IMO-R1-BASE"
+        },
+        {
+          "text": "Give the shared power a name, t>0. Recall a^(v+1)=a*a^v; it is not a^v+a.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "MOVE-IMO-R1-FACTOR"
+        },
+        {
+          "text": "Once both sides use t, preserve equality while solving; test positivity and then check the original equation.",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "MOVE-IMO-R1-SOLVE"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "CONNECT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "CONNECT",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-TEST-IMO-G9-R1-CORE2A-ATTEMPT-SAFE",
+        "safe_ref": "REP-TEST-IMO-G9-R1-CORE2A-ATTEMPT-SAFE",
+        "bound_ref": null,
+        "stage_refs": [
+          "R1-GIVEN-SIDES"
+        ]
+      },
+      "repair_ref": "TC-02",
+      "failure_signal": "A learner writes t+4 instead of 4t, or equates exponents despite the extra 192; they have not justified the factor law.",
+      "family_exposure": {
+        "family_ref": "FAM-TEST-IMO-G9-AUTHORED-EXPONENTIAL-RELATIONS",
+        "closure": "Same-family Core2A practice rehearses the Core1A shared-power factor inference, with a different authored base and constant; no Core2B changed-demand transfer or mastery claim."
+      },
+      "independent_check": {
+        "statement": "Evaluate both sides of the original equation at u=3/2, obtaining 256 on each side.",
+        "check_type": "ORIGINAL_EQUATION_REVERSE_CHECK"
+      },
+      "difficulty": {
+        "score": 7,
+        "band": "D3",
+        "components": {
+          "concept_model_selection": 2,
+          "representation_translation": 1,
+          "reasoning_chain_length": 2,
+          "algebra_computational_load": 1,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "Hidden common-base substitution, multiplicative exponent offset, reversible linear equation, positive power and exact fractional-exponent reverse check.",
+        "component_evidence": {
+          "concept_model_selection": "Learner must select t=4^(2u)>0 without an explicit substitution instruction.",
+          "representation_translation": "Convert 16^u to 4^(2u), aligning both original exponential expressions.",
+          "reasoning_chain_length": "Model then factor then solve, check positive domain, recover real exponent and reverse-check.",
+          "algebra_computational_load": "Compute 3t=192, t=64, and a fractional real exponent from 4^(2u)=4^3.",
+          "trap_exception_sensitivity": "Plausible wrong t+4 and premature exponent comparison across addition."
+        }
+      },
+      "learner_question_type": "constructed_response"
+    },
+    {
+      "id": "Q-TEST-IMO-G9-Q26-CORE1A-WORKED-ANCHOR",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:authored_by": "imo-q26-original-core1a-author",
+        "grade9v3:source_status": "AUTHORED_ANCHOR_NO_SOF"
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-TEST-IMO-G9-INDEX-AUTHORED",
+      "original_identifier": "Q26-AUTHORED-ANCHOR-3BASE",
+      "stem": "For real x, independently explain why 3^(2x+1)=9^x+162 has a unique solution, using a positive common power.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "x is real and positive-base exponent laws apply.",
+        "The example is authored mathematical teaching, not an official SOF problem."
+      ],
+      "figure_refs": [
+        "REP-TEST-IMO-G9-COMMON-BASE-RELATION-TABLE"
+      ],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "The unique real solution is x=2.",
+        "reasoning": [
+          "Begin with the authored equation 3^(2x+1)=9^x+162 for real x. Re-express 9^x as 3^(2x) because 9=3^2, and name t=3^(2x)>0.",
+          "Rewrite the other exponential as 3^(2x+1)=3*3^(2x)=3t. Its exponent differs by one, so the whole term is multiplied by 3.",
+          "Substitute the two equivalent expressions to get 3t=t+162. Subtract t from both sides and divide by 2 to obtain t=81, which is positive.",
+          "Map back from t=3^(2x)=81=3^4. Because base 3 is positive and not 1, equal powers imply 2x=4 and therefore x=2.",
+          "Check the candidate in the untransformed authored equation: at x=2, 3^(2x+1)=3^5=243 while 9^2+162=81+162=243."
+        ],
+        "check": "At x=2, the original expression gives 3^5=243=9^2+162.",
+        "verification_status": "CHECKED_BY_AUTHOR",
+        "acceptable_alternatives": [],
+        "subpart_answers": []
+      },
+      "primary_capability_ref": "CAP-TEST-IMO-G9-COMMON-EXPONENTIAL-QUANTITY",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-TEST-IMO-G9-AUTHORED-EXPONENTIAL-RELATIONS",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE1A",
+          "role": "WORKED_ANCHOR",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "hint_ladder": [],
+      "representation_roles": {
+        "initial_ref": null,
+        "safe_ref": null,
+        "bound_ref": "REP-TEST-IMO-G9-COMMON-BASE-RELATION-TABLE",
+        "stage_refs": []
+      },
+      "failure_signal": null,
+      "family_exposure": {
+        "family_ref": "FAM-TEST-IMO-G9-AUTHORED-EXPONENTIAL-RELATIONS",
+        "closure": null
+      }
+    }
+  ],
+  "teaching_routes": [
+    {
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "id": "ROUTE-TEST-IMO-G9-CORE1A-COMMON-BASE",
+      "title": "Core1A construction: a common exponential quantity",
+      "cores": [
+        "CORE1A"
+      ],
+      "microtopic_refs": [
+        "MIC-TEST-IMO-G9-COMMON-BASE-RELATION"
+      ],
+      "entry_needs": [
+        "Learner can use positive-base index laws and solve one-step linear equations."
+      ],
+      "learner_actions": [
+        "Name t=3^(2x)>0 and represent both powers using it.",
+        "Justify why 3^(2x+1)=3t.",
+        "Solve 3t=t+162, map back and reverse-check.",
+        "Reject an impossible negative t and attempt the fresh base-2 exit."
+      ],
+      "help_plan": [
+        "Core1A shows the full authored shared-quantity construction before the independent exit.",
+        "Use a semantic text/symbol equivalence table rather than ungrounded animation."
+      ],
+      "reveal_plan": "The authored mathematical concept is fully taught in Core1A; a separate fresh exit task can be attempted before opening its model closure. No protected authentic-source answer or key appears.",
+      "source_preferences": [
+        {
+          "resource_ref": "SRC-TEST-IMO-G9-INDEX-AUTHORED",
+          "purpose": "Wholly authored exponent-law mathematical instruction",
+          "reason": "SOF printed source custody and reuse rights are not cleared; this teaching content is independent of source key authority."
+        }
+      ],
+      "when_not_suitable": [
+        "Do not claim this lesson reproduces or verifies the authentic SOF Q26 stem/options/answer.",
+        "Status CANDIDATE; not canonically admitted, published or accepted QRT.",
+        "Does not replace source-specific Core2 acquisition and review."
+      ],
+      "practice_profile_ref": null
+    }
+  ],
+  "practice_profiles": [],
+  "evidence": [],
+  "known_issues": [],
+  "extensions": {
+    "grade9v3:imo_provenance": "ISSUE_294_Q26_LIKE_AUTHORED_MATH_NO_ORIGINAL_SOF_CORE2",
+    "grade9v3:qrt_admitted": false,
+    "grade9v3:core2_source_custody_granted": false,
+    "grade9v3:learner_published": false,
+    "grade9v3:imo_r1_authored_practice": "ONE_CORE2A_NO_SOURCE_CORE2_OR_OWNER_ADMISSION"
+  },
+  "data": [
+    {
+      "id": "DATUM-TEST-IMO-G9-R1-SAFE-GIVEN-EQUATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:authored_r1": true
+      },
+      "kind": "EQUATION",
+      "value": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msup><mn>4</mn><mrow><mn>2</mn><mi>u</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>=</mo><msup><mn>16</mn><mi>u</mi></msup><mo>+</mo><mn>192</mn></mrow></math>",
+      "symbol": "4^(2u+1)=16^u+192",
+      "meaning": "The untransformed original authored R1 question; no substitution or answer.",
+      "locator": "AUTHOR_CREATED: IMO-R1 original supported-practice question"
+    }
+  ]
+}

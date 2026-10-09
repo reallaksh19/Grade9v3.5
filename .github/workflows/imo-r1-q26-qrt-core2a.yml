@@ -1,0 +1,117 @@
+name: imo-r1-q26-authored-qrt-core2a-core1a
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/imo-r1-q26-qrt-core2a.yml'
+      - 'TEST/imo-research/candidates/imo-g9-q26-common-base-core1a.v1.json'
+      - 'TEST/imo-research/candidates/assets/REP-TEST-IMO-G9-COMMON-BASE-RELATION.svg'
+      - 'TEST/imo-research/candidates/assets/REP-TEST-IMO-G9-R1-CORE2A-ATTEMPT-SAFE.svg'
+      - 'TEST/imo-research/candidates/imo-g9-r1-qrt-core2a-core1a.test.manifest.json'
+      - 'tests/test_core_imo_r1_q26_core2a_integration.py'
+      - 'tools/site-audit/imo-r1-authored-qrt-core2a-audit.mjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  q26-authored-connected-test-product:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install existing TEST renderer and browser dependencies
+        run: |
+          python -m pip install --quiet jsonschema pypdf
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium
+      - name: Preserve existing 7-by-4 QRT contract and generated templates
+        run: |
+          python Shared/tools/question_review_matrix.py check
+          python Shared/tools/question_review_matrix.py write --check
+          python -m unittest tests.test_question_review_matrix -v
+      - name: Source-safe candidate, QRT MODEL-D3, math and renderer refusals
+        run: python -m unittest tests.test_core_imo_r1_q26_core2a_integration -v
+      - name: Render through the sole canonical technology into TEST and print both role PDFs
+        run: |
+          python Shared/tools/deploy_test.py product \
+            TEST/imo-research/candidates/imo-g9-r1-qrt-core2a-core1a.test.manifest.json --no-mirror
+      - name: Chromium actual attempt, keyboard, support, anchor navigation and layout
+        run: |
+          node tools/site-audit/imo-r1-authored-qrt-core2a-audit.mjs \
+            public/test/products/imo-r1-q26-authored-qrt-core2a-core1a
+      - name: Validate exact emitted HTML/PDF and hash-bound print receipts
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pypdf import PdfReader
+          from Shared.tools import render_core
+          root=Path('public/test/products/imo-r1-q26-authored-qrt-core2a-core1a')
+          rec=json.loads((root/'deploy-receipt.json').read_text())
+          assert rec['subject']=='TEST' and rec['draft'] is True and rec['accepted'] is False
+          assert rec['roles']==['CORE1A','CORE2A'],rec
+          assert rec['selection_counts']['core2']==0
+          assert rec['selection_counts']['core2a']==1
+          assert rec['gap_count']==0 and rec['gaps']==[] and rec['advisories']==[] and rec['waived']==[],rec
+          assert rec['pdf']['status']=='PRINTED'
+          assert not render_core.pdf_publication_problems(root),render_core.pdf_publication_problems(root)
+          result={}
+          for role in ('core1a','core2a'):
+              pdf=root/(role+'.pdf')
+              assert pdf.is_file() and pdf.stat().st_size>1000,role
+              reader=PdfReader(pdf)
+              content=' '.join(page.extract_text() or '' for page in reader.pages)
+              assert 'TEST' in content,role
+              assert 'Core' in content or 'common' in content.lower(),role
+              if role=='core1a':
+                  assert 'One common exponential quantity' in content or 'Recognize a shared exponential quantity' in content,content[:600]
+                  # A legitimate PDF must include every mathematical SVG stage, not merely exist.
+                  for stage in ('Name the positive quantity','Keep the multiplicative factor',
+                                'Solve, then return to the exponent'):
+                      assert stage in content, 'Core1A PRINT STAGE MISSING/CLIPPED: '+stage
+              else:
+                  assert '4^(2u+1)' in content or '4 (2u+1)' in content or '192' in content,content[:700]
+                  # Learner paper is deliberately pre-attempt: keep the worked solution
+              # in a separate privately generated key, never in public/test.
+              assert '4t' not in content and 'u=3/2' not in content, 'Core2A answer leaked into learner PDF'
+              result[role]={'pages':len(reader.pages),'bytes':pdf.stat().st_size}
+          # Key is generated into a temporary, nonpublished location solely
+          # for validation; deploy_test.py creates learner PDFs only.
+          import subprocess
+          import tempfile
+          with tempfile.TemporaryDirectory(prefix='imo-private-key-') as private:
+              subprocess.run(['node','tools/print/print-product.mjs',str(root),
+                              '--out',private,'--key'],check=True)
+              answer_pdf=Path(private)/'core2a.key.pdf'
+              assert answer_pdf.is_file(), 'isolated Core2A key PDF is missing'
+              key_text=' '.join(p.extract_text() or '' for p in PdfReader(answer_pdf).pages)
+              assert '4t' in key_text and '256' in key_text, 'Core2A reasoning absent from private key PDF'
+          browser=json.loads((root/'r1-browser-evidence'/'report.json').read_text())
+          assert browser['failures']==[],browser['failures']
+          assert browser['attemptGate']['blocked'] and browser['attemptGate']['noPayload']
+          assert browser['repair']['found']
+          evidence={'schema':'imo-r1-authored-qrt-learner-evidence/v1',
+                    'roles':['CORE1A','CORE2A'],
+                    'source_core2_admitted':0,'authored_core2a_items':1,
+                    'qrt_cell':'QRT-MODEL-D3','qrt_accepted':False,
+                    'manifest_input_sha256':rec['inputs_sha256'],'render_digest':rec['render_digest'],
+                    'pdf_receipt':rec['pdf'],'pdf_roles':result,
+                    'gap_count':rec['gap_count'],'unwaived_quality_findings':0,
+                    'browser_failures':browser['failures'],
+                    'human_screen_reader':'NOT_RUN','independent_learner_trial':'NOT_RUN',
+                    'academic_owner_acceptance':'NOT_GRANTED','published':False}
+          (root/'r1-qualification.json').write_text(json.dumps(evidence,indent=2)+'\n')
+          print(json.dumps(evidence,indent=2))
+          PY
+      - name: Upload real TEST pages, two PDFs, render/print/browser receipts and failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: imo-r1-q26-authored-core2a-to-core1a-evidence
+          path: public/test/products/imo-r1-q26-authored-qrt-core2a-core1a/
+          if-no-files-found: warn
