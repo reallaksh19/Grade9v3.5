@@ -1,0 +1,78 @@
+name: Core1A actual-render maturity (TEST only)
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/core1a-render-maturity.yml'
+      - 'TEST/products/core1a-divisibility-render-maturity.manifest.json'
+      - 'tests/test_imo_core1a_renderer_maturity.py'
+      - 'tools/site-audit/core1a-render-maturity-audit.mjs'
+      - 'docs/method/CORE1A-RENDERER-AGENT-HANDOFF.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generated-core1a-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install existing renderer and browser QA dependencies
+        run: |
+          python -m pip install --quiet jsonschema pypdf
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium
+      - name: Exercise exact manifest through real renderer and falsify bad selection
+        run: python -m unittest tests.test_imo_core1a_renderer_maturity -v
+      - name: Actual registered-blueprint render, TEST stamping and print receipt
+        run: |
+          python Shared/tools/deploy_test.py product \
+            TEST/products/core1a-divisibility-render-maturity.manifest.json --no-mirror
+      - name: Browser viewport, 200 percent text and screenshots of actual generated product
+        run: |
+          node tools/site-audit/core1a-render-maturity-audit.mjs \
+            public/test/products/core1a-divisibility-render-maturity
+      - name: Verify actual PDF, hash-bound receipt and non-acceptance
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pypdf import PdfReader
+          from Shared.tools import render_core
+          p=Path('public/test/products/core1a-divisibility-render-maturity')
+          j=json.loads((p/'deploy-receipt.json').read_text())
+          assert j['subject']=='TEST' and j['accepted'] is False and j['draft'] is True
+          assert j['roles']==['CORE1A'] and j['selection_counts']['microtopics']==1
+          assert j['pdf']['status']=='PRINTED', j['pdf']
+          assert not render_core.pdf_publication_problems(p), render_core.pdf_publication_problems(p)
+          pdf=p/'core1a.pdf'
+          assert pdf.stat().st_size>1000
+          reader=PdfReader(pdf)
+          extracted=' '.join(page.extract_text() or '' for page in reader.pages)
+          assert 'TEST' in extracted and ('divisible' in extracted.lower() or 'consecutive' in extracted.lower())
+          proof={'pages':len(reader.pages),'pdf_bytes':pdf.stat().st_size,
+            'render_digest':j['render_digest'],'source_input_sha256':j['inputs_sha256'],
+            'gap_count':j['gap_count'],'gaps':j['gaps'],'advisories':j['advisories'],
+            'waivers':j['waived'],'pdf_status':j['pdf']['status'],
+            'accepted':False,'publisher_rights_granted':False,
+            'human_a11y':'NOT_RUN','academic_owner_signoff':'NOT_GRANTED'}
+          (p/'maturity-evidence.json').write_text(json.dumps(proof,indent=2)+'\n')
+          print(json.dumps({k:v for k,v in proof.items() if k!='gaps'},indent=2))
+          # Maturity requires no unidentified REQUIRED reference-depth gaps.
+          assert j['gap_count']==0, 'Canonical content gaps remain: see uploaded evidence; do not issue agent restart.'
+          PY
+      - name: Preserve rendered HTML, real PDF and failure evidence for owner review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: core1a-canonical-render-maturity-evidence
+          path: public/test/products/core1a-divisibility-render-maturity/
+          if-no-files-found: warn
