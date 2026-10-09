@@ -42,6 +42,27 @@ AUTHORITY_GLOBAL = frozenset({
     "Shared/web/explorer-model.js",
     "Shared/web/explorer-profiles.v1.json",
     "Shared/web/explorer-spec.schema.json",
+    # Learner-authority changes can alter W/preview, independent-attempt gating,
+    # cross-Core question routing, or rendered answer visibility. Existing QRT
+    # reviewers must rebind exact bytes; these are not harmless UI changes.
+    "Shared/tools/build_core_learning_host.py",
+    "Shared/tools/build_core_learning_data.py",
+    "Shared/tools/core_learning_projection_adapter.py",
+    "Shared/workbench/core-learning-page.mjs",
+    "Shared/workbench/core-learning-host.mjs",
+    "Shared/workbench/core1-continuity.mjs",
+    "Shared/workbench/familiar-transfer.mjs",
+    "public/core-learning/index.html",
+    "docs/core-learning/index.html",
+    "standalone/core-learning/index.html",
+    "public/core-learning/data.js",
+    "docs/core-learning/data.js",
+    "public/js/core-learning/core-learning-page.mjs",
+    "docs/js/core-learning/core-learning-page.mjs",
+    "public/js/core-learning/core1-continuity.mjs",
+    "docs/js/core-learning/core1-continuity.mjs",
+    "public/js/core-learning/familiar-transfer.mjs",
+    "docs/js/core-learning/familiar-transfer.mjs",
 })
 RESOURCE_EXTENSIONS = {".html", ".htm", ".svg", ".png", ".jpg", ".jpeg",
                        ".webp", ".gif", ".css", ".js", ".mjs", ".json", ".pdf"}
