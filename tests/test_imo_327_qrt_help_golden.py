@@ -8,6 +8,7 @@ No runtime concept gate, telemetry, independent mastery or Owner approval.
 from __future__ import annotations
 
 import copy
+import hashlib
 import json
 import math
 import unittest
@@ -26,6 +27,13 @@ EXPECT = {
     "GOLDEN-IMO327-EXPLAIN-D2": ("EXPLAIN", "D2", 3, (0, 0, 1, 0, 2)),
     "GOLDEN-IMO327-MODEL-D3": ("MODEL", "D3", 7, (2, 1, 2, 1, 1)),
     "GOLDEN-IMO327-JUSTIFY-D4": ("JUSTIFY", "D4", 8, (2, 1, 2, 1, 2)),
+}
+# Git object hashes freeze the *whole reviewer fixture*, including actual hint wording.
+# Deliberate golden changes must be re-reviewed and update this table alongside the snapshot.
+GOLDEN_GIT_BLOB_SHAS = {
+    "GOLDEN-IMO327-EXPLAIN-D2": "989f31dbe00f4e9ccf38f2edb3bb86adc685f091",
+    "GOLDEN-IMO327-MODEL-D3": "c652f69270d7614016eeac463abc80a7542f61c8",
+    "GOLDEN-IMO327-JUSTIFY-D4": "72c60ec2fc4804c876577f89c20df67535ffdd48",
 }
 PRELUDE = ("NEUTRAL_DEMONSTRATION", "GENERAL_PRINCIPLE", "CONCEPT_CHECK",
            "GUIDED_APPLICATION", "FRESH_INDEPENDENT_EXIT")
@@ -148,6 +156,14 @@ class GoldenHintConceptModes(unittest.TestCase):
                          {("EXPLAIN","D2"),("MODEL","D3"),("JUSTIFY","D4")})
         self.assertEqual(qrt.check_paths(), [])
 
+    def test_immutable_review_snapshots_require_intentional_update(self):
+        self.assertEqual(set(GOLDEN_GIT_BLOB_SHAS), set(FILES))
+        for fid, name in FILES.items():
+            raw = (FOLDER / name).read_bytes()
+            material = b"blob " + str(len(raw)).encode("ascii") + bytes([0]) + raw
+            self.assertEqual(hashlib.sha1(material).hexdigest(),
+                             GOLDEN_GIT_BLOB_SHAS[fid], f"Golden drift: {name}")
+
     def test_three_golden_cases_resolve_exact_cells(self):
         for fid, row in self.rows.items():
             with self.subTest(fid=fid):
@@ -163,6 +179,14 @@ class GoldenHintConceptModes(unittest.TestCase):
         self.assertEqual(question["extensions"]["grade9v3:cognitive_demand"]["primary"], "MODEL")
         self.assertEqual(question["exposure"][0]["core"], "CORE2A")
         self.assertEqual(question["origin"], "AUTHORED")
+        real_resolution = qrt.resolve_review(
+            question,
+            {"profile_id": "SYNTHETIC-EXISTING-CORE2A",
+             "held": {question["primary_capability_ref"]: "UNCERTAIN"}},
+            self.matrix, self.vocab)
+        self.assertEqual(real_resolution["template_id"], golden["matrix"]["expected_cell"])
+        self.assertEqual(real_resolution["classification"]["demand"]["primary_move_ref"],
+                         "MOVE-IMO-R1-FACTOR")
         self.assertEqual(pkg["extensions"]["grade9v3:core2_source_custody_granted"], False)
 
     def test_learner_percentage_never_changes_the_cell(self):
