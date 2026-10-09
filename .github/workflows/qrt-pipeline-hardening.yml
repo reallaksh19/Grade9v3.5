@@ -11,6 +11,8 @@ on:
       - "tests/test_demand_move_binding.py"
       - "Shared/tools/authoring_intake.py"
       - "Shared/tools/qrt_pipeline_guard.py"
+      - "Shared/tools/qrt_coverage_report.py"
+      - "docs/qrt-coverage-index.v1.json"
       - "Shared/tools/qrt_pipeline_precheck.py"
       - "Shared/tools/qrt_content_self_audit.py"
       - "Shared/tools/qrt_pipeline_gate.py"
@@ -18,6 +20,7 @@ on:
       - "tests/fixtures/qrt/interactive-smoke.html"
       - "tests/test_authoring_intake.py"
       - "tests/test_qrt_pipeline_guard.py"
+      - "tests/test_qrt_coverage_report.py"
       - "tests/test_qrt_content_self_audit.py"
       - "docs/method/QRT-MINIMAL-PROMPT-PIPELINE.md"
       - ".github/workflows/qrt-pipeline-hardening.yml"
@@ -46,9 +49,38 @@ jobs:
           python -m unittest \
             tests.test_authoring_intake \
             tests.test_qrt_pipeline_guard \
+            tests.test_qrt_coverage_report \
             tests.test_qrt_content_self_audit \
             tests.test_difficulty_contract \
             tests.test_demand_move_binding
+
+      - name: Read-only QRT question coverage and scoped freshness gate
+        run: |
+          python - <<'PY'
+          import json
+          import subprocess
+          from pathlib import Path
+          items = json.loads(Path("docs/qrt-coverage-index.v1.json").read_text(encoding="utf-8")).get("items", [])
+          command = ["python", "Shared/tools/qrt_coverage_report.py",
+                     "--index", "docs/qrt-coverage-index.v1.json",
+                     "--out", "/tmp/qrt-coverage-report.json"]
+          if items:
+              command.append("--enforce-scoped")
+          subprocess.run(command, check=True)
+          report = json.loads(Path("/tmp/qrt-coverage-report.json").read_text(encoding="utf-8"))
+          assert report["repository_wide_qrt_acceptance"] == "NOT_EVALUATED"
+          assert report["academic_acceptance"] == "NOT_EVALUATED"
+          if not items:
+              assert report["empty_scope"] and not report["passed_scoped_evidence"]
+              print("NO CANDIDATES INDEXED — coverage preview only, not academic acceptance")
+          PY
+      - name: Upload nonrelease QRT evidence coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qrt-candidate-coverage
+          path: /tmp/qrt-coverage-report.json
+          if-no-files-found: warn
 
       - name: Chromium audit script syntax
         run: node --check tools/site-audit/interactive-page-audit.mjs
