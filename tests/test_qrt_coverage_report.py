@@ -144,6 +144,8 @@ class QRTPipelineCoverageTests(unittest.TestCase):
         row = self._snapshot()["rows"][0]
         self.assertIn("RUN_HEAD_STALE", [x["code"] for x in row["findings"]])
         self.run["run_identity"]["head_sha"] = HEAD
+        # Change a different run field after the reviewed digest was pinned.
+        self.run["extra_unreviewed_note"] = "new run content"
         self._save()
         row = self._snapshot()["rows"][0]
         self.assertIn("RUN_DIGEST_STALE", [x["code"] for x in row["findings"]])
