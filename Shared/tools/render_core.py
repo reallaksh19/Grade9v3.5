@@ -691,13 +691,15 @@ def metadata_search_text(ctx: Ctx, role: str, record: dict) -> str:
     return learner_metadata.safe_search_text(projection, record, role)
 
 
-def reveal(summary: str, body: str, gated: bool = True, ref: str | None = None) -> str:
+def reveal(summary: str, body: str, gated: bool = True, ref: str | None = None,
+           attempt_stage: str | None = None) -> str:
     if not body:
         return ""
     if not gated:
         return f'<details data-g9-reveal><summary>{esc(summary)}</summary>{body}</details>'
     payload_ref = ref or hashlib.sha256((summary + "\0" + body).encode("utf-8")).hexdigest()[:16]
-    return (f'<details data-g9-reveal data-requires-attempt data-g9-payload-ref="{esc(payload_ref)}">'
+    stage_attr = f' data-g9-attempt-stage="{esc(attempt_stage)}"' if attempt_stage else ""
+    return (f'<details data-g9-reveal data-requires-attempt{stage_attr} data-g9-payload-ref="{esc(payload_ref)}">'
             f'<summary>{esc(summary)}</summary><div data-g9-payload-slot></div></details>'
             f'<template data-g9-payload="{esc(payload_ref)}">{body}</template>')
 
@@ -764,7 +766,8 @@ def source_projection(ctx: Ctx, question: dict) -> dict:
 
 
 def attempt_box(label: str, response: dict | None = None, options: list | None = None,
-                record: str = "", option_html: list[str] | None = None) -> str:
+                record: str = "", option_html: list[str] | None = None,
+                attempt_stage: str | None = None) -> str:
     """Ask an honest self-learner for a typed commitment, not a marked answer."""
     response = response or {"type": "free_response"}
     kind = response["type"]
@@ -803,8 +806,10 @@ def attempt_box(label: str, response: dict | None = None, options: list | None =
         controls = f'<label>{esc(label)}<textarea data-g9-attempt rows="4"></textarea></label>'
     if kind in {"free_response", "multipart"} and response.get("paper_ok", True):
         controls += '<label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label>'
-    return (f'<div class="g9-attempt" data-g9-attempt-box data-g9-response-type="{esc(kind)}">{controls}'
-            '<button type="button" data-g9-commit>I have attempted this</button></div>')
+    stage_attr = f' data-g9-attempt-stage="{esc(attempt_stage)}"' if attempt_stage else ""
+    label_commit = "I have attempted the boundary" if attempt_stage == "boundary" else "I have attempted this"
+    return (f'<div class="g9-attempt" data-g9-attempt-box data-g9-response-type="{esc(kind)}"{stage_attr}>{controls}'
+            f'<button type="button" data-g9-commit>{esc(label_commit)}</button></div>')
 
 
 _MATHML_NS = "http://www.w3.org/1998/Math/MathML"
@@ -1754,8 +1759,10 @@ def core1b(ctx: Ctx, m: dict) -> str:
                    + figure(ctx, task_rep, "POST_ATTEMPT", "CORE1B", m["id"] + "-full"),
                    ref=f'CORE1B-{m["id"]}-reconstruct')
             + block("boundary_test", para(bt.get("prompt")), title="Boundary test")
+            + attempt_box("Your boundary decision and reason", {"type": "free_response", "paper_ok": True},
+                          record=m["id"] + "-boundary", attempt_stage="boundary")
             + reveal("Boundary answer", block("boundary_answer", para(bt.get("answer")) + para(bt.get("confirms"))),
-                     ref=f'CORE1B-{m["id"]}-boundary')),
+                     ref=f'CORE1B-{m["id"]}-boundary', attempt_stage="boundary")),
     })
 
 
@@ -2742,7 +2749,8 @@ ids.forEach(id=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display='n
 const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=(cumulative?n<=i:n===i)?'':'none'));fitFigure(f);const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
 q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})}
 function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('[data-g9-rung-ghost]',l)[0]?.remove();q('[data-g9-ladder]',l)[0].append(payload);q('figure[data-g9-figure]',l).forEach(initFigure);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
-function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}
+const attemptedFor=(a,d)=>d.dataset.g9AttemptStage==='boundary'?!!a.dataset.g9BoundaryAttempted:!!a.dataset.attempted;
+function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{if(!attemptedFor(a,d))return;const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}
 const number=t=>{const v=t.trim();if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?(?:\s*\/\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)?$/i.test(v))return false;const p=v.split('/').map(x=>Number(x.trim()));return p.every(Number.isFinite)&&(p.length===1||p[1]!==0)};
 function validAttempt(box){const type=box.dataset.g9ResponseType;if(type==='single_choice'||type==='multiple_choice'||type==='true_false')return q('[data-g9-choice]:checked',box).length>0;
 if(type==='numeric')return number(q('[data-g9-number]',box)[0]?.value||'');if(type==='short_text')return !!q('[data-g9-attempt]',box)[0]?.value.trim();
@@ -2758,16 +2766,16 @@ function saveCore2State(a){if(a.dataset.g9Role!=='CORE2')return;const key=stateK
 function bindSupportRevealState(a){q('details[data-g9-support-reveal]',a).forEach(d=>{if(d.dataset.g9StateBound)return;d.dataset.g9StateBound='1';d.addEventListener('toggle',()=>saveCore2State(a))})}
 function restoreCore2State(a,lock){if(a.dataset.g9Role!=='CORE2')return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});bindSupportRevealState(a);q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.assisted){a.dataset.g9Assisted='1';a.dataset.g9Assistance=(Array.isArray(state.assistance)?state.assistance:[]).filter(v=>typeof v==='string').join(',')}if(state.attempted){a.dataset.attempted='1';materialise(a)}lock()}
 const articles=q('article[data-g9-unit],article[data-g9-diagnostic],[data-g9-purpose-item]');
-articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);
-q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));
-q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});
+articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!attemptedFor(a,d)){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);
+q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{const d=s.closest('details');if(!attemptedFor(a,d)){e.preventDefault();const selector=d.dataset.g9AttemptStage==='boundary'?'[data-g9-attempt-box][data-g9-attempt-stage="boundary"]':'[data-g9-attempt-box]:not([data-g9-attempt-stage="boundary"])';q('input,textarea,select',q(selector,a)[0]||a)[0]?.focus()}}));
+q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}if(box.dataset.g9AttemptStage==='boundary')a.dataset.g9BoundaryAttempted='1';else a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});
 a.addEventListener('click',e=>{const b=e.target.closest('[data-g9-next-rung]');if(b&&a.contains(b)){markAssistance(a,'HINT_LADDER');nextRung(b.closest('.g9-ladder'));bindSupportRevealState(a);saveCore2State(a)}});attemptFields(a).forEach(el=>{el.addEventListener('input',()=>saveCore2State(a));el.addEventListener('change',()=>saveCore2State(a))});
 q('details[data-g9-payload-ref$="-wrong-route"]',a).forEach(d=>d.addEventListener('toggle',()=>{if(d.open){markAssistance(a,'WRONG_ROUTE');saveCore2State(a)}}));
 q('[data-g9-concept-link]',a).forEach(link=>link.addEventListener('click',()=>{markAssistance(a,'CONCEPT_NAV');saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef);if(key)store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit);refreshReturnLinks()}))});
 const practiceLinks=q('[data-g9-practice-link]');const practiceLabels=new Map(practiceLinks.map(link=>[link,link.textContent]));const navParams=new URLSearchParams(location.search);const navReturn=navParams.get('g9-return');const navConcept=navParams.get('g9-concept');
 function refreshReturnLinks(){practiceLinks.forEach(link=>{const key=returnKey(link.dataset.g9ConceptRef);const stored=!!key&&store.get(key)===link.dataset.g9QuestionRef;const routed=navReturn===link.dataset.g9QuestionRef&&navConcept===link.dataset.g9ConceptRef;const active=stored||routed;if(active){link.dataset.g9ReturnLink='';link.textContent='Return to question · '+practiceLabels.get(link)}else{delete link.dataset.g9ReturnLink;link.textContent=practiceLabels.get(link)}})}
 practiceLinks.forEach(link=>link.addEventListener('click',()=>{const key=returnKey(link.dataset.g9ConceptRef);if(key&&store.get(key)===link.dataset.g9QuestionRef)store.remove(key);refreshReturnLinks()}));refreshReturnLinks();
-window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)});
+window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';a.dataset.g9BoundaryAttempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)});
 q('figure[data-g9-figure]').forEach(initFigure);
 q('[data-g9-toggle]').forEach(b=>b.onclick=()=>{const t=document.getElementById(b.getAttribute('aria-controls'));if(!t)return;const open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));t.hidden=open});
 const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();articles.forEach(a=>{a.hidden=!!v&&!(a.dataset.g9SearchText||'').toLowerCase().includes(v)})};

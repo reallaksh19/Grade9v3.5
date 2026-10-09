@@ -49,55 +49,73 @@ try {
    if(zoom.scroll>zoom.client)result.failures.push('200%-text overflow '+(zoom.scroll-zoom.client));
    await pg.screenshot({path:path.join(outdir,'core1b-390-200pct.png'),fullPage:true});
   }
+
   if(width===1280){
    const summary=role.locator('summary').filter({hasText:'Reconstruct'}).first();
-   if(await summary.count()!==1){result.failures.push('missing reconstruction disclosure');}
-   else{
+   const boundarySummary=role.locator('summary').filter({hasText:'Boundary answer'}).first();
+   const proofBox=role.locator('[data-g9-attempt-box]:not([data-g9-attempt-stage])');
+   const boundaryBox=role.locator('[data-g9-attempt-box][data-g9-attempt-stage="boundary"]');
+   if(await summary.count()!==1||await boundarySummary.count()!==1
+      ||await proofBox.count()!==1||await boundaryBox.count()!==1){
+    result.failures.push('missing one of two distinct attempt/reveal pairs');
+   }else{
     const initiallyClosed=!(await summary.evaluate(e=>e.parentElement.open));
     await summary.focus();await summary.press('Enter');
-    const blocked=!(await summary.evaluate(e=>e.parentElement.open));
-    const empty=await summary.evaluate(e=>e.parentElement.querySelector('[data-g9-payload-slot]')?.children.length===0);
-    // Both answers are gated by the MAIN proof commitment. The boundary
-    // does not yet require a separate attempt; expose that as review debt.
-    const boundarySummary=role.locator('summary').filter({hasText:'Boundary answer'}).first();
-    let boundaryPrecommitBlocked=false, boundaryPrecommitPayloadEmpty=false;
-    if(await boundarySummary.count()===1){
-      await boundarySummary.focus();await boundarySummary.press('Enter');
-      boundaryPrecommitBlocked=!(await boundarySummary.evaluate(e=>e.parentElement.open));
-      boundaryPrecommitPayloadEmpty=await boundarySummary.evaluate(
-        e=>e.parentElement.querySelector('[data-g9-payload-slot]')?.children.length===0);
-    }
-    const box=role.locator('[data-g9-attempt-box] textarea').first();
-    if(await box.count()!==1)result.failures.push('missing learner-owned free response');
-    else{
-     await box.fill('Synthetic browser QA only: learner response would include independent residue cases.');
-     await role.locator('[data-g9-commit]').first().click();
-    }
+    const precommitBlocked=!(await summary.evaluate(e=>e.parentElement.open));
+    const precommitPayloadEmpty=await summary.evaluate(e=>e.parentElement.querySelector('[data-g9-payload-slot]')?.children.length===0);
+    await boundarySummary.focus();await boundarySummary.press('Enter');
+    const boundaryPrecommitBlocked=!(await boundarySummary.evaluate(e=>e.parentElement.open));
+    const boundaryPrecommitPayloadEmpty=await boundarySummary.evaluate(e=>e.parentElement.querySelector('[data-g9-payload-slot]')?.children.length===0);
+    await proofBox.locator('textarea').fill('Synthetic browser QA only: an ungraded proof attempt.');
+    await proofBox.locator('[data-g9-commit]').click();
     await summary.focus();await summary.press('Enter');
-    const opened=await summary.evaluate(e=>e.parentElement.open);
+    const postcommitOpened=await summary.evaluate(e=>e.parentElement.open);
     const text=await summary.evaluate(e=>e.parentElement.innerText);
-    const boundary=role.locator('[data-g9-block="boundary_test"]');
-    let boundaryAfterProofCommit=false;
-    if(await boundarySummary.count()===1){
-      await boundarySummary.focus();await boundarySummary.press('Enter');
-      boundaryAfterProofCommit=await boundarySummary.evaluate(
-        e=>e.parentElement.open && /At t=2/.test(e.parentElement.innerText));
-    }
-    result.boundary_independent_attempt='NOT_VERIFIED_SEPARATE_GATE';
+    await boundarySummary.focus();await boundarySummary.press('Enter');
+    const boundaryStillBlockedAfterProof=!(await boundarySummary.evaluate(e=>e.parentElement.open));
+    const boundaryStillEmptyAfterProof=await boundarySummary.evaluate(e=>e.parentElement.querySelector('[data-g9-payload-slot]')?.children.length===0);
+    await boundaryBox.locator('textarea').fill('   ');
+    await boundaryBox.locator('[data-g9-commit]').click();
+    const boundaryWhitespaceBlocked=!(await boundarySummary.evaluate(e=>e.parentElement.open))
+      && await boundarySummary.evaluate(e=>e.parentElement.querySelector('[data-g9-payload-slot]')?.children.length===0);
+    await boundaryBox.locator('textarea').fill('At t=2 the product is 2, not divisible by six.');
+    await boundaryBox.locator('[data-g9-commit]').click();
+    await boundarySummary.focus();await boundarySummary.press('Enter');
+    const boundaryAnswerAfterOwnCommit=await boundarySummary.evaluate(e=>e.parentElement.open&&/At t=2/.test(e.parentElement.innerText));
+    const reverse=await ctx.newPage();
+    await reverse.goto(pathToFileURL(path.join(dir,'core1b.html')).href);
+    const reverseRole=reverse.locator('article[data-g9-role="CORE1B"]');
+    await reverseRole.locator('[data-g9-attempt-stage="boundary"] [data-g9-paper]').check();
+    await reverseRole.locator('[data-g9-attempt-stage="boundary"] [data-g9-commit]').click();
+    const reverseProof=reverseRole.locator('summary').filter({hasText:'Reconstruct'}).first();
+    await reverseProof.focus();await reverseProof.press('Enter');
+    const boundaryOnlyDoesNotOpenProof=!(await reverseProof.evaluate(e=>e.parentElement.open))
+      && await reverseProof.evaluate(e=>e.parentElement.querySelector('[data-g9-payload-slot]')?.children.length===0);
+    const reverseBoundary=reverseRole.locator('summary').filter({hasText:'Boundary answer'}).first();
+    await reverseBoundary.focus();await reverseBoundary.press('Enter');
+    const boundaryPaperAttemptPermitted=await reverseBoundary.evaluate(e=>e.parentElement.open&&/At t=2/.test(e.parentElement.innerText));
+    await reverse.close();
+    result.boundary_independent_attempt='SEPARATE_COMMIT_GATES_BROWSER_VERIFIED_UNGRADED';
     result.reconstruction={
-      initially_closed:initiallyClosed,precommit_blocked:blocked,
+      initially_closed:initiallyClosed,precommit_blocked:precommitBlocked,
+      precommit_payload_empty:precommitPayloadEmpty,
       boundary_precommit_blocked:boundaryPrecommitBlocked,
       boundary_precommit_payload_empty:boundaryPrecommitPayloadEmpty,
-      boundary_answer_after_proof_commit:boundaryAfterProofCommit,
-      precommit_payload_empty:empty,postcommit_opened:opened,
+      postcommit_opened:postcommitOpened,
+      boundary_still_blocked_after_proof:boundaryStillBlockedAfterProof,
+      boundary_still_empty_after_proof:boundaryStillEmptyAfterProof,
+      boundary_whitespace_blocked:boundaryWhitespaceBlocked,
+      boundary_answer_after_own_commit:boundaryAnswerAfterOwnCommit,
+      boundary_only_does_not_open_proof:boundaryOnlyDoesNotOpenProof,
+      boundary_paper_attempt_permitted:boundaryPaperAttemptPermitted,
       has_residue_question:/remainder 0,1 or 2/.test(text),
-      has_coprime_question:/gcd\(2,3\)/.test(text),
-      prediction_check_visible:/No\. Three checks are instances/.test(text),
+      has_coprime_question:/gcd\\(2,3\\)/.test(text),
+      prediction_check_visible:/No\\. Three checks are instances/.test(text),
       full_rubric_evidence_visible:/Evidence:/.test(text),
       accepted_and_rejected_visible:/Representative answers that satisfy/.test(text)
         && /Answers that do not yet satisfy/.test(text)
         && /I tested t=3,4,5/.test(text),
-      has_boundary:await boundary.count()>0
+      has_boundary:await role.locator('[data-g9-block="boundary_test"]').count()>0
     };
     for(const [k,v] of Object.entries(result.reconstruction))
       if(!v)result.failures.push('reconstruction: '+k+' is false');

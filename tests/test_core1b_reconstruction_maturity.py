@@ -239,5 +239,27 @@ class Core1BReconstructionTests(unittest.TestCase):
         self.assertEqual((2 - 1) * 2 % 6, 2)
 
 
+    def test_separate_boundary_attempt_and_protected_answer(self):
+        """Main commitment cannot authorize another answer; KEY mode stays deliberate."""
+        p, _, m = fixture()
+        self.assertIn("boundary decision and reason", m["elicitation"]["boundary_test"]["prompt"])
+        html, gaps, _, advisories, waivers = render_core.build_report(
+            MANIFEST, "PAGES", held_to="REFERENCE"
+        )
+        self.assertEqual((gaps, advisories, waivers), ([], [], []))
+        page = html["core1b.html"]
+        boxes = re.findall(r'<div class="g9-attempt" data-g9-attempt-box[^>]*>', page)
+        reveals = re.findall(r'<details data-g9-reveal data-requires-attempt[^>]*>', page)
+        self.assertEqual(len(boxes), 2)
+        self.assertEqual(len(reveals), 2)
+        self.assertNotIn('data-g9-attempt-stage="boundary"', boxes[0])
+        self.assertNotIn('data-g9-attempt-stage="boundary"', reveals[0])
+        self.assertIn('data-g9-attempt-stage="boundary"', boxes[1])
+        self.assertIn('data-g9-attempt-stage="boundary"', reveals[1])
+        self.assertIn("Your boundary decision and reason", page)
+        self.assertIn("I have attempted the boundary", page)
+        self.assertIn("if(!attemptedFor(a,d))return", render_core.JS)
+        self.assertIn("a.dataset.g9BoundaryAttempted='1'", render_core.JS)
+
 if __name__ == "__main__":
     unittest.main()
