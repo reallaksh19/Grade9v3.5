@@ -24,6 +24,19 @@ try {
    const errors=[];page.on('pageerror',e=>errors.push(e.message));
    await page.goto(pathToFileURL(html).href);
    await page.locator('#tab-'+i).click();
+   // Direct Owner feedback: a child needs welcoming words and a findable
+   // answer route, NOT a minimum length or an early worked-answer spoiler.
+   const motivation=await page.locator('#firstResponse').getAttribute('placeholder');
+   const answerRoute=await page.locator('#answerRouteTitle').innerText();
+   const answerDirections=await page.locator('#answerRouteText').innerText();
+   check(!!motivation&&motivation.includes('Start with what you think'),
+     `${golden.id}@${width}: learner encouragement missing`);
+   check(answerRoute.trim()===`Where is Answer ${i+1}?`,
+     `${golden.id}@${width}: answer navigation label missing`);
+   check(answerDirections.includes(`Show Answer ${i+1}`),
+     `${golden.id}@${width}: answer guidance undiscoverable`);
+   check(!(await page.locator('#answerRouteLink').isVisible()),
+     `${golden.id}@${width}: answer jump opened before repair`);
    const live=await page.evaluate(index=>{
      const c=lessons[index];
      return {id:c.id,title:c.title,situation:c.situation,question:c.question,
@@ -58,11 +71,17 @@ try {
    await page.locator('#repairResponse').fill('The initial justification missed an important warrant.');
    await page.locator('#commitRepair').click();
    check(await page.locator('#showReference').isVisible(),`${golden.id}@${width}: Answer ${i+1} not discoverable`);
+   check(await page.locator('#answerRouteLink').isVisible(),
+     `${golden.id}@${width}: answer navigation link still hidden after repair`);
+   check((await page.locator('#answerRouteLink').getAttribute('href'))==='#showReference',
+     `${golden.id}@${width}: answer link points to wrong stage`);
    check(!(await page.locator('#mainReferenceArea').isVisible()),`${golden.id}@${width}: reference auto-opened before action`);
    check(!(await page.locator('#boundaryReferenceArea').isVisible()),`${golden.id}@${width}: boundary answer leaked by repair`);
    await page.locator('#showReference').click();
    check(await page.locator('#mainReferenceArea').isVisible(),`${golden.id}@${width}: Answer ${i+1} did not open`);
    check((await page.locator('#answerTitle').innerText()).includes(`Answer ${i+1}`),`${golden.id}@${width}: answer label missing`);
+   check((await page.locator('#answerRouteLink').getAttribute('href'))==='#mainReferenceArea',
+     `${golden.id}@${width}: answer link did not update to open reference`);
    check(!(await page.locator('#boundaryReferenceArea').isVisible()),`${golden.id}@${width}: reference opened boundary`);
    await page.locator('#boundaryResponse').fill('   ');
    check(await page.locator('#commitBoundary').isDisabled(),`${golden.id}@${width}: blank boundary accepted`);
@@ -88,6 +107,17 @@ try {
   await page.locator('#commitFirst').click();
   check(await page.locator('#repairStage').isVisible(),`${golden.id}: paper-only diagnosis not opened`);
   check(!(await page.locator('#mainReferenceArea').isVisible()),`${golden.id}: paper-only leaked worked answer`);
+  await page.locator('#paperRepair').check();
+  check(await page.locator('#commitRepair').isEnabled(),`${golden.id}: paper-only repair rejected`);
+  await page.locator('#commitRepair').click();
+  check(await page.locator('#showReference').isVisible(),`${golden.id}: paper repair did not unlock named answer`);
+  check(!(await page.locator('#mainReferenceArea').isVisible()),`${golden.id}: paper repair auto-opened worked answer`);
+  check(!(await page.locator('#boundaryReferenceArea').isVisible()),`${golden.id}: paper repair leaked boundary answer`);
+  await page.locator('#paperBoundary').check();
+  check(await page.locator('#commitBoundary').isEnabled(),`${golden.id}: paper-only boundary rejected`);
+  await page.locator('#commitBoundary').click();
+  check(await page.locator('#boundaryReferenceArea').isVisible(),`${golden.id}: paper-only boundary did not unlock own reference`);
+  check(!(await page.locator('#mainReferenceArea').isVisible()),`${golden.id}: paper-only boundary incorrectly opened proof reference`);
   await ctx.close();
  }
 } finally {await browser.close();}
