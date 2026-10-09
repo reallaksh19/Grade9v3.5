@@ -219,9 +219,12 @@ def rendered_file() -> dict[str, bytes]:
 
 
 def write() -> dict:
-    payload = build()
+    # Fail closed *before* attempting potentially failing internal compilation.
+    # Otherwise a compiler error can leave a previous, preview-bearing public
+    # data.js in place. Pages mirroring separately rejects stale public bytes.
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(render(build_public()), encoding="utf-8", newline="\n")
+    payload = build()
     # Persist current Core projections as derived production memory. The import is
     # local to avoid a module cycle: the registry reads build(), never write().
     from Shared.tools import derived_artifact_registry
