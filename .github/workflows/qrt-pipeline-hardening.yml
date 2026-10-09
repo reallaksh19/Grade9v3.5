@@ -12,7 +12,25 @@ on:
       - "Shared/tools/authoring_intake.py"
       - "Shared/tools/qrt_pipeline_guard.py"
       - "Shared/tools/qrt_coverage_report.py"
+      - "Shared/tools/qrt_change_discovery.py"
       - "docs/qrt-coverage-index.v1.json"
+      - "Physics/**/*.json"
+      - "Chemistry/**/*.json"
+      - "Mathematics/**/*.json"
+      - "TEST/**/*.json"
+      - "TEST/**/*.jsonl"
+      - "Physics/**/publication/**"
+      - "Chemistry/**/publication/**"
+      - "Mathematics/**/publication/**"
+      - "TEST/**/publication/**"
+      - "TEST/products/*.manifest.json"
+      - "Shared/tools/render_core.py"
+      - "Shared/tools/core2_v2.py"
+      - "Shared/tools/question_review_matrix.py"
+      - "Shared/tools/question_difficulty.py"
+      - "Shared/quality/question-demand-matrix.v1.json"
+      - "Shared/quality/question-demand-templates.v1.json"
+      - "Shared/web/interactive-page-blueprints.v1.json"
       - "Shared/tools/qrt_pipeline_precheck.py"
       - "Shared/tools/qrt_content_self_audit.py"
       - "Shared/tools/qrt_pipeline_gate.py"
@@ -21,6 +39,7 @@ on:
       - "tests/test_authoring_intake.py"
       - "tests/test_qrt_pipeline_guard.py"
       - "tests/test_qrt_coverage_report.py"
+      - "tests/test_qrt_change_discovery.py"
       - "tests/test_qrt_content_self_audit.py"
       - "docs/method/QRT-MINIMAL-PROMPT-PIPELINE.md"
       - ".github/workflows/qrt-pipeline-hardening.yml"
@@ -34,6 +53,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -50,6 +71,7 @@ jobs:
             tests.test_authoring_intake \
             tests.test_qrt_pipeline_guard \
             tests.test_qrt_coverage_report \
+            tests.test_qrt_change_discovery \
             tests.test_qrt_content_self_audit \
             tests.test_difficulty_contract \
             tests.test_demand_move_binding
@@ -81,6 +103,24 @@ jobs:
           name: qrt-candidate-coverage
           path: /tmp/qrt-coverage-report.json
           if-no-files-found: warn
+
+      - name: Discover changed question IDs and linked resource review gaps
+        if: github.event_name == 'pull_request'
+        env:
+          QRT_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          python Shared/tools/qrt_change_discovery.py \
+            --base "$QRT_BASE_SHA" \
+            --index docs/qrt-coverage-index.v1.json \
+            --out /tmp/qrt-change-discovery.json \
+            --enforce
+      - name: Upload QRT changed-scope receipt (no academic verdict)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qrt-changed-scope
+          path: /tmp/qrt-change-discovery.json
+          if-no-files-found: ignore
 
       - name: Chromium audit script syntax
         run: node --check tools/site-audit/interactive-page-audit.mjs
