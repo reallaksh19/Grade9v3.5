@@ -185,6 +185,11 @@
           "wrong_idea": "Accept an algebraic value t≤0 as though it were a real positive-base exponential.",
           "diagnostic_prompt": "If the substitution yields t=-5 for t=3^(2x), could any real x produce it? Which original domain fact rules it out?",
           "repair": "Retain t>0 throughout; reject nonpositive computed values and explain that the original real exponential equation then has no solution."
+        },
+        {
+          "wrong_idea": "After t=3^(2x)=81=3^4, forget the factor 2 in the exponent and claim x=4 merely because the powers have base 3.",
+          "diagnostic_prompt": "You have 3^(2x)=3^4. Which statement is justified: x=4, 2x=4 or 3x=4? Test your proposed x in 3^(2x+1)=9^x+162 before accepting it.",
+          "repair": "Equal positive-base powers imply equality of the complete exponents, so 2x=4 and x=2. Verify x=2 in the original equation: 243=81+162. The wrong answer x=4 fails because 3^9=19683 but 9^4+162=6723."
         }
       ],
       "exit_task": {
@@ -234,7 +239,8 @@
           "representation_ref": "REP-TEST-IMO-G9-COMMON-BASE-RELATION-TABLE",
           "misconception_indexes": [
             0,
-            1
+            1,
+            2
           ],
           "relation_refs": [
             "REL-TEST-IMO-G9-EXPONENTIAL-FACTOR"

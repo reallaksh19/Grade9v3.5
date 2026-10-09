@@ -76,8 +76,21 @@ jobs:
                       assert stage in content, 'Core1A PRINT STAGE MISSING/CLIPPED: '+stage
               else:
                   assert '4^(2u+1)' in content or '4 (2u+1)' in content or '192' in content,content[:700]
-                  assert '4t' in content and '256' in content,'Core2A explanatory steps absent from PDF'
+                  # Learner paper is deliberately pre-attempt: keep the worked solution
+              # in a separate privately generated key, never in public/test.
+              assert '4t' not in content and 'u=3/2' not in content, 'Core2A answer leaked into learner PDF'
               result[role]={'pages':len(reader.pages),'bytes':pdf.stat().st_size}
+          # Key is generated into a temporary, nonpublished location solely
+          # for validation; deploy_test.py creates learner PDFs only.
+          import subprocess
+          import tempfile
+          with tempfile.TemporaryDirectory(prefix='imo-private-key-') as private:
+              subprocess.run(['node','tools/print/print-product.mjs',str(root),
+                              '--out',private,'--key'],check=True)
+              answer_pdf=Path(private)/'core2a.key.pdf'
+              assert answer_pdf.is_file(), 'isolated Core2A key PDF is missing'
+              key_text=' '.join(p.extract_text() or '' for p in PdfReader(answer_pdf).pages)
+              assert '4t' in key_text and '256' in key_text, 'Core2A reasoning absent from private key PDF'
           browser=json.loads((root/'r1-browser-evidence'/'report.json').read_text())
           assert browser['failures']==[],browser['failures']
           assert browser['attemptGate']['blocked'] and browser['attemptGate']['noPayload']

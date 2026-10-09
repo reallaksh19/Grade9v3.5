@@ -40,6 +40,28 @@ for (const file of fs.readdirSync(dir).filter(f => /^core.*\.html$|^product\.htm
     return document.querySelectorAll('figure[data-g9-figure] svg').length;
   }, key);
   await page.emulateMedia({ media: 'print' });
+  // The interactive page fitFigure() narrows a staged SVG viewBox to the
+  // currently visible teaching step. Print CSS reveals the remaining steps,
+  // but they would still be clipped by that narrow viewBox. Restore the union
+  // only for TEACHING figures; never expand protected pre-attempt visuals.
+  await page.evaluate(() => {
+    document.querySelectorAll('figure[data-g9-stage="TEACHING"] svg').forEach(svg => {
+      const steps = [...svg.querySelectorAll('g[data-g9-stage-id]')];
+      if (steps.length < 2) return;
+      steps.forEach(g => g.style.setProperty('display', 'inline', 'important'));
+      const roots = [...steps, ...svg.querySelectorAll(':scope > text')];
+      const boxes = roots.map(el => el.getBBox()).filter(b => b.width > 0 && b.height > 0);
+      if (!boxes.length) return;
+      const x = Math.min(...boxes.map(b => b.x)) - 12;
+      const y = Math.min(...boxes.map(b => b.y)) - 12;
+      const right = Math.max(...boxes.map(b => b.x + b.width)) + 12;
+      const bottom = Math.max(...boxes.map(b => b.y + b.height)) + 12;
+      svg.setAttribute('viewBox', [x, y, right - x, bottom - y].join(' '));
+      svg.style.width = '100%';
+      svg.style.maxWidth = 'none';
+      svg.style.height = 'auto';
+    });
+  });
   const pdf = await page.pdf({ width: '280mm', height: '175mm', printBackground: true, margin: { top: '10mm', bottom: '10mm', left: '10mm', right: '10mm' } });
   const name = file.replace(/\.html$/, key ? '.key.pdf' : '.pdf');
   fs.writeFileSync(path.join(out, name), pdf);
