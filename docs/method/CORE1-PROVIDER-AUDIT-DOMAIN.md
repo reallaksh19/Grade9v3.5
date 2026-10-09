@@ -105,6 +105,28 @@ validator and real `desired_files()` mirror generation with valid and
 invalid temporary site roots. It is a source-generation guard, **not**
 proof that remote Pages deployment or caches are current.
 
+**Interrupted compilation boundary:** the `build_core_learning_data.write()`
+path now emits the restrictive public HOLD file **before** calling the
+canonical internal `build()` compiler or updating derived engineering memory.
+An internal preview compilation error therefore cannot leave a previous,
+preview-bearing `public/core-learning/data.js` untouched. A temporary-path
+failure-injection regression proves the intended ordering without depending
+on full canonical source compilation.
+
+**Existing downstream consumers:** the public Core data asset is also read by
+Motion Session and multiple Topic Atlas pages. These were not entitled to
+consume internal previews after the HOLD. The ordinary Topic Atlas resolver
+now distinguishes `publication_gate.status=HOLD` from a missing compiled
+projection and explicitly labels Core navigation as withheld, without
+suppressing separately governed visual/portable routes. The Motion Session
+entrypoint fails before learner identity resolution with
+`NO_INDEPENDENT_CORE_PUBLICATION_GRANT`, using its existing unavailable
+panel and trace. Their public source files and GitHub Pages mirrors were
+updated consistently. Focused regression assertions pin those source/mirror
+invariants, **not** a successful real browser journey. The previously
+successful Motion Session and six-Core journey tests must not be rewritten
+to treat publication HOLD as learner-success evidence.
+
 The candidate Mathematics Polynomials Core1 entry is **not publicly served**
 through these Core learner `data.js` outputs. Its separately qualified
 Question Bank records are governed by their own publication contracts; this
