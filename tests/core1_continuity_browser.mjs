@@ -50,13 +50,47 @@ try {
     const selected = document.getElementById("projection-select").value;
     const record = window.GRADE9V3_CORE.core_projections.find((row) => row.id === selected);
     const element = document.querySelector("core-learning-page");
-    const markup = element.shadowRoot?.innerHTML ?? element.innerHTML;
-    const answer = record?.projection?.concept?.elicitation?.attempt?.model_response;
-    return { selected, answer, markup };
+    const elicitation = record?.projection?.concept?.elicitation;
+    // The production Core1B is RUBRIC-closed, not MODEL_RESPONSE-closed.
+    // Protect the actual authored prediction and boundary answers, rather than
+    // assuming a nonexistent model_response field.
+    const protectedAnswers = [
+      elicitation?.predict?.defensible_answer,
+      elicitation?.attempt?.model_response,
+      elicitation?.boundary_test?.answer,
+    ].filter((item) => typeof item === "string" && item.trim().length > 0);
+    return {
+      selected,
+      protectedAnswers,
+      text: element.shadowRoot?.textContent ?? element.textContent,
+      reconstructionMounted: Boolean(element.shadowRoot?.querySelector(".core1b-reconstruction")),
+      attempted: element.state?.attempted,
+    };
   });
   assert.equal(reveal.selected, b);
-  assert.ok(reveal.answer && !reveal.markup.includes(reveal.answer),
-    "Core1B completed model response was exposed before the learner attempt");
+  assert.ok(reveal.protectedAnswers.length > 0,
+    "This canonical Core1B projection must have real authored answer-bearing closure");
+  assert.equal(reveal.attempted, false);
+  assert.equal(reveal.reconstructionMounted, false,
+    "Core1B complete reconstruction was mounted before the learner attempt");
+  for (const answer of reveal.protectedAnswers) {
+    assert.ok(!reveal.text.includes(answer),
+      "Core1B authored answer-bearing closure was visible before attempt");
+  }
+  const postReconstruction = await page.evaluate(() => {
+    const element = document.querySelector("core-learning-page");
+    element.commitAttempt("My own reconstruction of the shared idea and model boundary.");
+    return {
+      attempted: element.state?.attempted,
+      reconstructionMounted: Boolean(element.shadowRoot?.querySelector(".core1b-reconstruction")),
+      text: element.shadowRoot?.textContent ?? element.textContent,
+    };
+  });
+  assert.equal(postReconstruction.attempted, true);
+  assert.equal(postReconstruction.reconstructionMounted, true,
+    "Committed Core1B response must unlock its actual authored reconstruction");
+  assert.ok(reveal.protectedAnswers.some((answer) => postReconstruction.text.includes(answer)),
+    "Core1B canonical answer-bearing closure did not appear after commitment");
   // Real familiar-to-transfer route. Visiting B directly must not claim
   // learner prior exposure merely because the package contains a parent.
   const transferId = await page.evaluate(() =>
