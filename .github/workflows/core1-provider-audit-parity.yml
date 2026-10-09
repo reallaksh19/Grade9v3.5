@@ -1,0 +1,31 @@
+name: core1-provider-audit-parity
+
+on:
+  push:
+    branches:
+      - "fix/326-core1-live-audit-parity"
+  pull_request:
+    paths:
+      - "tests/test_core_learning_adapter.py"
+      - "Shared/library/core1_orientation.py"
+      - "Shared/tools/build_core_learning_data.py"
+      - "docs/core1-orientation-report.json"
+      - ".github/workflows/core1-provider-audit-parity.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-main-baseline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact pre-fix main baseline
+        uses: actions/checkout@v4
+        with:
+          ref: 778eb35a70517a46108ad0a5dc01dfc89f61c0e3
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Exact main baseline of failing adapter assertion
+        run: python -m unittest tests.test_core_learning_adapter.CoreLearningProductionAdapter.test_every_core1_orientable_bucket_reaches_the_learner_provider -v
