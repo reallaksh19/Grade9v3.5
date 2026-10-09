@@ -2,7 +2,7 @@
   "schema_version": "0.2.0",
   "package_id": "TEST-CORE1A-RENDER-QUALIFICATION-G9-DIVISIBILITY",
   "title": "TEST Core1A qualification — authored guaranteed divisibility",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "status": "CANDIDATE",
   "subject": "TEST",
   "scope_summary": "Research-only enriched TEST candidate to prove canonical Core1A renders real visual and independently authored worked anchor. No official SOF/NCERT source question, accepted curriculum, QRT, publisher rights or public learner release.",
@@ -369,6 +369,25 @@
             "frame": "Arbitrary positive integer n with three consecutive factors",
             "caption": "The parity argument and the exhaustive modulo-3 table combine through coprimality; neither finite numerical examples nor a single favored start is assumed."
           }
+        },
+        {
+          "id": "SCENE-TEST-CORE2A-POST-REPAIR-PROOF",
+          "cores": [
+            "CORE2A"
+          ],
+          "question_ref": "Q-TEST-CORE2A-THREE-ADJACENT-PRODUCT-PROOF",
+          "datum_refs": [
+            "DATUM-TEST-CORE2A-ADJACENT-FACTORS-EQUATION",
+            "DATUM-TEST-CORE1A-QUAL-N-MOD3-0",
+            "DATUM-TEST-CORE1A-QUAL-N-MOD3-1",
+            "DATUM-TEST-CORE1A-QUAL-N-MOD3-2"
+          ],
+          "asset_ref": "TEST/library/figures/core1a-consecutive-divisibility-staged.svg",
+          "scene": {
+            "kind": "STAGED_SYMBOLIC_PROOF",
+            "frame": "After attempting, set n=m+1 in the existing Core1A proof",
+            "caption": "The source-independent parity and residue proof uses n=m+1 for the submitted adjacent triple; it is available only after the attempt."
+          }
         }
       ],
       "correspondence": [
@@ -407,6 +426,78 @@
           "purpose": "The whole product is divisible by coprime integers 2 and 3, therefore by 6.",
           "visible_elements": [
             "factor 2 and factor 3 force a factor 6"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-TEST-CORE2A-ADJACENT-FACTORS-SAFE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-CORE1A-QUAL-G9-NS-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:stage_mode": "REPLACE"
+      },
+      "kind": "SYMBOLIC_FACTOR_STRIP",
+      "purpose": "Show which three adjacent integer factors appear in the independent authored question, without disclosing a divisor or proof move.",
+      "required_elements": [
+        "Three factor boxes labelled m+1, m+2 and m+3",
+        "Visible multiplication signs and no divisibility hints"
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "Read factors m+1, m+2 and m+3 from left to right.",
+        "Choose your own general argument without a worked method shown."
+      ],
+      "instance_constraints": [
+        "No factor-of-two, modulo-three, or answer-bearing marks in the pre-attempt asset.",
+        "No official source identity implied."
+      ],
+      "accessibility": [
+        "Each factor and multiplication sign is named in a descriptive text equivalent.",
+        "Do not reveal any proof in the SVG title, description or accessible label."
+      ],
+      "misleading_alternatives": [
+        "A diagram that colors an even factor or a multiple of three in advance"
+      ],
+      "rendered_asset_refs": [
+        "TEST/library/figures/core2a-three-consecutive-attempt-safe.svg"
+      ],
+      "scene_instances": [
+        {
+          "id": "SCENE-TEST-CORE2A-ADJACENT-FACTORS-SAFE",
+          "cores": [
+            "CORE2A"
+          ],
+          "question_ref": "Q-TEST-CORE2A-THREE-ADJACENT-PRODUCT-PROOF",
+          "datum_refs": [
+            "DATUM-TEST-CORE2A-ADJACENT-FACTORS-EQUATION"
+          ],
+          "asset_ref": "TEST/library/figures/core2a-three-consecutive-attempt-safe.svg",
+          "scene": {
+            "kind": "STAGED_SYMBOLIC_FACTORS",
+            "frame": "Three consecutive factors beginning at m+1",
+            "caption": "Attempt prompt: three adjacent factors; the required general proof remains yours."
+          }
+        }
+      ],
+      "correspondence": [
+        {
+          "element": "Three adjacent factor boxes",
+          "symbol": "(m+1)(m+2)(m+3)",
+          "in_words": "An arbitrary triple begins one position after m."
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "PRACTICE-FACTORS-ONLY",
+          "label": "Three factors only",
+          "purpose": "Display the given factors without the protected universal argument.",
+          "visible_elements": [
+            "m+1,m+2,m+3"
           ]
         }
       ]
@@ -449,7 +540,9 @@
         "Checking three values rather than proving all starts.",
         "Concluding divisibility by 6 from an unproven choice of even and multiple-of-3 factors."
       ],
-      "item_refs": []
+      "item_refs": [
+        "Q-TEST-CORE2A-THREE-ADJACENT-PRODUCT-PROOF"
+      ]
     }
   ],
   "questions": [
@@ -515,6 +608,192 @@
         "family_ref": "FAM-TEST-CORE1A-QUAL-G9-AUTHORED-CONSECUTIVE-PRODUCT",
         "closure": null
       }
+    },
+    {
+      "id": "Q-TEST-CORE2A-THREE-ADJACENT-PRODUCT-PROOF",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-CORE1A-QUAL-G9-NS-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:authored_by": "core-architect-test-journey",
+        "grade9v3:cognitive_demand": {
+          "primary": "JUSTIFY",
+          "secondary": [
+            "REPRESENT"
+          ],
+          "basis": "The decisive task is a universal divisibility warrant for arbitrary integer m, not executing one numerical product."
+        },
+        "grade9v3:analysis": {
+          "stable_crux_move": "Guarantee both a factor of two and a factor of three for every permissible starting m, then combine coprime divisors.",
+          "common_wrong_route": "Check three sample m values or assert one chosen factor is always even and divisible by three."
+        }
+      },
+      "origin": "AUTHORED",
+      "origin_ref": "SRC-TEST-CORE1A-QUAL-G9-NS-AUTHORED",
+      "original_identifier": "AUTHORED-CORE2A-CONSECUTIVE-TRIPLE-OFFSET",
+      "stem": "For an arbitrary positive integer m, prove that (m+1)(m+2)(m+3) is divisible by 6. Your argument must cover every m, not only examples.",
+      "subparts": [],
+      "options": [],
+      "conditions": [
+        "m is any positive integer.",
+        "A few tested values are not accepted as a general proof.",
+        "This is original authored practice, not an SOF/NCERT exam item."
+      ],
+      "figure_refs": [
+        "REP-TEST-CORE2A-ADJACENT-FACTORS-SAFE"
+      ],
+      "answer": {
+        "kind": "MODEL_RESPONSE",
+        "summary": "Every three consecutive integers contain a factor of 2 and a factor of 3, so their product is divisible by 6.",
+        "reasoning": [
+          "Set n=m+1. Then the product is n(n+1)(n+2), and n is a positive integer.",
+          "At least one of n and n+1 is even, so 2 divides the product.",
+          "If n mod 3 is 0, 1 or 2, the factor n, n+2 or n+1 is divisible by 3 respectively, so 3 divides the product in every case.",
+          "The two coprime divisors 2 and 3 both divide the same product; therefore 6 divides it for every m."
+        ],
+        "reasoning_route": [
+          {
+            "id": "MOVE-TEST-CORE2A-DECLARE",
+            "kind": "REPRESENT",
+            "action": "Use n=m+1 to represent the given factors as an arbitrary consecutive triple.",
+            "why_valid": "m is any positive integer, so n is also positive and the consecutive-factor identity holds.",
+            "inputs": [
+              "(m+1)(m+2)(m+3)",
+              "m is positive"
+            ],
+            "output": "n(n+1)(n+2) for n=m+1"
+          },
+          {
+            "id": "MOVE-TEST-CORE2A-PARITY",
+            "kind": "CONNECT",
+            "action": "Establish a factor of two from consecutive parity, not from tested values.",
+            "why_valid": "Adjacent integers have opposite parities, so one of n,n+1 is even for every n.",
+            "inputs": [
+              "n(n+1)(n+2)"
+            ],
+            "output": "2 divides the whole product"
+          },
+          {
+            "id": "MOVE-TEST-CORE2A-WARRANT",
+            "kind": "DECIDE",
+            "action": "Check the exhaustive three possible residues for n modulo 3 and combine the guaranteed coprime divisors.",
+            "why_valid": "The residues 0,1,2 exhaust all starts and ensure one factor divisible by 3, while parity independently gives factor 2. Coprimality licenses the product 6.",
+            "inputs": [
+              "2 divides product",
+              "n mod 3 in {0,1,2}"
+            ],
+            "output": "6 divides (m+1)(m+2)(m+3) for every positive m"
+          },
+          {
+            "id": "MOVE-TEST-CORE2A-VERIFY",
+            "kind": "VERIFY",
+            "action": "Reverse-map n=m+1 and independently inspect each residue class modulo six as a check.",
+            "why_valid": "The identity maps back to the original arbitrary m; six exhaustive classes provide an independent arithmetic verification of the divisibility claim.",
+            "inputs": [
+              "general proof in n"
+            ],
+            "output": "same universal claim in m, with all residue classes checked"
+          }
+        ],
+        "crux_move_ref": "MOVE-TEST-CORE2A-WARRANT",
+        "check": "For m congruent to any residue from 0 to 5 modulo 6, at least one of m+1,m+2,m+3 is even and one is divisible by 3. This corroborates, rather than replaces, the general proof.",
+        "acceptable_alternatives": [],
+        "subpart_answers": [],
+        "verification_status": "CHECKED_BY_AUTHOR"
+      },
+      "primary_capability_ref": "CAP-TEST-CORE1A-QUAL-G9-UNIVERSAL-DIVISIBILITY",
+      "secondary_capability_refs": [],
+      "family_ref": "FAM-TEST-CORE1A-QUAL-G9-AUTHORED-CONSECUTIVE-PRODUCT",
+      "adaptation": null,
+      "exposure": [
+        {
+          "core": "CORE2A",
+          "role": "SUPPORTED_PRACTICE",
+          "artifact_ref": null
+        }
+      ],
+      "hints": [],
+      "scaffolds": [
+        {
+          "text": "Keep m arbitrary. Can a few checked examples establish a result for every m? State what a general proof must ensure.",
+          "support_kind": "REPRESENT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "MOVE-TEST-CORE2A-DECLARE"
+        },
+        {
+          "text": "What would it mean to guarantee divisibility of the whole product by 6? Identify the kind of general warrant you need, without deciding which factor provides it.",
+          "support_kind": "CONNECT",
+          "reveals": "CONCEPT",
+          "supports_move_ref": "MOVE-TEST-CORE2A-WARRANT"
+        },
+        {
+          "text": "Do not assume one factor supplies every divisor. Can you make separate universal claims about two coprime divisor contributions, and verify that each applies to every start?",
+          "support_kind": "CONNECT",
+          "reveals": "METHOD",
+          "supports_move_ref": "MOVE-TEST-CORE2A-WARRANT"
+        }
+      ],
+      "hint_ladder": [
+        {
+          "order": 1,
+          "purpose": "ORIENT",
+          "from": "scaffolds[0]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 2,
+          "purpose": "CONNECT",
+          "from": "scaffolds[1]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        },
+        {
+          "order": 3,
+          "purpose": "CRUX",
+          "from": "scaffolds[2]",
+          "provenance": "AUTHORED_SCAFFOLD"
+        }
+      ],
+      "representation_roles": {
+        "initial_ref": "REP-TEST-CORE2A-ADJACENT-FACTORS-SAFE",
+        "safe_ref": "REP-TEST-CORE2A-ADJACENT-FACTORS-SAFE",
+        "bound_ref": "REP-TEST-CORE1A-QUAL-G9-RESIDUE-TABLE",
+        "stage_refs": [
+          "PRACTICE-FACTORS-ONLY"
+        ]
+      },
+      "repair_ref": "TC-03",
+      "failure_signal": "An answer based on sample values, or a claim that m+1 must be even, has not established a universal proof. Diagnose the difference between an instance and a guaranteed factor.",
+      "family_exposure": {
+        "family_ref": "FAM-TEST-CORE1A-QUAL-G9-AUTHORED-CONSECUTIVE-PRODUCT",
+        "closure": "Supported familiar-family proof completed if the learner independently justifies the even factor, all three modulo-3 cases, and coprime combination; no mastery or changed-demand transfer is inferred."
+      },
+      "independent_check": {
+        "statement": "Check all six residue classes for m modulo 6; give the general proof separately.",
+        "check_type": "EXHAUSTIVE_MODULAR_CHECK"
+      },
+      "difficulty": {
+        "band": "D2",
+        "score": 4,
+        "components": {
+          "concept_model_selection": 1,
+          "representation_translation": 1,
+          "reasoning_chain_length": 1,
+          "algebra_computational_load": 0,
+          "trap_exception_sensitivity": 1
+        },
+        "basis": "The learner must represent the offset triple, justify two independent divisibility guarantees, and avoid finite-example or one-factor misconceptions.",
+        "component_evidence": {
+          "concept_model_selection": "Choose general consecutive-factor structure instead of computing a sample.",
+          "representation_translation": "Map m+1,m+2,m+3 to standard n,n+1,n+2 with n=m+1.",
+          "reasoning_chain_length": "Parity and three residue cases must combine to establish divisibility by six.",
+          "algebra_computational_load": "No significant algebra beyond an offset substitution.",
+          "trap_exception_sensitivity": "An overgeneralization from examples or assuming one factor must carry all factors is plausible."
+        }
+      },
+      "learner_question_type": "constructed_response"
     }
   ],
   "teaching_routes": [
@@ -620,6 +899,23 @@
       "symbol": "n mod 3 = 2",
       "meaning": "Case in which n+1 is divisible by 3",
       "locator": "AUTHOR_CREATED: Core1A modular arithmetic exhaustiveness proof"
+    },
+    {
+      "id": "DATUM-TEST-CORE2A-ADJACENT-FACTORS-EQUATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-CORE1A-QUAL-G9-NS-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:scope": "AUTHORED_TEST_SAFE_EXPRESSION"
+      },
+      "kind": "EQUATION",
+      "value": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>(</mo><mi>m</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>(</mo><mi>m</mi><mo>+</mo><mn>2</mn><mo>)</mo><mo>(</mo><mi>m</mi><mo>+</mo><mn>3</mn><mo>)</mo></mrow></math>",
+      "meaning": "An arbitrary three-adjacent-factor product with no proof claim encoded",
+      "symbol": "(m+1)(m+2)(m+3)",
+      "locator": "AUTHOR_CREATED: Core2A proof-free practice diagram"
     }
   ]
 }
