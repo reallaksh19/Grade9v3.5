@@ -482,6 +482,12 @@
         "head_sha": {
           "type": "string",
           "pattern": "^[0-9a-f]{40}$"
+        },
+        "question_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1},
+          "description": "Optional exact question IDs represented by this artifact. When question_anchor_binding_required is true, the guard must also observe these IDs on real rendered article[data-g9-unit] elements."
         }
       },
       "additionalProperties": true
@@ -937,6 +943,10 @@
         "independent_rendered_review_required": {
           "type": "boolean",
           "description": "Opt-in acceptance requirement. When true, every question needs an INDEPENDENT_RENDERED review in addition to exact-artifact binding. Absent/false preserves legacy post-render review semantics."
+        },
+        "question_anchor_binding_required": {
+          "type": "boolean",
+          "description": "Opt-in strict new-candidate evidence: each reviewed question must be declared in the referenced artifact's question_refs and observed in an article[data-g9-unit] element in the exact HTML, with unique question reviews and known IDs. Not a claim of academic independence."
         }
       }
     },
