@@ -60,7 +60,9 @@ class ConceptFirstRendererContract(unittest.TestCase):
         self.assertIn('data-g9-next-rung>Show hint 1', html)
         self.assertIn('data-g9-rung-payload="CORE2A-', html)
         self.assertIn('data-g9-rung-payload="CORE2A-', html)
-        self.assertNotIn('<li data-g9-rung="1">', html)
+        self.assertIn('<ol data-g9-ladder></ol>', html)
+        # Hint 1 still exists inside an inert <template> for explicit reveal;
+        # its DOM text must not appear in the initially visible ladder.
         self.assertIn('data-g9-assistance-status role="status" aria-live="polite" hidden', html)
         self.assertIn('Hints viewed: assisted practice, not independent mastery.', html)
         self.assertIn("['CORE2','CORE2A'].includes(a.dataset.g9Role)", html)
