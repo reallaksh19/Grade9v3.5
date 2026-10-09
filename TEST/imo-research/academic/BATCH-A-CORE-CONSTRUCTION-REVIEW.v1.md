@@ -1,3 +1,9 @@
+> **ACADEMIC SOURCE-ALIGNMENT CORRECTION — 2026-10-09 / governing #294.** The IMO producer's review of audit \`IMO-AUDIT-B01-016\` refines the Q49 link. The source-facing crux is **verify three particular algebraic/radical assertions independently with exact substitution and simplification**. The universal-quantifier/counterexample activities in Section 4 are valid *authored logical extensions*, **not the source-specific protected Q49 move**. This correction overrides Section 1's former Q49 “quantified universal claim” inference when used as a source-facing linkage; it does not overwrite source-paper custody or reviewer authority.
+
+**Revised Q49-like Core1A construction (author-created, source-safe):** First parse each statement as written; simplify each exact expression; mark truth value with the exact witness; only then combine truth statuses. For an original three-claim diagnostic: (A) \(\sqrt{50}=5\sqrt2\) (TRUE, since \(\sqrt{50}=\sqrt{25\cdot2}\)); (B) \(\sqrt8+\sqrt2=4\sqrt2\) (FALSE, since left side \(=3\sqrt2\)); (C) \((\sqrt7+\sqrt3)^2=10+2\sqrt{21}\) (TRUE by binomial multiplication). Predicted error: evaluating the bundled response before checking all claims, or trusting a radical-looking equality by approximation. Independent exit: classify \(\sqrt{12}-\sqrt3=\sqrt3\) (TRUE), \((\sqrt5+\sqrt2)^2=7+2\sqrt{10}\) (TRUE), and “\(\sqrt9\) is irrational” (FALSE); show exact checks. Keep the quantifier/counterexample branch as optional transfer enrichment, not the Core1A source alignment. Note that the authentic source statements and exact options remain under custody/rights HOLD.
+
+---
+
 # IMO Grade 9 — independent Core conceptual review, Batch A
 
 **Status:** ACADEMIC_DESIGN_PROPOSAL / NOT_ACCEPTED / NOT_CORE_PRODUCT  
