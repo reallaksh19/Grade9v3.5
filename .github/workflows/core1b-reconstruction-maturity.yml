@@ -9,6 +9,15 @@ on:
       - 'TEST/products/core1b-authored-reconstruction-journey.manifest.json'
       - 'tests/test_core1b_reconstruction_maturity.py'
       - 'tools/site-audit/core1b-reconstruction-audit.mjs'
+      # This qualification depends on the canonical renderer and existing printer;
+      # changes to either must invalidate prior Core1B evidence.
+      - 'Shared/tools/render_core.py'
+      - 'Shared/tools/deploy_test.py'
+      - 'Shared/tools/product_manifest.py'
+      - 'Shared/tools/product_coverage.py'
+      - 'Shared/tools/web_blueprint_contract.py'
+      - 'Shared/tools/question_review_matrix.py'
+      - 'tools/print/print-product.mjs'
   workflow_dispatch:
 
 permissions:
@@ -50,7 +59,7 @@ jobs:
         run: |
           node tools/print/print-product.mjs \
             public/test/products/core1b-authored-reconstruction-journey \
-            --key --out public/test/products/core1b-authored-reconstruction-journey/core1b-evidence/offline-key
+            --key --out core1b-review-evidence/offline-key
       - name: Check role PDFs and nonrelease, non-source admission receipt
         run: |
           python - <<'PY'
@@ -74,7 +83,12 @@ jobs:
           # must close the entire self-tutor cycle without releasing W before
           # an attempt in the ordinary learner copy.
           learner_text=' '.join(page.extract_text() or '' for page in PdfReader(p/'core1b.pdf').pages)
-          keydir=p/'core1b-evidence'/'offline-key'
+          # A key must never be generated under the public/ tree, even in
+          # TEST, because that directory may be copied to a static host.
+          keydir=Path('core1b-review-evidence/offline-key')
+          assert not keydir.resolve().is_relative_to(Path('public').resolve())
+          assert not list(p.rglob('*.key.pdf')), 'Protected key leaked into public TEST output'
+          assert not (p/'core1b-evidence'/'offline-key').exists()
           key_receipt=json.loads((keydir/'print-key-receipt.json').read_text())
           learner_receipt=json.loads((p/'print-receipt.json').read_text())
           assert key_receipt['mode']=='KEY_PDF'
@@ -108,8 +122,9 @@ jobs:
               'QRT_cells':28,'authentic_source_Core2':0,'student_mastery':'NOT_MEASURED',
               'human_screen_reader':'NOT_RUN','academic_owner_acceptance':False,
               'canonical_publication':False,
-              'offline_key_pdf':'core1b-evidence/offline-key/core1b.key.pdf',
-              'offline_key_receipt':'core1b-evidence/offline-key/print-key-receipt.json',
+              'offline_key_pdf':'core1b-review-evidence/offline-key/core1b.key.pdf',
+              'offline_key_receipt':'core1b-review-evidence/offline-key/print-key-receipt.json',
+              'key_within_public_tree':False,
               'learner_print_protected_figure_count':1,'key_print_full_figure_count':2}
           (p/'core1b-evidence'/'qualification.json').write_text(json.dumps(proof,indent=2)+'\n')
           print(json.dumps(proof,indent=2))
@@ -119,5 +134,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: core1b-reconstruction-qualification-evidence
-          path: public/test/products/core1b-authored-reconstruction-journey/
+          path: |
+            public/test/products/core1b-authored-reconstruction-journey/
+            core1b-review-evidence/offline-key/
           if-no-files-found: warn
