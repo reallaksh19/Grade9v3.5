@@ -63,7 +63,7 @@ def assert_distinct_modes(pkg: dict, manifest: dict) -> None:
     if (not support[0]["text"].startswith("Look at 16 and 4:")
             or "Do not introduce a numerical answer." not in support[0]["text"]
             or "a^(n+1)=a*a^n" not in support[1]["text"]
-            or "What" not in support[1]["text"]
+            or "Where" not in support[1]["text"]
             or not support[2]["text"].startswith("Choose a strictly positive common power")):
         raise ValueError("Hints must orient then remind then invite the learner's own application")
     if q.get("repair_ref") != "TC-02":
