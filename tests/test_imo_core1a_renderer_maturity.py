@@ -17,7 +17,7 @@ from Shared.tools import product_coverage, product_manifest, render_core, questi
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "TEST/products/core1a-divisibility-render-maturity.manifest.json"
-PACKAGE = ROOT / "TEST/library/core1a-render-qualified-divisibility.v1.json"
+PACKAGE = ROOT / "TEST/imo-research/pilots/core1a-render-qualified-divisibility.v1.json"
 MICRO = "MIC-TEST-CORE1A-QUAL-G9-CONSECUTIVE-FACTOR-INVARIANTS"
 
 
@@ -67,7 +67,7 @@ class Core1ARendererMaturityTests(unittest.TestCase):
         self.assertEqual(m["schema"], "product-manifest/v1")
         self.assertEqual(m["subject"], "TEST")
         self.assertEqual(m["output_roles"], ["CORE1A"])
-        self.assertEqual(m["package_refs"], ["TEST/library/core1a-render-qualified-divisibility.v1.json"])
+        self.assertEqual(m["package_refs"], ["TEST/imo-research/pilots/core1a-render-qualified-divisibility.v1.json"])
         self.assertEqual(m["bank_refs"], [])
         self.assertEqual(m["selection"], {
             "microtopics": [MICRO], "core2": [], "core2a": [], "core2b": [],
