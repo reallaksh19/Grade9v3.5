@@ -171,6 +171,12 @@ def _resolve_link(repo: Path, origin: Path, raw: str) -> Path | None:
                  else (origin.parent / path)).resolve()
     if not candidate.is_relative_to(repo.resolve()):
         return None
+    # Learner navigation may use href="../core1a/" rather than index.html.
+    # Include the actual landing page in the static reachable-resource graph.
+    if candidate.is_dir() or path.endswith("/"):
+        candidate = (candidate / "index.html").resolve()
+        if not candidate.is_relative_to(repo.resolve()):
+            return None
     if candidate.suffix.lower() not in RESOURCE_EXTENSIONS:
         return None
     return candidate
