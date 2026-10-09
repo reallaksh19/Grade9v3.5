@@ -118,7 +118,7 @@ class IMOOneAuthoredQRTRepair(unittest.TestCase):
         self.assertIn("core1a.html#CU-TEST-IMO-G9-EXPONENTIAL-RELATION",b)
         self.assertIn('data-g9-role="CORE2A"',b)
         self.assertIn('data-g9-role="CORE1A"',a)
-        self.assertEqual(re.findall(r'<article\\b[^>]*data-g9-role="([^"]+)"',b),["CORE2A"])
+        self.assertEqual(re.findall(r'<article\b[^>]*data-g9-role="([^"]+)"',b),["CORE2A"])
         self.assertNotIn("SOF-IMO-G09",a+b)
 
 if __name__=="__main__":
