@@ -263,7 +263,11 @@ TEMPLATE = r'''<!doctype html>
       loadButton.disabled = true;
       const first = availability.find((row) => row?.status === "UNSUPPORTED");
       const reason = first?.code ? ` Reason: ${first.code}.` : "";
-      setStatus("No compiled Core learner projections are available in this generated data build." + reason);
+      if (data?.publication_gate?.status === "HOLD") {
+        setStatus("Core learner publication held: " + (data.publication_gate.code || "NO_RELEASE_GRANT") + ". No public activities are available.");
+      } else {
+        setStatus("No compiled Core learner projections are available in this generated data build." + reason);
+      }
     } else {
       loadButton.addEventListener("click", () => mount(select.value));
       select.addEventListener("change", () => setStatus(`Selected ${labelFor(rows.find((row) => row.id === select.value))}.`));
