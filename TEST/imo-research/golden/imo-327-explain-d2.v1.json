@@ -1,0 +1,141 @@
+{
+  "schema": "imo-327-qrt-core1a-vs-hints-golden/v1",
+  "fixture_id": "GOLDEN-IMO327-EXPLAIN-D2",
+  "status": "AUTHOR_REVIEW_FIXTURE_NOT_LEARNER_PRODUCT",
+  "origin": "WHOLLY_AUTHORED_NOT_SOF",
+  "governance": {
+    "issue": 327,
+    "pr": 333,
+    "academic_review": "NOT_GRANTED",
+    "qrt_review": "NOT_GRANTED",
+    "owner_release": "NOT_GRANTED",
+    "source_core2_admitted": false,
+    "published": false
+  },
+  "matrix": {
+    "path": "Shared/quality/question-demand-matrix.v1.json",
+    "vocabulary": "Shared/vocabularies/cognitive-demand.v1.json",
+    "expected_cell": "QRT-EXPLAIN-D2",
+    "primary_demand": "EXPLAIN",
+    "derived_band": "D2",
+    "protected_work": "Learner must articulate why the index-addition law makes the multiplier and show why simple addition fails; hints must not deliver this explanation."
+  },
+  "task": {
+    "role": "AUTHORED_ITEM_DEMONSTRATION_NOT_AUTHENTIC_CORE2",
+    "title": "Explain the one-step exponent change",
+    "stem": "For any real n, explain why 5^(n+1) = 5 * 5^n rather than 5^n + 5. Give one value of n that distinguishes the two claims.",
+    "expected_attempt": "Written reason and a counterexample; no button requires or assumes multiple-choice recognition.",
+    "misconception": "Confuses adding 1 to an exponent with adding the base to the resulting number."
+  },
+  "qrt_question": {
+    "id": "GOLDEN-IMO327-EXPLAIN-D2",
+    "primary_capability_ref": "CAP-GOLDEN-EXPONENT-OFFSET-WHY",
+    "difficulty": {
+      "band": "D2",
+      "score": 3,
+      "components": {
+        "concept_model_selection": 0,
+        "representation_translation": 0,
+        "reasoning_chain_length": 1,
+        "algebra_computational_load": 0,
+        "trap_exception_sensitivity": 2
+      },
+      "basis": "Explain the general rule and discriminate a plausible additive misconception using a counterexample. Author evidence; derived D-band."
+    },
+    "extensions": {
+      "grade9v3:cognitive_demand": {
+        "primary": "EXPLAIN",
+        "secondary": [
+          "APPLY"
+        ],
+        "basis": "The protected act is explaining the general exponent law, not calculating one fixed power."
+      },
+      "grade9v3:analysis": {
+        "stable_crux_move": "Explain why exponent addition produces multiplication of positive-base powers.",
+        "common_wrong_route": "Treat 5^(n+1) as 5^n + 5 merely because the exponent increases by 1."
+      }
+    },
+    "answer": {
+      "crux_move_ref": "MOVE-EXP-WHY",
+      "reasoning_route": [
+        {
+          "id": "MOVE-EXP-WHY",
+          "kind": "JUSTIFY",
+          "action": "Explain the general link 5^(n+1)=5^n*5^1 by the exponent addition law, and distinguish addition by an independently chosen counterexample.",
+          "why_valid": "5^r*5^s=5^(r+s) for positive base 5 and real exponents.",
+          "inputs": [],
+          "output": "A general lawful explanation and disproof of the false additive relation."
+        }
+      ]
+    }
+  },
+  "item_help": {
+    "role": "ITEM_SCOPED_HINTS",
+    "must_not_reveal_before_attempt": [
+      "5^(n+1)=5^n*5^1",
+      "n=0",
+      "5=6"
+    ],
+    "rungs": [
+      {
+        "id": "H1",
+        "purpose": "ORIENT",
+        "text": "Which part of the two powers changes when n becomes n+1?"
+      },
+      {
+        "id": "H2",
+        "purpose": "CONNECT",
+        "text": "Recall the law for multiplying powers that have the same base. What happens to their exponents?"
+      },
+      {
+        "id": "H3",
+        "purpose": "OPEN_THE_WAY",
+        "text": "Write n+1 as a sum of two exponents. Justify the relation you obtain, then choose a test value to challenge the additive alternative."
+      }
+    ],
+    "protected_decision_ref": "MOVE-EXP-WHY",
+    "assisted_attempt_if_any_hint_used": true
+  },
+  "core1a_repair": {
+    "role": "CONCEPT_FIRST_NOT_TARGET_SOLUTION",
+    "trigger": "Learner believes that exponent offset means adding the base.",
+    "sequence": [
+      {
+        "stage": "NEUTRAL_DEMONSTRATION",
+        "text": "Start away from 5 and n. If P=3^2=9, compare 3^3=27 with 3P=27 and P+3=12. Which operation fits?"
+      },
+      {
+        "stage": "GENERAL_PRINCIPLE",
+        "text": "When the exponent grows by one, the next positive-base power has one more factor equal to the base. Use a^(r+s)=a^r*a^s to justify this for real exponents."
+      },
+      {
+        "stage": "CONCEPT_CHECK",
+        "text": "For Q=2^r, which follows from the rule: 2^(r+1)=2Q or 2^(r+1)=Q+2? Explain why."
+      },
+      {
+        "stage": "GUIDED_APPLICATION",
+        "text": "On a different base, interpret 7^(m+1) in terms of 7^m, then explain what a one-step change does."
+      },
+      {
+        "stage": "FRESH_INDEPENDENT_EXIT",
+        "text": "For any real z, justify the correct relationship between 11^(z+1) and 11^z, and disprove the tempting additive version."
+      }
+    ],
+    "checkpoint_before_target_aid": true,
+    "checkpoint_enforced_by_current_renderer": false,
+    "return_to_new_unseen_task_required": true,
+    "return_enforced_by_current_renderer": false
+  },
+  "evidence_rules": {
+    "hint_used": "ASSISTED_NOT_INDEPENDENT_MASTERY",
+    "repair_viewed": "CONCEPT_EXPOSED_NOT_MASTERY",
+    "fresh_unseen_correct_without_help": "POTENTIAL_INDEPENDENT_EVIDENCE_REQUIRES_REVIEW",
+    "attempt_capture_available_in_fixture": false,
+    "learner_telemetry": "NOT_IMPLEMENTED"
+  },
+  "reviewer_only": {
+    "expected_explanation": "For real n, 5^(n+1)=5^n*5^1=5*5^n. At n=0, LHS=5 but 5^0+5=6, so the additive alternative is false.",
+    "concept_check": "2^(r+1)=2Q follows from exponent addition.",
+    "fresh_exit": "11^(z+1)=11*11^z; z=0 disproves 11^z+11 because 11 != 12."
+  }
+}
