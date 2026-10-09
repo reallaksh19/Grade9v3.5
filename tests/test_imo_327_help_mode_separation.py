@@ -73,8 +73,8 @@ def assert_distinct_modes(pkg: dict, manifest: dict) -> None:
             or manifest.get("selection", {}).get("core2a") != [q["id"]]):
         raise ValueError("No authentic source Core2 is authorized")
     routes = pkg.get("teaching_routes") or []
-    if len(routes) != 1 or "DOES NOT implement a runtime gated checkpoint" not in " ".join(routes[0]["help_plan"]):
-        raise ValueError("Concept-check authorship must not impersonate implementation")
+    if len(routes) != 1 or "TEST-only browser formative choice+rationale gate is implemented" not in " ".join(routes[0]["help_plan"]):
+        raise ValueError("Concept check must describe the format gate, not independent comprehension")
     if "renderer/QRT work not delivered" not in " ".join(routes[0]["help_plan"]):
         raise ValueError("Assisted-vs-independent evidence/return-to-fresh-attempt debt must remain explicit")
 
@@ -121,7 +121,7 @@ class HelpModeSeparation(unittest.TestCase):
 
     def test_forged_runtime_concept_check_claim_rejected(self):
         d = copy.deepcopy(self.pkg)
-        d["teaching_routes"][0]["help_plan"][1] = "Concept checkpoint is implemented and enforced."
+        d["teaching_routes"][0]["help_plan"][1] = "The learner understands the concept and earns independent mastery."
         with self.assertRaises(ValueError):
             assert_distinct_modes(d, self.manifest)
 
