@@ -691,13 +691,15 @@ def metadata_search_text(ctx: Ctx, role: str, record: dict) -> str:
     return learner_metadata.safe_search_text(projection, record, role)
 
 
-def reveal(summary: str, body: str, gated: bool = True, ref: str | None = None) -> str:
+def reveal(summary: str, body: str, gated: bool = True, ref: str | None = None,
+           attempt_stage: str | None = None) -> str:
     if not body:
         return ""
     if not gated:
         return f'<details data-g9-reveal><summary>{esc(summary)}</summary>{body}</details>'
     payload_ref = ref or hashlib.sha256((summary + "\0" + body).encode("utf-8")).hexdigest()[:16]
-    return (f'<details data-g9-reveal data-requires-attempt data-g9-payload-ref="{esc(payload_ref)}">'
+    stage_attr = f' data-g9-attempt-stage="{esc(attempt_stage)}"' if attempt_stage else ""
+    return (f'<details data-g9-reveal data-requires-attempt{stage_attr} data-g9-payload-ref="{esc(payload_ref)}">'
             f'<summary>{esc(summary)}</summary><div data-g9-payload-slot></div></details>'
             f'<template data-g9-payload="{esc(payload_ref)}">{body}</template>')
 
@@ -764,7 +766,8 @@ def source_projection(ctx: Ctx, question: dict) -> dict:
 
 
 def attempt_box(label: str, response: dict | None = None, options: list | None = None,
-                record: str = "", option_html: list[str] | None = None) -> str:
+                record: str = "", option_html: list[str] | None = None,
+                attempt_stage: str | None = None) -> str:
     """Ask an honest self-learner for a typed commitment, not a marked answer."""
     response = response or {"type": "free_response"}
     kind = response["type"]
@@ -803,8 +806,10 @@ def attempt_box(label: str, response: dict | None = None, options: list | None =
         controls = f'<label>{esc(label)}<textarea data-g9-attempt rows="4"></textarea></label>'
     if kind in {"free_response", "multipart"} and response.get("paper_ok", True):
         controls += '<label class="g9-paper"><input data-g9-paper type="checkbox">I worked this on paper</label>'
-    return (f'<div class="g9-attempt" data-g9-attempt-box data-g9-response-type="{esc(kind)}">{controls}'
-            '<button type="button" data-g9-commit>I have attempted this</button></div>')
+    stage_attr = f' data-g9-attempt-stage="{esc(attempt_stage)}"' if attempt_stage else ""
+    label_commit = "I have attempted the boundary" if attempt_stage == "boundary" else "I have attempted this"
+    return (f'<div class="g9-attempt" data-g9-attempt-box data-g9-response-type="{esc(kind)}"{stage_attr}>{controls}'
+            f'<button type="button" data-g9-commit>{esc(label_commit)}</button></div>')
 
 
 _MATHML_NS = "http://www.w3.org/1998/Math/MathML"
@@ -1715,7 +1720,20 @@ def core1b(ctx: Ctx, m: dict) -> str:
     rec = e.get("reconstruct") or {}
     att = e.get("attempt") or {}
     bt = e.get("boundary_test") or {}
-    model = att.get("model_response") or "; ".join(r.get("criterion", "") for r in att.get("rubric") or [])
+    # Keep one governed elicitation record. A Core1B RUBRIC closure must
+    # actually show criterion -> evidence, accepted AND rejected examples after
+    # commitment; omitting rejected answers makes standalone self-check incomplete.
+    rubric = att.get("rubric") or []
+    model = (
+        (para(att.get("model_response")) if att.get("model_response") else "")
+        + (para("Check each criterion and what it demonstrates:")
+           + items((r.get("criterion", "") + " — Evidence: " + r.get("evidence_of", "")
+                    for r in rubric)) if rubric else "")
+        + (para("Representative answers that satisfy the criteria:")
+           + items(att.get("accepted")) if att.get("accepted") else "")
+        + (para("Answers that do not yet satisfy the criteria:")
+           + items(att.get("rejected")) if att.get("rejected") else "")
+    )
     task = att.get("task")
     # The attempt's own figure; the Core1A unit's figure depicts the worked anchor, not this task.
     task_rep = (task or {}).get("representation_ref") or unit.get("representation_ref")
@@ -1731,17 +1749,20 @@ def core1b(ctx: Ctx, m: dict) -> str:
                             title="Attempt")
                     + attempt_box("Your attempt", (task or {}).get("response"), record=m["id"])),
         "reconstruction": (
-            reveal("Reconstruct", block("reconstruct", items((r["ask"] for r in rec.get("route") or []), True))
+            reveal("Reconstruct", block("prediction_answer", para((e.get("predict") or {}).get("defensible_answer")), title="Check your prediction")
+                    + block("reconstruct", items((r["ask"] for r in rec.get("route") or []), True))
                    + block("diagnose", items(w["diagnostic_prompt"] for w in wrong), title="Diagnose")
                    + block("repair", items(w["repair"] for w in wrong), title="Repair")
                    + block("success_criteria", para(att.get("produces")), title="What your answer should contain")
-                   + block("model_response", para(model) + items(att.get("accepted")), title="What a complete answer does")
+                   + block("model_response", model, title="Self-check: criteria, valid and invalid answers")
                    + block("rejoin_jump", para(m["inferential_jump"]), title="The step you rebuilt")
                    + figure(ctx, task_rep, "POST_ATTEMPT", "CORE1B", m["id"] + "-full"),
                    ref=f'CORE1B-{m["id"]}-reconstruct')
             + block("boundary_test", para(bt.get("prompt")), title="Boundary test")
+            + attempt_box("Your boundary decision and reason", {"type": "free_response", "paper_ok": True},
+                          record=m["id"] + "-boundary", attempt_stage="boundary")
             + reveal("Boundary answer", block("boundary_answer", para(bt.get("answer")) + para(bt.get("confirms"))),
-                     ref=f'CORE1B-{m["id"]}-boundary')),
+                     ref=f'CORE1B-{m["id"]}-boundary', attempt_stage="boundary")),
     })
 
 
@@ -2523,6 +2544,9 @@ input,select{font-size:max(16px,1rem)}
 @media (max-width:899px){header[data-g9-shell-header]{position:relative}article[data-g9-unit]{padding:16px}nav[data-g9-breadcrumb]{font-size:.95rem}}
 """
 
+# Print-only Core1B settings: never embed into generic Core/TEST hub pages.
+CORE1B_PRINT_CSS = "@media print{\nhtml[data-g9-role=\"CORE1B\"]{font-size:16px!important;--g9-space:12px!important}\nhtml[data-g9-role=\"CORE1B\"] body{line-height:1.48!important}\nhtml[data-g9-role=\"CORE1B\"] .g9-concept-triad-bar{display:none!important}\nhtml[data-g9-role=\"CORE1B\"] article[data-g9-role=\"CORE1B\"]{margin:4px 0!important;padding:12px!important}\nhtml[data-g9-role=\"CORE1B\"] article[data-g9-role=\"CORE1B\"] .g9-split{display:block!important}\nhtml[data-g9-role=\"CORE1B\"] article[data-g9-role=\"CORE1B\"] figure[data-g9-figure]{break-inside:avoid-page!important;page-break-inside:avoid!important}\nhtml[data-g9-role=\"CORE1B\"] footer{position:static!important;bottom:auto!important;left:auto!important;padding:0!important;break-before:auto!important;font-size:14px!important;background:#fff!important}\n}\n"
+
 # Presentation of the blueprint's components. One rule set per presentation archetype the schema allows
 # (Shared/web/interactive-page-blueprint.schema.json, $defs/presentation); a test keeps the two lists equal.
 # Text is never below .85rem (14.45px at the base size), the blueprint's learner-text floor.
@@ -2763,6 +2787,31 @@ q('[data-g9-action="display"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-di
 """
 
 
+
+# Core1B adds a SECOND learner commitment only on the Core1B role page.
+# Keep the generic runtime byte-identical for all other roles and the TEST hub;
+# the pre-existing shared JS is also consumed by many generated public pages.
+def core1b_js() -> str:
+    js = JS
+    patches = (
+        ("function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}",
+         "const attemptedFor=(a,d)=>d.dataset.g9AttemptStage==='boundary'?!!a.dataset.g9BoundaryAttempted:!!a.dataset.attempted;\nfunction materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{if(!attemptedFor(a,d))return;const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}"),
+        ("articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);",
+         "articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!attemptedFor(a,d)){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);"),
+        ("q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));",
+         "q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{const d=s.closest('details');if(!attemptedFor(a,d)){e.preventDefault();const selector=d.dataset.g9AttemptStage==='boundary'?'[data-g9-attempt-box][data-g9-attempt-stage=\"boundary\"]':'[data-g9-attempt-box]:not([data-g9-attempt-stage=\"boundary\"])';q('input,textarea,select',q(selector,a)[0]||a)[0]?.focus()}}));"),
+        ("q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});",
+         "q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}if(box.dataset.g9AttemptStage==='boundary')a.dataset.g9BoundaryAttempted='1';else a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});"),
+        ("window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)});",
+         "window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';a.dataset.g9BoundaryAttempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)});"),
+    )
+    for generic, boundary_specific in patches:
+        if js.count(generic) != 1:
+            raise ValueError("CORE1B_JS_PATCH_UNSAFE: shared runtime changed")
+        js = js.replace(generic, boundary_specific, 1)
+    return js
+
+
 def _mode_href(href: str, mode: str) -> str:
     """Rebase public-root-relative links for the governed standalone publication path."""
     if mode == "SINGLE_FILE" and href.startswith("../../../"):
@@ -2958,13 +3007,13 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
             '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}">'
             f'{_shared_head_assets(ctx, mode)}'
-            f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}{COMPONENT_CSS}{learning_repair.CSS}{layout_css(ctx.blueprints)}</style></head>'
+            f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}{CORE1B_PRINT_CSS if role == "CORE1B" else ""}{COMPONENT_CSS}{learning_repair.CSS}{layout_css(ctx.blueprints)}</style></head>'
             f'<body data-core="{role}" data-blueprint-ref="{esc(bp["id"])}@{esc(bp["version"])}">'
             f'{header}{crumbs}<noscript>Answers open after you attempt; this page needs JavaScript.</noscript>'
             f'<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>'
             f'{_core1a_bucket_orientation(ctx) if role == "CORE1A" else ""}{articles}</main>'
             f'<footer data-g9-footer>{esc(m["subject"])} · {esc(m["title"])}</footer>'
-            f"<script>{JS}{learning_repair.JS}</script>{_shared_script_assets(ctx, mode)}</body></html>\n")
+            f"<script>{core1b_js() if role == 'CORE1B' else JS}{learning_repair.JS}</script>{_shared_script_assets(ctx, mode)}</body></html>\n")
 
 
 def index_page(ctx: Ctx, digest: str) -> str:

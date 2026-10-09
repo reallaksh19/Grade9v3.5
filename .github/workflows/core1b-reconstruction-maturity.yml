@@ -1,0 +1,191 @@
+name: Core1B learner reconstruction maturity (TEST only)
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/core1b-reconstruction-maturity.yml'
+      - 'TEST/imo-research/pilots/core1a-render-qualified-divisibility.v1.json'
+      - 'TEST/library/figures/core1b-three-factor-attempt-safe.svg'
+      - 'TEST/products/core1b-authored-reconstruction-journey.manifest.json'
+      - 'tests/test_core1b_reconstruction_maturity.py'
+      - 'tools/site-audit/core1b-reconstruction-audit.mjs'
+      - 'docs/method/CORE1B-RECONSTRUCTION-ACADEMIC-AND-PRINT-REVIEW.md'
+      # This qualification depends on the canonical renderer and existing printer;
+      # changes to either must invalidate prior Core1B evidence.
+      - 'Shared/tools/render_core.py'
+      - 'Shared/tools/deploy_test.py'
+      - 'Shared/tools/product_manifest.py'
+      - 'Shared/tools/product_coverage.py'
+      - 'Shared/tools/web_blueprint_contract.py'
+      - 'Shared/tools/question_review_matrix.py'
+      - 'tools/print/print-product.mjs'
+      - 'tools/site-audit/core1b-custody-evidence.py'
+      - 'tests/test_core1b_key_custody.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reconstruction-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install existing schema, print and Chromium test dependencies
+        run: |
+          python -m pip install --quiet jsonschema pypdf
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium
+      - name: Require original 28-cell QRT projection and no Core-role rewrite
+        run: |
+          python Shared/tools/question_review_matrix.py check
+          python Shared/tools/question_review_matrix.py write --check
+          python -m unittest tests.test_question_review_matrix -v
+      - name: Prove same-concept learner reconstruction and real canonical render
+        run: python -m unittest tests.test_core1b_reconstruction_maturity tests.test_core1b_key_custody -v
+      - name: Build all three TEST role pages through existing renderer and printed PDF path
+        run: |
+          python Shared/tools/deploy_test.py product \
+            TEST/products/core1b-authored-reconstruction-journey.manifest.json --no-mirror
+      - name: Browser attempt-first reconstruction and boundary evaluation
+        run: |
+          node tools/site-audit/core1b-reconstruction-audit.mjs \
+            public/test/products/core1b-authored-reconstruction-journey
+      - name: Print a SEPARATE offline answer key using existing print-product key mode
+        run: |
+          node tools/print/print-product.mjs \
+            public/test/products/core1b-authored-reconstruction-journey \
+            --key --out core1b-review-evidence/offline-key
+      - name: Check role PDFs and nonrelease, non-source admission receipt
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          from pypdf import PdfReader
+          p=Path('public/test/products/core1b-authored-reconstruction-journey')
+          r=json.loads((p/'deploy-receipt.json').read_text())
+          assert r['subject']=='TEST' and r['draft'] is True and r['accepted'] is False
+          assert r['roles']==['CORE1A','CORE1B','CORE2A'] and r['gap_count']==0, r
+          assert r['selection_counts']['core2']==0 and r['selection_counts']['core2a']==1
+          assert r['pdf']['status']=='PRINTED',r['pdf']
+          for role in ['core1a','core1b','core2a']:
+              pdf=p/(role+'.pdf')
+              assert pdf.is_file() and pdf.stat().st_size>1000,role
+              content=' '.join(page.extract_text() or '' for page in PdfReader(pdf).pages)
+              assert 'TEST' in content,role
+              if role=='core1b':
+                  assert 'Predict' in content and 'Boundary test' in content, 'Core1B task print incomplete'
+                  assert 'write on a separate sheet' in ' '.join(content.split()), 'Core1B printed paper-response instructions absent'
+          # The learner-only print is an attempt handout. A separate KEY print
+          # must close the entire self-tutor cycle without releasing W before
+          # an attempt in the ordinary learner copy.
+          learner_text=' '.join(page.extract_text() or '' for page in PdfReader(p/'core1b.pdf').pages)
+          # A key must never be generated under the public/ tree, even in
+          # TEST, because that directory may be copied to a static host.
+          keydir=Path('core1b-review-evidence/offline-key')
+          assert not keydir.resolve().is_relative_to(Path('public').resolve())
+          assert not list(p.rglob('*.key.pdf')), 'Protected key leaked into public TEST output'
+          assert not (p/'core1b-evidence'/'offline-key').exists()
+          key_receipt=json.loads((keydir/'print-key-receipt.json').read_text())
+          learner_receipt=json.loads((p/'print-receipt.json').read_text())
+          assert key_receipt['mode']=='KEY_PDF'
+          assert learner_receipt['mode']=='LEARNER_PDF'
+          assert len(key_receipt['pages'])==len(learner_receipt['pages'])==3
+          key_pdf=keydir/'core1b.key.pdf'
+          assert key_pdf.is_file() and key_pdf.stat().st_size>1000
+          key_text=' '.join(page.extract_text() or '' for page in PdfReader(key_pdf).pages)
+
+          # Page-level print QA: a PDF can contain all keywords yet strand its
+          # prediction on a metadata-only page or its footer on a new page.
+          # Do not enforce an arbitrary overall page-count quota.
+          import re
+          learner_pages=[' '.join((page.extract_text() or '').split())
+                         for page in PdfReader(p/'core1b.pdf').pages]
+          key_pages=[' '.join((page.extract_text() or '').split())
+                     for page in PdfReader(key_pdf).pages]
+          page_quality={}
+          for mode, pages in [('LEARNER_PDF',learner_pages),('KEY_PDF',key_pages)]:
+              assert len(pages)>1, (mode,'no substantial printable sequence')
+              assert 'Predict' in pages[0] and 'Do those three checks PROVE' in pages[0], (
+                  mode,'metadata-only opening sheet: prediction not on page one')
+              assert 'Boundary test' in pages[-1], (
+                  mode,'final sheet is disconnected from boundary; possibly footer-only')
+              counts=[len(re.findall(r'[A-Za-z]{2,}', text)) for text in pages]
+              assert all(n>=35 for n in counts), (
+                  mode,'blank or metadata/footer-only sheet',counts)
+              page_quality[mode]={'pages':len(pages),'word_counts':counts,
+                  'first_page_predict':True,'last_page_boundary':True}
+          assert any('Attempt' in text and 'Boundary test' in text
+                     and 'The three factors are consecutive' in text
+                     for text in learner_pages), (
+                         'learner task/givens/boundary orphaned across paper sheets')
+          # Same-page factor/figcaption identity, not merely PDF keyword existence.
+          diagram='t − 2 × t − 1 × t'
+          assert any(diagram in text and 'Given triple only' in text
+                     for text in learner_pages), 'PRE_ATTEMPT figure/caption split in learner print'
+          assert any(diagram in text and 'Given triple only' in text
+                     for text in key_pages), 'PRE_ATTEMPT figure/caption split in offline KEY'
+          assert any(diagram in text and 'Present the new reconstruction task' in text
+                     for text in key_pages), 'POST_ATTEMPT figure/caption split in offline KEY'
+          for mark in ['Check your prediction','No. Three checks are instances',
+                       'Evidence:', 'Answers that do not yet satisfy',
+                       'The factor t is always divisible by 3', 'Boundary answer',
+                       'At t=2']:
+              assert mark in key_text, f'Core1B offline KEY missing closure: {mark}'
+          for withheld in ['No. Three checks are instances', 'Evidence:',
+                           'The factor t is always divisible by 3', 'At t=2']:
+              assert withheld not in learner_text, f'learner attempt PDF leaks key: {withheld}'
+          key_row=next(row for row in key_receipt['pages'] if row['page']=='core1b.html')
+          learner_row=next(row for row in learner_receipt['pages'] if row['page']=='core1b.html')
+          assert key_row['page_digest']==learner_row['page_digest']
+          assert key_row['figures']==2 and learner_row['figures']==1, (key_row,learner_row)
+          # Both receipts are exact-file hash-bound, not merely filenames.
+          import hashlib
+          assert key_row['pdf_digest']=='sha256:'+hashlib.sha256(key_pdf.read_bytes()).hexdigest()
+          assert learner_row['pdf_digest']=='sha256:'+hashlib.sha256((p/'core1b.pdf').read_bytes()).hexdigest()
+          qa=json.loads((p/'core1b-evidence'/'core1b-browser-report.json').read_text())
+          assert not qa['failures'],qa
+          assert qa['reconstruction']['precommit_blocked']
+          proof={'schema':'core1b-test-maturity-receipt/v1','roles':r['roles'],
+              'render_digest':r['render_digest'],'source_input_sha256':r['inputs_sha256'],
+              'gap_count':r['gap_count'],'pdfs':['core1a.pdf','core1b.pdf','core2a.pdf'],
+              'QRT_cells':28,'authentic_source_Core2':0,'student_mastery':'NOT_MEASURED',
+              'human_screen_reader':'NOT_RUN','academic_owner_acceptance':False,
+              'canonical_publication':False,
+              'offline_key_pdf':'core1b-review-evidence/offline-key/core1b.key.pdf',
+              'offline_key_receipt':'core1b-review-evidence/offline-key/print-key-receipt.json',
+              'key_within_public_tree':False,
+              'learner_print_protected_figure_count':1,'key_print_full_figure_count':2,
+              'print_page_quality':page_quality,
+              'independent_print_ux_acceptance':'NOT_GRANTED',
+              'key_distribution_owner_approval':'NOT_GRANTED',
+              'key_upload_delivery':'WITHHELD_BY_ALLOWLIST',
+              'html_template_answers_in_source':True}
+          (p/'core1b-evidence'/'qualification.json').write_text(json.dumps(proof,indent=2)+'\n')
+          print(json.dumps(proof,indent=2))
+          PY
+      - name: Build allowlisted learner-only review receipt; withhold ALL offline keys and HTML source
+        run: |
+          python tools/site-audit/core1b-custody-evidence.py \
+            --source public/test/products/core1b-authored-reconstruction-journey \
+            --keydir core1b-review-evidence/offline-key \
+            --out core1b-review-evidence/safe-upload \
+            --head-sha "${{ github.event.pull_request.head.sha || github.sha }}"
+      - name: Remove CI-only generated KEY PDFs before upload
+        if: always()
+        run: rm -rf core1b-review-evidence/offline-key
+      - name: Upload allowlisted learner PDFs and digest-only QA receipts, not KEY or HTML
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: core1b-safe-learner-only-qualification-evidence
+          path: core1b-review-evidence/safe-upload/
+          retention-days: 7
+          if-no-files-found: warn

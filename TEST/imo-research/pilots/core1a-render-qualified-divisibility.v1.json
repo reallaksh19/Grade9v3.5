@@ -1,8 +1,8 @@
 {
   "schema_version": "0.2.0",
   "package_id": "TEST-CORE1A-RENDER-QUALIFICATION-G9-DIVISIBILITY",
-  "title": "TEST Core1A qualification — authored guaranteed divisibility",
-  "version": "0.3.0",
+  "title": "TEST authored universal divisibility — shared Core concept",
+  "version": "0.4.0",
   "status": "CANDIDATE",
   "subject": "TEST",
   "scope_summary": "Research-only enriched TEST candidate to prove canonical Core1A renders real visual and independently authored worked anchor. No official SOF/NCERT source question, accepted curriculum, QRT, publisher rights or public learner release.",
@@ -170,6 +170,11 @@
           "wrong_idea": "Checking a few starting integers proves the divisibility assertion for all future n.",
           "diagnostic_prompt": "If the starting integer is far larger than every sample you checked, what property guarantees divisibility without recalculation?",
           "repair": "Use complete residue cases modulo 2 and 3 to cover all possible starts; identify guaranteed factors and apply the coprime-product rule."
+        },
+        {
+          "wrong_idea": "The ending factor t is always divisible by 3, so checking the other two factors is unnecessary.",
+          "diagnostic_prompt": "Try t=4: is t divisible by 3? Which one of t−2, t−1, t is divisible by 3 instead, and what changes when t leaves remainder 0, 1 or 2 modulo 3?",
+          "repair": "Replace the fixed-factor claim with all three cases: when t mod 3 is 0 use t; when it is 1 use t−1; when it is 2 use t−2. Combine the guaranteed factor of 3 with an even factor using gcd(2,3)=1."
         }
       ],
       "exit_task": {
@@ -216,7 +221,8 @@
           ],
           "representation_ref": "REP-TEST-CORE1A-QUAL-G9-RESIDUE-TABLE",
           "misconception_indexes": [
-            0
+            0,
+            1
           ],
           "relation_refs": [
             "REL-TEST-CORE1A-QUAL-G9-THREE-CONSECUTIVE-FACTORS"
@@ -243,6 +249,92 @@
         "prompt": "Why must one of three consecutive integers be divisible by 3?",
         "result": "Their residues modulo 3 cycle through 0, 1 and 2, so one remainder must be 0.",
         "representation_ref": "REP-TEST-CORE1A-QUAL-G9-RESIDUE-TABLE"
+      },
+      "elicitation": {
+        "predict": {
+          "prompt": "A student checks t=3,4,5 and claims that (t−2)(t−1)t is divisible by 6 for every integer t≥3. Do those three checks PROVE the word every? Begin your written response with yes or no and explain what would count as evidence for every admissible t; then construct the general proof in the same response. If using a printed handout, write on a separate sheet.",
+          "defensible_answer": "No. Three checks are instances, not an exhaustive proof. A valid argument must establish a guaranteed even factor, a guaranteed multiple-of-three factor and their coprime combination for arbitrary t≥3."
+        },
+        "attempt": {
+          "produces": "A general proof for an arbitrary t≥3, including explicit parity, all three modulo-3 cases, the coprime combination, and an explanation of why these exhaustive claims are stronger than examples.",
+          "closure": "RUBRIC",
+          "rubric": [
+            {
+              "criterion": "State t is an arbitrary integer at least 3 and not just one selected example.",
+              "evidence_of": "The variable ranges over every allowed case rather than one sampled case."
+            },
+            {
+              "criterion": "Prove that one factor is even for any t, naming why adjacent integers suffice.",
+              "evidence_of": "A factor of 2 is guaranteed independently of the parity of t."
+            },
+            {
+              "criterion": "Cover t modulo 3 equal to 0,1,2, showing respectively t, t−1, t−2 divisible by 3.",
+              "evidence_of": "One factor of 3 is guaranteed for every allowed residue class; no case omitted."
+            },
+            {
+              "criterion": "Use gcd(2,3)=1 to conclude 6 divides the whole product, and distinguish proof from examples.",
+              "evidence_of": "The two independently guaranteed divisors combine, giving a universal conclusion."
+            }
+          ],
+          "accepted": [
+            "Let t≥3 be any integer. Among t−1 and t, one is even. If t mod 3 is 0,1,2, then respectively t,t−1,t−2 is divisible by 3. Thus 2 and 3 divide (t−2)(t−1)t; since gcd(2,3)=1, 6 divides it for every allowed t.",
+            "Put n=t−2. For every n≥1, n(n+1)(n+2) contains an even factor and a multiple of three by an exhaustive residue argument; coprimality implies a factor of six. Because every allowed t gives an allowed n, the claim follows for all t≥3."
+          ],
+          "rejected": [
+            "I tested t=3,4,5 and all gave multiples of six, so the statement is proved.",
+            "The factor t is always divisible by 3, so the product is a multiple of 6."
+          ],
+          "task": {
+            "prompt": "With t any integer at least 3, reconstruct a proof that (t−2)(t−1)t is divisible by 6. Do NOT list sample products as your justification. Show what forces a 2, what forces a 3, and why the two facts combine.",
+            "givens": [
+              "t is an arbitrary integer and t≥3.",
+              "The three factors are consecutive and positive.",
+              "A universally quantified statement must cover every admissible start."
+            ],
+            "representation_ref": "REP-TEST-CORE1B-ENDING-AT-T-UNMARKED",
+            "stage_refs": [
+              "CORE1B-GIVEN-FACTORS"
+            ],
+            "response": {
+              "type": "free_response",
+              "paper_ok": true
+            }
+          }
+        },
+        "reconstruct": {
+          "route": [
+            {
+              "ask": "Would proof for three tested t values still cover an untested t? What feature must your answer guarantee instead?",
+              "why_this_ask": "Forces learner to reject empirical sampling before deciding which theorem can be used; not an expert's opening formula.",
+              "from_step_ref": "TC-01"
+            },
+            {
+              "ask": "Among the two adjacent factors t−1 and t, can both be odd? What factor must appear, regardless of t's parity?",
+              "why_this_ask": "Elicits unavoidable factor two with a falsifiable parity question, rather than stating that a factor exists.",
+              "from_step_ref": "TC-02"
+            },
+            {
+              "ask": "Suppose t leaves remainder 0,1 or 2 on division by 3. Which of t, t−1, t−2 is then divisible by 3 in each case?",
+              "why_this_ask": "The learner has to supply all three exclusive cases and choose the matching factor; this is the protected mathematical crux.",
+              "from_step_ref": "TC-03"
+            },
+            {
+              "ask": "If 2 and 3 might divide DIFFERENT factors, what can be concluded about the integer product and why does gcd(2,3)=1 matter?",
+              "why_this_ask": "Prevents invalid demand that a single factor carry both divisors; elicits the coprime multiplication warrant.",
+              "from_step_ref": "TC-04"
+            },
+            {
+              "ask": "Have you exhausted all allowed t? Which part of your reasoning would fail if you had only checked t=3,4,5?",
+              "why_this_ask": "Tests the return from local examples to the universal quantifier, not merely copying the original worked proof."
+            }
+          ],
+          "differs_from_teaching_path": "Core1A directly models n,n+1,n+2 and presents parity, residue cases and coprimality with explanations. This Core1B cycle begins by challenging the validity of finite evidence for an ending-at-t triple, requires a learner-written proof before reveal, then reconstructs each missing guarantee as a question tied to its teaching-step reference."
+        },
+        "boundary_test": {
+          "prompt": "Suppose the claim changes to only TWO consecutive positive factors, (t−1)t, always being divisible by 6 for all integers t≥2. Is this universal claim true? Identify which guarantee from the three-factor proof fails. Record your boundary decision and reason before checking its answer. On a printed handout, write on a separate sheet.",
+          "answer": "False. At t=2 the product is 1×2=2, which is not divisible by 6. Adjacent integers still guarantee an even factor but do NOT guarantee a multiple-of-three factor when there are only two, so the exhaustive three-residue argument no longer applies.",
+          "confirms": "The learner recognizes that the proof depends on three consecutive factors, and can disprove a changed boundary with a specific counterexample rather than repeating the original answer."
+        }
       }
     }
   ],
@@ -480,6 +572,80 @@
           "purpose": "Display the given factors without the protected universal argument.",
           "visible_elements": [
             "m+1,m+2,m+3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "REP-TEST-CORE1B-ENDING-AT-T-UNMARKED",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-CORE1A-QUAL-G9-NS-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {},
+      "kind": "ALGEBRA_TILES",
+      "purpose": "Present the new reconstruction task's exact symbolic factors, without indicating a divisor or the general argument.",
+      "required_elements": [
+        "Unmarked factor tiles labelled t−2, t−1 and t.",
+        "Multiplication operators, and no arithmetic conclusion in any tile."
+      ],
+      "relation_refs": [],
+      "read_order": [
+        "Read the three factors ending at t, left to right.",
+        "Decide what general property must be proved, not merely which values to substitute."
+      ],
+      "instance_constraints": [
+        "The pre-attempt accessible label must not contain the proof or parity/residue claims.",
+        "Each card is a symbolic factor label, not a literal counted-unit algebra tile.",
+        "At least three positive integer factors: t is integer and t≥3."
+      ],
+      "accessibility": [
+        "All three symbolic factors and multiplication order have accessible text.",
+        "No stage contains an answer or a highlighted divisor."
+      ],
+      "misleading_alternatives": [
+        "A pre-coloured multiple-of-three tile gives the decisive move away.",
+        "Use of a worked Core1A parity/residue figure before the Core1B attempt."
+      ],
+      "rendered_asset_refs": [
+        "TEST/library/figures/core1b-three-factor-attempt-safe.svg"
+      ],
+      "scene_instances": [
+        {
+          "id": "SCENE-TEST-CORE1B-T-FACTORS-PREATTEMPT",
+          "cores": [
+            "CORE1B"
+          ],
+          "microtopic_ref": "MIC-TEST-CORE1A-QUAL-G9-CONSECUTIVE-FACTOR-INVARIANTS",
+          "datum_refs": [
+            "DATUM-TEST-CORE1B-ENDING-T-TRIPLE"
+          ],
+          "asset_ref": "TEST/library/figures/core1b-three-factor-attempt-safe.svg",
+          "scene": {
+            "kind": "STAGED_SYMBOLIC_FACTORS",
+            "frame": "t is an arbitrary integer with t≥3",
+            "caption": "Three consecutive unmarked factors ending at t; construct a proof yourself."
+          }
+        }
+      ],
+      "correspondence": [
+        {
+          "element": "Three separate symbolic tiles",
+          "symbol": "(t-2)(t-1)t",
+          "in_words": "Three consecutive integers ending at t."
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "CORE1B-GIVEN-FACTORS",
+          "label": "Given triple only",
+          "purpose": "Show three abstract factors without marking parity or residue cases.",
+          "visible_elements": [
+            "t−2",
+            "t−1",
+            "t"
           ]
         }
       ]
@@ -898,6 +1064,23 @@
       "meaning": "An arbitrary three-adjacent-factor product with no proof claim encoded",
       "symbol": "(m+1)(m+2)(m+3)",
       "locator": "AUTHOR_CREATED: Core2A proof-free practice diagram"
+    },
+    {
+      "id": "DATUM-TEST-CORE1B-ENDING-T-TRIPLE",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-CORE1A-QUAL-G9-NS-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:scope": "AUTHOR_CREATED_CORE1B_TASK_GIVEN"
+      },
+      "kind": "EQUATION",
+      "symbol": "(t-2)(t-1)t",
+      "value": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\"><mrow><mo>(</mo><mi>t</mi><mo>−</mo><mn>2</mn><mo>)</mo><mo>(</mo><mi>t</mi><mo>−</mo><mn>1</mn><mo>)</mo><mi>t</mi></mrow></math>",
+      "meaning": "Three consecutive factors that end at an arbitrary positive integer t of at least three; no proof exposed",
+      "locator": "AUTHOR_CREATED: TEST Core1B attempting the general product"
     }
   ]
 }
