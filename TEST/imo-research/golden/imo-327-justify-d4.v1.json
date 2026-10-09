@@ -126,16 +126,19 @@
       }
     ],
     "checkpoint_before_target_aid": true,
-    "checkpoint_enforced_by_current_renderer": false,
+    "checkpoint_enforced_by_current_renderer": true,
     "return_to_new_unseen_task_required": true,
-    "return_enforced_by_current_renderer": false
+    "return_enforced_by_current_renderer": false,
+    "checkpoint_mechanism": "TEST_CLIENT_FORMATIVE_FORMAT_ONLY_CHOICE_AND_KEYWORD_REASON",
+    "semantic_comprehension_verified": false
   },
   "evidence_rules": {
     "hint_used": "ASSISTED_NOT_INDEPENDENT_MASTERY",
     "repair_viewed": "CONCEPT_EXPOSED_NOT_MASTERY",
     "fresh_unseen_correct_without_help": "POTENTIAL_INDEPENDENT_EVIDENCE_REQUIRES_REVIEW",
     "attempt_capture_available_in_fixture": false,
-    "learner_telemetry": "NOT_IMPLEMENTED"
+    "learner_telemetry": "NOT_IMPLEMENTED",
+    "local_hint_disclosure_state": "BEST_EFFORT_CLIENT_LOCAL_NOT_TRUSTED_MASTERY"
   },
   "reviewer_only": {
     "expected_explanation": "Let t=a^(2x)>0. The equation becomes (a-1)t=k. For a>1, a-1>0, so a positive t exists iff k>0; then t=k/(a-1)>0 and a^(2x)=t has exactly one real solution x=(log_a t)/2. k=0 and k<0 are impossible. For 0<a<1, a-1<0, so existence and uniqueness instead require k<0. The excluded a=1 case is degenerate and not part of either interval.",
