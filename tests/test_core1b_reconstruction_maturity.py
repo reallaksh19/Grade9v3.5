@@ -94,6 +94,10 @@ class Core1BReconstructionTests(unittest.TestCase):
         self.assertNotIn("factor of 2 and", s)
         self.assertNotIn("coprime", s)
         self.assertNotIn("divisible by 6", s)
+        # Alt/title/desc are preattempt content too: naming the proof
+        # ingredients in a negative sentence is still a learner hint.
+        for hint in ("even factor", "multiples of three", "remainder", "parity"):
+            self.assertNotIn(hint, s.lower())
         self.assertEqual(len(rep["scene_instances"][0]["datum_refs"]), 1)
 
     def test_real_role_scoped_renderer_and_qrt_stay_intact(self):
