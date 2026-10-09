@@ -1,0 +1,539 @@
+{
+  "schema": "imo-g9-batch-c-quantitative-source-reasoning-v1",
+  "governing_issue": 294,
+  "provisional_academic_batch": "C_QUANTITATIVE_REASONING",
+  "main_base_commit": "7ee763c2db61f228d8064cdaea8bc4bb47ab529e",
+  "programme_authentic_source_positions": 68,
+  "separate_authored_practice_question_count": 7,
+  "prior_batches_a_b_mapped_count": 19,
+  "this_batch_distinct_source_positions": 12,
+  "cumulative_source_research_mapped_count": 31,
+  "source_allocation_across_three_fullpapers_and_sample": [
+    24,
+    12,
+    22,
+    10
+  ],
+  "source_discrepancy_cases_entire_programme": 10,
+  "source_discrepancy_positions_entire_programme": 11,
+  "complete_prior_fullpaper_agent_math_census": "58_OF_58_OWNER_SELECTED_FULLPAPER_POSITIONS_AI_CALCULATED_B01_B04",
+  "original_fullpaper_official_keys_accepted": 0,
+  "source_core2_eligible": 0,
+  "source_core2_admitted": 0,
+  "source_pdf_durably_custodied": 0,
+  "independently_accepted_academic_reviews": 0,
+  "core1a_canonical_admitted": 0,
+  "qrt_cells_accepted": 0,
+  "publisher_reproduction_permissions": 0,
+  "source_custody_status": "NO_DURABLE_PUBLISHER_SOURCE_PDF_NO_SEVEN_COMPONENT_AUTHENTICATION_NO_COPYRIGHT_LICENSE",
+  "source_specific_research_only": true,
+  "independent_academic_design_ref": "TEST/imo-research/academic/BATCH-C-QUANTITATIVE-REASONING-CONSTRUCTION-REVIEW.v1.md IN PR306 (NOT_ACCEPTED)",
+  "protected_overlaps": [
+    {
+      "families": [
+        "RATE_WORK_SUM",
+        "RATE_WORK_MIXED_INFERRED_TYPES",
+        "RATE_WORK_FIXED_WORKER_HOURS"
+      ],
+      "boundary": "Known individual completion rates vs independent per-worker-type inference vs equal-worker fixed worker-hour scaling are different decisive models."
+    },
+    {
+      "families": [
+        "FIN_SIMPLE_REVERSE",
+        "FIN_COMPOUND_REVERSE",
+        "FIN_SIMPLE_RATE_TO_COMPOUND_INTEREST",
+        "FIN_RATE_TIME_NUMERICAL_CONSTRAINT"
+      ],
+      "boundary": "Interest amount, principal, rate, time, annual compound periods and rate percentage numeric value are not interchangeable."
+    },
+    {
+      "families": [
+        "PERCENT_CONDITIONAL_DENOMINATOR",
+        "PERCENT_SUCCESSIVE_COMPOSITION"
+      ],
+      "boundary": "Subgroup denominator choice is not the same as updating the percentage base across chronological operations."
+    }
+  ],
+  "records": [
+    {
+      "question_id": "SOF-IMO-G09-L1-2023-24-A-Q035",
+      "source_id": "SOF-IMO-G09-L1-2023-24-A",
+      "source_url": "https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf",
+      "source_host_class": "SOF_BRANDED_SCHOOL_MIRROR_SCAN_NOT_ORGANIZER_OFFICIAL_HOST",
+      "printed_source_question_number": "35",
+      "source_pdf_page_index": 5,
+      "original_owner_compilation_entry": 54,
+      "provisional_subtopic_id": "QUANT-COMPOUND-INTEREST",
+      "prior_math_audit": {
+        "path": "TEST/imo-research/verification/fullpaper-audit-b03.v1.json",
+        "audit_id": "IMO-B03-005",
+        "agent_result": "INR 15300",
+        "printed_option_selected_by_agent": "A",
+        "derivation_from_prior_audit": "The annual compound-interest rate 16 2/3 percent is 1/6, giving a 2-year multiplier (7/6)^2=49/36. Borrowed principal equals the repaid total 20825 times 36/49, which is INR 15300, option A.",
+        "reverse_check": "15300 multiplied by 49/36 equals 20825 exactly, verifying that the final amount under annual compounding matches the given repayment.",
+        "academic_approval_status": "AGENT_WORK_ONLY_NOT_EXTERNAL_PEER_REVIEW",
+        "original_fullpaper_official_key_receipt": null
+      },
+      "source_discrepancy": null,
+      "capability": {
+        "family": "FIN_COMPOUND_REVERSE",
+        "decisive_model_or_inference": "Invert a repeated annual compound multiplier from final amount to principal; distinguish repayment amount from accrued interest.",
+        "independently_recheckable_warrant": "Annual rate 16 2/3% = 1/6 for exactly two annual periods, so principal =20825/(7/6)^2 =15300; forward multiplier gives 20825.",
+        "plausible_wrong_path": "Applying simple-interest A=P(1+rt), or subtracting the annual rate directly from the final rupee amount.",
+        "domain_and_source_boundary": "This calculation assumes two whole annual compound periods at a fixed nominal annual effective rate; not a simple-interest or unknown-frequency model.",
+        "priority_proposal": "CONCEPT_REVIEW_HARDER",
+        "comparison_to_independent_design": "BATCH_C_PR306_ACADEMIC_PROPOSAL_COMPARED_NOT_ADMITTED"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_component_source_item_verified": false,
+        "publisher_text_figure_rights_granted": false,
+        "independent_math_peer_accepted": false,
+        "original_source_core2_admitted": false,
+        "canonical_core1a_accepted": false,
+        "qrt_cell_accepted": null,
+        "learner_publication_allowed": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2023-24-A-Q036",
+      "source_id": "SOF-IMO-G09-L1-2023-24-A",
+      "source_url": "https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf",
+      "source_host_class": "SOF_BRANDED_SCHOOL_MIRROR_SCAN_NOT_ORGANIZER_OFFICIAL_HOST",
+      "printed_source_question_number": "36",
+      "source_pdf_page_index": 5,
+      "original_owner_compilation_entry": 49,
+      "provisional_subtopic_id": "QUANT-WORK-RATES",
+      "prior_math_audit": {
+        "path": "TEST/imo-research/verification/fullpaper-audit-b03.v1.json",
+        "audit_id": "IMO-B03-006",
+        "agent_result": "36/7 days",
+        "printed_option_selected_by_agent": "A",
+        "derivation_from_prior_audit": "A completes 1/9 of the work per day and B completes 1/12 of the work per day. Their joint rate is 1/9+1/12=7/36 per day; completion time is 36/7 days, or 5 1/7 days, printed option A.",
+        "reverse_check": "Multiplying 36/7 days by their combined 7/36 work per day yields exactly one complete job. Thus the combined daily rate and duration are mutually inverse, as physically required.",
+        "academic_approval_status": "AGENT_WORK_ONLY_NOT_EXTERNAL_PEER_REVIEW",
+        "original_fullpaper_official_key_receipt": null
+      },
+      "source_discrepancy": null,
+      "capability": {
+        "family": "RATE_WORK_SUM",
+        "decisive_model_or_inference": "Express each person's completion in common units of one job per day, add simultaneous independent rates, and invert the total rate.",
+        "independently_recheckable_warrant": "Rates are 1/9+1/12=7/36 job/day, giving 36/7 days for one job; multiplication with the combined rate returns exactly one job.",
+        "plausible_wrong_path": "Add 9 and 12 days or average the durations before inverting, even though only rates add.",
+        "domain_and_source_boundary": "The workers must act simultaneously on one divisible job at constant independent rates with no interference.",
+        "priority_proposal": "PREREQUISITE",
+        "comparison_to_independent_design": "BATCH_C_PR306_ACADEMIC_PROPOSAL_COMPARED_NOT_ADMITTED"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_component_source_item_verified": false,
+        "publisher_text_figure_rights_granted": false,
+        "independent_math_peer_accepted": false,
+        "original_source_core2_admitted": false,
+        "canonical_core1a_accepted": false,
+        "qrt_cell_accepted": null,
+        "learner_publication_allowed": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2023-24-A-Q037",
+      "source_id": "SOF-IMO-G09-L1-2023-24-A",
+      "source_url": "https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf",
+      "source_host_class": "SOF_BRANDED_SCHOOL_MIRROR_SCAN_NOT_ORGANIZER_OFFICIAL_HOST",
+      "printed_source_question_number": "37",
+      "source_pdf_page_index": 5,
+      "original_owner_compilation_entry": 50,
+      "provisional_subtopic_id": "QUANT-PERCENT-PROPORTIONS",
+      "prior_math_audit": {
+        "path": "TEST/imo-research/verification/fullpaper-audit-b03.v1.json",
+        "audit_id": "IMO-B03-007",
+        "agent_result": "3/4 of women",
+        "printed_option_selected_by_agent": "D",
+        "derivation_from_prior_audit": "Men comprise 40 percent and 75 percent of these earn above the threshold, so 30 percent of all employees are high-earning men. Overall 45 percent are high earners; high-earning women are 15 percent of total, or 15/60=1/4 of women. Therefore 3/4 of women are not above threshold, choice D.",
+        "reverse_check": "Split a population of 100 into 40 men and 60 women: 30 high-earning men, 15 high-earning women, and 45 lower-earning women. The sought fraction is 45/60=3/4.",
+        "academic_approval_status": "AGENT_WORK_ONLY_NOT_EXTERNAL_PEER_REVIEW",
+        "original_fullpaper_official_key_receipt": null
+      },
+      "source_discrepancy": null,
+      "capability": {
+        "family": "PERCENT_CONDITIONAL_DENOMINATOR",
+        "decisive_model_or_inference": "Maintain the correct subgroup denominator at each percentage step, then compute a complement within the requested group.",
+        "independently_recheckable_warrant": "From population 100: 30 high-earning men, 15 high-earning women, 60 total women, so 45 lower-earning women = 45/60=3/4.",
+        "plausible_wrong_path": "Use the whole workforce as the denominator for a question about women, or subtract subgroup percentages with unlike bases.",
+        "domain_and_source_boundary": "The two gender groups in this source-level model exhaust the population; the percentage-of-women interpretation is conditional.",
+        "priority_proposal": "CONCEPT_REVIEW",
+        "comparison_to_independent_design": "BATCH_C_PR306_ACADEMIC_PROPOSAL_COMPARED_NOT_ADMITTED"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_component_source_item_verified": false,
+        "publisher_text_figure_rights_granted": false,
+        "independent_math_peer_accepted": false,
+        "original_source_core2_admitted": false,
+        "canonical_core1a_accepted": false,
+        "qrt_cell_accepted": null,
+        "learner_publication_allowed": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2023-24-A-Q039",
+      "source_id": "SOF-IMO-G09-L1-2023-24-A",
+      "source_url": "https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf",
+      "source_host_class": "SOF_BRANDED_SCHOOL_MIRROR_SCAN_NOT_ORGANIZER_OFFICIAL_HOST",
+      "printed_source_question_number": "39",
+      "source_pdf_page_index": 5,
+      "original_owner_compilation_entry": 51,
+      "provisional_subtopic_id": "QUANT-SPEED-TIME",
+      "prior_math_audit": {
+        "path": "TEST/imo-research/verification/fullpaper-audit-b03.v1.json",
+        "audit_id": "IMO-B03-009",
+        "agent_result": "13 seconds",
+        "printed_option_selected_by_agent": "B",
+        "derivation_from_prior_audit": "Trains approaching on parallel tracks have relative speed 54+36=90 km per hour, equivalent to 25 m per second. To clear each other after first meeting, combined lengths 150+175=325 metres must pass; 325/25=13 seconds, printed option B.",
+        "reverse_check": "In 13 seconds the combined relative displacement is 13 times 25=325 m, exactly the total train lengths.",
+        "academic_approval_status": "AGENT_WORK_ONLY_NOT_EXTERNAL_PEER_REVIEW",
+        "original_fullpaper_official_key_receipt": null
+      },
+      "source_discrepancy": null,
+      "capability": {
+        "family": "MOTION_OPPOSING_TRAIN_CLEARANCE",
+        "decisive_model_or_inference": "Choose opposing-train relative speed as a sum and full train clearance distance as the sum of physical lengths, rather than head meeting alone.",
+        "independently_recheckable_warrant": "Relative speed 54+36=90 km/h=25 m/s; total clearance length 150+175=325 m, so 325/25=13 seconds.",
+        "plausible_wrong_path": "Correctly add the train speeds but measure only the first meeting or one length; or mix kilometres/hour and metres.",
+        "domain_and_source_boundary": "Opposite-direction motion and full mutual crossing are assumed; same-direction overtaking uses speed difference and a different geometry.",
+        "priority_proposal": "CONCEPT_REVIEW_HARDER",
+        "comparison_to_independent_design": "BATCH_C_PR306_ACADEMIC_PROPOSAL_COMPARED_NOT_ADMITTED"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_component_source_item_verified": false,
+        "publisher_text_figure_rights_granted": false,
+        "independent_math_peer_accepted": false,
+        "original_source_core2_admitted": false,
+        "canonical_core1a_accepted": false,
+        "qrt_cell_accepted": null,
+        "learner_publication_allowed": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2023-24-A-Q042",
+      "source_id": "SOF-IMO-G09-L1-2023-24-A",
+      "source_url": "https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf",
+      "source_host_class": "SOF_BRANDED_SCHOOL_MIRROR_SCAN_NOT_ORGANIZER_OFFICIAL_HOST",
+      "printed_source_question_number": "42",
+      "source_pdf_page_index": 6,
+      "original_owner_compilation_entry": 52,
+      "provisional_subtopic_id": "QUANT-SIMPLE-INTEREST",
+      "prior_math_audit": {
+        "path": "TEST/imo-research/verification/fullpaper-audit-b03.v1.json",
+        "audit_id": "IMO-B03-011",
+        "agent_result": "INR 10000",
+        "printed_option_selected_by_agent": "B",
+        "derivation_from_prior_audit": "The annual simple interest is 16 percent. Over one year and three months the period is 5/4 years, and accumulated interest equals 0.16*1.25=0.20 of the principal. Hence total 12000 is 1.20 of principal; principal 10000, printed option B.",
+        "reverse_check": "Interest on INR 10000 for 5/4 year at 16 percent per year is INR 2000; amount INR 12000 as required.",
+        "academic_approval_status": "AGENT_WORK_ONLY_NOT_EXTERNAL_PEER_REVIEW",
+        "original_fullpaper_official_key_receipt": null
+      },
+      "source_discrepancy": null,
+      "capability": {
+        "family": "FIN_SIMPLE_REVERSE",
+        "decisive_model_or_inference": "Translate calendar duration to fractional years, then invert a simple-interest amount relation to recover principal.",
+        "independently_recheckable_warrant": "One year three months is 5/4 years; 16% SI yields r*t=(4/25)*(5/4)=1/5, hence P=12000/(6/5)=10000.",
+        "plausible_wrong_path": "Treat 1 year 3 months as 1.3 years or use a compound multiplier.",
+        "domain_and_source_boundary": "Annual rate is simple, not compounded, and the calendar duration must use twelve months per year.",
+        "priority_proposal": "PREREQUISITE",
+        "comparison_to_independent_design": "BATCH_C_PR306_ACADEMIC_PROPOSAL_COMPARED_NOT_ADMITTED"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_component_source_item_verified": false,
+        "publisher_text_figure_rights_granted": false,
+        "independent_math_peer_accepted": false,
+        "original_source_core2_admitted": false,
+        "canonical_core1a_accepted": false,
+        "qrt_cell_accepted": null,
+        "learner_publication_allowed": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2023-24-A-Q043",
+      "source_id": "SOF-IMO-G09-L1-2023-24-A",
+      "source_url": "https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf",
+      "source_host_class": "SOF_BRANDED_SCHOOL_MIRROR_SCAN_NOT_ORGANIZER_OFFICIAL_HOST",
+      "printed_source_question_number": "43",
+      "source_pdf_page_index": 6,
+      "original_owner_compilation_entry": 53,
+      "provisional_subtopic_id": "QUANT-AGE-RATIOS",
+      "prior_math_audit": {
+        "path": "TEST/imo-research/verification/fullpaper-audit-b03.v1.json",
+        "audit_id": "IMO-B03-012",
+        "agent_result": "36 years",
+        "printed_option_selected_by_agent": "D",
+        "derivation_from_prior_audit": "Let one-year-ago ages of Gaurav and Sachin be 6k and 7k. Four years from now they are 6k+5 and 7k+5; their ratio 7:8 implies 8(6k+5)=7(7k+5), giving k=5. Sachin's current age is 7*5+1=36 years, printed option D.",
+        "reverse_check": "Ages now are 31 and 36. One year ago 30:35=6:7; four years hence 35:40=7:8, confirming both ratio conditions.",
+        "academic_approval_status": "AGENT_WORK_ONLY_NOT_EXTERNAL_PEER_REVIEW",
+        "original_fullpaper_official_key_receipt": null
+      },
+      "source_discrepancy": null,
+      "capability": {
+        "family": "TIME_TWO_EPOCH_AGE_RATIO",
+        "decisive_model_or_inference": "Recognize two different age-ratio observation epochs and advance both people by the full time interval between them before solving.",
+        "independently_recheckable_warrant": "One year ago values 6k:7k become (6k+5):(7k+5) four years from now. The 7:8 future ratio yields k=5; current second age 7k+1=36.",
+        "plausible_wrong_path": "Add four rather than five years between observation epochs, or assume an age ratio is invariant.",
+        "domain_and_source_boundary": "Age differences persist while ratios vary; all implied ages must stay nonnegative at both stated epochs.",
+        "priority_proposal": "CONCEPT_REVIEW_HARDER",
+        "comparison_to_independent_design": "BATCH_C_PR306_ACADEMIC_PROPOSAL_COMPARED_NOT_ADMITTED"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_component_source_item_verified": false,
+        "publisher_text_figure_rights_granted": false,
+        "independent_math_peer_accepted": false,
+        "original_source_core2_admitted": false,
+        "canonical_core1a_accepted": false,
+        "qrt_cell_accepted": null,
+        "learner_publication_allowed": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2024-25-B-Q019",
+      "source_id": "SOF-IMO-G09-L1-2024-25-B",
+      "source_url": "https://www.iswkoman.com/uploads/olympiad/2107431-CLASS%209-IMO24.pdf",
+      "source_host_class": "SOF_BRANDED_SCHOOL_MIRROR_SCAN_NOT_ORGANIZER_OFFICIAL_HOST",
+      "printed_source_question_number": "19",
+      "source_pdf_page_index": 3,
+      "original_owner_compilation_entry": 48,
+      "provisional_subtopic_id": "QUANT-SIMPLE-INTEREST",
+      "prior_math_audit": {
+        "path": "TEST/imo-research/verification/fullpaper-source-math-batch02.v1.json",
+        "audit_id": "IMO-B02-007",
+        "agent_result": "3 1/3 percent",
+        "printed_option_selected_by_agent": "A",
+        "derivation_from_prior_audit": "Simple interest as a fraction of principal is rt/100. With interest=P/9 and the numerical rate equal to the term, r=t, so r²/100=1/9. Positive r=10/3 percent, option A.",
+        "reverse_check": "At r=t=10/3, rt/100=(100/9)/100=1/9; the chosen annual rate is positive.",
+        "academic_approval_status": "AGENT_WORK_ONLY_NOT_EXTERNAL_PEER_REVIEW",
+        "original_fullpaper_official_key_receipt": null
+      },
+      "source_discrepancy": null,
+      "capability": {
+        "family": "FIN_RATE_TIME_NUMERICAL_CONSTRAINT",
+        "decisive_model_or_inference": "Treat a rate's numerical percentage and a duration in years as separately dimensioned quantities even when their numeric values are stated equal.",
+        "independently_recheckable_warrant": "Simple interest I/P=1/9 and numeric R=t imply R^2/100=1/9, hence positive R=10/3 percent per year and t=10/3 years.",
+        "plausible_wrong_path": "Equate rate and time as physical units, use decimal r=R rather than R/100, or choose a negative root.",
+        "domain_and_source_boundary": "Numeric equality holds only in the stated units, and positive annual rate and duration select the positive quadratic root.",
+        "priority_proposal": "CONCEPT_REVIEW",
+        "comparison_to_independent_design": "BATCH_C_PR306_ACADEMIC_PROPOSAL_COMPARED_NOT_ADMITTED"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_component_source_item_verified": false,
+        "publisher_text_figure_rights_granted": false,
+        "independent_math_peer_accepted": false,
+        "original_source_core2_admitted": false,
+        "canonical_core1a_accepted": false,
+        "qrt_cell_accepted": null,
+        "learner_publication_allowed": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2024-25-B-Q043",
+      "source_id": "SOF-IMO-G09-L1-2024-25-B",
+      "source_url": "https://www.iswkoman.com/uploads/olympiad/2107431-CLASS%209-IMO24.pdf",
+      "source_host_class": "SOF_BRANDED_SCHOOL_MIRROR_SCAN_NOT_ORGANIZER_OFFICIAL_HOST",
+      "printed_source_question_number": "43",
+      "source_pdf_page_index": 6,
+      "original_owner_compilation_entry": 55,
+      "provisional_subtopic_id": "QUANT-WORK-RATES",
+      "prior_math_audit": {
+        "path": "TEST/imo-research/verification/fullpaper-audit-b03.v1.json",
+        "audit_id": "IMO-B03-016",
+        "agent_result": "4 days",
+        "printed_option_selected_by_agent": "A",
+        "derivation_from_prior_audit": "Let a man complete m jobs/day and a boy b jobs/day. Source gives 6m+8b=1/10 and 26m+48b=1/2; subtracting appropriate multiples yields m=1/100 and b=1/200. Therefore 15 men and 20 boys do 15/100+20/200=1/4 job/day, completing one job in four days, printed option A.",
+        "reverse_check": "Source conditions hold: 6/100+8/200=1/10 job/day, 26/100+48/200=1/2 job/day. New group works 1/4 job/day and finishes in 4 days.",
+        "academic_approval_status": "AGENT_WORK_ONLY_NOT_EXTERNAL_PEER_REVIEW",
+        "original_fullpaper_official_key_receipt": null
+      },
+      "source_discrepancy": null,
+      "capability": {
+        "family": "RATE_WORK_MIXED_INFERRED_TYPES",
+        "decisive_model_or_inference": "Infer independent per-type job/day productivities from two nonproportional crew configurations, then form the weighted rate of a third crew and invert.",
+        "independently_recheckable_warrant": "6m+8b=1/10 and 26m+48b=1/2 give m=1/100,b=1/200 job per worker-day; 15m+20b=1/4, giving 4 days.",
+        "plausible_wrong_path": "Treat men and boys as equal worker units, combine crew headcounts without per-type rates, or infer types from one observation.",
+        "domain_and_source_boundary": "Rates are constant, the two crew constraints independent, workers of the same type identical and job scope fixed.",
+        "priority_proposal": "CONCEPT_REVIEW_HARDER",
+        "comparison_to_independent_design": "BATCH_C_PR306_ACADEMIC_PROPOSAL_COMPARED_NOT_ADMITTED"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_component_source_item_verified": false,
+        "publisher_text_figure_rights_granted": false,
+        "independent_math_peer_accepted": false,
+        "original_source_core2_admitted": false,
+        "canonical_core1a_accepted": false,
+        "qrt_cell_accepted": null,
+        "learner_publication_allowed": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2025-26-A-Q030",
+      "source_id": "SOF-IMO-G09-L1-2025-26-A",
+      "source_url": "https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf",
+      "source_host_class": "SOF_BRANDED_SCHOOL_MIRROR_SCAN_NOT_ORGANIZER_OFFICIAL_HOST",
+      "printed_source_question_number": "30",
+      "source_pdf_page_index": 4,
+      "original_owner_compilation_entry": 56,
+      "provisional_subtopic_id": "QUANT-COMPOUND-INTEREST",
+      "prior_math_audit": {
+        "path": "TEST/imo-research/seed/math_audit_batch01.json",
+        "audit_id": "IMO-AUDIT-B01-008",
+        "agent_result": "INR 4965",
+        "printed_option_selected_by_agent": "D",
+        "derivation_from_prior_audit": "Simple rate 60/6=10% annually; 15000*((11/10)^3-1)=4965.",
+        "reverse_check": null,
+        "academic_approval_status": "AGENT_WORK_ONLY_NOT_EXTERNAL_PEER_REVIEW",
+        "original_fullpaper_official_key_receipt": null
+      },
+      "source_discrepancy": null,
+      "capability": {
+        "family": "FIN_SIMPLE_RATE_TO_COMPOUND_INTEREST",
+        "decisive_model_or_inference": "First infer an annual simple-interest rate from one observation, then transfer only that rate to an independent compound-interest problem and subtract principal from amount.",
+        "independently_recheckable_warrant": "Source audit derives r=60/6=10% annually; applying it for three annual compound periods to P=15000 yields compound interest 15000((11/10)^3−1)=4965.",
+        "plausible_wrong_path": "Reuse the first case's interest amount or calculate only the new compounded amount while the target is accrued interest.",
+        "domain_and_source_boundary": "Transfer assumes the new investment's annual interest rate equals the inferred first case rate; annual compounding for three full periods.",
+        "priority_proposal": "CONCEPT_REVIEW",
+        "comparison_to_independent_design": "BATCH_C_PR306_ACADEMIC_PROPOSAL_COMPARED_NOT_ADMITTED"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_component_source_item_verified": false,
+        "publisher_text_figure_rights_granted": false,
+        "independent_math_peer_accepted": false,
+        "original_source_core2_admitted": false,
+        "canonical_core1a_accepted": false,
+        "qrt_cell_accepted": null,
+        "learner_publication_allowed": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2025-26-A-Q038",
+      "source_id": "SOF-IMO-G09-L1-2025-26-A",
+      "source_url": "https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf",
+      "source_host_class": "SOF_BRANDED_SCHOOL_MIRROR_SCAN_NOT_ORGANIZER_OFFICIAL_HOST",
+      "printed_source_question_number": "38",
+      "source_pdf_page_index": 5,
+      "original_owner_compilation_entry": 59,
+      "provisional_subtopic_id": "QUANT-WORK-RATES",
+      "prior_math_audit": {
+        "path": "TEST/imo-research/verification/fullpaper-audit-b04.v1.json",
+        "audit_id": "IMO-B04-003",
+        "agent_result": "8 labourers",
+        "printed_option_selected_by_agent": "D",
+        "derivation_from_prior_audit": "Assume constant per-labourer productivity. Original work is 12 labourers times 8 hours/day times 10 days = 960 labourer-hours. In eight days at 15 hours/day a labourer supplies 120 hours, so 960/120=8 labourers. Printed D.",
+        "reverse_check": "Eight labourers each working 15 hours daily for 8 days supply 8×15×8=960 hours, precisely the given original workload.",
+        "academic_approval_status": "AGENT_WORK_ONLY_NOT_EXTERNAL_PEER_REVIEW",
+        "original_fullpaper_official_key_receipt": null
+      },
+      "source_discrepancy": null,
+      "capability": {
+        "family": "RATE_WORK_FIXED_WORKER_HOURS",
+        "decisive_model_or_inference": "Identify worker-hours as the invariant workload and account for worker count, hours/day and days independently.",
+        "independently_recheckable_warrant": "Original 12*8*10=960 worker-hours; each new labourer supplies 15*8=120 worker-hours, so 960/120=8.",
+        "plausible_wrong_path": "Compare worker count to time alone, ignoring both daily hours and task duration.",
+        "domain_and_source_boundary": "All workers assumed equally productive with no overtime productivity changes; this is not mixed worker-type inference.",
+        "priority_proposal": "PREREQUISITE",
+        "comparison_to_independent_design": "BATCH_C_PR306_ACADEMIC_PROPOSAL_COMPARED_NOT_ADMITTED"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_component_source_item_verified": false,
+        "publisher_text_figure_rights_granted": false,
+        "independent_math_peer_accepted": false,
+        "original_source_core2_admitted": false,
+        "canonical_core1a_accepted": false,
+        "qrt_cell_accepted": null,
+        "learner_publication_allowed": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2025-26-A-Q039",
+      "source_id": "SOF-IMO-G09-L1-2025-26-A",
+      "source_url": "https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf",
+      "source_host_class": "SOF_BRANDED_SCHOOL_MIRROR_SCAN_NOT_ORGANIZER_OFFICIAL_HOST",
+      "printed_source_question_number": "39",
+      "source_pdf_page_index": 5,
+      "original_owner_compilation_entry": 60,
+      "provisional_subtopic_id": "QUANT-PARTNERSHIP",
+      "prior_math_audit": {
+        "path": "TEST/imo-research/seed/math_audit_batch01.json",
+        "audit_id": "IMO-AUDIT-B01-014",
+        "agent_result": "INR 2400",
+        "printed_option_selected_by_agent": "D",
+        "derivation_from_prior_audit": "Capital-month totals A=16000*3+11000*9=147000; B=12000*3+17000*9=189000; C=21000*6=126000; B-C share=(63000/462000)*17600=2400.",
+        "reverse_check": null,
+        "academic_approval_status": "AGENT_WORK_ONLY_NOT_EXTERNAL_PEER_REVIEW",
+        "original_fullpaper_official_key_receipt": null
+      },
+      "source_discrepancy": null,
+      "capability": {
+        "family": "FIN_PARTNERSHIP_CAPITAL_MONTHS",
+        "decisive_model_or_inference": "Accumulate capital-month exposure across distinct investment intervals per participant before allocating a fraction of partnership profit.",
+        "independently_recheckable_warrant": "A=16000*3+11000*9=147000, B=12000*3+17000*9=189000, C=21000*6=126000; (B−C)/462000 of 17600 is 2400.",
+        "plausible_wrong_path": "Allocate by final or initial balances only; ignore changing capital or fail to apply invested months to each amount.",
+        "domain_and_source_boundary": "Profit distribution here assumes contractually proportional capital-duration exposure, not an unconditional corporate profit law.",
+        "priority_proposal": "CONCEPT_REVIEW_HARDER",
+        "comparison_to_independent_design": "BATCH_C_PR306_ACADEMIC_PROPOSAL_COMPARED_NOT_ADMITTED"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_component_source_item_verified": false,
+        "publisher_text_figure_rights_granted": false,
+        "independent_math_peer_accepted": false,
+        "original_source_core2_admitted": false,
+        "canonical_core1a_accepted": false,
+        "qrt_cell_accepted": null,
+        "learner_publication_allowed": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2025-26-A-Q040",
+      "source_id": "SOF-IMO-G09-L1-2025-26-A",
+      "source_url": "https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf",
+      "source_host_class": "SOF_BRANDED_SCHOOL_MIRROR_SCAN_NOT_ORGANIZER_OFFICIAL_HOST",
+      "printed_source_question_number": "40",
+      "source_pdf_page_index": 5,
+      "original_owner_compilation_entry": 61,
+      "provisional_subtopic_id": "QUANT-PERCENT-PROPORTIONS",
+      "prior_math_audit": {
+        "path": "TEST/imo-research/verification/fullpaper-audit-b04.v1.json",
+        "audit_id": "IMO-B04-004",
+        "agent_result": "26% price increase",
+        "printed_option_selected_by_agent": "D",
+        "derivation_from_prior_audit": "A 40 percent increase multiplies the initial price by 1.4, then a 10 percent decrease multiplies by 0.9. The final factor is 1.4×0.9=1.26: a 26 percent increase, printed option D, not a simple 30 percent change.",
+        "reverse_check": "At a hypothetical initial price ₹100, the first price is ₹140 and the final ₹126; the net gain is ₹26 or 26 percent.",
+        "academic_approval_status": "AGENT_WORK_ONLY_NOT_EXTERNAL_PEER_REVIEW",
+        "original_fullpaper_official_key_receipt": null
+      },
+      "source_discrepancy": null,
+      "capability": {
+        "family": "PERCENT_SUCCESSIVE_COMPOSITION",
+        "decisive_model_or_inference": "Compose the percentage-change multipliers in sequence and compare the final result against the original price.",
+        "independently_recheckable_warrant": "1.4*0.9=1.26, so +40% followed by −10% yields a net +26% from the original; starting 100→140→126 verifies.",
+        "plausible_wrong_path": "Treat +40% and −10% as ordinary algebraic additive changes on the same base, giving a false +30%.",
+        "domain_and_source_boundary": "The second percentage applies to the updated quantity, with no separate fixed additive change or external rebase.",
+        "priority_proposal": "PREREQUISITE",
+        "comparison_to_independent_design": "BATCH_C_PR306_ACADEMIC_PROPOSAL_COMPARED_NOT_ADMITTED"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_component_source_item_verified": false,
+        "publisher_text_figure_rights_granted": false,
+        "independent_math_peer_accepted": false,
+        "original_source_core2_admitted": false,
+        "canonical_core1a_accepted": false,
+        "qrt_cell_accepted": null,
+        "learner_publication_allowed": false
+      }
+    }
+  ]
+}
