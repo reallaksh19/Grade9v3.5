@@ -57,6 +57,64 @@ try {
   assert.equal(reveal.selected, b);
   assert.ok(reveal.answer && !reveal.markup.includes(reveal.answer),
     "Core1B completed model response was exposed before the learner attempt");
+  // Real familiar-to-transfer route. Visiting B directly must not claim
+  // learner prior exposure merely because the package contains a parent.
+  const transferId = await page.evaluate(() =>
+    window.GRADE9V3_CORE.core_projections.find((record) =>
+      record?.source_ref === "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04"
+      && record?.projection?.core === "CORE2B")?.id
+  );
+  assert.ok(transferId, "Existing canonical 2B changed-decision witness not compiled");
+  await page.goto(`http://127.0.0.1:${port}/public/core-learning/index.html?projection=${encodeURIComponent(transferId)}`);
+  await page.waitForFunction(() => window.__coreLearningStaticHostReady === true);
+  const transferNav = page.locator("#familiar-transfer");
+  assert.equal(await transferNav.isVisible(), true, "Familiar-transfer navigation missing");
+  assert.match(await page.locator("#familiar-transfer-note").innerText(), /prior capability is unverified/i);
+  await transferNav.getByRole("button", { name: /Core2A.*Familiar worked application/ }).click();
+  assert.match(await page.locator("#projection-status").innerText(), /CORE2A/);
+  // Opening A alone is not proof its worked explanation was encountered.
+  await transferNav.getByRole("button", { name: /Core2B.*Attempt changed decision/ }).click();
+  assert.match(await page.locator("#familiar-transfer-note").innerText(), /worked explanation was not observed/i);
+  await transferNav.getByRole("button", { name: /Core2A.*Familiar worked application/ }).click();
+  await page.evaluate(() => {
+    document.querySelector("core-learning-page").commitAttempt("I choose the familiar event condition.");
+  });
+  // Core2A reasoning becomes visible only after the learner's submitted attempt.
+  assert.match(await page.locator("#projection-status").innerText(), /CORE2A/);
+  await transferNav.getByRole("button", { name: /Core2B.*Attempt changed decision/ }).click();
+  assert.match(await page.locator("#projection-status").innerText(), /CORE2B/);
+  assert.match(await page.locator("#familiar-transfer-note").innerText(),
+    /assisted by instructional exposure, not certified mastery/i);
+  const beforeAttempt = await page.evaluate(() => {
+    const item = window.GRADE9V3_CORE.core_projections.find((row) =>
+      row.id === document.getElementById("projection-select").value);
+    const protectedId = item?.projection?.application?.transfer?.protected_move_ref;
+    const protectedStep = item?.projection?.application?.reasoning_route?.find((move) =>
+      move.id === protectedId);
+    const content = document.querySelector("core-learning-page");
+    return {
+      protectedKind: protectedStep?.kind,
+      protectedAction: protectedStep?.action,
+      invariant: item.projection.application.transfer.invariant,
+      changedDemandStatement: item.projection.application.transfer.statement,
+      navText: document.getElementById("familiar-transfer").innerText,
+      markup: content.shadowRoot?.innerHTML ?? content.innerHTML,
+    };
+  });
+  assert.equal(beforeAttempt.protectedKind, "DECIDE");
+  assert.ok(beforeAttempt.protectedAction
+    && !beforeAttempt.markup.includes(beforeAttempt.protectedAction),
+    "Core2B protected DECIDE action leaked into the pre-attempt DOM");
+  assert.ok(!beforeAttempt.navText.includes(beforeAttempt.invariant)
+    && !beforeAttempt.navText.includes(beforeAttempt.changedDemandStatement),
+    "Navigation revealed the Core2B model/invariant before an attempt");
+  await page.evaluate(() => {
+    document.querySelector("core-learning-page").commitAttempt("I first choose the release model and explain it.");
+  });
+  const afterAttemptNav = await page.locator("#familiar-transfer").innerText();
+  assert.ok(afterAttemptNav.includes(beforeAttempt.invariant)
+    && afterAttemptNav.includes(beforeAttempt.changedDemandStatement),
+    "Author transfer explanation was not disclosed after the B attempt");
   assert.deepEqual(failures, [], "Browser JS errors during continuity route");
   console.log("PASS: compiler-bound Core1A → Core1B browser path and session assistance disclosure");
 } finally {
