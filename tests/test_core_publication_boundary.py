@@ -31,9 +31,12 @@ class CorePublicDataBoundaryTests(unittest.TestCase):
     def test_pages_admits_only_canonical_release_hold_bytes(self):
         # The normal mirror generator checks the source before copying anything.
         build_pages_site._assert_core_public_data_safe(self.repo)
+        # Exercise the actual Pages generation path, not merely the helper.
+        with patch.dict(build_pages_site.EXTRA_SOURCES, {}, clear=True):
+            generated = build_pages_site.desired_files(self.repo)
         self.assertEqual(
-            build_pages_site._public_payload("core-learning/data.js", self.expected),
-            self.expected,
+            generated["core-learning/data.js"],
+            ("public/core-learning/data.js", self.expected),
         )
 
     def test_pages_rejects_internal_preview_payload_even_if_valid_javascript(self):
@@ -46,6 +49,9 @@ class CorePublicDataBoundaryTests(unittest.TestCase):
         (self.public / "data.js").write_text(internal, encoding="utf-8")
         with self.assertRaisesRegex(ValueError, "CORE_PUBLICATION_HOLD_PUBLIC_SOURCE_MISMATCH"):
             build_pages_site._assert_core_public_data_safe(self.repo)
+        with patch.dict(build_pages_site.EXTRA_SOURCES, {}, clear=True):
+            with self.assertRaisesRegex(ValueError, "CORE_PUBLICATION_HOLD_PUBLIC_SOURCE_MISMATCH"):
+                build_pages_site.desired_files(self.repo)
 
     def test_pages_rejects_corrupt_and_missing_public_payload(self):
         path = self.public / "data.js"
