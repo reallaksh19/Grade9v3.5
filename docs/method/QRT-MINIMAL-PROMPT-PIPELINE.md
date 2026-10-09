@@ -216,11 +216,15 @@ The `qrt-coverage-index/v1` file is a work queue of the form:
   "schema": "qrt-coverage-index/v1",
   "items": [{
     "question_ref": "Q-EXAMPLE",
+    "question_source_path": "path/to/actual/question/source.json",
+    "learner_profile_path": "path/to/actual/learner/profile.json",
     "run": {"path": "path/to/qrt-pipeline-run.json", "sha256": "sha256:FULL_SHA256_HEX"},
     "tracked_inputs": [
       {"path": "Shared/quality/question-demand-matrix.v1.json", "sha256": "sha256:..."},
       {"path": "Shared/vocabularies/cognitive-demand.v1.json", "sha256": "sha256:..."},
       {"path": "Shared/web/interactive-page-blueprints.v1.json", "sha256": "sha256:..."},
+      {"path": "Shared/quality/question-demand-templates.v1.json", "sha256": "sha256:..."},
+      {"path": "Shared/vocabularies/learner-question-metadata.v1.json", "sha256": "sha256:..."},
       {"path": "path/to/actual/question/source.json", "sha256": "sha256:..."},
       {"path": "path/to/actual/learner/profile.json", "sha256": "sha256:..."}
     ]
@@ -228,7 +232,7 @@ The `qrt-coverage-index/v1` file is a work queue of the form:
 }
 ```
 
-Every hash shown is **illustrative, not a valid receipt**. Record actual 64-hex SHA-256 hashes only after inspecting the relevant files. Each declared tracked input and the run itself is rehashed from the checkout on every audit; a changed source, changed profile, changed matrix/Blueprint source, changed run, or changed rendered HTML invalidates the candidate. The run must identify the actual checkout HEAD, require `INDEPENDENT_RENDERED` review and exact question/article binding, include all 12 H/S/P/M results, and pass the normal custody/QRT/author-audit/W-reachability/interactive completion gate.
+Every hash shown is **illustrative, not a valid receipt**. Record actual 64-hex SHA-256 hashes only after inspecting the relevant files. Each declared tracked input and the run itself is rehashed from the checkout on every audit; a changed source, changed profile, changed matrix/Blueprint source, changed run, or changed rendered HTML invalidates the candidate. The report also uses the **existing canonical QRT resolver** on `question_source_path` and `learner_profile_path` to compute the actual `QRT-<DEMAND>-<BAND>` cell; the run's matching question must explicitly declare that same `qrt_template_id`, so a changed primary demand or derived difficulty cannot inherit an earlier review. The run must identify the actual checkout HEAD, require `INDEPENDENT_RENDERED` review and exact question/article binding, include all 12 H/S/P/M results, and pass the normal custody/QRT/author-audit/W-reachability/interactive completion gate.
 
 A fully coherent reviewed candidate becomes **`REVIEW_EVIDENCE_COMPLETE_NOT_ACCEPTANCE`**, never `ACADEMIC_ACCEPTED`. `PARTLY/NO` becomes `SEMANTIC_REWORK_REQUIRED` even if the reviewer supplied a valid fix order. Missing or stale evidence becomes `REVIEW_REQUIRED_OR_STALE`. Human reviewer independence is still an adjudication, not proved by a name string. The summary carries separate `NOT_EVALUATED` for academic, source-rights and repository-wide acceptance.
 
