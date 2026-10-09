@@ -71,6 +71,10 @@ jobs:
         run: |
           python3 -m unittest tests.test_test_source_pdf_bytes -v
           python3 Shared/tools/test_source_pdf_bytes.py
+      - name: R4 NCERT Exemplar edition claims stay unverified until publisher-authenticated
+        run: |
+          python3 -m unittest tests.test_test_source_edition_provenance -v
+          python3 Shared/tools/test_source_edition_provenance.py
       - name: Authenticate pilot witness pointers
         env:
           GITHUB_TOKEN: ${{ github.token }}
