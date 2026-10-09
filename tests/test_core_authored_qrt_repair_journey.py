@@ -138,7 +138,8 @@ class AuthoredQRTRepairJourneyTests(unittest.TestCase):
         self.assertIn('data-g9-repair-ref="TC-03"', b)
         self.assertIn('data-g9-stage="PRE_ATTEMPT"', b)
         self.assertIn("PRACTICE-FACTORS-ONLY", b)
-        self.assertIn('data-g9-stage="POST_ATTEMPT"', b)
+        # Complete figure belongs in the linked Core1A, not duplicated in the learner PDF.
+        self.assertIsNone(q["representation_roles"]["bound_ref"])
         self.assertIn('id="CU-TEST-CORE1A-QUAL-G9-CONSECUTIVE-FACTOR-PROOF"', a)
         # Shared shell JavaScript references every role; inspect actual articles only.
         self.assertEqual(
