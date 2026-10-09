@@ -427,6 +427,32 @@ class CoreLearningProductionAdapter(unittest.TestCase):
         self.assertIn("row?.projection?.delivery?.web", public)
         self.assertIn('locator.slice("public/".length)', public)
 
+    def test_learner_hosts_label_previews_and_hold_test_sandbox_at_ui_boundary(self):
+        # This protects the ordinary chooser/direct-link mount route, not the
+        # underlying bytes of public/core-learning/data.js. A separate data
+        # publication policy must close that remaining exposure.
+        rendered = build_core_learning_host.render()
+        for relative in (
+            "public/core-learning/index.html",
+            "standalone/core-learning/index.html",
+        ):
+            html = rendered[relative].decode("utf-8")
+            self.assertIn(
+                "Compiler design preview only. Curriculum approval, source custody and QRT release remain unverified",
+                html,
+                relative,
+            )
+            self.assertIn(
+                '.filter(row => row?.subject !== "TEST")',
+                html,
+                relative,
+            )
+            self.assertIn(
+                'if (!row) throw new Error("CORE_LEARNING_PROJECTION_NOT_PUBLIC_PREVIEW");',
+                html,
+                relative,
+            )
+
     def test_shared_clock_explorer_remains_available_when_canonical_resource_exists(self):
         row = self.row(core="CORE2A", source=FAMILIAR)
         self.assertEqual(
