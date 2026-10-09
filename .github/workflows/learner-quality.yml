@@ -55,6 +55,26 @@ jobs:
         run: |
           python3 -m unittest tests.test_test_source_review -v
           python3 Shared/tools/test_source_review.py
+      - name: R4 Q7 source-notation recapture proposal cannot grant custody
+        run: |
+          python3 -m unittest tests.test_test_source_recapture -v
+          python3 Shared/tools/test_source_recapture.py
+      - name: R4 Q11-Q12 across two topics stay rendered-page observations only
+        run: |
+          python3 -m unittest tests.test_test_source_observation -v
+          python3 Shared/tools/test_source_observation.py
+      - name: R4 Q13-Q14 official PDF visual observations remain non-promoting
+        run: |
+          python3 -m unittest tests.test_test_source_observation_next -v
+          python3 Shared/tools/test_source_observation_next.py
+      - name: R4 official PDF byte measurement stays unauthenticated and non-promoting
+        run: |
+          python3 -m unittest tests.test_test_source_pdf_bytes -v
+          python3 Shared/tools/test_source_pdf_bytes.py
+      - name: R4 NCERT Exemplar edition claims stay unverified until publisher-authenticated
+        run: |
+          python3 -m unittest tests.test_test_source_edition_provenance -v
+          python3 Shared/tools/test_source_edition_provenance.py
       - name: Authenticate pilot witness pointers
         env:
           GITHUB_TOKEN: ${{ github.token }}

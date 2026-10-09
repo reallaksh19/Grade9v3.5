@@ -77,9 +77,9 @@ for (const width of [320, 390, 768, 1280]) {
 
   const where = `TEST Question Bank @${width}`;
   if (facts.cards !== 210 || facts.unique !== 210) failures.push(`${where}: card denominator/uniqueness is ${facts.cards}/${facts.unique}, expected 210/210`);
-  if (facts.validated !== 58) failures.push(`${where}: ${facts.validated}/58 VALIDATED`);
+  if (facts.validated !== 57) failures.push(`${where}: ${facts.validated}/57 VALIDATED`);
   if (facts.hold !== 1) failures.push(`${where}: ${facts.hold}/1 HOLD`);
-  if (facts.unvalidated !== 151) failures.push(`${where}: ${facts.unvalidated}/151 UNVALIDATED`);
+  if (facts.unvalidated !== 152) failures.push(`${where}: ${facts.unvalidated}/152 UNVALIDATED`);
   if (facts.sourceVerified !== 12) failures.push(`${where}: ${facts.sourceVerified}/12 independently evidenced source-verification attributes`);
   if (facts.legacyTextLabels !== 0) failures.push(`${where}: ${facts.legacyTextLabels} stale historical verification labels, expected 0`);
   if (facts.custodyEvidenced !== 12 || facts.custodyHold !== 0 || facts.custodyPending !== 198) failures.push(`${where}: evidence truth is ${facts.custodyEvidenced} evidenced / ${facts.custodyHold} source-text HOLD / ${facts.custodyPending} pending, expected 12/0/198`);
@@ -93,6 +93,17 @@ for (const width of [320, 390, 768, 1280]) {
   if (!/not accepted/.test(facts.banner)) failures.push(`${where}: TEST draft banner missing`);
   if (!facts.boundary) failures.push(`${where}: production-isolation statement missing`);
   if (facts.small.length) failures.push(`${where}: controls under 48px: ${facts.small.slice(0,6).join(', ')}`);
+
+  // Direct source-recature browser assertion: the PDF overbars must survive
+  // the actual card renderer without laundering the superseded academic PASS.
+  const correctedQ7 = page.locator('[data-g9-test-question="ncert-exemplar-g9-math-u01-q07"]');
+  const q7Options = (await correctedQ7.locator('.tqb-options li').allTextContents()).map(text => text.trim());
+  const expectedQ7 = ['(A) 0.14', '(B) 0.141̅6̅', '(C) 0.1̅4̅1̅6̅', '(D) 0.4014001400014...'];
+  if (JSON.stringify(q7Options) !== JSON.stringify(expectedQ7))
+    failures.push(`${where}: official Q7 repeating-decimal overbar transcription differs from captured source`);
+  if (await correctedQ7.getAttribute('data-g9-validation') !== 'UNVALIDATED'
+      || await correctedQ7.getAttribute('data-g9-custody') !== 'EVIDENCE_PENDING')
+    failures.push(`${where}: corrected Q7 illegally inherited old academic/source authority`);
 
   await page.locator('#tqbUnit').selectOption('Unit 2: Polynomials');
   await page.waitForTimeout(50);
@@ -159,6 +170,12 @@ for (const width of [320, 768, 1280]) {
   if (custodyFacts.ready !== 12 || custodyFacts.pending !== 198 || custodyFacts.evidencedAnswers !== 12
       || custodyFacts.mistaken || custodyFacts.badges < 210 * 8)
     failures.push('TEST home @' + width + ': custody badges were missing or overstated: ' + JSON.stringify(custodyFacts));
+  const homeQ7 = page.locator('[data-g9-intake-source-id="ncert-exemplar-g9-math-u01-q07"]');
+  const homeQ7Text = await homeQ7.innerText();
+  if (!homeQ7Text.includes('(B) 0.141̅6̅') || !homeQ7Text.includes('(C) 0.1̅4̅1̅6̅')
+      || await homeQ7.getAttribute('data-g9-source-custody') !== 'EVIDENCE_PENDING')
+    failures.push('TEST home @' + width + ': Q7 math overbars or source-pending disclosure missing');
+
   const select = key => page.locator('[data-g9-intake-facet="' + key + '"]');
   await select('topic').selectOption('Polynomials');
   if (await cards.count() !== 30) failures.push('TEST home @' + width + ': topic filter expected 30');
@@ -185,4 +202,4 @@ if (failures.length) {
   console.log(`FAIL: ${failures.length} TEST Question Bank browser problem(s)`);
   process.exit(1);
 }
-console.log('PASS: TEST Question Bank renders 210 parked questions (12 independent custody evidence / 0 source-text HOLD / 198 pending), official links, 58 VALIDATED / 1 HOLD / 151 UNVALIDATED (stale Q1 academic digest masked), controls and no narrow overflow');
+console.log('PASS: TEST Question Bank renders 210 parked questions (12 independent custody evidence / 0 source-text HOLD / 198 pending), official links, 57 VALIDATED / 1 HOLD / 152 UNVALIDATED (stale Q1 academic digest masked), controls and no narrow overflow');

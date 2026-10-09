@@ -1,0 +1,117 @@
+# Informational, short-lived NCERT source bytes for #68.
+# This workflow is NOT a source-custody, academic or publication authority.
+name: R4 NCERT PDF bytes (informational)
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    paths:
+      - .github/workflows/ncert-r4-source-byte-acquisition.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  byte-acquisition:
+    name: Measure NCERT transport bytes; no READY claim
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch pinned official PDFs and record transport evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p r4_pdf_evidence/pdfs
+          python3 - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          out = Path("r4_pdf_evidence")
+          report = {
+              "scope": "issue-68-R4-transport-byte-preflight-not-custody",
+              "commit": os.environ.get("GITHUB_SHA"),
+              "run_id": os.environ.get("GITHUB_RUN_ID"),
+              "repository": os.environ.get("GITHUB_REPOSITORY"),
+              "started_utc": datetime.now(timezone.utc).isoformat(),
+              "official_host_required": "ncert.nic.in",
+              "pdf_bytes_trust_status": "NOT_ACQUIRED_YET",
+              "independent_custody_authenticated": False,
+              "academic_validated_by_this_run": False,
+              "ready_for_blueprint_granted": False,
+              "owner_accepted": False,
+              "publication_authorized": False,
+              "documents": [],
+          }
+          (out / "transport.json").write_text(json.dumps(report, indent=2) + "\n")
+          PY
+          for file in ieep201.pdf ieep202.pdf ieep2an.pdf; do
+            url="https://ncert.nic.in/pdf/publication/exemplarproblem/classIX/mathematics/$file"
+            echo "Fetching pinned official NCERT path: $file"
+            curl --fail --location --silent --show-error --retry 2 --retry-delay 3 \
+              --connect-timeout 15 --max-time 90 --max-redirs 2 \
+              --proto '=https' --proto-redir '=https' --max-filesize 20000000 \
+              --output "r4_pdf_evidence/pdfs/$file" \
+              --write-out '%{http_code}\t%{url_effective}\t%{content_type}\t%{size_download}\n' \
+              "$url" > "r4_pdf_evidence/$file.http.tsv"
+          done
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from urllib.parse import urlparse
+
+          root = Path("r4_pdf_evidence")
+          report = json.loads((root / "transport.json").read_text())
+          for filename in ("ieep201.pdf", "ieep202.pdf", "ieep2an.pdf"):
+              fields = (root / (filename + ".http.tsv")).read_text().strip().split("\t")
+              if len(fields) != 4:
+                  raise ValueError("incomplete HTTP transfer metadata: " + filename)
+              code, final_url, content_type, recorded_size = fields
+              if code != "200" or urlparse(final_url).scheme != "https":
+                  raise ValueError("non-200/non-HTTPS official transfer: " + filename)
+              if urlparse(final_url).hostname != "ncert.nic.in":
+                  raise ValueError("redirect escaped official NCERT host: " + filename)
+              if urlparse(final_url).path != (
+                  "/pdf/publication/exemplarproblem/classIX/mathematics/" + filename
+              ):
+                  raise ValueError("redirect escaped pinned official document: " + filename)
+              if not content_type.lower().startswith("application/pdf"):
+                  raise ValueError("unexpected HTTP content type: " + filename)
+              actual_size = (root / "pdfs" / filename).stat().st_size
+              if actual_size != int(recorded_size):
+                  raise ValueError("HTTP response size mismatch: " + filename)
+              report["documents"].append({
+                  "filename": filename,
+                  "final_url_observed": final_url,
+                  "status": int(code),
+                  "http_content_type": content_type,
+                  "transferred_bytes": actual_size,
+              })
+          report["pdf_bytes_trust_status"] = "HTTPS_TRANSFER_OBSERVED_ORIGIN_NOT_INDEPENDENTLY_ATTESTED"
+          (root / "transport.json").write_text(json.dumps(report, indent=2) + "\n")
+          PY
+          python3 Shared/tools/test_source_pdf_bytes.py --pdf-dir r4_pdf_evidence/pdfs \
+            > r4_pdf_evidence/local-byte-measurements.UNAUTHENTICATED.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("r4_pdf_evidence/local-byte-measurements.UNAUTHENTICATED.json").read_text())
+          assert report["document_count"] == 3
+          assert report["source_custody_granted"] is False
+          assert report["academic_pass_granted"] is False
+          assert report["publication_authorized"] is False
+          print("Measured three PDF byte digests; no custody, academic or publication grant.")
+          PY
+
+      - name: Upload short-lived transport evidence (not a custody receipt)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ncert-r4-transport-only
+          path: r4_pdf_evidence/
+          retention-days: 7
+          if-no-files-found: warn
