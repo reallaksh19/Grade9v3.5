@@ -31,8 +31,17 @@ function coherent(a, b, conceptId) {
     && pa.show_full_construction === true
     && pb.attempt_before_reveal === true
     && pb.show_full_construction === false
-    && cycle && ["predict", "attempt", "reconstruct", "diagnose", "repair", "boundary"]
-      .every((field) => cycle[field] && typeof cycle[field] === "object");
+    && eq(left.misconceptions, right.misconceptions)
+    && Array.isArray(left.misconceptions) && left.misconceptions.length > 0
+    && left.misconceptions.every((item) => ["wrong_idea", "diagnostic_prompt", "repair"]
+      .every((key) => validString(item?.[key])))
+    && cycle && ["predict", "attempt", "reconstruct", "boundary_test"]
+      .every((field) => cycle[field] && typeof cycle[field] === "object")
+    && validString(cycle.predict.prompt)
+    && validString(cycle.attempt.produces)
+    && Array.isArray(cycle.reconstruct.route) && cycle.reconstruct.route.length > 0
+    && validString(cycle.boundary_test.prompt)
+    && validString(cycle.boundary_test.answer);
 }
 
 /** Never return navigable links to a partial or mismatched study route. */
