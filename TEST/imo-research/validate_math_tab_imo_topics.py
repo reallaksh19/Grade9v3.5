@@ -260,7 +260,7 @@ def validate_directory(
     ensure(len({r.get("id") for r in rows if isinstance(r,dict)}) == 75,
            "duplicate or missing topic entry")
     ensure([r["id"] for r in rows] == sorted(
-           expected,key=lambda id:(expected[id]["topic_id"],
+           expected,key=lambda id:(expected[id]["topic_id"].replace("_", " "),
                                     expected[id]["kind"],id)),
            "topic/source order must be deterministic")
     for row in rows:
