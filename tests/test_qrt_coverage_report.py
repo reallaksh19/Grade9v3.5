@@ -27,6 +27,33 @@ class QRTPipelineCoverageTests(unittest.TestCase):
             file = self.repo / name
             file.parent.mkdir(parents=True, exist_ok=True)
             file.write_text('{"evidence":"independent input"}', encoding="utf-8")
+        self.question = {
+            "id": "Q1", "stem": "Show a universally true statement",
+            "primary_capability_ref": "CAP-1",
+            "difficulty": {
+                "components": {
+                    "concept_model_selection": 1,
+                    "representation_translation": 1,
+                    "reasoning_chain_length": 1,
+                    "algebra_computational_load": 0,
+                    "trap_exception_sensitivity": 1,
+                },
+                "score": 4, "band": "D2",
+            },
+            "extensions": {"grade9v3:cognitive_demand": {
+                "primary": "JUSTIFY", "secondary": [], "basis": "universal proof",
+            }},
+            "answer": {
+                "crux_move_ref": "W-DECISION",
+                "reasoning_route": [{"id": "W-DECISION", "kind": "DECIDE",
+                                     "action": "Choose the universal warrant"}],
+            },
+        }
+        (self.repo / "TEST/question.json").write_text(
+            json.dumps(self.question), encoding="utf-8")
+        (self.repo / "TEST/learner-profile.json").write_text(
+            json.dumps({"profile_id": "LEARNER-1", "held": {"CAP-1": "DEMONSTRATED"}}),
+            encoding="utf-8")
         page = self.repo / "TEST/page.html"
         page.write_text('<article data-g9-unit="Q1">Question Q1</article>', encoding="utf-8")
         page_sha = coverage.sha256(page)
@@ -34,7 +61,8 @@ class QRTPipelineCoverageTests(unittest.TestCase):
             "schema": "qrt-pipeline-run/v1",
             "run_identity": {"head_sha": HEAD},
             "questions": [{
-                "id": "Q1", "slots": {"W": {"protected_move_ref": "W-DECISION"}},
+                "id": "Q1", "qrt_template_id": "QRT-JUSTIFY-D2",
+                "slots": {"W": {"protected_move_ref": "W-DECISION"}},
             }],
             "pre_attempt_graphs": [{
                 "question_ref": "Q1", "root": "PAGE",
@@ -65,6 +93,8 @@ class QRTPipelineCoverageTests(unittest.TestCase):
         self._save()
         self.entry = {
             "question_ref": "Q1",
+            "question_source_path": "TEST/question.json",
+            "learner_profile_path": "TEST/learner-profile.json",
             "run": {"path": "TEST/run.json", "sha256": coverage.sha256(self.run_file)},
             "tracked_inputs": [
                 {"path": name, "sha256": coverage.sha256(self.repo / name)}
@@ -91,6 +121,8 @@ class QRTPipelineCoverageTests(unittest.TestCase):
         self.assertTrue(result["passed_scoped_evidence"])
         self.assertEqual(result["rows"][0]["status"], "REVIEW_EVIDENCE_COMPLETE_NOT_ACCEPTANCE")
         self.assertEqual(len(result["rows"][0]["ask_verdicts"]), 12)
+        self.assertEqual(result["rows"][0]["resolved_qrt_cell"], "QRT-JUSTIFY-D2")
+        self.assertEqual(result["rows"][0]["derived_difficulty_band"], "D2")
         self.assertEqual(result["academic_acceptance"], "NOT_EVALUATED")
         self.assertEqual(result["repository_wide_qrt_acceptance"], "NOT_EVALUATED")
 
@@ -99,6 +131,24 @@ class QRTPipelineCoverageTests(unittest.TestCase):
         row = self._snapshot()["rows"][0]
         self.assertIn("INPUT_DIGEST_STALE", [x["code"] for x in row["findings"]])
         self.assertEqual(row["status"], "REVIEW_REQUIRED_OR_STALE")
+
+    def test_recomputed_cell_change_cannot_inherit_review_for_old_demand(self):
+        self.question["extensions"]["grade9v3:cognitive_demand"]["primary"] = "EXPLAIN"
+        (self.repo / "TEST/question.json").write_text(
+            json.dumps(self.question), encoding="utf-8")
+        for entry in self.entry["tracked_inputs"]:
+            if entry["path"] == "TEST/question.json":
+                entry["sha256"] = coverage.sha256(self.repo / "TEST/question.json")
+        row = self._snapshot()["rows"][0]
+        self.assertEqual(row["resolved_qrt_cell"], "QRT-EXPLAIN-D2")
+        self.assertIn("QRT_RESOLVED_CELL_NOT_BOUND_IN_RUN",
+                      [x["code"] for x in row["findings"]])
+
+    def test_untracked_profile_ref_is_not_accepted(self):
+        self.entry["learner_profile_path"] = "TEST/missing-profile.json"
+        row = self._snapshot()["rows"][0]
+        self.assertIn("LEARNER_PROFILE_NOT_TRACKED",
+                      [x["code"] for x in row["findings"]])
 
     def test_changed_html_even_with_unchanged_review_digest_is_invalid(self):
         (self.repo / "TEST/page.html").write_text(
