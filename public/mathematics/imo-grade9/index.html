@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="en" data-g9-shell>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Grade 9 IMO questions organized by Mathematics topics: source-linked research references and original AI-authored practice drafts.">
+  <title>IMO Grade 9 · Topic-wise Mathematics Questions · Grade9V3.5</title>
+  <link rel="stylesheet" href="../../css/modern-learner.css">
+  <style>
+    .imo-intro{max-width:78ch;line-height:1.6}
+    .imo-summary{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 24px}
+    .imo-stat{border:1px solid var(--border,#d7dfe9);border-radius:12px;padding:12px 16px;min-width:150px;background:var(--surface,#fff)}
+    .imo-stat strong{display:block;font-size:1.65rem}.imo-stat span{font-size:.85rem;opacity:.85}
+    .imo-boundary{border-left:4px solid #777d99;padding:12px 16px;background:var(--surface,#f7f8fb);margin:20px 0;font-size:.94rem;line-height:1.65}
+    .imo-controls{display:flex;flex-wrap:wrap;gap:14px;align-items:end;margin:22px 0}
+    .imo-controls label{display:block;font-weight:650;margin-bottom:6px}
+    .imo-controls select,.imo-controls input{min-height:44px;border:1px solid #7a8191;border-radius:8px;padding:10px;background:var(--surface,#fff);color:inherit;min-width:220px;max-width:100%}
+    .imo-controls input{width:min(430px,90vw)}
+    .imo-topic-nav{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 24px}
+    .imo-topic-nav a{border:1px solid #9aa5b5;border-radius:100px;padding:7px 11px;font-size:.84rem;text-decoration:none}
+    .imo-topic-nav a span{font-weight:700;opacity:.8;margin-left:3px}
+    .imo-topic{border-top:1px solid #aeb8c8;padding-top:24px;margin:25px 0 34px;scroll-margin-top:100px}
+    .imo-section-title{display:flex;justify-content:space-between;gap:14px;align-items:start;flex-wrap:wrap}
+    .imo-section-title h2{margin:0}.imo-section-title p{margin:6px 0 14px;font-size:.9rem;opacity:.85}
+    .imo-count{font-size:.84rem;font-weight:650;white-space:nowrap}
+    .imo-items{list-style:none;margin:0;padding:0;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,370px),1fr))}
+    .imo-item{border:1px solid #abb4c1;border-radius:12px;padding:16px;scroll-margin-top:100px;overflow-wrap:anywhere}
+    .imo-authored{border-left:4px solid #527a7b}.imo-source{border-left:4px solid #87819a}
+    .imo-item-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:space-between}
+    .imo-pill{display:inline-block;border:1px solid #9b96a8;border-radius:50px;padding:3px 9px;font-size:.76rem;font-weight:650}
+    .imo-pill-authored{border-color:#527a7b}.imo-id{font-size:.73rem;opacity:.75}
+    .imo-item h3{font-size:1.04rem;margin:11px 0 7px}.imo-item p{line-height:1.58}
+    .imo-description,.imo-problem{margin:8px 0}.imo-context,.imo-status{font-size:.84rem;opacity:.87}
+    .imo-disputed{font-weight:700;text-decoration:underline;text-underline-offset:2px}
+    .imo-action{margin-bottom:0}.imo-action a{text-decoration:underline}
+    .imo-result-count{font-size:.9rem;align-self:center}
+    .imo-item[hidden],.imo-topic[hidden],.imo-topic-nav[hidden]{display:none !important}
+    a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #2563eb;outline-offset:3px}
+    @media (max-width:640px){.imo-stat{min-width:130px;flex:1}.imo-controls select,.imo-controls input{width:100%}.imo-controls>div{width:100%}}
+  </style>
+</head>
+<body>
+  <header class="g9-shell-header">
+    <div class="g9-header-inner">
+      <a class="g9-brand" href="../../index.html"><span class="logo-icon">⚡</span><span class="brand-title">Grade9V3.5</span><span class="g9-brand-badge">Learner Platform</span></a>
+      <nav class="g9-header-nav" aria-label="Portal Navigation">
+        <a href="../../index.html">Home</a><a href="../../physics/index.html">Physics</a><a href="../../chemistry/index.html">Chemistry</a><a href="../index.html" aria-current="page">Mathematics</a><a href="../../question-bank/index.html">Question Bank</a><a href="../../atlas/index.html">Atlas &amp; Rungs</a><a href="../../test/index.html" class="test-link" data-site-test>TEST</a>
+      </nav>
+      <div class="g9-header-actions">
+        <button type="button" class="g9-header-btn g9-search-btn" data-g9-action="search" aria-label="Search"><span class="g9-btn-icon">🔍</span><span class="g9-btn-text">Search</span></button>
+        <button type="button" class="g9-header-btn g9-display-btn" data-g9-action="display" aria-label="Display &amp; Theme"><span class="g9-btn-icon">🌙 / ☀️</span><span class="g9-btn-text">Display</span></button>
+      </div>
+    </div>
+  </header>
+  <nav class="g9-breadcrumb-bar" aria-label="Breadcrumb"><div class="g9-breadcrumbs"><a href="../../index.html">Home</a> <span>/</span> <a href="../index.html">Mathematics</a> <span>/</span> <span>IMO Grade 9</span></div></nav>
+  <main class="g9-container">
+    <div class="g9-hero">
+      <h1 class="g9-hero-title">IMO Grade 9 · Topic-wise Questions</h1>
+      <p class="g9-hero-subtitle imo-intro">Browse source-paper question references by mathematical topic, or try seven original AI-authored practice questions. Research organization and draft practice are not reviewed Core 2 exams.</p>
+    </div>
+    <div class="imo-summary" aria-label="Research index totals">
+      <div class="imo-stat"><strong>68</strong><span>SOF source-paper references</span></div>
+      <div class="imo-stat"><strong>7</strong><span>AI-authored practice previews</span></div>
+      <div class="imo-stat"><strong>15</strong><span>Populated topic groups</span></div>
+    </div>
+    <aside class="imo-boundary" aria-label="Important source and review limits">
+      <strong>Read before using:</strong> Original SOF question stems, choices, diagrams, and answer keys are <strong>not reproduced</strong> here. Each source entry is a provisional topic classification and opens the original paper; the cited source number may still require reconciliation. The seven complete questions below are <strong>new AI-authored draft practice</strong>, not official SOF questions or graded/approved Core material. #006 and #007 require further Grade 9 curriculum-scope review. No answers or solutions appear on this page.
+    </aside>
+    <form class="imo-controls" role="search" onsubmit="return false">
+      <div><label for="imo-topic-select">Filter topic</label><select id="imo-topic-select"><option value="ALL">All topics (75 entries)</option><option value="LOGIC">Verbal and Non-Verbal Reasoning (6)</option>
+<option value="ALG_ID">Algebraic Identities (1)</option>
+<option value="TRIANGLE_AREAS">Areas of Parallelograms and Triangles (1)</option>
+<option value="CIRCLES">Circles (2)</option>
+<option value="COORD">Coordinate Geometry (6)</option>
+<option value="EUCLID">Introduction to Euclid’s Geometry (3)</option>
+<option value="PROBABILITY">Introduction to Probability (4)</option>
+<option value="LIN_EQ">Linear Equations in Two Variables (9)</option>
+<option value="ANGLES">Lines and Angles (3)</option>
+<option value="NS">Number Systems (9)</option>
+<option value="POLY">Polynomials (3)</option>
+<option value="STATISTICS">Statistics (4)</option>
+<option value="MENSURATION">Surface Areas and Volumes (7)</option>
+<option value="TRIANGLES">Triangles (5)</option>
+<option value="QUANT">Quantitative Aptitude (12)</option></select></div>
+      <div><label for="imo-kind-select">Question type</label><select id="imo-kind-select"><option value="all">All references and practice</option><option value="source">Source-paper references (68)</option><option value="authored">Original authored practice (7)</option></select></div>
+      <div><label for="imo-search">Search topic, idea or question ID</label><input id="imo-search" type="search" placeholder="e.g. coordinate, divisibility, Q018"></div>
+      <p id="imo-results" class="imo-result-count" role="status" aria-live="polite">Showing 75 entries across 15 topics.</p>
+    </form>
+    <nav class="imo-topic-nav" id="imo-topic-nav" aria-label="Jump to topic"><a href="#topic-logic">Verbal and Non-Verbal Reasoning <span>6</span></a>
+<a href="#topic-alg_id">Algebraic Identities <span>1</span></a>
+<a href="#topic-triangle_areas">Areas of Parallelograms and Triangles <span>1</span></a>
+<a href="#topic-circles">Circles <span>2</span></a>
+<a href="#topic-coord">Coordinate Geometry <span>6</span></a>
+<a href="#topic-euclid">Introduction to Euclid’s Geometry <span>3</span></a>
+<a href="#topic-probability">Introduction to Probability <span>4</span></a>
+<a href="#topic-lin_eq">Linear Equations in Two Variables <span>9</span></a>
+<a href="#topic-angles">Lines and Angles <span>3</span></a>
+<a href="#topic-ns">Number Systems <span>9</span></a>
+<a href="#topic-poly">Polynomials <span>3</span></a>
+<a href="#topic-statistics">Statistics <span>4</span></a>
+<a href="#topic-mensuration">Surface Areas and Volumes <span>7</span></a>
+<a href="#topic-triangles">Triangles <span>5</span></a>
+<a href="#topic-quant">Quantitative Aptitude <span>12</span></a></nav>
+    <div id="imo-question-sections">
+      
+      <section class="imo-topic" id="topic-logic" data-topic="LOGIC" aria-labelledby="head-logic">
+        <div class="imo-section-title"><div><h2 id="head-logic">Verbal and Non-Verbal Reasoning</h2><p>Analyst organizing category; not an official Section 2 syllabus topic.</p></div><span class="imo-count">6 source · 0 authored</span></div>
+        <ul class="imo-items">
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q003" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q003</span></div>
+            <h3>2023–24 Set A · referenced Q3</h3>
+            <p class="imo-description">Identify numerical odd-one-out rule</p>
+            <p class="imo-context">Research topic: LOGIC-NUMBER-PATTERNS · logical reasoning</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 3 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q006" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q006</span></div>
+            <h3>2023–24 Set A · referenced Q6</h3>
+            <p class="imo-description">Infer shared-word substitution cipher</p>
+            <p class="imo-context">Research topic: LOGIC-VERBAL-CODES · logical reasoning</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 6 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q013" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q013</span></div>
+            <h3>2023–24 Set A · referenced Q13</h3>
+            <p class="imo-description">Digit transformation and ordering</p>
+            <p class="imo-context">Research topic: LOGIC-NUMBER-PATTERNS · logical reasoning · <strong class="imo-disputed">Source discrepancy IMO-SOURCE-CONFLICT-001 — use source with caution</strong></p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 13 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-SAMPLE-2026-27-Q001" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-SAMPLE-2026-27-Q001</span></div>
+            <h3>SOF 2026–27 sample · referenced Q1</h3>
+            <p class="imo-description">Spatial reasoning from dice orientations</p>
+            <p class="imo-context">Research topic: LOGIC-SPATIAL-ROTATION · logical reasoning</p>
+            <p class="imo-action"><a href="https://sofworld.org/download/file/fid/73719" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 1 (SOF 2026–27 sample)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-SAMPLE-2026-27-Q002" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-SAMPLE-2026-27-Q002</span></div>
+            <h3>SOF 2026–27 sample · referenced Q2</h3>
+            <p class="imo-description">Infer word code from overlapping messages</p>
+            <p class="imo-context">Research topic: LOGIC-VERBAL-CODES · logical reasoning</p>
+            <p class="imo-action"><a href="https://sofworld.org/download/file/fid/73719" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 2 (SOF 2026–27 sample)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-SAMPLE-2026-27-Q003" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-SAMPLE-2026-27-Q003</span></div>
+            <h3>SOF 2026–27 sample · referenced Q3</h3>
+            <p class="imo-description">Number-pattern reasoning from a radial diagram</p>
+            <p class="imo-context">Research topic: LOGIC-NUMBER-PATTERNS · logical reasoning</p>
+            <p class="imo-action"><a href="https://sofworld.org/download/file/fid/73719" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 3 (SOF 2026–27 sample)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li></ul>
+      </section>
+
+      <section class="imo-topic" id="topic-alg_id" data-topic="ALG_ID" aria-labelledby="head-alg_id">
+        <div class="imo-section-title"><div><h2 id="head-alg_id">Algebraic Identities</h2><p>SOF syllabus topic label; individual question mapping is provisional.</p></div><span class="imo-count">1 source · 0 authored</span></div>
+        <ul class="imo-items">
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2024-25-B-Q044" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2024-25-B-Q044</span></div>
+            <h3>2024–25 Set B · referenced Q44</h3>
+            <p class="imo-description">Square a binomial and compare two area expressions</p>
+            <p class="imo-context">Research topic: ALG_ID-EXPANSION-AND-COMPARISON · everyday mathematics · <strong class="imo-disputed">Source discrepancy IMO-SOURCE-CONFLICT-005 — use source with caution</strong></p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/2107431-CLASS%209-IMO24.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 44 (2024–25 Set B)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li></ul>
+      </section>
+
+      <section class="imo-topic" id="topic-triangle_areas" data-topic="TRIANGLE_AREAS" aria-labelledby="head-triangle_areas">
+        <div class="imo-section-title"><div><h2 id="head-triangle_areas">Areas of Parallelograms and Triangles</h2><p>SOF syllabus topic label; individual question mapping is provisional.</p></div><span class="imo-count">0 source · 1 authored</span></div>
+        <ul class="imo-items">
+          <li class="imo-item imo-authored" id="IMO-G9-ORIGINAL-PRACTICE-003" data-kind="authored">
+            <div class="imo-item-top"><span class="imo-pill imo-pill-authored">AI-authored practice · draft preview</span><span class="imo-id">IMO-G9-ORIGINAL-PRACTICE-003</span></div>
+            <h3>Two movable triangle peaks</h3>
+            <p class="imo-problem">Triangles ABC and ABD share a 12 cm base AB. The perpendicular distance from C to line AB is 7 cm, and the perpendicular distance from D to that line is also 7 cm; C and D need not be directly above each other. Must the two triangles have the same area? Give the reason and their area.</p>
+            <p class="imo-context">Proposed difficulty D1 · free response</p>
+            <p class="imo-status">Original project-authored question; not an official SOF item. Learner quality, scoring and QRT/Core admission are not approved.</p>
+          </li></ul>
+      </section>
+
+      <section class="imo-topic" id="topic-circles" data-topic="CIRCLES" aria-labelledby="head-circles">
+        <div class="imo-section-title"><div><h2 id="head-circles">Circles</h2><p>SOF syllabus topic label; individual question mapping is provisional.</p></div><span class="imo-count">2 source · 0 authored</span></div>
+        <ul class="imo-items">
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q047" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q047</span></div>
+            <h3>2023–24 Set A · referenced Q47</h3>
+            <p class="imo-description">Angle-bisector and circle-diameter cyclic claims</p>
+            <p class="imo-context">Research topic: CIRCLES-CYCLIC-QUADRILATERALS · achievers section</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 47 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q050" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q050</span></div>
+            <h3>2025–26 Set A · referenced Q50</h3>
+            <p class="imo-description">Chord-distance relation and cyclic quadrilateral claims</p>
+            <p class="imo-context">Research topic: CIRCLES-CHORDS-AND-CYCLIC · achievers section</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 50 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li></ul>
+      </section>
+
+      <section class="imo-topic" id="topic-coord" data-topic="COORD" aria-labelledby="head-coord">
+        <div class="imo-section-title"><div><h2 id="head-coord">Coordinate Geometry</h2><p>SOF syllabus topic label; individual question mapping is provisional.</p></div><span class="imo-count">4 source · 2 authored</span></div>
+        <ul class="imo-items">
+          <li class="imo-item imo-authored" id="IMO-G9-ORIGINAL-PRACTICE-002" data-kind="authored">
+            <div class="imo-item-top"><span class="imo-pill imo-pill-authored">AI-authored practice · draft preview</span><span class="imo-id">IMO-G9-ORIGINAL-PRACTICE-002</span></div>
+            <h3>Compass notes to coordinates</h3>
+            <p class="imo-problem">On a map, east is the positive x-direction and north is the positive y-direction. A location is described as 4 kilometres west and 3 kilometres north of the origin. Express its location as an ordered pair (x,y), in kilometres.</p>
+            <p class="imo-context">Proposed difficulty D1 · free response</p>
+            <p class="imo-status">Original project-authored question; not an official SOF item. Learner quality, scoring and QRT/Core admission are not approved.</p>
+          </li>
+
+          <li class="imo-item imo-authored" id="IMO-G9-ORIGINAL-PRACTICE-007" data-kind="authored">
+            <div class="imo-item-top"><span class="imo-pill imo-pill-authored">AI-authored practice · draft preview</span><span class="imo-id">IMO-G9-ORIGINAL-PRACTICE-007</span></div>
+            <h3>Reflect and move a triangle</h3>
+            <p class="imo-problem">Triangle PQR has vertices P=(-2,1), Q=(3,1), and R=(0,4). Reflect it across the y-axis, then translate every reflected point 4 units right and 2 units down. List the three final vertex coordinates and verify whether the triangle&#39;s area changes.</p>
+            <p class="imo-context">Proposed difficulty D3 · free response · <strong class="imo-disputed">Grade-level enrichment review required</strong></p>
+            <p class="imo-status">Original project-authored question; not an official SOF item. Learner quality, scoring and QRT/Core admission are not approved.</p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q027" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q027</span></div>
+            <h3>2023–24 Set A · referenced Q27</h3>
+            <p class="imo-description">Intercept of a linear graph at x=0</p>
+            <p class="imo-context">Research topic: COORD-LINE-AXIS-INTERCEPT · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 27 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q050" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q050</span></div>
+            <h3>2023–24 Set A · referenced Q50</h3>
+            <p class="imo-description">Coordinate reflection, distance and quadrant sign</p>
+            <p class="imo-context">Research topic: COORD-REFLECTIONS-AND-DISTANCES · achievers section</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 50 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2024-25-B-Q020" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2024-25-B-Q020</span></div>
+            <h3>2024–25 Set B · referenced Q20</h3>
+            <p class="imo-description">Abscissa/ordinate identification</p>
+            <p class="imo-context">Research topic: COORD-COORDINATE-IDENTIFICATION · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/2107431-CLASS%209-IMO24.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 20 (2024–25 Set B)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q046" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q046</span></div>
+            <h3>2025–26 Set A · referenced Q46</h3>
+            <p class="imo-description">Coordinate transformations and sign reversals</p>
+            <p class="imo-context">Research topic: COORD-REFLECTIONS-AND-DISTANCES · achievers section</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 46 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li></ul>
+      </section>
+
+      <section class="imo-topic" id="topic-euclid" data-topic="EUCLID" aria-labelledby="head-euclid">
+        <div class="imo-section-title"><div><h2 id="head-euclid">Introduction to Euclid’s Geometry</h2><p>SOF syllabus topic label; individual question mapping is provisional.</p></div><span class="imo-count">3 source · 0 authored</span></div>
+        <ul class="imo-items">
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q033" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q033</span></div>
+            <h3>2023–24 Set A · referenced Q33</h3>
+            <p class="imo-description">Uniqueness of a parallel line through a point</p>
+            <p class="imo-context">Research topic: EUCLID-POSTULATES · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 33 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2024-25-B-Q031" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2024-25-B-Q031</span></div>
+            <h3>2024–25 Set B · referenced Q31</h3>
+            <p class="imo-description">Identify Euclid’s postulate and distinguish axioms</p>
+            <p class="imo-context">Research topic: EUCLID-POSTULATES · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/2107431-CLASS%209-IMO24.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 31 (2024–25 Set B)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-SAMPLE-2026-27-Q006" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-SAMPLE-2026-27-Q006</span></div>
+            <h3>SOF 2026–27 sample · referenced Q6</h3>
+            <p class="imo-description">Equality preserved by adding equal lengths</p>
+            <p class="imo-context">Research topic: EUCLID-EQUALITY-AXIOMS · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://sofworld.org/download/file/fid/73719" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 6 (SOF 2026–27 sample)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li></ul>
+      </section>
+
+      <section class="imo-topic" id="topic-probability" data-topic="PROBABILITY" aria-labelledby="head-probability">
+        <div class="imo-section-title"><div><h2 id="head-probability">Introduction to Probability</h2><p>SOF syllabus topic label; individual question mapping is provisional.</p></div><span class="imo-count">4 source · 0 authored</span></div>
+        <ul class="imo-items">
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q025" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q025</span></div>
+            <h3>2023–24 Set A · referenced Q25</h3>
+            <p class="imo-description">Complementary probability from categorical survey</p>
+            <p class="imo-context">Research topic: PROBABILITY-ELEMENTARY-PROBABILITY · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 25 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q040" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q040</span></div>
+            <h3>2023–24 Set A · referenced Q40</h3>
+            <p class="imo-description">Colour draws with equally likely objects</p>
+            <p class="imo-context">Research topic: PROBABILITY-ELEMENTARY-PROBABILITY · everyday mathematics</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 40 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2024-25-B-Q027" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2024-25-B-Q027</span></div>
+            <h3>2024–25 Set B · referenced Q27</h3>
+            <p class="imo-description">Two-dice event counting</p>
+            <p class="imo-context">Research topic: PROBABILITY-SAMPLE-SPACE · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/2107431-CLASS%209-IMO24.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 27 (2024–25 Set B)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q043" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q043</span></div>
+            <h3>2025–26 Set A · referenced Q43</h3>
+            <p class="imo-description">Complement of prime-labelled cards</p>
+            <p class="imo-context">Research topic: PROBABILITY-COMPLEMENT-COUNT · everyday mathematics</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 43 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li></ul>
+      </section>
+
+      <section class="imo-topic" id="topic-lin_eq" data-topic="LIN_EQ" aria-labelledby="head-lin_eq">
+        <div class="imo-section-title"><div><h2 id="head-lin_eq">Linear Equations in Two Variables</h2><p>SOF syllabus topic label; individual question mapping is provisional.</p></div><span class="imo-count">7 source · 2 authored</span></div>
+        <ul class="imo-items">
+          <li class="imo-item imo-authored" id="IMO-G9-ORIGINAL-PRACTICE-005" data-kind="authored">
+            <div class="imo-item-top"><span class="imo-pill imo-pill-authored">AI-authored practice · draft preview</span><span class="imo-id">IMO-G9-ORIGINAL-PRACTICE-005</span></div>
+            <h3>A decreasing data table</h3>
+            <p class="imo-problem">A relation is recorded by four paired measurements: when x is -2, 0, 2, 4, the corresponding y-values are 9, 5, 1, -3. Express the pattern as an equation y=mx+c, then find x when y=-9.</p>
+            <p class="imo-context">Proposed difficulty D2 · free response</p>
+            <p class="imo-status">Original project-authored question; not an official SOF item. Learner quality, scoring and QRT/Core admission are not approved.</p>
+          </li>
+
+          <li class="imo-item imo-authored" id="IMO-G9-ORIGINAL-PRACTICE-006" data-kind="authored">
+            <div class="imo-item-top"><span class="imo-pill imo-pill-authored">AI-authored practice · draft preview</span><span class="imo-id">IMO-G9-ORIGINAL-PRACTICE-006</span></div>
+            <h3>Booklet and poster printing costs</h3>
+            <p class="imo-problem">At a student-run print shop, 4 bound booklets and 3 poster cards cost 159 rupees. A different order of 2 bound booklets and 5 poster cards costs 181 rupees. Each item has a fixed unit price. Find the price of an order containing 3 booklets and 2 poster cards.</p>
+            <p class="imo-context">Proposed difficulty D3 · free response · <strong class="imo-disputed">Grade-level enrichment review required</strong></p>
+            <p class="imo-status">Original project-authored question; not an official SOF item. Learner quality, scoring and QRT/Core admission are not approved.</p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q038" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q038</span></div>
+            <h3>2023–24 Set A · referenced Q38</h3>
+            <p class="imo-description">Fixed cost plus a variable rate</p>
+            <p class="imo-context">Research topic: LIN_EQ-CONTEXT-TO-EQUATION · everyday mathematics</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 38 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2024-25-B-Q024" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2024-25-B-Q024</span></div>
+            <h3>2024–25 Set B · referenced Q24</h3>
+            <p class="imo-description">Infer coefficients from a known solution</p>
+            <p class="imo-context">Research topic: LIN_EQ-PARAMETER-SUBSTITUTION · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/2107431-CLASS%209-IMO24.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 24 (2024–25 Set B)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q029" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q029</span></div>
+            <h3>2025–26 Set A · referenced Q29</h3>
+            <p class="imo-description">Constrain two linked linear equations by a known point</p>
+            <p class="imo-context">Research topic: LIN_EQ-LINKED-PARAMETERS · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 29 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q037" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q037</span></div>
+            <h3>2025–26 Set A · referenced Q37</h3>
+            <p class="imo-description">Two linked age constraints</p>
+            <p class="imo-context">Research topic: LIN_EQ-AGE-EQUATIONS · everyday mathematics</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 37 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q042" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q042</span></div>
+            <h3>2025–26 Set A · referenced Q42</h3>
+            <p class="imo-description">Translate currency and relative costs into equation</p>
+            <p class="imo-context">Research topic: LIN_EQ-CONTEXT-TO-EQUATION · everyday mathematics</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 42 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q044" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q044</span></div>
+            <h3>2025–26 Set A · referenced Q44</h3>
+            <p class="imo-description">Income/expenditure ratio and savings constraints</p>
+            <p class="imo-context">Research topic: LIN_EQ-RATIO-EQUATIONS · everyday mathematics</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 44 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-SAMPLE-2026-27-Q004" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-SAMPLE-2026-27-Q004</span></div>
+            <h3>SOF 2026–27 sample · referenced Q4</h3>
+            <p class="imo-description">Infer a linear rule from tabulated pairs</p>
+            <p class="imo-context">Research topic: LIN_EQ-TABLE-TO-EQUATION · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://sofworld.org/download/file/fid/73719" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 4 (SOF 2026–27 sample)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li></ul>
+      </section>
+
+      <section class="imo-topic" id="topic-angles" data-topic="ANGLES" aria-labelledby="head-angles">
+        <div class="imo-section-title"><div><h2 id="head-angles">Lines and Angles</h2><p>SOF syllabus topic label; individual question mapping is provisional.</p></div><span class="imo-count">3 source · 0 authored</span></div>
+        <ul class="imo-items">
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q019" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q019</span></div>
+            <h3>2023–24 Set A · referenced Q19</h3>
+            <p class="imo-description">Parallel-line angle bisectors and resulting quadrilateral</p>
+            <p class="imo-context">Research topic: ANGLES-ANGLE-BISECTORS · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 19 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q031" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q031</span></div>
+            <h3>2025–26 Set A · referenced Q31</h3>
+            <p class="imo-description">Solve a multi-angle intersection diagram</p>
+            <p class="imo-context">Research topic: ANGLES-VERTICALLY-OPPOSITE · mathematical reasoning · <strong class="imo-disputed">Source discrepancy IMO-SOURCE-CONFLICT-007 — use source with caution</strong></p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 31 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-SAMPLE-2026-27-Q005" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-SAMPLE-2026-27-Q005</span></div>
+            <h3>SOF 2026–27 sample · referenced Q5</h3>
+            <p class="imo-description">Angle relation across parallel families</p>
+            <p class="imo-context">Research topic: ANGLES-PARALLEL-LINE-ANGLES · mathematical reasoning · <strong class="imo-disputed">Source discrepancy IMO-SOURCE-CONFLICT-009 — use source with caution</strong></p>
+            <p class="imo-action"><a href="https://sofworld.org/download/file/fid/73719" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 5 (SOF 2026–27 sample)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li></ul>
+      </section>
+
+      <section class="imo-topic" id="topic-ns" data-topic="NS" aria-labelledby="head-ns">
+        <div class="imo-section-title"><div><h2 id="head-ns">Number Systems</h2><p>SOF syllabus topic label; individual question mapping is provisional.</p></div><span class="imo-count">8 source · 1 authored</span></div>
+        <ul class="imo-items">
+          <li class="imo-item imo-authored" id="IMO-G9-ORIGINAL-PRACTICE-001" data-kind="authored">
+            <div class="imo-item-top"><span class="imo-pill imo-pill-authored">AI-authored practice · draft preview</span><span class="imo-id">IMO-G9-ORIGINAL-PRACTICE-001</span></div>
+            <h3>Three-step number chain</h3>
+            <p class="imo-problem">A student claims that multiplying any three consecutive positive integers always gives a multiple of 6. Prove or disprove the claim for every positive starting integer n, without checking only sample values.</p>
+            <p class="imo-context">Proposed difficulty D3 · free response</p>
+            <p class="imo-status">Original project-authored question; not an official SOF item. Learner quality, scoring and QRT/Core admission are not approved.</p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q018" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q018</span></div>
+            <h3>2023–24 Set A · referenced Q18</h3>
+            <p class="imo-description">Additive inverse of a compound rational expression</p>
+            <p class="imo-context">Research topic: NS-RATIONAL-OPERATIONS · mathematical reasoning · <strong class="imo-disputed">Source discrepancy IMO-SOURCE-CONFLICT-003 — use source with caution</strong></p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 18 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2024-25-B-Q026" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2024-25-B-Q026</span></div>
+            <h3>2024–25 Set B · referenced Q26</h3>
+            <p class="imo-description">Transform exponential equality into a common base</p>
+            <p class="imo-context">Research topic: NS-INDEX-LAWS · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/2107431-CLASS%209-IMO24.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 26 (2024–25 Set B)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2024-25-B-Q033" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2024-25-B-Q033</span></div>
+            <h3>2024–25 Set B · referenced Q33</h3>
+            <p class="imo-description">Rational numerator/denominator constraints</p>
+            <p class="imo-context">Research topic: NS-RATIONAL-CONSTRAINTS · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/2107431-CLASS%209-IMO24.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 33 (2024–25 Set B)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q028" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q028</span></div>
+            <h3>2025–26 Set A · referenced Q28</h3>
+            <p class="imo-description">Additive identity versus inverse wording (source dispute)</p>
+            <p class="imo-context">Research topic: NS-RATIONAL-OPERATIONS · mathematical reasoning · <strong class="imo-disputed">Source discrepancy IMO-SOURCE-CONFLICT-006 — use source with caution</strong></p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 28 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q035" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q035</span></div>
+            <h3>2025–26 Set A · referenced Q35</h3>
+            <p class="imo-description">Negative and fractional indices with roots</p>
+            <p class="imo-context">Research topic: NS-INDEX-LAWS · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 35 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q036" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q036</span></div>
+            <h3>2025–26 Set A · referenced Q36</h3>
+            <p class="imo-description">Recover row count from a perfect square</p>
+            <p class="imo-context">Research topic: NS-SQUARES-AND-ROOTS · everyday mathematics</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 36 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q049" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q049</span></div>
+            <h3>2025–26 Set A · referenced Q49</h3>
+            <p class="imo-description">Evaluate multiple irrationality/surd truth claims</p>
+            <p class="imo-context">Research topic: NS-SURD-STATEMENTS · achievers section</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 49 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-SAMPLE-2026-27-Q009" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-SAMPLE-2026-27-Q009</span></div>
+            <h3>SOF 2026–27 sample · referenced Q9</h3>
+            <p class="imo-description">Recurring-decimal claims and nested indices</p>
+            <p class="imo-context">Research topic: NS-DECIMALS-AND-INDICES · achievers section · <strong class="imo-disputed">Source discrepancy IMO-SOURCE-CONFLICT-010 — use source with caution</strong></p>
+            <p class="imo-action"><a href="https://sofworld.org/download/file/fid/73719" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 9 (SOF 2026–27 sample)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li></ul>
+      </section>
+
+      <section class="imo-topic" id="topic-poly" data-topic="POLY" aria-labelledby="head-poly">
+        <div class="imo-section-title"><div><h2 id="head-poly">Polynomials</h2><p>SOF syllabus topic label; individual question mapping is provisional.</p></div><span class="imo-count">3 source · 0 authored</span></div>
+        <ul class="imo-items">
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q028" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q028</span></div>
+            <h3>2023–24 Set A · referenced Q28</h3>
+            <p class="imo-description">Subtract multivariable polynomial expressions</p>
+            <p class="imo-context">Research topic: POLY-POLYNOMIAL-OPERATIONS · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 28 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q045" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q045</span></div>
+            <h3>2025–26 Set A · referenced Q45</h3>
+            <p class="imo-description">Factor cubic volume into dimensions</p>
+            <p class="imo-context">Research topic: POLY-FACTORISATION · everyday mathematics</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 45 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-SAMPLE-2026-27-Q007" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-SAMPLE-2026-27-Q007</span></div>
+            <h3>SOF 2026–27 sample · referenced Q7</h3>
+            <p class="imo-description">Polynomial divisibility under two linear factors</p>
+            <p class="imo-context">Research topic: POLY-DIVISIBILITY · everyday mathematics</p>
+            <p class="imo-action"><a href="https://sofworld.org/download/file/fid/73719" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 7 (SOF 2026–27 sample)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li></ul>
+      </section>
+
+      <section class="imo-topic" id="topic-statistics" data-topic="STATISTICS" aria-labelledby="head-statistics">
+        <div class="imo-section-title"><div><h2 id="head-statistics">Statistics</h2><p>SOF syllabus topic label; individual question mapping is provisional.</p></div><span class="imo-count">4 source · 0 authored</span></div>
+        <ul class="imo-items">
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2024-25-B-Q016" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2024-25-B-Q016</span></div>
+            <h3>2024–25 Set B · referenced Q16</h3>
+            <p class="imo-description">Infer population from sector proportions</p>
+            <p class="imo-context">Research topic: STATISTICS-PIE-CHARTS · mathematical reasoning · <strong class="imo-disputed">Source discrepancy IMO-SOURCE-CONFLICT-004 — use source with caution</strong></p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/2107431-CLASS%209-IMO24.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 16 (2024–25 Set B)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q032" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q032</span></div>
+            <h3>2025–26 Set A · referenced Q32</h3>
+            <p class="imo-description">Aggregate sectors as marks</p>
+            <p class="imo-context">Research topic: STATISTICS-PIE-CHARTS · mathematical reasoning · <strong class="imo-disputed">Source discrepancy IMO-SOURCE-CONFLICT-008 — use source with caution</strong></p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 32 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q033" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q033</span></div>
+            <h3>2025–26 Set A · referenced Q33</h3>
+            <p class="imo-description">Convert missing sector angle into percentage</p>
+            <p class="imo-context">Research topic: STATISTICS-PIE-CHARTS · mathematical reasoning · <strong class="imo-disputed">Source discrepancy IMO-SOURCE-CONFLICT-008 — use source with caution</strong></p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 33 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q047" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q047</span></div>
+            <h3>2025–26 Set A · referenced Q47</h3>
+            <p class="imo-description">Class midpoint, range and bar-scale matches</p>
+            <p class="imo-context">Research topic: STATISTICS-DATA-DISPLAYS · achievers section</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 47 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li></ul>
+      </section>
+
+      <section class="imo-topic" id="topic-mensuration" data-topic="MENSURATION" aria-labelledby="head-mensuration">
+        <div class="imo-section-title"><div><h2 id="head-mensuration">Surface Areas and Volumes</h2><p>SOF syllabus topic label; individual question mapping is provisional.</p></div><span class="imo-count">6 source · 1 authored</span></div>
+        <ul class="imo-items">
+          <li class="imo-item imo-authored" id="IMO-G9-ORIGINAL-PRACTICE-004" data-kind="authored">
+            <div class="imo-item-top"><span class="imo-pill imo-pill-authored">AI-authored practice · draft preview</span><span class="imo-id">IMO-G9-ORIGINAL-PRACTICE-004</span></div>
+            <h3>Ribbon around a cylindrical drum</h3>
+            <p class="imo-problem">A cylindrical festival drum has radius 7 cm and height 20 cm. A decorator covers only the curved side of the drum with one layer of sheet material, leaving both circular ends uncovered. Using pi=22/7, calculate the required sheet area in square centimetres.</p>
+            <p class="imo-context">Proposed difficulty D2 · free response</p>
+            <p class="imo-status">Original project-authored question; not an official SOF item. Learner quality, scoring and QRT/Core admission are not approved.</p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q017" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q017</span></div>
+            <h3>2023–24 Set A · referenced Q17</h3>
+            <p class="imo-description">Relate volumes and heights of equal-radius cones</p>
+            <p class="imo-context">Research topic: MENSURATION-CONE-VOLUME · mathematical reasoning · <strong class="imo-disputed">Source discrepancy IMO-SOURCE-CONFLICT-002 — use source with caution</strong></p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 17 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q034" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q034</span></div>
+            <h3>2023–24 Set A · referenced Q34</h3>
+            <p class="imo-description">Sphere area square-law under radius change</p>
+            <p class="imo-context">Research topic: MENSURATION-SURFACE-SCALING · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 34 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q045" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q045</span></div>
+            <h3>2023–24 Set A · referenced Q45</h3>
+            <p class="imo-description">Curved area, unit conversion and cost</p>
+            <p class="imo-context">Research topic: MENSURATION-HEMISPHERE-AREA · everyday mathematics</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 45 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2024-25-B-Q029" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2024-25-B-Q029</span></div>
+            <h3>2024–25 Set B · referenced Q29</h3>
+            <p class="imo-description">Relate cone radii and slant heights</p>
+            <p class="imo-context">Research topic: MENSURATION-CONE-SURFACE-RATIOS · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/2107431-CLASS%209-IMO24.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 29 (2024–25 Set B)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q048" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q048</span></div>
+            <h3>2025–26 Set A · referenced Q48</h3>
+            <p class="imo-description">Test cone–cylinder transfer and sphere-in-cube assertions</p>
+            <p class="imo-context">Research topic: MENSURATION-COMPOSITE-SOLIDS · achievers section</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 48 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-SAMPLE-2026-27-Q008" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-SAMPLE-2026-27-Q008</span></div>
+            <h3>SOF 2026–27 sample · referenced Q8</h3>
+            <p class="imo-description">Use base area and air volume to infer cone height</p>
+            <p class="imo-context">Research topic: MENSURATION-CONE-VOLUME · everyday mathematics</p>
+            <p class="imo-action"><a href="https://sofworld.org/download/file/fid/73719" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 8 (SOF 2026–27 sample)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li></ul>
+      </section>
+
+      <section class="imo-topic" id="topic-triangles" data-topic="TRIANGLES" aria-labelledby="head-triangles">
+        <div class="imo-section-title"><div><h2 id="head-triangles">Triangles</h2><p>SOF syllabus topic label; individual question mapping is provisional.</p></div><span class="imo-count">5 source · 0 authored</span></div>
+        <ul class="imo-items">
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q029" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q029</span></div>
+            <h3>2023–24 Set A · referenced Q29</h3>
+            <p class="imo-description">Area and altitude from three sides</p>
+            <p class="imo-context">Research topic: TRIANGLES-HERONS-FORMULA · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 29 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q049" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q049</span></div>
+            <h3>2023–24 Set A · referenced Q49</h3>
+            <p class="imo-description">Compound claims about area scaling and right-triangle altitude</p>
+            <p class="imo-context">Research topic: TRIANGLES-AREA-AND-ALTITUDE · achievers section</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 49 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2024-25-B-Q035" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2024-25-B-Q035</span></div>
+            <h3>2024–25 Set B · referenced Q35</h3>
+            <p class="imo-description">Solve side constraints then apply Heron</p>
+            <p class="imo-context">Research topic: TRIANGLES-HERONS-FORMULA · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/2107431-CLASS%209-IMO24.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 35 (2024–25 Set B)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q034" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q034</span></div>
+            <h3>2025–26 Set A · referenced Q34</h3>
+            <p class="imo-description">Square-law scaling of triangle area</p>
+            <p class="imo-context">Research topic: TRIANGLES-SIMILARITY-SCALING · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 34 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-SAMPLE-2026-27-Q010" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-SAMPLE-2026-27-Q010</span></div>
+            <h3>SOF 2026–27 sample · referenced Q10</h3>
+            <p class="imo-description">Distinguish equal angles, isoscelesness and congruence</p>
+            <p class="imo-context">Research topic: TRIANGLES-CONGRUENCE · achievers section</p>
+            <p class="imo-action"><a href="https://sofworld.org/download/file/fid/73719" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 10 (SOF 2026–27 sample)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li></ul>
+      </section>
+
+      <section class="imo-topic" id="topic-quant" data-topic="QUANT" aria-labelledby="head-quant">
+        <div class="imo-section-title"><div><h2 id="head-quant">Quantitative Aptitude</h2><p>Analyst organizing category; not an official Section 2 syllabus topic.</p></div><span class="imo-count">12 source · 0 authored</span></div>
+        <ul class="imo-items">
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q035" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q035</span></div>
+            <h3>2023–24 Set A · referenced Q35</h3>
+            <p class="imo-description">Reverse compound-interest principal</p>
+            <p class="imo-context">Research topic: QUANT-COMPOUND-INTEREST · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 35 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q036" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q036</span></div>
+            <h3>2023–24 Set A · referenced Q36</h3>
+            <p class="imo-description">Combine two constant work rates</p>
+            <p class="imo-context">Research topic: QUANT-WORK-RATES · everyday mathematics</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 36 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q037" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q037</span></div>
+            <h3>2023–24 Set A · referenced Q37</h3>
+            <p class="imo-description">Conditional population percentage calculation</p>
+            <p class="imo-context">Research topic: QUANT-PERCENT-PROPORTIONS · everyday mathematics</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 37 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q039" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q039</span></div>
+            <h3>2023–24 Set A · referenced Q39</h3>
+            <p class="imo-description">Relative speed of approaching trains</p>
+            <p class="imo-context">Research topic: QUANT-SPEED-TIME · everyday mathematics</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 39 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q042" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q042</span></div>
+            <h3>2023–24 Set A · referenced Q42</h3>
+            <p class="imo-description">Recover principal from amount and interest</p>
+            <p class="imo-context">Research topic: QUANT-SIMPLE-INTEREST · everyday mathematics</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 42 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2023-24-A-Q043" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2023-24-A-Q043</span></div>
+            <h3>2023–24 Set A · referenced Q43</h3>
+            <p class="imo-description">Relate past and future age ratios</p>
+            <p class="imo-context">Research topic: QUANT-AGE-RATIOS · everyday mathematics</p>
+            <p class="imo-action"><a href="https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 43 (2023–24 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2024-25-B-Q019" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2024-25-B-Q019</span></div>
+            <h3>2024–25 Set B · referenced Q19</h3>
+            <p class="imo-description">Solve rate equal to time under simple interest</p>
+            <p class="imo-context">Research topic: QUANT-SIMPLE-INTEREST · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/2107431-CLASS%209-IMO24.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 19 (2024–25 Set B)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2024-25-B-Q043" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2024-25-B-Q043</span></div>
+            <h3>2024–25 Set B · referenced Q43</h3>
+            <p class="imo-description">Solve mixed worker productivity rates</p>
+            <p class="imo-context">Research topic: QUANT-WORK-RATES · everyday mathematics</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/2107431-CLASS%209-IMO24.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 43 (2024–25 Set B)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q030" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q030</span></div>
+            <h3>2025–26 Set A · referenced Q30</h3>
+            <p class="imo-description">Transfer simple-interest rate to compound growth</p>
+            <p class="imo-context">Research topic: QUANT-COMPOUND-INTEREST · mathematical reasoning</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 30 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q038" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q038</span></div>
+            <h3>2025–26 Set A · referenced Q38</h3>
+            <p class="imo-description">Scale labour-hours and duration</p>
+            <p class="imo-context">Research topic: QUANT-WORK-RATES · everyday mathematics</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 38 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q039" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q039</span></div>
+            <h3>2025–26 Set A · referenced Q39</h3>
+            <p class="imo-description">Allocate profit by capital-month weights</p>
+            <p class="imo-context">Research topic: QUANT-PARTNERSHIP · everyday mathematics</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 39 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li>
+
+          <li class="imo-item imo-source" id="SOF-IMO-G09-L1-2025-26-A-Q040" data-kind="source">
+            <div class="imo-item-top"><span class="imo-pill">Source-linked reference</span><span class="imo-id">SOF-IMO-G09-L1-2025-26-A-Q040</span></div>
+            <h3>2025–26 Set A · referenced Q40</h3>
+            <p class="imo-description">Successive multiplicative percentage changes</p>
+            <p class="imo-context">Research topic: QUANT-PERCENT-PROPORTIONS · everyday mathematics</p>
+            <p class="imo-action"><a href="https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf" target="_blank" rel="noopener noreferrer" aria-label="Open original paper for referenced question 40 (2025–26 Set A)">Open original source paper <span aria-hidden="true">↗</span></a></p>
+          </li></ul>
+      </section>
+    </div>
+    <p id="imo-no-results" hidden role="status">No matching entries. Clear the search or choose another topic.</p>
+    <aside class="imo-boundary"><strong>Research and rights:</strong> Owner seed 66 source positions + 2 separately observed sample positions = 68 source references. The seven authored preview questions are additional; they are not included in the 68. Source links are provided for reading at the original host. Topic mappings are provisional, and publication of this <em>research index</em> does not imply QRT acceptance, Core 1A/Core 2 promotion, automated proof grading, or source-figure reuse permission.</aside>
+  </main>
+  <footer class="g9-footer"><p>Grade9V3.5 · Mathematics Research &amp; Draft Practice · Not Official SOF Core Material</p></footer>
+  <script>
+    (function () {
+      "use strict";
+      const topic = document.getElementById("imo-topic-select");
+      const kind = document.getElementById("imo-kind-select");
+      const search = document.getElementById("imo-search");
+      const groups = Array.from(document.querySelectorAll(".imo-topic"));
+      const result = document.getElementById("imo-results");
+      const nav = document.getElementById("imo-topic-nav");
+      const noResults = document.getElementById("imo-no-results");
+      function update() {
+        const term = search.value.trim().toLocaleLowerCase();
+        let count = 0, visibleTopics = 0;
+        groups.forEach(section => {
+          const topicMatches = topic.value === "ALL" || section.dataset.topic === topic.value;
+          let shown = 0;
+          section.querySelectorAll(".imo-item").forEach(item => {
+            const kindMatches = kind.value === "all" || item.dataset.kind === kind.value;
+            const matched = topicMatches && kindMatches && (!term || item.textContent.toLocaleLowerCase().includes(term));
+            item.hidden = !matched;
+            if (matched) { shown++; count++; }
+          });
+          section.hidden = shown === 0;
+          if (shown) visibleTopics++;
+        });
+        result.textContent = "Showing " + count + " entries across " + visibleTopics + " topics.";
+        noResults.hidden = count !== 0;
+        nav.hidden = topic.value !== "ALL" || !!term || kind.value !== "all";
+      }
+      [topic,kind,search].forEach(el => el.addEventListener(el === search ? "input" : "change", update));
+      update();
+    }());
+  </script>
+  <script src="../../js/display-controls.js"></script>
+  <script src="../../js/site-header.js" data-site-root="../../"></script>
+</body>
+</html>
