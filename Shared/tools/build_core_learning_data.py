@@ -100,6 +100,34 @@ def build() -> dict:
 
 
 
+def build_public() -> dict:
+    """Fail closed for distributable Core data absent academic release receipts.
+
+    build() remains the complete canonical compiler preview for internal
+    integration and derived production memory. Nothing currently supplies an
+    independently verified Core public-release grant. No preview identities,
+    findings or applications may be serialized into public/data.js.
+    Changing this gate requires an independently reviewed, source-bound grant
+    protocol, not a status string or an old orientation inventory.
+    """
+    return {
+        "generated_by": "Shared/tools/build_core_learning_data.py",
+        "provider_status": "PUBLICATION_HELD",
+        "provider": {
+            "mode": "PUBLIC_RELEASE_GATE_NO_GRANTS",
+            "contract_version": "1.1",
+        },
+        "publication_gate": {
+            "status": "HOLD",
+            "code": "NO_INDEPENDENT_CORE_PUBLICATION_GRANT",
+            "authority": "NOT_GRANTED_BY_ANY_MACHINE_CHECK",
+        },
+        "core_projections": [],
+        "bucket_availability": [],
+        "findings": [],
+    }
+
+
 def preflight_projection(
     *,
     subject: str,
@@ -182,13 +210,13 @@ def render(payload: dict) -> str:
 
 
 def rendered_file() -> dict[str, bytes]:
-    return {OUT.relative_to(REPO).as_posix(): render(build()).encode("utf-8")}
+    return {OUT.relative_to(REPO).as_posix(): render(build_public()).encode("utf-8")}
 
 
 def write() -> dict:
     payload = build()
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(render(payload), encoding="utf-8", newline="\n")
+    OUT.write_text(render(build_public()), encoding="utf-8", newline="\n")
     # Persist current Core projections as derived production memory. The import is
     # local to avoid a module cycle: the registry reads build(), never write().
     from Shared.tools import derived_artifact_registry
@@ -200,7 +228,8 @@ def main() -> int:
     payload = write()
     print(
         f"wrote {OUT.relative_to(REPO)}: "
-        f"{len(payload['core_projections'])} canonical compiler projection(s)"
+        f"{len(payload['core_projections'])} internal preview projection(s); "
+        "public release gate: HOLD (0 public projections)"
     )
     return 0
 
