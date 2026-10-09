@@ -36,7 +36,7 @@ try {
   if(!metrics.test)result.failures.push(width+': missing TEST stamp');
   if(!svgText.includes('CORE1B-GIVEN-FACTORS')||!/t − 2/.test(svgText)||!/t − 1/.test(svgText))
    result.failures.push(width+': own source-safe factor representation unavailable');
-  if(/t mod 3|multiple of 3|divisible by 6|coprime/i.test(svgText))
+  if(/t mod 3|multiples? of (?:3|three)|even factor|parity|remainder|divisible by 6|coprime/i.test(svgText))
    result.failures.push(width+': preattempt figure reveals proof');
   if(errors.length)result.failures.push(width+': JS '+errors.join('; '));
   await pg.screenshot({path:path.join(outdir,'core1b-'+width+'-attempt.png'),fullPage:true});
