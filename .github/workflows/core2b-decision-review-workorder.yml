@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - "Physics/library/phy-kin-2d-motion.v1.json"
-      - "Shared/tools/core2b_decision_workorder.py"
+      - "Physics/tools/core2b_decision_workorder.py"
       - "Shared/tools/core2b_inventory.py"
       - "tests/test_core2b_decision_workorder.py"
       - "docs/method/PHYSICS-CORE2B-DECISION-REVIEW-WORKORDER.md"
@@ -26,7 +26,7 @@ jobs:
         run: python -m unittest -v tests.test_core2b_decision_workorder
       - name: Build SHA-bound reviewer-only work order (no academic outcome)
         run: |
-          python Shared/tools/core2b_decision_workorder.py \
+          python Physics/tools/core2b_decision_workorder.py \
             --out /tmp/physics-core2b-independent-workorder.json \
             --enforce-structure
       - name: Archive internal reviewer packet (never learner release)
