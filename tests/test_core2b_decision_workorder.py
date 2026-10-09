@@ -7,7 +7,7 @@ import json
 import unittest
 from pathlib import Path
 
-from Shared.tools import core2b_decision_workorder as audit
+from Physics.tools import core2b_decision_workorder as audit
 
 REPO = Path(__file__).resolve().parents[1]
 SOURCE = REPO / audit.SOURCE
