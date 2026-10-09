@@ -72,10 +72,19 @@ try {
   assert.match(await page.locator("#familiar-transfer-note").innerText(), /prior capability is unverified/i);
   await transferNav.getByRole("button", { name: /Core2A.*Familiar worked application/ }).click();
   assert.match(await page.locator("#projection-status").innerText(), /CORE2A/);
+  // Opening A alone is not proof its worked explanation was encountered.
+  await transferNav.getByRole("button", { name: /Core2B.*Attempt changed decision/ }).click();
+  assert.match(await page.locator("#familiar-transfer-note").innerText(), /worked explanation was not observed/i);
+  await transferNav.getByRole("button", { name: /Core2A.*Familiar worked application/ }).click();
+  await page.evaluate(() => {
+    document.querySelector("core-learning-page").commitAttempt("I choose the familiar event condition.");
+  });
+  // Core2A reasoning becomes visible only after the learner's submitted attempt.
+  assert.match(await page.locator("#projection-status").innerText(), /CORE2A/);
   await transferNav.getByRole("button", { name: /Core2B.*Attempt changed decision/ }).click();
   assert.match(await page.locator("#projection-status").innerText(), /CORE2B/);
   assert.match(await page.locator("#familiar-transfer-note").innerText(),
-    /assisted by that exposure, not certified mastery/i);
+    /assisted by instructional exposure, not certified mastery/i);
   const beforeAttempt = await page.evaluate(() => {
     const item = window.GRADE9V3_CORE.core_projections.find((row) =>
       row.id === document.getElementById("projection-select").value);
