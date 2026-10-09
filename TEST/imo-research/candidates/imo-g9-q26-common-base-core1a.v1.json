@@ -105,7 +105,38 @@
         "SRC-TEST-IMO-G9-INDEX-AUTHORED"
       ],
       "evidence_refs": [],
-      "extensions": {},
+      "extensions": {
+        "grade9v3:concept_checkpoint": {
+          "version": "1",
+          "scope": "TEST_AUTHORED_CORE1A_ONLY",
+          "neutral_demo": "Before any exponential equation, let P = 2³ = 8. Then 2⁴ = 16 = 2 × P, while P + 2 = 10. An exponent increase adds one more factor of the base.",
+          "prompt": "If Q = 5ⁿ, which expression equals 5⁽ⁿ⁺¹⁾? Choose and justify the rule before seeing a worked equation.",
+          "choices": [
+            {
+              "value": "FACTOR",
+              "label": "5Q"
+            },
+            {
+              "value": "ADD",
+              "label": "Q + 5"
+            }
+          ],
+          "correct_value": "FACTOR",
+          "reason_contains_any": [
+            "factor",
+            "multipli"
+          ],
+          "reason_contains_any_rule": [
+            "exponent",
+            "power",
+            "index"
+          ],
+          "status": "LOCAL_TEACHING_FORMAT_CHECK_NOT_INDEPENDENT_MASTERY",
+          "on_wrong_choice": "Compare the earlier 2³ to 2⁴: 8 to 16 is multiplication, not an addition of 2. Try the concept check again.",
+          "on_wrong_explanation": "Explain why an extra exponent introduces a factor of the base. A selected answer alone is not a reason.",
+          "on_form_check": "Your concept-check selection and explanation have been recorded for this page only. Now study the guided application. This is not independent mastery evidence."
+        }
+      },
       "id": "MIC-TEST-IMO-G9-COMMON-BASE-RELATION",
       "title": "Recognize a shared exponential quantity before solving",
       "bucket_id": "BUCKET-TEST-IMO-G9-COMMON-BASE",
