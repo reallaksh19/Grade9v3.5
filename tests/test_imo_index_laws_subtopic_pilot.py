@@ -45,6 +45,28 @@ def check_pilot(pilot: dict, browser: dict, custody: dict, subtopics: dict) -> N
     if scope.get("launch_authorized") is not False:
         raise ValueError("Unreviewed home may not launch")
 
+    # The pilot may cover only two items, but it must not corrupt the 68-source
+    # census, inflate the old 66-entry map, or admit other unverified sources.
+    original_refs = [r for r in browser["records"] if r["kind"] == "SOF_SOURCE_REFERENCE_ONLY"]
+    authored_previews = [r for r in browser["records"] if r["kind"] == "AUTHORED_PRACTICE_PREVIEW"]
+    source_ids = [r["id"] for r in original_refs]
+    custody_ids = [r["question_id"] for r in custody["records"]]
+    if (len(source_ids) != 68 or len(set(source_ids)) != 68
+        or len(custody_ids) != 68 or len(set(custody_ids)) != 68
+        or set(source_ids) != set(custody_ids)
+        or len(authored_previews) != 7):
+        raise ValueError("68 genuine reference identities and seven separate authored previews must be conserved")
+    if (sum(r["source_membership"] == "OWNER_SEED_66" for r in original_refs) != 66
+        or {r["id"] for r in original_refs
+            if r["source_membership"] == "ADDITIONAL_ORGANIZER_SAMPLE_2"} != {
+                "SOF-IMO-G09-SAMPLE-2026-27-Q001",
+                "SOF-IMO-G09-SAMPLE-2026-27-Q003"}):
+        raise ValueError("Historical seed66 versus two new organizer samples conflated")
+    if any(r.get("core2_eligible") is not False or r.get("core2_admitted") is not False
+           or r.get("learner_published") is not False for r in custody["records"]):
+        raise ValueError("Nonadmitted source census was silently promoted")
+    if any(r.get("original_source_claim") is not False for r in authored_previews):
+        raise ValueError("Authored practice recast as an original SOF source")
     rows = pilot["source_questions"]
     if len(rows) != 2 or {row["question_id"] for row in rows} != set(EXPECTED):
         raise ValueError("Missing, duplicate or extra source identities")
@@ -154,6 +176,29 @@ class TestIndexLawsPilot(unittest.TestCase):
     def test_reject_wrong_provisional_subtopic(self):
         with self.assertRaises(ValueError):
             self.valid(lambda p: p["scope"].update(subtopic_id="POLY-DIVISIBILITY"))
+
+    def test_global_denominator_rejects_missing_unrelated_source(self):
+        browser = copy.deepcopy(self.browser)
+        browser["records"] = [r for r in browser["records"]
+                              if r["id"] != "SOF-IMO-G09-SAMPLE-2026-27-Q001"]
+        with self.assertRaises(ValueError):
+            check_pilot(self.pilot, browser, self.custody, self.subtopics)
+
+    def test_global_denominator_rejects_unrelated_core2_promotion(self):
+        census = copy.deepcopy(self.custody)
+        item = next(r for r in census["records"]
+                    if r["question_id"] == "SOF-IMO-G09-SAMPLE-2026-27-Q003")
+        item["core2_admitted"] = True
+        with self.assertRaises(ValueError):
+            check_pilot(self.pilot, self.browser, census, self.subtopics)
+
+    def test_authored_preview_cannot_claim_original_source(self):
+        browser = copy.deepcopy(self.browser)
+        item = next(r for r in browser["records"]
+                    if r["kind"] == "AUTHORED_PRACTICE_PREVIEW")
+        item["original_source_claim"] = True
+        with self.assertRaises(ValueError):
+            check_pilot(self.pilot, browser, self.custody, self.subtopics)
 
     def test_reject_unlicensed_source_copy(self):
         with self.assertRaises(ValueError):
