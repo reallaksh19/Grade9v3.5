@@ -57,44 +57,81 @@ Actions infrastructure failure or zero-step run is **NOT_TESTED**, not PASS.
 The exact historical `main` baseline must likewise be observed executing
 before claiming a runtime baseline result.
 
-## Source-backed release boundary and limited UI mitigation
+## Source-backed release boundary and physical public data quarantine
 
-At the pinned bounded-unit source cutoff, the 24 canonical subject library
-packages contain 25 buckets: 20 Physics, three Mathematics and two TEST.
-Every inspected package and bucket declares `status: CANDIDATE`. The
-historical 22-bucket report contains the 20 Physics and two earlier
-Mathematics buckets. It is **not** a list of independently release-approved
-Core1 content. The three later buckets are compiler-orientable, not thereby
-academically admitted. The source-level subject `CoreContracts.json`
-records `release_authority: NOT_GRANTED_BY_ANY_MACHINE_CHECK`.
+At the bounded-unit cutoff, the 24 canonical subject library packages hold
+25 buckets (20 Physics, three Mathematics, two TEST). Every inspected package
+and bucket declares `CANDIDATE`. The frozen 22-bucket report is a historical
+structural inventory, **not** an independently approved learner-release set.
+`CoreContracts.release_authority` says
+`NOT_GRANTED_BY_ANY_MACHINE_CHECK` for these subjects.
 
-The learner-host template and its generated public and standalone HTML now
-show a prominent compiler-preview notice. Their ordinary activity chooser
-excludes `subject: TEST`; the direct-link mount path refuses IDs absent from
-the filtered chooser. A focused test pins the notice and both client-side
-checks. This is a **UI route mitigation only**, not content access control.
-It does not qualify any Mathematics, Physics or TEST item for curricular
-publication; Mathematics Polynomials remains a visible *candidate preview*.
+**Two independent outputs now have different authority:**
 
-**Critical remaining exposure:** both hosts still load
-`public/core-learning/data.js`. The generator's `build()` emits TEST
-compiler rows in `core_projections` and the generated public file could
-therefore physically contain sandbox records regardless of chooser filtering.
-The exact saved artifact is ~2.5 MB at its pinned Git blob and its complete
-bytes have not been re-read or regenerated here. A user-visible filter does
-not prevent data access through the JavaScript payload or a different
-consumer. No publication/academic isolation PASS is claimed.
+1. `build_core_learning_data.build()` remains the full compiler-owned,
+   `DESIGN_PREVIEW/PRACTICE` payload for internal web resolution,
+   `preflight_projection()`, mechanical exact-set Core1 auditing and
+   content-addressed derived engineering memory. Its TEST preview records
+   continue to exist *internally*. No academic quality or release is implied.
+2. `build_core_learning_data.build_public()` creates an **empty**
+   `core_projections`, `bucket_availability` and `findings` payload,
+   with `publication_gate.status=HOLD`,
+   `code=NO_INDEPENDENT_CORE_PUBLICATION_GRANT` and
+   `authority=NOT_GRANTED_BY_ANY_MACHINE_CHECK`. The public-file
+   `rendered_file()` and `write()` emit this restricted payload while
+   keeping the complete internal `build()` accessible. It is deliberately
+   impossible to grant an item via a name, status, compiled result or
+   historical inventory under this bounded change.
 
-Before resolving Issue #326, independently select and enforce the canonical
-learner-publication eligibility policy (with source/Owner review), split or
-constrain **physical public-data emission** accordingly, preserve the
-compiler's complete internal previews, and validate negative TEST/candidate
-exposure tests against the actually emitted public file and both browser
-hosts. A missing grant must fail closed. This must not silently convert the
-frozen report into an approval whitelist or make all CANDIDATE rows releasable.
+**Physical emission evidence:** the committed `public/core-learning/data.js`
+and GitHub Pages mirror `docs/core-learning/data.js` have both been
+replaced with the same deterministic **536-byte** HOLD payload; their Git
+blob ID is `ebc279414f6e91ccef9e6d8d1a90fe19c7b2c4f3`.
+Previously those assets were the same 2,497,022-byte preview blob.
+The developer-facing `docs/core-learning/index.html` deployment mirror
+has also been regenerated from the public host. The host template plus
+public/standalone/Pages HTML now show the preview limitation and, when
+`publication_gate.status=HOLD`, explicitly tell the learner there are no
+authorized public activities. The chooser and direct-link UI additionally
+exclude TEST rows as defense in depth; those UI filters alone would never
+satisfy data custody.
 
-GitHub Actions retries at the previous head (candidate
-`211db0c0c805b7d87d0dd45e9bd4d59647916ee7`, pinned-main diagnostic)
-again returned zero executed job steps on attempt 3. The newer host changes
-likewise require actual exact-head execution before verification. Retain
-DRAFT and all source-custody/QRT/V3.1 holds.
+The candidate Mathematics Polynomials Core1 entry is **not publicly served**
+through these Core learner `data.js` outputs. Its separately qualified
+Question Bank records are governed by their own publication contracts; this
+change does not revoke or grant those rights.
+
+### What this does NOT prove
+
+- A proper per-bucket/subject *positive* Core release grant protocol, its
+  independently verified reviewer signature, curriculum mapping, relevant
+  route or time of authorization **does not yet exist** in this provider.
+  It would be unsafe to invent such a protocol, promote the 22-bucket
+  report or whitelist Physics/Mathematics candidates by status. Zero
+  public Core projections is the **correct fail-closed outcome**, not a
+  complete six-Core learner journey.
+- Source previews persist internally and in derived artifacts under
+  `publication/derived-artifacts/`; publication/deployment of any other
+  directory or old already-live historical snapshots is separately out of
+  scope. These newly saved bytes do not prove that a deployed Pages URL
+  has updated, that caches have expired, or that no other independent
+  public site references old previews.
+- A deterministic-source and mirror-byte check is not an executing
+  Python test or Chromium journey. GitHub Actions has recently failed
+  all jobs with **zero executed steps**. Exact-head execution and browser
+  verification are mandatory.
+
+### Required release completion work (separate authorization)
+
+Obtain Owner/academic-controlled source-bound, separately authenticated
+release-grant receipts and a formal eligible-domain predicate; design both
+positive and negative tests against actual public bytes and real browser
+requests, including previously approved learner content. Only after that
+independent review may an approved, source-pinned projection be emitted
+outside the internal preview. Reconcile stable study pathways without
+using compiler renderability as qualification. Do not silently grant
+source custody, QRT 28-cell signoff, V3.1/Common CI, transfer or merge
+authority.
+
+**State: DRAFT / publication HOLD / Python+browser NOT_TESTED until steps
+actually execute.**
