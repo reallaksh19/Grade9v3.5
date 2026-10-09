@@ -113,6 +113,40 @@ def check_pilot(pilot: dict, browser: dict, custody: dict, subtopics: dict) -> N
             row.get("rights_status") != "NOT_REVIEWED" or
             row.get("disposition") != "SOURCE_CUSTODY_HOLD"):
             raise ValueError("Pilot source not eligible for source-Core2")
+    # A visual page locator is a narrow observation, not the official custody ledger.
+    # It must never mutate that ledger's unverified locator or imply that the
+    # source file bytes, a version-stable digest, rights or question fidelity exist.
+    observed = {
+        "SOF-IMO-G09-L1-2024-25-B-Q026": (26, "B", "COMMON_BASE_EXPONENT_EQUATION"),
+        "SOF-IMO-G09-L1-2025-26-A-Q035": (35, "A", "FRACTIONAL_NEGATIVE_INDICES_WITH_ROOTS"),
+    }
+    for row in rows:
+        question_number, exam_set, family = observed[row["question_id"]]
+        obs = row.get("source_locator_visual_observation")
+        if not isinstance(obs, dict):
+            raise ValueError("Missing remote-PDF visual locator observation")
+        expected = {
+            "observation_class": "REMOTE_SCHOOL_HOSTED_PDF_PAGE_VISUAL_ONLY",
+            "observed_utc_date": "2026-10-09",
+            "viewed_pdf_url": row["source_reference_url"],
+            "pdf_page_index_zero_based": 4,
+            "printed_page_number": 5,
+            "question_number_visible": question_number,
+            "exam_set_visible": exam_set,
+            "math_family_visible": family,
+            "file_bytes_retained": False,
+            "pdf_sha256": None,
+            "source_question_components_fidelity_verified": False,
+            "source_rights_granted": False,
+            "core2_admission_granted": False,
+        }
+        if any(obs.get(k) != v or isinstance(obs.get(k), bool) != isinstance(v, bool)
+               for k, v in expected.items()):
+            raise ValueError("Remote source observation cannot be forged as custody or authority")
+        if not isinstance(obs.get("note"), str) or "UNVERIFIED" not in obs["note"]:
+            raise ValueError("Missing publication/custody limitation on visual observation")
+        if row["source_locator_pdf_page_index"] is not None:
+            raise ValueError("Visual observation is not an official source custody receipt")
     authored = pilot["authored_teaching_candidate"]
     if (authored.get("kind") != "AUTHORED_CORE1A_TEST_CANDIDATE_NOT_SOURCE_CORE2"
         or authored.get("provenance") != "MODEL_AUTHORED"
@@ -199,6 +233,35 @@ class TestIndexLawsPilot(unittest.TestCase):
         item["original_source_claim"] = True
         with self.assertRaises(ValueError):
             check_pilot(self.pilot, browser, self.custody, self.subtopics)
+
+    def test_visual_source_page_identified_but_custody_held(self):
+        self.valid()
+        for item in self.pilot["source_questions"]:
+            self.assertEqual(item["source_locator_visual_observation"]["pdf_page_index_zero_based"], 4)
+            self.assertEqual(item["source_locator_visual_observation"]["printed_page_number"], 5)
+            self.assertIsNone(item["source_sha256"])
+            self.assertIsNone(item["source_locator_pdf_page_index"])
+            self.assertFalse(item["source_locator_visual_observation"]["core2_admission_granted"])
+
+    def test_reject_visual_locator_promoted_into_official_custody(self):
+        with self.assertRaises(ValueError):
+            self.valid(lambda p: p["source_questions"][0].update(
+                source_locator_pdf_page_index=4))
+
+    def test_reject_unhashed_visual_as_immutable_digest(self):
+        with self.assertRaises(ValueError):
+            self.valid(lambda p: p["source_questions"][0]["source_locator_visual_observation"].update(
+                pdf_sha256="sha256:" + "0" * 64))
+
+    def test_reject_visual_scan_as_rights_grant(self):
+        with self.assertRaises(ValueError):
+            self.valid(lambda p: p["source_questions"][1]["source_locator_visual_observation"].update(
+                source_rights_granted=True))
+
+    def test_reject_fractional_index_misidentified_as_common_base(self):
+        with self.assertRaises(ValueError):
+            self.valid(lambda p: p["source_questions"][1]["source_locator_visual_observation"].update(
+                math_family_visible="COMMON_BASE_EXPONENT_EQUATION"))
 
     def test_reject_unlicensed_source_copy(self):
         with self.assertRaises(ValueError):
