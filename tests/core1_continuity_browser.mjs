@@ -115,6 +115,30 @@ try {
   assert.ok(afterAttemptNav.includes(beforeAttempt.invariant)
     && afterAttemptNav.includes(beforeAttempt.changedDemandStatement),
     "Author transfer explanation was not disclosed after the B attempt");
+  const repair = page.locator("#repair-return");
+  assert.equal(await repair.isVisible(), true, "Question-specific repair route unavailable");
+  assert.match(await page.locator("#repair-return-note").innerText(), /no error or misconception has been diagnosed/i);
+  await page.locator("#repair-return-action").click();
+  assert.match(await page.locator("#projection-status").innerText(), /CORE1A/);
+  assert.match(await page.locator("#repair-return-note").innerText(), /K2D3-1/);
+  await page.locator("#repair-return-action").click();
+  assert.match(await page.locator("#projection-status").innerText(), /CORE2B/);
+  assert.match(await page.locator("#repair-return-note").innerText(), /attempt this changed-decision question first/i);
+  const assistedReturn = await page.evaluate(() => ({
+    attempted: document.querySelector("core-learning-page").state.attempted,
+    model: window.GRADE9V3_CORE.core_projections.find((r) =>
+      r.id === document.getElementById("projection-select").value
+    ).projection.application.transfer.statement,
+    nav: document.getElementById("familiar-transfer").innerText,
+  }));
+  assert.equal(assistedReturn.attempted, false, "Returning to B must reset attempt gate");
+  assert.ok(!assistedReturn.nav.includes(assistedReturn.model),
+    "Assisted retry must not bypass preattempt W disclosure");
+  // Pages actually consumes docs/js mirrors, not public/js; check that host too.
+  await page.goto(`http://127.0.0.1:${port}/docs/core-learning/index.html?projection=${encodeURIComponent(transferId)}`);
+  await page.waitForFunction(() => window.__coreLearningStaticHostReady === true);
+  assert.equal(await page.locator("#familiar-transfer").isVisible(), true);
+  assert.match(await page.locator("#repair-return-note").innerText(), /attempt this changed-decision question first/i);
   assert.deepEqual(failures, [], "Browser JS errors during continuity route");
   console.log("PASS: compiler-bound Core1A → Core1B browser path and session assistance disclosure");
 } finally {
