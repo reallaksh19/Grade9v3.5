@@ -7,6 +7,8 @@ on:
       - "TEST/imo-research/candidates/README-imo-327-core1a-math-gate.md"
       - "tests/test_imo_327_core1a_math_proof.py"
       - "tests/test_imo_327_help_mode_separation.py"
+      - "tests/test_imo_327_qrt_help_golden.py"
+      - "TEST/imo-research/golden/**"
       - "TEST/imo-research/candidates/README-imo-327-concept-first-vs-hints.md"
       - "tools/print/print-product.mjs"
       - ".github/workflows/imo-327-core1a-math.yml"
@@ -29,3 +31,5 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_imo_327_core1a_math_proof.py' -v
       - name: Verify concept-first teaching is not indistinguishable from Core2A hints
         run: python -m unittest discover -s tests -p 'test_imo_327_help_mode_separation.py' -v
+      - name: Validate three actual 7-by-4 QRT golden fixtures, maths and disclosure boundaries
+        run: python -m unittest discover -s tests -p 'test_imo_327_qrt_help_golden.py' -v
