@@ -1,0 +1,26 @@
+name: IMO Index Laws F01 provisional crosswalk
+
+on:
+  pull_request:
+    paths:
+      - "TEST/imo-research/intake/imo-index-laws-subtopic-pilot.v1.json"
+      - "TEST/imo-research/intake/core2-source-custody-eligibility.v1.json"
+      - "TEST/imo-research/taxonomy/sof-class9-subtopics.v1.json"
+      - "Mathematics/research/imo-g9-topic-browser.v1.json"
+      - "tests/test_imo_index_laws_subtopic_pilot.py"
+      - ".github/workflows/imo-index-laws-f01-provenance.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  provenance-holds:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate source-only identity and fail-closed pilot statuses
+        run: python -m unittest discover -s tests -p 'test_imo_index_laws_subtopic_pilot.py' -v
