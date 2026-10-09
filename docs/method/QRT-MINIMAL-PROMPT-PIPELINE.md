@@ -185,6 +185,26 @@ Applicable asks use `YES | PARTLY | NO` with evidence. `PARTLY` and `NO` require
 
 The review record stores the rendered artifact SHA-256. A review of different bytes is stale.
 
+
+### Exact question-to-page binding for new integration candidates (#313 I1a)
+
+The existing `qrt-pipeline-run/v1` validator hashes full rendered HTML and checks all 12 judgements. A page digest alone does **not** establish that the reviewed *question* occurs in that page: a correct hash of a different page would be an apparently valid but misplaced review.
+
+For a new/changed candidate opting into full identity evidence, set:
+
+```json
+{
+  "review_requirements": {
+    "independent_rendered_review_required": true,
+    "question_anchor_binding_required": true
+  }
+}
+```
+
+The referenced `rendered_artifacts[]` row also declares `question_refs: ["Q-..."]` and points to **the same canonical HTML bytes** actually examined by the reviewer. The existing guard now requires each reviewed question to be both declared on that artifact **and present in an actual `<article data-g9-unit="Q-...">` opening tag**. It rejects unknown/duplicate question reviews, duplicated artifact IDs, absolute/path-escaping artifact paths and hash changes. Plain text, strings inside JavaScript or a different question's article cannot stand in for an exact article. This is structural identity binding; it does **not** assess whether the page's mathematics is good, whether reviewer identity is socially independent, or whether all reachable pre-attempt resources preserve W (the existing reachability audit remains mandatory).
+
+The stricter flag is opt-in so historical runs do not acquire fabricated failures; new acceptance candidates should use it. #313 I1b separately owns the cross-question coverage ledger, changed-source invalidation, and automated population of review work orders. A green validator here is **not** completion of that remaining integration.
+
 ## Transitive protected-work policy
 
 P1 covers every resource reachable before commitment, not only text inside the question card.
