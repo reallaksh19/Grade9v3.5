@@ -29,3 +29,15 @@ Checks include `tests/familiar_transfer.test.mjs` (real generated provider witne
 **Explicit holds:** ordinary Core2 authentic source custody (#294 and parked NCERT #68), independent scientific/academic judgement that Core2B really changes DECIDE, QRT-reviewed exact render, learner competence and understanding, independent learner/a11y review, same-screen interaction depth and PDF/browser cross-format review. A structural green CI result neither certifies these nor gives owner authorization to merge/publish. Unmodified legacy Core2B debt remains explicitly managed by `core2b_inventory.py`, not retroactively green.
 
 Further I5 work should create a review packet comparing *what a learner knew after Core2A*, *the parent's solved move*, *the child's genuinely new protected decision* and *specific repair/rubric* with a real independent academic reviewer; then I6 must trace all six roles and attempt/repair/return navigation. Do not call this I4/I5 learner link a fully accepted six-Core product.
+
+## Exact construction repair and honest return (I6 partial)
+
+The existing canonical `application.repair` names a source-specific teaching-path step, not simply a generic topic. `resolveTransferRepair` now requires the step to be present **exactly once** in the same available subject/bucket's compiled `Core1A` microtopic, with matching step ID and authored action. A missing or ambiguous route is **HOLD**.
+
+The learner-host route is **Core2B committed attempt → learner-elected targeted Core1A step → same-question assisted retry**. Until an actual B commitment, no targeted repair link is exposed. The page records the original question and repair-step reference in in-page transient context; returning to B remounts the original learner projection with its independent pre-attempt reveal gate reset. The host expressly states that no wrong mental model was diagnosed and that answering the same question after construction is **assisted practice, not fresh independent transfer**. No automated correctness judgment or learner-data persistence is claimed.
+
+For the existing Physics `K2D3-1` route, the step is canonical and reachable, but **its ability to repair the particular inherited release-velocity decision remains pending independent academic judgement**. Do not upgrade a valid link to a validated teaching repair.
+
+The actual Docs/Pages `docs/core-learning/index.html` now uses the same canonical host template as `public/` and `standalone/`; the browser regression checks both public and Docs/Pages learner hosts, and the builder's `--check` includes all three.
+
+This does **not** close I6: authentic source Core2, independent fresh-item verification, supported diagnosis, staged PDF/print review, a11y and learner evidence are still separate holds.
