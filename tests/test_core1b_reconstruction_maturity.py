@@ -96,9 +96,9 @@ class Core1BReconstructionTests(unittest.TestCase):
         self.assertIn("(t−1)t", e["boundary_test"]["prompt"])
         self.assertIn("t=2", e["boundary_test"]["answer"])
         self.assertIn("multiple-of-three", e["boundary_test"]["answer"])
-        self.assertEqual(len(m["misconceptions"]), 1)
-        self.assertTrue(m["misconceptions"][0]["diagnostic_prompt"])
-        self.assertTrue(m["misconceptions"][0]["repair"])
+        self.assertEqual(len(m["misconceptions"]), 2)
+        self.assertEqual(m["construction_units"][0]["misconception_indexes"], [0, 1])
+        self.assertTrue(all(w["diagnostic_prompt"] and w["repair"] for w in m["misconceptions"]))
         # The limiting case is mathematical falsification, not paraphrasing.
         self.assertEqual((2 - 1) * 2 % 6, 2)
         for t in range(3, 80):
@@ -186,6 +186,57 @@ class Core1BReconstructionTests(unittest.TestCase):
         self.assertEqual(set(pages), set(render_core.build_report(
             MANIFEST, "PAGES", held_to="REFERENCE"
         )[0]))
+
+
+    def test_each_rejected_route_has_a_distinct_governed_diagnosis_and_repair(self):
+        """Example-only and fixed-factor fallacies must have different falsifiers."""
+        _, _, m = fixture()
+        wrong = m["misconceptions"]
+        rejected = m["elicitation"]["attempt"]["rejected"]
+        self.assertEqual(len(rejected), len(wrong))
+        self.assertEqual(len(wrong), 2)
+        self.assertIn("t=3,4,5", rejected[0])
+        self.assertIn("t is always divisible by 3", rejected[1])
+        self.assertIn("far larger than every sample", wrong[0]["diagnostic_prompt"])
+        self.assertIn("t=4", wrong[1]["diagnostic_prompt"])
+        self.assertIn("t−1", wrong[1]["diagnostic_prompt"])
+        self.assertIn("t−2", wrong[1]["repair"])
+        self.assertNotEqual(wrong[0]["diagnostic_prompt"], wrong[1]["diagnostic_prompt"])
+        self.assertNotEqual(wrong[0]["repair"], wrong[1]["repair"])
+        pages, gaps, _, _, _ = render_core.build_report(MANIFEST, "PAGES", held_to="REFERENCE")
+        self.assertEqual(gaps, [], gaps)
+        protected = re.search(
+            r'<template data-g9-payload="[^"]+-reconstruct">(.*?)</template>',
+            pages["core1b.html"], flags=re.DOTALL,
+        )
+        self.assertIsNotNone(protected)
+        for item in wrong:
+            self.assertIn(item["diagnostic_prompt"], protected.group(1))
+            self.assertIn(item["repair"], protected.group(1))
+        self.assertIn("t=4", protected.group(1))
+
+    def test_governed_mod3_warrant_fails_a_swapped_case(self):
+        """Read the actual authored rubric's residue witnesses, not a test-only truth."""
+        _, _, m = fixture()
+        criterion = m["elicitation"]["attempt"]["rubric"][2]["criterion"]
+        match = re.search(
+            r"respectively (t(?:−[12])?), (t(?:−[12])?), (t(?:−[12])?) divisible by 3",
+            criterion,
+        )
+        self.assertIsNotNone(match, "Rubric must name all three residue witnesses")
+        witnesses = match.groups()
+
+        def check_mapping(cases):
+            for residue, expression in enumerate(cases):
+                for t in range(3 + residue, 42, 3):
+                    actual = {"t": t, "t−1": t - 1, "t−2": t - 2}[expression]
+                    self.assertEqual(actual % 3, 0, (residue, expression, t))
+
+        check_mapping(witnesses)
+        with self.assertRaises(AssertionError):
+            check_mapping((witnesses[1], witnesses[0], witnesses[2]))
+        self.assertIn("(t−1)t", m["elicitation"]["boundary_test"]["prompt"])
+        self.assertEqual((2 - 1) * 2 % 6, 2)
 
 
 if __name__ == "__main__":

@@ -170,6 +170,11 @@
           "wrong_idea": "Checking a few starting integers proves the divisibility assertion for all future n.",
           "diagnostic_prompt": "If the starting integer is far larger than every sample you checked, what property guarantees divisibility without recalculation?",
           "repair": "Use complete residue cases modulo 2 and 3 to cover all possible starts; identify guaranteed factors and apply the coprime-product rule."
+        },
+        {
+          "wrong_idea": "The ending factor t is always divisible by 3, so checking the other two factors is unnecessary.",
+          "diagnostic_prompt": "Try t=4: is t divisible by 3? Which one of t−2, t−1, t is divisible by 3 instead, and what changes when t leaves remainder 0, 1 or 2 modulo 3?",
+          "repair": "Replace the fixed-factor claim with all three cases: when t mod 3 is 0 use t; when it is 1 use t−1; when it is 2 use t−2. Combine the guaranteed factor of 3 with an even factor using gcd(2,3)=1."
         }
       ],
       "exit_task": {
@@ -216,7 +221,8 @@
           ],
           "representation_ref": "REP-TEST-CORE1A-QUAL-G9-RESIDUE-TABLE",
           "misconception_indexes": [
-            0
+            0,
+            1
           ],
           "relation_refs": [
             "REL-TEST-CORE1A-QUAL-G9-THREE-CONSECUTIVE-FACTORS"
