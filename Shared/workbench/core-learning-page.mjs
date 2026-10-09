@@ -669,7 +669,8 @@ function renderTeachingPath(path) {
   return `<ol class="construction">${path.map((step) => {
     const action = escapeHtml(step?.action ?? "");
     const why = step?.why_valid ? `<small>${escapeHtml(step.why_valid)}</small>` : "";
-    return `<li><span>${action}</span>${why}</li>`;
+    const id = escapeHtml(step?.id ?? "");
+    return `<li data-teaching-step="${id}" tabindex="-1"><span>${action}</span>${why}</li>`;
   }).join("")}</ol>`;
 }
 
@@ -1077,9 +1078,14 @@ function renderBlueprintSlot(projection, state, slotId) {
   if (slotId === "identity") body = renderIdentity(projection, state);
   else if (slotId === "orientation") body = `${renderOrientationMap(projection)}${renderRepresentation(state)}`;
   else if (slotId === "attempt") {
-    body = projection.concept
-      ? `${renderConcept(projection, state)}${renderAttempt(projection, state)}`
-      : `${renderQuestion(projection, state)}${renderQuestionFigures(projection, state)}${renderRepresentation(state)}${renderAttempt(projection, state)}`;
+    // A question-role projection can carry canonical concept metadata too.
+    // Question roles must render their real source/authored problem here, not
+    // replace it with the concept inferential jump (which can reveal W).
+    const questionRole = ["CORE2", "CORE2A", "CORE2B"].includes(projection.core)
+      && Boolean(projection.application?.question_ref);
+    body = questionRole
+      ? `${renderQuestion(projection, state)}${renderQuestionFigures(projection, state)}${renderRepresentation(state)}${renderAttempt(projection, state)}`
+      : `${renderConcept(projection, state)}${renderAttempt(projection, state)}`;
   } else if (slotId === "support") body = `${renderHints(projection, state)}${renderSupport(projection, state)}`;
   else if (slotId === "solution") body = `${renderReasoningRoute(projection, state)}${renderIndependentCheck(projection, state)}${renderSolutionControl(projection, state)}${renderSolution(projection, state)}${renderCompletion(state)}`;
   else if (slotId === "construction") body = `${renderConcept(projection, state)}${renderRepresentation(state)}${renderConstruction(projection, state)}`;

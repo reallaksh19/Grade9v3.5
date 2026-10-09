@@ -8,6 +8,17 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 
 HOSTS = {
+    # Docs/Pages is a real learner host; use the identical canonical template.
+    "docs/core-learning/index.html": {
+        "data_src": "./data.js",
+        "runtime_base": "../js/core-learning",
+        "site_css": "../css/site.css",
+        "display_src": "../js/display-controls.js",
+        "header_src": "../js/site-header.js",
+        "site_root": "../",
+        "site_parent": "../index.html",
+        "packaging_mode": "PUBLIC",
+    },
     "public/core-learning/index.html": {
         "data_src": "./data.js",
         "runtime_base": "../js/core-learning",
@@ -55,6 +66,25 @@ TEMPLATE = r'''<!doctype html>
     select,button{padding:.55rem .8rem}
     .core-action-link{display:inline-flex;align-items:center;padding:0 .85rem;border:1px solid currentColor;border-radius:.7rem;text-decoration:none}
     [data-status]{margin:0}
+    .repair-return{display:grid;gap:.65rem;border:1px solid var(--border,#d7dce2);border-radius:1rem;padding:1rem;background:var(--surface,#fff)}
+    .repair-return p{margin:.1rem 0;max-width:85ch}
+    .repair-return button{justify-self:start;min-height:3rem}
+    .familiar-transfer{display:grid;gap:.65rem;border:1px solid var(--border,#d7dce2);border-radius:1rem;padding:1rem;background:var(--surface,#fff)}
+    .familiar-transfer h2{margin:0;font-size:1.15rem}
+    .familiar-transfer p{margin:.1rem 0;max-width:85ch}
+    .transfer-paths{list-style:none;padding:0;margin:0;display:grid;gap:.75rem}
+    .transfer-paths li{border-top:1px solid var(--border,#d7dce2);padding-top:.6rem;display:grid;gap:.5rem}
+    .transfer-actions{display:flex;flex-wrap:wrap;gap:.5rem}
+    .transfer-actions button{min-height:3rem;border:1px solid currentColor;border-radius:.65rem}
+    .transfer-actions button[aria-current="step"]{font-weight:800;border-width:2px}
+    .study-journey{display:grid;gap:.65rem;border:1px solid var(--border,#d7dce2);border-radius:1rem;padding:1rem;background:var(--surface,#fff)}
+    .study-journey h2{margin:0;font-size:1.15rem}
+    .study-journey p{margin:.1rem 0;max-width:70ch}
+    .study-routes{display:grid;gap:.75rem;list-style:none;padding:0;margin:0}
+    .study-routes li{border-top:1px solid var(--border,#d7dce2);padding-top:.6rem;display:grid;gap:.45rem}
+    .study-steps{display:flex;gap:.5rem;flex-wrap:wrap}
+    .study-steps button{min-height:3rem;border:1px solid currentColor;border-radius:.65rem}
+    .study-steps button[aria-current="step"]{font-weight:800;border-width:2px}
     .delivery-band{grid-template-columns:repeat(3,minmax(0,1fr))}
     .delivery-band strong{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;opacity:.68}
     .delivery-band span{display:block;margin-top:.2rem;overflow-wrap:anywhere}
@@ -118,6 +148,24 @@ TEMPLATE = r'''<!doctype html>
       </details>
     </details>
 
+    <nav class="study-journey" id="core1-study-journey" aria-label="Canonical Core1 study continuity" hidden>
+      <h2>Orientation → construction → reconstruction</h2>
+      <p id="core1-study-note">Only compiler-bound canonical concept routes appear here; completion is not a mastery judgment.</p>
+      <ul id="core1-study-routes" class="study-routes"></ul>
+    </nav>
+
+    <nav class="familiar-transfer" id="familiar-transfer" aria-label="Familiar application and changed-demand transfer" hidden>
+      <h2>Familiar application → changed-demand transfer</h2>
+      <p id="familiar-transfer-note">Only compiler-bound question lineage is navigable. Structural evidence is not academic or learner acceptance.</p>
+      <ul id="familiar-transfer-paths" class="transfer-paths"></ul>
+    </nav>
+
+    <section class="repair-return" id="repair-return" aria-label="Question-specific repair and assisted return" hidden>
+      <h2>Specific repair and return</h2>
+      <p id="repair-return-note"></p>
+      <button type="button" id="repair-return-action" hidden></button>
+    </section>
+
     <section class="delivery-band" aria-label="Resolved web delivery contract">
       <div><strong>Blueprint</strong><span id="blueprint-ref">—</span></div>
       <div><strong>Layout</strong><span id="layout-family">—</span></div>
@@ -146,6 +194,8 @@ TEMPLATE = r'''<!doctype html>
     import "__CORE_RUNTIME_BASE__/semantic-workbench.mjs";
     import "__CORE_RUNTIME_BASE__/core-learning-page.mjs";
     import { mountCoreLearningPage } from "__CORE_RUNTIME_BASE__/core-learning-host.mjs";
+    import { resolveCore1StudyContinuity } from "__CORE_RUNTIME_BASE__/core1-continuity.mjs";
+    import { resolveFamiliarTransfer, resolveTransferRepair } from "__CORE_RUNTIME_BASE__/familiar-transfer.mjs";
 
     const data = window.GRADE9V3_CORE;
     const rows = Array.isArray(data?.core_projections) ? data.core_projections : [];
@@ -164,6 +214,19 @@ TEMPLATE = r'''<!doctype html>
     const explorerPanel = document.getElementById("explorer-panel");
     const explorerFrame = document.getElementById("explorer-frame");
     const explorerOpen = document.getElementById("explorer-open");
+    const studyJourney = document.getElementById("core1-study-journey");
+    const studyNote = document.getElementById("core1-study-note");
+    const studyRoutes = document.getElementById("core1-study-routes");
+    const viewedConstruction = new Set();
+    const visitedFamiliar = new Set();
+    const reviewedFamiliar = new Set();
+    let pendingRepair = null; // In-page only: question and precise step, no graded diagnosis.
+    const repairPanel = document.getElementById("repair-return");
+    const repairNote = document.getElementById("repair-return-note");
+    const repairAction = document.getElementById("repair-return-action");
+    const transferNav = document.getElementById("familiar-transfer");
+    const transferNote = document.getElementById("familiar-transfer-note");
+    const transferPaths = document.getElementById("familiar-transfer-paths");
     const registries = window.CORE_LEARNING_REGISTRIES || {};
     const siteRoot = "__SITE_ROOT__";
 
@@ -226,11 +289,215 @@ TEMPLATE = r'''<!doctype html>
       document.documentElement.dataset.layoutFamily = web.layout_family;
     }
 
+    function renderStudyJourney(row) {
+      const continuity = resolveCore1StudyContinuity(data, row?.id);
+      studyRoutes.replaceChildren();
+      studyJourney.hidden = continuity.status === "OUTSIDE_CORE1_STUDY";
+      if (studyJourney.hidden) return;
+      if (!continuity.paths.length) {
+        studyNote.textContent = "Canonical study navigation held: " + continuity.findings.join(" · ") +
+          ". The activity selector remains available; no concept path has been inferred.";
+        return;
+      }
+      const hasAssisted = continuity.paths.some((path) =>
+        row?.projection?.core === "CORE1B" &&
+        viewedConstruction.has(path.subject + "|" + path.microtopic_ref));
+      const notes = [
+        "Core1 orients, Core1A exposes the completed construction, and Core1B asks for your own reconstruction before its model is revealed.",
+        "Viewing Core1A before Core1B is assisted study, not an uncued mastery result; this host does not grade or certify independent learning.",
+      ];
+      if (hasAssisted) notes.push("Session assistance: the completed Core1A construction has already been viewed for this concept.");
+      if (continuity.findings.length) notes.push("Other routes held: " + continuity.findings.join(" · "));
+      studyNote.textContent = notes.join(" ");
+      for (const path of continuity.paths) {
+        const item = document.createElement("li");
+        const heading = document.createElement("strong");
+        heading.textContent = path.title + " · " + path.microtopic_ref;
+        const steps = document.createElement("div");
+        steps.className = "study-steps";
+        for (const step of path.steps) {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.textContent = {
+            CORE1: "Core1 · Map",
+            CORE1A: "Core1A · Learn the construction",
+            CORE1B: "Core1B · Attempt reconstruction",
+          }[step.core];
+          if (step.id === row.id) {
+            button.setAttribute("aria-current", "step");
+            button.disabled = true;
+          } else {
+            button.addEventListener("click", () => mount(step.id));
+          }
+          steps.append(button);
+        }
+        item.append(heading, steps);
+        studyRoutes.append(item);
+      }
+    }
+
+    function renderFamiliarTransfer(row) {
+      const outcome = resolveFamiliarTransfer(data, row?.id);
+      transferPaths.replaceChildren();
+      transferNav.hidden = outcome.status === "OUTSIDE_PRACTICE";
+      if (transferNav.hidden) return;
+      if (!outcome.pairs.length) {
+        transferNote.textContent = outcome.status === "NO_TRANSFER_CHILD"
+          ? "No compiler-bound new-demand Core2B descendant for this familiar application. Do not manufacture a transfer question."
+          : "Transfer navigation held: " + outcome.findings.join(" · ") +
+            ". Use an independently reviewed activity; no question pairing was inferred.";
+        return;
+      }
+      const didVisit = outcome.pairs.some((pair) =>
+        visitedFamiliar.has(row.subject + "|" + pair.parent_ref));
+      const sawWorked = outcome.pairs.some((pair) =>
+        reviewedFamiliar.has(row.subject + "|" + pair.parent_ref));
+      const text = [
+        "The familiar question demonstrates an earlier route; Core2B asks for a different decision while preserving the stated invariant.",
+        "Lineage, protected DECIDE and rubric are structural source evidence, not proof of authentic source custody or independent academic novelty.",
+      ];
+      if (row.projection?.core === "CORE2B") {
+        text.push(sawWorked
+          ? "This session revealed the related Core2A worked explanation; transfer is assisted by instructional exposure, not certified mastery."
+          : didVisit
+            ? "The related Core2A question was visited, but its worked explanation was not observed. Prior capability is unverified."
+            : "No related Core2A encounter has been observed this session. Study the familiar question first; prior capability is unverified.");
+      }
+      if (outcome.findings.length) text.push("Other pairs held: " + outcome.findings.join(" · "));
+      transferNote.textContent = text.join(" ");
+      for (const pair of outcome.pairs) {
+        const item = document.createElement("li");
+        const heading = document.createElement("strong");
+        heading.textContent = pair.parent_ref + " → " + pair.child_ref;
+        // Both the declared invariant and the author's changed-demand statement
+        // may contain the protected W answer. Do not print either in navigation
+        // before the B attempt, including while browsing the familiar A parent.
+        const mayShowTransferExplanation = row?.projection?.core === "CORE2B"
+          && learner.state?.attempted === true;
+        const invariant = document.createElement("p");
+        invariant.textContent = mayShowTransferExplanation
+          ? "Preserved invariant after attempt: " + pair.invariant
+          : "Preserved invariant withheld until after your Core2B attempt.";
+        const demand = document.createElement("p");
+        demand.textContent = mayShowTransferExplanation
+          ? "Changed learner decision after attempt (" + pair.transfer_dimension + "): " +
+              pair.changed_demand_statement
+          : "New decision (" + pair.transfer_dimension + ") — exact model choice withheld until your attempt.";
+        const nav = document.createElement("div");
+        nav.className = "transfer-actions";
+        for (const step of [
+          { id: pair.parent_projection_id, label: "Core2A · Familiar worked application" },
+          { id: pair.transfer_projection_id, label: "Core2B · Attempt changed decision" },
+        ]) {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.textContent = step.label;
+          if (step.id === row.id) {
+            button.disabled = true;
+            button.setAttribute("aria-current", "step");
+          } else {
+            button.addEventListener("click", () => mount(step.id));
+          }
+          nav.append(button);
+        }
+        item.append(heading, invariant, demand, nav);
+        transferPaths.append(item);
+      }
+    }
+
+    function renderRepairReturn(row) {
+      repairPanel.hidden = true;
+      repairAction.hidden = true;
+      repairAction.onclick = null;
+      const core = row?.projection?.core;
+      if (core === "CORE1A" && pendingRepair?.target_projection_id === row.id) {
+        repairPanel.hidden = false;
+        const matchingSteps = [...(learner.shadowRoot?.querySelectorAll("[data-teaching-step]") || [])]
+          .filter((element) => element.getAttribute("data-teaching-step") === pendingRepair.repair_step_ref);
+        if (matchingSteps.length !== 1) {
+          repairNote.textContent = "The canonical Core1A concept loaded, but its exact repair step is not " +
+            "uniquely addressable in the actual rendered learner page. Route held; no precise repair claimed.";
+          return;
+        }
+        matchingSteps[0].focus({ preventScroll: true });
+        matchingSteps[0].scrollIntoView({ block: "center", behavior: "instant" });
+        repairNote.textContent = "Returned from " + pendingRepair.origin_question_ref +
+          " to this exact Core1A teaching step " + pendingRepair.repair_step_ref +
+          ". Study the construction and decide whether it addresses your difficulty. " +
+          "No wrong idea has been automatically diagnosed. Returning to the same question will be assisted practice.";
+        repairAction.textContent = "Return to question · assisted retry";
+        repairAction.hidden = false;
+        repairAction.onclick = () => mount(pendingRepair.origin_projection_id);
+        return;
+      }
+      if (core !== "CORE2B") return;
+      repairPanel.hidden = false;
+      const found = resolveTransferRepair(data, row.id);
+      if (found.status !== "CANONICAL_REPAIR_STEP_REVIEW_REQUIRED"
+          || found.paths.length !== 1) {
+        repairNote.textContent = "Exact canonical repair route held: " +
+          found.findings.join(" · ") + ". Do not guess a teaching destination.";
+        return;
+      }
+      const path = found.paths[0];
+      if (!learner.state?.attempted) {
+        repairNote.textContent = pendingRepair?.origin_projection_id === row.id
+          ? "You returned from Core1A repair. This same-question retry is assisted practice, " +
+            "not an independent transfer measurement. Your new response must still be committed " +
+            "before protected explanation or further repair becomes available."
+          : "Attempt this changed-decision question first. The specific " +
+            "construction step is protected until commitment; you can separately choose earlier familiar study.";
+        return;
+      }
+      const returnAssisted = pendingRepair?.origin_projection_id === row.id;
+      repairNote.textContent = (returnAssisted
+        ? "You returned after a targeted construction. This is a fresh response entry to the SAME question, not an independent transfer measurement. "
+        : "An attempt is recorded; no error or misconception has been diagnosed. ") +
+        "The canonical repair candidate is step " + path.repair_step_ref +
+        " of " + path.repair_microtopic_ref +
+        ". Its adequacy for your exact mistake still needs academic review.";
+      repairAction.textContent = "Study exact Core1A step " + path.repair_step_ref;
+      repairAction.hidden = false;
+      repairAction.onclick = () => {
+        pendingRepair = path;
+        mount(path.target_projection_id);
+      };
+    }
+
+    learner.addEventListener("attempt_committed", () => {
+      const row = rows.find((item) => item.id === select.value);
+      if (row?.projection?.core === "CORE2B" && learner.state?.attempted) {
+        renderFamiliarTransfer(row);
+        renderRepairReturn(row);
+      }
+    });
+
+    learner.addEventListener("reveal_changed", (event) => {
+      const row = rows.find((item) => item.id === select.value);
+      if (row?.projection?.core !== "CORE2A") return;
+      if (!["reasoning", "solution"].includes(event.detail?.kind)) return;
+      const qid = row.projection.application?.question_ref;
+      if (!qid) return;
+      reviewedFamiliar.add(row.subject + "|" + qid);
+      renderFamiliarTransfer(row);
+    });
+
     function mount(id, { updateUrl = true } = {}) {
       try {
         const row = rows.find((item) => item.id === id);
         const result = mountCoreLearningPage(learner, data, id, registries);
         select.value = result.id;
+        if (row?.projection?.core === "CORE1A") {
+          const concept = row.projection.concept?.microtopic_ref;
+          if (concept) viewedConstruction.add(row.subject + "|" + concept);
+        }
+        if (row?.projection?.core === "CORE2A") {
+          const familiar = row.projection.application?.question_ref;
+          if (familiar) visitedFamiliar.add(row.subject + "|" + familiar);
+        }
+        renderStudyJourney(row);
+        renderFamiliarTransfer(row);
+        renderRepairReturn(row);
         mountExplorer(row);
         renderDelivery(row);
         subjectContext.textContent = [row?.subject, row?.projection?.core].filter(Boolean).join(" · ") || "Compiled canonical learner activity";
