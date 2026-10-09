@@ -8,7 +8,7 @@ Original research identity: 2024–25 school-mirror SOF IMO G9 Set B printed Q26
 
 **Newly authored anchor** (not a transcription): `3^(2x+1)=9^x+162`. With positive `t=3^(2x)`, write `3t=t+162`, hence `t=81=3^4` and `x=2`. Independently check `3^5=9²+162=243`.
 
-The learner receives five named and justified moves: declare the real positive-base domain, rewrite powers to a common quantity, justify the multiplicative factor, solve in `t` and map back, then verify original equality. Explicit wrong paths are equating exponents across a *sum* and accepting a nonpositive `t`. A text-symbol relation table aligns `9^x` with `t` and `3^(2x+1)` with `3t`. No decorative or licensed source figure is used.
+The learner receives five named and justified moves: declare the real positive-base domain, rewrite powers to a common quantity, justify the multiplicative factor, solve in `t` and map back, then verify original equality. Explicit wrong paths are equating exponents across a *sum* and accepting a nonpositive `t`. An accessible three-stage authored SVG plus text-symbol relation table align `9^x` with `t` and `3^(2x+1)` with `3t`. The SVG is new authored teaching material, with labeled positive-base, factor and solve stages; no source figure or licensed asset is used.
 
 **Independent authored exit:** `2^(2y+1)=4^y+64`. Correct `t=4^y=64`, `y=3`; reverse-check `128=128`. An additional nonpositive-`t` counterexample tests domain boundaries. The construction is a proposed repair for the verified *mathematical reasoning*, not guaranteed fidelity to every original printed component.
 
@@ -16,6 +16,7 @@ The learner receives five named and justified moves: declare the real positive-b
 
 - `TEST/imo-research/candidates/imo-g9-q26-common-base-core1a.v1.json` — canonical-shaped **authored** `TEST` library schema `0.2.0`, one capability, one microtopic, one complete Core1A construction, no source Core2 questions or source-bound materials.
 - `TEST/imo-research/candidates/imo-g9-q26-common-base-core1a.test.manifest.json` — selects **CORE1A only**, empty source bank and no other Core role; all seven authored practice questions remain separately inventoried.
+- `TEST/imo-research/candidates/assets/REP-TEST-IMO-G9-COMMON-BASE-RELATION.svg` — accessible, original three-stage relation diagram; no source image.
 - `tests/test_imo_q26_common_base_core1a.py` — schema/references, maths oracles, explicit no-acceptance assertions and real renderer in-memory output test.
 - `.github/workflows/imo-q26-authored-core1a-render.yml` — invokes **existing** `Shared/tools/render_core.py build --draft`, then **existing** `tools/print/print-product.mjs`, then actual Playwright Chromium at 320/390/768/1280 and 390/200% text size, and verifies exact learner PDF bytes + print receipt.
 - `tools/site-audit/imo-q26-core1a-render-review.mjs` — browser check and authored screenshot measurements; no teacher/key material or original SOF PDF acquisition.
