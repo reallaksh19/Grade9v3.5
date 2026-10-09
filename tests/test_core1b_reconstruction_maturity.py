@@ -261,5 +261,19 @@ class Core1BReconstructionTests(unittest.TestCase):
         self.assertIn("if(!attemptedFor(a,d))return", render_core.JS)
         self.assertIn("a.dataset.g9BoundaryAttempted='1'", render_core.JS)
 
+    def test_core1b_print_layout_is_scoped_and_preserves_complete_gates(self):
+        """Role-local CSS must never change CORE1A/CORE2A or remove protected answers."""
+        pages, gaps, _, _, _ = render_core.build_report(MANIFEST, "PAGES", held_to="REFERENCE")
+        self.assertEqual(gaps, [])
+        for role in ("core1a.html", "core1b.html", "core2a.html"):
+            self.assertIn('html[data-g9-role="CORE1B"] .g9-concept-triad-bar', pages[role])
+            self.assertIn('html[data-g9-role="CORE1B"] article[data-g9-role="CORE1B"] .g9-split', pages[role])
+            self.assertNotIn('html[data-g9-role="CORE1A"] .g9-concept-triad-bar', pages[role])
+            self.assertNotIn('html[data-g9-role="CORE2A"] .g9-concept-triad-bar', pages[role])
+        b = pages["core1b.html"]
+        self.assertIn('data-g9-block="boundary_test"', b)
+        self.assertIn('data-g9-block="boundary_answer"', b)
+        self.assertEqual(b.count('data-g9-attempt-stage="boundary"'), 2)
+
 if __name__ == "__main__":
     unittest.main()
