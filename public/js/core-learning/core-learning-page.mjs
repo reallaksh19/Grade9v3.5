@@ -669,7 +669,8 @@ function renderTeachingPath(path) {
   return `<ol class="construction">${path.map((step) => {
     const action = escapeHtml(step?.action ?? "");
     const why = step?.why_valid ? `<small>${escapeHtml(step.why_valid)}</small>` : "";
-    return `<li><span>${action}</span>${why}</li>`;
+    const id = escapeHtml(step?.id ?? "");
+    return `<li data-teaching-step="${id}" tabindex="-1"><span>${action}</span>${why}</li>`;
   }).join("")}</ol>`;
 }
 

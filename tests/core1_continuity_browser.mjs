@@ -121,6 +121,14 @@ try {
   await page.locator("#repair-return-action").click();
   assert.match(await page.locator("#projection-status").innerText(), /CORE1A/);
   assert.match(await page.locator("#repair-return-note").innerText(), /K2D3-1/);
+  const stepFocus = await page.evaluate(() => {
+    const shadow = document.querySelector("core-learning-page").shadowRoot;
+    const target = shadow.querySelector('[data-teaching-step="K2D3-1"]');
+    return { exists: Boolean(target), focused: shadow.activeElement === target, text: target?.innerText || "" };
+  });
+  assert.equal(stepFocus.exists, true, "Canonical target step not in constructed lesson");
+  assert.equal(stepFocus.focused, true, "Exact repair step did not receive keyboard focus");
+  assert.match(stepFocus.text, /free flight after release/i);
   await page.locator("#repair-return-action").click();
   assert.match(await page.locator("#projection-status").innerText(), /CORE2B/);
   assert.match(await page.locator("#repair-return-note").innerText(), /same-question retry is assisted practice/i);
