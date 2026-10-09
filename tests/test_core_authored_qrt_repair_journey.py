@@ -13,7 +13,7 @@ from pathlib import Path
 from Shared.tools import product_manifest, product_coverage, question_review_matrix as qrt, render_core
 
 ROOT = Path(__file__).resolve().parents[1]
-PACK = ROOT / "TEST/library/core1a-render-qualified-divisibility.v1.json"
+PACK = ROOT / "TEST/imo-research/pilots/core1a-render-qualified-divisibility.v1.json"
 MANIFEST = ROOT / "TEST/products/core-authored-qrt-repair-journey.manifest.json"
 ORIGINAL_MANIFEST = ROOT / "TEST/products/core1a-divisibility-render-maturity.manifest.json"
 QUESTION_ID = "Q-TEST-CORE2A-THREE-ADJACENT-PRODUCT-PROOF"
