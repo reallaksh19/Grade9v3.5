@@ -98,6 +98,17 @@
   function resolveCoreDestinationsFor(row, corePayload) {
     const availability = ((row || {}).availability || {}).core || 'UNAVAILABLE';
     const refs = Array.isArray((row || {}).core_projection_refs) ? row.core_projection_refs : [];
+    // A structurally READY Atlas mapping cannot override the separately
+    // governed publication gate. Never link a withheld Core projection.
+    if (corePayload?.publication_gate?.status === 'HOLD') {
+      return {
+        status: 'HOLD',
+        code: 'NO_INDEPENDENT_CORE_PUBLICATION_GRANT',
+        refs,
+        ready: [],
+        unresolved: refs
+      };
+    }
     if (availability !== 'READY') {
       return { status: availability, refs, ready: [], unresolved: [] };
     }
@@ -290,6 +301,8 @@
           ? `<a href="${escapeHtml(href)}" class="btn outline" style="font-size:11px;padding:4px 9px;margin:4px 6px 0 0;">Core · ${escapeHtml(ref)} ↗</a>`
           : '';
       }).join('');
+    } else if (core.status === 'HOLD') {
+      coreActions = '<span class="badge hold">Core publication held: NO_INDEPENDENT_CORE_PUBLICATION_GRANT</span>';
     } else if (availability.core === 'READY' && core.status !== 'READY') {
       coreActions = '<span class="badge hold">CORE_PROJECTION_RUNTIME_UNRESOLVED</span>';
     } else {
