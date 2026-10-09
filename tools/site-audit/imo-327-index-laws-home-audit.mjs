@@ -89,7 +89,11 @@ try {
     if (await link.count()) {
       await link.focus();
       const focus = await link.evaluate(el => document.activeElement === el);
-      await page.keyboard.press('Enter');
+      await Promise.all([
+        page.waitForURL(url => new URL(url).pathname.endsWith('/index-laws/index.html'),
+                        {waitUntil: 'load', timeout: 10000}),
+        page.keyboard.press('Enter')
+      ]);
       const location = new URL(page.url()).pathname;
       const heading = await page.locator('main h1').innerText();
       report.parentToChild[width] = {focus, heading, location};
