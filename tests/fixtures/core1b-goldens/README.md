@@ -31,3 +31,7 @@ Run `python -m unittest tests.test_core1b_three_case_goldens -v` along with exis
 U6 independent Grade 9 learning / assistive-tech / source custody, and print/key owner review **NOT_RUN / NOT_GRANTED**; all experimental golden fixtures stay TEST-only and cannot change canonical-QRT ownership.
 
 Run browser golden QA with `node tools/site-audit/core1b-three-case-golden-audit.mjs` after installing the existing Playwright/Chromium test dependency. No human answer or synthetic grade is captured or uploaded.
+
+## U6 human observation protocol (not a trial result)
+
+See [`U6-HUMAN-ACCEPTANCE-PROTOCOL.md`](U6-HUMAN-ACCEPTANCE-PROTOCOL.md) for the three-case, reviewer-only observer worksheet, mathematical warrants, separate keyboard/screen-reader pass and explicit **UNASSISTED vs REFERENCE_EXPOSED** boundary distinction. All entries remain **NOT_RUN / NOT_GRANTED**. Do not commit filled student transcripts, protected student data or answer keys to CI artifacts.
