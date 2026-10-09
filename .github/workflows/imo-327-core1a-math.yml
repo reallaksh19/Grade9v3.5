@@ -1,0 +1,24 @@
+name: IMO Index Laws Core1A math and source holds
+
+on:
+  pull_request:
+    paths:
+      - "TEST/imo-research/candidates/imo-g9-q26-common-base-core1a.v1.json"
+      - "TEST/imo-research/candidates/README-imo-327-core1a-math-gate.md"
+      - "tests/test_imo_327_core1a_math_proof.py"
+      - ".github/workflows/imo-327-core1a-math.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  math-and-authority:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Independently verify exponential laws, inverse and repair guards
+        run: python -m unittest discover -s tests -p 'test_imo_327_core1a_math_proof.py' -v
