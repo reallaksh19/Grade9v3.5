@@ -33,6 +33,14 @@ try{
     assert(!/SOF-IMO-G09/.test(text),w+': authentic source label leaked');
     assert(widths.scroll<=widths.client,w+': horizontal page overflow '+(widths.scroll-widths.client));
     assert(!jsErrors.length,w+': page errors '+jsErrors.join(';'));
+    // A Core2A question starts with zero visible hints. The first is genuinely
+    // optional and its disclosure must count as assisted, not independent.
+    const initialHints=await article.locator('[data-g9-ladder] [data-g9-rung]').count();
+    const firstButton=article.locator('[data-g9-next-rung]').first();
+    const assistanceNotice=article.locator('[data-g9-assistance-status]').first();
+    assert(initialHints===0,w+': H1 must not be disclosed before request');
+    assert(await firstButton.innerText()==='Show hint 1',w+': first hint is not opt-in');
+    assert(await assistanceNotice.isHidden(),w+': unexplained assisted-attempt notice');
     const safeFigures=article.locator('figure[data-g9-stage="PRE_ATTEMPT"]');
     assert(await safeFigures.count()===1,w+': original authored stem needs one attempt-safe figure');
     const leakedFigures=await article.locator('figure[data-g9-stage="PRE_ATTEMPT"]').evaluateAll(
@@ -48,6 +56,15 @@ try{
       await page.screenshot({path:path.join(outDir,'attempt-390-200pct.png'),fullPage:true});
     }
     if(w===1280){
+      await firstButton.click();
+      const didReveal=await article.locator('[data-g9-ladder] [data-g9-rung]').count()===1;
+      const assisted=await article.getAttribute('data-g9-assisted');
+      const assistedKinds=await article.getAttribute('data-g9-assistance');
+      const notice=await assistanceNotice.isVisible();
+      assert(didReveal&&assisted==='1'&&assistedKinds?.includes('HINT_LADDER')&&notice,
+        'first optional hint did not label this as an assisted attempt');
+      report.assistedHint={didReveal,assisted,assistedKinds,notice,
+        noIndependentMasteryClaim:true};
       const summary=article.locator('summary').filter({hasText:'Reasoning route and full solution'}).first();
       assert(await summary.count()===1,'missing accessible full-solution control');
       if(await summary.count()){
@@ -80,6 +97,33 @@ try{
             found:!!document.getElementById(decodeURIComponent(location.hash.slice(1)))}));
           assert(target.onCore1A&&target.found,'repair anchor target missing');
           report.repair=target;
+          // This link must lead to a neutral-law gate, not expose the previous
+          // question's worked answer as a hint.
+          const check=page.locator('article[data-g9-role="CORE1A"] [data-g9-concept-check]').first();
+          const guided=page.locator('article[data-g9-role="CORE1A"] [data-g9-concept-target]').first();
+          assert(await check.count()===1,'Core1A missing concept-first checkpoint');
+          assert(await guided.isHidden(),'guided Core1A worked solution visible before concept check');
+          const prompt=await check.innerText();
+          assert(prompt.includes('2⁴')&&prompt.includes('5⁽ⁿ⁺¹⁾'),
+            'Core1A did not start with unrelated neutral index-law examples');
+          await check.locator('[data-g9-concept-option][value="ADD"]').check();
+          await check.locator('[data-g9-concept-reason]').fill(
+            'An exponent means multiply by another factor of the base.');
+          await check.locator('[data-g9-concept-commit]').click();
+          const wrongBlocked=await guided.isHidden();
+          await check.locator('[data-g9-concept-option][value="FACTOR"]').check();
+          await check.locator('[data-g9-concept-reason]').fill('Just because');
+          await check.locator('[data-g9-concept-commit]').click();
+          const reasonBlocked=await guided.isHidden();
+          await check.locator('[data-g9-concept-reason]').fill(
+            'An extra exponent multiplies the existing power by a factor equal to its base.');
+          await check.locator('[data-g9-concept-commit]').click();
+          const guidedVisible=await guided.isVisible();
+          const formative=await page.locator('article[data-g9-role="CORE1A"]').first()
+            .getAttribute('data-g9-concept-check-completed');
+          assert(wrongBlocked&&reasonBlocked&&guidedVisible&&formative==='formative_only',
+            'Core1A must check choice+reason before revealing guided teaching');
+          report.conceptCheck={wrongBlocked,reasonBlocked,guidedVisible,formative};
           await page.screenshot({path:path.join(outDir,'core1a-repair-1280.png'),fullPage:true});
         }
       }
