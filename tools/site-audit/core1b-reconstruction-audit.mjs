@@ -109,8 +109,8 @@ try {
       boundary_only_does_not_open_proof:boundaryOnlyDoesNotOpenProof,
       boundary_paper_attempt_permitted:boundaryPaperAttemptPermitted,
       has_residue_question:/remainder 0,1 or 2/.test(text),
-      has_coprime_question:/gcd\\(2,3\\)/.test(text),
-      prediction_check_visible:/No\\. Three checks are instances/.test(text),
+      has_coprime_question:/gcd\(2,3\)/.test(text),
+      prediction_check_visible:/No\. Three checks are instances/.test(text),
       full_rubric_evidence_visible:/Evidence:/.test(text),
       accepted_and_rejected_visible:/Representative answers that satisfy/.test(text)
         && /Answers that do not yet satisfy/.test(text)
