@@ -193,9 +193,17 @@ def desired_files(repo: Path = REPO) -> dict[str, tuple[str, bytes]]:
         if not source.is_file():
             continue
         relative = source.relative_to(public).as_posix()
+        content = source.read_bytes()
+        if relative == "core-learning/data.js":
+            # Verify the bytes *actually being copied*, not just the earlier
+            # source preflight. The file could change between those reads.
+            from Shared.tools import build_core_learning_data
+            expected = build_core_learning_data.rendered_file()[f"public/{relative}"]
+            if content != expected:
+                raise ValueError("CORE_PUBLICATION_HOLD_MIRROR_SOURCE_CHANGED")
         files[relative] = (
             f"public/{relative}",
-            _public_payload(relative, source.read_bytes()),
+            _public_payload(relative, content),
         )
 
     for source_rel, target_rel in EXTRA_SOURCES.items():
