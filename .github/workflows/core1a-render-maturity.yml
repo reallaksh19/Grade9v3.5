@@ -12,7 +12,7 @@ on:
       - 'tests/test_core_authored_qrt_repair_journey.py'
       - 'tools/site-audit/core-authored-qrt-repair-journey-audit.mjs'
       - 'docs/method/CORE-LEARNER-JOURNEY-ACADEMIC-REVIEW.md'
-      - 'tests/test_imo_core1a_renderer_maturity.py'
+      - 'tests/test_core1a_renderer_maturity.py'
       - 'tools/site-audit/core1a-render-maturity-audit.mjs'
       - 'docs/method/CORE1A-RENDERER-AGENT-HANDOFF.md'
   workflow_dispatch:
@@ -43,7 +43,7 @@ jobs:
           python Shared/tools/question_review_matrix.py write --check
           python -m unittest tests.test_question_review_matrix -v
       - name: Exercise exact manifest through real renderer and falsify bad selection
-        run: python -m unittest tests.test_imo_core1a_renderer_maturity -v
+        run: python -m unittest tests.test_core1a_renderer_maturity -v
       - name: Verify authored QRT JUSTIFY-D2 question and same-concept repair joins
         run: python -m unittest tests.test_core_authored_qrt_repair_journey -v
       - name: Actual registered-blueprint render, TEST stamping and print receipt
