@@ -113,7 +113,7 @@ class BatchGResearchOnlyEightPositionTests(unittest.TestCase):
         self.assertEqual(sorted(transformed)[3],5)
         self.assertNotEqual(sorted(transformed)[3],4)
         self.assertEqual(row["math_research"]["prior_agent_option"],"B")
-        self.assertIn("fourth digit = 4",shown["register_owner_summary"])
+        self.assertIn("Fourth digit = 4",shown["register_owner_summary"])
 
     def test_cube_q1_rotation_oracle_enumerates_only_legal_cube_rotations(self):
         normals={"U":(0,0,1),"D":(0,0,-1),"F":(0,-1,0),"B":(0,1,0),"R":(1,0,0),"L":(-1,0,0)}
