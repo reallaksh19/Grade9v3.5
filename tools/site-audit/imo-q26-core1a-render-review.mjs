@@ -64,7 +64,7 @@ try{
   await page.setViewportSize({width:1280,height:800});
   await page.goto(url,{waitUntil:'load'});
   const content=await page.locator('body').innerText();
-  for(const phrase of ['a common positive quantity','3t=t+162','2^(2y+1)=4^y+64']){
+  for(const phrase of ['shared positive quantity','3t=t+162','2^(2y+1)=4^y+64']){
     if(!content.includes(phrase))report.failures.push('learner text missing '+phrase);
   }
   if(content.includes('SOF-IMO-G09')||content.includes('© SOF'))
@@ -72,6 +72,11 @@ try{
   const steps=await page.locator('[data-g9-step]').count();
   report.steps=steps;
   if(steps!==5)report.failures.push('expected five authored teaching steps, got '+steps);
+  report.figure_count=await page.locator('figure[data-g9-figure] svg').count();
+  report.figure_stages=await page.locator('figure[data-g9-figure] [data-g9-stage-id]').count();
+  if(report.figure_count!==1||report.figure_stages!==3)
+    report.failures.push('expected one accessible authored SVG and three semantic stages: '
+      +JSON.stringify([report.figure_count,report.figure_stages]));
   const reveals=await page.locator('[data-g9-reveal],details,button').count();
   report.accessible_controls_count=reveals;
   if(reveals===0)report.failures.push('no keyboard-operable learner controls rendered');
