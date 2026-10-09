@@ -64,10 +64,14 @@ class ConceptFirstRendererContract(unittest.TestCase):
         # Hint 1 still exists inside an inert <template> for explicit reveal;
         # its DOM text must not appear in the initially visible ladder.
         self.assertIn('data-g9-assistance-status role="status" aria-live="polite" hidden', html)
-        self.assertIn('Hints viewed: assisted practice, not independent mastery.', html)
+        self.assertIn('Hint support status is recorded locally, not as mastery.', html)
         self.assertIn("['CORE2','CORE2A'].includes(a.dataset.g9Role)", html)
         self.assertIn("markAssistance(a,'HINT_LADDER');nextRung", html)
         self.assertIn("if(state.assisted){a.dataset.g9Assisted='1'", html)
+        self.assertIn("a.dataset.g9Role==='CORE2A'&&a.dataset.attempted", html)
+        self.assertIn("a.dataset.g9PostAttemptHints='1'", html)
+        self.assertIn("postAttemptHints:!!a.dataset.g9PostAttemptHints", html)
+        self.assertIn("does not retroactively change the prior attempt.", html)
         self.assertIn('data-g9-stage="PRE_ATTEMPT"', html)
         self.assertIn('data-g9-repair-ref="TC-02"', html)
 
