@@ -23,6 +23,14 @@
     select,button{padding:.55rem .8rem}
     .core-action-link{display:inline-flex;align-items:center;padding:0 .85rem;border:1px solid currentColor;border-radius:.7rem;text-decoration:none}
     [data-status]{margin:0}
+    .familiar-transfer{display:grid;gap:.65rem;border:1px solid var(--border,#d7dce2);border-radius:1rem;padding:1rem;background:var(--surface,#fff)}
+    .familiar-transfer h2{margin:0;font-size:1.15rem}
+    .familiar-transfer p{margin:.1rem 0;max-width:85ch}
+    .transfer-paths{list-style:none;padding:0;margin:0;display:grid;gap:.75rem}
+    .transfer-paths li{border-top:1px solid var(--border,#d7dce2);padding-top:.6rem;display:grid;gap:.5rem}
+    .transfer-actions{display:flex;flex-wrap:wrap;gap:.5rem}
+    .transfer-actions button{min-height:3rem;border:1px solid currentColor;border-radius:.65rem}
+    .transfer-actions button[aria-current="step"]{font-weight:800;border-width:2px}
     .study-journey{display:grid;gap:.65rem;border:1px solid var(--border,#d7dce2);border-radius:1rem;padding:1rem;background:var(--surface,#fff)}
     .study-journey h2{margin:0;font-size:1.15rem}
     .study-journey p{margin:.1rem 0;max-width:70ch}
@@ -100,6 +108,12 @@
       <ul id="core1-study-routes" class="study-routes"></ul>
     </nav>
 
+    <nav class="familiar-transfer" id="familiar-transfer" aria-label="Familiar application and changed-demand transfer" hidden>
+      <h2>Familiar application → changed-demand transfer</h2>
+      <p id="familiar-transfer-note">Only compiler-bound question lineage is navigable. Structural evidence is not academic or learner acceptance.</p>
+      <ul id="familiar-transfer-paths" class="transfer-paths"></ul>
+    </nav>
+
     <section class="delivery-band" aria-label="Resolved web delivery contract">
       <div><strong>Blueprint</strong><span id="blueprint-ref">—</span></div>
       <div><strong>Layout</strong><span id="layout-family">—</span></div>
@@ -129,6 +143,7 @@
     import "../../public/js/core-learning/core-learning-page.mjs";
     import { mountCoreLearningPage } from "../../public/js/core-learning/core-learning-host.mjs";
     import { resolveCore1StudyContinuity } from "../../public/js/core-learning/core1-continuity.mjs";
+    import { resolveFamiliarTransfer } from "../../public/js/core-learning/familiar-transfer.mjs";
 
     const data = window.GRADE9V3_CORE;
     const rows = Array.isArray(data?.core_projections) ? data.core_projections : [];
@@ -151,6 +166,10 @@
     const studyNote = document.getElementById("core1-study-note");
     const studyRoutes = document.getElementById("core1-study-routes");
     const viewedConstruction = new Set();
+    const visitedFamiliar = new Set();
+    const transferNav = document.getElementById("familiar-transfer");
+    const transferNote = document.getElementById("familiar-transfer-note");
+    const transferPaths = document.getElementById("familiar-transfer-paths");
     const registries = window.CORE_LEARNING_REGISTRIES || {};
     const siteRoot = "../../public/";
 
@@ -260,6 +279,62 @@
       }
     }
 
+    function renderFamiliarTransfer(row) {
+      const outcome = resolveFamiliarTransfer(data, row?.id);
+      transferPaths.replaceChildren();
+      transferNav.hidden = outcome.status === "OUTSIDE_PRACTICE";
+      if (transferNav.hidden) return;
+      if (!outcome.pairs.length) {
+        transferNote.textContent = outcome.status === "NO_TRANSFER_CHILD"
+          ? "No compiler-bound new-demand Core2B descendant for this familiar application. Do not manufacture a transfer question."
+          : "Transfer navigation held: " + outcome.findings.join(" · ") +
+            ". Use an independently reviewed activity; no question pairing was inferred.";
+        return;
+      }
+      const didVisit = outcome.pairs.some((pair) =>
+        visitedFamiliar.has(row.subject + "|" + pair.parent_ref));
+      const text = [
+        "The familiar question demonstrates an earlier route; Core2B asks for a different decision while preserving the stated invariant.",
+        "Lineage, protected DECIDE and rubric are structural source evidence, not proof of authentic source custody or independent academic novelty.",
+      ];
+      if (row.projection?.core === "CORE2B") {
+        text.push(didVisit
+          ? "This session viewed the related Core2A familiar example; the transfer attempt is assisted by that exposure, not certified mastery."
+          : "No related Core2A encounter has been observed this session. Study the familiar question first; prior capability is unverified.");
+      }
+      if (outcome.findings.length) text.push("Other pairs held: " + outcome.findings.join(" · "));
+      transferNote.textContent = text.join(" ");
+      for (const pair of outcome.pairs) {
+        const item = document.createElement("li");
+        const heading = document.createElement("strong");
+        heading.textContent = pair.parent_ref + " → " + pair.child_ref;
+        const invariant = document.createElement("p");
+        invariant.textContent = "Preserved model: " + pair.invariant;
+        const demand = document.createElement("p");
+        demand.textContent = "Changed learner decision (" + pair.transfer_dimension + "): " +
+          pair.changed_demand_statement;
+        const nav = document.createElement("div");
+        nav.className = "transfer-actions";
+        for (const step of [
+          { id: pair.parent_projection_id, label: "Core2A · Familiar worked application" },
+          { id: pair.transfer_projection_id, label: "Core2B · Attempt changed decision" },
+        ]) {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.textContent = step.label;
+          if (step.id === row.id) {
+            button.disabled = true;
+            button.setAttribute("aria-current", "step");
+          } else {
+            button.addEventListener("click", () => mount(step.id));
+          }
+          nav.append(button);
+        }
+        item.append(heading, invariant, demand, nav);
+        transferPaths.append(item);
+      }
+    }
+
     function mount(id, { updateUrl = true } = {}) {
       try {
         const row = rows.find((item) => item.id === id);
@@ -269,7 +344,12 @@
           const concept = row.projection.concept?.microtopic_ref;
           if (concept) viewedConstruction.add(row.subject + "|" + concept);
         }
+        if (row?.projection?.core === "CORE2A") {
+          const familiar = row.projection.application?.question_ref;
+          if (familiar) visitedFamiliar.add(row.subject + "|" + familiar);
+        }
         renderStudyJourney(row);
+        renderFamiliarTransfer(row);
         mountExplorer(row);
         renderDelivery(row);
         subjectContext.textContent = [row?.subject, row?.projection?.core].filter(Boolean).join(" · ") || "Compiled canonical learner activity";
