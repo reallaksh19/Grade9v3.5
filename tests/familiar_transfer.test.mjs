@@ -161,6 +161,8 @@ test("both generated learner hosts wire the guided transfer and disclose exposur
     assert.match(s, /id="familiar-transfer"/);
     assert.match(s, /resolveFamiliarTransfer/);
     assert.match(s, /visitedFamiliar/);
+    assert.match(s, /reviewedFamiliar/);
+    assert.match(s, /worked explanation was not observed/i);
     assert.match(s, /prior capability is unverified/i);
     assert.match(s, /not certified mastery/i);
   }
