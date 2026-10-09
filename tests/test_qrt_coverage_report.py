@@ -184,7 +184,9 @@ class QRTPipelineCoverageTests(unittest.TestCase):
         row = self._snapshot()["rows"][0]
         self.assertIn("CANONICAL_AUTHORITY_INPUT_UNTRACKED",
                       [x["code"] for x in row["findings"]])
-        self.assertIn("QUESTION_OR_PROFILE_SOURCE_UNTRACKED",
+        self.assertIn("QUESTION_SOURCE_NOT_TRACKED",
+                      [x["code"] for x in row["findings"]])
+        self.assertIn("LEARNER_PROFILE_NOT_TRACKED",
                       [x["code"] for x in row["findings"]])
 
     def test_run_head_or_run_content_change_is_detected(self):
