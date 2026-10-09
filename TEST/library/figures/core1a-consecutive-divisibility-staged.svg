@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 455" role="img"
+ aria-label="Three-stage proof of divisibility of the product of three consecutive integers"
+ font-family="system-ui, sans-serif" font-size="27" fill="currentColor">
+  <title>Why three consecutive factors guarantee a multiple of six</title>
+  <desc>First stage uses adjacent parity to guarantee a factor of two. Second stage checks all three residue classes modulo three to guarantee a factor of three. Third stage combines coprime divisors two and three to prove divisibility by six for every positive integer start.</desc>
+  <g data-g9-stage-id="DIV-STEP-PARITY">
+    <text x="24" y="42" font-weight="700">1 · Parity guarantee</text>
+    <text x="28" y="85">n , n+1 , n+2</text>
+    <text x="28" y="123">n and n+1 differ by 1</text>
+    <text x="28" y="161">so one is even: factor 2.</text>
+  </g>
+  <g data-g9-stage-id="DIV-STEP-RESIDUES">
+    <text x="24" y="207" font-weight="700">2 · Remainders modulo 3</text>
+    <line x1="24" y1="224" x2="588" y2="224" stroke="currentColor" stroke-width="2"/>
+    <text x="28" y="260">n mod 3 = 0  →  n</text>
+    <text x="28" y="300">n mod 3 = 1  →  n+2</text>
+    <text x="28" y="340">n mod 3 = 2  →  n+1</text>
+  </g>
+  <g data-g9-stage-id="DIV-STEP-COPRIME">
+    <text x="24" y="392" font-weight="700">3 · Combine valid factors</text>
+    <text x="28" y="430">2 and 3 coprime  →  6 divides</text>
+    <text x="28" y="455">the whole product, every n.</text>
+  </g>
+</svg>
