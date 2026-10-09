@@ -27,7 +27,11 @@ def validate(repo: Path = REPO) -> dict:
         doc = json.loads((repo / EVIDENCE).read_text(encoding="utf-8"))
     except (OSError, UnicodeError, json.JSONDecodeError) as exc:
         raise ValueError("R4 NCERT edition provenance: missing or invalid evidence") from exc
-    require(doc == FROZEN, "frozen scope, bibliographic caveat, or authority flag changed")
+    # Python's bool/int equality (False == 0) is too permissive for
+    # provenance and promotion flags. Compare canonical JSON *types* too.
+    require(json.dumps(doc, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+            == json.dumps(FROZEN, ensure_ascii=False, sort_keys=True, separators=(",", ":")),
+            "frozen scope, bibliographic caveat, or authority flag changed")
     banks = test_intake_registry.load_intake_banks(repo)
     require(len(banks) == 1 and banks[0]["bank_id"] == "ncert-cbse-math-g9-pilot",
             "intake bank identity changed")
