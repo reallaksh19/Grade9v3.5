@@ -45,7 +45,19 @@ class Q26CommonBaseCore1ATests(unittest.TestCase):
         serialized=json.dumps(d,ensure_ascii=False)
         for unsafe in ("SOF-IMO-G09","©SOF",'"origin": "SOF"', "https://sofworld.org/download/"):
             self.assertNotIn(unsafe,serialized)
-        self.assertFalse(d["representations"][0]["rendered_asset_refs"])
+        rep=d["representations"][0]
+        self.assertEqual(len(rep["rendered_asset_refs"]),1)
+        asset=ROOT/rep["rendered_asset_refs"][0]
+        self.assertTrue(asset.is_file())
+        svg=asset.read_text(encoding="utf-8")
+        self.assertIn("<title>",svg)
+        self.assertIn("<desc>",svg)
+        self.assertIn('aria-label=',svg)
+        self.assertEqual([s["id"] for s in rep["reveal_stages"]],
+                         ["Q26-BASE","Q26-FACTOR","Q26-SOLVE"])
+        for item in rep["reveal_stages"]:
+            self.assertIn('data-g9-stage-id="'+item["id"]+'"',svg)
+        self.assertNotIn("SOF-IMO-G09",svg)
 
     def test_exact_subject_scoped_manifest(self):
         from Shared.tools import product_manifest
@@ -109,6 +121,8 @@ class Q26CommonBaseCore1ATests(unittest.TestCase):
             self.assertIn(phrase,html)
         self.assertNotIn("SOF-IMO-G09",html)
         self.assertNotIn("Original paper question",html)
+        self.assertEqual(html.count('data-g9-stage-id="Q26-'),3)
+        self.assertIn("data-g9-figure",html)
         self.assertEqual([], [g for g in gaps if g["duty"]=="PRODUCT_SELECTION_UNRESOLVED"])
         # A legitimate gap/advisory is not an academic rejection or a green grade.
         self.assertIsInstance(gaps,list)
