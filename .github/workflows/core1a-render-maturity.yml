@@ -85,11 +85,11 @@ jobs:
           PY
       - name: Actual authored Core2A -> Core1A TEST journey render and print
         run: |
-          python Shared/tools/deploy_test.py product \\
+          python Shared/tools/deploy_test.py product \
             TEST/products/core-authored-qrt-repair-journey.manifest.json --no-mirror
       - name: Browser-observed attempt, keyboard reveal, QRT-safe repair routing, zoom
         run: |
-          node tools/site-audit/core-authored-qrt-repair-journey-audit.mjs \\
+          node tools/site-audit/core-authored-qrt-repair-journey-audit.mjs \
             public/test/products/core-authored-qrt-repair-journey
       - name: Verify BOTH role PDFs, honest TEST receipt and no source Core2
         run: |
@@ -123,7 +123,7 @@ jobs:
             'browser_failures':q['failures'],'human_screen_reader':'NOT_RUN',
             'learner_trial':'NOT_RUN','academic_review':'NOT_GRANTED',
             'canonical_published':False,'owner_acceptance':False}
-          (p/'journey-evidence'/'journey-qualification.json').write_text(json.dumps(summary,indent=2)+'\\n')
+          (p/'journey-evidence'/'journey-qualification.json').write_text(json.dumps(summary,indent=2))
           print(json.dumps(summary,indent=2))
           PY
       - name: Preserve rendered HTML, real PDF and failure evidence for owner review
