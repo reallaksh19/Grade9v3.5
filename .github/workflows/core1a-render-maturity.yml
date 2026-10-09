@@ -75,6 +75,8 @@ jobs:
           # Catch visually clipped inline SVG proof: generic PDF existence is not enough.
           assert 'Parity guarantee' in extracted, 'Core1A printed stage heading cropped'
           assert 'so one is even: factor 2.' in extracted, 'Core1A printed stage meaning cropped'
+          assert 'Remainders modulo 3' in extracted, 'Core1A second stage omitted from PDF'
+          assert 'Combine valid factors' in extracted, 'Core1A third stage omitted from PDF'
           proof={'pages':len(reader.pages),'pdf_bytes':pdf.stat().st_size,
             'render_digest':j['render_digest'],'source_input_sha256':j['inputs_sha256'],
             'gap_count':j['gap_count'],'gaps':j['gaps'],'advisories':j['advisories'],
@@ -116,6 +118,8 @@ jobs:
               if name=='core1a':
                   assert 'Parity guarantee' in extracted, 'Core1A PDF stage title clipped'
                   assert 'so one is even: factor 2.' in extracted, 'Core1A PDF stage conclusion clipped'
+                  assert 'Remainders modulo 3' in extracted, 'Core1A PDF second stage omitted'
+                  assert 'Combine valid factors' in extracted, 'Core1A PDF third stage omitted'
               else:
                   # Third authored factor was clipped in the previous passing build.
                   assert 'm + 3' in extracted or 'm+3' in extracted, 'Core2A PDF third factor clipped'
