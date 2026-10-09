@@ -1,0 +1,65 @@
+{
+  "schema": "core1b-three-case-golden/v1",
+  "version": "1.0.0",
+  "status": "TEST_FIXTURE_NOT_CURRICULUM_ADMISSION",
+  "review_status": "NOT_INDEPENDENTLY_APPROVED",
+  "learner_trial": "NOT_RUN",
+  "policy": {
+    "attempt": "NONWHITESPACE_OR_EXPLICIT_PAPER",
+    "empty_text": "BLOCK",
+    "whitespace_text": "BLOCK",
+    "short_nonblank_text": "ACCEPT_UNGRADED",
+    "paper_attempt": "ACCEPT_UNGRADED",
+    "first_commit_unlocks": "DIAGNOSTIC_RECONSTRUCTION_ONLY",
+    "repair_commit": "REQUIRED_BEFORE_REFERENCE",
+    "reference_answer": "REVEAL_ON_EXPLICIT_ACTION_AFTER_REPAIR",
+    "boundary_commit": "SEPARATE_FROM_PROOF_AND_REPAIR",
+    "boundary_reference": "REVEAL_ONLY_AFTER_OWN_ATTEMPT",
+    "automatic_grade": "NEVER",
+    "student_mastery": "NOT_MEASURED",
+    "precommit_answer_access": "UI_HIDDEN_NOT_CRYPTOGRAPHIC"
+  },
+  "id": "motion",
+  "title": "Returning to the start",
+  "subject": "Physics",
+  "topic": "Motion",
+  "source": {
+    "origin": "NEW_AUTHOR_DEMONSTRATION",
+    "original_custody": "NOT_APPLICABLE",
+    "approved_package": false,
+    "official_exam_custody": false
+  },
+  "qrt": {
+    "cell": "QRT-MODEL-D2",
+    "primary_demand": "MODEL",
+    "band": "D2",
+    "secondary_demands": [
+      "APPLY"
+    ],
+    "reason": "The key choice is distinguishing distance-based speed from displacement-based velocity before using time.",
+    "protected_work": "Learner must choose the correct numerator for each average, justify zero displacement with nonzero distance, and preserve the direction."
+  },
+  "learner": {
+    "situation": "A student walks 60 m east, then 60 m west, taking 40 seconds in total. The student returns to the start and says: My average speed is zero.",
+    "question": "Do you agree? Reconstruct total distance, displacement, average speed and average velocity and explain the misconception.",
+    "encouragement": "Start with what you think. You do not have to get it right yet—we will work through the reasoning together.",
+    "plausible_wrong_attempt": "They are back where they started, so speed is zero.",
+    "misconception": "Zero net displacement means that the distance traveled and average speed must also be zero.",
+    "diagnostics": [
+      "How much ground did the student actually cover?",
+      "What is the net change between the start and finish positions?",
+      "Which formula uses distance rather than displacement?",
+      "Which formula uses displacement and a direction?"
+    ],
+    "repair_prompt": "Rewrite or improve your reasoning. Explain what was missing.",
+    "reference": "The student travels 60+60=120 m, but ends at the starting point, so displacement is zero. Average speed is 120/40=3 m/s. Average velocity is 0/40=0 m/s. Zero displacement is not zero distance: the student confused average velocity and average speed.",
+    "warrants": [
+      "Distance accumulated along the path",
+      "Displacement computed from endpoints",
+      "Average speed uses total distance/time",
+      "Average velocity uses signed displacement/time"
+    ],
+    "boundary_question": "The student instead goes 60 m east, then 30 m west, in 30 seconds. What are average speed and average velocity? Give the direction of velocity.",
+    "boundary_answer": "Total distance=90 m; displacement=30 m east. Average speed=90/30=3 m/s. Average velocity=30/30=1 m/s east."
+  }
+}

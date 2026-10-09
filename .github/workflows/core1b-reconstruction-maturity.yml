@@ -21,6 +21,8 @@ on:
       - 'tools/print/print-product.mjs'
       - 'tools/site-audit/core1b-custody-evidence.py'
       - 'tests/test_core1b_key_custody.py'
+      - 'tests/test_core1b_three_case_goldens.py'
+      - 'tests/fixtures/core1b-goldens/**'
   workflow_dispatch:
 
 permissions:
@@ -49,7 +51,7 @@ jobs:
           python Shared/tools/question_review_matrix.py write --check
           python -m unittest tests.test_question_review_matrix -v
       - name: Prove same-concept learner reconstruction and real canonical render
-        run: python -m unittest tests.test_core1b_reconstruction_maturity tests.test_core1b_key_custody -v
+        run: python -m unittest tests.test_core1b_reconstruction_maturity tests.test_core1b_key_custody tests.test_core1b_three_case_goldens -v
       - name: Build all three TEST role pages through existing renderer and printed PDF path
         run: |
           python Shared/tools/deploy_test.py product \
