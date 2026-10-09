@@ -124,7 +124,7 @@ class BatchDGeometrySourceTests(unittest.TestCase):
         b=ids["SOF-IMO-G09-L1-2024-25-B-Q035"]["source_capability_research"]
         self.assertNotEqual(a["family"],b["family"])
         self.assertIn("right-angle",a["comparison_to_pr306_design"].lower())
-        self.assertIn("constraints",b["decisive_inference"])
+        self.assertIn("linked side conditions",b["decisive_inference"])
         q=ids["SOF-IMO-G09-L1-2023-24-A-Q049"]["source_capability_research"]
         self.assertIn("300%",q["math_warrant"])
         self.assertIn("60/13",q["math_warrant"])
