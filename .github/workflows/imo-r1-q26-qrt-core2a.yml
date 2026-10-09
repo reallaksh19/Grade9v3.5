@@ -69,6 +69,10 @@ jobs:
               assert 'Core' in content or 'common' in content.lower(),role
               if role=='core1a':
                   assert 'One common exponential quantity' in content or 'Recognize a shared exponential quantity' in content,content[:600]
+                  # A legitimate PDF must include every mathematical SVG stage, not merely exist.
+                  for stage in ('Name the positive quantity','Keep the multiplicative factor',
+                                'Solve, then return to the exponent'):
+                      assert stage in content, 'Core1A PRINT STAGE MISSING/CLIPPED: '+stage
               else:
                   assert '4^(2u+1)' in content or '4 (2u+1)' in content or '192' in content,content[:700]
                   assert '4t' in content and '256' in content,'Core2A explanatory steps absent from PDF'
