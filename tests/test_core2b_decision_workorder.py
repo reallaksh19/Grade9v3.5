@@ -50,8 +50,8 @@ class ProtectedDecisionReviewPacketTests(unittest.TestCase):
 
     def test_digest_rebinds_to_changed_source_not_to_old_verdict(self):
         original = audit.build_packet(self.source_bytes)
-        changed = self.packet(lambda data: self.question(data, audit.CHILD)["stem"].__class__)
-        self.assertEqual(changed["source_sha256"], original["source_sha256"])
+        same = audit.build_packet(self.source_bytes)
+        self.assertEqual(same["source_sha256"], original["source_sha256"])
         changed = self.packet(lambda data: self.question(data, audit.CHILD).update(
             {"stem": self.question(data, audit.CHILD)["stem"] + " A new phrase."}
         ))
