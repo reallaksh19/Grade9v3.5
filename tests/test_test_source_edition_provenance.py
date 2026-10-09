@@ -48,6 +48,8 @@ class NCERTEditionProvenanceTests(unittest.TestCase):
     def test_forged_publisher_provenance_claims_are_rejected(self):
         mutations = (
             ("verified edition", lambda d: d.__setitem__("publisher_edition_verified", True)),
+            ("numeric false impersonation", lambda d: d.__setitem__("publisher_edition_verified", 0)),
+            ("float scope count", lambda d: d.__setitem__("rows_bearing_raw_label", 210.0)),
             ("fake hash", lambda d: d.__setitem__("official_pdf_sha256", "sha256:" + "a" * 64)),
             ("downloaded official bytes", lambda d: d.__setitem__("exact_official_pdf_bytes_obtained", True)),
             ("third-party mirror promoted", lambda d: d["secondary_bibliography"].__setitem__(
