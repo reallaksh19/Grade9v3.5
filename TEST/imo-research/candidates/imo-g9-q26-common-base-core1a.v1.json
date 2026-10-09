@@ -248,6 +248,11 @@
               "statement": "Check the independent base-2 exit at y=3 and explain why an inferred t≤0 is impossible.",
               "check_type": "TRANSFER_AND_DOMAIN_CHECK"
             }
+          ],
+          "reveal_stage_refs": [
+            "Q26-BASE",
+            "Q26-FACTOR",
+            "Q26-SOLVE"
           ]
         }
       ],
@@ -374,7 +379,9 @@
         "Treating the exponent offset +1 as addition to the power value.",
         "Dropping t>0 and accepting a negative substitution result."
       ],
-      "rendered_asset_refs": [],
+      "rendered_asset_refs": [
+        "TEST/imo-research/candidates/assets/REP-TEST-IMO-G9-COMMON-BASE-RELATION.svg"
+      ],
       "scene_instances": [],
       "correspondence": [
         {
@@ -391,6 +398,36 @@
           "element": "Original equation row",
           "symbol": "3t=t+162",
           "in_words": "The equation becomes linear in t; then map the result back to x."
+        }
+      ],
+      "reveal_stages": [
+        {
+          "id": "Q26-BASE",
+          "label": "Name common quantity",
+          "purpose": "Show that 9^x is 3^(2x), a strictly positive t.",
+          "visible_elements": [
+            "9^x=3^(2x)=t",
+            "t>0"
+          ]
+        },
+        {
+          "id": "Q26-FACTOR",
+          "label": "Preserve power factor",
+          "purpose": "Make the exponent offset produce the factor 3 instead of treating it as addition.",
+          "visible_elements": [
+            "3^(2x+1)=3t",
+            "One extra exponent multiplies"
+          ]
+        },
+        {
+          "id": "Q26-SOLVE",
+          "label": "Solve and map back",
+          "purpose": "Compare the original two sides through 3t=t+162, then map t=81 back to x.",
+          "visible_elements": [
+            "3t=t+162",
+            "t=81",
+            "x=2"
+          ]
         }
       ]
     }
