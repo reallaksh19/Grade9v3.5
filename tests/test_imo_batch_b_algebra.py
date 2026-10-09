@@ -144,8 +144,10 @@ class BatchBAlgebraTests(unittest.TestCase):
         self.assertEqual(2*2-1,3)
         self.assertEqual(46+14,60)
         self.assertEqual(40,5*8)
-        self.assertEqual(5*F(28,5)-F(4,5)*5,24)  # unit-normalization sanity
-        self.assertEqual(F(28,1)*5-F(4,1)*3,F(128,1))
+        for x,y in ((0,0),(3,2),(7,5)):
+            original=F(28,5)*x-F(4,5)*y
+            normalized=28*x-4*y
+            self.assertEqual(5*original,normalized)
         self.assertEqual(5*800-3*800,1600)
         self.assertEqual(4*800-2*800,1600)
 
