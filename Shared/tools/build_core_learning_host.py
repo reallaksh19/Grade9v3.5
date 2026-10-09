@@ -345,11 +345,20 @@ TEMPLATE = r'''<!doctype html>
         const item = document.createElement("li");
         const heading = document.createElement("strong");
         heading.textContent = pair.parent_ref + " → " + pair.child_ref;
+        // Both the declared invariant and the author's changed-demand statement
+        // may contain the protected W answer. Do not print either in navigation
+        // before the B attempt, including while browsing the familiar A parent.
+        const mayShowTransferExplanation = row?.projection?.core === "CORE2B"
+          && learner.state?.attempted === true;
         const invariant = document.createElement("p");
-        invariant.textContent = "Preserved model: " + pair.invariant;
+        invariant.textContent = mayShowTransferExplanation
+          ? "Preserved invariant after attempt: " + pair.invariant
+          : "Preserved invariant withheld until after your Core2B attempt.";
         const demand = document.createElement("p");
-        demand.textContent = "Changed learner decision (" + pair.transfer_dimension + "): " +
-          pair.changed_demand_statement;
+        demand.textContent = mayShowTransferExplanation
+          ? "Changed learner decision after attempt (" + pair.transfer_dimension + "): " +
+              pair.changed_demand_statement
+          : "New decision (" + pair.transfer_dimension + ") — exact model choice withheld until your attempt.";
         const nav = document.createElement("div");
         nav.className = "transfer-actions";
         for (const step of [
@@ -371,6 +380,13 @@ TEMPLATE = r'''<!doctype html>
         transferPaths.append(item);
       }
     }
+
+    learner.addEventListener("attempt_committed", () => {
+      const row = rows.find((item) => item.id === select.value);
+      if (row?.projection?.core === "CORE2B" && learner.state?.attempted) {
+        renderFamiliarTransfer(row);
+      }
+    });
 
     learner.addEventListener("reveal_changed", (event) => {
       const row = rows.find((item) => item.id === select.value);
