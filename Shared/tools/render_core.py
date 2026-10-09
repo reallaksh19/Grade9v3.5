@@ -1715,7 +1715,20 @@ def core1b(ctx: Ctx, m: dict) -> str:
     rec = e.get("reconstruct") or {}
     att = e.get("attempt") or {}
     bt = e.get("boundary_test") or {}
-    model = att.get("model_response") or "; ".join(r.get("criterion", "") for r in att.get("rubric") or [])
+    # Keep one governed elicitation record. A Core1B RUBRIC closure must
+    # actually show criterion -> evidence, accepted AND rejected examples after
+    # commitment; omitting rejected answers makes standalone self-check incomplete.
+    rubric = att.get("rubric") or []
+    model = (
+        (para(att.get("model_response")) if att.get("model_response") else "")
+        + (para("Check each criterion and what it demonstrates:")
+           + items((r.get("criterion", "") + " — Evidence: " + r.get("evidence_of", "")
+                    for r in rubric)) if rubric else "")
+        + (para("Representative answers that satisfy the criteria:")
+           + items(att.get("accepted")) if att.get("accepted") else "")
+        + (para("Answers that do not yet satisfy the criteria:")
+           + items(att.get("rejected")) if att.get("rejected") else "")
+    )
     task = att.get("task")
     # The attempt's own figure; the Core1A unit's figure depicts the worked anchor, not this task.
     task_rep = (task or {}).get("representation_ref") or unit.get("representation_ref")
@@ -1735,7 +1748,7 @@ def core1b(ctx: Ctx, m: dict) -> str:
                    + block("diagnose", items(w["diagnostic_prompt"] for w in wrong), title="Diagnose")
                    + block("repair", items(w["repair"] for w in wrong), title="Repair")
                    + block("success_criteria", para(att.get("produces")), title="What your answer should contain")
-                   + block("model_response", para(model) + items(att.get("accepted")), title="What a complete answer does")
+                   + block("model_response", model, title="Self-check: criteria, valid and invalid answers")
                    + block("rejoin_jump", para(m["inferential_jump"]), title="The step you rebuilt")
                    + figure(ctx, task_rep, "POST_ATTEMPT", "CORE1B", m["id"] + "-full"),
                    ref=f'CORE1B-{m["id"]}-reconstruct')
