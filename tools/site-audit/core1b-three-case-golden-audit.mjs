@@ -162,6 +162,59 @@ try {
     !raw.includes(x.learner.boundary_answer)),
     'export: authored proof or boundary answer included in student evidence');
  } finally {await context.close();}
+
+ // Shared-school-device privacy: reset cancellation preserves all work;
+ // confirmation wipes every case, proof reference and exported student text.
+ const resetCtx=await browser.newContext({viewport:{width:390,height:800},acceptDownloads:true});
+ const resetPage=await resetCtx.newPage();
+ try {
+  await resetPage.goto(pathToFileURL(html).href);
+  await resetPage.locator('#tab-0').click();
+  await resetPage.locator('#firstResponse').fill('Child original idea');
+  await resetPage.locator('#commitFirst').click();
+  await resetPage.locator('#repairResponse').fill('My repaired answer');
+  await resetPage.locator('#commitRepair').click();
+  await resetPage.locator('#showReference').click();
+  await resetPage.locator('#boundaryResponse').fill('My boundary reasoning');
+  await resetPage.locator('#commitBoundary').click();
+  check(await resetPage.locator('#boundaryReferenceArea').isVisible(),
+    'privacy reset: completed Case 1 setup failed');
+  await resetPage.locator('#tab-2').click();
+  await resetPage.locator('#paperFirst').check();
+  await resetPage.locator('#commitFirst').click();
+  check(await resetPage.locator('#repairStage').isVisible(),
+    'privacy reset: paper Case 3 setup failed');
+  resetPage.once('dialog',dialog=>dialog.dismiss());
+  await resetPage.locator('#clear').click();
+  await resetPage.locator('#tab-0').click();
+  check(await resetPage.locator('#boundaryReferenceArea').isVisible() &&
+    (await resetPage.locator('#firstResponse').inputValue())==='Child original idea',
+    'privacy reset: cancelled action must preserve Case 1');
+  await resetPage.locator('#tab-2').click();
+  check(await resetPage.locator('#repairStage').isVisible(),
+    'privacy reset: cancelled action must preserve paper Case 3');
+  resetPage.once('dialog',dialog=>dialog.accept());
+  await resetPage.locator('#clear').click();
+  for(let j=0;j<3;j++){
+   await resetPage.locator('#tab-'+j).click();
+   check((await resetPage.locator('#firstResponse').inputValue())==='' &&
+     !(await resetPage.locator('#repairStage').isVisible()) &&
+     !(await resetPage.locator('#boundaryReferenceArea').isVisible()) &&
+     !(await resetPage.locator('#paperFirst').isChecked()),
+     'privacy reset: confirmation did not clear all state for Case '+(j+1));
+  }
+  const afterResetDownload=resetPage.waitForEvent('download');
+  await resetPage.locator('#export').click();
+  const afterReset=JSON.parse(fs.readFileSync(await (await afterResetDownload).path(),'utf8'));
+  check(Array.isArray(afterReset.cases)&&afterReset.cases.length===3 &&
+    afterReset.cases.every(c=>c.first_attempt===''&&!c.first_attempt_committed &&
+      c.repair===''&&!c.repair_committed &&
+      c.boundary_attempt===''&&!c.boundary_attempt_committed &&
+      c.grading==='NOT_GRADED'),
+    'privacy reset: exported student evidence still contains attempted work');
+  check(!JSON.stringify(afterReset).includes('Child original idea'),
+    'privacy reset: student first-attempt text leaked after clear');
+ } finally {await resetCtx.close();}
 } finally {await browser.close();}
 console.log(JSON.stringify({schema:'core1b-three-case-golden-browser/v1',fixture_count:fixtures.length,
  tested_viewports:checked,variant_paper_cases:fixtures.length,
