@@ -39,7 +39,9 @@ try {
       h1:document.querySelector('h1')?.textContent?.trim()||'',
       units:document.querySelectorAll('article[data-g9-role="CORE1A"]').length,
       test:document.documentElement.dataset.g9Test==='sandbox-draft',
-      acceptance:document.documentElement.dataset.g9CanonicalAcceptance||''
+      acceptance:document.documentElement.dataset.g9CanonicalAcceptance||'',
+      stages:document.querySelectorAll('figure[data-g9-figure] [data-g9-stage-id]').length,
+      authoredFigures:document.querySelectorAll('figure[data-g9-figure] svg[aria-label] title').length
     }));
     await page.screenshot({path:path.join(evidenceDir,name+'.png'),fullPage:true});
     report.sizes.push({name, ...measurements, page_errors:errors});
@@ -48,6 +50,20 @@ try {
     if (!measurements.test) report.failures.push(name+': missing actual TEST stamp');
     if (measurements.units<1) report.failures.push(name+': missing canonical Core1A article');
     if (errors.length) report.failures.push(name+': browser JS errors: '+errors.join('; '));
+    if (measurements.stages<3 || measurements.authoredFigures<1)
+      report.failures.push(name+': canonical authored staged SVG missing/inaccessible');
+    if (name==='desktop-1280') {
+      const summary=page.locator('details:not([data-requires-attempt]) summary').first();
+      if (await summary.count()) {
+        await summary.focus();
+        await summary.press('Enter');
+        const opened=await summary.evaluate(el=>el.parentElement.open);
+        await summary.press('Enter');
+        const closed=!(await summary.evaluate(el=>el.parentElement.open));
+        report.keyboard={summary_enter_opens:opened,summary_enter_closes:closed};
+        if (!opened || !closed) report.failures.push('keyboard Enter disclosure open/close failed');
+      } else { report.failures.push('no keyboard-accessible authored disclosure found'); }
+    }
     if (name==='mobile-390') {
       await page.addStyleTag({content:'html {font-size:200%!important}'});
       const zoom=await page.evaluate(()=>({
