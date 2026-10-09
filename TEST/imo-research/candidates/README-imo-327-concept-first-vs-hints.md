@@ -21,19 +21,19 @@ Status: **AUTHORING CANDIDATE ONLY**, NOT an admitted QRT/runtime behaviour or l
 4. **Graduated aid when genuinely stuck:** Diagnose (factor confusion, nonpositive t, bad inversion). Explain the specific general law *before* showing its application to the target line; avoid a one-click answer dump.
 5. **Unassisted exit:** `2^(2y+1)=4^y+64`, requiring fresh identification, factor relation, inverse and verification; model answer is only revealed after an attempt in the existing TEST renderer.
 
-**Important implementation honesty:** The authored `CONCEPT_ONLY` probe is currently represented as readable lesson content/quick check; the shared renderer does NOT enforce an answer before showing the worked anchor. `compact_anchor` is reused content; it is not a new interactive gate. These facts do not establish independent concept comprehension.
+**Updated implementation honesty:** An opt-in `grade9v3:concept_checkpoint` now causes the TEST Core1A renderer to show a neutral-law demonstration and ask for a factor-law choice **plus a minimal explanatory rationale** before revealing the guided worked anchor and stages. This is a browser-only, keyword/choice **formative format gate**. It is not proof that the learner understands the concept, nor a signed assessment/mastery receipt. The `compact_anchor` remains authoring content, not an authority claim.
 
 ### Question-scoped Core2A hints (authored task `4^(2u+1)=16^u+192`)
 
 - **Optional H1 — Notice:** “Look at 16 and 4: which is a power of the other?” No chosen variable, substituted equation or numeric solution.
 - **Optional H2 — Recall relevant law:** “An exponent increased by one multiplies the existing power by its base. Where is the one-step exponent offset in your equation?” This is help for the particular question, not a replacement five-stage lesson.
 - **Optional H3 — Connect your own model:** “Choose a strictly positive common power, express both sides through it, then solve and reverse-check.” No disclosed `4t=t+192`, `t=64` or `u=3/2`.
-- **Post-attempt solution and link:** Current shared TEST renderer gates the full solution behind a typed commitment and links to the `TC-02` Core1A factor-law construction. It **does not** authenticate that the learner's typed attempt solved anything, track which hints were consumed for credit, require a concept-check response, or enforce a fresh return attempt. This is evidence/UX debt, not a completed learning loop.
+- **Post-attempt solution and link:** The TEST renderer gates the full solution behind a typed commitment and links to `TC-02`. Core2A H1 is now **hidden until explicitly requested**, and H1/H2/H3 usage marks the article assisted with best-effort local-state persistence. It **does not** authenticate the typed math attempt, provide server-signed hint-use evidence or independent mastery credit, prove semantic understanding from its concept-format check, or enforce a genuinely fresh return attempt. These are still evidence/UX debts.
 
 ### Next acceptance requirements — separate work, not claimed complete
 
-- An actual Core1A concept-first input with targeted feedback, before the target worked example and its solution can be accessed.
-- Differentiate `concept_reconstruction` from `item_hint` in response/evidence semantics; keep immutable item/attempt and disclosure ordering, never infer independent proficiency from a hinted or post-solution response.
+- Improve the implemented TEST concept-first input beyond a radio choice + keyword-matched reason: validate reasoning semantically and distinguish misconception versus execution slip without false mastery claims.
+- Preserve the implemented local Core2A hint-used flag as **assisted**, then implement a signed/verified attempt-and-disclosure chronology before it can inform any independent proficiency decision.
 - When a learner returns from Core2A to Core1A, preserve the original failed attempt, route to the *general law* ahead of target numbers, check the law in a neutral example, and return to a **fresh** independently authored same-family item.
 - A completed repair must not automatically mark the previously missed item correct. Reassess with a new unseen problem before any independent mastery claim.
 - Tested keyboard, screen-reader, 200%-zoom and print behaviour; source rights and academic/QRT/Owner signoff remain independent gates.
