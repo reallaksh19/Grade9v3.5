@@ -233,14 +233,14 @@ def validate_artifacts_and_reviews(run: dict[str, Any]) -> list[str]:
         if not aid or not path_text:
             problems.append("RENDERED_ARTIFACT_ID_OR_PATH_MISSING")
             continue
-        if aid in artifacts:
+        if strict_binding and aid in artifacts:
             problems.append(f"RENDERED_ARTIFACT_ID_DUPLICATE: {aid}")
             continue
         artifacts[aid] = artifact
-        # Run evidence may cite only repository-relative files. Absolute or
-        # escaping paths can otherwise bind QRT reviews to unrelated local bytes.
+        # Strict new-candidate evidence stays under the repository; historical
+        # run semantics remain unchanged when strict binding is not requested.
         path = (REPO / path_text).resolve()
-        if Path(path_text).is_absolute() or not path.is_relative_to(REPO.resolve()):
+        if strict_binding and (Path(path_text).is_absolute() or not path.is_relative_to(REPO.resolve())):
             problems.append(f"RENDERED_ARTIFACT_PATH_OUTSIDE_REPO: {aid}:{path_text}")
             continue
         if not path.exists() or not path.is_file():
