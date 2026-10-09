@@ -69,3 +69,17 @@ disagrees with the closed provider issue. The requested pinned V3.2
 pre-materialization graph is [draft #329](https://github.com/reallaksh19/Grade9v3.5/pull/329);
 its successful structural precheck is **not** the official Common
 `decompose-check`, and no F02 child admission or release authority is implied.
+
+## Why the inherited PDF gate was genuinely red
+
+At [stacked PR #330's earlier exact SHA](https://github.com/reallaksh19/Grade9v3.5/commit/c9be682122965f0f550b08d114bed653bb96113f), the inherited [Core2A/1A render workflow #37911879522](https://github.com/reallaksh19/Grade9v3.5/actions/runs/37911879522) **FAILED** on its real Core1A PDF-text assertion: the second taught SVG step **“Keep the multiplicative factor”** was missing/clipped. This is a real failure, not a review waiver. The generic interactive `fitFigure()` sets a tight SVG `viewBox` to the visible first teaching stage; simply revealing the other authored SVG groups under print media does not restore their clipped coordinates.
+
+The bounded change in `tools/print/print-product.mjs` now recomputes the union
+of author-supplied stage-group bounding boxes **after print media is applied**.
+It operates **only** on `figure[data-g9-stage="TEACHING"]` with multiple stages,
+and retains the root heading text bounding box. It does **not** expand
+`PRE_ATTEMPT`, `POST_ATTEMPT`, source Core2 or Core2A figures, does not
+materialize protected answer templates, and does not alter the web teaching
+interaction. No PDF evidence is accepted until the real renderer and print
+workflow passes at the latest exact HEAD with the original three-stage
+PDF assertion unchanged.
