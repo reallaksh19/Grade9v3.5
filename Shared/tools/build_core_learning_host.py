@@ -432,8 +432,12 @@ TEMPLATE = r'''<!doctype html>
       }
       const path = found.paths[0];
       if (!learner.state?.attempted) {
-        repairNote.textContent = "Attempt this changed-decision question first. The specific " +
-          "construction step is protected until commitment; you can separately choose earlier familiar study.";
+        repairNote.textContent = pendingRepair?.origin_projection_id === row.id
+          ? "You returned from Core1A repair. This same-question retry is assisted practice, " +
+            "not an independent transfer measurement. Your new response must still be committed " +
+            "before protected explanation or further repair becomes available."
+          : "Attempt this changed-decision question first. The specific " +
+            "construction step is protected until commitment; you can separately choose earlier familiar study.";
         return;
       }
       const returnAssisted = pendingRepair?.origin_projection_id === row.id;

@@ -123,7 +123,7 @@ try {
   assert.match(await page.locator("#repair-return-note").innerText(), /K2D3-1/);
   await page.locator("#repair-return-action").click();
   assert.match(await page.locator("#projection-status").innerText(), /CORE2B/);
-  assert.match(await page.locator("#repair-return-note").innerText(), /attempt this changed-decision question first/i);
+  assert.match(await page.locator("#repair-return-note").innerText(), /same-question retry is assisted practice/i);
   const assistedReturn = await page.evaluate(() => ({
     attempted: document.querySelector("core-learning-page").state.attempted,
     model: window.GRADE9V3_CORE.core_projections.find((r) =>
