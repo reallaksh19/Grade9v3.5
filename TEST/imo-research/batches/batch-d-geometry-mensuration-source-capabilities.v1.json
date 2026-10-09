@@ -1,0 +1,535 @@
+{
+  "schema": "imo-g9-batch-d-geometry-mensuration-source-capabilities-v1",
+  "governing_issue": 294,
+  "academic_batch": "D_GEOMETRY_MENSURATION",
+  "source_census_at_main": "bc1af3e7ba438bd2404c54967dd46c652acad325",
+  "authentic_source_programme_denominator": 68,
+  "prior_producer_batched_source_positions": 31,
+  "this_batch": 11,
+  "cumulative_distinct_mapped_positions": 42,
+  "future_unmapped_positions": 26,
+  "legacy_authored_practice_separate": 7,
+  "topic_counts": {
+    "MENSURATION": 6,
+    "TRIANGLES": 5
+  },
+  "conflict_cases_entire_programme": 10,
+  "conflict_affected_positions_entire_programme": 11,
+  "this_batch_conflict_ids": [
+    "IMO-SOURCE-CONFLICT-002"
+  ],
+  "independent_architect_design_reference": "TEST/imo-research/academic/BATCH-D-GEOMETRY-MENSURATION-CONSTRUCTION-REVIEW.v1.md, draft PR306; comparisons not accepted",
+  "rights_admission_status": {
+    "publisher_pdf_retained": 0,
+    "publisher_reproduction_licenses": 0,
+    "source_core2_admissions": 0,
+    "canonical_core1a_admissions": 0,
+    "accepted_qrt_cells": 0,
+    "human_external_academic_signoffs": 0,
+    "learner_publications": 0
+  },
+  "crosswalk_policy": "One identity-to-original-audit join per printed source position; preserve original option order and figured component holds. Proposed capabilities do not authorize content.",
+  "records": [
+    {
+      "question_id": "SOF-IMO-G09-L1-2023-24-A-Q029",
+      "source_id": "SOF-IMO-G09-L1-2023-24-A",
+      "source_url": "https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf",
+      "source_host_class": "SCHOOL_MIRROR",
+      "printed_question_number": null,
+      "source_pdf_page_index": null,
+      "primary_topic_id": "TRIANGLES",
+      "research_math_audit": {
+        "file": "TEST/imo-research/verification/fullpaper-source-math-batch02.v1.json",
+        "audit_id": "IMO-B02-006",
+        "agent_result": "32 cm",
+        "agent_selected_printed_option": "A",
+        "agent_original_derivation": "Lengths 24,32,40 satisfy 24^2+32^2=40^2, so the triangle is right-angled and has area 24×32/2=384 cm². Its altitude to the smallest side 24 is h=2×384/24=32 cm, option A.",
+        "agent_independent_check": "The same area from the proposed altitude is 24×32/2=384 cm², consistent with the right triangle.",
+        "status": "AGENT_RESEARCH_ONLY_NO_INDEPENDENT_SOURCE_KEY_ACCEPTANCE"
+      },
+      "source_discrepancy": null,
+      "figure_dependency": {
+        "required_for_source_fidelity": false,
+        "research_observation": "NO_FIGURE_AUTHORITY_GRANTED",
+        "reproduce_figure": false
+      },
+      "source_capability_research": {
+        "family": "RIGHT_TRIANGLE_AREA_TO_CHOSEN_BASE",
+        "decisive_inference": "Notice the 24-32-40 squared-side relation first; compute area from perpendicular legs, then divide twice area by the specified 24 cm base to find its altitude.",
+        "math_warrant": "Right-angle check 24²+32²=40²; area 384 cm²; height to side 24 is 2×384/24=32 cm.",
+        "plausible_wrong_route_hypothesis": "Use a drawn vertical height without checking which base is requested, or apply Heron as a memorized necessary method.",
+        "source_scope_and_domain_limit": "The base/height pair must be perpendicular; Heron's can corroborate area but is not required by this source's shortest proof.",
+        "comparison_to_pr306_design": "CORROBORATE_CORE_NOTE; 2023 triangle Q29 decisive right-angle recognition not Heron label alone",
+        "canonical_core1a_accepted": false,
+        "concept_authority": "AGENT_AUDIT_INTERPRETATION_NOT_ACADEMIC_ACCEPTANCE"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_item_components_authenticated": false,
+        "publisher_reproduction_rights_granted": false,
+        "external_independent_academic_reviewer_accepted": false,
+        "authentic_source_core2_eligible": false,
+        "core2_admitted": false,
+        "qrt_cell_accepted": null,
+        "owner_admission": false,
+        "learner_publication": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2024-25-B-Q035",
+      "source_id": "SOF-IMO-G09-L1-2024-25-B",
+      "source_url": "https://www.iswkoman.com/uploads/olympiad/2107431-CLASS%209-IMO24.pdf",
+      "source_host_class": "SCHOOL_MIRROR",
+      "printed_question_number": null,
+      "source_pdf_page_index": null,
+      "primary_topic_id": "TRIANGLES",
+      "research_math_audit": {
+        "file": "TEST/imo-research/verification/fullpaper-source-math-batch02.v1.json",
+        "audit_id": "IMO-B02-015",
+        "agent_result": "20sqrt(30) cm^2",
+        "agent_selected_printed_option": "A",
+        "agent_original_derivation": "Write shortest side s, next s+4 and third 2s-6. Total 4s-2=50 gives s=13 and sides 13,17,20. Semiperimeter is 25; by Heron, area=sqrt(25·12·8·5)=20sqrt(30) cm², option A.",
+        "agent_independent_check": "Sides obey triangle inequalities, perimeter 50, and Heron's radicand 25×12×8×5=12000=400×30.",
+        "status": "AGENT_RESEARCH_ONLY_NO_INDEPENDENT_SOURCE_KEY_ACCEPTANCE"
+      },
+      "source_discrepancy": null,
+      "figure_dependency": {
+        "required_for_source_fidelity": false,
+        "research_observation": "NO_FIGURE_AUTHORITY_GRANTED",
+        "reproduce_figure": false
+      },
+      "source_capability_research": {
+        "family": "TRIANGLE_CONSTRAINTS_BEFORE_HERON",
+        "decisive_inference": "Translate linked side conditions and given perimeter into three numerical sides; check triangle existence before computing semiperimeter and Heron's area.",
+        "math_warrant": "Per B02-015: shortest 13, others 17 and 20, perimeter 50; s=25, Heron radicand 25×12×8×5=12000, area 20√30.",
+        "plausible_wrong_route_hypothesis": "Enter unresolved symbolic sides into Heron's formula or overlook triangle inequality.",
+        "source_scope_and_domain_limit": "Requires positive sides satisfying triangle inequality; the inferred side relations are part of the source crux.",
+        "comparison_to_pr306_design": "CORROBORATE; do not conflate this with the right-triangle shortcut for 2023 Q29",
+        "canonical_core1a_accepted": false,
+        "concept_authority": "AGENT_AUDIT_INTERPRETATION_NOT_ACADEMIC_ACCEPTANCE"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_item_components_authenticated": false,
+        "publisher_reproduction_rights_granted": false,
+        "external_independent_academic_reviewer_accepted": false,
+        "authentic_source_core2_eligible": false,
+        "core2_admitted": false,
+        "qrt_cell_accepted": null,
+        "owner_admission": false,
+        "learner_publication": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2025-26-A-Q034",
+      "source_id": "SOF-IMO-G09-L1-2025-26-A",
+      "source_url": "https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf",
+      "source_host_class": "SCHOOL_MIRROR",
+      "printed_question_number": null,
+      "source_pdf_page_index": null,
+      "primary_topic_id": "TRIANGLES",
+      "research_math_audit": {
+        "file": "TEST/imo-research/seed/math_audit_batch01.json",
+        "audit_id": "IMO-AUDIT-B01-012",
+        "agent_result": "25:1",
+        "agent_selected_printed_option": "A",
+        "agent_original_derivation": "Under a uniform linear factor of five, area scales by its square 5^2=25.",
+        "agent_independent_check": "SOURCE_AUDIT_CHECK_NOT_EXPLICITLY_STORED",
+        "status": "AGENT_RESEARCH_ONLY_NO_INDEPENDENT_SOURCE_KEY_ACCEPTANCE"
+      },
+      "source_discrepancy": null,
+      "figure_dependency": {
+        "required_for_source_fidelity": false,
+        "research_observation": "NO_FIGURE_AUTHORITY_GRANTED",
+        "reproduce_figure": false
+      },
+      "source_capability_research": {
+        "family": "TRIANGLE_AREA_SIMILARITY_SQUARE_SCALE",
+        "decisive_inference": "Identify that every corresponding side grows uniformly by factor five; derive area ratio from factor squared.",
+        "math_warrant": "New-to-original similar-triangle area ratio 5²:1=25:1, source option A.",
+        "plausible_wrong_route_hypothesis": "Assume area grows in the same 5:1 ratio as a linear side.",
+        "source_scope_and_domain_limit": "Only for similar shapes or uniform linear scale of both base and altitude; not if just one dimension changes.",
+        "comparison_to_pr306_design": "CORROBORATE_SHARED_DIMENSIONAL_PRINCIPLE; sphere scaling is a different object",
+        "canonical_core1a_accepted": false,
+        "concept_authority": "AGENT_AUDIT_INTERPRETATION_NOT_ACADEMIC_ACCEPTANCE"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_item_components_authenticated": false,
+        "publisher_reproduction_rights_granted": false,
+        "external_independent_academic_reviewer_accepted": false,
+        "authentic_source_core2_eligible": false,
+        "core2_admitted": false,
+        "qrt_cell_accepted": null,
+        "owner_admission": false,
+        "learner_publication": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2023-24-A-Q049",
+      "source_id": "SOF-IMO-G09-L1-2023-24-A",
+      "source_url": "https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf",
+      "source_host_class": "SCHOOL_MIRROR",
+      "printed_question_number": null,
+      "source_pdf_page_index": null,
+      "primary_topic_id": "TRIANGLES",
+      "research_math_audit": {
+        "file": "TEST/imo-research/verification/fullpaper-audit-b03.v1.json",
+        "audit_id": "IMO-B03-014",
+        "agent_result": "F,F",
+        "agent_selected_printed_option": "D",
+        "agent_original_derivation": "When each side is doubled, area becomes four times the original, a 300 percent increase rather than 200, so Statement I false. A 5-12-13 right triangle has area 30 sq cm; altitude to side 13 is 2*30/13=60/13 cm, not 60 cm, so Statement II false. Printed option D.",
+        "agent_independent_check": "A hypothetical altitude of 60 cm to base 13 cm gives area 390 sq cm instead of 30, disproving the second claim. The new-to-old area ratio 4 confirms 300 percent increase.",
+        "status": "AGENT_RESEARCH_ONLY_NO_INDEPENDENT_SOURCE_KEY_ACCEPTANCE"
+      },
+      "source_discrepancy": null,
+      "figure_dependency": {
+        "required_for_source_fidelity": false,
+        "research_observation": "NO_FIGURE_AUTHORITY_GRANTED",
+        "reproduce_figure": false
+      },
+      "source_capability_research": {
+        "family": "TRIANGLE_RATIO_VS_INCREASE_AND_ALTITUDE_BASE",
+        "decisive_inference": "Evaluate two printed assertions separately: doubling all sides makes area fourfold, a 300% gain; obtain right-triangle height to the hypotenuse from a base-area equation.",
+        "math_warrant": "B03-014: first claim false (4-fold new area implies 300% increase, not 200%); second claim false (5-12-13 triangle area 30, hypotenuse altitude 60/13 cm not 60); F,F option D.",
+        "plausible_wrong_route_hypothesis": "Call four times old area a 400% increase or treat an original perpendicular leg as the altitude to the hypotenuse.",
+        "source_scope_and_domain_limit": "Numeric percentage gain = (ratio−1)×100%; the altitude must be perpendicular to the base actually named.",
+        "comparison_to_pr306_design": "CORROBORATE_CORE_NOTE; do not rewrite source second assertion to 60/13",
+        "canonical_core1a_accepted": false,
+        "concept_authority": "AGENT_AUDIT_INTERPRETATION_NOT_ACADEMIC_ACCEPTANCE"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_item_components_authenticated": false,
+        "publisher_reproduction_rights_granted": false,
+        "external_independent_academic_reviewer_accepted": false,
+        "authentic_source_core2_eligible": false,
+        "core2_admitted": false,
+        "qrt_cell_accepted": null,
+        "owner_admission": false,
+        "learner_publication": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-SAMPLE-2026-27-Q010",
+      "source_id": "SOF-IMO-G09-SAMPLE-2026-27",
+      "source_url": "https://sofworld.org/download/file/fid/73719",
+      "source_host_class": "SOF_ORGANIZER_HOSTED_PDF",
+      "printed_question_number": "10",
+      "source_pdf_page_index": 1,
+      "primary_topic_id": "TRIANGLES",
+      "research_math_audit": {
+        "file": "TEST/imo-research/verification/official-sample-2026-27-math-qrt-pilot.v1.json",
+        "audit_id": "SOF-SAMPLE-10",
+        "agent_result": "Option A is the incorrect claim",
+        "agent_selected_printed_option": "A",
+        "agent_original_derivation": "Corresponding angle equalities make two triangles similar, not necessarily congruent; different-size isosceles triangles provide a counterexample to A. In the source figure, median PS of triangle PQR gives QS=SR, so triangles PQS and PRS have equal areas with base PS, forcing QL=RM. Symmetric altitudes in an isosceles triangle support B.",
+        "agent_independent_check": "Scale an isosceles triangle by factor 2: all angles remain equal while corresponding sides change; hence A cannot assert congruence.",
+        "status": "AGENT_RESEARCH_ONLY_NO_INDEPENDENT_SOURCE_KEY_ACCEPTANCE"
+      },
+      "source_discrepancy": null,
+      "figure_dependency": {
+        "required_for_source_fidelity": true,
+        "research_observation": "OFFICIAL_SAMPLE_FIGURE_SIGHTED_BUT_NOT_RETAINED_OR_RELICENSED",
+        "reproduce_figure": false
+      },
+      "source_capability_research": {
+        "family": "SAMPLE_TRIANGLE_CLAIM_WARRANTS_WITH_FIGURE",
+        "decisive_inference": "Keep claim A separate from figure-dependent B/median statements: equal corresponding angles certify similarity, not congruence; for the median, equal half-bases imply equal areas and therefore equal perpendicular distances to the common base PS.",
+        "math_warrant": "Official-sample research reports printed incorrect option A: scale an isosceles triangle to disprove AAA congruence; with PS median of triangle PQR, QS=SR, areas PQS/PRS equal; treating PS as common base gives QL=RM under the source figure's perpendicular-foot labels.",
+        "plausible_wrong_route_hypothesis": "Mistake AAA similarity for congruence, or claim equal areas imply congruent triangles.",
+        "source_scope_and_domain_limit": "Figure-dependent statements require source-verified incidence, median and perpendicular-foot labels; no figure may be reconstructed or reused as official without custody/rights.",
+        "comparison_to_pr306_design": "CORROBORATE_WITH_HOLD; sample geometry foot labels cannot be made authoritative from topic label",
+        "canonical_core1a_accepted": false,
+        "concept_authority": "AGENT_AUDIT_INTERPRETATION_NOT_ACADEMIC_ACCEPTANCE"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_item_components_authenticated": false,
+        "publisher_reproduction_rights_granted": false,
+        "external_independent_academic_reviewer_accepted": false,
+        "authentic_source_core2_eligible": false,
+        "core2_admitted": false,
+        "qrt_cell_accepted": null,
+        "owner_admission": false,
+        "learner_publication": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2023-24-A-Q017",
+      "source_id": "SOF-IMO-G09-L1-2023-24-A",
+      "source_url": "https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf",
+      "source_host_class": "SCHOOL_MIRROR",
+      "printed_question_number": "17",
+      "source_pdf_page_index": 3,
+      "primary_topic_id": "MENSURATION",
+      "research_math_audit": {
+        "file": "TEST/imo-research/seed/math_audit_batch01.json",
+        "audit_id": "IMO-AUDIT-B01-001",
+        "agent_result": "4:9",
+        "agent_selected_printed_option": "C",
+        "agent_original_derivation": "Equal cone radii make V proportional to height, so the printed heights ratio is 4:9.",
+        "agent_independent_check": "SOURCE_AUDIT_CHECK_NOT_EXPLICITLY_STORED",
+        "status": "AGENT_RESEARCH_ONLY_NO_INDEPENDENT_SOURCE_KEY_ACCEPTANCE"
+      },
+      "source_discrepancy": {
+        "case_id": "IMO-SOURCE-CONFLICT-002",
+        "conflict_type": "DISTRACTOR_OPTION_REPLACEMENT",
+        "printed_vs_owner_option_summary": "Original printed distractor A is a radical ratio, whereas owner compilation replaces it with 1:1; source and owner C both show the volume-height ratio 4:9.",
+        "preserve_original_option_order": true,
+        "academic_editorial_authorized": false
+      },
+      "figure_dependency": {
+        "required_for_source_fidelity": false,
+        "research_observation": "NO_FIGURE_AUTHORITY_GRANTED",
+        "reproduce_figure": false
+      },
+      "source_capability_research": {
+        "family": "EQUAL_RADIUS_CONE_VOLUME_HEIGHT_CANCEL",
+        "decisive_inference": "Cancel the common πr²/3 cone-volume factor only after confirming that the base radii are equal; compare heights as 4:9.",
+        "math_warrant": "Agent B01-001 and conflict 002: with common radius V₁:V₂=h₁:h₂=4π:9π=4:9, printed answer C; source distractor A is radical-valued whereas owner compiled distractor A became 1:1.",
+        "plausible_wrong_route_hypothesis": "Cancel a radius factor without an equal-radius condition, or silently replace a printed distractor while keeping answer C.",
+        "source_scope_and_domain_limit": "Original option order/distractors remain disputed; preserve conflict 002 verbatim and require complete option component custody.",
+        "comparison_to_pr306_design": "CORROBORATE_CORE_NOTE; conflict 002 is distractor fidelity, not changed cone-volume stem",
+        "canonical_core1a_accepted": false,
+        "concept_authority": "AGENT_AUDIT_INTERPRETATION_NOT_ACADEMIC_ACCEPTANCE"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_item_components_authenticated": false,
+        "publisher_reproduction_rights_granted": false,
+        "external_independent_academic_reviewer_accepted": false,
+        "authentic_source_core2_eligible": false,
+        "core2_admitted": false,
+        "qrt_cell_accepted": null,
+        "owner_admission": false,
+        "learner_publication": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2023-24-A-Q034",
+      "source_id": "SOF-IMO-G09-L1-2023-24-A",
+      "source_url": "https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf",
+      "source_host_class": "SCHOOL_MIRROR",
+      "printed_question_number": null,
+      "source_pdf_page_index": null,
+      "primary_topic_id": "MENSURATION",
+      "research_math_audit": {
+        "file": "TEST/imo-research/verification/fullpaper-audit-b03.v1.json",
+        "audit_id": "IMO-B03-004",
+        "agent_result": "1:4",
+        "agent_selected_printed_option": "D",
+        "agent_original_derivation": "Sphere surface area S=4 pi r squared. When a radius is doubled from 7 to 14 cm, the ratio of initial to final surface areas is 7 squared to 14 squared, or 49:196=1:4, printed D.",
+        "agent_independent_check": "Direct areas are 196 pi square cm and 784 pi square cm; dividing both by 196 pi gives the same ratio 1:4.",
+        "status": "AGENT_RESEARCH_ONLY_NO_INDEPENDENT_SOURCE_KEY_ACCEPTANCE"
+      },
+      "source_discrepancy": null,
+      "figure_dependency": {
+        "required_for_source_fidelity": false,
+        "research_observation": "NO_FIGURE_AUTHORITY_GRANTED",
+        "reproduce_figure": false
+      },
+      "source_capability_research": {
+        "family": "SPHERE_SURFACE_AREA_SQUARE_RADIUS",
+        "decisive_inference": "Write sphere area as 4πr² and compare the original radius 7 with doubled 14 in the correct original:new direction.",
+        "math_warrant": "B03-004: initial:final surface area ratio (7²):(14²)=49:196=1:4, printed D.",
+        "plausible_wrong_route_hypothesis": "Report the inverse 4:1 or 1:2 by scaling area linearly with radius.",
+        "source_scope_and_domain_limit": "The ratio orientation original:new is decisive; surface area uses r², not sphere volume's r³.",
+        "comparison_to_pr306_design": "CORROBORATE_DIMENSIONAL_SCALE; preserve actual ratio direction",
+        "canonical_core1a_accepted": false,
+        "concept_authority": "AGENT_AUDIT_INTERPRETATION_NOT_ACADEMIC_ACCEPTANCE"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_item_components_authenticated": false,
+        "publisher_reproduction_rights_granted": false,
+        "external_independent_academic_reviewer_accepted": false,
+        "authentic_source_core2_eligible": false,
+        "core2_admitted": false,
+        "qrt_cell_accepted": null,
+        "owner_admission": false,
+        "learner_publication": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2023-24-A-Q045",
+      "source_id": "SOF-IMO-G09-L1-2023-24-A",
+      "source_url": "https://iswkoman.com/uploads/olympiad/8919398-CL%20IX%20IMO%202023-24%20(1).pdf",
+      "source_host_class": "SCHOOL_MIRROR",
+      "printed_question_number": null,
+      "source_pdf_page_index": null,
+      "primary_topic_id": "MENSURATION",
+      "research_math_audit": {
+        "file": "TEST/imo-research/seed/math_audit_batch01.json",
+        "audit_id": "IMO-AUDIT-B01-003",
+        "agent_result": "INR 39424",
+        "agent_selected_printed_option": "C",
+        "agent_original_derivation": "With pi=22/7, radius=17.6/(2pi)=2.8 m; hemisphere curved area=2pi r^2=49.28 m^2=492800 cm^2; cost=492800*(8/100)=39424.",
+        "agent_independent_check": "SOURCE_AUDIT_CHECK_NOT_EXPLICITLY_STORED",
+        "status": "AGENT_RESEARCH_ONLY_NO_INDEPENDENT_SOURCE_KEY_ACCEPTANCE"
+      },
+      "source_discrepancy": null,
+      "figure_dependency": {
+        "required_for_source_fidelity": false,
+        "research_observation": "NO_FIGURE_AUTHORITY_GRANTED",
+        "reproduce_figure": false
+      },
+      "source_capability_research": {
+        "family": "HEMISPHERE_CURVED_AREA_RIM_TO_PRICE",
+        "decisive_inference": "Infer hemisphere radius from circular rim circumference, select curved area only, convert square metres to square centimetres, and apply rate per 100 cm².",
+        "math_warrant": "B01-003: C=17.6 m, π=22/7 gives r=2.8 m; CSA=2πr²=49.28 m²=492800 cm²; ₹8 per 100 cm² yields ₹39424.",
+        "plausible_wrong_route_hypothesis": "Charge total hemisphere surface including disk, or convert m² to cm² by ×100 instead of ×10000.",
+        "source_scope_and_domain_limit": "The given cost unit and source's curve-only surface wording must be preserved; never assume included circular face is painted.",
+        "comparison_to_pr306_design": "CORROBORATE; actual source units/distractors still require retained seven-component custody",
+        "canonical_core1a_accepted": false,
+        "concept_authority": "AGENT_AUDIT_INTERPRETATION_NOT_ACADEMIC_ACCEPTANCE"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_item_components_authenticated": false,
+        "publisher_reproduction_rights_granted": false,
+        "external_independent_academic_reviewer_accepted": false,
+        "authentic_source_core2_eligible": false,
+        "core2_admitted": false,
+        "qrt_cell_accepted": null,
+        "owner_admission": false,
+        "learner_publication": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2024-25-B-Q029",
+      "source_id": "SOF-IMO-G09-L1-2024-25-B",
+      "source_url": "https://www.iswkoman.com/uploads/olympiad/2107431-CLASS%209-IMO24.pdf",
+      "source_host_class": "SCHOOL_MIRROR",
+      "printed_question_number": null,
+      "source_pdf_page_index": null,
+      "primary_topic_id": "MENSURATION",
+      "research_math_audit": {
+        "file": "TEST/imo-research/verification/fullpaper-source-math-batch02.v1.json",
+        "audit_id": "IMO-B02-012",
+        "agent_result": "4:1",
+        "agent_selected_printed_option": "B",
+        "agent_original_derivation": "The curved area relation is πr1 l1=2πr2 l2; the latter slant height satisfies l2=2l1. Substitution yields r1 l1=4r2 l1 and r1:r2=4:1, printed option B.",
+        "agent_independent_check": "Take l1=1,l2=2,r2=1,r1=4; then CSA1=4π, CSA2=2π, exactly the required factor two.",
+        "status": "AGENT_RESEARCH_ONLY_NO_INDEPENDENT_SOURCE_KEY_ACCEPTANCE"
+      },
+      "source_discrepancy": null,
+      "figure_dependency": {
+        "required_for_source_fidelity": false,
+        "research_observation": "NO_FIGURE_AUTHORITY_GRANTED",
+        "reproduce_figure": false
+      },
+      "source_capability_research": {
+        "family": "TWO_CONE_CSA_RATIO_SLANT",
+        "decisive_inference": "Use cone curved-area S=πrℓ and relate two cones' surface and slant-height ratios to solve the radii ratio without replacing slant ℓ with vertical h.",
+        "math_warrant": "B02-012: πr₁ℓ₁=2πr₂ℓ₂, ℓ₂=2ℓ₁, so r₁:r₂=4:1, printed B.",
+        "plausible_wrong_route_hypothesis": "Substitute perpendicular height into a CSA ratio, or invert slant-height ratio.",
+        "source_scope_and_domain_limit": "Right circular cone CSA uses slant height ℓ; the algebraic ratio assumes each radius and slant height positive.",
+        "comparison_to_pr306_design": "CORROBORATE; no total-area base disk is implied",
+        "canonical_core1a_accepted": false,
+        "concept_authority": "AGENT_AUDIT_INTERPRETATION_NOT_ACADEMIC_ACCEPTANCE"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_item_components_authenticated": false,
+        "publisher_reproduction_rights_granted": false,
+        "external_independent_academic_reviewer_accepted": false,
+        "authentic_source_core2_eligible": false,
+        "core2_admitted": false,
+        "qrt_cell_accepted": null,
+        "owner_admission": false,
+        "learner_publication": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-SAMPLE-2026-27-Q008",
+      "source_id": "SOF-IMO-G09-SAMPLE-2026-27",
+      "source_url": "https://sofworld.org/download/file/fid/73719",
+      "source_host_class": "SOF_ORGANIZER_HOSTED_PDF",
+      "printed_question_number": "8",
+      "source_pdf_page_index": 1,
+      "primary_topic_id": "MENSURATION",
+      "research_math_audit": {
+        "file": "TEST/imo-research/verification/official-sample-2026-27-math-qrt-pilot.v1.json",
+        "audit_id": "SOF-SAMPLE-8",
+        "agent_result": "15 metres",
+        "agent_selected_printed_option": "D",
+        "agent_original_derivation": "Required ground area is 11*4=44 square metres; air volume is 11*20=220 cubic metres. Cone volume is (base area * height)/3, so height=3*220/44=15 metres.",
+        "agent_independent_check": "44*15/3=220 cubic metres, matching required air.",
+        "status": "AGENT_RESEARCH_ONLY_NO_INDEPENDENT_SOURCE_KEY_ACCEPTANCE"
+      },
+      "source_discrepancy": null,
+      "figure_dependency": {
+        "required_for_source_fidelity": false,
+        "research_observation": "NO_FIGURE_AUTHORITY_GRANTED",
+        "reproduce_figure": false
+      },
+      "source_capability_research": {
+        "family": "SAMPLE_CONE_FOOTPRINT_VS_AIR_CAPACITY",
+        "decisive_inference": "Separate per-person ground footprint in square metres from per-person air allowance in cubic metres; form aggregate base area B and volume V, then invert V=Bh/3.",
+        "math_warrant": "Sample Q8: 11×4=44 m² base, 11×20=220 m³ air; h=3×220/44=15 m, printed D.",
+        "plausible_wrong_route_hypothesis": "Treat square metres of floor as cubic metres or divide V/B without cone factor 3.",
+        "source_scope_and_domain_limit": "Assumes conical space with the full base and ideal internal volume available; source model not architectural design advice.",
+        "comparison_to_pr306_design": "CORROBORATE; organizer sample answer is sighted but not accepted",
+        "canonical_core1a_accepted": false,
+        "concept_authority": "AGENT_AUDIT_INTERPRETATION_NOT_ACADEMIC_ACCEPTANCE"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_item_components_authenticated": false,
+        "publisher_reproduction_rights_granted": false,
+        "external_independent_academic_reviewer_accepted": false,
+        "authentic_source_core2_eligible": false,
+        "core2_admitted": false,
+        "qrt_cell_accepted": null,
+        "owner_admission": false,
+        "learner_publication": false
+      }
+    },
+    {
+      "question_id": "SOF-IMO-G09-L1-2025-26-A-Q048",
+      "source_id": "SOF-IMO-G09-L1-2025-26-A",
+      "source_url": "https://www.iswkoman.com/uploads/olympiad/9262492-IMO%2025-26%20CLASS%209.pdf",
+      "source_host_class": "SCHOOL_MIRROR",
+      "printed_question_number": null,
+      "source_pdf_page_index": null,
+      "primary_topic_id": "MENSURATION",
+      "research_math_audit": {
+        "file": "TEST/imo-research/verification/fullpaper-audit-b04.v1.json",
+        "audit_id": "IMO-B04-010",
+        "agent_result": "Only statement C is incorrect",
+        "agent_selected_printed_option": "C",
+        "agent_original_derivation": "A: cone π×10²×h/3 equals cylinder π×15²×4, so h=27, true. B: with r:h=3:4 let r=3k,h=4k: volume=(π/3)(9k²)(4k)=12πk³=2411.52, with π=3.14 implies k³=64 and slant height 5k=20, true. C: maximum inscribed sphere in side 7 cube has r=3.5 and volume (4π/3)(3.5³), about 179.5, not 185.76. Printed incorrect option C.",
+        "agent_independent_check": "For C, r³=42.875 and (4×3.14/3)×42.875≈179.50; for A h=27 returns 900π cylinder volume; for B k=4 returns 12×3.14×64=2411.52.",
+        "status": "AGENT_RESEARCH_ONLY_NO_INDEPENDENT_SOURCE_KEY_ACCEPTANCE"
+      },
+      "source_discrepancy": null,
+      "figure_dependency": {
+        "required_for_source_fidelity": false,
+        "research_observation": "NO_FIGURE_AUTHORITY_GRANTED",
+        "reproduce_figure": false
+      },
+      "source_capability_research": {
+        "family": "THREE_INDEPENDENT_SOLID_ASSERTIONS",
+        "decisive_inference": "Evaluate the three unrelated solids claims in their proper models: cone vs cylinder equal-volume height, r:h=3:4 giving ℓ=5k and volume, and maximum cube-inscribed sphere volume.",
+        "math_warrant": "B04-010: A cone r10 matching cylinder r15 h4 has h=27 true; B r=3k,h=4k,V=2411.52 with π=3.14 implies k=4, ℓ=20 true; C inscribed sphere in cube side7 radius3.5 has volume ≈179.50 not185.76, false; incorrect C.",
+        "plausible_wrong_route_hypothesis": "Use a diameter as sphere radius, assume cone height equals slant, or use cylinder volume for the cone.",
+        "source_scope_and_domain_limit": "Treat each statement as independent; source's stated π and whether sphere is inscribed determine exact numeric comparison.",
+        "comparison_to_pr306_design": "CORROBORATE; math of source statements not interchangeable with architect authored anchors",
+        "canonical_core1a_accepted": false,
+        "concept_authority": "AGENT_AUDIT_INTERPRETATION_NOT_ACADEMIC_ACCEPTANCE"
+      },
+      "product_holds": {
+        "durable_source_pdf_custody": false,
+        "seven_item_components_authenticated": false,
+        "publisher_reproduction_rights_granted": false,
+        "external_independent_academic_reviewer_accepted": false,
+        "authentic_source_core2_eligible": false,
+        "core2_admitted": false,
+        "qrt_cell_accepted": null,
+        "owner_admission": false,
+        "learner_publication": false
+      }
+    }
+  ]
+}
