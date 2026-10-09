@@ -43,7 +43,7 @@ class Q26CommonBaseCore1ATests(unittest.TestCase):
         self.assertEqual(d["extensions"]["grade9v3:core2_source_custody_granted"],False)
         self.assertEqual(d["extensions"]["grade9v3:learner_published"],False)
         serialized=json.dumps(d,ensure_ascii=False)
-        for unsafe in ("SOF-IMO-G09","©SOF",'"origin": "SOF"', "original source stem", "original SOF question"):
+        for unsafe in ("SOF-IMO-G09","©SOF",'"origin": "SOF"', "https://sofworld.org/download/"):
             self.assertNotIn(unsafe,serialized)
         self.assertFalse(d["representations"][0]["rendered_asset_refs"])
 
