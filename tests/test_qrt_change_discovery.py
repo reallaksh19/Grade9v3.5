@@ -86,7 +86,19 @@ class QRTChangeDiscoveryTests(unittest.TestCase):
         self.assertTrue(all(x["reason"] == "BANK_ENVELOPE_CHANGED"
                             for x in report["impacts"]))
 
-    def test_deleted_question_does_not_receive_fictitious_green_approval(self):
+    def test_question_order_change_in_bank_requires_new_review_scope(self):
+        old = json.dumps(fixture([question("Q1"), question("Q2")]))
+        (self.repo / BANK).write_text(
+            json.dumps(fixture([question("Q2"), question("Q1")])), encoding="utf-8",
+        )
+        report = self.discover([BANK], old={BANK: old})
+        self.assertEqual({row["question_ref"] for row in report["impacts"]},
+                         {"Q1", "Q2"})
+        self.assertTrue(all(row["reason"] == "QUESTION_PRESENTATION_ORDER_CHANGED"
+                            for row in report["impacts"]))
+        self.assertFalse(report["pass_changed_scope"])
+
+
         (self.repo / BANK).write_text(json.dumps(fixture([])), encoding="utf-8")
         report = self.discover([BANK])
         self.assertIn("QUESTION_REMOVAL_REQUIRES_LINEAGE_REVIEW",
