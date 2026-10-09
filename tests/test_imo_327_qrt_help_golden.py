@@ -31,9 +31,9 @@ EXPECT = {
 # Git object hashes freeze the *whole reviewer fixture*, including actual hint wording.
 # Deliberate golden changes must be re-reviewed and update this table alongside the snapshot.
 GOLDEN_GIT_BLOB_SHAS = {
-    "GOLDEN-IMO327-EXPLAIN-D2": "989f31dbe00f4e9ccf38f2edb3bb86adc685f091",
-    "GOLDEN-IMO327-MODEL-D3": "c652f69270d7614016eeac463abc80a7542f61c8",
-    "GOLDEN-IMO327-JUSTIFY-D4": "72c60ec2fc4804c876577f89c20df67535ffdd48",
+    "GOLDEN-IMO327-EXPLAIN-D2": "98c83570be97cb4fdd0e29a63130c406fd4abf1d",
+    "GOLDEN-IMO327-MODEL-D3": "43296ad5b7e3517f76ae84b439a0eeef653d7d95",
+    "GOLDEN-IMO327-JUSTIFY-D4": "6418e24f6ff5e58f453f2654336da71bf1a8159e",
 }
 PRELUDE = ("NEUTRAL_DEMONSTRATION", "GENERAL_PRINCIPLE", "CONCEPT_CHECK",
            "GUIDED_APPLICATION", "FRESH_INDEPENDENT_EXIT")
@@ -121,7 +121,9 @@ def verify_fixture(f: dict, matrix: dict, vocab: dict) -> dict:
     if (lesson.get("role") != "CONCEPT_FIRST_NOT_TARGET_SOLUTION"
             or tuple(s["stage"] for s in lesson["sequence"]) != PRELUDE
             or lesson.get("checkpoint_before_target_aid") is not True
-            or lesson.get("checkpoint_enforced_by_current_renderer") is not False
+            or lesson.get("checkpoint_enforced_by_current_renderer") is not True
+            or lesson.get("checkpoint_mechanism") != "TEST_CLIENT_FORMATIVE_FORMAT_ONLY_CHOICE_AND_KEYWORD_REASON"
+            or lesson.get("semantic_comprehension_verified") is not False
             or lesson.get("return_to_new_unseen_task_required") is not True
             or lesson.get("return_enforced_by_current_renderer") is not False):
         raise ValueError("Concept-first sequence missing or fictitiously implemented")
@@ -135,7 +137,8 @@ def verify_fixture(f: dict, matrix: dict, vocab: dict) -> dict:
     if (policy.get("hint_used") != "ASSISTED_NOT_INDEPENDENT_MASTERY"
             or policy.get("repair_viewed") != "CONCEPT_EXPOSED_NOT_MASTERY"
             or policy.get("attempt_capture_available_in_fixture") is not False
-            or policy.get("learner_telemetry") != "NOT_IMPLEMENTED"):
+            or policy.get("learner_telemetry") != "NOT_IMPLEMENTED"
+            or policy.get("local_hint_disclosure_state") != "BEST_EFFORT_CLIENT_LOCAL_NOT_TRUSTED_MASTERY"):
         raise ValueError("Unimplemented mastery or telemetry forged")
     if not f.get("reviewer_only", {}).get("expected_explanation"):
         raise ValueError("Golden expected explanation missing from reviewer-only space")
@@ -234,9 +237,9 @@ class GoldenHintConceptModes(unittest.TestCase):
         with self.assertRaises(ValueError):
             verify_fixture(row,self.matrix,self.vocab)
 
-    def test_falsifier_unenforced_runtime_cannot_be_advertised_as_complete(self):
+    def test_falsifier_format_gate_cannot_claim_semantic_comprehension(self):
         row = copy.deepcopy(self.rows["GOLDEN-IMO327-EXPLAIN-D2"])
-        row["core1a_repair"]["checkpoint_enforced_by_current_renderer"] = True
+        row["core1a_repair"]["semantic_comprehension_verified"] = True
         with self.assertRaises(ValueError):
             verify_fixture(row,self.matrix,self.vocab)
 
