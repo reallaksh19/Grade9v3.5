@@ -72,6 +72,28 @@ class CorePublicDataBoundaryTests(unittest.TestCase):
         (self.public / "data.js").unlink()
         build_pages_site._assert_core_public_data_safe(self.repo)
 
+    def test_atlas_and_motion_session_consumers_report_publication_hold(self):
+        # The Core data file is shared by ordinary Atlas and motion-session
+        # pages. A publication hold must be reported honestly at these
+        # alternate browser entrypoints without fabricating released content.
+        repo = Path(__file__).resolve().parents[1]
+        atlas = (repo / "public/js/topic-atlas.js").read_text(encoding="utf-8")
+        pages_atlas = (repo / "docs/js/topic-atlas.js").read_text(encoding="utf-8")
+        self.assertEqual(
+            pages_atlas,
+            atlas.replace(
+                "../../../tools/run-builder/index.html",
+                "../../tools/run-builder/index.html",
+            ),
+        )
+        self.assertIn("corePayload?.publication_gate?.status === 'HOLD'", atlas)
+        self.assertIn("Core publication held: NO_INDEPENDENT_CORE_PUBLICATION_GRANT", atlas)
+        session = (repo / "public/motion-session/app.mjs").read_bytes()
+        pages_session = (repo / "docs/motion-session/app.mjs").read_bytes()
+        self.assertEqual(pages_session, session)
+        self.assertIn(b'coreData?.publication_gate?.status === "HOLD"', session)
+        self.assertIn(b'code: "NO_INDEPENDENT_CORE_PUBLICATION_GRANT"', session)
+
     def test_public_hold_is_committed_before_internal_preview_compilation_fails(self):
         data_path = self.public / "data.js"
         data_path.write_bytes(
