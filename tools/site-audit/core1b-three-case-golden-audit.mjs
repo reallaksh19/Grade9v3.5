@@ -120,6 +120,48 @@ try {
   check(!(await page.locator('#mainReferenceArea').isVisible()),`${golden.id}: paper-only boundary incorrectly opened proof reference`);
   await ctx.close();
  }
+ // Additional cross-case contract: one case's commitment must never count
+ // as another case's attempt. Student export must be evidence-only, not an
+ // accidental key/solution export.
+ const context=await browser.newContext({viewport:{width:390,height:800},acceptDownloads:true});
+ const page=await context.newPage();
+ try {
+  await page.goto(pathToFileURL(html).href);
+  await page.locator('#tab-0').click();
+  check(!(await page.locator('#repairStage').isVisible()),'case isolation: Case 1 initially unattempted');
+  await page.locator('#firstResponse').fill('33');
+  await page.locator('#commitFirst').click();
+  check(await page.locator('#repairStage').isVisible(),'case isolation: Case 1 attempt not recorded');
+  await page.locator('#tab-1').click();
+  check(!(await page.locator('#repairStage').isVisible()) &&
+    (await page.locator('#firstResponse').inputValue())==='',
+    'case isolation: Case 1 commitment unlocked Case 2');
+  await page.locator('#tab-0').click();
+  check(await page.locator('#repairStage').isVisible() &&
+    (await page.locator('#firstResponse').inputValue())==='33',
+    'case isolation: switching cases lost original short attempt');
+  const downloadPromise=page.waitForEvent('download');
+  await page.locator('#export').click();
+  const download=await downloadPromise;
+  const exported=JSON.parse(fs.readFileSync(await download.path(),'utf8'));
+  check(download.suggestedFilename()==='core1b-my-attempts.json',
+    'export: filename changed unexpectedly');
+  check(exported.format==='core1b-student-practice/v1' &&
+    exported.education_status==='TEST_NOT_CANONICAL',
+    'export: TEST-only custody metadata missing');
+  check(Array.isArray(exported.cases) && exported.cases.length===3 &&
+    exported.cases[0].first_attempt==='33' &&
+    exported.cases[0].first_attempt_committed===true &&
+    exported.cases[1].first_attempt==='' &&
+    exported.cases[1].first_attempt_committed===false,
+    'export: case identity, isolation or attempt evidence lost');
+  check(exported.cases.every(x=>x.grading==='NOT_GRADED'),
+    'export: student attempts falsely reported as graded');
+  const raw=JSON.stringify(exported);
+  check(fixtures.every(x=>!raw.includes(x.learner.reference) &&
+    !raw.includes(x.learner.boundary_answer)),
+    'export: authored proof or boundary answer included in student evidence');
+ } finally {await context.close();}
 } finally {await browser.close();}
 console.log(JSON.stringify({schema:'core1b-three-case-golden-browser/v1',fixture_count:fixtures.length,
  tested_viewports:checked,variant_paper_cases:fixtures.length,
