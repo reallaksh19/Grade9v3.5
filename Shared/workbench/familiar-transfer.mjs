@@ -151,3 +151,46 @@ export function resolveFamiliarTransfer(data, selectedId) {
     academic_acceptance: "NOT_EVALUATED",
   };
 }
+
+/** Resolve a specifically authored Core2B repair to an actual compiled Core1A
+ * teaching step. This is a learner-selected assisted route, never a diagnosis
+ * or a judgement that the step adequately repairs the claimed misconception.
+ */
+export function resolveTransferRepair(data, selectedId) {
+  const context = sameGroup(data, selectedId);
+  if (context.findings.length || context.outside) {
+    return { status: "HOLD", paths: [], findings: context.findings.length
+      ? context.findings : ["TRANSFER_REPAIR_OUTSIDE_APPLICATION"] };
+  }
+  const { selected, rows } = context;
+  if (role(selected) !== "CORE2B") {
+    return { status: "OUTSIDE_TRANSFER", paths: [], findings: [] };
+  }
+  const repair = app(selected)?.repair;
+  if (!text(repair?.step_ref) || !text(repair?.microtopic_ref)) {
+    return { status: "HOLD", paths: [], findings: ["SPECIFIC_REPAIR_REFERENCE_MISSING"] };
+  }
+  const candidates = rows.filter((row) =>
+    role(row) === "CORE1A" && row.projection?.concept?.microtopic_ref === repair.microtopic_ref
+    && row.source_ref === repair.microtopic_ref
+    && list(row.projection?.concept?.teaching_path).filter((step) =>
+      step?.id === repair.step_ref && text(step.action)
+      && (!text(repair.action) || step.action === repair.action)).length === 1);
+  if (candidates.length !== 1) {
+    return { status: "HOLD", paths: [], findings: ["REPAIR_TEACHING_STEP_NOT_UNIQUE_IN_CANONICAL_BUCKET"] };
+  }
+  return {
+    status: "CANONICAL_REPAIR_STEP_REVIEW_REQUIRED",
+    findings: [],
+    paths: [{
+      origin_projection_id: selected.id,
+      origin_question_ref: app(selected)?.question_ref,
+      target_projection_id: candidates[0].id,
+      repair_step_ref: repair.step_ref,
+      repair_microtopic_ref: repair.microtopic_ref,
+      learner_diagnosis: "NOT_ESTABLISHED",
+      learner_return_type: "SAME_QUESTION_ASSISTED_RETRY",
+      repair_adequacy: "NOT_INDEPENDENTLY_EVALUATED",
+    }],
+  };
+}
