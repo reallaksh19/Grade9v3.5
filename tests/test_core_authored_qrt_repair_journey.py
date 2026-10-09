@@ -142,7 +142,7 @@ class AuthoredQRTRepairJourneyTests(unittest.TestCase):
         self.assertIn('id="CU-TEST-CORE1A-QUAL-G9-CONSECUTIVE-FACTOR-PROOF"', a)
         # Shared shell JavaScript references every role; inspect actual articles only.
         self.assertEqual(
-            re.findall(r'<article\\b[^>]*data-g9-role="([^"]+)"', b),
+            re.findall(r'<article\b[^>]*data-g9-role="([^"]+)"', b),
             ["CORE2A"],
         )
         self.assertNotIn("SOF-IMO-G09-", b)
