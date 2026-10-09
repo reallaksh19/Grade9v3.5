@@ -7,6 +7,11 @@ on:
       - 'TEST/products/core1a-divisibility-render-maturity.manifest.json'
       - 'TEST/library/core1a-render-qualified-divisibility.v1.json'
       - 'TEST/library/figures/core1a-consecutive-divisibility-staged.svg'
+      - 'TEST/library/figures/core2a-three-consecutive-attempt-safe.svg'
+      - 'TEST/products/core-authored-qrt-repair-journey.manifest.json'
+      - 'tests/test_core_authored_qrt_repair_journey.py'
+      - 'tools/site-audit/core-authored-qrt-repair-journey-audit.mjs'
+      - 'docs/method/CORE-LEARNER-JOURNEY-ACADEMIC-REVIEW.md'
       - 'tests/test_imo_core1a_renderer_maturity.py'
       - 'tools/site-audit/core1a-render-maturity-audit.mjs'
       - 'docs/method/CORE1A-RENDERER-AGENT-HANDOFF.md'
@@ -39,6 +44,8 @@ jobs:
           python -m unittest tests.test_question_review_matrix -v
       - name: Exercise exact manifest through real renderer and falsify bad selection
         run: python -m unittest tests.test_imo_core1a_renderer_maturity -v
+      - name: Verify authored QRT JUSTIFY-D2 question and same-concept repair joins
+        run: python -m unittest tests.test_core_authored_qrt_repair_journey -v
       - name: Actual registered-blueprint render, TEST stamping and print receipt
         run: |
           python Shared/tools/deploy_test.py product \
@@ -76,10 +83,55 @@ jobs:
           # Maturity requires no unidentified REQUIRED reference-depth gaps.
           assert j['gap_count']==0, 'Canonical content gaps remain: see uploaded evidence; do not issue agent restart.'
           PY
+      - name: Actual authored Core2A -> Core1A TEST journey render and print
+        run: |
+          python Shared/tools/deploy_test.py product \\
+            TEST/products/core-authored-qrt-repair-journey.manifest.json --no-mirror
+      - name: Browser-observed attempt, keyboard reveal, QRT-safe repair routing, zoom
+        run: |
+          node tools/site-audit/core-authored-qrt-repair-journey-audit.mjs \\
+            public/test/products/core-authored-qrt-repair-journey
+      - name: Verify BOTH role PDFs, honest TEST receipt and no source Core2
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          from pypdf import PdfReader
+          p=Path('public/test/products/core-authored-qrt-repair-journey')
+          r=json.loads((p/'deploy-receipt.json').read_text())
+          assert r['accepted'] is False and r['draft'] is True and r['subject']=='TEST'
+          assert r['roles']==['CORE1A','CORE2A'] and r['gap_count']==0, r
+          assert r['selection_counts']['core2']==0 and r['selection_counts']['core2a']==1
+          assert r['pdf']['status']=='PRINTED', r['pdf']
+          for name in ('core1a','core2a'):
+              f=p/(name+'.pdf')
+              assert f.is_file() and f.stat().st_size>1000,name
+              reader=PdfReader(f)
+              extracted=' '.join(page.extract_text() or '' for page in reader.pages)
+              assert 'TEST' in extracted, name
+              assert ('consecutive' in extracted.lower() or 'factor' in extracted.lower()),name
+          q=json.loads((p/'journey-evidence'/'journey-browser-report.json').read_text())
+          assert not q['failures'],q['failures']
+          assert q['learning']['repair_destination']['found']
+          summary={'schema':'core-author-to-qrt-to-repair-evidence/v1',
+            'head_bound_input_digests':r['inputs_sha256'],
+            'render_digest':r['render_digest'],
+            'roles':r['roles'],'question_origin':'AUTHORED',
+            'qrt_cell':'QRT-JUSTIFY-D2','qrt_28_cell_projection_unchanged':True,
+            'source_core2_admitted':False,'gap_count':r['gap_count'],
+            'pdfs':['core1a.pdf','core2a.pdf'],
+            'browser_failures':q['failures'],'human_screen_reader':'NOT_RUN',
+            'learner_trial':'NOT_RUN','academic_review':'NOT_GRANTED',
+            'canonical_published':False,'owner_acceptance':False}
+          (p/'journey-evidence'/'journey-qualification.json').write_text(json.dumps(summary,indent=2)+'\\n')
+          print(json.dumps(summary,indent=2))
+          PY
       - name: Preserve rendered HTML, real PDF and failure evidence for owner review
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: core1a-canonical-render-maturity-evidence
-          path: public/test/products/core1a-divisibility-render-maturity/
+          path: |
+            public/test/products/core1a-divisibility-render-maturity/
+            public/test/products/core-authored-qrt-repair-journey/
           if-no-files-found: warn
