@@ -275,7 +275,7 @@ class Core1BReconstructionTests(unittest.TestCase):
         self.assertIn('data-g9-block="boundary_answer"', b)
         # Count DOM elements only: inline browser JS also names this selector.
         boundary_tags = re.findall(
-            r'<(?:div|details)\\b[^>]*data-g9-attempt-stage="boundary"', b
+            r'<(?:div|details)\b[^>]*data-g9-attempt-stage="boundary"', b
         )
         self.assertEqual(len(boundary_tags), 2)
 
