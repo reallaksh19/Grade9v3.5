@@ -91,7 +91,7 @@ class ReviewHTML(HTMLParser):
         if tag == "tr" and "data-residue" in att:
             self.key = att["data-residue"]
             demand(self.key not in self.residues, "duplicate residue class")
-            self.mode = "residue"
+            self.mode = "residues"
             self.residues[self.key] = ""
         if tag == "details" and att.get("id") == "exit-model-closure":
             self.details += 1
