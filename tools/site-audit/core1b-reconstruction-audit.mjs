@@ -57,6 +57,16 @@ try {
     await summary.focus();await summary.press('Enter');
     const blocked=!(await summary.evaluate(e=>e.parentElement.open));
     const empty=await summary.evaluate(e=>e.parentElement.querySelector('[data-g9-payload-slot]')?.children.length===0);
+    // Both answers are gated by the MAIN proof commitment. The boundary
+    // does not yet require a separate attempt; expose that as review debt.
+    const boundarySummary=role.locator('summary').filter({hasText:'Boundary answer'}).first();
+    let boundaryPrecommitBlocked=false, boundaryPrecommitPayloadEmpty=false;
+    if(await boundarySummary.count()===1){
+      await boundarySummary.focus();await boundarySummary.press('Enter');
+      boundaryPrecommitBlocked=!(await boundarySummary.evaluate(e=>e.parentElement.open));
+      boundaryPrecommitPayloadEmpty=await boundarySummary.evaluate(
+        e=>e.parentElement.querySelector('[data-g9-payload-slot]')?.children.length===0);
+    }
     const box=role.locator('[data-g9-attempt-box] textarea').first();
     if(await box.count()!==1)result.failures.push('missing learner-owned free response');
     else{
@@ -67,8 +77,18 @@ try {
     const opened=await summary.evaluate(e=>e.parentElement.open);
     const text=await summary.evaluate(e=>e.parentElement.innerText);
     const boundary=role.locator('[data-g9-block="boundary_test"]');
+    let boundaryAfterProofCommit=false;
+    if(await boundarySummary.count()===1){
+      await boundarySummary.focus();await boundarySummary.press('Enter');
+      boundaryAfterProofCommit=await boundarySummary.evaluate(
+        e=>e.parentElement.open && /At t=2/.test(e.parentElement.innerText));
+    }
+    result.boundary_independent_attempt='NOT_VERIFIED_SEPARATE_GATE';
     result.reconstruction={
       initially_closed:initiallyClosed,precommit_blocked:blocked,
+      boundary_precommit_blocked:boundaryPrecommitBlocked,
+      boundary_precommit_payload_empty:boundaryPrecommitPayloadEmpty,
+      boundary_answer_after_proof_commit:boundaryAfterProofCommit,
       precommit_payload_empty:empty,postcommit_opened:opened,
       has_residue_question:/remainder 0,1 or 2/.test(text),
       has_coprime_question:/gcd\(2,3\)/.test(text),
