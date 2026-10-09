@@ -66,6 +66,31 @@ try {
     await boundarySummary.focus();await boundarySummary.press('Enter');
     const boundaryPrecommitBlocked=!(await boundarySummary.evaluate(e=>e.parentElement.open));
     const boundaryPrecommitPayloadEmpty=await boundarySummary.evaluate(e=>e.parentElement.querySelector('[data-g9-payload-slot]')?.children.length===0);
+    // Regression from student feedback: a response such as "33" must count
+    // as an ungraded attempt. Length is not evidence of comprehension.
+    // Whitespace still must not unlock the protected proof or boundary.
+    const shortPage=await ctx.newPage();
+    let proofWhitespaceBlocked=false,shortAttemptAccepted=false,shortAttemptLeavesBoundaryLocked=false;
+    try {
+     await shortPage.goto(pathToFileURL(path.join(dir,'core1b.html')).href);
+     const shortRole=shortPage.locator('article[data-g9-role="CORE1B"]');
+     const shortProofBox=shortRole.locator('[data-g9-attempt-box]:not([data-g9-attempt-stage])');
+     const shortSummary=shortRole.locator('summary').filter({hasText:'Reconstruct'}).first();
+     const shortBoundarySummary=shortRole.locator('summary').filter({hasText:'Boundary answer'}).first();
+     await shortProofBox.locator('textarea').fill('  ');
+     await shortProofBox.locator('[data-g9-commit]').click();
+     await shortSummary.focus();await shortSummary.press('Enter');
+     proofWhitespaceBlocked=await shortSummary.evaluate(
+       e=>!e.parentElement.open&&e.parentElement.querySelector('[data-g9-payload-slot]')?.children.length===0);
+     await shortProofBox.locator('textarea').fill('33');
+     await shortProofBox.locator('[data-g9-commit]').click();
+     await shortSummary.focus();await shortSummary.press('Enter');
+     shortAttemptAccepted=await shortSummary.evaluate(
+       e=>e.parentElement.open&&e.parentElement.querySelector('[data-g9-payload-slot]')?.children.length>0);
+     await shortBoundarySummary.focus();await shortBoundarySummary.press('Enter');
+     shortAttemptLeavesBoundaryLocked=await shortBoundarySummary.evaluate(
+       e=>!e.parentElement.open&&e.parentElement.querySelector('[data-g9-payload-slot]')?.children.length===0);
+    } finally {await shortPage.close();}
     await proofBox.locator('textarea').fill('Synthetic browser QA only: an ungraded proof attempt.');
     await proofBox.locator('[data-g9-commit]').click();
     await summary.focus();await summary.press('Enter');
@@ -101,6 +126,9 @@ try {
       precommit_payload_empty:precommitPayloadEmpty,
       boundary_precommit_blocked:boundaryPrecommitBlocked,
       boundary_precommit_payload_empty:boundaryPrecommitPayloadEmpty,
+      proof_whitespace_attempt_blocked:proofWhitespaceBlocked,
+      short_nonblank_attempt_accepted_ungraded:shortAttemptAccepted,
+      short_attempt_does_not_unlock_boundary:shortAttemptLeavesBoundaryLocked,
       postcommit_opened:postcommitOpened,
       boundary_still_blocked_after_proof:boundaryStillBlockedAfterProof,
       boundary_still_empty_after_proof:boundaryStillEmptyAfterProof,
