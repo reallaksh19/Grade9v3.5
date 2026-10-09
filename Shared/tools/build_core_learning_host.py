@@ -8,6 +8,17 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 
 HOSTS = {
+    # Docs/Pages is a real learner host; use the identical canonical template.
+    "docs/core-learning/index.html": {
+        "data_src": "./data.js",
+        "runtime_base": "../js/core-learning",
+        "site_css": "../css/site.css",
+        "display_src": "../js/display-controls.js",
+        "header_src": "../js/site-header.js",
+        "site_root": "../",
+        "site_parent": "../index.html",
+        "packaging_mode": "PUBLIC",
+    },
     "public/core-learning/index.html": {
         "data_src": "./data.js",
         "runtime_base": "../js/core-learning",
