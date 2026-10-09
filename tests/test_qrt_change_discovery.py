@@ -178,6 +178,42 @@ class QRTChangeDiscoveryTests(unittest.TestCase):
                       [x["code"] for x in report["findings"]])
         fake.assert_not_called()
 
+    def test_untracked_learner_figure_change_without_index_fails_closed(self):
+        path = "TEST/library/figures/diagram.svg"
+        report = self.discover([path])
+        self.assertIn("PUBLISHED_SURFACE_WITHOUT_QRT_BINDING",
+                      [x["code"] for x in report["findings"]])
+        self.assertFalse(report["pass_changed_scope"])
+
+    def test_shared_interactive_runtime_change_without_scope_is_hold(self):
+        report = self.discover(["Shared/web/explorer-runtime.js"])
+        self.assertIn("GLOBAL_CHANGE_WITHOUT_INDEXED_QRT_SCOPE",
+                      [x["code"] for x in report["findings"]])
+        self.assertFalse(report["pass_changed_scope"])
+
+    def test_question_list_with_unrecognized_shape_is_not_an_empty_success(self):
+        path = "TEST/question-bank/unknown-format.json"
+        new = {"questions": [{"ref": "Q1", "problem_text": "Unsupported schema"}]}
+        file = self.repo / path
+        file.parent.mkdir(parents=True, exist_ok=True)
+        file.write_text(json.dumps(new), encoding="utf-8")
+        report = self.discover([path])
+        self.assertIn("QUESTION_COLLECTION_FORMAT_UNRECOGNIZED",
+                      [x["code"] for x in report["findings"]])
+        self.assertFalse(report["pass_changed_scope"])
+
+    def test_nested_topic_question_records_are_discovered(self):
+        path = "Physics/research/packages/topic.package.json"
+        data = {"topics": [{"microtopics": [{
+            "questions": [question("PHY-DEEP-1")]
+        }]}]}
+        file = self.repo / path
+        file.parent.mkdir(parents=True, exist_ok=True)
+        file.write_text(json.dumps(data), encoding="utf-8")
+        report = self.discover([path])
+        self.assertEqual(report["impacts"][0]["question_ref"], "PHY-DEEP-1")
+        self.assertFalse(report["pass_changed_scope"])
+
     def test_static_resource_graph_path_escape_is_rejected(self):
         path = self.repo / "TEST/content/page.html"
         path.parent.mkdir(parents=True)
