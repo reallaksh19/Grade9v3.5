@@ -476,7 +476,9 @@
             "CORE2A"
           ],
           "question_ref": "Q-TEST-IMO-G9-COMMON-BASE-SUPPORTED-01",
-          "datum_refs": [],
+          "datum_refs": [
+            "DATUM-TEST-IMO-G9-R1-SAFE-GIVEN-EQUATION"
+          ],
           "asset_ref": "TEST/imo-research/candidates/assets/REP-TEST-IMO-G9-R1-CORE2A-ATTEMPT-SAFE.svg",
           "scene": {
             "kind": "STAGED_SYMBOLIC_FACTORS",
@@ -844,5 +846,23 @@
     "grade9v3:learner_published": false,
     "grade9v3:imo_r1_authored_practice": "ONE_CORE2A_NO_SOURCE_CORE2_OR_OWNER_ADMISSION"
   },
-  "data": []
+  "data": [
+    {
+      "id": "DATUM-TEST-IMO-G9-R1-SAFE-GIVEN-EQUATION",
+      "version": "0.1.0",
+      "status": "CANDIDATE",
+      "source_refs": [
+        "SRC-TEST-IMO-G9-INDEX-AUTHORED"
+      ],
+      "evidence_refs": [],
+      "extensions": {
+        "grade9v3:authored_r1": true
+      },
+      "kind": "EQUATION",
+      "value": "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" display=\"block\"><mrow><msup><mn>4</mn><mrow><mn>2</mn><mi>u</mi><mo>+</mo><mn>1</mn></mrow></msup><mo>=</mo><msup><mn>16</mn><mi>u</mi></msup><mo>+</mo><mn>192</mn></mrow></math>",
+      "symbol": "4^(2u+1)=16^u+192",
+      "meaning": "The untransformed original authored R1 question; no substitution or answer.",
+      "locator": "AUTHOR_CREATED: IMO-R1 original supported-practice question"
+    }
+  ]
 }
