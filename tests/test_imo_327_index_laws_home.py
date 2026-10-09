@@ -130,7 +130,9 @@ class HomeRoutes(unittest.TestCase):
                 mirror = (ROOT / "docs" / path).read_bytes()
                 self.assertEqual(mirror, expected)
         desired = build_pages_site.desired_files(ROOT)
-        expected_manifest = build_pages_site._render_manifest(desired)
+        # desired_files includes the generated manifest payload; re-rendering
+        # its inventory here would incorrectly add the manifest as its own row.
+        expected_manifest = desired[".pages-manifest.json"][1]
         actual = (ROOT / "docs/.pages-manifest.json").read_bytes()
         self.assertEqual(actual, expected_manifest)
 
