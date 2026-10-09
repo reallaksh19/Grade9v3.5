@@ -4,6 +4,18 @@ on:
   pull_request:
     paths:
       - 'TEST/imo-research/**'
+      - 'public/test/imo-grade9/**'
+      - 'docs/test/imo-grade9/**'
+      - 'tests/test_imo_core1a_test_review.py'
+      - 'TEST/library/imo-g9-divisibility-core1a.v1.json'
+      - 'tests/test_imo_core_pilot_research.py'
+      - 'tests/test_imo_core1a_candidate_package.py'
+      - 'Mathematics/research/imo-g9-topic-browser.v1.json'
+      - 'public/mathematics/imo-grade9/**'
+      - 'docs/mathematics/imo-grade9/**'
+      - 'public/mathematics/index.html'
+      - 'docs/mathematics/index.html'
+      - 'tests/test_imo_math_tab.py'
       - 'tests/test_imo_seed.py'
       - 'tests/test_imo_math_audit.py'
       - '.github/workflows/imo-research-validation.yml'
@@ -11,6 +23,18 @@ on:
     branches: [main]
     paths:
       - 'TEST/imo-research/**'
+      - 'public/test/imo-grade9/**'
+      - 'docs/test/imo-grade9/**'
+      - 'tests/test_imo_core1a_test_review.py'
+      - 'TEST/library/imo-g9-divisibility-core1a.v1.json'
+      - 'tests/test_imo_core_pilot_research.py'
+      - 'tests/test_imo_core1a_candidate_package.py'
+      - 'Mathematics/research/imo-g9-topic-browser.v1.json'
+      - 'public/mathematics/imo-grade9/**'
+      - 'docs/mathematics/imo-grade9/**'
+      - 'public/mathematics/index.html'
+      - 'docs/mathematics/index.html'
+      - 'tests/test_imo_math_tab.py'
       - 'tests/test_imo_seed.py'
       - 'tests/test_imo_math_audit.py'
       - '.github/workflows/imo-research-validation.yml'
@@ -54,5 +78,17 @@ jobs:
         run: python TEST/imo-research/validate_intake_contract.py
       - name: Validate original-practice structured answer diagnostics and holds
         run: python TEST/imo-research/validate_practice_diagnostics.py
+      - name: Validate non-admitting seven-candidate qualification evidence and pinned upstream receipts
+        run: python TEST/imo-research/validate_qualification_evidence.py
+      - name: Validate seven learner-quality design proposals and Grade 9 scope holds
+        run: python TEST/imo-research/validate_learner_quality.py
+      - name: Validate rights-safe Mathematics IMO topic browser and public-docs parity
+        run: python TEST/imo-research/validate_math_tab_imo_topics.py
+      - name: Validate authentic-source Core2 custody census and independent Core1A proposal
+        run: python TEST/imo-research/validate_core_pilot_research.py
+      - name: Validate authored TEST Core1A candidate canonical package with zero admission
+        run: python TEST/imo-research/validate_core1a_candidate_package.py
+      - name: Validate TEST-only IMO Core1A teaching page and honest Core2 source PDF handoff
+        run: python TEST/imo-research/validate_core1a_test_review.py
       - name: Run research-only falsifier tests
         run: python -m unittest discover -s tests -p 'test_imo_*.py' -v
