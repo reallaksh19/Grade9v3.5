@@ -1,0 +1,65 @@
+{
+  "schema": "core1b-three-case-golden/v1",
+  "version": "1.0.0",
+  "status": "TEST_FIXTURE_NOT_CURRICULUM_ADMISSION",
+  "review_status": "NOT_INDEPENDENTLY_APPROVED",
+  "learner_trial": "NOT_RUN",
+  "policy": {
+    "attempt": "NONWHITESPACE_OR_EXPLICIT_PAPER",
+    "empty_text": "BLOCK",
+    "whitespace_text": "BLOCK",
+    "short_nonblank_text": "ACCEPT_UNGRADED",
+    "paper_attempt": "ACCEPT_UNGRADED",
+    "first_commit_unlocks": "DIAGNOSTIC_RECONSTRUCTION_ONLY",
+    "repair_commit": "REQUIRED_BEFORE_REFERENCE",
+    "reference_answer": "REVEAL_ON_EXPLICIT_ACTION_AFTER_REPAIR",
+    "boundary_commit": "SEPARATE_FROM_PROOF_AND_REPAIR",
+    "boundary_reference": "REVEAL_ONLY_AFTER_OWN_ATTEMPT",
+    "automatic_grade": "NEVER",
+    "student_mastery": "NOT_MEASURED",
+    "precommit_answer_access": "UI_HIDDEN_NOT_CRYPTOGRAPHIC"
+  },
+  "id": "algebra",
+  "title": "The missing term",
+  "subject": "Mathematics",
+  "topic": "Algebraic identities",
+  "source": {
+    "origin": "NEW_AUTHOR_DEMONSTRATION",
+    "original_custody": "NOT_APPLICABLE",
+    "approved_package": false,
+    "official_exam_custody": false
+  },
+  "qrt": {
+    "cell": "QRT-REPRESENT-D2",
+    "primary_demand": "REPRESENT",
+    "band": "D2",
+    "secondary_demands": [
+      "JUSTIFY"
+    ],
+    "reason": "Learner must preserve meaning when translating a product of binomials to a polynomial; missing cross-products are a representation failure.",
+    "protected_work": "Keep the two cross-products and explain why equality at x=0 does not imply equality for every x."
+  },
+  "learner": {
+    "situation": "A learner writes (x+2)²=x²+4. They checked x=0 and both sides matched, so they claim the identity is correct for every real x.",
+    "question": "Is their identity valid for every real x? Reconstruct the expansion by multiplication, identify the missing step, and explain why the one matching example is insufficient.",
+    "encouragement": "Start with what you think. You do not have to get it right yet—we will work through the reasoning together.",
+    "plausible_wrong_attempt": "When I square the terms separately, I get x²+4.",
+    "misconception": "Squaring a sum is the same as squaring its two terms separately.",
+    "diagnostics": [
+      "What does (x+2)² mean when written as two factors?",
+      "When you multiply (x+2)(x+2), how many separate products must you include?",
+      "Where do the products containing BOTH x and 2 go?",
+      "Does a correct result at one value of x prove an identity for every real x?"
+    ],
+    "repair_prompt": "Rewrite or improve your reasoning. Explain what was missing.",
+    "reference": "(x+2)² means (x+2)(x+2). Multiplying gives x²+2x+2x+4=x²+4x+4. The learner omitted the two cross-products, which total 4x. At x=0 the term 4x happens to vanish, but one matching example does not prove an identity for every x.",
+    "warrants": [
+      "Two brackets explicitly multiplied",
+      "All four products retained",
+      "Missing 4x identified",
+      "Why one matching example is not a universal identity"
+    ],
+    "boundary_question": "For WHICH real values of x does the learner’s mistaken equation (x+2)²=x²+4 happen to be true?",
+    "boundary_answer": "Expand and equate: x²+4x+4=x²+4, so 4x=0 and x=0. It happens to work only at x=0."
+  }
+}

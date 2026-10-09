@@ -1,0 +1,67 @@
+{
+  "schema": "core1b-three-case-golden/v1",
+  "version": "1.0.0",
+  "status": "TEST_FIXTURE_NOT_CURRICULUM_ADMISSION",
+  "review_status": "NOT_INDEPENDENTLY_APPROVED",
+  "learner_trial": "NOT_RUN",
+  "policy": {
+    "attempt": "NONWHITESPACE_OR_EXPLICIT_PAPER",
+    "empty_text": "BLOCK",
+    "whitespace_text": "BLOCK",
+    "short_nonblank_text": "ACCEPT_UNGRADED",
+    "paper_attempt": "ACCEPT_UNGRADED",
+    "first_commit_unlocks": "DIAGNOSTIC_RECONSTRUCTION_ONLY",
+    "repair_commit": "REQUIRED_BEFORE_REFERENCE",
+    "reference_answer": "REVEAL_ON_EXPLICIT_ACTION_AFTER_REPAIR",
+    "boundary_commit": "SEPARATE_FROM_PROOF_AND_REPAIR",
+    "boundary_reference": "REVEAL_ONLY_AFTER_OWN_ATTEMPT",
+    "automatic_grade": "NEVER",
+    "student_mastery": "NOT_MEASURED",
+    "precommit_answer_access": "UI_HIDDEN_NOT_CRYPTOGRAPHIC"
+  },
+  "id": "consecutive",
+  "title": "Three consecutive integers",
+  "subject": "Mathematics",
+  "topic": "Number systems",
+  "source": {
+    "origin": "MERGED_AUTHORED_TEST_PILOT",
+    "source_file": "TEST/imo-research/pilots/core1a-render-qualified-divisibility.v1.json",
+    "source_microtopic": "MIC-TEST-CORE1A-QUAL-G9-CONSECUTIVE-FACTOR-INVARIANTS",
+    "merged_basis_sha": "4a1a9aadca673eed10298d2bdfcd197d394d8d43",
+    "official_exam_custody": false
+  },
+  "qrt": {
+    "cell": "QRT-JUSTIFY-D3",
+    "primary_demand": "JUSTIFY",
+    "band": "D3",
+    "secondary_demands": [
+      "SYNTHESIZE"
+    ],
+    "reason": "For arbitrary t the learner must warrant evenness, three residue cases and coprimality; checking samples is not universal justification.",
+    "protected_work": "The universal residue argument and the inference that factors 2 and 3 imply divisibility by 6 must be learner-generated."
+  },
+  "learner": {
+    "situation": "A student tests t = 3, 4 and 5, and finds that (t−2)(t−1)t is divisible by 6 for each value. They say: I checked three values, so this proves the claim for EVERY integer t ≥ 3.",
+    "question": "Is that a valid proof? Reconstruct a proof for arbitrary integer t ≥ 3. You may start with a guess, but then explain what would justify a claim about every integer.",
+    "encouragement": "Start with what you think. You do not have to get it right yet—we will work through the reasoning together.",
+    "plausible_wrong_attempt": "I checked 3, 4, and 5, so it always works.",
+    "misconception": "A finite list of examples establishes a statement for all integers.",
+    "diagnostics": [
+      "Do three tested values cover every allowed integer t? What would?",
+      "Among the adjacent factors t−1 and t, what must be true about one of them?",
+      "If t leaves remainder 0, 1 or 2 when divided by 3, which of t, t−1 or t−2 supplies a factor of 3?",
+      "How do the guaranteed factors 2 and 3 combine even if they occur in different terms?",
+      "Can you point to the step that covers every allowed t, rather than only a few examples?"
+    ],
+    "repair_prompt": "Rewrite or improve your reasoning. Explain what was missing.",
+    "reference": "The sampled values do not prove a claim about every t. Let t ≥ 3 be arbitrary. Among t−1 and t, one is even, giving a factor of 2. If t modulo 3 is 0, then t is divisible by 3; if it is 1, then t−1 is; and if it is 2, then t−2 is. These are all three possible cases. Since the product is divisible by both 2 and 3 and gcd(2,3)=1, it is divisible by 6 for every allowed t.",
+    "warrants": [
+      "Arbitrary t, not just tested values",
+      "Guaranteed even factor",
+      "All 0/1/2 residue cases for a factor of 3",
+      "Why coprime divisors 2 and 3 guarantee a divisor of 6"
+    ],
+    "boundary_question": "If the claim is changed to just TWO consecutive factors, (t−1)t, is the product always divisible by 6 for every integer t ≥ 2? Give a decision and a reason.",
+    "boundary_answer": "No. For t=2 the product is 1×2=2, not divisible by 6. Two consecutive factors still guarantee evenness, but they do not guarantee a multiple of 3."
+  }
+}

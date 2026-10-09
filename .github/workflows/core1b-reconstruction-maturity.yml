@@ -21,6 +21,9 @@ on:
       - 'tools/print/print-product.mjs'
       - 'tools/site-audit/core1b-custody-evidence.py'
       - 'tests/test_core1b_key_custody.py'
+      - 'tests/test_core1b_three_case_goldens.py'
+      - 'tests/fixtures/core1b-goldens/**'
+      - 'tools/site-audit/core1b-three-case-golden-audit.mjs'
   workflow_dispatch:
 
 permissions:
@@ -49,7 +52,7 @@ jobs:
           python Shared/tools/question_review_matrix.py write --check
           python -m unittest tests.test_question_review_matrix -v
       - name: Prove same-concept learner reconstruction and real canonical render
-        run: python -m unittest tests.test_core1b_reconstruction_maturity tests.test_core1b_key_custody -v
+        run: python -m unittest tests.test_core1b_reconstruction_maturity tests.test_core1b_key_custody tests.test_core1b_three_case_goldens -v
       - name: Build all three TEST role pages through existing renderer and printed PDF path
         run: |
           python Shared/tools/deploy_test.py product \
@@ -58,6 +61,8 @@ jobs:
         run: |
           node tools/site-audit/core1b-reconstruction-audit.mjs \
             public/test/products/core1b-authored-reconstruction-journey
+      - name: Browser-test three held Golden learner journeys across the 4-by-7 QRT overlay
+        run: node tools/site-audit/core1b-three-case-golden-audit.mjs
       - name: Print a SEPARATE offline answer key using existing print-product key mode
         run: |
           node tools/print/print-product.mjs \
