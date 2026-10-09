@@ -80,6 +80,7 @@ jobs:
               assert 'TEST' in content,role
               if role=='core1b':
                   assert 'Predict' in content and 'Boundary test' in content, 'Core1B task print incomplete'
+                  assert 'write on a separate sheet' in content, 'Core1B printed paper-response instructions absent'
           # The learner-only print is an attempt handout. A separate KEY print
           # must close the entire self-tutor cycle without releasing W before
           # an attempt in the ordinary learner copy.
