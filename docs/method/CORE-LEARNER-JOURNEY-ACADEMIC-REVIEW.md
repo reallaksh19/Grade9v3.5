@@ -57,3 +57,27 @@ The 12 review questions are *not* a quota for 12 visible hint elements; H, S, P,
 **Academic/owner qualification remains PENDING** even if all engineering steps pass. Obtain an independent mathematical/teaching review, human accessibility observation where required and an Owner decision on exact digest before discussing wider delegation. The Owner may scope a *small* IMO restart through #294 only. NCERT remains separately blocked on authenticated official source evidence in #68.
 
 **No new renderer, QRT taxonomy, role blueprint, authored-question-to-source promotion, auto-accepted practice, fixed hints quota or public learner release follows from this note.**
+
+
+## 6. Rendered learner-artifact audit — original visual defect and corrective evidence
+
+**Reviewer:** Core architect, inspection of the *actual generated* TEST artifacts from [exact-head #37877278738](https://github.com/reallaksh19/Grade9v3.5/actions/runs/37877278738), PR head `a736f12e70af3001ead697c67191daa5a8c786f8`, [artifact #11592843209](https://github.com/reallaksh19/Grade9v3.5/actions/runs/37877278738/artifacts/11592843209). This is an **author's academic/content audit, not independent human sign-off**. Generated Core1A/Core2A HTML, PDF pages and screenshots were inspected visually, and the extracted PDF content was compared with the intended SVG labels.
+
+### Verified academic properties (scope limited to this authored TEST slice)
+
+- **Mathematics:** For every positive `n`, among `n,n+1` exactly one is even, and modulo-three classes `0,1,2` force respectively `n,n+2,n+1` to be divisible by three. Because `gcd(2,3)=1`, the full product is divisible by six. The authored Core2A substitution `n=m+1` is reversible for eligible `m>0`. The four-factor exit is also mathematically correct: among any four consecutive integers there is a multiple of four **and a distinct additional even factor**, yielding a factor of eight, while a factor of three also occurs; `gcd(8,3)=1`. These are general proofs, not conclusions from checked examples. The `0..5` and `0..23` modular checks are *verification oracles*, not substitutes for the warrant.
+- **Instructional progression:** The real Core2A page presents an AUTHORED constructed-response question and a proof-free three-factor image before an attempt. Typed synthetic commitment gates the complete route, and the browser navigates to the precise existing Core1A step `TC-03`. The Core1A page builds representation → parity → exhaustive modulo-three argument → coprime combination, with specific `why_valid` text, an authored worked proof and a more demanding four-factor exit. This supports **same-family Core2A application**; it does **not** demonstrate changed-decision Core2B transfer.
+- **Assessment integrity:** The QRT primary demand `JUSTIFY` is an academically defensible hypothesis given the request for a universal warrant. The five D components `1+1+1+0+1=4` produce `D2` via the **existing** QRT resolver. This is *not independently normed difficulty evidence* and cannot award QRT/curriculum acceptance. A visible request-to-reveal control blocks opening/materializing the solution until the synthetic attempt; protected work is pedagogical, **not cryptographically secret in source HTML**.
+
+### Learner-facing defect caught beyond green technical CI
+
+In the older SUCCESS artifact, the **PDF was incomplete despite a valid PDF/hash receipt**. On the Core1A print, the staged SVG's first step was enlarged and **its title and conclusion were cropped** at the right edge; on the Core2A practice PDF, the third of the three symbolic factor tiles was **cropped**. Both figures were fully visible in a 1280px browser screenshot, demonstrating why responsive-web and PDF-existence checks were insufficient. Such a printout is **not acceptable as a complete learner-facing artifact**, although the underlying mathematical prose and HTML were correct.
+
+**Remediation in PR #310:** Constrain the natural rendered width of the **two authored SVGs only**, without modifying the shared renderer, publisher assets, QRT vocabulary, roles or blueprint. Local Chromium print reproduction confirmed that widths capped at `500px` (Core1A stage) and `370px` (Core2A factor strip) make the previously cropped printed texts visible. The canonical [`core1a-render-maturity.yml`](../../.github/workflows/core1a-render-maturity.yml) PDF checks are now **falsifiable on those exact labels**: the Core1A PDF must extract both `Parity guarantee` and `so one is even: factor 2.`; the practice PDF must extract the last `m + 3` factor. These assertions would have **FAILED on the older green PDFs**. **The PR's new head is not declared qualified until its real runner reproduces this outcome.**
+
+### Remaining dispositions
+
+- **Academic self-audit:** Mathematical argument and explanatory sequence **checked**; the new printing correction is *locally* reproduced and awaits exact-head hosted PDF readback.
+- **Learner observation:** No actual Grade 9 student has attempted the task; misconception frequency, comprehensibility, estimated time and transfer success **NOT_MEASURED**.
+- **Human accessibility:** Automated keyboard, viewport and alt-text checks **PASS at prior tested head**; human screen-reader and independent assistive-technology review **NOT_RUN**.
+- **Curriculum, source and publication:** **NOT_GRANTED**. This is original source-safe TEST content, not original SOF/NCERT source Core2; no publisher rights, QRT academic admission, six-Core system acceptance, new matrix cell or owner release authority follows.
