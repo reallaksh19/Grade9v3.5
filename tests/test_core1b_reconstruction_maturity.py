@@ -110,7 +110,7 @@ class Core1BReconstructionTests(unittest.TestCase):
         self.assertEqual(waivers, [], waivers)
         self.assertEqual(len(digest), 16)
         b = pages["core1b.html"]
-        self.assertEqual(re.findall(r'<article\\b[^>]*data-g9-role="([^"]+)"', b), ["CORE1B"])
+        self.assertEqual(re.findall(r'<article[^>]*data-g9-role="([^"]+)"', b), ["CORE1B"])
         self.assertIn("Boundary test", b)
         self.assertIn("Reconstruct", b)
         self.assertIn("CORE1B-GIVEN-FACTORS", b)
