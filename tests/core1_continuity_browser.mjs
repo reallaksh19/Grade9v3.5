@@ -95,6 +95,9 @@ try {
     return {
       protectedKind: protectedStep?.kind,
       protectedAction: protectedStep?.action,
+      invariant: item.projection.application.transfer.invariant,
+      changedDemandStatement: item.projection.application.transfer.statement,
+      navText: document.getElementById("familiar-transfer").innerText,
       markup: content.shadowRoot?.innerHTML ?? content.innerHTML,
     };
   });
@@ -102,6 +105,16 @@ try {
   assert.ok(beforeAttempt.protectedAction
     && !beforeAttempt.markup.includes(beforeAttempt.protectedAction),
     "Core2B protected DECIDE action leaked into the pre-attempt DOM");
+  assert.ok(!beforeAttempt.navText.includes(beforeAttempt.invariant)
+    && !beforeAttempt.navText.includes(beforeAttempt.changedDemandStatement),
+    "Navigation revealed the Core2B model/invariant before an attempt");
+  await page.evaluate(() => {
+    document.querySelector("core-learning-page").commitAttempt("I first choose the release model and explain it.");
+  });
+  const afterAttemptNav = await page.locator("#familiar-transfer").innerText();
+  assert.ok(afterAttemptNav.includes(beforeAttempt.invariant)
+    && afterAttemptNav.includes(beforeAttempt.changedDemandStatement),
+    "Author transfer explanation was not disclosed after the B attempt");
   assert.deepEqual(failures, [], "Browser JS errors during continuity route");
   console.log("PASS: compiler-bound Core1A → Core1B browser path and session assistance disclosure");
 } finally {
