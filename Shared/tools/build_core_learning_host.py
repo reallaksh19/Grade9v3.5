@@ -66,6 +66,9 @@ TEMPLATE = r'''<!doctype html>
     select,button{padding:.55rem .8rem}
     .core-action-link{display:inline-flex;align-items:center;padding:0 .85rem;border:1px solid currentColor;border-radius:.7rem;text-decoration:none}
     [data-status]{margin:0}
+    .repair-return{display:grid;gap:.65rem;border:1px solid var(--border,#d7dce2);border-radius:1rem;padding:1rem;background:var(--surface,#fff)}
+    .repair-return p{margin:.1rem 0;max-width:85ch}
+    .repair-return button{justify-self:start;min-height:3rem}
     .familiar-transfer{display:grid;gap:.65rem;border:1px solid var(--border,#d7dce2);border-radius:1rem;padding:1rem;background:var(--surface,#fff)}
     .familiar-transfer h2{margin:0;font-size:1.15rem}
     .familiar-transfer p{margin:.1rem 0;max-width:85ch}
@@ -157,6 +160,12 @@ TEMPLATE = r'''<!doctype html>
       <ul id="familiar-transfer-paths" class="transfer-paths"></ul>
     </nav>
 
+    <section class="repair-return" id="repair-return" aria-label="Question-specific repair and assisted return" hidden>
+      <h2>Specific repair and return</h2>
+      <p id="repair-return-note"></p>
+      <button type="button" id="repair-return-action" hidden></button>
+    </section>
+
     <section class="delivery-band" aria-label="Resolved web delivery contract">
       <div><strong>Blueprint</strong><span id="blueprint-ref">—</span></div>
       <div><strong>Layout</strong><span id="layout-family">—</span></div>
@@ -186,7 +195,7 @@ TEMPLATE = r'''<!doctype html>
     import "__CORE_RUNTIME_BASE__/core-learning-page.mjs";
     import { mountCoreLearningPage } from "__CORE_RUNTIME_BASE__/core-learning-host.mjs";
     import { resolveCore1StudyContinuity } from "__CORE_RUNTIME_BASE__/core1-continuity.mjs";
-    import { resolveFamiliarTransfer } from "__CORE_RUNTIME_BASE__/familiar-transfer.mjs";
+    import { resolveFamiliarTransfer, resolveTransferRepair } from "__CORE_RUNTIME_BASE__/familiar-transfer.mjs";
 
     const data = window.GRADE9V3_CORE;
     const rows = Array.isArray(data?.core_projections) ? data.core_projections : [];
@@ -211,6 +220,10 @@ TEMPLATE = r'''<!doctype html>
     const viewedConstruction = new Set();
     const visitedFamiliar = new Set();
     const reviewedFamiliar = new Set();
+    let pendingRepair = null; // In-page only: question and precise step, no graded diagnosis.
+    const repairPanel = document.getElementById("repair-return");
+    const repairNote = document.getElementById("repair-return-note");
+    const repairAction = document.getElementById("repair-return-action");
     const transferNav = document.getElementById("familiar-transfer");
     const transferNote = document.getElementById("familiar-transfer-note");
     const transferPaths = document.getElementById("familiar-transfer-paths");
@@ -392,10 +405,57 @@ TEMPLATE = r'''<!doctype html>
       }
     }
 
+    function renderRepairReturn(row) {
+      repairPanel.hidden = true;
+      repairAction.hidden = true;
+      repairAction.onclick = null;
+      const core = row?.projection?.core;
+      if (core === "CORE1A" && pendingRepair?.target_projection_id === row.id) {
+        repairPanel.hidden = false;
+        repairNote.textContent = "Returned from " + pendingRepair.origin_question_ref +
+          " to this exact Core1A teaching step " + pendingRepair.repair_step_ref +
+          ". Study the construction and decide whether it addresses your difficulty. " +
+          "No wrong idea has been automatically diagnosed. Returning to the same question will be assisted practice.";
+        repairAction.textContent = "Return to question · assisted retry";
+        repairAction.hidden = false;
+        repairAction.onclick = () => mount(pendingRepair.origin_projection_id);
+        return;
+      }
+      if (core !== "CORE2B") return;
+      repairPanel.hidden = false;
+      const found = resolveTransferRepair(data, row.id);
+      if (found.status !== "CANONICAL_REPAIR_STEP_REVIEW_REQUIRED"
+          || found.paths.length !== 1) {
+        repairNote.textContent = "Exact canonical repair route held: " +
+          found.findings.join(" · ") + ". Do not guess a teaching destination.";
+        return;
+      }
+      const path = found.paths[0];
+      if (!learner.state?.attempted) {
+        repairNote.textContent = "Attempt this changed-decision question first. The specific " +
+          "construction step is protected until commitment; you can separately choose earlier familiar study.";
+        return;
+      }
+      const returnAssisted = pendingRepair?.origin_projection_id === row.id;
+      repairNote.textContent = (returnAssisted
+        ? "You returned after a targeted construction. This is a fresh response entry to the SAME question, not an independent transfer measurement. "
+        : "An attempt is recorded; no error or misconception has been diagnosed. ") +
+        "The canonical repair candidate is step " + path.repair_step_ref +
+        " of " + path.repair_microtopic_ref +
+        ". Its adequacy for your exact mistake still needs academic review.";
+      repairAction.textContent = "Study exact Core1A step " + path.repair_step_ref;
+      repairAction.hidden = false;
+      repairAction.onclick = () => {
+        pendingRepair = path;
+        mount(path.target_projection_id);
+      };
+    }
+
     learner.addEventListener("attempt_committed", () => {
       const row = rows.find((item) => item.id === select.value);
       if (row?.projection?.core === "CORE2B" && learner.state?.attempted) {
         renderFamiliarTransfer(row);
+        renderRepairReturn(row);
       }
     });
 
@@ -424,6 +484,7 @@ TEMPLATE = r'''<!doctype html>
         }
         renderStudyJourney(row);
         renderFamiliarTransfer(row);
+        renderRepairReturn(row);
         mountExplorer(row);
         renderDelivery(row);
         subjectContext.textContent = [row?.subject, row?.projection?.core].filter(Boolean).join(" · ") || "Compiled canonical learner activity";
