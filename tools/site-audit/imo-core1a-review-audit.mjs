@@ -91,10 +91,19 @@ function demand(test,message){if(!test)throw new Error(message)}
           tableWidth:table?.scrollWidth??0,
           smallControlCount:rects.filter(r=>r.h<28).length,
           missingH1:document.querySelectorAll('main h1').length!==1,
-          loadedCSS:!!Array.from(document.styleSheets).find(x=>x.href?.includes('/css/modern-learner.css'))
+          loadedCSS:!!Array.from(document.styleSheets).find(x=>x.href?.includes('/css/modern-learner.css')),
+          overflowCandidates:Array.from(document.querySelectorAll('body *'))
+            .map(node=>({node,rect:node.getBoundingClientRect()}))
+            .filter(({rect})=>rect.right>innerWidth+1 || rect.left < -1)
+            .slice(0,12).map(({node,rect})=>({
+              tag:node.tagName.toLowerCase(),id:node.id||null,
+              className:typeof node.className==='string'?node.className.slice(0,80):'',
+              left:Math.round(rect.left),right:Math.round(rect.right),
+              scrollWidth:node.scrollWidth,clientWidth:node.clientWidth
+            }))
         };
       });
-      assert(measurements.overflowPx===0,`${view.name}: page horizontal overflow ${measurements.overflowPx}px`);
+      assert(measurements.overflowPx===0,`${view.name}: page horizontal overflow ${measurements.overflowPx}px; offending: ${JSON.stringify(measurements.overflowCandidates)}`);
       assert(!measurements.missingH1,`${view.name}: missing single h1`);
       assert(measurements.loadedCSS,`${view.name}: CSS not loaded`);
       await page.screenshot({path:path.join(OUT,view.name+'.png'),fullPage:true,animations:'disabled'});
