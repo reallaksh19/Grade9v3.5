@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
-import { resolveFamiliarTransfer } from "../Shared/workbench/familiar-transfer.mjs";
+import { resolveFamiliarTransfer, resolveTransferRepair } from "../Shared/workbench/familiar-transfer.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const fixture = JSON.parse(await readFile(
@@ -151,6 +151,56 @@ test("existing canonical production 2A/2B changed-model witness is structurally 
   assert.equal(result.pairs[0].transfer_dimension, "model_choice");
 });
 
+test("question-specific repair returns only to a unique canonical Core1A teaching step", () => {
+  const data = dataWith();
+  data.core_projections[1].projection.application.repair = {
+    step_ref: "K-EXACT-REPAIR",
+    microtopic_ref: "MIC-REPAIR",
+    action: "Rebuild the model assumption.",
+  };
+  const construction = {
+    id: "physics:repair", subject: "Physics", source_ref: "MIC-REPAIR",
+    projection: {
+      core: "CORE1A",
+      concept: {
+        microtopic_ref: "MIC-REPAIR",
+        teaching_path: [{ id: "K-EXACT-REPAIR", action: "Rebuild the model assumption." }],
+      },
+    },
+  };
+  data.core_projections.push(construction);
+  data.bucket_availability[0].projection_refs.push(construction.id);
+  const route = resolveTransferRepair(data, "physics:b");
+  assert.equal(route.status, "CANONICAL_REPAIR_STEP_REVIEW_REQUIRED");
+  assert.equal(route.paths[0].target_projection_id, construction.id);
+  assert.equal(route.paths[0].origin_question_ref, core2b.application.question_ref);
+  assert.equal(route.paths[0].learner_diagnosis, "NOT_ESTABLISHED");
+  assert.equal(route.paths[0].repair_adequacy, "NOT_INDEPENDENTLY_EVALUATED");
+  const duplicate = structuredClone(construction);
+  duplicate.id = "physics:repair-duplicate";
+  data.core_projections.push(duplicate);
+  data.bucket_availability[0].projection_refs.push(duplicate.id);
+  assert.equal(resolveTransferRepair(data, "physics:b").status, "HOLD");
+  data.core_projections.pop();
+  data.bucket_availability[0].projection_refs.pop();
+  data.core_projections[1].projection.application.repair.step_ref = "K-NOT-EXIST";
+  assert.equal(resolveTransferRepair(data, "physics:b").status, "HOLD");
+});
+
+test("canonical production B repair source resolves to an actual A teaching step", async () => {
+  const raw = await readFile(resolve(here, "../public/core-learning/data.js"), "utf8");
+  const prefix = "window.GRADE9V3_CORE = ";
+  const data = JSON.parse(raw.slice(raw.indexOf(prefix) + prefix.length).trim().replace(/;$/, ""));
+  const child = data.core_projections.find((r) =>
+    r?.source_ref === "Q-PHY-KIN-2D-2B-PROJECTILE-VALIDITY-04"
+    && r?.projection?.core === "CORE2B");
+  assert.ok(child);
+  const found = resolveTransferRepair(data, child.id);
+  assert.equal(found.status, "CANONICAL_REPAIR_STEP_REVIEW_REQUIRED", JSON.stringify(found.findings));
+  assert.equal(found.paths[0].repair_step_ref, "K2D3-1");
+  assert.equal(found.paths[0].learner_return_type, "SAME_QUESTION_ASSISTED_RETRY");
+});
+
 test("both generated learner hosts wire the guided transfer and disclose exposure", async () => {
   const pages = await Promise.all([
     "../public/core-learning/index.html",
@@ -163,6 +213,9 @@ test("both generated learner hosts wire the guided transfer and disclose exposur
     assert.match(s, /resolveFamiliarTransfer/);
     assert.match(s, /visitedFamiliar/);
     assert.match(s, /reviewedFamiliar/);
+    assert.match(s, /resolveTransferRepair/);
+    assert.match(s, /id="repair-return"/);
+    assert.match(s, /Return to question · assisted retry/);
     assert.match(s, /worked explanation was not observed/i);
     assert.match(s, /prior capability is unverified/i);
     assert.match(s, /not certified mastery/i);
