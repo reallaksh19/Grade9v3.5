@@ -2339,7 +2339,7 @@ def _ladder(ctx: Ctx, q: dict, role: str, source: bool = False) -> str:
                     for n, t in enumerate(payloads[start:], start + 1))
     initial = "" if optional else f'<li data-g9-rung="1">{payloads[0]}</li>'
     notice = ('<p data-g9-assistance-status role="status" aria-live="polite" hidden>'
-              'Hints viewed: assisted practice, not independent mastery.</p>' if optional else "")
+              'Hint support status is recorded locally, not as mastery.</p>' if optional else "")
     return (f'<div class="g9-ladder" data-g9-ladder-ref="{esc(ref)}">'
             f'<ol data-g9-ladder>{initial}</ol>'
             f'{later}<button type="button" data-g9-next-rung'
@@ -2811,11 +2811,27 @@ const stateKey=a=>scope&&a?.dataset.g9Unit?'state:'+scope+':'+a.dataset.g9Unit:n
 function readState(key){if(!key)return null;const raw=store.get(key);if(!raw)return null;try{const state=JSON.parse(raw);return state&&typeof state==='object'?state:null}catch(e){return null}}
 const attemptFields=a=>q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a);const rungCount=l=>{const list=q('[data-g9-ladder]',l)[0];return list?q('[data-g9-rung]',list).length:0};
 const assistanceOf=a=>(a.dataset.g9Assistance||'').split(',').filter(Boolean);
-function assistanceLabel(a){q('[data-g9-assistance-status]',a).forEach(el=>el.hidden=!a.dataset.g9Assisted)}
-function markAssistance(a,kind){if(!['CORE2','CORE2A'].includes(a.dataset.g9Role)||!kind)return;const kinds=new Set(assistanceOf(a));kinds.add(kind);a.dataset.g9Assistance=Array.from(kinds).join(',');a.dataset.g9Assisted='1';assistanceLabel(a)}
-function saveCore2State(a){if(!['CORE2','CORE2A'].includes(a.dataset.g9Role))return;const key=stateKey(a);if(!key)return;const fields=attemptFields(a).map(el=>({value:el.value,checked:!!el.checked}));const ladders={};q('.g9-ladder[data-g9-ladder-ref]',a).forEach(l=>ladders[l.dataset.g9LadderRef]=rungCount(l));const reveals=q('details[data-g9-support-reveal]',a).map(d=>!!d.open);const assistance=assistanceOf(a);store.set(key,JSON.stringify({attempted:!!a.dataset.attempted,assisted:!!a.dataset.g9Assisted,assistance,fields,ladders,reveals}))}
+function assistanceLabel(a){q('[data-g9-assistance-status]',a).forEach(el=>{
+  const assisted=!!a.dataset.g9Assisted,after=!!a.dataset.g9PostAttemptHints;
+  el.hidden=!assisted&&!after;
+  el.textContent=assisted?'Hint used before commitment: assisted practice, not independent mastery.':
+    'Hint opened after commitment; this does not retroactively change the prior attempt.'
+})}
+function markAssistance(a,kind){
+ if(!['CORE2','CORE2A'].includes(a.dataset.g9Role)||!kind)return;
+ if(a.dataset.g9Role==='CORE2A'&&a.dataset.attempted){
+   a.dataset.g9PostAttemptHints='1';assistanceLabel(a);return
+ }
+ const kinds=new Set(assistanceOf(a));kinds.add(kind);
+ a.dataset.g9Assistance=Array.from(kinds).join(',');
+ a.dataset.g9Assisted='1';assistanceLabel(a)
+}
+function saveCore2State(a){if(!['CORE2','CORE2A'].includes(a.dataset.g9Role))return;const key=stateKey(a);if(!key)return;const fields=attemptFields(a).map(el=>({value:el.value,checked:!!el.checked}));const ladders={};q('.g9-ladder[data-g9-ladder-ref]',a).forEach(l=>ladders[l.dataset.g9LadderRef]=rungCount(l));const reveals=q('details[data-g9-support-reveal]',a).map(d=>!!d.open);const assistance=assistanceOf(a);store.set(key,JSON.stringify({attempted:!!a.dataset.attempted,assisted:!!a.dataset.g9Assisted,
+  postAttemptHints:!!a.dataset.g9PostAttemptHints,assistance,fields,ladders,reveals}))}
 function bindSupportRevealState(a){q('details[data-g9-support-reveal]',a).forEach(d=>{if(d.dataset.g9StateBound)return;d.dataset.g9StateBound='1';d.addEventListener('toggle',()=>saveCore2State(a))})}
-function restoreCore2State(a,lock){if(!['CORE2','CORE2A'].includes(a.dataset.g9Role))return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});bindSupportRevealState(a);q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.assisted){a.dataset.g9Assisted='1';a.dataset.g9Assistance=(Array.isArray(state.assistance)?state.assistance:[]).filter(v=>typeof v==='string').join(',')}if(state.attempted){a.dataset.attempted='1';materialise(a)}assistanceLabel(a);lock()}
+function restoreCore2State(a,lock){if(!['CORE2','CORE2A'].includes(a.dataset.g9Role))return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});bindSupportRevealState(a);q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.assisted){a.dataset.g9Assisted='1';a.dataset.g9Assistance=(Array.isArray(state.assistance)?state.assistance:[]).filter(v=>typeof v==='string').join(',')}
+if(state.postAttemptHints&&a.dataset.g9Role==='CORE2A')a.dataset.g9PostAttemptHints='1';
+if(state.attempted){a.dataset.attempted='1';materialise(a)}assistanceLabel(a);lock()}
 const articles=q('article[data-g9-unit],article[data-g9-diagnostic],[data-g9-purpose-item]');
 articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);
 q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));
