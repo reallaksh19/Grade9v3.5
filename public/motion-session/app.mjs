@@ -496,6 +496,13 @@ async function init() {
     : SESSION_CASE;
 
   try {
+    if (coreData?.publication_gate?.status === "HOLD") {
+      throw Object.assign(
+        new Error("Public Core learner sessions require independently authorized release grants."),
+        { code: "NO_INDEPENDENT_CORE_PUBLICATION_GRANT",
+          detail: "This Core activity is an internal compiler preview, not released learner content." },
+      );
+    }
     identity = resolveMotionSessionIdentity(webData, coreData, selection);
     recorder = createMotionSessionTraceRecorder({
       runId: runId(),
