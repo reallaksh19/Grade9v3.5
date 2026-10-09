@@ -33,6 +33,8 @@ try{
     assert(!/SOF-IMO-G09/.test(text),w+': authentic source label leaked');
     assert(widths.scroll<=widths.client,w+': horizontal page overflow '+(widths.scroll-widths.client));
     assert(!jsErrors.length,w+': page errors '+jsErrors.join(';'));
+    const safeFigures=article.locator('figure[data-g9-stage="PRE_ATTEMPT"]');
+    assert(await safeFigures.count()===1,w+': original authored stem needs one attempt-safe figure');
     const leakedFigures=await article.locator('figure[data-g9-stage="PRE_ATTEMPT"]').evaluateAll(
       nodes=>nodes.map(el=>el.outerHTML).filter(html=>/u=3\/2|t=64|4t=t|solution/i.test(html)));
     assert(leakedFigures.length===0,w+': preattempt visual leaks answer or factor relation');
