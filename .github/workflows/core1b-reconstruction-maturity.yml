@@ -19,6 +19,8 @@ on:
       - 'Shared/tools/web_blueprint_contract.py'
       - 'Shared/tools/question_review_matrix.py'
       - 'tools/print/print-product.mjs'
+      - 'tools/site-audit/core1b-custody-evidence.py'
+      - 'tests/test_core1b_key_custody.py'
   workflow_dispatch:
 
 permissions:
@@ -47,7 +49,7 @@ jobs:
           python Shared/tools/question_review_matrix.py write --check
           python -m unittest tests.test_question_review_matrix -v
       - name: Prove same-concept learner reconstruction and real canonical render
-        run: python -m unittest tests.test_core1b_reconstruction_maturity -v
+        run: python -m unittest tests.test_core1b_reconstruction_maturity tests.test_core1b_key_custody -v
       - name: Build all three TEST role pages through existing renderer and printed PDF path
         run: |
           python Shared/tools/deploy_test.py product \
@@ -162,16 +164,28 @@ jobs:
               'key_within_public_tree':False,
               'learner_print_protected_figure_count':1,'key_print_full_figure_count':2,
               'print_page_quality':page_quality,
-              'independent_print_ux_acceptance':'NOT_GRANTED'}
+              'independent_print_ux_acceptance':'NOT_GRANTED',
+              'key_distribution_owner_approval':'NOT_GRANTED',
+              'key_upload_delivery':'WITHHELD_BY_ALLOWLIST',
+              'html_template_answers_in_source':True}
           (p/'core1b-evidence'/'qualification.json').write_text(json.dumps(proof,indent=2)+'\n')
           print(json.dumps(proof,indent=2))
           PY
-      - name: Upload honest generated HTML PDFs, browsers and precise failure receipts
+      - name: Build allowlisted learner-only review receipt; withhold ALL offline keys and HTML source
+        run: |
+          python tools/site-audit/core1b-custody-evidence.py \
+            --source public/test/products/core1b-authored-reconstruction-journey \
+            --keydir core1b-review-evidence/offline-key \
+            --out core1b-review-evidence/safe-upload \
+            --head-sha "${{ github.event.pull_request.head.sha || github.sha }}"
+      - name: Remove CI-only generated KEY PDFs before upload
+        if: always()
+        run: rm -rf core1b-review-evidence/offline-key
+      - name: Upload allowlisted learner PDFs and digest-only QA receipts, not KEY or HTML
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: core1b-reconstruction-qualification-evidence
-          path: |
-            public/test/products/core1b-authored-reconstruction-journey/
-            core1b-review-evidence/offline-key/
+          name: core1b-safe-learner-only-qualification-evidence
+          path: core1b-review-evidence/safe-upload/
+          retention-days: 7
           if-no-files-found: warn
