@@ -258,24 +258,27 @@ class Core1BReconstructionTests(unittest.TestCase):
         self.assertIn('data-g9-attempt-stage="boundary"', reveals[1])
         self.assertIn("Your boundary decision and reason", page)
         self.assertIn("I have attempted the boundary", page)
-        self.assertIn("if(!attemptedFor(a,d))return", render_core.JS)
-        self.assertIn("a.dataset.g9BoundaryAttempted='1'", render_core.JS)
+        self.assertIn("if(!attemptedFor(a,d))return", render_core.core1b_js())
+        self.assertIn("a.dataset.g9BoundaryAttempted='1'", render_core.core1b_js())
 
     def test_core1b_print_layout_is_scoped_and_preserves_complete_gates(self):
         """Role-local CSS must never change CORE1A/CORE2A or remove protected answers."""
         pages, gaps, _, _, _ = render_core.build_report(MANIFEST, "PAGES", held_to="REFERENCE")
         self.assertEqual(gaps, [])
-        for role in ("core1a.html", "core1b.html", "core2a.html"):
-            self.assertIn('html[data-g9-role="CORE1B"] .g9-concept-triad-bar', pages[role])
-            self.assertIn('html[data-g9-role="CORE1B"] article[data-g9-role="CORE1B"] .g9-split', pages[role])
-            self.assertIn('html[data-g9-role="CORE1B"] article[data-g9-role="CORE1B"] figure[data-g9-figure]', pages[role])
-            self.assertIn('html[data-g9-role="CORE1B"] footer{position:static', pages[role])
-            # Pinned Blueprint 1.9 conformance scans declarations, even PRINT CSS.
-            # This must not regress the shared Core1A/Core2 friction FONT_FLOOR.
-            self.assertIn('break-before:auto!important;font-size:14px!important', pages[role])
-            self.assertNotIn('font-size:11px!important', pages[role])
-            self.assertNotIn('html[data-g9-role="CORE1A"] .g9-concept-triad-bar', pages[role])
-            self.assertNotIn('html[data-g9-role="CORE2A"] .g9-concept-triad-bar', pages[role])
+        boundary_page = pages["core1b.html"]
+        self.assertIn('html[data-g9-role="CORE1B"] .g9-concept-triad-bar', boundary_page)
+        self.assertIn('html[data-g9-role="CORE1B"] article[data-g9-role="CORE1B"] .g9-split', boundary_page)
+        self.assertIn('html[data-g9-role="CORE1B"] article[data-g9-role="CORE1B"] figure[data-g9-figure]', boundary_page)
+        self.assertIn('html[data-g9-role="CORE1B"] footer{position:static', boundary_page)
+        self.assertIn('break-before:auto!important;font-size:14px!important', boundary_page)
+        for role in ("core1a.html", "core2a.html"):
+            self.assertNotIn('html[data-g9-role="CORE1B"] .g9-concept-triad-bar', pages[role])
+            self.assertNotIn('g9BoundaryAttempted', pages[role])
+        self.assertNotIn('g9BoundaryAttempted', pages["index.html"])
+        self.assertNotIn('g9BoundaryAttempted', render_core.JS)
+        self.assertNotIn('html[data-g9-role="CORE1B"]', render_core.CSS)
+        self.assertIn('g9BoundaryAttempted', render_core.core1b_js())
+        self.assertNotIn('font-size:11px!important', boundary_page)
         b = pages["core1b.html"]
         self.assertIn('data-g9-block="boundary_test"', b)
         self.assertIn('data-g9-block="boundary_answer"', b)
@@ -284,6 +287,18 @@ class Core1BReconstructionTests(unittest.TestCase):
             r'<(?:div|details)\b[^>]*data-g9-attempt-stage="boundary"', b
         )
         self.assertEqual(len(boundary_tags), 2)
+
+    def test_runtime_scope_preserves_generic_test_hub_and_other_roles(self):
+        """Core1B-only print and boundary gate must not alter TEST shell outputs."""
+        from Shared.tools import build_test_site
+        b = build_test_site.render_all()
+        for name in ("index.html", "rungs/index.html", "deployments/index.html"):
+            self.assertNotIn('g9BoundaryAttempted', b[name])
+            self.assertNotIn('html[data-g9-role="CORE1B"]', b[name])
+        findings = build_test_site.check()
+        self.assertFalse(any("rungs/index.html" in f or "deployments/index.html" in f
+                             for f in findings), findings)
+        # Existing base debt for hub index.html remains an owning-producer hold.
 
 if __name__ == "__main__":
     unittest.main()

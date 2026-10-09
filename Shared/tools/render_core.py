@@ -2535,15 +2535,6 @@ details[data-requires-attempt]:not([open]){display:none!important}
 details{border:none}article[data-g9-unit]{break-inside:auto;border:none}
 h1,h2,h3,h4{break-after:avoid-page}footer{padding:0;break-before:avoid-page}
 body{background:#fff;color:#000}}
-@media print{
-html[data-g9-role="CORE1B"]{font-size:16px!important;--g9-space:12px!important}
-html[data-g9-role="CORE1B"] body{line-height:1.48!important}
-html[data-g9-role="CORE1B"] .g9-concept-triad-bar{display:none!important}
-html[data-g9-role="CORE1B"] article[data-g9-role="CORE1B"]{margin:4px 0!important;padding:12px!important}
-html[data-g9-role="CORE1B"] article[data-g9-role="CORE1B"] .g9-split{display:block!important}
-html[data-g9-role="CORE1B"] article[data-g9-role="CORE1B"] figure[data-g9-figure]{break-inside:avoid-page!important;page-break-inside:avoid!important}
-html[data-g9-role="CORE1B"] footer{position:static!important;bottom:auto!important;left:auto!important;padding:0!important;break-before:auto!important;font-size:14px!important;background:#fff!important}
-}
 .g9-attempt input[type=text],.g9-attempt select,.g9-attempt textarea{min-height:48px;box-sizing:border-box}
 .g9-answer-option,.g9-paper,.g9-match{display:flex;align-items:center;gap:.5rem;min-height:48px}
 .g9-answer-option input,.g9-paper input{min-width:48px;min-height:48px}
@@ -2552,6 +2543,9 @@ html[data-g9-role="CORE1B"] footer{position:static!important;bottom:auto!importa
 input,select{font-size:max(16px,1rem)}
 @media (max-width:899px){header[data-g9-shell-header]{position:relative}article[data-g9-unit]{padding:16px}nav[data-g9-breadcrumb]{font-size:.95rem}}
 """
+
+# Print-only Core1B settings: never embed into generic Core/TEST hub pages.
+CORE1B_PRINT_CSS = "@media print{\nhtml[data-g9-role=\"CORE1B\"]{font-size:16px!important;--g9-space:12px!important}\nhtml[data-g9-role=\"CORE1B\"] body{line-height:1.48!important}\nhtml[data-g9-role=\"CORE1B\"] .g9-concept-triad-bar{display:none!important}\nhtml[data-g9-role=\"CORE1B\"] article[data-g9-role=\"CORE1B\"]{margin:4px 0!important;padding:12px!important}\nhtml[data-g9-role=\"CORE1B\"] article[data-g9-role=\"CORE1B\"] .g9-split{display:block!important}\nhtml[data-g9-role=\"CORE1B\"] article[data-g9-role=\"CORE1B\"] figure[data-g9-figure]{break-inside:avoid-page!important;page-break-inside:avoid!important}\nhtml[data-g9-role=\"CORE1B\"] footer{position:static!important;bottom:auto!important;left:auto!important;padding:0!important;break-before:auto!important;font-size:14px!important;background:#fff!important}\n}\n"
 
 # Presentation of the blueprint's components. One rule set per presentation archetype the schema allows
 # (Shared/web/interactive-page-blueprint.schema.json, $defs/presentation); a test keeps the two lists equal.
@@ -2758,8 +2752,7 @@ ids.forEach(id=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display='n
 const show=()=>{ids.forEach((id,n)=>q('[data-g9-stage-id="'+id+'"]',f).forEach(g=>g.style.display=(cumulative?n<=i:n===i)?'':'none'));fitFigure(f);const l=q('[data-g9-stage-label]',f)[0];if(l)l.textContent='Stage '+(i+1)+' of '+ids.length;chips.forEach((c,n)=>c.setAttribute('aria-pressed',String(n===i)));if(desc)desc.textContent=(chips[i]&&chips[i].dataset.g9StageDesc)||''};show();chips.forEach((c,n)=>c.onclick=()=>{i=n;show()});
 q('[data-g9-stage-step]',f).forEach(b=>b.onclick=()=>{i=Math.max(0,Math.min(ids.length-1,i+(b.dataset.g9StageStep==='next'?1:-1)));show()})}
 function nextRung(l){const t=q('template[data-g9-rung-payload]',l)[0];if(!t)return false;const payload=t.content.cloneNode(true);q('[data-g9-rung-ghost]',l)[0]?.remove();q('[data-g9-ladder]',l)[0].append(payload);q('figure[data-g9-figure]',l).forEach(initFigure);t.remove();const b=q('[data-g9-next-rung]',l)[0];if(b){if(!q('template[data-g9-rung-payload]',l).length)b.disabled=true;else b.textContent='Show next support'}return true}
-const attemptedFor=(a,d)=>d.dataset.g9AttemptStage==='boundary'?!!a.dataset.g9BoundaryAttempted:!!a.dataset.attempted;
-function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{if(!attemptedFor(a,d))return;const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}
+function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}
 const number=t=>{const v=t.trim();if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?(?:\s*\/\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?)?$/i.test(v))return false;const p=v.split('/').map(x=>Number(x.trim()));return p.every(Number.isFinite)&&(p.length===1||p[1]!==0)};
 function validAttempt(box){const type=box.dataset.g9ResponseType;if(type==='single_choice'||type==='multiple_choice'||type==='true_false')return q('[data-g9-choice]:checked',box).length>0;
 if(type==='numeric')return number(q('[data-g9-number]',box)[0]?.value||'');if(type==='short_text')return !!q('[data-g9-attempt]',box)[0]?.value.trim();
@@ -2775,16 +2768,16 @@ function saveCore2State(a){if(a.dataset.g9Role!=='CORE2')return;const key=stateK
 function bindSupportRevealState(a){q('details[data-g9-support-reveal]',a).forEach(d=>{if(d.dataset.g9StateBound)return;d.dataset.g9StateBound='1';d.addEventListener('toggle',()=>saveCore2State(a))})}
 function restoreCore2State(a,lock){if(a.dataset.g9Role!=='CORE2')return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});bindSupportRevealState(a);q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.assisted){a.dataset.g9Assisted='1';a.dataset.g9Assistance=(Array.isArray(state.assistance)?state.assistance:[]).filter(v=>typeof v==='string').join(',')}if(state.attempted){a.dataset.attempted='1';materialise(a)}lock()}
 const articles=q('article[data-g9-unit],article[data-g9-diagnostic],[data-g9-purpose-item]');
-articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!attemptedFor(a,d)){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);
-q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{const d=s.closest('details');if(!attemptedFor(a,d)){e.preventDefault();const selector=d.dataset.g9AttemptStage==='boundary'?'[data-g9-attempt-box][data-g9-attempt-stage="boundary"]':'[data-g9-attempt-box]:not([data-g9-attempt-stage="boundary"])';q('input,textarea,select',q(selector,a)[0]||a)[0]?.focus()}}));
-q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}if(box.dataset.g9AttemptStage==='boundary')a.dataset.g9BoundaryAttempted='1';else a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});
+articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);
+q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));
+q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});
 a.addEventListener('click',e=>{const b=e.target.closest('[data-g9-next-rung]');if(b&&a.contains(b)){markAssistance(a,'HINT_LADDER');nextRung(b.closest('.g9-ladder'));bindSupportRevealState(a);saveCore2State(a)}});attemptFields(a).forEach(el=>{el.addEventListener('input',()=>saveCore2State(a));el.addEventListener('change',()=>saveCore2State(a))});
 q('details[data-g9-payload-ref$="-wrong-route"]',a).forEach(d=>d.addEventListener('toggle',()=>{if(d.open){markAssistance(a,'WRONG_ROUTE');saveCore2State(a)}}));
 q('[data-g9-concept-link]',a).forEach(link=>link.addEventListener('click',()=>{markAssistance(a,'CONCEPT_NAV');saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef);if(key)store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit);refreshReturnLinks()}))});
 const practiceLinks=q('[data-g9-practice-link]');const practiceLabels=new Map(practiceLinks.map(link=>[link,link.textContent]));const navParams=new URLSearchParams(location.search);const navReturn=navParams.get('g9-return');const navConcept=navParams.get('g9-concept');
 function refreshReturnLinks(){practiceLinks.forEach(link=>{const key=returnKey(link.dataset.g9ConceptRef);const stored=!!key&&store.get(key)===link.dataset.g9QuestionRef;const routed=navReturn===link.dataset.g9QuestionRef&&navConcept===link.dataset.g9ConceptRef;const active=stored||routed;if(active){link.dataset.g9ReturnLink='';link.textContent='Return to question · '+practiceLabels.get(link)}else{delete link.dataset.g9ReturnLink;link.textContent=practiceLabels.get(link)}})}
 practiceLinks.forEach(link=>link.addEventListener('click',()=>{const key=returnKey(link.dataset.g9ConceptRef);if(key&&store.get(key)===link.dataset.g9QuestionRef)store.remove(key);refreshReturnLinks()}));refreshReturnLinks();
-window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';a.dataset.g9BoundaryAttempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)});
+window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)});
 q('figure[data-g9-figure]').forEach(initFigure);
 q('[data-g9-toggle]').forEach(b=>b.onclick=()=>{const t=document.getElementById(b.getAttribute('aria-controls'));if(!t)return;const open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));t.hidden=open});
 const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();articles.forEach(a=>{a.hidden=!!v&&!(a.dataset.g9SearchText||'').toLowerCase().includes(v)})};
@@ -2792,6 +2785,31 @@ q('[data-g9-action="search"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-sea
 q('[data-g9-action="display"]').forEach(b=>b.onclick=()=>{const p=q('[data-g9-display-panel]')[0];p.hidden=!p.hidden});
 })();
 """
+
+
+
+# Core1B adds a SECOND learner commitment only on the Core1B role page.
+# Keep the generic runtime byte-identical for all other roles and the TEST hub;
+# the pre-existing shared JS is also consumed by many generated public pages.
+def core1b_js() -> str:
+    js = JS
+    patches = (
+        ("function materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}",
+         "const attemptedFor=(a,d)=>d.dataset.g9AttemptStage==='boundary'?!!a.dataset.g9BoundaryAttempted:!!a.dataset.attempted;\nfunction materialise(a){q('details[data-g9-payload-ref]',a).forEach(d=>{if(!attemptedFor(a,d))return;const slot=q('[data-g9-payload-slot]',d)[0];if(!slot||slot.dataset.g9Filled)return;const t=q('template[data-g9-payload]',a).find(x=>x.dataset.g9Payload===d.dataset.g9PayloadRef);if(!t)return;slot.replaceChildren(t.content.cloneNode(true));slot.dataset.g9Filled='1';q('figure[data-g9-figure]',slot).forEach(initFigure)})}"),
+        ("articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);",
+         "articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!attemptedFor(a,d)){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);"),
+        ("q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));",
+         "q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{const d=s.closest('details');if(!attemptedFor(a,d)){e.preventDefault();const selector=d.dataset.g9AttemptStage==='boundary'?'[data-g9-attempt-box][data-g9-attempt-stage=\"boundary\"]':'[data-g9-attempt-box]:not([data-g9-attempt-stage=\"boundary\"])';q('input,textarea,select',q(selector,a)[0]||a)[0]?.focus()}}));"),
+        ("q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});",
+         "q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-attempt-box]');if(!box||!validAttempt(box)){q('input,textarea,select',box||a)[0]?.focus();return}if(box.dataset.g9AttemptStage==='boundary')a.dataset.g9BoundaryAttempted='1';else a.dataset.attempted='1';lock();materialise(a);saveCore2State(a)});"),
+        ("window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)});",
+         "window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';a.dataset.g9BoundaryAttempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)});"),
+    )
+    for generic, boundary_specific in patches:
+        if js.count(generic) != 1:
+            raise ValueError("CORE1B_JS_PATCH_UNSAFE: shared runtime changed")
+        js = js.replace(generic, boundary_specific, 1)
+    return js
 
 
 def _mode_href(href: str, mode: str) -> str:
@@ -2989,13 +3007,13 @@ def page(ctx: Ctx, role: str, mode: str, digest: str) -> str:
             '<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<meta name="g9-render" content="{RENDERER_VERSION} {digest}">'
             f'{_shared_head_assets(ctx, mode)}'
-            f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}{COMPONENT_CSS}{learning_repair.CSS}{layout_css(ctx.blueprints)}</style></head>'
+            f'<title>{esc(ROLE_TITLE[role])} · {esc(m["title"])}</title><style>{CSS}{CORE1B_PRINT_CSS if role == "CORE1B" else ""}{COMPONENT_CSS}{learning_repair.CSS}{layout_css(ctx.blueprints)}</style></head>'
             f'<body data-core="{role}" data-blueprint-ref="{esc(bp["id"])}@{esc(bp["version"])}">'
             f'{header}{crumbs}<noscript>Answers open after you attempt; this page needs JavaScript.</noscript>'
             f'<main><h1>{esc(m["title"])}: {esc(ROLE_TITLE[role])}</h1>'
             f'{_core1a_bucket_orientation(ctx) if role == "CORE1A" else ""}{articles}</main>'
             f'<footer data-g9-footer>{esc(m["subject"])} · {esc(m["title"])}</footer>'
-            f"<script>{JS}{learning_repair.JS}</script>{_shared_script_assets(ctx, mode)}</body></html>\n")
+            f"<script>{core1b_js() if role == 'CORE1B' else JS}{learning_repair.JS}</script>{_shared_script_assets(ctx, mode)}</body></html>\n")
 
 
 def index_page(ctx: Ctx, digest: str) -> str:
