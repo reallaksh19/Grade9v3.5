@@ -1435,6 +1435,55 @@ def _stages_of(figure_html: str) -> int:
     return int(found.group(1)) if found else 0
 
 
+def _draft_concept_checkpoint(ctx: Ctx, m: dict) -> str:
+    """Optional neutral Core1A check for wholly authored TEST candidates only.
+
+    This client-side formative check selects a concept *before* guided work.
+    Its text match is not evidence of comprehension or independent mastery.
+    """
+    spec = (m.get("extensions") or {}).get("grade9v3:concept_checkpoint")
+    if not spec:
+        return ""
+    if (ctx.manifest.get("subject") != "TEST" or spec.get("scope") != "TEST_AUTHORED_CORE1A_ONLY"
+            or m.get("status") != "CANDIDATE"
+            or spec.get("status") != "LOCAL_TEACHING_FORMAT_CHECK_NOT_INDEPENDENT_MASTERY"):
+        ctx.gap("AUTHOR_CONCEPT_CHECKPOINT", m["id"],
+                "neutral concept checkpoint is restricted to unadmitted TEST authoring", "CORE1A")
+        return ""
+    options = spec.get("choices") or []
+    if (len(options) != 2 or {c.get("value") for c in options} != {"FACTOR", "ADD"}
+            or spec.get("correct_value") != "FACTOR"):
+        ctx.gap("AUTHOR_CONCEPT_CHECKPOINT", m["id"], "bad check choices", "CORE1A")
+        return ""
+    labels = "".join(
+        f'<label><input type="radio" name="{esc(m["id"])}-concept" '
+        f'data-g9-concept-option value="{esc(choice["value"])}"> '
+        f'{esc(choice["label"])}</label> '
+        for choice in options
+    )
+    return (
+        f'<section class="g9-concept-first" data-g9-concept-check '
+        f'data-g9-concept-ref="{esc(m["id"])}" '
+        f'data-g9-concept-correct="{esc(spec["correct_value"])}" '
+        f'data-g9-reason-words="{esc(",".join(spec["reason_contains_any"]))}" '
+        f'data-g9-rule-words="{esc(",".join(spec["reason_contains_any_rule"]))}" '
+        f'data-g9-feedback-choice="{esc(spec["on_wrong_choice"])}" '
+        f'data-g9-feedback-explain="{esc(spec["on_wrong_explanation"])}" '
+        f'data-g9-feedback-passed="{esc(spec["on_form_check"])}">'
+        '<h4>Concept first · before the worked equation</h4>'
+        f'<p>{esc(spec["neutral_demo"])}</p>'
+        f'<fieldset><legend>{esc(spec["prompt"])}</legend>{labels}</fieldset>'
+        '<label for="g9-concept-reason">Explain why in your own words</label>'
+        '<textarea id="g9-concept-reason" data-g9-concept-reason rows="3" '
+        'placeholder="Describe the index law and why it multiplies."></textarea>'
+        '<button type="button" data-g9-concept-commit>Check concept, then see guided work</button>'
+        '<p data-g9-concept-feedback role="status" aria-live="polite">'
+        'Choose a relationship and explain the exponent rule before continuing.</p>'
+        '<p>Formative teaching self-check only; this is not independent mastery evidence.</p>'
+        '</section>'
+    )
+
+
 def core1a(ctx: Ctx, m: dict) -> str:
     units = m.get("construction_units") or []
     if not units:
@@ -1601,7 +1650,11 @@ def core1a(ctx: Ctx, m: dict) -> str:
             "WORKED_EXAMPLE": unit_part("WORKED_EXAMPLE", block("worked_anchor", anchor_html, title="Worked explanation")),
         }
         card = component_body(ctx, "CORE1A", card_parts, "construction")
-        construction = f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">{card}</section>'
+        checkpoint = _draft_concept_checkpoint(ctx, m) if n == 0 else ""
+        construction = (f'<section id="{esc(u["id"])}" class="g9-cu" data-g9-cu="{esc(u["id"])}">'
+                        + checkpoint
+                        + (f'<div data-g9-concept-target hidden>{card}</div>' if checkpoint else card)
+                        + '</section>')
         support_label = decision or f"Construction {n + 1}"
         trap = (block("wrong_path", items(row["wrong_idea"] for row in wrong), title="A tempting wrong path")
                 + block("diagnose", items(row["diagnostic_prompt"] for row in wrong), title="Diagnose")
@@ -1621,7 +1674,8 @@ def core1a(ctx: Ctx, m: dict) -> str:
         )
         rows += compose(ctx, "CORE1A", {
             "construction": construction,
-            **({"repair_closure": support} if support else {}),
+            **({"repair_closure": (f'<div data-g9-concept-target hidden>{support}</div>'
+                                    if checkpoint else support)} if support else {}),
         })
 
     if toughest and m["id"] == toughest["microtopic_ref"]:
@@ -1634,6 +1688,9 @@ def core1a(ctx: Ctx, m: dict) -> str:
                      if _unit_href(ctx, role, ref)), None)
         return_hrefs[ref] = href or ('#' + repair_row['construction_ref'])
     clinics = secondary_disclosure("Question-specific diagnosis and repair", learning_repair.clinic(repair_rows, return_hrefs), "core1a-question-repair") if repair_rows else ""
+    if _draft_concept_checkpoint(ctx, m):
+        clinics = f'<div data-g9-concept-target hidden>{clinics}</div>'
+        closing = f'<div data-g9-concept-target hidden>{closing}</div>'
     return head + rows + clinics + _purpose_extension(ctx, "CORE1A", m["id"]) + closing
 
 
@@ -2273,13 +2330,21 @@ def _ladder(ctx: Ctx, q: dict, role: str, source: bool = False) -> str:
     ref = f'{role}-{q["id"]}' + ("-source" if source else "-authored")
     payloads = [question_text(ctx, q, targets[i] if i < len(targets) else "", t, role)
                 + (visuals[i] if i < len(visuals) else "") for i, t in enumerate(texts)]
+    # Core2A's first hint is *optional*, not disclosed on page load.
+    # Every rung opened through the button is recorded as assisted locally.
+    optional = role == "CORE2A"
+    start = 0 if optional else 1
     later = "".join(f'<template data-g9-rung-payload="{esc(ref)}-{n}">'
                     f'<li data-g9-rung="{n}">{t}</li></template>'
-                    for n, t in enumerate(payloads[1:], 2))
+                    for n, t in enumerate(payloads[start:], start + 1))
+    initial = "" if optional else f'<li data-g9-rung="1">{payloads[0]}</li>'
+    notice = ('<p data-g9-assistance-status role="status" aria-live="polite" hidden>'
+              'Hints viewed: assisted practice, not independent mastery.</p>' if optional else "")
     return (f'<div class="g9-ladder" data-g9-ladder-ref="{esc(ref)}">'
-            f'<ol data-g9-ladder><li data-g9-rung="1">{payloads[0]}</li></ol>'
-            f'{later}<button type="button" data-g9-next-rung{" disabled" if len(texts) == 1 else ""}>'
-            'Next hint</button></div>')
+            f'<ol data-g9-ladder>{initial}</ol>'
+            f'{later}<button type="button" data-g9-next-rung'
+            f'{" disabled" if not later else ""}>'
+            f'{"Show hint 1" if optional else "Next hint"}</button>{notice}</div>')
 
 
 def _family_title(ctx: Ctx, ref: str | None) -> str:
@@ -2626,6 +2691,13 @@ article[data-g9-unit]>.slot-identity{padding:0 0 12px;margin-bottom:16px;border-
 .g9-unit-head{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .g9-unit-no{display:inline-grid;place-items:center;width:2.3em;height:2.3em;border-radius:50%;background:var(--accent);color:var(--card);font-weight:850}
 .g9-unit-head h3{margin:0;flex:1 1 12rem;font-size:1.12rem;line-height:1.35}.g9-pill-concept{background:var(--info-bg);color:var(--info-fg);border:1px solid var(--info-line)}
+.g9-concept-first{border:2px solid var(--accent);border-radius:14px;padding:14px 18px;margin:12px 0;background:var(--soft);line-height:1.65}
+.g9-concept-first fieldset{border:1px solid var(--line);border-radius:9px;padding:10px;margin:12px 0}
+.g9-concept-first fieldset label{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px}
+.g9-concept-first textarea{display:block;width:100%;max-width:64ch;min-height:84px;margin:6px 0 12px}
+.g9-concept-first button{min-height:44px;padding:8px 14px;border-radius:8px}
+[data-g9-concept-target][hidden],[data-g9-assistance-status][hidden]{display:none!important}
+@media print{[data-g9-concept-target][hidden]{display:block!important}}
 .g9-c-step-cards [data-g9-block=construction] ol{list-style:none;margin:0;padding:0;counter-reset:g9c;display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
 .g9-c-step-cards [data-g9-block=construction] ol>li{counter-increment:g9c;position:relative;border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 14px 12px 54px;min-width:0;overflow-wrap:anywhere}
 .g9-c-step-cards [data-g9-block=construction] ol>li::before{content:counter(g9c);position:absolute;left:14px;top:12px;display:grid;place-items:center;width:1.9em;height:1.9em;border-radius:50%;background:var(--pill-bg);color:var(--pill-fg);font-weight:850;font-size:.9rem}
@@ -2739,10 +2811,11 @@ const stateKey=a=>scope&&a?.dataset.g9Unit?'state:'+scope+':'+a.dataset.g9Unit:n
 function readState(key){if(!key)return null;const raw=store.get(key);if(!raw)return null;try{const state=JSON.parse(raw);return state&&typeof state==='object'?state:null}catch(e){return null}}
 const attemptFields=a=>q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a);const rungCount=l=>{const list=q('[data-g9-ladder]',l)[0];return list?q('[data-g9-rung]',list).length:0};
 const assistanceOf=a=>(a.dataset.g9Assistance||'').split(',').filter(Boolean);
-function markAssistance(a,kind){if(a.dataset.g9Role!=='CORE2'||!kind)return;const kinds=new Set(assistanceOf(a));kinds.add(kind);a.dataset.g9Assistance=Array.from(kinds).join(',');a.dataset.g9Assisted='1'}
-function saveCore2State(a){if(a.dataset.g9Role!=='CORE2')return;const key=stateKey(a);if(!key)return;const fields=attemptFields(a).map(el=>({value:el.value,checked:!!el.checked}));const ladders={};q('.g9-ladder[data-g9-ladder-ref]',a).forEach(l=>ladders[l.dataset.g9LadderRef]=rungCount(l));const reveals=q('details[data-g9-support-reveal]',a).map(d=>!!d.open);const assistance=assistanceOf(a);store.set(key,JSON.stringify({attempted:!!a.dataset.attempted,assisted:!!a.dataset.g9Assisted,assistance,fields,ladders,reveals}))}
+function assistanceLabel(a){q('[data-g9-assistance-status]',a).forEach(el=>el.hidden=!a.dataset.g9Assisted)}
+function markAssistance(a,kind){if(!['CORE2','CORE2A'].includes(a.dataset.g9Role)||!kind)return;const kinds=new Set(assistanceOf(a));kinds.add(kind);a.dataset.g9Assistance=Array.from(kinds).join(',');a.dataset.g9Assisted='1';assistanceLabel(a)}
+function saveCore2State(a){if(!['CORE2','CORE2A'].includes(a.dataset.g9Role))return;const key=stateKey(a);if(!key)return;const fields=attemptFields(a).map(el=>({value:el.value,checked:!!el.checked}));const ladders={};q('.g9-ladder[data-g9-ladder-ref]',a).forEach(l=>ladders[l.dataset.g9LadderRef]=rungCount(l));const reveals=q('details[data-g9-support-reveal]',a).map(d=>!!d.open);const assistance=assistanceOf(a);store.set(key,JSON.stringify({attempted:!!a.dataset.attempted,assisted:!!a.dataset.g9Assisted,assistance,fields,ladders,reveals}))}
 function bindSupportRevealState(a){q('details[data-g9-support-reveal]',a).forEach(d=>{if(d.dataset.g9StateBound)return;d.dataset.g9StateBound='1';d.addEventListener('toggle',()=>saveCore2State(a))})}
-function restoreCore2State(a,lock){if(a.dataset.g9Role!=='CORE2')return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});bindSupportRevealState(a);q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.assisted){a.dataset.g9Assisted='1';a.dataset.g9Assistance=(Array.isArray(state.assistance)?state.assistance:[]).filter(v=>typeof v==='string').join(',')}if(state.attempted){a.dataset.attempted='1';materialise(a)}lock()}
+function restoreCore2State(a,lock){if(!['CORE2','CORE2A'].includes(a.dataset.g9Role))return;const state=readState(stateKey(a));if(!state)return;const fields=attemptFields(a);(state.fields||[]).forEach((saved,i)=>{const el=fields[i];if(!el||!saved||typeof saved!=='object')return;if(Object.prototype.hasOwnProperty.call(saved,'value'))el.value=saved.value??'';if(el.type==='checkbox'||el.type==='radio')el.checked=!!saved.checked});Object.entries(state.ladders||{}).forEach(([ref,count])=>{const l=q('.g9-ladder[data-g9-ladder-ref]',a).find(x=>x.dataset.g9LadderRef===ref);if(!l||!Number.isInteger(count)||count<0)return;while(rungCount(l)<count&&nextRung(l)){};});bindSupportRevealState(a);q('details[data-g9-support-reveal]',a).forEach((d,i)=>d.open=!!(state.reveals||[])[i]);if(state.assisted){a.dataset.g9Assisted='1';a.dataset.g9Assistance=(Array.isArray(state.assistance)?state.assistance:[]).filter(v=>typeof v==='string').join(',')}if(state.attempted){a.dataset.attempted='1';materialise(a)}assistanceLabel(a);lock()}
 const articles=q('article[data-g9-unit],article[data-g9-diagnostic],[data-g9-purpose-item]');
 articles.forEach(a=>{const lock=()=>q('details[data-requires-attempt]',a).forEach(d=>{if(!a.dataset.attempted){d.dataset.locked='';d.open=false}else delete d.dataset.locked});lock();restoreCore2State(a,lock);
 q('details[data-requires-attempt] summary',a).forEach(s=>s.addEventListener('click',e=>{if(!a.dataset.attempted){e.preventDefault();q('[data-g9-attempt-box] input,[data-g9-attempt-box] textarea,[data-g9-attempt-box] select',a)[0]?.focus()}}));
@@ -2750,10 +2823,34 @@ q('[data-g9-commit]',a).forEach(b=>b.onclick=()=>{const box=b.closest('[data-g9-
 a.addEventListener('click',e=>{const b=e.target.closest('[data-g9-next-rung]');if(b&&a.contains(b)){markAssistance(a,'HINT_LADDER');nextRung(b.closest('.g9-ladder'));bindSupportRevealState(a);saveCore2State(a)}});attemptFields(a).forEach(el=>{el.addEventListener('input',()=>saveCore2State(a));el.addEventListener('change',()=>saveCore2State(a))});
 q('details[data-g9-payload-ref$="-wrong-route"]',a).forEach(d=>d.addEventListener('toggle',()=>{if(d.open){markAssistance(a,'WRONG_ROUTE');saveCore2State(a)}}));
 q('[data-g9-concept-link]',a).forEach(link=>link.addEventListener('click',()=>{markAssistance(a,'CONCEPT_NAV');saveCore2State(a);const key=returnKey(link.dataset.g9ConceptRef);if(key)store.set(key,link.dataset.g9QuestionRef||a.dataset.g9Unit);refreshReturnLinks()}))});
+// An opt-in, TEST-only formative concept checkpoint: verify a choice and
+// a minimal rule-oriented rationale before showing the guided lesson.
+// A keyword/radio check is NOT a knowledge score, mastery or secure receipt.
+q('[data-g9-concept-check]').forEach(c=>{
+  const article=c.closest('article[data-g9-role="CORE1A"]');
+  const b=q('[data-g9-concept-commit]',c)[0];
+  const feedback=q('[data-g9-concept-feedback]',c)[0];
+  if(!article||!b||!feedback)return;
+  b.addEventListener('click',()=>{
+    const choice=q('[data-g9-concept-option]:checked',c)[0]?.value||'';
+    const reason=(q('[data-g9-concept-reason]',c)[0]?.value||'').trim().toLowerCase();
+    const match=(s)=>s.split(',').some(w=>w&&reason.includes(w));
+    if(choice!==c.dataset.g9ConceptCorrect){feedback.textContent=c.dataset.g9FeedbackChoice;return}
+    if(reason.length<15||!match(c.dataset.g9ReasonWords||'')||!match(c.dataset.g9RuleWords||'')){
+      feedback.textContent=c.dataset.g9FeedbackExplain;return
+    }
+    article.dataset.g9ConceptCheckCompleted='formative_only';
+    q('[data-g9-concept-target]',article).forEach(el=>{el.hidden=false});
+    feedback.textContent=c.dataset.g9FeedbackPassed;
+    q('figure[data-g9-figure]',article).forEach(fitFigure);
+    q('[data-g9-concept-target] h3,[data-g9-concept-target] h4',article)[0]?.setAttribute('tabindex','-1');
+    q('[data-g9-concept-target] h3,[data-g9-concept-target] h4',article)[0]?.focus();
+  })
+});
 const practiceLinks=q('[data-g9-practice-link]');const practiceLabels=new Map(practiceLinks.map(link=>[link,link.textContent]));const navParams=new URLSearchParams(location.search);const navReturn=navParams.get('g9-return');const navConcept=navParams.get('g9-concept');
 function refreshReturnLinks(){practiceLinks.forEach(link=>{const key=returnKey(link.dataset.g9ConceptRef);const stored=!!key&&store.get(key)===link.dataset.g9QuestionRef;const routed=navReturn===link.dataset.g9QuestionRef&&navConcept===link.dataset.g9ConceptRef;const active=stored||routed;if(active){link.dataset.g9ReturnLink='';link.textContent='Return to question · '+practiceLabels.get(link)}else{delete link.dataset.g9ReturnLink;link.textContent=practiceLabels.get(link)}})}
 practiceLinks.forEach(link=>link.addEventListener('click',()=>{const key=returnKey(link.dataset.g9ConceptRef);if(key&&store.get(key)===link.dataset.g9QuestionRef)store.remove(key);refreshReturnLinks()}));refreshReturnLinks();
-window.g9MaterialiseAll=()=>articles.forEach(a=>{a.dataset.attempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)});
+window.g9MaterialiseAll=()=>{q('[data-g9-concept-target]').forEach(el=>el.hidden=false);articles.forEach(a=>{a.dataset.attempted='1';q('details[data-requires-attempt]',a).forEach(d=>delete d.dataset.locked);materialise(a);q('.g9-ladder',a).forEach(l=>{while(nextRung(l)){};});q('details[data-g9-support-reveal]',a).forEach(d=>d.open=true)})};
 q('figure[data-g9-figure]').forEach(initFigure);
 q('[data-g9-toggle]').forEach(b=>b.onclick=()=>{const t=document.getElementById(b.getAttribute('aria-controls'));if(!t)return;const open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));t.hidden=open});
 const input=q('[data-g9-search-input]')[0];if(input)input.oninput=()=>{const v=input.value.trim().toLowerCase();articles.forEach(a=>{a.hidden=!!v&&!(a.dataset.g9SearchText||'').toLowerCase().includes(v)})};
