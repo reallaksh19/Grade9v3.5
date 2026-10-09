@@ -21,12 +21,14 @@ REPO = Path(__file__).resolve().parents[2]
 if __package__ in (None, ""):
     sys.path.insert(0, str(REPO))
 
-from Shared.tools import qrt_pipeline_gate
+from Shared.tools import qrt_pipeline_gate, question_review_matrix as qrt
 
 REQUIRED_INPUTS = {
     "Shared/quality/question-demand-matrix.v1.json",
     "Shared/vocabularies/cognitive-demand.v1.json",
     "Shared/web/interactive-page-blueprints.v1.json",
+    "Shared/quality/question-demand-templates.v1.json",
+    "Shared/vocabularies/learner-question-metadata.v1.json",
 }
 DIGEST = re.compile(r"sha256:[a-f0-9]{64}\Z")
 SHA = re.compile(r"[a-f0-9]{40}\Z")
@@ -82,10 +84,10 @@ def _tracked_file(
 def _status(findings: list[dict], reviews: list[dict]) -> str:
     if findings:
         return "REVIEW_REQUIRED_OR_STALE"
-    if any(any(
-        isinstance(v, dict) and v.get("verdict") in {"PARTLY", "NO"}
-        for v in (review.get("judgements") or {}).values()
-    ) for review in reviews):
+    if any(any(verdict in {"PARTLY", "NO"} for verdict in [
+        item.get("verdict") for item in (review.get("judgements") or {}).values()
+        if isinstance(item, dict)
+    ]) for review in reviews if isinstance(review.get("judgements"), dict)):
         return "SEMANTIC_REWORK_REQUIRED"
     return "REVIEW_EVIDENCE_COMPLETE_NOT_ACCEPTANCE"
 
@@ -119,9 +121,35 @@ def candidate(repo: Path, row: Any, *, head: str) -> dict:
         findings.extend(errors)
     for required in sorted(REQUIRED_INPUTS - seen):
         findings.append(_finding("CANONICAL_AUTHORITY_INPUT_UNTRACKED", required))
-    if not (seen - REQUIRED_INPUTS):
-        findings.append(_finding("QUESTION_OR_PROFILE_SOURCE_UNTRACKED", qid))
-
+    source_name = row.get("question_source_path")
+    profile_name = row.get("learner_profile_path")
+    for label, raw in (("QUESTION_SOURCE", source_name), ("LEARNER_PROFILE", profile_name)):
+        if not isinstance(raw, str) or not raw:
+            findings.append(_finding(f"{label}_REF_MISSING", qid))
+        elif raw not in seen:
+            findings.append(_finding(f"{label}_NOT_TRACKED", str(raw)))
+    selected_cell = None
+    demand = None
+    band = None
+    if (isinstance(source_name, str) and source_name in seen
+            and isinstance(profile_name, str) and profile_name in seen):
+        source_path, source_err = _path(repo, source_name)
+        profile_path, profile_err = _path(repo, profile_name)
+        if source_err or profile_err:
+            findings.append(_finding("QRT_RESOLUTION_SOURCE_PATH_INVALID", qid))
+        elif source_path is not None and profile_path is not None and source_path.is_file() and profile_path.is_file():
+            try:
+                source_doc, profile = _load_json(source_path), _load_json(profile_path)
+                source_question = qrt._select_question(source_doc, qid)
+                resolution = qrt.resolve_review(
+                    source_question, profile,
+                    qrt.load(qrt.MATRIX_PATH), qrt.load(qrt.VOCAB_PATH),
+                )
+                selected_cell = resolution["template_id"]
+                demand = resolution["classification"]["demand"]["primary"]
+                band = resolution["classification"]["band"]
+            except (OSError, ValueError, KeyError, StopIteration, TypeError) as exc:
+                findings.append(_finding("CANONICAL_QRT_RESOLUTION_FAILED", qid, str(exc)))
     reviewed_asks: dict[str, str] = {}
     review_basis = "NOT_RECORDED"
     bound_artifact = None
@@ -145,7 +173,12 @@ def candidate(repo: Path, row: Any, *, head: str) -> dict:
                 findings.append(_finding("CANDIDATE_QUESTION_NOT_UNIQUE_IN_RUN", qid))
             # The entire governed gate includes author self-audit, artifact/hash,
             # 12-ask reviews, preattempt W and interactive Chromium receipts.
-            for problem in qrt_pipeline_gate.check(run):
+            try:
+                gate_problems = qrt_pipeline_gate.check(run)
+            except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
+                findings.append(_finding("GOVERNED_QRT_GATE_EXCEPTION", qid, str(exc)))
+                gate_problems = []
+            for problem in gate_problems:
                 findings.append(_finding("GOVERNED_QRT_GATE_FAILURE", qid, problem))
             matches = [x for x in run.get("reviews") or []
                        if isinstance(x, dict) and x.get("question_ref") == qid
@@ -156,12 +189,14 @@ def candidate(repo: Path, row: Any, *, head: str) -> dict:
                 review = matches[0]
                 review_basis = str(review.get("basis") or "RENDERED")
                 bound_artifact = review.get("artifact_ref")
-                reviewed_asks = {
-                    ask: str((review.get("judgements") or {}).get(ask, {}).get("verdict")
-                             or ("NOT_APPLICABLE" if (review.get("judgements") or {}).get(ask, {}).get("applicability") == "NOT_APPLICABLE"
-                                 else "MISSING"))
-                    for ask in qrt_pipeline_gate.pipeline_guard.ASKS
-                }
+                judgements = review.get("judgements") or {}
+                for ask in qrt_pipeline_gate.pipeline_guard.ASKS:
+                    answer = judgements.get(ask) if isinstance(judgements, dict) else None
+                    answer = answer if isinstance(answer, dict) else {}
+                    reviewed_asks[ask] = str(
+                        answer.get("verdict") or
+                        ("NOT_APPLICABLE" if answer.get("applicability") == "NOT_APPLICABLE" else "MISSING")
+                    )
             reviews = matches
     else:
         reviews = []
@@ -171,6 +206,9 @@ def candidate(repo: Path, row: Any, *, head: str) -> dict:
         "run_path": row.get("run", {}).get("path") if isinstance(row.get("run"), dict) else None,
         "run_head_sha": head_from_run,
         "review_basis": review_basis,
+        "resolved_qrt_cell": selected_cell,
+        "resolved_primary_demand": demand,
+        "derived_difficulty_band": band,
         "artifact_ref": bound_artifact,
         "ask_verdicts": reviewed_asks,
         "tracked_input_count": len(inputs),
