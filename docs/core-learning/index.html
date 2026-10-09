@@ -369,6 +369,15 @@
       const core = row?.projection?.core;
       if (core === "CORE1A" && pendingRepair?.target_projection_id === row.id) {
         repairPanel.hidden = false;
+        const matchingSteps = [...(learner.shadowRoot?.querySelectorAll("[data-teaching-step]") || [])]
+          .filter((element) => element.getAttribute("data-teaching-step") === pendingRepair.repair_step_ref);
+        if (matchingSteps.length !== 1) {
+          repairNote.textContent = "The canonical Core1A concept loaded, but its exact repair step is not " +
+            "uniquely addressable in the actual rendered learner page. Route held; no precise repair claimed.";
+          return;
+        }
+        matchingSteps[0].focus({ preventScroll: true });
+        matchingSteps[0].scrollIntoView({ block: "center", behavior: "instant" });
         repairNote.textContent = "Returned from " + pendingRepair.origin_question_ref +
           " to this exact Core1A teaching step " + pendingRepair.repair_step_ref +
           ". Study the construction and decide whether it addresses your difficulty. " +
