@@ -68,7 +68,7 @@ class Core1BReconstructionTests(unittest.TestCase):
         self.assertIn("Core1A directly models", e["reconstruct"]["differs_from_teaching_path"])
         self.assertIn("(t−1)t", e["boundary_test"]["prompt"])
         self.assertIn("t=2", e["boundary_test"]["answer"])
-        self.assertIn("modulo-three", e["boundary_test"]["answer"])
+        self.assertIn("multiple-of-three", e["boundary_test"]["answer"])
         self.assertEqual(len(m["misconceptions"]), 1)
         self.assertTrue(m["misconceptions"][0]["diagnostic_prompt"])
         self.assertTrue(m["misconceptions"][0]["repair"])
