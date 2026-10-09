@@ -56,3 +56,45 @@ Workflow outcomes must be inspected for actual job step execution; a GitHub
 Actions infrastructure failure or zero-step run is **NOT_TESTED**, not PASS.
 The exact historical `main` baseline must likewise be observed executing
 before claiming a runtime baseline result.
+
+## Source-backed release boundary and limited UI mitigation
+
+At the pinned bounded-unit source cutoff, the 24 canonical subject library
+packages contain 25 buckets: 20 Physics, three Mathematics and two TEST.
+Every inspected package and bucket declares `status: CANDIDATE`. The
+historical 22-bucket report contains the 20 Physics and two earlier
+Mathematics buckets. It is **not** a list of independently release-approved
+Core1 content. The three later buckets are compiler-orientable, not thereby
+academically admitted. The source-level subject `CoreContracts.json`
+records `release_authority: NOT_GRANTED_BY_ANY_MACHINE_CHECK`.
+
+The learner-host template and its generated public and standalone HTML now
+show a prominent compiler-preview notice. Their ordinary activity chooser
+excludes `subject: TEST`; the direct-link mount path refuses IDs absent from
+the filtered chooser. A focused test pins the notice and both client-side
+checks. This is a **UI route mitigation only**, not content access control.
+It does not qualify any Mathematics, Physics or TEST item for curricular
+publication; Mathematics Polynomials remains a visible *candidate preview*.
+
+**Critical remaining exposure:** both hosts still load
+`public/core-learning/data.js`. The generator's `build()` emits TEST
+compiler rows in `core_projections` and the generated public file could
+therefore physically contain sandbox records regardless of chooser filtering.
+The exact saved artifact is ~2.5 MB at its pinned Git blob and its complete
+bytes have not been re-read or regenerated here. A user-visible filter does
+not prevent data access through the JavaScript payload or a different
+consumer. No publication/academic isolation PASS is claimed.
+
+Before resolving Issue #326, independently select and enforce the canonical
+learner-publication eligibility policy (with source/Owner review), split or
+constrain **physical public-data emission** accordingly, preserve the
+compiler's complete internal previews, and validate negative TEST/candidate
+exposure tests against the actually emitted public file and both browser
+hosts. A missing grant must fail closed. This must not silently convert the
+frozen report into an approval whitelist or make all CANDIDATE rows releasable.
+
+GitHub Actions retries at the previous head (candidate
+`211db0c0c805b7d87d0dd45e9bd4d59647916ee7`, pinned-main diagnostic)
+again returned zero executed job steps on attempt 3. The newer host changes
+likewise require actual exact-head execution before verification. Retain
+DRAFT and all source-custody/QRT/V3.1 holds.
