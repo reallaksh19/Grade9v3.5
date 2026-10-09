@@ -23,6 +23,7 @@ on:
       - 'tests/test_core1b_key_custody.py'
       - 'tests/test_core1b_three_case_goldens.py'
       - 'tests/fixtures/core1b-goldens/**'
+      - 'tools/site-audit/core1b-three-case-golden-audit.mjs'
   workflow_dispatch:
 
 permissions:
@@ -60,6 +61,8 @@ jobs:
         run: |
           node tools/site-audit/core1b-reconstruction-audit.mjs \
             public/test/products/core1b-authored-reconstruction-journey
+      - name: Browser-test three held Golden learner journeys across the 4-by-7 QRT overlay
+        run: node tools/site-audit/core1b-three-case-golden-audit.mjs
       - name: Print a SEPARATE offline answer key using existing print-product key mode
         run: |
           node tools/print/print-product.mjs \

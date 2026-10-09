@@ -22,10 +22,12 @@ These are authored fixture classifications **not** new canonical QRT resolutions
 4. Independently require an attempt for each changed-boundary question. Completing proof/repair must not unlock the boundary answer.
 5. Never award automatic mastery or claim AI-judged student correctness. This is **UI behavioural goldens**, not evidence a real Grade 9 learner improved.
 
-Fixtures intentionally store answer prose **for offline TEST use only**; no key is packaged into the public evidence artifact. Linked historical HTML prototype was delivered to the user in chat (not in repository publication). The canonical merged Core1B renderer remains a separate subject of its own browser test.
+Fixtures intentionally store answer prose **for offline TEST use only**; no key is packaged into the public evidence artifact. The exact user-reviewed offline HTML prototype is preserved at \`tests/fixtures/core1b-goldens/student-practice.v2.html\` (non-public, with answers in its inert JavaScript source). A dedicated Playwright audit checks its displayed case texts against all three JSON fixtures and exercises first-attempt/repair/boundary gating, short responses, paper mode and responsive/200% rendering. **Do not upload or publish the answer-bearing HTML.** The canonical merged Core1B renderer remains a separate subject of its own browser test.
 
 ## Acceptance and unresolved holds
 
 Run `python -m unittest tests.test_core1b_three_case_goldens -v` along with existing `tests.test_core1b_reconstruction_maturity` and Playwright Core1B browser QA. Frozen guard rails include 28-cell matrix identity, semantic case-to-cell mapping, no fake 28/28 coverage, math/physics warrant falsifiers, legitimate short response, whitespace denial, paper escape, independent boundary, authentic-source nonadmission, and no automatic grading.
 
 U6 independent Grade 9 learning / assistive-tech / source custody, and print/key owner review **NOT_RUN / NOT_GRANTED**; all experimental golden fixtures stay TEST-only and cannot change canonical-QRT ownership.
+
+Run browser golden QA with `node tools/site-audit/core1b-three-case-golden-audit.mjs` after installing the existing Playwright/Chromium test dependency. No human answer or synthetic grade is captured or uploaded.
