@@ -55,6 +55,21 @@ try{
       report.zoom200=zoom;
       await page.screenshot({path:path.join(outDir,'attempt-390-200pct.png'),fullPage:true});
     }
+    if(w===768){
+      // A hint requested AFTER a committed attempt is review support. It may
+      // not retroactively relabel the initial unassisted attempt.
+      const input=article.locator('[data-g9-attempt-box] textarea').first();
+      await input.fill('I independently attempted the model before seeing help.');
+      await article.locator('[data-g9-commit]').first().click();
+      await firstButton.click();
+      const postStatus=await article.getAttribute('data-g9-post-attempt-hints');
+      const retroactive=await article.getAttribute('data-g9-assisted');
+      const wording=await assistanceNotice.innerText();
+      assert(postStatus==='1'&&!retroactive&&wording.includes('does not retroactively'),
+        'post-commit help retroactively misclassified an independent initial attempt');
+      report.postCommitReview={postStatus,retroactive,wording,
+        trustedAssessment:false};
+    }
     if(w===1280){
       await firstButton.click();
       const didReveal=await article.locator('[data-g9-ladder] [data-g9-rung]').count()===1;
