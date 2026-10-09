@@ -4,6 +4,9 @@ on:
   pull_request:
     paths:
       - 'TEST/imo-research/**'
+      - 'TEST/library/imo-g9-divisibility-core1a.v1.json'
+      - 'tests/test_imo_core_pilot_research.py'
+      - 'tests/test_imo_core1a_candidate_package.py'
       - 'Mathematics/research/imo-g9-topic-browser.v1.json'
       - 'public/mathematics/imo-grade9/**'
       - 'docs/mathematics/imo-grade9/**'
@@ -17,6 +20,9 @@ on:
     branches: [main]
     paths:
       - 'TEST/imo-research/**'
+      - 'TEST/library/imo-g9-divisibility-core1a.v1.json'
+      - 'tests/test_imo_core_pilot_research.py'
+      - 'tests/test_imo_core1a_candidate_package.py'
       - 'Mathematics/research/imo-g9-topic-browser.v1.json'
       - 'public/mathematics/imo-grade9/**'
       - 'docs/mathematics/imo-grade9/**'
@@ -72,5 +78,9 @@ jobs:
         run: python TEST/imo-research/validate_learner_quality.py
       - name: Validate rights-safe Mathematics IMO topic browser and public-docs parity
         run: python TEST/imo-research/validate_math_tab_imo_topics.py
+      - name: Validate authentic-source Core2 custody census and independent Core1A proposal
+        run: python TEST/imo-research/validate_core_pilot_research.py
+      - name: Validate authored TEST Core1A candidate canonical package with zero admission
+        run: python TEST/imo-research/validate_core1a_candidate_package.py
       - name: Run research-only falsifier tests
         run: python -m unittest discover -s tests -p 'test_imo_*.py' -v
