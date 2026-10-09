@@ -154,6 +154,7 @@ test("existing canonical production 2A/2B changed-model witness is structurally 
 test("both generated learner hosts wire the guided transfer and disclose exposure", async () => {
   const pages = await Promise.all([
     "../public/core-learning/index.html",
+    "../docs/core-learning/index.html",
     "../standalone/core-learning/index.html",
     "../Shared/tools/build_core_learning_host.py",
   ].map((path) => readFile(resolve(here, path), "utf8")));
