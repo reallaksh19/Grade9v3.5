@@ -8,16 +8,16 @@
   <link rel="stylesheet" href="../../css/modern-learner.css">
   <style>
     :root {color-scheme:light dark}
-    .core-preview {max-width:1040px;margin:0 auto;padding:clamp(16px,3vw,36px)}
+    .core-preview {width:100%;min-width:0;max-width:1040px;margin:0 auto;padding:clamp(16px,3vw,36px)}
     .review-banner {border:2px solid #67748c;border-radius:12px;background:var(--bg-soft,#f6f8fc);padding:14px 18px;line-height:1.65;margin-bottom:24px}
     .review-banner strong {display:inline-block;margin-right:10px}
     .review-banner p {margin:6px 0}
-    .review-heading {font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.16;margin:12px 0}
+    .review-heading {overflow-wrap:anywhere;hyphens:auto;font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.16;margin:12px 0}
     .lead {font-size:1.09rem;line-height:1.6;max-width:72ch}
     .lesson-nav {display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}
     .lesson-nav a {border-radius:8px;border:1px solid #8895a7;padding:9px 13px;min-height:44px;display:inline-flex;align-items:center}
-    .review-panel {background:var(--bg-card,#fff);border:1px solid var(--border,#cbd5e1);border-radius:16px;padding:clamp(16px,3vw,27px);margin:22px 0}
-    .review-panel h2 {font-size:1.4rem;margin:0 0 12px}
+    .review-panel {min-width:0;max-width:100%;background:var(--bg-card,#fff);border:1px solid var(--border,#cbd5e1);border-radius:16px;padding:clamp(16px,3vw,27px);margin:22px 0}
+    .review-panel h2 {overflow-wrap:anywhere;hyphens:auto;font-size:1.4rem;margin:0 0 12px}
     .review-panel h3 {font-size:1.11rem;margin:0 0 8px}
     .review-panel p,.review-panel li {line-height:1.68}
     .opening-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,345px),1fr));gap:16px}
@@ -29,7 +29,7 @@
     .step-label {font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;font-weight:750;margin-bottom:8px}
     .step-result {background:var(--bg-soft,#eff5fa);border-radius:8px;padding:11px;overflow-wrap:anywhere}
     .because {border-top:1px solid var(--border,#bdc9d6);padding-top:12px}
-    .table-wrap {overflow-x:auto}
+    .table-wrap {min-width:0;max-width:100%;overflow-x:auto}
     .residue-table {width:100%;border-collapse:collapse;min-width:470px;margin:14px 0}
     .residue-table th,.residue-table td {border:1px solid var(--border,#adb9c7);text-align:left;padding:11px 13px;vertical-align:top}
     .residue-table thead th {background:var(--bg-soft,#f1f5f9)}

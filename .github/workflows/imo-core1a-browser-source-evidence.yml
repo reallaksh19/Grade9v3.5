@@ -1,0 +1,123 @@
+name: imo-g9-core1a-browser-source-evidence
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/imo-core1a-browser-source-evidence.yml"
+      - "tools/site-audit/imo-core1a-review-audit.mjs"
+      - "TEST/imo-research/probe_core2_source_pdfs.py"
+      - "TEST/imo-research/intake/core2-source-acquisition-handoff.v1.json"
+      - "public/test/imo-grade9/**"
+      - "docs/test/imo-grade9/**"
+      - "public/mathematics/imo-grade9/**"
+      - "docs/mathematics/imo-grade9/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  candidate-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned existing-repository Chromium harness
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install chromium
+          pip install --quiet pypdf
+      - name: Exercise actual browser through local HTTP, preserve failure evidence
+        run: |
+          mkdir -p /tmp/imo-core1a-browser
+          python3 -m http.server 8769 --directory public >/tmp/imo-core1a-browser/http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          python3 - <<'PY'
+          import socket,time
+          for i in range(80):
+              try:
+                  with socket.create_connection(("127.0.0.1",8769),timeout=0.2):
+                      print("local exact-checkout page HTTP server ready")
+                      break
+              except OSError:
+                  time.sleep(0.1)
+          else:
+              raise SystemExit("local exact-checkout HTTP server unavailable")
+          PY
+          node tools/site-audit/imo-core1a-review-audit.mjs
+      - name: Extract printed TEST review PDF to verify actual page content
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          from pypdf import PdfReader
+          folder=Path("/tmp/imo-core1a-browser")
+          report=json.loads((folder/"browser-evidence.json").read_text())
+          assert report["failures"]==[],report["failures"]
+          pdf=folder/"imo-test-core1a-review-print.pdf"
+          r=PdfReader(pdf)
+          text=" ".join(page.extract_text() or "" for page in r.pages)
+          assert len(r.pages)>=1,"no printed pages"
+          assert "TEST REVIEW ONLY" in text,"printed preview lost candidate status"
+          assert "24" in text and "divisible" in text,"printed page lost independent exit argument"
+          assert "not an academically accepted" in text,"printed page lost admission disclaimer"
+          proof={"pages":len(r.pages),"pdf_bytes":pdf.stat().st_size,
+                 "test_status":"PRINTED_BROWSER_PDF_TEXT_VERIFIED",
+                 "product_publication":False,
+                 "source_SOF_PDF_reproduced":False,
+                 "visual_print_review":"NOT_HUMAN_INSPECTED"}
+          (folder/"print-evidence.json").write_text(json.dumps(proof,indent=2)+"\n")
+          print(json.dumps(proof,sort_keys=True))
+          PY
+      - name: Upload real browser snapshots, interaction measurements and authored print PDF
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: imo-core1a-test-browser-evidence
+          path: /tmp/imo-core1a-browser/
+          if-no-files-found: warn
+
+  source-acquisition-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Attempt official/school source bytes in protected temporary directory
+        run: |
+          mkdir -p /tmp/imo-source-probe
+          python3 TEST/imo-research/probe_core2_source_pdfs.py --output /tmp/imo-source-probe/source-probe-evidence.json
+      - name: Assert no alleged rights, unretained byte receipts or Core2 promotion
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path("/tmp/imo-source-probe/source-probe-evidence.json")
+          d=json.loads(p.read_text())
+          assert len(d["sources"])==4
+          assert sum(s["research_positions"] for s in d["sources"])==68
+          assert d["durably_retained_source_snapshots"]==0
+          assert d["canonical_verified_source_receipts"]==0
+          assert d["copyright_reproduction_permission"]=="NOT_GRANTED_BY_DOWNLOAD"
+          assert all(not s["snapshot_retained_after_run"] for s in d["sources"])
+          print(json.dumps({"probe_executed":True,
+                            "temporary_verified_downloads":d["temporary_verified_downloads"],
+                            "network_blocked":d["unavailable_or_invalid"],
+                            "durably_retained":0,"rights_granted":False}))
+          PY
+      - name: Upload acquisition outcomes and verified metadata only, never third-party PDFs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: imo-source-pdf-ephemeral-probe-evidence
+          path: /tmp/imo-source-probe/source-probe-evidence.json
+          if-no-files-found: warn
